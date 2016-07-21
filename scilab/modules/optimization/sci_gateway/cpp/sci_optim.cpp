@@ -653,7 +653,19 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                     Scierror(134, _("%s: Problem with initial constants in simul.\n"), "optim");
                     throw ast::ScilabException();
                 }
-
+            
+                if (piIzs)
+                {
+                    delete[] piIzs;
+                }
+                if (pfRzs)
+                {
+                    delete[] pfRzs;
+                }
+                if (pdblDzs)
+                {
+                    delete[] pdblDzs;
+                }
                 piIzs   = new int[C2F(nird).nizs];
                 pfRzs   = new float[C2F(nird).nrzs];
                 pdblDzs = new double[C2F(nird).ndzs];
@@ -683,6 +695,10 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
                 pDblTi = in[iPos]->getAs<types::Double>();
                 C2F(nird).nizs = pDblTi->getSize();
+                if (piIzs)
+                {
+                    delete[] piIzs;
+                }
                 piIzs = new int[pDblTi->getSize()];
 
                 for (int i = 0; i < pDblTi->getSize(); i++)

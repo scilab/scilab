@@ -76,6 +76,7 @@ int ScilabGateway::wrap(char * fname, const int envId, void * pvApiCtx)
     }
 
     PutLhsVar();
+    delete[] tmpvar;
 
     return 0;
 }

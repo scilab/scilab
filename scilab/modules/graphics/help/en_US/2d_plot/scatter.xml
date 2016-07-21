@@ -471,7 +471,7 @@ p.mark_background = addcolor(name2rgb("darkcyan")/255)
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="scatter3">scatter3</link>

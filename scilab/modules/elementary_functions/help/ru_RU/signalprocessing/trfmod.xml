@@ -19,7 +19,7 @@
         <refpurpose>отображение полюсов и нулей</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[hm]=trfmod(h [,job])</synopsis>
     </refsynopsisdiv>
     <refsection>

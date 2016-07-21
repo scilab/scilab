@@ -64,7 +64,7 @@ nthroot([27 256; 3125 46656], [3 4; 5 6])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="hat">hat</link>

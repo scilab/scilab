@@ -19,7 +19,7 @@
         <refpurpose>мнимая часть</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y = imag(x)</synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -36,8 +36,8 @@
                 <term>y</term>
                 <listitem>
                     <para>Матрица действительных чисел. Матричные многочлены или
-                    рациональные функции с вещественными коэффициентам,
-                    with same sizes than <varname>x</varname>.
+                        рациональные функции с вещественными коэффициентам,
+                        with same sizes than <varname>x</varname>.
                     </para>
                 </listitem>
             </varlistentry>

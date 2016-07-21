@@ -56,7 +56,7 @@ is_absolute_path("./scilab/modules/fileio")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="get_absolute_file_path">get_absolute_file_path</link>

@@ -19,7 +19,7 @@
         <refpurpose>корень квадратный</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=sqrt(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

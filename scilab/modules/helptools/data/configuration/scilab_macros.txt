@@ -146,7 +146,6 @@ ReadHBSparse
 ana_style
 cond2sp
 condestsp
-rafiter
 replace_Ix_by_Fx
 scisptdemo
 test_on_columns
@@ -1377,8 +1376,6 @@ fullrfk
 genmarkov
 givens
 glever
-gschur
-gspec
 householder
 im_inv
 kernel
@@ -1795,7 +1792,6 @@ eval3dp
 fac3d
 fac3d1
 fchamp
-fcontour
 fgrayplot
 fplot2d
 fplot3d

@@ -20,7 +20,7 @@
         <refpurpose>установка бита в определённой позиции</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             y = bitset(x, pos)
             y = bitset(x, pos, v)

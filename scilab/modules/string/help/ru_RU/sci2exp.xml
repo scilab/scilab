@@ -19,7 +19,7 @@
         <refpurpose>преобразует выражение в строку</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t = sci2exp(a [,nam] [,lmax])</synopsis>
     </refsynopsisdiv>
     <refsection>

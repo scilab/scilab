@@ -107,7 +107,7 @@ title(a_bt, "the exponential");
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="subplot">subplot</link>

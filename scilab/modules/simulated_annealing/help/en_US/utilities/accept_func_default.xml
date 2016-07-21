@@ -76,7 +76,7 @@ level = accept_func_default(10,9,10);
     </refsection>
     
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="accept_func_vfsa">

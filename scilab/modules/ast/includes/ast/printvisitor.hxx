@@ -35,7 +35,9 @@ public:
         force_parenthesis (parenthesis_display),
         displayOriginal(_displayOriginal),
         headerOnly(_headerOnly),
-        indent(0) { }
+        indent(0),
+        is_last_matrix_line(false),
+        is_last_column_comment(false) { }
 
     PrintVisitor* clone()
     {

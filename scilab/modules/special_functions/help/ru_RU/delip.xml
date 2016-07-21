@@ -19,7 +19,7 @@
         <refpurpose>полный и неполный эллиптический интеграл первого рода</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[r]=delip(x,ck)</synopsis>
     </refsynopsisdiv>
     <refsection>

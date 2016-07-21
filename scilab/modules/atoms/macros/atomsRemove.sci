@@ -67,7 +67,7 @@ function result = atomsRemove(packages,section,del)
 
     // Verbose Mode ?
     // =========================================================================
-    if strcmpi(atomsGetConfig("Verbose"),"True") == 0 then
+    if strcmp(atomsGetConfig("Verbose"),"True", "i") == 0 then
         ATOMSVERBOSE = %T;
     else
         ATOMSVERBOSE = %F;

@@ -19,7 +19,7 @@
         <refpurpose>соединение блочно-диагональной системы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>r=sysdiag(a1,a2,...,an)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>функция синус</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[t] = sin(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

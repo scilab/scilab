@@ -139,11 +139,8 @@ bool FuncManager::AppendModules()
         if (doc == NULL)
         {
             std::cout << "Error: Could not parse file " << pstTemp << std::endl;
-            if (encoding)
-            {
-                free(encoding);
-                encoding = NULL;
-            }
+            free(encoding);
+            encoding = NULL;
             FREE(pstTemp);
             return false;
         }
@@ -166,6 +163,10 @@ bool FuncManager::AppendModules()
                     {
                         /* we found the tag name */
                         const char *str = (const char*)attrib->children->content;
+                        if (name)
+                        {
+                            FREE(name);
+                        }
                         name = os_strdup(str);
                     }
                     else if (xmlStrEqual(attrib->name, (const xmlChar*)"activate"))
@@ -217,11 +218,8 @@ bool FuncManager::AppendModules()
     {
         std::cout << "Error: Not a valid module file " << pstTemp << " (encoding not 'utf-8') Encoding '" << encoding << "' found." << std::endl;
     }
-    if (encoding)
-    {
-        free(encoding);
-        encoding = NULL;
-    }
+    free(encoding);
+    encoding = NULL;
 
     ConfigVariable::setModuleList(m_ModuleName);
     FREE(pstTemp);

@@ -20,7 +20,7 @@
         <refpurpose>проверяет является ли аргумент путём до директории</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>r=isdir(path)</synopsis>
     </refsynopsisdiv>
     <refsection>

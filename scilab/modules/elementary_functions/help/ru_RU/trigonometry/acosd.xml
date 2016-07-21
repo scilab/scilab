@@ -19,7 +19,7 @@
         <refpurpose>поэлементный арккосинус, результат в градусах.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t = acosd(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

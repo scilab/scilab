@@ -112,7 +112,7 @@ xsetech([0,0.5,1.0,0.5])
         
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xsetech">xsetech</link>

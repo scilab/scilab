@@ -137,7 +137,7 @@
         </itemizedlist>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="selection_ga_random"> selection_ga_random </link>

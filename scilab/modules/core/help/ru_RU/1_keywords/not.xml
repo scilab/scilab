@@ -19,7 +19,7 @@
         <refpurpose>(~) логическое НЕ</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>~A</synopsis>
     </refsynopsisdiv>
     <refsection>

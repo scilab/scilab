@@ -103,13 +103,15 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"plotframe", L"");
     map.emplace(L"xset", L"set");
     map.emplace(L"xget", L"get");
-    map.emplace(L"isoview", L"");
-    map.emplace(L"xclear", L"");
+    map.emplace(L"xclear", L"clf");
+    map.emplace(L"xpause", L"sleep");
+    map.emplace(L"havewindow", L"getscilabmode");
     map.emplace(L"datatipSetStruct", L"");
     map.emplace(L"datatipGetStruct", L"");
     map.emplace(L"fcontour2d", L"contour2d");
     map.emplace(L"fcontour", L"contour");
     map.emplace(L"fac3d", L"plot3d");
+    map.emplace(L"eval3d", L"ndgrid");
     map.emplace(L"str2code", L"");
     map.emplace(L"code2str", L"");
     map.emplace(L"perl", L"");
@@ -119,7 +121,8 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"numdiff", L"numderivative");
     map.emplace(L"derivative", L"numderivative");
     map.emplace(L"mvvacov", L"cov");
-
+    map.emplace(L"strcmpi", L"strcmp");
+    map.emplace(L"jconvMatrixMethod", L"jautoTranspose");
     return map;
 }
 

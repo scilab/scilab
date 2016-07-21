@@ -128,6 +128,17 @@ types::Function::ReturnValue sci_spget(types::typed_list &in, int _iRetCount, ty
     if (_iRetCount > 3)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "spget", 1, 3);
+        delete[] pRows;
+        delete[] pNonZeroR;
+        delete[] pNonZeroI;
+        if (pBools)
+        {
+            pBools->killMe();
+        }
+        if (pValues)
+        {
+            pValues->killMe();
+        }
         return types::Function::Error;
     }
 

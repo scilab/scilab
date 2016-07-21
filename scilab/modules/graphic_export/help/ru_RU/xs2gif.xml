@@ -19,7 +19,7 @@
         <refpurpose>экспорт графиков в GIF</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             xs2gif(win_num, file_name)
             xs2gif(fig, file_name)

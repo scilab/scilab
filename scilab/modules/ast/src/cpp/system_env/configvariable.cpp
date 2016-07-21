@@ -15,7 +15,7 @@
 
 #include <vector>
 #include <list>
-
+#include <iomanip>
 #include "context.hxx"
 #include "configvariable.hxx"
 #include "macrofile.hxx"
@@ -686,7 +686,7 @@ types::Cell* ConfigVariable::getAllThreads(void)
     types::Cell *pcResult = new types::Cell(iSize, 1);
     std::list<types::ThreadId *>::iterator it;
 
-    for (auto thread : ConfigVariable::m_threadList)
+    for (it = ConfigVariable::m_threadList.begin() ; it != ConfigVariable::m_threadList.end() ; ++it)
     {
         pcResult->set(i++, *it);
     }
@@ -1426,7 +1426,7 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
         ostr << std::endl;
     }
 
-    ostr << std::endl;
+    ostr << std::endl << std::resetiosflags(std::ios::adjustfield);
 }
 
 void ConfigVariable::fillWhereError(int _iErrorLine)

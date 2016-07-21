@@ -24,7 +24,8 @@ function contour(x, y, z, nz, theta, alpha, leg, flag, ebox, zlev)
 
         x = -1:0.1:1;
         y = x;
-        z = eval3d(Surf2, x, y)
+        [X,Y] = ndgrid(x,y);
+        z = Surf2(X,Y)
 
         //scf();
         subplot(211);

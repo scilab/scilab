@@ -73,7 +73,7 @@ disp(size(M_own('entries')))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="hypermatrices">hypermatrices</link>

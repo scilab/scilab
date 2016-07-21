@@ -5,7 +5,7 @@
         <refpurpose>умножение на мнимую единицу i</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y = imult(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

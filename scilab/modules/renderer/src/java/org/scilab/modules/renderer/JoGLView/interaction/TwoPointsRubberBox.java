@@ -14,7 +14,13 @@
 
 package org.scilab.modules.renderer.JoGLView.interaction;
 
+import java.awt.Point;
+
+import org.scilab.forge.scirenderer.tranformations.Vector3d;
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
+import org.scilab.modules.renderer.JoGLView.interaction.util.PointAComputer;
+import org.scilab.modules.renderer.JoGLView.interaction.util.PointBComputer;
 
 /**
  * @author Bruno JOFRET
@@ -30,4 +36,27 @@ public class TwoPointsRubberBox extends RubberBox implements PointRubberBox {
         super(drawerVisitor);
     }
 
+    /**
+     * Set the first point.
+     * @param point first point AWT coordinate.
+     * @return true if the first point is valid.
+     */
+    @Override
+    protected boolean setPointA(Point point) {
+        axesZoomList.clear();
+        boolean status = false;
+        Axes axes = getUnderlyingAxes(point);
+        if (axes != null) {
+            AxesZoom axesZoom = new AxesZoom(axes);
+            PointAComputer pointComputer = new PointAComputer(axes, point);
+            if (pointComputer.isValid()) {
+                axesZoom.pointAComputer = pointComputer;
+                axesZoom.firstPoint = pointComputer.getPosition();
+                axesZoom.secondPoint = axesZoom.firstPoint;
+                axesZoomList.add(axesZoom);
+                status = true;
+            }
+        }
+        return status;
+    }
 }

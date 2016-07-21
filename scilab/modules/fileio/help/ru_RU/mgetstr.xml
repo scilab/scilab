@@ -21,7 +21,7 @@
         <refpurpose>считывает символьную строку из файла</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>str = mgetstr(n, [fd])</synopsis>
     </refsynopsisdiv>
     <refsection>

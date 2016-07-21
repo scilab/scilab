@@ -19,7 +19,7 @@
         <refpurpose>экспорт графиков в JPG</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             xs2jpg(win_num, file_name [, compression_quality])
             xs2jpg(fig, file_name [, compression_quality])

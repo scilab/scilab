@@ -40,13 +40,13 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
     int m2          = 0;
     int n2          = 0;
     int nonZeros    = 0;
+    int fmatindex   = 0;
     bool fact       = false;
 
     const void *pData   = NULL;
     double* dbl         = NULL;
     int* colPos         = NULL;
     int* itemsRow       = NULL;
-    int *fmatindex      = NULL;
 
     //check input parameters
     if (in.size() > 2)
@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
         m1 = pPointerIn->getRows();
         n1 = pPointerIn->getCols();
         pData = pPointerIn->get();
-        fmatindex = (int*)pData;
+        fmatindex = *(int*)pData;
         fact = false;
     }
     else if (in[0]->isSparse())
@@ -95,9 +95,8 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
         pSpIn->getColPos(colPos);
         pSpIn->getNbItemByRow(itemsRow);
 
-        fmatindex = new int[1];
         abstol = nc_eps_machine();
-        C2F(lufact1)(dbl, itemsRow, colPos, &m1, &nonZeros, fmatindex, &abstol, &reltol, &nrank, &ierr);
+        C2F(lufact1)(dbl, itemsRow, colPos, &m1, &nonZeros, &fmatindex, &abstol, &reltol, &nrank, &ierr);
         fact = true;
 
         delete[] dbl;
@@ -146,13 +145,13 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
             for (int i = 0; i < n2; i++)
             {
                 int iPos = i * m2;
-                C2F(lusolve1)(fmatindex, dbl + iPos, oReal + iPos, &ierr);
+                C2F(lusolve1)(&fmatindex, dbl + iPos, oReal + iPos, &ierr);
                 if (ierr > 0)
                 {
                     Scierror(999, _("Wrong value for argument #%d: the lu handle is no more valid.\n"), 1);
                     return types::Function::Error;
                 }
-                C2F(lusolve1)(fmatindex, imag + iPos, oImg + iPos, &ierr);
+                C2F(lusolve1)(&fmatindex, imag + iPos, oImg + iPos, &ierr);
                 if (ierr > 0)
                 {
                     Scierror(999, _("Wrong value for argument #%d: the lu handle is no more valid.\n"), 1);
@@ -164,7 +163,7 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
         {
             for (int i = 0; i < n2; i++)
             {
-                C2F(lusolve1)(fmatindex, &dbl[i * m2], &oReal[i * m2], &ierr);
+                C2F(lusolve1)(&fmatindex, &dbl[i * m2], &oReal[i * m2], &ierr);
                 if (ierr > 0)
                 {
                     Scierror(999, _("Wrong value for argument #%d: the lu handle is no more valid.\n"), 1);
@@ -175,7 +174,7 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
 
         if (fact)
         {
-            C2F(ludel1)(fmatindex, &ierr);
+            C2F(ludel1)(&fmatindex, &ierr);
         }
 
         out.push_back(pDblOut);

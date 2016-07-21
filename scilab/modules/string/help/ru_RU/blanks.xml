@@ -19,7 +19,7 @@
         <refpurpose>создание строки из пробелов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>txt = blanks(n)</synopsis>
     </refsynopsisdiv>
     <refsection>

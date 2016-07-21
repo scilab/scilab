@@ -26,11 +26,13 @@ public:
     Pointer()
     {
         m_pvData = NULL;
+        m_cplx = false;
     }
 
     Pointer(void* _pvData)
     {
         m_pvData = _pvData;
+        m_cplx = false;
     }
 
     Pointer(int _rows, int _cols, void* _pvData, bool _complex = false)

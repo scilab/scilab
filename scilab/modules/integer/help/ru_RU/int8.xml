@@ -47,7 +47,7 @@
         <refpurpose> conversion to 8 bytes unsigned integer representation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y = int8(X)
             y = int16(X)
             y = int32(X)

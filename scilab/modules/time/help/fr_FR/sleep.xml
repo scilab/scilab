@@ -133,6 +133,7 @@ plot2d()
 // [Si vous êtes utilisateur MacOS, choisir le menu "Editer => Effacer la figure"]
 mprintf("Pendant ce sommeil de 30s, cliquer sur la fenêtre graphique,\n   puis menu Editer => Propriétés de la Figure")
 // L'éditeur de propriétés graphiques sera appelé uniquement au réveil de Scilab
+sleep(30, "s")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

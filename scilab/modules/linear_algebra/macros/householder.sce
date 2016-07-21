@@ -47,8 +47,8 @@ f.color_map = [ 0.8 0.8 0.8 ; jetcolormap(100)];
 surf(Xe,Ye,Ze)
 surf(X,Y,Zm)
 surf(Xr,Yr,Zr)
+isoview()
 a = gca();
-a.isoview = "on";
 a.rotation_angles = [74 123];
 a.children.color_flag = 0;
 a.children.color_mode = 0;

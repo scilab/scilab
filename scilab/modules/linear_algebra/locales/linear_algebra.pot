@@ -514,36 +514,12 @@ msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/gschur.sci, line: 24
-# File: modules/linear_algebra/macros/gschur.sci, line: 40
 # File: modules/linear_algebra/macros/gspec.sci, line: 16
 #, c-format
 msgid "%s: Obsolete function. Please replace '%s' by '%s'."
 msgstr ""
 
 #
-# File: modules/linear_algebra/macros/gschur.sci, line: 32
-#, c-format
-msgid ""
-"%s: Obsolete function. Former external functions cannot be used anymore."
-msgstr ""
-
-#
-# File: modules/linear_algebra/macros/householder.sci, line: 35
-# File: modules/linear_algebra/macros/householder.sci, line: 39
-#, c-format
-msgid "%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
-msgstr ""
-
-#
-# File: modules/linear_algebra/macros/householder.sci, line: 43
-# File: modules/linear_algebra/macros/householder.sci, line: 47
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
-msgstr ""
-
-#
-# File: modules/linear_algebra/macros/householder.sci, line: 51
 # File: modules/linear_algebra/macros/im_inv.sci, line: 25
 # File: modules/linear_algebra/macros/spaninter.sci, line: 29
 # File: modules/linear_algebra/macros/spanplus.sci, line: 29

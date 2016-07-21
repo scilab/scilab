@@ -97,16 +97,15 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             double* pdblPreferredSize = NULL;
             int piPreferredSize[2];
 
+            freeAllocatedMatrixOfString(iRows, iCols, pstField);
             sciErr = getListItemAddress(_pvCtx, piAddrList, 2, &piAddr2);
             if (sciErr.iErr)
             {
-                freeAllocatedMatrixOfString(iRows, iCols, pstField);
                 return SET_PROPERTY_ERROR;
             }
 
             if (getAllocatedSingleString(_pvCtx, piAddr2, &pstPos))
             {
-                freeAllocatedMatrixOfString(iRows, iCols, pstField);
                 return SET_PROPERTY_ERROR;
             }
 
@@ -135,7 +134,6 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             {
                 Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "constraints.position", "center, top, bottom, left, right");
                 freeAllocatedSingleString(pstPos);
-                freeAllocatedMatrixOfString(iRows, iCols, pstField);
                 return SET_PROPERTY_ERROR;
             }
 
@@ -144,14 +142,12 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             sciErr = getListItemAddress(_pvCtx, piAddrList, 3, &piAddr3);
             if (sciErr.iErr)
             {
-                freeAllocatedMatrixOfString(iRows, iCols, pstField);
                 return SET_PROPERTY_ERROR;
             }
 
             sciErr = getMatrixOfDouble(_pvCtx, piAddr3, &iRows3, &iCols3, &pdblPreferredSize);
             if (sciErr.iErr)
             {
-                freeAllocatedMatrixOfString(iRows, iCols, pstField);
                 return SET_PROPERTY_ERROR;
             }
 

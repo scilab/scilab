@@ -13,7 +13,7 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="sm2des">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="sm2des">
     <refnamediv>
         <refname>sm2des</refname>
         <refpurpose>system matrix to descriptor</refpurpose>
@@ -46,7 +46,7 @@
         <para>
             Utility function: converts the system matrix:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 Sm = [-sE + A   B;
      [    C     D]
  ]]></programlisting>
@@ -55,13 +55,16 @@ Sm = [-sE + A   B;
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="ss2des">ss2des</link>
+                <link linkend="systmat">systmat</link>
             </member>
             <member>
                 <link linkend="sm2ss">sm2ss</link>
+            </member>
+            <member>
+                <link linkend="ss2des">ss2des</link>
             </member>
         </simplelist>
     </refsection>

@@ -20,7 +20,7 @@
         <refpurpose>считывает матрицу из текстового файла</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>M = fscanfMat(filename[, fmt]);
             [M, text] = fscanfMat(filename [, fmt]);
         </synopsis>

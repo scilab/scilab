@@ -19,7 +19,7 @@
         <refpurpose>функция разложения на множители</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[y]=factor(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

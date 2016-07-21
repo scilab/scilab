@@ -208,7 +208,7 @@ ga_params = add_param(ga_params,'maxbound',ones(2,1));
     </refsection>
     
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optim_moga"> optim_moga </link>

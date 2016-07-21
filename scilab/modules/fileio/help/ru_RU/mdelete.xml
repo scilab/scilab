@@ -20,7 +20,7 @@
         <refpurpose>удаляет файлы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>mdelete(filename)</synopsis>
     </refsynopsisdiv>
     <refsection>

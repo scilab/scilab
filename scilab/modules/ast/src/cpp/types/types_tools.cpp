@@ -510,6 +510,11 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
         else if (pIT->isString())
         {
             String* pStr = pIT->getAs<String>();
+            if(!_pRef)
+            {
+                bUndefine = true;
+                continue;
+            }
             if (_pRef->isStruct())
             {
                 Struct* pStruct = _pRef->getAs<Struct>();

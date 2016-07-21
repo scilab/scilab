@@ -19,7 +19,7 @@
         <refpurpose>норма матрицы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[y]=norm(x [,flag])</synopsis>
     </refsynopsisdiv>
     <refsection>

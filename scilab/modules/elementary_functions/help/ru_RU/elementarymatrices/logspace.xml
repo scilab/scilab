@@ -19,7 +19,7 @@
         <refpurpose>вектор с интервалами между элементами в логарифмическом масштабе</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>logspace(d1,d2, [n])</synopsis>
     </refsynopsisdiv>
     <refsection>

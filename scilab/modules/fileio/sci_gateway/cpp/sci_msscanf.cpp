@@ -106,22 +106,14 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
             switch (err)
             {
                 case DO_XXPRINTF_MISMATCH:
-                    if (iNiter >= 0)
-                    {
-                        Free_Scan(rowcount, ncol, type_s, &data);
-                        Scierror(999, _("%s: Data mismatch.\n"), "msscanf");
-                        return types::Function::Error;
-                    }
-                    break;
+                    Free_Scan(rowcount, ncol, type_s, &data);
+                    Scierror(999, _("%s: Data mismatch.\n"), "msscanf");
+                    return types::Function::Error;
 
                 case DO_XXPRINTF_MEM_LACK:
                     Free_Scan(rowcount, ncol, type_s, &data);
                     Scierror(999, _("%s: No more memory.\n"), "msscanf");
                     return types::Function::Error;
-            }
-            if (err == DO_XXPRINTF_MISMATCH)
-            {
-                break;
             }
         }
     }
@@ -228,75 +220,74 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
             break;
             default :
             {
-                std::vector<types::InternalType*>* pITTemp = new std::vector<types::InternalType*>();
-                pITTemp->push_back(IT[0]);
+                std::vector<types::InternalType*> pITTemp = std::vector<types::InternalType*>();
+                pITTemp.push_back(IT[0]);
 
                 // sizeOfVector always > 1
                 for (int i = 1; i < sizeOfVector; i++) // concatenates the Cells. ex : [String 4x1] [String 4x1] = [String 4x2]
                 {
-                    if (pITTemp->back()->getType() == IT[i]->getType())
+                    if (pITTemp.back()->getType() == IT[i]->getType())
                     {
-                        switch (pITTemp->back()->getType())
+                        switch (pITTemp.back()->getType())
                         {
                             case types::InternalType::ScilabString :
                             {
-                                int iRows               = pITTemp->back()->getAs<types::String>()->getRows();
-                                int iCols               = pITTemp->back()->getAs<types::String>()->getCols();
+                                int iRows               = pITTemp.back()->getAs<types::String>()->getRows();
+                                int iCols               = pITTemp.back()->getAs<types::String>()->getCols();
                                 int arrayOfType[2]      = {iRows, iCols + 1};
                                 types::String* pType    = new types::String(2, arrayOfType);
 
-                                for (int k = 0; k < pITTemp->back()->getAs<types::String>()->getSize(); k++)
+                                for (int k = 0; k < pITTemp.back()->getAs<types::String>()->getSize(); k++)
                                 {
-                                    pType->set(k, pITTemp->back()->getAs<types::String>()->get(k));
+                                    pType->set(k, pITTemp.back()->getAs<types::String>()->get(k));
                                 }
                                 for (int k = 0; k < IT[i]->getAs<types::String>()->getSize(); k++)
                                 {
                                     pType->set(iRows * iCols + k, IT[i]->getAs<types::String>()->get(k));
                                 }
-                                pITTemp->pop_back();
-                                pITTemp->push_back(pType);
+                                pITTemp.pop_back();
+                                pITTemp.push_back(pType);
                             }
                             break;
                             case types::InternalType::ScilabDouble :
                             {
-                                int iRows               = pITTemp->back()->getAs<types::Double>()->getRows();
-                                int iCols               = pITTemp->back()->getAs<types::Double>()->getCols();
+                                int iRows               = pITTemp.back()->getAs<types::Double>()->getRows();
+                                int iCols               = pITTemp.back()->getAs<types::Double>()->getCols();
                                 int arrayOfType[2]      = {iRows, iCols + 1};
                                 types::Double* pType    = new types::Double(2, arrayOfType);
 
-                                pType->set(pITTemp->back()->getAs<types::Double>()->get());
+                                pType->set(pITTemp.back()->getAs<types::Double>()->get());
                                 for (int k = 0; k < IT[i]->getAs<types::Double>()->getSize(); k++)
                                 {
                                     pType->set(iRows * iCols + k, IT[i]->getAs<types::Double>()->get(k));
                                 }
-                                pITTemp->pop_back();
-                                pITTemp->push_back(pType);
+                                pITTemp.pop_back();
+                                pITTemp.push_back(pType);
                             }
                             break;
                             default :
-                                delete pITTemp;
                                 return types::Function::Error;
                         }
                     }
                     else
                     {
-                        pITTemp->push_back(IT[i]);
+                        pITTemp.push_back(IT[i]);
                     }
                 }
 
                 types::MList* pMList = new types::MList();
                 pMList->append(new types::String(L"cblock"));
-                for (int i = 0 ; i < pITTemp->size() ; i++)
+                for (int i = 0 ; i < pITTemp.size() ; i++)
                 {
-                    pMList->append((*pITTemp)[i]);
+                    pMList->append(pITTemp[i]);
                 }
                 out.push_back(pMList);
 
-                //                int dimsArrayOfCell[2] = {1, (int)pITTemp->size()};
+                //                int dimsArrayOfCell[2] = {1, (int)pITTemp.size()};
                 //                types::Cell* pCell = new types::Cell(2, dimsArrayOfCell);
-                //                for (int i = 0; i < pITTemp->size(); i++)
+                //                for (int i = 0; i < pITTemp.size(); i++)
                 //                {
-                //                    pCell->set(i, (*pITTemp)[i]);
+                //                    pCell->set(i, pITTemp[i]);
                 //                }
                 //                out.push_back(pCell);
             }

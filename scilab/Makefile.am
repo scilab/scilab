@@ -91,7 +91,7 @@ scilab_bin_CPPFLAGS = \
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
 
-# Link against valgrind library as on some systems (eg. Fedora) it should be 
+# Link against valgrind library as on some systems (eg. Fedora) it should be
 # link on the final binary
 COMMON_LIBS += $(VALGRIND_LIBS)
 
@@ -197,6 +197,15 @@ macros: $(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli check-jvm-
 	echo "$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -quit -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
 	$(top_builddir)/bin/scilab-cli -ns -noatomsautoload -quit -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
 
+strip-debug:
+	find $(top_builddir) -name '*.so.?.?.?' | while read file ; \
+	do \
+	    if [ ! -f $$file.debug ]; then \
+	        objcopy --only-keep-debug $$file $$file.debug; \
+	        objcopy --strip-debug $$file; \
+	        objcopy --add-gnu-debuglink=$$file.debug $$file; \
+	    fi \
+	done;
 
 check-jvm-dep:
 # Check that scilab-cli does not have a dependency on libjvm
@@ -269,8 +278,8 @@ if BUILD_HELP
 		for l in $(ALL_LINGUAS_DOC); do \
 			echo "-- Building documentation ($$l) --"; \
 			COMMAND="try xmltojar([],[],'$$l');catch disp(lasterror()); exit(-1);end;exit(0);"; \
-			echo "LANG=$$l.UTF-8 LC_ALL=$$l.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e \"$$COMMAND\"";\
-			LANG=$$l.UTF-8 LC_ALL=$$l.UTF-8 SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
+			echo "LANG=$$l.UTF-8 LC_ALL=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e \"$$COMMAND\"";\
+			LANG=$$l.UTF-8 LC_ALL=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 _JAVA_OPTIONS='-Djava.awt.headless=true' $(top_builddir)/bin/scilab-adv-cli -noatomsautoload -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 		done; \
 	else \
 		echo "Cannot find Scilab-adv-cli binary"; \
@@ -540,7 +549,7 @@ pkgconfigdir = $(libdir)/pkgconfig
 # Files to install in Pkgconfig directory
 pkgconfig_DATA = scilab.pc
 
-.PHONY: macros localization doc
+.PHONY: macros localization doc strip-debug
 
 .NOTPARALLEL: macros doc
 

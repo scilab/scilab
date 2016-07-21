@@ -19,7 +19,7 @@
         <refpurpose>перемещение курсора в верхний левый угол командного окна</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>tohome()</synopsis>
     </refsynopsisdiv>
     <refsection>

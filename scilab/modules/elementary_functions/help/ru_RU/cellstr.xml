@@ -19,7 +19,7 @@
         <refpurpose>преобразует вектор строк (или матрицу строк) в cell-массив строк</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>c=cellstr(s)</synopsis>
     </refsynopsisdiv>
     <refsection>

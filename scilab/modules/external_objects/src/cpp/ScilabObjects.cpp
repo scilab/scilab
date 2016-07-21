@@ -237,8 +237,8 @@ void ScilabObjects::removeVar(int * addr, void * pvApiCtx)
 
             env.removeobject(*id);
             deleteNamedVariable(pvApiCtx, varName);
-            freeAllocatedSingleString(varName);
         }
+        freeAllocatedSingleString(varName);
     }
 }
 

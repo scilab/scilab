@@ -493,7 +493,7 @@ assert_checkequal(x, cos(a));
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="api_double">API double</link>

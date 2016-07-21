@@ -90,7 +90,7 @@ clf() ;fplot3d1(x,y,f,alpha=5,theta=31)
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="plot3d1">plot3d1</link>

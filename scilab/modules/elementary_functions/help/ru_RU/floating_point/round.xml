@@ -20,7 +20,7 @@
         <refpurpose>округление до ближайшего целого</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=round(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -167,6 +167,7 @@ int set_layout_options_property(void* _pvCtx, int iObjUID, void* _pvData, int va
             freeAllocatedMatrixOfString(iRows, iCols, pstField);
             return SET_PROPERTY_ERROR;
         }
+        freeAllocatedMatrixOfString(iRows, iCols, pstField);
     }
 
     return SET_PROPERTY_SUCCEED;

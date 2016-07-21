@@ -40,10 +40,10 @@ function [blocks] = bplatform2(blocks,flag)
     //** INIT
     if flag==4 then
         H=scf(win)
-        clf(H)
+        clf
+        isoview(H, "on")
         Axe=H.children
         Axe.data_bounds=rpar(4:7)
-        Axe.isoview="on"
 
         x0=(xmin+xmax)/2;
         y0=(ymin+ymax)/2;

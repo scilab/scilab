@@ -20,7 +20,7 @@
         <refpurpose>преобразование имён путей между POSIX и Windows.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>paths = pathconvert(paths [,flagtrail [,flagexpand [,type]]])</synopsis>
     </refsynopsisdiv>
     <refsection>

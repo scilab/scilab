@@ -71,14 +71,12 @@ function [UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,Alfa,Beta)
     if RHS==4 then Beta=-1;Alfa=-1;flag="st";end
     if RHS==3 then Beta=-1;Alfa=-1;flag="st";D1=[];end
     if size(C1,2) ~= size(Sys("A"),1) then
-        error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
-        "state dimension of #%d must be equal to the column dimension of #%d.\n"),..
-        "ui_observer",1,3,1,3))
+        msg = _("%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be equal to the column dimension of #%d.\n")
+        error(msprintf(msg, "ui_observer", 1, 3, 1, 3))
     end
     if size(D1,2) ~= size(Sys("B"),2) then
-        error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
-        "input dimension of #%d must be equal to the column dimension of #%d.\n"),..
-        "ui_observer",4,1,4,1))
+        msg = _("%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be equal to the column dimension of #%d.\n")
+        error(msprintf(msg, "ui_observer", 4, 1, 4, 1))
     end
     not_reject=1:size(Sys,"c");not_reject(reject)=[];
     Sys1=Sys(:,reject);      //A,B1,C2,D21

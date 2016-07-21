@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>rel_file = getrelativefilename(abs_dir, abs_file)</synopsis>
     </refsynopsisdiv>
     <refsection>

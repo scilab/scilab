@@ -63,7 +63,7 @@ mgetl(this_file) // Scilab
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="mclose">mclose</link>

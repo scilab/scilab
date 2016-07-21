@@ -160,7 +160,7 @@ counter
     ]]></programlisting>
     </refsection>
     <refsection id="SeeAlso_scicos_simulate">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="scicos_diagram">scs_m structure</link>

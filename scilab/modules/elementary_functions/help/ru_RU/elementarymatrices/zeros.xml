@@ -19,7 +19,7 @@
         <refpurpose>матрица, составленная из нулей</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             y=zeros()
             y=zeros(x)

@@ -86,7 +86,7 @@ pop_in_2 = coding_ga_identity(pop_out,'decode',[])
     </refsection>
     
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="mutation_ga_default"> mutation_ga_default </link>

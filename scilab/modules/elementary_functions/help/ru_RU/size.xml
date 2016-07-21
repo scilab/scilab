@@ -21,7 +21,7 @@
         <refpurpose>размер объекта</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             sz = size(x)
             [n1, n2] = size(x)

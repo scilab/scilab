@@ -19,7 +19,7 @@
         <refpurpose>наибольший общий делитель (НОД)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[pgcd, U]=gcd(p)</synopsis>
     </refsynopsisdiv>
     <refsection>

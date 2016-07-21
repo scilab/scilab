@@ -6,7 +6,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[result,err]=int3d(X,Y,Z,f [,nf[,params]])</synopsis>
     </refsynopsisdiv>
     <refsection>

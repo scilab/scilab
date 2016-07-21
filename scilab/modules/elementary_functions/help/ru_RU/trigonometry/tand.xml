@@ -19,7 +19,7 @@
         <refpurpose>тангенс, аргумент в градусах.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t = tand(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

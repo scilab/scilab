@@ -20,7 +20,7 @@
         <refpurpose>Случайные числа</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             r = rand()
             r = rand(m1,m2,...)

@@ -83,7 +83,7 @@ s = samwr(4, 12, a)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sample">sample</link>

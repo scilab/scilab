@@ -5,7 +5,7 @@
         <refpurpose>получение информации о версии Scilab и модулей</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             version = getversion()
             [version, opts] = getversion()

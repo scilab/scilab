@@ -27,9 +27,9 @@ function block=BARXY_sim(block,flag)
         end
 
         f.background = -2;
+        isoview("on")
         a=gca();
         a.data_bounds = block.rpar';
-        a.isoview = "on";
         u1=block.inptr(1);
         u2=block.inptr(2);
         j = 0;

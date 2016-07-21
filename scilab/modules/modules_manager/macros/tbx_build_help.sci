@@ -62,7 +62,7 @@ function tbx_build_help(moduletitle, path)
     end
 
     directory_language = basename(path);
-    default_language = getlanguage();
+    default_language = "en_US"
 
     xmltojar(path, moduletitle, directory_language, default_language);
 

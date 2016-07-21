@@ -32,6 +32,7 @@ import java.text.DecimalFormatSymbols;
 import org.scilab.forge.scirenderer.ruler.graduations.UserDefinedFormat;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import static org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -121,7 +122,7 @@ public class Datatip extends Text {
         setLineMode(true);
         setFillMode(true);
         setBackground(-2);
-        setClipState(1);
+        setClipStateAsEnum(ClipStateType.OFF);
 
         setMarkMode(true);
         setMarkSize(8);

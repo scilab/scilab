@@ -45,8 +45,8 @@
                 <term>'i'</term>
                 <listitem>
                     <para>
-                        an optional parameter to do <function>strcmpi</function>
-                        (case independent), default value is <literal>'s'</literal>.
+                        optional parameter to compare strings in a case-independent way.
+                        Default value is <literal>'s'</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -95,13 +95,13 @@ strcmp(TXT1,TXT2,'s')
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="strcat">strcat</link>
+                <link linkend="convstr">convstr</link>
             </member>
             <member>
-                <link linkend="strcmpi">strcmpi</link>
+                <link linkend="comparison">comparison</link>
             </member>
         </simplelist>
     </refsection>

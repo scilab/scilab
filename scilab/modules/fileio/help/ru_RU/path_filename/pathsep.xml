@@ -20,7 +20,7 @@
         <refpurpose>возвращает разделитель пути для текущей платформы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>s = pathsep()</synopsis>
     </refsynopsisdiv>
     <refsection>

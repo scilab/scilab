@@ -109,7 +109,7 @@ function dllinfolist = dlwDllInfo(dllname, options)
     end
 
     fext = fileext(dllname);
-    if ~(strcmpi(fext, ".exe") == 0 | strcmpi(fext, ".dll")== 0) then
+    if ~(strcmp(fext, ".exe", "i") == 0 | strcmp(fext, ".dll", "i")== 0) then
         error(msprintf(gettext("%s: Cannot open file %s.\n"), "dllinfo", dllname));
     end
 
@@ -117,22 +117,22 @@ function dllinfolist = dlwDllInfo(dllname, options)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "dllinfo", 2));
     end
 
-    if ~(strcmpi(options, "imports")== 0 | strcmpi(options, "exports")== 0 | strcmpi(options, "machine")== 0) then
+    if ~(strcmp(options, "imports", "i")== 0 | strcmp(options, "exports", "i")== 0 | strcmp(options, "machine", "i")== 0) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "dllinfo", 2, "''imports'', ''exports'', ''machine''"));
     end
 
     dllinfolist = list();
 
     if findmsvccompiler() <> "unknown" then
-        if strcmpi(options, "imports")== 0 then
+        if strcmp(options, "imports", "i")== 0 then
             dllinfolist = dllinfoimports(dllname);
         end
 
-        if strcmpi(options, "exports")== 0 then
+        if strcmp(options, "exports", "i")== 0 then
             dllinfolist = dllinfoexports(dllname);
         end
 
-        if strcmpi(options, "machine")== 0 then
+        if strcmp(options, "machine", "i")== 0 then
             dllinfolist = dllinfomachine(dllname);
         end
 

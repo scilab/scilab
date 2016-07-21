@@ -5,7 +5,7 @@
         <refpurpose>связывает имя и тип переменной</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[types [ [,names]]=typename()
         </synopsis>
     </refsynopsisdiv>

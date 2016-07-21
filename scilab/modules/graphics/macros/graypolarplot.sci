@@ -57,10 +57,8 @@ function graypolarplot(theta,rho,z,varargin)
     axes.clip_state = "clipgrf";
 
     drawGrayplot(theta,rho,z);
+    isoview()
 
-    objectList = gce(); // get all the created objects to glue them at the end.
-
-    axes.isoview = "on";
     axes.box = "off";
     axes.axes_visible = ["off","off","off"];
     axes.x_label.text = "";
@@ -70,6 +68,7 @@ function graypolarplot(theta,rho,z,varargin)
     step = R/5
     r  = step;
     dr = 0.02*r;
+    objectList = gce(); // get all the created objects to glue them at the end.
     for k = 1:4
         xarc(-r, r, 2*r, 2*r, 0, 360*64)
         objectList($ + 1) = gce();

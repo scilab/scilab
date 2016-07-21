@@ -81,7 +81,7 @@ m=horner(p, X)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="freq">freq</link>

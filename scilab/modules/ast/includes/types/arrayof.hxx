@@ -238,7 +238,7 @@ public :
         return this;
     }
 
-    virtual ArrayOf<T>* set(int _iPos, T _data)
+    virtual ArrayOf<T>* set(int _iPos, const T _data)
     {
         if (m_pRealData == NULL || _iPos >= m_iSize)
         {
@@ -257,7 +257,7 @@ public :
         return this;
     }
 
-    virtual ArrayOf<T>* set(int _iRows, int _iCols, T _data)
+    virtual ArrayOf<T>* set(int _iRows, int _iCols, const T _data)
     {
         //            int piIndexes[2];
         //            piIndexes[0] = _iRows;

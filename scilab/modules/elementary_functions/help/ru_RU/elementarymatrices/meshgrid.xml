@@ -19,7 +19,7 @@
         <refpurpose>создаёт матрицы или трёхмерные массивы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             [X, Y] = meshgrid(x)
             [X, Y] = meshgrid(x,y)

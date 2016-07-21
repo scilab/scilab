@@ -19,7 +19,7 @@
         <refpurpose>гиперболический косинус</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[t] = cosh(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

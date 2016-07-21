@@ -141,9 +141,12 @@ bool Variable::put(types::InternalType* _pIT, int _iLevel)
             // _pIT may contained in pIT
             // so increases ref of _pIT before kill pIT
             top()->m_pIT = _pIT;
-            _pIT->IncreaseRef();
-            pIT->DecreaseRef();
-            pIT->killMe();
+            if (pIT)
+            {
+                _pIT->IncreaseRef();
+                pIT->DecreaseRef();
+                pIT->killMe();
+            }
         }
     }
 

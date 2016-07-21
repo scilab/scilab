@@ -19,7 +19,7 @@
         <refpurpose>преобразование системы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[s1,s2]=sysconv(s1,s2)</synopsis>
     </refsynopsisdiv>
     <refsection>

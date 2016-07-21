@@ -47,7 +47,7 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
             if (line && nbLinesReaded == 1)
             {
                 /* current limitation (bsiz) of line readed by scilab */
-                if ((int)wcslen(lines[0]) < bsiz)
+                if ((int)strlen(line) < bsiz)
                 {
                     strcpy(buf, line);
                     returnedInfo = READNEXTLINE_ERROR_EOL;
@@ -67,7 +67,7 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
 
         case MGETL_EOF:
         {
-            if (lines)
+            if (line)
             {
                 if (nbLinesReaded == 0)
                 {

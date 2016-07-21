@@ -20,7 +20,7 @@
         <refpurpose>закрывает открытые файлы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             err = mclose([fd])
             mclose('all')

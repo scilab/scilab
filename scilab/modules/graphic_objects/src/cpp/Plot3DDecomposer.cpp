@@ -384,8 +384,10 @@ int Plot3DDecomposer::fillWireIndices(int id, int* buffer, int bufferLength, int
             im1VerticalEdgeZValid = iVerticalEdgeZValid;
             iVerticalEdgeZValid = ip1VerticalEdgeZValid;
 
+#if PER_VERTEX_VALUES
             ij = ip1j;
             ijp1 = ip1jp1;
+#endif
         }
 
         /* Rightmost vertical line */

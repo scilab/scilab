@@ -75,7 +75,7 @@ intl(1,2,1+%i, 3, f)
     </refsection>
     
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="intc">intc</link>

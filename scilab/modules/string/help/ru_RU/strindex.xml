@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             ind = strindex(haystack, needle, [flag])
             [ind, which] = strindex(haystack, needle, [flag])

@@ -19,7 +19,7 @@
         <refpurpose>экспорт графиков в PDF</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             xs2pdf(win_num, file_name [,orientation])
             xs2pdf(fig, file_name [,orientation])

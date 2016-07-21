@@ -14,6 +14,7 @@
 */
 
 #include <sstream>
+#include <iomanip>
 #include "core_math.h"
 #include "string.hxx"
 #include "stringexp.hxx"
@@ -177,7 +178,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
             ostr << L" ";
             configureStream(&ostr, iStrMaxSize, iPrecision, ' ');
-            ostr << std::left << wcsStr + iStrPos;
+            ostr << std::left << wcsStr + iStrPos << std::resetiosflags(std::ios::adjustfield);
         }
         else
         {
@@ -255,6 +256,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 ostr << L"!" << std::endl;
             }
         }
+        ostr << std::resetiosflags(std::ios::adjustfield);
     }
     else if (getRows() == 1)
     {
@@ -314,7 +316,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             addColumnString(ostr, iLastVal + 1, getCols());
         }
 
-        ostr << L"!" << ostemp.str() << L"!" << std::endl;
+        ostr << L"!" << ostemp.str() << L"!" << std::endl << std::resetiosflags(std::ios::adjustfield);
     }
     else //Matrix
     {
@@ -505,7 +507,7 @@ bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         {
             addColumnString(ostr, iLastCol + 1, getCols());
         }
-        ostr << ostemp.str();
+        ostr << ostemp.str() << std::resetiosflags(std::ios::adjustfield);
         delete[] piSize;
     }
 

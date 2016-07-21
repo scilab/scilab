@@ -46,7 +46,7 @@ enum ExceptionType
 class ScilabException : public std::exception
 {
 public :
-    ScilabException() {}
+    ScilabException() : m_wstErrorMessage(), m_iErrorNumber(0), m_ErrorLocation(), m_type(TYPE_ERROR) {}
 
     ScilabException(const std::wstring& _wstErrorMesssage)
     {

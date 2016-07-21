@@ -73,7 +73,7 @@ max(abs(s1-s))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="savewave">savewave</link>

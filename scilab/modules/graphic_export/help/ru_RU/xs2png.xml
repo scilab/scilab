@@ -19,7 +19,7 @@
         <refpurpose>экспорт графиков в PNG</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             xs2png(win_num, file_name)
             xs2png(fig, file_name)

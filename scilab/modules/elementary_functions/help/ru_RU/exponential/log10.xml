@@ -19,7 +19,7 @@
         <refpurpose>десятичный логарифм</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=log10(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

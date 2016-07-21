@@ -72,7 +72,7 @@
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="MatlabScilab_character_strings">Matlab-Scilab_character_strings</link>

@@ -19,7 +19,7 @@
         <refpurpose>очистка командного окна</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>clc([nblines])</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>создаёт cell-массив пустых матриц</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             c = cell()
             c = cell(m1)

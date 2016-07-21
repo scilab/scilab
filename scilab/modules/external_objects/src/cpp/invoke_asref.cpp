@@ -74,7 +74,7 @@ int ScilabGateway::invoke_asref(char * fname, const int envId, void * pvApiCtx)
 
         try
         {
-            char * varName =  ScilabObjects::getSingleString(i + 3, pvApiCtx);
+            varName =  ScilabObjects::getSingleString(i + 3, pvApiCtx);
             err = getVarAddressFromName(pvApiCtx, varName, &addr);
             if (err.iErr)
             {

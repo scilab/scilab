@@ -19,7 +19,7 @@
         <refpurpose>арккосинус над матрицей</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t = acosm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

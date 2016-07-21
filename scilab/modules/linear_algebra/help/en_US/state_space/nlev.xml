@@ -72,7 +72,7 @@ clean(NUM/den-inv(x*eye()-A))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="coff">coff</link>

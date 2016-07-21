@@ -15,6 +15,7 @@
 
 //===============================
 function res = strcmpi(str_one,str_two)
+    warnobsolete("strcmp", "6.1")
     res = strcmp(str_one,str_two,"i");
 endfunction
 //===============================

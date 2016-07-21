@@ -118,14 +118,15 @@ char getGenerateMode(void* pvApiCtx, int* _piAddress)
     int iRet = 0;
 
     char* pstData;
-
+    char ret;
     iRet = getAllocatedSingleString(pvApiCtx, _piAddress, &pstData);
     if (iRet)
     {
         return -1;
     }
-
-    return pstData[0];
+    ret = pstData[0];
+    freeAllocatedSingleString(pstData);
+    return ret;
 }
 
 int getGenerateSize(void* pvApiCtx, int* _piAddress)

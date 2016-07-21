@@ -19,7 +19,7 @@
         <refpurpose>единичная матрица</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             X=eye(m,n)
             X=eye(A)

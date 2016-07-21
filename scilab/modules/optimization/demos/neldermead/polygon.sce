@@ -73,8 +73,7 @@ function polygon_draw(r ,t , nv)
     x($+1) = r(i)*cos(t(i));
     y($+1) = r(i)*sin(t(i));
     plot(x,y,"bo-")
-    h = gcf()
-    h.children.isoview = "on"
+    isoview(gcf(), "on")
 endfunction
 
 function polygon_update(h,r ,t , nv)

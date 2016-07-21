@@ -78,7 +78,7 @@ S2=tf2des(G,"withD");des2tf(S2)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="pol2des">pol2des</link>

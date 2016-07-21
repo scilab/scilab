@@ -175,20 +175,5 @@ GRAPHICS_IMPEXP int get_optional_double_arg(void* _pvCtx, char * fname, int pos,
  * @return <ReturnValue>
  */
 GRAPHICS_IMPEXP int get_optional_int_arg(void* _pvCtx, char * fname, int pos, char * name, int ** value, int sz, rhs_opts opts[]);
-/*------------------------------------------------------------------------*/
-#define sciGetStyle(PVCTX,fname,pos,n1,opts,style) { if (get_style_arg(PVCTX,fname,pos,n1,opts,style) == 0) { return 0 ; } }
-#define GetRect(PVCTX,fname,pos,opts,rect) { if (get_rect_arg(PVCTX,fname,pos,opts,rect) == 0) { return 0 ; } }
-#define GetStrf(PVCTX,fname,pos,opts,strf) { if (get_strf_arg(PVCTX,fname,pos,opts,strf) == 0) { return 0 ; } }
-#define GetLegend(PVCTX,fname,pos,opts,legend) { if (get_legend_arg(PVCTX,fname,pos,opts,legend) == 0) { return 0 ; } }
-#define GetLabels(PVCTX,fname,pos,opts,labels) { if (get_labels_arg(PVCTX,fname,pos,opts,labels) == 0) { return 0 ; } }
-#define GetNax(PVCTX,pos,opts,nax,flagNax) { if (get_nax_arg(PVCTX,pos,opts,nax,flagNax)==0) { return 0 ; } }
-#define GetZminmax(PVCTX,fname,pos,opts,zminmax) { if (get_zminmax_arg(PVCTX,fname,pos,opts,zminmax) == 0) { return 0 ; } }
-#define GetColminmax(PVCTX,fname,pos,opts,colminmax) { if (get_colminmax_arg(PVCTX,fname,pos,opts,colminmax)==0) { return 0 ; } }
-#define GetColOut(PVCTX,fname,pos,opts,colout) { if (get_colout_arg(PVCTX,fname,pos,opts,colout)==0) { return 0 ; } }
-#define GetWithMesh(PVCTX,fname,pos,opts,withMesh) { if (get_with_mesh_arg(PVCTX,fname,pos,opts,withMesh)==0) { return 0 ; } }
-#define GetLogflags(PVCTX, fname,pos,opts,logFlags) { if (get_logflags_arg(PVCTX, fname,pos,opts,logFlags) == 0) { return 0 ; } }
-#define GetOptionalDoubleArg(PVCTX,fname,pos,name,value,sz,opts) { if (get_optional_double_arg(PVCTX,fname,pos,name,value,sz,opts) == 0) { return 0 ; } }
-#define GetOptionalIntArg(PVCTX,fname,pos,name,value,sz,opts) { if (get_optional_int_arg(PVCTX,fname,pos,name,value,sz,opts) == 0) { return 0 ; } }
-/*------------------------------------------------------------------------*/
 
 #endif /* _GET_COMMAND_ARG_H_ */

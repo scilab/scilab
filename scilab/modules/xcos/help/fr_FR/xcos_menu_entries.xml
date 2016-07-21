@@ -996,7 +996,7 @@
         </itemizedlist>
     </refsection>
     <refsection role="see also" id="Seealso_Menu_entries">
-        <title>See Also</title>
+        <title>See also</title>
         <itemizedlist>
             <listitem>
                 <link linkend="scicos_debug">scicos_debug</link>

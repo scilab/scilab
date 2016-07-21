@@ -19,7 +19,7 @@
         <refpurpose>двумерный график векторного поля</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             champ(x, y, fx, fy, [arfact, rect, strf])
             champ(x, y, fx, fy, &lt;opt_args&gt;)

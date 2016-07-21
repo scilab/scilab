@@ -246,7 +246,7 @@ common_function(l(1:$))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sci_types">sci_types</link>

@@ -36,6 +36,7 @@ public class DragPointRubberBox extends TwoPointsRubberBox {
     public final void mouseClicked(MouseEvent e) {
 
     }
+
     @Override
     public void mousePressed(MouseEvent e) {
         mouseButton = e.getButton();
@@ -50,7 +51,7 @@ public class DragPointRubberBox extends TwoPointsRubberBox {
                 break;
             case WAIT_POINT_B:
                 setPointB(e.getPoint());
-                if (pointBComputer.is2D()) {
+                if (!valid3D()) {
                     process();
                     setEnable(false);
                     fireRubberBoxEnd();
@@ -70,7 +71,7 @@ public class DragPointRubberBox extends TwoPointsRubberBox {
                 break;
             default:
         }
-        updateInfoMessage();
+        updateInfoMessage(e.getPoint());
     }
 
     @Override
@@ -87,7 +88,7 @@ public class DragPointRubberBox extends TwoPointsRubberBox {
                 break;
             case WAIT_POINT_B:
                 setPointB(e.getPoint());
-                if (pointBComputer.is2D()) {
+                if (!valid3D()) {
                     process();
                     setEnable(false);
                     fireRubberBoxEnd();
@@ -107,7 +108,7 @@ public class DragPointRubberBox extends TwoPointsRubberBox {
                 break;
             default:
         }
-        updateInfoMessage();
+        updateInfoMessage(e.getPoint());
     }
 
     @Override
@@ -131,7 +132,7 @@ public class DragPointRubberBox extends TwoPointsRubberBox {
                 break;
             default:
         }
-        updateInfoMessage();
+        updateInfoMessage(e.getPoint());
     }
 
 

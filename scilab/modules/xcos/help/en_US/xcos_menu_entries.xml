@@ -79,7 +79,7 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <xref linkend="Seealso_Menu_entries">See Also</xref>
+                            <xref linkend="Seealso_Menu_entries">See also</xref>
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -563,7 +563,7 @@
                 </itemizedlist>
                 <para>
                     For more information on the solver look at the <xref linkend="Seealso_Menu_entries">
-                        See Also
+                        See also
                     </xref>
                     section.
                 </para>
@@ -1000,7 +1000,7 @@
         </itemizedlist>
     </refsection>
     <refsection role="see also" id="Seealso_Menu_entries">
-        <title>See Also</title>
+        <title>See also</title>
         <itemizedlist>
             <listitem>
                 <link linkend="scicos_debug">scicos_debug</link>

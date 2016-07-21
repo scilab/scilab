@@ -105,7 +105,7 @@ fplot2d(1:10,'parab')
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="plot2d">plot2d</link>

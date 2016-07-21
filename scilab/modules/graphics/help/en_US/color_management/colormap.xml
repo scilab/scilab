@@ -69,7 +69,7 @@ f.color_map=get(sdf(),"color_map");
         
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="autumncolormap">autumncolormap</link>

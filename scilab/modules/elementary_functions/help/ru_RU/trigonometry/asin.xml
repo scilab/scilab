@@ -19,7 +19,7 @@
         <refpurpose>арксинус (радианы)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[t]=asin(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

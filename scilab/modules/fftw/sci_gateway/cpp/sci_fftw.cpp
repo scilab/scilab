@@ -248,11 +248,8 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
                 Scierror(999, _("%s: Creation of requested fftw plan failed.\n"), fname);
             }
 
-            if (*O)
-            {
-                delete (*O);
-                (*O) = NULL;
-            }
+            delete (*O);
+            (*O) = NULL;
 
             if (tmp)
             {
@@ -300,11 +297,8 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
             FREE(dims1);
             FREE(incr1);
 
-            if (*O)
-            {
-                delete (*O);
-                (*O) = NULL;
-            }
+            delete (*O);
+            (*O) = NULL;
 
             if (tmp)
             {
@@ -327,11 +321,8 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
             FREE(dims1);
             FREE(incr1);
 
-            if (*O)
-            {
-                delete (*O);
-                (*O) = NULL;
-            }
+            delete (*O);
+            (*O) = NULL;
 
             if (tmp)
             {
@@ -358,11 +349,8 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
             FREE(dims1);
             FREE(incr1);
 
-            if (*O)
-            {
-                delete (*O);
-                (*O) = NULL;
-            }
+            delete (*O);
+            (*O) = NULL;
 
             if (tmp)
             {
@@ -463,13 +451,9 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
 
     if (iErr == -1)
     {
-        if (*O)
-        {
-            delete (*O);
-            (*O) = NULL;
-        }
-
         Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+        delete (*O);
+        (*O) = NULL;
         return 0;
     }
 

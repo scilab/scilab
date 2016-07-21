@@ -88,7 +88,7 @@ plot3d(xx,yy,zz)
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="eval3dp">eval3dp</link>

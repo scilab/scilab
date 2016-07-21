@@ -19,7 +19,7 @@
         <refpurpose>возвращает тип целых чисел, используемых в типах целочисленных данных</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[i] = inttype(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

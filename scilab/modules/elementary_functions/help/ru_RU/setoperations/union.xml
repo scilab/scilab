@@ -19,7 +19,7 @@
         <refpurpose>выделяет объединение компонентов векторов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             [v [,ka, kb] ] = union(a,b)
             [v [,ka, kb] ] = union(a,b,orient)

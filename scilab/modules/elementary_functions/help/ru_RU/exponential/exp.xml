@@ -19,7 +19,7 @@
         <refpurpose>поэлементная показательная функция</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>exp(X)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>поднимает графическое окно</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>show_window([figure])</synopsis>
     </refsynopsisdiv>
     <refsection>

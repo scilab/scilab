@@ -61,7 +61,7 @@ oldEmptyBehaviour(behaviour)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="warning">warning</link> for the warning behaviour on operation+ and operation-

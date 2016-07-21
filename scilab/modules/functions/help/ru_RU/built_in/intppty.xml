@@ -5,7 +5,7 @@
         <refpurpose>установка свойств передачи аргумента интерфейса</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>funs=intppty()
             intppty(fun)
         </synopsis>

@@ -19,7 +19,7 @@
         <refpurpose>экспорт графиков в SVG</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             xs2svg(win_num, file_name [,orientation])
             xs2svg(fig, file_name [,orientation])

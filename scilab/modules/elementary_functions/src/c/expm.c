@@ -114,6 +114,8 @@ int dexpms(int _iLeadDim, int _iSize, double *_pdblVal, double *_pdblReturn)
 
     if (iErr)
     {
+        free(piWS);
+        free(pdblWS);
         return -2;
     }
 
@@ -172,6 +174,8 @@ int dexpms(int _iLeadDim, int _iSize, double *_pdblVal, double *_pdblReturn)
                 */
                 if (iErr < 0)
                 {
+                    free(piWS);
+                    free(pdblWS);
                     return 0;
                 }
 
@@ -435,6 +439,7 @@ int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
                             //C2F(split)(_pdblVal, _pdblRightReduce, &_iSize, &iKm1, &dblE1, &dblE2, &_iLeadDim, &_iLeadDim);
                             dsplits(_pdblVal, _pdblRightReduce, _iSize, iKm1, &dblE1, &dblE2, _iLeadDim, _iLeadDim);
                         }
+                        iK--;
                     }
                 }
 

@@ -206,7 +206,7 @@ tic(),for j=1:100, iconvert(i,0); end, toc()
     </refsection>
 
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="iconvert">iconvert</link>

@@ -182,6 +182,7 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
 
         if (getAllocatedSingleString(pvApiCtx, opts[6].piAddr, &pstTics))
         {
+            freeAllocatedSingleString(format);
             return 1;
         }
         tics = pstTics[0];
@@ -207,6 +208,7 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
     {
         if (getAllocatedMatrixOfString(pvApiCtx, opts[8].piAddr, &opts[8].iRows, &opts[8].iCols, &val))
         {
+            freeAllocatedSingleString(format);
             return 1;
         }
     }

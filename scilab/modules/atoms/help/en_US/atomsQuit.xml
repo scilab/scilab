@@ -43,7 +43,7 @@
         <para>This function is called by SCI/etc/scilab.quit</para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="atomsIsLoaded">atomsIsLoaded</link>

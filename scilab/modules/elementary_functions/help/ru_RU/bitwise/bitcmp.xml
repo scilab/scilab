@@ -20,7 +20,7 @@
         <refpurpose>побитовое дополнение</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             y = bitcmp(x, bitnum)
         </synopsis>

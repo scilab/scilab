@@ -16,11 +16,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="permute" xml:lang="en">
     <refnamediv>
         <refname>permute</refname>
-        <refpurpose>permute the dimensions of an array</refpurpose>
+        <refpurpose>permutes the dimensions of an array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>y=permute(x,dims)</synopsis>
+        <synopsis>y = permute(x, dims)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -45,19 +45,20 @@
             Permutes the dimensions of an array according to <varname>dims</varname>.
         </para>
         <para>
-            Input argument <varname>dims</varname> must be a valid permutation where dimension <literal>#i</literal> becomes <literal>#dims(i)</literal>.
+            Input argument <varname>dims</varname> must be a valid permutation, such as
+            the dimension <literal>#i</literal> becomes the dimension <literal>#dims(i)</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 //example 1:
-x=[1 2 3;4 5 6]
-y=permute(x,[2 1])
+x = [1 2 3;4 5 6]
+y = permute(x,[2 1])
 
 //example 2:
-x=matrix(1:12,[2,3,2])
-y=permute(x,[3 1 2])
+x = matrix(1:12,[2,3,2])
+y = permute(x,[3 1 2])
 
 x = matrix(1:12, [3 2 2])
 y = permute(x, [3 4 1 2])
@@ -69,7 +70,7 @@ y = permute(x, [3 4 1 2])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="pertrans">pertrans</link>

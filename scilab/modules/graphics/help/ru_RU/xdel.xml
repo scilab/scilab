@@ -19,7 +19,7 @@
         <refpurpose>удаление графического окна</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>xdel([win_nums])</synopsis>
     </refsynopsisdiv>
     <refsection>

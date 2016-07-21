@@ -123,7 +123,7 @@ tbx_build_src(['csum','csub'], ['csum.c','csub.c'], 'c', ..
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ilib_for_link">ilib_for_link</link>

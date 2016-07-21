@@ -73,7 +73,7 @@ s1 = optimsimplex_setall ( s1 , simplex );
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optimsimplex_setfv">optimsimplex_setfv</link>

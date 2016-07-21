@@ -8,7 +8,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=log1p(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

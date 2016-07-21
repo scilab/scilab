@@ -132,6 +132,10 @@ int sci_jcreatejar(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                freeAllocatedSingleString(jarFilePath);
+                freeAllocatedMatrixOfString(nbRow, nbCol, filePaths);
+                freeAllocatedSingleString(filesRootPath);
+                freeAllocatedSingleString(manifestFilePath);
                 return 1;
             }
             ret[0] = (res == 0) ? 1 : 0;

@@ -73,6 +73,8 @@ static void *DaemonOpenTCLsci(void* in)
 
 
     SciPathShort = getshortpathname(SciPath, &bOK);
+    FREE(SciPath);
+    SciPath = NULL;
 
 #ifdef TCL_MAJOR_VERSION
 #ifdef TCL_MINOR_VERSION
@@ -94,6 +96,10 @@ static void *DaemonOpenTCLsci(void* in)
     if (tmpfile2 == NULL)
     {
         sciprint(_("Unable to find Tcl initialisation scripts.\nCheck your SCI environment variable.\nTcl initialisation failed !"));
+        FREE(SciPathShort);
+        SciPathShort = NULL;
+        FREE(TkScriptpathShort);
+        TkScriptpathShort = NULL;
         return (0);
     }
     else
@@ -105,6 +111,10 @@ static void *DaemonOpenTCLsci(void* in)
     if (tmpdir == NULL)
     {
         sciprint(_("The SCI environment variable is not set.\nTcl initialisation failed !\n"));
+        FREE(SciPathShort);
+        SciPathShort = NULL;
+        FREE(TkScriptpathShort);
+        TkScriptpathShort = NULL;
         return (0);
     }
     else
@@ -118,6 +128,10 @@ static void *DaemonOpenTCLsci(void* in)
     if (tmpfile2 == NULL)
     {
         sciprint(_("Unable to find Tcl initialisation scripts.\nCheck your SCI environment variable.\nTcl initialisation failed !"));
+        FREE(SciPathShort);
+        SciPathShort = NULL;
+        FREE(TkScriptpathShort);
+        TkScriptpathShort = NULL;
         return (0);
     }
     else
@@ -140,6 +154,10 @@ static void *DaemonOpenTCLsci(void* in)
         if ( getTclInterp() == NULL )
         {
             Scierror(999, _("Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"));
+            FREE(SciPathShort);
+            SciPathShort = NULL;
+            FREE(TkScriptpathShort);
+            TkScriptpathShort = NULL;
             return (0);
         }
         releaseTclInterp();
@@ -148,6 +166,10 @@ static void *DaemonOpenTCLsci(void* in)
         {
             releaseTclInterp();
             Scierror(999, _("Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"), Tcl_GetStringResult(getTclInterp()));
+            FREE(SciPathShort);
+            SciPathShort = NULL;
+            FREE(TkScriptpathShort);
+            TkScriptpathShort = NULL;
             return (0);
         }
         releaseTclInterp();
@@ -175,6 +197,10 @@ static void *DaemonOpenTCLsci(void* in)
         {
             releaseTclInterp();
             Scierror(999, _("Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: %s\n"), Tcl_GetStringResult(getTclInterp()));
+            FREE(SciPathShort);
+            SciPathShort = NULL;
+            FREE(TkScriptpathShort);
+            TkScriptpathShort = NULL;
             return (0);
         }
 
@@ -182,6 +208,8 @@ static void *DaemonOpenTCLsci(void* in)
         Tcl_CreateCommand(getTclInterp(), "ScilabEval", TCL_EvalScilabCmd, (ClientData)1, NULL);
         releaseTclInterp();
     }
+    FREE(SciPathShort);
+    SciPathShort = NULL;
 
     if (TKmainWindow == NULL && tkStarted)
     {
@@ -193,17 +221,12 @@ static void *DaemonOpenTCLsci(void* in)
         {
             releaseTclInterp();
             Scierror(999, _("Tcl Error: Error during the Scilab/TK init process. Error while loading %s: %s\n"), TkScriptpathShort, Tcl_GetStringResult(getTclInterp()));
+            FREE(TkScriptpathShort);
+            TkScriptpathShort = NULL;
             return (0);
         }
         releaseTclInterp();
     }
-
-
-    FREE(SciPath);
-    SciPath = NULL;
-
-    FREE(SciPathShort);
-    SciPathShort = NULL;
 
     FREE(TkScriptpathShort);
     TkScriptpathShort = NULL;

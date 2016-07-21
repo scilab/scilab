@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
+function [x,y,ok,gc] = edit_curv(x,y,job,tit,gc)
     //   mod_curv  - Edition  de courbe interactive
     //%Syntaxe
     //  [x,y,ok]=mod_curv(xd,yd,job,tit)
@@ -109,8 +109,7 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
     w="menus(3)(";rpar=")"
     Data=w(ones(menu_d))+string(1:size(menu_d,"*"))+rpar(ones(menu_d))
 
-    curwin = max(winsid())+1;
-    scf(curwin) ;
+    curwin = scf().figure_id
 
     // Disable the menus and toolbars
     toolbar(curwin,"off");
@@ -401,29 +400,29 @@ function [x,y] = readxy()
                 if xy <> [] then
                     x=xy(:,1);y=xy(:,2);
                 else
-                    messagebox(msprintf(_("%s: The file "'%s"' does not " +..
-                    "contains any "'Polyline"' graphic entity.\n"), "edit_curve", flname));
+                    msg = _("%s: The file "'%s"' does not contains any "'Polyline"' graphic entity.\n")
+                    messagebox(msprintf(msg, "edit_curve", flname));
                     return
                 end
             else
-                messagebox(msprintf(_("%s: Cannot open file "'%s"' " +..
-                "for reading.\n"), "edit_curv", flname), "modal");
+                msg = _("%s: Cannot open file "'%s"' for reading.\n")
+                messagebox(msprintf(msg, "edit_curv", flname), "modal");
                 return
             end
         case ".xy" then
             if execstr("xy = read(fn,-1,2)","errcatch") == 0 then
                 x=xy(:,1);y=xy(:,2);
             else
-                messagebox(msprintf(_("%s: Cannot open file "'%s"' " +..
-                "for reading.\n"), "edit_curv", flname), "modal");
+                msg = _("%s: Cannot open file "'%s"' for reading.\n")
+                messagebox(msprintf(msg, "edit_curv", flname), "modal");
                 return
             end
         case ".sod" then
             if execstr("load(fn)","errcatch") == 0 then
                 x=xy(:,1);y=xy(:,2);
             else
-                messagebox(msprintf(_("%s: Cannot open file "'%s"' " +..
-                "for reading.\n"), "edit_curv", flname), "modal");
+                msg = _("%s: Cannot open file "'%s"' for reading.\n")
+                messagebox(msprintf(msg, "edit_curv", flname), "modal");
                 return
             end
         else
@@ -461,8 +460,8 @@ function savexy(x,y)
         select ext
         case ".sod" then
             if execstr("save(fil,""xy"")","errcatch")<>0 then
-                messagebox(msprintf(_("%s: The file "'%s"' " +..
-                "cannot be written.\n"), "edit_curv", flname), "modal");
+                msg = _("%s: The file "'%s"' cannot be written.\n")
+                messagebox(msprintf(msg, "edit_curv", flname), "modal");
                 return
             end
         case ".xy" then
@@ -472,8 +471,8 @@ function savexy(x,y)
                 isErr = execstr("write(fil,xy)","errcatch");
             end
             if isErr <> 0 then
-                messagebox(msprintf(_("%s: The file "'%s"' " +..
-                "cannot be written.\n"), "edit_curv", flname), "modal");
+                msg = _("%s: The file "'%s"' cannot be written.\n")
+                messagebox(msprintf(msg, "edit_curv", flname), "modal");
                 return
             end
         end

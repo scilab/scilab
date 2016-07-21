@@ -28,7 +28,7 @@
     
     <refsynopsisdiv>
         
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         
         <synopsis>[Value,TextInd] = xls_read(fd,Sheetpos)</synopsis>
         

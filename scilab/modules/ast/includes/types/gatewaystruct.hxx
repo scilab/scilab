@@ -37,7 +37,7 @@ public :
     const char*             m_pstName;
     int*                    m_pOutOrder;
 
-    GatewayStruct() {};
+    GatewayStruct(): m_pIn(nullptr), m_pOpt(nullptr), m_pOut(nullptr), m_iIn(0), m_iOut(0), m_piRetCount(nullptr), m_pOutOrder(nullptr) {};
     ~GatewayStruct() {};
 };
 

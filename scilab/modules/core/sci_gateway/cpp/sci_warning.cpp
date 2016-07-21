@@ -13,6 +13,8 @@
  *
  */
 
+#include <string>
+
 #include "core_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
@@ -107,9 +109,13 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
         for (int i = 0; i < psInput->getSize() ; ++i)
         {
             wchar_t* pwstTemp = psInput->get(i);
-            size_t iSize = (wcslen(pwstTemp) + 10 + 1);
+            std::wstring warning = _W("WARNING: %ls\n");
+            size_t iSize = (wcslen(pwstTemp) + warning.size() + 1);
+
             wchar_t* pwstToPrint = (wchar_t*)MALLOC(sizeof(wchar_t) * iSize);
-            os_swprintf(pwstToPrint, iSize, _W("WARNING: %ls\n").c_str(), pwstTemp);
+            os_swprintf(pwstToPrint, iSize, warning.c_str(), pwstTemp);
+            pwstToPrint[iSize - 1] = L'\0';
+
             scilabForcedWriteW(pwstToPrint);
             FREE(pwstToPrint);
         }

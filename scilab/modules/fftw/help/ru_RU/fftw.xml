@@ -20,7 +20,7 @@
         <refpurpose>Быстрое преобразование Фурье на основе библиотеки fftw</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[y]=fftw(x) 
             [y]=fftw(x,sign) 
             [y]=fftw(x,sign,dim,incr) 

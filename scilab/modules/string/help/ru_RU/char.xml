@@ -19,7 +19,7 @@
         <refpurpose>преобразует в массив символов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=char(x)
             y = char(st1, st2, st3,...)
         </synopsis>

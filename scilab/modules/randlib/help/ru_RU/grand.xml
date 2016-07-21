@@ -21,7 +21,7 @@
         <refpurpose>Случайные числа</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             Y = grand(m, n, "bet", A, B)
             Y = grand(m, n, "bin", N, p)

@@ -76,7 +76,7 @@ and( abs(U*H*U'-A)<1.d-10 )
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="qr">qr</link>

@@ -279,7 +279,7 @@ l.specular_color = [0.5 0.3 0.7];
          ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="light">light</link>

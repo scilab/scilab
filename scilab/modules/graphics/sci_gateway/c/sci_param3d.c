@@ -26,6 +26,7 @@
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "DefaultCommandArg.h"
 /*------------------------------------------------------------------------*/
 int sci_param3d(char * fname, void *pvApiCtx)
 {
@@ -51,6 +52,7 @@ int sci_param3d(char * fname, void *pvApiCtx)
     };
 
     char * labels = NULL;
+    BOOL freeLabels = FALSE;
 
     int* piAddr1 = NULL;
     int* piAddr2 = NULL;
@@ -151,17 +153,40 @@ int sci_param3d(char * fname, void *pvApiCtx)
     }
 
 
-    GetOptionalDoubleArg(pvApiCtx, fname, 4, "theta", &theta, 1, opts);
-    GetOptionalDoubleArg(pvApiCtx, fname, 5, "alpha", &alpha, 1, opts);
-    GetLabels(pvApiCtx, fname, 6, opts, &labels);
-
+    if (get_optional_double_arg(pvApiCtx, fname, 4, "theta", &theta, 1, opts) == 0)
+    {
+        return 0;
+    }
+    if (get_optional_double_arg(pvApiCtx, fname, 5, "alpha", &alpha, 1, opts) == 0)
+    {
+        return 0;
+    }
+    if (get_labels_arg(pvApiCtx, fname, 6, opts, &labels) == 0)
+    {
+        return 0;
+    }
+    freeLabels = !isDefLegend(labels);
     iflag_def[1] = 8;
     ifl = &(iflag_def[1]);
-    GetOptionalIntArg(pvApiCtx, fname, 7, "flag", &ifl, 2, opts);
+    if (get_optional_int_arg(pvApiCtx, fname, 7, "flag", &ifl, 2, opts) == 0)
+    {
+        if (freeLabels)
+        {
+            freeAllocatedSingleString(labels);
+        }
+        return 0;
+    }
     iflag[0] = iflag_def[0];
     iflag[1] = ifl[0];
     iflag[2] = ifl[1];
-    GetOptionalDoubleArg(pvApiCtx, fname, 8, "ebox", &ebox, 6, opts);
+    if (get_optional_double_arg(pvApiCtx, fname, 8, "ebox", &ebox, 6, opts) == 0)
+    {
+        if (freeLabels)
+        {
+            freeAllocatedSingleString(labels);
+        }
+        return 0;
+    }
 
     getOrCreateDefaultSubwin();
 
@@ -175,6 +200,10 @@ int sci_param3d(char * fname, void *pvApiCtx)
 
 
     /* NG end */
+    if (freeLabels)
+    {
+        freeAllocatedSingleString(labels);
+    }
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
     return 0;

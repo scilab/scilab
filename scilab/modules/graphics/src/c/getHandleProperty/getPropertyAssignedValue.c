@@ -218,7 +218,10 @@ char ** getStringMatrixFromList(void* _pvCtx, AssignedList* _pList, int _iItem, 
     int* piItem = NULL;
     char** pstData = NULL;
     getListItemAddress(_pvCtx, _pList->piList, _iItem, &piItem);
-    getAllocatedMatrixOfString(_pvCtx, piItem, _piRows, _piCols, &pstData);
+    if (getAllocatedMatrixOfString(_pvCtx, piItem, _piRows, _piCols, &pstData))
+    {
+        return NULL;
+    }
     return pstData;
 }
 /*--------------------------------------------------------------------------*/

@@ -19,7 +19,7 @@
         <refpurpose>преобразование матрицы строк в ASCII-коды и обратно</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             a = asciimat(txt)
             txt = asciimat(a)

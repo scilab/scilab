@@ -19,7 +19,7 @@
         <refpurpose>предоставляет информацию о файле</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[x,ierr] = fileinfo(files)</synopsis>
     </refsynopsisdiv>
     <refsection>

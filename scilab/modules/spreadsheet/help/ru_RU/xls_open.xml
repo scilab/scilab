@@ -28,7 +28,7 @@
     
     <refsynopsisdiv>
         
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         
         <synopsis>[fd,SST,Sheetnames,Sheetpos] = xls_open(file_path)</synopsis>
         

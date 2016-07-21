@@ -59,11 +59,8 @@ BOOL LoadLibrarypath(char *xmlfilename)
             if (doc == NULL)
             {
                 fprintf(stderr, _("Error: could not parse file %s\n"), xmlfilename);
-                if (encoding)
-                {
-                    FREE(encoding);
-                    encoding = NULL;
-                }
+                FREE(encoding);
+                encoding = NULL;
                 return bOK;
             }
 
@@ -146,11 +143,8 @@ BOOL LoadLibrarypath(char *xmlfilename)
         {
             fprintf(stderr, _("Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"), xmlfilename, encoding);
         }
-        if (encoding)
-        {
-            FREE(encoding);
-            encoding = NULL;
-        }
+        FREE(encoding);
+        encoding = NULL;
     }
     return bOK;
 }

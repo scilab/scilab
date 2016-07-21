@@ -1,7 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA -
-//
-// Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) ???? - 2016 - Serge Steer - INRIA 
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -55,11 +53,12 @@ function [y,x]=csim(u,dt,sl,x0,tol)
         warning(msprintf(gettext("%s: Input argument #%d is assumed continuous time.\n"),"csim",1));
     end
     //
-    [a,b,c,d]=sl(2:5);
+    [a,b,c,d]=abcd(sl);
     if degree(d)>0 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A proper system expected\n"),"csim",1));
     end
-    [ma,mb]=size(b);
+    ma=size(a,1);
+    mb=size(d,2);
     //
     imp=0;step=0
     text="if t==0 then y=0, else y=1,end"
@@ -67,7 +66,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     select type(u)
     case 10 then //input given by its type (step or impuls)
         if mb<>1 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A SIMO expected.\n"),"csim",1));
+          error(msprintf(gettext("%s: Wrong type for input argument #%d: A SIMO expected.\n"),"csim",1));
         end;
         if part(u,1)=="i" then
             //impulse response

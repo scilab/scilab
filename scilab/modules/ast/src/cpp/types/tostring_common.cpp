@@ -16,7 +16,7 @@
 #include <cmath>
 #include <algorithm>
 #include <iostream>
-
+#include <iomanip>
 #include "tostring_common.hxx"
 #include "configvariable.hxx"
 
@@ -448,7 +448,7 @@ void addDoubleComplexValue(std::wostringstream * _postr, double _dblR, double _d
     }
 
     configureStream(_postr, _iTotalWidth - 3, 0, ' ');
-    *_postr << std::left << ostemp.str();
+    *_postr << std::left << ostemp.str() << std::resetiosflags(std::ios::adjustfield);
 }
 
 void addSpaces(std::wostringstream * _postr, int _iSpace)

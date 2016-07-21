@@ -21,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             string_out = strsubst(string_in, searchStr, replaceStr)
             string_out = strsubst(string_in, searchStr, replaceStr, [flag])

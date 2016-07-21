@@ -156,7 +156,7 @@ X=integrate(['if x==0 then 1,';
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="intg">intg</link>

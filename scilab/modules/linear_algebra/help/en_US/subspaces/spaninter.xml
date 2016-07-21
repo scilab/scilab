@@ -81,7 +81,7 @@ svd(B),svd([B,X1])   // X1 in span(B)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="spanplus">spanplus</link>

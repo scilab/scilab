@@ -53,7 +53,7 @@ function nbChanges = atomsSetConfig(field, value)
 
     i=1;
     for element = field(:)'
-        if strcmpi("verbose",element) == 0 then
+        if strcmp("verbose",element, "i") == 0 then
             field(i) = convstr(part(element,1),"u") + part(element,2:length(element));
         else
             field(i) = convstr(part(element,1),"l") + part(element,2:length(element));

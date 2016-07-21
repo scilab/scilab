@@ -19,7 +19,7 @@
         <refpurpose>матричный гиперболический тангенс</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t = tanhm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -19,7 +19,7 @@
         <refpurpose>преобразование в 1- или 8-байтное представление целого числа</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y = iconvert(X, itype)</synopsis>
     </refsynopsisdiv>
     <refsection>

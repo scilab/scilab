@@ -20,7 +20,7 @@
         <refpurpose>программа решения дифференциально-алгебраических уравнений (ДАУ) с пересечением нуля</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[r,nn,[,hd]]=dasrt(x0,t0,t [,atol,[rtol]],res [,jac],ng, surf [,info] [,hd])</synopsis>
     </refsynopsisdiv>
     <refsection>

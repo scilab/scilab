@@ -20,7 +20,7 @@
         <refpurpose>выводит на экран свойства открытых файлов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>dispfiles([units])</synopsis>
     </refsynopsisdiv>
     <refsection>

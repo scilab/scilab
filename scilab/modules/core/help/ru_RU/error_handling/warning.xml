@@ -5,7 +5,7 @@
         <refpurpose>предупреждающие сообщения</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             warning('string')
             warning('off')

@@ -5,7 +5,7 @@
         <refpurpose>установка связи с подпрограммами Fortran или C</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[s_1,s_2,...,s_lhs]=user(e_1,e_2,...,e_rhs)</synopsis>
     </refsynopsisdiv>
     <refsection>

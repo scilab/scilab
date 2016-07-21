@@ -19,7 +19,7 @@
         <refpurpose>экспорт графиков в PS</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             xs2ps(win_num, file_name [,orientation])
             xs2ps(fig, file_name [,orientation])

@@ -88,7 +88,7 @@ J    =  | tr[S  W  W  S ] + tr[T  T]dw
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="syslin">syslin</link>

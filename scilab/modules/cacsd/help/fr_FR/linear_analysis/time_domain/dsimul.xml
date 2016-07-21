@@ -71,7 +71,7 @@ x2=dsimul(sl,u);  //Step response
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="syslin">syslin</link>

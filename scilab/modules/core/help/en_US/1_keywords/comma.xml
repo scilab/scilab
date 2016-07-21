@@ -27,7 +27,7 @@ b=1,c=1;d=2
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="semicolon">semicolon</link>

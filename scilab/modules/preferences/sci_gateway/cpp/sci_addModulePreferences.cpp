@@ -67,7 +67,10 @@ int sci_addModulePreferences(char * fname, void *pvApiCtx)
             return 0;
         }
 
-        getAllocatedSingleString(pvApiCtx, addr, array[i]);
+        if (getAllocatedSingleString(pvApiCtx, addr, array[i]))
+        {
+            return 0;
+        }
     }
 
     expTbxPath = expandPathVariable(const_cast<char *>(tbxPath));

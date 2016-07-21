@@ -26,7 +26,7 @@ xml:lang="ru" xml:id="isletter">
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>res = isletter(str)</synopsis>
     </refsynopsisdiv>
     <refsection>

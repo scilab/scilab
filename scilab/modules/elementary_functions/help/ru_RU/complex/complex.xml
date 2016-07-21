@@ -19,7 +19,7 @@
         <refpurpose>Создание комплексного числа.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             c=complex(a)
             c=complex(a,b)

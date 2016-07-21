@@ -134,7 +134,7 @@ bode_asymp(h)
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="bode">bode</link>

@@ -20,7 +20,7 @@
         <refpurpose>возвращает расширение файла</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>extension = fileext(fullpath)</synopsis>
     </refsynopsisdiv>
     <refsection>

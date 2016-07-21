@@ -358,20 +358,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="fcontour">fcontour</link>
-                </term>
-                <listitem>
-                    <para>関数で定義された3次元曲面に等高線を描画</para>
-                    <para>
-                        <emphasis role="bold">例:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>fcontour();</scilab:image>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="hist3d">hist3d</link>
                 </term>
                 <listitem>

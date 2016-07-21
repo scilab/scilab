@@ -727,8 +727,7 @@ public final class Xcos {
         }
 
         if (openedDiagrams().size() <= 0) {
-            /* halt scicos (stop the simulation) */
-            InterpreterManagement.requestScilabExec("if isdef('haltscicos'), haltscicos(), end;");
+            JavaController.end_simulation();
         }
     }
 
@@ -823,7 +822,7 @@ public final class Xcos {
             instance.diagrams.keySet().clear();
 
             /* terminate any remaining simulation */
-            InterpreterManagement.putCommandInScilabQueue("if isdef('haltscicos'), haltscicos(), end;");
+            JavaController.end_simulation();
 
             /* Saving modified data */
             instance.palette.saveConfig();

@@ -20,7 +20,7 @@
         <refpurpose>возвращает путь, имя файла и расширение для указанного пути к файлу</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[path, fname, extension] = fileparts(fullpath)
             value = fileparts(fullpath, sel)
         </synopsis>

@@ -5,7 +5,7 @@
         <refpurpose>операция возведения в степень (^, .^)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             t=A^b
             t=A**b

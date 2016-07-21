@@ -57,7 +57,7 @@ xdel(0) //delete a graphics window
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="gda">gda</link>

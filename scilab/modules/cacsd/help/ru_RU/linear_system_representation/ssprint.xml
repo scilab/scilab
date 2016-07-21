@@ -63,7 +63,7 @@ ssprint(modelC)
 ssprint(modelD)]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>

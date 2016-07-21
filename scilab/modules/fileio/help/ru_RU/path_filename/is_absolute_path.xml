@@ -20,7 +20,7 @@
         <refpurpose>проверяет, является ли аргумент абсолютным путём</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>r = is_absolute_path(path)</synopsis>
     </refsynopsisdiv>
     <refsection>

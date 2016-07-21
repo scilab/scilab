@@ -19,7 +19,7 @@
         <refpurpose>функция знака</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>X = sign(A)</synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -28,7 +28,9 @@
             <varlistentry>
                 <term>А</term>
                 <listitem>
-                    <para>вещественная или комплексная матрица. <varname>A</varname> may be sparse.</para>
+                    <para>
+                        вещественная или комплексная матрица. <varname>A</varname> may be sparse.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

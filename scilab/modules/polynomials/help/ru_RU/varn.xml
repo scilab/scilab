@@ -5,7 +5,7 @@
         <refpurpose>Символические переменных полиномами или рациональные дроби</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             [symb]=varn(p)
             [pm]=varn(p, varname)

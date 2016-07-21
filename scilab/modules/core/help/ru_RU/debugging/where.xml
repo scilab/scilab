@@ -5,7 +5,7 @@
         <refpurpose>получение текущей инструкции дерева вызова</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[linenum, callername] = where()</synopsis>
     </refsynopsisdiv>
     <refsection>

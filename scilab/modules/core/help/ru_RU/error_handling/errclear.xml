@@ -5,7 +5,7 @@
         <refpurpose>очистка ошибки</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>errclear([n])</synopsis>
     </refsynopsisdiv>
     <refsection>

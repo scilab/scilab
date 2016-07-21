@@ -212,9 +212,6 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_getscicosvars.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_haltscicos.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_pointer_xproperty.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

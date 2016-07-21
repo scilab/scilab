@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Graphics" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="Graphics" xml:lang="pt">
     <refnamediv>
         <refname>Graphics</refname>
         <refpurpose>Resumo da biblioteca de gráficos</refpurpose>
@@ -176,14 +179,6 @@
                 <term>contour</term>
                 <listitem>
                     <para>curvas de nível em uma superfície 3d</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fcontour</term>
-                <listitem>
-                    <para>curvas de nível sobre uma superfície 3d definida por uma
-                        função
-                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

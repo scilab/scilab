@@ -414,8 +414,8 @@ function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
         dy=min(abs(real(spec(J))));
         //write(%io(2),dy);
         if dy < 1.d-9 then
-            mprintf(gettext("%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"+..
-            "The distance to the imaginary axis is less than %g "),"h_inf","J",1.d-9);
+            tmp = _("%s: An eigenvalue of %s (observer) is close to Imaginary axis.\nThe distance to the imaginary axis is less than %g ")
+            mprintf(tmp,"h_inf","J",1.d-9);
             write(%io(2),dy);
             indic=1 ;test=1;
         end

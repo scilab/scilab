@@ -68,7 +68,7 @@
     X=locate(4)
     xfpolys(X(1,:)',X(2,:)',4)
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xclick">xclick</link>

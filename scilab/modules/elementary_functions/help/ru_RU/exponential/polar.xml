@@ -19,7 +19,7 @@
         <refpurpose>полярная форма</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[Ro, Theta] = polar(A)</synopsis>
     </refsynopsisdiv>
     <refsection>

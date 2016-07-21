@@ -776,6 +776,17 @@ assign			"="
       scan_throw(EOL);
   }
 
+  {spaces}+{quote} {
+      unput('\'');
+      yylloc.last_column--;
+      if (last_token == ID
+          || last_token == RPAREN
+          || last_token == QUOTE)
+      {
+          return scan_throw(COMMA);
+      }
+  }
+
   {rbrack}				{
     DEBUG("yy_pop_state()");
     yy_pop_state();

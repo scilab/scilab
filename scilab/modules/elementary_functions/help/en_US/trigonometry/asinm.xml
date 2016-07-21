@@ -56,7 +56,7 @@ asinm(A)+%i*logm(%i*A+sqrtm(eye()-A*A))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="asin">asin</link>

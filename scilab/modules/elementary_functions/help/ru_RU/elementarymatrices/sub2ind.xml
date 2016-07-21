@@ -19,7 +19,7 @@
         <refpurpose>преобразование подындексов матрицы в линейные индексы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             I = sub2ind(dims,i1,i2,...)
             J = sub2ind(dims,Mi)

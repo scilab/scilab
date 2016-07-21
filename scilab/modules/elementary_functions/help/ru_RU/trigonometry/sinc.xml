@@ -19,7 +19,7 @@
         <refpurpose>функция sinc</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t=sinc(x)</synopsis>
     </refsynopsisdiv>
     <refsection>

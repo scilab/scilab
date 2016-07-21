@@ -422,7 +422,6 @@
                 <revnumber>5.4.0</revnumber>
                 <revremark>-noatomsautoload ajouté.</revremark>
             </revision>
-        </revhistory>
             <revision>
                 <revnumber>5.4.1</revnumber>
                 <revremark>scinotes et xcos peuvent maintenant être démarrés en ligne de commande. Voir le SEP #87.</revremark>
@@ -433,5 +432,6 @@
                     Option <literal>-quit</literal> ajoutée. Option <literal>-mem</literal> supprimée.
                 </revremark>
             </revision>
+        </revhistory>
     </refsection>
 </refentry>

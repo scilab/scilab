@@ -249,3 +249,13 @@ if or( ascii(A) <> ascii(int32(A)) ) then pause, end
 if or( ascii(A) <> ascii(uint8(A)) )  then pause, end
 if or( ascii(A) <> ascii(uint16(A)) ) then pause, end
 if or( ascii(A) <> ascii(uint32(A)) ) then pause, end
+
+// valid UTF8
+assert_checkequal(ascii("é"), [195 169]);
+assert_checkequal(ascii([195 169]), "é");
+assert_checkequal(ascii("€"), [226 130 172]);
+assert_checkequal(ascii([226 130 172]), "€");
+
+// invalid UTF8
+assert_checkequal(length(ascii([190 169])), 2);
+assert_checkequal(length(ascii([223 130 172])), 3);

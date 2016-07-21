@@ -18,8 +18,5 @@ warning("off");
 jautoTranspose(%t);
 assert_checkequal(jautoTranspose(), %t);
 
-assert_checkequal(jconvMatrixMethod(),"rc");
-
-jconvMatrixMethod("cr");
-assert_checkequal(jconvMatrixMethod(),"cr");
+jautoTranspose(%f);
 assert_checkequal(jautoTranspose(), %f);

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+		  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+		  xmlns:scilab="http://www.scilab.org" xml:id="format" xml:lang="fr">
+    <refnamediv>
+        <refname>format</refname>
+        <refpurpose>configure le format par défaut d'affichage des nombres décimaux</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxe</title>
+        <synopsis>
+            format(mode)
+            format(width)
+            format(mode, width)
+            format(wm)
+            v = format()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>mode</term>
+                <listitem>
+                    <para>Type d'affichage :
+                        <itemizedlist>
+                          <listitem>1 or "v": format
+                            <emphasis role="bold">v</emphasis>ariable auto-adaptatif
+                            (automatique) : pour chaque nombre décimal ou complexe
+                            à afficher, Scilab choisit soit la représentation
+                            directe (ex: -143.8757), soit le format scientifique
+                            avec <emphasis role="bold">e</emphasis>xposant
+                            (ex: -1.438E+02) le plus adapté, permettant d'afficher
+                            un maximum de digits de la mantisse.
+                          </listitem>
+                          <listitem>
+                              0 or "e": force l'utilisation du format scientifique
+                              avec <emphasis role="bold">e</emphasis>xposant, pour
+                              tous les nombres décimaux.
+                          </listitem>
+                      </itemizedlist>
+                  </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>width</term>
+                <listitem>
+                    <para>
+                        largeur des nombres = nombre total de caractères utilisé
+                        pour chaque nombre, tout inclus : signe et digits de la
+                        mantisse, séparateur décimal ("."), symbole de l'exposant
+                        ("D", "E"), signe et digits de l'exposant. Par défaut,
+                        <literal>width = 10</literal> caractères sont utilisés.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wm</term>
+                <listitem>
+                    <para>vecteur de 2 entiers configurant le format :</para>
+                    <para><literal>wm(1)</literal> est la largeur des nombres</para>
+                    <para><literal>wm(2)</literal> est le type du format :
+                      0 pour <literal>'e'</literal> et 1 pour <literal>'v'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>vecteur à 2 nombres retournés comme paramètres du format actif :
+                        <itemizedlist>
+                          <listitem><literal>v(1)</literal> représente le type du format :
+                            0 pour <literal>'e'</literal> et 1 pour <literal>'v'</literal>
+                          </listitem>
+                          <listitem><literal>v(2)</literal> est le nombre de
+                            caractères utilisés pour formater chaque nombre.
+                          </listitem>
+                         </itemizedlist>
+                     </para>
+                 </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <note>Pour les nombres complexes, chaque partie réelle et imaginaire
+        décimale est formatée selon <literal>format(..)</literal>.
+        La largeur totale d'un nombre complexe est par conséquent deux fois
+        celle spécifiée par <literal>format(..)</literal> + 1 caractère
+        (symbole "i").
+        </note>
+        <note>
+            Les entiers encodés ne sont jamais formatables/formatés selon
+            la notation "e"xponentielle, même si ce format est forcé pour
+            les nombres décimaux. Pour eux, le séparateur décimal "." est
+            inutile et n'apparait pas. Cette absence permet de les distinguer
+            des entiers décimaux, qui eux présentent un ".".
+        </note>
+        <note>
+            Le choix d'un format() large permet de faire apparaitre des
+            digits au delà de la précision relative <literal>%eps</literal>.
+            Ceux-ci sont alors mis à zéro.
+        </note>
+        <warning>Le format décimal fixé avec
+            <function>format(..)</function> est un paramètre global :
+            quel que soit le lieu où il est utilisé, il est ensuite appliqué
+            partout dans Scilab et Xcos.
+        </warning>
+        <para>Dans les versions anciennes de Scilab, en format automatique "v",
+            les éléments d'une matrice inférieurs à <literal>%eps</literal> fois
+            la valeur maximum absolue de l'ensemble de ses éléments étaient
+            formatés à "0". Ce n'est plus le cas : la fonction
+            <literal>clean</literal> peut être utilisée pour fixer les digits
+            de faible poids à 0.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+// format() n'est pas appliqué aux entiers encodés
+// -----------------------------------------------
+format("e",8)
+int32(2.^grand(3,5,"uin",0,30))
+
+// format() impacte l'affichage en console, disp(), string(), sci2exp(),...
+// ---------------------------------------------------------------------
+a = %pi; p = %pi + %z - %e*%z^2;
+format("v",10);
+a, p
+disp(a,p)
+string(a), string(p)
+[sci2exp(a) sci2exp(p)]
+
+format("e",15);
+a, p
+disp(a,p)
+string(a), string(p)
+[sci2exp(a) sci2exp(p)]
+format("v",10); // reset
+
+// format() configure le nombre de caractères. Le nombre de digits peut varier
+// -------------------------------------------
+format("v",10)
+%pi*1e-217, s = string(%pi*1e-217)
+length(s) // le caractère "manquant" est le signe "+" implicit
+
+// C'est utile pour afficher des matrices aux colonnes bien alignées et sans blancs
+[ -1.234 %pi*1e-10 %nan ; %e*1e137 -%inf 54312]
+
+// Avec Scilab 6.0, les digits au delà de %eps sont mis à zéro :
+format(22)
+%pi
+
+// format() a un impact global
+// ---------------------------
+function myfun()
+    format("e",20)
+endfunction
+format("v", 10)
+disp(%pi)
+myfun()
+// Il agit partout, quel que soit le lieu où il a été utilisé en dernier
+disp(%pi)
+format("v",10) // reset
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="number_properties">numbers_properties</link>
+            </member>
+            <member>
+                <link linkend="string">string</link>
+            </member>
+            <member>
+                <link linkend="sci2exp">sci2exp</link>
+            </member>
+            <member>
+                <link linkend="disp">disp</link>
+            </member>
+            <member>
+                <link linkend="print">print</link>
+            </member>
+            <member>
+                <link linkend="clean">clean</link>
+            </member>
+            <member>
+                <link linkend="printf_conversion">C-like format</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="msprintf">msprintf</link>
+            </member>
+            <member>
+                <link linkend="mfprintf">mfprintf</link>
+            </member>
+      </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>Pour les format() (excessivement) longs, les
+                digits affichés au delà de la précision numérique relative %eps
+                apparaissent maintenant comme des zéros.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

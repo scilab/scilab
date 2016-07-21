@@ -19,7 +19,7 @@
         <refpurpose>(-) оператор вычитания; меняет знак</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             X-Y
             -Y

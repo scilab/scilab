@@ -91,7 +91,7 @@ det(A), prod(spec(A))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="detr">detr</link>
