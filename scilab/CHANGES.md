@@ -177,6 +177,15 @@ Xcos
 
 * Major rewrite of the data structures, huge models should load and save faster. The memory usage on diagram edition is also slightly reduced.
 * Implicit fixed-size step ODE solver added: Crank-Nicolson 2(3). Added to the CVode package, it also benefits from the CVode rootfinding feature.
+* The palette browser has been improved. The following features were included:
+  - search engine
+  - history (go forward or backward)
+  - drag and drop multiple blocks at once
+  - navigate using the keyboard arrows
+  - add blocks to the most recent diagram by using the ENTER key
+  - dynamic palette with the last used blocks
+  - zoom using CTRL(+), CTRL(-) and CTRL(mousewheel)
+  - load SVG icons
 
 
 API modification
@@ -239,10 +248,14 @@ Bug Fixes
 * [Bug #7696](http://bugzilla.scilab.org/show_bug.cgi?id=7696) fixed - The `parallel_run` help page was poorly formated
 * [Bug #9912](http://bugzilla.scilab.org/show_bug.cgi?id=9912) fixed   - In case of missing translated help page, the default en_US was sometimes ignored
 * [Bug #9153](http://bugzilla.scilab.org/9153) fixed   - The `isqualbitwise` help page was inaccurate and badly located
+* [Bug #9288](http://bugzilla.scilab.org/show_bug.cgi?id=9288) fixed - Dynamic palette with the most used blocks
+* [Bug #10326](http://bugzilla.scilab.org/show_bug.cgi?id=10326) fixed - Adds a search engine for the palette browser.
 * [Bug #11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959) fixed - Allow "Zoom Area" to be clicked out of axes
 * [Bug #12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110) fixed - Unable to zoom multiple axes at once
+* [Bug #12453](http://bugzilla.scilab.org/show_bug.cgi?id=12453) fixed - The left panel of the palette browser keeps its size when some category is enabled or disabled.
 * [Bug #13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597) fixed - `help format` claimed setting a number of digits instead of characters
 * [Bug #13757](http://bugzilla.scilab.org/show_bug.cgi?id=13757) fixed - The toolbox menu dit not load properly ATOMS modules not autoloaded.
+* [Bug #13906](http://bugzilla.scilab.org/show_bug.cgi?id=13906) fixed - It is now possible to navigate through the Palette browser with the arrow keys.
 * [Bug #13990](http://bugzilla.scilab.org/show_bug.cgi?id=13990) fixed - `warning` with localization enabled some memory corruption
 * [Bug #14192](http://bugzilla.scilab.org/show_bug.cgi?id=14192) fixed - `g_margin` error-ed for double integrator.
 * [Bug #14367](http://bugzilla.scilab.org/show_bug.cgi?id=14367) fixed - `edit_curv` failed opening due to a `[]+1` operation.
