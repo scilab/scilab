@@ -142,7 +142,7 @@ public class Figure extends GraphicObject implements AxesContainer {
     }
 
     /** Pixel drawing logical operations */
-    private enum PixelDrawingMode {
+    public enum PixelDrawingMode {
         CLEAR, AND, ANDREVERSE, COPY, ANDINVERTED, NOOP, XOR, OR, NOR, EQUIV, INVERT, ORREVERSE, COPYINVERTED, ORINVERTED, NAND, SET;
 
         /**

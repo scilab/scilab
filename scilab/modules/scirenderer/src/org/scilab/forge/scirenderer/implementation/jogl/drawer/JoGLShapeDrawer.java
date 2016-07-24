@@ -81,13 +81,14 @@ public final class JoGLShapeDrawer {
                 gl.glDisable(GL2.GL_CULL_FACE);
                 break;
         }
-
+        gl.glEnable(GL2.GL_COLOR_LOGIC_OP);
+        gl.glLogicOp(drawingTools.getGLPixelDrawingMode());
         if (drawingTools.getCanvas().getJoGLParameters().useVBO()) {
             vboDrawing(drawingTools, geometry, appearance);
         } else {
             directDrawing(drawingTools, geometry, appearance);
         }
-
+        gl.glDisable(GL2.GL_COLOR_LOGIC_OP);
         GLShortCuts.useLineAppearance(gl, null);
         gl.glDisable(GL2.GL_CULL_FACE);
     }

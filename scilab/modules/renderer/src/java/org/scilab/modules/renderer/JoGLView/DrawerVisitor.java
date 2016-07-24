@@ -32,6 +32,7 @@ import javax.swing.SwingUtilities;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.Drawer;
 import org.scilab.forge.scirenderer.DrawingTools;
+import org.scilab.forge.scirenderer.implementation.jogl.JoGLDrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.buffers.BuffersManager;
@@ -89,6 +90,7 @@ import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.JoGLView.util.LightingUtils;
 import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
+import org.scilab.modules.renderer.JoGLView.util.PixelDrawingModeUtils;
 
 /**
  * @author Pierre Lando
@@ -405,6 +407,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 colorMap = figure.getColorMap();
                 drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
                 drawingTools.clearDepthBuffer();
+                if (drawingTools instanceof JoGLDrawingTools) {
+                    ((JoGLDrawingTools)drawingTools).setPixelDrawingMode(PixelDrawingModeUtils.figureToJoGLmode(figure.getPixelDrawingModeAsEnum()));
+                }
                 if (figure.isValid() && figure.getVisible() && figure.getImmediateDrawing() && dims.width > 1 && dims.height > 1) {
                     askAcceptVisitor(figure.getChildren());
                 }
