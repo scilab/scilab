@@ -2,6 +2,7 @@
 // Copyright (C) INRIA
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,7 +11,6 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r=%s_h_b(a,b)
-    // r=a&b
-    r=(a<>0)&b
+function res=%spb_h_i(spb1, i2)
+    res = spb1  &  (i2 <> 0);
 endfunction

@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
+ *  Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -125,9 +126,14 @@ template<typename T, typename U, typename O> inline static void int_and(T l, U r
 }
 
 // &&
-int IntAndInt(types::InternalType* _pL, types::Bool** _pOut);
-int BoolAndBool(types::Bool* _pL, types::Bool** _pOut);
-int SparseBoolAndSparseBool(types::InternalType* _pL, types::Bool** _pOut);
+template<typename T>
+void isValueFalse(T* _pL, types::Bool** _pOut);
+template<>
+void isValueFalse(types::Double* _pL, types::Bool** _pOut);
+template<>
+void isValueFalse(types::SparseBool* _pL, types::Bool** _pOut);
+template<>
+void isValueFalse(types::Sparse* _pL, types::Bool** _pOut);
 
 #undef DECLARE_AND_PROTO
 #endif /* !__TYPES_AND_H__ */

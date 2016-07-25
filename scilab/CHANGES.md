@@ -147,7 +147,7 @@ Help pages:
 -----------
 
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `roots`,
-  `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`
+  `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`
 * rewritten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
@@ -258,6 +258,7 @@ Bug Fixes
 * [Bug #14602](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - WRITEC_f block didn't work for x86 machines.
 * [Bug #14648](http://bugzilla.scilab.org/show_bug.cgi?id=14648) fixed - `isinf` returned `%F` for complex numbers with both real and imag infinite parts.
 * [Bug #14662](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - Matrix of strings concatenation with single quote led to a parser error.
+* [Bug #14681](http://bugzilla.scilab.org/show_bug.cgi?id=14681) fixed - Short-circuited AND operation was not possible with double matrices in if and while clauses
 
 ### In 6.0.0 beta-2 and earlier:
 

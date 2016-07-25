@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
+ *  Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -125,9 +126,13 @@ template<typename T, typename U, typename O> inline static void int_or(T l, U r,
 }
 
 // ||
-int IntOrInt(types::InternalType* _pL, types::Bool** _pOut);
-int DoubleOrDouble(types::Double* _pI1, types::Bool** _pOut);
-int BoolOrBool(types::Bool* _pI1, types::Bool** _pOut);
-int SparseBoolOrSparseBool(types::InternalType* _pL, types::Bool** _pOut);
+template<typename T>
+void isValueTrue(T* _pL, types::Bool** _pOut);
+template<>
+void isValueTrue(types::Double* _pL, types::Bool** _pOut);
+template<>
+void isValueTrue(types::SparseBool* _pL, types::Bool** _pOut);
+template<>
+void isValueTrue(types::Sparse* _pL, types::Bool** _pOut);
 
 #endif /* __TYPES_OR_H__ */

@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2015 - Scilab Enteprises - Antoine ELIAS
+// Copyright (C) 2016 - Scilab Enteprises - Piere-Aime AGNEL
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -31,8 +32,9 @@ assert_checkerror("sparse(a2) + a3", msprintf(msg1 + "%s", msprintf(msg2, "%sp_a
 assert_checkerror("a3 + sparse(a2)", msprintf(msg1 + "%s", msprintf(msg2, "%s_a_sp")));
 // and
 //double & double
-assert_checkerror("a3 & a2", msprintf(msg1 + "%s", msprintf(msg2, "%s_h_s")));
-assert_checkerror("a2 & a3", msprintf(msg1 + "%s", msprintf(msg2, "%s_h_s")));
+// Converted first to boolean before & operation after https://codereview.scilab.org/#/c/18387/
+assert_checkerror("a3 & a2", msprintf(msg1 + "%s", msprintf(msg2, "%b_h_b")));
+assert_checkerror("a2 & a3", msprintf(msg1 + "%s", msprintf(msg2, "%b_h_b")));
 //int & int
 assert_checkerror("int8(a3) & int8(a2)", msprintf(msg1 + "%s", msprintf(msg2, "%i_h_i")));
 assert_checkerror("int8(a2) & int8(a3)", msprintf(msg1 + "%s", msprintf(msg2, "%i_h_i")));
@@ -84,9 +86,11 @@ assert_checkerror("sparse(a2) * a3", msprintf(msg1 + "%s", msprintf(msg2, "%sp_m
 assert_checkerror("a3 * sparse(a2)", msprintf(msg1 + "%s", msprintf(msg2, "%s_m_sp")));
 // or
 //double | double
-assert_checkerror("a3 | a2", msprintf(msg1 + "%s", msprintf(msg2, "%s_g_s")));
-assert_checkerror("a2 | a3", msprintf(msg1 + "%s", msprintf(msg2, "%s_g_s")));
+// Converted first to boolean before | operation after https://codereview.scilab.org/#/c/18387/
+assert_checkerror("a3 | a2", msprintf(msg1 + "%s", msprintf(msg2, "%b_g_b")));
+assert_checkerror("a2 | a3", msprintf(msg1 + "%s", msprintf(msg2, "%b_g_b")));
 //int | int
+// Converted first to boolean before | operation after https://codereview.scilab.org/#/c/18387/
 assert_checkerror("int8(a3) | int8(a2)", msprintf(msg1 + "%s", msprintf(msg2, "%i_g_i")));
 assert_checkerror("int8(a2) | int8(a3)", msprintf(msg1 + "%s", msprintf(msg2, "%i_g_i")));
 //subtraction
