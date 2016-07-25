@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - JPC
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -31,7 +31,7 @@
             the simulation is made with <link linkend="rtitr">rtitr</link>
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -70,37 +70,37 @@
                 <listitem>
                     <para>A string.</para>
                     <para>
-                        If <literal>terminate</literal> = %t, the detailed status of the termination 
+                        If <literal>terminate</literal> = %t, the detailed status of the termination
                         corresponds to :
                     </para>
                     <variablelist>
                         <varlistentry>
                             <term>"maxiter"</term>
                             <listitem>
-                                The maximum number of iterations, provided by the 
+                                The maximum number of iterations, provided by the
                                 <literal>-maxiter</literal> option, is reached.
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>"maxfuneval"</term>
                             <listitem>
-                                The maximum number of function evaluations, provided by the 
+                                The maximum number of function evaluations, provided by the
                                 <literal>-maxfunevals</literal> option, is reached.
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>"tolf"</term>
                             <listitem>
-                                The tolerance on the function value is reached. This status is associated 
-                                with the <literal>-tolfunmethod</literal>, <literal>-tolfunabsolute</literal> 
+                                The tolerance on the function value is reached. This status is associated
+                                with the <literal>-tolfunmethod</literal>, <literal>-tolfunabsolute</literal>
                                 and <literal>-tolfunrelative</literal> options.
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>"tolx"</term>
                             <listitem>
-                                The tolerance on x is reached. This status is associated with the 
-                                <literal>-tolxmethod</literal>, <literal>-tolxabsolute</literal> and 
+                                The tolerance on x is reached. This status is associated with the
+                                <literal>-tolxmethod</literal>, <literal>-tolxabsolute</literal> and
                                 <literal>-tolxrelative</literal> options.
                             </listitem>
                         </varlistentry>
@@ -112,7 +112,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimbase_terminate</literal> function returns a boolean: 
+            The <literal>optimbase_terminate</literal> function returns a boolean:
         </para>
         <itemizedlist>
             <listitem>
@@ -127,13 +127,13 @@
             </listitem>
         </itemizedlist>
         <para>
-            If the <literal>-verbosetermination</literal> option is enabled, messages are printed 
-            detailing the termination intermediate steps. 
+            If the <literal>-verbosetermination</literal> option is enabled, messages are printed
+            detailing the termination intermediate steps.
         </para>
         <para>
-            The <literal>optimbase_terminate</literal> function uses a set of rules to compute if 
-            the termination occurs, which leads to an optimization status which is equal to one of 
-            the following: "continue", "maxiter", "maxfunevals", "tolf", "tolx". The set of rules 
+            The <literal>optimbase_terminate</literal> function uses a set of rules to compute if
+            the termination occurs, which leads to an optimization status which is equal to one of
+            the following: "continue", "maxiter", "maxfunevals", "tolf", "tolx". The set of rules
             is the following.
         </para>
         <itemizedlist>
@@ -144,11 +144,11 @@
             </listitem>
             <listitem>
                 <para>
-                    The number of iterations is examined and compared to the <literal>-maxiter</literal> 
-                    option. If the following condition 
+                    The number of iterations is examined and compared to the <literal>-maxiter</literal>
+                    option. If the following condition
                 </para>
                 <programlisting role="no-scilab-exec">
-                    <![CDATA[ 
+                    <![CDATA[
                    iterations &gt;= maxiter
                 ]]>
                 </programlisting>
@@ -158,11 +158,11 @@
             </listitem>
             <listitem>
                 <para>
-                    The number of function evaluations and compared to the <literal>-maxfunevals</literal> 
+                    The number of function evaluations and compared to the <literal>-maxfunevals</literal>
                     option is examined. I the following condition
                 </para>
                 <programlisting role="no-scilab-exec">
-                    <![CDATA[ 
+                    <![CDATA[
                    funevals &gt;= maxfunevals
                 ]]>
                 </programlisting>
@@ -172,7 +172,7 @@
             </listitem>
             <listitem>
                 <para>
-                    The tolerance on function value is examined depending on the value of the 
+                    The tolerance on function value is examined depending on the value of the
                     <literal>-tolfunmethod</literal> option.
                 </para>
                 <variablelist>
@@ -185,7 +185,7 @@
                         <listitem>
                             <para>if the following condition</para>
                             <programlisting role="no-scilab-exec">
-                                <![CDATA[ 
+                                <![CDATA[
                    abs(currentfopt) &lg; tolfunrelative * abs(previousfopt) + tolfunabsolute
                 ]]>
                             </programlisting>
@@ -196,18 +196,18 @@
                     </varlistentry>
                 </variablelist>
                 <para>
-                    The relative termination criteria on the function value works well if the function 
-                    value at optimum is near zero. In that case, the function value at initial guess 
+                    The relative termination criteria on the function value works well if the function
+                    value at optimum is near zero. In that case, the function value at initial guess
                     <literal>fx0</literal> may be used as previousfopt.
                 </para>
                 <para>
-                    The absolute termination criteria on the function value works if the user has an 
+                    The absolute termination criteria on the function value works if the user has an
                     accurate idea of the optimum function value.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    The tolerance on <literal>x</literal> is examined depending on the value of the 
+                    The tolerance on <literal>x</literal> is examined depending on the value of the
                     <literal>-tolxmethod</literal> option.
                 </para>
                 <variablelist>
@@ -220,7 +220,7 @@
                         <listitem>
                             <para>if the following condition</para>
                             <programlisting role="no-scilab-exec">
-                                <![CDATA[ 
+                                <![CDATA[
                    norm(currentxopt - previousxopt) &lg; tolxrelative * norm(currentxopt) + tolxabsolute
                 ]]>
                             </programlisting>
@@ -231,12 +231,12 @@
                     </varlistentry>
                 </variablelist>
                 <para>
-                    The relative termination criteria on x works well if x at optimum is different 
+                    The relative termination criteria on x works well if x at optimum is different
                     form zero. In that case, the condition measures the distance between two iterates.
                 </para>
                 <para>
-                    The absolute termination criteria on x works if the user has an accurate idea of 
-                    the scale of the optimum x. If the optimum x is nea 0, the relative tolerance 
+                    The absolute termination criteria on x works if the user has an accurate idea of
+                    the scale of the optimum x. If the optimum x is nea 0, the relative tolerance
                     will not work and the absolute tolerance is more appropriate.
                 </para>
             </listitem>
@@ -246,12 +246,12 @@
         <title>Example</title>
         <para>
             In the following example, ones searches to solve f(x) = 0 thanks dichotomy method.
-            An optimization object is created and configured (number of variables, initial point, 
-            maximum number of iterations, ...). The <literal>-verbose</literal> option is enabled so that 
+            An optimization object is created and configured (number of variables, initial point,
+            maximum number of iterations, ...). The <literal>-verbose</literal> option is enabled so that
             messages are generated during the algorithm, are printed.
         </para>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     function [f, index] = fun(x, index)
         f = 2*x - 4;
     endfunction

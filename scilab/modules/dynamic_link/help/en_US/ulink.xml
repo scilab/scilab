@@ -61,7 +61,7 @@ scilab -nwni -profile
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 cd TMPDIR
 f1=['#include <math.h>'
     'void fooc(double c[],double a[],double *b,int *m,int *n)'
@@ -81,7 +81,7 @@ link("show") // Will should the value 0
 ulink(0) // ulink fooc
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

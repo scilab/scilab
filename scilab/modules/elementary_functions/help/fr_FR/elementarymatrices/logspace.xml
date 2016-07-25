@@ -47,7 +47,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 logspace(1,2,10)
  ]]></programlisting>
     </refsection>

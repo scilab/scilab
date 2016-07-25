@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -36,9 +36,9 @@
             <varlistentry>
                 <term>iexcl </term>
                 <listitem>
-                    <para>The index of the vertex to exclude in center computation. The default 
-                        value of <literal>iexcl</literal> is the number of vertices: in that case, if 
-                        the simplex is sorted in increasing function value order, the worst vertex 
+                    <para>The index of the vertex to exclude in center computation. The default
+                        value of <literal>iexcl</literal> is the number of vertices: in that case, if
+                        the simplex is sorted in increasing function value order, the worst vertex
                         is excluded.
                     </para>
                 </listitem>
@@ -54,14 +54,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimsimplex_xbar</literal> function returns the center of n vertices, 
+            The <literal>optimsimplex_xbar</literal> function returns the center of n vertices,
             by excluding the vertex with index <literal>iexcl</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 s1 = optimsimplex_new ();
 simplex = [
 3.      -1      1

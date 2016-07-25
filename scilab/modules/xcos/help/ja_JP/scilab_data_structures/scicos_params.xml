@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="scicos_params">
@@ -55,7 +55,7 @@
                 <para> 将来,エディタのウィンドウの大きさを指定するために
                     使用される可能性があります.
                 </para>
-                <para> 
+                <para>
                     大きさ : 6.
                 </para>
                 <para>
@@ -71,7 +71,7 @@
                     保存するファイル名のデフォルト名です.
                     2番目の文字列は,ファイル名のディレクトリのパスです.
                 </para>
-                <para> 
+                <para>
                     大きさ : 2.
                 </para>
                 <para>
@@ -82,7 +82,7 @@
                 <para>
                     <emphasis role="bold">tol</emphasis>
                 </para>
-                <para> 
+                <para>
                     ソルバーにより使用されつ種々の許容誤差を含むシミュレーションパラメータを保持するベクトル.
                 </para>
                 <itemizedlist>
@@ -173,11 +173,11 @@
                         </para>
                         <para>
                         </para>
-                        <para>           
+                        <para>
                         </para>
                     </listitem>
                 </itemizedlist>
-                <para> 
+                <para>
                     大きさ : 7.
                 </para>
                 <para>
@@ -191,7 +191,7 @@
                 <para> シミュレーション終了時間.</para>
                 <para> シミュレーションはこの時刻で停止します.</para>
                 <para> デフォルト値は 100000です.</para>
-                <para> 
+                <para>
                     大きさ : 1.
                 </para>
                 <para>
@@ -206,10 +206,10 @@
                     記号パラメータとしてダイアグラムのブロック内で使用される
                     Scilab変数を定義するScilab命令を含む文字列のベクトル.
                 </para>
-                <para> 
+                <para>
                     コメントを含む有効な全てのScilab命令を使用できます.
                 </para>
-                <para> 
+                <para>
                     大きさ : コンテキストの行数.
                 </para>
                 <para>
@@ -221,7 +221,7 @@
                     <emphasis role="bold">void1</emphasis>
                 </para>
                 <para> 使用されないフィールド.</para>
-                <para> 
+                <para>
                     大きさ : -.
                 </para>
                 <para>
@@ -236,7 +236,7 @@
                     背景色やリンク色のようなエディタのグラフィックプロパティを定義する
                     scsopt型のScilabオブジェクト.
                 </para>
-                <para> 
+                <para>
                     フィールドは以下のようになります:
                 </para>
                 <itemizedlist>
@@ -253,7 +253,7 @@
                             3次元効果を生成する際に使用されます.
                         </para>
                         <para>
-                            デフォルトは33で, 
+                            デフォルトは33で,
                             Scicosにより32色を有する標準カラーマップに追加される灰色に対応します.
                         </para>
                         <para>
@@ -323,11 +323,11 @@
                         </para>
                         <para>
                         </para>
-                        <para>           
+                        <para>
                         </para>
                     </listitem>
                 </itemizedlist>
-                <para> 
+                <para>
                     大きさ : 6.
                 </para>
                 <para>
@@ -339,7 +339,7 @@
                     <emphasis role="bold">void2</emphasis>
                 </para>
                 <para> 使用されていないフィールド.</para>
-                <para> 
+                <para>
                     大きさ : -.
                 </para>
                 <para>
@@ -351,7 +351,7 @@
                     <emphasis role="bold">void3</emphasis>
                 </para>
                 <para> 使用されていないフィールド.</para>
-                <para> 
+                <para>
                     大きさ : -.
                 </para>
                 <para>
@@ -363,7 +363,7 @@
                     <emphasis role="bold">doc</emphasis>
                 </para>
                 <para> ユーザ定義のダイアグラム文書構造体.</para>
-                <para> 
+                <para>
                     大きさ : 1.
                 </para>
                 <para>

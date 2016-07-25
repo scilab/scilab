@@ -248,7 +248,7 @@
                     <emphasis role="bold">listdelete</emphasis>
                 </td>
                 <td>
-                    is returned by 
+                    is returned by
                     <function>
                         typeof(<literal>null()</literal>)
                     </function>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -54,9 +54,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            Observability gramian of the pair <literal>(A,C)</literal> or linear 
+            Observability gramian of the pair <literal>(A,C)</literal> or linear
             system <literal>sl</literal> (<literal>syslin</literal> list).
-            <literal>dom</literal> is the domain which can be 
+            <literal>dom</literal> is the domain which can be
         </para>
         <variablelist>
             <varlistentry>
@@ -75,7 +75,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=-diag(1:3);C=rand(2,3);
 Go=obs_gram(A,C,'c');     // <=> w=syslin('c',A,[],C); Go=obs_gram(w);
 norm(Go*A+A'*Go+C'*C,1)

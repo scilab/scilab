@@ -30,7 +30,7 @@
             ファイルとディレクトリをブラウズすることができます.
         </para>
         <para>
-            <literal>filebrowser</literal> には以下のような機能があります: 
+            <literal>filebrowser</literal> には以下のような機能があります:
             <itemizedlist>
                 <listitem><para>
                         便利で分かりやすいファイルブラウザ
@@ -47,7 +47,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        ファイルアイテム上で簡単に処理(SciNotesで開く, 実行, Scilabにロード, 
+                        ファイルアイテム上で簡単に処理(SciNotesで開く, 実行, Scilabにロード,
                         Xcosで開く, など)を実行可能.
                         <para/>
                         <para>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -186,7 +186,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            finds the system matrices B and D and the Kalman gain of a discrete-time 
+            finds the system matrices B and D and the Kalman gain of a discrete-time
             system, given the system order, the matrices A and C, and the relevant
             part of the R factor of the concatenated block-Hankel matrices, using
             subspace identification techniques (MOESP or N4SID).
@@ -194,7 +194,7 @@
         <itemizedlist>
             <listitem>
                 <para>[B,D,K] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)  computes the system matrices B (if JOB = 1), B and D (if JOB = 2), and the Kalman  predictor gain K (if NSMPL &gt; 0). The model structure is:</para>
-                <programlisting role=""><![CDATA[ 
+                <programlisting role=""><![CDATA[
 x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k),
  ]]></programlisting>
@@ -211,27 +211,27 @@ y(k)   = Cx(k) + Du(k) + e(k),
         </itemizedlist>
         <para>
             Matrix R, computed by findR, should be determined with suitable arguments
-            METH and JOBD.  METH = 1 and JOBD = 1 must be used in findR, for METH = 1 
+            METH and JOBD.  METH = 1 and JOBD = 1 must be used in findR, for METH = 1
             in findBDK. Using METH = 1 in FINDR and METH = 2 in findBDK is allowed.
         </para>
         <para>
-            The number of output arguments may vary, but should correspond to the 
+            The number of output arguments may vary, but should correspond to the
             input arguments, e.g.,
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
          B = findBDK(S,N,L,R,A,C,METH,1)  or
      [B,D] = findBDK(S,N,L,R,A,C,METH,2)  or
-[B,D,RCND] = findBDK(S,N,L,R,A,C,METH,2)  
+[B,D,RCND] = findBDK(S,N,L,R,A,C,METH,2)
  ]]></programlisting>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
-      0.1, 0,  -0.1,-0.1;      
-     -0.4,-0.6,-0.7,-0.1;  
-      0.8, 0,  -0.6,-0.6];      
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
 B = [0.8;0.1;1;-1];
 C = [1 2 -1 0];
 SYS=syslin(0.1,A,B,C);

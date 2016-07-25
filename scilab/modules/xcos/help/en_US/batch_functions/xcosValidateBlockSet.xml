@@ -31,7 +31,7 @@
         <title>Description</title>
         This function is used to test if a Block interface function will not
         fail while called by xcos simulation process.
-        
+
         <para>
             Function will try to perform a <literal>define</literal> then a <literal>set</literal> job
             on the given interface function name like the xcos simulation do.

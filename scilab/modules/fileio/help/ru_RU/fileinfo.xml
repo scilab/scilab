@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -174,36 +174,36 @@
             In octal, x(2)=1664, so first digit corresponds to sticky attributes. The second
             indicates that file owner has permission of writing and reading. It is the same
             for other users in the file's group. Finally, others users has just right to read.
-            To apply a mask, it is simpler to look at this octal in binary. 
+            To apply a mask, it is simpler to look at this octal in binary.
             So: <varname>x</varname>(2)= 1 110 110 100.
-            To check if the owner has write permission, we must take a look at the second triplet: 110 
+            To check if the owner has write permission, we must take a look at the second triplet: 110
             and compare it with write permission 010. So, the operation is: 110 000 000 &amp; 010 000 000.
             If result is not null (it is the case here), owner has write permission.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 w = fileinfo(SCI+'/etc/scilab.start')
 // права на файл
 dec2oct(w(2))
 // дата файла
 getdate(w(6))
- 
+
 // Проверка прав на запись
 w = fileinfo(SCI+'/etc/scilab.start')
- 
+
 S_IWRITE = 128; // маска прав на запись
 S_IEXEC = 64; // маска прав на исполнение
 S_IREAD = 256; // маска прав на чтение
 S_IFCHR = 8192; // маска прав директории
- 
+
 if ( bitand( w(2), S_IWRITE ) <> 0) then
  disp('Для этого файла есть ПРАВО НА ЗАПИСЬ.');
 else
  disp('Для этого файла НЕТ ПРАВА НА ЗАПИСЬ.');
 end
- 
+
 FILES = [SCI;SCIHOME;'несуществующий_файл';TMPDIR]
 [X,ERRS] = fileinfo(FILES)
  ]]></programlisting>

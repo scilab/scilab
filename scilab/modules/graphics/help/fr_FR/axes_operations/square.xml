@@ -23,8 +23,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>square</literal> est utilisée pour avoir une échelle identique sur les axes x et y. 
-            Les valeurs 
+            <literal>square</literal> est utilisée pour avoir une échelle identique sur les axes x et y.
+            Les valeurs
             <literal>xmin, xmax, ymin, ymax</literal> sont les bornes du dessin
             et <literal>square</literal> change les dimensions de la fenêtre graphique pour que les échelles soient identiques.
             <literal>square</literal> change l'échelle graphique courante et
@@ -33,7 +33,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t=[0:0.1:2*%pi]';
 plot2d(sin(t),cos(t))
 clf()

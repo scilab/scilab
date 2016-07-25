@@ -200,7 +200,7 @@ legend(lgd);
             end
             legend(lgd);
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // Afficher la fonction fonction standard cumulative inverse
 Mean = 0;

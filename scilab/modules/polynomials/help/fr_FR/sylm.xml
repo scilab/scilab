@@ -45,16 +45,16 @@
         <para>
             <literal>rank(sylm(a,b))=degree(a)+degree(b))</literal> et les instructions
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 u = sylm(a,b) \ eye(na+nb,1)
 x = poly(u(1:nb),'z','coeff')
 y = poly(u(nb+1:na+nb),'z','coeff')
  ]]></programlisting>
         <para>
-            calculent les facteurs de Bezout <literal>x</literal> ainsi que <literal>y</literal> de degré minimum tels que 
+            calculent les facteurs de Bezout <literal>x</literal> ainsi que <literal>y</literal> de degré minimum tels que
             <literal>a*x+b*y = 1</literal>
         </para>
-        
+
         <refsection>
             <title>Exemples</title>
             <programlisting role="example"><![CDATA[

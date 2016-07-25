@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -82,7 +82,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=eye(2,2);b=ones(a);
 save('val.dat',a,b);
 clear a
@@ -99,7 +99,7 @@ mclose(fd)
 
 // anexando variáveis a um arquivo gravado antigo
 fd=mopen('TMPDIR/foo','rb+')
-mseek(0,fd,'end') 
+mseek(0,fd,'end')
 lst=list(1,2,3)
 save(fd,lst)
 mclose(fd)

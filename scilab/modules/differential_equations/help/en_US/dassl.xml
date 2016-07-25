@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -106,17 +106,17 @@
                         <listitem>
                             <para>A list.</para>
                             <para>
-                                This form allows to pass parameters other than <literal>t</literal>, 
+                                This form allows to pass parameters other than <literal>t</literal>,
                                 <literal>y</literal>, <literal>ydot</literal> to
                                 the function. It must be as follows:
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 list(res,x1,x2,...)
  ]]></programlisting>
                             <para>where the syntax of the function
                                 <literal>res</literal> is now
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 r=res(t,y,ydot,x1,x2,...)
  ]]></programlisting>
                             <para>
@@ -131,15 +131,15 @@ r=res(t,y,ydot,x1,x2,...)
                                 linked with Scilab.
                             </para>
                             <para>In C the syntax must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[])
  ]]></programlisting>
                             <para>In Fortran it must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
-integer ires,ipar(*)  
+integer ires,ipar(*)
  ]]></programlisting>
                             <para>
                                 The <literal>rpar</literal> and <literal>ipar</literal> arrays must be present but cannot be
@@ -153,8 +153,8 @@ integer ires,ipar(*)
                 <term>jac</term>
                 <listitem>
                     <para>
-                        an <link linkend="external">external</link> (function or list or string). 
-                        Computes the value of <literal>dg/dy+cj*dg/dydot</literal> for a given 
+                        an <link linkend="external">external</link> (function or list or string).
+                        Computes the value of <literal>dg/dy+cj*dg/dydot</literal> for a given
                         value of parameter <literal>cj</literal>.
                     </para>
                     <itemizedlist>
@@ -170,13 +170,13 @@ integer ires,ipar(*)
                         <listitem>
                             <para>A list.</para>
                             <para>It must be as follows</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 list(jac,x1,x2,...)
  ]]></programlisting>
                             <para>where the syntax of the function
                                 <literal>jac</literal> is now
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 r=jac(t,y,ydot,cj,x1,x2,...)
  ]]></programlisting>
                             <para>
@@ -191,12 +191,12 @@ r=jac(t,y,ydot,cj,x1,x2,...)
                                 with Scilab.
                             </para>
                             <para>In C the syntax must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 void jac(double *t, double y[], double yd[], double pd[],
          double *cj, double rpar[], int ipar[])
  ]]></programlisting>
                             <para>In Fortran it must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 subroutine jac(t,y,yd,pd,cj,rpar,ipar)
 double precision t, y(*),yd(*),pd(*),cj,rpar(*)
 integer ipar(*)
@@ -314,14 +314,14 @@ integer ipar(*)
             The <literal>dassl</literal> function integrate the differential algebraic equation and
             returns the evolution of <literal>y</literal> a given time points
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 g(t,y,ydot)=0
 y(t0)=y0  and   ydot(t0)=ydot0
   ]]></programlisting>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function [r,ires]=chemres(t,y,yd)
    r=[-0.04*y(1)+1d4*y(2)*y(3)-yd(1)
        0.04*y(1)-1d4*y(2)*y(3)-3d7*y(2)*y(2)-yd(2)
@@ -345,7 +345,7 @@ info=list([],0,[],[],[],0,0);
 info(2)=1;
 y1=dassl([y0,yd0],0,4d10,chemres,info);
 y2=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
- 
+
 //Using extra argument for parameters
 //-----------------------------------
 function [r,ires]=chemres(t,y,yd ,a,b,c)

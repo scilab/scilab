@@ -57,24 +57,24 @@
             The <literal>accept_func_vfsa</literal> provides the Very Fast Simulated Annealing acceptation function.
         </para>
         <para>
-            If the level computed by the acceptation function is higher 
+            If the level computed by the acceptation function is higher
             than the generated uniform random number in the interval [0,1], then the neighbour is accepted.
         </para>
         <para>
             The formula used in the implementation is the following.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 Level = 1 / (1 + exp(-(F_current - F_neigh)/max(T,%eps)));
  ]]></programlisting>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 level = accept_func_vfsa(10, 9, 10)
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

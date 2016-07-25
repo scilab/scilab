@@ -70,7 +70,7 @@ along with this program.
         <programlisting role="example">A = [eye(2,2),[-1.5 0.1;-0.2 1.5],[0.7 -0.3;0.1 0.7]];
             B = [[0;0] [1;-1] [0.5;1.2]];
             Ar = armac(A, B, zeros(2, 2), 2, 1, 0)
-            [S, Sn] = arma2ss(Ar)    
+            [S, Sn] = arma2ss(Ar)
         </programlisting>
     </refsection>
     <refsection>

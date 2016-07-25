@@ -127,7 +127,7 @@
             <literal>i=1:size(x1,'*')</literal>
         </para>
         <para>
-            où 
+            où
             <inlinemediaobject>
                 <imageobject>
                     <imagedata>
@@ -159,7 +159,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x0=0;x1=0:0.1:2*%pi;
 X=integrate('sin(x)','x',x0,x1);
 norm(cos(x1)-(1-X))

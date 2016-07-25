@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -62,18 +62,18 @@
         </para>
         <para>
             Thus, for <literal>f</literal> taking values along the imaginary axis or
-            on the unit circle <literal>x</literal> is the continuous or discrete time 
+            on the unit circle <literal>x</literal> is the continuous or discrete time
             frequency response of <literal>(A,B,C,D)</literal>.
         </para>
         <para>
             <literal>x=freq(NUM,DEN,f)</literal> returns a real or complex matrix <literal>x</literal> such
-            that columns <literal>k*(p-1)+1</literal> to <literal>k*p</literal> of <literal>x</literal> contain the matrix  
+            that columns <literal>k*(p-1)+1</literal> to <literal>k*p</literal> of <literal>x</literal> contain the matrix
             <literal>NUM(f(k))./DEN(f(k))</literal>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 sys=(s+1)/(s^3-5*s+4)
 rep=freq(sys("num"),sys("den"),[0,0.9,1.1,2,3,10,20])

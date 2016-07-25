@@ -25,10 +25,10 @@
         <title>Syntax</title>
         <synopsis>
             clf([opt_job_arg])
-            
+
             clf(figureHandle[, opt_job_arg])
             clf(num[, opt_job_arg])
-            
+
             clf(frameHandle[, opt_job_arg)
         </synopsis>
     </refsynopsisdiv>
@@ -153,18 +153,18 @@
             f4.figure_size = [400, 200];
             plot2d()
             clf(f4, "reset")
-            
+
             f0=scf(0); //creates figure with id==0 and make it the current one
             f0.color_map = hotcolormap(128); // change color map
             t=-%pi:0.3:%pi;
             plot3d1(t,t,sin(t)'*cos(t));
-            
+
             clf() // equivalent to clf(gcf(),"clear")
             plot3d1(t,t,sin(t)'*cos(t)); // color_map unchanged
-            
+
             clf(gcf(), "reset")
             plot3d1(t,t,sin(t)'*cos(t)); // color_map changed (back to the default one with 32 colors)
-            
+
             fr = uicontrol("Style", "frame", "Position", [20 20 200 200]);
             a=newaxes(fr);
             plot(1:10);

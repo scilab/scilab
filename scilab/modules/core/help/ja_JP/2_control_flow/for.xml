@@ -29,49 +29,49 @@
             値とします.
         </para>
         <para>
-	  Scilabプログラミング言語のコード規約に基づき, 以下が推奨されます:
+            Scilabプログラミング言語のコード規約に基づき, 以下が推奨されます:
         </para>
         <itemizedlist>
             <listitem>
                 <para>
-		  各命令を新しい行で開始する.
+                    各命令を新しい行で開始する.
                 </para>
             </listitem>
             <listitem>
                 <para>
-		  1行に複数の命令を記述しない.
+                    1行に複数の命令を記述しない.
                 </para>
             </listitem>
             <listitem>
                 <para>
-		  複合命令は,複数行に分割する.
+                    複合命令は,複数行に分割する.
                 </para>
             </listitem>
         </itemizedlist>
         <para>
-          例えば, 以下のようにします:
+            例えば, 以下のようにします:
         </para>
         <programlisting role=""><![CDATA[
-      for i = 1:5 
+      for i = 1:5
           disp(i);
       end
 ]]></programlisting>
         <para>
-	  以下は推奨されません.
+            以下は推奨されません.
         </para>
         <programlisting role=""><![CDATA[
       for i = 1:5 disp(i); end
 ]]></programlisting>
         <para>
-	  <warning>
-            警告: 条件文(if while for または select/case)の本体を定義するために
-            使用できる文字の数は,16k に制限されています.
-	  </warning>
+            <warning>
+                警告: 条件文(if while for または select/case)の本体を定義するために
+                使用できる文字の数は,16k に制限されています.
+            </warning>
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // "traditional" for loops
 n=5;
 for i = 1:n
@@ -80,20 +80,20 @@ for i = 1:n
     end;
 end
 for j = 2:n-1
-    a(j,j) = j; 
-end; 
+    a(j,j) = j;
+end;
 a
 for j= 4:-1:1
     disp(j);
 end // decreasing loop
 
 //loop on matrix columns
-for  e=eye(3,3), e, end  
+for  e=eye(3,3), e, end
 for v=a, write(6,v), end
-for j=1:n, v=a(:,j), write(6,v), end 
+for j=1:n, v=a(:,j), write(6,v), end
 
 //loop on list entries
-for l=list(1,2,'example'); l, end 
+for l=list(1,2,'example'); l, end
 
  ]]></programlisting>
     </refsection>

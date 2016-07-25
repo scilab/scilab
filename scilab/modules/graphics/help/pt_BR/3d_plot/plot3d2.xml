@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -51,7 +51,7 @@
                         </literal>
                         ,... onde <literal>key1</literal>,
                         <literal>key2,...</literal> podem ser um dos seguintes: theta, alpha
-                        ,leg,flag,ebox (ver definições abaixo). 
+                        ,leg,flag,ebox (ver definições abaixo).
                     </para>
                 </listitem>
             </varlistentry>
@@ -59,7 +59,7 @@
                 <term>theta, alpha</term>
                 <listitem>
                     <para>valores reais de dados em graus, as coordenadas esféricas do
-                        ponto de observação. 
+                        ponto de observação.
                     </para>
                 </listitem>
             </varlistentry>
@@ -67,7 +67,7 @@
                 <term>leg</term>
                 <listitem>
                     <para>string definindo os rótulos para cada eixo com @ como um
-                        separador de campos, por exemplo "X@Y@Z". 
+                        separador de campos, por exemplo "X@Y@Z".
                     </para>
                 </listitem>
             </varlistentry>
@@ -147,7 +147,7 @@
                                         <listitem>
                                             <para> re-escala automaticamente caixas 3d com relação
                                                 de aspecto extrema, as fronteiras são computadas
-                                                utilizando-se dados fornecidos. 
+                                                utilizando-se dados fornecidos.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -214,7 +214,7 @@
                                         <term>box=2:</term>
                                         <listitem>
                                             <para>apenas os eixos atrás da superfície são
-                                                desenhados. 
+                                                desenhados.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -222,7 +222,7 @@
                                         <term>box=3:</term>
                                         <listitem>
                                             <para>uma caixa cercando a superfície é desenhada e
-                                                legendas são adicionadas. 
+                                                legendas são adicionadas.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -252,7 +252,7 @@
                         <literal>flag</literal>, se for ajustado para <literal>1</literal>,
                         <literal>3</literal> ou <literal>5</literal> (volte acima para ver o
                         comportamento correspondente). Se <literal>flag</literal> estiver
-                        faltando, <literal>ebox</literal> não é levado em conta. 
+                        faltando, <literal>ebox</literal> não é levado em conta.
                     </para>
                     <para>Note que, quando especificado, o argumento
                         <literal>ebox</literal> age no campo <literal>data_bounds</literal>
@@ -284,14 +284,14 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 u = linspace(-%pi/2,%pi/2,40);
 v = linspace(0,2*%pi,20);
 X = cos(u)'*cos(v);
 Y = cos(u)'*sin(v);
 Z = sin(u)'*ones(v);
 plot3d2(X,Y,Z);
-// apenas no novo modo de gráficos 
+// apenas no novo modo de gráficos
 e=gce();
 e.color_mode=4; // mudando a cor
 f_data=e.data;

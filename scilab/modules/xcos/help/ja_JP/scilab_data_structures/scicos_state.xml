@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="scicos_state">
@@ -44,7 +44,7 @@
             保持します.
         </para>
         <para>
-            state は x, z, oz, iz, 
+            state は x, z, oz, iz,
             tevts, evtspt, pointi および outtbを含みます.
         </para>
         <para>
@@ -64,10 +64,10 @@
                 <para>
                     <emphasis role="bold">x</emphasis>
                 </para>
-                <para> 
+                <para>
                     連続時間状態レジスタで, 全てのブロックの連続時間状態量の結合により得られます.
                 </para>
-                <para> 
+                <para>
                     大きさ : 連続時間状態レジスタの大きさの総数.
                 </para>
                 <para>
@@ -81,7 +81,7 @@
                 <para>
                     離散時間状態レジスタで, 全てのブロックの離散時間状態量の結合により得られます.
                 </para>
-                <para> 
+                <para>
                     大きさ : 離散時間状態レジスタの大きさの総数.
                 </para>
                 <para>
@@ -92,11 +92,11 @@
                 <para>
                     <emphasis role="bold">oz</emphasis>
                 </para>
-                <para> 
+                <para>
                     オブジェクト離散時間状態量で, 全てのブロックのオブジェクト離散時間状態量の結合に
-                    より得られます.		  
+                    より得られます.
                 </para>
-                <para> 
+                <para>
                     大きさ : オブジェクト状態量の大きさの総数.
                 </para>
                 <para>
@@ -108,12 +108,12 @@
                     <emphasis role="bold">iz</emphasis>
                 </para>
                 <para> ブロック数と同じ大きさのベクトル.</para>
-                <para> 
+                <para>
                     作業用状態レジスタ(work)のポインタを保持するために使用されるベクトル.
                     あるブロックが初期化時にメモリを確保する必要がある場合(フラグ 4),
                     関連するポインタがここに保存されます.
                 </para>
-                <para> 
+                <para>
                     大きさ : ブロック数.
                 </para>
                 <para>
@@ -124,10 +124,10 @@
                 <para>
                     <emphasis role="bold">tevts</emphasis>
                 </para>
-                <para> アクティベーションソースの数と同じ大きさのベクトル. 
+                <para> アクティベーションソースの数と同じ大きさのベクトル.
                     evtsptで計画されるアクティベーションの予定時刻を有します.
                 </para>
-                <para> 
+                <para>
                     大きさ : アクティベーションソースの数.
                 </para>
                 <para>
@@ -138,11 +138,11 @@
                 <para>
                     <emphasis role="bold">evtspt</emphasis>
                 </para>
-                <para> 
+                <para>
                     アクティベーションソースの数と同じ大きさのベクトル.
                     イベントスケジューラです.
                 </para>
-                <para> 
+                <para>
                     大きさ : アクティベーションソースの数.
                 </para>
                 <para>
@@ -154,7 +154,7 @@
                     <emphasis role="bold">pointi</emphasis>
                 </para>
                 <para> 次に計画されるイベントの番号.</para>
-                <para> 
+                <para>
                     大きさ : 1.
                 </para>
                 <para>
@@ -168,7 +168,7 @@
                 <para> ブロックの全て出力レジスタを含むScilab リスト.
                     この要素の各要素は,型指定の行列データを有します.
                 </para>
-                <para> 
+                <para>
                     大きさ : 標準出力ポートの数.
                 </para>
                 <para>

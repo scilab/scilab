@@ -46,7 +46,7 @@
 disp("First type (double) : " + string(typs(1)) + " / " + nams(1));
 ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

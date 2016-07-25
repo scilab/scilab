@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -276,11 +276,11 @@ clf();polarplot(sin(7*t),cos(8*t))
             t= 0:.01:2*%pi;
             polarplot(sin(7*t),cos(8*t))
         </scilab:image>
-        
+
     </refsection>
     <refsection>
         <title>Example 2</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t= 0:.01:2*%pi;
 
 clf();polarplot([sin(7*t') sin(6*t')],[cos(8*t') cos(8*t')],[1,2])

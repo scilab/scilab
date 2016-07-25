@@ -22,7 +22,7 @@
             <varlistentry>
                 <term>title</term>
                 <listitem>
-                    <para>文字列: オプション引数, 
+                    <para>文字列: オプション引数,
                         ダイアログに表示する表題.
                         デフォルト値は"Color Chooser"です.
                     </para>
@@ -31,7 +31,7 @@
             <varlistentry>
                 <term>defaultRGB</term>
                 <listitem>
-                    <para>1x3 ベクトル: デフォルト値は 
+                    <para>1x3 ベクトル: デフォルト値は
                         ベクトル[red, green, blue]で指定した
                         赤, 緑および青の値です.
                     </para>
@@ -58,7 +58,7 @@
             <varlistentry>
                 <term>RGB</term>
                 <listitem>
-                    <para>1x3 ベクトル: 
+                    <para>1x3 ベクトル:
                         ベクトル [red, green, blue]として指定した
                         赤, 緑および青の値,または
                         ユーザがキャンセルした場合は [].
@@ -94,7 +94,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 uigetcolor()
 [R, G, B] = uigetcolor([255 128 0])
 RBG = uigetcolor(0, 128, 255)

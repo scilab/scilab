@@ -94,9 +94,9 @@
         $$
         ]]></latex>
         <para>
-            où 
+            où
             <literal>Ids</literal>
-            et 
+            et
             <literal>Vt</literal>
             sont respectivement le courant de saturation et
             l'équivalent de tension de température. Si l'exponentielle franchit une certaine limite
@@ -114,7 +114,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>

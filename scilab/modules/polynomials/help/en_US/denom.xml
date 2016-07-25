@@ -64,7 +64,7 @@ denom(p) // Should return 1
 numer(p)
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

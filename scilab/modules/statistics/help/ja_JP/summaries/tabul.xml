@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -72,7 +72,7 @@
                 <listitem>
                     <para>
                         <literal>m</literal> はリストで,
-                        その最初のメンバーは	
+                        その最初のメンバーは
                         <literal>X</literal>の異なる値から構成される
                         文字列(列)ベクトル,
                         2番目のメンバーは
@@ -90,7 +90,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 最初の例
 X = [2 8 0 3 7 6 8 7 9 1 6 7 7 2 5 2 2 2 9 7]
 m1 = tabul(X)
@@ -129,7 +129,7 @@ results = [m(1)(p) string(occ)]             // 結果を表示
     <refsection>
         <title>参考文献</title>
         <para>
-            Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, 
+            Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics,
             fifth edition, J.Wiley &amp; Sons, 1990.
         </para>
     </refsection>

@@ -21,9 +21,9 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            b = h5exists(obj, locations)  
-            b = h5exists(obj, location, attrNames)  
-            b = h5exists(filename, locations)  
+            b = h5exists(obj, locations)
+            b = h5exists(obj, location, attrNames)
+            b = h5exists(filename, locations)
             b = h5exists(filename, location, attrNames)
         </synopsis>
     </refsynopsisdiv>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -30,7 +30,7 @@
                 <term>curve_handles</term>
                 <listitem>
                     <para>
-                        A vector of polyline  handles. 
+                        A vector of polyline  handles.
                     </para>
                 </listitem>
             </varlistentry>
@@ -63,7 +63,7 @@
     e=gce();e=e.children
     datatipCreate(e(1),50);
     datatipCreate(e(2),20);
-    datatipRemoveAll() 
+    datatipRemoveAll()
 
     ]]></programlisting>
     </refsection>

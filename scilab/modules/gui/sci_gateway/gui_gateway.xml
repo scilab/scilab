@@ -33,7 +33,7 @@
  * Don't touch if you do not know what you are doing
 -->
     <!-- =================== -->
-    
+
     <PRIMITIVE gatewayId="25" primitiveId="1" primitiveName="x_dialog" />
     <PRIMITIVE gatewayId="25" primitiveId="2" primitiveName="x_choose" />
     <PRIMITIVE gatewayId="25" primitiveId="3" primitiveName="x_mdialog" />

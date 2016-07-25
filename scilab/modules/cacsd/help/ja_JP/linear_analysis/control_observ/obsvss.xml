@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -60,7 +60,7 @@
         </para>
         <para>
             <literal>tol</literal> は可制御性を調べる際の閾値です
-            (<literal>contr</literal>参照); 
+            (<literal>contr</literal>参照);
             デフォルト値 = <literal>100*%eps</literal>
         </para>
     </refsection>

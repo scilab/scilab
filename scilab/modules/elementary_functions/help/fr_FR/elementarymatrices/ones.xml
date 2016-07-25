@@ -93,7 +93,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 ones(3)
 ones(3,3)
 ones(2,3,2)

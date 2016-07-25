@@ -196,7 +196,7 @@
                                     be used.
                                 </para>
                                 <para>
-                                    Good values to use are in the [0 10] range, where low values generates 
+                                    Good values to use are in the [0 10] range, where low values generates
                                     strong highlight and high values generates barely perceptible highlights.
                                     The default value is <literal>"2"</literal>.
                                 </para>

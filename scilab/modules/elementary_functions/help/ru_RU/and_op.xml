@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -18,7 +18,7 @@
         <refname>&amp;, &amp;&amp;</refname>
         <refpurpose>оператор логического И</refpurpose>
     </refnamediv>
-    
+
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <para>
@@ -39,7 +39,7 @@
             while (A &amp;&amp; B) then ... end
         </synopsis>
     </refsynopsisdiv>
-    
+
     <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
@@ -148,7 +148,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection>
         <title>Описание</title>
         <para>
@@ -167,7 +167,7 @@
             Otherwise, <literal>A &amp; B</literal> is computed.
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
@@ -233,7 +233,7 @@ cA && foo()
 iA && iB // iA is evalueated as false resulting in the short-circuited operation
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">

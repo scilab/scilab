@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F. Delebecque
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -38,7 +38,7 @@
             <varlistentry>
                 <term>reject</term>
                 <listitem>
-                    <para>整数ベクトル, 
+                    <para>整数ベクトル,
                         <literal>Sys</literal> の未知入力の添え字.
                     </para>
                 </listitem>
@@ -90,8 +90,8 @@
             <literal>(A,B,C2,D2)</literal> syslin 線形システムです.
             ただし, w は未知入力です.
             Sys の行列 B および D2 は (暗黙のうちに) 次のように分割されます:
-            <literal>B=[B1,B2]</literal> および <literal>D2=[D21,D22]</literal>  
-            ただし,<literal>B1=B(:,reject)</literal>  および 
+            <literal>B=[B1,B2]</literal> および <literal>D2=[D21,D22]</literal>
+            ただし,<literal>B1=B(:,reject)</literal>  および
             <literal>D21=D2(:,reject)</literal> で,
             reject = 未知入力の添え字.
             行列 <literal>C1</literal> および<literal>D1</literal> は，
@@ -99,7 +99,7 @@
             を定義します.
         </para>
         <para>
-            行列 <literal>D1</literal> は (暗黙のうちに) 
+            行列 <literal>D1</literal> は (暗黙のうちに)
             <literal>D11=D(:,reject)</literal> として
             <literal>D1=[D11,D12]</literal>
             のように分割されます
@@ -107,7 +107,7 @@
         <para>
             データ (Sys, reject,C1, D1)   は次の2入力2出力システムを定義します:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 xdot =  A x + B1  w + B2  u
    z = C1 x + D11 w + D12 u
    y = C2 x + D21 w + D22 u
@@ -118,7 +118,7 @@ xdot =  A x + B1  w + B2  u
         </para>
         <para>
             <literal>flag='ge'</literal> 安定性拘束なし
-            <literal>flag='st'</literal> 安定なオブザーバ    (デフォルト) 
+            <literal>flag='st'</literal> 安定なオブザーバ    (デフォルト)
             <literal>flag='pp'</literal> 極配置を指定するオブザーバ
             alfa,beta = 閉ループ極の指定位置  (デフォルト -1, -2)
             J=出力yから状態xへの注入.
@@ -126,7 +126,7 @@ xdot =  A x + B1  w + B2  u
         </para>
         <para>
             UIobs = 線形システム (u,y) --&gt; zhat ただし:
-            伝達関数: (w,u) --&gt; 
+            伝達関数: (w,u) --&gt;
             z  は以下の複合伝達関数と等しくなります:
             [0,I;        UIobs
             Sys]
@@ -141,7 +141,7 @@ xdot =  A x + B1  w + B2  u
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=diag([3,-3,7,4,-4,8]);
 B=[eye(3,3);zeros(3,3)];
 C=[0,0,1,2,3,4;0,0,0,0,0,1];
@@ -155,7 +155,7 @@ N1=[-2,-3];C1=-N1*C;D1=-N1*D;
 nw=length(reject);nu=size(Sys('B'),2)-nw;
 ny=size(Sys('C'),1);nz=size(C1,1);
 [UIobs,J,N]=ui_observer(Sys,reject,C1,D1);
-W=[zeros(nu,nw),eye(nu,nu);Sys];UIobsW=UIobs*W;   
+W=[zeros(nu,nw),eye(nu,nu);Sys];UIobsW=UIobs*W;
 //(w,u) --> z=UIobs*[0,I;Sys](w,u)
 clean(ss2tf(UIobsW));
 wu_to_z=syslin('c',A,B,C1,D1);clean(ss2tf(wu_to_z));

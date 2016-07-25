@@ -50,7 +50,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [m,p]=libraryinfo('corelib')
  ]]></programlisting>
     </refsection>

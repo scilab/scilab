@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -206,7 +206,7 @@
                 <term>ldwork</term>
                 <listitem>
                     <para>(optional) the workspace size. Default : computed by the formulas</para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 nr = 2*( m + l )*s
 LDWORK = ( t - 2*s + 3 + 64 )*nr
 if ( CSIZE > MAX( nr*nr + t*( m + l ) + 16, 2*nr ) ) then
@@ -228,7 +228,7 @@ end if
                 <listitem>
                     <para>(optional) if batch = 2 or 3, the 2*(m+l)*s-by-2*(m+l)*s (upper triangular, if alg &lt;&gt; 2) part of  R  must contain the (upper triangular) matrix  R  computed at the previous call of this mexfile in sequential data processing. If conct = 1, R  has an additional column, also set at the previous call.</para>
                     <para>
-                        If alg = 2,  R  has m+l+1 additional columns, set at the previous call. 
+                        If alg = 2,  R  has m+l+1 additional columns, set at the previous call.
                     </para>
                     <para>
                         This parameter is not used for batch = 1 or batch = 4.
@@ -274,7 +274,7 @@ end if
         <para>
             For f blocks (data sequences Yj, Uj, j = 1 : f):
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 R = sorder(meth,alg,jobd,1,conct,s,Y1,U1);
 for j = 2 : f - 1
    R = sorder(meth,alg,jobd,2,conct,s,Yj,Uj,tol,printw,ldwork,R)
@@ -282,7 +282,7 @@ end
 [R,n,sval,rcnd] = sorder(meth,alg,jobd,3,conct,s,Yf,Uf,tol);
  ]]></programlisting>
         <para>
-            sorder preprocesses the input-output data for estimating the matrices 
+            sorder preprocesses the input-output data for estimating the matrices
             of a linear time-invariant dynamical system, using Cholesky or (fast)
             QR factorization and subspace identification techniques (MOESP and
             N4SID), and then estimates the order of a discrete-time realization.
@@ -290,12 +290,12 @@ end
         <para>
             The model structure is :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 x(k+1) = Ax(k) + Bu(k) + w(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k),
  ]]></programlisting>
         <para>
-            where  
+            where
             x(k)  is the  n-dimensional state vector (at time k),
         </para>
         <para>

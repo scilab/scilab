@@ -27,7 +27,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Simple example
 a=list(1,2,3);
 tree_show(a);

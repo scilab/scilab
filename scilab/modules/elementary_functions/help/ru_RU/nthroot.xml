@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -49,9 +49,9 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
-	nthroot(2,3)	
-	nthroot(-2,3)	
+        <programlisting role="example"><![CDATA[
+	nthroot(2,3)
+	nthroot(-2,3)
 	nthroot(-2,-3)
 	nthroot(2,-3)
  ]]></programlisting>

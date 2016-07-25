@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="scicosim">
@@ -50,7 +50,7 @@
         </para>
         <para>
             しかし,scicosimはxcosの外でもコールすることができます.
-            このような使用法の典型的な例は,以下のようになります :  
+            このような使用法の典型的な例は,以下のようになります :
         </para>
         <para>
         </para>
@@ -59,7 +59,7 @@
         </para>
         <para>
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [state,t] = scicosim(state,tcur,tf,sim,str,tol)
  ]]></programlisting>
     </refsection>
@@ -75,7 +75,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">tcur :</emphasis> 
+                    <emphasis role="bold">tcur :</emphasis>
                     シミュレーションの開始時間.
                     開始時にはゼロにします.
                 </para>
@@ -87,21 +87,21 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">sim :</emphasis> コンパイル結果を有するScilab tlist. 
+                    <emphasis role="bold">sim :</emphasis> コンパイル結果を有するScilab tlist.
                     通常は, xcos Compile により生成されます.
                     コンパイル済みの.cosファイルがロードされた後は,%cpr.sim から参照できます.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">str :</emphasis> 'start' , 'run' または 'finish'. 
+                    <emphasis role="bold">str :</emphasis> 'start' , 'run' または 'finish'.
                     関数はまず 'start' を指定してコールされた後,
                     1回または複数回 'run' を指定してコールされ,最後に 'finish' を指定してコールされます.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">tol :</emphasis> 
+                    <emphasis role="bold">tol :</emphasis>
                     ベクトル [atol,rtol,ttol,deltat,realtimescale,solver,hmax] ,
                     ただし, atol, rtol はそれぞれ ODEおよび DAEソルバの絶対および相対許容誤差で,
                     ttol はイベントの精度(非常に小さな数値とします),
@@ -131,14 +131,14 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <link linkend="scicos_simulate">scicos_simulate - 
+                    <link linkend="scicos_simulate">scicos_simulate -
                         xcosシミュレーションをバッチモードで実行する関数 (Scilab 関数)
                     </link>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <link linkend="xcos">xcos - 
+                    <link linkend="xcos">xcos -
                         ハイブリッドシミュレータ用のブロックダイアグラムエディタおよびGUI (Scilab関数)
                     </link>
                 </para>

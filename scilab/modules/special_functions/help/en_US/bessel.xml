@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -181,7 +181,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //  besselI functions
 // ==================
    x = linspace(0.01,10,5000)';
@@ -195,7 +195,7 @@
    legend('I'+string(0:4),1);
    xtitle("Some modified scaled Bessel functions of the first kind")
  ]]></programlisting>
-        
+
         <scilab:image>
             x = linspace(0.01,10,5000)';
             clf()
@@ -207,11 +207,11 @@
             plot2d(x,besseli(0:4,x,1), style=2:6)
             legend('I'+string(0:4),1);
             xtitle("Some modified scaled Bessel functions of the first kind")
-            
+
         </scilab:image>
-        
-        
-        <programlisting role="example"><![CDATA[ 
+
+
+        <programlisting role="example"><![CDATA[
 // besselJ functions
 // =================
    clf()
@@ -220,17 +220,17 @@
    legend('I'+string(0:4),1);
    xtitle("Some Bessel functions of the first kind")
  ]]></programlisting>
-        
+
         <scilab:image>
             x = linspace(0,40,5000)';
             plot2d(x,besselj(0:4,x), style=2:6, leg="J0@J1@J2@J3@J4")
             legend('I'+string(0:4),1);
             xtitle("Some Bessel functions of the first kind")
         </scilab:image>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 // use the fact that J_(1/2)(x) = sqrt(2/(x pi)) sin(x)
-// to compare the algorithm of besselj(0.5,x) with a more direct formula 
+// to compare the algorithm of besselj(0.5,x) with a more direct formula
    x = linspace(0.1,40,5000)';
    y1 = besselj(0.5, x);
    y2 = sqrt(2 ./(%pi*x)).*sin(x);
@@ -242,10 +242,10 @@
    xtitle("besselj(0.5,x)")
    subplot(2,1,2)
    plot2d(x(ind), er(ind), style=2, logflag="nl")
-   xtitle("relative error between 2 formulae for besselj(0.5,x)") 
+   xtitle("relative error between 2 formulae for besselj(0.5,x)")
  ]]></programlisting>
-        
-        <scilab:image><![CDATA[ 
+
+        <scilab:image><![CDATA[
    x = linspace(0.1,40,5000)';
    y1 = besselj(0.5, x);
    y2 = sqrt(2 ./(%pi*x)).*sin(x);
@@ -257,10 +257,10 @@
    xtitle("besselj(0.5,x)")
    subplot(2,1,2)
    plot2d(x(ind), er(ind), style=2, logflag="nl")
-   xtitle("relative error between 2 formulae for besselj(0.5,x)") 
+   xtitle("relative error between 2 formulae for besselj(0.5,x)")
  ]]></scilab:image>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 // besselK functions
 // =================
    x = linspace(0.01,10,5000)';
@@ -274,7 +274,7 @@
    legend('K'+string(0:4),1);
    xtitle("Some modified scaled Bessel functions of the second kind")
  ]]></programlisting>
-        
+
         <scilab:image>
             x = linspace(0.01,10,5000)';
             clf()
@@ -287,8 +287,8 @@
             legend('K'+string(0:4),1);
             xtitle("Some modified scaled Bessel functions of the second kind")
         </scilab:image>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 // besselY functions
 // =================
    x = linspace(0.1,40,5000)'; // Y Bessel functions are unbounded  for x -> 0+
@@ -297,7 +297,7 @@
    legend('Y'+string(0:4),4);
    xtitle("Some Bessel functions of the second kind")
  ]]></programlisting>
-        
+
         <scilab:image>
             x = linspace(0.1,40,5000)'; // Y Bessel functions are unbounded  for x -> 0+
             clf()
@@ -305,13 +305,13 @@
             legend('Y'+string(0:4),4);
             xtitle("Some Bessel functions of the second kind")
         </scilab:image>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 // besselH functions
 // =================
    x=-4:0.025:2; y=-1.5:0.025:1.5;
    [X,Y] = ndgrid(x,y);
-   H = besselh(0,1,X+%i*Y); 
+   H = besselh(0,1,X+%i*Y);
    clf();f=gcf();
    xset("fpf"," ")
    f.color_map=jetcolormap(16);
@@ -319,11 +319,11 @@
    legends(string(0.2:0.2:3.2),1:16,"ur")
    xtitle("Level curves of |H1(0,z)|")
  ]]></programlisting>
-        
+
         <scilab:image>
             x=-4:0.025:2; y=-1.5:0.025:1.5;
             [X,Y] = ndgrid(x,y);
-            H = besselh(0,1,X+%i*Y); 
+            H = besselh(0,1,X+%i*Y);
             clf();f=gcf();
             xset("fpf"," ")
             f.color_map=jetcolormap(16);
@@ -331,7 +331,7 @@
             legends(string(0.2:0.2:3.2),1:16,"ur")
             xtitle("Level curves of |H1(0,z)|")
         </scilab:image>
-        
+
     </refsection>
     <refsection>
         <title>Used Functions</title>

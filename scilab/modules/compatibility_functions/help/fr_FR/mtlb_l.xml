@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -24,7 +24,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    Avec des opérandes de type chaîne de caractères : L'opérateur <literal>\</literal> 
+                    Avec des opérandes de type chaîne de caractères : L'opérateur <literal>\</literal>
                     ne peut pas être utilisé dans Scilab avec des chaînes de caractères, alors que
                     dans Matlab c'est possible. Et dans ce cas, le résultat donné par matlab est
                     tranposé d'une manière très floue...

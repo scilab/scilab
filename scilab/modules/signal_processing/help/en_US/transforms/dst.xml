@@ -71,7 +71,7 @@
                     dimensions.  See the Description part for details.
                 </listitem>
             </varlistentry>
-            
+
             <varlistentry>
                 <term>dims</term>
                 <listitem>
@@ -164,8 +164,8 @@
                         </latex>
                     </para>
                 </listitem>
-                
-                
+
+
                 <listitem>
                     <para>
                         For <literal>"dst4"</literal>  the function computes the unnormalized DST-IV transform. the 1-D transform of a vector of length <latex>$n$</latex> is:
@@ -188,7 +188,7 @@
                         </latex>
                     </para>
                 </listitem>
-                
+
                 <listitem>
                     <para>
                         For <literal>"idst"</literal> the function computes the normalized DST-I transform. The 1-D transform of a vector of length <latex>$n$</latex> is:
@@ -209,7 +209,7 @@
                 transform will result in the original array scaled by the
                 product of the dimension sizes.
             </para>
-            
+
         </refsection>
         <refsection>
             <title>Syntax description</title>
@@ -258,7 +258,7 @@
                         </variablelist>
                     </listitem>
                 </varlistentry>
-                
+
                 <varlistentry>
                     <term>Long syntax for DST along specified dimensions</term>
                     <listitem>

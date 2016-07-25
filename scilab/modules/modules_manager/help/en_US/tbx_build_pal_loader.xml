@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) - DIGITEO 
- * 
+ * Copyright (C) - DIGITEO
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -64,24 +64,24 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //The recommended buildmacros.sce file
 function buildMacrosAndBlocks()
   script_path = get_absolute_file_path("buildmacros.sce");
   module_path = part(script_path,1:length(script_path)-length("macros"))
-  
+
   tbx_build_macros(NAME,  script_path);
   interface_functions = //to be defined
-  
+
   tbx_build_blocks(module_path, interface_functions);
   tbx_build_pal_loader(TITLE,interface_functions,module_path,script_path)
 endfunction
 buildMacrosAndBlocks()
-clear buildMacrosAndBlocks; 
+clear buildMacrosAndBlocks;
  ]]></programlisting>
-        
+
     </refsection>
 </refentry>

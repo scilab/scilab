@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -248,7 +248,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 u = linspace(-%pi/2,%pi/2,40);
 v = linspace(0,2*%pi,20);
 X = cos(u)'*cos(v);
@@ -266,7 +266,7 @@ e.visible='on'; // back to the mesh view
             Z = sin(u)'*ones(v);
             plot3d3(X,Y,Z);
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>

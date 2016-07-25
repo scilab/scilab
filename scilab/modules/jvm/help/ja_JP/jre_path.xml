@@ -2,8 +2,8 @@
 
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -16,84 +16,84 @@
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="jre_path">
-    
+
     <refnamediv>
-        
+
         <refname>jre_path</refname>
-        
+
         <refpurpose>Scilabで使用されるJava Runtime Environmentを返す</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>p=jre_path()</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>p</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列, JREへのパス</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             Scilabで使用されるJava Runtime Environmentを返します.
-            
+
         </para>
-        
+
     </refsection>
-    
-    
-    
+
+
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 jre_path();
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="system_getproperty">system_getproperty</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

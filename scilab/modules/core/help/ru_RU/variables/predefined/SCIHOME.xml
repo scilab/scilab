@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2013 - Scilab Enterprises - Vincent COUVERT
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -30,7 +30,7 @@
             Определение <literal>SCIHOME</literal>:
         </para>
         <para>
-            В Windows XP: "%USERPROFILE%\Application Data\Scilab\&lt;Scilab-Version&gt;" с %USERPROFILE% 
+            В Windows XP: "%USERPROFILE%\Application Data\Scilab\&lt;Scilab-Version&gt;" с %USERPROFILE%
             похожим на "C:\Documents and Settings\&lt;User&gt;".
         </para>
         <para>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -59,9 +59,9 @@
         <para>
             <literal>P</literal> は以下のように分割されます:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 P=[ P11 P12;
-    P21 P22]  
+    P21 P22]
  ]]></programlisting>
         <para>
             <literal>size(P22)=r</literal>を指定すると,

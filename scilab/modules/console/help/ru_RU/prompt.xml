@@ -2,7 +2,7 @@
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2007 - INRIA - Allan CORNET
-    * 
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -49,7 +49,7 @@
                 <listitem>
                     <para>
                         Строка: приглашение командной строки, которое будет
-                        отображено для следующего пользовательского ввода. 
+                        отображено для следующего пользовательского ввода.
                         Затем текущее приглашение командной строки будет использоваться
                         вновь.
                     </para>
@@ -60,11 +60,11 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Инструкция <literal>currentprompt = prompt()</literal> получает текущее 
+            Инструкция <literal>currentprompt = prompt()</literal> получает текущее
             приглашение командной строки.
         </para>
         <para>
-            Инструкция <literal>prompt(userprompt)</literal> устанавливает приглашение 
+            Инструкция <literal>prompt(userprompt)</literal> устанавливает приглашение
             командной строки.
         </para>
     </refsection>

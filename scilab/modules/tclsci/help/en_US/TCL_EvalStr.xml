@@ -61,7 +61,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //with one call
 TCL_EvalStr(["toplevel .foo1"
              "label .foo1.l -text ""TK married Scilab !!!"""
@@ -72,7 +72,7 @@ TCL_EvalStr(["toplevel .foo1"
 //step by step (debugging)
 TCL_EvalStr("toplevel .foo2");
 
-// creates a toplevel TK window. 
+// creates a toplevel TK window.
 TCL_EvalStr("label .foo2.l -text ""TK married Scilab !!!""");
 
 // create a static label
@@ -86,7 +86,7 @@ TCL_EvalStr("pack .foo2.b");
 //kill the windows by program
 TCL_EvalStr("destroy .foo1");
 TCL_EvalStr("destroy .foo2");
- 
+
 //with one call, and in a slave interpreter
 TCL_CreateSlave('TCLSlave');
 TCL_EvalStr('set test ""in Slave TCL Interp""','TCLSlave');

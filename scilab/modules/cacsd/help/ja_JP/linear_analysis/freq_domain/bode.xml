@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -58,7 +58,7 @@
             <varlistentry>
                 <term>frq</term>
                 <listitem>
-                    <para>行ベクトルまたは行列 (周波数 (単位:Hz) ) 
+                    <para>行ベクトルまたは行列 (周波数 (単位:Hz) )
                         (各行が各SISOサブシステムに対応).
                     </para>
                 </listitem>
@@ -66,7 +66,7 @@
             <varlistentry>
                 <term>db</term>
                 <listitem>
-                    <para>行ベクトルまたは行列 ( ゲイン (単位:dB)). 
+                    <para>行ベクトルまたは行列 ( ゲイン (単位:dB)).
                         (各行が各SISOサブシステムに対応).
                     </para>
                 </listitem>
@@ -140,7 +140,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 clf();bode(h,0.01,100);
@@ -152,7 +152,7 @@ clf();bode(h,0.01,100);
                 clf();bode(h,0.01,100);
             </scilab:image>
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s')
 h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;

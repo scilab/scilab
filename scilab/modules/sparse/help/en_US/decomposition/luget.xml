@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -69,19 +69,19 @@
             returns four sparse matrices such that <literal>P*L*U*Q=A</literal>.
         </para>
         <para>
-            The A matrix needs not be full rank but must be square 
+            The A matrix needs not be full rank but must be square
             (since A is assumed sparse one may add zeros if necessary to squaring
             down A).
         </para>
         <para>
             If <literal>A</literal> is singular, the <literal>L</literal> matrix is column compressed (with
-            <literal>rk</literal> independent nonzero columns):  the nonsingular sparse 
+            <literal>rk</literal> independent nonzero columns):  the nonsingular sparse
             matrix <literal>Q'*inv(U)</literal> column compresses <literal>A</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=rand(5,2)*rand(2,5);A=sparse(a);
 [hand,rk]=lufact(A);[P,L,U,Q]=luget(hand);
 full(L), P*L*U*Q-A

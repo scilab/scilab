@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -100,11 +100,11 @@
             <literal>dom=[]</literal> se o domínio de tempo é indefinido.
         </para>
         <para>Representação em espaço de estados:</para>
-        <programlisting><![CDATA[ 
+        <programlisting><![CDATA[
 sl=syslin(dom,A,B,C [,D [,x0] ])
  ]]></programlisting>
         <para>Representa o sistema :</para>
-        <programlisting><![CDATA[ 
+        <programlisting><![CDATA[
       s x  = A*x + B*u
         y  = C*x + D*u
       x(0) = x0
@@ -116,8 +116,8 @@ sl=syslin(dom,A,B,C [,D [,x0] ])
             (sistemas impróprios).
         </para>
         <para>Representação de matriz de transferência:</para>
-        <programlisting><![CDATA[ 
-sl=syslin(dom,N,D) 
+        <programlisting><![CDATA[
+sl=syslin(dom,N,D)
 sl=syslin(dom,H)
  ]]></programlisting>
         <para>
@@ -138,11 +138,11 @@ sl=syslin(dom,H)
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[0,1;0,0];B=[1;1];C=[1,1];
 S1=syslin('c',A,B,C)   //Definição de sistema linear
 S1("A")    //Exibição da matriz A
-S1("X0"), S1("dt") // Exibição de X0 e domínio de tempo 
+S1("X0"), S1("dt") // Exibição de X0 e domínio de tempo
 s=poly(0,'s');
 D=s;
 S2=syslin('c',A,B,C,D)

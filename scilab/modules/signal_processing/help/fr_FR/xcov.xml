@@ -82,64 +82,64 @@ along with this program.
         <itemizedlist>
             <listitem>
                 <literal>c=xcov(x)</literal>
-                
+
                 computes the un-normalized discrete covariance:
-                
+
                 <latex>{\begin{matrix}C_k = \sum_{i=0}^{n-k-1}
-                    {(x_{i+k}-\mu_x})({x_i-\mu_x})^{*} , k \geq 0 
+                    {(x_{i+k}-\mu_x})({x_i-\mu_x})^{*} , k \geq 0
                     \mu_x=\sum_{i=0}^{n-1}{x_i} C_k = C^{*}_{-k}, k \leq
                     -1\end{matrix}.}$
                 </latex>
-                
+
                 and return in
-                
+
                 <literal>c</literal>
-                
+
                 the sequence of covariance lags
-                
+
                 <latex>$C_k,k=-n:n$</latex>
-                
+
                 with
-                
+
                 <literal>n</literal>
-                
+
                 is the length of
-                
+
                 <literal>x</literal>
-                
-                
+
+
             </listitem>
             <listitem>
                 <literal>xcov(x,y)</literal>
-                
+
                 computes the un-normalized discrete cross covariance:
-                
+
                 <latex>${\begin{matrix}C_k = \sum_{i=1}^{n-k}
                     {(x_{i+k}-\mu_x})*({y_i}-\mu_y)^{*}, k \geq 0
                     \mu_x=\sum_{i=0}^{n-1}{x_i} \mu_y=\sum_{i=0}^{n-1}{y_i} C_k =
                     C^{*}_{-k}, k \leq -1\end{matrix}.}$
                 </latex>
-                
+
                 and return in
-                
+
                 <literal>c</literal>
-                
+
                 the sequence of cross covariance lags
-                
+
                 <latex>$C_k,k=-n:n$</latex>
-                
+
                 with
-                
+
                 <literal>n</literal>
-                
+
                 is the maximum of
-                
+
                 <literal>x</literal>
-                
+
                 and
-                
+
                 <literal>y</literal>
-                
+
                 length's.
             </listitem>
         </itemizedlist>
@@ -153,7 +153,7 @@ along with this program.
         <para>
             The <literal>scaling</literal> argument describes how
             <latex>C(k)</latex> is normalized before being returned in
-            <literal>c</literal>: 
+            <literal>c</literal>:
             <itemizedlist>
                 <listitem>
                     <term>"biased"</term>:<literal>c=</literal><latex>$C$</latex><literal>/n</literal>.
@@ -169,27 +169,27 @@ along with this program.
     </refsection>
     <refsection>
         <title>Remark</title>
-        
+
         The
-        
+
         <link linkend="corr">corr</link>
-        
+
         function computes the "biased" covariance of
-        
+
         <literal>x</literal>
-        
+
         and
-        
+
         <literal>y</literal>
-        
+
         and only return in
-        
+
         <literal>c</literal>
-        
+
         the sequence of covariance lags
-        
+
         <latex>$C_k,k \geq 0$</latex>
-        
+
         .
     </refsection>
     <refsection>

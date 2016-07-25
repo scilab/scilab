@@ -50,12 +50,12 @@
     <refsection>
         <title>ç¯ä¾</title>
         <programlisting role="example"><![CDATA[
-    
+
 // è¨»è§£
 b = 2;
 c = 3;
 a = example_1_function_1(b,c);
-    
+
   ]]></programlisting>
     </refsection>
     <refsection>

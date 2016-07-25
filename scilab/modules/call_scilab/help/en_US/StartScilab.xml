@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -82,7 +82,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="c"> 
+        <programlisting role="c">
             // A simple StartScilab example
             if ( StartScilab(getenv("SCI"), NULL, 0) == FALSE )
             {

@@ -32,7 +32,7 @@
                 <listitem>
                     <para>
                         v<literal>xp</literal>
-                        および <literal>yp</literal>と同じ大きさのベクトル(または行列)で, 
+                        および <literal>yp</literal>と同じ大きさのベクトル(または行列)で,
                         これらの点における補間<literal>S</literal>を評価します
                     </para>
                 </listitem>
@@ -88,7 +88,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // cshep2dの例を参照
 // この例は補間点から離れた動作を示します...
 deff("z=f(x,y)","z = 1+ 50*(x.*(1-x).*y.*(1-y)).^2")

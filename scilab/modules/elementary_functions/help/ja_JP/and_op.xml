@@ -3,7 +3,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -16,12 +16,12 @@
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="and_op" xml:lang="ja">
-    
+
     <refnamediv>
         <refname>&amp;, &amp;&amp;</refname>
         <refpurpose>論理積演算子</refpurpose>
     </refnamediv>
-    
+
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>A&amp;B</synopsis>
@@ -46,7 +46,7 @@
             while (A &amp;&amp; B) then ... end
         </synopsis>
     </refsection>
-    
+
     <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
@@ -155,7 +155,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
@@ -221,7 +221,7 @@ cA && foo()
 iA && iB // iA is evalueated as false resulting in the short-circuited operation
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">

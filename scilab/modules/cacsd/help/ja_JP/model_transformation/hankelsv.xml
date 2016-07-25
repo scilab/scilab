@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -30,7 +30,7 @@
             <varlistentry>
                 <term>sl</term>
                 <listitem>
-                    <para> 
+                    <para>
                         線形システム(状態空間)を表す
                         <literal>syslin</literal> リスト.
                     </para>
@@ -40,7 +40,7 @@
                 <term>tol</term>
                 <listitem>
                     <para>
-                        虚軸モードを検出するための許容誤差パラメータ	
+                        虚軸モードを検出するための許容誤差パラメータ
                         (デフォルト値: <literal>1000*%eps</literal>).
                     </para>
                 </listitem>
@@ -62,7 +62,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=diag([-1,-2,-3]);
 sl=syslin('c',A,rand(3,2),rand(2,3));[nk2,W]=hankelsv(sl)
 [Q,M]=pbig(W,nk2(2)-%eps,'c');

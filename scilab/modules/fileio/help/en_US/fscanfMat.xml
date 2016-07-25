@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -86,7 +86,7 @@
             matrix from a text file. The first non-numeric lines of the file are
             returned in <varname>text</varname> if requested and all the remaining
             lines must have the same number of columns (column separator are assumed
-            to be either white spaces or tab characters, if there are the both, white 
+            to be either white spaces or tab characters, if there are the both, white
             spaces are chosen by default). The number of columns of the matrix
             will follow the number of columns found in the file and the number of
             lines is fetched by detecting eof in the input file. This function can be
@@ -102,27 +102,27 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"> 
+        <programlisting role="example">
             fd = mopen(TMPDIR + "/Mat", "w");
             mfprintf(fd, "Some text.....\n");
             mfprintf(fd, "Some text again\n");
             a = rand(6,6);
             for i = 1:6 ,
             for j = 1:6, mfprintf(fd, "%5.2f ", a(i,j));end;
-            mfprintf(fd, "\n"); 
+            mfprintf(fd, "\n");
             end
             mclose(fd);
             a1 = fscanfMat(TMPDIR + "/Mat")
-            
+
             A = ones(5,5) + 0.1;
             fprintfMat(TMPDIR + "/Matrix.txt", A, "%lg");
             B = fscanfMat(TMPDIR + "/Matrix.txt", "%lg");
             A == B
-            
+
             C = [%nan, %inf, -%inf, 1];
             fprintfMat(TMPDIR + "/MatrixNANINF.txt", C);
             D = fscanfMat(TMPDIR + '/MatrixNANINF.txt')
-            
+
         </programlisting>
     </refsection>
     <refsection role="see also">

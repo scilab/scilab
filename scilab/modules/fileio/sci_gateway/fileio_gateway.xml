@@ -4,7 +4,7 @@
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -35,7 +35,7 @@
  Don't touch if you do not know what you are doing
 -->
     <!-- =================== -->
-    
+
     <PRIMITIVE gatewayId="34" primitiveId="1" primitiveName="mopen" />
     <PRIMITIVE gatewayId="34" primitiveId="2" primitiveName="mputstr" />
     <PRIMITIVE gatewayId="34" primitiveId="3" primitiveName="mclose" />

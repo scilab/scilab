@@ -55,7 +55,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Simple polynomial example
 z=poly(0,'z');
 p=(z-1/2)*(2-z)

@@ -102,7 +102,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <para>この例では, Cゲートウェイ関数は1つの引数をとります. 
+        <para>この例では, Cゲートウェイ関数は1つの引数をとります.
             switch case構造により, パラメータとして送信した変数の型を表示します.
         </para>
         <programlisting role="code_gateway"><![CDATA[

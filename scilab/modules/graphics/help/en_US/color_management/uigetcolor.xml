@@ -81,7 +81,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 uigetcolor()
 [R, G, B] = uigetcolor([255 128 0])
 RBG = uigetcolor(0, 128, 255)

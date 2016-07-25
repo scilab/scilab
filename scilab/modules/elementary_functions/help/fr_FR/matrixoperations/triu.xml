@@ -35,7 +35,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 triu([s,s;s,1])
 triu([1/s,1/s;1/s,1])

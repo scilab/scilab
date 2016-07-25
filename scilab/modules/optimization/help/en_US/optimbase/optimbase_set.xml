@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -50,7 +50,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimbase_set</literal> function set the value for the given key. 
+            The <literal>optimbase_set</literal> function set the value for the given key.
             If the key is unknown, this function generates an error.
         </para>
         <para>
@@ -60,7 +60,7 @@
             <varlistentry>
                 <term>-funevals </term>
                 <listitem>
-                    <para>The number of function evaluations is a 1-by-1 matrix of doubles, 
+                    <para>The number of function evaluations is a 1-by-1 matrix of doubles,
                         positive, integer value.
                     </para>
                 </listitem>
@@ -68,7 +68,7 @@
             <varlistentry>
                 <term>-iterations </term>
                 <listitem>
-                    <para>The number of iterations is a 1-by-1 matrix of doubles, positive, 
+                    <para>The number of iterations is a 1-by-1 matrix of doubles, positive,
                         integer value.
                     </para>
                 </listitem>
@@ -88,10 +88,10 @@
             <varlistentry>
                 <term>-historyxopt </term>
                 <listitem>
-                    <para>An array, with nbiter values, containing the history of x during the 
+                    <para>An array, with nbiter values, containing the history of x during the
                         iterations.
                     </para>
-                    <para>This array is available after optimization if the history storing was 
+                    <para>This array is available after optimization if the history storing was
                         enabled with the <literal>-storehistory</literal> option.
                     </para>
                 </listitem>
@@ -99,10 +99,10 @@
             <varlistentry>
                 <term>-historyfopt </term>
                 <listitem>
-                    <para>An array, with nbiter values, containing the history of the function value 
+                    <para>An array, with nbiter values, containing the history of the function value
                         during the iterations.
                     </para>
-                    <para>This array is available after optimization if the history storing was 
+                    <para>This array is available after optimization if the history storing was
                         enabled with the <literal>-storehistory</literal> option.
                     </para>
                 </listitem>
@@ -124,7 +124,7 @@
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     opt = optimbase_new();
 
     // Set optimum

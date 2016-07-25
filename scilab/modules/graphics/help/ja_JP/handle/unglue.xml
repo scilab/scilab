@@ -6,7 +6,7 @@
 
  * Copyright (C) INRIA - Djalel Abdemouche
 
- * 
+ *
 
 
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
@@ -23,88 +23,88 @@
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="unglue">
-    
+
     <refnamediv>
-        
+
         <refname>unglue</refname>
-        
+
         <refpurpose>
-            
+
             結合されたオブジェクトを分解し,個々の子で置換する.
-            
+
         </refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>unglue(h)
-            
+
             H=unglue(h)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>h</term>
-                
+
                 <listitem>
-                    
+
                     <para>Compoundのハンドル.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>H</term>
-                
+
                 <listitem>
-                    
+
                     <para>Compound分解により返される結果のハンドルのベクトル.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             Compoundエンティティのハンドルを指定すると,この関数は
-            
+
             Compoundを分解し,その要素エンティティをその親に関連付けます.
-            
+
             <literal>glue</literal>は個々の子のハンドルのベクトルをを返します.
-            
+
         </para>
-        
+
     </refsection>
-    
-    
-    
+
+
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 a=gca();
 
@@ -121,50 +121,50 @@ p = unglue(gce())
 set(p,"closed","on");
 
  ]]></programlisting>
-        
+
     </refsection>
-    
-    
-    
+
+
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="get">get</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="set">set</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="copy">copy</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="glue">glue</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="graphics_entities">graphics_entities</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

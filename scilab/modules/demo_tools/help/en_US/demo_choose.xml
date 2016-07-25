@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -25,20 +25,20 @@
     <refsection>
         <title>Description</title>
         <para>
-            The function demo_choose create a dialog box for the choice of options. It 
-            takes as argument the binary file 'fil'. This file is built by a .sce file 
+            The function demo_choose create a dialog box for the choice of options. It
+            takes as argument the binary file 'fil'. This file is built by a .sce file
             written like below. It shall contain the variables 'choice', an array of text
-            within bracket (the different options), and 'titl', the title of the dialog 
-            box. After that, the .sce file shall save both variables in the binary file 
+            within bracket (the different options), and 'titl', the title of the dialog
+            box. After that, the .sce file shall save both variables in the binary file
             in argument.
             Before the use of demo_choose, the .sce file shall be executed.
-            The function demo_choose returns the number of line chosen in the options 
+            The function demo_choose returns the number of line chosen in the options
             array.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 exec('SCI/demos/control/pid/pid_ch_2.sce');
 [n]=demo_choose('SCI/demos/control/pid/pid_ch_2.bin');
 select n

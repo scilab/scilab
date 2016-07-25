@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -71,7 +71,7 @@
             <literal>G</literal> contains the state-space matrices <literal>[A,B,C,D]</literal> of
             the plant with the usual partitions:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 B = ( B1 , B2 ) ,    C = ( C1 ) ,    D = ( D11  D12)
                          ( C2 )          ( D21  D22)
  ]]></programlisting>
@@ -80,7 +80,7 @@ B = ( B1 , B2 ) ,    C = ( C1 ) ,    D = ( D11  D12)
             and <literal>r(2)</literal> are the dimensions of <literal>D22</literal> (rows x columns)
         </para>
         <para>
-            With <literal>option='t'</literal>, <literal>gamitg</literal> traces each bisection step, i.e., 
+            With <literal>option='t'</literal>, <literal>gamitg</literal> traces each bisection step, i.e.,
             displays the lower and upper bounds and the current test point.
         </para>
     </refsection>

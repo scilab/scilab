@@ -222,7 +222,7 @@
             </tr>
         </informaltable>
         <para>
-            où 
+            où
             <emphasis>
                 <literal>I</literal>
             </emphasis>
@@ -377,7 +377,7 @@
                 </inlinemediaobject>
             </link>
         </para>
-        
+
         <scilab:image localized="true"><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/SRFLIPFLOP_fr_FR.zcos");
 xcos_simulate(scs_m, 4);

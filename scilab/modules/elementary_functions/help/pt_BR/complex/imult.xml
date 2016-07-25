@@ -15,7 +15,7 @@
                 <term>x</term>
                 <listitem>
                     <para>escalar real ou complexo, vetor ou matriz de reais ou
-                        complexos 
+                        complexos
                     </para>
                 </listitem>
             </varlistentry>
@@ -40,7 +40,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 z1 = imult(%inf)
 z2 = %i * %inf
  ]]></programlisting>

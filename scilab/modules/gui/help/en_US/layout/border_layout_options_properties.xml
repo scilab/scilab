@@ -40,7 +40,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-         //Creating a figure with the border layout with 50 pixel padding in width and 10 in height 
+         //Creating a figure with the border layout with 50 pixel padding in width and 10 in height
          f = figure( ...
          "dockable"        , "off",...
          "infobar_visible" , "off",...
@@ -89,7 +89,7 @@
           "constraints", c);
           ]]></programlisting>
     </refsection>
-     
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

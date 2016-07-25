@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -21,10 +21,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            The main difficulty for M2SCI (<literal>mfile2sci</literal>) is to find what variables are: dimensions, type...  
+            The main difficulty for M2SCI (<literal>mfile2sci</literal>) is to find what variables are: dimensions, type...
         </para>
         <para>
-            To help this tool, just add comments beginning with <literal>%m2scideclare</literal> in the M-file to convert, 
+            To help this tool, just add comments beginning with <literal>%m2scideclare</literal> in the M-file to convert,
             (<literal>%m2sciassume</literal> was used in previous Scilab versions and is now obsolete).
         </para>
         <para>
@@ -157,7 +157,7 @@
                     <listitem>
                         <para>
                             <literal>%m2scideclare var3(1,2).name|1 10|String|?</literal>var3 is declared as a Struct array containing a 1x10 character string
-                            in field 'name' of struct at index (1,2) 
+                            in field 'name' of struct at index (1,2)
                         </para>
                     </listitem>
                     <listitem>
@@ -167,7 +167,7 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <literal>%m2scideclare var4(1,6).entries|? ?|Int|?</literal>var4 is declared as a Cell containing a row boolean vector at index (1,5) 
+                            <literal>%m2scideclare var4(1,6).entries|? ?|Int|?</literal>var4 is declared as a Cell containing a row boolean vector at index (1,5)
                             and integer data at index (1,6)
                         </para>
                     </listitem>

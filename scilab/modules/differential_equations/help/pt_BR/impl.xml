@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -94,7 +94,7 @@
             Se <literal>res</literal> for uma função, a sintaxe deve ser como
             segue:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 r = res(t,y,ydot)
  ]]></programlisting>
         <para>
@@ -120,7 +120,7 @@ r = res(t,y,ydot)
             Se <literal>adda</literal> for uma função, a sintaxe deve ser como
             segue:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 r = adda(t,y,p)
  ]]></programlisting>
         <para>
@@ -145,7 +145,7 @@ r = adda(t,y,p)
             Se <literal>jac</literal> for uma função, a sintaxe deve ser como
             segue:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 j = jac(t,y,ydot)
  ]]></programlisting>
         <para>e deve retornar o Jacobiano de
@@ -165,11 +165,11 @@ j = jac(t,y,ydot)
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
-// utilizando reinicialização rápida 
+// utilizando reinicialização rápida
 //[x1,w,iw]=impl([1;0;0],[-0.04;0.04;0],0,0.2,'resid','aplusp');
-// inicialização rápida da chamada anterior 
+// inicialização rápida da chamada anterior
 //[x1]=impl([1;0;0],[-0.04;0.04;0],0.2,0.4,'resid','aplusp',w,iw);
 //max(abs(x1-x))
  ]]></programlisting>

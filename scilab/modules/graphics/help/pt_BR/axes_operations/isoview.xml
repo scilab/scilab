@@ -179,7 +179,7 @@ isoview([a1 a2 a3], "on")
             subplot(2,nc,nc+1)
             plot2d(cos(t),sin(t))
             isoview
-            
+
             subplot(2,nc,2)
             plot2d(7*cos(t),2*sin(t))
             xtitle("True ellipse")
@@ -187,7 +187,7 @@ isoview([a1 a2 a3], "on")
             subplot(2,nc,nc+2)
             plot2d(7*cos(t),2*sin(t))
             isoview
-            
+
             // plot of a sphere using facets computed by eval3dp
             deff("[x,y,z] = sph(alp,tet)",["x = r*cos(alp).*cos(tet)+orig(1)*ones(tet)"; ..
             "y = r*cos(alp).*sin(tet)+orig(2)*ones(tet)"; ..
@@ -202,7 +202,7 @@ isoview([a1 a2 a3], "on")
             plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
             isoview
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // Using plot2d(..., frameflag=4) :
 r = linspace(1,10,200);
@@ -223,7 +223,7 @@ xtitle("with frameflag=4")
             subplot(1,2,1)
             plot2d(r.*sin(t),r.*cos(t))
             xtitle("plot2d(..)")
-            
+
             subplot(1,2,2)
             plot2d(r.*sin(t),r.*cos(t),frameflag=4)
             xtitle("with frameflag=4")
@@ -243,7 +243,7 @@ xtitle("with frameflag=4")
             </member>
         </simplelist>
     </refsection>
-    
+
     <refsection role="history">
         <title>Histórico</title>
         <revhistory>

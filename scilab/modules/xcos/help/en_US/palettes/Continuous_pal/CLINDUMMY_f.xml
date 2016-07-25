@@ -87,7 +87,7 @@
             zero-crossing block but no system with continuous state. The reason
             for that is that it is the ode solver that find zero crossing
             surfaces.
-            
+
         </para>
     </refsection>
     <refsection id="Defaultproperties_CLINDUMMY_f">

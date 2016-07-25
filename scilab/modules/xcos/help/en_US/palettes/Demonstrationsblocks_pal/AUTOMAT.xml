@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="AUTOMAT">
@@ -85,7 +85,7 @@
         <para>
             This block gives the possibility to construct hybrid automata, i.e., a
             hybrid system whose discrete part is defined via modes and transitions
-            between modes, and the continuous part is defined via DAE (differential algebraic equations). 
+            between modes, and the continuous part is defined via DAE (differential algebraic equations).
         </para>
         <para>
             The automaton block provides a switching mechanism between subsystems
@@ -105,7 +105,7 @@
             and the dimension
             of <literal>x</literal> is <literal>N</literal> (<literal>N</literal> ≥ 0) for any <literal>i</literal> in <literal>[1 .. M]</literal>. Suppose that in
             control mode <literal>i</literal>, there are <latex>$Z_i$</latex> jump conditions indicating jumps toward other modes. The jump conditions are defined by
-            functions <latex>$\mathrm{Jump}_{i,j}(\dot{x}, x, u)$</latex> where 
+            functions <latex>$\mathrm{Jump}_{i,j}(\dot{x}, x, u)$</latex> where
             <literal>j</literal> is in <literal>[1 .. </literal><latex>$Z_i$</latex><literal>]</literal>.
         </para>
         <para>
@@ -124,12 +124,12 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">Output 1:</emphasis> The first output port is a vector of size two consisting of the current and the previous active control modes, i.e., <latex>$\mathrm{out}_1 = [\mathrm{current mode}, \mathrm{previous mode}]^t$</latex>. 
+                    <emphasis role="bold">Output 1:</emphasis> The first output port is a vector of size two consisting of the current and the previous active control modes, i.e., <latex>$\mathrm{out}_1 = [\mathrm{current mode}, \mathrm{previous mode}]^t$</latex>.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Output 2:</emphasis> The second output port is a vector of size <literal>2N</literal> providing the state vector and its first time derivative, <latex>$[x,\dot{x}]^t$</latex>. 
+                    <emphasis role="bold">Output 2:</emphasis> The second output port is a vector of size <literal>2N</literal> providing the state vector and its first time derivative, <latex>$[x,\dot{x}]^t$</latex>.
                 </para>
             </listitem>
             <listitem>
@@ -144,14 +144,14 @@
                     <listitem>
                         <para>
                             The first <literal>N</literal> elements of the <literal>Input_i</literal> are the continuous-time dynamics.  The dynamics of the system in the control mode <literal>i</literal> is described by a smooth index-1 DAE <latex>$0 = F_i(\dot{x}, x, u, t)$</latex>.
-                            
-                            
+
+
                         </para>
                     </listitem>
                     <listitem>
                         <para>
                             The next <literal>N</literal> elements of <literal>Input_i</literal> are the values used to
-                            reset the continuous-time state when a transition to 
+                            reset the continuous-time state when a transition to
                             control mode <literal>i</literal>
                             is activated.
                         </para>
@@ -191,7 +191,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>
@@ -338,7 +338,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    
+
     <refsection>
         <title>References</title>
         <simplelist type="vert">

@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -112,7 +112,7 @@
                             <listitem>
                                 <para>
                                     if <literal>iflag=0</literal>, <literal>tol</literal> is
-                                    interpreted as a bound on the relative error; if <literal>iflag=1</literal>, 
+                                    interpreted as a bound on the relative error; if <literal>iflag=1</literal>,
                                     the bound is on the absolute error.
                                 </para>
                             </listitem>
@@ -163,7 +163,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 X=[0,0;1,1;1,0];
 Y=[0,0;0,1;1,1];
 deff('z=f(x,y)','z=cos(x+y)')

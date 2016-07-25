@@ -72,7 +72,7 @@
         </para>
         <para>
             Each <literal>Si</literal> contains some poles of <literal/>
-            Saccording to the 
+            Saccording to the
             block-diagonalization of the <literal>A</literal> matrix of <literal>S</literal>.
         </para>
         <para>
@@ -88,7 +88,7 @@
         <para>
             The A matrix is of the state-space is put into block diagonal form
             by function <link linkend="bdiag">bdiag</link>. The optional parameter
-            <literal>rmax</literal> is sent to <literal>bdiag</literal>, 
+            <literal>rmax</literal> is sent to <literal>bdiag</literal>,
             <literal>rmax</literal> should be set to a large number to enforce
             block-diagonalization.
         </para>
@@ -100,13 +100,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     W=ssrand(1,1,6);
-    elts=pfss(W); 
+    elts=pfss(W);
     W1=0;for k=1:size(elts), W1=W1+ss2tf(elts(k));end
     clean(ss2tf(W)-W1)
     ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
     den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
     h2=syslin('c',num/den);

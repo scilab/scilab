@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F.D
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -55,25 +55,25 @@
         <title>説明</title>
         <para>
             状態空間表現の線形システム
-            <literal>Sl</literal> (<literal>syslin</literal> リスト), 
+            <literal>Sl</literal> (<literal>syslin</literal> リスト),
             多項式または(ゼロでない)定数のどちらかである<literal>D</literal>行列と共に
             指定すると,
             <literal>ss2des</literal> は<literal>list('des',A,B,C,0,E)</literal>として
             以下のような
             ディスクリプタシステムを返します:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 Sl=C*(s*E-A)^(-1)*B
  ]]></programlisting>
         <para>
-            フラグ <literal>"withD"</literal> が指定された場合, 
+            フラグ <literal>"withD"</literal> が指定された場合,
             最大ランクの<literal>D</literal>行列を含む
             <literal> S=list('des',A,B,C,D,E) </literal>となります.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 G=[1/(s+1),s;1+s^2,3*s^3];Sl=tf2ss(G);
 S=ss2des(Sl)

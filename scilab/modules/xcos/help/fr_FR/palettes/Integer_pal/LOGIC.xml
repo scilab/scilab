@@ -105,7 +105,7 @@
         </para>
         <para>
             L'utilisateur doit spécifier une matrice qui définit toutes les sorties de bloc possibles dans
-            le champ <emphasis role="bold">Truth Table</emphasis>. En conséquence, le nombre de lignes doit être 
+            le champ <emphasis role="bold">Truth Table</emphasis>. En conséquence, le nombre de lignes doit être
             une puissance de deux.
             Chaque ligne de la matrice contient une combinaison logique des éléments d'entrée
         </para>
@@ -167,7 +167,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>
@@ -268,7 +268,7 @@
         <refsection id="Example_1_LOGIC">
             <title>Exemple 1</title>
             <para>
-                L'exemple le plus simple à considérer est le OR. Dans ce cas nous avons deux entrées et seulement une sortie. La table 
+                L'exemple le plus simple à considérer est le OR. Dans ce cas nous avons deux entrées et seulement une sortie. La table
                 de vérité pour cet exemple est :
             </para>
             <para/>
@@ -314,8 +314,8 @@
   <refsection id="Example_2_LOGIC">
     <title>Exemple 2</title>
     <para>
-      Cet exemple montre l'utilisation du bloc LOGIC en tant que démultiplexeur. Le but est d'envoyer l'entrée constante égale 
-      à vrai sur une des quatre sorties en accord avec l'état des deux entrées de sélection : 
+      Cet exemple montre l'utilisation du bloc LOGIC en tant que démultiplexeur. Le but est d'envoyer l'entrée constante égale
+      à vrai sur une des quatre sorties en accord avec l'état des deux entrées de sélection :
       <emphasis><literal>a</literal></emphasis> et <emphasis><literal>b</literal></emphasis>.
       La table de vérité est la suivante :
     </para>
@@ -400,12 +400,12 @@
     ]]></programlisting>
             <para/>
             <para>
-                La figure suivante montre les sorties 
+                La figure suivante montre les sorties
                 <emphasis><literal>
                         Q<subscript>0</subscript>
                     </literal>
                 </emphasis>
-                à 
+                à
                 <emphasis><literal>
                         Q<subscript>3</subscript>
                     </literal>
@@ -414,11 +414,11 @@
                 <emphasis>
                     <literal>a</literal>
                 </emphasis>
-                et 
+                et
                 <emphasis>
                     <literal>b</literal>
                 </emphasis>
-                de sélection du bloc sont générées par 
+                de sélection du bloc sont générées par
                 un compteur binaire.
             </para>
             <para>

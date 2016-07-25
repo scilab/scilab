@@ -33,7 +33,7 @@
     <gateway name="sci_sident"      function="sident"   type="0" />
     <gateway name="sci_sorder"      function="sorder"   type="0" />
     <gateway name="sci_findbd"      function="findBD"   type="0" />
-    
+
     <!-- gateways CPP -->
     <gateway name="sci_arl2_ius"    function="arl2_ius" type="1" />
     <gateway name="sci_ldiv"        function="ldiv"     type="1" />

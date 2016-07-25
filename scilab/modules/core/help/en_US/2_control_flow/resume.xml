@@ -42,7 +42,7 @@
         </para>
         <para>
             In an <literal>execstr</literal> called by a function <literal>[..]=resume(..)</literal> stops
-            the execution of the function and put the local variables 
+            the execution of the function and put the local variables
             <literal>ai</literal> in calling environment under names <literal>xi</literal>.
         </para>
         <para>

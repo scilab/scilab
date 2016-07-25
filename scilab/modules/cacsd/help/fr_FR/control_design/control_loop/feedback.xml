@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -47,7 +47,7 @@
         <title>Description</title>
         <para>
             The feedback operation is denoted by <literal> /. </literal> (slashdot).
-            This command returns <literal>Sl=Sl1*(I+Sl2*Sl1)^-1</literal>, i.e the (negative) 
+            This command returns <literal>Sl=Sl1*(I+Sl2*Sl1)^-1</literal>, i.e the (negative)
             feedback of <literal>Sl1</literal> and <literal>Sl2</literal>. <literal>Sl</literal> is the transfer
             <literal> v -&gt; y</literal> for <literal> y = Sl1 u</literal>, <literal>u = v - Sl2 y</literal>.
         </para>
@@ -62,7 +62,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 S1=ssrand(2,2,3);S2=ssrand(2,2,2);
 W=S1/.S2;
 ss2tf(S1/.S2)

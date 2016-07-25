@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -60,19 +60,19 @@
         <para>
             <literal>P</literal> は以下のように分割されます:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 P=[ P11 P12;
-    P21 P22]  
+    P21 P22]
  ]]></programlisting>
         <para>
             (状態空間形式または伝達関数形式: 計算時に状態空間形式の
             自動変換が行われます)
         </para>
         <para>
-            <literal>r</literal> = <literal>P22</literal> サブシステムの大きさ,  
+            <literal>r</literal> = <literal>P22</literal> サブシステムの大きさ,
             <literal>P</literal>の(2,2)ブロック
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 J =[J11 J12;
     J21 J22]
  ]]></programlisting>
@@ -98,7 +98,7 @@ J =[J11 J12;
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 ny=2;nu=3;nx=4;
 P22=ssrand(ny,nu,nx);
 bigQ=rand(nx+nu,nx+nu);bigQ=bigQ*bigQ';

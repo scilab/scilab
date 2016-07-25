@@ -47,13 +47,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 lst=list(1);lst(3)=5
 k=definedfields(lst)
- 
+
 t=tlist('x');t(5)=4
 definedfields(t)
- 
+
 m=mlist(['m','a','b']);m.b='sdfgfgd'
 definedfields(m)
  ]]></programlisting>

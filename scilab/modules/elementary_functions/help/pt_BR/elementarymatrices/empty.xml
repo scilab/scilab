@@ -33,9 +33,9 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
-A = [s, s+1]; 
+A = [s, s+1];
 A+[], A*[]
 A=rand(2,2);
 AA=A([],1), size(AA)

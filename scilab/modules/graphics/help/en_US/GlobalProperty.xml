@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -49,7 +49,7 @@
             not case sensitive. <literal>GlobalProperty</literal> is
             predominant on all <literal>LineSpec</literal> previously stated.
         </para>
-        
+
         <para>
             Here is a complete list of the <literal>PropertyName</literal> you
             can specify (using <link linkend="plot">plot</link> or <link linkend="surf">surf</link>) and their available
@@ -470,7 +470,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // --------------------
 // With the plot command :
 // --------------------

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -17,7 +17,7 @@
     <refnamediv>
         <refname>glue</refname>
         <refpurpose>Cola um conjunto de entidades gráficas em um Compound
-            ("composto") 
+            ("composto")
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -52,7 +52,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

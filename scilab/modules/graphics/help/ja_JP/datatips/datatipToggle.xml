@@ -4,7 +4,7 @@
 
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
 
- * 
+ *
 
 
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
@@ -19,89 +19,89 @@
 -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="datatipToggle">
-    
+
     <refnamediv>
-        
+
         <refname>datatipToggle</refname>
-        
+
         <refpurpose>data tipsモードをトグルする.</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>datatipToggle(fig)
-            
+
             datatipToggle()
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>fig</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         グラフィックウインドウのハンドル.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
-            有効にした場合, 
-            
+
+            有効にした場合,
+
             data tipsモードにより,
-            
+
             曲線の選択した点にtipsを追加したり,編集したりすることが
-            
+
             可能となります.選択は選択する点で右クリックをすることにより
-            
+
             行われます.
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>datatipToggle()</literal>は,カレントの図に関する
-            
+
             data tipsモードをトグルし,
-            
+
             <literal>datatipToggle(fig)</literal> はハンドル<literal>fig</literal>
-            
+
             で指定した図のdata tipsモードをトグルします.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <programlisting role="example"><![CDATA[
 
     t=linspace(0,10,200);
@@ -113,30 +113,30 @@
     //ここで曲線のどこかをクリック
 
     ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="datatipManagerMode">datatipManagerMode</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="datatips">datatips</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

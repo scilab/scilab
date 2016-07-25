@@ -25,7 +25,7 @@
         <para>
             The <literal>LineSpec</literal> is an optional argument
             that can be used inside a <function>plot</function>
-            command to customize each new line aspect. It has to 
+            command to customize each new line aspect. It has to
             be given as a concatenated string containing information
             about color, line style or markers. It is very useful to
             quickly specify such basic line properties.
@@ -344,7 +344,7 @@ plot(x,sin(x),'r-.>') // plots a dash-dotted line with a right-pointing triangle
 clf();
 x=1:0.1:10;
 // If you specify a marker without a line style, only the marker is drawn
-plot(x,sin(x),'d') 
+plot(x,sin(x),'d')
  ]]></programlisting>
         <scilab:image>
             x=1:0.1:10;
@@ -354,7 +354,7 @@ plot(x,sin(x),'d')
 clf();
 x = 1:0.5:10; // Init.
 // The order of information about color, line style or markers does not matter
-// BUT the information must be unambiguous 
+// BUT the information must be unambiguous
 subplot(311);plot(x,sin(x),'.b-');
 subplot(312);plot(x,sin(x),'b.-');
 subplot(313);plot(x,sin(x),'b-.');// The point belongs to information about line style (not marker!)

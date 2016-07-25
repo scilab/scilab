@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -27,10 +27,10 @@
             r = rand(m1,m2,...,key)
             r = rand(x)
             r = rand(x,key)
-            
+
             s = rand("seed")
             rand("seed",s)
-            
+
             rand(key)
             key = rand("info")
         </synopsis>
@@ -83,7 +83,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Le but de cette fonction est de retourner un tableau  
+            Le but de cette fonction est de retourner un tableau
             de doubles dont les valeurs sont des nombres aléatoires
             réels ou complexes.
             En fonction des arguments d'entrée, la fonction peut renvoyer une
@@ -195,10 +195,10 @@
     <refsection>
         <title>Exemples</title>
         <para>
-            Dans l'exemple suivant, nous générons des doubles associés à 
+            Dans l'exemple suivant, nous générons des doubles associés à
             différentes distributions.
         </para>
-        <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[
 // Récupère un double aléatoire (sur la distribution courante)
 r=rand()
 // Récupère une matrice de doubles de taille 4-par-6 (sur la distribution courante)
@@ -215,7 +215,7 @@ r=rand(2,2,2)
             Dans l'exemple suivant, nous changeons la distribution des nombres générés par <literal>rand</literal>.
             Nous produisons d'abord des nombres normaux centrés réduits, puis des nombres uniformes dans [0,1).
         </para>
-        <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[
     // Configure le générateur sur la loi normale
     rand("normal")
     r=rand(4,6)
@@ -227,31 +227,31 @@ r=rand(2,2,2)
     key=rand("info")
     ]]></programlisting>
         <para>
-            Dans l'exemple suivant, nous générons une matrice complexe de doubles de taille 2-par-3, 
+            Dans l'exemple suivant, nous générons une matrice complexe de doubles de taille 2-par-3,
             avec une distribution normale centrée réduite.
         </para>
-        <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[
     // Génère une matrice complex de doubles aléatoires de taille 2-par-3
     x=rand(2,3)+%i*rand(2,3)
-    // Génère une matrice complexe de doubles normaux centrés réduits 
+    // Génère une matrice complexe de doubles normaux centrés réduits
     // de la même taille que x
     r=rand(x,"normal")
     ]]></programlisting>
         <para>
-            Dans l'exemple suivant, nous dessinons la distribution de 1000 nombres 
+            Dans l'exemple suivant, nous dessinons la distribution de 1000 nombres
             uniformes produits par <literal>rand</literal>.
         </para>
-        <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[
     r=rand(1000,1,"uniform");
     scf();
     histplot(10,r);
     xtitle("Nombres uniformes par rand","X","Fréquence")
     ]]></programlisting>
         <para>
-            Dans l'exemple suivant, nous dessinons la distribution de nombres normaux 
+            Dans l'exemple suivant, nous dessinons la distribution de nombres normaux
             centrés réduits produits par <literal>rand</literal>.
         </para>
-        <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[
     r=rand(1000,1,"normal");
     scf();
     histplot(10,r);
@@ -278,7 +278,7 @@ r=rand(2,2,2)
             Dans cette situation, nous pouvons initialiser la graine avec la sortie de la
             fonction <literal>getdate</literal>, comme dans l'exemple suivant:
         </para>
-        <programlisting role="example"><![CDATA[  
+        <programlisting role="example"><![CDATA[
 n=getdate("s");
 rand("seed",n);
  ]]></programlisting>
@@ -306,7 +306,7 @@ rand("seed",n);
             pour lequel les constantes sont :
         </para>
         <para>
-            <latex><![CDATA[  
+            <latex><![CDATA[
 	  \begin{eqnarray}
       a &=& 843314861\\
       c &=& 453816693\\
@@ -315,12 +315,12 @@ rand("seed",n);
  ]]></latex>
         </para>
         <para>
-            D'après les auteurs, ce générateur est de longueur complète, c'est à dire 
+            D'après les auteurs, ce générateur est de longueur complète, c'est à dire
             que sa période est <latex>M=2^{31}=2147483648</latex>.
         </para>
         <para>
             Le générateur de nombres aléatoires <literal>"normal"</literal>
-            est fondés sur la méthode de Box-Muller, pour lequel la 
+            est fondés sur la méthode de Box-Muller, pour lequel la
             source de nombres uniformes est Urand.
         </para>
     </refsection>

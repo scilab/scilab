@@ -71,7 +71,7 @@ tf = isspace(A)
 // If A is a String matrix:
 tf = asciimat(A)==32
 // If A is not a String matrix:
-tf = zeros(A) 
+tf = zeros(A)
 ]]></programlisting>
                 </td>
             </tr>

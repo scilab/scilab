@@ -48,12 +48,12 @@
                             <para>'beta': the range of the random generator. A random value
                                 will be sampled between -beta and 1+beta. This sampled value
                                 will be used to perform a convex combination between Indiv1 and
-                                Indiv2. 
+                                Indiv2.
                             </para>
                         </listitem>
                         <listitem>
                             <para> 'minbound': a vector of minimum bounds for the variable
-                                X. 
+                                X.
                             </para>
                         </listitem>
                         <listitem>
@@ -85,7 +85,7 @@
             combination. The crossed individuals are computed with the following
             equations :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 mix = (1 + 2*Beta)*rand(1,1) - Beta;
 Crossed_Indiv1 =     mix*Indiv1 + (1-mix)*Indiv2;
 Crossed_Indiv2 = (1-mix)*Indiv1 +     mix*Indiv2;

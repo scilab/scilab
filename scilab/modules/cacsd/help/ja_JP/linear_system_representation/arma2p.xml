@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -50,13 +50,13 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=[1,-2.851,2.717,-0.865].*.eye(2,2)
 b=[0,1,1,1].*.[1;1];
 d=[1,0.7,0.2].*.eye(2,2);
 sig=eye(2,2);
 ar=armac(a,b,d,2,1,sig)
-// extract polynomial matrices from ar representation 
+// extract polynomial matrices from ar representation
 [A,B,D]=arma2p(ar);
  ]]></programlisting>
     </refsection>

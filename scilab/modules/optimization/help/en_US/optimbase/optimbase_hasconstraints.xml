@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -44,23 +44,23 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimbase_hasconstraints</literal> function returns %t if current problem 
+            The <literal>optimbase_hasconstraints</literal> function returns %t if current problem
             has bounds constraints, linear constraints or non-linear constraints.
         </para>
     </refsection>
     <refsection>
         <title>Example 1</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 	opt = optimbase_new();
-	
+
 	// Set number of variables
 	opt = optimbase_configure ( opt, "-numberofvariables", 2);
-	
+
 	// Set minimal and maximal bounds
 	opt = optimbase_configure(opt, "-boundsmin",[-5 -5]');
 	opt = optimbase_configure(opt, "-boundsmax",[5 5]');
-	
+
 	// Check if the bounds are specified
 	[opt, hascons] = optimbase_hasconstraints (opt);
 	disp(hascons)
@@ -70,7 +70,7 @@
         </programlisting>
         <title>Example 2</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     opt = optimbase_new();
 
     // Set number of variables

@@ -184,7 +184,7 @@
         <title>Examples</title>
         <programlisting role="example">// Display extra-information
             atomsSetConfig("Verbose","True")
-            
+
             // Disable autoload system
             atomsSetConfig("autoload","False")
         </programlisting>

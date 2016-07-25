@@ -15,7 +15,7 @@
             <literal>API</literal>Scilab はAPIとして起動されますi.
         </para>
         <para>
-            <literal>STD</literal>標準的なT Scilab (gui, plot ...) 
+            <literal>STD</literal>標準的なT Scilab (gui, plot ...)
         </para>
         <para>
             <literal>NW</literal>コマンドライン版 Scilab (プロット機能付き).
@@ -26,7 +26,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 getscilabmode()
  ]]></programlisting>
     </refsection>

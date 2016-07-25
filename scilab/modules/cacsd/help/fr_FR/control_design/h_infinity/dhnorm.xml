@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -62,7 +62,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            produces the discrete-time infinity norm  of a state-space system 
+            produces the discrete-time infinity norm  of a state-space system
             (the maximum over all frequencies on the unit circle of the maximum singular value).
         </para>
     </refsection>

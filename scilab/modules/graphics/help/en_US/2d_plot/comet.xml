@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Serge Steer
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -20,12 +20,12 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-          comet(y)
-          comet(x,y)
-          comet(x,fun)
-          comet(x,y,p)
-          comet(x,fun,p)
-          comet(...,"colors",c)
+            comet(y)
+            comet(x,y)
+            comet(x,fun)
+            comet(x,y,p)
+            comet(x,fun,p)
+            comet(...,"colors",c)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -83,13 +83,13 @@
             showing the progression of the curve
             <literal>(x(1:k),y(1:k))</literal> for <literal>k</literal>
             varying from <literal>1</literal> to
-            <literal>size(x,'*')</literal>.  
+            <literal>size(x,'*')</literal>.
         </para>
         <para>
             The plot is made of three parts:
             <variablelist>
                 <varlistentry>
-                    <term>a head</term> 
+                    <term>a head</term>
                     <listitem>
                         <para>
                             mark that shows the current <literal>(x(i),y(i))</literal> position.
@@ -106,7 +106,7 @@
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>a tail</term>                     
+                    <term>a tail</term>
                     <listitem>
                         <para>
                             that shows the  <literal>(x(1:i-k),y(1:i-k))</literal> part of the curve.

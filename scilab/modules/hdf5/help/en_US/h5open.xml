@@ -93,7 +93,7 @@
                 "core": Uses a file in memory (improves read/write). This driver has two options:
                 <simplelist type="inline">
                     <member>
-                        backingStore: a boolean, if %T (default), the changes are saved in the real file. 
+                        backingStore: a boolean, if %T (default), the changes are saved in the real file.
                     </member>
                     <member>
                         blockSize: a double: increment (in bytes) to use to increase buffer size (default 64K).
@@ -109,7 +109,7 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 x = 1:10;
-save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones 	
+save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones
 
 // Open the created file
 a = h5open(TMPDIR + "/x.sod");

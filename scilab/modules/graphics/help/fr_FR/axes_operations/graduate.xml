@@ -46,7 +46,7 @@
     <refsection role="description">
         <title>Description</title>
         <para>
-            graduate recherche l'intervalle minimum <literal>[xi,xa]</literal> et un nombre de graduations 
+            graduate recherche l'intervalle minimum <literal>[xi,xa]</literal> et un nombre de graduations
             <literal>np</literal> tels que :
         </para>
         <para>

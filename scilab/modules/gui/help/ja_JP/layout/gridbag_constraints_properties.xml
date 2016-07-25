@@ -40,7 +40,7 @@
                 <term>weight</term>
                 <listitem>
                     <para>
-                        <literal>[weight_x, weight_y]</literal> 1行2列double行列, 
+                        <literal>[weight_x, weight_y]</literal> 1行2列double行列,
                         デフォルトは [0, 0].
                     </para>
                     <para>どちらかの軸のリサイズに適用される重み.</para>
@@ -75,7 +75,7 @@
                 <term>padding</term>
                 <listitem>
                     <para>
-                        <literal>[pad_x, pad_y]</literal> 1行2列double行列, 
+                        <literal>[pad_x, pad_y]</literal> 1行2列double行列,
                         デフォルトは [0 0]
                     </para>
                     <para>
@@ -87,7 +87,7 @@
                 <term>preferred_size</term>
                 <listitem>
                     <para>
-                        <literal>[p_size_x, p_size_y]</literal> 
+                        <literal>[p_size_x, p_size_y]</literal>
                         1行2列double行列, デフォルトは[-1 -1]
                     </para>
                     <para>

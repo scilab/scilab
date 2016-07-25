@@ -20,7 +20,7 @@
             volée uniquement quand nécessaire), le moteur MathML est plus lent à
             charger que celui LaTeX.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Example with LaTeX / MathML ticks:
 plot2d();
 a=gca();
@@ -69,10 +69,10 @@ xtitle('$\scalebox{0.6}{\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}6}$')
 xtitle('$\fcolorbox{black}{Tan}{\JLaTeXMath}$')
 xtitle('$\textcolor{Magenta}{\mathfrak{Scilab}}\mbox{ and }\textcolor{Green}{\mathcal{SCILAB}}$')
 ]]></programlisting>
-        
+
         <para>Il y a la possibilité de définir de nouvelles commandes ou de nouveaux environnements :</para>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 xtitle('$\newcommand{\op}{\left(}\newcommand{\cp}{\right)} \op\frac12\cp$')
 xtitle('$\newcommand{\myfrac}[2]{\frac{\mathfrak{#1}}{\mathcal{#2}}}\myfrac{A}{B}$')
  ]]></programlisting>
@@ -87,13 +87,13 @@ xtitle('$\newcommand{\myfrac}[2]{\frac{\mathfrak{#1}}{\mathcal{#2}}}\myfrac{A}{B
             utilisation, le moteur peut prendre jusqu'à quelques secondes à se
             charger. Toutefois, les utilisations suivantes seront très rapides.
         </para>
-        <scilab:image><![CDATA[ 
+        <scilab:image><![CDATA[
 str="<mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo></mo><mfenced open=""{"" close=""}""> ..
 <mrow><mfrac><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac></mrow><mrow><mfrac><mrow> ..
 <mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac></mrow></mfrac></mrow></mfenced></mrow>"
 xtitle(str)
 ]]></scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot3d();
 a=get("current_axes");
 a.x_label.font_size= 5;

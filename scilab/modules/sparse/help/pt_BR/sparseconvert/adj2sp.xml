@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -39,7 +39,7 @@
                 <term>anz</term>
                 <listitem>
                     <para>vetor coluna de comprimento nz contendo os elementos não-nulos
-                        de A 
+                        de A
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,7 +64,7 @@
     </refsection>
     <refsection>
         <title>Descrição</title>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 adj2sp converte uma representação em forma de adjacência de uma matriz
 em sua representação padrão do Scilab (função utilitária).
 xadj, adjncy, anz = representação  de adjacência de A i.e:
@@ -82,7 +82,7 @@ xadj, adjncy, anz = representação  de adjacência de A i.e:
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A = sprand(100,50,.05);
 [xadj,adjncy,anz]= sp2adj(A);
 [n,m]=size(A);

@@ -40,14 +40,14 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a(1,1,1,1:2)=[1 2]
 a=[1 2;3 4];a(:,:,2)=rand(2,2)
 a(1,1,:)
 
 size(a)
 
-a(:,:,1) //redução de dimensionalidade 
+a(:,:,1) //redução de dimensionalidade
 type(a(:,:,1))
 
 [a a]

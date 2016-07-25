@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -36,9 +36,9 @@
                 <term>fd</term>
                 <listitem>
                     <para>
-                        a scalar: a file descriptor returned by the function 
-                        <function>mopen</function>. <literal>-1</literal> 
-                        stands for last opened file. Default value is 
+                        a scalar: a file descriptor returned by the function
+                        <function>mopen</function>. <literal>-1</literal>
+                        stands for last opened file. Default value is
                         <literal>-1</literal>.
                     </para>
                 </listitem>
@@ -59,22 +59,22 @@
             The function <function>mseek</function> sets the position of the next input or output operation on the stream <varname>fd</varname>. The new position is at the signed distance given by <varname>n</varname> bytes from the beginning, from the current position, or from the end of the file, according  to the <varname>flag</varname> value which can be <literal>'set'</literal>, <literal>'cur'</literal> or <literal>'end'</literal>. This is the reason why <varname>n</varname>  must be positive when <varname>flag</varname> is equal to <literal>'set'</literal>.
         </para>
         <para>
-            <function>mseek</function> allows the file position indicator to be 
-            set beyond the end of the existing data in the file. If data is 
-            later written at this point, subsequent reads of data in the gap 
-            will return zero until data is actually written into the gap. 
-            <function>mseek</function>, by itself, does not extend the size of  
+            <function>mseek</function> allows the file position indicator to be
+            set beyond the end of the existing data in the file. If data is
+            later written at this point, subsequent reads of data in the gap
+            will return zero until data is actually written into the gap.
+            <function>mseek</function>, by itself, does not extend the size of
             the file.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 file3=fullfile(TMPDIR,'test3.bin');
 fd1= mopen(file3,'wb');
 for i=1:10
   mput(i,'d');
-end 
+end
 mseek(0);
 mput(678,'d');
 mseek(0,fd1,'end');
@@ -89,7 +89,7 @@ if res1<>res then
 end
 mseek(0,fd1,'set');
 
-// trying to read more than stored data 
+// trying to read more than stored data
 res1=mget(100,'d',fd1);
 if res1<>res then
   write(%io(2),'Bug');

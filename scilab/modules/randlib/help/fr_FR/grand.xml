@@ -53,10 +53,10 @@
 
         <synopsis>
             S = grand("getgen")
-                grand("setgen", gen)
+            grand("setgen", gen)
 
             S = grand("getsd")
-                grand("setsd", S)
+            grand("setsd", S)
 
             grand("setcgn", G)
             S = grand("getcgn")
@@ -133,7 +133,7 @@
         </screen>
         <para>
             produisent une matrice de taille <literal>m</literal>-par-<literal>n</literal> de nombres aléatoires.
-            
+
             Toutes ces séquences peuvent être étendues pour créer une hypermatrice à plus de 2 dimensions, les
             tailles (m, n, o,...) étant spécifiées avant le mot ".." indiquant le type de distribution statistique
             souhaitée :
@@ -174,19 +174,19 @@
         <screen>
             S = grand("getgen")
             grand("setgen", gen)
-            
+
             S = grand("getsd")
             grand("setsd", S)
-            
+
             S = grand("phr2sd", phrase)
-            
+
             grand("setcgn", G)
             S = grand("getcgn")
-            
+
             grand("initgn", I)
-            
+
             grand("setall", s1, s2, s3, s4)
-            
+
             grand("advnst", K)
         </screen>
         <para>

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010  - DIGITEO - Sylvestre LEDRU
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -63,7 +63,7 @@
         </para>
         <itemizedlist>
             <listitem>
-                <para>ライブラリまたはC/C++関数: 
+                <para>ライブラリまたはC/C++関数:
                     多くのライブラリがフリー/オープンソースまたはプロプライエタリ市場で
                     開発されています.
                     このライブラリはScilabのような高レベル言語に読み込んで使用することができます.

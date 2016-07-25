@@ -20,7 +20,7 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-    
+
     <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -35,11 +35,11 @@
  * along with this program.
  *
  -->
-    
+
     <!-- =================== -->
-    
+
     <PRIMITIVE gatewayId="52" primitiveId="1" primitiveName="system_setproperty" />
-    
+
     <PRIMITIVE gatewayId="52" primitiveId="2" primitiveName="system_getproperty" />
     <PRIMITIVE gatewayId="52" primitiveId="3" primitiveName="javaclasspath" />
     <PRIMITIVE gatewayId="52" primitiveId="4" primitiveName="javalibrarypath" />

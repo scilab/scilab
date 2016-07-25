@@ -465,12 +465,12 @@ test_run([],[],['no_check_ref','mode_nw']);
 // Console mode
 test_run time [] no_check_ref //tests time module with no_check_ref option
  ]]></programlisting>
-        
+
         <programlisting role="example"><![CDATA[
 // Run unitary tests of an external module (with his path)
 test_run('SCI/contrib/toolbox_skeleton')
  ]]></programlisting>
-        
+
         <programlisting role="example"><![CDATA[
 // Export to a XML Xunit file
 test_run('boolean',[],[],TMPDIR+"/boolean_test_run.xml");

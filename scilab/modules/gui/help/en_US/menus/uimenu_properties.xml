@@ -74,7 +74,7 @@
                 <listitem>
                     <para>String.</para>
                     <para>This property represents the text appearing in the
-                        menu. If the text is enclosed between two $ (dollar sign), then it will be 
+                        menu. If the text is enclosed between two $ (dollar sign), then it will be
                         considered as a LaTeX expression, and if it is enclosed between &lt; and &gt;, it will be considered
                         as a MathML one.
                     </para>
@@ -95,7 +95,7 @@
                 <listitem>
                     <para>{on} | off</para>
                     <para>
-                        Set the visibility of the uimenu. If this property is set to <literal>"on"</literal> (default), the uimenu is visible, 
+                        Set the visibility of the uimenu. If this property is set to <literal>"on"</literal> (default), the uimenu is visible,
                         but if this property is set to <literal>"off"</literal>, the uimenu will not appear in its parent figure.
                     </para>
                 </listitem>

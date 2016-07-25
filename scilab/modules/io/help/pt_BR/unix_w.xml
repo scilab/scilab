@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -47,10 +47,10 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 if getos() == 'Windows' then
-  unix_w("dir "+'""'+WSCI+"\modules"+'""'); 
-else 
+  unix_w("dir "+'""'+WSCI+"\modules"+'""');
+else
   unix_w("ls $SCI/modules");
 end
  ]]></programlisting>

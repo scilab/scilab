@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -51,10 +51,10 @@
 
         <synopsis>
             S = grand("getgen")
-                grand("setgen", gen)
+            grand("setgen", gen)
 
             S = grand("getsd")
-                grand("setsd", S)
+            grand("setsd", S)
 
             grand("setcgn", G)
             S = grand("getcgn")
@@ -81,7 +81,7 @@
                 <term>X</term>
                 <listitem>
                     <para>
-                      次元(つまり<literal>mx n</literal>) のみ使用される行列
+                        次元(つまり<literal>mx n</literal>) のみ使用される行列
                     </para>
                 </listitem>
             </varlistentry>
@@ -176,7 +176,7 @@
                         <literal>Y=grand(m,n,'nbn',N,p)</literal> は
                         パラメータ<literal>N</literal> (正の整数) および<literal>p</literal> (
                         (0,1)の実数)を指定した負の二項分布に基づきランダム変量を生成します
-                        : 
+                        :
                         成功確率 <literal>p</literal>の独立なベルヌーイ試行において
                         <literal>N</literal>回成功する前に発生する失敗の回数.
                         関係する関数 : <link linkend="cdfnbn">cdfnbn</link>.
@@ -236,8 +236,8 @@
                         <literal>Y=grand(m,n,'nf',Dfn,Dfd,Xnon)</literal>は,
                         分子の自由度<literal>Dfn</literal> (実数
                         &gt;= 1), および
-                        分母の自由度<literal>Dfd</literal> (実数 &gt; 0) , 
-                        および非心パラメータ 
+                        分母の自由度<literal>Dfd</literal> (実数 &gt; 0) ,
+                        および非心パラメータ
                         <literal>Xnonc</literal> (実数 &gt;= 0)を指定して
                         非心F分布に基づくランダム変量を生成します.
                         関係する関数 : <link linkend="cdffnc">cdffnc</link>.
@@ -454,7 +454,7 @@
                 <listitem>
                     <para>
                         周期<literal>2^19937</literal>の
-                        M. Matsumoto および T. NishimuraのMersenne-Twister, 
+                        M. Matsumoto および T. NishimuraのMersenne-Twister,
                         状態は
                         <literal>624</literal>個の整数の配列(およびこの配列のインデックス)により
                         指定されます; これがデフォルトの生成器です.
@@ -537,7 +537,7 @@
                     <para>
                         <literal>grand('setgen',gen)</literal>は
                         カレントの基底生成器を<literal>gen</literal>に設定します.
-                        この文字列には 'mt', 'kiss', 'clcg2', 'clcg4', 'urand', 'fsultra' 
+                        この文字列には 'mt', 'kiss', 'clcg2', 'clcg4', 'urand', 'fsultra'
                         のどれかを指定します(
                         このコールは新しいカレントの生成器を返すことに注意してください).
                     </para>
@@ -548,11 +548,11 @@
                 <listitem>
                     <para>
                         <literal>S=grand('getsd')</literal> はカレントの基底生成器の
-                        カレントの状態 (カレントのシード)を返します ; 
+                        カレントの状態 (カレントのシード)を返します ;
                         <literal>S</literal> には, mt の場合は<literal>625</literal>次
                         (先頭は<literal>[1,624]</literal>の範囲のインデックスです),
                         kiss の場合は <literal>4</literal> 次, clcg2の場合は <literal>2</literal>次,
-                        fsultraの場合は <literal>40</literal> , clcg4 の場合は <literal>4</literal>次 
+                        fsultraの場合は <literal>40</literal> , clcg4 の場合は <literal>4</literal>次
                         (最後の1つについてはカレントの仮想生成器のカレントの状態が取得されます),
                         および urand の場合は <literal>1</literal>次
                         の(整数)列ベクトルが出力されます.
@@ -595,7 +595,7 @@
                             <term>clcg2の場合</term>
                             <listitem>
                                 <para>
-                                    <literal>2</literal> 個の整数 <literal>s1</literal> (範囲:<literal>[1,2147483562]</literal>) および <literal>s2</literal> 
+                                    <literal>2</literal> 個の整数 <literal>s1</literal> (範囲:<literal>[1,2147483562]</literal>) および <literal>s2</literal>
                                     (範囲: <literal>[1,2147483398]</literal>) を指定します ;
                                 </para>
                             </listitem>
@@ -604,8 +604,8 @@
                             <term>clcg4の場合</term>
                             <listitem>
                                 <para>
-                                    <literal>4</literal> 個の整数 <literal>s1</literal> (範囲: <literal>[1,2147483646]</literal>), <literal>s2</literal> 
-                                    (範囲: <literal>[1,2147483542]</literal>), <literal>s3</literal> (範囲:  <literal>[1,2147483422]</literal>), 
+                                    <literal>4</literal> 個の整数 <literal>s1</literal> (範囲: <literal>[1,2147483646]</literal>), <literal>s2</literal>
+                                    (範囲: <literal>[1,2147483542]</literal>), <literal>s3</literal> (範囲:  <literal>[1,2147483422]</literal>),
                                     <literal>s4</literal> (範囲:  <literal>[1,2147483322]</literal> ) を指定します ;
                                     <literal>注意</literal> : clcg4の場合,
                                     カレントの仮想生成器のシードを設定しますが,
@@ -620,7 +620,7 @@
                             <term>urandの場合</term>
                             <listitem>
                                 <para>
-                                    <literal>[0,2^31</literal>[の範囲の<literal>1</literal> 
+                                    <literal>[0,2^31</literal>[の範囲の<literal>1</literal>
                                     個の整数 <literal>s1</literal> を指定します.
                                 </para>
                             </listitem>
@@ -659,7 +659,7 @@
         <title>clcg4の固有のオプション</title>
         <para>
             clcg4 生成器は他の生成器と同時に使用することができますが,
-            系列がオーバーラップしない 
+            系列がオーバーラップしない
             複数(<literal>101</literal>個)の仮想生成器に分割できるという利点があります.
             (古典的な生成器を使用する場合,異なる系列を得るために
             初期状態量(シード)を別のものに変更できますが,完全に異なる系列となることは

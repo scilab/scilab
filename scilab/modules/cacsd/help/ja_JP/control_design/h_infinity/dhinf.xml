@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -65,7 +65,7 @@
                 <term>gamma</term>
                 <listitem>
                     <para>
-                        <literal>H無限大</literal> 設計で使用されるパラメータ gamma. 
+                        <literal>H無限大</literal> 設計で使用されるパラメータ gamma.
                         gammaはコントローラが存在できるよう十分に大きいことが仮定されます.
                         gamma &gt;= 0.
                     </para>
@@ -162,10 +162,10 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>[AK,BK,CK,DK,(RCOND)] = dhinf(A,B,C,D,ncon,nmeas, gamma)</literal> 
+            <literal>[AK,BK,CK,DK,(RCOND)] = dhinf(A,B,C,D,ncon,nmeas, gamma)</literal>
             H無限大 (準)最適 n状態コントローラ行列
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
     | AK | BK |
 K = |----|----|,
     | CK | DK |
@@ -173,10 +173,10 @@ K = |----|----|,
         <para>
             を以下の離散時間システム用に計算する場合,
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
     | A  | B1  B2  |   | A | B |
 P = |----|---------| = |---|---|,
-    | C1 | D11 D12 |   | C | D | 
+    | C1 | D11 D12 |   | C | D |
     | C2 | D21 D22 |
  ]]></programlisting>
         <para>
@@ -193,7 +193,7 @@ P = |----|---------| = |---|---|,
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //example from Niconet report SLWN1999-12
 //Hinf
 A=[-0.7  0    0.3  0   -0.5 -0.1

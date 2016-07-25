@@ -12,7 +12,7 @@
         <title>Description</title>
         <para>
             Cette fonction renvoie un vecteur ligne de chaînes de caractères contenant les
-            arguments de la commande de lancement de Scilab. Le premier terme du vecteur <literal>args</literal> contient le nom complet (avec le chemin) du fichier exécutable de Scilab. 
+            arguments de la commande de lancement de Scilab. Le premier terme du vecteur <literal>args</literal> contient le nom complet (avec le chemin) du fichier exécutable de Scilab.
         </para>
         <para>
             Cette fonction correspond à la fonction <literal>getarg</literal> en langage C.

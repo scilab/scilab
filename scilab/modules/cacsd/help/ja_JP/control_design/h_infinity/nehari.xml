@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -56,14 +56,14 @@
             は<literal>R</literal>のネハリ近似を返します.
         </para>
         <para>
-            <literal>R</literal> = 状態空間表現の線形システム 
+            <literal>R</literal> = 状態空間表現の線形システム
             (<literal>syslin</literal>リスト).
         </para>
         <para>
-            <literal>R</literal> は厳密にプロパーで <literal>- R~</literal> は安定です 
+            <literal>R</literal> は厳密にプロパーで <literal>- R~</literal> は安定です
             (すなわち <literal>R</literal> は反安定です).
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 || R - X ||oo = min || R - Y ||oo
               Y in Hoo
  ]]></programlisting>

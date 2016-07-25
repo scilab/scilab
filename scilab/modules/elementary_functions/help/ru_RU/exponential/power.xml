@@ -36,30 +36,30 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    Если <literal>A</literal> -- квадратная матрица, а <literal>b</literal> -- скаляр, то <literal>A^b</literal> 
+                    Если <literal>A</literal> -- квадратная матрица, а <literal>b</literal> -- скаляр, то <literal>A^b</literal>
                     является матрицей <literal>A</literal> в степени <literal>b</literal>.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    Если <literal>A</literal> -- матрица, а <literal>b</literal> -- скаляр, то матрица 
-                    <literal>A.^b</literal> формируется элементами матрицы <literal>A</literal> 
-                    в степени <literal>b</literal> (поэлементное возведение в степень). 
-                    Если <literal>A</literal> -- вектор, а <literal>b</literal> -- скаляр, то 
+                    Если <literal>A</literal> -- матрица, а <literal>b</literal> -- скаляр, то матрица
+                    <literal>A.^b</literal> формируется элементами матрицы <literal>A</literal>
+                    в степени <literal>b</literal> (поэлементное возведение в степень).
+                    Если <literal>A</literal> -- вектор, а <literal>b</literal> -- скаляр, то
                     <literal>A^b</literal> и <literal>A.^b</literal> выполняют одну и ту же операцию
-                    (т. е. поэлементное возведение в степень). 
+                    (т. е. поэлементное возведение в степень).
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    Если <literal>A</literal> -- скаляр, а <literal>b</literal> -- матрица (или вектор), то 
-                    <literal>A^b</literal> и <literal>A.^b</literal> являются матрицами (или векторами), сформированными 
+                    Если <literal>A</literal> -- скаляр, а <literal>b</literal> -- матрица (или вектор), то
+                    <literal>A^b</literal> и <literal>A.^b</literal> являются матрицами (или векторами), сформированными
                     элементами <literal> a^(b(i,j))</literal>.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    Если <literal>A</literal> и <literal>b</literal> -- векторы (матрицы) одного размера, то 
+                    Если <literal>A</literal> и <literal>b</literal> -- векторы (матрицы) одного размера, то
                     <literal>A.^b</literal> равно  <literal>A(i)^b(i)</literal> (векторы) или <literal>A(i,j)^b(i,j)</literal> (матрицы).
                 </para>
             </listitem>
@@ -69,7 +69,7 @@
         </para>
         <para>
             -
-            Для квадратных матриц <literal>A^p</literal> вычисляется через последовательное 
+            Для квадратных матриц <literal>A^p</literal> вычисляется через последовательное
             перемножение матриц, если  <literal>p</literal> является положительным числом, а иначе --
             через диагонализацию.
         </para>
@@ -80,13 +80,13 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[1 2;3 4];
 A^2.5,
 A.^2.5
 (1:10)^2
 (1:10).^2
- 
+
 s=poly(0,'s')
 s^(1:10)
  ]]></programlisting>

@@ -73,7 +73,7 @@
         <para>
             Move an object to another place (same file or not). This command is equivalent to <code>h5cp</code> followed by <code>h5rm</code>.
         </para>
-        <para>Before moving a newly created object, the file must be flushed.</para> 
+        <para>Before moving a newly created object, the file must be flushed.</para>
     </refsection>
     <refsection>
         <title>Examples</title>

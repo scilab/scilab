@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -50,30 +50,30 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimsimplex_setfv</literal> function sets the function value at given 
+            The <literal>optimsimplex_setfv</literal> function sets the function value at given
             index and returns an updated simplex object.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
      simplex = [
      3.     0.      0.
      4.     1.      0.
      5.     0.      2.
      ];
-     
+
     s1 = optimsimplex_new ();
     s1 = optimsimplex_setall(s1, simplex);
     res = optimsimplex_getallfv(s1);
     disp(res)
-    
+
     s1 = optimsimplex_setfv(s1, 1, 5.0);
     s1 = optimsimplex_setfv(s1, 2, 7.0);
     res = optimsimplex_getallfv(s1);
     disp(res)
-    
+
     s1 = optimsimplex_destroy(s1);
  ]]>
         </programlisting>

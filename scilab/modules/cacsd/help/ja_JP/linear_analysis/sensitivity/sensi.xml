@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -80,27 +80,27 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>sensi</literal> は感度関数を計算します. 
+            <literal>sensi</literal> は感度関数を計算します.
             <literal>G</literal> および <literal>K</literal> が
             状態空間形式で指定される場合,
             システムは一般的に最小実現を返します.
             計算は <literal>lft</literal> により行われます.
             例えば, <literal>Se</literal> は
-            コマンド 
+            コマンド
             <literal> P = augment(G,'S')</literal>, <literal>Se=lft(P,K)</literal>
             により指定することができます.
-            <literal>flag</literal> = <literal>'i'</literal>の場合, 
+            <literal>flag</literal> = <literal>'i'</literal>の場合,
             <literal>[Si,Ri,Ti]=sensi(G,K,'i')</literal>は
             入力感度関数を返します.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 [Se;Re;Te]= [inv(eye()+G*K);K*inv(eye()+G*K);G*K*inv(eye()+G*K)];
 [Si;Ri;Ti]= [inv(eye()+K*G);G*inv(eye()+K*G);K*G*inv(eye()+K*G)];
  ]]></programlisting>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 G=ssrand(1,1,3);K=ssrand(1,1,3);
 [Se,Re,Te]=sensi(G,K);
 Se1=inv(eye()+G*K);  //Other way to compute

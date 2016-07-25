@@ -29,7 +29,7 @@
             <literal>filebrowser</literal> allows to browse the file sand directories of the system directly from Scilab.
         </para>
         <para>
-            <literal>filebrowser</literal> has several features: 
+            <literal>filebrowser</literal> has several features:
             <itemizedlist>
                 <listitem><para>
                         A nice and easy file browser
@@ -58,7 +58,7 @@
                     </para>
                 </listitem>
                 <listitem><para>
-                        Open with the system default application            
+                        Open with the system default application
                         <para/>
                     </para>
                 </listitem>
@@ -105,7 +105,7 @@
     </refsection>
     <refsection>
         <title>Example</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 filebrowser();
  ]]></programlisting>
     </refsection>

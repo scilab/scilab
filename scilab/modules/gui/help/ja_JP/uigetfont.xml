@@ -27,7 +27,7 @@
             <varlistentry>
                 <term>defaultfontsize</term>
                 <listitem>
-                    <para>スカラー: 
+                    <para>スカラー:
                         ダイアログに表示する
                         選択用フォントの大きさのデフォルト値.
                     </para>
@@ -36,8 +36,8 @@
             <varlistentry>
                 <term>defaultbold</term>
                 <listitem>
-                    <para>論理値: 
-                        ダイアログのbold属性のデフォルト値 
+                    <para>論理値:
+                        ダイアログのbold属性のデフォルト値
                         (ボールドフォントの場合は %T,それ以外は %F).
                     </para>
                 </listitem>
@@ -45,7 +45,7 @@
             <varlistentry>
                 <term>defaultitalic</term>
                 <listitem>
-                    <para>論理値: 
+                    <para>論理値:
                         ダイアログのitalic属性のデフォルト値
                         (斜体フォントの場合は %T, それ以外は %F).
                     </para>
@@ -94,7 +94,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 uigetfont()
 uigetfont("arial")
 uigetfont("arial", 24)

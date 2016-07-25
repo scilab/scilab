@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -39,10 +39,10 @@
         <title>説明</title>
         <para>
             線形システムの平衡実現 <literal>sl=[A,B,C,D]</literal>. <literal>sl</literal>
-            は連続時間または離散時間状態空間システムとすることができます. 
+            は連続時間または離散時間状態空間システムとすることができます.
             sl は安定と仮定されます.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 slb=[inv(U)*A*U ,inv(U)*B , C*U , D]
  ]]></programlisting>
         <para>
@@ -54,7 +54,7 @@ slb=[inv(U)*A*U ,inv(U)*B , C*U , D]
     </refsection>
     <refsection>
         <title>例s</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=diag([-1,-2,-3,-4,-5]);B=rand(5,2);C=rand(1,5);
 sl=syslin('c',A,B,C);
 [slb,U]=balreal(sl);

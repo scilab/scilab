@@ -57,16 +57,16 @@
         <title>Description</title>
         <para>
             <literal>sys=mrfit(w,mag,order,weight)</literal> returns a bi-stable transfer function
-            <literal>G(s)=sys=num/den</literal>, of of given <literal>order</literal> such that 
-            its frequency response magnitude <literal>abs(G(w(i)))</literal> 
-            matches <literal>mag(i)</literal> i.e. <literal>abs(freq(num,den,%i*w))</literal> should be 
+            <literal>G(s)=sys=num/den</literal>, of of given <literal>order</literal> such that
+            its frequency response magnitude <literal>abs(G(w(i)))</literal>
+            matches <literal>mag(i)</literal> i.e. <literal>abs(freq(num,den,%i*w))</literal> should be
             close to <literal>mag</literal>.
             <literal>weight(i)</literal> is the weight given to <literal>w(i)</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 w=0.01:0.01:2;
 s=poly(0,'s');
 G=syslin('c',2*(s^2+0.1*s+2),(s^2+s+1)*(s^2+0.3*s+1)); // syslin('c',Num,Den);

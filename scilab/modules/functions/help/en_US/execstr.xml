@@ -55,7 +55,7 @@
             <varname>instr</varname>.
         </para>
         <note>
-            Note that <varname>instr</varname> should not make use of continuation marks (..) 
+            Note that <varname>instr</varname> should not make use of continuation marks (..)
         </note>
         <para>
             If the <literal>'errcatch'</literal> flag is not present, error handling works as usual.

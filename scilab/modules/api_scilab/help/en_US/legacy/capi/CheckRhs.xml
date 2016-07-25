@@ -61,7 +61,7 @@
             This function has been replaced by <link linkend="CheckInputArgument">CheckInputArgument</link>.
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
         <programlisting role="code_gateway"><![CDATA[
@@ -78,7 +78,7 @@ int sci_my_function(char *fname, unsigned long l)
 }
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

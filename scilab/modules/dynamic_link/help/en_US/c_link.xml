@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- * Copyright (C) DIGITEO - 2011 - Allan CORNET 
+ * Copyright (C) DIGITEO - 2011 - Allan CORNET
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -82,7 +82,7 @@
             '  for (k = 0; k &lt; *n; ++k) '
             '      c[k] = a[k] + b[k];'
             '  return(0);}'];
-            
+
             mputl(f1, TMPDIR + '/fun1.c');
             //creating the shared library (a gateway, a Makefile and a loader are
             //generated.
@@ -91,7 +91,7 @@
             exec loader.sce;
             // show link
             link('show')
-            
+
             [test, ilib] = c_link('ext1c') // check if 'ext1c' symbol is linked in scilab (it returns %T, ilib equals to 0)
             c_link('ext1c', -1) // check if 'ext1c' linked in scilab in current library (last used) (it returns %T)
             c_link('ext1c', 0) // check in library (id eqs 0) if 'ext1c' is linked (it returns %T)

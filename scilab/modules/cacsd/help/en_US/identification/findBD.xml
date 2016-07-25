@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -207,10 +207,10 @@
         <title>Description</title>
         <para>
             findBD  function for estimating the initial state and the system
-            matrices B and D of a discrete-time system, using SLICOT routine 
+            matrices B and D of a discrete-time system, using SLICOT routine
             IB01CD.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
    [x0,Br,V,rcnd] = findBD(1,1,1,A,C,Y,U)
 [x0,Br,Dr,V,rcnd] = findBD(1,1,2,A,C,Y,U)
       [Br,V,rcnd] = findBD(2,1,1,A,C,Y,U)
@@ -232,13 +232,13 @@
         <para>
             The model structure is :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 x(k+1) = Ax(k) + Bu(k),   k >= 1,
 y(k)   = Cx(k) + Du(k),
  ]]></programlisting>
         <para>
-            where 
-            
+            where
+
             x(k)  is the  n-dimensional state vector (at time k),
         </para>
         <para>
@@ -282,7 +282,7 @@ y(k)   = Cx(k) + Du(k),
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
       0.1, 0,  -0.1,-0.1;

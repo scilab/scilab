@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -30,7 +30,7 @@
         <!--Lib_name: integerExample-->
         <!--Func_list: integerExample-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway"><![CDATA[ 
+        <programlisting role="code_gateway"><![CDATA[
 #include "api_scilab.h"
 
 int integerExample(char *fname,void* pvApiCtx)
@@ -297,7 +297,7 @@ int integerExample(char *fname,void* pvApiCtx)
 			break;
 		}
 	}
-    
+
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
 	return 0;
 }
@@ -305,7 +305,7 @@ int integerExample(char *fname,void* pvApiCtx)
     </refsection>
     <refsection>
         <title>Scilab test script</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+        <programlisting role="code_scilab"><![CDATA[
 i8_1 = int8(1);
 i8_2 = int8([1,2,3;4,5,6]);
 ui8_1 = uint8(1);

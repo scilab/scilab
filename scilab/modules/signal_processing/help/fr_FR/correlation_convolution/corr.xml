@@ -8,7 +8,7 @@
         <title>Syntax</title>
         <synopsis>[cov,Mean]=corr(x,[y],nlags)
             [cov,Mean]=corr('fft',xmacro,[ymacro],n,sect)
-            
+
             [w,xu]=corr('updt',x1,[y1],w0)
             [w,xu]=corr('updt',x2,[y2],w,xu)
             ...
@@ -91,8 +91,8 @@
         <para>
             Computes
         </para>
-        <programlisting role=""><![CDATA[ 
-         n - m 
+        <programlisting role=""><![CDATA[
+         n - m
          ====
          \                                       1
 cov(m) =  >   (x(k) - xmean) (y(m+k) - ymean) * ---
@@ -116,7 +116,7 @@ cov(m) =  >   (x(k) - xmean) (y(m+k) - ymean) * ---
                         <literal>[cov,Mean]=corr(x,[y],nlags)</literal> returns the first nlags
                         correlation coefficients and Mean = <literal>mean(x)</literal>
                         (mean of <literal>[x,y]</literal> if <literal>y</literal> is an argument).
-                        The sequence <literal>x</literal> (resp. <literal>y</literal>) is assumed real, and <literal>x</literal> 
+                        The sequence <literal>x</literal> (resp. <literal>y</literal>) is assumed real, and <literal>x</literal>
                         and <literal>y</literal> are of same dimension n.
                     </para>
                 </listitem>
@@ -129,7 +129,7 @@ cov(m) =  >   (x(k) - xmean) (y(m+k) - ymean) * ---
                     </para>
                     <itemizedlist>
                         <listitem>
-                            <para> 
+                            <para>
                                 a function of type <literal>[xx]=xmacro(sect,istart)</literal> which
                                 returns a vector <literal>xx</literal> of dimension
                                 <literal>nsect</literal> containing the part of the sequence with
@@ -154,7 +154,7 @@ cov(m) =  >   (x(k) - xmean) (y(m+k) - ymean) * ---
             <varlistentry>
                 <term>Updating method</term>
                 <listitem>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 [w,xu]=corr('updt',x1,[y1],w0)
 [w,xu]=corr('updt',x2,[y2],w,xu)
  ...
@@ -164,7 +164,7 @@ wk=corr('updt',xk,[yk],w,xu)
                         With this syntax the calculation is updated at each
                         call to <literal>corr</literal>.
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 w0 = 0*ones(1,2*nlags);
 nlags = power of 2.
  ]]></programlisting>
@@ -182,7 +182,7 @@ nlags = power of 2.
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=%pi/10:%pi/10:102.4*%pi;
 rand('seed');rand('normal');
 y=[.8*sin(x)+.8*sin(2*x)+rand(x);.8*sin(x)+.8*sin(1.99*x)+rand(x)];
@@ -215,7 +215,7 @@ zz=real(fft(w2,1))/256;c6=zz(1:32);
 norm(c6-c2,1)
 rand('unif')
 
-// test for Fortran or C external 
+// test for Fortran or C external
 //
 deff('[y]=xmacro(sec,ist)','y=sin(ist:(ist+sec-1))');
 x=xmacro(100,1);

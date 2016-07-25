@@ -40,7 +40,7 @@
             <varlistentry>
                 <term>T</term>
                 <listitem>
-                    <para>the current temperature. This parameter is ignored but is 
+                    <para>the current temperature. This parameter is ignored but is
                         there to make all the neighbour function consistent.
                     </para>
                 </listitem>
@@ -75,11 +75,11 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function y = rastrigin(x)
   y = x(1)^2+x(2)^2-cos(12*x(1))-cos(18*x(2));
 endfunction
-    
+
 x0          = [2 2];
 Proba_start = 0.7;
 It_Pre      = 100;

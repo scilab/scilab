@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -98,7 +98,7 @@
         <!--Lib_name: list_createlist-->
         <!--Func_list: list_createlist-->
         <title>ゲートウェイのソース</title>
-        <programlisting role="code_gateway"><![CDATA[ 
+        <programlisting role="code_gateway"><![CDATA[
 #include "api_scilab.h"
 int list_createlist(char *fname,void* pvApiCtx)
 {
@@ -208,7 +208,7 @@ int list_createlist(char *fname,void* pvApiCtx)
     </refsection>
     <refsection>
         <title>Scilab テストスクリプト</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+        <programlisting role="code_scilab"><![CDATA[
 size_ref    = 8;
 type_ref    = ["constant","string","int16","polynomial", "sparse", "boolean", "boolean sparse", "list"];
 dim_ref     = list([3,2],[2,3],[2,3],[3,2],[3,10],[3,3],[3,10],3);

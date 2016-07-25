@@ -71,7 +71,7 @@
     <refsection>
         <title>Description</title>
         <para>Copy an object to another place (same file or not).</para>
-        <para>Before copying a newly created object, the file must be flushed.</para> 
+        <para>Before copying a newly created object, the file must be flushed.</para>
     </refsection>
     <refsection>
         <title>Examples</title>

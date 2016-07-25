@@ -83,10 +83,10 @@ fft(A,-1[,...])
                         role="bold">Y = fft(X,[],dim)</emphasis> Matlab syntax is equivalent to <emphasis
                         role="bold">Y = fft(X,dim) </emphasis> Scilab syntax.
                     </para>
-                    
+
                 </listitem>
             </varlistentry>
-            
+
         </variablelist>
     </refsection>
 </refentry>

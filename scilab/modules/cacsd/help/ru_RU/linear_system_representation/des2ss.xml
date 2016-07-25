@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -63,8 +63,8 @@
             Descriptor to state-space transform.
         </para>
         <para>
-            <literal>Sl=des2ss(A,B,C,D,E)</literal> returns 
-            a linear system <literal>Sl</literal> equivalent to the descriptor system 
+            <literal>Sl=des2ss(A,B,C,D,E)</literal> returns
+            a linear system <literal>Sl</literal> equivalent to the descriptor system
             <literal>(E,A,B,C,D)</literal>.
         </para>
         <para>
@@ -73,7 +73,7 @@
         </para>
         <para>
             <literal>Sl=des2ss(Des)</literal> with <literal>Des=list('des',A,B,C,D,E)</literal> returns
-            a linear system <literal>Sl</literal> in state-space form with possibly 
+            a linear system <literal>Sl</literal> in state-space form with possibly
             a polynomial <literal>D</literal> matrix.
         </para>
         <para>
@@ -82,7 +82,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');G=[1/(s-1),s;1,2/s^3];
 S1=tf2des(G);S2=tf2des(G,"withD");
 W1=des2ss(S1);W2=des2ss(S2);

@@ -30,7 +30,7 @@
             においてユーザにより入力されたコマンドの一覧を出力します.
         </para>
         <para>
-            <literal>browsehistory</literal> には以下の機能があります: 
+            <literal>browsehistory</literal> には以下の機能があります:
             <itemizedlist>
                 <listitem>
                     <para>

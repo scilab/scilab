@@ -16,11 +16,11 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>warning('string')</literal> affiche le message 
+            <literal>warning('string')</literal> affiche le message
             <literal>'string'</literal> comme avertissement à l'utilisateur.
         </para>
         <para>
-            <literal>warning(string_matrix)</literal> affiche chaque élément de <literal>string_matrix</literal> 
+            <literal>warning(string_matrix)</literal> affiche chaque élément de <literal>string_matrix</literal>
             comme avertissement à l'utilisateur.
         </para>
         <para>
@@ -35,16 +35,16 @@
         <para>
             <literal>'query'</literal> récupère l'état actuel des messages d'avertissement <literal>'on'</literal>, <literal>'off'</literal> ou <literal>'stop'</literal>.
         </para>
-<para>
+        <para>
             <literal>warning("on")</literal>, <literal>warning("off")</literal> et <literal>warning("stop")</literal> affectent aussi l'affichage des messages d'avertissement pour les fonctions programmées en dur en plus des messages d'avertissement pour les scripts.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 w_flag = warning("query"); // enregistre l'état des messages d'avertissement
 
-warning('on') 
+warning('on')
 warning('ceci est un avertissement')
 warning('off')
 warning('ceci est un avertissement')

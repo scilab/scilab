@@ -74,7 +74,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rand("seed",5);
 rand("normal");
 q=[.03 0.01;.01 0.03];

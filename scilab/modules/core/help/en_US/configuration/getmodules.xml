@@ -33,7 +33,7 @@ find(modules=="core");
 with_module("core");
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

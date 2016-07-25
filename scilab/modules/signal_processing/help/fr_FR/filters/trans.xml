@@ -51,7 +51,7 @@
                 <listitem>
                     <para>2-vector of discrete cut-off frequencies
                         (i.e.,<literal>0&lt;frq&lt;.5</literal>). see description
-                        for details. 
+                        for details.
                     </para>
                 </listitem>
             </varlistentry>

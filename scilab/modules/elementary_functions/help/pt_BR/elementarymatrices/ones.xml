@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -51,7 +51,7 @@
                 <listitem>
                     <para>
                         retorna uma matriz <literal>(m1,m2)</literal> cujas entradas
-                        são todas 1. 
+                        são todas 1.
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,7 +60,7 @@
                 <listitem>
                     <para>
                         retorna uma matriz <literal>(m1,m2,..,mn)</literal> cujas
-                        entradas são todas 1. 
+                        entradas são todas 1.
                     </para>
                 </listitem>
             </varlistentry>
@@ -90,7 +90,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 ones(3)
 ones(3,3)
 ones(2,3,2)

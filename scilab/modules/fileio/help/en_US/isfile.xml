@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -35,7 +35,7 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        a matrix of boolean (<constant>%t</constant> if <varname>filenames</varname> are 
+                        a matrix of boolean (<constant>%t</constant> if <varname>filenames</varname> are
                         existing files).
                     </para>
                 </listitem>
@@ -53,9 +53,9 @@
         <title>Examples</title>
         <programlisting role="example">
             filenames = ls(SCI)
-            
+
             x = isfile(filenames)
-            
+
             isfile(SCI + '/etc')
             isdir(SCI + '/etc')
         </programlisting>

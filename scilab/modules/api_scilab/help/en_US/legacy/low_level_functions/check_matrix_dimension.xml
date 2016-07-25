@@ -60,7 +60,7 @@
             arguments and prints input dimensions and several test results.
         </para>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 #include "api_scilab.h"
 #include "sciprint.h"
 
@@ -136,7 +136,7 @@ int check_matrix_dimension(char * fname)
     <refsection>
         <title>Scilab test script</title>
         <programlisting role="code_scilab">
-            <![CDATA[ 
+            <![CDATA[
 check_matrix_dimension([1,2,3;4,5,6]);
 check_matrix_dimension([1,2,3]);
 check_matrix_dimension([1;2;3]);

@@ -16,7 +16,7 @@
             <varlistentry>
                 <term>v  </term>
                 <listitem>
-                    <para>un vecteur, une matrice ou une hypermatrice 
+                    <para>un vecteur, une matrice ou une hypermatrice
                     </para>
                 </listitem>
             </varlistentry>
@@ -62,7 +62,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=[1 2 3;4 5 6]
 matrix(a,1,6)
 matrix(a,1,-1)

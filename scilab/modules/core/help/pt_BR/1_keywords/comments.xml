@@ -10,7 +10,7 @@
             Uma seqüência de duas barras <literal> // </literal> fora de uma
             definição de string marca o início de um comentário. As barras, tanto
             quanto o restante dos caracteres até o fim das linhas não são
-            interpretados. 
+            interpretados.
         </para>
         <para>
             Another way to comment a block of code is to use /* at the beginning
@@ -24,7 +24,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 g=9.81// a gravidade
 
 text='a//b'

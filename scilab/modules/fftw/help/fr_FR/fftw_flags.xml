@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,11 +13,11 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" 
-          xmlns:xlink="http://www.w3.org/1999/xlink" 
-          xmlns:svg="http://www.w3.org/2000/svg" 
-          xmlns:mml="http://www.w3.org/1998/Math/MathML" 
-          xmlns:db="http://docbook.org/ns/docbook" 
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
           xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="fftw_flags">
     <refnamediv>
         <refname>fftw_flags</refname>
@@ -102,15 +102,15 @@
                     particulier pour les transformations importantes).
                 </para>
             </listitem>
-            
+
             <listitem>
                 <para>FFTW_EXHAUSTIVE ou 8. Comme "FFTW_PATIENT", mais
                     considère une gamme encore plus large d'algorithmes, visant a
                     trouver le plan optimal , mais avec un temps de planification
-                    sensiblement augmenté. 
+                    sensiblement augmenté.
                 </para>
             </listitem>
-            
+
         </itemizedlist>
         <para>
             Remarque : Lors de l'utilisation des méthodes
@@ -121,7 +121,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=rand(1, 2^9 + 2^15);
 fftw_forget_wisdom();
 fftw_flags("FFTW_ESTIMATE");

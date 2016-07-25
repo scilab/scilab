@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -26,7 +26,7 @@
         <title>説明</title><para>
             スペクトル密度行列 <literal>phi(s)</literal>を指定すると:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
             -1                   -1
 R + C*(s*I-A) * B  +  B'*(-s*I-A') * C'  with R=D+D' > 0
  ]]></programlisting>
@@ -40,13 +40,13 @@ R + C*(s*I-A) * B  +  B'*(-s*I-A') * C'  with R=D+D' > 0
         </para>
         　　	    <para>
             となるような
-            <literal>W0</literal> および <literal>L</literal> 
+            <literal>W0</literal> および <literal>L</literal>
             を計算します.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=diag([-1,-2]);B=[1;1];C=[1,1];D=1;s=poly(0,'s');
 W1=syslin('c',A,B,C,D);
 phi=gtild(W1,'c')+W1;

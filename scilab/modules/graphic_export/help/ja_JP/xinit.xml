@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -40,8 +40,8 @@
     <refsection>
         <title>説明</title>
         <para>
-            Postscript, Xfig, Gif または PPM ドライバの場合, 
-            <literal>FileName</literal> を指定する必要があります. 
+            Postscript, Xfig, Gif または PPM ドライバの場合,
+            <literal>FileName</literal> を指定する必要があります.
             ファイル名で指定されたファイルに全てのグラフィック処理が記録されます.
         </para>
         <para>
@@ -52,7 +52,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 driver("Pos")
 xinit("foo.ps")
 plot2d()

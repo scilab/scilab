@@ -12,7 +12,7 @@
         <para>
             A utiliser de la façon suivante :
         </para>
-        <programlisting><![CDATA[ 
+        <programlisting><![CDATA[
     select expr0,
     case expr1 then
         instructions 1

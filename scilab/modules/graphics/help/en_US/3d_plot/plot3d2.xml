@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -302,7 +302,7 @@ e.color_flag=2;
             e.data=TL;
             e.color_flag=2;
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>

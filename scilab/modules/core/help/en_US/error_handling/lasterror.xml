@@ -76,9 +76,9 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 ierr=execstr('a=zzzzzzz','errcatch')
-if ierr>0 then 
+if ierr>0 then
   disp(lasterror())
 end
  ]]></programlisting>

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -22,7 +22,7 @@
         <title>Seqüência de Chamamento</title>
         <synopsis>evals=spec(A)
             [R,diagevals]=spec(A)
-            
+
             evals=spec(A,B)
             [alpha,beta]=spec(A,B)
             [alpha,beta,Z]=spec(A,B)
@@ -78,7 +78,7 @@
                 <term>R</term>
                 <listitem>
                     <para>matriz quadrada de reais ou complexos invertível, autovetores
-                        direitos da matriz 
+                        direitos da matriz
                     </para>
                 </listitem>
             </varlistentry>
@@ -86,7 +86,7 @@
                 <term>Q</term>
                 <listitem>
                     <para>matriz quadrada de reais ou complexos invertível, autovetores
-                        esquerdos do feixe 
+                        esquerdos do feixe
                     </para>
                 </listitem>
             </varlistentry>
@@ -233,7 +233,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // AUTOVALORES DA MATRIZ
 A=diag([1,2,3]);
 X=rand(3,3);

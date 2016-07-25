@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - JPC
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -35,14 +35,14 @@
                         この間巣は,Armaxプロセス<literal> A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal>
                         を符号化するScilab tlistを作成します.
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 -->ar=armac([1,2],[3,4],1,1,1,sig);
--->ar('a')   
+-->ar('a')
  ans  =
 !   1.    2. !
 -->ar('sig')
  ans  =
-    1.  
+    1.
  ]]></programlisting>
                 </listitem>
             </varlistentry>
@@ -58,7 +58,7 @@
                 <term>armap_p(ar [,out])</term>
                 <listitem>
                     <para>
-                        <literal>ar</literal> 
+                        <literal>ar</literal>
                         に関するarmax方程式を多項式行列表示で表示します.
                     </para>
                 </listitem>
@@ -121,18 +121,18 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Example extracted from the demo arma3.dem.sce in the cacsd module
-// Spectral power estimation 
-// ( form Sawaragi et all) 
+// Spectral power estimation
+// ( form Sawaragi et all)
 m = 18;
 a = [1,-1.3136,1.4401,-1.0919,+0.83527];
 b = [0.0,0.13137,0.023543,0.10775,0.03516];
 u = rand(1,1000,'n');
 z = arsimul(a,b,[0],0,u);
-//----Using macro mese 
+//----Using macro mese
 [sm,fr]=mese(z,m);
-//----The theorical result 
+//----The theorical result
 function gx=gxx(z,a,b)
   w  = exp(-%i*2*%pi*z*(0:4))'
   gx = abs(b*w)^2/(abs(a*w)^2);

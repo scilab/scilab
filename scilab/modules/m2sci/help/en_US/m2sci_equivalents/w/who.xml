@@ -46,7 +46,7 @@ who
     <refsection>
         <title>Particular cases</title>
         <para>
-            Scilab <emphasis role="bold">who</emphasis> is an equivalent for Matlab <emphasis role="bold">who</emphasis> just when called as follows: <emphasis role="bold">who</emphasis> or <emphasis role="bold">who("global")</emphasis> 
+            Scilab <emphasis role="bold">who</emphasis> is an equivalent for Matlab <emphasis role="bold">who</emphasis> just when called as follows: <emphasis role="bold">who</emphasis> or <emphasis role="bold">who("global")</emphasis>
         </para>
     </refsection>
 </refentry>

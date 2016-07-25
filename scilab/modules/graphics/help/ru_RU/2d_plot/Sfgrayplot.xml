@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -83,17 +83,17 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>Sfgrayplot</function> - это то же самое, что и 
+            Функция <function>Sfgrayplot</function> - это то же самое, что и
             <function>fgrayplot</function>, но график сглажен. Для сглаживания
             используется функция <function>fec</function>. Поверхность строится
-            в предположении, что она линейна на множестве треугольников, 
+            в предположении, что она линейна на множестве треугольников,
             построенных из сетки (здесь с <literal>n1=5</literal>, <literal>n2=3</literal>):
         </para>
-        <screen><![CDATA[ 
+        <screen><![CDATA[
 _____________
 | /| /| /| /|
-|/_|/_|/_|/_| 
-| /| /| /| /| 
+|/_|/_|/_|/_|
+| /| /| /| /|
 |/_|/_|/_|/_|
  ]]></screen>
         <para>
@@ -113,7 +113,7 @@ _____________
     <refsection>
         <title>Примеры</title>
         <scilab:image>Sfgrayplot();</scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Пример №1: построение 4 поверхностей
 function z=surf1(x,y), z=x*y, endfunction
 function z=surf2(x,y), z=x^2-y^2, endfunction
@@ -171,7 +171,7 @@ Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
 xtitle("f(x,y) = x^2+y^2")
 drawnow();
 ]]></scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Пример №2: построение surf3 и добавление некоторых контурных линий
 function z=surf3(x,y), z=x^3+y^2, endfunction
 clf()
@@ -200,7 +200,7 @@ xtitle("f(x,y) = x^3+y^2")
 drawnow();
 show_window()
 ]]></scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Пример №3: построение surf3 и использование необязательных аргументов
 //            zminmax и colout для ограничения графика в -0.5 <= z <= 1
 function z=surf3(x,y), z=x^3+y^2, endfunction

@@ -224,10 +224,10 @@ a.grid=[5 5];
             function J=dFdx(x)
             J=1-dt*(2*x-3*x^2);
             endfunction
-            
+
             r = 0.04257794928862307 ;
             dt = 10;
-            
+
             [x,v,info]=fsolve(r,list(feuler,r),dFdx);
             [x,v,info]=fsolve(1,list(feuler,r),dFdx);
             x=linspace(0,1,1000);

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -30,7 +30,7 @@
                 <term>strings</term>
                 <listitem>
                     <para>vetor de strings de dimensão n, strings(i) é a legenda da
-                        i-ésima curva 
+                        i-ésima curva
                     </para>
                 </listitem>
             </varlistentry>
@@ -67,7 +67,7 @@
                                         <term>1 ou "ur"</term>
                                         <listitem>
                                             <para>as legendas são impressas no canto superior
-                                                direito. 
+                                                direito.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -75,7 +75,7 @@
                                         <term>2 ou "ul"</term>
                                         <listitem>
                                             <para>as legendas são impressas no canto superior
-                                                esquerdo. 
+                                                esquerdo.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -83,7 +83,7 @@
                                         <term>3 ou "ll"</term>
                                         <listitem>
                                             <para>as legendas são impressas no canto inferior
-                                                esquerdo. 
+                                                esquerdo.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -91,7 +91,7 @@
                                         <term>4 ou "lr"</term>
                                         <listitem>
                                             <para>as legendas são impressas no canto inferior
-                                                direito. 
+                                                direito.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -149,10 +149,10 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Exemplo 1
 t=0:0.1:2*%pi;
-plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3],opt="lr")
 
 scf() ;
@@ -164,7 +164,7 @@ legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt="?")
 scf() ;
 subplot(221)
 t=0:0.1:2*%pi;
-plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=3 )
 
 subplot(222)
@@ -179,7 +179,7 @@ legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=1, font_size=2 )
 
 subplot(224)
 t=0:0.1:2*%pi;
-plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
  ]]></programlisting>
     </refsection>

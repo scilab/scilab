@@ -36,27 +36,27 @@
         <programlisting role="example">
             // Obtenir le chemin Modelica actuel
             [modelica_path, modelica_directory] = getModelicaPath()
-            
+
             // Pour définir le chemin du dossier contenant les librairies Modelica
             // Elle doit être globale pour être appelée depuis les toolbox Atoms
             global %MODELICA_USER_LIBS
             %MODELICA_USER_LIBS = SCI + "/modules/xcos/modelica_library";
-            
+
             // Lancer Xcos
             xcos();
             // Charger le diagamme aux blocs Modelica blocks
-            
+
             [modelica_path, modelica_directory] = getModelicaPath()
-            
+
             // Pour ajouter un nouveau dossier Modelica
             %MODELICA_USER_LIBS = [%MODELICA_USER_LIBS , SCI + "/modules/xcos/my_modelica_blocks/Electrical_network"];
-            
+
             // Lancer Xcos
             xcos();
             // Charger le diagamme aux blocs Modelica blocks
-            
+
             [modelica_path, modelica_directory] = getModelicaPath()
-            
+
         </programlisting>
     </refsection>
     <refsection id="SeeAlso_MODELICA_USER_LIBS">

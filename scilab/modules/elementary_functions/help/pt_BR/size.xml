@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -70,7 +70,7 @@
                         <literal>1</literal>x<literal>2</literal> [número de linhas, número
                         de colunas]. Chamado com LHS= 2, retorna <literal>nr,nc</literal> =
                         [número de linhas, número de colunas]. <literal>sel</literal> pode
-                        ser usado para especficar a dimensão a ser recebida: 
+                        ser usado para especficar a dimensão a ser recebida:
                     </para>
                 </listitem>
             </varlistentry>
@@ -124,7 +124,7 @@
                         de dimensões da hipermatriz. <literal> [n1,n2,...nn]=size(x)
                         </literal>
                         retorna as dimensões da hipermatriz. <literal>
-                            ni=size(x,i) 
+                            ni=size(x,i)
                         </literal>
                         retorna a i-ésima dimensão e
                         <literal>size(x,'*') </literal> retorna o produto de
@@ -136,7 +136,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [n,m]=size(rand(3,2))
 [n,m]=size(['a','b';'c','d'])
 x=ssrand(3,2,4);[ny,nu]=size(x)

@@ -79,7 +79,7 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 x = 1:5 + %pi;
-save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones 	
+save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones
 
 // We open the file
 a = h5open(TMPDIR + "/x.sod");

@@ -78,7 +78,7 @@ m_circle();
             nyquist(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
             m_circle();
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 clf();
 s=poly(0,'s')

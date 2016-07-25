@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -59,7 +59,7 @@
             は多項式行列 <literal>Gt(s)=G(-s)'</literal>を返します.
         </para>
         <para>
-            <literal>G</literal> が多項式行列 (または多項式)の場合,  
+            <literal>G</literal> が多項式行列 (または多項式)の場合,
             <literal>Gt=gtild(G,'d')</literal> は多項式行列
             <literal>Gt=G(1/z)*z^n</literal> を返します.
             ただし, n は <literal>G</literal> の最大次数です.
@@ -71,9 +71,9 @@
             状態空間表現を返します.
             すなわち, <literal>Gt</literal> の <literal>ABCD</literal> 行列は,
             <literal>A',-C', B', D'</literal> となります.
-            <literal>G</literal> がプロパーでない場合 
+            <literal>G</literal> がプロパーでない場合
             (<literal> D= D(s)</literal>) ,
-            <literal>Gt</literal> の <literal>D</literal> 行列は 
+            <literal>Gt</literal> の <literal>D</literal> 行列は
             <literal>D(-s)'</literal> となります.
         </para>
         <para>
@@ -88,7 +88,7 @@
         <para>
             有理行列の場合, <literal>Gt = gtild(G,'c')</literal> は
             誘致行列 <literal>Gt(s)=G(-s)</literal> を返し,
-            <literal>Gt = gtild(G,'d')</literal> は有理行列 
+            <literal>Gt = gtild(G,'d')</literal> は有理行列
             <literal>Gt(z)= G(1/z)'</literal> を返します.
         </para>
         <para>
@@ -99,7 +99,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 連続時間
 s=poly(0,'s');G=[s,s^3;2+s^3,s^2-5]
 Gt=gtild(G,'c')
@@ -108,19 +108,19 @@ Gt=gtild(G,'d');
 Gt-horner(G,1/s)'*s^3  //離散時間解釈
 G=ssrand(2,2,3);Gt=gtild(G);   //状態空間 (G はデフォルトで連続時間系)
 clean((horner(ss2tf(G),-s))'-ss2tf(Gt))   //確認
-// 離散時間 
+// 離散時間
 z=poly(0,'z');
-Gss=ssrand(2,2,3);Gss('dt')='d'; //離散時間 
+Gss=ssrand(2,2,3);Gss('dt')='d'; //離散時間
 Gss(5)=[1,2;0,1];   //定数D行列を指定
 G=ss2tf(Gss);Gt1=horner(G,1/z)';
 Gt=gtild(Gss);
 Gt2=clean(ss2tf(Gt)); clean(Gt1-Gt2)  //確認
 // プロパーでないシステム
 z=poly(0,'z');
-Gss=ssrand(2,2,3);Gss(7)='d'; //離散時間 
+Gss=ssrand(2,2,3);Gss(7)='d'; //離散時間
 Gss(5)=[z,z^2;1+z,3];    //D(z) は多項式
 G=ss2tf(Gss);Gt1=horner(G,1/z)';  //伝達形式で計算
-Gt=gtild(Gss);    //状態空間形式で計算 
+Gt=gtild(Gss);    //状態空間形式で計算
 Gt2=clean(ss2tf(Gt));clean(Gt1-Gt2)  //確認
  ]]></programlisting>
     </refsection>

@@ -44,8 +44,8 @@
                             left"
                         </literal>
                         ,<literal>"upper right"</literal>,
-                        <literal>"lower left"</literal>, <literal>"lower right"</literal>, 
-                        <literal>"left"</literal>, <literal>"right"</literal>, 
+                        <literal>"lower left"</literal>, <literal>"lower right"</literal>,
+                        <literal>"left"</literal>, <literal>"right"</literal>,
                         <literal>"upper"</literal>, or <literal>"lower"</literal>.
                     </para>
                 </listitem>

@@ -113,13 +113,17 @@
                 <para>
                     <emphasis role="bold">3: Floor</emphasis>
                 </para>
-		<para>Rounding down the number of quantization steps (output signal is the nearest step towards <latex>-\infty</latex>)</para>
+                <para>
+                    Rounding down the number of quantization steps (output signal is the nearest step towards <latex>-\infty</latex>)
+                </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">4: Ceil</emphasis>
                 </para>
-		<para>Rounding up the number of quantization steps (output signal is the nearest step towards <latex>+\infty</latex>)</para>
+                <para>
+                    Rounding up the number of quantization steps (output signal is the nearest step towards <latex>+\infty</latex>)
+                </para>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -133,7 +137,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>
@@ -148,7 +152,7 @@
                     <emphasis role="bold">Quantization Type</emphasis>
                 </para>
                 <para> scalar with possible values 1,2,3 or 4: the method of quantization used (respectively Truncation, Floor or Ceil)</para>
-		<para>Properties : Type 'vec' of size 1.</para>
+                <para>Properties : Type 'vec' of size 1.</para>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -251,39 +255,40 @@
     </refsection>
     <refsection id="Example_QUANT_f">
         <title>Example of a sine quantized every 0.2 step with the Ceil method (using the ceil value between two steps):</title>
-	<para>
-		<link type="scilab" linkend="scilab.xcos/xcos/examples/signalprocessing_pal/QUANT_f_Example.zcos">
-			<inlinemediaobject>
-				<imageobject>
-					<imagedata align="center" fileref="../../../../examples/signalprocessing_pal/QUANT_f_Example.zcos" valign="middle"/>
-				</imageobject>
-			</inlinemediaobject>
-		</link>
-	</para>
-	<para>
-		<scilab:image><![CDATA[
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/signalprocessing_pal/QUANT_f_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/signalprocessing_pal/QUANT_f_Example.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+        <para>
+            <scilab:image><![CDATA[
 			importXcosDiagram(SCI + "/modules/xcos/examples/signalprocessing_pal/QUANT_f_Example.zcos");
 			xcos_simulate(scs_m, 4);
 			title("Quantization of a sine","fontsize",3)
 			]]></scilab:image>
-	</para>
-	</refsection><refsection id="Example_QUANT_f_Quantization_mode">
-	<title>Comparison of the different quantization modes:</title>
-	<para>
-		<link type="scilab" linkend="scilab.xcos/xcos/examples/signalprocessing_pal/QUANT_f_Example_Quantization_Mode.zcos">
-			<inlinemediaobject>
-				<imageobject>
-					<imagedata align="center" fileref="../../../../examples/signalprocessing_pal/QUANT_f_Example_Quantization_Mode.zcos" valign="middle"/>
-				</imageobject>
-			</inlinemediaobject>
-		</link>
         </para>
-	<para>
-		<scilab:image><![CDATA[
+    </refsection>
+    <refsection id="Example_QUANT_f_Quantization_mode">
+        <title>Comparison of the different quantization modes:</title>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/signalprocessing_pal/QUANT_f_Example_Quantization_Mode.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/signalprocessing_pal/QUANT_f_Example_Quantization_Mode.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+        <para>
+            <scilab:image><![CDATA[
 			importXcosDiagram(SCI + "/modules/xcos/examples/signalprocessing_pal/QUANT_f_Example_Quantization_Mode.zcos");
 			xcos_simulate(scs_m, 4);
 			title("Rounding strategy for the quantization type","fontsize",3)
 			]]></scilab:image>
-	</para>
+        </para>
     </refsection>
 </refentry>

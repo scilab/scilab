@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -18,7 +18,7 @@
         <refname>|, ||</refname>
         <refpurpose>論理和演算子</refpurpose>
     </refnamediv>
-    
+
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <para>
@@ -39,7 +39,7 @@
             while (A || B) then ... end
         </synopsis>
     </refsynopsisdiv>
-    
+
     <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
@@ -146,7 +146,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection>
         <title>説明</title>
         <para>
@@ -165,10 +165,10 @@
             Otherwise, <literal>A | B</literal> is computed.
         </para>
     </refsection>
-    
+
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A = [0 1; 1 0];
 B = [1 1; 0 0];
 spA = sparse(A);
@@ -230,7 +230,7 @@ if ( C || foo() ) then
 end
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">

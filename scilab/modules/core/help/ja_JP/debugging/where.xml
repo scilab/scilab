@@ -11,36 +11,36 @@
     <refsection>
         <title>引数</title>
         <variablelist>
-          <varlistentry>
-            <term>linenum</term>
-            <listitem>
-              <para>整数の列ベクトル</para>
-            </listitem>
+            <varlistentry>
+                <term>linenum</term>
+                <listitem>
+                    <para>整数の列ベクトル</para>
+                </listitem>
             </varlistentry>
-          <varlistentry>
-	    <term>callername</term>
-            <listitem>
-              <para>文字列の列ベクトル</para>
-            </listitem>
-          </varlistentry>
+            <varlistentry>
+                <term>callername</term>
+                <listitem>
+                    <para>文字列の列ベクトル</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>説明</title>
         <para>
-	  <code>[linenum, callername] = where()</code>は,
-          <varname>linenum</varname>および <varname>callername</varname> を返します.
-          この際,関数 <code>callername(1)</code> の <literal>linenum(1)</literal> 行目で
-	  カレントの命令がコールされ,
-          関数 <code>callername(2)</code>の <literal>linenum(2)</literal> 行目で 
-	  <code>callername(1)</code>がコールされ,...,
-          を意味します.
+            <code>[linenum, callername] = where()</code>は,
+            <varname>linenum</varname>および <varname>callername</varname> を返します.
+            この際,関数 <code>callername(1)</code> の <literal>linenum(1)</literal> 行目で
+            カレントの命令がコールされ,
+            関数 <code>callername(2)</code>の <literal>linenum(2)</literal> 行目で
+            <code>callername(1)</code>がコールされ,...,
+            を意味します.
         </para>
         <para>
-          <code>callername(i)</code> は一般には関数名ですが,
-          命令が <literal>exec</literal> ファイルまたは <literal>execstr</literal>
-	  命令の中にある場合には,
-          <literal>"exec"</literal> または <literal>"execstr"</literal> となる可能性もあります.
+            <code>callername(i)</code> は一般には関数名ですが,
+            命令が <literal>exec</literal> ファイルまたは <literal>execstr</literal>
+            命令の中にある場合には,
+            <literal>"exec"</literal> または <literal>"execstr"</literal> となる可能性もあります.
         </para>
     </refsection>
     <refsection>

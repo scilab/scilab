@@ -46,7 +46,7 @@ plot
     <refsection>
         <title>Particular cases</title>
         <para>
-            Scilab <emphasis role="bold">plot</emphasis> does not accept all the properties of the Matlab <emphasis role="bold">plot</emphasis>  
+            Scilab <emphasis role="bold">plot</emphasis> does not accept all the properties of the Matlab <emphasis role="bold">plot</emphasis>
         </para>
     </refsection>
 </refentry>

@@ -129,7 +129,7 @@ bode(frq,[rep;rep2])   //Responses of Sys and Sys2
             [frq,rep]=repfreq(Sys,frq);
             [Sys2,err]=frep2tf(frq,rep,10);
             Sys2=clean(Sys2)
-            
+
             [frq,rep2]=repfreq(Sys2,frq);
             bode(frq,[rep;rep2])
             [gsort(spec(Sys('A'))), gsort(roots(Sys2('den')))]

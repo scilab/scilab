@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -50,19 +50,19 @@
     <refsection>
         <title>Description</title>
         <para>
-            given a set of <literal>n</literal> Markov parameters stacked in the (row)-matrix 
+            given a set of <literal>n</literal> Markov parameters stacked in the (row)-matrix
             <literal>markpar</literal> of size <literal>nout</literal>X<literal>(n*nin) markp2ss</literal>
-            returns a state-space linear system <literal>sl</literal> (<literal>syslin</literal> list) 
+            returns a state-space linear system <literal>sl</literal> (<literal>syslin</literal> list)
             such that with <literal>[A,B,C,D]=abcd(sl)</literal>:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 C*B = markpar(1:nout,1:nin),
 C*A*B =markpar(1:nout,nin+1:2*nin),....
  ]]></programlisting>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 W=ssrand(2,3,4);   //random system with 2 outputs and 3 inputs
 [a,b,c,d]=abcd(W);
 markpar=[c*b,c*a*b,c*a^2*b,c*a^3*b,c*a^4*b];

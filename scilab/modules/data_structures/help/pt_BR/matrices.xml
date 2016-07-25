@@ -9,7 +9,7 @@
         <para>Matrizes são objetos básicos definidos no Scilab. Elas podem ser
             definidas como segue:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 E=[e11,e12,...,e1n;
    e21,e22,...,e2n;
         ....
@@ -23,7 +23,7 @@ E=[e11,e12,...,e1n;
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 E=[1,2;3,4]
 E=[%T,%F;1==1,1~=1]
 s=poly(0,'s');

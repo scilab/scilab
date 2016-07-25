@@ -65,7 +65,7 @@
                         </listitem>
                         <listitem>
                             <literal>"valid"</literal>, <literal>conv2</literal>
-                            computes the convolution parts without the zero-padding of <literal>A</literal>. 
+                            computes the convolution parts without the zero-padding of <literal>A</literal>.
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -133,7 +133,7 @@
     A = zeros(10,10);A(3:7,3:7) = 1;
     conv2(s,A);
 
-    //separable form 
+    //separable form
     u=[1;0;-1];v=[1 2 1];// u*v=s
     conv2(u,v,A)
     ]]></programlisting>

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -72,11 +72,11 @@
             <literal>eta=[eta1,...,etap]</literal>: structure ofeta blocks (size eta1+1)xeta1,...)
         </para>
         <para>
-            <literal>epsi</literal>'s should be &gt;=0, <literal>etai</literal>'s should be &gt;=0, <literal>infi</literal>'s should 
+            <literal>epsi</literal>'s should be &gt;=0, <literal>etai</literal>'s should be &gt;=0, <literal>infi</literal>'s should
             be &gt;=1.
         </para>
         <para>
-            If <literal>fin</literal> is a (monic) polynomial, the finite block admits the roots of 
+            If <literal>fin</literal> is a (monic) polynomial, the finite block admits the roots of
             <literal>fin</literal> as eigenvalues.
         </para>
         <para>
@@ -87,7 +87,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 F=randpencil([0,1],[2],[-1,0,1],[3]);
 [Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F);
 Qd, Zd

@@ -52,7 +52,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //create a simple demo script
 path=TMPDIR+'/foo.sce';
 mputl('disp Hello',path)

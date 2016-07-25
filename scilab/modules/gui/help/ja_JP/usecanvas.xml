@@ -48,7 +48,7 @@
                                 グラフィックディスプレイに"GLCanvas" を
                                 使用する場合は<literal>%T</literal>
                                 (uicontrols とグラフィックは混用
-                                <emphasis role="bold">できません</emphasis>).		      
+                                <emphasis role="bold">できません</emphasis>).
                             </para>
                         </listitem>
                         <listitem>
@@ -113,7 +113,7 @@
             <tr>
                 <td align="center">ATIカード</td>
                 <td align="center">フリードライバまたはバージョン&lt; 8.52.3の
-                    ATIドライバ(インストーラ バージョン &lt; 8.8 / 
+                    ATIドライバ(インストーラ バージョン &lt; 8.8 /
                     OpenGL バージョン &lt; 2.1.7873).
                 </td>
             </tr>
@@ -158,7 +158,7 @@
         <para>
             このコードは,グラフィックカードの問題に関連する潜在的な問題の多くを
             修正します.性能が低下することに注意してください.
-            <programlisting role="example"><![CDATA[ 
+            <programlisting role="example"><![CDATA[
     system_setproperty("jogl.gljpanel.nohw","");
     ]]></programlisting>
         </para>
@@ -208,7 +208,7 @@
             オプション<emphasis role="italic">Driver</emphasis>を
             <emphasis role="italic">vesa</emphasis>に変更します:
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 Section "Device"
         Identifier      "Your Graphic card"
         Driver  "vesa"
@@ -216,11 +216,11 @@ Section "Device"
 EndSection
  ]]></programlisting>
         <para>
-            残念なことに, この解はScilabをかなり遅くします. 
+            残念なことに, この解はScilabをかなり遅くします.
         </para>
         <para>
             Windowsでは, ビデオカードの製造元は定期的に更新しており,
-            <literal>pbuffers</literal>は管理されています. 
+            <literal>pbuffers</literal>は管理されています.
             最近のドライバを以下の場所からダウンロードしてください:
         </para>
         <itemizedlist>
@@ -265,8 +265,8 @@ EndSection
             Windows 2000においても何らかの問題が発生する可能性があります.
         </para>
         <para>
-            pBufferが問題を発生する場合, 
-            <literal>pbuffer</literal>が動作するのを待つのは解決策ではありません: 
+            pBufferが問題を発生する場合,
+            <literal>pbuffer</literal>が動作するのを待つのは解決策ではありません:
             <ulink url="https://jogl.dev.java.net/issues/show_bug.cgi?id=163">
                 <emphasis role="italic">
                     OpenGLコミュニティはpbufferからフレームバッファオブジェクト拡張
@@ -303,7 +303,7 @@ EndSection
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // GLJPanelの使用例 (uicontrolsおよびグラフィックの混用)
 usecanvas(%F);
 plot2d();

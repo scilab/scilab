@@ -18,7 +18,7 @@
     <Profile name="scilab">
         <!-- Welcome line -->
         <WelcomeLine useCache="true" value=""/>
-        
+
         <!-- GUI Part -->
         <PromptView useCache="true" value="org.scilab.modules.console.SciPromptView"/>
         <OutputView useCache="true" value="org.scilab.modules.console.SciOutputView"/>
@@ -34,13 +34,13 @@
         <FontStyle useCache="true" value="0"/>
         <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
         <FontSize useCache="true" value="13"/>
-        
+
         <MainWindowPosition useCache="true" x="0" y="0"/>
         <MainWindowSize useCache="true" width="650" height="550"/>
-        
+
         <!-- Help part -->
         <HelpFontSize useCache="true" value="2"/>
-        
+
         <!-- Core part -->
         <OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
         <InputCommandViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
@@ -50,20 +50,20 @@
         <CompletionWindow useCache="true" value="org.scilab.modules.console.SciCompletionWindow"/>
         <HistoryManager useCache="true" value="org.scilab.modules.console.SciHistoryManager"/>
         <MaxOutputSize useCache="true" value="10000"/>
-        
+
         <!-- Key mapping -->
         <KeyMapping>
             <Key name="VK_F1" mask="" action="HELP"/>
         </KeyMapping>
-        
+
         <!-- Key mapping -->
         <!--<Action name="PASTE" className="org.scilab.modules.console.PasteClipboard"/>-->
         <ActionMapping>
             <Action name="HELP" className="org.scilab.modules.console.HelpAction"/>
         </ActionMapping>
-        
+
     </Profile>
-    
+
     <!-- Scilab configuration under MacOSX -->
     <Profile name="macosx">
         <!-- Key mapping -->
@@ -71,5 +71,5 @@
             <Key name="VK_F1" mask="" action="HELP"/>
         </KeyMapping>
     </Profile>
-    
+
 </Setting>

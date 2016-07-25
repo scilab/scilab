@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F Delebecque
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -54,8 +54,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>lqg</literal>  computes the linear optimal LQG (H2) controller for the 
-            "augmented" plant <literal>P=syslin('c',A,B,C,D)</literal> (continuous time) or 
+            <literal>lqg</literal>  computes the linear optimal LQG (H2) controller for the
+            "augmented" plant <literal>P=syslin('c',A,B,C,D)</literal> (continuous time) or
             <literal>P=syslin('d',A,B,C,D)</literal> (discrete time).
         </para>
         <para>
@@ -63,16 +63,16 @@
             nominal plant, weighting terms and variances of noises.
         </para>
         <para>
-            <literal>K</literal> is given by the following ABCD matrices: 
+            <literal>K</literal> is given by the following ABCD matrices:
             <literal>[A+B*Kc+Kf*C+Kf*D*Kc,-Kf,Kc,0]</literal> where <literal>Kc=lqr(P12)</literal>
             is the controller gain and <literal>Kf=lqe(P21)</literal> is the filter gain.
             See example in <literal>lqg2stan</literal>.
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
   s=poly(0,'s');
   Plant=syslin('c',[1/(s+1)*s/(s-1)^2]);     //Nominal Plant
   P22=tf2ss(Plant);    //...in state-space form

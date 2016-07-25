@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -54,14 +54,14 @@
         <para>
             離散時間システムの時間応答を計算します
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 x[t+1] = Ax[t] + Bu[t].
  ]]></programlisting>
         <para>
             入力 <literal>ui</literal>は<literal>U</literal>行列の
             列です.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 U=[u0,u1,...,un];
  ]]></programlisting>
         <para>
@@ -70,8 +70,8 @@ U=[u0,u1,...,un];
         <para>
             <literal>X</literal> は出力行列です(<literal>U</literal>と同じ列の数).
         </para>
-        <programlisting role=""><![CDATA[ 
-X=[x0,x1,x2,...,xn] 
+        <programlisting role=""><![CDATA[
+X=[x0,x1,x2,...,xn]
  ]]></programlisting>
         <para>
             <literal>xf</literal> は状態量の終端値 <literal>xf=X[n+1]</literal>です.
@@ -79,7 +79,7 @@ X=[x0,x1,x2,...,xn]
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=eye(2,2);B=[1;1];
 x0=[-1;-2];
 u=[1,2,3,4,5];

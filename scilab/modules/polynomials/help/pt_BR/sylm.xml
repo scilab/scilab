@@ -64,7 +64,7 @@
             <literal>rank(sylm(a,b))=degree(a)+degree(b))</literal> e as
             instruções
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 u = sylm(a,b) \ eye(na+nb,1)
 x = poly(u(1:nb),'z','coeff')
 y = poly(u(nb+1:na+nb),'z','coeff')

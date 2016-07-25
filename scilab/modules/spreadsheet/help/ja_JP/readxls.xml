@@ -37,7 +37,7 @@
                 <term>sheets</term>
                 <listitem>
                     <para>
-                        <literal>xls</literal>型の<literal>mlist</literal>で, 
+                        <literal>xls</literal>型の<literal>mlist</literal>で,
                         <literal>sheets</literal>という名前のフィールドを有します
                     </para>
                 </listitem>
@@ -67,7 +67,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 Sheets = readxls('SCI/modules/spreadsheet/demos/xls/t1.xls')
 // シートへの基本的な処理
 typeof(Sheets)

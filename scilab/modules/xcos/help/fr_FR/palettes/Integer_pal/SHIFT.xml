@@ -120,7 +120,7 @@
                     copies du bit de signe sont insérées à gauche.
                 </para>
                 <para>
-                    Par exemple un décalage arithmétique à droite de 1 bit donne : 
+                    Par exemple un décalage arithmétique à droite de 1 bit donne :
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata fileref="../../../images/palettes/integer_pal/shift_arithmetic_right.gif"/>
@@ -142,13 +142,13 @@
                     est la valeur qui est décalée et sortie à gauche et vice et versa.
                 </para>
                 <para>
-                    Par exemple une rotation à droite de 1 bit donne : 
+                    Par exemple une rotation à droite de 1 bit donne :
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata fileref="../../../images/palettes/integer_pal/shift_rotate_right.gif"/>
                         </imageobject>
                     </inlinemediaobject>
-                    et une rotation à gauche : 
+                    et une rotation à gauche :
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata fileref="../../../images/palettes/integer_pal/shift_rotate_left.gif"/>
@@ -158,11 +158,11 @@
             </listitem>
         </itemizedlist>
         <para>
-            Le registre à décalage effectue une multiplication par 
+            Le registre à décalage effectue une multiplication par
             <literal>
                 2<superscript>n</superscript>
             </literal>
-            (décalage à gauche arithmétique) ou une division entière par 
+            (décalage à gauche arithmétique) ou une division entière par
             <literal>
                 2<superscript>n</superscript>
             </literal>
@@ -337,24 +337,24 @@
     <refsection id="Example_SHIFT">
         <title>Exemple</title>
         <para>
-            Dans cet exemple le Super bloc est un compteur binaire 3 bits. De façon à obtenir les données décimales correspondantes, 
-            les sorties 
+            Dans cet exemple le Super bloc est un compteur binaire 3 bits. De façon à obtenir les données décimales correspondantes,
+            les sorties
             <emphasis><literal>
                     Q<subscript>1</subscript>
                 </literal>
             </emphasis>
-            et 
+            et
             <emphasis><literal>
                     Q<subscript>2</subscript>
                 </literal>
             </emphasis>
-            du compteur sont respectivement 
-            décalées à gauche de un et de deux bits. Finalement la sortie 
+            du compteur sont respectivement
+            décalées à gauche de un et de deux bits. Finalement la sortie
             <emphasis><literal>
                     Q<subscript>0</subscript>
                 </literal>
             </emphasis>
-            
+
             et les sorties décalées sont additionnées.
         </para>
         <para>

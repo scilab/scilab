@@ -11,7 +11,7 @@
         <para>
             Pode ser usado dentro de instruções <literal>for</literal> ou
             <literal>while</literal> para separar a definição de variável do laço e o
-            conjunto de instruções do mesmo. 
+            conjunto de instruções do mesmo.
         </para>
     </refsection>
     <refsection>
@@ -33,7 +33,7 @@ end
 
  ]]></programlisting>
     </refsection>
-    
+
     <refsection>
         <title> Ver Também </title>
         <simplelist type="inline">

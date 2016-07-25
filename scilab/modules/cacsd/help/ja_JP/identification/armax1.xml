@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - JPC
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -46,7 +46,7 @@
             <varlistentry>
                 <term>b0f</term>
                 <listitem>
-                    <para>オプションのパラメータ. 
+                    <para>オプションのパラメータ.
                         デフォルト値は 0で,この場合,
                         係数 b0 を同定する必要があります.
                         bof=1の場合, b0 は0であると仮定され,同定されません.
@@ -100,7 +100,7 @@
         <para>
             armax1 は1次元のARXプロセスの係数を同定するために使用されます:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)
 e(t) is a 1-dimensional white noise with variance 1.
 A(z)= 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
@@ -111,14 +111,14 @@ D(z)= 1+d1*z+...+d_q*z^q  ( q=0 => D(z)=1)
             この手法については,Eykhoffの96ページ,
             "trends and progress in system identification"を参照ください.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 z(t)=[y(t-1),..,y(t-r),u(t),...,
-      u(t-s),e(t-1),...,e(t-q)] 
+      u(t-s),e(t-1),...,e(t-q)]
  ]]></programlisting>
         <para>
             および
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 coef= [-a1,..,-ar,b0,...,b_s,d1,...,d_q]'
 y(t)= coef'* z(t) + sig*e(t).
  ]]></programlisting>
@@ -131,7 +131,7 @@ y(t)= coef'* z(t) + sig*e(t).
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a = [1, -2.851, 2.717, -0.865];
 b = [0, 1, 1, 1];
 d = [1, 0.7, 0.2];

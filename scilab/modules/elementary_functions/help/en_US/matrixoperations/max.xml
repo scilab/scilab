@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -56,8 +56,8 @@
             maximum. A second argument of type string <literal>'r'</literal> or
             <literal>'c'</literal> can be used : <literal>'r'</literal> is used to get
             a row vector <literal>m</literal> such that <literal>m(j)</literal>
-            contains the maximum of the <literal>j</literal>th column of 
-            <literal>A</literal> (<literal>A(:,j)</literal>), <literal>k(j)</literal> 
+            contains the maximum of the <literal>j</literal>th column of
+            <literal>A</literal> (<literal>A(:,j)</literal>), <literal>k(j)</literal>
             gives the row indice which contain the maximum for column <literal>j</literal>.
             <literal>'c'</literal> is used for the dual operation on the rows of
             <literal>A</literal>. <literal>'m'</literal> is used for compatibility
@@ -88,7 +88,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [m,n]=max([1,3,1])
 [m,n]=max([3,1,1],[1,3,1],[1,1,3])
 [m,n]=max([3,-2,1],1)

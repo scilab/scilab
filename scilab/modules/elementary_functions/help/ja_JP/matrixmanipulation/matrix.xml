@@ -55,7 +55,7 @@
             size(v,'*')を割った数が自動的に代入されます.
         </para>
         <para>
-            <literal>prod(size(v))==prod(sizes)</literal>のようなハイパー行列の場合, 
+            <literal>prod(size(v))==prod(sizes)</literal>のようなハイパー行列の場合,
             コマンド <literal>y=matrix(v,sizes)</literal> (または
             等価な <literal>y=matrix(v,n1,n2,...nm)</literal>) は,
             <literal>v</literal>のエントリを
@@ -67,7 +67,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=[1 2 3;4 5 6]
 matrix(a,1,6)
 matrix(a,1,-1)

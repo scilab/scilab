@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -20,7 +20,7 @@
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>  
+        <para>
             Pour convertir les appels à des fonctions Matlab, <literal>mfile2sci</literal> utilise une fonctions appelée
             <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>. Toutes ces fonctions sont définies dans des <literal>sci_files</literal>
             dans le répertoire SCI/modules/m2sci/macros/sci_files/. La palette de <literal>sci_files</literal> fournie dans Scilab
@@ -67,7 +67,7 @@
             Une <literal>sci_function</literal> doit convertir cet arbre pour qu'il soit compatible avec Scilab
             en changeant name, lhsnb, lhs et/ou rhs. L'autre rôle de cette fonction est de gérer
             l'inférence. L'arbre d'entrée contient des données d'inférence dans ses rhs qui devront être mises à jour avec
-            ce que l'on peut inférer pour les lhs de cette fonction. 
+            ce que l'on peut inférer pour les lhs de cette fonction.
         </para>
         <para>
             Plusieurs fonctions ont été écrites pour aider à la rédaction de fonctions de conversion :

@@ -88,17 +88,17 @@
         <para>引数 start, count, stride および block の大きさはデータの次元数と等しい必要があります:
             <simplelist type="inline">
                 <member>
-                    start: セレクションを開始するデータ内の座標を指定. 
+                    start: セレクションを開始するデータ内の座標を指定.
                 </member>
                 <member>
-                    count: 各次元における選択されたブロックの数を指定. 
+                    count: 各次元における選択されたブロックの数を指定.
                 </member>
                 <member>
-                    stride: 各次元において連続した2つのブロックの間のシフト量を指定します. 
+                    stride: 各次元において連続した2つのブロックの間のシフト量を指定します.
                     strideは対応するブロックの次元より大きくする必要があることに注意してください.
                 </member>
                 <member>
-                    block: ブロックの次元を指定. 
+                    block: ブロックの次元を指定.
                 </member>
             </simplelist>
         </para>

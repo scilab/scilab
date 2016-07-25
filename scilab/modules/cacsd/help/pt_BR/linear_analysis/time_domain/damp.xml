@@ -100,7 +100,7 @@
             stored in the <literal>P</literal> array. If
             <literal>dt</literal> is given and non 0, the roots are first
             converted to their continuous time equivalents.
-            
+
             The <literal>wn</literal> and <literal>z</literal> arrays are ordered
             according to the increasing pulsation order.
         </para>
@@ -110,7 +110,7 @@
             <latex>\omega_n</latex>(in rad/s) and in <literal>z</literal> the
             damping factors <latex>\xi</latex> of the set of roots stored in the
             <literal>R</literal> array.
-            
+
             If <literal>dt</literal> is given and non 0, the roots are first
             converted to their continuous time equivalents.
             <literal>wn(i)</literal> and <literal>z(i)</literal> are the the

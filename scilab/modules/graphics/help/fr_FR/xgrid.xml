@@ -14,21 +14,21 @@
             <varlistentry>
                 <term>color</term>
                 <listitem>
-                    <para>entier ou vecteur. 
+                    <para>entier ou vecteur.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>thickness</term>
                 <listitem>
-                    <para>réel ou vecteur. 
+                    <para>réel ou vecteur.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>style</term>
                 <listitem>
-                    <para>entier ou vecteur. 
+                    <para>entier ou vecteur.
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,7 +51,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[0:0.1:2*%pi]';
 plot2d(sin(x))
 xgrid(5, 1, 7)

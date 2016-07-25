@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -50,7 +50,7 @@
                         </literal>
                         ou <literal>"off"</literal> . Por padrão, o esboço é
                         visível, o valor da propriedade é <literal>"on"</literal>. Se
-                        <literal>"off"</literal> o esboço não é desenhado na tela. 
+                        <literal>"off"</literal> o esboço não é desenhado na tela.
                     </para>
                 </listitem>
             </varlistentry>
@@ -77,13 +77,13 @@
                         <listitem>
                             <para>
                                 <literal>"off"</literal> significa que o Matplot não é
-                                recortado. 
+                                recortado.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
                                 <literal>"clipgrf"</literal> significa que o Matplot é
-                                recortado fora da caixa dos eixos. 
+                                recortado fora da caixa dos eixos.
                             </para>
                         </listitem>
                         <listitem>
@@ -121,7 +121,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 Matplot((1:xget("lastpattern")))
 e=gce(); // obtendo a entidade corrente
 

@@ -11,11 +11,11 @@
     <refsection>
         <title>Description</title>
         <para>
-            Crée une <literal>liste</literal> avec les éléments <literal>ai</literal> 
-            qui sont des objets Scilab arbitraires (<literal>matrice, 
+            Crée une <literal>liste</literal> avec les éléments <literal>ai</literal>
+            qui sont des objets Scilab arbitraires (<literal>matrice,
                 liste, ...
             </literal>
-            ). Le numéro de type des objets <emphasis>liste</emphasis> 
+            ). Le numéro de type des objets <emphasis>liste</emphasis>
             (renvoyé par la fonction <literal>type</literal>) est 15.
         </para>
         <para>
@@ -29,7 +29,7 @@
                 <term>extraction</term>
                 <listitem>
                     <para>
-                        <literal>[x,y,z...]=L(v)</literal> où <literal>v</literal> est un vecteur d'indices; 
+                        <literal>[x,y,z...]=L(v)</literal> où <literal>v</literal> est un vecteur d'indices;
                         <literal>[x,y,z]=L(:)</literal>  extrait tous les éléments.
                     </para>
                 </listitem>
@@ -59,7 +59,7 @@
                 <listitem>
                     <para>
                         <literal>L(0)=e</literal>. (remarque : après cette opération <literal>e</literal> est
-                        en position 1, la position des éléments initiaux de la liste étant 
+                        en position 1, la position des éléments initiaux de la liste étant
                         décalée vers la droite).
                     </para>
                 </listitem>
@@ -84,7 +84,7 @@
                 <term>nombre d'éléments d'une liste</term>
                 <listitem>
                     <para>
-                        vous pouvez utiliser <literal>nb_elm = size(L)</literal> 
+                        vous pouvez utiliser <literal>nb_elm = size(L)</literal>
                         ou encore <literal>nb_elm = length(L)</literal>.
                     </para>
                 </listitem>
@@ -93,8 +93,8 @@
                 <term>itérer avec une liste</term>
                 <listitem>
                     <para>
-                        il est possible d'utiliser une liste <literal>L</literal> pour piloter une boucle <link linkend="for">for</link> : 
-                        <literal>for e=L,...,end</literal> est une boucle avec <literal>length(L)</literal> 
+                        il est possible d'utiliser une liste <literal>L</literal> pour piloter une boucle <link linkend="for">for</link> :
+                        <literal>for e=L,...,end</literal> est une boucle avec <literal>length(L)</literal>
                         itérations, la variable <literal>e</literal> de la boucle prenant la valeur <literal>L(i)</literal>
                         à l'itération i.
                     </para>
@@ -106,7 +106,7 @@
         <title>Remarques</title>
         <para>
             Scilab propose deux autres sortes de liste, les <link linkend="tlist">tlist</link> (pour listes typées)
-            et les <link linkend="mlist">mlist</link> qui sont très utiles pour définir de nouveaux types de 
+            et les <link linkend="mlist">mlist</link> qui sont très utiles pour définir de nouveaux types de
             données avec possibilité de surcharge des opérateurs classiques (voir <link linkend="overloading">overloading</link>).
             Les tableaux multidimensionnels de scilab (les <link linkend="hypermatrices">hypermatrices</link>) sont en fait
             codés comme des <emphasis>mlist</emphasis>.
@@ -117,7 +117,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 l = list(1,["a" "b"])
 l(0) = "foo"
 l($+1) = "hello"

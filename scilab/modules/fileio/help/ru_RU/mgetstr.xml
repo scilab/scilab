@@ -4,7 +4,7 @@
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - Digiteo - Vincent LIARD
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -31,7 +31,7 @@
                 <term>n</term>
                 <listitem>
                     <para>
-                        неотрицательное целое число: количество символов, которое 
+                        неотрицательное целое число: количество символов, которое
                         необходимо прочитать.
                     </para>
                 </listitem>
@@ -41,8 +41,8 @@
                 <listitem>
                     <para>
                         целое число: дескриптор файла, возвращаемый функцией
-                        <link linkend="mopen">mopen</link>, в котором необходимо 
-                        прочитать символы. Значение <literal>-1</literal> ставится для 
+                        <link linkend="mopen">mopen</link>, в котором необходимо
+                        прочитать символы. Значение <literal>-1</literal> ставится для
                         последнего открытого файла и оно является значением по умолчанию.
                     </para>
                 </listitem>
@@ -58,13 +58,13 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>mgetstr</function> пытается прочитать 
-            <varname>n</varname> символов из файла. Если конец файла достигнут 
-            прежде, чем будут прочитаны <varname>n</varname> символов, то 
-            <function>mgetstr</function> возвращает лишь те значения, которые 
-            удалось прочитать. Как следствие, когда курсор чтения уже в конце файла, 
-            когда вызывается функция <function>mgetstr</function>, то она возвращает 
-            пустую строку, и при этом не важно  какое значение указано для 
+            Функция <function>mgetstr</function> пытается прочитать
+            <varname>n</varname> символов из файла. Если конец файла достигнут
+            прежде, чем будут прочитаны <varname>n</varname> символов, то
+            <function>mgetstr</function> возвращает лишь те значения, которые
+            удалось прочитать. Как следствие, когда курсор чтения уже в конце файла,
+            когда вызывается функция <function>mgetstr</function>, то она возвращает
+            пустую строку, и при этом не важно  какое значение указано для
             <varname>n</varname>.
         </para>
     </refsection>

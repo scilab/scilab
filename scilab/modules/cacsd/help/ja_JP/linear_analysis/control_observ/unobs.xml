@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -63,13 +63,13 @@
         </para>
         <para>
             <literal>U'*A*U</literal>の
-            <literal>(2,1)</literal> ブロック (最後 <literal>nx-n</literal> 行および最初の <literal>n</literal> 列から作成) はゼロであり, <literal>C*U</literal>の最初の 
-            <literal>n</literal> はゼロとなります. 
+            <literal>(2,1)</literal> ブロック (最後 <literal>nx-n</literal> 行および最初の <literal>n</literal> 列から作成) はゼロであり, <literal>C*U</literal>の最初の
+            <literal>n</literal> はゼロとなります.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=diag([1,2,3]);C=[1,0,0];
 unobs(A,C)
  ]]></programlisting>

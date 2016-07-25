@@ -101,7 +101,7 @@
         </para>
         <para>
             <note>
-                ヒント: <literal>h=1/p</literal>の場合, 
+                ヒント: <literal>h=1/p</literal>の場合,
                 <literal>routh_t(h, kp)</literal> は
                 <literal>routh_t(p+kp)</literal> に等価です.
             </note>

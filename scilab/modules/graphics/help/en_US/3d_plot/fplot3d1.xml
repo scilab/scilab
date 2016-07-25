@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -78,15 +78,15 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff('z=f(x,y)','z=x^4-y^4')
 x=-3:0.2:3 ;y=x ;
-clf() ;fplot3d1(x,y,f,alpha=5,theta=31)  
+clf() ;fplot3d1(x,y,f,alpha=5,theta=31)
  ]]></programlisting>
         <scilab:image>
             deff('z=f(x,y)','z=x^4-y^4')
             x=-3:0.2:3 ;y=x ;
-            clf() ;fplot3d1(x,y,f,alpha=5,theta=31)  
+            clf() ;fplot3d1(x,y,f,alpha=5,theta=31)
         </scilab:image>
     </refsection>
     <refsection role="see also">

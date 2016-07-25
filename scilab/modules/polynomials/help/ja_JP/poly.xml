@@ -28,11 +28,11 @@
                 <term>"flag"  </term>
                 <listitem>
                     <para>
-                        文字列 (<literal>"roots"</literal>, <literal>"coeff"</literal>), 
+                        文字列 (<literal>"roots"</literal>, <literal>"coeff"</literal>),
                         デフォルト値は<literal>"roots"</literal>です.
                     </para>
                     <para>
-                        短縮形も使用できます: 
+                        短縮形も使用できます:
                         <literal>"roots"</literal> について <literal>"r"</literal>,
                         <literal>"coeff"</literal> について <literal>"c"</literal>
                     </para>
@@ -49,8 +49,8 @@
                 </term>
                 <listitem>
                     <para>
-                        <literal>p</literal> は特性多項式,すなわち 
-                        <code>determinant(x*eye()-a)</code> となり, <literal>x</literal>が	
+                        <literal>p</literal> は特性多項式,すなわち
+                        <code>determinant(x*eye()-a)</code> となり, <literal>x</literal>が
                         記号変数となります.
                     </para>
                 </listitem>
@@ -91,7 +91,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,"s");
 p=1+s+2*s^2
 A=rand(2,2);

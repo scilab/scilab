@@ -6,7 +6,7 @@
 
  * Copyright (C) ENPC - Jean-Philippe Chancelier
 
- * 
+ *
 
 
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
@@ -23,64 +23,64 @@
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="xname">
-    
+
     <refnamediv>
-        
+
         <refname>xname</refname>
-        
+
         <refpurpose>カレントのグラフィックウインドウの名前を変更する</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>xname(name)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>name</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列, 新しいグラフィックウインドウの名前.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <literal>xname</literal>はカレントのグラフィックウインドウの
-            
+
             名前を変更します.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 xname("Empty graphic")
 
@@ -91,8 +91,8 @@ plot(x,sin(x))
 xname("sin(x) with x between -%pi*2 and %pi*2")
 
  ]]></programlisting>
-        
+
     </refsection>
-    
+
 </refentry>
 

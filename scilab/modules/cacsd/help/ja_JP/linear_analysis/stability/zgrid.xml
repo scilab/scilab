@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -62,7 +62,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            z平面グリッド線をプロットします: 
+            z平面グリッド線をプロットします:
             ダンピング係数(<literal>zeta</literal>)と固有周波数(<literal>wn</literal>)が
             一定の線がZ平面単位円の内部に描かれます.
         </para>

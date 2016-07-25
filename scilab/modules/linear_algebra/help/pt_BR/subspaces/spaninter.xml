@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -29,7 +29,7 @@
                 <term>A, B</term>
                 <listitem>
                     <para>duas matrizes de reais ou de complexos com igual número de
-                        linhas 
+                        linhas
                     </para>
                 </listitem>
             </varlistentry>
@@ -78,7 +78,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=rand(5,3)*rand(3,4);     // A é 5 x 4, rank=3
 B=[A(:,2),rand(5,1)]*rand(2,2);
 [X,dim]=spaninter(A,B);

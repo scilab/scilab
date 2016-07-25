@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -40,7 +40,7 @@
                 <listitem>
                     <para>
                         matriz de reais de tamanho (n1,n2). <literal>z(i,j)</literal>
-                        é o valor da superfície no ponto (x(i),y(j)). 
+                        é o valor da superfície no ponto (x(i),y(j)).
                     </para>
                 </listitem>
             </varlistentry>
@@ -97,7 +97,7 @@
                                         <term>y=0</term>
                                         <listitem>
                                             <para>sem computação, o esboço utiliza a escala anterior
-                                                (ou padrão) 
+                                                (ou padrão)
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -118,7 +118,7 @@
                                         <term>y=3</term>
                                         <listitem>
                                             <para>construídos para uma escala isométrica a partir do
-                                                argumento rect 
+                                                argumento rect
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -126,7 +126,7 @@
                                         <term>y=4</term>
                                         <listitem>
                                             <para>construídos para uma escala isométrica a partir
-                                                dos valores mínimo/máximo dos dados x e y 
+                                                dos valores mínimo/máximo dos dados x e y
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -142,7 +142,7 @@
                                         <term>y=6</term>
                                         <listitem>
                                             <para>aumentados para obtenção de bons eixos a partir
-                                                dos valores mínimo/máximo dos dados x e y 
+                                                dos valores mínimo/máximo dos dados x e y
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -150,7 +150,7 @@
                                         <term>y=7</term>
                                         <listitem>
                                             <para>como y= 1 mas os anteriores são redesenhados para
-                                                se utilizar a nova escala 
+                                                se utilizar a nova escala
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -184,7 +184,7 @@
                                         <term>z=1</term>
                                         <listitem>
                                             <para>eixos são desenhados, o eixo y é exibido à
-                                                esquerda. 
+                                                esquerda.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -207,7 +207,7 @@
                                         <term>z=4</term>
                                         <listitem>
                                             <para>eixos são desenhados centrados no meio da caixa de
-                                                moldura. 
+                                                moldura.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -269,11 +269,11 @@
             esboçada assumindo-se que é linear em um conjunto de triângulos
             construídos a partir do grid (aqui, com n1=5, n2=3):
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 _____________
 | /| /| /| /|
-|/_|/_|/_|/_| 
-| /| /| /| /| 
+|/_|/_|/_|/_|
+| /| /| /| /|
 |/_|/_|/_|/_|
  ]]></programlisting>
         <para>
@@ -293,7 +293,7 @@ _____________
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // exemplo #1
 x=-10:10; y=-10:10;m =rand(21,21);
 clf()

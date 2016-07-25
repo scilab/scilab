@@ -14,7 +14,7 @@
             </literal>
         </para>
         <para>Use-a do seguinte modo:</para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 select expressão0,
   case expressão1 then instruções1,
   case expressão2 then instruções2,

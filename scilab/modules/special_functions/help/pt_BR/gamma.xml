@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -47,7 +47,7 @@
             <literal>gamma(x)</literal> avalia a função gama em todos os
             elementos de <literal>x</literal>. A função gama é defininda por :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
             /+oo
             |   x-1  -t
 gamma(x) =  |  t    e    dt
@@ -59,7 +59,7 @@ gamma(x) =  |  t    e    dt
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // exemplos simples
 gamma(0.5)
 gamma(6)-prod(1:5)

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -45,9 +45,10 @@
             <varname>r(i)</varname> is set to <literal>%T</literal> as soon as
             <varname>x(i)</varname> is infinite.
         </para>
-        <para>When <literal>x</literal> is complex-encoded, <literal>x(i)</literal>
-         is considered infinite as soon as its real or imaginary or both parts
-         are infinite.
+        <para>
+            When <literal>x</literal> is complex-encoded, <literal>x(i)</literal>
+            is considered infinite as soon as its real or imaginary or both parts
+            are infinite.
         </para>
     </refsection>
     <refsection>

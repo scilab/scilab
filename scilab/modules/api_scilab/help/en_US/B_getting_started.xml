@@ -32,15 +32,15 @@
                     <link linkend="api_types_scilabEnv">
                         <command>scilabEnv</command>
                     </link>
-                    env, int nin, 
+                    env, int nin,
                     <link linkend="api_types_scilabVar">
                         <command>scilabVar</command>
                     </link>
-                    *in, int nopt, 
+                    *in, int nopt,
                     <link linkend="api_types_scilabOpt">
                         <command>scilabOpt</command>
                     </link>
-                    opt, int nout, 
+                    opt, int nout,
                     <link linkend="api_types_scilabVar">
                         <command>scilabVar</command>
                     </link>
@@ -49,13 +49,13 @@
                 <itemizedlist>
                     <listitem>
                         <para>
-                            <varname>env</varname>: 
+                            <varname>env</varname>:
                             <literal>
                                 <link linkend="api_types_scilabEnv">
                                     <command>scilabEnv</command>
                                 </link>
                             </literal>
-                             variable provided by kernel. You must forward it to API functions.
+                            variable provided by kernel. You must forward it to API functions.
                         </para>
                     </listitem>
                     <listitem>
@@ -65,13 +65,13 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <varname>in</varname>: array of 
+                            <varname>in</varname>: array of
                             <literal>
                                 <link linkend="api_types_scilabVar">
                                     <command>scilabVar</command>
                                 </link>
                             </literal>
-                             containing input parameters.
+                            containing input parameters.
                         </para>
                     </listitem>
                     <listitem>
@@ -81,13 +81,13 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <varname>opt</varname>: 
+                            <varname>opt</varname>:
                             <literal>
                                 <link linkend="api_types_scilabOpt">
                                     <command>scilabOpt</command>
                                 </link>
                             </literal>
-                             containing optional parameters. Use 
+                            containing optional parameters. Use
                             <link linkend="api_optional_scilab_getOptional">
                                 <varname>scilab_getOptional</varname>
                             </link>
@@ -101,13 +101,13 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <varname>out</varname>: preallocated array of 
+                            <varname>out</varname>: preallocated array of
                             <literal>
                                 <link linkend="api_types_scilabVar">
                                     <command>scilabVar</command>
                                 </link>
                             </literal>
-                             with a size of <varname>nout</varname>.
+                            with a size of <varname>nout</varname>.
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -130,7 +130,7 @@
                         <orderedlist inheritnum="inherit">
                             <listitem>
                                 <para>
-                                    Check the type of the variable: matrix of double (complex or not), string, etc with 
+                                    Check the type of the variable: matrix of double (complex or not), string, etc with
                                     <link linkend="api_common_scilab_getType">
                                         <varname>scilab_getType</varname>
                                     </link>
@@ -345,7 +345,7 @@
                     <para>Create the output arguments for the Scilab engine</para>
                     <para>Once the application code has been executed, usually, some data will be returned to the Scilab interpreter.</para>
                     <para>
-                        For example, to create in the Scilab engine memory a matrix of double, the C function 
+                        For example, to create in the Scilab engine memory a matrix of double, the C function
                         <literal>
                             <link linkend="api_double_scilab_createDoubleMatrix">scilab_createDoubleMatrix</link>
                         </literal>
@@ -375,7 +375,7 @@
         </para>
         <para>Detailed explanations are provided under the form of C comment in the following example.</para>
         <programlisting role="code_gateway">
-            <![CDATA[ 
+            <![CDATA[
 // Full source can be found in the sci_gateway/c/ directory of the
 // toolbox skeleton
 
@@ -442,13 +442,13 @@ int sci_foo6(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt* opt, in
 
     for (i = 0; i < size1; ++i)
     {
-        //For each element of the matrix, multiply by 2 
+        //For each element of the matrix, multiply by 2
         out1[i] = in1[i] * 2;
     }
 
     for (i = 0; i < size2; ++i)
     {
-        //For each element of the matrix, invert the value 
+        //For each element of the matrix, invert the value
         out2[i] = in2[i] == TRUE ? FALSE : TRUE;
     }
 

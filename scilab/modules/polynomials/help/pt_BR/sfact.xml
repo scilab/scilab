@@ -55,7 +55,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //exemplo polinomial
 z=poly(0,'z');
 p=(z-1/2)*(2-z)
@@ -75,7 +75,7 @@ clean(P-F*gtild(F,'d'))
 s=poly(0,'s');
 p=-3*(s+(1+%i))*(s+(1-%i))*(s+0.5)*(s-0.5)*(s-(1+%i))*(s-(1-%i));p=real(p);
 
-//p(s) = polinômio em s^2 , procura por f estável tal que p=f(s)*f(-s) 
+//p(s) = polinômio em s^2 , procura por f estável tal que p=f(s)*f(-s)
 w=horner(p,(1-s)/(1+s));  // transformação bilinear w=p((1-s)/(1+s))
 wn=numer(w);              //tomando o numerador
 fn=sfact(wn);f=numer(horner(fn,(1-s)/(s+1))); //fator e transformação de volta

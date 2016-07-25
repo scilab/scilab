@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -66,7 +66,7 @@
                         整数行ベクトル <literal>dims=[nd1,nu1,dimS,dimSg,dimN]</literal>  (5エントリ
                         , 非降順).
                         <literal>flag='st'</literal>
-                        (もしくは<literal>'pp'</literal>)の場合, <literal>dims</literal> は 4 
+                        (もしくは<literal>'pp'</literal>)の場合, <literal>dims</literal> は 4
                         (もしくは3)個の要素を有します.
                     </para>
                 </listitem>
@@ -108,7 +108,7 @@
             (状態空間および出力状態応答の)基底 <literal>(X,Y)</literal>を見つけます.
             基底を (X,Y)とする行列 Slは以下のように表示されます:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
                [A11,*,*,*,*,*]                [*]
                [0,A22,*,*,*,*]                [*]
 X'*(A+J*C)*X = [0,0,A33,*,*,*]   X'*(B+J*D) = [*]
@@ -136,7 +136,7 @@ X'*(A+J*C)*X = [0,0,A33,*,*,*]   X'*(B+J*D) = [*]
             行列 <literal>A55</literal> <literal>(dimN-dimSg,dimN-dimSg)</literal> は安定です.
         </para>
         <para>
-            対 <literal>(A66,C26)</literal> <literal>(nx-dimN x nx-dimN)</literal> は可観測, 
+            対 <literal>(A66,C26)</literal> <literal>(nx-dimN x nx-dimN)</literal> は可観測,
             <literal>A66</literal>の固有値は<literal>beta</literal>に設定されます.
         </para>
         <para>
@@ -160,7 +160,7 @@ X'*(A+J*C)*X = [0,0,A33,*,*,*]   X'*(B+J*D) = [*]
         <para>
             この関数は次のように未知入力オブザーバを計算する際に使用することができます:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 // DDEP: dot(x)=A x + Bu + Gd
 //           y= Cx   (observation)
 //           z= Hx    (z=variable to be estimated, d=disturbance)

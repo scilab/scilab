@@ -71,7 +71,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=eye(2,2); b=int16(ones(a)); c=rand(2,3,3);
 save(fullfile(TMPDIR,"vals.sod"),'a','b','c')
 [names,typs,dims,vols] = listvarinfile(fullfile(TMPDIR,"vals.sod"))

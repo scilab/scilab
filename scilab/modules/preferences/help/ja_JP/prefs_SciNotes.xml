@@ -28,7 +28,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            SciNotes はデフォルトのScilabコードエディタです. 
+            SciNotes はデフォルトのScilabコードエディタです.
             システム依存のコマンドまたはScilabマクロ名により
             外部エディタを使用できます,
         </para>
@@ -36,14 +36,14 @@
             <itemizedlist>
                 <listitem>
                     <para>
-                        <emphasis role="bold">SciNotesを使用</emphasis>: 
+                        <emphasis role="bold">SciNotesを使用</emphasis>:
                         エディタまたは編集のようなコマンドで
                         SciNotesを使用する場合はチェックしてください.
                     </para>
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">外部エディタ</emphasis>: 
+                        <emphasis role="bold">外部エディタ</emphasis>:
                         外部システムエディタを使用する場合はこのラジオボタンを
                         チェックしてください.
                         "/usr/bin/gedit"のように入力できます.
@@ -51,7 +51,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">Scilabコマンド</emphasis>: 
+                        <emphasis role="bold">Scilabコマンド</emphasis>:
                         Scilabマクロ経由でコール可能な
                         エディタを使用する場合はこのラジオボタンをチェックしてください.
                         このマクロは,エディタコマンドと同種の引数をとります.
@@ -83,7 +83,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">ファイルの終端に復改を追加</emphasis>: 
+                        <emphasis role="bold">ファイルの終端に復改を追加</emphasis>:
                         ファイルの終端に(もしない場合に)
                         CRを自動的に追加する場合はこのボックスをチェックしてください,
                     </para>
@@ -102,7 +102,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">デフォルトの行末</emphasis>: 
+                        <emphasis role="bold">デフォルトの行末</emphasis>:
                         ファイル保存時に使用する行末文字のデフォルト値を変更します.
                     </para>
                 </listitem>

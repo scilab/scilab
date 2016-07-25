@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Jaime Urzua
  * Copyright (C) Allan CORNET - DIGITEO - 2010
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -32,7 +32,7 @@
             <literal>browsevar</literal> lists all user variables the current environment.
         </para>
         <para>
-            <literal>browsevar</literal> has several features: 
+            <literal>browsevar</literal> has several features:
             <itemizedlist>
                 <listitem><para>
                         A simple and comprehensive list

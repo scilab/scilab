@@ -24,7 +24,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 g=9.81// the gravity
 
 text='a//b'

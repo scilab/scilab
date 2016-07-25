@@ -46,7 +46,7 @@ surf
     <refsection>
         <title>Particular cases</title>
         <para>
-            Scilab <emphasis role="bold">surf</emphasis> does not accept all the properties of the Matlab <emphasis role="bold">surf</emphasis>  
+            Scilab <emphasis role="bold">surf</emphasis> does not accept all the properties of the Matlab <emphasis role="bold">surf</emphasis>
         </para>
     </refsection>
 </refentry>

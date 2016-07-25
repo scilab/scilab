@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -38,7 +38,7 @@
                 <term>h_axes</term>
                 <listitem>
                     <para>manipulador da entidade raiz para destino. Deve ser uma
-                        entidade Axes (de eixos). 
+                        entidade Axes (de eixos).
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,7 +60,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 subplot(211);a1=gca();
 plot2d()
 e=gce();

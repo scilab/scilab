@@ -34,7 +34,7 @@
             </caution>
         </para>
         <para>
-            Переменная <literal>%ODEOPTIONS</literal> является вектором со следующими элементами:      
+            Переменная <literal>%ODEOPTIONS</literal> является вектором со следующими элементами:
         </para>
         <para>
             <literal>[itask, tcrit, h0, hmax, hmin, jactyp, mxstep, maxordn, maxords, ixpr, ml, mu]</literal>.
@@ -62,7 +62,7 @@
                     </itemizedlist>
                 </listitem>
                 <listitem>
-                    <literal>tcrit</literal> критическое время, используемое только если 
+                    <literal>tcrit</literal> критическое время, используемое только если
                     <literal>itask</literal> равняется 4 или 5, как описано выше
                 </listitem>
                 <listitem>
@@ -77,11 +77,11 @@
                 <listitem>
                     <literal>jactype</literal> устанавливает свойства матрицы Якоби:
                     <itemizedlist>
-                        <listitem>0: функциональные итерации, матрица Якоби не используется 
-                            (только для методов <literal>"adams"</literal> или <literal>"stiff"</literal>) 
+                        <listitem>0: функциональные итерации, матрица Якоби не используется
+                            (только для методов <literal>"adams"</literal> или <literal>"stiff"</literal>)
                         </listitem>
                         <listitem>1: заданная пользователем полная матрица Якоби</listitem><listitem>2: внутренне рассчитанная полная матрица Якоби</listitem><listitem>3: внутренне рассчитанная диагональная матрица Якоби
-                            (только для методов <literal>"adams"</literal> или <literal>"stiff"</literal>) 
+                            (только для методов <literal>"adams"</literal> или <literal>"stiff"</literal>)
                         </listitem>
                         <listitem>4: заданная пользователем ленточная матрица Якоби (см.
                             <literal>ml</literal> и <literal>mu</literal> ниже)
@@ -92,7 +92,7 @@
                     </itemizedlist>
                 </listitem>
                 <listitem>
-                    <literal>maxordn</literal> максимально разрешённый нежёсткий порядок, не больше 
+                    <literal>maxordn</literal> максимально разрешённый нежёсткий порядок, не больше
                     12
                 </listitem>
                 <listitem>
@@ -105,17 +105,17 @@
                     <literal>ml</literal>, <literal>mu</literal><para>
                         Если <literal>jactype</literal> равен 4 или 5, то <literal>ml</literal>
                         и <literal>mu</literal> являются нижней и верхней половинными полосами
-                        ленточной матрицы Якоби, где лентой являются <literal>i,j</literal> с 
-                        <literal>i-ml</literal> &lt;= <literal>j</literal> &lt;= <literal>ny-1</literal>. 
+                        ленточной матрицы Якоби, где лентой являются <literal>i,j</literal> с
+                        <literal>i-ml</literal> &lt;= <literal>j</literal> &lt;= <literal>ny-1</literal>.
                     </para>
                     <para>
                         Если <literal>jactype</literal> равен 4, тогда функция Якоби должна возвращать
-                        матрицу <literal>J</literal>, которая имеет размерность <literal>ml+mu+1 x ny</literal> 
-                        (где <literal>ny=dim</literal> вектора <literal>y</literal> в 
-                        <literal>ydot=f(t,y))</literal> так что первый столбец <literal>J</literal> составлен из 
-                        <literal>mu</literal> нулей, за которыми следуют <literal>df1/dy1</literal>, 
+                        матрицу <literal>J</literal>, которая имеет размерность <literal>ml+mu+1 x ny</literal>
+                        (где <literal>ny=dim</literal> вектора <literal>y</literal> в
+                        <literal>ydot=f(t,y))</literal> так что первый столбец <literal>J</literal> составлен из
+                        <literal>mu</literal> нулей, за которыми следуют <literal>df1/dy1</literal>,
                         <literal>df2/dy1</literal>, <literal>df3/dy1</literal>, ... (<literal>1+ml</literal>
-                        возможно ненулевых элементов), второй столбец составлен из <literal>mu-1</literal> 
+                        возможно ненулевых элементов), второй столбец составлен из <literal>mu-1</literal>
                         нулей, за которыми следуют <literal>df1/dx2</literal>, <literal>df2/dx2</literal> и т. д.
                     </para>
                 </listitem>

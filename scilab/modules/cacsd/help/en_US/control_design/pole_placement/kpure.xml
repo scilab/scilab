@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -39,7 +39,7 @@
                 <listitem>
                     <para>a positive scalar.  tolerance used to determine if a
                         root is imaginary or not. The default value is
-                        <literal>1e-6</literal> 
+                        <literal>1e-6</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -47,7 +47,7 @@
                 <term>K</term>
                 <listitem>
                     <para>Real vector, the vector of gains for which at least
-                        one closed loop pole is imaginary. 
+                        one closed loop pole is imaginary.
                     </para>
                 </listitem>
             </varlistentry>
@@ -83,7 +83,7 @@ plot(real(Y),imag(Y),'+r')
             num=real(poly([-1+%i, -1-%i, -1+8*%i  -1-8*%i],'s'));
             den=real(poly([0.5 0.5  -6+7*%i  -6-7*%i  -3 -7 -11],'s'));
             h=num/den;
-            
+
             [K,Y]=kpure(h)
             clf();evans(h)
             plot(real(Y),imag(Y),'+r')
@@ -101,7 +101,7 @@ plot(real(Y),imag(Y),'+r')
             num=real(poly([-1+%i*1, -1-%i*1, 2+%i*8  2-%i*8 -2.5+%i*13 -2.5-%i*13],'s'));
             den=real(poly([1 1 3+%i*3 3-%i*3 -15+%i*7  -15-%i*7  -3 -7 -11],'s'));
             h=num/den;
-            
+
             [K,Y]=kpure(h)
             clf();evans(h,100000)
             plot(real(Y),imag(Y),'+r')

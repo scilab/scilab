@@ -23,7 +23,7 @@ whereis("ls") // Should return fileiolib
 whereis("plot") // Should return graphicslib
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

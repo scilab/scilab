@@ -35,8 +35,8 @@
  Don't touch if you do not know what you are doing
 -->
     <!-- =================== -->
-    
-    <!-- 
+
+    <!--
   Some hardcoded call to interfaces in polynomials gateway :
   SCI/modules/elementary_functions/sci_gateway/fortran/sci_f_clean.f(34):         fun=16 fin=18
   SCI/modules/elementary_functions/sci_gateway/fortran/sci_f_diag.f(143):         fun=16 fin=10
@@ -45,7 +45,7 @@
   SCI/modules/elementary_functions/sci_gateway/fortran/sci_f_tril.f(96):         fun=16 fin=12
   SCI/modules/elementary_functions/sci_gateway/fortran/sci_f_triu.f(98):         fun=16 fin=11
   -->
-    
+
     <PRIMITIVE gatewayId="16" primitiveId="1" primitiveName="poly" />
     <PRIMITIVE gatewayId="16" primitiveId="2" primitiveName="roots" />
     <PRIMITIVE gatewayId="16" primitiveId="3" primitiveName="degree" />

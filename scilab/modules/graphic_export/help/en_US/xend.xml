@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -25,15 +25,15 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>xend</function> is used to close a graphics  
-            export session. When working on the export of a 
+            <function>xend</function> is used to close a graphics
+            export session. When working on the export of a
             graphic, <function>xend</function> closes the
             file which was opened by <function>xinit</function>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 current_driver = driver()
 driver("Pos")
 xinit("foo.ps")

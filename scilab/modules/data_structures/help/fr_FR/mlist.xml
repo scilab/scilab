@@ -48,7 +48,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 M=mlist(['V','name','value'],['a','b','c'],[1 2 3]);
 
 // définition de la fonction d'affichage
@@ -58,7 +58,7 @@ deff('%V_p(M)','disp(M.name+'':''+string(M.value))')
 deff('r=%V_e(i,M)',..
 'r=mlist([''V'',''name'',''value''],M.name(i),M.value(i))')
 M(2) // Le deuxième terme du vecteur M
-M.value 
+M.value
 
 // définition de M comme une tlist
 M=tlist(['V','name','value'],['a','b','c'],[1 2 3]);

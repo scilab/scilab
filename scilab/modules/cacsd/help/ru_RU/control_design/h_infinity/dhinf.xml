@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -154,11 +154,11 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>[AK,BK,CK,DK,(RCOND)] = dhinf(A,B,C,D,ncon,nmeas, gamma)</literal> 
+            <literal>[AK,BK,CK,DK,(RCOND)] = dhinf(A,B,C,D,ncon,nmeas, gamma)</literal>
             To compute the matrices of an H-infinity (sub)optimal n-state
             controller
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
     | AK | BK |
 K = |----|----|,
     | CK | DK |
@@ -166,10 +166,10 @@ K = |----|----|,
         <para>
             for the discrete-time system
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
     | A  | B1  B2  |   | A | B |
 P = |----|---------| = |---|---|,
-    | C1 | D11 D12 |   | C | D | 
+    | C1 | D11 D12 |   | C | D |
     | C2 | D21 D22 |
  ]]></programlisting>
         <para>
@@ -186,7 +186,7 @@ P = |----|---------| = |---|---|,
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //example from Niconet report SLWN1999-12
 //Hinf
 A=[-0.7  0    0.3  0   -0.5 -0.1

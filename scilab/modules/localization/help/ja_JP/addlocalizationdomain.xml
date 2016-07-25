@@ -16,61 +16,61 @@
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="addlocalizationdomain">
-    
+
     <refnamediv>
-        
+
         <refname>addlocalizationdomain</refname>
-        
+
         <refpurpose>ローカライゼーション機構に新規ドメインを追加.</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>msg=addlocalizationdomain(domain, path)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>domain</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列, メッセージドメインの名前</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>path</term>
-                
+
                 <listitem>
-                    
+
                     <para>ドメインファイルのパス</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <programlisting role="example"><![CDATA[
 setlanguage("fr_FR");
 gettext("Startup execution:")
@@ -79,46 +79,46 @@ addlocalizationdomain("tbx", "SCI/modules/localization/tests/unit_tests/locale")
 gettext("tbx", "%s: something not in Scilab.\n")
 _("tbx", "%s: something not in Scilab.\n")
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="gettext">gettext</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>履歴</title>
-        
+
         <revhistory>
-            
+
             <revision>
-                
+
                 <revnumber>5.5.0</revnumber>
-                
+
                 <revdescription>
-                    
+
                     addlocalizationdomain 関数が追加されました.
-                    
+
                 </revdescription>
-                
+
             </revision>
-            
+
         </revhistory>
-        
+
     </refsection>
-    
+
 </refentry>
 

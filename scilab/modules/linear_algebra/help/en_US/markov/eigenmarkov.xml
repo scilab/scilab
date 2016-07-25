@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -62,9 +62,9 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //P has two recurrent classes (with 2 and 1 states) 2 transient states
-P=genmarkov([2,1],2) 
+P=genmarkov([2,1],2)
 [M,Q]=eigenmarkov(P);
 P*Q-Q
 Q*M-P^20

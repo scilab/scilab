@@ -31,7 +31,7 @@
             característicos do conjunto de pontos flutuantes aqui dentoado por
             <literal>F(b,p,emin,emax)</literal> ((geralmente o conjunto de "floats" de
             64 bits prescritos por IEEE 754). Números de <literal>F</literal> são da
-            forma: 
+            forma:
         </para>
         <para>
             <code>sign * m * b^e</code>
@@ -51,7 +51,7 @@
             </literal>
             e<literal>e</literal> em <literal>[emin, emax]</literal>,
             o número é dito "normalizado" se <latex>$d_1 \neq 0$</latex>. Os seguintes
-            podem ser recebidos: 
+            podem ser recebidos:
         </para>
         <variablelist>
             <varlistentry>
@@ -95,7 +95,7 @@
                 <listitem>
                     <para>
                         então <literal>pr</literal> é um booleano (%t se números
-                        denormalizados são utilizados) 
+                        denormalizados são utilizados)
                     </para>
                 </listitem>
             </varlistentry>
@@ -153,7 +153,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 b = number_properties("radix")
 eps = number_properties("eps")
  ]]></programlisting>

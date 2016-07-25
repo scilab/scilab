@@ -14,7 +14,7 @@
     </refsection>
     <refsection>
         <title>Example</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 val = %t
 
 if val==%t then

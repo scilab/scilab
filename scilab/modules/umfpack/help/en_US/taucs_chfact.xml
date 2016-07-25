@@ -39,15 +39,15 @@
             function <link linkend="chfact">chfact</link> for a gain in speed.
         </para>
         <para>When such a factorization have been computed, a linear system must
-            be solved with <link linkend="taucs_chsolve">taucs_chsolve</link>. <emphasis role="bold">To free the memory used by the Cholesky factors, use 
+            be solved with <link linkend="taucs_chsolve">taucs_chsolve</link>. <emphasis role="bold">To free the memory used by the Cholesky factors, use
                 <link linkend="taucs_chdel">taucs_chdel</link>(C_ptr)
             </emphasis>
-            ;to 
-            retrieve the Cholesky factors at the scilab level (for example to display 
+            ;to
+            retrieve the Cholesky factors at the scilab level (for example to display
             their sparse patterns), use <link linkend="taucs_chget">taucs_chget</link>;
-            to get some information (number of non zeros in C), use 
-            <link linkend="taucs_chinfo">taucs_chinfo</link>. To compute an 
-            approximation of the condition number in norm 2 use 
+            to get some information (number of non zeros in C), use
+            <link linkend="taucs_chinfo">taucs_chinfo</link>. To compute an
+            approximation of the condition number in norm 2 use
             <link linkend="cond2sp">cond2sp</link>.
         </para>
     </refsection>
@@ -74,13 +74,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// Example #1 : a small linear test system 
+        <programlisting role="example"><![CDATA[
+// Example #1 : a small linear test system
 // whom solution must be [1;2;3;4;5]
 A = sparse( [ 2 -1  0  0  0;
-             -1  2 -1  0  0; 
-              0 -1  2 -1  0; 
-              0  0 -1  2 -1; 
+             -1  2 -1  0  0;
+              0 -1  2 -1  0;
+              0  0 -1  2 -1;
               0  0  0 -1  2] );
 b = [0 ; 0; 0; 0; 6];
 Cp = taucs_chfact(A);
@@ -88,12 +88,12 @@ x = taucs_chsolve(Cp,b)
 // do not forget to clear memory with
 taucs_chdel(Cp)
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Example #2 a real example
 // first load a sparse matrix
 [A] = ReadHBSparse(SCI+"/modules/umfpack/demos/bcsstk24.rsa");
 // compute the factorization
-Cp = taucs_chfact(A); 
+Cp = taucs_chfact(A);
 b = rand(size(A,1),1); // a random rhs
 // use taucs_chsolve for solving Ax=b
 x = taucs_chsolve(Cp,b);

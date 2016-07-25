@@ -10,16 +10,16 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="PULSE_SC" xml:lang="en_US">
@@ -94,13 +94,13 @@
     <refsection id="Description_PULSE_SC">
         <title>Description</title>
         <para>
-            This block is a Pulse Generator. It generates a pulse at a rate of 
+            This block is a Pulse Generator. It generates a pulse at a rate of
             <emphasis role="bold">1/P</emphasis> where <emphasis role="bold">P
             </emphasis>
             is the period of the signal. The <emphasis role="bold">Phase
                 delay
             </emphasis>
-            gives the value (in time) of the first event. The 
+            gives the value (in time) of the first event. The
             <emphasis role="bold">Phase delay</emphasis> known also as <emphasis role="bold">Offset</emphasis> must be less than the <literal>Frequency*(1-(Pulse_Width/100))</literal>.
             The second parameter of the block gives the <emphasis role="bold">Pulse
                 width
@@ -133,7 +133,7 @@
                     <emphasis role="bold">Pulse Width (% of period)</emphasis>
                 </para>
                 <para>
-                    The pulse width. It can take values from 1 to 100. 
+                    The pulse width. It can take values from 1 to 100.
                 </para>
                 <para>Type 'pol' of size -1.</para>
             </listitem>

@@ -30,7 +30,7 @@
             <varlistentry>
                 <term>xpath</term>
                 <listitem>
-                    <para>文字列, 
+                    <para>文字列,
                         設定ファイルのノードを取得する
                         XPathリクエストを表す.
                     </para>
@@ -57,10 +57,10 @@
         <title>説明</title>
         <para>
             設定ファイル(<literal>SCIHOME+'/XConfiguration.xml'</literal>)の
-            属性の値を取得します. 
+            属性の値を取得します.
         </para>
         <para>
-            docを指定した場合, 値はこの文書内で探されます. 
+            docを指定した場合, 値はこの文書内で探されます.
             複数のリクエストを実行する必要がある際,
             同じ設定ファイルを重複してパースすることを避けるために
             有用です.
@@ -94,9 +94,9 @@
 </interface>
 	      ]]></programlisting>
                 <para>
-                    パスは<literal>"/interface/web/body/proxy"</literal> 
+                    パスは<literal>"/interface/web/body/proxy"</literal>
                     (または簡単化するために<literal>"//web/body/proxy"</literal>)
-                    となります. 
+                    となります.
                 </para>
             </member>
         </simplelist>

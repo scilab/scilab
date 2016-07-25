@@ -8,9 +8,9 @@
         <title>Syntax</title>
         <synopsis>
             uigetfont()
-            
+
             [fontname [,fontsize [,bold [,italic]]]] = uigetfont([defaultfontname [,defaultfontsize [,defaultbold [,defaultitalic]]]]);
-            
+
             [fontname ,fontsize ,bold ,italic] = uigetfont(defaultfontname ,defaultfontsize ,defaultbold ,defaultitalic);
         </synopsis>
     </refsynopsisdiv>
@@ -73,7 +73,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 uigetfont()
 uigetfont("arial")
 uigetfont("arial", 24)

@@ -147,7 +147,7 @@ box "Champ #N";
         <itemizedlist>
             <listitem>
                 <para>
-                    Sortie: un scalaire ou un vecteur colonne de données de type double. La longueur du vecteur est égale à la longueur du vecteur 
+                    Sortie: un scalaire ou un vecteur colonne de données de type double. La longueur du vecteur est égale à la longueur du vecteur
                     <emphasis role="bold">Outputs Record Selection</emphasis>.
                 </para>
             </listitem>
@@ -171,11 +171,11 @@ box "Champ #N";
                 </para>
                 <para> Une matrice vide ou un entier positif.</para>
                 <para>
-                    Si un entier 
+                    Si un entier
                     <emphasis>
                         <literal>i</literal>
                     </emphasis>
-                    est donné, le 
+                    est donné, le
                     <emphasis><literal>
                             i<superscript>ième</superscript>
                         </literal>
@@ -191,18 +191,18 @@ box "Champ #N";
                     <emphasis role="bold">Outputs Record Selection</emphasis>
                 </para>
                 <para>
-                    Un vecteur d'entiers positifs 
+                    Un vecteur d'entiers positifs
                     <emphasis><literal>
                             [k<subscript>i</subscript>,...,k<subscript>n</subscript>]
                         </literal>
                     </emphasis>
-                    le 
+                    le
                     <emphasis><literal>
                             k<subscript>i</subscript><superscript>ième</superscript>
                         </literal>
                     </emphasis>
-                    élément 
-                    de l'enregistrement lu donne la valeur de la 
+                    élément
+                    de l'enregistrement lu donne la valeur de la
                     <emphasis><literal>
                             i<superscript>ième</superscript>
                         </literal>
@@ -229,7 +229,7 @@ box "Champ #N";
                 </para>
                 <para>
                     Une chaîne de caractères définissant le format Fortran à utiliser ou rien pour une lecture non formatée (binaire).
-                    S'il est donné, le format doit commencer par une parenthèse gauche et se terminer par une parenthèse droite.Par exemple : 
+                    S'il est donné, le format doit commencer par une parenthèse gauche et se terminer par une parenthèse droite.Par exemple :
                     <emphasis>
                         <literal>(10e3)</literal>
                     </emphasis>

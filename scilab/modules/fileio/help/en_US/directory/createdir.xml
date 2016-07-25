@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -45,16 +45,16 @@
     <refsection>
         <title>Description</title>
         <para>
-            <code>createdir(dirname)</code> creates the directory 
+            <code>createdir(dirname)</code> creates the directory
             <varname>dirname</varname> in the current
-            directory, if <varname>dirname</varname> is not in the current 
-            directory, specify the relative path to the current directory or the 
+            directory, if <varname>dirname</varname> is not in the current
+            directory, specify the relative path to the current directory or the
             full path for <varname>dirname</varname>.
         </para>
         <para>
-            <code>[status] = createdir(dirname)</code> creates the directory 
-            <varname>dirname</varname> in the existing directory, returning the 
-            status. Here, <varname>status</varname> is <constant>%T</constant> for 
+            <code>[status] = createdir(dirname)</code> creates the directory
+            <varname>dirname</varname> in the existing directory, returning the
+            status. Here, <varname>status</varname> is <constant>%T</constant> for
             success and <constant>%F</constant> otherwise.
         </para>
         <para>
@@ -63,7 +63,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 createdir(TMPDIR+'/Directory_test')
 removedir(TMPDIR+'/Directory_test')
  ]]></programlisting>

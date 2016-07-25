@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -62,28 +62,28 @@
     <refsection>
         <title>Description</title>
         <para>
-            Column compression of <literal>A</literal>: <literal>Ac = A*W</literal> is 
+            Column compression of <literal>A</literal>: <literal>Ac = A*W</literal> is
             column compressed i.e
         </para>
         <para>
-            <literal>Ac=[0,Af]</literal> with <literal>Af</literal> full column rank, 
+            <literal>Ac=[0,Af]</literal> with <literal>Af</literal> full column rank,
             rank(<literal>Af</literal>) = rank(<literal>A</literal>) = <literal>rk</literal>.
         </para>
         <para>
-            <literal>flag</literal> and <literal>tol</literal> are optional parameters: <literal>flag = 'qr'</literal> 
+            <literal>flag</literal> and <literal>tol</literal> are optional parameters: <literal>flag = 'qr'</literal>
             or <literal>'svd'</literal> (default is <literal>'svd'</literal>).
         </para>
         <para>
             <literal>tol</literal> = tolerance parameter (of order <literal>%eps</literal> as default value).
         </para>
         <para>
-            The <literal>ma-rk</literal> first columns of <literal>W</literal> span the kernel of <literal>A</literal> 
+            The <literal>ma-rk</literal> first columns of <literal>W</literal> span the kernel of <literal>A</literal>
             when <literal>size(A)=(na,ma)</literal>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=rand(5,2)*rand(2,5);
 [X,r]=colcomp(A);
 norm(A*X(:,1:$-r),1)

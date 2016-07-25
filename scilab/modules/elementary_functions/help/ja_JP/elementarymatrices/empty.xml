@@ -7,7 +7,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal> [] </literal> は空行列を定義します. 
+            <literal> [] </literal> は空行列を定義します.
             この行列は特殊な行列として定義され,
             0行0列,すなわち<literal> size([]) =[0,0] </literal>となります.
             以下の便利な表記が使用可能です:
@@ -33,8 +33,8 @@
     </refsection>
     <refsection>
         <title>例s</title>
-        <programlisting role="example"><![CDATA[ 
-s=poly(0,'s'); A = [s, s+1]; 
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s'); A = [s, s+1];
 A+[], A*[]
 A=rand(2,2); AA=A([],1), size(AA)
 svd([])

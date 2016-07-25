@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -46,7 +46,7 @@
                 <listitem>
                     <para>
                         実数行列 (<literal>up</literal> 次元 <literal>m</literal>x<literal>(maxi(degree(Den)))</literal> (デフォルト値=<literal>0</literal>) ,
-                        <literal>yp</literal> 次元 <literal>n</literal>x 
+                        <literal>yp</literal> 次元 <literal>n</literal>x
                         <literal>(maxi(degree(Den)))</literal>)
                     </para>
                 </listitem>
@@ -77,7 +77,7 @@
             <literal>Num(z)</literal> はそれぞれ以下のように
             記述されます:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 D(z) = D_0  + D_1  z + ... + D_d1   z^d1
 N(z) = N_0  + N_1  z + ... + N_d2   z^d2
  ]]></programlisting>
@@ -85,7 +85,7 @@ N(z) = N_0  + N_1  z + ... + N_d2   z^d2
             そして <literal>Den y = Num u</literal> は
             次の再帰式として解釈されます:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 D(0)y(t)+D(1)y(t+1)+...+ D(d1)y(t+d1)= N(0) u(t) +....+ N(d2) u(t+d2)
  ]]></programlisting>
         <para>
@@ -94,21 +94,21 @@ D(0)y(t)+D(1)y(t+1)+...+ D(d1)y(t+d1)= N(0) u(t) +....+ N(d2) u(t+d2)
         <para>
             uの列はt=0,1,...,Tにおけるシステムの入力です:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 u=[u(0) , u(1),...,u(T)]
  ]]></programlisting>
         <para>
             <literal>t=0,1,...,T+d1-d2</literal>における出力が,
             行列<literal>y</literal>の列になります:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 y = [y(0), y(1),  .... y(T+d1-d2)]
  ]]></programlisting>
         <para>
             <literal>up</literal> および <literal>yp</literal> は
             t &lt; 0 における初期条件を定義します, すなわち
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 up = [u(-d1), ..., u(-1)  ]
 yp = [y(-d1), ...  y(-1)  ]
  ]]></programlisting>
@@ -123,7 +123,7 @@ yp = [y(-d1), ...  y(-1)  ]
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 z=poly(0,'z');
 Num=1+z;Den=1+z;u=[1,2,3,4,5];
 rtitr(Num,Den,u)-u

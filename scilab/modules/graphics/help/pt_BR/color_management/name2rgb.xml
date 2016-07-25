@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -49,7 +49,7 @@
             <literal>[r,g,b]</literal> onde <literal>r</literal>, <literal>g</literal>
             e <literal>b</literal> são inteiros entre 0 e 255 correspondentes aos
             componentes de cor vermelho, verde e azul. Como de uso, 0 significa
-            nenhuma intensidade e 255 significa intensidade total da cor. 
+            nenhuma intensidade e 255 significa intensidade total da cor.
         </para>
         <para>Se uma cor não for encontrada, é retornado
             <literal>[]</literal>.
@@ -60,7 +60,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rgb=name2rgb("gold")
 rgb2name(rgb)
  ]]></programlisting>

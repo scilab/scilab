@@ -17,13 +17,13 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>pwd</literal> は, Scilab カレントディレクトリ を <literal>ans</literal> に返します. 
+            <literal>pwd</literal> は, Scilab カレントディレクトリ を <literal>ans</literal> に返します.
             <literal>x=pwd()</literal> は <literal>x</literal> にScilab カレントディレクトリを返します.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 pwd
 x=pwd()
  ]]></programlisting>

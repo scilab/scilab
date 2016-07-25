@@ -14,14 +14,14 @@
             <varlistentry>
                 <term>initial_rect  </term>
                 <listitem>
-                    <para>matrice 4xn contenant les définitions initiales des rectangles. Chaque colonne contient [x_gauche; y_haut; largeur; hauteur]. Si un seul rectangle est présent initial_rect peut être un rectangle. 
+                    <para>matrice 4xn contenant les définitions initiales des rectangles. Chaque colonne contient [x_gauche; y_haut; largeur; hauteur]. Si un seul rectangle est présent initial_rect peut être un rectangle.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>final_rect  </term>
                 <listitem>
-                    <para>un rectangle défini par [x_gauche, y_haut, largeur, hauteur] 
+                    <para>un rectangle défini par [x_gauche, y_haut, largeur, hauteur]
                     </para>
                 </listitem>
             </varlistentry>
@@ -47,7 +47,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 xsetech(frect=[0,0,100,100])
 r=dragrect([10;10;30;10])
 xrect(r)

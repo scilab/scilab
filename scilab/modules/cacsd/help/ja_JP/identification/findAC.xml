@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -48,7 +48,7 @@
             <varlistentry>
                 <term>R</term>
                 <listitem>
-                    <para>行列, 
+                    <para>行列,
                         findrをコールすることにより計算される結合されたブロックハンケル行列
                         のR因子に関連.
                     </para>
@@ -164,12 +164,12 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //指定した線形システムからデータを生成
 A = [ 0.5, 0.1,-0.1, 0.2;
-      0.1, 0,  -0.1,-0.1;      
-     -0.4,-0.6,-0.7,-0.1;  
-      0.8, 0,  -0.6,-0.6];      
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
 B = [0.8;0.1;1;-1];
 C = [1 2 -1 0];
 SYS=syslin(0.1,A,B,C);

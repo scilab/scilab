@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2009 - Digiteo - Michael Baudin
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -59,9 +59,9 @@
         <para>
             <literal>[L,U]= lu(A)</literal> produces two matrices <literal>L</literal> and
             <literal>U</literal> such that <literal>A = L*U</literal> with <literal>U</literal>
-            upper triangular and <literal>L</literal> a general matrix without any particular 
+            upper triangular and <literal>L</literal> a general matrix without any particular
             structure. In fact, the matrix <literal>A</literal> is factored as <literal>E*A=B*U</literal>
-            where the matrix <literal>B</literal> is lower triangular 
+            where the matrix <literal>B</literal> is lower triangular
             and the matrix <literal>L</literal> is computed from <literal>L=E'*B</literal>.
         </para>
         <para>
@@ -86,10 +86,10 @@
         <para>
             In the following example, we create the Hilbert matrix of size 4 and
             factor it with A=LU. Notice that the matrix L is not lower triangular.
-            To get a lower triangular L matrix, we should have given the 
+            To get a lower triangular L matrix, we should have given the
             output argument E to Scilab.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a = testmatrix("hilb",4);
 [l,u]=lu(a)
 norm(l*u-a)
@@ -101,7 +101,7 @@ norm(l*u-a)
             In the following example, we create the Hilbert matrix of size 4 and
             factor it with EA=LU. Notice that the matrix L is lower triangular.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a = testmatrix("hilb",4);
 [l,u,e]=lu(a)
 norm(l*u-e*a)
@@ -112,7 +112,7 @@ norm(l*u-e*a)
         <para>
             The following example shows how to use the lufact and luget functions.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=rand(4,4);
 [l,u]=lu(a)
 norm(l*u-a)

@@ -16,7 +16,7 @@
             <varlistentry>
                 <term>format</term>
                 <listitem>
-                    <para>char* 文字列. 
+                    <para>char* 文字列.
                         変換を指定するリテラル文字からなる文字列を指定します.
                     </para>
                 </listitem>
@@ -51,7 +51,7 @@
             sciprint関数の使用方法を表す
             複数のメッセージをScilabコンソールに出力します.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 #include <stack-c.h>
 #include <sciprint.h>
 int sci_mysciprint(char * fname)

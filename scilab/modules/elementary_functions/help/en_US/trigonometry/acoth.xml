@@ -36,7 +36,7 @@
     </refsection>
     <refsection>
         <title>Sample</title>
-        <scilab:image><![CDATA[ 
+        <scilab:image><![CDATA[
 x=-30:0.1:30;
 x(abs(x)<=1)=%nan;
 plot(x,acoth(x))
@@ -44,7 +44,7 @@ plot(x,acoth(x))
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=-30:0.1:30;
 x(abs(x)<=1)=%nan;
 plot(x,acoth(x))

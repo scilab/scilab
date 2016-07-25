@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -69,7 +69,7 @@
                                     esboçada utilizando-se a marca com idenfiticador
                                     <literal>abs(style(i))+1</literal>; use
                                     <literal>xset()</literal> para ver os identificadores das
-                                    marcas. 
+                                    marcas.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -182,7 +182,7 @@
                                         <listitem>
                                             <para>
                                                 como <literal>y=1</literal> mas produz escala de
-                                                isovisualização. 
+                                                isovisualização.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -191,7 +191,7 @@
                                         <listitem>
                                             <para>
                                                 como <literal>y=2</literal> mas produz escala de
-                                                isovisualização. 
+                                                isovisualização.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -203,7 +203,7 @@
                                                 <literal>plot2d</literal> pode mudar as fronteiras do
                                                 esboço e os tiques dos eixos para se obter boas
                                                 graduações. Quando o botão de zoom é ativado, este modo
-                                                é usado. 
+                                                é usado.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -215,7 +215,7 @@
                                                 <literal>plot2d</literal> pode mudar as fronteiras do
                                                 esboço e os tiques dos eixos para se obter boas
                                                 graduações. Quando o botão de zoom é ativado, este modo
-                                                é usado. 
+                                                é usado.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -224,7 +224,7 @@
                                         <listitem>
                                             <para>
                                                 como <literal>y=5</literal> mas a escala do novo
-                                                esboço é misturada à escala corrente. 
+                                                esboço é misturada à escala corrente.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -276,7 +276,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t= 0:.01:2*%pi;
 clf();polarplot(sin(7*t),cos(8*t))
 

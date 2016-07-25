@@ -57,7 +57,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 f=figure('position', [10 10 300 200]);
 // create a figure
 m=uimenu(f,'label', 'windows');
@@ -72,7 +72,7 @@ close(f);
 // close the figure
  ]]></programlisting>
         <para>Menus or menuitem can have a LaTeX or a MathML label</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 f=figure();
 //LaTeX
 mlatex=uimenu(f,'label', '$\LaTeX$');

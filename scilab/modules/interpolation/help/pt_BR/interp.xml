@@ -22,7 +22,7 @@
                 <listitem>
                     <para>vetores de reais de mesmo tamanho definindo uma função de
                         spline cúbico ou sub-spline (chamado <literal>s</literal> a partir
-                        daqui) 
+                        daqui)
                     </para>
                 </listitem>
             </varlistentry>
@@ -65,7 +65,7 @@
             <literal>s</literal> (e <literal>s', s'', s'''</literal> se necessário) em
             <literal>xp(i)</literal> :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 yp(i) = s(xp(i))    ou  yp(i,j) = s(xp(i,j))
 yp1(i) = s'(xp(i))   ou  yp1(i,j) = s'(xp(i,j))
 yp2(i) = s''(xp(i))   ou  yp2(i,j) = s''(xp(i,j))
@@ -92,7 +92,7 @@ yp3(i) = s'''(xp(i))   ou  yp3(i,j) = s'''(xp(i,j))
                 <term>"C0"</term>
                 <listitem>
                     <para>a extrapolação é definida como segue :</para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 s(x) = y1  para  x < x1
 s(x) = yn  para  x > xn
  ]]></programlisting>
@@ -104,7 +104,7 @@ s(x) = yn  para  x > xn
                     <para>a extrapolação é definida como segue (p_i sendo o polinômio
                         que define <literal>s</literal> em [x_i,x_{i+1}]) :
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 s(x) = p_1(x)      para  x < x1
 s(x) = p_{n-1}(x)  para  x > xn
  ]]></programlisting>
@@ -114,7 +114,7 @@ s(x) = p_{n-1}(x)  para  x > xn
                 <term>"linear"</term>
                 <listitem>
                     <para>a extrapolação é definida como segue :</para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 s(x) = y1 + s'(x1)(x-x1)  para  x < x1
 s(x) = yn + s'(xn)(x-xn)  para  x > xn
  ]]></programlisting>
@@ -124,7 +124,7 @@ s(x) = yn + s'(xn)(x-xn)  para  x > xn
                 <term>"periodic"</term>
                 <listitem>
                     <para>
-                        <literal>s</literal> é estendido por periodicidade. 
+                        <literal>s</literal> é estendido por periodicidade.
                     </para>
                 </listitem>
             </varlistentry>
@@ -132,7 +132,7 @@ s(x) = yn + s'(xn)(x-xn)  para  x > xn
     </refsection>
     <refsection>
         <title>Exemplos </title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // veja os exemplos de splin e lsq_splin
 
 // um exemplo exibindo as continuidades C2 e C1 de um spline e um sub-spline
@@ -142,8 +142,8 @@ y = sinc(x);
 dk = splin(x,y);  // not_a_knot
 df = splin(x,y, "fast");
 xx = linspace(a,b,800)';
-[yyk, yy1k, yy2k] = interp(xx, x, y, dk); 
-[yyf, yy1f, yy2f] = interp(xx, x, y, df); 
+[yyk, yy1k, yy2k] = interp(xx, x, y, dk);
+[yyf, yy1f, yy2f] = interp(xx, x, y, df);
 clf()
 subplot(3,1,1)
 plot2d(xx, [yyk yyf])
@@ -168,7 +168,7 @@ xx = linspace(-0.5,1.5,401)';
 yy0 = interp(xx,x,y,d,"C0");
 yy1 = interp(xx,x,y,d,"linear");
 yy2 = interp(xx,x,y,d,"natural");
-yy3 = interp(xx,x,y,d,"periodic");  
+yy3 = interp(xx,x,y,d,"periodic");
 clf()
 plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
 xtitle(" Modos diferentes de avaliar um spline fora de seu domínio")

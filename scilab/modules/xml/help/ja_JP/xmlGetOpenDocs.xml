@@ -31,7 +31,7 @@
             <varlistentry>
                 <term>list</term>
                 <listitem>
-                    <para>list, 
+                    <para>list,
                         オープンされた全てのXML文書またはXML検証ファイルを含むリスト
                     </para>
                 </listitem>

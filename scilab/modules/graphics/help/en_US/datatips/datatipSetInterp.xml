@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -29,7 +29,7 @@
                 <term>datatip_handle</term>
                 <listitem>
                     <para>
-                        A handle of the tip. 
+                        A handle of the tip.
                     </para>
                 </listitem>
             </varlistentry>

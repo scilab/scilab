@@ -22,13 +22,13 @@
     <refsection>
         <title>説明</title>
         <para>
-          <code>~m</code> は, 
-	  論理値行列<code>m</code>の要素の要素毎の否定を出力します.
+            <code>~m</code> は,
+            論理値行列<code>m</code>の要素の要素毎の否定を出力します.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a = %T
 ~a == %F
  ]]></programlisting>

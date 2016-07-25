@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -44,23 +44,23 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimbase_log</literal> function prints the given message in the console, 
-            if verbose logging is enabled. If verbose logging is disabled, does nothing. 
-            If the <literal>-logfile</literal> option has been set, writes the message	into the file 
-            instead of writing to the console. If the console is too slow, writing into a file can 
+            The <literal>optimbase_log</literal> function prints the given message in the console,
+            if verbose logging is enabled. If verbose logging is disabled, does nothing.
+            If the <literal>-logfile</literal> option has been set, writes the message	into the file
+            instead of writing to the console. If the console is too slow, writing into a file can
             be a solution, since it is very fast.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     opt = optimbase_new ();
     opt = optimbase_configure(opt, "-verbose", 1);
     optimbase_log ( opt , "My message" );
     opt = optimbase_destroy(opt);
 
-    // Writes the message into the file 
+    // Writes the message into the file
     opt = optimbase_new ();
     opt = optimbase_configure(opt, "-verbose", 1);
     opt = optimbase_configure(opt,"-logfile",fullfile(TMPDIR,"mylogfile.txt"));

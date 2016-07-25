@@ -24,7 +24,7 @@
                         この名前は利用可能なフォントに基づき有効なものである必要があります.
                     </para>
                     <para>
-                        <literal>fontname</literal> が <literal>""</literal>の時, 
+                        <literal>fontname</literal> が <literal>""</literal>の時,
                         フォントはルックアンドフィールのデフォルトフォントとなります.
                     </para>
                 </listitem>
@@ -46,7 +46,7 @@
                     <para>{"normal"} | "bold"</para>
                     <para>この引数はフォントの重みを設定します.</para>
                     <para>
-                        <literal>fontweight</literal> が指定されない場合, 
+                        <literal>fontweight</literal> が指定されない場合,
                         フォントの重みはルックアンドフィールのデフォルト値となります.
                     </para>
                 </listitem>
@@ -57,7 +57,7 @@
                     <para>{"normal"} | "italic"</para>
                     <para>この引数はフォントの傾きを設定します.</para>
                     <para>
-                        <literal>fontangle</literal> が指定されない場合, 
+                        <literal>fontangle</literal> が指定されない場合,
                         フォントの傾きはルックアンドフィールのデフォルト値となります.
                     </para>
                 </listitem>

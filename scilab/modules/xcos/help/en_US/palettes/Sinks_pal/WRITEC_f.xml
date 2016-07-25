@@ -10,16 +10,16 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry
@@ -35,7 +35,7 @@
         <refname>WRITEC_f</refname>
         <refpurpose>Write to C binary file</refpurpose>
     </refnamediv>
-    
+
     <refsection>
         <title>Block Screenshot</title>
         <para>
@@ -46,7 +46,7 @@
             </inlinemediaobject>
         </para>
     </refsection>
-    
+
     <refsection id="Contents_WRITEC_f">
         <title>Contents</title>
         <itemizedlist>
@@ -101,7 +101,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    
+
     <refsection id="Palette_WRITEC_f">
         <title>Palette</title>
         <itemizedlist>
@@ -112,7 +112,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    
+
     <refsection id="Description_WRITEC_f">
         <title>Description</title>
         <para>
@@ -144,7 +144,7 @@ box "Field #N";
             Each event on the activation input of the bloc writes a record in the file.
         </para>
     </refsection>
-    
+
     <refsection id="Datatype_WRITEC_f">
         <title>Data types</title>
         <itemizedlist>
@@ -155,7 +155,7 @@ box "Field #N";
             </listitem>
         </itemizedlist>
     </refsection>
-    
+
     <refsection id="Dialogbox_WRITEC_f">
         <title>Dialog box</title>
         <para>
@@ -231,7 +231,7 @@ box "Field #N";
             </listitem>
         </itemizedlist>
     </refsection>
-    
+
     <refsection id="Defaultproperties_WRITEC_f">
         <title>Default properties</title>
         <itemizedlist>
@@ -296,7 +296,7 @@ box "Field #N";
             </listitem>
         </itemizedlist>
     </refsection>
-    
+
     <refsection id="Example_WRITEC_f">
         <title>Example</title>
         <para>
@@ -316,7 +316,7 @@ box "Field #N";
             </link>
         </para>
     </refsection>
-    
+
     <refsection id="Interfacingfunction_WRITEC_f">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -327,7 +327,7 @@ box "Field #N";
             </listitem>
         </itemizedlist>
     </refsection>
-    
+
     <refsection id="Computationalfunction_WRITEC_f">
         <title>Computational function</title>
         <itemizedlist>
@@ -336,7 +336,7 @@ box "Field #N";
             </listitem>
         </itemizedlist>
     </refsection>
-    
+
     <refsection role="see also" id="Seealso_WRITEC_f">
         <title>See also</title>
         <itemizedlist>

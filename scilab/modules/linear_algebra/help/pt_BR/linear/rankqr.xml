@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -101,7 +101,7 @@
             estimativa de condição incremental.
         </para>
         <para>A rotina usa uma fatoração QR com pivoteamento de colunas:</para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 A * P = Q * R,  onde  R = [ R11 R12 ],
                           [  0  R22 ]
  ]]></programlisting>
@@ -127,7 +127,7 @@ A * P = Q * R,  onde  R = [ R11 R12 ],
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=rand(5,3)*rand(3,7);
 [Q,R,JPVT,RANK,SVAL]=rankqr(A,%eps)
  ]]></programlisting>

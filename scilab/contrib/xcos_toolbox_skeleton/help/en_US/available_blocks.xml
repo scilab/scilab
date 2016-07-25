@@ -25,7 +25,7 @@
         </para>
         <para>
             Example for the <literal>xcos_toolbox_skeleton</literal> toolbox:
-            
+
         </para>
         <programlisting role="xml"><![CDATA[
 ...

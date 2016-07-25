@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -69,13 +69,13 @@
         <para>
             連続時間:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 X=ricc(A,B,C,'cont')
  ]]></programlisting>
         <para>
             により連続時間 ARE の解が得られる
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 A'*X+X*A-X*B*X+C=0 .
  ]]></programlisting>
         <para>
@@ -92,13 +92,13 @@ A'*X+X*A-X*B*X+C=0 .
         <para>
             離散時間:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 X=ricc(F,G,H,'disc')
  ]]></programlisting>
         <para>
             により離散時間AREの解が得られる
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 X=F'*X*F-F'*X*G1*((G2+G1'*X*G1)^-1)*G1'*X*F+H
  ]]></programlisting>
         <para>
@@ -124,7 +124,7 @@ X=F'*X*F-F'*X*G1*((G2+G1'*X*G1)^-1)*G1'*X*F+H
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Standard formulas to compute Riccati solutions
 A=rand(3,3);B=rand(3,2);C=rand(3,3);C=C*C';R=rand(2,2);R=R*R'+eye();
 B=B*inv(R)*B';

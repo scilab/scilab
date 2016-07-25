@@ -30,7 +30,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 if with_tk() == %t then
    disp("Tk is available");
 else

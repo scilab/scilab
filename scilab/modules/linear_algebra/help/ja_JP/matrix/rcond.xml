@@ -3,7 +3,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -16,133 +16,133 @@
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="rcond">
-    
+
     <refnamediv>
-        
+
         <refname>rcond</refname>
-        
+
         <refpurpose>条件数の逆数</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>rcond(X)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>X</term>
-                
+
                 <listitem>
-                    
+
                     <para>実数または複素数の正方行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <literal>rcond(X)</literal> は,1-ノルムにおける
-            
+
             <literal>X</literal>の条件の逆数の推定値です.
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>X</literal>が健全な場合,
-            
+
             <literal>rcond(X)</literal> は 1 に近くなります.
-            
+
             そうでない場合, <literal>rcond(X)</literal> は 0に近くなります.
-            
+
         </para>
-        
+
         <para>
-            
+
             Aの1-ノルムを Lapack/DLANGEで計算, そのLU分解をLapack/DGETRFで計算,
-            
+
             最後に条件をLapack/DGECONで推定します.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 A=diag([1:10]);
 rcond(A)
 A(1,1)=0.000001;
 rcond(A)
  ]]></programlisting>
-        
+
         <para>
-            
+
             <literal>rcond</literal>による1-ノルム逆条件数の推定は,
-            
+
             <literal>cond</literal>による2-ノルム条件数の計算よりはるかに高速です.
-            
+
             トレードオフとして,<literal>rcond</literal> は若干信頼性が低下する可能性があります.
-            
+
         </para>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
     A=ones(1000,1000);
     timer();cond(A);timer()
     timer();1/rcond(A);timer()
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="svd">svd</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="cond">cond</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="inv">inv</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

@@ -24,7 +24,7 @@
                     </para>
                     <itemizedlist>
                         <listitem>
-                            <para>"none": フレームに境界は追加されません (デフォルト). 
+                            <para>"none": フレームに境界は追加されません (デフォルト).
                                 この型に利用可能なプロパティはありません.
                             </para>
                         </listitem>
@@ -93,7 +93,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            この関数は <literal>frame</literal> uicontrolsの境界を作成します. 
+            この関数は <literal>frame</literal> uicontrolsの境界を作成します.
             詳細については,
             <link linkend="uicontrol_properties">uicontrolプロパティ</link>を参照ください.
         </para>

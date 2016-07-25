@@ -71,7 +71,7 @@
         <title>注意</title>
         <para>
             従来からの<code>nicholschart</code>のニコルス線図の呼び出し手順は以下の形式でした:
-            nicholschart(modules=gains, args=phases, colors=colors), 
+            nicholschart(modules=gains, args=phases, colors=colors),
             しかし,以下の呼び出し手順も利用可能です: nicholschart(gains, phases, colors).
         </para>
     </refsection>

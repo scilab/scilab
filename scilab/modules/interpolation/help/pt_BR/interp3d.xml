@@ -21,7 +21,7 @@
                 <term>tl</term>
                 <listitem>
                     <para>tlist do tipo "splin3d", definindo um tensor spline 3d
-                        (chamado <literal>s</literal> a partir daqui) 
+                        (chamado <literal>s</literal> a partir daqui)
                     </para>
                 </listitem>
             </varlistentry>
@@ -30,7 +30,7 @@
                 <listitem>
                     <para>(opcional) string definindo a avaliação de
                         <literal>s</literal> fora do grid
-                        ([xmin,xmax]x[ymin,ymax]x[zmin,zmax]) 
+                        ([xmin,xmax]x[ymin,ymax]x[zmin,zmax])
                     </para>
                 </listitem>
             </varlistentry>
@@ -40,7 +40,7 @@
                     <para>
                         vetor ou matriz de mesmo formato que <literal>xp</literal>,
                         <literal>yp</literal> e <literal>zp</literal>, avaliação elemento a
-                        elemento de <literal>s</literal> onesses pontos. 
+                        elemento de <literal>s</literal> onesses pontos.
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,10 +64,10 @@
             <emphasis>s</emphasis> (e <emphasis>ds/dx, ds/dy, ds/dz</emphasis> , se
             necessário) em <emphasis>(xp(i),yp(i),zp(i))</emphasis> :
         </para>
-        <programlisting role=""><![CDATA[ 
-zp(i) = s(xp(i),yp(i))   
+        <programlisting role=""><![CDATA[
+zp(i) = s(xp(i),yp(i))
 dzpdx(i) = ds/dx(xp(i),yp(i),zp(i))
-dzpdy(i) = ds/dy(xp(i),yp(i),zp(i))  
+dzpdy(i) = ds/dy(xp(i),yp(i),zp(i))
 dzpdz(i) = ds/dz(xp(i),yp(i),zp(i))
  ]]></programlisting>
         <para>
@@ -94,8 +94,8 @@ dzpdz(i) = ds/dz(xp(i),yp(i),zp(i))
                 <term>"C0"</term>
                 <listitem>
                     <para>a extrapolação definida como segue :</para>
-                    <programlisting role=""><![CDATA[ 
-s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo 
+                    <programlisting role=""><![CDATA[
+s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo
                        em [x(1),x(nx)]x[y(1),y(ny)] de (x,y)
  ]]></programlisting>
                 </listitem>
@@ -112,7 +112,7 @@ s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo
     </refsection>
     <refsection>
         <title>Exemplos </title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // veja exemplos na página da função splin3d
  ]]></programlisting>
     </refsection>

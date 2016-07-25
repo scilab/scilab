@@ -17,7 +17,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>warning('string')</literal> prints the character string 
+            <literal>warning('string')</literal> prints the character string
             <literal>'string'</literal> in a warning message.
         </para>
         <para>
@@ -42,10 +42,10 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 w_flag = warning("query"); // remembering the warning flag
 
-warning('on') 
+warning('on')
 warning('this is a warning')
 warning('off')
 warning('this is a warning')

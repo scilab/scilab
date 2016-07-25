@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -57,8 +57,8 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-f=gdf() // get the handle of the model figure 
+        <programlisting role="example"><![CDATA[
+f=gdf() // get the handle of the model figure
 // setting its' properties
 f.background=7;
 f.figure_name="Function gdf()";
@@ -72,7 +72,7 @@ plot3d() //create a second figure
 set(f,"default_values",1); // return to the  default values of figure's model
                            // see sdf() function
 scf(2);
-plot2d() 
+plot2d()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

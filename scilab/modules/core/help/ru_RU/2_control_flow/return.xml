@@ -34,18 +34,18 @@
         <title>Описание</title>
         <para>
             В функции <code>return</code> прекращает исполнение функции;
-            <literal>[x1,..,xn]=return(a1,..,an)</literal> прекращает исполнение 
+            <literal>[x1,..,xn]=return(a1,..,an)</literal> прекращает исполнение
             функции и выдаёт локальные переменные <varname>ai</varname> в
             вызывающее окружение под именами <varname>xi</varname>.
         </para>
         <para>
             В режиме <code>pause</code>, можно вернуться на более высокий уровень.
-            <literal>[x1,..,xn]=return(a1,..,an)</literal> возвращает на верхний уровень 
+            <literal>[x1,..,xn]=return(a1,..,an)</literal> возвращает на верхний уровень
             и передаёт локальные переменные <varname>ai</varname> под именами <varname>xi</varname>.
         </para>
         <para>
             В <code>execstr</code>, вызванной функцией
-            <literal>[x1,..,xn]=return(a1,..,an)</literal> 
+            <literal>[x1,..,xn]=return(a1,..,an)</literal>
             прекращает исполнение функции и выдаёт локальные переменные <varname>ai</varname>
             в вызывающее окружение под именами <varname>xi</varname>.
         </para>

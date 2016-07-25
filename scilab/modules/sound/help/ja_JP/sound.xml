@@ -62,7 +62,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>sound(y,fs)</literal>は,行列<literal>y</literal> 
+            <literal>sound(y,fs)</literal>は,行列<literal>y</literal>
             (サンプリング周波数fs)で指定されたサウンド信号を演奏します.
             実際には,この関数は <literal>playsnd</literal>のラッパーです.
             yの値は範囲-1.0 &lt;= y &lt;= 1.0にあると仮定されます.

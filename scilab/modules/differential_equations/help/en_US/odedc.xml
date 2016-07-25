@@ -378,7 +378,7 @@ xset("window",0);
             xcd=odedc([x0c;x0d],nd,h,t0,t,f);
             plot2d2("gnn",[t',t'],xcd(4:5,:)');
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>

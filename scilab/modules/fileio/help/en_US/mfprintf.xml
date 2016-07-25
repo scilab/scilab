@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -31,7 +31,7 @@
                 <listitem>
                     <para>
                         a scalar, file descriptor given by <function>mopen</function>
-                        (it's a positive integer). 
+                        (it's a positive integer).
                     </para>
                     <para>
                         If <varname>fd</varname> equals 0 redirection in stderr.
@@ -50,16 +50,16 @@
                 <listitem>
                     <para>
                         a Scilab string describing the format to use to write the
-                        remaining operands. The 
+                        remaining operands. The
                         <varname>
                             format
                         </varname>
-                        operand follows, 
-                        as close as possible, the C 
+                        operand follows,
+                        as close as possible, the C
                         <function>
                             printf
                         </function>
-                        format 
+                        format
                         operand syntax.
                     </para>
                 </listitem>
@@ -84,19 +84,19 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <function>mfprintf</function> function is a interface for C-coded 
+            The <function>mfprintf</function> function is a interface for C-coded
             version of <function>fprintf</function> function.
         </para>
         <para>
             The <function>mfprintf</function> function writes formatted operands
             to the file specified by the file descriptor <varname>fd</varname>. The
-            argument operands are formatted under control of the 
+            argument operands are formatted under control of the
             <varname>format</varname> operand.
         </para>
         <para>
             This function may be used to output column vectors of numbers
-            and string vectors without an explicit loop on the elements. In that 
-            case this function iterates on the rows. The shortest vector gives the 
+            and string vectors without an explicit loop on the elements. In that
+            case this function iterates on the rows. The shortest vector gives the
             number of time the format has to be iterated.
         </para>
         <para>
@@ -106,7 +106,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 
 fd = mopen(TMPDIR+'/text.txt','wt');
 mfprintf(fd,'hello %s %d.\n','world',1);

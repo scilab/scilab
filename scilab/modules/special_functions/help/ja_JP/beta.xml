@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -59,7 +59,7 @@
             <literal>x</literal> および<literal>y</literal>が小さい場合,
             このアルゴリズムは,関数内でガンマ関数の式を使用します.
             そうでない場合はDCDFLIBにより提供される
-            <literal>betaln</literal>関数の結果に指数関数を適用します: 
+            <literal>betaln</literal>関数の結果に指数関数を適用します:
             DCDFLIBは累積密度関数,逆,およびその他のパラメータに関する
             Fortranルーチンのライブラリです
             (DCDFLIBに関する詳細については <link linkend="cdfbet">cdfbet</link> を参照
@@ -68,15 +68,15 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 例 1 :
 beta(5,2) - beta(2,5)   // 対称性 (0になります)
 beta(0.5,0.5)           // 値はpiになります
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 例 2 : 関係  B(1,x) = 1/xに基づく誤差解析
 // (1/x の計算は eps_mの相対誤差のみを発生するため,
-// B(1,x)の誤差を評価する際の基準として使用できます)  
+// B(1,x)の誤差を評価する際の基準として使用できます)
 x = logspace(-8,8,20000)';
 e = beta(ones(x),x) - (1)./x;
 er = abs(e) .* x;
@@ -96,7 +96,7 @@ show_window()
             plot2d(x(ind),[er(ind) eps 2*eps],style=[1 2 3],logflag="ll",leg="er@eps_m@2 eps_m")
             xtitle("approximate relative error in computing beta(1,x)")
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 例 3 : ベータ関数をプロット
 t = linspace(0.2,10,60);
 X = t'*ones(t); Y = ones(t')*t;

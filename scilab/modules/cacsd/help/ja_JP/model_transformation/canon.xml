@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F. Delebecque
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -60,7 +60,7 @@
             例えば,<literal>ind=[3,2]</literal>の場合，
             <literal>Ac</literal> および <literal>Bc</literal> は以下のようになります:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
       [*,*,*,*,*]           [*]
       [1,0,0,0,0]           [0]
 Ac=   [0,1,0,0,0]        Bc=[0]
@@ -75,7 +75,7 @@ Ac=   [0,1,0,0,0]        Bc=[0]
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[1,2,3,4,5;
    1,0,0,0,0;
    0,1,0,0,0;
@@ -91,10 +91,10 @@ X=rand(5,5);A=X*A*inv(X);B=X*B;    //可制御対
 index=1;for k=1:size(ind,'*')-1,index=[index,1+sum(ind(1:k))];end
 Acstar=Ac(index,:);Bcstar=Bc(index,:);
 s=poly(0,'s');
-p1=s^3+2*s^2-5*s+3;p2=(s-5)*(s-3);   
+p1=s^3+2*s^2-5*s+3;p2=(s-5)*(s-3);
 //p1 と p2 は3,2次の閉ループ多項式の目標値
 c1=coeff(p1);c1=c1($-1:-1:1);c2=coeff(p2);c2=c2($-1:-1:1);
-Acstardesired=[-c1,0,0;0,0,0,-c2];  
+Acstardesired=[-c1,0,0;0,0,0,-c2];
 //Acstardesired(index,:) は,pol=p1*p2のコンパニオン行列
 F=Bcstar\(Acstardesired-Acstar);   //フィードバックゲイン
 Ac+Bc*F         // コンパニオン形式

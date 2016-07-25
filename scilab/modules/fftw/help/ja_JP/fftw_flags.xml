@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -68,9 +68,9 @@
         <para>以下のエントリを指定可能です :</para>
         <itemizedlist>
             <listitem>
-                <para>{FFTW_ESTIMATE} または 64. 
+                <para>{FFTW_ESTIMATE} または 64.
                     これを指定すると, 他のアルゴリズムで使用される
-                    実際の観測量の代わりに, 
+                    実際の観測量の代わりに,
                     (おそらく準最適の)プランを簡単に選択できる
                     簡単な経験則が使用されます.
                     このフラグを指定すると,
@@ -79,15 +79,15 @@
                 </para>
             </listitem>
             <listitem>
-                <para>FFTW_MEASURE または 0. 
+                <para>FFTW_MEASURE または 0.
                     実際に計算した複数回のFFTとそれらの実行時間
                     の計測値から最適なプランをみつけるようFFTWに指示します.
                     実行する計算機に依存した時間がかかります(通常は数秒).
                 </para>
             </listitem>
             <listitem>
-                <para>FFTW_PATIENT または 32. 
-                    "FFTW_MEASURE"と似ていますが, 
+                <para>FFTW_PATIENT または 32.
+                    "FFTW_MEASURE"と似ていますが,
                     より広範なアルゴリズムを検討し,しばしば
                     "より最適な"プランを出力します
                     (特に大規模な変換の場合).
@@ -95,10 +95,10 @@
                     (特に大規模な変換の場合).
                 </para>
             </listitem>
-            
+
             <listitem>
-                <para>FFTW_EXHAUSTIVE または 8. 
-                    "FFTW_PATIENT"に似ていますが, 
+                <para>FFTW_EXHAUSTIVE または 8.
+                    "FFTW_PATIENT"に似ていますが,
                     高速と思われないようなものを多く含む
                     さらにより広範なアルゴリズムを検討します.
                     最も最適なプランを出力しますが,
@@ -106,8 +106,8 @@
                 </para>
             </listitem>
         </itemizedlist>
-        
-        
+
+
         <para>注意 : FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE を使用する時,
             fftwを2回コールする必要があります.
             (最初のコールは初期化用, 2回目以降は計算用)
@@ -115,7 +115,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=rand(1, 2^9 + 2^15);
 fftw_forget_wisdom();
 fftw_flags("FFTW_ESTIMATE");

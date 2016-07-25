@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -40,16 +40,16 @@
         <title>Description</title>
         <para>Ends the current Scilab session.</para>
         <para>
-            The exit status shall be <literal>n</literal>, if specified. Otherwise, the value 
+            The exit status shall be <literal>n</literal>, if specified. Otherwise, the value
             shall be zero.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 exit
 i = 4;
-exit(i); 
+exit(i);
 ]]></programlisting>
     </refsection>
     <refsection role="see also">

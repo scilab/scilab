@@ -82,7 +82,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 txt=['module';'frequence';'phase    '];
 sig=x_mdialog('choisir le signal sinusoidal',txt,['1';'10';'0'])
 mag=evstr(sig(1))

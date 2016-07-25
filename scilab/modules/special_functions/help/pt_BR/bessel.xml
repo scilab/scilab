@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -147,26 +147,26 @@
         <para>As funções de Bessel Y_alfa e J_alfa são duas soluções independentes
             da equação diferencial de Bessel:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 2 2 2 x y" + x y' + (x - alfa ) y = 0 , alfa >= 0
  ]]></programlisting>
         <para>As funções modificadas de Bessel K_alfa e I_alfa são duas soluções
             independentes para a equação diferencial de Bessel :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 2 2 2 x y" + x y' - (x + alfa ) y = 0 , alfa >= 0
  ]]></programlisting>
         <para>As funções de Hankel de primeiro e segundo tipos H^1_alfa e
             H^2_alfa, são combinações lineares das funções de Bessel de primeiro e
             segundo tipos:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 H^1_alfa(z) = J_alfa(z) + i Y_alfa(z) H^2_alfa(z) = J_alfa(z) - i Y_alfa(z)
  ]]></programlisting>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //  Funções I de Bessel
 // ==================
 x = linspace(0.01,10,5000)';
@@ -189,7 +189,7 @@ legend('I'+string(0:4),1);
 xtitle("Algumas funções de Bessel do primeiro tipo")
 
 // Usando o fato de que J_(1/2)(x) = sqrt(2/(x pi)) sin(x)
-// Para comparar o algoritmo de besselj(0.5,x) com uma fórmula mais direta 
+// Para comparar o algoritmo de besselj(0.5,x) com uma fórmula mais direta
 x = linspace(0.1,40,5000)';
 y1 = besselj(0.5, x);
 y2 = sqrt(2 ./(%pi*x)).*sin(x);
@@ -201,7 +201,7 @@ plot2d(x,y1,style=2)
 xtitle("besselj(0.5,x)")
 subplot(2,1,2)
 plot2d(x(ind), er(ind), style=2, logflag="nl")
-xtitle("Erro relativo entre as duas fórmulas para besselj(0.5,x)") 
+xtitle("Erro relativo entre as duas fórmulas para besselj(0.5,x)")
 
 // Funções K de Bessel
 // =================
@@ -228,7 +228,7 @@ xtitle("Algumas funções de Bessel do segundo tipo")
 // =================
 x=-4:0.025:2; y=-1.5:0.025:1.5;
 [X,Y] = ndgrid(x,y);
-H = besselh(0,1,X+%i*Y); 
+H = besselh(0,1,X+%i*Y);
 clf();f=gcf();
 xset("fpf"," ")
 f.color_map=jetcolormap(16);

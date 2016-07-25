@@ -26,15 +26,15 @@
         </para>
         <para>
             Les fonctions matricielles renvoient <literal>[]</literal> ou un message d'erreur
-            quand il n'y pas de réponse évidente. Les systèmes dynamiques linéaires 
+            quand il n'y pas de réponse évidente. Les systèmes dynamiques linéaires
             (listes de type <literal>syslin</literal>) peuvent avoir plusieurs lignes ou colonnes.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
-A = [s, s+1]; 
+A = [s, s+1];
 A+[], A*[]
 A=rand(2,2);
 AA=A([],1), size(AA)

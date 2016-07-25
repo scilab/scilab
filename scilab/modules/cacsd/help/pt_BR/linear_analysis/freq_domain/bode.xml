@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -34,7 +34,7 @@
                 <listitem>
                     <para>
                         <literal>syslin</literal> lista (sistema linear SISO ou
-                        SIMO) em tempo contínuo ou discreto 
+                        SIMO) em tempo contínuo ou discreto
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,7 +60,7 @@
                 <term>frq</term>
                 <listitem>
                     <para>vetor linha ou matriz (freqüências (em Hz) ) (uma linha para
-                        cada subsistema SISO). 
+                        cada subsistema SISO).
                     </para>
                 </listitem>
             </varlistentry>
@@ -68,7 +68,7 @@
                 <term>db</term>
                 <listitem>
                     <para>vetor linha ou matriz ( magnitudes (em Db)). (um para cada
-                        subsistema SISO). 
+                        subsistema SISO).
                     </para>
                 </listitem>
             </varlistentry>
@@ -76,7 +76,7 @@
                 <term>phi</term>
                 <listitem>
                     <para>vetor linha ou matriz ( fases (em graus)) (um para cada
-                        subsistema SISO ). 
+                        subsistema SISO ).
                     </para>
                 </listitem>
             </varlistentry>
@@ -131,7 +131,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 clf();bode(h,0.01,100);
@@ -143,7 +143,7 @@ clf();bode(h,0.01,100);
                 clf();bode(h,0.01,100);
             </scilab:image>
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s')
 h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
@@ -159,7 +159,7 @@ clf();bode([h1;h2],0.01,100,['h1';'h2'])
                 num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
                 den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
                 h2=syslin('c',num/den);
-                
+
                 clf();bode([h1;h2],0.01,100,['h1';'h2'])
             </scilab:image>
         </para>

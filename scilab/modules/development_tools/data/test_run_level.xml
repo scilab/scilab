@@ -16,12 +16,12 @@
 
 <tests>
     <level severity="1">
-        
+
         <module name="string">
             <test>evstr</test>
             <test>emptystr</test>
         </module>
-        
+
         <module name="core">
             <test>clear</test>
             <test>colon</test>
@@ -29,16 +29,16 @@
             <test>matops</test>
             <test>inf_nan</test>
         </module>
-        
+
         <module name="development_tools">
             <test>test_run_nojvm</test>
         </module>
-        
+
         <module name="linear_algebra">
             <test>spec</test>
             <test>norm</test>
         </module>
-        
+
         <module name="data_structures">
             <test>hypermat</test>
             <test>isfield</test>
@@ -48,7 +48,7 @@
             <test>lstops</test>
             <test>struct</test>
         </module>
-        
+
         <module name="development_tools|assert">
             <test>checkalmostequal</test>
             <test>checkequal</test>
@@ -62,7 +62,7 @@
             <test>cond2reqdigits</test>
             <test>generror</test>
         </module>
-        
+
         <module name="elementary_functions">
             <test>IEEEcompatibility</test>
             <test>prod</test>
@@ -80,16 +80,16 @@
             <test>abs</test>
             <test>isempty</test>
         </module>
-        
+
         <module name="polynomials">
             <test>polops</test>
         </module>
-        
+
         <module name="overloading">
             <test>sparse</test>
             <test>rational</test>
         </module>
-        
+
         <module name="hdf5">
             <test>loadhdf5data</test>
         </module>
@@ -106,23 +106,23 @@ Randomly fail ...
       <test>ssprint</test>
     </module>
 -->
-        
+
     </level>
-    
+
     <level severity="2">
         <module name="core">
             <test>lasterror</test>
             <test>who</test>
         </module>
-        
+
         <module name="string">
             <test>tokens</test>
         </module>
-        
+
         <module name="polynomials">
             <test>roots</test>
         </module>
-        
+
     </level>
-    
+
 </tests>

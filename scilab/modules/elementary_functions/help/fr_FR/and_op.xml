@@ -24,7 +24,7 @@
             while (A &amp;&amp; B) then ... end
         </synopsis>
     </refsynopsisdiv>
-    
+
     <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
@@ -133,7 +133,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection>
         <title>Description</title>
         <para>
@@ -151,7 +151,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A = [0 1; 1 0];
 B = [1 1; 0 0];
 spA = sparse(A);
@@ -214,7 +214,7 @@ cA && foo()
 iA && iB // iA est évaluée à faux et l'opération est court-circuitée
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">

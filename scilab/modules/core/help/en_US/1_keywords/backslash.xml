@@ -53,7 +53,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[
    9.   -36.    30.
   -36.   192.  -180.

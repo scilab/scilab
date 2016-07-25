@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -36,7 +36,7 @@
             diary(id, 'resume'|'on')
             diary(filenames, 'exists')
             diary(ids, 'exists')
-            diary(filename, 'new'|'append', 'prefix=YYYY-MM-DD hh:mm:ss') 
+            diary(filename, 'new'|'append', 'prefix=YYYY-MM-DD hh:mm:ss')
             diary(filename, 'new'|'append', 'prefix=U')
             diary(filename, 'new'|'append', [ 'prefix=YYYY-MM-DD hh:mm:ss' ; 'prefix-only-commands' ] );
         </synopsis>
@@ -182,7 +182,7 @@
             <literal>diary(id,'exists')</literal>
         </para>
         <para>ファイル'filename'を指定するダイアリセッションが
-            現在オープンされている場合には true, そうでない場合には 
+            現在オープンされている場合には true, そうでない場合には
             falseを返します.
         </para>
     </refsection>
@@ -218,7 +218,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 d1 = diary(TMPDIR + '/diary1.txt')
 d2 = diary(TMPDIR + '/diary2.txt')
 // 何らかのScilab命令 …

@@ -54,7 +54,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 l=list(1,'qwerw',%s)
 l(1)='Changed'
 l(0)='Added'

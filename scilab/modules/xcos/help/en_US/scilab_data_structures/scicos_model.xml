@@ -43,28 +43,28 @@
         </para>
         <para>
             Type : scilab tlist of type <code>"model"</code> with fields :
-            <link linkend="scicos_block_model_sim">sim</link>, 
-            <link linkend="scicos_block_model_in">in</link>, 
-            <link linkend="scicos_block_model_in2">in2</link>, 
-            <link linkend="scicos_block_model_intyp">intyp</link>, 
-            <link linkend="scicos_block_model_out">out</link>, 
-            <link linkend="scicos_block_model_out2">out2</link>, 
-            <link linkend="scicos_block_model_outtyp">outtyp</link>, 
-            <link linkend="scicos_block_model_evtin">evtin</link>, 
-            <link linkend="scicos_block_model_evtout">evtout</link>, 
-            <link linkend="scicos_block_model_state">state</link>, 
-            <link linkend="scicos_block_model_dstate">dstate</link>, 
-            <link linkend="scicos_block_model_odstate">odstate</link>, 
-            <link linkend="scicos_block_model_rpar">rpar</link>, 
-            <link linkend="scicos_block_model_ipar">ipar</link>, 
-            <link linkend="scicos_block_model_opar">opar</link>, 
-            <link linkend="scicos_block_model_blocktype">blocktype</link>, 
-            <link linkend="scicos_block_model_firing">firing</link>, 
-            <link linkend="scicos_block_model_dep_ut">dep_ut</link>, 
-            <link linkend="scicos_block_model_label">label</link>, 
-            <link linkend="scicos_block_model_nzcross">nzcross</link>, 
-            <link linkend="scicos_block_model_nmode">nmode</link>, 
-            <link linkend="scicos_block_model_equations">equations</link> and 
+            <link linkend="scicos_block_model_sim">sim</link>,
+            <link linkend="scicos_block_model_in">in</link>,
+            <link linkend="scicos_block_model_in2">in2</link>,
+            <link linkend="scicos_block_model_intyp">intyp</link>,
+            <link linkend="scicos_block_model_out">out</link>,
+            <link linkend="scicos_block_model_out2">out2</link>,
+            <link linkend="scicos_block_model_outtyp">outtyp</link>,
+            <link linkend="scicos_block_model_evtin">evtin</link>,
+            <link linkend="scicos_block_model_evtout">evtout</link>,
+            <link linkend="scicos_block_model_state">state</link>,
+            <link linkend="scicos_block_model_dstate">dstate</link>,
+            <link linkend="scicos_block_model_odstate">odstate</link>,
+            <link linkend="scicos_block_model_rpar">rpar</link>,
+            <link linkend="scicos_block_model_ipar">ipar</link>,
+            <link linkend="scicos_block_model_opar">opar</link>,
+            <link linkend="scicos_block_model_blocktype">blocktype</link>,
+            <link linkend="scicos_block_model_firing">firing</link>,
+            <link linkend="scicos_block_model_dep_ut">dep_ut</link>,
+            <link linkend="scicos_block_model_label">label</link>,
+            <link linkend="scicos_block_model_nzcross">nzcross</link>,
+            <link linkend="scicos_block_model_nmode">nmode</link>,
+            <link linkend="scicos_block_model_equations">equations</link> and
             <link linkend="scicos_block_model_uid">uid</link>.
         </para>
         <refsect2 id="scicos_block_model_sim">
@@ -82,7 +82,7 @@
                 Type : Scilab list.
             </para>
             <para>
-                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_funs">funs</link>   
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_funs">funs</link>
             </para>
         </refsect2>
         <refsect2 id="scicos_block_model_in">
@@ -91,7 +91,7 @@
                 A vector specifying the number and size of the first dimension of regular input ports indexed from top to bottom of the block. If no input port exist <code>in==[]</code>.
             </para>
             <para>
-                The size can be negative, equal to zero or positive : 
+                The size can be negative, equal to zero or positive :
             </para>
             <itemizedlist>
                 <listitem>

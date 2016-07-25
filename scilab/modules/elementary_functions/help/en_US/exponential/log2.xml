@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -36,13 +36,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>log2(x)</literal> is the "element-wise" base 2 logarithm 
+            <literal>log2(x)</literal> is the "element-wise" base 2 logarithm
             <literal>y(i,j)=log2(x(i,j))</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 2.^log2([1,%i,-1,-%i])
  ]]></programlisting>
     </refsection>

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Sylvestre Ledru
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -22,7 +22,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            MPIインターフェイスがScilabに提供されています. 
+            MPIインターフェイスがScilabに提供されています.
             このインターフェイスにより高性能なメッセージ指定
             計算が可能となります.
         </para>
@@ -49,7 +49,7 @@
     </refsection>
     <refsection>
         <title>Scilab MPIの例</title>
-        <programlisting role="scilab"><![CDATA[ 
+        <programlisting role="scilab"><![CDATA[
 // TODO. 例を追加 (PI ?)
 ]]></programlisting>
     </refsection>

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -52,7 +52,7 @@
                 <term>hsv</term>
                 <listitem>
                     <para>uma matriz n x 3. Cada linha contém uma tripla [hue saturation
-                        value]. 
+                        value].
                     </para>
                 </listitem>
             </varlistentry>
@@ -81,7 +81,7 @@
                 <term>rgb</term>
                 <listitem>
                     <para>uma matriz n x 3. Cada linha contém uma tripla [red green
-                        blue]. 
+                        blue].
                     </para>
                 </listitem>
             </varlistentry>
@@ -97,15 +97,15 @@
             a 1.0, as cores correspondentes (matizes) variam de insaturadas (gradações
             de cinza) a completamente saturadas (nenhum componente branco). à medida
             em que o valor, ou brilho, varia de 0 a 1.0, as cores correspondentes vão
-            se tornando mais brilhantes. 
+            se tornando mais brilhantes.
         </para>
     </refsection>
     <refsection role="examples">
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-t = [0:0.3:2*%pi]'; 
-z = sin(t)*cos(t'); 
-plot3d1(t,t,z) 
+        <programlisting role="example"><![CDATA[
+t = [0:0.3:2*%pi]';
+z = sin(t)*cos(t');
+plot3d1(t,t,z)
 f = gcf();
 for h = 0:0.1:1
   hsv = [h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];

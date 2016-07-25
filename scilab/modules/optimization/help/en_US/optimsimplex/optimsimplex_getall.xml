@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -38,8 +38,8 @@
                 <listitem>
                     <para>The simplex data.</para>
                     <para>
-                        The simplex matrix has size <literal>nbve</literal>-by-<literal>n+1</literal>, 
-                        and is organized by row by row as follows: 
+                        The simplex matrix has size <literal>nbve</literal>-by-<literal>n+1</literal>,
+                        and is organized by row by row as follows:
                     </para>
                     <itemizedlist>
                         <listitem>
@@ -62,14 +62,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimsimplex_getall</literal> function returns all the coordinates of all 
+            The <literal>optimsimplex_getall</literal> function returns all the coordinates of all
             the vertices and the function values in the same matrix.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     simplex = [
         3.  0.  0.
         4. 1.  0.
@@ -79,7 +79,7 @@
     s1 = optimsimplex_setall ( s1 , simplex );
     res = optimsimplex_getall(s1);
     disp(res)
-    
+
     s1 = optimsimplex_destroy(s1);
  ]]>
         </programlisting>

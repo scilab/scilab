@@ -8,13 +8,13 @@
         <title>Description</title>
         <para>
             If there is more than one condition then keyword <literal>elseif</literal> is useful.
-            If there is more than one <literal>elseif</literal> then the first true condition 
+            If there is more than one <literal>elseif</literal> then the first true condition
             is selected (even other also are true).
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=1;
 if a==1 then
     disp("a equals 1")

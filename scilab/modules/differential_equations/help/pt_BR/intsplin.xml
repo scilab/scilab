@@ -27,7 +27,7 @@
                 <term>s</term>
                 <listitem>
                     <para>
-                        vetor de dados de coordenadas <literal>y</literal> 
+                        vetor de dados de coordenadas <literal>y</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -56,7 +56,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t=0:0.1:%pi
 intsplin(t,sin(t))
  ]]></programlisting>

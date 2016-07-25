@@ -31,8 +31,8 @@
                 <term>nsub</term>
                 <listitem>
                     <para>
-                        整数. 無効化するサブメニューの数. 
-                        ボタンにサブメニューがない場合, 
+                        整数. 無効化するサブメニューの数.
+                        ボタンにサブメニューがない場合,
                         <literal>nsub</literal>は無視されます
                     </para>
                 </listitem>
@@ -44,12 +44,12 @@
         <para>
             この関数により,ユーザは<literal>addmenu</literal>
             によりメインまたはグラフィックウインドウコマンドパネルに
-            作成されたボタンまたはメニューを無効化できます.	  
+            作成されたボタンまたはメニューを無効化できます.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 addmenu('foo')
 unsetmenu('foo')
 unsetmenu(gettext("File"), 3)

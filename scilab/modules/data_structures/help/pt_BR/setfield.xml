@@ -55,7 +55,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 l=list(1,'qwerw',%s)
 l(1)='Modificado'
 l(0)='Adicionado'

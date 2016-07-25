@@ -16,7 +16,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>perl('perlfile')</literal> calls the Perl script <literal>perlfile</literal>, using 
+            <literal>perl('perlfile')</literal> calls the Perl script <literal>perlfile</literal>, using
             the appropriate operating system Perl executable.
         </para>
         <para>

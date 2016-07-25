@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -51,7 +51,7 @@
         <para>according to its arguments defines an
             <literal>m</literal>x<literal>n</literal> matrix with 1 along the main
             diagonal or an identity matrix of the same dimension as
-            <literal>A</literal> . In case <varname>A</varname> is an hypermatrix, 
+            <literal>A</literal> . In case <varname>A</varname> is an hypermatrix,
             <varname>X</varname> will be defined as
             <literal>X(i,i,...,i) = 1</literal> for all <literal>i</literal> from 1 to <literal>min(size(A))</literal>.
         </para>
@@ -74,7 +74,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 eye(2,3)
 A=rand(2,3);eye(A)
 s=poly(0,'s');A=[s,1;s,s+1];eye(A)

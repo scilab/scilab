@@ -24,7 +24,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            <link linkend="csvRead">csvRead</link>と異なり, 
+            <link linkend="csvRead">csvRead</link>と異なり,
             以前のバージョンとの互換性を維持するために
             変換はデフォルトで<literal>string</literal>に設定されます.
         </para>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -38,12 +38,12 @@
     <refsection>
         <title>説明</title>
         <para>
-            ユーティリティ関数. 
+            ユーティリティ関数.
             (状態形式で指定した)線形システム <literal>sl1</literal> の
             逆 <literal>sl2</literal>の状態形式を計算します.
         </para>
         <para>
-            <literal>D</literal>行列はフルランクと仮定されます. 
+            <literal>D</literal>行列はフルランクと仮定されます.
             <literal>S</literal>が<literal>syslin</literal>リストの場合,
             <literal>inv(S)</literal>による古い処理が使用されます.
         </para>

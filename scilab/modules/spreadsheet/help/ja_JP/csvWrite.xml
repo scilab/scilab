@@ -44,7 +44,7 @@
             <varlistentry>
                 <term>M</term>
                 <listitem>
-                    <para>m行n列の文字列またはdoubleの行列 
+                    <para>m行n列の文字列またはdoubleの行列
                         (複素数がサポートされています).
                     </para>
                 </listitem>
@@ -58,7 +58,7 @@
             <varlistentry>
                 <term>decimal</term>
                 <listitem>
-                    <para>1行1列の文字列の行列, 小数点記号. 
+                    <para>1行1列の文字列の行列, 小数点記号.
                         利用可能な値は"." または ",".
                     </para>
                 </listitem>

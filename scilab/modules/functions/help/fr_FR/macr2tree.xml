@@ -29,13 +29,13 @@
         <title>Description</title>
         <para>
             Cette primitive convertit une fonction compilée de Scilab <literal>nom-de-fonction</literal>
-            en arbre (tlists imbriquées) qui code la représentation interne de la fonction. 
+            en arbre (tlists imbriquées) qui code la représentation interne de la fonction.
             A utiliser avec <literal>tree2code</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 tree=macr2tree(cosh);
 txt=tree2code(tree,%T);
 write(%io(2),txt,'(a)');

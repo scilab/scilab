@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -37,13 +37,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-/* 
+        <programlisting role="example"><![CDATA[
+/*
  * Write a matrix of boolean into Scilab
- * B=[F F T F; 
+ * B=[F F T F;
  *    F F F T ]
  * Note that it is done column by column
- */ 
+ */
 int B[]={0,0,0,0,1,0,0,1};   /* Declare the matrix */
 int rowB=2, colB=4; /* Size of the matrix */
 char variableNameB[] = "B";
@@ -58,13 +58,13 @@ if(sciErr.iErr)
 
 /*
  * Prior to Scilab 5.2:
- * C2F(cwritebmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); 
+ * C2F(cwritebmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB));
  */
 
 printf("Display from Scilab of B:\n");
 SendScilabJob("disp(B);"); /* Display B */
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 /* Read the previously declared matrix of boolean B */
 int rowB_ = 0, colB_ = 0, lp_ = 0;
 int i = 0, j = 0;

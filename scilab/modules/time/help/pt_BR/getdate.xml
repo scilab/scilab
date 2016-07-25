@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -69,7 +69,7 @@
                             <term>dt(3)</term>
                             <listitem>
                                 <para>o número da semana ISO 8601 como um número entre 01 e
-                                    53. 
+                                    53.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -84,7 +84,7 @@
                             <term>dt(5)</term>
                             <listitem>
                                 <para>especifica o dia da semana como um número decimal entre
-                                    1 e 7 , com 1 representando domingo. 
+                                    1 e 7 , com 1 representando domingo.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -127,7 +127,7 @@
                 <term>x=getdate("s")</term>
                 <listitem>
                     <para>retorna um escalar com o número de segundos desde 01/01/1970,
-                        00:00 UTC (Convenção de Tempo Unix) 
+                        00:00 UTC (Convenção de Tempo Unix)
                     </para>
                 </listitem>
             </varlistentry>
@@ -144,7 +144,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 w=getdate()
 mprintf("Ano:%d,Mês:%d,Dia:%d",w(1),w(2),w(6));
 

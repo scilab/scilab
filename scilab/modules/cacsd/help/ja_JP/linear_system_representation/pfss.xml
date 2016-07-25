@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F.D
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -71,7 +71,7 @@
             その後,各サブシステム<literal>Si</literal>が伝達形式に変換されます.
         </para>
         <para>
-            A 行列の状態空間形式は, 
+            A 行列の状態空間形式は,
             関数<literal>bdiag</literal>によりブロック対角形式に変換されます.
             オプションのパラメータ
             <literal>rmax</literal> は<literal>bdiag</literal>に送られます.
@@ -86,9 +86,9 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 W=ssrand(1,1,6);
-elts=pfss(W); 
+elts=pfss(W);
 W1=0;for k=1:size(elts), W1=W1+ss2tf(elts(k));end
 clean(ss2tf(W)-W1)
  ]]></programlisting>

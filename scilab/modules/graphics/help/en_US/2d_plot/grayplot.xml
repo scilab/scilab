@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -82,7 +82,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=-10:10;
 y=-10:10;
 m=rand(21,21);
@@ -94,7 +94,7 @@ grayplot(x,y,m,rect=[-20,-20,20,20])
             m=rand(21,21);
             grayplot(x,y,m,rect=[-20,-20,20,20])
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t=-%pi:0.1:%pi;
 m=sin(t)'*cos(t);
 clf()
@@ -105,7 +105,7 @@ grayplot(t,t,m)
             m=sin(t)'*cos(t);
             clf()
             grayplot(t,t,m)
-            
+
         </scilab:image>
     </refsection>
     <refsection role="see also">

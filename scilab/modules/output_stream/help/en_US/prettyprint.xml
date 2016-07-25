@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * 
+ *
  * This help file was generated from prettyprint.sci using help_from_sci().
- * 
+ *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="prettyprint" xml:lang="en">
     <refnamediv>
@@ -109,7 +109,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 str = prettyprint(rand(3,3)) // Return the LaTeX representation of a 3,3 matrix
 xstring(0.2,0.2,str) // Show the representation in a graphic Windows
 

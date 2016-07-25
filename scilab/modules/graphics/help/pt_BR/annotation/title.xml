@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Farid Belahcene
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -39,7 +39,7 @@
                 <listitem>
                     <para>argumento opcional, representa um par de declarações
                         <literal>{PropertyName,PropertyValue}</literal>que definem
-                        propriedades de objetos globais aplicadas o título criado. 
+                        propriedades de objetos globais aplicadas o título criado.
                     </para>
                 </listitem>
             </varlistentry>
@@ -70,12 +70,12 @@
                     <para>
                         <literal>backgroundcolor :</literal> este campo contém a cor
                         utilizada para preencher a caixa, se houver. Seu valor deve ser um
-                        índice de cor (relativo ao mapa de cores corrente). 
+                        índice de cor (relativo ao mapa de cores corrente).
                     </para>
                     <para>
                         <literal>color :</literal> este campo contém a cor a ser
                         utilizada para exibir o texto de título. Seu valor deve ser um
-                        índice de cor (relativo ao mapa de cores corrente). 
+                        índice de cor (relativo ao mapa de cores corrente).
                     </para>
                     <para>
                         <literal>edgecolor :</literal>este campo contém a cor usada
@@ -97,18 +97,18 @@
                     <para>
                         <literal>position :</literal> este vetor 2d permite que você
                         posicione manualmente o título na tela. A posição é armazenada nas
-                        unidades de dados dos eixos. 
+                        unidades de dados dos eixos.
                     </para>
                     <para>
                         <literal>rotation :</literal> escalar que permite que você
                         gire o título. A fonte é girada em sentido anti-horário com o ângulo
-                        dado em graus. 
+                        dado em graus.
                     </para>
                     <para>
                         <literal>visible :</literal> este campo contém o valor da
                         propriedade visible para o título. Pode ser "on" ou "off". Por
                         padrão, o título é visível, a propriedade é "on" . Se "off" , o
-                        título não é exibido na tela. 
+                        título não é exibido na tela.
                     </para>
                 </listitem>
             </varlistentry>
@@ -116,7 +116,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // exibindo um título com várias propriedades
 title('meu título');
 // mudando a cor de fonte do título
@@ -127,7 +127,7 @@ title('meu título','edgecolor','red');
 title('meu título','position',[0.3 0.8]);
 // mudando o tamanho da fonte
 title('meu título','fontsize',3);
-// dando uma rotação 
+// dando uma rotação
 title('meu título','rotation',90);
 
 // podemos realizar todas essas modificações apenas pela instrução abaixo:

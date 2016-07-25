@@ -77,7 +77,7 @@
                 <listitem>
                     <para>
                         1行1列の文字列行列で,エラーメッセージ.
-                        flag==%t の場合, errormsg==""となります. 
+                        flag==%t の場合, errormsg==""となります.
                         flag==%f の場合, errmsgにはエラーメッセージが出力されます.
                     </para>
                 </listitem>
@@ -88,7 +88,7 @@
         <title>説明</title>
         <para>
             式がエラーを発生しない場合,
-            <literal>assert_checkerror</literal> はエラーを発生します. 
+            <literal>assert_checkerror</literal> はエラーを発生します.
             評価された式が予想されたエラーメッセージを生成する場合,そのまま実行されます.
         </para>
         <para>

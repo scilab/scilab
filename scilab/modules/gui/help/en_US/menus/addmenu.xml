@@ -155,19 +155,19 @@
         <programlisting role="example">if (getscilabmode() == "STD") then
             addmenu('foo');
             foo = 'disp(''hello'')';
-            
+
             addmenu('Hello',['Franck';'Peter'])
             Hello = ['disp(''hello Franck'')';'disp(''hello Peter'')'];
-            
+
             addmenu('Bye',list(0,'French_Bye'));
             French_Bye = 'disp(''Au revoir'')';
             else
             mprintf('This example requires to use scilab with GUI mode.\n');
             end
-            
+
             addmenu(0,'Hello',['Franck';'Peter']);
             Hello_0 = ['disp(''hello Franck'')';'disp(''hello Peter'')'];
-            
+
             //C defined Callback
             // creating Callback code
             code=[ '#include ""machine.h""'
@@ -189,7 +189,7 @@
             chdir(current_dir);
             //add menu
             addmenu(0,'foo',['a','b','c'],list(1,'foo'));
-            
+
         </programlisting>
     </refsection>
     <refsection role="see also">

@@ -18,7 +18,7 @@
                 <term>padding</term>
                 <listitem>
                     <para>
-                        <literal>[pad_x, pad_y]</literal> 1行2列のdouble行列, 
+                        <literal>[pad_x, pad_y]</literal> 1行2列のdouble行列,
                         デフォルトは[0,0].
                     </para>
                     <para>
@@ -45,7 +45,7 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-         //Creating a figure with the border layout with 50 pixel padding in width and 10 in height 
+         //Creating a figure with the border layout with 50 pixel padding in width and 10 in height
          f = figure( ...
          "dockable"        , "off",...
          "infobar_visible" , "off",...

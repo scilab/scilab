@@ -94,7 +94,7 @@
             <listitem>
                 <para>Radiobutton: a button with two states. RadioButtons are intended to be mutually exclusive.</para>
                 <para>
-                    Your code must implement mutually exclusive behavior if you do not use groups 
+                    Your code must implement mutually exclusive behavior if you do not use groups
                     (See <literal>GroupName</literal> property in <link linkend="uicontrol_properties">uicontrol properties</link>).
                 </para>
             </listitem>

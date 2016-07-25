@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -63,14 +63,14 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // exemplo 1 :
 x=86;
 str=dec2bin(x)
 
 // exemplo 2 :
 // a representação binária de 86 é: '1010110'
-// seu comprimento é 7(menor que n), então, temos adicionamos a str, 
+// seu comprimento é 7(menor que n), então, temos adicionamos a str,
 //8 vezes o caracteres '0'  (à esquerda)
 x=86;n=15;
 str=dec2bin(x,n)

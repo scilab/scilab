@@ -44,7 +44,7 @@
         <para>
             Hz = yulewalk(N,frq,mag) finds the N-th order iir filter
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
                   n-1         n-2
       B(z)   b(1)z     + b(2)z    + .... + b(n)
 H(z)= ---- = ---------------------------------
@@ -61,12 +61,12 @@ H(z)= ---- = ---------------------------------
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 f=[0,0.4,0.4,0.6,0.6,1];
 H=[0,0,1,1,0,0];
 Hz=yulewalk(8,f,H);
 fs=1000;
-fhz = f*fs/2; 
+fhz = f*fs/2;
 clf(0);
 xset('window',0);
 plot2d(fhz',H');
@@ -82,7 +82,7 @@ xtitle('Obtained Frequency Response (Magnitude)')
             H=[0,0,1,1,0,0];
             Hz=yulewalk(8,f,H);
             fs=1000;
-            fhz = f*fs/2; 
+            fhz = f*fs/2;
             clf(0);
             xset('window',0);
             plot2d(fhz',H');

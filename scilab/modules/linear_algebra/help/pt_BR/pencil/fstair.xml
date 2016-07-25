@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -106,7 +106,7 @@
                 <listitem>
                     <para> array (vetor ou matriz) de inteiros de dimensão (n). Contém
                         as dimensões de coluna mu(k) (k=1,...,nblcks) das submatrizes com
-                        posto coluna cheio no feixe sE(eps)-A(eps) 
+                        posto coluna cheio no feixe sE(eps)-A(eps)
                     </para>
                 </listitem>
             </varlistentry>
@@ -115,7 +115,7 @@
                 <listitem>
                     <para>array de inteiros de dimensão (m+1). Contém as dimensões de
                         linha nu(k) (k=1,...,nblcks) das submatrizes com posto linha cheio
-                        no feixe sE(eps)-A(eps) 
+                        no feixe sE(eps)-A(eps)
                     </para>
                 </listitem>
             </varlistentry>
@@ -124,7 +124,7 @@
                 <listitem>
                     <para>array de inteiros de dimensão (n). Contém as dimensões de
                         coluna mu(k) (k=1,...,nblcks) das submatrizes com o posto-coluna
-                        cheio no feixe sE(eps,inf)-A(eps,inf) 
+                        cheio no feixe sE(eps,inf)-A(eps,inf)
                     </para>
                 </listitem>
             </varlistentry>
@@ -133,7 +133,7 @@
                 <listitem>
                     <para> array de inteiros de dimensão (m+1). Contém as dimensões de
                         linha nu(k) (k=1,...,nblcks) das submatrizes com posto-linha cheio
-                        no feixe sE(eps,inf)-A(eps,inf) 
+                        no feixe sE(eps,inf)-A(eps,inf)
                     </para>
                 </listitem>
             </varlistentry>

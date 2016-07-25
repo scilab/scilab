@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -44,7 +44,7 @@
         <para>
             returns <literal>gm</literal> with <literal>gm</literal> and <literal>gm^-1</literal> stable such that:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 gtild(g)*g = gtild(gm)*gm
  ]]></programlisting>
         <para>
@@ -54,10 +54,10 @@ gtild(g)*g = gtild(gm)*gm
             Imaginary-axis poles are forbidden.
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=0.5;
 b=1;
 c=2;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) - DIGITEO 
- * 
+ * Copyright (C) - DIGITEO
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -49,11 +49,11 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Recommended usage
 tbx_build_blocks("toolbox_example", ["EXAMPLE_BLOCK"])
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Advanced usage for macros located into macros/integer and macros/double
 tbx_build_blocks("toolbox_example", ["INT_FUNCTION"], "integer");
 tbx_build_blocks("toolbox_example", ["DOUBLE_FUNCTION"], "double");

@@ -90,7 +90,7 @@
                     </para>
                 </listitem>
             </itemizedlist>
-            フィールド名が'/'で始まる場合, 
+            フィールド名が'/'で始まる場合,
             パスとみなされ, 戻り値はこのパスに対応するH5オブジェクトとなります.
         </para>
         <programlisting role="example"><![CDATA[
@@ -373,7 +373,7 @@ type_x = a.root.x.type;
 // type_x は型
 h5isType(type_x)
 // プロパティにアクセス
-type_x.class, type_x.type, type_x.size, type_x.nativetype, type_x.nativesize, 
+type_x.class, type_x.type, type_x.size, type_x.nativetype, type_x.nativesize,
 // 全リソースを解放
 h5close(a);
     ]]></programlisting>
@@ -393,7 +393,7 @@ ref_x = a.root.x.data;
 // ref_x はリファレンス
 h5isRef(ref_x)
 // 3個の要素を取得
-x1 = ref_x(1), x2 = ref_x(2), x3 = ref_x(3) 
+x1 = ref_x(1), x2 = ref_x(2), x3 = ref_x(3)
 // データを取得
 x1.data, x2.data, x3.data
 // 全リソース解放

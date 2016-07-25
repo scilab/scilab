@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -39,8 +39,8 @@
                 <listitem>
                     <para>The function to compute at vertices (optional).</para>
                     <para>
-                        The <literal>fun</literal> function is expected to have the following 
-                        input and output arguments: 
+                        The <literal>fun</literal> function is expected to have the following
+                        input and output arguments:
                     </para>
                     <programlisting role="no-scilab-exec">
                         y = myfunction (x)
@@ -55,13 +55,13 @@
                     <itemizedlist>
                         <listitem>
                             <para>
-                                The "forward" method used the current simplex to compute the 
+                                The "forward" method used the current simplex to compute the
                                 simplex gradient.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                The "centered" method creates an intermediate reflected simplex 
+                                The "centered" method creates an intermediate reflected simplex
                                 and computes the average.
                             </para>
                         </listitem>
@@ -75,15 +75,15 @@
                     <para>User-defined data passed to the function (optional).</para>
                     <para>
                         If <literal>data</literal> is provided, it is passed to the callback function
-                        both as an input and output argument. In that case, the function must have the 
+                        both as an input and output argument. In that case, the function must have the
                         following header :
                     </para>
                     <programlisting role="no-scilab-exec">
                         [y, data] = myfunction (x, data)
                     </programlisting>
-                    <para>The data input parameter may be used if the function uses some additional 
-                        parameters. It is returned as an output parameter because the function may 
-                        modify the data while computing the function value. This feature may be used, 
+                    <para>The data input parameter may be used if the function uses some additional
+                        parameters. It is returned as an output parameter because the function may
+                        modify the data while computing the function value. This feature may be used,
                         for example, to count the number of times that the function has been called.
                     </para>
                 </listitem>
@@ -106,7 +106,7 @@
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 s1 = optimsimplex_new ();
 simplex = [
 3.  0.  0.

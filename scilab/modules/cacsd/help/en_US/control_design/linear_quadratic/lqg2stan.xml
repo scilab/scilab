@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F Delebecque
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -70,7 +70,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>lqg2stan</literal> returns the augmented plant for linear LQG (H2) controller 
+            <literal>lqg2stan</literal> returns the augmented plant for linear LQG (H2) controller
             design problem defined by:
         </para>
         <itemizedlist>
@@ -102,7 +102,7 @@
                 </para>
             </listitem>
         </itemizedlist>
-        
+
         <latex style="display"
         align="left">\text{P_aug }=\left\{\begin{array}{l}\dot{x}=A x+B_1 W+B
             u  \\y_1=C_1 x+D_{12}W\\y_2=-C x+D_{21} W+D u
@@ -111,11 +111,11 @@
             u  \\y_1=C_1 x+D_{12} W \\y_2=-C x+D_{21} W+D u
             \end{array}\right. \text{ for discrete time.}
         </latex>
-        
+
         <caution>
             <para>
                 Up to Scilab-5.5.2 lqg2stan returns wrong inverted values
-                (see <ulink url="http://bugzilla.scilab.org/show_bug.cgi?id=13751"> bug 13751</ulink>) 
+                (see <ulink url="http://bugzilla.scilab.org/show_bug.cgi?id=13751"> bug 13751</ulink>)
                 to obtain the good result one had to use <code>[P,r]=lqg2stan(-P,Qxu,Qwv)</code>.
             </para>
             <para>
@@ -130,14 +130,14 @@
             <literal>Qxu</literal>, <literal>[C1,D12]</literal> is a
             factor of <literal>Qwv</literal> (see: <link
             linkend="fullrf">fullrf</link>) then
-            <code>P_aug=syslin(P.dt,P.A,[B1,P.B],[C1;-P.C],[0,D12;D21,P.D])</code> 
+            <code>P_aug=syslin(P.dt,P.A,[B1,P.B],[C1;-P.C],[0,D12;D21,P.D])</code>
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 ny=2;nu=3;nx=4;
 P22=ssrand(ny,nu,nx);
 Qxu=rand(nx+nu,nx+nu);Qxu=Qxu*Qxu';

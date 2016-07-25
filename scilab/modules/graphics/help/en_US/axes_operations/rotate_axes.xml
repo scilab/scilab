@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -41,7 +41,7 @@
             <literal>rotate_axes</literal> function is used to perform an interactive rotation of an Axes object.
             When the function is called, the user is requested to click twice on the graphic window. The first click
             initializes the rotation and the second ends it.
-            
+
         </para>
         <para>
             If an Axes handle is specified as input argument, the rotation will apply on it.
@@ -51,7 +51,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf();
 // create two axes in the figure
 subplot(2, 1, 1);

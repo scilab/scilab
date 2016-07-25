@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -38,7 +38,7 @@
             <varlistentry>
                 <term>eco</term>
                 <listitem>
-                    <para>論理値, 
+                    <para>論理値,
                         小さな大きさの特異値分解を可能とするために使用されます.
                     </para>
                 </listitem>
@@ -78,7 +78,7 @@
                 <term>tsquare</term>
                 <listitem>
                     <para>
-                        <literal>n</literal>列ベクトル. 
+                        <literal>n</literal>列ベクトル.
                         各データ点に関するHotellingのT^2統計量を有します.
                     </para>
                 </listitem>
@@ -106,14 +106,14 @@
             言い換えると,
             投影のk次元部分空間への投影の慣性は最大化される必要があります.
         </para>
-        <para> 
+        <para>
             標準化された変数について主成分解析を計算する際に,
             <literal>princomp(wcenter(x,1))</literal>または<link linkend="pca">pca</link>関数を使用することができます.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=rand(100,10,'n');
 [facpr,comprinc,lambda,tsquare] = princomp(a);
  ]]></programlisting>

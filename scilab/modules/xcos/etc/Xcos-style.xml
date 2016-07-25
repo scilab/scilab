@@ -646,7 +646,7 @@
     </add>
     <add as="M_freq" extend="blockWithLabel">
         <add as="displayedLabel" value="Multiple&lt;BR&gt;         frequency"/>
-        
+
     </add>
     <add as="ANDBLK" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/ANDBLK.svg"/>
@@ -761,7 +761,7 @@
     </add>
     <add as="RELATIONALOP" extend="blockWithLabel">
         <add as="displayedLabel" value="Relational&lt;BR&gt;         op : &amp;&lt;"/>
-        <!-- new value for the label defined in the interface function of block -->  
+        <!-- new value for the label defined in the interface function of block -->
     </add>
     <add as="TEXT_f" extend="Label">
         <!-- <add as="displayedLabel" value="Text"/>  -->

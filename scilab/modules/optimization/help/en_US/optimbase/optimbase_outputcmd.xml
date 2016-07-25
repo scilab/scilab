@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -89,19 +89,19 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimbase_outputcmd</literal> function calls back user's output command. 
+            The <literal>optimbase_outputcmd</literal> function calls back user's output command.
             The <literal>-outputcommand</literal> option allows to configure a command which is
-            called back at the start of the optimization, at each iteration and at the end of 
+            called back at the start of the optimization, at each iteration and at the end of
             the optimization.
         </para>
         <para>
-            It might happen that the output function requires additional arguments to be evaluated. 
-            In this case, we can use the following feature. The <literal> outputcmd</literal> argument 
-            can also be the list <literal>(outf, a1, a2, ...)</literal>. In this case <literal>outf</literal>, 
+            It might happen that the output function requires additional arguments to be evaluated.
+            In this case, we can use the following feature. The <literal> outputcmd</literal> argument
+            can also be the list <literal>(outf, a1, a2, ...)</literal>. In this case <literal>outf</literal>,
             the first element in the list, must be a function and must have the header :
         </para>
         <programlisting role="no-scilab-exec">
-            <![CDATA[ 
+            <![CDATA[
                  stop = outf(state, data, a1, a2, ....)
                 ]]>
         </programlisting>
@@ -113,7 +113,7 @@
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 function [f,index] = fun(x, index)
     f = 2*x - 4;
 endfunction
@@ -181,7 +181,7 @@ function x = Dicho(opt,a,b)
         opt = optimbase_set ( opt , "-xopt" , x );
         opt = optimbase_set ( opt , "-fopt" , f );
         temp = abs(x-xk);
-        
+
         if temp < optimbase_cget(opt, "-tolxrelative")
             // OutputCmd
             brutedata = optimbase_outstruct ( opt );
@@ -195,7 +195,7 @@ function x = Dicho(opt,a,b)
             break
         end
         xk = x;
-        
+
         // OutputCmd
         brutedata = optimbase_outstruct ( opt );
         data = tlist(["T_OPTBDATA",...

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -198,18 +198,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            findR   Preprocesses the input-output data for estimating the matrices 
+            findR   Preprocesses the input-output data for estimating the matrices
             of a linear time-invariant dynamical system, using Cholesky or
-            (fast) QR factorization and subspace identification techniques 
+            (fast) QR factorization and subspace identification techniques
             (MOESP or N4SID), and estimates the system order.
         </para>
         <para>
             [R,N] = findR(S,Y,U,METH,ALG,JOBD,TOL,PRINTW)  returns the processed
-            upper triangular factor  R  of the concatenated block-Hankel matrices 
+            upper triangular factor  R  of the concatenated block-Hankel matrices
             built from the input-output data, and the order  N  of a discrete-time
             realization. The model structure is:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 x(k+1) = Ax(k) + Bu(k) + w(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k).
  ]]></programlisting>
@@ -231,16 +231,16 @@ y(k)   = Cx(k) + Du(k) + e(k).
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
-      0.1, 0,  -0.1,-0.1;      
-     -0.4,-0.6,-0.7,-0.1;  
-      0.8, 0,  -0.6,-0.6];      
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
 B = [0.8;0.1;1;-1];
 C = [1 2 -1 0];
 SYS=syslin(0.1,A,B,C);
-U=(ones(1,1000)+rand(1,1000,'normal')); 
+U=(ones(1,1000)+rand(1,1000,'normal'));
 Y=(flts(U,SYS)+0.5*rand(1,1000,'normal'));
 // Compute R
 

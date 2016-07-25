@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -54,16 +54,16 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xrpoly</literal> draws a regular polygon with <literal>n</literal> sides contained in the 
-            circle of diameter 
-            <literal>r</literal> and with the origin of the circle set at point <literal>orig</literal>. 
+            <literal>xrpoly</literal> draws a regular polygon with <literal>n</literal> sides contained in the
+            circle of diameter
+            <literal>r</literal> and with the origin of the circle set at point <literal>orig</literal>.
             <literal>theta</literal>  specifies a rotation angle in radian. This function uses
             the current graphics scales.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot2d(0,0,-1,"012"," ",[0,0,10,10])
 xrpoly([5,5],5,5)
  ]]></programlisting>
@@ -71,7 +71,7 @@ xrpoly([5,5],5,5)
             plot2d(0,0,-1,"012"," ",[0,0,10,10])
             xrpoly([5,5],5,5)
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>

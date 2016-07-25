@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -52,14 +52,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>Z= sE - F</literal>  is the zero pencil of the linear system <literal>Sl</literal> with 
+            <literal>Z= sE - F</literal>  is the zero pencil of the linear system <literal>Sl</literal> with
             matrices <literal>[A,B,C,D]</literal>. Utility function.
         </para>
         <para>
             With <literal>U</literal> row compression of <literal>[B;D]</literal> i.e, <literal>U*[B;D]=[0;*]</literal>; one has:
         </para>
-        <programlisting role=""><![CDATA[ 
-U*[-sI+A |B;   [ Z |0;      
+        <programlisting role=""><![CDATA[
+U*[-sI+A |B;   [ Z |0;
       C  |D] = [ * |*]
  ]]></programlisting>
         <para>

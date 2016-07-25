@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -89,7 +89,7 @@
     <!-- ===================================================================== -->
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
 atomsShow("toolbox_5");
 ]]></programlisting>

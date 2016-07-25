@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -62,7 +62,7 @@
                     padrão da figura (ver <link linkend="gdf">gdf</link>) para
                     <literal>jetcolormap(64)</literal>, a cor de plano de fundo padrão da
                     figura para cinza escuro, a cor de plano de fundo dos eixos (ver <link linkend="gda">gda</link>) para preto e as cores de primeiro plano da
-                    fonte e das linhas dos eixos para branco. 
+                    fonte e das linhas dos eixos para branco.
                 </para>
             </listitem>
             <listitem>
@@ -71,7 +71,7 @@
                     padrão da figura (ver <link linkend="gdf">gdf</link>) para
                     <literal>hsvcolormap(64)</literal>, a cor de plano de fundo padrão da
                     figura para cinza escuro a cor de plano de fundo dos eixos (ver <link linkend="gda">gda</link>) para preto e as cores de primeiro plano da
-                    fonte e das linhas dos eixos para branco. 
+                    fonte e das linhas dos eixos para branco.
                 </para>
             </listitem>
             <listitem>
@@ -79,7 +79,7 @@
                     <literal>colordef(f,color_scheme)</literal> ajusta as
                     propriedades de cor da figura fornecida pelo manipulador
                     <literal>f</literal> tanto quanto as propriedades de cor de seus eixos
-                    correntes. 
+                    correntes.
                 </para>
             </listitem>
             <listitem>
@@ -93,7 +93,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Adicionar aqui instruções Scilab e comentários
  ]]></programlisting>
     </refsection>

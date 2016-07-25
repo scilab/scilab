@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -108,13 +108,13 @@
                             <para>Esta forma permite passar outros parâmetros além de
                                 t,y,ydot à função. Deve ser como segue:
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 list(res,x1,x2,...)
  ]]></programlisting>
                             <para>Onde a seqüência de chamamento da função
                                 <literal>res</literal> é agora
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 r=res(t,y,ydot,x1,x2,...)
  ]]></programlisting>
                             <para>
@@ -129,15 +129,15 @@ r=res(t,y,ydot,x1,x2,...)
                                 Scilab.
                             </para>
                             <para>Em C a seqüência de chamamento:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[])
  ]]></programlisting>
                             <para>Em Fortran deve ser:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
-integer ires,ipar(*) 
+integer ires,ipar(*)
  ]]></programlisting>
                             <para>
                                 Os arrays <literal>rpar</literal> e <literal>ipar</literal> devem estar presentes, mas não podem
@@ -167,13 +167,13 @@ integer ires,ipar(*)
                         <listitem>
                             <para>Uma lista</para>
                             <para>Deve ser como segue</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 list(jac,x1,x2,...)
  ]]></programlisting>
                             <para>Onde a seqüência de chamamento da função
                                 <literal>jac</literal> é agora
                             </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 r=jac(t,y,ydot,cj,x1,x2,...)
  ]]></programlisting>
                             <para>
@@ -188,12 +188,12 @@ r=jac(t,y,ydot,cj,x1,x2,...)
                                 ligada ao Scilab
                             </para>
                             <para>Em C, a seqüência de chamamento deve ser</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
-void jac(double *t, double y[], double yd[], 
+                            <programlisting role="no-scilab-exec"><![CDATA[
+void jac(double *t, double y[], double yd[],
          double pd[], double *cj, double rpar[], int ipar[])
  ]]></programlisting>
                             <para>Em Fortran deve ser</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <programlisting role="no-scilab-exec"><![CDATA[
 subroutine jac(t,y,yd,pd,cj,rpar,ipar)
 double precision t, y(*),yd(*),pd(*),cj,rpar(*)
 integer ipar(*)
@@ -308,7 +308,7 @@ integer ipar(*)
         <para>A função dassl integra a equação alegébrica-diferencial e retorna a
             evolução de<literal> y </literal>em pontos de tempo dados.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 g(t,y,ydot)=0
 y(t0)=y0  e   ydot(t0)=ydot0
  ]]></programlisting>
@@ -338,7 +338,7 @@ info=list([],0,[],[],[],0,0);
 info(2)=1;
 y1=dassl([y0,yd0],0,4d10,chemres,info);
 y2=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
- 
+
 //utilizando um argumento extra para parâmetros
 //-----------------------------------
 function [r,ires]=chemres(t,y,yd ,a,b,c)

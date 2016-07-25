@@ -64,7 +64,7 @@
     <refsection>
         <title>Observação</title>
         <para>Esta função funciona sob as condições: </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 nx, ny, nz <= 3
 2 <= kx < nx
 2 <= ky < ny
@@ -74,7 +74,7 @@ nx, ny, nz <= 3
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // exemplo 1
 // =============================================================================
 
@@ -100,7 +100,7 @@ er = max(abs(vp_exact - vp_interp))
 exec("SCI/modules/interpolation/demos/interp_demo.sci")
 func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
 deff("v=f(x,y,z)",func);
-n = 5; 
+n = 5;
 x = linspace(0,1,n); y=x; z=x;
 [X,Y,Z] = ndgrid(x,y,z);
 V = f(X,Y,Z);
@@ -115,10 +115,10 @@ for i = 1:length(val)
    [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
    Vm = interp3d(Xm,Ym,Zm, tl);
    [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
-   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
    Vp = interp3d(Xp,Yp,Zp, tl);
    [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
-   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
 end
 nb_col = 128;
 vmin = min(VF); vmax = max(VF);

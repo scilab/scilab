@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -25,7 +25,7 @@
         <synopsis>[U,T] = schur(A)
             [U,dim [,T] ]=schur(A,flag)
             [U,dim [,T] ]=schur(A,extern1)
-            
+
             [As,Es [,Q,Z]]=schur(A,E)
             [As,Es [,Q],Z,dim] = schur(A,E,flag)
             [Z,dim] = schur(A,E,flag)
@@ -176,7 +176,7 @@
                                     selecionados pela "external" <literal>extern1</literal> (veja
                                     "external" para detalhes). Esta "external" pode ser descrita
                                     por uma função do Scilab ou por um "procedure" de C ou
-                                    FORTRAN: 
+                                    FORTRAN:
                                 </para>
                                 <variablelist>
                                     <varlistentry>
@@ -266,7 +266,7 @@
                                     acordo com a regra que é dada pela "external"
                                     <literal>extern2</literal>. (veja "external" para detalhes).
                                     Esta external pode ser descrita por uma função do Scilab ou
-                                    por um "procedure" de C ou FORTRAN. 
+                                    por um "procedure" de C ou FORTRAN.
                                 </para>
                                 <variablelist>
                                     <varlistentry>
@@ -332,7 +332,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //SCHUR FORM OF A MATRIX
 //----------------------
 A=diag([-0.9,-2,2,0.9]);X=rand(A);A=inv(X)*A*X;
@@ -343,7 +343,7 @@ T(1:dim,1:dim)      //stable cont. eigenvalues
 
 function t=mytest(Ev),t=abs(Ev)<0.95,endfunction
 [U,dim,T]=schur(A,mytest);
-T(1:dim,1:dim)  
+T(1:dim,1:dim)
 
 // The same function in C (a Compiler is required)
 cd TMPDIR;
@@ -355,7 +355,7 @@ mputl(C,TMPDIR+'/mytest.c')
 
 //build and link
 lp=ilib_for_link('mytest','mytest.c',[],'c');
-link(lp,'mytest','c'); 
+link(lp,'mytest','c');
 
 //run it
 [U,dim,T]=schur(A,'mytest');
@@ -384,7 +384,7 @@ mputl('      '+ftn,TMPDIR+'/mytestf.f')
 
 //build and link
 lp=ilib_for_link('mytestf','mytestf.f',[],'F');
-link(lp,'mytestf','f'); 
+link(lp,'mytestf','f');
 
 //run it
 

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -57,12 +57,12 @@
             Calcul de l'image de <literal>A^k</literal>; les <literal>dim</literal>
             premières colonnes de <literal>X</literal> forment une base de
             <literal>A^k</literal>. Les dernières lignes de  <literal>X</literal> forment une
-            base de l'orthogonal de l'image. 
+            base de l'orthogonal de l'image.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=rand(4,2)*rand(2,4);   // Matrice de rang 2.
 [X,dim]=range(A,1);dim   // Calcul de l'image
 

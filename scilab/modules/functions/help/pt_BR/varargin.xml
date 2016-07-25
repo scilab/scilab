@@ -65,11 +65,11 @@ endfunction
         ]]></programlisting>
         <screen>
             -->foo(a=1,b=2)
-            
+
             1.    2.
-            
+
             -->foo(b=1,a=2)
-            
+
             1.    2.
         </screen>
         <para>O resultado é o mesmo, mas os argumentos foram invertidos.</para>

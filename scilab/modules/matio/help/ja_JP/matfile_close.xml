@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2008 - INRIA - Vincent COUVERT 
-    * 
+    * Copyright (C) 2008 - INRIA - Vincent COUVERT
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -28,7 +28,7 @@
             <varlistentry>
                 <term>fd</term>
                 <listitem>
-                    <para>実数: ファイル記述子 
+                    <para>実数: ファイル記述子
                         (<link linkend="matfile_open">matfile_open</link>により返される).
                     </para>
                 </listitem>
@@ -37,7 +37,7 @@
                 <term>status</term>
                 <listitem>
                     <para>
-                        論理値: 閉じるのに成功した場合に <emphasis>%T</emphasis> 
+                        論理値: 閉じるのに成功した場合に <emphasis>%T</emphasis>
                         ,そうでない場合に <emphasis>%F</emphasis> .
                     </para>
                 </listitem>

@@ -38,7 +38,7 @@
             <code>sign * m * b^e</code>
         </para>
         <para>
-            <literal>e</literal> - показатель, а 
+            <literal>e</literal> - показатель, а
             <literal>m</literal> - мантисса:
         </para>
         <latex>
@@ -50,7 +50,7 @@
             Разряды <latex>$d_i$</latex> находятся в диапазоне <literal>[0,
                 b-1]
             </literal>
-            а <literal>e</literal> находится в диапазоне 
+            а <literal>e</literal> находится в диапазоне
             <literal>[emin, emax]</literal>, скажем, что число "нормированное", если
             <latex>$d_1 \neq 0$</latex>. Можно получить следующие сведения:
         </para>
@@ -59,7 +59,7 @@
                 <term>prop = "radix"</term>
                 <listitem>
                     <para>
-                        тогда <literal>pr</literal> является основание логарифма 
+                        тогда <literal>pr</literal> является основание логарифма
                         <literal>b</literal> набора <literal>F</literal>
                     </para>
                 </listitem>
@@ -119,7 +119,7 @@
                         <latex>$\dfrac{b^{1-p}}{2}$</latex>), которое является относительной
                         максимальной ошибкой между вещественным <literal>x</literal> (таким,
                         что <literal>|x|</literal> в <literal>[tiny, huge]</literal>) и
-                        <literal>fl(x)</literal>, его приближением с плавающей запятой в 
+                        <literal>fl(x)</literal>, его приближением с плавающей запятой в
                         <literal>F</literal>
                     </para>
                 </listitem>
@@ -128,7 +128,7 @@
                 <term>prop = "minexp"</term>
                 <listitem>
                     <para>
-                        тогда <literal>pr</literal> является 
+                        тогда <literal>pr</literal> является
                         <literal>emin</literal>
                     </para>
                 </listitem>
@@ -137,7 +137,7 @@
                 <term>prop = "maxexp"</term>
                 <listitem>
                     <para>
-                        тогда <literal>pr</literal> является 
+                        тогда <literal>pr</literal> является
                         <literal>emax</literal>
                     </para>
                 </listitem>
@@ -159,7 +159,7 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 b = number_properties("radix")
 eps = number_properties("eps")
  ]]></programlisting>

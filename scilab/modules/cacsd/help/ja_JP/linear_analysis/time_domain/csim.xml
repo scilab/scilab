@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -94,7 +94,7 @@
             1. 関数 : <literal>[inputs]=u(t)</literal>
         </para>
         <para>
-            2. リスト : <literal>list(ut,parameter1,....,parametern)</literal>. 
+            2. リスト : <literal>list(ut,parameter1,....,parametern)</literal>.
             ただし、<literal>inputs=ut(t,parameter1,....,parametern)</literal> (<literal>ut</literal> は関数)
         </para>
         <para>
@@ -103,7 +103,7 @@
             直達項を有する系の場合, t=0における無限インパルスは無視されます.
         </para>
         <para>
-            4. ステップ応答の計算を表す文字列 <literal>"step"</literal> 
+            4. ステップ応答の計算を表す文字列 <literal>"step"</literal>
             (ここで、<literal>sl</literal>の入力は単一で,<literal>x0=0</literal>が必要)
         </para>
         <para>

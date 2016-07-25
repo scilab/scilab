@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -49,10 +49,10 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //create a getdir function based on host
 function wd=getdir()
-  if getos() == 'Windows' then 
+  if getos() == 'Windows' then
     host('cd>'+TMPDIR+'\path');
   else
     host('pwd>'+TMPDIR+'/path');

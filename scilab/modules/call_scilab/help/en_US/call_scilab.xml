@@ -97,7 +97,7 @@ int main(void)
                         </listitem>
                         <listitem>
                             Remove deprecated functions in call_scilab.h: <literal>C2F(readmat), C2F(creadmat), C2F(creadbmat), C2F(creadcmat), C2F(readchain), C2F(creadchain),  C2F(creadchains), GetLengthStringMatrixByName, C2F(matptr), C2F(cmatptr), C2F(cmatcptr),  C2F(cmatsptr), C2F(cmatbptr), getlengthchain</literal>
-                            
+
                         </listitem>
                     </itemizedlist>
                 </revdescription>

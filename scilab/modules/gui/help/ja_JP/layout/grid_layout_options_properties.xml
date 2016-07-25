@@ -19,17 +19,17 @@
                 <term>size</term>
                 <listitem>
                     <para>
-                        <literal>[width, heigth]</literal> 1行2列double行列, 
+                        <literal>[width, heigth]</literal> 1行2列double行列,
                         デフォルトは [0,0]
                     </para>
                     <para>
                         要素におけるグリッドの
-                        <literal>width</literal> および <literal>heigth</literal> 
+                        <literal>width</literal> および <literal>heigth</literal>
                         (ピクセルではない).
                     </para>
                     <para>
                         グリッドの行または列上の要素数を規定しない
-                        <literal>width</literal> または <literal>heigth</literal> 
+                        <literal>width</literal> または <literal>heigth</literal>
                         のどちらかにの値を 0　にする.
                     </para>
                 </listitem>
@@ -38,7 +38,7 @@
                 <term>padding</term>
                 <listitem>
                     <para>
-                        <literal>[pad_x, pad_y]</literal> 1行2列double行列, 
+                        <literal>[pad_x, pad_y]</literal> 1行2列double行列,
                         デフォルトは [0,0].
                     </para>
                     <para>グリッド要素間のパディング(単位:ピクセル).</para>
@@ -63,7 +63,7 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-         //Create a figure with a grid layout 
+         //Create a figure with a grid layout
          f = figure( ...
          "dockable"        , "off",...
          "infobar_visible" , "off",...

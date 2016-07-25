@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -22,7 +22,7 @@
         <title>Description</title>
         <para>
             La principale difficulté de M2SCI (<literal>mfile2sci</literal>) est de trouver
-            ce que sont les variables : dimensions, type...  
+            ce que sont les variables : dimensions, type...
         </para>
         <para>
             Pour aider cet outil, il suffit d'ajouter des commentaires commencant par
@@ -112,7 +112,7 @@
                     </listitem>
                     <listitem>
                         <para>
-                            propriété : propriété de la variable qui peut être : 
+                            propriété : propriété de la variable qui peut être :
                         </para>
                         <informaltable border="1">
                             <tr>
@@ -164,7 +164,7 @@
                     <listitem>
                         <para>
                             <literal>%m2scideclare var3(1,2).name|1 10|String|?</literal>var3 est déclarée comme un tableau de Structs contenant une chaîne de
-                            caractères de taille 1x10 dans le champ 'name' de la Struct à l'indice (1,2) 
+                            caractères de taille 1x10 dans le champ 'name' de la Struct à l'indice (1,2)
                         </para>
                     </listitem>
                     <listitem>

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -31,7 +31,7 @@
                 <term>c</term>
                 <listitem>
                     <para>cell, os componentes de c devem ter o mesmo tipo e podem ser
-                        escalares ou matrizes 
+                        escalares ou matrizes
                     </para>
                 </listitem>
             </varlistentry>
@@ -69,7 +69,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 c=makecell([2,2],[1 2 3; 6 7 8],[4 5;9 10],[11 12;16 17],[14 13 15;18 19 20])
 cell2mat(c)
  ]]></programlisting>

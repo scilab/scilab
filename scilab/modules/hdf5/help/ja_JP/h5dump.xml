@@ -21,8 +21,8 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            h5dataset(obj, name)  
-            h5dataset(filename, name)  
+            h5dataset(obj, name)
+            h5dataset(filename, name)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

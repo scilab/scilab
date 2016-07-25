@@ -439,7 +439,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=get("current_axes")//get the handle of the newly created axes
 a.data_bounds=[-2,-2;2,2];
 

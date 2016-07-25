@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F Delebecque
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -29,7 +29,7 @@
                 <term>P</term>
                 <listitem>
                     <para>
-                        状態空間表現の<literal>syslin</literal> リスト (拡張プラント) 
+                        状態空間表現の<literal>syslin</literal> リスト (拡張プラント)
                     </para>
                 </listitem>
             </varlistentry>

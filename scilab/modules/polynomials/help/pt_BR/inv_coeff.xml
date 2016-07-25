@@ -48,7 +48,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=int(10*rand(2,6))
 // Construindo uma matriz de polinômios de grau 1
 P=inv_coeff(A,1)

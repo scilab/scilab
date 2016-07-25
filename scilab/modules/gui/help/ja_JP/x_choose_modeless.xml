@@ -26,7 +26,7 @@
             <varlistentry>
                 <term>button</term>
                 <listitem>
-                    <para> 文字列, ボタンに表示されるテキスト. 
+                    <para> 文字列, ボタンに表示されるテキスト.
                         デフォルト値は'Cancel'です
                     </para>
                 </listitem>
@@ -49,7 +49,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 n = x_choose_modeless(['item1';'item2';'item3'],['that is a comment';'for the dialog'])
 n = x_choose_modeless(['item1';'item2';'item3'],['that is a comment'],'Return')
  ]]></programlisting>

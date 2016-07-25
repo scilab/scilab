@@ -16,7 +16,7 @@
             <varlistentry>
                 <term>nam1,..., namn  </term>
                 <listitem>
-                    <para>noms valides de variables 
+                    <para>noms valides de variables
                     </para>
                 </listitem>
             </varlistentry>
@@ -34,7 +34,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 1 : l'environnement appelant et une fonction partagent une variable
 global a
 a=1

@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -49,7 +49,7 @@
                 <listitem>
                     <para>
                         абсолютная ошибка, требуемая для результата. Значение по
-                        умолчанию: 1.d-14. 	
+                        умолчанию: 1.d-14.
                     </para>
                 </listitem>
             </varlistentry>
@@ -75,7 +75,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>intg(a,b,f)</literal> вычисляет определённый интеграл функции 
+            <literal>intg(a,b,f)</literal> вычисляет определённый интеграл функции
             <literal>f(t)</literal> по <literal>dt</literal> в пределах от
             <literal>a</literal> до <literal>b</literal>.
             Функция <literal>f(t)</literal> должна быть непрерывной.
@@ -91,7 +91,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    Если <literal>f</literal> -- функция, то её определение должно иметь вид 
+                    Если <literal>f</literal> -- функция, то её определение должно иметь вид
                     <literal>y = f(t)</literal>.
                 </para>
             </listitem>
@@ -104,7 +104,7 @@
             </listitem>
             <listitem>
                 <para>
-                    Если <literal>f</literal> -- строка, то она ссылается на имя либо 
+                    Если <literal>f</literal> -- строка, то она ссылается на имя либо
                     процедуры Fortran либо функции C с заданной последовательностью вызова:
                 </para>
             </listitem>
@@ -127,19 +127,19 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Функция, написанная на языке Scilab
 function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
 exact=-2.5432596188;
 I=intg(0,2*%pi,f)
 abs(exact-I)
- 
+
 // Функция с аргументом, написанном на языке Scilab
 function y=f1(x,w),y=x*sin(w*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
 I=intg(0,2*%pi,list(f1,30))
 abs(exact-I)
- 
- 
+
+
 // Функция, написанная на Fortran (требуется компилятор Fortran)
 // определение функции Fortran
 cd TMPDIR;
@@ -151,17 +151,17 @@ F=['      double precision function ffun(x)'
    '      end'];
 mputl(F,fullfile(TMPDIR,'ffun.f'))
 
- 
+
 // компилируем функцию
  l=ilib_for_link('ffun',fullfile(TMPDIR,'ffun.f'),[],'f');
 
 // добавляем  функцию в рабочее окружение
 link(l,'ffun','f')
- 
+
 // интегрируем функцию
 I=intg(0,2*%pi,'ffun')
 abs(exact-I)
- 
+
 // Функция, написанная на C (требуется компилятор C)
 // определение C-функции
 C=['#include <math.h>'
@@ -178,7 +178,7 @@ mputl(C,fullfile(TMPDIR,'cfun.c'))
 
 // добавляем  функцию в рабочее окружение
 link(l,'cfun','c')
- 
+
 // интегрируем функцию
 I=intg(0,2*%pi,'cfun')
 abs(exact-I)

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -166,7 +166,7 @@ driver(previous_driver); // Scilabの元の動作に戻す
         <para>
             例えば,<literal>img*.gif</literal>という名前の
             一連のGIFファイルを生成した場合,
-            (<literal>anim.gif</literal>という名前の) 
+            (<literal>anim.gif</literal>という名前の)
             アニメーションGIFファイルを以下のように構築できます.
         </para>
         <synopsis>

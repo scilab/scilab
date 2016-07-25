@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -49,7 +49,7 @@
         </para>
         <itemizedlist>
             <listitem>
-                <para>    
+                <para>
                     Si <literal>A</literal> est un scalaire ou un vecteur
                     <literal>R = mtlb_all(A)</literal> peut être remplacé par <literal>R = and(A)</literal>
                 </para>

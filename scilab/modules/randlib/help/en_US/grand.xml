@@ -53,10 +53,10 @@
 
         <synopsis>
             S = grand("getgen")
-                grand("setgen", gen)
+            grand("setgen", gen)
 
             S = grand("getsd")
-                grand("setsd", S)
+            grand("setsd", S)
 
             grand("setcgn", G)
             S = grand("getcgn")
@@ -135,7 +135,7 @@
         </para>
         <para>
             produce a <varname>m</varname>-by-<varname>n</varname> matrix with random entries.
-            
+
             All these syntaxes can be extended to create a random hypermatrix with more than
             2 dimensions specified as integers listed before the type of statistical distribution:
         </para>
@@ -810,7 +810,7 @@ xtitle("Normal random numbers from grand","X","Frequency");
             histplot(10,R);
             xtitle("Normal random numbers from grand","X","Frequency");
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // Returns a 400-by-800 matrix of random doubles,
 // uniform in [0,1).
@@ -824,7 +824,7 @@ xtitle("Uniform random numbers from grand","X","Frequency");
             histplot(10,R);
             xtitle("Uniform random numbers from grand","X","Frequency");
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // Returns a 400-by-800 matrix of random doubles,
 // with Poisson distribution and average equal to 5.
@@ -838,7 +838,7 @@ xtitle("Poisson random numbers from grand","X","Frequency");
             histplot(10,R);
             xtitle("Poisson random numbers from grand","X","Frequency");
         </scilab:image>
-        
+
         <para>
             In the following example, we generate random numbers from the exponential distribution and
             then compare the empirical with the theoretical distribution.

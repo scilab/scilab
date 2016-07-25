@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -60,9 +60,9 @@
                     If <literal>s</literal> is a matrix of strings then for each
                     row <literal>i</literal> of <literal>s</literal>,
                     <literal>cellstr(s)</literal> concatenates all the components of the
-                    <literal>i</literal>th rows of the matrix <literal>s</literal> (i.e 
+                    <literal>i</literal>th rows of the matrix <literal>s</literal> (i.e
                     <literal>s(i,1)</literal>, <literal>s(i,2)</literal>,
-                    <literal>s(i,3)</literal>,...) and returns a 
+                    <literal>s(i,3)</literal>,...) and returns a
                     <literal>size(s,1)</literal>-by-one cell
                     array of strings.
                 </para>
@@ -71,7 +71,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 cellstr("foo")
 cellstr(["sci","lab"])
 cellstr(["abc","def",'gh';"i","j","klm"])

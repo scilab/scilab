@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -50,14 +50,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            given <literal>sl=[A,B,C,D]</literal> (<literal>syslin</literal> list),a continuous time system 
-            <literal>cls2dls</literal> returns the sampled system obtained by the 
+            given <literal>sl=[A,B,C,D]</literal> (<literal>syslin</literal> list),a continuous time system
+            <literal>cls2dls</literal> returns the sampled system obtained by the
             bilinear transform <literal>s=(2/T)*(z-1)/(z+1)</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');z=poly(0,'z');
 sl=syslin('c',(s+1)/(s^2-5*s+2));  //Continuous-time system in transfer form
 slss=tf2ss(sl);  //Now in state-space form

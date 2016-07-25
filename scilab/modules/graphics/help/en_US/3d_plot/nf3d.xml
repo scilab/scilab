@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -36,13 +36,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            Utility function. Used for transforming rectangular facets coded 
+            Utility function. Used for transforming rectangular facets coded
             in three matrices x,y,z to scilab code for facets accepted by plot3d.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //A sphere...
 u = linspace(-%pi/2,%pi/2,40);
 v = linspace(0,2*%pi,20);

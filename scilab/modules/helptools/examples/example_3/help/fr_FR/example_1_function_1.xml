@@ -50,12 +50,12 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-    
+
 // Commentaires
 b = 2;
 c = 3;
 a = example_1_function_1(b,c);
-    
+
   ]]></programlisting>
     </refsection>
     <refsection role="see also">

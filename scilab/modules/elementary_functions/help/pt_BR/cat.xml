@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -38,7 +38,7 @@
                         A2, ..., An, devem ter o mesmo tamanho (excluindo o número de
                         dimensão dims). size(A1,i)=size(A2,i)=...=size(An,i) para i
                         diferente de dims e size(A1,dims), size(A2,dims),...,size(An,dims)
-                        podem ser diferentes 
+                        podem ser diferentes
                     </para>
                 </listitem>
             </varlistentry>
@@ -76,14 +76,14 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-// primeiro exemplo: concatenação de acordo com as linhas 
+        <programlisting role="example"><![CDATA[
+// primeiro exemplo: concatenação de acordo com as linhas
 dims=1; A1=[1 2 3]; A2=[4 5 6 ; 7 8 9]; A3=[10 11 12]; y=cat(dims,A1,A2,A3)
 
 // segundo exemplo: concatenação de acordo com as colunas
 dims=2; A1=[1 2 3]'; A2=[4 5;7 8;9 10]; y=cat(dims,A1,A2)
 
-// terceiro exemplo concatenação de acordo com a terceira dimensão  
+// terceiro exemplo concatenação de acordo com a terceira dimensão
 dims=3; A1=matrix(1:12,[2,2,3]); A2=[13 14;15 16]; A3=matrix(21:36,[2,2,4]); y=cat(dims,A1,A2,A3)
  ]]></programlisting>
     </refsection>

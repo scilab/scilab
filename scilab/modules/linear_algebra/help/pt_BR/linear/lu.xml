@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -86,15 +86,15 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=rand(4,4);
 [l,u]=lu(a)
 norm(l*u-a)
 
-[h,rk]=lufact(sparse(a))  // função lufact com matrizes esparsas 
+[h,rk]=lufact(sparse(a))  // função lufact com matrizes esparsas
 [P,L,U,Q]=luget(h);
 ludel(h)
-P=full(P);L=full(L);U=full(U);Q=full(Q); 
+P=full(P);L=full(L);U=full(U);Q=full(Q);
 norm(P*L*U*Q-a) // P e Q são as matrizes de permutação
  ]]></programlisting>
     </refsection>

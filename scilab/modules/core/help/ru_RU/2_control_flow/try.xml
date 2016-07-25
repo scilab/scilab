@@ -28,15 +28,15 @@
         </para>
         <para>
             Когда исполняется управляющая структура <literal>try</literal>-<literal>catch</literal>, то
-            обычно исполняются только инструкции между ключевыми словами <literal>try</literal> и 
-            <literal>catch</literal>. Однако, если возникает ошибка во время выполнения любой из этих 
-            инструкций, то ошибка записывается, оставшиеся инструкции вплоть до ключевого слова 
-            <literal>catch</literal> пропускаются, и исполняются инструкции между ключевыми словами 
-            <literal>catch</literal> и <literal>end</literal>, используя  режим обработки ошибок по 
+            обычно исполняются только инструкции между ключевыми словами <literal>try</literal> и
+            <literal>catch</literal>. Однако, если возникает ошибка во время выполнения любой из этих
+            инструкций, то ошибка записывается, оставшиеся инструкции вплоть до ключевого слова
+            <literal>catch</literal> пропускаются, и исполняются инструкции между ключевыми словами
+            <literal>catch</literal> и <literal>end</literal>, используя  режим обработки ошибок по
             умолчанию.
         </para>
         <para>
-            Записанная ошибка может быть извлечена с помощью функции 
+            Записанная ошибка может быть извлечена с помощью функции
             <link linkend="lasterror">lasterror</link>.
         </para>
         <para>
@@ -44,19 +44,19 @@
             могут быть опущены, если нет альтернативных инструкций.
         </para>
         <para>
-            Заметьте, что можно также использовать функцию <link linkend="execstr">execstr</link> 
+            Заметьте, что можно также использовать функцию <link linkend="execstr">execstr</link>
             с аргументом <literal>'errcatch'</literal> для обработки ошибок. Это может быть особенно полезным для обработки синтаксических ошибок.
         </para>
         <para>
             Заметьте также, что управляющая структура <literal>try-catch</literal> в некотором роде похожа на:
         </para>
-        <programlisting><![CDATA[ 
+        <programlisting><![CDATA[
 if execstr("<try instructions>","errcatch")<>0 then
   <catch instructions>
 end
  ]]></programlisting>
         <para>
-            Она использует тот же внутренний механизм, что и. 
+            Она использует тот же внутренний механизм, что и.
             Именно по этой причине или
             <emphasis>execstr(...,"errcatch")</emphasis> не могут быть включены в управляющую структуру
             <literal>try</literal>-<literal>catch</literal>. Этот контекст обнаруживается и формируется
@@ -68,7 +68,7 @@ end
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Пример 1
 file_path=TMPDIR+'/wrong'
 try
@@ -77,11 +77,11 @@ try
 catch
   disp(['файл '+file_path+ ' нельзя прочитать используя значения по умолчанию для x'])
   x=1:10
-end 
+end
  [error_message,error_number]=lasterror(%t)
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
- 
+        <programlisting role="example"><![CDATA[
+
 // Пример 2 (вложенные структуры try/catch)
 function nestedtry(a,b)
 disp("СТАРТ")
@@ -90,7 +90,7 @@ try
   disp("try 1")
   try
     disp("try 2")
-    z=a+1;  // ошибка, если значение строковое 
+    z=a+1;  // ошибка, если значение строковое
   catch
     disp("catch 2")
     t=b+1;  // ошибка, если значение строковое

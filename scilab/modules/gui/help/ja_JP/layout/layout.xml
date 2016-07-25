@@ -23,7 +23,7 @@
             <varlistentry>
                 <term>nolayout | none</term>
                 <listitem>
-                    <para>配置は適用されず, 
+                    <para>配置は適用されず,
                         ネストしたuicontrolは拘束されません.
                     </para>
                     <para>ネストしたuicontrolの位置は手動で配置する必要があり,

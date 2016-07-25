@@ -18,7 +18,7 @@
     <refnamediv>
         <refname>coding_ga_identity</refname>
         <refpurpose>
-            A "no-operation" conversion function 
+            A "no-operation" conversion function
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -72,7 +72,7 @@
             This function is a do-nothing function. It is essentially useful to implement an evolutionnary algorithm. In an evolutionnary algorithm, we work directly on the variable and not on a binary code.
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
@@ -84,7 +84,7 @@ pop_out = coding_ga_identity(pop_in,'code',[])
 pop_in_2 = coding_ga_identity(pop_out,'decode',[])
 ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

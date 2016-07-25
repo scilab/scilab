@@ -14,7 +14,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=1;
 if a==1 then
     disp("a equals 1")

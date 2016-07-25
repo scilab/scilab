@@ -3,7 +3,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -16,88 +16,88 @@
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isscalar" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>isscalar</refname>
-        
+
         <refpurpose>
-            
+
             変数がスカラーかどうかを確認.
-            
+
         </refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>t=isscalar(x)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>x</term>
-                
+
                 <listitem>
-                    
+
                     <para>スカラー,ベクトル, 行列, ハイパー行列, リスト, 構造体の配列またはセル</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>t</term>
-                
+
                 <listitem>
-                    
+
                     <para>論理値</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <literal>
-                
+
                 isscalar(<varname>x</varname>)
-                
+
             </literal>
-            
+
             は, <varname>x</varname>
-            
-            がスカラー (size(<varname>x</varname>) が 1)の場合にtrueを返します. 
-            
+
+            がスカラー (size(<varname>x</varname>) が 1)の場合にtrueを返します.
+
             <literal>isscalar([])</literal>はfalseを返すことに注意してください.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 isscalar(ones(10,10))
 isscalar(1)
 isscalar("s")
@@ -112,70 +112,70 @@ s(1,2).a = 3;
 s(1,3).b = %z;
 isscalar(s) // 構造体の行配列
 clear s
-s(2,1).a = "w"; 
-s(3,1).b = %t;  
+s(2,1).a = "w";
+s(3,1).b = %t;
 isscalar(s) // 構造体の列配列
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role= "see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="ismatrix">ismatrix</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="isrow">isrow</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="iscolumn">iscolumn</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="issquare">issquare</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="isempty">isempty</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>履歴</title>
-        
+
         <revhistory>
-            
+
             <revision>
-                
+
                 <revnumber>5.5.0</revnumber>
-                
+
                 <revremark>関数isscalarが導入されました.</revremark>
-                
+
             </revision>
-            
+
         </revhistory>
-        
+
     </refsection>
-    
+
 </refentry>
 

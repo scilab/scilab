@@ -220,7 +220,7 @@
                 hallchart(colors=color('light gray')*[1 1])
                 ax=gca();Leg=ax.children(1);
                 Leg.legend_location="in_upper_left";
-                
+
             </scilab:image>
         </para>
     </refsection>

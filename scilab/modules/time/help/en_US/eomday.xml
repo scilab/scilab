@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -52,7 +52,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>E= eomday(Y, M)</literal> returns the last day of the year and month 
+            <literal>E= eomday(Y, M)</literal> returns the last day of the year and month
             given by corresponding elements of matrices <varname>Y</varname> and <varname>M</varname>.
         </para>
         <para>
@@ -61,7 +61,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 eomday(2006,3);
  ]]></programlisting>
     </refsection>

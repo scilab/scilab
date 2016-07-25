@@ -6,7 +6,7 @@
 
  * Copyright (C) INRIA - Djalel Abdemouche
 
- * 
+ *
 
 
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
@@ -23,66 +23,66 @@
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="sdf">
-    
+
     <refnamediv>
-        
+
         <refname>sdf</refname>
-        
+
         <refpurpose>デフォルトの図(figure)を設定. </refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>sdf()
-            
+
             f = gdf(); set(f,"default_values",1)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>f</term>
-                
+
                 <listitem>
-                    
+
                     <para>ハンドル, デフォルトの図のハンドル.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
-            このルーチンは図(figure)の規範をデフォルト値にリセットします. 
-            
+
+            このルーチンは図(figure)の規範をデフォルト値にリセットします.
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>Examples</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 x=[0:0.1:2*%pi]';
 
@@ -119,48 +119,48 @@ for (i=1:6)
 end
 
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="sda">sda</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="gdf">gdf</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="gda">gda</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="set">set</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="graphics_entities">graphics_entities</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

@@ -43,7 +43,7 @@
                         </listitem>
                         <listitem>
                             <para> "multi_mut": a boolean. If %T, several random bits will
-                                be flipped. 
+                                be flipped.
                             </para>
                         </listitem>
                         <listitem>
@@ -120,7 +120,7 @@
         <programlisting role="example"><![CDATA[
             Indiv="00010000"
             [Mut_Indiv, pos] = mutation_ga_binary(Indiv)
-            
+
             // With multiple mutation
             param=init_param("multi_mut",%t,"multi_mut_nb",3);
             Indiv="00010000"

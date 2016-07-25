@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -52,13 +52,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>ls</function> can be used to list the files which match 
+            <function>ls</function> can be used to list the files which match
             the patterns given by the <varname>path</varname> argument.
             Patterns are given to the Unix <command>ls</command> or to the Windows
-            <command>dir</command> commands in order to get information on files. 
-            Thus in order to write portable Scilab script valid wildcard patterns 
+            <command>dir</command> commands in order to get information on files.
+            Thus in order to write portable Scilab script valid wildcard patterns
             for both OS are to be given. Note that pathname conversion is
-            performed and for example <literal>SCI/modules/core/macros/*.sci</literal> is a valid 
+            performed and for example <literal>SCI/modules/core/macros/*.sci</literal> is a valid
             pattern for both Unix and Windows.
         </para>
         <para>
@@ -67,16 +67,16 @@
         </para>
         <para>
             <note>
-                Please note that starting from the version 5.0 of Scilab, the second 
-                input argument has been removed (a sequence of strings which can 
-                be added under Unix systems: the Unix <command>ls</command> command 
+                Please note that starting from the version 5.0 of Scilab, the second
+                input argument has been removed (a sequence of strings which can
+                be added under Unix systems: the Unix <command>ls</command> command
                 options). This option has been removed mainly for security and portability reasons.
             </note>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 ls
 ls SCI/modules/core/macros/*.sci
 x=ls('SCI/modules/core/macros/*.sci')

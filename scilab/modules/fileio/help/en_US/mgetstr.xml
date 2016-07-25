@@ -4,7 +4,7 @@
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - Digiteo - Vincent LIARD
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -39,7 +39,7 @@
                 <term>fd</term>
                 <listitem>
                     <para>
-                        an integer: file descriptor as returned by 
+                        an integer: file descriptor as returned by
                         <link linkend="mopen">mopen</link>: where characters should be read. The value <literal>-1</literal> stands for the last opened file and is the default.
                     </para>
                 </listitem>

@@ -29,7 +29,7 @@
             <literal>ai</literal>'s que são elementos Scilab arbitrários
             (<literal>matrix, list,...</literal>). O tipo de objetos
             <literal>list</literal> é 15. <literal>list()</literal> cria o
-            <literal>list</literal> vazio (0 elementos). 
+            <literal>list</literal> vazio (0 elementos).
         </para>
     </refsection>
     <refsection>
@@ -41,7 +41,7 @@
                     <para>
                         <literal>[x,y,z...]=L(v)</literal> onde <literal>v</literal>
                         é um vetor de índices; <literal>[x,y,z]=L(:)</literal> extrai todos
-                        os elementos. 
+                        os elementos.
                     </para>
                 </listitem>
             </varlistentry>
@@ -54,7 +54,7 @@
                             size(L)
                         </emphasis>
                         mas algumas entradas de lista estão então
-                        indefinidas e sua extração levanta um erro). 
+                        indefinidas e sua extração levanta um erro).
                     </para>
                 </listitem>
             </varlistentry>
@@ -72,7 +72,7 @@
                     <para>
                         <literal>L(0)=e</literal>. (note que após esta operação e
                         está no índice 1, os elementos iniciais foram movidos para a
-                        direita). 
+                        direita).
                     </para>
                 </listitem>
             </varlistentry>
@@ -134,7 +134,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 l = list(1,["a" "b"])
 l(0) = "foo"
 l($+1) = "olá"

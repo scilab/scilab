@@ -52,8 +52,8 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
-lines(0) 
+        <programlisting role="example"><![CDATA[
+lines(0)
 whos()
 whos -type boolean
 whos -name %

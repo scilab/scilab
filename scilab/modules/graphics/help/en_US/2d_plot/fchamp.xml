@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -125,7 +125,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff("[xdot] = derpol(t,x)",..
         ["xd1 = x(2)";..
          "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
@@ -143,7 +143,7 @@ fchamp(derpol,0,xf,yf)
             yf= -1:0.1:1;
             fchamp(derpol,0,xf,yf)
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff("[xdot] = derpol(t,x)",..
         ["xd1 = x(2)";..
          "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..

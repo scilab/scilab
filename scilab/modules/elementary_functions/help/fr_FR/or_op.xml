@@ -4,7 +4,7 @@
         <refname>|, ||</refname>
         <refpurpose>opérateur de disjonction logique</refpurpose>
     </refnamediv>
-    
+
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>A|B</synopsis>
@@ -26,7 +26,7 @@
             while (A || B) then ... end
         </synopsis>
     </refsynopsisdiv>
-    
+
     <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
@@ -135,7 +135,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection>
         <title>Description</title>
         <para>
@@ -153,7 +153,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A = [0 1; 1 0];
 B = [1 1; 0 0];
 spA = sparse(A);
@@ -216,7 +216,7 @@ end
 
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">

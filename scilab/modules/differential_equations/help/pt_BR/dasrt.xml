@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -147,7 +147,7 @@ r=res(t,y,ydot,x1,x2,...)
                             <para>Em C a seqüência de chamamento:</para>
                             <programlisting role="no-scilab-exec"><![CDATA[
 void res(double *t, double y[], double yd[], double r[],
-         int *ires, double rpar[], int ipar[]) 
+         int *ires, double rpar[], int ipar[])
  ]]></programlisting>
                             <para>Em Fortran deve ser:</para>
                             <programlisting role="no-scilab-exec"><![CDATA[
@@ -190,7 +190,7 @@ list(jac,x1,x2,...)
                                 <literal>jac</literal> é agora
                             </para>
                             <programlisting role="no-scilab-exec"><![CDATA[
-r=jac(t,y,ydot,cj,x1,x2,...) 
+r=jac(t,y,ydot,cj,x1,x2,...)
 ]]></programlisting>
                             <para>
                                 <literal>jac</literal> ainda retorna
@@ -205,7 +205,7 @@ r=jac(t,y,ydot,cj,x1,x2,...)
                             </para>
                             <para>Em C, a seqüência de chamamento deve ser</para>
                             <programlisting role="no-scilab-exec"><![CDATA[
-void jac(double *t, double y[], double yd[], 
+void jac(double *t, double y[], double yd[],
          double pd[], double *cj, double rpar[], int ipar[])
  ]]></programlisting>
                             <para>Em Fortran deve ser</para>
@@ -384,10 +384,10 @@ y(t0)=y0  e   ydot(t0)=ydot0
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1&lt;=t&lt;=6
-//g1 = ((2*log(y)+8)/t - 5)*y 
-//g2 = log(y) - 2.2491 
+//g1 = ((2*log(y)+8)/t - 5)*y
+//g2 = log(y) - 2.2491
 y0=1;t=2:6;t0=1;y0d=3;
 atol=1.d-6;rtol=0;ng=2;
 

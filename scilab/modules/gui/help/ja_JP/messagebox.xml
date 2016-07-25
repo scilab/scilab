@@ -67,7 +67,7 @@
             <varlistentry>
                 <term>buttons</term>
                 <listitem>
-                    <para>文字列の 1 x n ベクトル: 
+                    <para>文字列の 1 x n ベクトル:
                         メッセージボックスに表示するボタンの名前.
                         デフォルトでは,ラベル"OK"のボタンのみが
                         標示されます.
@@ -105,7 +105,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 簡単な例
 messagebox("Single line message")
 // 表題に複数行のメッセージ

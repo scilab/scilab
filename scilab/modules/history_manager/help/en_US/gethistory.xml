@@ -17,7 +17,7 @@
     <refnamediv>
         <refname>gethistory</refname>
         <refpurpose>returns current scilab history in a
-            string matrix 
+            string matrix
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -60,7 +60,7 @@ gethistory(1) // Return the last line
 gethistory() // Return all the line
 ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

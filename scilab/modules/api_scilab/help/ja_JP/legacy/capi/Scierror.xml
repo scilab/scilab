@@ -23,7 +23,7 @@
             <varlistentry>
                 <term>format</term>
                 <listitem>
-                    <para>char* 文字列. 
+                    <para>char* 文字列.
                         変換指示を含むリテラル文字を結合した文字列を指定.
                     </para>
                 </listitem>
@@ -65,7 +65,7 @@
         <para>この例は, Cゲートウェイ関数はエラーメッセージを出力し,
             エラーレベル133を返します.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 #include <stack-c.h>
 #include <Scierror.h>
 int sci_myscierror(char * fname)

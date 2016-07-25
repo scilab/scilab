@@ -90,7 +90,7 @@
         <para>
             This block is a Super Block. The input event is directed once every n
             times to output. The input is  driven by an event clock.
-            
+
         </para>
     </refsection>
     <refsection id="Dialogbox_freq_div">
@@ -103,7 +103,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>
@@ -200,7 +200,7 @@
                 </inlinemediaobject>
             </link>
         </para>
-        
+
         <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/events_pal/en_US/freq_div_en_US.zcos");
 xcos_simulate(scs_m, 4);

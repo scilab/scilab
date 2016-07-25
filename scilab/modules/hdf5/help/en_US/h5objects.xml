@@ -107,7 +107,7 @@ a("/x")
 h5close(a);
     ]]></programlisting>
     </refsection>
-    
+
     <refsection id="H5Group">
         <title>H5 Group</title>
         <para>The following properties can be accessed:
@@ -189,7 +189,7 @@ dset_x = root.x
 h5close(a);
     ]]></programlisting>
     </refsection>
-    
+
     <refsection id="H5Dataset">
         <title>H5 Dataset</title>
         <para>The following properties can be accessed:
@@ -246,7 +246,7 @@ attr_x = dset_x.SCILAB_Class
 h5close(a);
     ]]></programlisting>
     </refsection>
-    
+
     <refsection id="H5Dataspace">
         <title>H5 Dataspace</title>
         <para>The following properties can be accessed:
@@ -294,7 +294,7 @@ dspace_x.dims, dspace_x.extents, dspace_x.type
 h5close(a);
     ]]></programlisting>
     </refsection>
-    
+
     <refsection id="H5Attribute">
         <title>H5 Attribute</title>
         <para>The following properties can be accessed:
@@ -342,7 +342,7 @@ attr_x.type, attr_x.dataspace, attr_x.data
 h5close(a);
     ]]></programlisting>
     </refsection>
-    
+
     <refsection id="H5Type">
         <title>H5 Type</title>
         <para>The following properties can be accessed:
@@ -394,13 +394,13 @@ type_x = a.root.x.type;
 h5isType(type_x)
 
 // Access to the properties
-type_x.class, type_x.type, type_x.size, type_x.nativetype, type_x.nativesize, 
+type_x.class, type_x.type, type_x.size, type_x.nativetype, type_x.nativesize,
 
 // Free all the resources
 h5close(a);
     ]]></programlisting>
     </refsection>
-    
+
     <refsection id="H5Reference">
         <title>H5 Reference</title>
         <para>H5 Reference object wrap an hypermatrix object where elements are a reference to an H5 object.</para>
@@ -415,7 +415,7 @@ ref_x = a.root.x.data;
 h5isRef(ref_x)
 
 // Get the 3 elements
-x1 = ref_x(1), x2 = ref_x(2), x3 = ref_x(3) 
+x1 = ref_x(1), x2 = ref_x(2), x3 = ref_x(3)
 
 // Get the data
 x1.data, x2.data, x3.data

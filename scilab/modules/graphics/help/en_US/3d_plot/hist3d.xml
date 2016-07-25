@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -90,7 +90,7 @@
         <programlisting role="example"><![CDATA[
         hist3d();
  ]]></programlisting>
-        
+
         <scilab:image localized="true">hist3d();</scilab:image>
         <programlisting role="example"><![CDATA[
 hist3d(10*rand(10,10));

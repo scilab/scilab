@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F. Delebecque
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -62,7 +62,7 @@
         <para>
             <literal>P12</literal> is a <literal>syslin</literal> list (e.g. <literal>P12=syslin('c',A,B2,C1,D12)</literal>).
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 [C1' ]               [Q  S]
 [    ]  * [C1 D12] = [    ]
 [D12']               [S' R]
@@ -80,19 +80,19 @@
         <para>
             For a continuous plant:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 (A-B2*inv(R)*S')'*X+X*(A-B2*inv(R)*S')-X*(B2*inv(R)*B2'-Vx)*X+Q-S*inv(R)*S'=0
  ]]></programlisting>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 K=-inv(R)*(B2'*X+S)
  ]]></programlisting>
         <para>
             For a discrete time plant:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 X-(Abar'*inv((inv(X)+B2*inv(R)*B2'-Vx))*Abar+Qbar=0
  ]]></programlisting>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 K=-inv(R)*(B2'*inv(inv(X)+B2*inv(R)*B2'-Vx)*Abar+S')
  ]]></programlisting>
         <para>
@@ -101,7 +101,7 @@ K=-inv(R)*(B2'*inv(inv(X)+B2*inv(R)*B2'-Vx)*Abar+S')
         <para>
             The 3-blocks matrix pencils associated with these Riccati equations are:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
              discrete                        continuous
  |I  -Vx  0|   | A    0    B2|       |I   0   0|   | A    Vx    B2|
 z|0   A'  0| - |-Q    I    -S|      s|0   I   0| - |-Q   -A'   -S |

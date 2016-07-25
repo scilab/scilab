@@ -50,7 +50,7 @@
                     (potenciação elemento a elemento). Se <literal>A</literal> é um vetor
                     e <literal>b</literal> é um escalar, então <literal>A^b</literal> e
                     <literal>A.^b</literal> realizam a mesma operação (i.e., potenciação
-                    elemento a elemento). 
+                    elemento a elemento).
                 </para>
             </listitem>
             <listitem>
@@ -84,7 +84,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[1 2;3 4];
 A^2.5,
 A.^2.5

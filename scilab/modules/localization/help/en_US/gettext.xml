@@ -65,7 +65,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 setlanguage("fr_FR");
 gettext("Startup execution:")
 _("Startup execution:")

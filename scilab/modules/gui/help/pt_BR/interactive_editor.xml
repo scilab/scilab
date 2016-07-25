@@ -6,7 +6,7 @@
     </refnamediv>
     <refsection>
         <title>Description</title>
-        
+
         <para>
             O editor interativo adiciona novas funcionalidades ao scilab, agora o usuário pode
             interagir com a janela de plot e os objetos graficos sem usar uma única linha de código.
@@ -15,7 +15,7 @@
             O editor interativo de plot fornece as seguintes funcionalidades:
         </para>
         <para>
-            Menu de Edição: 
+            Menu de Edição:
         </para>
         <para>
             <inlinemediaobject>
@@ -54,7 +54,7 @@
                     </imageobject>
                 </inlinemediaobject>
             </listitem>
-            
+
             <listitem><para>
                     Copiar o estilo dos eixos
                 </para>
@@ -71,7 +71,7 @@
                     </imageobject>
                 </inlinemediaobject>
             </listitem>
-            
+
             <listitem><para>
                     Copiar para a área de transferência
                 </para>
@@ -85,7 +85,7 @@
                     </imageobject>
                 </inlinemediaobject>
             </listitem>
-            
+
             <listitem><para>
                     Deletar
                 </para>
@@ -102,7 +102,7 @@
                     </imageobject>
                 </inlinemediaobject>
             </listitem>
-            
+
             <listitem><para>
                     Ocultar, Reexibir Todos
                 </para>
@@ -119,7 +119,7 @@
                     </imageobject>
                 </inlinemediaobject>
             </listitem>
-            
+
             <listitem><para>
                     Undo / Redo
                 </para>
@@ -131,7 +131,7 @@
                     Observação: O editor armazana um número limitado de ações
                 </para>
             </listitem>
-            
+
             <listitem><para>
                     Rotulos
                 </para>
@@ -144,7 +144,7 @@
                     </imageobject>
                 </inlinemediaobject>
             </listitem>
-            
+
             <listitem><para>
                     Legendas
                 </para>
@@ -163,7 +163,7 @@
                     </imageobject>
                 </inlinemediaobject>
             </listitem>
-            
+
             <listitem><para>
                     Limpar
                 </para>
@@ -183,15 +183,15 @@
                     </imageobject>
                 </inlinemediaobject>
             </listitem>
-            
+
             <listitem><para>
                     Abrir GED(Janela de Propriedades)
                 </para>
                 Com o simples click do botão direito o usuario pode abrir a ged com as propriedades da entidade selecionada.
             </listitem>
-            
+
         </itemizedlist>
-        
+
         <itemizedlist>
             <listitem>
                 <para>
@@ -217,7 +217,7 @@
                     </imageobject>
                 </inlinemediaobject>
             </listitem>
-            
+
             <listitem>
                 <para>
                     Editor gráfico de curvas

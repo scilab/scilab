@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -106,11 +106,11 @@
         <para>
             In any case, the format of <literal>y</literal> is :
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 max(length(n),length(m)) x length(x)
  ]]></programlisting>
         <para>and :</para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 y(i,j) = P(n(i),m;x(j))   if n is a vector
 y(i,j) = P(n,m(i);x(j))   if m is a vector
 y(1,j) = P(n,m;x(j))      if both n and m are scalars
@@ -141,7 +141,7 @@ xtitle("the 6 th first Legendre polynomials")
             xtitle("the 6 th first Legendre polynomials")
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// example 2 : plot of the associated Legendre functions of degree 5 
+// example 2 : plot of the associated Legendre functions of degree 5
 l = nearfloat("pred",1);
 x = linspace(-l,l,200)';
 y = legendre(5, 0:5, x, "norm");

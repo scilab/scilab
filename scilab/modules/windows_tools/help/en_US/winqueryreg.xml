@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -61,10 +61,10 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 if getos() == 'Windows' then
     winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
-    
+
     mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
     len=size(mousechar);
     for k=1:len(1)
@@ -73,7 +73,7 @@ if getos() == 'Windows' then
         str = msprintf('%s = %s', mousechar(k), string(setting));
         disp(str);
     end
-    
+
     winqueryreg('HKEY_CURRENT_CONFIG', 'Software\Fonts\','LogPixels')
     winqueryreg('key' ,'HKLM', 'Software\Microsoft\.NETFramework')
 end

@@ -14,12 +14,12 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="isoview">
-    
+
     <refnamediv>
         <refname>isoview</refname>
         <refpurpose>等軸プロットにスケールを設定 (ウインドウの大きさを変更しない)  </refpurpose>
     </refnamediv>
-    
+
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>isoview
@@ -29,7 +29,7 @@
             isoview(xmin, xmax, ymin, ymax)    // DEPRECATED. use replot()
         </synopsis>
     </refsynopsisdiv>
-    
+
     <refsection role="arguments">
         <title>引数</title>
         <variablelist>
@@ -57,7 +57,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection role="description">
         <title>説明</title>
         <para>
@@ -119,7 +119,7 @@
             option may be used at call time.
         </note>
     </refsection>
-    
+
     <refsection role="examples">
         <title>例</title>
         <programlisting role="example"><![CDATA[
@@ -186,7 +186,7 @@ isoview([a1 a2 a3], "on")
             subplot(2,nc,nc+1)
             plot2d(cos(t),sin(t))
             isoview
-            
+
             subplot(2,nc,2)
             plot2d(7*cos(t),2*sin(t))
             xtitle("True ellipse")
@@ -194,7 +194,7 @@ isoview([a1 a2 a3], "on")
             subplot(2,nc,nc+2)
             plot2d(7*cos(t),2*sin(t))
             isoview
-            
+
             // plot of a sphere using facets computed by eval3dp
             deff("[x,y,z] = sph(alp,tet)",["x = r*cos(alp).*cos(tet)+orig(1)*ones(tet)"; ..
             "y = r*cos(alp).*sin(tet)+orig(2)*ones(tet)"; ..
@@ -209,7 +209,7 @@ isoview([a1 a2 a3], "on")
             plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
             isoview
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // Using plot2d(..., frameflag=4) :
 r = linspace(1,10,200);
@@ -230,13 +230,13 @@ xtitle("with frameflag=4")
             subplot(1,2,1)
             plot2d(r.*sin(t),r.*cos(t))
             xtitle("plot2d(..)")
-            
+
             subplot(1,2,2)
             plot2d(r.*sin(t),r.*cos(t),frameflag=4)
             xtitle("with frameflag=4")
         </scilab:image>
     </refsection>
-    
+
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
@@ -251,7 +251,7 @@ xtitle("with frameflag=4")
             </member>
         </simplelist>
     </refsection>
-    
+
     <refsection role="history">
         <title>履歴</title>
         <revhistory>

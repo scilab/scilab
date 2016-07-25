@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -43,7 +43,7 @@
             <varlistentry>
                 <term>linestoprint</term>
                 <listitem>
-                    <para>文字列の行列: 印刷する文字列, 
+                    <para>文字列の行列: 印刷する文字列,
                         各エントリは印刷されたページの行です.
                     </para>
                 </listitem>
@@ -76,7 +76,7 @@
                 <term>status</term>
                 <listitem>
                     <para>
-                        論理値: 
+                        論理値:
                         印刷に成功した場合は<emphasis>%T</emphasis>,
                         それ以外は <emphasis>%F</emphasis>.
                     </para>
@@ -92,7 +92,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 toprint(SCI+"/etc/scilab.start");
 toprint(['Test','toprint primitive'],'Scilab page header');
 scf(4);

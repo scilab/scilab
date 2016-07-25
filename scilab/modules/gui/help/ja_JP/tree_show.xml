@@ -29,7 +29,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 簡単な例
 a=list(1,2,3);
 tree_show(a);

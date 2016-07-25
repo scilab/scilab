@@ -41,8 +41,8 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
-//creer une struct: date les champs sont: 'jour' (valeur: 25), 'mois' (valeur: 'DEC'), 'annee' (valeur: 2006) 
+        <programlisting role="example"><![CDATA[
+//creer une struct: date les champs sont: 'jour' (valeur: 25), 'mois' (valeur: 'DEC'), 'annee' (valeur: 2006)
 date_st=struct('jour',25,'mois','DEC','annee',2006)
 
 // changer la valeur des champs

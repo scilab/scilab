@@ -24,7 +24,7 @@
                     <para>文字列</para>
                     <para>境界の表題.</para>
                     <para>
-                        <literal>border</literal>引数が指定されない場合, 
+                        <literal>border</literal>引数が指定されない場合,
                         (カレントのルックアンドフィールに基づく)デフォルトの境界
                         が作成されます.
                     </para>

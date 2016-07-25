@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -74,7 +74,7 @@
             プラント<literal>[A,B,C,D]</literal>を以下のように
             分割した状態空間行列を含みます:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 B = ( B1 , B2 ) ,    C = ( C1 ) ,    D = ( D11  D12)
                          ( C2 )          ( D21  D22)
  ]]></programlisting>
@@ -85,7 +85,7 @@ B = ( B1 , B2 ) ,    C = ( C1 ) ,    D = ( D11  D12)
             <literal>D22</literal> の次元(行 x 列)です.
         </para>
         <para>
-            <literal>option='t'</literal>を指定すると, 
+            <literal>option='t'</literal>を指定すると,
             <literal>gamitg</literal> は,各二分探索ステップのトレースを行います.
             すなわち, カレントの下界と上界と試行点を表示します.
         </para>

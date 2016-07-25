@@ -97,7 +97,7 @@
             event port.
             The value of the delay is read from the regular input port.
             Block may also generate an initial output event.
-            
+
         </para>
     </refsection>
     <refsection id="Dialogbox_EVTVARDLY">
@@ -110,7 +110,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>

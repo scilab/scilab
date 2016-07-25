@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -54,10 +54,10 @@
             <literal>R</literal> = linear system in state-space representation (<literal>syslin</literal> list).
         </para>
         <para>
-            <literal>R</literal> is strictly proper and <literal>- R~</literal> is stable 
+            <literal>R</literal> is strictly proper and <literal>- R~</literal> is stable
             (i.e. <literal>R</literal> is anti stable).
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 || R - X ||oo = min || R - Y ||oo
               Y in Hoo
  ]]></programlisting>

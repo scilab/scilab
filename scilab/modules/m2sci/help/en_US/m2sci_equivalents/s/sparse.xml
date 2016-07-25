@@ -96,7 +96,7 @@ sparse
                 <td>
                     <para>
                         This equivalence is true considering <emphasis role="strong">i</emphasis>, <emphasis role="strong">j</emphasis>
-                        and <emphasis role="strong">s</emphasis> have the same length and that <emphasis role="strong">i</emphasis> and 
+                        and <emphasis role="strong">s</emphasis> have the same length and that <emphasis role="strong">i</emphasis> and
                         <emphasis role="strong">j</emphasis> are column vectors.
                     </para>
                 </td>
@@ -111,7 +111,7 @@ sparse
                 <td>
                     <para>
                         This equivalence is true considering <emphasis role="strong">i</emphasis>, <emphasis role="strong">j</emphasis>
-                        and <emphasis role="strong">s</emphasis> have the same length and that <emphasis role="strong">i</emphasis> and 
+                        and <emphasis role="strong">s</emphasis> have the same length and that <emphasis role="strong">i</emphasis> and
                         <emphasis role="strong">j</emphasis> are column vectors.
                     </para>
                 </td>

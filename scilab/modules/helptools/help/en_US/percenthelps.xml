@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -23,7 +23,7 @@
         <title>Description</title>
         <para>BEWARE: This variable must NOT be modified by users.</para>
         <para>
-            The global variable <literal>%helps</literal> is an N x 2 matrix of strings. 
+            The global variable <literal>%helps</literal> is an N x 2 matrix of strings.
             The kth row of <literal>%helps</literal>, <literal>%helps(k,:)</literal> represents
             the kth chapter of the manual and is made of two strings:
         </para>

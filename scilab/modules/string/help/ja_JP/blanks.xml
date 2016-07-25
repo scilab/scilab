@@ -2,8 +2,8 @@
 
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -16,74 +16,74 @@
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="blanks">
-    
+
     <refnamediv>
-        
+
         <refname>blanks</refname>
-        
+
         <refpurpose>空白文字からなる文字列を作成する</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>txt=blanks(n)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>txt</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>n</term>
-                
+
                 <listitem>
-                    
+
                     <para>空白の数</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>D説明</title>
-        
+
         <para>blanks(n) はn個の空白からなる文字列です.</para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 disp(['xxx' blanks(20) 'yyy'])
  ]]></programlisting>
-        
+
     </refsection>
-    
+
 </refentry>
 

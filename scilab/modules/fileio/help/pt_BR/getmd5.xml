@@ -42,7 +42,7 @@
     </refsection>
     <refsection>
         <title> Exemplos </title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 getmd5('ola mundo','string')
 getmd5(['ola' 'mundo'],'string')
 getmd5(['ola' ; 'mundo'],'string')

@@ -47,11 +47,11 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 n=7;
 omegac=3;
 [pols,gain]=zpbutt(n,omegac)
  ]]></programlisting>
     </refsection>
-    
+
 </refentry>

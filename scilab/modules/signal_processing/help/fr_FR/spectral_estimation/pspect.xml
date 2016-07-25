@@ -316,7 +316,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rand('normal');rand('seed',0);
 x=rand(1:1024-33+1);
 
@@ -324,7 +324,7 @@ x=rand(1:1024-33+1);
 nf=33;bedge=[0 .1;.125 .5];des=[1 0];wate=[1 1];
 h=eqfir(nf,bedge,des,wate);
 
-//filter white data to obtain colored data 
+//filter white data to obtain colored data
 h1=[h 0*ones(1:max(size(x))-1)];
 x1=[x 0*ones(1:max(size(h))-1)];
 hf=fft(h1,-1); xf=fft(x1,-1);y=real(fft(hf.*xf,1));

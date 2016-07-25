@@ -7,8 +7,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            Le type Hypermatrice permet de manipuler des tableaux multidimensionnels. 
-            Ce type d'objet peut être défini par extension des matrices 2D comme ceci : 
+            Le type Hypermatrice permet de manipuler des tableaux multidimensionnels.
+            Ce type d'objet peut être défini par extension des matrices 2D comme ceci :
         </para>
         <para>
             a=[1 2;3 4];a(:,:,2)=rand(2,2)
@@ -18,23 +18,23 @@
         </para>
         <para>
             Les termes peuvent être entiers encodés, réels, complexes, polynômiaux, rationnels, booléens
-            ou de type chaîne de caractères. 
+            ou de type chaîne de caractères.
         </para>
-        <para>NOTES: le nombre de dimensions des hypermatrices dont les dimensions les plus à droite sont egales  
+        <para>NOTES: le nombre de dimensions des hypermatrices dont les dimensions les plus à droite sont egales
             à 1 est automatiquement réduit. Une hypermatrice n'ayant que 2 dimensions
             est automatiquement transformée en une matrice standard (de type 1).
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a(1,1,1,1:2)=[1 2]
 a=[1 2;3 4];a(:,:,2)=rand(2,2)
 a(1,1,:)
 
 size(a)
 
-a(:,:,1) //dimensionality reduction 
+a(:,:,1) //dimensionality reduction
 type(a(:,:,1))
 
 [a a]

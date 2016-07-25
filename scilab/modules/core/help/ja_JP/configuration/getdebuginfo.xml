@@ -14,19 +14,19 @@
     <refsection>
         <title>説明</title>
         <para>
-	  <function>getdebuginfo</function> は, Scilab に関するデバッグ情報を取得します.
-	</para>
+            <function>getdebuginfo</function> は, Scilab に関するデバッグ情報を取得します.
+        </para>
         <para>
-	  <code>dynamic_info = getdebuginfo();</code> はシステムに関する情報を返します.
-	</para>
+            <code>dynamic_info = getdebuginfo();</code> はシステムに関する情報を返します.
+        </para>
         <para>
-	  <code>[dynamic_info,static_info] = getdebuginfo();</code> は,システムおよびScilabに
-          関する情報を返します.
+            <code>[dynamic_info,static_info] = getdebuginfo();</code> は,システムおよびScilabに
+            関する情報を返します.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [a,b]=getdebuginfo()
  ]]></programlisting>
     </refsection>

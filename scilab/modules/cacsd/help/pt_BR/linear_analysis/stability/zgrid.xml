@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -58,9 +58,9 @@
                 clf();evans(H,1000);zgrid(0:0.1:0.5)
             </scilab:image>
         </para>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
         <title>Ver Também</title>
         <simplelist type="inline">

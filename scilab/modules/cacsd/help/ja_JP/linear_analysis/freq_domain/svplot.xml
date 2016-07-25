@@ -46,7 +46,7 @@
         <para>
             システム <literal>sl=(A,B,C,D)</literal>の伝達関数行列の特異値を計算します:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
              G(jw) = C(jw*I-A)B^-1+D
 or
              G(exp(jw)) = C(exp(jw)*I-A)B^-1+D

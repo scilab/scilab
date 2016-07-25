@@ -10,7 +10,7 @@
             the following special characters  '<literal>%</literal>', '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'.
         </para>
         <para>
-            Next characters may be letters or digits or any special character in '<literal>_</literal>', 
+            Next characters may be letters or digits or any special character in '<literal>_</literal>',
             '<literal>#</literal>', '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'.
         </para>
         <para>
@@ -23,7 +23,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Valid names
 %eps
 A1=123

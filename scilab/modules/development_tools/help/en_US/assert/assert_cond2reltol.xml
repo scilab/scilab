@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * 
+ *
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -24,7 +24,7 @@
         <synopsis>
             rtol = assert_cond2reltol ( condition )
             rtol = assert_cond2reltol ( condition , offset )
-            
+
         </synopsis>
     </refsynopsisdiv>
     <refsection>

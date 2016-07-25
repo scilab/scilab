@@ -52,12 +52,12 @@
             <emphasis>(x,y)</emphasis> dos pontos de interpolação não estão na mesma
             reta) e se não há nós duplicados (i.e. dois ou mais pontos de interpolação
             com as mesmas coordenadas <emphasis>(x,y)</emphasis> ). Há erro se essas
-            condições não são respeitadas. 
+            condições não são respeitadas.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // interpolação de cos(x)cos(y) com pontos de interpolação escolhidos aleatoriamente
 n = 150; // número de pontos de interpolação
 xy = grand(n,2,"unf",0,2*%pi);

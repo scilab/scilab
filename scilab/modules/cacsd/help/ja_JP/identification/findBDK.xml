@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -115,11 +115,11 @@
             <varlistentry>
                 <term>NSMPL</term>
                 <listitem>
-                    <para>整数, 
+                    <para>整数,
                         共分散行列およびカルマン予測ゲインを計算する際に使用される
                         サンプルの総数.
                         このパラメータは,共分散行列とカルマン予測ゲインが必要ない
-                        場合には,不要です.NSMPL = 0の場合, K, Q, Ry, および S は計算されません. 
+                        場合には,不要です.NSMPL = 0の場合, K, Q, Ry, および S は計算されません.
                         デフォルト:    NSMPL = 0.
                     </para>
                 </listitem>
@@ -211,12 +211,12 @@
         <itemizedlist>
             <listitem>
                 <para>[B,D,K] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)  は,
-                    システム行列 B (JOB = 1の場合), 
+                    システム行列 B (JOB = 1の場合),
                     システム行列 BおよびD (JOB = 2の場合),
                     カルマン予測ゲイン K (NSMPL &gt; 0の場合) を計算します.
                     モデルの構造は次のようになります:
                 </para>
-                <programlisting role=""><![CDATA[ 
+                <programlisting role=""><![CDATA[
 x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k),
  ]]></programlisting>
@@ -233,7 +233,7 @@ y(k)   = Cx(k) + Du(k) + e(k),
             <listitem>
                 <para>[B,D,K,Q,Ry,S,RCND] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)  は,
                     長さ 12 の RCNDベクトルと共に,
-                    状態量, 出力, 出力状態 (相互)共分散行列 Q, Ry, および S 
+                    状態量, 出力, 出力状態 (相互)共分散行列 Q, Ry, および S
                     (カルマンゲイン計算で使用される)も返します.
                     RCNDベクトルには,ランク決定, 最小二乗またはリカッチ方程式の解に関連する
                     行列の条件数の逆数が含まれます.
@@ -241,7 +241,7 @@ y(k)   = Cx(k) + Du(k) + e(k),
             </listitem>
         </itemizedlist>
         <para>
-            findR により計算される行列 Rは, 
+            findR により計算される行列 Rは,
             適当な引数 METH および JOBDで定義されます.
             findR ではMETH = 1かつJOBD = 1,findBDKではMETH = 1を使用しますす.
             FINDR では METH = 1, findBDK では METH = 2 を使用することができます.
@@ -249,20 +249,20 @@ y(k)   = Cx(k) + Du(k) + e(k),
         <para>
             出力引数の数は変換しますが,次のように入力引数に対応します,
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
          B = findBDK(S,N,L,R,A,C,METH,1)  または
      [B,D] = findBDK(S,N,L,R,A,C,METH,2)  または
-[B,D,RCND] = findBDK(S,N,L,R,A,C,METH,2)  
+[B,D,RCND] = findBDK(S,N,L,R,A,C,METH,2)
  ]]></programlisting>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //指定した線形システムからデータを生成
 A = [ 0.5, 0.1,-0.1, 0.2;
-      0.1, 0,  -0.1,-0.1;      
-     -0.4,-0.6,-0.7,-0.1;  
-      0.8, 0,  -0.6,-0.6];      
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
 B = [0.8;0.1;1;-1];
 C = [1 2 -1 0];
 SYS=syslin(0.1,A,B,C);

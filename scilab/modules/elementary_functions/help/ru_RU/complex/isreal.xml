@@ -80,7 +80,7 @@ isreal(p)
 
 // Complex rational fraction:
 r = [ (%i-%s)/%s^2 %s/(2-%s)]
-isreal(r) 
+isreal(r)
 ]]></programlisting>
     </refsection>
     <refsection role="history">

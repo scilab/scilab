@@ -55,7 +55,7 @@
     for i=1:5
         xmlAppend(doc.root, xmlElement(doc, "child_" + string(i)));
     end;
-    
+
     xmlDump(doc)
     xmlDelete(doc);
     ]]></programlisting>

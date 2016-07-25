@@ -50,7 +50,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            XMLオブジェクトをダンプします. 
+            XMLオブジェクトをダンプします.
             ダンプ可能なオブジェクトは XMLDoc, XMLElement または XMLListです.
             indentがfalseの場合(デフォルトではtrue),インデント及び復改記号は
             追加されません.

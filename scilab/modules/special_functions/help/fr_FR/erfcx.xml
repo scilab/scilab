@@ -41,7 +41,7 @@ erfcx(x)
 exp (x.^2) .* erfc(x)
  ]]></programlisting>
     </refsection>
-    
+
     <refsection>
         <title>Algorithmes</title>
         <para>
@@ -62,7 +62,7 @@ exp (x.^2) .* erfc(x)
             </member>
         </simplelist>
     </refsection>
-    
+
     <refsection>
         <title>Historique</title>
         <revhistory>

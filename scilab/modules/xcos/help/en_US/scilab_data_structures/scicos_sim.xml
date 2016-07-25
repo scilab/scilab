@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scicos_sim">
@@ -46,38 +46,38 @@
         </para>
         <para>
             Type : scilab tlist of type <code>"scs"</code> with fields :
-            <link linkend="scicos_cpr_sim_funs">funs</link>, 
-            <link linkend="scicos_cpr_sim_xptr">xptr</link>, 
-            <link linkend="scicos_cpr_sim_zptr">zptr</link>, 
-            <link linkend="scicos_cpr_sim_ozptr">ozptr</link>, 
-            <link linkend="scicos_cpr_sim_zcptr">zcptr</link>, 
-            <link linkend="scicos_cpr_sim_inpptr">inpptr</link>, 
-            <link linkend="scicos_cpr_sim_outptr">outptr</link>, 
-            <link linkend="scicos_cpr_sim_inplnk">inplnk</link>, 
-            <link linkend="scicos_cpr_sim_outlnk">outlnk</link>, 
-            <link linkend="scicos_cpr_sim_rpar">rpar</link>, 
-            <link linkend="scicos_cpr_sim_rpptr">rpptr</link>, 
-            <link linkend="scicos_cpr_sim_ipar">ipar</link>, 
-            <link linkend="scicos_cpr_sim_ipptr">ipptr</link>, 
-            <link linkend="scicos_cpr_sim_opar">opar</link>, 
-            <link linkend="scicos_cpr_sim_opptr">opptr</link>, 
-            <link linkend="scicos_cpr_sim_clkptr">clkptr</link>, 
-            <link linkend="scicos_cpr_sim_ordptr">ordptr</link>, 
-            <link linkend="scicos_cpr_sim_execlk">execlk</link>, 
-            <link linkend="scicos_cpr_sim_ordclk">ordclk</link>, 
-            <link linkend="scicos_cpr_sim_cord">cord</link>, 
-            <link linkend="scicos_cpr_sim_oord">oord</link>, 
-            <link linkend="scicos_cpr_sim_zord">zord</link>, 
-            <link linkend="scicos_cpr_sim_critev">critev</link>, 
-            <link linkend="scicos_cpr_sim_nb">nb</link>, 
-            <link linkend="scicos_cpr_sim_ztyp">ztyp</link>, 
-            <link linkend="scicos_cpr_sim_nblk">nblk</link>, 
-            <link linkend="scicos_cpr_sim_ndcblk">ndcblk</link>, 
-            <link linkend="scicos_cpr_sim_subscr">subscr</link>, 
-            <link linkend="scicos_cpr_sim_funtyp">funtyp</link>, 
-            <link linkend="scicos_cpr_sim_iord">iord</link>, 
-            <link linkend="scicos_cpr_sim_labels">labels</link>, 
-            <link linkend="scicos_cpr_sim_modptr">modptr</link> and 
+            <link linkend="scicos_cpr_sim_funs">funs</link>,
+            <link linkend="scicos_cpr_sim_xptr">xptr</link>,
+            <link linkend="scicos_cpr_sim_zptr">zptr</link>,
+            <link linkend="scicos_cpr_sim_ozptr">ozptr</link>,
+            <link linkend="scicos_cpr_sim_zcptr">zcptr</link>,
+            <link linkend="scicos_cpr_sim_inpptr">inpptr</link>,
+            <link linkend="scicos_cpr_sim_outptr">outptr</link>,
+            <link linkend="scicos_cpr_sim_inplnk">inplnk</link>,
+            <link linkend="scicos_cpr_sim_outlnk">outlnk</link>,
+            <link linkend="scicos_cpr_sim_rpar">rpar</link>,
+            <link linkend="scicos_cpr_sim_rpptr">rpptr</link>,
+            <link linkend="scicos_cpr_sim_ipar">ipar</link>,
+            <link linkend="scicos_cpr_sim_ipptr">ipptr</link>,
+            <link linkend="scicos_cpr_sim_opar">opar</link>,
+            <link linkend="scicos_cpr_sim_opptr">opptr</link>,
+            <link linkend="scicos_cpr_sim_clkptr">clkptr</link>,
+            <link linkend="scicos_cpr_sim_ordptr">ordptr</link>,
+            <link linkend="scicos_cpr_sim_execlk">execlk</link>,
+            <link linkend="scicos_cpr_sim_ordclk">ordclk</link>,
+            <link linkend="scicos_cpr_sim_cord">cord</link>,
+            <link linkend="scicos_cpr_sim_oord">oord</link>,
+            <link linkend="scicos_cpr_sim_zord">zord</link>,
+            <link linkend="scicos_cpr_sim_critev">critev</link>,
+            <link linkend="scicos_cpr_sim_nb">nb</link>,
+            <link linkend="scicos_cpr_sim_ztyp">ztyp</link>,
+            <link linkend="scicos_cpr_sim_nblk">nblk</link>,
+            <link linkend="scicos_cpr_sim_ndcblk">ndcblk</link>,
+            <link linkend="scicos_cpr_sim_subscr">subscr</link>,
+            <link linkend="scicos_cpr_sim_funtyp">funtyp</link>,
+            <link linkend="scicos_cpr_sim_iord">iord</link>,
+            <link linkend="scicos_cpr_sim_labels">labels</link>,
+            <link linkend="scicos_cpr_sim_modptr">modptr</link> and
             <link linkend="scicos_cpr_sim_uids">uids</link>.
         </para>
         <refsect2 id="scicos_cpr_sim_funs">

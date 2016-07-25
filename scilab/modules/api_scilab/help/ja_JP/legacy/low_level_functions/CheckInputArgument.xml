@@ -46,7 +46,7 @@
             この関数を使用するには api_scilab.h をインクルードする必要があります.
         </para>
         <para>
-            引数の数が_iMin および _iMax の間でない場合, 
+            引数の数が_iMin および _iMax の間でない場合,
             Cインターフェイスを終了(<literal>return 0;</literal>)し,
             Scilabコンソールにエラーが返されます.
         </para>
@@ -70,7 +70,7 @@
             この例では, Cゲートウェイ関数は
             入力引数の数が 2と3の間であることを確認します.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 #include <api_scilab.h>
 int sci_mycheckrhs(char * fname)
 {
@@ -82,7 +82,7 @@ int sci_mycheckrhs(char * fname)
 }
  ]]></programlisting>
         <para>ここで, このインターフェイスをテストするために関数を実行します:</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 mycheckrhs(A,B); // OK, 入力引数2個
 mycheckrhs(A,B,C); // OK, 入力引数3個
 mycheckrhs(A); // エラー, 入力引数1個

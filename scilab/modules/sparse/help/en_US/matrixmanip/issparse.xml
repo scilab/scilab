@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -52,7 +52,7 @@
             if issparse(sp) == 1 then
             disp("It is a sparse");
             end
-            
+
             A = 1;
             if issparse(A) == 0 then
             disp("It is not a sparse");

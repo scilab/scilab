@@ -41,7 +41,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 最初の例
 f = figure("background", -2);
 h = uicontrol(f, "style", "text", ...

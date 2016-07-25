@@ -49,13 +49,13 @@
             Square magnitude response of a type 2 Chebyshev filter.
         </para>
         <para>
-            <literal>omegar</literal> = stopband edge, <literal>sample</literal> = vector of 
+            <literal>omegar</literal> = stopband edge, <literal>sample</literal> = vector of
             frequencies where the square magnitude <literal>h2</literal> is desired.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Chebyshev; ripple in the stopband
 n=10;
 omegar=6;

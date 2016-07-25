@@ -72,7 +72,7 @@
                         The values of c are linarly mapped to the colors in the current colormap.
                         Colors can also by specified by a matrix of RGB values or a vector of strings representing known colors.
                         A matrix of RGB values has 3 columns and the number of rows equals the length of x and y.
-                        The default color is "blue". 
+                        The default color is "blue".
                     </para>
                 </listitem>
             </varlistentry>
@@ -83,7 +83,7 @@
                         This string indicates that the markers are filled with colors.
                         The markers background colors are set using the values of c.
                         If c is not specified the fill color can be defined by the marker property "markerFaceColor" or "markerBackgroundColor".
-                        The default color is "blue".  
+                        The default color is "blue".
                     </para>
                 </listitem>
             </varlistentry>
@@ -284,10 +284,10 @@
         <para>
             <literal>scatter(x,y)</literal> creates a scatter plot with markers at the locations specified by x and y.
             The default type of the marker is a circle, the default color is "blue" and the default size is 36.
-            This means the circle surrounding the marker has an area of 36 points squared. 
+            This means the circle surrounding the marker has an area of 36 points squared.
         </para>
         <para>
-            Using <literal>scatter(x,y,s,c)</literal> different sizes and colors for each marker can be specified. 
+            Using <literal>scatter(x,y,s,c)</literal> different sizes and colors for each marker can be specified.
             There are many different ways to specify marker types, marker colors and marker sizes.
             For more details see the description of the arguments and the examples.
         </para>
@@ -295,7 +295,7 @@
     <refsection>
         <title>Remarks</title>
         <para>
-            If you want to specify colors without specifying sizes use <literal>scatter(x,y,[],c)</literal>. 
+            If you want to specify colors without specifying sizes use <literal>scatter(x,y,[],c)</literal>.
         </para>
     </refsection>
     <refsection>
@@ -344,7 +344,7 @@ y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
 s = linspace(1,30,length(x))
 // set color map
 set(gcf(),"color_map",coolcolormap(64))
-// colors according to x values 
+// colors according to x values
 c = x
 // create 2D scatter plot
 scatter(x,y,s,c)
@@ -368,7 +368,7 @@ y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
 s = linspace(1,30,length(x))
 // set color map
 set(gcf(),"color_map",coolcolormap(64))
-// colors according to y values 
+// colors according to y values
 c = y
 // create 2D scatter plot
 scatter(x,y,s,c,"fill")
@@ -455,7 +455,7 @@ p = scatter(x,y)
             p = scatter(x,y,t)
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// modify ployline 
+// modify ployline
 p.thickness = 0.5
 p.mark_foreground = addcolor(name2rgb("darkblue")/255)
 p.mark_background = addcolor(name2rgb("darkcyan")/255)

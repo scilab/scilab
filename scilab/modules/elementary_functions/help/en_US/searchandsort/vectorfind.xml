@@ -4,7 +4,7 @@
  * Copyright (C) 2008 - INRIA - Serge STEER
  * Copyright (C) 2008 - INRIA - Ramine NIKOUKHAH
  * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -61,7 +61,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 alr=[1,2,2;
      1,2,1;
      1,1,2;

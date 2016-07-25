@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -67,7 +67,7 @@
                         entries of the diagonal matrices D and G,
                         respectively, such that the matrix <literal>
                             Z'*diag(D)^2*Z + sqrt(-1)*(diag(G)*Z-Z'*diag(G)) -
-                            bound^2*diag(D)^2 
+                            bound^2*diag(D)^2
                         </literal>
                         is negative
                         semidefinite.
@@ -93,7 +93,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 K=[1,1,2,1,1];
 T=[1,1,2,2,2];
 Z=[-1+%i*6, 2-%i*3, 3+%i*8, 3+%i*8,-5-%i*9,-6+%i*2;

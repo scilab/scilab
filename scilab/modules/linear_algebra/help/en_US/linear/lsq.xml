@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -41,7 +41,7 @@
                 <term>tol</term>
                 <listitem>
                     <para>positive scalar,  used to determine the effective rank of A
-                        (defined as the order of the largest leading triangular 
+                        (defined as the order of the largest leading triangular
                         submatrix R11 in the QR factorization with pivoting of A,
                         whose estimated condition number &lt;= 1/tol. The tol default value is
                         set to <literal>sqrt(%eps)</literal>.
@@ -73,14 +73,14 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Build the data
 x=(1:10)';
 
 y1=3*x+4.5+3*rand(x,'normal');
 y2=1.8*x+0.5+2*rand(x,'normal');
 plot2d(x,[y1,y2],[-2,-3])
-//Find the linear regression 
+//Find the linear regression
 A=[x,ones(x)];B=[y1,y2];
 X=lsq(A,B);
 

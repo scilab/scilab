@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - P. Gahinet
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -52,17 +52,17 @@
     <refsection>
         <title>説明</title>
         <para>
-            状態空間形式の一般標準問題の中央解であるコントローラの実現 <literal>K</literal> 
+            状態空間形式の一般標準問題の中央解であるコントローラの実現 <literal>K</literal>
             を返します.
         </para>
         <para>
-            gamma &gt; gopt (<literal>gamitg</literal>の出力)が必要なことに注意してください 
+            gamma &gt; gopt (<literal>gamitg</literal>の出力)が必要なことに注意してください
         </para>
         <para>
             P は,以下のようなプラント実現のパラメータ <literal>(A,B,C,D)</literal>
             (<literal>syslin</literal> リスト)を有します.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 B = ( B1 , B2 ) ,        C= ( C1 ) ,    D = ( D11  D12)
                             ( C2 )          ( D21  D22)
  ]]></programlisting>

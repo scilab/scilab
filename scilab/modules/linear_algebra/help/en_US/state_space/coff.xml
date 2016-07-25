@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -58,7 +58,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>coff</literal> computes R=<literal>(s*eye()-M)^-1</literal> for <literal>M</literal> a real matrix. 
+            <literal>coff</literal> computes R=<literal>(s*eye()-M)^-1</literal> for <literal>M</literal> a real matrix.
             R is given by <literal>N/d</literal>.
         </para>
         <para>
@@ -73,7 +73,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 M=[1,2;0,3];
 [N,d]=coff(M)
 N/d

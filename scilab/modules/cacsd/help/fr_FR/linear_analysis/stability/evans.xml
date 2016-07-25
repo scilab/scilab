@@ -75,7 +75,7 @@
                 clf();evans(H,100);sgrid()
                 [Ki,s]=kpure(H)
                 plot([real(s) real(s)],[imag(s) -imag(s)],'*r')
-                
+
                 [Kr,s]=krac2(H)
             </scilab:image>
         </para>

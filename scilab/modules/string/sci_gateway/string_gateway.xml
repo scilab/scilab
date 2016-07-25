@@ -20,8 +20,8 @@
  Don't touch if you do not know what you are doing
 -->
     <!-- =================== -->
-    
-    
+
+
     <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET , Sylvestre LEDRU
@@ -36,8 +36,8 @@
  * along with this program.
  *
  -->
-    
-    
+
+
     <PRIMITIVE gatewayId="21" primitiveId="1" primitiveName="length" />
     <PRIMITIVE gatewayId="21" primitiveId="2" primitiveName="part" />
     <PRIMITIVE gatewayId="21" primitiveId="3" primitiveName="string" />
@@ -72,5 +72,5 @@
     <PRIMITIVE gatewayId="21" primitiveId="32" primitiveName="_code2str" />
     <PRIMITIVE gatewayId="21" primitiveId="33" primitiveName="isnum" />
     <PRIMITIVE gatewayId="21" primitiveId="34" primitiveName="csvIsnum" />
-    
+
 </GATEWAY>

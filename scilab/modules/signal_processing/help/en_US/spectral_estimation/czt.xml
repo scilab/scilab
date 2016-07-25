@@ -68,7 +68,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=.7*exp(%i*%pi/6);
 [ffr,bds]=xgetech(); //preserve current context
 rect=[-1.2,-1.2*sqrt(2),1.2,1.2*sqrt(2)];

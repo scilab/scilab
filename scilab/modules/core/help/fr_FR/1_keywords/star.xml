@@ -54,18 +54,18 @@ p * q
 s=poly(0,'s');
 W=[1/s,1/(s+1)];
 W' * W
-//    1           1          
-//    -         -----        
-//     2             2       
-//    s         s + s        
-//                           
-//      1           1        
-//    -----     ---------    
-//         2              2  
-//    s + s     1 + 2s + s   
+//    1           1
+//    -         -----
+//     2             2
+//    s         s + s
+//
+//      1           1
+//    -----     ---------
+//         2              2
+//    s + s     1 + 2s + s
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -72,14 +72,14 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-mcisendstring("open ""d:\audio.mp3"" type MPEGVideo alias MP3_Device") 
-mcisendstring("play MP3_Device") 
-mcisendstring("close MP3_Device") 
+        <programlisting role="example"><![CDATA[
+mcisendstring("open ""d:\audio.mp3"" type MPEGVideo alias MP3_Device")
+mcisendstring("play MP3_Device")
+mcisendstring("close MP3_Device")
 
-mcisendstring("open ""d:\video.avi"" type avivideo alias AVI_Device") 
-mcisendstring("play AVI_Device from 0") 
-mcisendstring("close AVI_Device") 
+mcisendstring("open ""d:\video.avi"" type avivideo alias AVI_Device")
+mcisendstring("play AVI_Device from 0")
+mcisendstring("close AVI_Device")
  ]]></programlisting>
     </refsection>
 </refentry>

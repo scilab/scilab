@@ -151,7 +151,7 @@ strtod(s)
             </itemizedlist>
         </warning>
     </refsection>
-    
+
     <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[

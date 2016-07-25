@@ -46,7 +46,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //squared magnitude response of Butterworth filter
 h=buttmag(13,300,1:1000);
 mag=20*log(h)'/log(10);

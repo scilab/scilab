@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -50,7 +50,7 @@
                     <para>este campo contém o valor padrão da propriedade
                         <literal>mark_mode</literal> para a poligonal. Deve ser
                         <literal>"on"</literal> (marcas desenhadas) ou
-                        <literal>"off"</literal> (nenhuma marca desenhada). 
+                        <literal>"off"</literal> (nenhuma marca desenhada).
                     </para>
                 </listitem>
             </varlistentry>
@@ -125,7 +125,7 @@
                     <para>este campo contém o valor padrão da propriedade
                         <literal>line_mode</literal> para a poligonal. O valor pode ser
                         <literal>"on" </literal>(linha desenhada) ou
-                        <literal>"off"</literal> (nenhuma linha desenhada). 
+                        <literal>"off"</literal> (nenhuma linha desenhada).
                     </para>
                 </listitem>
             </varlistentry>
@@ -138,7 +138,7 @@
                         primeiro plano, <literal>mark_mode</literal> também deve ter valor
                         <literal>"off"</literal>. Senão, o valor da propriedade é
                         <literal>"off"</literal> apenas a forma o contorno do retângulo é
-                        desenhado utilizando-se a cor de primeiro plano. 
+                        desenhado utilizando-se a cor de primeiro plano.
                     </para>
                 </listitem>
             </varlistentry>
@@ -148,7 +148,7 @@
                     <para>
                         a propriedade <literal>line_style</literal> deve ser um
                         inteiro em [1 6]. 1 stands significa linha sólida, o restante
-                        seleciona tracejados. 
+                        seleciona tracejados.
                     </para>
                 </listitem>
             </varlistentry>
@@ -157,7 +157,7 @@
                 <listitem>
                     <para>este campo contém o valor padrão da propriedade
                         <literal>thickness</literal> (espessura) da linha. Deve ser um
-                        inteiro positivo. 
+                        inteiro positivo.
                     </para>
                 </listitem>
             </varlistentry>
@@ -166,7 +166,7 @@
                 <listitem>
                     <para>este campo contém a cor utilizada para desenhar a linha de
                         contorno do retângulo. Seu valor deve ser um índice de cor (relativo
-                        ao mapa de cores corrente). 
+                        ao mapa de cores corrente).
                     </para>
                 </listitem>
             </varlistentry>
@@ -175,7 +175,7 @@
                 <listitem>
                     <para>este campo contém a cor utilizada para preencher a parte
                         interna do retângulo. Seu valor deve ser um índice de cor (relativo
-                        ao mapa de cores corrente). 
+                        ao mapa de cores corrente).
                     </para>
                 </listitem>
             </varlistentry>
@@ -212,13 +212,13 @@
                         <listitem>
                             <para>
                                 <literal>"off"</literal> ignifica que o retângulo não é
-                                recortado. 
+                                recortado.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
                                 <literal>"clipgrf"</literal> significa que o retângulo é
-                                recortado fora da caixa dos eixos. 
+                                recortado fora da caixa dos eixos.
                             </para>
                         </listitem>
                         <listitem>
@@ -258,7 +258,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=get("current_axes");//obtendo o manipulador dos novos eixos criados
 a.data_bounds=[-2,-2;2,2];
 

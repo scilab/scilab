@@ -102,7 +102,7 @@
     <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-t = [0:0.3:2*%pi]'; 
+t = [0:0.3:2*%pi]';
 z = sin(t)*cos(t');
 plot3d1(t,t,z)
 f = gcf();

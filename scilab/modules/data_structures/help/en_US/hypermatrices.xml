@@ -28,7 +28,7 @@
             <code>a=[1 2;3 4];a(:,:,2)=rand(2,2)</code> or directly using <function>matrix</function> function.
         </para>
         <para>
-            Entries can be booleans, encoded integers of any inttype, real or complex numbers, 
+            Entries can be booleans, encoded integers of any inttype, real or complex numbers,
             polynomials, rationals, strings, booleans.
         </para>
         <para>
@@ -45,12 +45,12 @@
 a(1,1,1,1:2)=[1 2]
 a=[1 2;3 4];a(:,:,2)=rand(2,2)
 a(1,1,:)
- 
+
 size(a)
- 
+
 a(:,:,1) //dimensionality reduction
 type(a(:,:,1))
- 
+
 [a a]
  ]]></programlisting>
     </refsection>

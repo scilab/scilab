@@ -46,7 +46,7 @@ mtlb_save
     <refsection>
         <title>Particular cases</title>
         <para>
-            Scilab <emphasis role="bold">mtlb_save</emphasis> does not handle options <emphasis role="bold">-v4</emphasis> <emphasis role="bold">-mat</emphasis> and <emphasis role="bold">-append</emphasis> yet. 
+            Scilab <emphasis role="bold">mtlb_save</emphasis> does not handle options <emphasis role="bold">-v4</emphasis> <emphasis role="bold">-mat</emphasis> and <emphasis role="bold">-append</emphasis> yet.
         </para>
     </refsection>
 </refentry>

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -49,7 +49,7 @@
             <literal>addcolor</literal> adiciona novas cores fornecidas no
             argumento <literal>c</literal> ao mapa de cores corrente.
             <literal>c</literal> deve ser uma matriz com três colunas <literal>[R G
-                B]. 
+                B].
             </literal>
             <literal>R</literal> é o componente vermelho,
             <literal>G</literal> é o componente verde, <literal>B</literal> é o
@@ -66,7 +66,7 @@
     </refsection>
     <refsection>
         <title>Examplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot3d();
 h = gcf();
 h.color_map = jetcolormap(16);

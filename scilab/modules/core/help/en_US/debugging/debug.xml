@@ -13,12 +13,12 @@
     <refsection>
         <title>Description</title>
         <para>
-        Use to debug Scilab script.
-        After call of <literal>debug()</literal>, you enter in debug mode.
-        This mode allows you to manage <literal>breakpoints</literal>,
-        launch execution with stop en error, execute script step by step, ...
+            Use to debug Scilab script.
+            After call of <literal>debug()</literal>, you enter in debug mode.
+            This mode allows you to manage <literal>breakpoints</literal>,
+            launch execution with stop en error, execute script step by step, ...
 
-        When debug mode is active, prompt change to <literal>debug> </literal>.
+            When debug mode is active, prompt change to <literal>debug> </literal>.
         </para>
         <term>Commands: </term>
         <variablelist>
@@ -46,7 +46,9 @@
             <varlistentry>
                 <term>(d)isp var: </term>
                 <term>(p)rint var: </term>
-                <para>Display variable <literal>var</literal>.</para>
+                <para>
+                    Display variable <literal>var</literal>.
+                </para>
             </varlistentry>
             <varlistentry>
                 <term>(c)ontinue: </term>
@@ -71,8 +73,12 @@
             <varlistentry>
                 <term>(b)reakpoint or break: </term>
                 <synopsis>breakpoint function [line [condition]]</synopsis>
-                <para>Add a breakpoint in a function at line <literal>line</literal></para>
-                <para>If a condition is specified, a breakpoint become enable only if condition is <literal>%t</literal></para>
+                <para>
+                    Add a breakpoint in a function at line <literal>line</literal>
+                </para>
+                <para>
+                    If a condition is specified, a breakpoint become enable only if condition is <literal>%t</literal>
+                </para>
             </varlistentry>
             <varlistentry>
                 <term>(del)ete [n]: </term>
@@ -138,7 +144,7 @@ continue
 quit
  ]]></programlisting>
     </refsection>
-    
+
     <refsection>
         <title>History</title>
         <revhistory>

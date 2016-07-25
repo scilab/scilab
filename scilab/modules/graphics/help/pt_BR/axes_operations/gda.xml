@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -53,7 +53,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=gda() // obtendo o manipulador dos eixos modelos
 // ajustando suas propriedades
 a.box="off";
@@ -65,15 +65,15 @@ a.x_location="top";
 
 //os eixos modelos são agora usados
 subplot(211) //criando uma nova entidade Axes
-plot2d() 
+plot2d()
 
 // veja outros modelos de propriedades
 a.background=color('gray')
 a.grid=[5 5 5];
 subplot(212)
-t=0:0.1:5*%pi; 
-plot2d(sin(t),cos(t)) 
- 
+t=0:0.1:5*%pi;
+plot2d(sin(t),cos(t))
+
 set(a,"default_values",1); // retornando para os valores padrões do modelo
                            // ver a função sda()
 clf()

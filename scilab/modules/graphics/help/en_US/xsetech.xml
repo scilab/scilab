@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -110,25 +110,25 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // To get a graphical explanation of xsetech parameters enter:
 exec('SCI/modules/graphics/demos/xsetechfig.sce');
 
-// Here xsetech is used to split the graphics window in two parts 
+// Here xsetech is used to split the graphics window in two parts
 // first xsetech is used to set the first sub-window
-// and the graphics scale 
+// and the graphics scale
 xsetech([0,0,1.0,0.5],[-5,-3,5,3])
-// we call plot2d with the "001" option to use the graphics scale 
-// set by xsetech 
+// we call plot2d with the "001" option to use the graphics scale
+// set by xsetech
 plot2d([1:10]',[1:10]',1,"001"," ")
 // then xsetech is used to set the second sub-window
 xsetech([0,0.5,1.0,0.5])
-// the graphics scale is set by xsetech to [0,0,1,1] by default 
-// and we change it with the use of the rect argument in plot2d 
+// the graphics scale is set by xsetech to [0,0,1,1] by default
+// and we change it with the use of the rect argument in plot2d
 plot2d([1:10]',[1:10]',1,"011"," ",[-6,-6,6,6])
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
-// Four plots on a single graphics window 
+        <programlisting role="example"><![CDATA[
+// Four plots on a single graphics window
 clf()
 xset("font",2,0)
 xsetech([0,0,0.5,0.5]);
@@ -154,18 +154,18 @@ xsetech([0,0,1,1])
             histplot()
             xsetech([0,0,1,1])
         </scilab:image>
-        
-        <programlisting role="example"><![CDATA[ 
-// One plot with changed arect 
+
+        <programlisting role="example"><![CDATA[
+// One plot with changed arect
 clf()
-xsetech(arect=[0,0,0,0]) 
+xsetech(arect=[0,0,0,0])
 x=1:0.1:10;plot2d(x',sin(x)')
  ]]></programlisting>
         <scilab:image>
-            xsetech(arect=[0,0,0,0]) 
+            xsetech(arect=[0,0,0,0])
             x=1:0.1:10;plot2d(x',sin(x)')
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf()
 xsetech(arect=[1/8,1/8,1/16,1/4])
 x=1:0.1:10;plot2d(x',sin(x)')

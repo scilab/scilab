@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -178,10 +178,10 @@
             <varlistentry>
                 <term>ldwork</term>
                 <listitem>
-                    <para>(オプション) ワークスペースの大きさ. デフォルト:   
-                        計算式 LDWORK = MAX( 
-                        必要なワークスペースの大きさの最小値, 2*CSIZE/3, 
-                        CSIZE - ( m + l )*t - 2*n*( n + m + l ) - l*m ) 
+                    <para>(オプション) ワークスペースの大きさ. デフォルト:
+                        計算式 LDWORK = MAX(
+                        必要なワークスペースの大きさの最小値, 2*CSIZE/3,
+                        CSIZE - ( m + l )*t - 2*n*( n + m + l ) - l*m )
                         ただし CSIZE はキャッシュの大きさ(単位:倍精度ワード)です.
                     </para>
                 </listitem>
@@ -207,7 +207,7 @@
             <varlistentry>
                 <term>V</term>
                 <listitem>
-                    <para>Aを実数Schur形式に縮小させるn行n列直交行列 
+                    <para>Aを実数Schur形式に縮小させるn行n列直交行列
                         (jobx0 = 1 または comuse = 1 の時に出力).
                     </para>
                 </listitem>
@@ -227,7 +227,7 @@
             SLICOTルーチン IB01CD により,
             状態量初期値および離散時間システムにおけるシステム行列 B と D を推定します.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
    [x0,Br,V,rcnd] = findBD(1,1,1,A,C,Y,U)
 [x0,Br,Dr,V,rcnd] = findBD(1,1,2,A,C,Y,U)
       [Br,V,rcnd] = findBD(2,1,1,A,C,Y,U)
@@ -250,12 +250,12 @@
         <para>
             モデルの構造は以下のようになります :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 x(k+1) = Ax(k) + Bu(k),   k >= 1,
 y(k)   = Cx(k) + Du(k),
  ]]></programlisting>
         <para>
-            where 
+            where
             x(k)  は,(時刻 kにおける) n 次元状態ベクトルで,
         </para>
         <para>
@@ -310,12 +310,12 @@ y(k)   = Cx(k) + Du(k),
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //　指定した線形システムからデータを生成
 A = [ 0.5, 0.1,-0.1, 0.2;
-      0.1, 0,  -0.1,-0.1;      
-     -0.4,-0.6,-0.7,-0.1;  
-      0.8, 0,  -0.6,-0.6];      
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
 B = [0.8;0.1;1;-1];
 C = [1 2 -1 0];
 SYS=syslin(0.1,A,B,C);

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Digiteo - Vincent LIARD
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -34,9 +34,9 @@
             для пользователя Scilab'а.
         </para>
         <para>
-            Неизменная переменная <literal>TMPDIR</literal> не может быть изменена во время работы 
-            Scilab'а. Однако, под GNU/Linux, UNIX и Mac OS X системная временная директория (обычно 
-            <literal>/tmp</literal>) может быть выбрана через изменение системной переменной 
+            Неизменная переменная <literal>TMPDIR</literal> не может быть изменена во время работы
+            Scilab'а. Однако, под GNU/Linux, UNIX и Mac OS X системная временная директория (обычно
+            <literal>/tmp</literal>) может быть выбрана через изменение системной переменной
             <literal>TMPDIR</literal>.
         </para>
     </refsection>

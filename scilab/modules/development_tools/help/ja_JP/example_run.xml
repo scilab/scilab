@@ -44,7 +44,7 @@
             <varlistentry>
                 <term>functionNames</term>
                 <listitem>
-                    <para>文字列または文字列ベクトル: 
+                    <para>文字列または文字列ベクトル:
                         テストする関数の名前. 指定されないアバイ,
                         モジュールの全てのヘルプページがテストされます.
                     </para>

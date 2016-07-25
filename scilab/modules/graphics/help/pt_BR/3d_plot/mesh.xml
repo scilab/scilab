@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Farid Belahcene
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -115,7 +115,7 @@
     </refsection>
     <refsection>
         <title>Exemplo</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [X,Y]=meshgrid(-1:.1:1,-1:.1:1);
 Z=X.^2-Y.^2;
 xtitle('$\huge z=x^2-y^2$');

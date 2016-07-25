@@ -8,7 +8,7 @@
         <title>Описание</title>
         <para>
             Используется в конце конструкций циклов или условий.
-            Конструкции <literal>for</literal>, <literal>while</literal>, <literal>if</literal>, <literal>select</literal> 
+            Конструкции <literal>for</literal>, <literal>while</literal>, <literal>if</literal>, <literal>select</literal>
             должны заканчиваться ключевым словом <literal>end</literal>.
         </para>
     </refsection>

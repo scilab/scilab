@@ -35,7 +35,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=sprand(10,12,0.1);
 sp=spones(A)
 B = A~=0

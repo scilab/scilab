@@ -44,18 +44,18 @@
         <para>
             Draw a colorbar for a plot3d, fec, Sgrayplot, etc... The function may be called
             <emphasis role="bold">BEFORE</emphasis> the plot3d, fec, Sgrayplot,... because its sets and changes the
-            frame for the plot. This way the colorbar is not part of the associated plot and 
+            frame for the plot. This way the colorbar is not part of the associated plot and
             so is not modified by a zoom or a rotation.
         </para>
         <para>
             The optional argument <literal>colminmax</literal> may be used to precise the first color
-            (associated with umin) and the last color (associated with umax) of the current 
-            colormap. By default <literal>colminmax=[1 nb_colors]</literal> where nb_colors is the 
+            (associated with umin) and the last color (associated with umax) of the current
+            colormap. By default <literal>colminmax=[1 nb_colors]</literal> where nb_colors is the
             number of colors of the current colormap.
         </para>
         <para>
             The optional argument <literal>fmt</literal> is a string containing a
-            C-format, like <literal>"%.2f"</literal>, <literal>"%e"</literal>, etc... 
+            C-format, like <literal>"%.2f"</literal>, <literal>"%e"</literal>, etc...
         </para>
         <para>
             For the 2 optional arguments you can use the syntax
@@ -64,7 +64,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // example 1
 x = linspace(0,1,81);
 z = cos(2*%pi*x)'*sin(2*%pi*x);
@@ -75,7 +75,7 @@ colorbar(zm,zM)
 Sgrayplot(x,x,z)
 xtitle("The function cos(2 pi x)sin(2 pi y)")
  ]]></programlisting>
-        <scilab:image localized="true"> 
+        <scilab:image localized="true">
             // example 1
             x = linspace(0,1,81);
             z = cos(2*%pi*x)'*sin(2*%pi*x);
@@ -86,8 +86,8 @@ xtitle("The function cos(2 pi x)sin(2 pi y)")
             Sgrayplot(x,x,z)
             xtitle("The function cos(2 pi x)sin(2 pi y)")
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
-// example 2 
+        <programlisting role="example"><![CDATA[
+// example 2
 x = linspace(0,1,81);
 z = cos(2*%pi*x)'*sin(2*%pi*x);
 zm = min(z); zM = max(z);
@@ -115,7 +115,7 @@ subplot(2,2,4)
    xtitle("a Sgrayplot with a colorbar")
 drawnow() ;
  ]]></programlisting>
-        <scilab:image localized="true"> 
+        <scilab:image localized="true">
             x = linspace(0,1,81);
             z = cos(2*%pi*x)'*sin(2*%pi*x);
             zm = min(z); zM = max(z);
@@ -141,10 +141,10 @@ drawnow() ;
             Sgrayplot(x,x,zz, strf="031", rect=[0 0 1 1])
             xtitle("a Sgrayplot with a colorbar")
             drawnow() ;
-            
+
         </scilab:image>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 // example 3
 x = linspace(0,1,81);
 zz = abs(0.5*cos(2*%pi*x)'*cos(2*%pi*x));

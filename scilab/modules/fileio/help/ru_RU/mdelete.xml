@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -39,8 +39,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <function>mdelete</function> может быть использована для удаления файла 
-            или набора файлов, если <varname>filename</varname> содержит 
+            <function>mdelete</function> может быть использована для удаления файла
+            или набора файлов, если <varname>filename</varname> содержит
             метасимволы.
         </para>
         <para>

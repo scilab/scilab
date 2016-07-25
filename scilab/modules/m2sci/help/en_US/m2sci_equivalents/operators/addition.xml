@@ -91,7 +91,7 @@ str = [230,232,228,99]
 str = strcat('str1','str2')
 str = 'str1str2'
 A = 1 + []
-A = []    
+A = []
 ]]></programlisting>
                 </td>
                 <td>
@@ -101,7 +101,7 @@ str = 'str1str2'
 str = strcat(['str1','str2'])
 str = 'str1str2'
 A = 1 + []
-A = []   
+A = []
 ]]></programlisting>
                 </td>
             </tr>

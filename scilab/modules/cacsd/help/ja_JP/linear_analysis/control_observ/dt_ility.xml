@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -73,7 +73,7 @@
         <title>説明</title>
         <para>
             状態空間表現の線形システム
-            <literal>sl</literal>の可検出性テスト. 
+            <literal>sl</literal>の可検出性テスト.
             <literal>U</literal> は基数で,
             その最初の<literal>k</literal>列に<literal>Sl</literal>の
             不安定かつ不可検出な部分空間
@@ -87,14 +87,14 @@
             <literal>Sl=(A,B,C,D)</literal>の"可検出な部分"	を
             以下のように表示します.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
          [*,*,*]
 U'*A*U = [0,*,*]
          [0,0,*]
 C*U = [0,0,*]
  ]]></programlisting>
         <para>
-            <literal>(A33,C3)</literal>は可観測 (<literal>nx-n</literal>次), 
+            <literal>(A33,C3)</literal>は可観測 (<literal>nx-n</literal>次),
             <literal>A22</literal> は可安定,
             ( <literal>n-k</literal>次) ,
             <literal>A11</literal> は不可安定 ( <literal>k</literal>次)です.
@@ -102,7 +102,7 @@ C*U = [0,0,*]
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[2,1,1;0,-2,1;0,0,3];
 C=[0,0,1];
 X=rand(3,3);A=inv(X)*A*X;C=C*X;

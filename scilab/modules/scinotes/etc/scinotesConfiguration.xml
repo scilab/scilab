@@ -16,29 +16,29 @@
  -->
 
 <Setting version="0.42">
-    
+
     <!-- SCINOTES configuration -->
     <Profile name="scinotes">
-        
+
         <!-- colors to use in the left panel to indicate you're a in a function (color1)
 	 or in a inner function (color2) (only available in whereami mode)-->
         <AlternColors color1="#f6bff6" color2="#f665f6"/>
-        
+
         <!-- Restore the open files from the last session  -->
         <RestoreFiles value="true"/>
-        
+
         <!-- Paper format Section
 	 The default unit is the postscript point (1/72 inch) -->
         <PaperFormat MarginBottom="58.0" MarginLeft="57.0" MarginRight="57.0" MarginTop="57.0" height="794.0" width="613.0"/>
-        
+
         <!-- Favorite Directories Section  -->
         <favoriteDirectories>
         </favoriteDirectories>
-        
+
         <!-- Recent Opened Files Section  -->
         <recentFiles>
         </recentFiles>
-        
+
         <!-- Currently Open Files Section  -->
         <openFiles>
         </openFiles>

@@ -23,7 +23,7 @@
         <title>Syntax</title>
         <synopsis>
             [s [,mc]] = variance(x [,orien [,m]])
-            
+
             [s, mc] = variance(x)
             [s, mc] = variance(x, "r"|1 )
             [s, mc] = variance(x, "c"|2 )

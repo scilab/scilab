@@ -118,7 +118,7 @@
             [proto, server, path] = splitURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README")
             [a,b,c,d]=splitURL("http://www.scilab.org/content/search?SearchText=plot")
         </programlisting>
-        <!-- 
+        <!--
 // This example fails for now (probably a bug on evstr)
 // Retrieve the content and execute it
 [f,content]=getURL("http://fileexchange.scilab.org/toolboxes/161000/1.0/files/cshift.sci")

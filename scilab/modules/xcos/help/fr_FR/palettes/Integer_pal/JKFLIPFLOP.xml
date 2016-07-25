@@ -215,7 +215,7 @@
             </tr>
         </informaltable>
         <para>
-            où 
+            où
             <emphasis><literal>
                     Q<subscript>n-1</subscript>
                 </literal>
@@ -374,12 +374,12 @@
         <title>Exemple</title>
         <para>
             L'exemple qui suit construit un compteur 3 bits asynchrone avec des bascules JK cablées en bascule T. Vous pouvez voir
-            sur la droite le chronogramme des sorties 
+            sur la droite le chronogramme des sorties
             <emphasis><literal>
                     Q<subscript>0</subscript>
                 </literal>
             </emphasis>
-            à 
+            à
             <emphasis><literal>
                     Q<subscript>2</subscript>
                 </literal>

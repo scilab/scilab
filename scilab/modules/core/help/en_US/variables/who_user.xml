@@ -42,7 +42,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+        <programlisting role="code_scilab"><![CDATA[
 clear;
 who_user()
 who_user(%t)
@@ -73,7 +73,7 @@ clear;
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>
-                    <function>who_user</function> can now return user's 
+                    <function>who_user</function> can now return user's
                     variable names in a column vector of character strings.
                 </revremark>
             </revision>

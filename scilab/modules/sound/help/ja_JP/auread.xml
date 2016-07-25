@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) ????-2008 - INRIA - Scilab 
-    * 
+    * Copyright (C) ????-2008 - INRIA - Scilab
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -101,7 +101,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 y=wavread('SCI/modules/sound/demos/chimes.wav');
 // デフォルトは 8-bits mu-law です
 auwrite(y,TMPDIR+'/tmp.au');

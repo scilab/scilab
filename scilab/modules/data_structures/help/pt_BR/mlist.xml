@@ -80,7 +80,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 M=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
 //Definindo exibição
 function %V_p(M),disp(M.name+':'+string(M.value)),endfunction

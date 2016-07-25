@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -62,9 +62,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>fgrayplot</literal> makes a 2D plot of the surface given by <literal>z=f(x,y)</literal> on a 
+            <literal>fgrayplot</literal> makes a 2D plot of the surface given by <literal>z=f(x,y)</literal> on a
             grid defined by <literal>x</literal> and <literal>y</literal>.
-            Each rectangle on the grid is filled with a gray or color level depending 
+            Each rectangle on the grid is filled with a gray or color level depending
             on the average value of <literal>z</literal> on the corners of the rectangle.
         </para>
         <para>
@@ -73,7 +73,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t=-1:0.1:1;
 deff("[z]=my_surface(x,y)","z=x**2+y**2")
 fgrayplot(t,t,my_surface,rect=[-2,-2,2,2])

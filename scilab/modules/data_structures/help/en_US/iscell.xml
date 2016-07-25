@@ -48,11 +48,11 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 iscell(1)
- 
+
 iscell(cell())
- 
+
 c = cell(1,2);
 c{1} = "Scilab";
 c{2} = datenum();

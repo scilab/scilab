@@ -16,8 +16,8 @@
             <varlistentry>
                 <term>button</term>
                 <listitem>
-                    <para>文字列. ボタン名. 
-                        キーボードショートカットで使用される名前の文字を前に 
+                    <para>文字列. ボタン名.
+                        キーボードショートカットで使用される名前の文字を前に
                         &amp;を置くことができます;
                         この文字はGUIで下線が引かれます.
                         MacOSXでは,同じ名前のサブメニューが自動的に追加されます
@@ -102,7 +102,7 @@
                         + <literal>button</literal> (メインウインドウコマンドの場合)
                     </para>
                     <para>
-                        + <literal>button_gwin</literal> 
+                        + <literal>button_gwin</literal>
                         (グラフィックウインドウコマンドの場合)
                     </para>
                 </listitem>
@@ -128,7 +128,7 @@
                         によりインターフェイスが作成されるか,
                         または<literal>link</literal>関数によりscilabに
                         動的にリンクされます.
-                        Cの呼び出し手順は以下のようになります: 
+                        Cの呼び出し手順は以下のようになります:
                         <literal>(char* button_name, int* gwin,int *k)
                         </literal>
                     </para>
@@ -138,7 +138,7 @@
                 <listitem>
                     <para>
                         <literal>action</literal>引数に2を指定した場合,
-                        <literal>proc_name</literal> はScilab関数を指します. 
+                        <literal>proc_name</literal> はScilab関数を指します.
                         この関数の呼び出し手順は以下のようになります:
                     </para>
                     <para>

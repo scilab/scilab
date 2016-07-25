@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -12,7 +12,7 @@
  * For more information, see the COPYING file which you should have received
  * along with this program.
  *
- --> 
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="graphics_entities">
     <refnamediv>
         <refname>Graphics Entities</refname>
@@ -296,13 +296,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Play this example line per line
 
 scf() //create a figure in entity mode
 
 //get the handle on the Figure entity and display its properties
-f=get("current_figure") 
+f=get("current_figure")
 a=f.children // the handle on the Axes child
 x=(1:10)';  plot2d(x,[x.^2 x.^1.5])
 e=a.children //Compound of 2 polylines
@@ -315,13 +315,13 @@ delete(e.children(2))
 
 move(e.children,[0,30]) //translate the polyline
 
-a.axes_bounds=[0 0 0.5 0.5]; 
+a.axes_bounds=[0 0 0.5 0.5];
 
 subplot(222) //create a new Axes entity
 plot(1:10);
 a1=f.children(1); //get its handle
 copy(e.children,a1); //copy the polyline of the first plot in the new Axes
-a1.data_bounds=[1 0;10 100]; //change the Axes bounds  
+a1.data_bounds=[1 0;10 100]; //change the Axes bounds
 
 set("current_figure",10) //create a new figure with figure_id=10
 plot3d() //the drawing are sent to figure 10

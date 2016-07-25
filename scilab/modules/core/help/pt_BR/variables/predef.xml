@@ -38,7 +38,7 @@
         <para>
             <literal>predef(n) </literal>ajusta as <literal>max(n,7)</literal>
             últimas variáveis definidas como protegidas, também retorna o número
-            antigo e o novo de variáveis protegidas. 
+            antigo e o novo de variáveis protegidas.
         </para>
     </refsection>
     <refsection>
@@ -52,7 +52,7 @@
         </para>
         <para>Definição SCIHOME: no Windows : C:/Documents and
             Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt; No Linux/Unix :
-            /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt; 
+            /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
         </para>
     </refsection>
     <refsection role="see also">

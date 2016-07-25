@@ -50,7 +50,7 @@ close - xdel - delete
                 <term>close</term>
                 <listitem>
                     <para>
-                        If current figure is a uicontrol one, Scilab and Matlab <emphasis role="bold">close</emphasis> are equivalent. But if current figure is a graphic window, Scilab equivalent for Matlab <emphasis role="bold">close</emphasis> is <emphasis role="bold">delete(gcf())</emphasis>. 
+                        If current figure is a uicontrol one, Scilab and Matlab <emphasis role="bold">close</emphasis> are equivalent. But if current figure is a graphic window, Scilab equivalent for Matlab <emphasis role="bold">close</emphasis> is <emphasis role="bold">delete(gcf())</emphasis>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -58,7 +58,7 @@ close - xdel - delete
                 <term>close(h)</term>
                 <listitem>
                     <para>
-                        If <emphasis role="bold">h</emphasis> is a uicontrol figure, Scilab and Matlab <emphasis role="bold">close(h)</emphasis> are equivalent. But if <emphasis role="bold">h</emphasis> is a graphic window, Scilab equivalent for Matlab <emphasis role="bold">close(h)</emphasis> is <emphasis role="bold">delete(h)</emphasis>. 
+                        If <emphasis role="bold">h</emphasis> is a uicontrol figure, Scilab and Matlab <emphasis role="bold">close(h)</emphasis> are equivalent. But if <emphasis role="bold">h</emphasis> is a graphic window, Scilab equivalent for Matlab <emphasis role="bold">close(h)</emphasis> is <emphasis role="bold">delete(h)</emphasis>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -66,7 +66,7 @@ close - xdel - delete
                 <term>close('all')</term>
                 <listitem>
                     <para>
-                        Scilab equivalent for Matlab <emphasis role="bold">close('all')</emphasis> is <emphasis role="bold">xdel(winsid())</emphasis>. 
+                        Scilab equivalent for Matlab <emphasis role="bold">close('all')</emphasis> is <emphasis role="bold">xdel(winsid())</emphasis>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -74,7 +74,7 @@ close - xdel - delete
                 <term>close(name)</term>
                 <listitem>
                     <para>
-                        There is no Scilab equivalent for Matlab <emphasis role="bold">close(name)</emphasis> however, <emphasis role="bold">mtlb_close</emphasis> can be an equivalent. 
+                        There is no Scilab equivalent for Matlab <emphasis role="bold">close(name)</emphasis> however, <emphasis role="bold">mtlb_close</emphasis> can be an equivalent.
                     </para>
                 </listitem>
             </varlistentry>
@@ -82,7 +82,7 @@ close - xdel - delete
                 <term>close('all','hidden')</term>
                 <listitem>
                     <para>
-                        Scilab equivalent for Matlab <emphasis role="bold">close('all','hidden')</emphasis> is <emphasis role="bold">xdel(winsid())</emphasis> but Scilab kills all figures even if they are hidden. 
+                        Scilab equivalent for Matlab <emphasis role="bold">close('all','hidden')</emphasis> is <emphasis role="bold">xdel(winsid())</emphasis> but Scilab kills all figures even if they are hidden.
                     </para>
                 </listitem>
             </varlistentry>

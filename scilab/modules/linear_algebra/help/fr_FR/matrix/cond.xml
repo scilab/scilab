@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -99,7 +99,7 @@
     <refsection>
         <title>Exemples</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 A=testmatrix('hilb',6);
 // conditionnement en norme 2
 cond(A)
@@ -141,7 +141,7 @@ cond(A, 'fro')
                         carrée, est maintenant gérée. Par exemple :
                     </para>
                     <programlisting role="">
-                        <![CDATA[ 
+                        <![CDATA[
 X = [1 0; 1 -1; 0 1];
 cond(X)
  ]]>
@@ -151,7 +151,7 @@ cond(X)
                         en norme p. Par exemple :
                     </para>
                     <programlisting role="">
-                        <![CDATA[ 
+                        <![CDATA[
 X = [1 -6 0; 1 0 -4;1 0 2];
 cond(X, 1) // conditionnement en norme 1 (p = 1)
  ]]>

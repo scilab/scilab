@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -51,7 +51,7 @@
         </para>
         <para>Os polígonos podem ser preenchidos por uma dada cor (preenchimento
             monótono) ou pintados com cores interpoladas (preenchimento por
-            graduação). 
+            graduação).
         </para>
         <variablelist>
             <varlistentry>
@@ -73,7 +73,7 @@
                         <listitem>
                             <para>
                                 se <literal>fill(i)=0</literal>, o polígono é desenhado no
-                                estilo de traço (ou cor) corrente e não é preenchido. 
+                                estilo de traço (ou cor) corrente e não é preenchido.
                             </para>
                         </listitem>
                         <listitem>
@@ -95,7 +95,7 @@
                         Neste caso, <literal>fill</literal> deve ser uma matriz com o
                         mesmo mesmo tamanho de <literal>xpols</literal> e
                         <literal>ypols</literal>. Note que <literal>p</literal> deve ser
-                        igual a 3 ou 4. 
+                        igual a 3 ou 4.
                     </para>
                     <para>
                         <literal>fill(k,i)</literal> fornece a cor da
@@ -130,7 +130,7 @@ xfpolys(xpols,ypols,[-1,0,1,2])
             ypols=[y1 y1 y1 y1];
             xfpolys(xpols,ypols,[-1,0,1,2])
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // cores interpoladas
 clf()

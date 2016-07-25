@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Jean-Baptiste Silvy
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -91,10 +91,10 @@
         </para>
         <para>The result might not be very accurate with PostScript driver.</para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // show axes
 axes = gca() ;
 axes.axes_visible = 'on' ;
@@ -141,7 +141,7 @@ end;
             str = [ "Scilab", "is" , "not", "Skylab" ] ;
             xstring( 4, 9, str ) ;
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>

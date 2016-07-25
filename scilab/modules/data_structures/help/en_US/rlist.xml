@@ -58,9 +58,9 @@
             <literal>tlist(['r','num','den','dt'], N, D, dom)</literal>.
         </para>
         <para>
-            To correspond to the domain time of a linear system, <varname>dom</varname> 
+            To correspond to the domain time of a linear system, <varname>dom</varname>
             must be equal to <literal>'c'</literal>,<literal>'d'</literal>, <literal>[]</literal> or a scalar.
-            One the one hand, to be similar to functions as <link linkend="syslin">syslin</link>, 
+            One the one hand, to be similar to functions as <link linkend="syslin">syslin</link>,
             and on the other, to use some functions as <link linkend="tf2ss">tf2ss</link>, it
             is necessary that <varname>dom</varname> is equal to these values.
         </para>

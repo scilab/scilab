@@ -27,7 +27,7 @@
         <title>Description</title>
         <para>
             Cette commande supprime des variables non-protégées. Elle supprime de l'environnement les variables dont les noms sont spécifiés.
-            Sans argument, <literal>clear</literal> supprime toutes les variables sauf celles qui ont été protégées par <literal>predef</literal>. La succession des commandes <literal>predef(0)</literal> et <literal>clear</literal> supprime toutes les variables. 
+            Sans argument, <literal>clear</literal> supprime toutes les variables sauf celles qui ont été protégées par <literal>predef</literal>. La succession des commandes <literal>predef(0)</literal> et <literal>clear</literal> supprime toutes les variables.
         </para>
         <para>
             Habituellement, les variables protégées sont les bibliothèques standard et les variables dont le nom commence par le caractère "%".

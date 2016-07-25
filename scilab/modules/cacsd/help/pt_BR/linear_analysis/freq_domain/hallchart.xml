@@ -21,7 +21,7 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>hallchart([ modules [,args [,colors]]])</synopsis>
-        
+
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -53,7 +53,7 @@
         </para>
         <para>
             <literal>hallchart</literal> may be used in conjunction with
-            <link linkend="nyquist">nyquist</link>. 
+            <link linkend="nyquist">nyquist</link>.
         </para>
         <para>
             The default values for <literal>modules</literal> and
@@ -103,7 +103,7 @@
             cj=c(10+j);
             cj.children(1).thickness=3;
         </scilab:image>
-        
+
     </refsection>
     <refsection>
         <title>Examples</title>

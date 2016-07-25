@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -61,7 +61,7 @@
         </para>
         <para>
             <literal>P1 = diag(S1,S2,0,0)</literal>  and <literal>Q1 = diag(S1,0,S3,0)</literal> with
-            <literal>S1,S2,S3</literal> positive and diagonal matrices with respective 
+            <literal>S1,S2,S3</literal> positive and diagonal matrices with respective
             dimensions <literal>siz=[n1,n2,n3]</literal>
         </para>
         <para>
@@ -70,7 +70,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 S1=rand(2,2);S1=S1*S1';
 S2=rand(2,2);S2=S2*S2';
 S3=rand(2,2);S3=S3*S3';

@@ -49,7 +49,7 @@ balanc
             There is no equivalent for <emphasis role="bold">B=balance(A)</emphasis> in Scilab, <emphasis role="bold">balanc</emphasis> function does not work with only one output value.
         </para>
         <para>
-            When used with two outputs, these functions return value in inverse order.   
+            When used with two outputs, these functions return value in inverse order.
         </para>
     </refsection>
     <refsection>

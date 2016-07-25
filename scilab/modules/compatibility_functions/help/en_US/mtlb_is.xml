@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
-    * 
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -24,7 +24,7 @@
             Matlab and Scilab insertion behave differently for strings due to the fact
             that they do not consider character strings in the same way.
         </para>
-        <para> 
+        <para>
             The function <literal>str = mtlb_is(sto,sfrom,i,j)</literal> is used by
             <literal>mfile2sci</literal> to replace insertion operations for character strings. This function will
             determine the correct semantic at run time. There is no replacement possibility for it.

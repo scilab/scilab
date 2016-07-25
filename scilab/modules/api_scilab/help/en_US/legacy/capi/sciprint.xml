@@ -49,7 +49,7 @@
             illustrating the use of the sciprint function in the Scilab
             console.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 #include <stack-c.h>
 #include <sciprint.h>
 

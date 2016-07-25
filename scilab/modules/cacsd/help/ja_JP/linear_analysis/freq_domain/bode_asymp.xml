@@ -51,7 +51,7 @@
             システム<literal>sl</literal>の漸近線をプロットします.
         </para>
         <para>
-            オプション引数 <literal>wmin</literal> および <literal>wmax</literal> (単位:rad/s) 
+            オプション引数 <literal>wmin</literal> および <literal>wmax</literal> (単位:rad/s)
             により漸近線をプロットする際に周波数範囲を指定することができます.
         </para>
         <para>

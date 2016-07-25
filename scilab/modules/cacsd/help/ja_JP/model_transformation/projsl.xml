@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -48,19 +48,19 @@
             ただし,<literal>Q*M</literal>は射影のフルランク分解です.
         </para>
         <para>
-            <literal>(A,B,C,D)</literal> が<literal>sl</literal>の実現の場合, 
+            <literal>(A,B,C,D)</literal> が<literal>sl</literal>の実現の場合,
             射影モデルは<literal>(M*A*Q,M*B,C*Q,D)</literal>により与えられます.
         </para>
         <para>
             通常,射影 <literal>Q*M</literal> は適当な相補行列<literal>W</literal>
             のスペクトル射影により得られます.
-            例えば, 
+            例えば,
             <literal>W</literal> = (重みつき)グラミアンの積またはリカッチ方程式の積.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rand('seed',0);sl=ssrand(2,2,5);[A,B,C,D]=abcd(sl);poles=spec(A)
 [Q,M]=pbig(A,0,'c');  //keeping unstable poles
 slred=projsl(sl,Q,M);spec(slred('A'))

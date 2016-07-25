@@ -18,7 +18,7 @@
                 <term>str</term>
                 <listitem>
                     <para>vetor de strings ou matriz vazia: a última mensagem de erro
-                        registrada 
+                        registrada
                     </para>
                 </listitem>
             </varlistentry>
@@ -76,7 +76,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 ierr=execstr('a=zzzzzzz','errcatch')
 if ierr>0 then disp(lasterror()),end
  ]]></programlisting>

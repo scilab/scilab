@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F. Delebecque
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -62,7 +62,7 @@
             <literal>K</literal>, this function returns the closed loop matrix <literal>Acl</literal>.
         </para>
         <para>
-            The poles of <literal>Acl</literal> must be stable for the internal stability 
+            The poles of <literal>Acl</literal> must be stable for the internal stability
             of the closed loop system.
         </para>
         <para>

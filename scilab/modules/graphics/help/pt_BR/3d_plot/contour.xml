@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -55,7 +55,7 @@
                                     fornece o número de níveis igualmente espaçados de zmin a zmax
                                     como segue:
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
  ]]></programlisting>
                                 <para>
@@ -64,8 +64,8 @@ z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
                                     são reduzidos a pontos) mas podem ser adicionados através
                                     de
                                 </para>
-                                <programlisting role=""><![CDATA[ 
-[im,jm] = find(z == zmin);     // ou zmax 
+                                <programlisting role=""><![CDATA[
+[im,jm] = find(z == zmin);     // ou zmax
 plot2d(x(im)',y(jm)',-9,"000")
  ]]></programlisting>
                             </listitem>
@@ -345,7 +345,7 @@ plot2d(x(im)',y(jm)',-9,"000")
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t=linspace(-%pi,%pi,30);
 function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
 

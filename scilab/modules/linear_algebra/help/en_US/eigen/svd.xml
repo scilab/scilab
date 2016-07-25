@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -81,7 +81,7 @@
             containing the singular values.
         </para>
         <para>
-            <literal>[U,S,V,rk]=svd(X,tol)</literal> gives in addition <literal>rk</literal>, the numerical rank of <literal>X</literal> i.e. the number of 
+            <literal>[U,S,V,rk]=svd(X,tol)</literal> gives in addition <literal>rk</literal>, the numerical rank of <literal>X</literal> i.e. the number of
             singular values larger than <literal>tol</literal>.
         </para>
         <para>
@@ -90,7 +90,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 X=rand(4,2)*rand(2,4)
 svd(X)
 sqrt(spec(X*X'))

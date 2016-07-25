@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        
+
     </refsynopsisdiv>
     <refsection>
         <title>Descrição</title>
@@ -58,7 +58,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // elemlib é uma biblioteca predefinida
 elementary_functionlib //exibindo o conteúdo da biblioteca
 A=rand(3,3);

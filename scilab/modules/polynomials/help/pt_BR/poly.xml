@@ -81,7 +81,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,"s");
 p=1+s+2*s^2
 A=rand(2,2);

@@ -79,7 +79,7 @@
                             <listitem>
                                 <para>controls the display of captions.</para>
                                 <para>
-                                    <literal>strf</literal> is a string of length 3 
+                                    <literal>strf</literal> is a string of length 3
                                     <literal>"xyz"</literal> (by default <literal>strf=
                                         "081"
                                     </literal>

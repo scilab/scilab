@@ -82,7 +82,7 @@
                         The values of c are linarly mapped to the colors in the current colormap.
                         Colors can also by specified by a matrix of RGB values or a vector of strings representing known colors.
                         A matrix of RGB values has 3 columns and the number of rows equals the length of x, y and z.
-                        The default color is "blue". 
+                        The default color is "blue".
                     </para>
                 </listitem>
             </varlistentry>
@@ -93,7 +93,7 @@
                         This string indicates that the markers are filled with colors.
                         The markers background colors are set using the values of c.
                         If c is not specified the fill color can be defined by the marker property "markerFaceColor" or "markerBackgroundColor".
-                        The default color is "blue".  
+                        The default color is "blue".
                     </para>
                 </listitem>
             </varlistentry>
@@ -294,10 +294,10 @@
         <para>
             <literal>scatter3(x,y)</literal> creates a scatter plot with markers at the locations specified by x and y.
             The default type of the marker is a circle, the default color is "blue" and the default size is 36.
-            This means the circle surrounding the marker has an area of 36 points squared. 
+            This means the circle surrounding the marker has an area of 36 points squared.
         </para>
         <para>
-            Using <literal>scatter3(x,y,s,c)</literal> different sizes and colors for each marker can be specified. 
+            Using <literal>scatter3(x,y,s,c)</literal> different sizes and colors for each marker can be specified.
             There are many different ways to specify marker types, marker colors and marker sizes.
             For more details see the description of the arguments and the examples.
         </para>
@@ -305,7 +305,7 @@
     <refsection>
         <title>Remarks</title>
         <para>
-            If you want to specify colors without specifying sizes use <literal>scatter3(x,y,[],c)</literal>. 
+            If you want to specify colors without specifying sizes use <literal>scatter3(x,y,[],c)</literal>.
         </para>
     </refsection>
     <refsection>
@@ -480,7 +480,7 @@ set(gca(),"rotation_angles",[60,45])
             set(gca(),"rotation_angles",[60,45])
             subplot(2,1,2)
             scatter3(gca(),x(:),y(:),z(:),"markerFaceColor",[0 .8 .8])
-            set(gca(),"rotation_angles",[60,45])        
+            set(gca(),"rotation_angles",[60,45])
         </scilab:image>
         <para>
             Modify scatter plot after creation
@@ -508,7 +508,7 @@ set(gca(),"rotation_angles",[60,45])
             set(gca(),"rotation_angles",[60,45])
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// modify ployline 
+// modify ployline
 p.mark_foreground = addcolor([0.5 0 0])
 p.mark_background = addcolor([0.5 0.5 0])
  ]]></programlisting>
@@ -520,7 +520,7 @@ p.mark_background = addcolor([0.5 0.5 0])
             s = linspace(50,1,length(t))
             p = scatter3(x,y,z,s)
             set(gca(),"rotation_angles",[60,45])
-            // modify ployline 
+            // modify ployline
             p.mark_foreground = addcolor([0.5 0 0])
             p.mark_background = addcolor([0.5 0.5 0])
         </scilab:image>
