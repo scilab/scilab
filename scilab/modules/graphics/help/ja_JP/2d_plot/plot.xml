@@ -348,7 +348,6 @@ a.x_location = "origin";
 a.y_location = "origin";
 // plotにより作成されたエンティティに複数の処理を行う
 isoview()
-a=gca();
 a.children // 軸の子のリスト : ここでは,2個のエンティティの複合子オブジェクト
 poly1= a.children.children(2); //線分群のハンドルをpoly1 に保存
 poly1.foreground = 4; // スタイルを変更する別の方法...
@@ -359,6 +358,7 @@ isoview("off")
         <scilab:image>
             x=[0:0.1:2*%pi]';
             plot(x-4,sin(x),x+2,cos(x))
+            isoview()
             a=gca();
             a.x_location = "origin";
             a.y_location = "origin";
@@ -367,6 +367,7 @@ isoview("off")
             poly1.foreground = 4;
             poly1.thickness = 3;
             poly1.clip_state='off'
+            isoview("off");
         </scilab:image>
         <programlisting role="example"><![CDATA[
 //LineSpec と GlobalProperty の例:

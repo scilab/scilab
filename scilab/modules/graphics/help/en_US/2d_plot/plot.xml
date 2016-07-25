@@ -323,7 +323,6 @@ a.x_location = "origin";
 a.y_location = "origin";
 
 // Some operations on entities created by plot ...
-a=gca();
 isoview("on");
 a.children // list the children of the axes : here it is an Compound child composed of 2 entities
 poly1= a.children.children(2); //store polyline handle into poly1
@@ -339,8 +338,6 @@ isoview("off");
             a=gca();
             a.x_location = "origin";
             a.y_location = "origin";
-
-            a=gca();
             a.children
             poly1= a.children.children(2);
             poly1.foreground = 4;
