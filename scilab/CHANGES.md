@@ -238,9 +238,9 @@ Bug Fixes
 
 ### In 6.0.0:
 * [Bug #5723](http://bugzilla.scilab.org/show_bug.cgi?id=5723) fixed   - Cross-references were missing between axis_properties and axes_properties help pages
-* [Bug #7696](http://bugzilla.scilab.org/show_bug.cgi?id=7696) fixed - The `parallel_run` help page was poorly formated
+* [Bug #7696](http://bugzilla.scilab.org/show_bug.cgi?id=7696) fixed   - The `parallel_run` help page was poorly formated
 * [Bug #9912](http://bugzilla.scilab.org/show_bug.cgi?id=9912) fixed   - In case of missing translated help page, the default en_US was sometimes ignored
-* [Bug #9153](http://bugzilla.scilab.org/9153) fixed   - The `isqualbitwise` help page was inaccurate and badly located
+* [Bug #9153](http://bugzilla.scilab.org/9153) fixed                   - The `isqualbitwise` help page was inaccurate and badly located
 * [Bug #11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959) fixed - Allow "Zoom Area" to be clicked out of axes
 * [Bug #12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110) fixed - Unable to zoom multiple axes at once
 * [Bug #13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597) fixed - `help format` claimed setting a number of digits instead of characters
@@ -250,12 +250,12 @@ Bug Fixes
 * [Bug #14367](http://bugzilla.scilab.org/show_bug.cgi?id=14367) fixed - `edit_curv` failed opening due to a `[]+1` operation.
 * [Bug #14448](http://bugzilla.scilab.org/show_bug.cgi?id=14448) fixed - removed havewindow() was still documented
 * [Bug #14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557) fixed - `csim` failed when the system has no state.
-* [Bug #14582](http://bugzilla.scilab.org/14582) fixed   - `gettext`or it alias `_()` were sometimes applied to broken literal strings
+* [Bug #14582](http://bugzilla.scilab.org/14582) fixed                 - `gettext`or it alias `_()` were sometimes applied to broken literal strings
 * [Bug #14586](http://bugzilla.scilab.org/show_bug.cgi?id=14586) fixed - Xcos simulation stop button did not work.
 * [Bug #14587](http://bugzilla.scilab.org/show_bug.cgi?id=14587) fixed - Datatip textbox wrong clipping when loaded from `*.scg` file.
 * [Bug #14590](http://bugzilla.scilab.org/show_bug.cgi?id=14590) fixed - Help pages in pt_BR directories had a wrong xml:lang="en" tag.
 * [Bug #14593](http://bugzilla.scilab.org/show_bug.cgi?id=14593) fixed - Signs are no more drawn in BIGSOM and PRODUCT components.
-* [Bug #14602](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - WRITEC_f block didn't work for x86 machines.
+* [Bug #14602](http://bugzilla.scilab.org/show_bug.cgi?id=14602) fixed - WRITEC_f block didn't work for x86 machines.
 * [Bug #14648](http://bugzilla.scilab.org/show_bug.cgi?id=14648) fixed - `isinf` returned `%F` for complex numbers with both real and imag infinite parts.
 * [Bug #14662](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - Matrix of strings concatenation with single quote led to a parser error.
 * [Bug #14681](http://bugzilla.scilab.org/show_bug.cgi?id=14681) fixed - Short-circuited AND operation was not possible with double matrices in if and while clauses
@@ -264,8 +264,8 @@ Bug Fixes
 
 * [Bug #2104](http://bugzilla.scilab.org/show_bug.cgi?id=2104) fixed   - `iw(1:9)` and `w(1:10)` `ode` output parameters were not documented
 * [Bug #2517](http://bugzilla.scilab.org/show_bug.cgi?id=2517) fixed   - `"position"` property format was not accepted by `figure` despite what was said in help
-* [Bug #6057](http://bugzilla.scilab.org/show_bug.cgi?id=6057) fixed  - trailing space after minus sign has been removed from the display of values
-* [Bug #6064](http://bugzilla.scilab.org/show_bug.cgi?id=6064) fixed - `scatter` did not exist in Scilab.
+* [Bug #6057](http://bugzilla.scilab.org/show_bug.cgi?id=6057) fixed   - trailing space after minus sign has been removed from the display of values
+* [Bug #6064](http://bugzilla.scilab.org/show_bug.cgi?id=6064) fixed   - `scatter` did not exist in Scilab.
 * [Bug #6314](http://bugzilla.scilab.org/show_bug.cgi?id=6314) fixed   - The identical code of `%p_m_r` and `%r_m_p` was not factorized
 * [Bug #7378](http://bugzilla.scilab.org/show_bug.cgi?id=7378) fixed   - `quart` used with only `NaN`s yielded an error instead of returning `NaN`.
 * [Bug #7646](http://bugzilla.scilab.org/show_bug.cgi?id=7646) fixed   - Extractions `A'(1,2)` and `A.'(1,2)` from a transposed matrix were not possible
@@ -275,9 +275,9 @@ Bug Fixes
   - typeof names longer than 8-char were not documented.
 * [Bug #8210](http://bugzilla.scilab.org/show_bug.cgi?id=8210) fixed   - UMFPACK demos were not well packaged and not numerous enough.
 * [Bug #8310](http://bugzilla.scilab.org/show_bug.cgi?id=8310)         - Non-convex plane or unplane polygons could be wrongly triangulated and badly rendered with extra facets.
-* [Bug #8990](http://bugzilla.scilab.org/show_bug.cgi?id=8990) fixed - `.zoom_auto` feature was missing on the `plot` toolbar.
+* [Bug #8990](http://bugzilla.scilab.org/show_bug.cgi?id=8990) fixed   - `.zoom_auto` feature was missing on the `plot` toolbar.
 * [Bug #9456](http://bugzilla.scilab.org/show_bug.cgi?id=9456) fixed   - `bench_run` did not work on a path or in a toolbox
-* [Bug #9560](http://bugzilla.scilab.org/show_bug.cgi?id=9560)  fixed - `1./M` was parsed as `1. / M` instead of `1 ./ M`
+* [Bug #9560](http://bugzilla.scilab.org/show_bug.cgi?id=9560) fixed   - `1./M` was parsed as `1. / M` instead of `1 ./ M`
 * [Bug #9621](http://bugzilla.scilab.org/show_bug.cgi?id=9621) fixed   - A `tlist` with undefined fields can now be saved.
 * [Bug #10082](http://bugzilla.scilab.org/show_bug.cgi?id=10082) fixed - `string(complex)` with `real(complex)>0` did not remove the leading space replacing `"+"`
 * [Bug #11511](http://bugzilla.scilab.org/show_bug.cgi?id=11511) fixed - `error` did not accept string matrix (non regression test added).
@@ -299,7 +299,7 @@ Bug Fixes
 * [Bug #13709](http://bugzilla.scilab.org/show_bug.cgi?id=13709) fixed - `unique` sometimes returned wrong index values.
 * [Bug #13725](http://bugzilla.scilab.org/show_bug.cgi?id=13725) fixed - Sometimes `xfpoly` polygon filling failed.
 * [Bug #13748](http://bugzilla.scilab.org/show_bug.cgi?id=13748) fixed - `printf`, `sprintf` (en,ja): short descriptions and obsolete flags were missing.
-* [Bug #13750](http://bugzilla.scilab.org/show_bug.cgi?id=13750) fixed V- Calling `ss2ss` with `flag = 2` returned an error.
+* [Bug #13750](http://bugzilla.scilab.org/show_bug.cgi?id=13750) fixed - Calling `ss2ss` with `flag = 2` returned an error.
 * [Bug #13751](http://bugzilla.scilab.org/show_bug.cgi?id=13751) fixed - `lqg2stan` returned wrong (inverted) values.
 * [Bug #13769](http://bugzilla.scilab.org/show_bug.cgi?id=13769) fixed - `t = "abc..//ghi"` was parsed as a continued + comment
 * [Bug #13780](http://bugzilla.scilab.org/show_bug.cgi?id=13780) fixed - `size` with two input and output arguments did not return an error.
