@@ -30,6 +30,8 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
+
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 
 /**
@@ -42,14 +44,14 @@ public final class PaletteIndexer {
     private List<String> roots;
 
     /**
-     * Default constructor 
+     * Default constructor
      * @param psm PaletteSearchManager
      */
     public PaletteIndexer(PaletteSearchManager psm) {
         mgr = psm;
         // javaHelp directories
         roots = new ArrayList<String>();
-        roots.add("/home/cardinot/scilab/scilab/modules/helptools/javaHelp"); // TODO fix path
+        roots.add(ScilabConstants.SCI.getAbsolutePath() + "/modules/helptools/javaHelp");
     }
 
     /**
