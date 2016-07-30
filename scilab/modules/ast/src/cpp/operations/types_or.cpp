@@ -2,6 +2,7 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
  *  Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
+ *  Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -379,14 +380,6 @@ void fillOrFunction()
     scilab_fill_or(ScalarUInt64, Int64, int_S_M, UInt64, Int64, UInt64);
     scilab_fill_or(ScalarUInt64, UInt64, int_S_M, UInt64, UInt64, UInt64);
 
-    scilab_fill_or(ScalarUInt64, ScalarInt8, int_S_S, UInt64, Int8, UInt64);
-    scilab_fill_or(ScalarUInt64, ScalarUInt8, int_S_S, UInt64, UInt8, UInt64);
-    scilab_fill_or(ScalarUInt64, ScalarInt16, int_S_S, UInt64, Int16, UInt64);
-    scilab_fill_or(ScalarUInt64, ScalarUInt16, int_S_S, UInt64, UInt16, UInt64);
-    scilab_fill_or(ScalarUInt64, ScalarInt32, int_S_S, UInt64, Int32, UInt64);
-    scilab_fill_or(ScalarUInt64, ScalarUInt32, int_S_S, UInt64, UInt32, UInt64);
-    scilab_fill_or(ScalarUInt64, ScalarInt64, int_S_S, UInt64, Int64, UInt64);
-    scilab_fill_or(ScalarUInt64, ScalarUInt64, int_S_S, UInt64, UInt64, UInt64);
 
     //boolean sparse
     scilab_fill_or(SparseBool, SparseBool, M_M, SparseBool, SparseBool, SparseBool);
@@ -402,28 +395,122 @@ void fillOrFunction()
 InternalType* GenericShortcutOr(InternalType* _pL)
 {
     InternalType* pResult = NULL;
-
-    if (_pL->isBool())
+    switch (_pL->getType())
     {
-        BoolOrBool(_pL->getAs<Bool>(), (Bool**)&pResult);
+        case InternalType::ScilabBool :
+            isValueTrue(_pL->getAs<Bool>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabDouble :
+            isValueTrue(_pL->getAs<Double>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabInt8 :
+            isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabUInt8 :
+            isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabInt16 :
+            isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabUInt16 :
+            isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabInt32 :
+            isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabUInt32 :
+            isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabInt64 :
+            isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabUInt64 :
+            isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabSparse :
+            isValueTrue(_pL->getAs<SparseBool>(), (Bool**)&pResult);
+            break;
+        case InternalType::ScilabSparseBool :
+            isValueTrue(_pL->getAs<SparseBool>(), (Bool**)&pResult);
+            break;
+        default:
+            // will return NULL
+            break;
     }
-
-    if (_pL->isDouble())
-    {
-        DoubleOrDouble(_pL->getAs<Double>(), (Bool**)&pResult);
-    }
-
-    if (_pL->isInt())
-    {
-        IntOrInt(_pL, (Bool**)&pResult);
-    }
-
-    if (_pL->isSparseBool())
-    {
-        SparseBoolOrSparseBool(_pL, (Bool**)&pResult);
-    }
-
     return pResult;
+}
+
+template<typename T>
+void isValueTrue(T* _pL, types::Bool** _pOut)
+{
+    for (int i = 0 ; i < _pL->getSize() ; i++)
+    {
+        if (_pL->get(i) == 0)
+        {
+            //call non shortcut opearion
+            *_pOut = NULL;
+            return;
+        }
+    }
+
+    // All values are different than 0
+    *_pOut = new Bool(1); //true || something -> true
+    return;
+}
+
+template<>
+void isValueTrue(Double* _pL, Bool** _pOut)
+{
+    if (_pL->isEmpty())
+    {
+        //call non shorcut operation
+        *_pOut = NULL;
+        return;
+    }
+
+    for (int i = 0 ; i < _pL->getSize() ; i++)
+    {
+        if (_pL->get(i) == 0)
+        {
+            if ( !_pL->isComplex() || (_pL->getImg(i) == 0) )
+            {
+                // Any value is false, call non shortcut operation
+                *_pOut = NULL;
+                return;
+            }
+        }
+    }
+
+    // All values are True, return True
+    *_pOut = new Bool(1);
+    return;
+}
+
+template<>
+void isValueTrue(Sparse* _pL, Bool** _pOut)
+{
+    if (_pL->nonZeros() == (size_t)_pL->getSize())
+    {
+        *_pOut = new Bool(1);
+        return;
+    }
+
+    *_pOut = NULL;
+    return;
+}
+
+template<>
+void isValueTrue(SparseBool* _pL, Bool** _pOut)
+{
+    SparseBool* pL = _pL->getAs<SparseBool>();
+    if (pL->nbTrue() == pL->getSize())
+    {
+        *_pOut = new Bool(1);
+        return;
+    }
+
+    *_pOut = NULL;
+    return;
 }
 
 // |
@@ -445,118 +532,6 @@ InternalType* GenericLogicalOr(InternalType* _pL, InternalType* _pR)
     ** Default case : Return NULL will Call Overloading.
     */
     return NULL;
-}
-
-int BoolOrBool(Bool* _pL, Bool** _pOut)
-{
-    for (int i = 0 ; i < _pL->getSize() ; i++)
-    {
-        if (_pL->get(i) == 0)
-        {
-            //call non shortcut opearion
-            *_pOut = NULL;
-            return 0;
-        }
-    }
-
-    *_pOut = new Bool(1); //true || something -> true
-    return 0;
-}
-
-int DoubleOrDouble(Double* _pL, Bool** _pOut)
-{
-    if (_pL->isEmpty())
-    {
-        //call non shorcut operation
-        *_pOut = NULL;
-        return 0;
-    }
-
-    for (int i = 0 ; i < _pL->getSize() ; i++)
-    {
-        if (_pL->get(i) == 0)
-        {
-            //call non shortcut operation
-            *_pOut = NULL;
-            return 0;
-        }
-    }
-
-    *_pOut = new Bool(1); //true || something -> true
-    return 0;
-}
-
-template <class K>
-static int IntOrInt(K* _pL, Bool** _pOut)
-{
-    for (int i = 0 ; i < _pL->getSize() ; i++)
-    {
-        if (_pL->get(i) == 0)
-        {
-            //call non shortcut opearion
-            *_pOut = NULL;
-            return 0;
-        }
-    }
-
-    *_pOut = new Bool(1); //true || something -> true
-    return 0;
-}
-
-int IntOrInt(InternalType* _pL, Bool** _pOut)
-{
-    switch (_pL->getType())
-    {
-        case InternalType::ScilabInt8 :
-        {
-            return IntOrInt(_pL->getAs<Int8>(), _pOut);
-        }
-        case InternalType::ScilabUInt8 :
-        {
-            return IntOrInt(_pL->getAs<UInt8>(), _pOut);
-        }
-        case InternalType::ScilabInt16 :
-        {
-            return IntOrInt(_pL->getAs<Int16>(), _pOut);
-        }
-        case InternalType::ScilabUInt16 :
-        {
-            return IntOrInt(_pL->getAs<UInt16>(), _pOut);
-        }
-        case InternalType::ScilabInt32 :
-        {
-            return IntOrInt(_pL->getAs<Int32>(), _pOut);
-        }
-        case InternalType::ScilabUInt32 :
-        {
-            return IntOrInt(_pL->getAs<UInt32>(), _pOut);
-        }
-        case InternalType::ScilabInt64 :
-        {
-            return IntOrInt(_pL->getAs<Int64>(), _pOut);
-        }
-        case InternalType::ScilabUInt64 :
-        {
-            return IntOrInt(_pL->getAs<UInt64>(), _pOut);
-        }
-        default:
-        {
-            return 3;
-        }
-    }
-}
-
-int SparseBoolOrSparseBool(InternalType* _pL, Bool** _pOut)
-{
-    SparseBool* pL = _pL->getAs<SparseBool>();
-    if (pL->nbTrue() == pL->getSize())
-    {
-        *_pOut = new Bool(1);
-        return 0;
-    }
-
-    *_pOut = NULL;
-    return 0;
 }
 
 template<class T, class U, class O>

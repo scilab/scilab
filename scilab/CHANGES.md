@@ -14,6 +14,7 @@ This changelog is most likely incomplete, as an enormous amount of code has chan
 [1]: http://mailinglists.scilab.org
 [2]: http://bugzilla.scilab.org
 
+
 Main new features
 -----------------
 
@@ -26,6 +27,7 @@ In summary, the main new features are:
 * New code productivity features: full-featured debugger, profiler / coverage tool, and "lint"-like commands.
 * Newsfeed, providing a continuous feed of news, tips, and general communication from the community and from Scilab Enterprises.
 * Licensing change: Scilab is now released under the terms of the GNU General Public License (GPL) v2.0 (but continues to be available under the terms of the CeCILL v2.1).
+
 
 Installation
 ------------
@@ -145,14 +147,14 @@ Help pages:
 -----------
 
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `roots`,
-  `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`
-* rewriten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`
+  `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`
+* rewritten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
   - CACSD and Signal Processing help pages have been sorted up.
   - Colormaps and GUI/Menus subsections created
 * translations added:
-  - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`
+  - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`, `sleep`
   - (ru): homepage
 
 
@@ -267,8 +269,9 @@ Bug Fixes
 * [Bug #14590](http://bugzilla.scilab.org/show_bug.cgi?id=14590) fixed - Help pages in pt_BR directories had a wrong xml:lang="en" tag.
 * [Bug #14593](http://bugzilla.scilab.org/show_bug.cgi?id=14593) fixed - Signs are no more drawn in BIGSOM and PRODUCT components.
 * [Bug #14602](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - WRITEC_f block didn't work for x86 machines.
+* [Bug #14648](http://bugzilla.scilab.org/show_bug.cgi?id=14648) fixed - `isinf` returned `%F` for complex numbers with both real and imag infinite parts.
 * [Bug #14662](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - Matrix of strings concatenation with single quote led to a parser error.
-
+* [Bug #14681](http://bugzilla.scilab.org/show_bug.cgi?id=14681) fixed - Short-circuited AND operation was not possible with double matrices in if and while clauses
 
 ### In 6.0.0 beta-2 and earlier:
 

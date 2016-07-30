@@ -237,6 +237,30 @@ end
                 </tr>
                 <tr>
                     <td>
+                        <ulink url="http://docbook.org/tdg51/en/html/refsect1.html">refsect1</ulink>
+                    </td>
+                    <td>
+                        A recursive section in a refentry level 1 ; similar to <code>refsection</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg51/en/html/refsect2.html">refsect2</ulink>
+                    </td>
+                    <td>
+                        A recursive section in a refentry level 2 ; sub-section of <code>refsect1</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ulink url="http://docbook.org/tdg51/en/html/refsect3.html">refsect3</ulink>
+                    </td>
+                    <td>
+                        A recursive section in a refentry level 3 ; sub-section of <code>refsect2</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <ulink url="http://docbook.org/tdg51/en/html/book.html">book</ulink>
                     </td>
                     <td>A book</td>
@@ -717,6 +741,8 @@ end
                 <revnumber>5.4.0</revnumber>
                 <revdescription>Management of tags &lt;note&gt;, &lt;caution&gt;, &lt;warning&gt;, &lt;important&gt; and &lt;tip&gt;
                 </revdescription>
+            </revision>
+            <revision>
                 <revnumber>6.0.0</revnumber>
                 <revdescription>Update the documentation to Docbook 5.1</revdescription>
             </revision>

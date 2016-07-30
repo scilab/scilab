@@ -35,7 +35,7 @@ static char **concatenateStrings(int *sizearrayofstring, char *string1,
                                  char *string4, char *string5);
 static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFiles,
                                   char *lineBeforeCaret, char *lineAfterCaret, char *filePattern, char *defaultPattern);
-static void separateFilesDirectories(char** dictionnary, int size, char*** files, int* sizeFiles, char*** directories, int* sizeDirectories);
+static void separateFilesDirectories(char** dictionary, int size, char*** files, int* sizeFiles, char*** directories, int* sizeDirectories);
 static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern);
 /*--------------------------------------------------------------------------*/
 static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFiles,

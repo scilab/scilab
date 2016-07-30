@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -37,9 +37,9 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // This example shows how to write a Scilab string in Scilab engine
-// It is the equivalent to A="my Message"; in Scilab interpretor
+// It is the equivalent to A="my Message"; in Scilab interpreter
 // See: modules/call_scilab/examples/basicExamples/readwritestring.c
 
 // StartScilab
@@ -59,13 +59,13 @@ if(sciErr.iErr)
 
 /*
  * Prior to Scilab 5.2
- * C2F(cwritechain)(variableName, &sizeOfMyString  , myString, strlen(variableName), sizeOfMyString); 
+ * C2F(cwritechain)(variableName, &sizeOfMyString  , myString, strlen(variableName), sizeOfMyString);
 */
 
 printf("Display from Scilab of A:\n");
 SendScilabJob("disp(A);"); /* Display A */
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 /* Load the previously set variable A */
 // See: modules/call_scilab/examples/basicExamples/readwritestring.c
 

@@ -312,17 +312,17 @@ public final class SciNotesCompletionAction extends CompletionAction {
                     System.err.println(e);
                 }
 
-                String[] scilabHandlesDictionnary = Completion.searchHandleGraphicsPropertiesDictionary(searchedPattern);
+                String[] scilabHandlesDictionary = Completion.searchHandleGraphicsPropertiesDictionary(searchedPattern);
                 String type = Messages.gettext("Graphics handle field");
 
                 list = new ArrayList<CompletionItem>();
-                if (scilabHandlesDictionnary != null) {
-                    for (String item : scilabHandlesDictionnary) {
-                        dictionnary.add(new CompletionItemImpl(type, item + " (" + type + ")", item, Messages.gettext("No help")));
+                if (scilabHandlesDictionary != null) {
+                    for (String item : scilabHandlesDictionary) {
+                        dictionary.add(new CompletionItemImpl(type, item + " (" + type + ")", item, Messages.gettext("No help")));
                     }
                 }
 
-                return dictionnary;
+                return dictionary;
             }
             return list;
         }
