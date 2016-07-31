@@ -96,6 +96,11 @@ public final class PaletteMouseListener extends MouseAdapter {
     @Override
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);
-        ((PaletteView) e.getSource()).setSelectionRectangle(null);
+        PaletteView view = (PaletteView) e.getSource();
+        view.setSelectionRectangle(null);
+        Component[] blocks = view.getComponents();
+        if (blocks.length > 0) {
+            blocks[0].requestFocus();
+        }
     }
 }

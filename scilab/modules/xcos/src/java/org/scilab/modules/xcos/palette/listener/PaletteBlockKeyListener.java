@@ -42,7 +42,7 @@ public final class PaletteBlockKeyListener implements KeyListener {
      */
     @Override
     public void keyPressed(KeyEvent e) {
-        /** add the current block to the most recent diagram **/
+        /** add the selected blocks into the most recent diagram **/
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             final List<XcosDiagram> allDiagrams = Xcos.getInstance().openedDiagrams();
             final PaletteBlockCtrl control = ((PaletteBlockView) e.getSource()).getController();
