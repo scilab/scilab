@@ -423,6 +423,20 @@ public final class BlockPositioning {
     }
 
     /**
+     * Update the geometry of the block's ports.
+     * @param diag XcosDiagram
+     * @param blocks array with several blocks
+     */
+    public static void updatePortsPosition(final XcosDiagram diag, Object[] blocks) {
+        diag.getModel().beginUpdate();
+        for (Object b : blocks) {
+            BasicBlock block = (BasicBlock) b;
+            updatePortsPosition(diag, block);
+        }
+        diag.getModel().endUpdate();
+    }
+
+    /**
      * Flip a block (horizontal inversion).
      *
      * @param block

@@ -24,6 +24,7 @@ import org.scilab.modules.xcos.palette.view.PaletteBlockView;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView.StatusUI;
 import org.scilab.modules.xcos.palette.view.PaletteManagerPanel;
 import org.scilab.modules.xcos.palette.view.PaletteView;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 
@@ -52,7 +53,11 @@ public final class PaletteBlockKeyListener implements KeyListener {
             assert size != 0;
 
             final XcosDiagram theDiagram = allDiagrams.get(size - 1);
-            control.getPaletteCtrl().addSelectedBlocks(theDiagram);
+            Object[] cells = control.getPaletteCtrl().getSelectedBlocks();
+            if (cells != null) {
+                BlockPositioning.updatePortsPosition(theDiagram, cells);
+                theDiagram.addCells(cells);
+            }
 
         /** deselects blocks and loses focus **/
         } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_TAB) {

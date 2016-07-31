@@ -41,6 +41,7 @@ import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.PaletteCtrl;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView.StatusUI;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -87,7 +88,11 @@ public final class PaletteBlockMouseListener implements MouseListener {
 
                 @Override
                 public void callBack() {
-                    ctrl.getPaletteCtrl().addSelectedBlocks(theDiagram);
+                    Object[] cells = ctrl.getPaletteCtrl().getSelectedBlocks();
+                    if (cells != null) {
+                        BlockPositioning.updatePortsPosition(theDiagram, cells);
+                        theDiagram.addCells(cells);
+                    }
                 }
             });
             menu.add(addTo);
@@ -105,7 +110,11 @@ public final class PaletteBlockMouseListener implements MouseListener {
 
                     @Override
                     public void callBack() {
-                        ctrl.getPaletteCtrl().addSelectedBlocks(theDiagram);
+                        Object[] cells = ctrl.getPaletteCtrl().getSelectedBlocks();
+                        if (cells != null) {
+                            BlockPositioning.updatePortsPosition(theDiagram, cells);
+                            theDiagram.addCells(cells);
+                        }
                     }
                 });
                 addTo.add(diagram);
@@ -168,10 +177,14 @@ public final class PaletteBlockMouseListener implements MouseListener {
                 blockCtrl.setSelected(!isSelected); // toggle
             } else if (e.getClickCount() == 2) {
                 blockCtrl.setSelected(true);
-                // add the current block to the most recent diagram
+                // add the selected blocks into the most recent diagram
                 final List<XcosDiagram> allDiagrams = getOpenedDiagrams();
                 XcosDiagram theDiagram = allDiagrams.get(allDiagrams.size() - 1);
-                blockCtrl.getPaletteCtrl().addSelectedBlocks(theDiagram);
+                Object[] cells = blockCtrl.getPaletteCtrl().getSelectedBlocks();
+                if (cells != null) {
+                    BlockPositioning.updatePortsPosition(theDiagram, cells);
+                    theDiagram.addCells(cells);
+                }
             }
         } else {
             return;

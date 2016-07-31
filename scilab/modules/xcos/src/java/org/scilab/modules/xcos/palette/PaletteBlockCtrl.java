@@ -33,7 +33,6 @@ import org.scilab.modules.xcos.palette.view.PaletteBlockView.StatusUI;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 
 import com.mxgraph.swing.util.mxGraphTransferable;
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 
 /**
  * A palette block is the representation of the block in the palette.
@@ -74,7 +73,7 @@ public final class PaletteBlockCtrl {
 
         DragSource dragSource = DragSource.getDefaultDragSource();
         dragSource.createDefaultDragGestureRecognizer(this.getView(),
-                DnDConstants.ACTION_COPY_OR_MOVE, DRAG_LISTENER);
+                DnDConstants.ACTION_COPY, DRAG_LISTENER);
     }
 
     /**

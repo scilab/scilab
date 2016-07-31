@@ -33,6 +33,7 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.handler.mxGraphTransferHandler;
+import com.mxgraph.swing.util.mxGraphTransferable;
 
 /**
  * All the operations which are used to render, load and put
@@ -104,14 +105,13 @@ public final class PaletteCtrl {
     }
 
     /**
-     * Add all the selected blocks to a XcosDiagram.
-     * @param diagram XcosDiagram
-     * @return true if some block was added
+     * Get the selected palette blocks
+     * @return blocks that have been added to the XcosDiagram
      */
-    public boolean addSelectedBlocks(final XcosDiagram diagram) {
+    public Object[] getSelectedBlocks() {
         int row = 0;
         int column = 0;
-        boolean hasNewBlocks = false;
+        List<BasicBlock> basicBlocks = new ArrayList<BasicBlock>();
         for (PaletteBlockCtrl blockCtrl : BLOCKS) {
             if (!blockCtrl.isSelected()) {
                 continue;
@@ -135,7 +135,7 @@ public final class PaletteCtrl {
             // add to the 'recently used blocks' panel
             PaletteManagerView.get().getPanel().addRecentltyUsedBlock(blockCtrl.getModel());
 
-            // Render it and export it
+            // render and export it
             final double margin = 15.0;
             basicBlock.getGeometry().setX(margin + BLOCK_POSITION.width * column);
             basicBlock.getGeometry().setY(margin + BLOCK_POSITION.height * row);
@@ -146,12 +146,20 @@ public final class PaletteCtrl {
                 ++row;
             }
 
-            diagram.addCell(basicBlock);
-            diagram.addSelectionCell(basicBlock);
-            BlockPositioning.updateBlockView(internalGraph, basicBlock);
-            hasNewBlocks = true;
+            basicBlocks.add(basicBlock);
         }
-        return hasNewBlocks;
+
+        int size = basicBlocks.size();
+        if (size == 0) {
+            return null;
+        }
+
+        // convert to Object[]
+        Object[] ret = new Object[size];
+        for (int i = 0; i < size; i++) {
+            ret[i] = basicBlocks.get(i);
+        }
+        return ret;
     }
 
     /**
@@ -160,12 +168,18 @@ public final class PaletteCtrl {
      */
     public synchronized Transferable getTransferable() {
         Transferable transfer = null;
-        internalGraph.removeCells();
-        if (addSelectedBlocks(internalGraph)) {
-            mxGraphTransferHandler handler = (mxGraphTransferHandler) internalGraph.getAsComponent().getTransferHandler();
-            transfer = handler.createTransferable(internalGraph.getAsComponent());
-            internalGraph.removeCells();
+        Object[] cells = getSelectedBlocks();
+        if (cells == null) {
+            return null;
         }
+
+        BlockPositioning.updatePortsPosition(internalGraph, cells);
+        internalGraph.addCells(cells);
+
+        mxGraphTransferHandler handler = (mxGraphTransferHandler) internalGraph.getAsComponent().getTransferHandler();
+        transfer = new mxGraphTransferable(cells, internalGraph.getPaintBounds(cells),
+                handler.createTransferableImage(internalGraph.getAsComponent(), cells));
+
         return transfer;
     }
 }
