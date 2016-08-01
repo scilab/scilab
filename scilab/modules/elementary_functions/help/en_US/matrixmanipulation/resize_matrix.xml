@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY
- * Copyright (C) 2013 - Samuel GOUGEON (5.5.0)
+ * Copyright (C) 2013, 2016 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="resize_matrix" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+xmlns:scilab="http://www.scilab.org" xml:id="resize_matrix" xml:lang="en">
     <refnamediv>
         <refname>resize_matrix</refname>
         <refpurpose>trim or/and extend (and cast) a matrix or hypermatrix</refpurpose>
@@ -22,13 +25,13 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-                     resize_matrix   // demo
+            resize_matrix   // demo
+            
             resMat = resize_matrix(mat, nbRows, nbCols)
-
             resMat = resize_matrix(mat, nbRows, nbCols, resType)
             resMat = resize_matrix(mat, nbRows, nbCols, resType, padding)
             resMat = resize_matrix(mat, nbRows, nbCols,    ""  , padding)
-
+            
             resMat = resize_matrix(mat, newSizes)
             resMat = resize_matrix(mat, newSizes, resType)
             resMat = resize_matrix(mat, newSizes, resType, padding)
@@ -41,20 +44,30 @@
             <varlistentry>
                 <term>mat</term>
                 <listitem>
-                    <para>input matrix or hypermatrix. booleans, encoded integers, decimals (real or complexes), polynomials, or text are supported.
+                    <para>input matrix or hypermatrix. booleans, encoded integers,
+                        decimal-encoded numbers (real or complex), polynomials,
+                        or text are supported.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>nbRows</term>
                 <listitem>
-                    <para>new number of rows of the resized matrix. Exceeding rows are trimmed. Missing rows are padded</para>
+                    <para>new number of rows of the resized matrix.
+                        Exceeding rows are trimmed. Missing rows are added by padding.
+                        Setting <literal>nbRows &lt; 0</literal> keeps the current
+                        number of rows.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>nbCols</term>
                 <listitem>
-                    <para>new number of columns of the resized matrix. Exceeding columns are trimmed. Missing columns are padded</para>
+                    <para>new number of columns of the resized matrix.
+                        Exceeding columns are trimmed. Missing columns are added by padding.
+                        Setting <literal>nbCols &lt; 0</literal> keeps the current
+                        number of columns.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -62,15 +75,28 @@
                 <listitem>
                     <para>
                         vector specifying the new sizes along each dimension of <varname>mat</varname>.
+                        To keep a new size equal to the current one, just set it to -1.
                     </para>
                     <para>
-                        If it is shorter than <literal>size(mat)</literal>, it is padded with ones. Example: if <varname>mat</varname> with <literal>size(mat)==[ 4 3 3 2]</literal> is provided and <literal>newSizes=[6 2]</literal> is specified, <literal>newSizes = [6 2 1 1]</literal> is considered.
+                        If the vector <literal>newSizes</literal> is shorter than
+                        <literal>size(mat)</literal>, it is padded with ones.
+                        Example: if <varname>mat</varname> with
+                        <literal>size(mat)==[ 4 3 3 2]</literal> is provided and
+                        <literal>newSizes=[6 2]</literal> is specified,
+                        <literal>newSizes = [6 2 1 1]</literal> is considered.
                     </para>
                     <para>
-                        If <varname>newSizes</varname> is longer than <literal>size(mat)</literal>, new dimensions are added to <varname>mat</varname> and padded. Example: if <varname>mat</varname> such that <literal>size(mat)==[ 4 3 ]</literal> is provided and <literal>newSizes=[6 2 2]</literal> is specified, the result will be an hypermatrix with 2 pages, the second one being fully padded.
+                        Conversely, if <varname>newSizes</varname> is longer than
+                        <literal>size(mat)</literal>, new dimensions are added to
+                        <varname>mat</varname> and padded. Example:
+                        if <varname>mat</varname> such that <literal>size(mat)==[ 4 3 ]</literal>
+                        is provided and <literal>newSizes=[6 2 2]</literal> is
+                        specified, the result will be an hypermatrix with 2 pages,
+                        the second one being fully padded.
                     </para>
                     <para>
-                        <literal>newSizes = [nbRows, nbCols]</literal> may be used for a matrix.
+                        <literal>newSizes = [nbRows, nbCols]</literal> may be
+                        used for a matrix.
                     </para>
                 </listitem>
             </varlistentry>
@@ -108,7 +134,7 @@
         <para>
             Creates a matrix of sizes <literal>[nbRows, nbCols]</literal> or <literal>newSizes</literal>, or an hypermatrix of sizes <literal>newSizes</literal>.
             If for a dimension the new size is smaller than the initial one, the matrix is cropped. If the size is increased, the matrix/hypermatrix is padded.
-            The number of dimensions can be increased. Respectively, Scilab automatically squeezes highest dimensions with size kept or set to 1 (singletons).
+            The number of dimensions can be increased. Conversely, Scilab automatically squeezes highest dimensions with size kept or set to 1 (singletons).
         </para>
         <para>
             The type of the result may be changed by specifying the <literal>resType</literal> argument, with restrictions given above.
@@ -120,9 +146,38 @@
 // Embedded examples, including with polynomials:
 resize_matrix
 
-// Numerical matrix:
+// Resizing a numerical matrix:
 M = grand(4, 3, "uin", -9, 9)
+resize_matrix(M, -1, 5)  //  use -1 to keep a size unchanged
+resize_matrix(M, 2, -1)
 resize_matrix(M, 3, 4)
+ ]]></programlisting>
+        <screen><![CDATA[--> M = grand(4, 3, "uin", -9, 9)
+ M  =
+  -8.  -5.  -2.
+  -9.   0.  -1.
+   4.  -1.   6.
+   5.   1.   8.
+
+--> resize_matrix(M, -1, 5)  //  use -1 to keep a size unchanged
+ ans  =
+  -8.  -5.  -2.   0.   0.
+  -9.   0.  -1.   0.   0.
+   4.  -1.   6.   0.   0.
+   5.   1.   8.   0.   0.
+
+--> resize_matrix(M, 2, -1)
+ ans  =
+  -8.  -5.  -2.
+  -9.   0.  -1.
+
+--> resize_matrix(M, 3, 4)
+ ans  =
+  -8.  -5.  -2.   0.
+  -9.   0.  -1.   0.
+   4.  -1.   6.   0.
+]]></screen>
+        <programlisting role="example"><![CDATA[
 resize_matrix(M, [3 4 2])
 resize_matrix(M, [3 4 2], "", %i)
 resize_matrix(M, [3 4 2], "string", %i)
@@ -169,7 +224,7 @@ resize_matrix(P, [3 3 2], "", %z)
                 <link linkend="strtod">strtod</link>
             </member>
             <member>
-                <link linkend="strtod">string</link>
+                <link linkend="string">string</link>
             </member>
         </simplelist>
     </refsection>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY 
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -24,10 +24,12 @@
         <title>呼び出し手順</title>
         <synopsis>
                      resize_matrix      // Demo
+
             resMat = resize_matrix(mat, nbRows, nbCols)
             resMat = resize_matrix(mat, nbRows, nbCols, resType)
             resMat = resize_matrix(mat, nbRows, nbCols, resType, padding)
             resMat = resize_matrix(mat, nbRows, nbCols,    ""  , padding)
+
             resMat = resize_matrix(mat, newSizes)
             resMat = resize_matrix(mat, newSizes, resType)
             resMat = resize_matrix(mat, newSizes, resType, padding)
@@ -52,6 +54,8 @@
                     <para>
                         大きさ変更後の行列の行数. 超過した行はトリムされます.
                         足りない行は拡張されます.
+                        Setting <literal>nbRows &lt; 0</literal> keeps the current
+                        number of rows.
                     </para>
                 </listitem>
             </varlistentry>
@@ -61,6 +65,8 @@
                     <para>
                         大きさ変更後の行列の列数. 超過した列はトリムされます.
                         足りない列は拡張されます.
+                        Setting <literal>nbCols &lt; 0</literal> keeps the current
+                        number of columns.
                     </para>
                 </listitem>
             </varlistentry>
@@ -69,6 +75,7 @@
                 <listitem>
                     <para>
                         <varname>mat</varname>の各次元方向の新しい大きさを指定するベクトル.
+                        To keep a new size equal to the current one, just set it to -1.
                     </para>
                     <para>
                         <literal>size(mat)</literal>より短い場合, 1でパディングされます.
@@ -149,7 +156,36 @@ resize_matrix
 
 // 数値行列:
 M = grand(4, 3, "uin", -9, 9)
+resize_matrix(M, -1, 5)  //  use -1 to keep a size unchanged
+resize_matrix(M, 2, -1)
 resize_matrix(M, 3, 4)
+ ]]></programlisting>
+    <screen><![CDATA[--> M = grand(4, 3, "uin", -9, 9)
+ M  =
+  -8.  -5.  -2.
+  -9.   0.  -1.
+   4.  -1.   6.
+   5.   1.   8.
+
+--> resize_matrix(M, -1, 5)  //  use -1 to keep a size unchanged
+ ans  =
+  -8.  -5.  -2.   0.   0.
+  -9.   0.  -1.   0.   0.
+   4.  -1.   6.   0.   0.
+   5.   1.   8.   0.   0.
+
+--> resize_matrix(M, 2, -1)
+ ans  =
+  -8.  -5.  -2.
+  -9.   0.  -1.
+
+--> resize_matrix(M, 3, 4)
+ ans  =
+  -8.  -5.  -2.   0.
+  -9.   0.  -1.   0.
+   4.  -1.   6.   0.
+]]></screen>
+        <programlisting role="example"><![CDATA[
 resize_matrix(M, [3 4 2])
 resize_matrix(M, [3 4 2], "", %i)
 resize_matrix(M, [3 4 2], "string", %i)
@@ -196,7 +232,7 @@ resize_matrix(P, [3 3 2], "", %z)
                 <link linkend="strtod">strtod</link>
             </member>
             <member>
-                <link linkend="strtod">string</link>
+                <link linkend="string">string</link>
             </member>
         </simplelist>
     </refsection>

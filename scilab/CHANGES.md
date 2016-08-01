@@ -398,6 +398,7 @@ Bug Fixes
 * [#14662](http://bugzilla.scilab.org/show_bug.cgi?id=14662): Matrix of strings concatenation with single quote led to a parser error.
 * [#14667](http://bugzilla.scilab.org/show_bug.cgi?id=14667): Multi line string without final quote generated a non terminal parser state.
 * [#14681](http://bugzilla.scilab.org/show_bug.cgi?id=14681): Short-circuited AND operation was not possible with double matrices in if and while clauses
+* [#14689](http://bugzilla.scilab.org/show_bug.cgi?id=14689): fixed - `resize_matrix(rand(2,3),[0 2])` did not return []. Usage of new sizes <0 to keep them unchanged was not documented.
 * [#14690](http://bugzilla.scilab.org/show_bug.cgi?id=14690): The user's startup files set in the working directory were not executed. When `SCIHOME` is not the working directory, `SCIHOME\scilab.ini` was executed twice.
 * [#14692](http://bugzilla.scilab.org/show_bug.cgi?id=14692): isequal() was always returning true for builtin functions
 * [#14694](http://bugzilla.scilab.org/show_bug.cgi?id=14694): The list of named colors was misaligned and poorly rendered in `help color_list`

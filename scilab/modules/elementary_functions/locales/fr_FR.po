@@ -867,7 +867,7 @@ msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur attendu.\n"
 
 msgid "RESIZING a matrix of DECIMALS:"
-msgstr "Redimensionnement d'une matrice de décimales :"
+msgstr "Retaillage d'une matrice de nombres décimaux :"
 
 msgid "Type <Enter> to see an example with polynomials:"
 msgstr "Tapez <Entrée> pour voir un exemple avec des polynômes :"

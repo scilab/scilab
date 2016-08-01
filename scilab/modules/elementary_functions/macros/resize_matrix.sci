@@ -1,8 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2013 - Samuel GOUGEON : resize_matrix rewritten.
-//                                       Hypermatrix, polynomials and
-//                                       custom padding are now supported.
-//                                       Inline examples added.
+// Copyright (C) 2013, 2016 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -192,6 +189,10 @@ function mat = resize_matrix(mat, varargin)
 
     // TRIMMING
     // --------
+    if or(newsizes==0) then
+        mat = []
+        return
+    end
     k = (newsizes>0 & newsizes<oldsizes)
     if or(k) then
         strcommand = ""
