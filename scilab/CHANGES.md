@@ -263,6 +263,7 @@ Bug Fixes
 * [Bug #14648](http://bugzilla.scilab.org/show_bug.cgi?id=14648) fixed - `isinf` returned `%F` for complex numbers with both real and imag infinite parts.
 * [Bug #14662](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - Matrix of strings concatenation with single quote led to a parser error.
 * [Bug #14681](http://bugzilla.scilab.org/show_bug.cgi?id=14681) fixed - Short-circuited AND operation was not possible with double matrices in if and while clauses
+* [Bug #14649](http://bugzilla.scilab.org/show_bug.cgi?id=14649) fixed - isnan(complex(%inf, %inf)) returned %F while the phase is NaN.
 
 ### In 6.0.0 beta-2 and earlier:
 

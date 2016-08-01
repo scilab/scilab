@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
+// Copyright (C) 2016 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -14,11 +15,24 @@
 function r = isnan(x)
     rhs = argn(2);
     if rhs <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"isnan", 1));
+        msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+        error(msprintf(msg, "isnan", 1));
     end
     if x == [] then
         r = [];
     else
-        r =~ (x == x);
+        if or(type(x)==[1 5])   // for dense and sparse decimal encodings
+            if isreal(x)
+                r = (x ~= x);
+            else
+                rp = real(x)
+                ip = imag(x)
+                r = (x~=x | (abs(real(x))==%inf & abs(imag(x))==%inf) )
+            end
+        else
+            r = ~(x == x);
+            // the case of polynomials will be better managed apart,
+            // after merging this first fix for complex numbers
+        end
     end
 endfunction
