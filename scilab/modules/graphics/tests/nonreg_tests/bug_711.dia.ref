@@ -15,17 +15,10 @@
 // specify init position
 initPos = [100,100];
 pos = initPos;
+f = gcf();
 // window should not move
-for k=1:10,
-  xset('wpos', pos);
-  pos = xget('wpos');
-end
-if (pos <> initPos) then bugmes();quit;end;
-// also
-pos = initPos;
-f=gcf();
-for k=1:10,
-  f.figure_position=pos;
+for k = 1:10,
+  f.figure_position = pos;
   pos = f.figure_position;
 end
-if (pos <> initPos) then bugmes();quit;end;
+assert_checkequal(pos,initPos);

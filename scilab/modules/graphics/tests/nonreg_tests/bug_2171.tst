@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // angled thickness 1 lines are transiently dash-dotted (X problem?)
 
-xset("colormap",graycolormap(256))
+gcf().color_map = graycolormap(256);
 load(SCI + "/modules/graphics/tests/nonreg_tests/bug_1981.dat");
 Matplot(Lenna,axesflag=0,frameflag=4);
 

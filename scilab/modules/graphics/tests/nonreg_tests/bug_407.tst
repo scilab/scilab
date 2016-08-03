@@ -17,7 +17,7 @@
 // points are not displayed
 
 // should complain about strf (normally a strig of length 3).
-xset("thickness",2);
+gca().thickness = 2;
 // check if the curve is displayed
 plot(1:10000);
 

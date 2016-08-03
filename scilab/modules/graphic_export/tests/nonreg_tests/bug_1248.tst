@@ -18,7 +18,7 @@
 
 x=1:.5:100;
 y=2:200;
-xset("window",0);
+scf(0);
 clf();
 // l,r,t,b
 xsetech(arect=[.01,.01,.01,.01]);

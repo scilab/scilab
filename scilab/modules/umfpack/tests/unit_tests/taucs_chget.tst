@@ -26,14 +26,14 @@ Cptr = taucs_chfact(A);
 // retrieve the factor at scilab level
 [Ct, p] = taucs_chget(Cptr);
 // plot the initial matrix
-xset("window",0) ; clf();
+scf(0); clf();
 PlotSparse(A) ; xtitle("Initial matrix A (bcsstk24.rsa)");
 // plot the permuted matrix
 B = A(p,p);
-xset("window",1) ; clf();
+scf(1); clf();
 PlotSparse(B) ; xtitle("Permuted matrix B = A(p,p)");
 // plot the upper triangle Ct
-xset("window",2) ; clf();
+scf(2); clf();
 PlotSparse(Ct) ; xtitle("The pattern of Ct (A(p,p) = C*Ct)");
 // retrieve cnz
 [OK, n, cnz] = taucs_chinfo(Cptr);
