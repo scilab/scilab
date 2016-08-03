@@ -81,6 +81,7 @@ import org.scilab.modules.renderer.JoGLView.arrowDrawing.ArrowDrawer;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.contouredObject.ContouredObjectDrawer;
 import org.scilab.modules.renderer.JoGLView.datatip.DatatipTextDrawer;
+import org.scilab.modules.renderer.JoGLView.datatip.DatatipDisplayModeManager;
 import org.scilab.modules.renderer.JoGLView.interaction.InteractionManager;
 import org.scilab.modules.renderer.JoGLView.label.LabelManager;
 import org.scilab.modules.renderer.JoGLView.legend.LegendDrawer;
@@ -147,6 +148,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private final ArrowDrawer arrowDrawer;
     private final FecDrawer fecDrawer;
     private final DatatipTextDrawer datatipTextDrawer;
+    private DatatipDisplayModeManager datatipDisplayModeManager;
 
     private DrawingTools drawingTools;
     private Texture colorMapTexture;
@@ -189,6 +191,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.fecDrawer = new FecDrawer(this);
         this.colorMapTextureDataProvider = new ColorMapTextureDataProvider();
         this.datatipTextDrawer = new DatatipTextDrawer(canvas);
+        this.datatipDisplayModeManager = new DatatipDisplayModeManager(component);
 
         visitorMap.put(figure.getIdentifier(), this);
     }
@@ -954,7 +957,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         Texture texture = markManager.getMarkSprite(datatip, colorMap, null);
                         drawingTools.draw(texture, AnchorPosition.CENTER, markPos);
                     }
-                    if (datatip.getTipLabelMode()) {
+                    if (datatip.getTipLabelMode() &&
+                            datatipDisplayModeManager.needDraw(datatip.getIdentifier())) {
                         datatipTextDrawer.draw(drawingTools, colorMap, datatip);
                     }
                 }
@@ -1295,6 +1299,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     @Override
     public void deleteObject(Integer id) {
         Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        if (type == GraphicObjectProperties.__GO_DATATIP__) {
+            datatipDisplayModeManager.remove(id);
+        }
         if (!figure.getIdentifier().equals(id) && type == GraphicObjectProperties.__GO_UICONTROL__ || type == GraphicObjectProperties.__GO_UIMENU__) {
             return; // Not of my managed openGL children
         }

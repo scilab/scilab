@@ -339,6 +339,7 @@ Bug Fixes
 * [#12017](http://bugzilla.scilab.org/show_bug.cgi?id=12017): `figure.pixel_drawing_mode` is ignored for filled regular polygons and other shapes, still does not work for vectorial export (eps, pdf, etc).
 * [#12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110): Unable to zoom multiple axes at once
 * [#12431](http://bugzilla.scilab.org/show_bug.cgi?id=12431): The page describing the `%helps` variable needed clarification.
+* [#13794](http://bugzilla.scilab.org/show_bug.cgi?id=13794): Added polyline property "datatip_display_mode", allowing datatips to be displayed "always", "mouseclick" or "mouseover".
 * [#13166](http://bugzilla.scilab.org/show_bug.cgi?id=13166): `l` and `b` endian flags used with `mget` and `mgeti` were sticky
 * [#13375](http://bugzilla.scilab.org/show_bug.cgi?id=13375): If (Max - Min) == 1, then the multiple selection is not allowed.
 * [#13583](http://bugzilla.scilab.org/show_bug.cgi?id=13583): `getd` loading a script including a `clear` instruction yielded an error

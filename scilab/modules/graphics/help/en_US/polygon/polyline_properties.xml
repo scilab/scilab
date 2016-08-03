@@ -417,6 +417,15 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>datatip_display_mode: </term>
+                <listitem>
+                    <para>
+                        This field determines how the datatips are displayed. Its value can be <literal>always</literal>, 
+                        <literal>mouseclick</literal> or <literal>mouseover</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>display_function: </term>
                 <listitem>
                     <para>

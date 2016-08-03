@@ -64,6 +64,41 @@ void* get_tip_z_component_property(void* _pvCtx, int iObjUID)
     return NULL;
 }
 
+/**
+ * Get display mode for datatips
+ */
+void* get_datatip_display_mode_property(void* _pvCtx, int iObjUID)
+{
+    int datatip_display_mode = -1;
+    int * p_datatip_display_mode = &datatip_display_mode;
+    const char * name = NULL;
+    getGraphicObjectProperty(iObjUID, __GO_DATATIP_DISPLAY_MODE__, jni_int, (void **)&p_datatip_display_mode);
+
+    if (datatip_display_mode == -1)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "datatip_display_mode");
+        return NULL;
+    }
+
+    switch (datatip_display_mode)
+    {
+        case 0:
+            name = "always";
+            break;
+        case 1:
+            name = "mouseclick";
+            break;
+        case 2:
+            name = "mouseover";
+            break;
+        default:
+            name = "always";
+            break;
+    }
+
+    return sciReturnString(name);
+}
+
 
 /**
  * Get the datatip components that should be displayed

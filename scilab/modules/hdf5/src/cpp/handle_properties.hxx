@@ -367,6 +367,7 @@ struct PolylineHandle
         m.emplace_back("bar_width", std::vector<int>({SAVE_LOAD, __GO_BAR_WIDTH__, jni_double}));
         m.emplace_back("clip_box", std::vector<int>({SAVE_LOAD, __GO_CLIP_BOX__, jni_double_vector, -1, -4}));
         m.emplace_back("clip_state", std::vector<int>({SAVE_LOAD, __GO_CLIP_STATE__, jni_int}));
+        m.emplace_back("datatip_display_mode", std::vector<int>({SAVE_LOAD, __GO_DATATIP_DISPLAY_MODE__, jni_int}));
 
         //@end
         m.emplace_back("visible", std::vector<int>({SAVE_LOAD, __GO_VISIBLE__, jni_bool}));

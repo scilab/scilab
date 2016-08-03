@@ -77,6 +77,52 @@ int set_tip_z_component_property(void* _pvCtx, int iObj, void* _pvData, int valu
 }
 
 /**
+ * Set display mode for datatips
+ */
+int set_datatip_display_mode_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)
+{
+    BOOL status = FALSE;
+    const char * value = (const char*) _pvData;
+    int datatip_display_mode = -1;
+    if (strcmp(value, "always") == 0)
+    {
+        datatip_display_mode = 0;
+    }
+    else if (strcmp(value, "mouseclick") == 0)
+    {
+        datatip_display_mode = 1;
+    }
+    else if (strcmp(value, "mouseover") == 0)
+    {
+        datatip_display_mode = 2;
+    }
+
+    if (datatip_display_mode >= 0)
+    {
+        status = setGraphicObjectProperty(iObj, __GO_DATATIP_DISPLAY_MODE__, &datatip_display_mode, jni_int, 1);
+        if (status == TRUE)
+        {
+            return SET_PROPERTY_SUCCEED;
+        }
+    }
+    else
+    {
+        int type;
+        int *piType = &type;
+        getGraphicObjectProperty(iObj, __GO_TYPE__, jni_int, (void **)&piType);
+        if (type == __GO_POLYLINE__)
+        {
+            Scierror(999, _("Inavlid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"), "datatip_display_mode");
+        }
+        else
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "datatip_display_mode");
+        }
+        return SET_PROPERTY_ERROR;
+    }
+}
+
+/**
  * Set which coordinate components should be displayed
  */
 int set_tip_display_components_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol)

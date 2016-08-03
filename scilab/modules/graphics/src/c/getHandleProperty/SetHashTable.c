@@ -220,6 +220,7 @@ static setHashTableCouple propertySetTable[] =
     {"orientation", set_tip_orientation_property},
     {"z_component", set_tip_z_component_property},
     {"display_components", set_tip_display_components_property},
+    {"datatip_display_mode", set_datatip_display_mode_property},
     {"auto_orientation", set_tip_auto_orientation_property},
     {"interp_mode", set_tip_interp_mode_property},
     {"box_mode", set_tip_box_mode_property},

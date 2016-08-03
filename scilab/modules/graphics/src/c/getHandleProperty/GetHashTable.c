@@ -221,6 +221,7 @@ static getHashTableCouple propertyGetTable[] =
     {"orientation", get_tip_orientation_property},
     {"z_component", get_tip_z_component_property},
     {"display_components", get_tip_display_components_property},
+    {"datatip_display_mode", get_datatip_display_mode_property},
     {"auto_orientation", get_tip_auto_orientation_property},
     {"interp_mode", get_tip_interp_mode_property},
     {"box_mode", get_tip_box_mode_property},
