@@ -116,8 +116,8 @@ Feature changes and additions
 * `sign` can now handle a sparse matrix.
 * `sleep(..,'s')` allows now to specify the duration in seconds.
 * `real`, `imag`, `conj` and `isreal` now accept rational fractions
-* A call stack limit has been introduced. Default maximum depth is setup to 1000 and can be changed by new function recursionlimit or by preferences interface.
-* The floating point exception mode (ieee) is now set to `2` by default: floating point exceptions now produce `Inf` or `Nan`, and do not cause any error. The previous behavior can be recalled by simply calling: `ieee(0)`
+* A call stack limit has been introduced. Default maximum depth is setup to 1000 and can be changed by `recursionlimit` or through the Preferences interface.
+* The floating point exception mode `ieee` is now set to `2` by default: floating point exceptions now produce `Inf` or `Nan`, and do not cause any error. The previous behavior can be recalled by simply calling: `ieee(0)`
 * The graphics entity "Datatip" has its property `z_component = 'on|off'` changed to `display_components = 'xyz'`, now it is possible to choose which components to display and the order. Loading old `*.scg` files containing datatips with "z_component" property may not display the z component.
 * Valgrind error detection added to `test_run` (on Linux only)
 * `amell` now
@@ -136,7 +136,7 @@ Feature changes and additions
 * `pdiv`: Return a matrix of type 'constant' when all the rank are 0.
 * `test_run` can now take "[]" as argument to be used on console; for instance: test_run string [] no_check_ref
 * `typeof(:)` and `typeof(n:$)` now return `"implicitlist"` instead of respectively `"constant"` and `"size implicit"`.
-* `strange([])` now returns %nan instead of [], as all other functions for statistical dispersion
+* `strange([])` now returns `%nan` instead of `[]`, as all other functions for statistical dispersion
 * `stdev(x, dir>ndims(x))` now yields an error instead of returning `zeros(x)`
 * `write`: Writing string or string matrix in a file does not add blank space before each value
 * The zoom rubber box now can start/finish from points lying outside the axes bounds.
