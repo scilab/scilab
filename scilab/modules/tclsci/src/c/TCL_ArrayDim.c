@@ -50,7 +50,7 @@ char **TCL_ArrayDim(Tcl_Interp *TCLinterpreter, char *VarName, int *nb_lines, in
     char **index_list = NULL;
 
 
-    if (strcmp(VarName, TCL_ALL_INDEXES) || strcmp(VarName, TCL_NUMERICAL_INDEXES))
+    if (strcmp(VarName, TCL_ALL_INDEXES) == 0 || strcmp(VarName, TCL_NUMERICAL_INDEXES) == 0)
     {
         char MyTclCommand[2048];
         char *StrArrayIndexes = NULL;
