@@ -275,6 +275,7 @@ Bug Fixes
 * [Bug #14662](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - Matrix of strings concatenation with single quote led to a parser error.
 * [Bug #14681](http://bugzilla.scilab.org/show_bug.cgi?id=14681) fixed - Short-circuited AND operation was not possible with double matrices in if and while clauses
 * [Bug #14690](http://bugzilla.scilab.org/show_bug.cgi?id=14690) fixed - The user's startup files set in the working directory were not executed. When `SCIHOME` is not the working directory, `SCIHOME\scilab.ini` was executed twice.
+* [Bug #14694](http://bugzilla.scilab.org/show_bug.cgi?id=14694) fixed - The list of named colors was misaligned and poorly rendered in `help color_list`
 
 ### In 6.0.0 beta-2 and earlier:
 
