@@ -253,6 +253,7 @@ Bug Fixes
 * [Bug #9912](http://bugzilla.scilab.org/show_bug.cgi?id=9912) fixed   - In case of missing translated help page, the default en_US was sometimes ignored
 * [Bug #9153](http://bugzilla.scilab.org/9153) fixed                   - The `isqualbitwise` help page was inaccurate and badly located
 * [Bug #11375](http://bugzilla.scilab.org/show_bug.cgi?id=11375) fixed - When a localized help subdirectory has only a CHAPTER file specifying the section title, it was ignored.
+* [Bug #11692](http://bugzilla.scilab.org/show_bug.cgi?id=11692) fixed - The summary of a help section built from both default en_US and localized files was never sorted overall.
 * [Bug #11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959) fixed - Allow "Zoom Area" to be clicked out of axes
 * [Bug #12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110) fixed - Unable to zoom multiple axes at once
 * [Bug #13583](http://bugzilla.scilab.org/show_bug.cgi?id=13583) fixed - `getd` loading a script including a `clear` instruction yielded an error
