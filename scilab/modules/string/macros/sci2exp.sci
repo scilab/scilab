@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
+// Copyright (C) 2016 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -9,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
 
 function t=sci2exp(a,nom,lmax)
     // sci2exp - convert a variable to an expression
@@ -250,8 +250,8 @@ endfunction
 
 function t=pol2exp(a,lmax)
     $
-    if rhs<2 then lmax=0,end
-    [lhs,rhs]=argn(0)
+    if rhs<2 then lmax = 0, end
+    [lhs,rhs] = argn(0)
 
     [m,n]=size(a),var=" ";lvar=1
     var=varn(a),lvar=length(var);
@@ -337,107 +337,60 @@ function t=pol2exp(a,lmax)
     end
 endfunction
 
-function t=list2exp(l,lmax)
-    if rhs<2 then lmax=0,end
-    [lhs,rhs]=argn(0)
-    dots="."+".";
-    t="list("
-    n=length(l)
-    for k=1:n
-        lk=l(k)
-        sep=",",if k==1 then sep=emptystr(),end
-        if type(lk)==9 then
-            t1=h2exp(lk,lmax)
-        elseif type(lk)==15 then
-            t1=list2exp(lk,lmax)
-        elseif type(lk)==16 then
-            t1=tlist2exp(lk,lmax)
-        elseif type(lk)==17 then
-            t1=mlist2exp(lk,lmax)
+function t = glist2exp(listType, l,lmax)
+    [lhs,rhs] = argn(0)
+    if rhs<3 then lmax = 0, end
+    dots = "."+".";
+    t = listType+"("
+    for k = 1:length(l)
+        sep = ",", if k==1 then sep = "", end
+        clear lk
+        if listType ~= "mlist"
+            lk = l(k)
         else
-            t1=sci2exp(lk,lmax)
+            lk = getfield(k,l)
+        end
+        if ~isdef("lk","local")
+            t1=""
+        else
+            if type(lk)==9 then
+                t1 = h2exp(lk,lmax)
+            elseif type(lk)==15 then
+                t1 = list2exp(lk,lmax)
+            elseif type(lk)==16 then
+                t1 = tlist2exp(lk,lmax)
+            elseif type(lk)==17 then
+                t1 = mlist2exp(lk,lmax)
+            elseif type(lk)==128 then
+                t1 = mlist2exp(user2mlist(lk),lmax)
+            else
+                t1 = sci2exp(lk,lmax)
+            end
         end
         if size(t1,"*")==1&(lmax==0|max(length(t1))+length(t($))<lmax) then
-            t($)=t($)+sep+t1
+            t($) = t($)+sep+t1
         else
-            t($)=t($)+sep+dots
-            t=[t;t1]
+            t($) = t($)+sep+dots
+            t = [t; t1]
         end
-        lk=null()
     end
-    t($)=t($)+")"
+    t($) = t($)+")"
 endfunction
 
-function t=tlist2exp(l,lmax)
-    $;
-    if rhs<2 then lmax=0,end
-    [lhs,rhs]=argn(0)
-    dots="."+".";
-    t="tlist("
-    n=length(l)
-    for k=1:n
-        lk=l(k)
-        sep=",",if k==1 then sep=emptystr(),end
-        if type(lk)==15 then
-            t1=list2exp(lk,lmax)
-        elseif type(lk)==16 then
-            t1=tlist2exp(lk,lmax)
-        elseif type(lk)==17 then
-            t1=mlist2exp(lk,lmax)
-        elseif type(lk)==9 then
-            t1=h2exp(lk,lmax,1)
-        else
-            t1=sci2exp(lk,lmax)
-        end
-        if size(t1,"*")==1&(lmax==0|max(length(t1))+length(t($))<lmax) then
-            t($)=t($)+sep+t1
-        else
-            t($)=t($)+sep+dots
-            t=[t;t1]
-        end
-    end
-    t($)=t($)+")"
-
+function t = list2exp(l, lmax)
+    t = glist2exp("list", l, lmax)
 endfunction
-
-function t=mlist2exp(l,lmax)
-    $;
-    if rhs<2 then lmax=0,end
-    [lhs,rhs]=argn(0)
-    dots="."+".";
-    t="mlist("
-    n=size(definedfields(l),"*")
-    for k=1:n
-        lk=getfield(k,l)
-        sep=",",if k==1 then sep=emptystr(),end
-        if type(lk)==15 then
-            t1=list2exp(lk,lmax)
-        elseif type(lk)==16 then
-            t1=tlist2exp(lk,lmax)
-        elseif type(lk)==17 then
-            t1=mlist2exp(lk,lmax)
-        elseif type(lk)==9 then
-            t1=h2exp(lk,lmax)
-        elseif type(lk)==128 then
-            t1=mlist2exp(user2mlist(lk),lmax)
-        else
-            t1=sci2exp(lk,lmax)
-        end
-        if size(t1,"*")==1&(lmax==0|max(length(t1))+length(t($))<lmax) then
-            t($)=t($)+sep+t1
-        else
-            t($)=t($)+sep+dots
-            t=[t;t1]
-        end
-    end
-    t($)=t($)+")"
-
+function t = tlist2exp(l, lmax)
+    t = glist2exp("tlist", l, lmax)
+endfunction
+function t = mlist2exp(l, lmax)
+    t = glist2exp("mlist", l, lmax)
 endfunction
 
 function t=log2exp(a,lmax)
     $;
-    if rhs<2 then lmax=0,end
-    [lhs,rhs]=argn(0)
+    if rhs<2 then lmax = 0, end
+    [lhs,rhs] = argn(0)
     [m,n]=size(a),
     a1=matrix(a,m*n,1)
     F="%f"

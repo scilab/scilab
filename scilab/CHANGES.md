@@ -249,6 +249,7 @@ Bug Fixes
 * [Bug #5723](http://bugzilla.scilab.org/show_bug.cgi?id=5723) fixed   - Cross-references were missing between axis_properties and axes_properties help pages
 * [Bug #7649](http://bugzilla.scilab.org/show_bug.cgi?id=7649) fixed - `isempty` returned `%F` on `struct()`, `{}` or `list(,)` and was not shortcut
 * [Bug #7696](http://bugzilla.scilab.org/show_bug.cgi?id=7696) fixed   - The `parallel_run` help page was poorly formated
+* [Bug #8356](http://bugzilla.scilab.org/show_bug.cgi?id=8356) fixed - `sci2exp` applied to lists, tlists or mlists having undefined fields yielded an error or a wrong result.
 * [Bug #9912](http://bugzilla.scilab.org/show_bug.cgi?id=9912) fixed   - In case of missing translated help page, the default en_US was sometimes ignored
 * [Bug #9153](http://bugzilla.scilab.org/9153) fixed                   - The `isqualbitwise` help page was inaccurate and badly located
 * [Bug #11375](http://bugzilla.scilab.org/show_bug.cgi?id=11375) fixed - When a localized help subdirectory has only a CHAPTER file specifying the section title, it was ignored.
