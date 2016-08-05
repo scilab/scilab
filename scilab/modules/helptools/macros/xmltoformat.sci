@@ -992,10 +992,8 @@ function tree = x2f_dir_to_tree(directory,level)
 
     for i=1:size(directories,"*")
         this_dir_tree = x2f_dir_to_tree(directory+directories(i),tree("level") + 1);
-        if this_dir_tree("xml_number") > 0 then
-            tree("dir_"+getmd5(directories(i),"string")) = this_dir_tree;
-            tree("xml_number") = tree("xml_number") + this_dir_tree("xml_number");
-        end
+        tree("dir_"+getmd5(directories(i),"string")) = this_dir_tree;
+        tree("xml_number") = tree("xml_number") + this_dir_tree("xml_number");
     end
 
 endfunction
