@@ -1,6 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
+// Copyright (C) CNES - 2011 - Guillaume AZEMA
+// Copyright (C) 2016 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -17,38 +19,56 @@ function y = linspace(d1, d2, n)
     // equally spaced points between x1 and x2.
     // linspace(x1, x2, n) generates n points between x1 and x2.
 
+    // CHECKING ARGUMENTS
+    // ------------------
     rhs = argn(2);
     if rhs < 2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"linspace", 2));
+        msg = gettext("%s: Wrong number of input argument(s): %d to %d expected.\n")
+        error(msprintf(msg, "linspace", 2, 3));
     end
     if size(d1,2)<>1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A column vector expected.\n"),"linspace",1));
+        msg = gettext("%s: Argument #%d: Column expected.\n")
+        error(msprintf(msg, "linspace", 1));
     end
     if ~and(size(d1) == size(d2)) then
-        error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"linspace",1,2));
+        msg = gettext("%s: Arguments #%d and #%d: Same sizes expected.\n")
+        error(msprintf(msg, "linspace", 1, 2));
     end
-
+    msg = gettext("%s: Argument #%d: Number(s) expected.\n")
+    if ~or(type(d1)==[1 5 8]) then
+        error(msprintf(msg, "linspace", 1));
+    end
+    if ~or(type(d2)==[1 5 8]) then
+        error(msprintf(msg, "linspace", 2));
+    end
+    msg = gettext("%s: Argument #%d: %%nan and %%inf values are forbidden.\n")
+    if or(isinf(d1)) | or(isnan(d1)) then
+        error(msprintf(msg, "linspace", 1));
+    end
+    if or(isinf(d2)) | or(isnan(d2)) then
+        error(msprintf(msg, "linspace", 2));
+    end
 
     if rhs == 2 then
         n = 100;
     else
-        if and(type(n)<>[1 8])  | size(n,"*")<>1 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"),"linspace",3));
+        if and(type(n)<>[1 8]) | size(n,"*")<>1 | int(n)<>n then
+            msg = gettext("%s: Argument #%d: An integer value expected.\n")
+            error(msprintf(msg, "linspace",3));
         end
-
-        if type(n) == 1 & int(n) <> n then
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer value expected.\n"),"linspace",3));
-        elseif type(n) == 8 then
-            n = double(n); // Convert for the operations to come
-        end
+        n = double(n); // Convert for the operations to come
     end
 
-    if (n - 1) <= 0 then
-        y = d2;
-    else
+    // PROCESSING
+    // ----------
+    if n>1
         y = ((d2-d1) * (0:n-1)) / (n-1) + d1 * ones(1,n);
-
-        // forces the last value to be in the interval
+        // Forces the last value to be exactly the given d2:
+        // http://bugzilla.scilab.org/10966
         y(:,$) = d2;
+    elseif n==1
+        y = d2
+    else
+        y = []
     end
 endfunction

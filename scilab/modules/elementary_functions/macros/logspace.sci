@@ -36,11 +36,19 @@ function y=logspace(d1, d2, n)
             error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"),"logspace",3));
         end
         if int(n) <> n then
-            warning(msprintf("%s: Using a non integer value for input argument #%d is deprecated and will produce an error in version 5.4.1.\n","logspace",3));
+            msg = gettext("%s: Argument #%d: An integer value expected.\n")
+            error(msprintf(msg, "logspace",3))
         end
     end
+
     if d2==%pi then
         d2 = log10(%pi);
     end
-    y=10 .^( d1*ones(1,n) + [(d2-d1)*(0:n-2)/(floor(n)-1),d2-d1]);
+    if n>1
+        y = 10 .^( d1*ones(1,n) + [(d2-d1)*(0:n-2)/(floor(n)-1),d2-d1]);
+    elseif n==1
+        y = 10.^d2
+    else
+        y = []
+    end
 endfunction
