@@ -262,6 +262,7 @@ Bug Fixes
 * [Bug #8493](http://bugzilla.scilab.org/show_bug.cgi?id=8493) fixed - Some trivial simplifications of `p1./p2` with matrices of complex-encoded polynomials were not done.
 * [Bug #8938](http://bugzilla.scilab.org/show_bug.cgi?id=8938) fixed   - In a boolean sparse matrix `sp`, distributive insertions like `sp(1,:)=%t`, `sp(1,1:$)=%t` or `sp(:,:)=%t` yielded an error.
 * [Bug #9153](http://bugzilla.scilab.org/show_bug.cgi?id=9153) fixed - The `isqualbitwise` help page was inaccurate and badly located
+* [Bug #9161](http://bugzilla.scilab.org/show_bug.cgi?id=9161) fixed - Multiple insertions at a repeated index in a sparse matrice wrongly updated it.
 * [Bug #9912](http://bugzilla.scilab.org/show_bug.cgi?id=9912) fixed - In case of missing translated help page, the default en_US was sometimes ignored
 * [Bug #10116](http://bugzilla.scilab.org/show_bug.cgi?id=10116) fixed - `for h = H, .., end` could not be used when H is a vector of graphic handles
 * [Bug #11375](http://bugzilla.scilab.org/show_bug.cgi?id=11375) fixed - When a localized help subdirectory has only a CHAPTER file specifying the section title, it was ignored.
