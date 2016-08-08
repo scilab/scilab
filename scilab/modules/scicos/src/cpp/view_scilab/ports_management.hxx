@@ -341,8 +341,8 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
                     {
                         std::string adapter = adapterName<p>(port_kind);
                         std::string field = adapterFieldName<p>(port_kind);
-                        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s: %s or %s vector expected.\n"), adapter.data(), field.data(), "'E'", "'I'");
-                        return false;
+                        get_or_allocate_logger()->log(LOG_WARNING, _("Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' vector. Switching to '%s'.\n"), adapter.data(), field.data(), current->get(i), Explicit.c_str(), Implicit.c_str(), Explicit.c_str());
+                        controller.setObjectProperty(ids[i], PORT, p, false);
                     }
                 }
                 for (i = maxSize; i < ids.size(); ++i)
@@ -355,7 +355,7 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
             default:
                 std::string adapter = adapterName<p>(port_kind);
                 std::string field = adapterFieldName<p>(port_kind);
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s .\n"), adapter.data(), field.data());
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s.\n"), adapter.data(), field.data());
                 return false;
         }
     }
