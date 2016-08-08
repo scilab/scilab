@@ -45,7 +45,7 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
     static {
 	// For SciNotes colors in preferences
 	commands.add("cos");
-	macros.add("cosh");
+	macros.add("sind");
     }
 
     public ScilabLexer(ScilabDocument doc) {
