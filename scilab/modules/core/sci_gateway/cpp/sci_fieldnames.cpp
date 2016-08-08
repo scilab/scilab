@@ -61,7 +61,7 @@ types::Function::ReturnValue sci_fieldnames(types::typed_list &in, int _iRetCoun
         return types::Function::OK;
     }
 
-    types::InternalType* pIT;
+    types::InternalType* pIT = nullptr;
 
     // TLIST or MLIST
     if (in[0]->isList() == true)
