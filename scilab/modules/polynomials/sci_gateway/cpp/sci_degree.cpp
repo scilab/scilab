@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_degree(types::typed_list &in, int _iRetCount, t
     }
     else
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_coeff";
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_degree";
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
