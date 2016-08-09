@@ -1,0 +1,22 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2016 - Samuel GOUGEON
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+// <-- Non-regression test for bug 8938 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/8938
+//
+// <-- Short Description -->
+// Some distributive insertions in boolean sparse matrices failed
+sp = sparse([%t %f;%f %t]);
+assert_checktrue(execstr("sp(1,:) = %t", "errcatch")==0);
+assert_checkequal(sp, sparse([%t %t ; %f %t]));
+sp = sparse([%t %f;%f %t]);
+assert_checktrue(execstr("sp(1,1:$) = %t", "errcatch")==0);
+assert_checkequal(sp, sparse([%t %t ; %f %t]));
+assert_checktrue(execstr("sp(:,:) = %t", "errcatch")==0);
+assert_checkequal(sp, sparse([%t %t ; %t %t]));
