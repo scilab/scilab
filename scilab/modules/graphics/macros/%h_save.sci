@@ -273,7 +273,7 @@ function save_graphichandle(h,fd)
         mput(h.line_style,characterFormat,fd) // line_style
         mput(h.thickness,"sl",fd) // thickness
         mput(h.arrow_size_factor,"sl",fd) // arrow_size_factor
-        mput(max(1,h.polyline_style),characterFormat,fd) // ployline_style
+        mput(max(1,h.polyline_style),characterFormat,fd) // polyline_style
 
         mput( size( h.interp_color_vector, "*" ), "sl", fd ) ; // interp_color_vector
         mput( h.interp_color_vector, "dl", fd ) ;

@@ -455,7 +455,7 @@ p = scatter(x,y)
             p = scatter(x,y,t)
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// modify ployline
+// modify polyline
 p.thickness = 0.5
 p.mark_foreground = addcolor(name2rgb("darkblue")/255)
 p.mark_background = addcolor(name2rgb("darkcyan")/255)

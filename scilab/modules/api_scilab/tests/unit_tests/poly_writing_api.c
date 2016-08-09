@@ -21,7 +21,7 @@
 int write_poly(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
-    //output variable info : polinomial matrix 2 x 4
+    //output variable info : polynomial matrix 2 x 4
     //[ x + 2                   x^2 - 4x + 5    4x^3 - 14x^2 + 18 ;
     //  2x^3 - 12x^2 + 64       1               8x^5 + 32x^3]
     int iRows               = 2;

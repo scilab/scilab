@@ -107,7 +107,7 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
                     sciprint(_("Warning : Division by zero...\n"));
                 }
                 break;
-            //            default : throw ast::InternalError(_W("Operator / : Error %d not yet managed.\n"), iResult);
+                //            default : throw ast::InternalError(_W("Operator / : Error %d not yet managed.\n"), iResult);
             default :
                 sciprint(_("Operator / : Error %d not yet managed.\n"), iResult);
         }
@@ -344,7 +344,7 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
 
     if (bScalar1)
     {
-        //in this case, we have to create a temporary square polinomial matrix
+        //in this case, we have to create a temporary square polynomial matrix
         iRowResult = _pDouble->getCols();
         iColResult = _pDouble->getRows();
 

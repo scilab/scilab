@@ -508,7 +508,7 @@ set(gca(),"rotation_angles",[60,45])
             set(gca(),"rotation_angles",[60,45])
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// modify ployline
+// modify polyline
 p.mark_foreground = addcolor([0.5 0 0])
 p.mark_background = addcolor([0.5 0.5 0])
  ]]></programlisting>
@@ -520,7 +520,7 @@ p.mark_background = addcolor([0.5 0.5 0])
             s = linspace(50,1,length(t))
             p = scatter3(x,y,z,s)
             set(gca(),"rotation_angles",[60,45])
-            // modify ployline
+            // modify polyline
             p.mark_foreground = addcolor([0.5 0 0])
             p.mark_background = addcolor([0.5 0.5 0])
         </scilab:image>
