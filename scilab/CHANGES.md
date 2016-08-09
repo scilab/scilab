@@ -252,6 +252,7 @@ Bug Fixes
 
 ### In 6.0.0:
 * [Bug #2919](http://bugzilla.scilab.org/show_bug.cgi?id=2919) fixed - The `fchamp` example and demo were unclear and badly rendered
+* [Bug #4327](http://bugzilla.scilab.org/show_bug.cgi?id=4327) fixed   - Overloading did not support custom types names longer than 8 characters
 * [Bug #5723](http://bugzilla.scilab.org/show_bug.cgi?id=5723) fixed - Cross-references were missing between axis_properties and axes_properties help pages
 * [Bug #7192](http://bugzilla.scilab.org/show_bug.cgi?id=7192) fixed   - From S=[], S($+1,:) = some_row inserted it in row#2 after a parasitic row#1.
 * [Bug #7649](http://bugzilla.scilab.org/show_bug.cgi?id=7649) fixed - `isempty` returned `%F` on `struct()`, `{}` or `list(,)` and was not shortcut
