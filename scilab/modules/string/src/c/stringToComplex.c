@@ -789,16 +789,10 @@ static stringToComplexError ParseComplexValueW(const wchar_t *tx, BOOL bConvertB
             FREE(rnum_string);
             rnum_string = NULL;
         }
-        if (inum_string)
-        {
-            FREE(inum_string);
-            inum_string = NULL;
-        }
-        if (modifiedTxt)
-        {
-            FREE(modifiedTxt);
-            modifiedTxt = NULL;
-        }
+        FREE(inum_string);
+        inum_string = NULL;
+        FREE(modifiedTxt);
+        modifiedTxt = NULL;
     }
     return ierr;
 }
