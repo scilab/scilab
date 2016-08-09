@@ -107,11 +107,8 @@ static void doCompletion(char **wk_buf, unsigned int *cursor, unsigned int *curs
         TermCompletionOnAll(LineBeforeCaret, LineAfterCaret, SearchedPattern, wk_buf, cursor, cursor_max);
     }
 
-    if (LineBeforeCaret)
-    {
-        FREE(LineBeforeCaret);
-        LineBeforeCaret = NULL;
-    }
+    FREE(LineBeforeCaret);
+    LineBeforeCaret = NULL;
     if (LineAfterCaret)
     {
         FREE(LineAfterCaret);
@@ -317,7 +314,7 @@ static int CopyLineAtPrompt(char **wk_buf, char *line, unsigned int *cursor, uns
         FREE(wtmp);
 
         /* erase extra characters left over if any */
-        erase_nchar(GET_MAX(0, (*cursor_max - *cursor)));
+        erase_nchar(GET_MAX(0, (int)(*cursor_max - *cursor)));
         *cursor_max = *cursor;
         return 1;
     }

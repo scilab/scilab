@@ -154,10 +154,7 @@ int gotoLeft(wchar_t * CommandLine, unsigned int *cursorLocation)
             {
                 setStringCapacities("up");
                 i--;
-                if (CommandLine != NULL)
-                {
-                    *cursorLocation = i;
-                }
+                *cursorLocation = i;
                 return i;
             }
             /* If the cursor will move to a previous line separated by L'\n' */
