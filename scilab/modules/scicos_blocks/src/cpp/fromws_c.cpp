@@ -410,6 +410,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag)
                 *work = nullptr;
                 delete[] (char*) ptr->work;
                 delete[] ptr;
+                delete[] ptDims;
                 closeHDF5File(fd);
                 return;
             }
@@ -420,6 +421,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag)
                 *work = nullptr;
                 delete[] (char*) ptr->work;
                 delete[] ptr;
+                delete[] ptDims;
                 closeHDF5File(fd);
                 return;
             }
@@ -435,6 +437,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag)
                 delete[] (char*) ptr->work;
                 delete[] ptr;
                 closeHDF5File(fd);
+                return;
             }
 
             /* Close the file */

@@ -344,15 +344,21 @@ error_handler:
 static void appendData(scicos_block * block, double *x, double *y, double *z)
 {
     int i;
+    int maxNumberOfPoints;
+    int numberOfPoints;
 
     sco_data *sco = (sco_data *) * (block->work);
-    int maxNumberOfPoints = sco->internal.maxNumberOfPoints;
-    int numberOfPoints = sco->internal.numberOfPoints;
+    if (sco == NULL)
+    {
+        return;
+    }
+    maxNumberOfPoints = sco->internal.maxNumberOfPoints;
+    numberOfPoints = sco->internal.numberOfPoints;
 
     /*
      * Handle the case where the scope has more points than maxNumberOfPoints
      */
-    if (sco != NULL && numberOfPoints >= maxNumberOfPoints)
+    if (numberOfPoints >= maxNumberOfPoints)
     {
         // on a full scope, re-alloc
         maxNumberOfPoints = maxNumberOfPoints + block->ipar[2];
