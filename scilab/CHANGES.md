@@ -144,9 +144,10 @@ Feature changes and additions
   - option "tigh_limits" added,
   - Any handle having some Axes as direct children -- as uicontrol-frame -- is now supported.
 * `householder` can now return the reflection matrix, and has a demo.
-* `ndgrid` can now works with any types of homogeneous data.
-* `bench_run` can now return its results and/or record them in a file.
-* `typeof(.., "overload")` allows now to get the overloading type-code of an object.
+* `ndgrid` can now works with any types of homogeneous data
+* `permute` now supports arrays of rationals.
+* `bench_run` can now return its results and/or record them in a file
+* `typeof(.., "overload")` allows now to get the overloading type-code of an object
 * `sign` can now handle a sparse matrix.
 * `sleep(..,'s')` allows now to specify the duration in seconds.
 * `real`, `imag`, `conj` and `isreal` now accept rational fractions.
@@ -208,7 +209,7 @@ Help pages:
 -----------
 
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `plot2d`, `roots`,
-  `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `tree2code`, `%helps`,
+  `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
   `scilab|scilex`, `flipdim`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `and`, `format`, `typeof`,
 `brackets`, `setlanguage`, `sleep`, `isinf`, `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`
@@ -219,7 +220,7 @@ Help pages:
   - Signal processing: New `Convolution - correlation` subsection. `wfir_gui`, `filt_sinc`, `hilb`, `fft2`, `fftshift`,`ifftshift`, `hilbert`, `cepstrum`, `conv`, `conv2`, `convol2d`, `xcor`, `corr`, `hank`, `mrfit`, `frfir` sorted up in existing subsections.
   - Colormaps and GUI/Menus subsections created
 * translations added:
-  - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`, `sleep`, `strtod`
+  - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`, `sleep`, `strtod`, `permute`
   - (ru): homepage
 
 

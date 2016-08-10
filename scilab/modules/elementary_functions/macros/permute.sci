@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
-// Copyright (C) 2013 - Samuel GOUGEON : processing rewritten, fixing http://bugzilla.scilab.org/5205
+// Copyright (C) 2013, 2016 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -19,21 +19,27 @@ function y = permute(x, dims)
     // -dims a vector which contains the permutation order
     // Output :
     // -y the result of the x permutation
+    // History:
+    // 2013 - S. GOUGEON : processing rewritten, fixing http://bugzilla.scilab.org/5205
+    // 2016 - S. GOUGEON : extension to rationals
 
-    // Verify input arguments number
+    if x==[] then
+        y = []
+        return
+    end
+
+    // CHECKING ARGUMENTS
+    // ------------------
     if argn(2) <> 2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "permute", 2));
+        msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+        error(msprintf(msg, "permute", 2));
     end
 
     // Verify if the size of dims corresponds to dimension of x
-    if ndims(dims) <> 2 then
-        error(msprintf(gettext("%s: Wrong size for argument #%d: Vector expected.\n"), "permute", 2));
-
-    elseif or(gsort(dims,"c","i") <> (1:prod(size(dims)))) then
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"), "permute", 2));
-
-    elseif prod(size(dims)) < ndims(x) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: At least the size of input argument #%d expected.\n"), "permute", 2, 1));
+    if ~(or(type(dims)==[1 8]) && and(int(dims)==dims) && ..
+        and(gsort(dims(:)',"g","i")==(1:max(length(dims),ndims(x))))) then
+        msg = _("%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>%d] integers.\n")
+        error(msprintf(msg, "permute", 2, ndims(x)-1));
     end
 
     // Case x is empty
@@ -76,7 +82,13 @@ function y = permute(x, dims)
             y{LI2(i)} = x{LI(i)};
         end
     else
-        y(LI2) = x(LI)
+        if typeof(x)~="rational"
+            y(LI2) = x(LI)
+        else
+            y = x
+            y.num(LI2) = x.num(LI)
+            y.den(LI2) = x.den(LI)
+        end
         y = matrix(y, s)
     end
 
