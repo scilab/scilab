@@ -150,7 +150,7 @@ int sci_completeline(char *fname, void *pvApiCtx)
     }
 
     AssignOutputVariable(pvApiCtx, 1) = *getNbInputArgument(pvApiCtx) + 1; // rhs + 1
-    returnArguments(pvApiCtx);
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

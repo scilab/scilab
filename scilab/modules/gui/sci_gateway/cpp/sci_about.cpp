@@ -41,7 +41,7 @@ int sci_about( char * fname, void* pvApiCtx )
     }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
-    returnArguments(pvApiCtx);
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

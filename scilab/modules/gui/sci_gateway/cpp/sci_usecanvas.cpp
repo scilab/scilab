@@ -91,7 +91,7 @@ int sci_usecanvas(char *fname, void* pvApiCtx)
     }
 
     AssignOutputVariable(pvApiCtx, 1) = 1;
-    returnArguments(pvApiCtx);
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

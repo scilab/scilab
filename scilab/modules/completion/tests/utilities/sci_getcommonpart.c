@@ -65,7 +65,7 @@ int sci_getcommonpart(char *fname, void *pvApiCtx)
         }
 
         AssignOutputVariable(pvApiCtx, 1) = 2; // rhs + 1
-        returnArguments(pvApiCtx);
+        ReturnArguments(pvApiCtx);
     }
     else
     {

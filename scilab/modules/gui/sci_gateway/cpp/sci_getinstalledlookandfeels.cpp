@@ -79,7 +79,7 @@ int sci_getinstalledlookandfeels(char *fname, void* pvApiCtx)
         }
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
-        returnArguments(pvApiCtx);
+        ReturnArguments(pvApiCtx);
     }
     else
     {

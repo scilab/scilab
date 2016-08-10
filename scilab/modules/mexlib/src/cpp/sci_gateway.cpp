@@ -37,7 +37,7 @@ static int callExternalFunction(char *fname, GatefuncS F, BOOL withPutLhsVar)
     (*F)(fname, (int)strlen(fname));
     if (withPutLhsVar)
     {
-        returnArguments(NULL);
+        ReturnArguments(NULL);
     }
     return 0;
 }
