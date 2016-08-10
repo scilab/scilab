@@ -177,10 +177,10 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
                 return new types::Double(1);
             }
             datatypeIndex++;
-        // no break
+            // no break
         case DATATYPE_COLS:
             datatypeIndex++;
-        // no break
+            // no break
         case DATATYPE_ROWS:
         {
             datatypeIndex++;
@@ -319,25 +319,23 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
             }
             case IMPLICIT:
             {
-                if (current->getSize() < static_cast<int>(ids.size()))
+                int maxSize = static_cast<int>(ids.size());
+                if (current->getSize() < maxSize)
                 {
-                    std::string adapter = adapterName<p>(port_kind);
-                    std::string field = adapterFieldName<p>(port_kind);
-                    get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: %d-by-%d expected.\n"), adapter.data(), field.data(), ids.size(), 1);
-                    return false;
+                    maxSize = current->getSize();
                 }
 
                 std::wstring Explicit = L"E";
                 std::wstring Implicit = L"I";
-                for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
+                for (; i < maxSize; ++i)
                 {
                     if (current->get(i) == Implicit)
                     {
-                        controller.setObjectProperty(*it, PORT, p, true);
+                        controller.setObjectProperty(ids[i], PORT, p, true);
                     }
                     else if (current->get(i) == Explicit)
                     {
-                        controller.setObjectProperty(*it, PORT, p, false);
+                        controller.setObjectProperty(ids[i], PORT, p, false);
                     }
                     else
                     {
@@ -346,6 +344,11 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
                         get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s: %s or %s vector expected.\n"), adapter.data(), field.data(), "'E'", "'I'");
                         return false;
                     }
+                }
+                for (i = maxSize; i < ids.size(); ++i)
+                {
+                    // Tag the missing ports as Explicit. This is done to fix the resizing of pin & pout.
+                    controller.setObjectProperty(ids[i], PORT, p, false);
                 }
                 return true;
             }
@@ -394,10 +397,10 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
 
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -563,10 +566,10 @@ inline bool updateNewPort(const ScicosID oldPort, int newPort, Controller& contr
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -613,10 +616,10 @@ inline bool addNewPort(const ScicosID newPortID, int newPort, const std::vector<
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
