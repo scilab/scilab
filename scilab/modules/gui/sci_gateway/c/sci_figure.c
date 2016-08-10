@@ -233,6 +233,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, i);
                     freeAllocatedSingleString(pstProName);
+                    return 1;
                 }
 
                 if (getAllocatedSingleString(pvApiCtx, piAddrData, &pstVal))

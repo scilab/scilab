@@ -86,7 +86,7 @@ int sci_usecanvas(char *fname, void* pvApiCtx)
 
     if (createScalarDouble(pvApiCtx, 1, status))
     {
-        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 1;
     }
 

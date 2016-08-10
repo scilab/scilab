@@ -140,12 +140,6 @@ int sci_x_mdialog(char *fname, void* pvApiCtx)
                 return FALSE;
             }
 
-            if (nbRowDefaultValues != 1 && nbColDefaultValues != 1)
-            {
-                freeAllocatedMatrixOfString(nbRowDefaultValues, nbColDefaultValues, defaultValuesAdr);
-                Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 3);
-                return FALSE;
-            }
             setMessageBoxDefaultInput(messageBoxID, defaultValuesAdr, nbColDefaultValues * nbRowDefaultValues);
             freeAllocatedMatrixOfString(nbRowDefaultValues, nbColDefaultValues, defaultValuesAdr);
         }
