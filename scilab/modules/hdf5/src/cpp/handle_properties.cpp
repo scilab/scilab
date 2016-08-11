@@ -347,7 +347,7 @@ static int import_handle_generic(int dataset, int uid, int parent, const HandleP
         import_handle_children(dataset, uid);
     }
 
-    for (auto& prop : props)
+    for (auto & prop : props)
     {
         const char* name = prop.first.data();
         std::vector<int> info(prop.second);
@@ -1182,7 +1182,7 @@ static int import_handle_datatip(int dataset, int parent)
     setGraphicObjectProperty(datatip, __GO_DATATIP_INDEXES__, indexes, jni_double_vector, 2);
 
     //import "standards" properties
-    import_handle_generic(dataset, datatip, parent, DatatipHandle::getPropertyList(), true);
+    import_handle_generic(dataset, datatip, -1, DatatipHandle::getPropertyList(), true);
 
     closeList6(dataset);
     return datatip;
@@ -1733,7 +1733,7 @@ void update_link_path(int legend, Links::PathList& paths)
     getGraphicObjectProperty(legend, __GO_PARENT_AXES__, jni_int, (void**)&paxes);
     std::vector<int> links;
     //loop on child following path index
-    for (auto& path : paths)
+    for (auto & path : paths)
     {
         int current = axes;
         for (int j = 0; j < path.size(); ++j)
@@ -1842,7 +1842,7 @@ static bool export_handle_children(int parent, int uid);
 
 static bool export_handle_generic(int parent, int uid, const HandleProp& props)
 {
-    for (auto& prop : props)
+    for (auto & prop : props)
     {
         const char* name = prop.first.data();
         std::vector<int> info(prop.second);

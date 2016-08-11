@@ -283,6 +283,7 @@ Bug Fixes
 * [Bug #14690](http://bugzilla.scilab.org/show_bug.cgi?id=14690) fixed - The user's startup files set in the working directory were not executed. When `SCIHOME` is not the working directory, `SCIHOME\scilab.ini` was executed twice.
 * [Bug #14694](http://bugzilla.scilab.org/show_bug.cgi?id=14694) fixed - The list of named colors was misaligned and poorly rendered in `help color_list``SCIHOME\scilab.ini` was executed twice.
 * [Bug #14710](http://bugzilla.scilab.org/show_bug.cgi?id=14710) fixed - fullpath(TMPDIR+...) was bugged on MacOS
+* [Bug #14714](http://bugzilla.scilab.org/show_bug.cgi?id=14714) fixed - Crash/Leak when deleting datatip
 
 ### In 6.0.0 beta-2 and earlier:
 

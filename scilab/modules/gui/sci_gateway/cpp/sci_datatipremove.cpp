@@ -48,6 +48,8 @@ int sci_datatipremove(char *fname, void* pvApiCtx)
     int nbCol           = 0;
     int iType           = 0;
     int *piType         = &iType;
+    int iDatatipCount   = 0;
+    int *piDatatipCount = &iDatatipCount;
 
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 1, 2);
@@ -122,7 +124,16 @@ int sci_datatipremove(char *fname, void* pvApiCtx)
                     if (nbRow * nbCol == 1)
                     {
                         indexPos = (int) pdblReal[0];
-                        DatatipDelete::datatipRemoveProgramIndex(getScilabJavaVM(), iPolylineUID, indexPos);
+                        getGraphicObjectProperty(iPolylineUID, __GO_DATATIPS_COUNT__, jni_int, (void**) &piDatatipCount);
+                        if (indexPos > 0 && indexPos <= iDatatipCount)
+                        {
+                            DatatipDelete::datatipRemoveProgramIndex(getScilabJavaVM(), iPolylineUID, indexPos);
+                        }
+                        else
+                        {
+                            Scierror(999, _("%s: Invalid value for datatip index %d.\n"), fname, indexPos);
+                            return 1;
+                        }
 
                     }
                     else
