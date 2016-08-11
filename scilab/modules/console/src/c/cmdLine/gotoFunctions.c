@@ -80,6 +80,7 @@ int gotoRight(wchar_t * CommandLine, unsigned int *cursorLocation)
     int widthOfStringInTerm = 0;
 
     nbrCol = tgetnum("co");
+    widthOfStringInTerm = sizeOfOneLineInTerm(CommandLine, *cursorLocation + 1);
     /* if the cursor is not at the end of the command line */
     if (*cursorLocation != wcslen(CommandLine))
     {
@@ -92,7 +93,6 @@ int gotoRight(wchar_t * CommandLine, unsigned int *cursorLocation)
         {
             sizeOfWChar = wcwidth(CommandLine[*cursorLocation]);
         }
-        widthOfStringInTerm = sizeOfOneLineInTerm(CommandLine, *cursorLocation + 1);
         /* While we are not at the beginning of the character... */
         while (sizeOfWChar)
         {
