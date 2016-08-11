@@ -373,6 +373,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag)
                 delete[] (char*) ptr->work;
                 delete[] ptr;
                 closeHDF5File(fd);
+                return;
             }
 
             /* Check Hmat */

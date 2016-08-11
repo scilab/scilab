@@ -49,7 +49,7 @@ double acosh(double x)
 }
 /*--------------------------------------------------------------------------*/
 /*
-Inverse hyperbolic tangent (Atanh(x)) Log((1 + x) / (1 � x)) / 2
+Inverse hyperbolic tangent (Atanh(x)) Log((1 + x) / (1 – x)) / 2
 */
 double atanh(double x)
 {
@@ -743,6 +743,11 @@ SCICOS_BLOCKS_IMPEXP void evaluate_expr(scicos_block *block, int flag)
                     set_block_error(-2);
                     return;
             }
+        }
+        if (bottom < 0)
+        {
+            set_block_error(-2);
+            return;
         }
 #if _MSC_VER
         if (!_finite(stack[bottom]) || _isnan(stack[bottom]))
