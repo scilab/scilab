@@ -180,8 +180,8 @@ int sci_xclick(char *fname, void *pvApiCtx)
             deleteJxclickString(menuCallback);
             return 1;
         }
-        freeAllocatedSingleString(strRep);
         strncpy(strRep, menuCallback, istr);
+        freeAllocatedSingleString(strRep);
     }
 
     deleteJxclickString(menuCallback);
