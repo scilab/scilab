@@ -2487,7 +2487,7 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
     if (_pR->isScalar())
     {
         //D - sp
-        pOut = (Double*)_pR->clone();
+        pOut = (Double*)_pL->clone();
         pOut->setComplex(bComplex1 || bComplex2);
 
         if (pOut->isComplex())
@@ -2495,9 +2495,9 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
             double* pReal = pOut->get();
             double* pImg = pOut->getImg();
             int size = pOut->getSize();
+            std::complex<double> dbl = _pR->getImg(0, 0);
             for (int i = 0 ; i < size ; i++)
             {
-                std::complex<double> dbl = _pR->getImg(0, 0);
                 pReal[i] -= dbl.real();
                 pImg[i] -= dbl.imag();
             }
@@ -2506,9 +2506,10 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
         {
             double* pReal = pOut->get();
             int size = pOut->getSize();
+            double dblTmp = _pR->get(0);
             for (int i = 0 ; i < size ; i++)
             {
-                pReal[i] -= pReal[i];
+                pReal[i] -= dblTmp;
             }
         }
 
