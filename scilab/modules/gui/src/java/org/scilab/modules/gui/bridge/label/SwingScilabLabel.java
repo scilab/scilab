@@ -772,6 +772,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Wi
                 }
                 preferred = new Dimension(icon.getIconWidth(), icon.getIconHeight());
                 revalidate();
+                repaint();
             }
         }
 
