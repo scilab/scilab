@@ -813,6 +813,7 @@ int allocSingleString(void* _pvCtx, int _iVar, int _iLen, const char** _pstStrin
 
     if (pStr == NULL)
     {
+        delete[] pstStrings;
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), "allocSingleString");
         return sciErr.iErr;
     }
