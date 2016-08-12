@@ -1700,7 +1700,10 @@ GenericType* Sparse::extract(typed_list* _pArgs)
                 {
                     delete pOut;
                     pOut = NULL;
-                    break;
+                    delete[] piMaxDim;
+                    delete[] piCountDim;
+                    cleanIndexesArguments(_pArgs, &pArg);
+                    return NULL;
                 }
                 int iRowRead = static_cast<int>(pIdx[i] - 1) % getRows();
                 int iColRead = static_cast<int>(pIdx[i] - 1) / getRows();
