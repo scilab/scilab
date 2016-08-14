@@ -300,7 +300,7 @@ void mxDestroyArray(mxArray *ptr)
     if (mxGetClassID(ptr) != mxUNKNOWN_CLASS)
     {
         delete (types::InternalType*)ptr;
-        *ptr = NULL;
+        ptr = NULL;
     }
 }
 
@@ -624,7 +624,7 @@ char *mxArrayToString(const mxArray *ptr)
         length += (int)wcslen(wstrings[k]);
     }
 
-    char *str = (char *)malloc(sizeof(char *) * length);
+    char *str = (char *)malloc(sizeof(char) * length);
     for (int k = 0; k < items; k++)
     {
         char *dest = wide_string_to_UTF8(wstrings[k]);
