@@ -169,6 +169,11 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
         if (iRet)
         {
             Scierror(999, _("%s: Error while writing in file: disk full or deleted file.\n"), "mprintf");
+            for (int i = 0; i < nbrOfLines; i++)
+            {
+                FREE(wcsStringToWrite[i]);
+            }
+            FREE(wcsStringToWrite);
             return types::Function::Error;
         }
     }
