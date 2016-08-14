@@ -391,6 +391,16 @@ static bool import_double(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAd
             {
                 iRet = readDoubleMatrix(_iDatasetId, pdblReal);
             }
+            if (iRet < 0)
+            {
+                FREE(piDims);
+                FREE(pdblReal);
+                if (iComplex)
+                {
+                    FREE(pdblImg);
+                }
+                return false;
+            }
 
             //to be sure ti have 2 dims
             if (iDims == 1)
