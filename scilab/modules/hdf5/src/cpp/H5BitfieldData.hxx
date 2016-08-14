@@ -38,7 +38,10 @@ public:
 
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
     {
+        std::ios oldState(nullptr);
+        oldState.copyfmt(os);
         os << "0x" << std::hex << std::setfill('0') << std::setw(2) << (int)static_cast<unsigned char * >(getData())[pos];
+        os.copyfmt(oldState);
     }
 };
 
@@ -60,7 +63,10 @@ public:
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
     {
         const unsigned short x = static_cast<unsigned short * >(getData())[pos];
+        std::ios oldState(nullptr);
+        oldState.copyfmt(os);
         os << std::hex << std::setfill('0') << std::setw(2) << (x & 0xFF) << ":" << ((x >> 8) & 0xFF);
+        os.copyfmt(oldState);
     }
 };
 
@@ -82,7 +88,10 @@ public:
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
     {
         const unsigned int x = static_cast<unsigned int * >(getData())[pos];
+        std::ios oldState(nullptr);
+        oldState.copyfmt(os);
         os << std::hex << std::setfill('0') << std::setw(2) << (x & 0xFF) << ":" << ((x >> 8) & 0xFF) << ":" << ((x >> 16) & 0xFF) << ":" << ((x >> 24) & 0xFF);
+        os.copyfmt(oldState);
     }
 };
 
@@ -106,7 +115,10 @@ public:
     virtual void printData(std::ostream & os, const unsigned int pos, const unsigned int indentLevel) const
     {
         const unsigned long long x = static_cast<unsigned long long * >(getData())[pos];
+        std::ios oldState(nullptr);
+        oldState.copyfmt(os);
         os << std::hex << std::setfill('0') << std::setw(2) << (x & 0xFF) << ":" << ((x >> 8) & 0xFF) << ":" << ((x >> 16) & 0xFF) << ":" << ((x >> 24) & 0xFF) << ":" << ((x >> 32) & 0xFF) << ":" << ((x >> 40) & 0xFF) << ":" << ((x >> 48) & 0xFF) << ":" << ((x >> 56) & 0xFF);
+        os.copyfmt(oldState);
     }
 };
 
