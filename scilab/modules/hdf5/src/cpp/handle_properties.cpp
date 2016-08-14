@@ -2428,13 +2428,10 @@ static bool export_handle_uicontrol(int parent, int uid)
     getHandleIntProperty(uid, __GO_UI_STRING_SIZE__, &size);
     int col = 0;
     getHandleIntProperty(uid, __GO_UI_STRING_COLNB__, &col);
-    int row = size / col;
 
     int dims[2];
-    dims[0] = row;
-    dims[1] = col;
 
-    if (col == 0 || row == 0)
+    if (col == 0)
     {
         dims[0] = 1;
         dims[1] = 1;
@@ -2444,6 +2441,9 @@ static bool export_handle_uicontrol(int parent, int uid)
     }
     else
     {
+        int row = size / col;
+        dims[0] = row;
+        dims[1] = col;
         char** string = nullptr;
         getHandleStringVectorProperty(uid, __GO_UI_STRING__, &string);
         writeStringMatrix6(parent, "string", 2, dims, string);

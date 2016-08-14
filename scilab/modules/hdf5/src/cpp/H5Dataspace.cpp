@@ -31,7 +31,7 @@ H5Dataspace::~H5Dataspace()
     }
 }
 
-hid_t H5Dataspace::getH5Id()
+hid_t H5Dataspace::getH5Id() const
 {
     return space;
 }

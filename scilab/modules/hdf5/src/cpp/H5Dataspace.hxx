@@ -31,7 +31,7 @@ public:
     H5Dataspace(H5Object & _parent, hid_t _space);
     ~H5Dataspace();
 
-    virtual hid_t getH5Id();
+    virtual hid_t getH5Id() const;
     virtual std::vector<unsigned int> getDims(const bool b) const;
     virtual std::string getTypeName() const;
 
