@@ -16,19 +16,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xsetech" xml:lang="pt">
     <refnamediv>
         <refname>xsetech</refname>
-        <refpurpose>ajusta a sub-janela de uma janela de gr·ficos para
-            esboÁo
+        <refpurpose>ajusta a sub-janela de uma janela de gr√°ficos para
+            esbo√ßo
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seq¸Íncia de Chamamento</title>
+        <title>Seq√º√™ncia de Chamamento</title>
         <synopsis>xsetech(wrect,[frect,logflag])
             xsetech(wrect=[...],frect=[..],logflag="..", arect=[...])
             xsetech()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Par‚metros</title>
+        <title>Par√¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>wrect</term>
@@ -61,47 +61,48 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>DescriÁ„o </title>
+        <title>Descri√ß√£o </title>
         <para>
-            <literal>xsetech</literal> È principalmente utilizado para ajustar a
-            sub-janela da janela de gr·ficos que ser· utilizada para esboÁo. A
-            sub-janela È especificada atravÈs do par‚metro
+            <literal>xsetech</literal> √© principalmente utilizado para ajustar a
+            sub-janela da janela de gr√°ficos que ser√° utilizada para esbo√ßo. A
+            sub-janela √© especificada atrav√©s do par√¢metro
             <literal>wrect=[x,y,w,h]</literal> (ponto superior esquerdo, largura,
-            altura). Os valores em <literal>wrect</literal> a s„o especificados
-            utilizando-se a proporÁ„o de largura ou altura da janela de gr·ficos
+            altura). Os valores em <literal>wrect</literal> a s√£o especificados
+            utilizando-se a propor√ß√£o de largura ou altura da janela de gr√°ficos
             corrente. Por exemplo, <literal>wrect=[0,0,1,1]</literal> significa que
-            toda a janela ser· utilizada e <literal>wrect=[0.5,0,0.5,1]</literal>
-            significa que a regi„o gr·fica ser· a metade direita da janela de
-            gr·ficos.
+            toda a janela ser√° utilizada e <literal>wrect=[0.5,0,0.5,1]</literal>
+            significa que a regi√£o gr√°fica ser√° a metade direita da janela de
+            gr√°ficos.
         </para>
         <para>
-            <literal>xsetech</literal> tambÈm ajusta as escalas gr·ficas
-            correntes para esboÁo 2d e pode ser utilizada juntamente a rotinas
-            gr·ficas que requerem a escala de gr·ficos corrente (por exemplo
+            <literal>xsetech</literal> tamb√©m ajusta as escalas gr√°ficas
+            correntes para esbo√ßo 2d e pode ser utilizada juntamente a rotinas
+            gr√°ficas que requerem a escala de gr√°ficos corrente (por exemplo
             <literal>strf="x0z"</literal> ou <literal>frameflag=0</literal> em
             <literal>plot2d</literal>).
         </para>
         <para>
-            <literal>frect=[xmin,ymin,xmax,ymax]</literal> È utilizado para
-            ajustar a escala gr·fica e È igual ao argumento <literal>rect</literal> de
-            <literal>plot2d</literal>. Se <literal>frect</literal> n„o for fornecido,
-            o valor corrente da escala de gr·ficos permanece inalterado. O valor
-            padr„o de <literal>rect</literal> È <literal>[0,0,1,1]</literal> (na
-            criaÁ„o de janelas, quando se volta para o valor padr„o com
-            <literal>xset('default')</literal> ou quando se limpa eventos gr·ficos
+            <literal>frect=[xmin,ymin,xmax,ymax]</literal> √© utilizado para
+            ajustar a escala gr√°fica e √© igual ao argumento <literal>rect</literal> de
+            <literal>plot2d</literal>. Se <literal>frect</literal> n√£o for fornecido,
+            o valor corrente da escala de gr√°ficos permanece inalterado. O valor
+            padr√£o de <literal>rect</literal> √© <literal>[0,0,1,1]</literal> (na
+            cria√ß√£o de janelas, quando se volta para o valor padr√£o com
+            <literal>xset('default')</literal> ou quando se limpa eventos gr√°ficos
             gravados <literal>clf()</literal>).
         </para>
         <para>
-            <literal>arect=[x_left, x_right,y_up,y_down]</literal> È utilizado
-            para ajustar a moldura gr·fica dentro da sub-janela. A moldura gr·fica È
-            especificada (como <literal>wrect</literal>) utilizando-se a proporÁ„o de
-            largura ou altura da sub-janela de gr·ficos corrente. O valor padr„o È
-            <literal>1/8*[1,1,1,1]</literal>. Se <literal>arect</literal> n„o for
-            fornecido, o valor padr„o permanece inalterado.
+            <literal>arect=[x_left, x_right,y_up,y_down]</literal> √© utilizado
+            para ajustar a moldura gr√°fica dentro da sub-janela. A moldura gr√°fica √©
+            especificada (como <literal>wrect</literal>) utilizando-se a propor√ß√£o de
+            largura ou altura da sub-janela de gr√°ficos corrente. O valor padr√£o √©
+            <literal>1/8*[1,1,1,1]</literal>. Se <literal>arect</literal> n√£o for
+            fornecido, o valor padr√£o permanece inalterado.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
+<<<<<<< HEAD
         <programlisting role="example"><![CDATA[
 // para obter uma explanaÁ„o gr·fica dos par‚metros de xsetech entre com:
 exec('SCI/modules/graphics/demos/xsetechfig.sce');
@@ -112,22 +113,43 @@ exec('SCI/modules/graphics/demos/xsetechfig.sce');
 xsetech([0,0,1.0,0.5],[-5,-3,5,3])
 // chamamos plot2d com a opÁ„o "001" para utilizar a escala de gr·ficos
 // ajustada por xsetech
+=======
+        <programlisting role="example"><![CDATA[ 
+// para obter uma explana√ß√£o gr√°fica dos par√¢metros de xsetech entre com:
+exec('SCI/modules/graphics/demos/xsetechfig.sce');
+
+// aqui xsetech √© usado para dividir a janela de gr√°ficos em duas partes
+// o primeiro xsetech √© usado para se ajustar a primeira sub-janela 
+// e a escala de gr√°ficos corrente
+xsetech([0,0,1.0,0.5],[-5,-3,5,3])
+// chamamos plot2d com a op√ß√£o "001" para utilizar a escala de gr√°ficos
+// ajustada por xsetech 
+>>>>>>> 7f4fe15... * bug #14558: square() is obsolete
 plot2d([1:10]',[1:10]',1,"001"," ")
-// ent„o xsetech È usado para ajustar a segunda sub-janela
+// ent√£o xsetech √© usado para ajustar a segunda sub-janela
 xsetech([0,0.5,1.0,0.5])
+<<<<<<< HEAD
 // a escala de gr·ficos È ajustada por xsetech para [0,0,1,1] por padr„o
 // e nÛs a modificamos utilizando o argumento rect em plot2d
+=======
+// a escala de gr√°ficos √© ajustada por xsetech para [0,0,1,1] por padr√£o
+// e n√≥s a modificamos utilizando o argumento rect em plot2d 
+>>>>>>> 7f4fe15... * bug #14558: square() is obsolete
 plot2d([1:10]',[1:10]',1,"011"," ",[-6,-6,6,6])
-// quatro esboÁos em uma ˙nica janela de gr·ficos
+// quatro esbo√ßos em uma √∫nica janela de gr√°ficos
 clf()
 xset("font",2,0)
 xsetech([0,0,0.5,0.5]); plot3d()
 xsetech([0.5,0,0.5,0.5]); plot2d()
 xsetech([0.5,0.5,0.5,0.5]); grayplot()
 xsetech([0,0.5,0.5,0.5]); histplot()
-// de volta aos valores padrıes para a sub-janela
+// de volta aos valores padr√µes para a sub-janela
 xsetech([0,0,1,1])
+<<<<<<< HEAD
 // um esboÁo com arect modificado
+=======
+// um esbo√ßo com arect modificado 
+>>>>>>> 7f4fe15... * bug #14558: square() is obsolete
 clf()
 xset("default")
 xsetech(arect=[0,0,0,0])
@@ -140,7 +162,7 @@ xset("default")
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title>Ver TambÈm </title>
+        <title>Ver Tamb√©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="xgetech">xgetech</link>
@@ -152,7 +174,7 @@ xset("default")
                 <link linkend="isoview">isoview</link>
             </member>
             <member>
-                <link linkend="square">square</link>
+                <link linkend="replot">replot</link>
             </member>
         </simplelist>
     </refsection>

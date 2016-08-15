@@ -160,7 +160,7 @@ xset("default")
                 <link linkend="isoview">isoview</link>
             </member>
             <member>
-                <link linkend="square">square</link>
+                <link linkend="replot">replot</link>
             </member>
         </simplelist>
     </refsection>

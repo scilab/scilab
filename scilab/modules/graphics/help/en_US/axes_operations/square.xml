@@ -17,7 +17,7 @@
     <refnamediv>
         <refname>square</refname>
         <refpurpose>
-            set scales for isometric plot (change the size of the window)
+            set scales for isometric plot (change the size of the window) <emphasis role="bold">(function obsolete)</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -37,6 +37,16 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            This function is obsolete. It will be removed in Scilab 6.1.
+        </warning>
+        <warning>
+            Please replace <literal>square(a,b,c,d)</literal> with
+            <literal>gcf().axes_size = [n n]; replot([a b c d])</literal>
+            where <literal>n</literal> is the size in pixels of the desired
+            graphic square window. This replacement can be extended to any
+            existing graphic window, not only the current one.
+        </warning>
         <para>
             <function>square</function> is used to have isometric scales on the x
             and y axes. The requested values <literal>xmin</literal>,
@@ -70,5 +80,16 @@ plot2d(sin(t),cos(t))
                 <link linkend="xsetech">xsetech</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    square() is tagged as obsolete. It will be removed from Scilab 6.1
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

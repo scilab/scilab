@@ -280,7 +280,7 @@ Obsolete functions or features
 * `isoview(xmin,xmax,ymin,ymax)` is deprecated. Please use `isoview("on"), replot(..)` instead.
 * `eval3d` will be removed from Scilab 6.1. Please use `ndgrid` instead.
 * `strcmpi` is deprecated. Please use `strcmp(..,"i")`instead.
-
+* `square` will be removed from Scilab 6.1. Please use `gcf().axes_size` and `replot` instead.
 
 Removed Functions
 -----------------
@@ -380,6 +380,7 @@ Bug Fixes
 * [#14527](http://bugzilla.scilab.org/show_bug.cgi?id=14527): Calling pathconvert function without parameters crashed Scilab.
 * [#14553](http://bugzilla.scilab.org/show_bug.cgi?id=14553): find(a=b) crashed Scilab.
 * [#14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557): `csim` failed when the system has no state.
+* [#14558](http://bugzilla.scilab.org/show_bug.cgi?id=14558): fixed - `square` was poor, clumsy and too specific. It is tagged as obsolete.
 * [#14564](http://bugzilla.scilab.org/show_bug.cgi?id=14564): fieldnames failed for empty structs.
 * [#14571](http://bugzilla.scilab.org/show_bug.cgi?id=14571): The type of input argument of `figure`function was not checked.
 * [#14578](http://bugzilla.scilab.org/show_bug.cgi?id=14578): LaTeX string used for text uicontrol was not updated.

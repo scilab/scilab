@@ -678,14 +678,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="square">square</link>
-                </term>
-                <listitem>
-                    <para>Set scales for isometric plot (change the size of the window)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="scaling">scaling</link>
                 </term>
                 <listitem>

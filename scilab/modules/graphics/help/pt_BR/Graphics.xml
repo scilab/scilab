@@ -385,14 +385,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>square</term>
-                <listitem>
-                    <para>ajusta escalas para esboço isométrico (muda o tamanho da
-                        janela)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>scaling</term>
                 <listitem>
                     <para>transformação afim de um conjunto de pontos</para>

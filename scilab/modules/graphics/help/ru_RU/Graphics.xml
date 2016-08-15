@@ -705,16 +705,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="square">square</link>
-                </term>
-                <listitem>
-                    <para>
-                        Установка равного масштаба осей графика (меняет размер окна)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="scaling">scaling</link>
                 </term>
                 <listitem>

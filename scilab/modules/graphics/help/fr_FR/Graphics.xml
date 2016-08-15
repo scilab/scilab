@@ -667,14 +667,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="square">square</link>
-                </term>
-                <listitem>
-                    <para>échelle isométrique (par changement de la taille de la fenêtre)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="scaling">scaling</link>
                 </term>
                 <listitem>

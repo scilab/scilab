@@ -667,14 +667,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="square">square</link>
-                </term>
-                <listitem>
-                    <para>等軸プロットにスケールを設定 (ウインドウの大きさを変更)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="scaling">scaling</link>
                 </term>
                 <listitem>

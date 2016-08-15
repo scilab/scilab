@@ -9,7 +9,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function []=square(xmin,ymin,xmax,ymax)
+function square(xmin,ymin,xmax,ymax)
 
     //definit un  environnement  graphique
     //permettant un trace isometrique.
@@ -21,7 +21,11 @@ function []=square(xmin,ymin,xmax,ymax)
     //meme taille de dessin, utiliser plutot la macro isoview. Les extrema
     //sont imposes.
     //!
-
+    msg = ["square(xmin,ymin,xmax,ymax) is obsolete."
+           "square() will be removed from Scilab 6.1"
+           "Please use ""gcf().axes_size=[n,n]; replot([xmin ymin xmax ymax])"" instead."
+           ]
+    warning(msg)
     [lhs,rhs]=argn(0);
 
     if (rhs>0) & (rhs<>4) then

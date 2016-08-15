@@ -17,7 +17,7 @@
 
     <refnamediv>
         <refname>isoview</refname>
-        <refpurpose>等軸プロットにスケールを設定 (ウインドウの大きさを変更しない)  </refpurpose>
+        <refpurpose>等軸プロットにスケールを設定</refpurpose>
     </refnamediv>
 
     <refsynopsisdiv>
@@ -240,9 +240,6 @@ xtitle("with frameflag=4")
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="square">square</link>
-            </member>
             <member>
                 <link linkend="replot">replot</link>
             </member>

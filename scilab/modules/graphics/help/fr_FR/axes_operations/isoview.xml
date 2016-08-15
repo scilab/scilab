@@ -16,7 +16,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="fr" xml:id="isoview">
     <refnamediv>
         <refname>isoview</refname>
-        <refpurpose>Règle la vue isométrique des repères graphiques (taille de fenêtre fixe)
+        <refpurpose>Règle la vue isométrique des repères graphiques
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -234,9 +234,6 @@ xtitle("with frameflag=4")
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="square">square</link>
-            </member>
             <member>
                 <link linkend="replot">replot</link>
             </member>
