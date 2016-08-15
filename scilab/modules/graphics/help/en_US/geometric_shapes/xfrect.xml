@@ -47,13 +47,13 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-xset("color",5)
 xfrect(-1,1,2,2)
+gce().background = color("green");
  ]]></programlisting>
         <scilab:image>
             plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-            xset("color",5)
             xfrect(-1,1,2,2)
+            gce().background = color("green");
         </scilab:image>
 
     </refsection>

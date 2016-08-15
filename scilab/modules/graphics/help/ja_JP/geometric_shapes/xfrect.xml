@@ -88,20 +88,20 @@
 
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
 
-xset("color",5)
-
 xfrect(-1,1,2,2)
+
+gce().background = color("red");
 
  ]]></programlisting>
 
         <scilab:image>
 
             plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-
-            xset("color",5)
-
+            
             xfrect(-1,1,2,2)
-
+            
+            gce().background = color("red");
+            
         </scilab:image>
 
     </refsection>

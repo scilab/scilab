@@ -116,9 +116,9 @@ plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
 
 xfarc(-0.5,0.5,1,1,0,90*64)
 
-xset("color",2)
-
 xfarc(0.5,0.5,1,1,0,360*64)
+
+gce().background = 2;
 
  ]]></programlisting>
 
@@ -129,11 +129,11 @@ xfarc(0.5,0.5,1,1,0,360*64)
             plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
 
             xfarc(-0.5,0.5,1,1,0,90*64)
-
-            xset("color",2)
-
+            
             xfarc(0.5,0.5,1,1,0,360*64)
-
+            
+            gce().background = 2;
+            
         </scilab:image>
 
     </refsection>

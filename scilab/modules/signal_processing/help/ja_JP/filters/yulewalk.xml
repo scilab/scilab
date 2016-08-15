@@ -122,13 +122,13 @@ H=[0,0,1,1,0,0];
 Hz=yulewalk(8,f,H);
 fs=1000;
 fhz = f*fs/2;
-clf(0);
-xset('window',0);
+scf(0);
+clf
 plot2d(fhz',H');
 xtitle('Desired Frequency Response (Magnitude)')
 [frq,repf]=repfreq(Hz,0:0.001:0.5);
-clf(1);
-xset('window',1);
+scf(1);
+clf
 plot2d(fs*frq',abs(repf'));
 xtitle('Obtained Frequency Response (Magnitude)')
  ]]></programlisting>
@@ -145,9 +145,9 @@ xtitle('Obtained Frequency Response (Magnitude)')
 
             fhz = f*fs/2;
 
-            clf(0);
+            scf(0);
 
-            xset('window',0);
+            clf
 
             plot2d(fhz',H');
 

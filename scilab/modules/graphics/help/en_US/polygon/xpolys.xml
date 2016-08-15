@@ -52,12 +52,19 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    If <literal>draw(i)</literal> is negative, the mark with id <literal>-draw(i)</literal> is used to draw polyline i (marks are drawn using the current pattern). Use <literal>xset()</literal> to see the meaning of the ids.
+                    If <literal>draw(i)</literal> is negative, the mark with id
+                    <literal>-draw(i)</literal> is used to draw polyline i (marks are drawn using
+                    the current pattern).
+                    See the <link linkend="polyline_properties">polyline properties</link>
+                    to see ids of available marks.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    If <literal>draw(i)</literal> is strictly positive, the line style (or color) with id  <literal>draw(i)</literal> is used to draw polyline i. Use <literal>xset()</literal> to see the meaning of the ids.
+                    If <literal>draw(i)</literal> is strictly positive, the line style (or color)
+                    with id  <literal>draw(i)</literal> is used to draw polyline i.
+                    See the <link linkend="polyline_properties">polyline properties</link>
+                    to see ids of available line styles.
                 </para>
             </listitem>
         </itemizedlist>
@@ -67,13 +74,13 @@
         <programlisting role="example"><![CDATA[
 plot2d(0,0,-1,"012"," ",[0,0,1,1])
 rand("uniform")
-xset("color",3)
+gca().foreground = 3;
 xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
  ]]></programlisting>
         <scilab:image>
             plot2d(0,0,-1,"012"," ",[0,0,1,1])
             rand("uniform")
-            xset("color",3)
+            gca().foreground = 3;
             xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
         </scilab:image>
 

@@ -65,8 +65,9 @@
                             <listitem>
                                 <para>
                                     if <literal>style(i)</literal> is negative, the curve is plotted
-                                    using the mark with id <literal>abs(style(i))+1</literal>; use
-                                    <literal>xset()</literal> to see the mark ids.
+                                    using the mark with id <literal>abs(style(i))+1</literal>.
+                                    See <link linkend="polyline_properties">polyline properties</link>
+                                    to see the mark ids.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -76,8 +77,9 @@
                                 <para>
                                     if <literal>style(i)</literal> is strictly positive, a plain
                                     line with color id <literal>style(i)</literal> or a dashed line with
-                                    dash id <literal>style(i)</literal> is used; use <literal>xset()</literal>
-                                    to see the color ids.
+                                    dash id <literal>style(i)</literal> is used.
+                                    See <link linkend="polyline_properties">polyline properties</link>
+                                    to see the line style ids.
                                 </para>
                             </listitem>
                         </varlistentry>

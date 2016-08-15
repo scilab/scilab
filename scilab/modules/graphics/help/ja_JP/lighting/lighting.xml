@@ -85,9 +85,9 @@
         </para>
 
         <scilab:image>
-
-            xset("font",1,4);
-
+            
+            set(gca(), "font_style", 1, "font_size", 4);
+            
             xstring(0.0, 0.4, '$Color = Ambient_{term} + Diffuse_{term} + Specular_{term} \\ Ambient_{term} = L_{ambient}*S_{ambient} \\ Diffuse_{term} = L_{diffuse}*S_{diffuse}*(L_{direction} \cdot S_{normal}) \\ Specular_{term} = L_{specular}*S_{specular}*(S_{normal} \cdot (L_{direction}+View_{direction}) ))^{S_{shininess}}$');
 
             f=gcf();

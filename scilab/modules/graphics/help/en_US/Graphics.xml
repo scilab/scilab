@@ -776,14 +776,11 @@
         <variablelist>
             <varlistentry>
                 <term>
-                    <link linkend="xset">xset</link>
+                    <link linkend="set">set</link>
                 </term>
                 <listitem>
                     <para>
                         Set values of the graphics context
-                        <warning>
-                            This function is obsolete.
-                        </warning>
                     </para>
                 </listitem>
             </varlistentry>

@@ -107,9 +107,11 @@
                     有するマーカがポリライン i　を描画する際に使用されます
 
                     (マーカはカレントのパターンにより描画されます).
-
-                    このIDの意味を参照するには<literal>xset()</literal>を参照してください.
-
+                    
+                    See the <link linkend="polyline_properties">polyline properties</link>
+                    
+                    to see ids of available marks.
+                    
                 </para>
 
             </listitem>
@@ -121,9 +123,11 @@
                     <literal>draw(i)</literal> が厳密に正の場合,ID <literal>draw(i)</literal>の
 
                     線の種類(または色)がポリライン i　に使用されます.
-
-                    IDの意味を参照するには, <literal>xset()</literal> を使用してください.
-
+                    
+                    See the <link linkend="polyline_properties">polyline properties</link>
+                    
+                    to see ids of available line styles.
+                    
                 </para>
 
             </listitem>
@@ -142,7 +146,7 @@ plot2d(0,0,-1,"012"," ",[0,0,1,1])
 
 rand("uniform")
 
-xset("color",3)
+gca().foreground = 3;
 
 xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
 
@@ -153,9 +157,9 @@ xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
             plot2d(0,0,-1,"012"," ",[0,0,1,1])
 
             rand("uniform")
-
-            xset("color",3)
-
+            
+            gca().foreground = 3;
+            
             xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
 
         </scilab:image>

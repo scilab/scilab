@@ -283,27 +283,27 @@ _____________
 // example #1
 x=-10:10; y=-10:10;m =rand(21,21);
 clf()
-xset("colormap",hotcolormap(64))
+gcf().color_map = hotcolormap(64);
 Sgrayplot(x,y,m, strf="011", rect=[-20,-20,20,20])
  ]]></programlisting>
         <scilab:image>
             x=-10:10; y=-10:10;m =rand(21,21);
             clf()
-            xset("colormap",hotcolormap(64))
+            gcf().color_map = hotcolormap(64);
             Sgrayplot(x,y,m, strf="011", rect=[-20,-20,20,20])
         </scilab:image>
         <programlisting role="example"><![CDATA[
 // example #2
 t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
 clf()
-xset("colormap",jetcolormap(64))
+gcf().color_map = jetcolormap(64);
 colorbar(-1,1)
 Sgrayplot(t,t,m, strf="041")
 ]]></programlisting>
         <scilab:image>
             t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
             clf()
-            xset("colormap",jetcolormap(64))
+            gcf().color_map = jetcolormap(64);
             colorbar(-1,1)
             Sgrayplot(t,t,m, strf="041")
         </scilab:image>

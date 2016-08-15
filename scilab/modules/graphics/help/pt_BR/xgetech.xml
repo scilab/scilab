@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xgetech" xml:lang="pt">
     <refnamediv>
         <refname>xgetech</refname>
-        <refpurpose>retorna a escala de gráficos corrente</refpurpose>
+        <refpurpose>retorna a escala de grÃ¡ficos corrente</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[wrect,frect,logflag,arect]=xgetech()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>wrect,frect</term>
@@ -40,40 +40,40 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>xgetech</literal> retorna a escala de gráficos corrente (da
-            janela corrente). O retângulo [xmin,ymin,xmax,ymax] dado por
-            <literal>frect</literal> é o tamanho de toda a janela de gráficos. O
-            esboço será feito na região da janela de gráficos corrente especificada
+            <literal>xgetech</literal> retorna a escala de grÃ¡ficos corrente (da
+            janela corrente). O retÃ¢ngulo [xmin,ymin,xmax,ymax] dado por
+            <literal>frect</literal> Ã© o tamanho de toda a janela de grÃ¡ficos. O
+            esboÃ§o serÃ¡ feito na regiÃ£o da janela de grÃ¡ficos corrente especificada
             por <literal>wrect</literal>.
         </para>
         <para>
             <literal>wrect=[x,y,w,h]</literal> (ponto superior esquerdo,
-            largura, altura) descreve uma região dentro de uma janela de gráficos. Os
-            valores em <literal>wrect</literal> são especificados utilizando-se a
-            proporção de largura e altura da janela de gráficos:
+            largura, altura) descreve uma regiÃ£o dentro de uma janela de grÃ¡ficos. Os
+            valores em <literal>wrect</literal> sÃ£o especificados utilizando-se a
+            proporÃ§Ã£o de largura e altura da janela de grÃ¡ficos:
         </para>
         <para>
             <literal>wrect=[0 0 1 1]</literal> significa que toda a janela de
-            gráficos será utilizada.
+            grÃ¡ficos serÃ¡ utilizada.
         </para>
         <para>
-            <literal>wrect=[0.5 0 0.5 1]</literal> significa que a região de
-            gráficos é a metade direita da janela de gráficos.
+            <literal>wrect=[0.5 0 0.5 1]</literal> significa que a regiÃ£o de
+            grÃ¡ficos Ã© a metade direita da janela de grÃ¡ficos.
         </para>
         <para>
-            <literal>logflag</literal> é um string de tamanho 2 "xy", onde x e y
+            <literal>logflag</literal> Ã© um string de tamanho 2 "xy", onde x e y
             podem ser "n" ou "l". "n" significa escala normal (linear) e "l" significa
-            escala logarítmica. x corresponde ao eixo x e y corresponde ao eixo
+            escala logarÃ­tmica. x corresponde ao eixo x e y corresponde ao eixo
             y.
         </para>
         <para>
             <literal>arect=[x_left, x_right,y_up,y_down]</literal> fornece o
-            tamanho da moldura dentro da subjanela. O quadro gráfico é especificado
-            (como <literal>wrect</literal>) utilizando-se a proporção de largura ou
-            altura da subjanela de gráficos corrente. O valor padrão é
-            <literal>1/8*[1,1,1,1]</literal>. Se <literal>arect</literal> não for
+            tamanho da moldura dentro da subjanela. O quadro grÃ¡fico Ã© especificado
+            (como <literal>wrect</literal>) utilizando-se a proporÃ§Ã£o de largura ou
+            altura da subjanela de grÃ¡ficos corrente. O valor padrÃ£o Ã©
+            <literal>1/8*[1,1,1,1]</literal>. Se <literal>arect</literal> nÃ£o for
             fornecido, o valor corrente permanece inalterado.
         </para>
     </refsection>
@@ -83,21 +83,20 @@
 // primeira subjanela
 xsetech([0,0,1.0,0.5])
 plot2d()
-// então, xsetech, é usado para ajustar a segunda sub-janela
+// entÃ£o, xsetech, Ã© usado para ajustar a segunda sub-janela
 xsetech([0,0.5,1.0,0.5])
 grayplot()
-// obtendo as escalas gráficas da primeira sub-janela
+// obtendo as escalas grÃ¡ficas da primeira sub-janela
 xsetech([0,0,1.0,0.5])
 [wrect,frect,logflag,arect]=xgetech();
-// obtendo as escalas gráficas da segunda sub-janela
+// obtendo as escalas grÃ¡ficas da segunda sub-janela
 xsetech([0,0.5,1.0,0.5])
 [wrect,frect,logflag,arect]=xgetech();
-clf();
-xset('default')
- ]]></programlisting>
+clf reset;
+]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xsetech">xsetech</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -47,7 +47,7 @@
                 <term>logflag</term>
                 <listitem>
                     <para>string de tamanho 2 "xy", onde x e y podem ser "n" ou "l". "n"
-                        escala normal e "l" significa escala logar�tmica. x refere-se ao
+                        escala normal e "l" significa escala logarítmica. x refere-se ao
                         eixo x e y ao eixo y.
                     </para>
                 </listitem>
@@ -88,7 +88,7 @@
             o valor corrente da escala de gráficos permanece inalterado. O valor
             padrão de <literal>rect</literal> é <literal>[0,0,1,1]</literal> (na
             criação de janelas, quando se volta para o valor padrão com
-            <literal>xset('default')</literal> ou quando se limpa eventos gráficos
+            <literal>clf reset</literal> ou quando se limpa eventos gráficos
             gravados <literal>clf()</literal>).
         </para>
         <para>
@@ -120,7 +120,7 @@ xsetech([0,0.5,1.0,0.5])
 plot2d([1:10]',[1:10]',1,"011"," ",[-6,-6,6,6])
 // quatro esboços em uma única janela de gráficos
 clf()
-xset("font",2,0)
+set(gca(),"font_style",2,"font_size",0);
 xsetech([0,0,0.5,0.5]); plot3d()
 xsetech([0.5,0,0.5,0.5]); plot2d()
 xsetech([0.5,0.5,0.5,0.5]); grayplot()
@@ -128,16 +128,14 @@ xsetech([0,0.5,0.5,0.5]); histplot()
 // de volta aos valores padrões para a sub-janela
 xsetech([0,0,1,1])
 // um esboço com arect modificado
-clf()
-xset("default")
+clf('reset')
 xsetech(arect=[0,0,0,0])
 x=1:0.1:10;plot2d(x',sin(x)')
 clf()
 xsetech(arect=[1/8,1/8,1/16,1/4])
 x=1:0.1:10;plot2d(x',sin(x)')
-clf()
-xset("default")
- ]]></programlisting>
+clf('reset')
+]]></programlisting>
     </refsection>
     <refsection>
         <title>Ver Também </title>

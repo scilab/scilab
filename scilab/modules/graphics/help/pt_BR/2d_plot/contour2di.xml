@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -134,10 +134,10 @@ end
                 <link linkend="contour2d">contour2d</link>
             </member>
             <member>
-                <link linkend="plot2d">plot2d</link>
+                <link linkend="contour2dm">contour2dm</link>
             </member>
             <member>
-                <link linkend="xset">xset</link>
+                <link linkend="plot2d">plot2d</link>
             </member>
         </simplelist>
     </refsection>

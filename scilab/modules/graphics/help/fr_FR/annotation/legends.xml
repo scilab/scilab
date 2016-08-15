@@ -134,8 +134,10 @@ plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3],opt="lr")
 
 scf() ;
-xset("line style",2);plot2d(t,cos(t),style=5);
-xset("line style",4);plot2d(t,sin(t),style=3);
+gca().line_style = 2;
+plot2d(t,cos(t),style=5);
+gca().line_style = 4;
+plot2d(t,sin(t),style=3);
 legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt="?")
  ]]></programlisting>
         <scilab:image>
@@ -152,13 +154,17 @@ plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=3 )
 
 subplot(222)
-xset("line style",2);plot2d(t,cos(t),style=5);
-xset("line style",4);plot2d(t,sin(t),style=3);
+gca().line_style = 2;
+plot2d(t,cos(t),style=5);
+gca().line_style = 4;
+plot2d(t,sin(t),style=3);
 legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=6 )
 
 subplot(223)
-xset("line style",2);plot2d(t,cos(t),style=5);
-xset("line style",4);plot2d(t,sin(t),style=3);
+gca().line_style = 2;
+plot2d(t,cos(t),style=5);
+gca().line_style = 4;
+plot2d(t,sin(t),style=3);
 legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=1, font_size=2 )
 
 subplot(224)
@@ -173,13 +179,17 @@ legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
             legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=3 )
 
             subplot(222)
-            xset("line style",2);plot2d(t,cos(t),style=5);
-            xset("line style",4);plot2d(t,sin(t),style=3);
+            gca().line_style = 2;
+            plot2d(t,cos(t),style=5);
+            gca().line_style = 4;
+            plot2d(t,sin(t),style=3);
             legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=6 )
 
             subplot(223)
-            xset("line style",2);plot2d(t,cos(t),style=5);
-            xset("line style",4);plot2d(t,sin(t),style=3);
+            gca().line_style = 2;
+            plot2d(t,cos(t),style=5);
+            gca().line_style = 4;
+            plot2d(t,sin(t),style=3);
             legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=1, font_size=2 )
 
             subplot(224)

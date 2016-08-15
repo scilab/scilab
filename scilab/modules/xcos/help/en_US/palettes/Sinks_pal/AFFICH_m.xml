@@ -127,21 +127,25 @@
                 <para>
                     <emphasis role="bold">Font number</emphasis>
                 </para>
-                <para> integer, the selected font number (see xset).</para>
+                <para> integer, the selected font number
+                   (see <link linkend="graphics_fonts">graphics fonts</link>).
+                </para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Font size</emphasis>
                 </para>
-                <para> integer, the selected font size (set xset)</para>
+                <para> integer, the selected font size
+                  (see <link linkend="graphics_fonts">graphics fonts</link>)
+                </para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Color</emphasis>
                 </para>
-                <para> integer, the selected color for the text (see xset)</para>
+                <para> integer, the selected color for the text</para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
             <listitem>

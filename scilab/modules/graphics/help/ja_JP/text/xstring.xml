@@ -218,17 +218,17 @@ xstring(0.1,1.6,alphabet,0,1) // ボックス内にアルファベット
 
 xstring(0.1,1.4,alphabet,20)  // 角度
 
-xset("font",1,1)              // symbolフォントを使用
+set(gca(),"font_style",1,"font_size",1);              // symbolフォントを使用
 
 xstring(0.1,0.1,alphabet)
 
-xset("font",1,3)              // フォントの大きさを変更
-
 xstring(0.1,0.3,alphabet)
 
-xset("font",1,24);
+gce().font_size = 3;         // フォントの大きさを変更
 
 xstring(0.1,0.6,"a") //大きなアルファ
+
+gce().font_size = 24;
 
  ]]></programlisting>
 

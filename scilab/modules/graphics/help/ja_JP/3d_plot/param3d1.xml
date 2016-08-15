@@ -476,7 +476,7 @@
 
         <programlisting role="example"><![CDATA[
 
-xset('window',20) // ウインドウ番号 20を作成
+scf(20); // ウインドウ番号 20を作成
 
 t=[0:0.1:5*%pi]';
 

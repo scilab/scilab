@@ -99,12 +99,12 @@ plot2d([0;1],[0;2],0)
 xstring(0.1,1.8,alphabet)     // alphabet
 xstring(0.1,1.6,alphabet,0,1) // alphabet in a box
 xstring(0.1,1.4,alphabet,20)  // angle
-xset("font",1,1)              // use symbol fonts
+set(gca(), "font_style", 1, "font_size", 1);  // use symbol fonts
 xstring(0.1,0.1,alphabet)
-xset("font",1,3)              // change size font
 xstring(0.1,0.3,alphabet)
-xset("font",1,24);
-xstring(0.1,0.6,"a") //big alpha
+gce().font_size = 3;          // change the font size
+xstring(0.1,0.6,"a")    //big alpha
+gce().font_size = 24;
  ]]></programlisting>
         <scilab:image>
             plot2d([0;1],[0;1],0)

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -16,28 +16,28 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sdf" xml:lang="pt">
     <refnamediv>
         <refname>sdf</refname>
-        <refpurpose>Ajusta figura padrão</refpurpose>
+        <refpurpose>Ajusta figura padrÃ£o</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>sdf()
             f = gdf(); set(f,"default_values",1)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>manipulador da figura padrão.</para>
+                    <para>manipulador da figura padrÃ£o.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta rotina reajusta a figura modelo para valores padrões. </para>
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta rotina reajusta a figura modelo para valores padrÃµes. </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -54,15 +54,15 @@ f.figure_position=[0 -1];
 a.x_location="top";
 a.y_location="left";
 for (i=1:6)
-  xset("window",i) // criando figura com identificador i
+  scf(i); // criando figura com identificador i
   plot2d(x,[sin(x) cos(x)],[i -i])
   xclick();
-  if i == 4, sdf(); end // obtendo os valores padrões da figura modelo
+  if i == 4, sdf(); end // obtendo os valores padrÃµes da figura modelo
  end
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sda">sda</link>

@@ -172,11 +172,11 @@ y1 = [cos(x); 9*cos(x)];
 
 plot2d([-10,10], [-10,10], [-1,-1], "022")
 
-xset("clipgrf")
+gca().clip_state = "clipgrf";
 
 xarrows(x1, y1, -1, [1:7,9]) //8番目の色は白
 
-xset("clipoff")
+gca().clip_state = "off";
 
  ]]></programlisting>
 
@@ -189,13 +189,13 @@ xset("clipoff")
             y1 = [cos(x); 9*cos(x)];
 
             plot2d([-10,10], [-10,10], [-1,-1], "022")
-
-            xset("clipgrf")
-
+            
+            gca().clip_state = "clipgrf";
+            
             xarrows(x1, y1, -1, [1:7,9])
-
-            xset("clipoff")
-
+            
+            gca().clip_state = "off";
+            
         </scilab:image>
 
         <programlisting role="example"><![CDATA[

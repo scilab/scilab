@@ -67,16 +67,12 @@ gamma(6)-prod(1:5)
         <programlisting role="example"><![CDATA[
 // the graph of the Gamma function on [a,b]
 a = -3; b = 5;
-x = linspace(a,b,40000)';
+x = linspace(a,b,40000);
 y = gamma(x);
 clf()
-c=xget("color")
-xset("color",2)
 plot2d(x, y, style=0, axesflag=5, rect=[a, -10, b, 10])
-xset("color",c)
 xtitle("The gamma function on ["+string(a)+","+string(b)+"]")
-show_window()
- ]]></programlisting>
+show_window() ]]></programlisting>
         <scilab:image>
             a = -3; b = 5;
             x = linspace(a,b,40000)';

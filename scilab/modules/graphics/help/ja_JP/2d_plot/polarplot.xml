@@ -64,8 +64,9 @@
                             <listitem>
                                 <para>
                                     <literal>style(i)</literal> が負の場合, 曲線は
-                                    ID <literal>abs(style(i))+1</literal>のマーカにより描画されます;
-                                    マーカIDを参照するには<literal>xset()</literal>を使用してください.
+                                    ID <literal>abs(style(i))+1</literal>のマーカにより描画されます.
+                                    See <link linkend="polyline_properties">polyline properties</link>
+                                    to see the mark ids.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -74,8 +75,9 @@
                             <listitem>
                                 <para>
                                     <literal>style(i)</literal> が厳密に正の場合, 色ID <literal>style(i)</literal>
-                                    を有する実線または破線ID <literal>style(i)</literal>を有する破線が使用されます;
-                                    色IDを参照するには,<literal>xset()</literal>を使用してください.
+                                    を有する実線または破線ID <literal>style(i)</literal>を有する破線が使用されます.
+                                    See <link linkend="polyline_properties">polyline properties</link>
+                                    to see the line style ids.
                                 </para>
                             </listitem>
                         </varlistentry>

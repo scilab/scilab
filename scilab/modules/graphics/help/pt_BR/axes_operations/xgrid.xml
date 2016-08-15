@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xgrid" xml:lang="pt">
     <refnamediv>
         <refname>xgrid</refname>
-        <refpurpose>adiciona um grid em um esboço 2d</refpurpose>
+        <refpurpose>adiciona um grid em um esboÃ§o 2d</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>xgrid([style])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>style</term>
@@ -34,27 +34,28 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>xgrid</literal> adiciona um grid em um esboço 2d.
-            <literal>style</literal> é o identificador de tipo de tracejado ou de cor
-            utilizado para o esboço do grid. Use <literal>xset()</literal> para o
-            significado do identificador.
+            <literal>xgrid</literal> adiciona um grid em um esboÃ§o 2d o 3d.
+            <literal>style</literal> Ã© o identificador de tipo de tracejado ou de cor
+            utilizado para o esboÃ§o do grid.
+            Use <link linkend="polyline_properties">polyline properties</link> para ver os
+            identificadores de cor.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-x=[0:0.1:2*%pi]';
+x = [0:0.1:2*%pi]';
 plot2d(sin(x))
 xgrid(2)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
-                <link linkend="xset">xset</link>
+                <link linkend="axes_properties">Axes properties</link>
             </member>
             <member>
                 <link linkend="plot2d">plot2d</link>

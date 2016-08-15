@@ -108,7 +108,7 @@ a.y_location="left";
 
 for (i=1:6)
 
-  xset("window",i) // ID iを指定して図を作成
+  scf(i); // ID iを指定して図を作成
 
   plot2d(x,[sin(x) cos(x)],[i -i])
 

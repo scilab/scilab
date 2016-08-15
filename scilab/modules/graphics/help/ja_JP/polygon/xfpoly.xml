@@ -162,7 +162,7 @@ y=cos(2*%pi*(0:4)/5);
 
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2]);
 
-xset("color",5);
+gca().foreground = 5;
 
 xfpoly(x,y);
 
@@ -195,9 +195,9 @@ xfpoly(x,y,3);
             y=cos(2*%pi*(0:4)/5);
 
             plot2d(0,0,-1,"010"," ",[-2,-2,2,2]);
-
-            xset("color",5);
-
+            
+            gca().foreground = 5;
+            
             xfpoly(x,y);
 
         </scilab:image>

@@ -115,9 +115,6 @@ f.color_map = graycolormap(32);
             <member>
                 <link linkend="wintercolormap">wintercolormap</link>
             </member>
-            <member>
-                <link linkend="xset">xset</link>
-            </member>
         </simplelist>
     </refsection>
 </refentry>

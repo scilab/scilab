@@ -183,9 +183,9 @@
             グラフィックスケールのカレントの値は変更されません.
 
             <varname>rect</varname>のデフォルト値は <literal>[0,0,1,1]</literal>
-
-            (ウインドウ作成時,<code>xset('default')</code>によりデフォルト値に
-
+            
+            (ウインドウ作成時,<code>clf('reset')</code>によりデフォルト値に
+            
             戻された時,または記録されたグラフィックイベントを<code>clf()</code>で
 
             クリアした時)です.
@@ -256,7 +256,7 @@ plot2d([1:10]',[1:10]',1,"011"," ",[-6,-6,6,6])
 
 clf()
 
-xset("font",2,0)
+set(gca(),"font_style",2,"font_size",0);
 
 xsetech([0,0,0.5,0.5]);
 
@@ -281,9 +281,9 @@ xsetech([0,0,1,1])
  ]]></programlisting>
 
         <scilab:image>
-
-            xset("font",2,0)
-
+            
+            set(gca(),"font_style",2,"font_size",0);
+            
             xsetech([0,0,0.5,0.5]);
 
             plot3d()
@@ -308,9 +308,7 @@ xsetech([0,0,1,1])
 
 // 変更したarectにプロット
 
-clf()
-
-xset("default")
+clf('reset')
 
 xsetech(arect=[0,0,0,0])
 
