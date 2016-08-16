@@ -149,6 +149,15 @@ Function* Function::clone()
     return this;
 }
 
+bool Function::operator==(const InternalType& it)
+{
+    if (!const_cast<InternalType &>(it).isFunction())
+    {
+        return false;
+    }
+    return this->getFunc() == const_cast<InternalType &>(it).getAs<Function>()->getFunc();
+}
+
 OptFunction::OptFunction(const std::wstring& _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule)
 {
     m_wstName = _wstName;

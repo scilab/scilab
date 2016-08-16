@@ -53,7 +53,7 @@ public :
     typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out);
     typedef ReturnValue (*GW_FUNC_OPT)(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out);
 
-    Function() : Callable() 
+    Function() : Callable()
     {
         m_pFunc = nullptr;
         m_pLoadDeps = nullptr;
@@ -63,6 +63,7 @@ public :
 
     //FIXME : Should not return NULL
     virtual Function*       clone();
+    virtual bool operator==(const InternalType& it);
 
     static Function*        createFunction(const std::wstring& _wstName, GW_FUNC _pFunc, const std::wstring& _wstModule);
     static Function*        createFunction(const std::wstring& _wstName, GW_FUNC_OPT _pFunc, const std::wstring& _wstModule);

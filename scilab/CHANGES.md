@@ -297,6 +297,7 @@ Bug Fixes
 * [Bug #14667](http://bugzilla.scilab.org/show_bug.cgi?id=14667) fixed - Multi line string without final quote generated a non terminal parser state.
 * [Bug #14681](http://bugzilla.scilab.org/show_bug.cgi?id=14681) fixed - Short-circuited AND operation was not possible with double matrices in if and while clauses
 * [Bug #14690](http://bugzilla.scilab.org/show_bug.cgi?id=14690) fixed - The user's startup files set in the working directory were not executed. When `SCIHOME` is not the working directory, `SCIHOME\scilab.ini` was executed twice.
+* [Bug #14692](http://bugzilla.scilab.org/show_bug.cgi?id=14692) fixed - isequal() was always returning true for builtin functions
 * [Bug #14694](http://bugzilla.scilab.org/show_bug.cgi?id=14694) fixed - The list of named colors was misaligned and poorly rendered in `help color_list`
 * [Bug #14710](http://bugzilla.scilab.org/show_bug.cgi?id=14710) fixed - fullpath(TMPDIR+...) was bugged on MacOS
 * [Bug #14714](http://bugzilla.scilab.org/show_bug.cgi?id=14714) fixed - Crash/Leak when deleting datatip
