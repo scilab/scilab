@@ -1509,8 +1509,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleTr(final Map<String, String> attributes, final String contents) throws SAXException {
         String bgcolor = attributes.get("bgcolor");
+        String valign = attributes.get("valign");
 
-        return encloseContents("tr", new String[] {"bgcolor", bgcolor}, contents);
+        return encloseContents("tr", new String[] {"bgcolor", bgcolor, "valign", valign}, contents);
     }
 
     /**
