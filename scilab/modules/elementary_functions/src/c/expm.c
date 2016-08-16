@@ -1797,11 +1797,11 @@ L640:
 
             if (dabss(dblX) > dabss(dblZZ))
             {
-                _pdblHessUp[iIndex24 + 1 + iOffset * _iSize] = (-dblR - dblX * dblW) / dblX;
+                _pdblHessUp[iIndex24 + 1 + iOffset * _iSize] = (-dblR - dblT * dblW) / dblX;
             }
             else
             {
-                _pdblHessUp[iIndex24 + 1 + iOffset * _iSize] = (-dblR - dblX * dblW) / dblX;
+                _pdblHessUp[iIndex24 + 1 + iOffset * _iSize] = (-dblS - dblT * dblY) / dblZZ;
             }
         }
         //:::::::::: end real vector ::::::::::
