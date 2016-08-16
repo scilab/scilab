@@ -1,8 +1,9 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
-*  Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
-*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+ *  Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
+ *  Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -2254,13 +2255,26 @@ InternalType* compnoequal_M_IC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* compnoequal_M_E(T *_pL, U *_pR)
 {
-    return new Bool(true);
+    // Try to find an overload and call it if exists
+    types::typed_list tmp;
+    tmp.push_back(_pL);
+    tmp.push_back(_pR);
+    std::wstring overloadName(Overload::buildOverloadName(Overload::getNameFromOper(ast::OpExp::ne), tmp, 1, true));
+    types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(overloadName));
+    if (pIT)
+    {
+        return NULL;
+    }
+    else
+    {
+        return new Bool(true);
+    }
 }
 
 template<class T, class U, class O>
 InternalType* compnoequal_E_M(T *_pL, U *_pR)
 {
-    return new Bool(true);
+    return compnoequal_M_E<U, T, O>(_pR, _pL);
 }
 
 template<class T, class U, class O>
