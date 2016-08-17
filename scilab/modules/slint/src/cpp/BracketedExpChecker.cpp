@@ -32,7 +32,7 @@ void BracketedExpChecker::preCheckNode(const ast::Exp & e, SLintContext & contex
             {
                 --pos.first;
             }
-            while (pos.first >= 0 && (code[pos.first] == L' ' || code[pos.first] == L'\t'));
+            while (pos.first != -1 && (code[pos.first] == L' ' || code[pos.first] == L'\t'));
             if (pos.first == -1)
             {
                 bracketed = false;
