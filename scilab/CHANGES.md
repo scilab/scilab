@@ -279,6 +279,7 @@ Bug Fixes
 * [Bug #14367](http://bugzilla.scilab.org/show_bug.cgi?id=14367) fixed - `edit_curv` failed opening due to a `[]+1` operation.
 * [Bug #14448](http://bugzilla.scilab.org/show_bug.cgi?id=14448) fixed - removed havewindow() was still documented
 * [Bug #14513](http://bugzilla.scilab.org/show_bug.cgi?id=14513) fixed - `isqual` comparing two built-in functions yielded an error.
+* [Bug #14527](http://bugzilla.scilab.org/show_bug.cgi?id=14527) fixed - Calling pathconvert function without parameters crashed Scilab.
 * [Bug #14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557) fixed - `csim` failed when the system has no state.
 * [Bug #14582](http://bugzilla.scilab.org/show_bug.cgi?id=14582) fixed - `gettext`or it alias `_()` were sometimes applied to broken literal strings
 * [Bug #14586](http://bugzilla.scilab.org/show_bug.cgi?id=14586) fixed - Xcos simulation stop button did not work.

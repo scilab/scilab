@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_pathconvert(types::typed_list &in, int _iRetCou
     int iPathExpand         = 1;
     int iPathTrail          = 1;
 
-    if (in.size() < 1 && in.size() > 4)
+    if (in.size() < 1 || in.size() > 4)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "pathconvert" , 1, 4);
         return types::Function::Error;
