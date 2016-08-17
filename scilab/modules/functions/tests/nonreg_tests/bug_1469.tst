@@ -14,27 +14,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=1469
 //
 // <-- Short Description -->
-//    Comments modify line numbering in functions
+//    Appended comments are considered as a new physical line
 //
-//    What you don't believe?
-//
-//    Try this:
-//
-//    1st test, no comment in line 1:
-//
-//    -->function foo1()
-//    -->  function foo3
-//    -->  endfunction
-//    -->  disp("line a");
-//    -->  disp("line b");
-//    -->  disp("line c");
-//    -->endfunction
-//
-//    -->setbpt("foo1",[3,4])
-//
-//    -->foo1()
-//    Stop after row     3 in function foo1 :
-// ...
 
 //test of line numbering in  functions, handling initial comments
 

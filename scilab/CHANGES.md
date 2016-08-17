@@ -306,6 +306,7 @@ Removed Functions
 * Functionnalities based on former Scilab stack have been removed:
   - `comp`, `errcatch`, `iserror`, `fun2string`, `getvariablesonstack`, `gstacksize`, `macr2lst`, `stacksize`, `code2str` and `str2code`.
   - `-mem` launching option (used to set `stacksize` at startup).
+* Former debugging functions have been removed: `setbpt`, `delbpt`, `dispbpt`. Please use `debug` instead.
 
 
 Known issues
