@@ -15,12 +15,6 @@ ilib_verbose(0); //to remove ilib_* traces
 // Import diagram
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/DAE/Bouncing.zcos"));
 
-// Redefining messagebox() to avoid popup
-prot = funcprot();
-funcprot(0);
-function messagebox(msg, msg_title)
-endfunction
-funcprot(prot);
 Info = scicos_simulate(scs_m, list());
 
 // Modify solver + run DDaskr + save results

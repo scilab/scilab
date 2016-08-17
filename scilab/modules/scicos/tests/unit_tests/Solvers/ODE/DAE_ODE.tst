@@ -13,30 +13,23 @@
 // Import diagram
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/ODE/Kalman.zcos"));
 
-// Redefining messagebox() to avoid popup
-prot = funcprot();
-funcprot(0);
-function message(msg)
-endfunction
-funcprot(prot);
-
 // Modify solver + run IDA
 scs_m.props.tol(6) = 100;       // Solver
-ier = execstr('xcos_simulate(scs_m, 4);', 'errcatch'); // Run simulation (LSodar will actually take over)
+ier = execstr("xcos_simulate(scs_m, 4);", "errcatch"); // Run simulation (LSodar will actually take over)
 assert_checkequal(ier, 0);
-ier = execstr('scicos_simulate(scs_m);', 'errcatch');
+ier = execstr("scicos_simulate(scs_m);", "errcatch");
 assert_checkequal(ier, 0);
 
 // Modify solver + run DDaskr Newton
 scs_m.props.tol(6) = 101;       // Solver
-ier = execstr('xcos_simulate(scs_m, 4);', 'errcatch'); // Run simulation (LSodar will actually take over)
+ier = execstr("xcos_simulate(scs_m, 4);", "errcatch"); // Run simulation (LSodar will actually take over)
 assert_checkequal(ier, 0);
-ier = execstr('scicos_simulate(scs_m);', 'errcatch');
+ier = execstr("scicos_simulate(scs_m);", "errcatch");
 assert_checkequal(ier, 0);
 
 // Modify solver + run DDaskr GMRes
 scs_m.props.tol(6) = 102;       // Solver
-ier = execstr('xcos_simulate(scs_m, 4);', 'errcatch'); // Run simulation (LSodar will actually take over)
+ier = execstr("xcos_simulate(scs_m, 4);", "errcatch"); // Run simulation (LSodar will actually take over)
 assert_checkequal(ier, 0);
-ier = execstr('scicos_simulate(scs_m);', 'errcatch');
+ier = execstr("scicos_simulate(scs_m);", "errcatch");
 assert_checkequal(ier, 0);
