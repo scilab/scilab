@@ -15,6 +15,8 @@
 *
 */
 
+extern "C"
+{
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -29,6 +31,7 @@
 #include "CallClipboard.h"
 #include "os_string.h"
 #include "FigureList.h"
+}
 
 /*--------------------------------------------------------------------------*/
 int sci_ClipBoard(char *fname, void* pvApiCtx)
@@ -88,8 +91,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
                         return 1;
                     }
 
-                    /* TO DO a delete [] and not a FREE */
-                    FREE(output);
+                    delete[] output;
                     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
 
                     freeAllocatedSingleString(param1);

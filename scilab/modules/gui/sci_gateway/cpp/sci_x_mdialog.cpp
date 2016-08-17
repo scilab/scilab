@@ -14,6 +14,8 @@
  *
  */
 
+extern "C"
+{
 #include "gw_gui.h"
 #include "api_scilab.h"
 #include "localization.h"
@@ -21,6 +23,8 @@
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
+}
+
 /*--------------------------------------------------------------------------*/
 int sci_x_mdialog(char *fname, void* pvApiCtx)
 {
@@ -242,8 +246,7 @@ int sci_x_mdialog(char *fname, void* pvApiCtx)
         }
 
         createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRowDefaultValues, nbColDefaultValues, userValue);
-        freeArrayOfString(userValue, userValueSize);
-        /* TO DO : delete of userValue */
+        delete[] userValue;
     }
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;

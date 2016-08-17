@@ -14,6 +14,8 @@
  *
  */
 
+extern "C"
+{
 #include "gw_gui.h"
 #include "sci_malloc.h"
 #include "api_scilab.h"
@@ -22,6 +24,7 @@
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
+}
 
 /*--------------------------------------------------------------------------*/
 int sci_x_choice(char *fname, void* pvApiCtx)
@@ -194,12 +197,12 @@ int sci_x_choice(char *fname, void* pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            delete[] userValue;
             return 1;
         }
-
-        /* TO DO : do a delete []  getMessageBoxUserSelectedButtons */
     }
 
+    delete[] userValue;
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);
     return TRUE;

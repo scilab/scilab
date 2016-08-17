@@ -13,11 +13,14 @@
  *
  */
 
+extern "C"
+{
 #include "gw_gui.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "CallColorChooser.h"
+}
 
 /*--------------------------------------------------------------------------*/
 int sci_uigetcolor(char *fname, void* pvApiCtx)
@@ -332,6 +335,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                delete[] selectedRGB;
                 return 1;
             }
 
@@ -347,6 +351,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                delete[] selectedRGB;
                 return 1;
             }
 
@@ -357,6 +362,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                delete[] selectedRGB;
                 return 1;
             }
 
@@ -367,6 +373,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                delete[] selectedRGB;
                 return 1;
             }
 
@@ -389,6 +396,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                delete[] selectedRGB;
                 return 1;
             }
 
@@ -403,6 +411,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                delete[] selectedRGB;
                 return 1;
             }
 
@@ -411,6 +420,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                delete[] selectedRGB;
                 return 1;
             }
 
@@ -419,6 +429,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                delete[] selectedRGB;
                 return 1;
             }
 
@@ -429,6 +440,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
         }
     }
 
+    delete[] selectedRGB;
     ReturnArguments(pvApiCtx);
     return TRUE;
 }
