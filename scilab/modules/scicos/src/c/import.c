@@ -960,8 +960,7 @@ int C2F(getsciblockbylabel)(int*kfun, int label[], int *n)
 /*--------------------------------------------------------------------------*/
 int getscilabel(int *kfun, char *label, int *n)
 {
-    int k, i;
-    int *u, *y;
+    int k;
 
     if (scicos_imp.x == (double *)NULL)
     {
@@ -972,12 +971,7 @@ int getscilabel(int *kfun, char *label, int *n)
     *n = (int)(scicos_imp.izptr[k] - scicos_imp.izptr[k - 1]);
     if (*n > 0 )
     {
-        u = (char **) & (scicos_imp.iz[scicos_imp.izptr[k - 1] - 1]);
-        y = &label;
-        for (i = 0; i < *n; i++)
-        {
-            *(y++) = *(u++);
-        }
+        strcpy(label, scicos_imp.iz[k]);
     }
     return 0;
 }
