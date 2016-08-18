@@ -336,15 +336,21 @@ error_handler:
 static void appendData(scicos_block * block, double *x, double *y)
 {
     int i;
+    int setLen;
+    int maxNumberOfPoints, numberOfPoints;
 
     sco_data *sco = (sco_data *) * (block->work);
-    int maxNumberOfPoints = sco->internal.maxNumberOfPoints;
-    int numberOfPoints = sco->internal.numberOfPoints;
+    if (sco == NULL)
+    {
+        return;
+    }
+    maxNumberOfPoints = sco->internal.maxNumberOfPoints;
+    numberOfPoints = sco->internal.numberOfPoints;
 
     /*
      * Handle the case where the scope has more points than maxNumberOfPoints
      */
-    if (sco != NULL && numberOfPoints >= maxNumberOfPoints)
+    if (numberOfPoints >= maxNumberOfPoints)
     {
         // on a full scope, re-alloc
         maxNumberOfPoints = maxNumberOfPoints + block->ipar[2];
@@ -354,25 +360,20 @@ static void appendData(scicos_block * block, double *x, double *y)
     /*
      * Update data
      */
-    if (sco != NULL)
+    for (i = 0; i < block->insz[0]; i++)
     {
-        int setLen;
-
-        for (i = 0; i < block->insz[0]; i++)
+        for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
         {
-            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
-            {
-                sco->internal.coordinates[i][numberOfPoints + setLen] = x[i];
-            }
-
-            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
-            {
-                sco->internal.coordinates[i][maxNumberOfPoints + numberOfPoints + setLen] = y[i];
-            }
+            sco->internal.coordinates[i][numberOfPoints + setLen] = x[i];
         }
 
-        sco->internal.numberOfPoints++;
+        for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
+        {
+            sco->internal.coordinates[i][maxNumberOfPoints + numberOfPoints + setLen] = y[i];
+        }
     }
+
+    sco->internal.numberOfPoints++;
 }
 
 static BOOL pushData(scicos_block * block, int row)
