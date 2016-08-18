@@ -54,7 +54,7 @@ extern "C"
     int sci_buildDoc(char *fname, void* pvApiCtx)
     {
         std::string exportFormat;
-        std::string SciPath = getSCI(); /* Scilab path */
+        std::string SciPath; /* Scilab path */
         std::string masterXML; /* Which file contains all the doc stuff */
         std::string masterXMLTMP;
         std::string outputDirectory;    /* Working directory */
@@ -62,6 +62,7 @@ extern "C"
         std::string language;
         std::string styleSheet; /* the CSS */
         char * fileToExec = NULL;
+        char * temp;
         SciErr sciErr;
         int *piAddr = NULL;
         int iRet = 0;
@@ -69,6 +70,9 @@ extern "C"
         CheckRhs(0, 4);
         CheckLhs(1, 1);
 
+        temp = getSCI();
+        SciPath = std::string(temp);
+        free(temp);
         styleSheet = SciPath + PATHTOCSS;
 
         if (Rhs < 1)
@@ -109,7 +113,9 @@ extern "C"
         if (Rhs < 3)            /* Language not provided */
         {
             wchar_t* l = getlanguage();
-            language = wide_string_to_UTF8(l);
+            temp = wide_string_to_UTF8(l);
+            language = std::string(temp);
+            FREE(temp);
             free(l);
         }
         else
@@ -134,7 +140,9 @@ extern "C"
             if (!isScalar(pvApiCtx, piAddr))
             {
                 wchar_t* pwstLang = getlanguage();
-                language = wide_string_to_UTF8(pwstLang);
+                temp = wide_string_to_UTF8(pwstLang);
+                language = std::string(temp);
+                FREE(temp);
                 free(pwstLang);
             }
             else
