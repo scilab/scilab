@@ -178,8 +178,9 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
         }
 
         int piDimsArray[2] = {1, 1};
-        int iRanks = pDblIn->getSize() - 1;
-        pPolyOut = new types::Polynom(wstrName, 2, piDimsArray, &iRanks);
+        int *iRanks;
+        *iRanks = pDblIn->getSize() - 1;
+        pPolyOut = new types::Polynom(wstrName, 2, piDimsArray, iRanks);
         pPolyOut->setComplex(pDblIn->isComplex());
         pPolyOut->setCoef(0, pDblIn);
     }
