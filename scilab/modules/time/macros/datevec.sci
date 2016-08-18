@@ -57,8 +57,8 @@ function [Y,M,D,h,m,s] = datevec(N)
 
     // On retranche 1 si la valeur est inferieur à 0
 
-    mask       = find(temp <= 0);
-    if ~isempty(mask)
+    mask       = (temp <= 0);
+    if or(mask)
         Year(mask) = Year(mask)-1;
 
         N(mask)    = N(mask) - (365.0*Year(mask) + ceil(0.25*Year(mask)) - ceil(0.01*Year(mask)) + ceil(0.0025*Year(mask)));
@@ -70,7 +70,7 @@ function [Y,M,D,h,m,s] = datevec(N)
     // ... and the month
     // =========================================================================
 
-    Month = int (N/29);
+    Month = int(N/29);
 
     // construction de la matrice
 
@@ -84,7 +84,10 @@ function [Y,M,D,h,m,s] = datevec(N)
         month_day_mat(~idx_leap_year) = common_year(Month(~idx_leap_year)+1);
     end
 
-    Month( N>month_day_mat ) = Month( N>month_day_mat )+1;
+    if or(N > month_day_mat) then
+        Month( N>month_day_mat ) = Month( N>month_day_mat )+1;
+    end
+
 
     Day = ones(nr,nc);
 

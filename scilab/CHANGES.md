@@ -499,3 +499,4 @@ Bug Fixes
 * [Bug #14517](http://bugzilla.scilab.org/show_bug.cgi?id=14517) fixed - The second argument of part function accepted an index of 0 without exiting in error.
 * [Bug #14524](http://bugzilla.scilab.org/show_bug.cgi?id=14524) fixed - Numeric locales were not set to standard "C" by default at scilab startup
 * [Bug #14540](http://bugzilla.scilab.org/show_bug.cgi?id=14540) fixed - Datatips did not clip outside axes bounds
+* [Bug #14685](http://bugzilla.scilab.org/show_bug.cgi?id=14685) fixed - datavec produced an invalid index error.
