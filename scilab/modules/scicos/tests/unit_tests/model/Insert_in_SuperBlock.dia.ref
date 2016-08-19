@@ -611,8 +611,10 @@ Xcos trace: propertyUpdated( 24 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 24 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 24 , LINK , PARENT_BLOCK ) : SUCCESS
 Xcos trace: propertyUpdated( 12 , BLOCK , CHILDREN ) : SUCCESS
+Xcos debug: objectReferenced( 24 , LINK ) : 1
 Xcos trace: propertyUpdated( 24 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 24 , LINK , DESTINATION_PORT ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 24 , LINK ) : 0
 Xcos trace: propertyUpdated( 12 , BLOCK , CONTEXT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 15 , BLOCK , PORT_REFERENCE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 17 , BLOCK , PORT_REFERENCE ) : NO_CHANGES

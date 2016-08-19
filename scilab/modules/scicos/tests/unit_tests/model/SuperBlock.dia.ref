@@ -1903,18 +1903,24 @@ Xcos trace: propertyUpdated( 66 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 66 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 66 , LINK , PARENT_BLOCK ) : SUCCESS
 Xcos trace: propertyUpdated( 53 , BLOCK , CHILDREN ) : SUCCESS
+Xcos debug: objectReferenced( 60 , LINK ) : 1
 Xcos trace: propertyUpdated( 59 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos trace: propertyUpdated( 60 , LINK , SOURCE_PORT ) : SUCCESS
 Xcos trace: propertyUpdated( 62 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos trace: propertyUpdated( 60 , LINK , DESTINATION_PORT ) : SUCCESS
+Xcos debug: objectUnreferenced( 60 , LINK ) : 0
+Xcos debug: objectReferenced( 65 , LINK ) : 1
 Xcos trace: propertyUpdated( 63 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos trace: propertyUpdated( 65 , LINK , SOURCE_PORT ) : SUCCESS
 Xcos trace: propertyUpdated( 56 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos trace: propertyUpdated( 65 , LINK , DESTINATION_PORT ) : SUCCESS
+Xcos debug: objectUnreferenced( 65 , LINK ) : 0
+Xcos debug: objectReferenced( 66 , LINK ) : 1
 Xcos trace: propertyUpdated( 64 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos trace: propertyUpdated( 66 , LINK , SOURCE_PORT ) : SUCCESS
 Xcos trace: propertyUpdated( 58 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos trace: propertyUpdated( 66 , LINK , DESTINATION_PORT ) : SUCCESS
+Xcos debug: objectUnreferenced( 66 , LINK ) : 0
 Xcos trace: propertyUpdated( 53 , BLOCK , CONTEXT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 38 , BLOCK , PORT_REFERENCE ) : SUCCESS
 Xcos trace: propertyUpdated( 53 , BLOCK , IPAR ) : NO_CHANGES

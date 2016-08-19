@@ -75,6 +75,8 @@ Xcos trace: propertyUpdated( 5 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , LINK , PARENT_BLOCK ) : SUCCESS
 Xcos trace: propertyUpdated( 4 , BLOCK , CHILDREN ) : SUCCESS
+Xcos debug: objectReferenced( 5 , LINK ) : 1
+Xcos debug: objectUnreferenced( 5 , LINK ) : 0
 Xcos trace: propertyUpdated( 4 , BLOCK , CONTEXT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , OPAR ) : NO_CHANGES
@@ -155,6 +157,8 @@ Xcos trace: propertyUpdated( 9 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , LINK , PARENT_BLOCK ) : SUCCESS
 Xcos trace: propertyUpdated( 7 , BLOCK , CHILDREN ) : SUCCESS
+Xcos debug: objectReferenced( 9 , LINK ) : 1
+Xcos debug: objectUnreferenced( 9 , LINK ) : 0
 Xcos trace: propertyUpdated( 7 , BLOCK , CONTEXT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 7 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 7 , BLOCK , OPAR ) : NO_CHANGES

@@ -991,7 +991,8 @@ struct rpar
             for (int i = 0; i < static_cast<int>(clonedLinks.size()); ++i)
             {
                 auto o = controller.getObject(clonedLinks[i]);
-                LinkAdapter newLink (controller, static_cast<model::Link*>(o));
+                controller.referenceObject(o);
+                LinkAdapter newLink(controller, static_cast<model::Link*>(o));
                 newLink.setFromInModel(diagram->getFrom()[i], controller);
                 newLink.setToInModel(diagram->getTo()[i], controller);
             }
