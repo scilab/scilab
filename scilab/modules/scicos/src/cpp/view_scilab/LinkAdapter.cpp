@@ -315,7 +315,7 @@ link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, cons
 
     ScicosID endID;
     controller.getObjectProperty(adaptee, LINK, end, endID);
-    if (endID != 0)
+    if (endID != ScicosID())
     {
         ScicosID sourceBlock;
         controller.getObjectProperty(endID, PORT, SOURCE_BLOCK, sourceBlock);
@@ -326,12 +326,12 @@ link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, cons
         controller.getObjectProperty(adaptee, LINK, PARENT_BLOCK, parent);
         std::vector<ScicosID> children;
         // Added to a superblock
-        if (parent == 0)
+        if (parent == ScicosID())
         {
             // Added to a diagram
             controller.getObjectProperty(adaptee, LINK, PARENT_DIAGRAM, parent);
             parentKind = DIAGRAM;
-            if (parent == 0)
+            if (parent == ScicosID())
             {
                 return ret;
             }
@@ -431,12 +431,12 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
         default:
             return;
     }
-    ScicosID unconnected = 0;
+    ScicosID unconnected = ScicosID();
 
     if (v.block == 0 || v.port == 0)
     {
         // We want to set an empty link
-        if (concernedPort == 0)
+        if (concernedPort == ScicosID())
         {
             // In this case, the link was already empty, do a dummy call to display the console status.
             controller.setObjectProperty(id, LINK, end, concernedPort);
@@ -453,7 +453,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     ScicosID parentDiagram;
     controller.getObjectProperty(id, LINK, PARENT_DIAGRAM, parentDiagram);
     std::vector<ScicosID> children;
-    if (parentDiagram != 0)
+    if (parentDiagram != ScicosID())
     {
         // Adding to a diagram
         controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
@@ -462,7 +462,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     {
         ScicosID parentBlock;
         controller.getObjectProperty(id, LINK, PARENT_BLOCK, parentBlock);
-        if (parentBlock != 0)
+        if (parentBlock != ScicosID())
         {
             // Adding to a superblock
             controller.getObjectProperty(parentBlock, BLOCK, CHILDREN, children);
@@ -484,7 +484,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     }
     ScicosID blkID = children[v.block - 1];
 
-    if (blkID == 0)
+    if (blkID == ScicosID())
     {
         // Deleted Block
         return;
@@ -513,7 +513,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
 
         if (v.kind == Start)
         {
-            if (otherPort != 0)
+            if (otherPort != ScicosID())
             {
                 if (!checkConnectivity(PORT_EIN, otherPort, blkID, controller))
                 {
@@ -525,7 +525,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
         }
         else
         {
-            if (otherPort != 0)
+            if (otherPort != ScicosID())
             {
                 if (!checkConnectivity(PORT_EOUT, otherPort, blkID, controller))
                 {
@@ -548,7 +548,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
         {
             if (v.kind == Start)
             {
-                if (otherPort != 0)
+                if (otherPort != ScicosID())
                 {
                     if (!checkConnectivity(PORT_IN, otherPort, blkID, controller))
                     {
@@ -560,7 +560,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
             }
             else
             {
-                if (otherPort != 0)
+                if (otherPort != ScicosID())
                 {
                     if (!checkConnectivity(PORT_OUT, otherPort, blkID, controller))
                     {
@@ -616,7 +616,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     }
 
     // Disconnect the old port if it was connected. After that, concernedPort will be reused to designate the new port
-    if (concernedPort != 0)
+    if (concernedPort != ScicosID())
     {
         controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
     }
@@ -677,7 +677,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     }
     ScicosID oldLink;
     controller.getObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, oldLink);
-    if (oldLink != 0)
+    if (oldLink != ScicosID())
     {
         // Disconnect the old link
         controller.setObjectProperty(oldLink, LINK, end, unconnected);
@@ -894,7 +894,7 @@ void LinkAdapter::setFromInModel(const link_t& v, Controller& controller)
     ScicosID parentBlock;
     controller.getObjectProperty(getAdaptee()->id(), LINK, PARENT_BLOCK, parentBlock);
 
-    if (parentDiagram != 0 || parentBlock != 0)
+    if (parentDiagram != ScicosID() || parentBlock != ScicosID())
     {
         // If the Link has been added to a diagram, do the linking at model-level
         // If the provided values are wrong, the model is not updated but the info is stored in the Adapter for future attempts
@@ -921,7 +921,7 @@ void LinkAdapter::setToInModel(const link_t& v, Controller& controller)
     ScicosID parentBlock;
     controller.getObjectProperty(getAdaptee()->id(), LINK, PARENT_BLOCK, parentBlock);
 
-    if (parentDiagram != 0 || parentBlock != 0)
+    if (parentDiagram != ScicosID() || parentBlock != ScicosID())
     {
         // If the Link has been added to a diagram, do the linking at model-level
         // If the provided values are wrong, the model is not updated but the info is stored in the Adapter for future attempts

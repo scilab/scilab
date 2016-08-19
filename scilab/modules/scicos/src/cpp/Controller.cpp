@@ -214,7 +214,7 @@ unsigned Controller::referenceObject(const ScicosID uid) const
 void Controller::deleteObject(ScicosID uid)
 {
     // if this object is the empty uid, ignore it : is is not stored in the model
-    if (uid == 0)
+    if (uid == ScicosID())
     {
         return;
     }
@@ -311,7 +311,7 @@ void Controller::unlinkVector(ScicosID uid, kind_t k, object_properties_t uid_pr
 {
     ScicosID v;
     getObjectProperty(uid, k, uid_prop, v);
-    if (v != 0)
+    if (v != ScicosID())
     {
         auto o = getObject(v);
         if (o == nullptr)
@@ -338,7 +338,7 @@ void Controller::unlink(ScicosID uid, kind_t k, object_properties_t uid_prop, ob
     getObjectProperty(uid, k, uid_prop, v);
     for (const ScicosID id : v)
     {
-        if (id != 0)
+        if (id != ScicosID())
         {
             auto o = getObject(id);
             if (o == nullptr)
@@ -453,7 +453,7 @@ void Controller::deepClone(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, S
     ScicosID v;
     getObjectProperty(uid, k, p, v);
 
-    ScicosID cloned = 0;
+    ScicosID cloned = ScicosID();
 
     std::map<ScicosID, ScicosID>::iterator it = mapped.find(v);
     if (it != mapped.end())
@@ -464,24 +464,24 @@ void Controller::deepClone(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, S
     {
         if (cloneIfNotFound)
         {
-            if (v != 0)
+            if (v != ScicosID())
             {
                 cloned = cloneObject(mapped, v, true, true);
             }
             else
             {
-                cloned = 0;
+                cloned = ScicosID();
             }
         }
         else
         {
-            cloned = 0;
+            cloned = ScicosID();
         }
     }
 
     setObjectProperty(clone, k, p, cloned);
     // When cloning a Link, connect both extremities together
-    if ((p == SOURCE_PORT || p == DESTINATION_PORT) && cloned != 0)
+    if ((p == SOURCE_PORT || p == DESTINATION_PORT) && cloned != ScicosID())
     {
         setObjectProperty(cloned, PORT, CONNECTED_SIGNALS, clone);
     }
@@ -497,7 +497,7 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
 
     for (const ScicosID & id : v)
     {
-        if (id == 0)
+        if (id == ScicosID())
         {
             // Deleted Block, the cloning is done at Adapter level
             cloned.push_back(id);
@@ -529,7 +529,7 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
         {
             if (cloneIfNotFound)
             {
-                if (id != 0)
+                if (id != ScicosID())
                 {
                     cloned.push_back(cloneObject(mapped, id, true, true));
                 }

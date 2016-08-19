@@ -87,7 +87,7 @@ struct objs
         int link_i = 0;
         for (int i = 0; i < static_cast<int>(children.size()); ++i)
         {
-            if (children[i] == 0ll)
+            if (children[i] == ScicosID())
             {
                 // Deleted adapter
                 types::MList* deleted = new types::MList();
@@ -404,7 +404,7 @@ struct objs
             std::sort(oldDiagramChildren.begin(), oldDiagramChildren.end());
             for (const ScicosID id : diagramChildren)
             {
-                if (id != 0 && !std::binary_search(oldDiagramChildren.begin(), oldDiagramChildren.end(), id))
+                if (id != ScicosID() && !std::binary_search(oldDiagramChildren.begin(), oldDiagramChildren.end(), id))
                 {
                     auto o = controller.getObject(id);
                     controller.setObjectProperty(o->id(), o->kind(), PARENT_DIAGRAM, adaptee->id());
@@ -416,7 +416,7 @@ struct objs
             std::sort(diagramChildren.begin(), diagramChildren.end());
             for (const ScicosID id : oldDiagramChildren)
             {
-                if (id != 0 && !std::binary_search(diagramChildren.begin(), diagramChildren.end(), id))
+                if (id != ScicosID() && !std::binary_search(diagramChildren.begin(), diagramChildren.end(), id))
                 {
                     auto o = controller.getObject(id);
                     controller.setObjectProperty(o->id(), o->kind(), PARENT_DIAGRAM, ScicosID());

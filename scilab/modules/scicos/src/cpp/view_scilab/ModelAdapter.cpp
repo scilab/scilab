@@ -764,7 +764,7 @@ bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& chil
 
     for (std::vector<ScicosID>::const_iterator it = children.begin(); it != children.end(); ++it)
     {
-        if (*it == 0ll)
+        if (*it == ScicosID())
         {
             continue; // Rule out mlists (Deleted or Annotations)
         }

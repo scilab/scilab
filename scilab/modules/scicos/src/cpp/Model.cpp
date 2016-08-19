@@ -71,6 +71,8 @@ ScicosID Model::createObject(kind_t k)
         case PORT:
             o = new model::Port();
             break;
+        default:
+            return ScicosID();
     }
 
     /*
