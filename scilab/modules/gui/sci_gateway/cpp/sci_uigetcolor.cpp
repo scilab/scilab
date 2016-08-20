@@ -136,6 +136,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                freeAllocatedSingleString(titleAdr);
                 return 1;
             }
 
@@ -145,12 +146,14 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
+                freeAllocatedSingleString(titleAdr);
                 return 1;
             }
 
             if (nbRow * nbCol != 3)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"), fname, 2, 3);
+                freeAllocatedSingleString(titleAdr);
                 return FALSE;
             }
         }
@@ -206,6 +209,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                freeAllocatedSingleString(titleAdr);
                 return 1;
             }
 
@@ -215,18 +219,21 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, firstColorIndex);
+                freeAllocatedSingleString(titleAdr);
                 return 1;
             }
 
             if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex);
+                freeAllocatedSingleString(titleAdr);
                 return FALSE;
             }
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, firstColorIndex);
+            freeAllocatedSingleString(titleAdr);
             return FALSE;
         }
 
@@ -237,6 +244,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                freeAllocatedSingleString(titleAdr);
                 return 1;
             }
 
@@ -246,18 +254,21 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, firstColorIndex + 1);
+                freeAllocatedSingleString(titleAdr);
                 return 1;
             }
 
             if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex + 1);
+                freeAllocatedSingleString(titleAdr);
                 return FALSE;
             }
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, firstColorIndex + 1);
+            freeAllocatedSingleString(titleAdr);
             return FALSE;
         }
 
@@ -268,6 +279,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
+                freeAllocatedSingleString(titleAdr);
                 return 1;
             }
 
@@ -277,18 +289,21 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, firstColorIndex + 2);
+                freeAllocatedSingleString(titleAdr);
                 return 1;
             }
 
             if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, firstColorIndex + 2);
+                freeAllocatedSingleString(titleAdr);
                 return FALSE;
             }
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, firstColorIndex + 2);
+            freeAllocatedSingleString(titleAdr);
             return FALSE;
         }
     }
