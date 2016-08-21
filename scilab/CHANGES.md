@@ -109,6 +109,11 @@ Feature changes and additions
 * name2rgb can now handle a single string and a matrix of strings.
 * `isoview`, `isoview on`, `isoview off`, `isoview(idGraphics, "on"|"off")` are now supported
 * `twinkle` and `twinkle(n)` are now supported: by default, the current element `gce` blinks.
+* `replot` is upgraded:
+  - a bound set to %inf now gets the position of the most marginal object
+  - replot() can now be used to reframe considered axes to all their contents
+  - option "tigh_limits" added
+  - Any handle having some Axes as direct children -- as uicontrol-frame -- is now supported
 * `householder` can now return the reflection matrix, and has a demo.
 * `ndgrid` can now works with any types of homogeneous data
 * `bench_run` can now return its results and/or record them in a file
@@ -305,7 +310,7 @@ Bug Fixes
   - typeof names longer than 8-char were not documented.
 * [Bug #8210](http://bugzilla.scilab.org/show_bug.cgi?id=8210) fixed   - UMFPACK demos were not well packaged and not numerous enough.
 * [Bug #8310](http://bugzilla.scilab.org/show_bug.cgi?id=8310)         - Non-convex plane or unplane polygons could be wrongly triangulated and badly rendered with extra facets.
-* [Bug #8990](http://bugzilla.scilab.org/show_bug.cgi?id=8990) fixed   - `.zoom_auto` feature was missing on the `plot` toolbar.
+* [Bug #8990](http://bugzilla.scilab.org/show_bug.cgi?id=8990) fixed   - `Reframe to contents` feature was missing on the graphics toolbar and `Tools` menu.
 * [Bug #9456](http://bugzilla.scilab.org/show_bug.cgi?id=9456) fixed   - `bench_run` did not work on a path or in a toolbox
 * [Bug #9560](http://bugzilla.scilab.org/show_bug.cgi?id=9560) fixed   - `1./M` was parsed as `1. / M` instead of `1 ./ M`
 * [Bug #9621](http://bugzilla.scilab.org/show_bug.cgi?id=9621) fixed   - A `tlist` with undefined fields can now be saved.

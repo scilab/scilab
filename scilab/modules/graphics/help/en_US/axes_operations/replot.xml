@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * Copyright (C) 2013 - Samuel GOUGEON
+ * Copyright (C) 2013, 2016 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -23,8 +23,11 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
+          replot()
           replot(area)
-          replot(area, axesHandles)
+          replot(idAxes)
+          replot(area, idAxes)
+          replot(.., tight_limits)
       </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -33,17 +36,60 @@
             <varlistentry>
                 <term>area</term>
                 <listitem>
-                    <para>row vector [xmin ymin xmax ymax] or [xmin ymin zmin xmax ymax zmax]: new bounds of the area to be replotted.
+                    <para>row vector [xmin ymin xmax ymax] or
+                        [xmin ymin zmin xmax ymax zmax]: new bounds of the area
+                        to be replotted.
                         <note>
-                            Use <literal>%nan</literal> to keep a bound as is.
+                            <itemizedlist>
+                                <listitem>
+                                    <literal>%nan</literal> can be used to keep a bound as is.
+                                </listitem>
+                                <listitem>
+                                    <literal>%inf</literal> can be used to set
+                                    a bound to the position of the most marginal
+                                    graphical component existing in the axes,
+                                    for the considered direction.
+                                </listitem>
+                            </itemizedlist>
                         </note>
+                        The default area is [%inf %inf %inf %inf]
+                        for a 2D axes, or [%inf %inf %inf %inf %inf %inf] for a
+                        3D one.
+                    </para>
+                    <para>If N axes are identified in <literal>idAxes</literal>,
+                        <literal>area</literal> may be a matrix with N rows and
+                        4 or 6 columns. The row #i is then related to the axes #i
+                         of <literal>idAxes</literal>.
+                        If <literal>area</literal> is only a vector of 4 or 6
+                        bounds, these ones are used for all axes to be reframed.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>axeHandle</term>
+                <term>idAxes</term>
                 <listitem>
-                    <para>Vector of graphics handles of type Axes: Axes to crop. By default, the current Axes of the current figure is considered.
+                    <para>Vector of graphic handles, expected to be of Axes type
+                          or to have direct children of type Axes, such as Figures
+                          or some frame uicontrols.
+                          <literal>idAxes</literal> specifies direct or children
+                          Axes to crop. If no axes is found, nothing is done.
+                    </para>
+                    <para>By default, the current Axes is considered.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tight_limits</term>
+                <listitem>
+                    <para>
+                    Single word <literal>"tight"</literal> or <literal>"on"</literal> or
+                    <literal>"off"</literal>, or vector of 2 (in 2D)
+                    or 3 (in 3D) words <literal>"tight"</literal> or <literal>"on"</literal> or
+                    <literal>"off"</literal>. If a single word is provided,
+                    it is used for every axis. This option forces the
+                    <literal>.tight_limits</literal> attribute of considered
+                    axes to the specified <literal>"on"</literal> or
+                    <literal>"off"</literal> values. By default,
+                    current limits modes are unchanged.
                     </para>
                 </listitem>
             </varlistentry>
@@ -52,25 +98,31 @@
     <refsection role="description">
         <title>Description</title>
         <para>
-            <literal>replot</literal> is used to redraw the content of the current graphics axes with new boundaries defined by
-            <literal>area = [xmin,ymin, xmax,ymax]</literal> or <literal>area = [xmin,ymin,zmin, xmax,ymax,zmax]</literal>.
+            <literal>replot</literal> is used to reframe the (set of) axes specified
+            with <literal>idAxes</literal> -- or by default the current axes --
+            with new boundaries defined by
+            <literal>area = [xmin,ymin, xmax,ymax]</literal> or
+            <literal>area = [xmin,ymin,zmin, xmax,ymax,zmax]</literal>.
         </para>
-        <para>This transformation can be applied to specific
-            axes given by Axes graphics handles via the <varname>axesHandles</varname> argument. If <varname>axesHandles</varname> is
-            not specified, the new boundaries are applied to the current axes of the
-            current figure. The transformation changes the <literal>data_bounds</literal>
-            value of those axes.
+        <para>
+            It changes the <literal>data_bounds</literal> attribute of processed axes.
         </para>
-        <note>
-            The axes property <literal>tight_limits</literal>
-            must be set to "on" to strictly select specified bounds (see
-            <link linkend="axes_properties">axes_properties</link>)
-        </note>
+        <para>
+            When a specified bound is infinite (%inf and -%inf are equivalent),
+            <literal>replot</literal> looks for the most marginal graphical object
+            and sets the actual related bound to its position, taking also
+            objects sizes into account. This ensures not clipping any object
+            that would be beyond the targeted side of the axes.
+        </para>
+        <para>When the <literal>tight_limits</literal> option is provided,
+            its value is assigned to the <literal>.tight_limits</literal>
+            attribute of each considered axes, in an axis-wise way.
+        </para>
     </refsection>
     <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-      x=[0:0.1:2*%pi]';
+      x = [0:0.1:2*%pi]';
       plot2d(x,sin(x))
       replot([-1,-1,10,2])
       ]]></programlisting>
@@ -82,7 +134,7 @@
         <programlisting role="example"><![CDATA[
       xdel(winsid());
       plot() // plot demo
-      f=gcf();
+      f = gcf();
       replot([-1,-1,10,2],f.children(1)) // specify axes handle's value
       replot([-3,-2,8,4],f.children(2))
       ]]></programlisting>
@@ -99,9 +151,12 @@ x = linspace(0,360,200).';
 clf
 plot2d(x,[sind(x) tand(x)])
 ax = gca();
-ax.data_bounds				// initial bounds
-replot([%nan,-10,%nan,10])	// only Ymin and Ymax are changed
-ax.data_bounds				// updated bounds
+ax.data_bounds              // initial bounds
+replot([%nan,-10,%nan,10])  // only Ymin and Ymax are changed
+ax.data_bounds              // updated bounds
+     ]]></programlisting>
+        <para></para>
+        <programlisting role="example"><![CDATA[
 // Resizing Z bounds as well as X and Y ones in 3D view:
 clf
 x = linspace(-4,4,100);
@@ -116,6 +171,9 @@ ax.data_bounds
 sleep(3000)
 replot([-5 0 -0.4 0 5 0.5])
 ax.data_bounds
+     ]]></programlisting>
+        <para></para>
+        <programlisting role="example"><![CDATA[
 // Resizing several chosen axes together:
 clf
 x = linspace(-%pi,%pi,400);
@@ -159,6 +217,27 @@ replot([-1 %nan 1.5 %nan], [ax1 ax2])
                         </listitem>
                         <listitem>
                             <literal>%nan</literal> can be used to keep a bound as is.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Handles of frame uicontrols having Axes children are
+                            now accepted.
+                        </listitem>
+                        <listitem>
+                            %inf can now be used to set a bound to the position
+                            of most marginal contents.
+                        </listitem>
+                        <listitem>
+                            replot() as replot([%inf %inf %inf %inf]) is added.
+                        </listitem>
+                        <listitem>
+                            Option tight_limits added.
                         </listitem>
                     </itemizedlist>
                 </revdescription>

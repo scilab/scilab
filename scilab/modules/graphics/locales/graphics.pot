@@ -3047,7 +3047,6 @@ msgstr ""
 # File: modules/graphics/macros/fac3d.sci, line: 44
 # File: modules/graphics/macros/fac3d1.sci, line: 46
 # File: modules/graphics/macros/getcolor.sci, line: 41
-# File: modules/graphics/macros/zoom_auto.sci, line: 36
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -4377,16 +4376,4 @@ msgstr ""
 # File: modules/graphics/macros/xsetech.sci, line: 54
 #, c-format
 msgid "%s: Wrong value given for %s."
-msgstr ""
-
-#
-# File: modules/graphics/macros/zoom_auto.sci, line: 43
-#, c-format
-msgid "%s: Wrong type for argument %d: a handle expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/zoom_auto.sci, line: 46
-#, c-format
-msgid "%s: Wrong size for input argument #%d: a handle expected.\n"
 msgstr ""
