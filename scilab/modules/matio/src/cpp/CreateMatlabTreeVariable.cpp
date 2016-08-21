@@ -27,6 +27,7 @@ extern "C"
 #include "CreateMatlabVariable.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "sci_malloc.h"
 }
 
 types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
@@ -98,7 +99,7 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
             {
                 pOut = new types::Struct(iRank, piDims);
                 int iSizeStruct = Mat_VarGetNumberOfFields(matVariable);
-
+                wchar_t* temp;
                 matvar_t** allData = (matvar_t**)(matVariable->data);
 
                 bool bSearchSizeStruck = false;
@@ -112,7 +113,9 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
                             break;
                         }
                     }
-                    std::wstring wstField(to_wide_string((char*)allData[i]->name));
+                    temp = to_wide_string((char*)allData[i]->name);
+                    std::wstring wstField(temp);
+                    FREE(temp);
                     pOut->getAs<types::Struct>()->addField(wstField);
                 }
 
@@ -120,7 +123,9 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
                 {
                     for (int j = 0; j < iSizeStruct; j++)
                     {
-                        std::wstring wstField(to_wide_string((char*)allData[j]->name));
+                        temp = to_wide_string((char*)allData[j]->name);
+                        std::wstring wstField(temp);
+                        FREE(temp);
                         pOut->getAs<types::Struct>()->get(i)->set(wstField, CreateMatlabTreeVariable(allData[i * iSizeStruct + j]));
                     }
                 }

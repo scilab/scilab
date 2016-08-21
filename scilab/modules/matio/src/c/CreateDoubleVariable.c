@@ -74,16 +74,8 @@ int CreateDoubleVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
             piDims[i] = (int)matVariable->dims[i];
         }
 
-        if (matVariable->isComplex == 0)
-        {
-            CreateHyperMatrixVariable(pvApiCtx, iVar, matVariable->class_type, &matVariable->isComplex, &matVariable->rank,
-                                      piDims, matVariable, parent, item_position);
-        }
-        else
-        {
-            CreateHyperMatrixVariable(pvApiCtx, iVar, matVariable->class_type, &matVariable->isComplex, &matVariable->rank,
-                                      piDims, matVariable, parent, item_position);
-        }
+        CreateHyperMatrixVariable(pvApiCtx, iVar, matVariable->class_type, &matVariable->isComplex, &matVariable->rank,
+                                  piDims, matVariable, parent, item_position);
 
         FREE(piDims);
     }

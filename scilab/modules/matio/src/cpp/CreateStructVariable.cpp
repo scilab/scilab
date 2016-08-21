@@ -60,10 +60,13 @@ int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
 
     matvar_t** allData = (matvar_t**)(matVariable->data);
 
+    wchar_t* temp;
     int iSizeStruct = Mat_VarGetNumberOfFields(matVariable);
     for (int i = 0; i < iSizeStruct; i++)
     {
-        std::wstring wstField(to_wide_string((char*)allData[i]->name));
+        temp = to_wide_string((char*)allData[i]->name);
+        std::wstring wstField(temp);
+        FREE(temp);
         pStruct->addField(wstField);
     }
 
@@ -71,7 +74,9 @@ int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
     {
         for (int j = 0; j < iSizeStruct; j++)
         {
-            std::wstring wstField(to_wide_string((char*)allData[j]->name));
+            temp = to_wide_string((char*)allData[j]->name);
+            std::wstring wstField(temp);
+            FREE(temp);
             pStruct->get(i)->set(wstField, CreateMatlabTreeVariable(allData[i * iSizeStruct + j]));
         }
     }
