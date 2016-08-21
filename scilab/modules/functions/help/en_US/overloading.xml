@@ -237,7 +237,9 @@
                 <td>
                     <literal>hypermat</literal>
                 </td>
-                <td/>
+                <td>Obsolete. Will be removed from Scilab 6.
+                    The code of the hypermat contents must be targeted instead.
+                </td>
             </tr>
             <tr>
                 <td>pointer</td>

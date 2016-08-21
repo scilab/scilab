@@ -19,7 +19,7 @@
     <refnamediv>
         <refname>test_run</refname>
         <refpurpose>
-            Lance les tests unitaires et de non régression présents dans un module ou dans un répertoire. La passe de test vérifie d'abord que le test s'exécute sans erreur, puis que la sortie console (fichier <literal>dia</literal>) est conforme à un fichier de référence préalablement généré (fichier <literal>dia.ref</literal>).
+            Lance les tests unitaires et de non régression présents dans un module ou dans un répertoire
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

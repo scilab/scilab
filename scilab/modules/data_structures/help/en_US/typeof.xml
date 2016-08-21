@@ -311,6 +311,25 @@
             </tr>
             <tr>
                 <td>
+                    <emphasis role="bold">program</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> is a list describing the internal code of a function
+                    (see <link linkend="macr2tree">macr2tree</link>).
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">cblock</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> is a block of columns of same
+                    heights but of different data types, as returned by
+                    <link linkend="mfscanf">mfscanf</link>.
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <emphasis role="bold">XMLDoc</emphasis>
                 </td>
                 <td>
@@ -465,12 +484,17 @@ typeof(L)
 
 // Reserved T-List typeof
 // ----------------------
-typeof(dir())  // files directory
-
+typeof(dir())        // Files directory
+//
+c = macr2tree(sind); // Internal code of a Scilab macro
+typeof(c)
+fieldnames(c)'
+c.name
+//
 doc = xmlReadStr("<root><a att=""foo"">Hello</a></root>");
 typeof(doc)
 xmlDelete(doc)
-
+//
 x = 1;
 save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones
 a = h5open(TMPDIR + "/x.sod");

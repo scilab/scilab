@@ -10,5 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Outils de développement",SCI+"/modules/development_tools/help/fr_FR",%T);
+add_help_chapter("Tests - Bancs d''essais",SCI+"/modules/development_tools/help/fr_FR",%T);
 

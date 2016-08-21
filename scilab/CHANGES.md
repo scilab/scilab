@@ -206,13 +206,16 @@ or a 3-components vector to set the position in axes coordinates to draw the dat
 Help pages:
 -----------
 
-* fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `roots`,
-  `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `%helps`, `scilab|scilex`
+* fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `plot2d`, `roots`,
+  `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `tree2code`, `%helps`,
+  `scilab|scilex`
 * rewritten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`,
-`brackets`, `setlanguage`, `sleep`, `isinf`, `bitor`, `bitxor`, `bitand`, `geomean`
+`brackets`, `setlanguage`, `sleep`, `isinf`, `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
+  - `pixel_drawing_mode`, `show_window`, `twinkle`, `uigetcolor`, `winsid`, `xdel`, `xgrid`, `xname`, `xnumb`
   - CACSD and Signal Processing help pages have been sorted up.
+  - Signal processing: New `Convolution - correlation` subsection. `wfir_gui`, `filt_sinc`, `hilb`, `fft2`, `fftshift`,`ifftshift`, `hilbert`, `cepstrum`, `conv`, `conv2`, `convol2d`, `xcor`, `corr`, `hank`, `mrfit`, `frfir` sorted up in existing subsections.
   - Colormaps and GUI/Menus subsections created
 * translations added:
   - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`, `sleep`, `strtod`

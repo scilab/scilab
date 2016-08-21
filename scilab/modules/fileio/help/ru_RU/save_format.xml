@@ -173,7 +173,7 @@
         <para>
             Несколько "типов" основаны на <emphasis>tlist</emphasis> или
             <emphasis>mlist</emphasis>. Это <emphasis>rational</emphasis>,
-            <emphasis>state-space</emphasis>, <emphasis>hypermat</emphasis>,
+            <emphasis>state-space</emphasis>,
             <emphasis>cell</emphasis> и <emphasis>struct</emphasis>.
             Следовательно, они явно сохраняются.
         </para>

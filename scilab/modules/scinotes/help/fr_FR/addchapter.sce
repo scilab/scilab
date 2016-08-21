@@ -10,5 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Editeur de texte (Scinotes)",SCI+"/modules/scinotes/help/fr_FR",%T);
+add_help_chapter("Editeur de script Scinotes",SCI+"/modules/scinotes/help/fr_FR",%T);
 

@@ -288,11 +288,11 @@
                                 </simplelist>                            </listitem>
                             <listitem>La même variable peut être utilisée plusieurs
                                 fois dans la liste de gauche entre crochets.
-                                Le cas échéant, les affectations successives réalisées
-                                de gauche à droite dans la liste écrasent les contenus
-                                pré-existants. Exemple :
-                                <literal>[a,b,a]=(%pi,%z,"Allo")</literal>
-                                est équivalent à <literal>a="Allo", b=%z</literal>.
+                                Le cas échéant, les affectations successives sont réalisées
+                              <emphasis role="italic">de droite à gauche (!)</emphasis> dans la liste,
+                               et écrasent les contenus pré-existants. Exemple :
+                                <literal>[a,b,a] = (%pi, %z, "Allo")</literal>
+                                est équivalent à <literal>a = %pi, b = %z</literal>.
                             </listitem>
                         </itemizedlist>
                     </para>

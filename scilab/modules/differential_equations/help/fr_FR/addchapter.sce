@@ -10,5 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Calcul différentiel, Intégration",SCI+"/modules/differential_equations/help/fr_FR",%T);
+add_help_chapter("Intégration - dérivation",SCI+"/modules/differential_equations/help/fr_FR",%T);
 

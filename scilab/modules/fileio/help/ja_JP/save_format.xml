@@ -1,1595 +1,798 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="save_format" xml:lang="ja">
-
     <refnamediv>
-
         <refname>save_format</refname>
-
         <refpurpose>"save"で作成されるファイルの形式</refpurpose>
-
     </refnamediv>
-
     <refsection>
-
         <title>概要</title>
-
         <para>本文書の目的はデータをScilabでデータ保存に使用されるHDF5形式について規定することです.
-
         </para>
-
         <para>この形式はSOD (Scilab Open Data) と呼ばれます.</para>
-
         <para>SODの最初の公開リリースは Scilab 5.4.0で行われました.</para>
-
     </refsection>
-
     <refsection>
-
         <title>動機</title>
-
         <para>
-
             相互運用性は近代的なソフトウエアの主要な特性の一つです.
-
             この特性をより改善するため, このSEPにおいて HDF5 形式の標準定義
-
             が提案されました.
-
         </para>
-
         <para>
-
             Scilab 5.2.0以降,
-
             エキスポート/インポート機能が開発され, データ交換用に管理されています.
-
             これは, 既にデータを保存および交換するためのXcosの基本要素の一つです.
-
         </para>
-
     </refsection>
-
     <refsection>
-
         <title>サポートされるデータ型</title>
-
         <para>全てのScilabデータ型がサポートされます. 例えば:</para>
-
         <informaltable border="1">
-
             <tbody>
-
                 <tr>
-
                     <td>
-
                         <emphasis role="bold">名前</emphasis>
-
                     </td>
-
                     <td>
-
                         <emphasis role="bold">Scilabにおける例</emphasis>
-
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td>
-
                         <emphasis role="bold">double</emphasis>
-
                     </td>
-
                     <programlisting>
-
                         A=32;
-
                         b=[32,2];
-
                         c=[2,2;3,4];
-
                         d=rand(10,10);
-
                     </programlisting>
-
                 </tr>
-
                 <tr>
-
                     <td>
-
                         <emphasis role="bold">string</emphasis>
-
                     </td>
-
                     <programlisting>
-
                         a="my string";
-
                         b=["string 1";"my string 2"];
-
                     </programlisting>
-
                 </tr>
-
                 <tr>
-
                     <td>
-
                         <emphasis role="bold">boolean</emphasis>
-
                     </td>
-
                     <programlisting>
-
                         a=%t;
-
                         b=[%t, %f];
-
                     </programlisting>
-
                 </tr>
-
                 <tr>
-
                     <td>
-
                         <emphasis role="bold">integer</emphasis>
-
                     </td>
-
                     <td>
-
                         <programlisting>
-
                             int8([1 -120 127 312])
-
                             x=int32(-200:100:400)
-
                         </programlisting>
-
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td>
-
                         <emphasis role="bold">polynomial</emphasis>
-
                     </td>
-
                     <td>
-
                         <programlisting>
-
                             s=poly([2 3],"s")
-
                             poly(1:4,'s','c')
-
                         </programlisting>
-
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td>
-
                         <emphasis role="bold">sparse</emphasis>
-
                     </td>
-
                     <td align="justify">
-
                         <programlisting>
-
                             sp=sparse([1,2;4,5;3,10],[1,2,3])
-
                         </programlisting>
-
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td>
-
                         <emphasis role="bold">boolean sparse</emphasis>
-
                     </td>
-
                     <td align="justify">
-
                         <programlisting>
-
                             dense=[%F, %F, %T, %F, %F
-
                             %T, %F, %F, %F, %F
-
                             %F, %F, %F, %F, %F
-
                             %F, %F, %F, %F, %T];
-
                             sp=sparse(dense)
-
                         </programlisting>
-
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td>
-
                         <emphasis role="bold">list</emphasis>
-
                     </td>
-
                     <td align="justify">
-
                         <programlisting>
-
                             l = list(1,["a" "b"])
-
                         </programlisting>
-
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td>
-
                         <emphasis role="bold">tlist</emphasis>
-
                     </td>
-
                     <td align="justify">
-
                         <programlisting>
-
                             t = tlist(["listtype","field1","field2"], [], []);
-
                         </programlisting>
-
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td>
-
                         <emphasis role="bold">mlist</emphasis>
-
                     </td>
-
                     <td align="justify">
-
                         <programlisting>
-
                             M=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
-
                         </programlisting>
-
                     </td>
-
                 </tr>
-
             </tbody>
-
         </informaltable>
-
         <para>
-
             複数の"types"は,<emphasis>tlist</emphasis> または <emphasis>mlist</emphasis>
-
             に基づいています.
-
             これは,
-
             <emphasis>rational</emphasis>, <emphasis>state-space</emphasis>,
-
-            <emphasis>hypermat</emphasis>, <emphasis>cell</emphasis> および
-
+            <emphasis>cell</emphasis> および
             <emphasis>struct</emphasis>の場合です.
-
             これらは透過的に保存されます.
-
         </para>
-
         <para>
-
             <emphasis>void</emphasis>および <emphasis>undefined</emphasis>は,
-
             リスト管理において特別な場合を管理するために作成された特殊な要素です.
-
             これらはこの文書にて後述します.
-
         </para>
-
     </refsection>
-
     <refsection>
-
         <title>HDF5ファイルの構造</title>
-
         <para>Scilab HDF5 アーキテクチャは非常に簡単です. </para>
-
         <emphasis role="bold">General</emphasis>
-
         <para>
-
             各Scilab変数について, ルート位置におけるデータセットが宣言されます.
-
             データセットの名前はScilab変数の名前です.
-
         </para>
-
         <para>例, 以下のコード:</para>
-
         <programlisting>
-
             emptyuint32matrix = uint32([]);
-
             uint32scalar = uint32(1);
-
             uint32rowvector = uint32([1 4 7]);
-
             uint32colvector = uint32([1;4;7]);
-
             uint32matrix = uint32([1 4 7;9 6 3]);
-
             save("uint32.sod","emptyuint32matrix","uint32scalar","uint32rowvector","uint32colvector","uint32matrix");
-
         </programlisting>
-
         <para>produces:</para>
-
         <mediaobject>
-
             <imageobject>
-
                 <imagedata fileref="../images/img001.png" width="5.95cm" depth="1.64cm"/>
-
             </imageobject>
-
         </mediaobject>
-
         <para>
-
             各ルートデータセットは<literal>SCILAB_Class</literal>と呼ばれる
-
             属性を有します.この属性は, HDF5ファイルに保持される変数の型を定義します.
-
         </para>
-
         <para>
-
             変数がプリミティブ型で関連する複合値がない場合,
-
             データは直接データセットに保存されます.
-
             それ以外の場合, データセットは実際のデータへのリファレンスを有します.
-
         </para>
-
         <para>各 SOD ファイルは2つの固有の変数を有します:</para>
-
         <itemizedlist>
-
             <listitem>
-
                 <para>
-
                     <literal>SCILAB_scilab_version</literal> ?
-
                     SODファイルに保存する際に使用された Scilabのバージョンを記述します.
-
                 </para>
-
                 <para>例えば, Scilab 5.4.0の場合, このデータは以下となります:</para>
-
                 <para>
-
                     <emphasis>SCILAB_scilab_version = scilab-5.4.0</emphasis>
-
                 </para>
-
             </listitem>
-
             <listitem>
-
                 <para>SCILAB_sod_version ?
-
                     SODファイルに保存する際に使用された SOD規約のバージョンを記述します.
-
                 </para>
-
                 <para>例えば, Scilab 5.4.0の場合, このデータは以下となります:</para>
-
                 <para>
-
                     <emphasis>SCILAB_sod_version = 2</emphasis>
-
                 </para>
-
             </listitem>
-
         </itemizedlist>
-
         <para>
-
             データがデータセット内で直線的に保存される型
-
         </para>
-
         <informaltable border="1">
-
             <tbody>
-
                 <tr>
-
                     <td align="left">
-
                         <emphasis role="bold">Scilab 型</emphasis>
-
                     </td>
-
                     <td align="left">
-
                         <emphasis role="bold">HDF5 Scilab 型属性</emphasis>
-
                     </td>
-
                     <td align="left">
-
                         <emphasis role="bold">HDF5 属性</emphasis>
-
                     </td>
-
                     <td align="left">
-
                         <emphasis role="bold">HDF データ型マッピング</emphasis>
-
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td align="left">
-
                         <para>string</para>
-
                     </td>
-
                     <td align="left">
-
                         <para>SCILAB_Class = string</para>
-
                     </td>
-
                     <td align="left">
 
-
-
                     </td>
-
                     <td align="left">
-
                         <para>String</para>
-
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td align="left">
-
                         <para>boolean</para>
-
                     </td>
-
                     <td namest="c2" nameend="c3" align="left">
-
                         <para>SCILAB_Class = boolean</para>
-
                     </td>
-
                     <td align="left">
 
-
-
                     </td>
-
                     <td align="left">
-
                         <para>32ビット 整数</para>
-
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td align="left">
-
                         <para>integer</para>
-
                     </td>
-
                     <td namest="c2" nameend="c3" align="left">
-
                         <para>SCILAB_Class = integer</para>
-
                     </td>
-
                     <td align="left">
-
                         <para>SCILAB_precision = {8, 16, 32, u8, u16, u32}</para>
-
                     </td>
-
                     <td namest="c1" nameend="c2" align="left">
-
                         <para>8 = 8ビット文字</para>
-
                         <para>16 = 16ビット整数</para>
-
                         <para>32 = 32ビット整数</para>
-
                         <para>u8 = 8ビット符号無し文字</para>
-
                         <para>u16 = 16ビット符号無し整数</para>
-
                         <para>u32 = 32ビット符号無し整数</para>
-
                     </td>
-
                 </tr>
-
             </tbody>
-
         </informaltable>
-
         <para>
-
             これらの型について, Scilabにおける場合と同様に,
-
             データは1次元配列に保存されます.データは列方向に保存されます.
-
         </para>
-
         <para>
-
             行列, ベクトルまたはスカラーを再構築するために,
-
             2つの属性が列と行の数を指定します.
-
         </para>
-
         <para>
-
             5.4.0リリースおよび SOD v2以降,
-
             <literal>SCILAB_cols</literal> および<literal>SCILAB_rows</literal> は
-
             double, 整数, 多項式および文字列の行列ではもはや使用されなくなりました.
-
             SOD はネーティブな多次元HDF5機能を使用します.
-
         </para>
-
         <para>
-
             <emphasis role="bold">例</emphasis>
-
         </para>
-
         <para>
-
             宣言の保存: <code>int32([1 -4 7;-9 6 -3])</code> は,hdfviewで以下のように表示されます:
-
         </para>
-
         <mediaobject>
-
             <imageobject>
-
                 <imagedata fileref="../images/img002.png" width="5.95cm" depth="1.64cm"/>
-
             </imageobject>
-
         </mediaobject>
-
         <para>metadataは以下のようになります:</para>
-
         <emphasis role="italic">
-
             <para>int32matrix (800, 2)</para>
-
             <para>32-bit integer, 3 x 2 =&gt; the size of the variable</para>
-
             <para>Number of attributes = 2</para>
-
             <para>SCILAB_Class = integer</para>
-
             <para>SCILAB_precision = 32</para>
-
         </emphasis>
-
         <para>
-
             <note>
-
                 スカラー値は1行1列の行列に保存されます.
-
             </note>
-
         </para>
-
         <para>
-
             空の変数 (<literal>[]</literal>) はtrueに設定された属性<literal>SCILAB_empty</literal>を有します.
-
         </para>
-
         <para>
-
             <emphasis role="bold">データが専用のグループに保存される型</emphasis>
-
         </para>
-
         <para>
-
             Scilabデータ型の多くはグループで保存されます.
-
             これにより,値の分離を明確にでき,アクセスも容易になります.
-
         </para>
-
         <para>
-
             グループは"#"で括られた変数から命名されます.例えば,
-
             matrixofdoubleと呼ばれるdoubleの行列の場合,
-
             ルートデータセットの名前は matrixofdoubleとなり,
-
             関連するグループの名前は
-
             <emphasis role="strong">#matrixofdouble#</emphasis>となります.
-
         </para>
-
         <para>
-
             再帰的なデータ型(list, mlist, tlist, etc)の場合,
-
             サブグループの名前が以下のように構築されます:
         </para>
-
         <para>
-
             この <literal>#</literal> によりユニークなIDを作成できるようになります.
-
             最初の<literal>#</literal>の数は深さのレベルを示します.
-
             例えば, サブリスト <emphasis>###listnested#_#2##_#1##</emphasis>は,
-
             2番目のレベ得るに位置することを示します.
-
         </para>
-
         <para>
-
             アンダースコア "_" は深さを表す手段です.
-
             通常, "/" 文字がこのような場合に使用されますが,
-
             HDF5規約では予約済みキーワードとなっています.
-
         </para>
-
         <para>
-
             名前で使用される整数は,
-
             カレントの構造における位置と親要素に関する位置の両方の意味で
-
             データ構造における位置を表します.
-
             例えば,
-
             <emphasis>###listnested#_#2##_#1##</emphasis>,
-
             は,親要素の3番目の構造の2番目の要素として扱われることを示します
-
             (要素は0から番号付けられます).
-
         </para>
-
         <para>
-
             例えば, <emphasis>###listnested#_#2##_#1##</emphasis>という名前のグループは,
-
             以下の例では値 [32, 42] を指します:
-
         </para>
-
         <programlisting>
-
             listnested=list(2,%i,'f',ones(3,3))
-
             listnested(3) = list( %t, [32,42]);
-
         </programlisting>
-
         <para>
-
             <emphasis role="bold">疎行列</emphasis>
-
         </para>
-
         <para>
-
             <emphasis role="strong">Scilab 型:</emphasis> sparse
-
         </para>
-
         <para>
-
             <emphasis role="strong">HDF5 Scilab 型属性:</emphasis> SCILAB_Class = sparse
-
         </para>
-
         <para>
-
             <emphasis role="strong">HDF5 属性: </emphasis>
-
         </para>
-
         <para>SCILAB_rows = &lt;int&gt;</para>
-
         <para>行数</para>
-
         <para>
-
             <emphasis>SCILAB_cols = &lt;int&gt;</emphasis>
-
         </para>
-
         <para>列数</para>
-
         <para>
-
             <emphasis>SCILAB_items = &lt;int&gt;</emphasis>
-
         </para>
-
         <para>疎行列における要素数を定義</para>
-
         <para>
-
             <emphasis role="strong">ルートデータセットの値:</emphasis>
-
         </para>
-
         <para>
-
             最初の値 (<literal>#0#</literal>):
-
             このデータ構造の各要素は各行の非ヌル要素の数を示します.
-
             つまり, 最初の要素は疎行列の最初の行の要素数を示します.
-
         </para>
-
         <para>
-
             2番目の値 (<literal>#1#</literal>):
-
             疎行列の各要素の列の位置を示します.
-
         </para>
-
         <para>
-
             3番目の値 (<literal>#2#</literal>):
-
             疎行列における要素の実際の値へのリファレンスを保存します
-
             (この値は専用のグループに保存されます).
-
         </para>
-
         <para>例えば, この行列を考えると:</para>
-
         <programlisting role="no-scilab-exec">
-
             0. 1. 0. 0. 0. 0. 0. 0. 0. 0.
-
             0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
-
             0. 0. 0. 0. 0. 0. 0. 0. 0. 3.
-
             0. 0. 0. 0. 2. 0. 0. 0. 0. 0.
-
         </programlisting>
-
         <para>これは以下の関数で生成されます:</para>
-
         <programlisting role="scilab_code">
-
             sparse([1,2;4,5;3,10],[1,2,3])
-
         </programlisting>
-
         <para>
-
             これは以下となります:
-
         </para>
-
         <para>
-
             <emphasis>#0#</emphasis> は,<emphasis>1;0;1;1</emphasis>を有します
-
         </para>
-
         <para>
-
             <emphasis>#1#</emphasis> は,<emphasis>2;10;5</emphasis>を有します
-
         </para>
-
         <para>
-
             <emphasis>#2#</emphasis> は,<emphasis>1.0; 3.0; 2.0</emphasis>を有する
-
             double(この例では複素数ではありません)の行列を参照します
-
         </para>
-
         <para>
-
             <emphasis role="bold">論理値疎行列</emphasis>
-
         </para>
-
         <para>
-
             <emphasis role="strong">Scilab型:</emphasis> boolean sparse
-
         </para>
-
         <para>
-
             <emphasis role="strong">HDF5 Scilab 型属性:</emphasis> SCILAB_Class = boolean sparse
-
         </para>
-
         <para>
-
             <emphasis>HDF5属性:</emphasis>
-
         </para>
-
         <para>
-
             <emphasis>SCILAB_rows = &lt;int&gt;</emphasis>
-
         </para>
-
         <para>行数</para>
-
         <para>
-
             <emphasis>SCILAB_cols = &lt;int&gt;</emphasis>
-
         </para>
-
         <para>列数</para>
-
         <para>
-
             <emphasis>SCILAB_items = &lt;int&gt;</emphasis>
-
         </para>
-
         <para>疎行列の要素数を定義</para>
-
         <para>
-
             <emphasis role="strong">ルートデータセットの値:</emphasis> 疎行列は3つのデータセットを有しますが,
-
             論理値疎行列は2つのみです.これは定義される値は自動的にtrueとみなされるためです.
-
         </para>
-
         <para>
-
             最初の値 (<literal>#0#</literal>): このデータ構造の各要素は各行の非ゼロ要素の数を示します.
-
         </para>
-
         <para>
-
             つまり, 最初の要素は疎行列の最初の行の要素数を示します.
-
         </para>
-
         <para>
-
             2番目の値 (<literal>#1#</literal>):
-
             疎行列の各要素の列の位置を示します.
-
         </para>
-
         <para>以下の論理値疎行列について:</para>
-
         <programlisting>
-
             dense=[%F, %F, %T, %F, %F
-
             %T, %F, %F, %F, %F
-
             %F, %F, %F, %F, %F
-
             %F, %F, %F, %F, %T];
-
         </programlisting>
-
         <para>
-
             <emphasis>#0#</emphasis> は <emphasis>1;1;0;1</emphasis>を有します.
-
         </para>
-
         <para>
-
             <emphasis>#1#</emphasis> は <emphasis>3;1;5</emphasis>を有します.
-
         </para>
-
         <para>
-
             論理値疎行列を再生するために必要な情報は2つのみです.
-
         </para>
-
         <para>HDFデータ型マッピング:</para>
-
         <para>32ビット整数</para>
-
         <para>
-
             <emphasis role="bold">Double</emphasis>
-
         </para>
-
         <para>
-
             <emphasis role="strong">Scilab 型:</emphasis> double
-
         </para>
-
         <para>
-
             <emphasis role="strong">HDF5 Scilab 型属性:</emphasis> SCILAB_Class = double
-
         </para>
-
         <para>
-
             <emphasis role="strong">ルートデータセットの値:</emphasis>
-
             実数および複素数の値は共に<literal>#&lt;variable name&gt;#</literal>と
-
             呼ばれるグループに保存されます.
-
         </para>
-
         <para>
-
             最初の値: 実数値へのリファレンス. 名前は<literal>#0#</literal>.
-
         </para>
-
         <para>
-
             行列が複素数の場合, 2番目の値は複素数の値へのリファレンスとなります. 名前は<literal>#1#</literal>.
-
         </para>
-
         <para>
-
             <emphasis role="strong">HDF データ型マッピング:</emphasis> 64-bit floating-point
-
         </para>
-
         <para>
-
             <emphasis role="bold">多項式</emphasis>
-
         </para>
-
         <para>
-
             <emphasis role="strong">Scilab 型:</emphasis> polynomial
-
         </para>
-
         <para>
-
             <emphasis role="strong">HDF5 Scilab 型属性:</emphasis> SCILAB_Class = polynomial
-
         </para>
-
         <para>
-
             <emphasis role="strong">HDF5 属性: </emphasis>
-
         </para>
-
         <para>SCILAB_Class = polynomial</para>
-
         <para>SCILAB_varname = &lt;string&gt;</para>
-
         <para>シンボル変数の名前</para>
-
         <para>
-
             <emphasis>SCILAB_Complex = &lt;boolean&gt;</emphasis>
-
         </para>
-
         <para>多項式が複素数の場合 (そうでない場合は設定されません)</para>
-
         <para>
-
             <emphasis role="strong">ルートデータセットの値:</emphasis>
-
         </para>
-
         <para>
-
             係数はdoubleの行列の形式で(double記憶領域の関連部分に)保存されます.
-
             係数は,複素数にできるため,複素数の行列に保存されることに注意してください.
-
             (サブ)グループとデータセットの命名規則は
-
             本章の先頭に記述されています.
-
         </para>
-
         <para>
-
             <emphasis role="strong">HDF データ型マッピング:</emphasis> Object reference
-
         </para>
-
         <para>
-
             <emphasis role="bold">list</emphasis>
-
         </para>
-
         <para>
-
             <emphasis role="strong">Scilab 型:</emphasis> list
-
         </para>
-
         <para>
-
             <emphasis role="strong">HDF5 Scilab 型属性:</emphasis>
-
         </para>
-
         <para>SCILAB_Class = list</para>
-
         <para>
-
             <emphasis role="strong">HDF5 属性:</emphasis> SCILAB_items = &lt;リストの要素数&gt;
-
         </para>
-
         <para>
-
             <emphasis role="strong">ルートデータセットの値:</emphasis>
-
         </para>
-
         <para>
-
             ルートデータセットに関連して,このデータセットで保存される値は
-
             リストに保存された値へのリファレンスです.
-
             値は<literal>#&lt;variable name&gt;#</literal>と呼ばれるグループに保存されます.
-
             この <literal>#&lt;variable name&gt;#</literal> グループにおいて,
-
             データは任意の型とすることができます.
-
             これらはグループに直線的に保存されます.
-
             その表現は他の場合と同様で,再帰的な構造にもとづきます
-
             (種々の型のリストのリストのリストが保存および読込みできることを意味します).
-
         </para>
-
         <para>
-
             (サブ)グループとデータセットの命名規則は本章の先頭に記述されています.
-
         </para>
-
         <para>
-
             <emphasis role="strong">HDF データ型マッピング:</emphasis> Object reference
-
         </para>
-
         <para>
-
             <emphasis role="bold">tlist </emphasis>
-
         </para>
-
         <para>
-
             <emphasis role="strong">Scilab型:</emphasis> tlist
-
         </para>
-
         <para>
-
             <emphasis role="strong">HDF5 Scilab 型属性:</emphasis>
-
         </para>
-
         <para> SCILAB_Class = tlist</para>
-
         <para>
-
             <emphasis role="strong">HDF5 属性:</emphasis> cf list
-
         </para>
-
         <para>
-
             <emphasis role="bold">mlist </emphasis>
-
         </para>
-
         <para>
-
             <emphasis role="strong">Scilab type:</emphasis> mlist
-
         </para>
-
         <para>
-
             <emphasis role="strong">HDF5 Scilab 型属性:</emphasis>
-
         </para>
-
         <para>SCILAB_Class = mlist</para>
-
         <para>
-
             <emphasis role="strong">HDF5 attributes:</emphasis> cf list
-
         </para>
-
         <para>
-
             <emphasis role="bold">void </emphasis>
-
         </para>
-
         <para>
-
             <emphasis role="strong">Scilab型:</emphasis> void
-
         </para>
-
         <para>
-
             <emphasis role="strong">HDF5 Scilab 型属性:</emphasis>
-
         </para>
-
         <para>SCILAB_Class = void</para>
-
         <para>
-
             void値はlist, tlistおよびmlistの非常に特殊な使用法でのみ
-
             現れます.
-
             以下の構文で作成することができます:
-
         </para>
-
         <programlisting>voidelement_ref=list(1,,3);</programlisting>
-
         <para>
-
             <emphasis role="bold">undefined </emphasis>
-
         </para>
-
         <para>
-
             <emphasis role="strong">Scilab 型:</emphasis> undefined
-
         </para>
-
         <para>
-
             <emphasis role="strong">HDF5 Scilab 型属性:</emphasis>
-
         </para>
-
         <para> SCILAB_Class = undefined</para>
-
         <para>
-
             undefined 値はリストの大きさが増加し, いくつかの要素が未定義となった
-
             場合に生成されます.
-
             これらは以下の構文で生成されます:
-
         </para>
-
         <programlisting>
-
             undefinedelement_ref=list(2,%i,'f',ones(3,3));
-
             undefinedelement_ref(6)="toto"
-
         </programlisting>
-
     </refsection>
-
     <refsection>
-
         <title>実際の例</title>
-
         <para>
-
             これらの変数全てについてサンプルファイルがScilabディストリビューションで
-
             提供されています.
-
             これらは,以下のディレクトリで入手可能です:
-
             <emphasis>SCI/modules/hdf5/tests/sample_scilab_data/</emphasis>
-
         </para>
-
         <para>
-
             本文書の編集時点で,
-
             以下のファイルがScilabディストリビューションで提供されています:
-
         </para>
-
         <emphasis role="italic">
-
             <para>
-
                 booleanmatrix.sod
-
             </para>
-
             <para>booleanscalar.sod
-
             </para>
-
             <para>booleansparse.sod
-
             </para>
-
             <para>emptymatrix.sod
-
             </para>
-
             <para>emptysparse.sod
-
             </para>
-
             <para>hypermatrixcomplex.sod
-
             </para>
-
             <para>hypermatrix.sod
-
             </para>
-
             <para>int16.sod
-
             </para>
-
             <para>int32.sod
-
             </para>
-
             <para>int8.sod
-
             </para>
-
             <para>listnested.sod
-
             </para>
-
             <para>list.sod
-
             </para>
-
             <para>matricedoublecomplexscalar.sod
-
             </para>
-
             <para>matricedoublecomplex.sod
-
             </para>
-
             <para>matricedoublescalar.sod
-
             </para>
-
             <para>matricedouble.sod
-
             </para>
-
             <para>matricestringscalar.sod
-
             </para>
-
             <para>matricestring.sod
-
             </para>
-
             <para>mlist.sod
-
             </para>
-
             <para>polynomialscoef.sod
-
             </para>
-
             <para>polynomials.sod
-
             </para>
-
             <para>sparsematrix.sod
-
             </para>
-
             <para>tlist.sod
-
             </para>
-
             <para>uint16.sod
-
             </para>
-
             <para>uint32.sod
-
             </para>
-
             <para>uint8.sod
-
             </para>
-
             <para>undefinedelement.sod
-
             </para>
-
             <para>voidelement.sod
-
             </para>
-
         </emphasis>
-
     </refsection>
-
     <refsection>
-
         <title>フォーマットの進化</title>
-
         <informaltable border="1">
-
             <tbody>
-
                 <tr>
-
                     <td align="justify">
-
                         <emphasis role="bold">SOD バージョン</emphasis>
-
                     </td>
-
                     <td align="justify">
-
                         <emphasis role="bold">Scilab バージョン</emphasis>
-
                     </td>
-
                     <td align="justify">
-
                         <emphasis role="bold">説明</emphasis>
-
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td align="justify">
-
                         <para>0</para>
-
                     </td>
-
                     <td align="justify">
-
                         <para>5.2.0</para>
-
                     </td>
-
                     <td align="justify">
-
                         <para>Scilab/HDF5 形式の最初のバージョン</para>
-
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td align="justify">
-
                         <para>1</para>
-
                     </td>
-
                     <td align="justify">
-
                         <para>5.4.0 alpha / beta</para>
-
                     </td>
-
                     <td align="left">
-
                         <para>読込み/保存のデフォルト形式</para>
-
                         <para>前の形式 (.bin) はまだサポートされます</para>
-
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td>
-
                         <para>2</para>
-
                     </td>
-
                     <td>
-
                         <para>5.4.0</para>
-
                     </td>
-
                     <td>
-
                         <para>
-
                             double, 整数, 多項式および文字列について,
-
                             多次元 HDF5 を使用するため,
-
                             <emphasis>SCILAB_cols</emphasis> / <emphasis>SCILAB_rows</emphasis>
-
                             が削除されました.
-
                         </para>
-
                     </td>
-
                 </tr>
-
                 <tr>
-
                     <td align="justify">
-
-
 
                     </td>
-
                     <td align="justify">
-
                         <para>6.0.0 (将来)</para>
-
                     </td>
-
                     <td align="justify">
-
                         <para>.bin サポートを廃止.</para>
-
                     </td>
-
                 </tr>
-
             </tbody>
-
         </informaltable>
-
     </refsection>
-
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
                 <link linkend="save">save</link>
-
             </member>
-
             <member>
-
                 <link linkend="load">load</link>
-
             </member>
-
             <member>
-
                 <link linkend="listvarinfile">listvarinfile</link>
-
             </member>
-
             <member>
-
                 <link linkend="type">type</link>
-
             </member>
-
             <member>
-
                 <link linkend="typeof">typeof</link>
-
             </member>
-
         </simplelist>
-
     </refsection>
-
 </refentry>
-

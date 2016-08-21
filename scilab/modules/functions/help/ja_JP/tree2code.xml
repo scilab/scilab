@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -14,146 +13,97 @@
  * along with this program.
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="tree2code">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="tree2code">
     <refnamediv>
-
         <refname>tree2code</refname>
-
         <refpurpose>Scilab関数のアスキー定義を生成する</refpurpose>
-
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
         <synopsis>txt = tree2code(tree, prettyprint)</synopsis>
-
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
                 <term>tree</term>
-
                 <listitem>
-
                     <para>
-
                         マクロツリー (<function>macr2tree</function>の出力)
-
                     </para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>prettyprint</term>
-
                 <listitem>
-
                     <para>オプションの論理値</para>
-
-                    <variablelist>
-
-                        <varlistentry>
-
-                            <term>%T</term>
-
-                            <listitem>
-
-                                <para>生成されるコードはインデント,整形されます</para>
-
-                            </listitem>
-
-                        </varlistentry>
-
-                        <varlistentry>
-
-                            <term>%F</term>
-
-                            <listitem>
-
-                                <para>生成されるコードは整形されません (デフォルト)</para>
-
-                            </listitem>
-
-                        </varlistentry>
-
-                    </variablelist>
-
+                    <table>
+                      <tr>
+                        <td>%T : </td>
+                        <td>生成されるコードはインデント,整形されます</td>
+                      </tr>
+                      <tr>
+                        <td>%F : </td>
+                        <td>生成されるコードは整形されません (デフォルト)</td>
+                      </tr>
+                    </table>
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>txt</term>
-
                 <listitem>
-
                     <para>文字列の列ベクトルで, Scilab命令を指定するテキスト</para>
-
                 </listitem>
-
             </varlistentry>
-
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
         <para>
-
             読み込まれたScilab関数 "ツリー" (<function>macr2tree</function>の出力)を
-
             指定することで, <function>tree2code</function>
-
             によりコードを再生成することができます.
-
         </para>
-
     </refsection>
-
     <refsection>
-
         <title>例</title>
-
         <programlisting role="example"><![CDATA[
-tree=macr2tree(cosh);
-txt=tree2code(tree,%T);
-write(%io(2),txt,'(a)');
- ]]></programlisting>
-
+tree = macr2tree(log2);   // note that the input is log2 (the function handle), not "log2"
+txt = tree2code(tree, %T);
+printf("%s\n", txt);
+	]]></programlisting>
+    <screen><![CDATA[--> printf("%s\n",c)
+function [f,e] = log2(x)
+  // x may be positive, negative, or complex
+  [lhs,rhs] = argn(0)
+  if rhs<>1 then
+    msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+    error(msprintf(msg, "log2", 1))
+  end;
+  if argn(1)==1 then
+    f = log(x)/log(2)
+  else
+    [f,e] = frexp(x)
+  end
+endfunction
+]]></screen>
     </refsection>
-
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
                 <link linkend="macr2tree">macr2tree</link>
-
             </member>
-
+            <member>
+                <link linkend="macrovar">macrovar</link>
+            </member>
+            <member>
+                <link linkend="string">string</link>
+            </member>
         </simplelist>
-
     </refsection>
-
 </refentry>
-
+>>>>>>> 1c1cb3e... help pages: misc. typos, fixes and short improvements

@@ -10,5 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Development tools",SCI+"/modules/development_tools/help/en_US",%T);
+add_help_chapter("Testing & benchmarking",SCI+"/modules/development_tools/help/en_US",%T);
 

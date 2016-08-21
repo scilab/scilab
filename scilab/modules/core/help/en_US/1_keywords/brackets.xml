@@ -266,11 +266,12 @@
                                 </simplelist>
                             </listitem>
                             <listitem>The same variable may be used several times
-                                in the list. Then, multiple assignments overwrite
-                                the previous ones, from left to right.
+                                in the list. Then, multiple assignments are done from
+                                <emphasis role="italic">right to left (!)</emphasis>
+                                and overwrite the previous ones.
                                 Example :
-                                <literal>[a,b,a]=(%pi,%z,"Allo")</literal>
-                                is equivalent to <literal>a="Allo", b=%z</literal>.
+                                <literal>[a,b,a] = (%pi, %z, "Allo")</literal>
+                                is equivalent to <literal>a = %pi, b = %z</literal>.
                             </listitem>
                         </itemizedlist>
                     </para>

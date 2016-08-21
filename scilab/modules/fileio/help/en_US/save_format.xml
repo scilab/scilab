@@ -151,7 +151,9 @@
             </tbody>
         </informaltable>
         <para>
-            Several "types" are based on <emphasis>tlist</emphasis> or <emphasis>mlist</emphasis>. It is the case of <emphasis>rational</emphasis>, <emphasis>state-space</emphasis>, <emphasis>hypermat</emphasis>, <emphasis>cell</emphasis> and <emphasis>struct</emphasis>. They are therefore transparently saved.
+            Several "types" are based on <emphasis>tlist</emphasis> or <emphasis>mlist</emphasis>.
+          It is the case of <emphasis>rational</emphasis>, <emphasis>state-space</emphasis>,
+          <emphasis>cell</emphasis> and <emphasis>struct</emphasis>. They are therefore transparently saved.
         </para>
         <para>
             <emphasis>void </emphasis>and <emphasis>undefined </emphasis>are two specific elements created to manage special cases in the list management. They are described later in this document.

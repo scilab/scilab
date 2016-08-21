@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="tree2code">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="tree2code">
     <refnamediv>
         <refname>tree2code</refname>
         <refpurpose>
@@ -39,24 +42,16 @@
                 <term>prettyprint</term>
                 <listitem>
                     <para>необязательное логическое значение:</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>%T</term>
-                            <listitem>
-                                <para>
-                                    генерирует код, который имеет отступы и красивый вид;
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>%F</term>
-                            <listitem>
-                                <para>
-                                    генерируемый код не приукрашен (по умолчанию).
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <table>
+                      <tr>
+                        <td>%T : </td>
+                        <td>генерирует код, который имеет отступы и красивый вид</td>
+                      </tr>
+                      <tr>
+                        <td>%F : </td>
+                        <td>генерируемый код не приукрашен (по умолчанию)</td>
+                      </tr>
+                    </table>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -80,16 +75,37 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-tree=macr2tree(cosh);
-txt=tree2code(tree,%T);
-write(%io(2),txt,'(a)');
- ]]></programlisting>
+tree = macr2tree(log2);   // заметьте, что на входе указано log2 (дескриптор функции), а не "log2"
+txt = tree2code(tree, %T);
+printf("%s\n", txt);
+	]]></programlisting>
+    <screen><![CDATA[--> printf("%s\n",c)
+function [f,e] = log2(x)
+  // x may be positive, negative, or complex
+  [lhs,rhs] = argn(0)
+  if rhs<>1 then
+    msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+    error(msprintf(msg, "log2", 1))
+  end;
+  if argn(1)==1 then
+    f = log(x)/log(2)
+  else
+    [f,e] = frexp(x)
+  end
+endfunction
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="macr2tree">macr2tree</link>
+            </member>
+            <member>
+                <link linkend="macrovar">macrovar</link>
+            </member>
+            <member>
+                <link linkend="string">string</link>
             </member>
         </simplelist>
     </refsection>
