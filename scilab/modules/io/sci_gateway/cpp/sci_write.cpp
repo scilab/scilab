@@ -171,16 +171,8 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
             }
             case types::InternalType::ScilabDouble:
             {
-                if (iID == 6)
-                {
-                    pstFormat = (char*)MALLOC(sizeof(char) * (strlen("((1x,1pd17.10))") + (int)log10(iCols) + 2));
-                    sprintf(pstFormat, "(%d(1x,1pd17.10))", iCols);
-                }
-                else
-                {
-                    pstFormat = (char*)MALLOC(sizeof(char) * (strlen("((1x,1pd17.10))") + (int)log10(iCols) + 2));
-                    sprintf(pstFormat, "(%d(1x,1pd17.10))", iCols);
-                }
+                pstFormat = (char*)MALLOC(sizeof(char) * (strlen("((1x,1pd17.10))") + (int)log10(iCols) + 2));
+                sprintf(pstFormat, "(%d(1x,1pd17.10))", iCols);
                 break;
             }
             case types::InternalType::ScilabString:
