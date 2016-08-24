@@ -433,12 +433,16 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-
         types::Double* pDblIn = in[0]->getAs<types::Double>();
-        if (meth == 14)//'mul'
+        if (meth == 14 || meth == 13)//'mul' or 'markov'
         {
             int* iDimsArraytempo = new int[2];
-            iDimsArraytempo[0] = in[3]->getAs<types::Double>()->getSize() + 1;
+            iDimsArraytempo[0] = in[3]->getAs<types::Double>()->getSize();
+            if (meth == 14)
+            {
+                iDimsArraytempo[0] = iDimsArraytempo[0] + 1;
+            }
+
             iDimsArraytempo[1] = iNumIter;
             pDblOut = new types::Double(pDblIn->getDims(), iDimsArraytempo);
         }
