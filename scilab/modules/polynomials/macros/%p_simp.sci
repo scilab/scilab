@@ -14,25 +14,17 @@ function [num, den] = %p_simp(num, den)
     // Called when num or/and den are complex-encoded
 
     // Special cases when real or imaginary parts are both null:
-    // http://bugzilla.scilab.org/8493
-    if ~isreal(num)
-        if imag(num)==0 then
-            num = real(num)
-        else
-        end
-    end
-    if ~isreal(den)
-        if imag(den)==0 then
-            den = real(den)
-        else
-        end
-    end
-    // Case of both real null parts
-    if ~isreal(num) && real(num)==0 && ~isreal(den) && real(den)==0 then
-        num = imag(num)
-        den = imag(den)
-    end
-    if isreal(num) && isreal(den) then
-        [num, den] = simp(num, den)
-    end
+    //   http://bugzilla.scilab.org/8493
+
+    //   Case of both real null parts
+    s = real(num)==0 & real(den)==0
+    [tmpN,tmpD] = simp(imag(num(s)), imag(den(s)))
+    num(s) = tmpN
+    den(s) = tmpD
+
+    //   Case of both imag null parts
+    s = imag(num)==0 & imag(den)==0
+    [tmpN,tmpD] = simp(real(num(s)), real(den(s)))
+    num(s) = tmpN
+    den(s) = tmpD
 endfunction
