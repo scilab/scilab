@@ -884,6 +884,15 @@ function status = test_single(_module, _testPath, _testName)
     if (returnStatus <> 0)
         status.id = 5;
         status.message = "failed: Slave Scilab exited with error code " + string(returnStatus);
+        if params.show_error then
+            tmp = mgetl(tmp_res)
+            tmp(tmp=="") = []
+            status.details = "   " + strsubst(..
+                [""
+                 "----- " + tmp_res + ": 10 last lines: -----"
+                 tmp(max(1,size(tmp,1)-9):$)
+                 ], TMPDIR, "TMPDIR")
+        end
         return;
     end
 

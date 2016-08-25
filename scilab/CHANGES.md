@@ -392,6 +392,7 @@ Bug Fixes
 * [#14694](http://bugzilla.scilab.org/show_bug.cgi?id=14694): The list of named colors was misaligned and poorly rendered in `help color_list`
 * [#14710](http://bugzilla.scilab.org/show_bug.cgi?id=14710): fullpath(TMPDIR+...) was bugged on MacOS
 * [#14714](http://bugzilla.scilab.org/show_bug.cgi?id=14714): Crash/Leak when deleting datatip
+* [#14743](http://bugzilla.scilab.org/show_bug.cgi?id=14743): `test_run(.., "show_error")` did not document "failed: Slave Scilab exited with error code #" errors.
 * [#14758](http://bugzilla.scilab.org/show_bug.cgi?id=14758): xstringb creates a figure when no exists.
 * [#14779](http://bugzilla.scilab.org/show_bug.cgi?id=14779): When used logarithmic mode using coordinates <=0, xsegs crashed Scilab.
 * [#14784](http://bugzilla.scilab.org/show_bug.cgi?id=14784): Setting field of graphics handle using children($) failed.
