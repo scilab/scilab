@@ -159,7 +159,7 @@ function test_run_result = test_run(varargin)
         test_count = size(module_list,"*");
         for i=1:test_count
             if params.reference <> "list" then
-                printf("   %03d/%03d - [%s] : \n\n", i, test_count, module_list(i));
+                printf(" Module  %03d/%03d - [%s] : \n\n", i, test_count, module_list(i));
             end
 
             params.tests_mat    = [];
@@ -200,7 +200,7 @@ function test_run_result = test_run(varargin)
         test_count = size(module_mat,"*");
         for i = 1:test_count
             if params.reference <> "list" then
-                printf("   %03d/%03d - [%s] : \n\n", i, test_count, module_mat(i));
+                printf(" Module  %03d/%03d - [%s] : \n\n", i, test_count, module_mat(i));
             end
 
             params.tests_mat    = [];

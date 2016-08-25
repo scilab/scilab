@@ -355,6 +355,7 @@ Bug Fixes
 * [#9153](http://bugzilla.scilab.org/show_bug.cgi?id=9153): The `isqualbitwise` help page was inaccurate and badly located
 * [#9161](http://bugzilla.scilab.org/show_bug.cgi?id=9161): Multiple insertions at a repeated index in a sparse matrice wrongly updated it.
 * [#9288](http://bugzilla.scilab.org/show_bug.cgi?id=9288): Dynamic palette with the most used blocks
+* [#9451](http://bugzilla.scilab.org/show_bug.cgi?id=9451): `test_run` output did not clearly distinguish heading lines of modules and tests lines 
 * [#9865](http://bugzilla.scilab.org/show_bug.cgi?id=9865): When making a plot with `point`(no line), no symbol was shown in the legend.
 * [#9876](http://bugzilla.scilab.org/show_bug.cgi?id=9876): Creating a complex structure with multiple hierarchy level and size failed.
 * [#9912](http://bugzilla.scilab.org/show_bug.cgi?id=9912): In case of missing translated help page, the default en_US was sometimes ignored
