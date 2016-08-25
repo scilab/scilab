@@ -1014,7 +1014,6 @@ function status = test_single(_module, _testPath, _testName)
         if params.show_error == %t then
             status.details = [ status.details; dia($-10:$) ]
         end
-
         return;
     end
 
@@ -1084,7 +1083,8 @@ function status = test_single(_module, _testPath, _testName)
 
     // Comparaison ref <--> dia
 
-    if ( (reference=="check") & (_module.reference=="check") ) | (_module.reference=="create") then
+    if   (reference=="check" & _module.reference=="check") | ..
+         (reference ~= "skip" & _module.reference=="create") then
         //  Do some modification in  dia file
 
         dia(grep(dia, "printf(''%s\n'',tmpdirToPrint);")) = [];

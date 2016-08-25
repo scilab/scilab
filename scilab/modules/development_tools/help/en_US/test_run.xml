@@ -91,7 +91,10 @@
                         <varlistentry>
                             <term>"create_ref"</term>
                             <listitem>
-                                <para>create the .dia.ref file and does not check if the .dia and .dia.ref are equal</para>
+                                <para>creates the .dia.ref file (for tests not having the
+                                  <literal>&lt;-- NO CHECK REF --></literal> flag)
+                                  and does not check if the .dia and .dia.ref are equal.
+                                  </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>

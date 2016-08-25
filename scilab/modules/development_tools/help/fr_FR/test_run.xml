@@ -89,7 +89,9 @@
                         <varlistentry>
                             <term>"create_ref"</term>
                             <listitem>
-                                <para>génère un fichier .dia.ref (ignore la comparaison avec tout précédent fichier .dia.ref)</para>
+                                <para>génère un fichier .dia.ref (pour les tests sans l'indicateur
+                                  <literal>&lt;-- NO CHECK REF --></literal>), et ignore la comparaison
+                                  avec tout précédent fichier .dia.ref</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>

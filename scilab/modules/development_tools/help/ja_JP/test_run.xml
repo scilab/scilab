@@ -87,6 +87,8 @@
                             <listitem>
                                 <para>.dia.refファイルを作成し,
                                     .dia と .dia.refが等しいかどうかをチェックしません.
+                                  This option is applied only to chosen tests not having the
+                                  <literal>&lt;-- NO CHECK REF --></literal> flag.
                                 </para>
                             </listitem>
                         </varlistentry>
