@@ -52,8 +52,17 @@
                 <listitem>
                     <para>a vector of string. Contains the names of the tests to perform.</para>
                     <para>
-                        The name of a test is its filename without <literal>.tst</literal>. If several modules or directory are given as first input parameter, scans for tests in each of these modules or directory.
+                        The name of a test is its filename without <literal>.tst</literal>.
+                        If several modules or directory are given as first input parameter,
+                        scans for tests in each of these modules or directory.
                     </para>
+                    <note>
+                        Partial test names are allowed to run a subset
+                        of benchmarks dedicated to the same function/feature.
+                        For instance, specifying <literal>"ascii"</literal>
+                        will select all tests (in given module(s)) whose names
+                        contain <literal>"ascii"</literal> (See examples).
+                    </note>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -147,8 +156,10 @@
 //    <-- BENCH END -->
 ]]></programlisting>
                 <para>
-                    Code between these tags will be repeated. Code before will be executed before the repetition, code after will be executed after the repetition.
-                    If these are not present, the entire code will be repeated.
+                    Code between these tags will be repeated.
+                    Any code written before/after will be executed only once
+                    before/after the repetition, without being timed.
+                    If these tags are missing, the entire code will be repeated.
                 </para>
             </listitem>
         </itemizedlist>
@@ -209,18 +220,41 @@ b = chol(a);
 ]]></programlisting>
         <para>The result of the test</para>
         <screen><![CDATA[
--->bench_run('linear_algebra','bench_chol')
+--> bench_run('linear_algebra','bench_chol')
 
-For Loop (as reference) ...........................      33.20 ms [ 1000000 x]
+           For Loop (as reference) ...........................      33.20 ms [ 1000000 x]
 
-001/001 - [linear_algebra] bench_chol ......................     1233.93 ms [      10 x]
-            ]]></screen>
+ 001/001 - [linear_algebra] bench_chol ......................     1233.93 ms [      10 x]
+]]></screen>
+        <para>
+        Running a subset of dedicated benchmarks by using a partial/generic testname:
+        <screen><![CDATA[
+--> bench_run string ascii
+
+          For Loop (as reference) ...........................      102.98 ms [ 1000000 x]
+
+ 001/005 - [string] bench_ascii_1 ...........................      447.40 ms [   10000 x]
+ 002/005 - [string] bench_ascii_2 ...........................    31727.98 ms [ 1000000 x]
+ 003/005 - [string] bench_ascii_3 ...........................     4173.69 ms [   10000 x]
+ 004/005 - [string] bench_ascii_4 ...........................     5145.06 ms [   10000 x]
+ 005/005 - [string] bench_ascii_UTF8 ........................       23.26 ms [      10 x]
+]]></screen>
+        </para>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="test_run">test_run</link>
+            </member>
+            <member>
+                <link linkend="covStart">coverage</link>
+            </member>
+            <member>
+                <link linkend="slint">slint</link>
+            </member>
+            <member>
+                <link linkend="debug">debug</link>
             </member>
         </simplelist>
     </refsection>
@@ -243,6 +277,11 @@ For Loop (as reference) ...........................      33.20 ms [ 1000000 x]
                             Global configuration settings mode(),
                             format(), ieee(), warning() and funcprot()
                             are now protected against tests.
+                        </listitem>
+                        <listitem>
+                            Partial/generic test names are now allowed to run a
+                            subset
+                            of benchmarks dedicated to the same function/feature.
                         </listitem>
                     </itemizedlist>
                 </revdescription>

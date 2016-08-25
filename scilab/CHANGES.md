@@ -73,6 +73,8 @@ Feature changes and additions
 Help pages:
 -----------
 
+* fixed / improved:  `bench_run`
+
 
 Data Structures
 ---------------
@@ -103,4 +105,5 @@ Bug Fixes
 
 ### Bugs fixed in 6.1.0:
 * [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` is 40x slower with 6.0.0 wrt 5.5.2
+* [#14605](http://bugzilla.scilab.org/show_bug.cgi?id=14605) fixed - `bench_run` was too strict about the specification of tests names.
 

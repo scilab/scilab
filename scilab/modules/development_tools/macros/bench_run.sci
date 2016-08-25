@@ -101,7 +101,7 @@ function [modutests_names, elapsed_time, nb_iterations] = bench_run(varargin)
         // only keep relevant tests
         // after this loop bench_test_reduced contains the module and relevant tests
         for i = 1:size(test_mat, "*")
-            found_tests = find(bench_list(:,2) == test_mat(i));
+            found_tests = grep(bench_list(:,2), test_mat(i));
             if ~isempty(found_tests)
                 bench_list_reduced = [bench_list_reduced; bench_list(found_tests, :)];
             else
