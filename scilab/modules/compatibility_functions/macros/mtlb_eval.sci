@@ -97,6 +97,9 @@ function r=mtlb_eval(%s1,%s2)
         r=ans
     else
         r=[];
+        if isempty(nams) then
+            return;
+        end
         execstr("["+strcat(nams,",")+"]"+"=resume"+"("+strcat(nams,",")+")")
     end
 

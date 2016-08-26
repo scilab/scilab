@@ -13,7 +13,7 @@
 function varargout=mtlb_axis(varargin)
     // Emulation function for Matlab axis()
 
-    varargout(1)=list()
+    varargout=list()
     listvar=varargin
     if size(listvar)==0
         a=gca();
