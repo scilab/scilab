@@ -58,6 +58,12 @@ int set_format_n_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTyp
 
     getGraphicObjectProperty(iObjUID, __GO_FORMATN__, jni_string, (void **)&oldFormat);
 
+    if (!oldFormat)
+    {
+        Scierror(999, _("Could not retrieve format.\n"));
+        return SET_PROPERTY_ERROR;
+    }
+
     if (strcmp(format, oldFormat) == 0)
     {
         return SET_PROPERTY_SUCCEED;

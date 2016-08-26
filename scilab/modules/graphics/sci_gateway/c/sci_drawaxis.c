@@ -249,6 +249,12 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
         int iCurrentSubwinUID = getCurrentSubWin();
 
         getGraphicObjectProperty(iCurrentSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&bounds);
+        if (!bounds)
+        {
+            freeAllocatedSingleString(format);
+            freeAllocatedMatrixOfString(opts[8].iRows, opts[8].iCols, val);
+            return 1;
+        }
         ny = 1;
         y = y_def;
         if (dir == 'd')

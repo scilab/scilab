@@ -238,11 +238,13 @@ void* getchampdata(int iObjUID)
     getGraphicObjectProperty(iObjUID, __GO_DIRECTION_X__, jni_double_vector, (void **)&arrowDirectionsX);
     getGraphicObjectProperty(iObjUID, __GO_DIRECTION_Y__, jni_double_vector, (void **)&arrowDirectionsY);
 
-    addColVectorToReturnedList(tList, arrowBasesX, dimensions[0]);
-    addColVectorToReturnedList(tList, arrowBasesY, dimensions[1]);
-    addMatrixToReturnedList(tList, arrowDirectionsX, dimensions[0], dimensions[1]);
-    addMatrixToReturnedList(tList, arrowDirectionsY, dimensions[0], dimensions[1]);
-
+    if (dimensions)
+    {
+        addColVectorToReturnedList(tList, arrowBasesX, dimensions[0]);
+        addColVectorToReturnedList(tList, arrowBasesY, dimensions[1]);
+        addMatrixToReturnedList(tList, arrowDirectionsX, dimensions[0], dimensions[1]);
+        addMatrixToReturnedList(tList, arrowDirectionsY, dimensions[0], dimensions[1]);
+    }
     //destroyReturnedList(tList);
 
     return tList;

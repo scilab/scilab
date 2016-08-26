@@ -994,6 +994,10 @@ static void updateXYDataBounds(int iSubwinUID, double rect[6])
         double * dataBounds = NULL;
         getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
 
+        if (!dataBounds)
+        {
+            return;
+        }
         rect[0] = Min(rect[0], dataBounds[0]);
         rect[1] = Max(rect[1], dataBounds[1]);
         rect[2] = Min(rect[2], dataBounds[2]);
@@ -1016,12 +1020,15 @@ static void updateXYZDataBounds(int iSubwinUID, double rect[6])
         double * dataBounds = NULL;
         getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
 
-        rect[0] = Min(rect[0], dataBounds[0]);
-        rect[1] = Max(rect[1], dataBounds[1]);
-        rect[2] = Min(rect[2], dataBounds[2]);
-        rect[3] = Max(rect[3], dataBounds[3]);
-        rect[4] = Min(rect[4], dataBounds[4]);
-        rect[5] = Max(rect[5], dataBounds[5]);
+        if (dataBounds)
+        {
+            rect[0] = Min(rect[0], dataBounds[0]);
+            rect[1] = Max(rect[1], dataBounds[1]);
+            rect[2] = Min(rect[2], dataBounds[2]);
+            rect[3] = Max(rect[3], dataBounds[3]);
+            rect[4] = Min(rect[4], dataBounds[4]);
+            rect[5] = Max(rect[5], dataBounds[5]);
+        }
     }
 
     setGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);

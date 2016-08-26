@@ -82,6 +82,12 @@ void sciGetDisplayedBounds(int iSubWinUID,
         getGraphicObjectProperty(iSubWinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&bounds);
     }
 
+    if (!bounds)
+    {
+        Scierror(999, _("Could not retrive bounds.\n"));
+        return;
+    }
+
     *xmin = bounds[0];
     *xmax = bounds[1];
     *ymin = bounds[2];

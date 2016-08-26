@@ -783,16 +783,23 @@ int ConstructCompoundSeq(int number)
      * Remove the last "number" created objects (located at the children list's head)
      * and add them to the compound in the same order
      */
-    for (i = 0; i < number; i++)
+    if (children && piNumberChildren)
     {
-        /*
-         * Set the parent-child relationship between the Compound and each aggregated object.
-         * Children are added to the Compound from the least recent to the most recent, to
-         * preserve their former ordering.
-         */
-        setGraphicObjectRelationship(iObj, children[number - i - 1]);
+        for (i = 0; i < number; i++)
+        {
+            /*
+             * Set the parent-child relationship between the Compound and each aggregated object.
+             * Children are added to the Compound from the least recent to the most recent, to
+             * preserve their former ordering.
+             */
+            setGraphicObjectRelationship(iObj, children[number - i - 1]);
+        }
+        releaseGraphicObjectProperty(__GO_CHILDREN__, children, jni_int_vector, numberChildren);
     }
-    releaseGraphicObjectProperty(__GO_CHILDREN__, children, jni_int_vector, numberChildren);
+    else
+    {
+        return -1;
+    }
 
     /* Sets the parent-child relationship for the Compound */
     setGraphicObjectRelationship(iSubwinUID, iObj);
