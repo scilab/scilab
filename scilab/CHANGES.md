@@ -259,6 +259,7 @@ Bug Fixes
 * [Bug #11692](http://bugzilla.scilab.org/show_bug.cgi?id=11692) fixed - The summary of a help section built from both default en_US and localized files was never sorted overall.
 * [Bug #11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959) fixed - Allow "Zoom Area" to be clicked out of axes
 * [Bug #12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110) fixed - Unable to zoom multiple axes at once
+* [Bug #13166](http://bugzilla.scilab.org/show_bug.cgi?id=13166) fixed - `l` and `b` endian flags used with `mget` and `mgeti` were sticky
 * [Bug #13583](http://bugzilla.scilab.org/show_bug.cgi?id=13583) fixed - `getd` loading a script including a `clear` instruction yielded an error
 * [Bug #13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597) fixed - `help format` claimed setting a number of digits instead of characters
 * [Bug #13757](http://bugzilla.scilab.org/show_bug.cgi?id=13757) fixed - The toolbox menu dit not load properly ATOMS modules not autoloaded.
