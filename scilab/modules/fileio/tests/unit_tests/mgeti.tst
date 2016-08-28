@@ -1,12 +1,42 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
+// Copyright (C) 2016 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
+// Read/Write int64 & uint64 with relative accuracy better than %eps = 1/2^52
+// --------------------------------------------------------------------------
+n = 10;
+b = grand(64,n,"uin",0,1);
+p = uint64(2).^ndgrid(0:63,1:n);
+x0 = sum(b.*p, "r");
+
+for endian = ["l" "b"]
+    for usign = ["u" ""]
+        // usign+"l"+endian
+        binfile = TMPDIR+"/mgetiTestInt64.dat";
+        idF = mopen(binfile, "w+b");
+        x = x0;
+        if usign==""
+            x = int64(x);
+        end
+        mput(x,usign+"l"+endian)
+
+        mseek(0);
+        xr = mgeti(n, usign+"l"+endian);
+        mclose(idF);
+        assert_checkequal(xr, x);
+    end
+end
+
+
+// Other tests
+// -----------
 function writedata(name, str)
     f = mopen(TMPDIR + "/" + name + ".dat", "wb");
     data = hex2dec(str);
@@ -113,3 +143,4 @@ fd1=mopen(file1,'rb');
 a=mgeti(1);
 assert_checkequal(typeof(a), "int32");
 assert_checkequal(a, int32(1996));
+mclose(fd1);

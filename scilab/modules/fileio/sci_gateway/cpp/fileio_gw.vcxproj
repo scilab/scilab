@@ -210,6 +210,7 @@
     <ClCompile Include="sci_mfprintf.cpp" />
     <ClCompile Include="sci_mfscanf.cpp" />
     <ClCompile Include="sci_mget.cpp" />
+    <ClCompile Include="sci_mgeti.cpp" />
     <ClCompile Include="sci_mgetl.cpp" />
     <ClCompile Include="sci_mgetstr.cpp" />
     <ClCompile Include="sci_mopen.cpp" />

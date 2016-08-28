@@ -254,6 +254,7 @@ am__objects_4 = sci_gateway/cpp/libscifileio_la-fileio_gw.lo \
 	sci_gateway/cpp/libscifileio_la-sci_mopen.lo \
 	sci_gateway/cpp/libscifileio_la-sci_mclose.lo \
 	sci_gateway/cpp/libscifileio_la-sci_mget.lo \
+	sci_gateway/cpp/libscifileio_la-sci_mgeti.lo \
 	sci_gateway/cpp/libscifileio_la-sci_mput.lo \
 	sci_gateway/cpp/libscifileio_la-sci_mputl.lo \
 	sci_gateway/cpp/libscifileio_la-sci_mgetl.lo \
@@ -341,6 +342,7 @@ am__depfiles_remade =  \
 	sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mfprintf.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mfscanf.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mget.Plo \
+	sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mgeti.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mgetl.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mgetstr.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mopen.Plo \
@@ -817,6 +819,7 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_mopen.cpp \
 	sci_gateway/cpp/sci_mclose.cpp \
 	sci_gateway/cpp/sci_mget.cpp \
+	sci_gateway/cpp/sci_mgeti.cpp \
 	sci_gateway/cpp/sci_mput.cpp \
 	sci_gateway/cpp/sci_mputl.cpp \
 	sci_gateway/cpp/sci_mgetl.cpp \
@@ -1256,6 +1259,9 @@ sci_gateway/cpp/libscifileio_la-sci_mclose.lo:  \
 sci_gateway/cpp/libscifileio_la-sci_mget.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscifileio_la-sci_mgeti.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscifileio_la-sci_mput.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1409,6 +1415,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mfprintf.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mfscanf.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mget.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mgeti.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mgetl.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mgetstr.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mopen.Plo@am__quote@ # am--include-marker
@@ -1977,6 +1984,13 @@ sci_gateway/cpp/libscifileio_la-sci_mget.lo: sci_gateway/cpp/sci_mget.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscifileio_la-sci_mget.lo `test -f 'sci_gateway/cpp/sci_mget.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_mget.cpp
 
+sci_gateway/cpp/libscifileio_la-sci_mgeti.lo: sci_gateway/cpp/sci_mgeti.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscifileio_la-sci_mgeti.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mgeti.Tpo -c -o sci_gateway/cpp/libscifileio_la-sci_mgeti.lo `test -f 'sci_gateway/cpp/sci_mgeti.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_mgeti.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mgeti.Tpo sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mgeti.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_mgeti.cpp' object='sci_gateway/cpp/libscifileio_la-sci_mgeti.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscifileio_la-sci_mgeti.lo `test -f 'sci_gateway/cpp/sci_mgeti.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_mgeti.cpp
+
 sci_gateway/cpp/libscifileio_la-sci_mput.lo: sci_gateway/cpp/sci_mput.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscifileio_la-sci_mput.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mput.Tpo -c -o sci_gateway/cpp/libscifileio_la-sci_mput.lo `test -f 'sci_gateway/cpp/sci_mput.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_mput.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mput.Tpo sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mput.Plo
@@ -2458,6 +2472,7 @@ distclean: distclean-am
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mfprintf.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mfscanf.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mget.Plo
+	-rm -f sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mgeti.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mgetl.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mgetstr.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mopen.Plo
@@ -2603,6 +2618,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mfprintf.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mfscanf.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mget.Plo
+	-rm -f sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mgeti.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mgetl.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mgetstr.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscifileio_la-sci_mopen.Plo

@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2016 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,58 +14,190 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mget" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+    xmlns:scilab="http://www.scilab.org" xml:id="mget" xml:lang="en">
     <refnamediv>
         <refname>mget</refname>
-        <refpurpose>reads byte or word in a given binary format and converts to
-            a double type
-        </refpurpose>
-    </refnamediv>
-    <refnamediv xml:id="mgeti">
-        <refname>mgeti</refname>
         <refpurpose>
-            reads byte or word in a given binary format and returns an int type
+            parses numbers in a binary file and returns them as decimals
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            x = mget([n, type, fd])
-            x = mgeti([n, type, fd])
+            D = mget(nNumb)
+            D = mget(nNumb, binFormat)
+            D = mget(nNumb, binFormat, fileID)
+        </synopsis>
+    </refsynopsisdiv>
+    <refnamediv xml:id="mgeti">
+        <refname>mgeti</refname>
+        <refpurpose>
+            parses numbers in a binary file and returns them as encoded integers
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            I = mgeti(nNumb)
+            I = mgeti(nNumb, binFormat)
+            I = mgeti(nNumb, binFormat, fileID)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>n</term>
-                <listitem>
-                    <para>a positive integer scalar: the number of items to be read.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fd</term>
+                <term>fileID</term>
                 <listitem>
                     <para>
-                        a scalar: a file descriptor returned by the function <function>mopen</function>. <literal>-1</literal>
-                        stands for last opened file. Default value is
-                        <literal>-1</literal>.
+                        file identifier (single integer) returned by
+                        <function>mopen</function> when opening the file.
+                        By default, the last opened file is considered.
+                    <important>
+                        The file must be priorly opened in
+                        <emphasis role="bold">r</emphasis>ead
+                        <emphasis role="bold">b</emphasis>inary mode with
+                        <code>fileID = mopen(filename,'rb')</code>.
+                    </important>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>type</term>
+                <term>nNumb</term>
                 <listitem>
                     <para>
-                        a string: the binary format used to write all the entries of
-                        <varname>x</varname>.
+                        Single integer > 0: number of numbers to be
+                        parsed and returned. Each number is encoded over one or
+                        several bytes, according to the used <varname>binFormat</varname>.
+                        <note>To read all numbers remaining in the file, use a
+                        value <varname>nNumb</varname> big enough.
+                        </note>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>x</term>
+                <term>binFormat</term>
                 <listitem>
-                    <para>a vector of floating point or integer numbers.</para>
+                    <para>
+                        a text word made of one, 2 or 3 character codes: the binary
+                        format used to parse numbers in the binary file.
+                        Available binary codes are the following:
+                    <table>
+                        <tr valign="top">
+                            <td align="right">c</td>
+                            <td>: individual bytes parsed as
+                                <literal>int8</literal> integers
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <td align="right">uc</td>
+                            <td>: individual bytes parsed as
+                                <literal>uint8</literal> unsigned integers >0
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <td align="right">s</td>
+                            <td>: 2-byte blocks parsed as
+                                <literal>int16</literal> integers
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <td align="right">us</td>
+                            <td>: 2-byte blocks parsed as
+                                <literal>uint16</literal> unsigned integers >0
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <td align="right">i</td>
+                            <td>: 4-byte blocks parsed as
+                                <literal>int32</literal> integers
+                                (<emphasis role="bold">default mode</emphasis>).
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <td align="right">ui</td>
+                            <td>: 4-byte blocks parsed as
+                                <literal>uint32</literal> unsigned integers >0
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <td align="right">l</td>
+                            <td>: 8-byte blocks parsed as
+                                <literal>int64</literal> integers
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <td align="right">ul</td>
+                            <td>: 8-byte blocks parsed as
+                                <literal>uint64</literal> unsigned integers >0
+                            </td>
+                        </tr>
+                        <tr>
+                            <td/>
+                            <td>
+                                Only with <function>mget()</function> :
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <td align="right">f</td>
+                            <td>: 4-byte blocks parsed as
+                                "single precision" decimal numbers
+                                (so-called "<emphasis role="bold">f</emphasis>loats"
+                                in oldies)
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <td align="right">d</td>
+                            <td>: 8-byte blocks parsed as
+                                <emphasis role="bold">d</emphasis>ecimal numbers
+                            </td>
+                        </tr>
+                    </table>
+                    </para>
+                    <para>
+                        The default order of bytes in a block can be set using
+                        a <function>mopen</function> option when opening the file.
+                        This order may be forced afterwards using an optional
+                        <function>mget</function> or <function>mgeti</function>
+                        flag to be appended to <varname>binFormat</varname>:
+                        <table>
+                            <tr valign="top">
+                                <td align="right">..l :</td>
+                                <td><emphasis role="bold">l</emphasis>ittle endian
+                                (first byte in the block = low power byte)
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="right">..b :</td>
+                                <td><emphasis role="bold">b</emphasis>ig endian
+                                (first byte in the block = high power byte)
+                                </td>
+                            </tr>
+                        </table>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>D</term>
+                <listitem>
+                    <para>
+                        Row of <varname>nNumb</varname> Decimal numbers
+                        (or available ones if the End Of File has been reached).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>I</term>
+                <listitem>
+                    <para>
+                        Row of <varname>nNumb</varname> encoded Integers
+                        (or available ones if the End Of File has been reached).
+                        The <function>inttype</function> of returned integers
+                        depends on the used <varname>binFormat</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -73,178 +205,106 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <function>mget</function> function reads data in the input
-            specified by the stream parameter <varname>fd</varname> and returns a
-            vector of floating point data.
+            <function>mget</function> and <function>mgeti</function> start reading
+            bytes in the specified file from the current position of the inner
+            file pointer. After reading a block of N bytes (N==1,2,4,8 according
+            to the chosen <varname>binFormat</varname>),
+            <itemizedlist>
+                <listitem>
+                    the file pointer is increased by N bytes and set to the
+                    beginning of next block.
+                </listitem>
+                <listitem>
+                    the read block is ordered according to the default or chosen
+                    swapping endian mode. The parsed block is then stored to
+                    be returned.
+                </listitem>
+            </itemizedlist>
+            This is iterated <varname>nNumb</varname> times, unless
+            the End Of File is reached: In this case, parsing the file is
+            stopped, the uncomplete block is left (if any), the EOF status is set,
+            and already parsed numbers are returned.
         </para>
         <para>
-            The <function>mgeti</function> function reads data in the input
-            specified by the stream parameter <varname>fd</varname> and returns a
-            vector of integer data.
+            When <function>mgeti()</function> is used, parsed numbers are
+            converted into the <function>inttype</function> corresponding to
+            the chosen <varname>binFormat</varname> and then returned.
         </para>
         <para>
-            Data is read at the position at which the file pointer is currently
-            pointing and advances the indicator appropriately.
-        </para>
-        <para>
-            The <varname>type</varname> parameter is a conversion specifier
-            which may be set to any of the following flag characters (with default
-            value <literal>"l"</literal>):
-        </para>
-        <para>
-            <note>
-                On Windows, default behavior is to skip byte 13 (<literal>0x0D</literal>).
-                <function>mopen</function> should be called with the
-                <literal>'b'</literal> option, e.g.
-                <code>fd1 = mopen(file1,'rb')</code>, so that all bytes will be read
-                without exception.
-            </note>
-        </para>
-        <para>Data type:</para>
-        <variablelist>
-            <varlistentry>
-                <term>d</term>
-                <listitem>
-                    <para>double</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>f</term>
-                <listitem>
-                    <para>float</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>l</term>
-                <listitem>
-                    <para>long long int</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>i</term>
-                <listitem>
-                    <para>int or long int</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>s</term>
-                <listitem>
-                    <para>short</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>c</term>
-                <listitem>
-                    <para>character</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-        <para>Optional flag:</para>
-        <variablelist>
-            <varlistentry>
-                <term>u..</term>
-                <listitem>
-                    <para>unsigned (in combination with one of the above types)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>..l</term>
-                <listitem>
-                    <para>
-                        little endian (in combination with one of the above types)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>..b</term>
-                <listitem>
-                    <para>
-                        big endian (in combination with one of the above types)
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-        <para>
-            Bytes read is automatically swapped if necessary (by checking
-            <literal>little=endian</literal> status).
-        </para>
-        <para>
-            This default swapping behavior can be suppressed by adding a flag in
-            the <function>mopen</function> function.
-        </para>
-        <para>
-            Formats <literal>"l"</literal>, <literal>"d"</literal> and
-            <literal>"f"</literal> are only valid with the
-            <function>mget</function> function.
+            When <function>mget()</function> is used, binary numbers are
+            parsed according to <varname>binFormat</varname> but are finally
+            converted into 8-byte decimal numbers and then returned.
+            <warning>
+            If <literal>int64</literal> or <literal>uint64</literal>
+            integers > 2<superscript>53</superscript> were parsed thanks
+            to the <literal>"ul*"</literal> or <literal>"l*"</literal> format,
+            their final conversion into decimal numbers
+            truncates their mantissa to their 53 highest bits.
+            </warning>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-file1 = fullfile(TMPDIR,'test1.bin');
-file2 = fullfile(TMPDIR,'test2.bin');
-fd1=mopen(file1,'wb');
-fd2=mopen(file2,'wb');
-mput(1996,'ull',fd1);
-mput(1996,'ull',fd2);
-mclose(fd1);
-mclose(fd2);
+binfile = TMPDIR+"/mgetest.bin";
+idF = mopen(binfile, "w+b");
+mput(int8(0:16),"uc");
 
-fd1=mopen(file1,'rb');
-if 1996<>mget(1,'ull',fd1)
-  write(%io(2),'Bug');
+ mseek(0);
+ mgeti(1,"uc")  // 0 expected
+ mgeti(2,"uc")  // 1, 2 expected
+[mgeti(1,"us"),  uint16(3 + 4*256)]
+ mseek(3);      // back to the previous position on "3"
+[mgeti(1,"usb"), uint16(4 + 3*256)] // swapped bytes (big endian)
+ mseek(0);
+[mgeti(1,"ui") , uint32(0 + 256*(1 + 256*(2 + 256*3)))]
+ mseek(0);
+[mgeti(1,"uib"), uint32(3 + 256*(2 + 256*(1 + 256*0)))]
+mclose(idF);
+
+// uint64 and int64 integers with a relative accuracy of 1/2^64 = %eps/2^12
+// better than decimals one are well handled:
+    // Generating n 64-bit long integers with bits #0-#63 set randomly:
+n = 5;
+b = grand(64,n,"uin",0,1);
+p = uint64(2).^ndgrid(0:63,1:n);
+x0 = sum(b.*p, "r");
+
+    // We write them in a file, and then re-read them with mgeti():
+for usign = ["u" ""]
+    for endian = ["l" "b"]
+        binfile = TMPDIR+"/mgetiTestInt64.dat";
+        idF = mopen(binfile, "w+b");
+        x = x0;
+        if usign==""
+            x = int64(x);
+        end
+        mput(x,usign+"l"+endian)   // "l" is mandatory to manage all the 64 bits
+
+        // Now, read them in the same mode:
+        mseek(0);
+        xr = mgeti(n, usign+"l"+endian);
+        mclose(idF);
+
+        // Display:
+        wrParse = usign + "l" + endian;
+        printf("    Write as  ""%s""       Read as ""%s""\n", wrParse, wrParse);
+        [x' xr']
+    end
 end
-
-fd2=mopen(file2,'rb');
-if 1996<>mget(1,'ull',fd2)
-  write(%io(2),'Bug');
-end
-
-mclose(fd1);
-mclose(fd2);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="mclose">mclose</link>
-            </member>
-            <member>
-                <link linkend="meof">meof</link>
-            </member>
-            <member>
-                <link linkend="mfprintf">mfprintf</link>
-            </member>
-            <member>
-                <link linkend="fprintfMat">fprintfMat</link>
-            </member>
-            <member>
-                <link linkend="mfscanf">mfscanf</link>
-            </member>
-            <member>
-                <link linkend="fscanfMat">fscanfMat</link>
-            </member>
-            <member>
-                <link linkend="mgetl">mgetl</link>
-            </member>
-            <member>
-                <link linkend="mgetstr">mgetstr</link>
-            </member>
-            <member>
                 <link linkend="mopen">mopen</link>
             </member>
             <member>
-                <link linkend="mprintf">mprintf</link>
+                <link linkend="mclose">mclose</link>
             </member>
             <member>
                 <link linkend="mput">mput</link>
-            </member>
-            <member>
-                <link linkend="mputl">mputl</link>
-            </member>
-            <member>
-                <link linkend="mputstr">mputstr</link>
             </member>
             <member>
                 <link linkend="mseek">mseek</link>
@@ -253,8 +313,28 @@ mclose(fd2);
                 <link linkend="mtell">mtell</link>
             </member>
             <member>
-                <link linkend="mdelete">mdelete</link>
+                <link linkend="meof">meof</link>
+            </member>
+            <member>
+                <link linkend="readb">readb</link>
+            </member>
+            <member>
+                <link linkend="read4b">read4b</link>
+            </member>
+            <member>
+                <link linkend="inttype">inttype</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>mgeti(,"ul*"|"l*") is implemented
+                 to read uint64 or int64 integers > 2<superscript>52</superscript>.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

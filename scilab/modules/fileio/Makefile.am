@@ -53,6 +53,7 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_mopen.cpp \
 	sci_gateway/cpp/sci_mclose.cpp \
 	sci_gateway/cpp/sci_mget.cpp \
+	sci_gateway/cpp/sci_mgeti.cpp \
 	sci_gateway/cpp/sci_mput.cpp \
 	sci_gateway/cpp/sci_mputl.cpp \
 	sci_gateway/cpp/sci_mgetl.cpp \

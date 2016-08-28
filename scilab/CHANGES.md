@@ -193,6 +193,7 @@ Feature changes and additions on 6.1.0
 * `circshift` is introduced.
 * `atomsGetInstalledPath` is no longer sensitive to the case or completeness of the modules names. Providing the modules versions is now optional.
 * `function` replaces `mc` as the new overloading code for functions in Scilab language.
+* `mgeti` can now read correctly 64-bit int64 / uint64 integers bigger than 2^52.
 
 
 Feature changes and additions on 6.1.1
@@ -237,7 +238,7 @@ Feature changes and additions on 6.1.1
 Help pages:
 -----------
 
-* overhauled / rewritten: `bitget`, `edit`, `factorial`, `fft`, `vectorfind`, `datafit`
+* overhauled / rewritten: `bitget`, `edit`, `factorial`, `fft`, `vectorfind`, `datafit`, `mgeti`
 * fixed / improved:  `bench_run` `M_SWITCH`, `comet`, `comet3d`, `plot2d`
 * Rewritten: `getdate`, `weekday`
 * Translations added:
@@ -504,6 +505,7 @@ Bug Fixes
 * [#13766](https://bugzilla.scilab.org/13766): Minimal values for `.figure_size` were not documented.
 * [#14015](https://bugzilla.scilab.org/14015): Nan terms added to a polynomial were ignored.
 * [#14191](https://bugzilla.scilab.org/14191): Unlike `plot2d()`, `plot()` did not accept logflags among input arguments.
+* [#14397](https://bugzilla.scilab.org/14397): `mgeti` wrongly handled `int64` or `uint64` integers bigger then 2^52. The `mget`/`mgeti` help page was unclear.
 * [#14422](https://bugzilla.scilab.org/14422): `clc(0)` did nothing, now clears last console entry. Remove leading blank after a `clc()`.
 * [#14498](https://bugzilla.scilab.org/14498): `size([],3)` returned 1 instead of 0.
 * [#14501](https://bugzilla.scilab.org/14501): `strsubst` crashed on consecutive occurrences.
