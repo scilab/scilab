@@ -100,16 +100,25 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
         _Path_tmp = (char *)MALLOC(sizeof(char) * (lenPath + 1));
         _Path_start = (char *)MALLOC(sizeof(char) * (lenPath + 1));
         _FullPath_start = (char *)MALLOC(sizeof(char) * (lenFullPath + 1));
+
         //First case(1): fullpath(TMPDIR+"/a/b/c"), second case(2): fullpath("a/b/c") or third case(3): fullpath("../a/b")
         strcpy(_Path_start, pstWorkingPath); // _Path_start=TMPDIR+"/a/b/c" (1) or _Path_start="a/b/c" (2) or _Path_start="../a/b/c" (3)
         strcpy(_FullPath_start, _FullPath); // _Fullpath_Start=TMPDIR+"/a" (1) or _FullPath_start=SCI+"/a" (2) or _FullPath_start=../SCI+"/a" (3)
         strtok(_Path_start, "/"); // _Path_start=/tmp  (1) or _Path_start="a" (2) or _Path_start="a/b/c" (3)
         strtok(_FullPath_start, "/"); // _FullPath_start=/tmp (1) or _FullPath_start=/home (2) and (3)
+
+#if defined(__APPLE__)
+        if (strcmp(_FullPath_start, "/private") == 0) // For case: fullpath(TMPDIR+"/a/b/c") (1)
+        {
+            normalizePath(_FullPath);
+        }
+#else
         if (strcmp(_Path_start, _FullPath_start) == 0) // For case: fullpath(TMPDIR+"/a/b/c") (1)
         {
             strcpy(_FullPath, pstWorkingPath);
             normalizePath(_FullPath);
         }
+#endif
         else if (strcmp(_Path, _FullPath) != 0) // For case: fullpath("a/b/c") (2) or fullpath("../a/b/c") (3)
         {
             strcpy(_Path_tmp, pstWorkingPath); //_Path_tmp="a/b/c" (2) or _Path_tmp="../a/b/c" (3)
@@ -118,7 +127,7 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
             strcat(_FullPath, toadd); //_FullPath=_Fullpath+toadd
             FREE(toadd);
         }
-        
+
         FREE(pstWorkingPath);
         FREE(_FullPath_start);
         FREE(_Path_start);
@@ -138,6 +147,7 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
             bufTmp = NULL;
         }
     }
+
     return _FullPath;
 #endif
 }
