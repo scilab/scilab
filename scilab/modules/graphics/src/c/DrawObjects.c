@@ -50,6 +50,7 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "Sciwarning.h"
+#include "Scierror.h"
 
 //#include "../../../tclsci/includes/GedManagement.h"
 
