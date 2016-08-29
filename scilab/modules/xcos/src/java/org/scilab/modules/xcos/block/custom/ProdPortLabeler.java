@@ -82,7 +82,7 @@ public class ProdPortLabeler {
         for (int i = 0; i < ports.size(); i++) {
             final int gain;
 
-            if (i < rpar.size()) {
+            if (i < ipar.size()) {
                 gain = ipar.get(i);
             } else {
                 gain = 1;
