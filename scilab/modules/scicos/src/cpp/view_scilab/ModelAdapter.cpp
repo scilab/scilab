@@ -1538,6 +1538,7 @@ ModelAdapter::ModelAdapter() :
 {
     initialize_fields();
 }
+
 ModelAdapter::ModelAdapter(const Controller& c, model::Block* adaptee, DiagramAdapter* diagramAdapter) :
     BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(c, adaptee),
     m_diagramAdapter(diagramAdapter)
@@ -1547,6 +1548,10 @@ ModelAdapter::ModelAdapter(const Controller& c, model::Block* adaptee, DiagramAd
 
 ModelAdapter::~ModelAdapter()
 {
+    if (m_diagramAdapter)
+    {
+        m_diagramAdapter->killMe();
+    }
 }
 
 std::wstring ModelAdapter::getTypeStr()
