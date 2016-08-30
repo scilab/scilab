@@ -19,7 +19,7 @@ import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.uielement.UIElement;
 
 /**
- * Interface for Message Boxes used by Scilab functions such as x_message
+ * Interface for Message Boxes used by Scilab functions such as messagebox, message, ...
  * @author Vincent COUVERT
  */
 public interface MessageBox extends UIElement {

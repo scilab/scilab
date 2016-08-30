@@ -143,7 +143,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     private String[] userValues;
 
     /**
-     * Used for x_choose & x_message
+     * Used for x_choose
      */
     private String[] buttonsLabels;
     private int selectedButton;

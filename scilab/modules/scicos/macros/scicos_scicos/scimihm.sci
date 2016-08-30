@@ -25,7 +25,7 @@ function scimihm(%_xmlfile)
     %_winId=TCL_GetVar("IHMLoc");
 
     //if evstr(%_winId)>1 then
-    //  x_message("winId="+%_winId+" is graeter than 1 check your program");
+    //  messagebox("winId="+%_winId+" is greater than 1, check your program");
     //  return;
     //end
 
