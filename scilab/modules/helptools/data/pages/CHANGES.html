@@ -244,14 +244,15 @@ or a 3-components vector to set the position in axes coordinates to draw the dat
 <li>When the view property of Axes object is set at <code>2d</code>, the rotation becomes impossible.</li>
 <li>The zero-pole-gain (zpk) representation added for linear dynamical systems.</li>
 <li>It is now possible to add a title to the axes via the &quot;Label -&gt; Title&quot; context menu entry</li>
+<li><code>getPreferencesValue</code> can now read a tag having multiple occurrences, and accepts the path to a preferences file instead of its XML handle.</li>
 </ul>
 <h2>Help pages:</h2>
 <ul>
 <li>fixed / improved:  <code>members</code>, <code>part</code>, <code>ode</code>, <code>ode_optional_output</code>, <code>ode_roots</code>, <code>plot2d</code>, <code>roots</code>,
 <code>printf</code>, <code>sprintf</code>, <code>iconvert</code>, <code>stdev</code>, <code>xlabel</code>, <code>and_op</code>, <code>or_op</code>, <code>permute</code>, <code>tree2code</code>, <code>%helps</code>,
-<code>scilab|scilex</code>, <code>flipdim</code></li>
-<li>rewritten: <code>consolebox</code>, <code>double</code>, <code>isoview</code>, <code>pixel_drawing_mode</code>, <code>householder</code>, <code>or</code>, <code>and</code>, <code>format</code>, <code>typeof</code>,
-<code>brackets</code>, <code>setlanguage</code>, <code>sleep</code>, <code>isinf</code>, <code>bitor</code>, <code>bitxor</code>, <code>bitand</code>, <code>macr2tree</code>, <code>geomean</code>, <code>clf</code></li>
+<code>scilab|scilex</code>, <code>flipdim</code>, <code>Matplot_properties</code></li>
+<li>rewritten: <code>consolebox</code>, <code>double</code>, <code>isoview</code>, <code>pixel_drawing_mode</code>, <code>householder</code>, <code>or</code>, <code>|,||</code>, <code>and</code>, <code>format</code>, <code>typeof</code>,
+<code>brackets</code>, <code>setlanguage</code>, <code>sleep</code>, <code>isinf</code>, <code>bitor</code>, <code>bitxor</code>, <code>bitand</code>, <code>macr2tree</code>, <code>geomean</code>, <code>clf</code>, <code>getPreferencesValue</code></li>
 <li>reorganized:
 <ul>
 <li><code>else</code>, <code>elseif</code>, <code>end</code>, <code>try</code>, <code>sciargs</code>, <code>global</code>, <code>halt</code>, <code>empty</code>, <code>power</code></li>
@@ -264,7 +265,7 @@ or a 3-components vector to set the position in axes coordinates to draw the dat
 </li>
 <li>translations added:
 <ul>
-<li>(fr): <code>format</code>, <code>typeof</code>, <code>isoview</code>, <code>ndgrid</code>, <code>bench_run</code>, <code>consolebox</code>, <code>harmean</code>, <code>sleep</code>, <code>strtod</code>, <code>permute</code></li>
+<li>(fr): <code>format</code>, <code>typeof</code>, <code>isoview</code>, <code>ndgrid</code>, <code>bench_run</code>, <code>consolebox</code>, <code>harmean</code>, <code>sleep</code>, <code>strtod</code>, <code>permute</code>, <code>geomean</code></li>
 <li>(ru): homepage</li>
 </ul>
 </li>
@@ -500,6 +501,7 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14591">#14591</a>: <code>&lt;=</code> and <code>&gt;=</code> elementwise operators comparing 2 hypermatrices of decimal numbers or encoded integers were inverted.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14593">#14593</a>: Signs are no more drawn in BIGSOM and PRODUCT components.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14602">#14602</a>: WRITEC_f block didn't work for x86 machines.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14609">#14609</a>: &quot;msscanf&quot; crashes Scilab when 'niter' parameter is out of range.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14632">#14632</a>: Zooming moves drawn axis offscreen</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14640">#14640</a>: <code>median(int8([10 60 80 100]))</code> returned -58 instead of 70 due to overflow when interpolating (60+80)&gt;128</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14648">#14648</a>: <code>isinf</code> returned <code>%F</code> for complex numbers with both real and imag infinite parts.</li>
@@ -509,7 +511,7 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14667">#14667</a>: Multi line string without final quote generated a non terminal parser state.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14681">#14681</a>: Short-circuited AND operation was not possible with double matrices in if and while clauses</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14689">#14689</a>: fixed - <code>resize_matrix(rand(2,3),[0 2])</code> did not return []. Usage of new sizes &lt;0 to keep them unchanged was not documented.</li>
-<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14690">#14690</a>: The user's startup files set in the working directory were not executed. When <code>SCIHOME</code> is not the working directory, <code>SCIHOME\scilab.ini</code> was executed twice.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14690">#14690</a>: The user startup files set in the working directory were not executed. When <code>SCIHOME</code> is not the working directory, <code>SCIHOME\scilab.ini</code> was executed twice.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14692">#14692</a>: isequal() was always returning true for builtin functions</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14694">#14694</a>: The list of named colors was misaligned and poorly rendered in <code>help color_list</code></li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14710">#14710</a>: fullpath(TMPDIR+...) was bugged on MacOS</li>
@@ -525,12 +527,16 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14824">#14824</a>: Incorrect error message with <code>mfprintf(fd, &quot;%d&quot;, [])</code>.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14835">#14835</a>: <code>AFFICH_m</code> block was not rendered correctly.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14839">#14839</a>: <code>plot2d2</code> crashed Scilab.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14885">#14885</a>: The tag property was not documented in Matplot_properties help page.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14887">#14887</a>: For many graphic handle types, the display of the <code>.tag</code> value missed <code>&quot;..&quot;</code> delimiters</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14909">#14909</a>: getlongpathname and getshortpathname return values with &quot;&quot; instead of &quot;/&quot;</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14911">#14911</a>: Added the entry &quot;Label =&gt; Title&quot; in the graphic context menu in a figure</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14941">#14941</a>: <code>find</code> did not accept encoded integers</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14942">#14942</a>: Keep the Tkscale block label if block already has label.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14956">#14956</a>: <code>clf(&quot;reset&quot;)</code> forgot resetting the <code>immediate_drawing</code>, <code>resize</code>, <code>resizefcn</code>, <code>closerequestfcn</code>, <code>toolbar_visible</code>, <code>menubar_visible</code>, <code>infobar_visible</code>, <code>default_axes</code>, and <code>icon</code> figure properties.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14965">#14965</a>: <code>getPreferencesValue</code> could not read a tag having multiple occurrences and did not accept the path to the preferences file.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14976">#14976</a>: <code>asciimat(colNum)</code> concatenated rows when colNum has a single column of ascii codes. With UTF-8 chars, <code>asciimat(asciimat(&quot;àéïôù&quot;))</code> yielded an error.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14978">#14978</a>: <code>input(message)</code> interpreted an entered <code>x</code> as a literal string, and exited with the new prompt on the same line.</li>
 </ul>
 <h3>Bugs fixed in 6.0.0 beta-2 and earlier 6.0.0 pre-releases:</h3>
 <ul>

@@ -8,12 +8,12 @@
         <title>Séquence d'appel</title>
         <synopsis>
             if expr1 then
-            instructions
+                instructions
             elseif expri then
-            instructions
-            ....
+                instructions
+                ....
             else
-            instructions
+                instructions
             end
         </synopsis>
     </refsynopsisdiv>
@@ -57,9 +57,9 @@
         <para>
             Le mot-clé <literal>then</literal> peut être remplacé par un passage à la ligne ou une virgule.
         </para>
-        <para>
-            Attention : le nombre de caractères constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limité à 16k.
-        </para>
+          <warning>
+             Le nombre de caractères constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limité à 16k.
+          </warning>
         <para>
         </para>
     </refsection>
@@ -81,7 +81,16 @@ end
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="try">try</link>
+                <link linkend="then">then</link>
+            </member>
+            <member>
+                <link linkend="else">else</link>
+            </member>
+            <member>
+                <link linkend="elseif">elseif</link>
+            </member>
+            <member>
+                <link linkend="end">end</link>
             </member>
             <member>
                 <link linkend="while">while</link>
@@ -93,13 +102,13 @@ end
                 <link linkend="boolean">boolean</link>
             </member>
             <member>
-                <link linkend="end">end</link>
+                <link linkend="comparison">comparison</link>
             </member>
             <member>
-                <link linkend="then">then</link>
+                <link linkend="or_op">|, ||</link>
             </member>
             <member>
-                <link linkend="else">else</link>
+                <link linkend="and_op">&amp;, &amp;&amp;</link>
             </member>
         </simplelist>
     </refsection>

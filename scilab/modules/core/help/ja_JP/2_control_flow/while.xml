@@ -80,12 +80,10 @@
         <programlisting role=""><![CDATA[
       i = 0; while i<5 disp("i"); i = i + 1; end
 ]]></programlisting>
-        <para>
-            <warning>
-                警告: 条件付き命令(if while for または select/case)の本文を定義するために使用可能な
-                文字数は 16 k以下とする必要があります.
-            </warning>
-        </para>
+      <warning>
+        条件付き命令(if while for または select/case)の本文を定義するために使用可能な
+        文字数は 16 k以下とする必要があります.
+      </warning>
     </refsection>
     <refsection>
         <title>例</title>
@@ -102,19 +100,19 @@ e,k
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="for">for</link>
+                <link linkend="or_op">|, ||</link>
             </member>
             <member>
-                <link linkend="select">select</link>
+                <link linkend="and_op">&amp;, &amp;&amp;</link>
             </member>
             <member>
                 <link linkend="break">break</link>
             </member>
             <member>
-                <link linkend="return">return</link>
+                <link linkend="for">for</link>
             </member>
             <member>
-                <link linkend="pause">pause</link>
+                <link linkend="select">select</link>
             </member>
         </simplelist>
     </refsection>

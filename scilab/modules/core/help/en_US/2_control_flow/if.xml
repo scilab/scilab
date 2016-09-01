@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="if">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="if">
     <refnamediv>
         <refname>if</refname>
         <refpurpose>keyword for conditional execution</refpurpose>
@@ -8,12 +11,12 @@
         <title>Syntax</title>
         <synopsis>
             if expr1 then
-            statements
+                statements
             elseif expri then
-            statements
-            ....
+                statements
+                ....
             else
-            statements
+                statements
             end
         </synopsis>
     </refsynopsisdiv>
@@ -85,11 +88,11 @@
             For example, use:
         </para>
         <programlisting role=""><![CDATA[
-      if rand(1,1) > 0.5 then
-	disp("True");
-      else
-	disp("False");
-      end
+if rand(1,1) > 0.5 then
+    disp("True");
+else
+    disp("False");
+end
 ]]></programlisting>
         <para>
             rather than
@@ -97,11 +100,11 @@
         <programlisting role=""><![CDATA[
       if rand(1,1) > 0.5 then disp("True"); else disp("False"); end
 ]]></programlisting>
-        <para>
-            Warning: the number of characters used to define the body of any
+          <warning>
+            Tthe number of characters used to define the body of any
             conditional instruction (if while for or select/case) must be limited to
             16k.
-        </para>
+          </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -121,7 +124,16 @@ end
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="try">try</link>
+                <link linkend="then">then</link>
+            </member>
+            <member>
+                <link linkend="else">else</link>
+            </member>
+            <member>
+                <link linkend="elseif">elseif</link>
+            </member>
+            <member>
+                <link linkend="end">end</link>
             </member>
             <member>
                 <link linkend="while">while</link>
@@ -133,16 +145,13 @@ end
                 <link linkend="boolean">boolean</link>
             </member>
             <member>
-                <link linkend="end">end</link>
-            </member>
-            <member>
-                <link linkend="then">then</link>
-            </member>
-            <member>
-                <link linkend="else">else</link>
-            </member>
-            <member>
                 <link linkend="comparison">comparison</link>
+            </member>
+            <member>
+                <link linkend="or_op">|, ||</link>
+            </member>
+            <member>
+                <link linkend="and_op">&amp;, &amp;&amp;</link>
             </member>
         </simplelist>
     </refsection>
