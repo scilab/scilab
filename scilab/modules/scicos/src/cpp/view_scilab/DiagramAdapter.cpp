@@ -126,7 +126,35 @@ struct objs
                         property<BlockAdapter>::props_t_it found = std::lower_bound(property<BlockAdapter>::fields.begin(), property<BlockAdapter>::fields.end(), Model);
                         if (found != property<BlockAdapter>::fields.end())
                         {
-                            found->get(*block, controller);
+                            types::InternalType* subDiagram = found->get(*block, controller);
+
+                            // Now remove the references that this getter provoked, on the sub-diagram as well as in its sub-objects
+                            types::List* subList = block->getListObjects();
+                            for (int i = 0; i < subList->getSize(); ++i)
+                            {
+                                const Adapters::adapters_index_t adapter_index = Adapters::instance().lookup_by_typename(subList->get(i)->getShortTypeStr());
+                                switch (adapter_index)
+                                {
+                                    case Adapters::BLOCK_ADAPTER :
+                                    {
+                                        BlockAdapter* subBlock = subList->get(i)->getAs<BlockAdapter>();
+                                        const_cast<Controller&>(controller).deleteObject(subBlock->getAdaptee()->id());
+                                        break;
+                                    }
+                                    case Adapters::LINK_ADAPTER :
+                                    {
+                                        LinkAdapter* subLink = subList->get(i)->getAs<LinkAdapter>();
+                                        const_cast<Controller&>(controller).deleteObject(subLink->getAdaptee()->id());
+                                        break;
+                                    }
+                                    default : // TEXT_ADAPTER
+                                    {
+                                        TextAdapter* subText = subList->get(i)->getAs<TextAdapter>();
+                                        const_cast<Controller&>(controller).deleteObject(subText->getAdaptee()->id());
+                                    }
+                                }
+                            }
+                            subDiagram->killMe();
                         }
                     }
                     ret->append(block);
