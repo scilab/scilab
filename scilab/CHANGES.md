@@ -246,14 +246,14 @@ Bug Fixes
 ---------
 
 ### In 6.0.0:
-* [Bug #2919](http://bugzilla.scilab.org/show_bug.cgi?id=2919) fixed - The `fchamp` example and demo were unclear and badly rendered
+* [Bug #2919](http://bugzilla.scilab.org/show_bug.cgi?id=2919) fixed   - The `fchamp` example and demo were unclear and badly rendered
 * [Bug #5723](http://bugzilla.scilab.org/show_bug.cgi?id=5723) fixed   - Cross-references were missing between axis_properties and axes_properties help pages
-* [Bug #7649](http://bugzilla.scilab.org/show_bug.cgi?id=7649) fixed - `isempty` returned `%F` on `struct()`, `{}` or `list(,)` and was not shortcut
+* [Bug #7649](http://bugzilla.scilab.org/show_bug.cgi?id=7649) fixed   - `isempty` returned `%F` on `struct()`, `{}` or `list(,)` and was not shortcut
 * [Bug #7696](http://bugzilla.scilab.org/show_bug.cgi?id=7696) fixed   - The `parallel_run` help page was poorly formated
-* [Bug #8356](http://bugzilla.scilab.org/show_bug.cgi?id=8356) fixed - `sci2exp` applied to lists, tlists or mlists having undefined fields yielded an error or a wrong result.
-* [Bug #8493](http://bugzilla.scilab.org/show_bug.cgi?id=8493) fixed - Some trivial simplifications of `p1./p2` with matrices of complex-encoded polynomials were not done.
+* [Bug #8356](http://bugzilla.scilab.org/show_bug.cgi?id=8356) fixed   - `sci2exp` applied to lists, tlists or mlists having undefined fields yielded an error or a wrong result.
+* [Bug #8493](http://bugzilla.scilab.org/show_bug.cgi?id=8493) fixed   - Some trivial simplifications of `p1./p2` with matrices of complex-encoded polynomials were not done.
+* [Bug #9153](http://bugzilla.scilab.org/show_bug.cgi?id=9153) fixed   - The `isqualbitwise` help page was inaccurate and badly located
 * [Bug #9912](http://bugzilla.scilab.org/show_bug.cgi?id=9912) fixed   - In case of missing translated help page, the default en_US was sometimes ignored
-* [Bug #9153](http://bugzilla.scilab.org/9153) fixed                   - The `isqualbitwise` help page was inaccurate and badly located
 * [Bug #11375](http://bugzilla.scilab.org/show_bug.cgi?id=11375) fixed - When a localized help subdirectory has only a CHAPTER file specifying the section title, it was ignored.
 * [Bug #11692](http://bugzilla.scilab.org/show_bug.cgi?id=11692) fixed - The summary of a help section built from both default en_US and localized files was never sorted overall.
 * [Bug #11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959) fixed - Allow "Zoom Area" to be clicked out of axes
@@ -267,7 +267,7 @@ Bug Fixes
 * [Bug #14448](http://bugzilla.scilab.org/show_bug.cgi?id=14448) fixed - removed havewindow() was still documented
 * [Bug #14513](http://bugzilla.scilab.org/show_bug.cgi?id=14513) fixed - `isqual` comparing two built-in functions yielded an error.
 * [Bug #14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557) fixed - `csim` failed when the system has no state.
-* [Bug #14582](http://bugzilla.scilab.org/14582) fixed                 - `gettext`or it alias `_()` were sometimes applied to broken literal strings
+* [Bug #14582](http://bugzilla.scilab.org/show_bug.cgi?id=14582) fixed - `gettext`or it alias `_()` were sometimes applied to broken literal strings
 * [Bug #14586](http://bugzilla.scilab.org/show_bug.cgi?id=14586) fixed - Xcos simulation stop button did not work.
 * [Bug #14587](http://bugzilla.scilab.org/show_bug.cgi?id=14587) fixed - Datatip textbox wrong clipping when loaded from `*.scg` file.
 * [Bug #14590](http://bugzilla.scilab.org/show_bug.cgi?id=14590) fixed - Help pages in pt_BR directories had a wrong xml:lang="en" tag.
@@ -281,7 +281,7 @@ Bug Fixes
 * [Bug #14662](http://bugzilla.scilab.org/show_bug.cgi?id=14662) fixed - Matrix of strings concatenation with single quote led to a parser error.
 * [Bug #14681](http://bugzilla.scilab.org/show_bug.cgi?id=14681) fixed - Short-circuited AND operation was not possible with double matrices in if and while clauses
 * [Bug #14690](http://bugzilla.scilab.org/show_bug.cgi?id=14690) fixed - The user's startup files set in the working directory were not executed. When `SCIHOME` is not the working directory, `SCIHOME\scilab.ini` was executed twice.
-* [Bug #14694](http://bugzilla.scilab.org/show_bug.cgi?id=14694) fixed - The list of named colors was misaligned and poorly rendered in `help color_list``SCIHOME\scilab.ini` was executed twice.
+* [Bug #14694](http://bugzilla.scilab.org/show_bug.cgi?id=14694) fixed - The list of named colors was misaligned and poorly rendered in `help color_list`
 * [Bug #14710](http://bugzilla.scilab.org/show_bug.cgi?id=14710) fixed - fullpath(TMPDIR+...) was bugged on MacOS
 * [Bug #14714](http://bugzilla.scilab.org/show_bug.cgi?id=14714) fixed - Crash/Leak when deleting datatip
 
