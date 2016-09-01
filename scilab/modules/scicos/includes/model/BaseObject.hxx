@@ -17,6 +17,7 @@
 #define BASEOBJECT_HXX_
 
 #include <vector>
+#include <initializer_list>
 
 #include "utilities.hxx"
 
@@ -29,14 +30,20 @@ class BaseObject
 {
 public:
     BaseObject(kind_t k) :
-        m_id(0), m_kind(k)
+        m_kind(k)
+        // Not initializing m_id on purpose: the ID is given by the model constructor
     {
     }
     BaseObject(const BaseObject& b) :
-        m_id(0), m_kind(b.m_kind)
+        m_id(b.m_id), m_kind(b.m_kind)
     {
     }
-    virtual ~BaseObject() = default;
+    BaseObject(ScicosID id, kind_t k) :
+        m_id(id), m_kind(k)
+    {
+    }
+
+    ~BaseObject() = default;
 
     inline bool operator<(BaseObject o) const
     {
