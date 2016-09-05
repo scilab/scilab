@@ -271,7 +271,7 @@ public :
 
     virtual ast::Exp*           getExp(const Location& loc);
 
-    virtual Double* set(int _iPos, double _data)
+    virtual Double* set(int _iPos, const double _data)
     {
         if (_iPos >= m_iSize)
         {
@@ -289,7 +289,7 @@ public :
         return this;
     }
 
-    virtual Double* set(int _iRows, int _iCols, double _data)
+    virtual Double* set(int _iRows, int _iCols, const double _data)
     {
         return set(_iCols * getRows() + _iRows, _data);
     }
