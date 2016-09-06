@@ -377,6 +377,11 @@ static bool import_double(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAd
 
         piDims = (int*)MALLOC(sizeof(int) * iDims);
         iSize = getDatasetInfo(_iDatasetId, &iComplex, &iDims, piDims);
+        if (iSize < 0)
+        {
+            FREE(piDims);
+            return false;
+        }
 
         if (iSize > 0)
         {
@@ -493,6 +498,11 @@ static bool import_string(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAd
 
     piDims = (int*)MALLOC(sizeof(int) * iDims);
     iSize = getDatasetInfo(_iDatasetId, &iComplex, &iDims, piDims);
+    if (iSize < 0)
+    {
+        FREE(piDims);
+        return false;
+    }
 
     pstData = (char **)MALLOC(iSize * sizeof(char *));
 
@@ -546,6 +556,11 @@ static bool import_integer(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
 
     piDims = (int*)MALLOC(sizeof(int) * iDims);
     iSize = getDatasetInfo(_iDatasetId, &iComplex, &iDims, piDims);
+    if (iSize < 0)
+    {
+        FREE(piDims);
+        return false;
+    }
 
     iRet = getDatasetPrecision(_iDatasetId, &iPrec);
     if (iRet)
@@ -792,6 +807,11 @@ static bool import_boolean(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
 
     piDims = (int*)MALLOC(sizeof(int) * iDims);
     iSize = getDatasetInfo(_iDatasetId, &iComplex, &iDims, piDims);
+    if (iSize < 0)
+    {
+        FREE(piDims);
+        return false;
+    }
 
     if (iSize == 0)
     {
@@ -853,6 +873,11 @@ static bool import_poly(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddr
 
     piDims = (int*)MALLOC(sizeof(int) * iDims);
     iSize = getDatasetInfo(_iDatasetId, &iComplex, &iDims, piDims);
+    if (iSize < 0)
+    {
+        FREE(piDims);
+        return false;
+    }
 
     if (iComplex)
     {

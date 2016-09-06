@@ -72,7 +72,7 @@ static int getHandleIntVector(int dataset, const char* prop, int* row, int* col,
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -120,7 +120,7 @@ static int getHandleBoolVector(int dataset, const char* prop, int* row, int* col
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -169,7 +169,7 @@ static int getHandleDoubleVector(int dataset, const char* prop, int* row, int* c
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -205,7 +205,7 @@ static int getHandleString(int dataset, const char* prop, char** val)
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -237,7 +237,7 @@ static int getHandleStringVector(int dataset, const char* prop, int* row, int* c
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;

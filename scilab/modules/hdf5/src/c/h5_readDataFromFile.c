@@ -540,6 +540,11 @@ int readDoubleComplexMatrix(int _iDatasetId, double *_pdblReal, double *_pdblImg
     getDatasetInfo(_iDatasetId, &iComplex, &iDims, NULL);
     piDims = (int*)MALLOC(sizeof(int) * iDims);
     iSize = getDatasetInfo(_iDatasetId, &iComplex, &iDims, piDims);
+    if (iSize < 0)
+    {
+        FREE(piDims);
+        return -1;
+    }
 
     FREE(piDims);
     //alloc temp array

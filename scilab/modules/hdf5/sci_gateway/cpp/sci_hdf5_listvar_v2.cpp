@@ -348,6 +348,10 @@ static bool read_string(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo
     char** pstData = NULL;
 
     iSize = getDatasetInfo(_iDatasetId, &iComplex, &_pInfo->iDims, _pInfo->piDims);
+    if (iSize < 0)
+    {
+        return false;
+    }
 
     pstData = (char **)MALLOC(iSize * sizeof(char *));
     iRet = readStringMatrix(_iDatasetId, pstData);
@@ -461,6 +465,10 @@ static bool read_poly(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* 
     int iSize = 0;
 
     iSize = getDatasetInfo(_iDatasetId, &iComplex, &_pInfo->iDims, _pInfo->piDims);
+    if (iSize < 0)
+    {
+        return false;
+    }
     _pInfo->iSize = 8 * 4 + (iSize + 1) * 4;
 
     if (iComplex)
