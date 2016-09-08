@@ -81,7 +81,8 @@
                     returned in <varname>tails(i)</varname>; otherwise,
                     <varname>tails(i)</varname> returns "".
                 </listitem>
-                <listitem>Otherwise, <varname>d(i)</varname> returns
+                <listitem>
+                    Otherwise, <varname>d(i)</varname> returns
                     <literal>%nan</literal>, and <varname>tails(i)</varname> is
                     the whole <varname>str(i)</varname>.
                 </listitem>
@@ -118,7 +119,7 @@ s = ["-0.034" "- 0.034"  "+1234.5678" "1234 5678"
      ]
 strtod(s)
 ]]>             </programlisting>
-                <screen><![CDATA[  s  =
+                    <screen><![CDATA[  s  =
 !-0.034  - 0.034   +1234.5678  1234 5678   !
 !-.764   +.432     12,231.7    -5.458,871  !
 !1e43    -3.5d-12  -1.2+i      i+1.2       !
@@ -150,7 +151,7 @@ strtod(s)
             </itemizedlist>
         </warning>
     </refsection>
-
+    
     <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
@@ -165,7 +166,7 @@ num, "/"+trail+"/"
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="evstr">evstr</link>

@@ -47,7 +47,7 @@
         <programlisting role="example">fortran_sum(3,4)</programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="c_sum">c_sum</link>
