@@ -44,6 +44,11 @@ function []=fplot2d(xr,f,style,strf,leg,rect,nax,void)
     if size(opts,2)<rhs-2 then
         error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"fplot2d","style","strf","leg","rect","nax","logflag","frameflag","axesflag"));
     end
-    execstr("plot2d(xr,feval(xr,f),"+strcat(opts,",")+")")
+
+    if isempty(opts) then
+        plot2d(xr,feval(xr,f))
+    else
+        execstr("plot2d(xr,feval(xr,f),"+strcat(opts,",")+")")
+    end
 
 endfunction
