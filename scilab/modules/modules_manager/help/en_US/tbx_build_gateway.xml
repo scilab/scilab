@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -45,6 +45,7 @@
                             <para>cmex : C mexlib entry point for MexLib</para>
                             <para>fmex : Fortran mexlib entry point for MexLib</para>
                             <para>cppsci : C++ entry point for C++ API Scilab</para>
+                            <para>cppsciopt : C++ entry point for C++ API Scilab with optional arguments</para>
                         </listitem>
                     </para>
                 </listitem>
@@ -97,7 +98,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Recommended usage
 tbx_build_gateway('mytoolbox', ['c_sum','sci_csum';'c_sub','sci_csub'], ['sci_csum.c','sci_csub.c'], ..
                   get_absolute_file_path('builder_gateway_c.sce'), ..

@@ -21,6 +21,7 @@
 #include "localization.h"
 #include "sci_malloc.h"
 #include "deserialization.h"
+#include "getOptionalComm.h"
 
 int sci_mpi_irecv(char *fname, void* pvApiCtx)
 {
@@ -38,8 +39,23 @@ int sci_mpi_irecv(char *fname, void* pvApiCtx)
     double dblRequestID = 0;
     MPI_Status status;
 
-    CheckInputArgument(pvApiCtx, 3, 3);
+    CheckInputArgument(pvApiCtx, 3, 4);
     CheckOutputArgument(pvApiCtx, 0, 1);
+
+    // if no optional "comm" is given, return MPI_COMM_WORLD
+    MPI_Comm comm = getOptionalComm(pvApiCtx);
+    if (comm == NULL)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%s: An MPI communicator expected.\n"), fname, "comm");
+        return 0;
+    }
+
+    if (comm == MPI_COMM_NULL)
+    {
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+        ReturnArguments(pvApiCtx);
+        return 0;
+    }
 
     //Rank
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
@@ -94,7 +110,7 @@ int sci_mpi_irecv(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    iRet = MPI_Probe((int)Rank, (int)Tag, MPI_COMM_WORLD, &status);
+    iRet = MPI_Probe((int)Rank, (int)Tag, comm, &status);
     if (iRet != MPI_SUCCESS)
     {
         char error_string[MPI_MAX_ERROR_STRING];
@@ -121,7 +137,7 @@ int sci_mpi_irecv(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    iRet = MPI_Irecv(piBuffer, iBufferSize, MPI_INT, (int)Rank, (int)Tag, MPI_COMM_WORLD, &request[iRequestID]);
+    iRet = MPI_Irecv(piBuffer, iBufferSize, MPI_INT, (int)Rank, (int)Tag, comm, &request[iRequestID]);
     if (iRet != MPI_SUCCESS)
     {
         char error_string[MPI_MAX_ERROR_STRING];

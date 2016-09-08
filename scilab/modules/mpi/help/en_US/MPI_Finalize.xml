@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Sylvestre Ledru
+ * Copyright (C) 2016 - DIGITEO - Sylvestre Ledru
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,19 +10,19 @@
  * For more information, see the COPYING file which you should have received
  * along with this program.
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MPI_Init" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MPI_Finalize" xml:lang="en">
     <refnamediv>
-        <refname>MPI_Init</refname>
-        <refpurpose>Initialize the MPI environment</refpurpose>
+        <refname>MPI_Finalize</refname>
+        <refpurpose>Terminate the MPI environment</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>MPI_Init()</synopsis>
+        <synopsis>MPI_Finalize()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
         <para>
-            Initialize the MPI environment, must be called before all other MPI functions.
+            Terminate the MPI environment, must be called before exit Scilab.
         </para>
     </refsection>
     <refsection>
@@ -69,7 +69,7 @@
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="MPI_Finalize">MPI_Finalize</link>
+                <link linkend="MPI_Init">MPI_Finalize</link>
             </member>
         </simplelist>
     </refsection>

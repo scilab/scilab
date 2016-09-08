@@ -12,7 +12,6 @@
  * along with this program.
  *
  */
-#include <stdio.h>
 #include <mpi.h>
 #include "api_scilab.h"
 #include "gw_mpi.h"
@@ -20,6 +19,7 @@
 #include "sci_malloc.h"
 #include "localization.h"
 #include "deserialization.h"
+#include "getOptionalComm.h"
 
 int sci_mpi_recv(char *fname, void* pvApiCtx)
 {
@@ -34,8 +34,25 @@ int sci_mpi_recv(char *fname, void* pvApiCtx)
     double Rank = 0;
     MPI_Status status;
 
-    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckInputArgument(pvApiCtx, 2, 3);
     CheckOutputArgument(pvApiCtx, 1, 1);
+
+    // if no optional "comm" is given, return MPI_COMM_WORLD
+    MPI_Comm comm = getOptionalComm(pvApiCtx);
+    if (comm == NULL)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%s: An MPI communicator expected.\n"), fname, "comm");
+        return 0;
+    }
+
+    if (comm == MPI_COMM_NULL)
+    {
+        // return empty matrix
+        createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 0, 0, NULL);
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+        ReturnArguments(pvApiCtx);
+        return 0;
+    }
 
     //Rank
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
@@ -68,7 +85,7 @@ int sci_mpi_recv(char *fname, void* pvApiCtx)
     }
 
     //wait message "Rank" node
-    iRet = MPI_Probe((int)Rank, (int)Tag, MPI_COMM_WORLD, &status);
+    iRet = MPI_Probe((int)Rank, (int)Tag, comm, &status);
     if (iRet != MPI_SUCCESS)
     {
         char error_string[MPI_MAX_ERROR_STRING];
@@ -98,7 +115,7 @@ int sci_mpi_recv(char *fname, void* pvApiCtx)
     }
 
     //receive data
-    iRet = MPI_Recv(piBuffer, iBufferSize, MPI_INT, (int)Rank, (int)Tag, MPI_COMM_WORLD, &status);
+    iRet = MPI_Recv(piBuffer, iBufferSize, MPI_INT, (int)Rank, (int)Tag, comm, &status);
     if (iRet != MPI_SUCCESS)
     {
         char error_string[MPI_MAX_ERROR_STRING];

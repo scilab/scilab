@@ -2,7 +2,13 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Sylvestre Ledru
- * 
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MPI_Isend" xml:lang="en">
     <refnamediv>
@@ -11,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>res = MPI_Isend(value,node)</synopsis>
+        <synopsis>res = MPI_Isend(value,node[,comm=mpi_comm])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -29,9 +35,20 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>comm=mpi_comm</term>
+                <listitem>
+                    <para>If the optional argument "comm" is given,
+                        this function will use the MPI communicator created by <link linkend="MPI_Create_comm">MPI_Create_comm</link>.
+                        If not, the default MPI_COMM_WORLD is used.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>res</term>
                 <listitem>
-                    <para>The result of the operation (true if success, false if failed)</para>
+                    <para>The result of the operation (true if success, false if failed).
+                        If the optional argument "comm" is given, all nodes which are not in the communicator will return false.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -44,7 +61,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 
 
                 MPI_Init();

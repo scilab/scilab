@@ -17,6 +17,7 @@
 #include "sci_malloc.h"
 #include "BOOL.h"                       // for ::TRUE, ::FALSE, BOOL
 #include "api_scilab.h"                 // for pvApiCtx, etc
+#include "gw_mpi.h"
 
 /* Create some static datastructure to store all the Request references */
 MPI_Request *request;

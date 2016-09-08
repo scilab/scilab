@@ -254,6 +254,10 @@ function [gate,names,cppCompilation] = new_names(table)
             cppCompilation = %t;
             names(i) = table(i,2);
             gate(i, 2) = "CPP_GATEWAY_PROTOTYPE(" + names(i) + ");";
+        case "cppsciopt"  then
+            cppCompilation = %t;
+            names(i) = table(i,2);
+            gate(i, 2) = "CPP_OPT_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "direct"  then
             names(i) = table(i,2);
             gate(i, 1) = "STACK_GATEWAY_PROTOTYPE(" + names(i) + ");";
