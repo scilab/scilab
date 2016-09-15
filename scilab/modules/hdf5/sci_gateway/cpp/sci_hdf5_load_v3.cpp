@@ -606,7 +606,6 @@ static types::InternalType* import_struct(int dataset)
         closeList6(dataset);
         delete str;
         return nullptr;
-        return str;
     }
 
     //get dims value
