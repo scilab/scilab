@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *

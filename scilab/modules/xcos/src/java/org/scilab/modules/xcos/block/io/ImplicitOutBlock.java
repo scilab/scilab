@@ -38,4 +38,10 @@ public final class ImplicitOutBlock extends ContextUpdate {
 
         controller.setObjectProperty(uid, kind, ObjectProperties.SIM_FUNCTION_NAME, "outimpl");
     }
+
+    public ImplicitOutBlock(JavaController controller) {
+        super(controller, "OUTIMPL_f");
+
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SIM_FUNCTION_NAME, "outimpl");
+    }
 }

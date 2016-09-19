@@ -38,4 +38,10 @@ public final class ImplicitInBlock extends ContextUpdate {
 
         controller.setObjectProperty(uid, kind, ObjectProperties.SIM_FUNCTION_NAME, "inimpl");
     }
+
+    public ImplicitInBlock(JavaController controller) {
+        super(controller, "INIMPL_f");
+
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SIM_FUNCTION_NAME, "inimpl");
+    }
 }

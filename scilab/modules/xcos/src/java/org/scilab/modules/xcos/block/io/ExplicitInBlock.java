@@ -38,4 +38,10 @@ public final class ExplicitInBlock extends ContextUpdate {
 
         controller.setObjectProperty(uid, kind, ObjectProperties.SIM_FUNCTION_NAME, "input");
     }
+
+    public ExplicitInBlock(JavaController controller) {
+        super(controller, "IN_f");
+
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SIM_FUNCTION_NAME, "input");
+    }
 }
