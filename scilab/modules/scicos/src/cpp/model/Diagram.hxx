@@ -79,7 +79,6 @@ public:
 
     Diagram(const Diagram& o) : BaseObject(DIAGRAM), m_title(o.m_title), m_path(o.m_path), m_color(o.m_color), m_properties(o.m_properties),
         m_debugLevel(o.m_debugLevel), m_context(o.m_context), m_children(o.m_children), m_version(o.m_version) {};
-    ~Diagram() = default;
 
 private:
     friend class ::org_scilab_modules_scicos::Model;

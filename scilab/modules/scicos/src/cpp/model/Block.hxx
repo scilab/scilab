@@ -110,7 +110,6 @@ public:
         m_exprs(o.m_exprs), m_description(o.m_description), m_label(o.m_label), m_style(o.m_style), m_nzcross(o.m_nzcross), m_nmode(o.m_nmode), m_equations(o.m_equations), m_uid(o.m_uid),
         m_sim(o.m_sim), m_in(o.m_in), m_out(o.m_out), m_ein(o.m_ein), m_eout(o.m_eout), m_parameter(o.m_parameter), m_state(o.m_state), m_parentBlock(o.m_parentBlock),
         m_children(o.m_children), m_childrenColor(o.m_childrenColor), m_context(o.m_context), m_portReference(o.m_portReference) {}
-    ~Block() = default;
 
 private:
     friend class ::org_scilab_modules_scicos::Model;
