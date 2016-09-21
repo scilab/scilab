@@ -51,7 +51,12 @@ function [c] = getcolor(Title,cini)
     end;
 
     // create the window for getcolor
-    win = max(winsid()) + 1;
+    
+    win = max(winsid());
+    if isempty(win) then 
+        win = 1;
+    end
+        
     scf(win);
 
     sdf;
