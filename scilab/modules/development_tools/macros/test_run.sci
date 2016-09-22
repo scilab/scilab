@@ -921,17 +921,13 @@ function status = test_single(_module, _testPath, _testName)
                 // libraries
 
                 if ~isempty(txt) then
-                    toRemove = grep(txt, "libEGL warning: failed to find any driver");
+                    // MESA / EGL display some warning on stderr
+                    toRemove = grep(txt, "libEGL warning:");
                     txt(toRemove) = [];
                 end
 
                 if ~isempty(txt) then
                     toRemove = grep(txt, "extension ""RANDR"" missing on display");
-                    txt(toRemove) = [];
-                end
-
-                if ~isempty(txt) then
-                    toRemove = grep(txt, "libEGL warning: DRI2: failed to authenticate");
                     txt(toRemove) = [];
                 end
 
