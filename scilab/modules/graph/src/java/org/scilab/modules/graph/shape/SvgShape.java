@@ -76,8 +76,8 @@ public class SvgShape extends mxLabelShape {
      */
     @Override
     public Rectangle getImageBounds(mxGraphics2DCanvas canvas, mxCellState state) {
-        final double rotation = mxUtils.getDouble(state.getStyle(),
-                                mxConstants.STYLE_ROTATION, 0);
+        final int rotation = (int) mxUtils.getDouble(state.getStyle(),
+                             mxConstants.STYLE_ROTATION, 0);
         final AffineTransform transform = new AffineTransform();
         transform.rotate(Math.toRadians(rotation), state.getCenterX(),
                          state.getCenterY());

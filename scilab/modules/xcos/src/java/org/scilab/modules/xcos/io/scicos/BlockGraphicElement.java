@@ -396,11 +396,11 @@ final class BlockGraphicElement extends BlockPartsElement {
         /*
          * Rotation management
          */
-        double theta = ((ScilabDouble) data.get(FLIP_INDEX + 1)).getRealPart()[0][0];
+        int theta = (int) ((ScilabDouble) data.get(FLIP_INDEX + 1)).getRealPart()[0][0];
         if (theta != 0) {
             // convert to a valid value
             theta = BlockPositioning.roundAngle(-theta);
-            styleMap.put(mxConstants.STYLE_ROTATION, Double.toString(theta));
+            styleMap.put(mxConstants.STYLE_ROTATION, Integer.toString(theta));
         }
 
         controller.setObjectProperty(into.getUID(), into.getKind(), ObjectProperties.STYLE, styleMap.toString());

@@ -464,9 +464,9 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
 
                 final boolean mirrored = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_MIRROR));
                 final boolean flipped = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_FLIP));
-                final double doubleRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0"));
+                final int intRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0")).intValue();
 
-                angleCounter += doubleRotation;
+                angleCounter += intRotation;
                 if (flipped) {
                     flipCounter++;
                 }
@@ -484,7 +484,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
         controller.getObjectProperty(superBlock.getUID(), superBlock.getKind(), ObjectProperties.STYLE, style);
         StyleMap styleMap = new StyleMap(style[0]);
 
-        styleMap.put(XcosConstants.STYLE_ROTATION, Double.toString(BlockPositioning.roundAngle(angleCounter / selection.length)));
+        styleMap.put(XcosConstants.STYLE_ROTATION, Integer.toString(BlockPositioning.roundAngle(angleCounter / selection.length)));
         if (flipCounter > halfSize) {
             styleMap.put(XcosConstants.STYLE_FLIP, Boolean.toString(true));
         }

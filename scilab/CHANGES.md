@@ -192,6 +192,7 @@ Xcos
 ----
 
 * Major rewrite of the data structures, huge models should load and save faster. The memory usage on diagram edition is also slightly reduced.
+* ZCOS and XCOS file formats have evolved to reduce the duplicated information. Scilab 5.5.2 is able to open the newly saved files but the ports have to be repositioned manually.
 * Implicit fixed-size step ODE solver added: Crank-Nicolson 2(3). Added to the CVode package, it also benefits from the CVode rootfinding feature.
 
 
