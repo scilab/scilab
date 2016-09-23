@@ -56,7 +56,7 @@ libscimpi_la_CPPFLAGS=  -Iincludes/ \
     $(OPENMPI_CFLAGS)
 
 # libscimpi_la_LDFLAGS = $(LAMPI_LDFLAGS)
-libscimpi_la_LIBADD = $(OPENMPI_LIBS) -lmpi++
+libscimpi_la_LIBADD = $(OPENMPI_LIBS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -85,6 +85,7 @@ libscimpi_la_sci_gateway_DATA = sci_gateway/mpi_gateway.xml
 #### mpi : include files ####
 libscimpi_la_includedir=$(pkgincludedir)/mpi
 libscimpi_la_include_HEADERS = includes/gw_mpi.h \
+                               includes/dynlib_mpi.h \
                                includes/sciMpiComm.hxx
 
 # Provides macros compilation, Java compilation, cleaning

@@ -629,7 +629,7 @@ libscimpi_la_CPPFLAGS = -Iincludes/ \
 
 
 # libscimpi_la_LDFLAGS = $(LAMPI_LDFLAGS)
-libscimpi_la_LIBADD = $(OPENMPI_LIBS) -lmpi++
+libscimpi_la_LIBADD = $(OPENMPI_LIBS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)

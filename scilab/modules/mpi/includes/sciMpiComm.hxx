@@ -13,13 +13,16 @@
 #ifndef __SCIMPICOMM_HXX__
 #define __SCIMPICOMM_HXX__
 
+// avoid c++ openmpi include
+#define OMPI_SKIP_MPICXX
+
 #include <string>
 #include <mpi.h>
 #include "user.hxx"
 
 extern "C"
 {
-    #include "dynlib_mpi.h"
+#include "dynlib_mpi.h"
 }
 
 class MPI_IMPEXP SciMpiComm : public types::UserType
