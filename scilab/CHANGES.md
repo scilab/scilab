@@ -309,6 +309,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 Bug Fixes
 ---------
 
+<<<<<<< HEAD
 ### Bugs fixed in 6.0.0:
 * [#2919](http://bugzilla.scilab.org/show_bug.cgi?id=2919): The `fchamp` example and demo were unclear and badly rendered
 * [#4327](http://bugzilla.scilab.org/show_bug.cgi?id=4327): Overloading did not support custom types names longer than 8 characters
@@ -340,6 +341,7 @@ Bug Fixes
 * [#13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597): `help format` claimed setting a number of digits instead of characters
 * [#13613](http://bugzilla.scilab.org/show_bug.cgi?id=13613): `isdef(name, 'l')` produced wrong output.
 * [#13757](http://bugzilla.scilab.org/show_bug.cgi?id=13757): The toolbox menu dit not load properly ATOMS modules not autoloaded.
+* [#13878](http://bugzilla.scilab.org/show_bug.cgi?id=13878): tokens([]) returns [].
 * [#13895](http://bugzilla.scilab.org/show_bug.cgi?id=13895): p.a.h = 1; p.b.h = 3; p(:).h  CRASH
 * [#13990](http://bugzilla.scilab.org/show_bug.cgi?id=13990): `warning` with localization enabled some memory corruption
 * [#14192](http://bugzilla.scilab.org/show_bug.cgi?id=14192): `g_margin` error-ed for double integrator.

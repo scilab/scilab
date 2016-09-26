@@ -53,6 +53,12 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
     }
 
     // first arg
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
+    {
+        out.push_back(types::Double::Empty());
+        return types::Function::OK;
+    }
+
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "tokens", 1);
