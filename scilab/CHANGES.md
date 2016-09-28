@@ -329,6 +329,7 @@ Bug Fixes
 * [#13470](http://bugzilla.scilab.org/show_bug.cgi?id=13470): `histplot(0,0,%t)` crashed
 * [#13583](http://bugzilla.scilab.org/show_bug.cgi?id=13583): `getd` loading a script including a `clear` instruction yielded an error
 * [#13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597): `help format` claimed setting a number of digits instead of characters
+* [#13743](http://bugzilla.scilab.org/show_bug.cgi?id=13743): `neldermead_configure` failed to set options "-gamma" and "-sigma".
 * [#13757](http://bugzilla.scilab.org/show_bug.cgi?id=13757): The toolbox menu dit not load properly ATOMS modules not autoloaded.
 * [#13990](http://bugzilla.scilab.org/show_bug.cgi?id=13990): `warning` with localization enabled some memory corruption
 * [#14192](http://bugzilla.scilab.org/show_bug.cgi?id=14192): `g_margin` error-ed for double integrator.
