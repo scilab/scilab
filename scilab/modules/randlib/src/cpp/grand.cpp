@@ -34,7 +34,7 @@ unsigned long int clcg4_with_gen(void)
 double C2F(ranf)(void)
 {
     //  pointers onto the generators func
-    unsigned long int (*gen[NbGenInScilab])() = {randmt, kiss, clcg4_with_gen, clcg2, urandc, fsultra};
+    unsigned long int (*gen[NbGenInScilab])() = {randmt, kiss, clcg4_with_gen, clcg2, urandc};
 
     int current_gen = ConfigVariable::getCurrentBaseGen();
 
@@ -45,9 +45,8 @@ double C2F(ranf)(void)
         2.3283064365386963e-10,  // kiss
         4.6566128752457969e-10,  // clcg4
         4.6566130595601735e-10,  // clcg2
-        4.6566128730773926e-10,  // urand
-        2.3283064365386963e-10
-    }; // fsultra
+        4.6566128730773926e-10   // urand
+    };
 
     // random deviate from U[0,1)
     return ((double)gen[current_gen]() * factor[current_gen]);
@@ -56,7 +55,7 @@ double C2F(ranf)(void)
 double ignlgi(void)
 {
     //  pointers onto the generators func
-    unsigned long int (*gen[NbGenInScilab])() = {randmt, kiss, clcg4_with_gen, clcg2, urandc, fsultra};
+    unsigned long int (*gen[NbGenInScilab])() = {randmt, kiss, clcg4_with_gen, clcg2, urandc};
 
     int current_gen = ConfigVariable::getCurrentBaseGen();
 
@@ -93,9 +92,8 @@ double C2F(ignuin)(double *a, double *b)
         4294967295ul,  // kiss
         2147483646ul,  // clcg4
         2147483561ul,  // clcg2
-        2147483647ul,  // urand
-        4294967295ul
-    }; // fsultra
+        2147483647ul   // urand
+    };
 
     int current_gen = ConfigVariable::getCurrentBaseGen();
 

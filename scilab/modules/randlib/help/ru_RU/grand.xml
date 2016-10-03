@@ -445,7 +445,7 @@
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>[0, 2^32 - 1]</literal>  для mt, kiss и fsultra;
+                                <literal>[0, 2^32 - 1]</literal>  для mt и kiss;
                             </para>
                         </listitem>
                         <listitem>
@@ -521,20 +521,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>fsultra</term>
-                <listitem>
-                    <para>
-                        Генератор вычитания с займом (Subtract-with-Borrow), смешанный с
-                        конгруэнтным генератором Арифа Замана (Arif Zaman) и Джорджа
-                        Марсальи (George Marsaglia), с периодом свыше
-                        <literal>10^356</literal>, состояние задаётся массивом из
-                        <literal>37</literal> целых чисел (плюс индекс на этот массив,
-                        флаг (<literal>0</literal> или <literal>1</literal>) и другое
-                        целое число).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>urand</term>
                 <listitem>
                     <para>
@@ -562,7 +548,7 @@
                         генератор. В данном случае <varname>S</varname> является одной
                         строкой из <literal>"mt"</literal>, <literal>"kiss"</literal>,
                         <literal>"clcg2"</literal>, <literal>"clcg4"</literal>,
-                        <literal>"urand"</literal>, <literal>"fsultra"</literal>.
+                        <literal>"urand"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -574,7 +560,7 @@
                         генератор. В данном случае <varname>gen</varname> может быть одной
                         строкой из <literal>"mt"</literal>, <literal>"kiss"</literal>,
                         <literal>"clcg2"</literal>, <literal>"clcg4"</literal>,
-                        <literal>"urand"</literal>, <literal>"fsultra"</literal>.
+                        <literal>"urand"</literal>.
                         Заметьте, что этот вызов возвращает новый текущий генератор, т.е.
                         <varname>gen</varname>.
                     </para>
@@ -591,8 +577,7 @@
                         <literal>"mt"</literal> (первое значение является индексом в
                         интервале <literal>[1,624]</literal>),  <literal>4</literal> для
                         <literal>"kiss"</literal>,  <literal>2</literal> для
-                        <literal>"clcg2"</literal>, <literal>40</literal> для
-                        <literal>"fsultra"</literal>,  <literal>4</literal> для
+                        <literal>"clcg2"</literal>, <literal>4</literal> для
                         <literal>"clcg4"</literal> (для последнего вы получите текущее
                         состояние текущего виртуального генератора) и
                         <literal>1</literal> для <literal>"urand"</literal>.
@@ -662,19 +647,6 @@
                             <listitem>
                                 <para>
                                     должно быть указано одно целое число <varname>s1</varname> на интервале <literal>[0,2^31)</literal>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>для fsultra</term>
-                            <listitem>
-                                <para>
-                                    <varname>S</varname> является вектором целых чисел, состоящий из 40 элементов  (первый элемент является
-                                    индексом и должен быть на интервале <literal>[0,37]</literal>, второй элемент является
-                                    флагом (0 или 1), третий элемент является целым числом на интервале  <literal>[1,2^32[</literal>, а 37
-                                    остальных целых чисел должны быть на интервале <literal>[0,2^32[</literal>. Более простая (и
-                                    рекомендованная) инициализация может быть сделана с помощью двух целых чисел <varname>s1</varname> и
-                                    <varname>s2</varname> на интервале <literal>[0,2^32[</literal>.
                                 </para>
                             </listitem>
                         </varlistentry>

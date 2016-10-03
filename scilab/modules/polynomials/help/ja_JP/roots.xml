@@ -87,12 +87,4 @@ spec(A)
             ACM TOMS 1, 1 (March 1975), pp. 26-34
         </para>
     </refsection>
-    <refsection>
-        <title>使用される関数</title>
-        <para>ソースコードrpoly.f はScilabの配布ソースのディレクトリ
-            SCI/modules/polynomials/src/fortran にある.
-            コンパニオン行列が使用される場合,固有値計算は
-            LapackコードであるDGEEVおよびZGEEVにより行われる.
-        </para>
-    </refsection>
 </refentry>

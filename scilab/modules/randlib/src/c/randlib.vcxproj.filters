@@ -32,9 +32,6 @@
     <ClCompile Include="DllmainRandlib.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fsultra.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="genbet.c">
       <Filter>Source Files</Filter>
     </ClCompile>

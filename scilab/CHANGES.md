@@ -197,6 +197,8 @@ will zoom all axes in the current figure.
 * The graphics entity "Datatip" has a new property `detached_position` which accepts `[]`
 or a 3-components vector to set the position in axes coordinates to draw the datatip text box.
 * `MPI_Create_comm` create a new communicator from MPI_COMM_WORLD using MPI world ranks.
+* The `grand` non-free `fsultra` generator was removed.
+* The original `rpoly` algorithm was removed in favor of a C++11 implementation
 
 Help pages:
 -----------
@@ -327,6 +329,7 @@ Bug Fixes
 * [#11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959): Allow "Zoom Area" to be clicked out of axes
 * [#12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110): Unable to zoom multiple axes at once
 * [#13166](http://bugzilla.scilab.org/show_bug.cgi?id=13166): `l` and `b` endian flags used with `mget` and `mgeti` were sticky
+* [#13469](http://bugzilla.scilab.org/show_bug.cgi?id=13469): Scilab contained non free code
 * [#13470](http://bugzilla.scilab.org/show_bug.cgi?id=13470): `histplot(0,0,%t)` crashed
 * [#13583](http://bugzilla.scilab.org/show_bug.cgi?id=13583): `getd` loading a script including a `clear` instruction yielded an error
 * [#13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597): `help format` claimed setting a number of digits instead of characters

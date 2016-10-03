@@ -51,7 +51,6 @@ function reinit_for_test()
     grand("setgen","kiss");grand("setsd",362436069,521288629,123456789,380116160);
     grand("setgen","clcg2");grand("setsd",1234567890,123456789);
     grand("setgen","urand");grand("setsd",0);
-    grand("setgen","fsultra");grand("setsd",1234567,7654321);
     grand("setgen","mt");grand("setsd",5489);
     rand("seed",0);
     format("v",10);
