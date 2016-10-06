@@ -13,7 +13,7 @@ This file is intended for the specific needs of advanced users, and describes:
 - Bug fixes.
 
 This changelog is most likely incomplete, as an enormous amount of code has changed between 5.5.2 and 6.
-Please report any thing we could have missed, on the [mailing lists][1] or on the [bug tracker][2],
+Please report any thing we could have missed, on the [mailing lists][1] or on the [bug tracker][2], 
 and we will correct it before the final Scilab 6.0.0 release.
 
 [1]: http://mailinglists.scilab.org
@@ -23,8 +23,8 @@ and we will correct it before the final Scilab 6.0.0 release.
 Main new features
 -----------------
 
-For high-level description of the main new features of this release, please
-consult the [embedded help](modules/helptools/data/pages/homepage-en_US.html). It is also available
+For high-level description of the main new features of this release, please 
+consult the [embedded help](modules/helptools/data/pages/homepage-en_US.html). It is also available 
 as the "What's new" page of the help, by simply typing `help` in Scilab console.
 
 In summary, the main new features are:
@@ -100,7 +100,7 @@ Language changes
 
 Some small changes have been done to the language syntax, aiming at more clarity and less
 ambiguity. Some changes are not compatible with 5.5; code written for Scilab 5.x
-has to be modified in order to work in Scilab 6.0.
+has to be modified in order to work in Scilab 6.0. 
 
 See [the wiki page on porting code from 5.5 to 6.0](https://wiki.scilab.org/FromScilab5ToScilab6)
 for details and examples.
@@ -111,10 +111,10 @@ for details and examples.
 * Declaring strings using non-homogenous delimiters ("string' or 'string") is no longer allowed.
 * `(a=b)` executed as `a == b` is now deprecated and returns an error.
 * Function definitions can finish with `end` instead of `endfunction`.
-* `{}` and `[]` are now distinct operators. Matrices can no longer be defined usind `{}` operators.
+* `{}` and `[]` are now distinct operators. Matrices can no longer be defined usind `{}` operators. 
 These are reserved for cell definition.
 * Shortcut and element-wise boolean operators are now distinct. `&&` and `||` are new shortcut boolean AND and OR,
-while `&` and `|` are element-wise operations and will not shortcut one of the operand.
+while `&` and `|` are element-wise operations and will not shortcut one of the operand. 
 Both shortcut and element-wise operators are evaluated from left to right.
 * Syntax `%i:10` is now deprecated (only real scalars can be used).
 * `while ... else ... end` control instruction is not supported anymore.
@@ -150,12 +150,12 @@ Feature changes and additions
 * `sign` can now handle a sparse matrix.
 * `sleep(..,'s')` allows now to specify the duration in seconds.
 * `real`, `imag`, `conj` and `isreal` now accept rational fractions.
-* A call stack limit has been introduced. Default maximum depth is setup to 1000
+* A call stack limit has been introduced. Default maximum depth is setup to 1000 
 and can be changed by `recursionlimit` or through the Preferences interface.
-* The floating point exception mode `ieee` is now set to `2` by default: floating
+* The floating point exception mode `ieee` is now set to `2` by default: floating 
 point exceptions now produce `Inf` or `Nan`, and do not cause any error.
 The previous behavior can be recalled by simply calling: `ieee(0)`.
-* The graphics entity "Datatip" has its property `z_component = 'on|off'` changed to
+* The graphics entity "Datatip" has its property `z_component = 'on|off'` changed to 
 `display_components = 'xyz'`; it is now possible to choose which components to display,
 and in which order. Loading old `*.scg` files containing datatips with "z_component"
 property may not display the z component.
@@ -163,7 +163,7 @@ property may not display the z component.
 * `amell` now:
   - checks if its parameters are real numbers,
   - throws an error if the second parameter is not a scalar.
-* The use of I/O console is now allowed with the following functions: `mget`,
+* The use of I/O console is now allowed with the following functions: `mget`, 
 `mgetl`, `mgetstr`, `mput`, `mputl` and `mputstr`.
 * `mclearerr` now returns a flag indicating the file identifier validity.
 * `fileinfo` can now take a row vector as input.
@@ -192,13 +192,11 @@ input and output arguments.
    - `bitxor` is now vectorized and fast.
 * The zoom rubber box now can start/finish from points lying outside the axes bounds.
 * The zoom rubber box now can select multiple and overlying axes at once. Changed behavior of scroll zoom,
-scrolling over overlying axes will zoom all of them together, using the CTRL key while scrolling
+scrolling over overlying axes will zoom all of them together, using the CTRL key while scrolling 
 will zoom all axes in the current figure.
-* The graphics entity "Datatip" has a new property `detached_position` which accepts `[]`
+* The graphics entity "Datatip" has a new property `detached_position` which accepts `[]` 
 or a 3-components vector to set the position in axes coordinates to draw the datatip text box.
 * `MPI_Create_comm` create a new communicator from MPI_COMM_WORLD using MPI world ranks.
-* The `grand` non-free `fsultra` generator was removed.
-* The original `rpoly` algorithm was removed in favor of a C++11 implementation
 
 Help pages:
 -----------
@@ -237,23 +235,22 @@ Xcos
 
 * Major rewrite of the data structures, huge models should load and save faster.
 The memory usage on diagram edition is also slightly reduced.
-* ZCOS and XCOS file formats have evolved to reduce the duplicated information.
+* ZCOS and XCOS file formats have evolved to reduce the duplicated information. 
 Scilab 5.5.2 is able to open the newly saved files, but the ports have to be repositioned manually.
-* A new XML file format based on [XML Metadata Interchange (XMI)](http://www.omg.org/spec/XMI/) has been introduced to allow interchange using [Eclipse Modeling Framework (EMF)](https://eclipse.org/modeling/emf/).
-* Implicit fixed-size step ODE solver added: Crank-Nicolson 2(3).
+* Implicit fixed-size step ODE solver added: Crank-Nicolson 2(3). 
 Added to the CVode package, it also benefits from the CVode rootfinding feature.
 
 
 API modification
 ----------------
 
-A new set of C APIs to write C or C++ extensions (toolboxes) to Scilab.
+A new set of C APIs to write C or C++ extensions (toolboxes) to Scilab. 
 It allows defining native functions (commonly called "gateways"), getting input parameters
 for such functions, setting return parameters, accessing local variables, using common helper
-functions for accessing environment information (such as warning level), generate errors...
+functions for accessing environment information (such as warning level), generate errors... 
 
 It also includes ways to overload existing Scilab functions to support additional parameter
-types (see `help scilab_overload`). Finally, you can call back Scilab functions
+types (see `help scilab_overload`). Finally, you can call back Scilab functions 
 (macros and built-in functions) from your gateway (see `help scilab_call`).
 
 User-defined functions written in C or C++ (gateways) must now use a `void* pvApiCtx` name
@@ -302,7 +299,7 @@ Known issues
 
 * Scilab 6 is still in a beta stage and likely to contain a number of known or unknown bugs.
 Do not hesitate to [report](https://bugzilla.scilab.org) them.
-* Toolboxes rebuild is in progress. Do not hesitate to submit patch or feature upgrade to
+* Toolboxes rebuild is in progress. Do not hesitate to submit patch or feature upgrade to 
 the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 
 
@@ -329,11 +326,8 @@ Bug Fixes
 * [#11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959): Allow "Zoom Area" to be clicked out of axes
 * [#12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110): Unable to zoom multiple axes at once
 * [#13166](http://bugzilla.scilab.org/show_bug.cgi?id=13166): `l` and `b` endian flags used with `mget` and `mgeti` were sticky
-* [#13469](http://bugzilla.scilab.org/show_bug.cgi?id=13469): Scilab contained non free code
-* [#13470](http://bugzilla.scilab.org/show_bug.cgi?id=13470): `histplot(0,0,%t)` crashed
 * [#13583](http://bugzilla.scilab.org/show_bug.cgi?id=13583): `getd` loading a script including a `clear` instruction yielded an error
 * [#13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597): `help format` claimed setting a number of digits instead of characters
-* [#13743](http://bugzilla.scilab.org/show_bug.cgi?id=13743): `neldermead_configure` failed to set options "-gamma" and "-sigma".
 * [#13757](http://bugzilla.scilab.org/show_bug.cgi?id=13757): The toolbox menu dit not load properly ATOMS modules not autoloaded.
 * [#13990](http://bugzilla.scilab.org/show_bug.cgi?id=13990): `warning` with localization enabled some memory corruption
 * [#14192](http://bugzilla.scilab.org/show_bug.cgi?id=14192): `g_margin` error-ed for double integrator.
@@ -364,6 +358,7 @@ Bug Fixes
 * [#14710](http://bugzilla.scilab.org/show_bug.cgi?id=14710): fullpath(TMPDIR+...) was bugged on MacOS
 * [#14714](http://bugzilla.scilab.org/show_bug.cgi?id=14714): Crash/Leak when deleting datatip
 * [#14784](http://bugzilla.scilab.org/show_bug.cgi?id=14784): Setting field of graphics handle using children($) failed.
+* [#14796](http://bugzilla.scilab.org/show_bug.cgi?id=14796): `ind2sub(dims, [])` returns [] in version 6. Warnings due to a `[]+1` operation have been removed.
 
 ### Bugs fixed in 6.0.0 beta-2 and earlier 6.0.0 pre-releases:
 
@@ -564,5 +559,4 @@ Bug Fixes
 * [#14517](http://bugzilla.scilab.org/show_bug.cgi?id=14517): The second argument of part function accepted an index of 0 without exiting in error.
 * [#14524](http://bugzilla.scilab.org/show_bug.cgi?id=14524): Numeric locales were not set to standard "C" by default at scilab startup
 * [#14540](http://bugzilla.scilab.org/show_bug.cgi?id=14540): Datatips did not clip outside axes bounds
-* [#14543](http://bugzilla.scilab.org/show_bug.cgi?id=14543): fixed - == and <> operations were not overloaded for rational types
 * [#14685](http://bugzilla.scilab.org/show_bug.cgi?id=14685): datavec produced an invalid index error.
