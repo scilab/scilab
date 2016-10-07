@@ -618,7 +618,7 @@ detect_java_vm() {
     case $OS in
         *darwin* | *Darwin*) # MacOS X
             export _JAVA_OPTIONS="-Djava.awt.headless=false"
-    ;;        
+    ;;
     esac
 
 ####### END OF JAVA ENV DETECTION/SETTING ######
