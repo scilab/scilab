@@ -445,6 +445,7 @@ Bug Fixes
 * [#14784](http://bugzilla.scilab.org/show_bug.cgi?id=14784): Setting field of graphics handle using children($) failed.
 * [#14796](http://bugzilla.scilab.org/show_bug.cgi?id=14796): `ind2sub(dims, [])` returned [] in version 6. Warnings due to a `[]+1` operation occurred
 * [#14775](http://bugzilla.scilab.org/show_bug.cgi?id=14775): Loading empty (0 bytes) .sod File crashed scilab
+* [#14801](http://bugzilla.scilab.org/show_bug.cgi?id=14801): The horizontal concatenation of cells arrays wrongly puzzled components.
 * [#14808](http://bugzilla.scilab.org/show_bug.cgi?id=14808): E=[ 'A' 'B' 'C' 'D' 'E']  ,  E(0:0) Crash Scilab Console
 * [#14821](http://bugzilla.scilab.org/show_bug.cgi?id=14821): `getio` function was missing. An error on the diary file opened has been corrected
 * [#14824](http://bugzilla.scilab.org/show_bug.cgi?id=14824): Incorrect error message with `mfprintf(fd, "%d", [])`.
