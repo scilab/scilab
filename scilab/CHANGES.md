@@ -326,6 +326,7 @@ Bug Fixes
 * [#11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959): Allow "Zoom Area" to be clicked out of axes
 * [#12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110): Unable to zoom multiple axes at once
 * [#13166](http://bugzilla.scilab.org/show_bug.cgi?id=13166): `l` and `b` endian flags used with `mget` and `mgeti` were sticky
+* [#13375](http://bugzilla.scilab.org/show_bug.cgi?id=13375): If (Max - Min) == 1, then the multiple selection is not allowed.
 * [#13583](http://bugzilla.scilab.org/show_bug.cgi?id=13583): `getd` loading a script including a `clear` instruction yielded an error
 * [#13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597): `help format` claimed setting a number of digits instead of characters
 * [#13757](http://bugzilla.scilab.org/show_bug.cgi?id=13757): The toolbox menu dit not load properly ATOMS modules not autoloaded.

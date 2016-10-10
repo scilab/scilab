@@ -358,7 +358,7 @@
                             </para>
                         </listitem>
                         <listitem>
-                            <para>Other uicontrols: the default value for "Relief" property is "flat".</para>
+                            <para>Other uicontrols: the default value for "Relief" property is relief by default provided by java language.</para>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -435,7 +435,7 @@
                             </para>
                         </listitem>
                     </itemizedlist>
-
+                    
                 </listitem>
             </varlistentry>
             <varlistentry>
