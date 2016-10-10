@@ -53,8 +53,8 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 deff('[alpha,BeTa]=alpha_beta(n,m,m1)',...
-'if 2*int(n/2)==n then, BeTa=K1; else, BeTa=0;end;...
-alpha=%k(1-m1)/%k(1-m);')
+'if 2*int(n/2)==n then, BeTa=K1; else, BeTa=0;end;'+...
+'alpha=%k(1-m1)/%k(1-m);')
 epsilon=0.1;A=10;  //ripple parameters
 m1=(epsilon*epsilon)/(A*A-1);n=5;omegac=6;
 m=find_freq(epsilon,A,n);omegar = omegac/sqrt(m)
@@ -68,8 +68,8 @@ plot(samples,ell1mag(epsilon,m1,z))
  ]]></programlisting>
         <scilab:image><![CDATA[
 deff('[alpha,BeTa]=alpha_beta(n,m,m1)',...
-'if 2*int(n/2)==n then, BeTa=K1; else, BeTa=0;end;...
-alpha=%k(1-m1)/%k(1-m);')
+'if 2*int(n/2)==n then, BeTa=K1; else, BeTa=0;end;'+...
+'alpha=%k(1-m1)/%k(1-m);')
 epsilon=0.1;A=10;  //ripple parameters
 m1=(epsilon*epsilon)/(A*A-1);n=5;omegac=6;
 m=find_freq(epsilon,A,n);omegar = omegac/sqrt(m)
