@@ -197,6 +197,9 @@ will zoom all axes in the current figure.
 * The graphics entity "Datatip" has a new property `detached_position` which accepts `[]`
 or a 3-components vector to set the position in axes coordinates to draw the datatip text box.
 * `MPI_Create_comm` create a new communicator from MPI_COMM_WORLD using MPI world ranks.
+* The `grand` non-free `fsultra` generator was removed.
+* The original `rpoly` algorithm was removed in favor of a C++11 implementation
+* When the view property of Axes object is set at `2d`, the rotation becomes impossible.
 
 Help pages:
 -----------
@@ -329,6 +332,7 @@ Bug Fixes
 * [#9876](http://bugzilla.scilab.org/show_bug.cgi?id=9876): Creating a complex structure with multiple hierarchy level and size failed.
 * [#9912](http://bugzilla.scilab.org/show_bug.cgi?id=9912): In case of missing translated help page, the default en_US was sometimes ignored
 * [#10116](http://bugzilla.scilab.org/show_bug.cgi?id=10116): `for h = H, .., end` could not be used when H is a vector of graphic handles
+* [#10981](http://bugzilla.scilab.org/show_bug.cgi?id=10981):  When the view property of Axes object is set at 2d, the rotation becomes impossible.
 * [#11375](http://bugzilla.scilab.org/show_bug.cgi?id=11375): When a localized help subdirectory has only a CHAPTER file specifying the section title, it was ignored.
 * [#11692](http://bugzilla.scilab.org/show_bug.cgi?id=11692): The summary of a help section built from both default en_US and localized files was never sorted overall.
 * [#11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959): Allow "Zoom Area" to be clicked out of axes

@@ -267,10 +267,12 @@ public class DragZoomRotateInteraction extends FigureInteraction {
             int dy = e.getY() - previousEvent.getY();
 
             for (Axes axes : currentAxes) {
-                Double[] angles = axes.getRotationAngles();
-                angles[0] -= dy / 4.0;
-                angles[1] -= Math.signum(Math.sin(Math.toRadians(angles[0]))) * (dx / 4.0);
-                GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
+                if (axes.getView() != 0) {
+                    Double[] angles = axes.getRotationAngles();
+                    angles[0] -= dy / 4.0;
+                    angles[1] -= Math.signum(Math.sin(Math.toRadians(angles[0]))) * (dx / 4.0);
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ROTATION_ANGLES__, angles);
+                }
             }
         }
 
