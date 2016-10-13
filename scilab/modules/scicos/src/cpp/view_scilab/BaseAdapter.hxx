@@ -435,10 +435,10 @@ private:
         typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
         std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 
-        ostr << L"scicos_" <<  getTypeStr() << L" type :" << std::endl;
+        ostr << L"scicos_" <<  getTypeStr() << L" type :" << '\n';
         for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it)
         {
-            ostr << L"  " << it->name << std::endl;
+            ostr << L"  " << it->name << '\n';
         }
         return true;
     }

@@ -29,19 +29,19 @@
 #define REF_PRINT(uid, refCount) \
 	do { \
 	std::stringstream print; \
-	print << "referenceObject( " << uid << " ) : " << refCount << std::endl; \
+	print << "referenceObject( " << uid << " ) : " << refCount << '\n'; \
 	scilabForcedWrite(print.str().data()); \
 	} while(0)
 #define UNREF_PRINT(uid, count) \
 	do { \
 	std::stringstream print; \
-	print << "unreferenceObject( " << uid << " ) : " << refCount << std::endl; \
+	print << "unreferenceObject( " << uid << " ) : " << refCount << '\n'; \
 	scilabForcedWrite(print.str().data()); \
 	} while(0)
 #define CLONE_PRINT(uid, clone) \
 	do { \
 	std::stringstream print; \
-	print << "cloneObject( " << uid << " ) : " << clone << std::endl; \
+	print << "cloneObject( " << uid << " ) : " << clone << '\n'; \
 	scilabForcedWrite(print.str().data()); \
 	} while(0)
 #else
