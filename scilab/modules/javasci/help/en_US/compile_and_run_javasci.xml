@@ -90,7 +90,7 @@
         </itemizedlist>
         <para>To compile the example code, the command line is:</para>
         <para>
-            <literal>javac -cp "C:\Program Files\scilab-XXXX\modules\javasci\jar\org.scilab.modules.javasci.jar;C:\Program Files\scilab-XXXX\modules\types\jar\org.scilab.modules.types.jar";. BasicExample.java</literal>
+            <literal>javac -cp "C:\Program Files\scilab-XXXX\modules\javasci\jar\org.scilab.modules.javasci.jar;C:\Program Files\scilab-XXXX\modules\types\jar\org.scilab.modules.types.jar;." BasicExample.java</literal>
         </para>
         <para>For execution, the path to the native library libjavasci.dll and to its dependencies must be added in the PATH environment variable.
             All the needed libraries are in the "bin" folder, so the command line is:
@@ -100,7 +100,7 @@
         </para>
         <para>To launch the Java application, the command line is quite the same as for Linux:</para>
         <para>
-            <literal>java -cp "C:\Program Files\scilab-XXXX\modules\javasci\jar\org.scilab.modules.javasci.jar;C:\Program Files\scilab-XXXX\modules\types\jar\org.scilab.modules.types.jar";. BasicExample</literal>
+            <literal>java -cp "C:\Program Files\scilab-XXXX\modules\javasci\jar\org.scilab.modules.javasci.jar;C:\Program Files\scilab-XXXX\modules\types\jar\org.scilab.modules.types.jar;." BasicExample</literal>
         </para>
     </refsection>
     <refsection>
