@@ -65,8 +65,8 @@ public class PreviewCode extends Panel implements XComponent, XChooser {
         previewEditorPane.setEditorKit(kit);
         previewEditorPane.setFont(kit.getStylePreferences().tokenFonts[0]);
         String codeSample = "// A comment with whites    and tabulations \t\t\n"
-                            + "// Email: <support@scilab-enterprises.com>\n"
-                            + "// Scilab editor: http://www.scilab-enterprises.com/\n"
+                            + "// Email: <support@@scilab-enterprises.com>\n"
+                            + "// Scilab editor: http://www.scilab.io\n"
                             + "//\n"
                             + "// LaTeX $$\\sum_{n=1}^{+\\infty}\\frac1{n^2}=\\frac{\\pi^2}6$$\n"
                             + "// TODO: blah blah\n"
