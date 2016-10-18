@@ -2261,4 +2261,14 @@ public class XcosDiagram extends ScilabGraph {
             }
         };
     }
+
+   /**
+    * Counts the number of children in the diagram
+    *
+    * @return the number of children in the diagram
+    */
+    public int countChildren()
+    {
+        return getModel().getChildCount(this.getDefaultParent());
+    }
 }
