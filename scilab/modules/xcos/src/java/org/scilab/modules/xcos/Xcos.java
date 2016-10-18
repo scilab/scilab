@@ -444,21 +444,25 @@ public final class Xcos {
         if (f == null && diag != null && diag.getModel().getChildCount(diag.getDefaultParent()) > 0) {
             diag = null;
         }
-        // looking for an empty, unsaved diagram to use if opening a new file
+
+	// looking for an empty, unsaved diagram to use if opening a new file
         // if not found an already open instance of the file
-        if (diag == null) {
-            // traverse through the key set of all the opened diagrams
-            for (long key : diagrams.keySet()) {
-                List<XcosDiagram> diagramsWithKey = diagrams.get(key);
-                XcosDiagram diagramWithKey = diagramsWithKey.get(0); // get the diagram that maps to that key
-                int childCount = diagramWithKey.countChildren(); //count the number of children in the diagram
-                // if empty, unsaved and unused
-                if (childCount == 0 && diagramWithKey.getSavedFile() == null && !diagramWithKey.isModified()) {
-                    // use that open diagram
-                    diag = diagramWithKey;
-                    diag.transformAndLoadFile(controller, file);
-                }
-            }
+        if(diag == null)
+        {
+	// traverse through the key set of all the opened diagrams
+        for(long key : diagrams.keySet())
+	{
+	List<XcosDiagram> diagramsWithKey = diagrams.get(key);
+	XcosDiagram diagramWithKey = diagramsWithKey.get(0); // get the diagram that maps to that key
+	int childCount = diagramWithKey.countChildren(); //count the number of children in the diagram
+	// if empty, unsaved and unused
+	        if(childCount == 0 && diagramWithKey.getSavedFile() == null && !diagramWithKey.isModified())
+	        {
+		// use that open diagram
+		diag = diagramWithKey;
+		diag.transformAndLoadFile(controller, file);
+	        }
+        }
         }
         // if reuse then request focus
         if (diag != null) {
