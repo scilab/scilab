@@ -17,6 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%s: An MPI communicator expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался целочисленный скаляр.\n"
+
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
@@ -47,16 +52,16 @@ msgid "%s: Unable to create variable.\n"
 msgstr "%s: Невозможно создать переменную.\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Ошибка распределения памяти.\n"
-
-#, c-format
 msgid "%s: Could not finalize the MPI instance: %s\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Could not get processor name: %s\n"
 msgstr "%s: Не удалось получить имя процессора: %s\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка распределения памяти.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Positive value expected.\n"
@@ -95,3 +100,20 @@ msgstr "%s: Невозможно преобразовать данные в па
 #, c-format
 msgid "%s: MPI_Wait failed while waiting %d: %s\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+"%s: Неверные значения входного аргумента №%d: ожидалось положительное "
+"значение.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+"%s: Неверные значения входного аргумента №%d: ожидалось положительное "
+"значение.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A Matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался целочисленный скаляр.\n"

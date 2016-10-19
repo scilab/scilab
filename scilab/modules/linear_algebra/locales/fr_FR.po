@@ -331,17 +331,6 @@ msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur colonne "
 "attendu.\n"
 
-#, c-format
-msgid "%s: Obsolete function. Please replace '%s' by '%s'."
-msgstr "%s : Fonction obsolète. Veuillez remplacer '%s' par '%s'."
-
-#, c-format
-msgid ""
-"%s: Obsolete function. Former external functions cannot be used anymore."
-msgstr ""
-"%s : Fonction obsolète. Les anciennes fonctions externes ne peuvent plus "
-"être utilisées dorénavant."
-
 #, fuzzy, c-format
 msgid "%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
 msgstr ""
@@ -441,3 +430,12 @@ msgid ""
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Le rang demandé est plus "
 "grand que la dimension de la matrice."
+
+#~ msgid "%s: Obsolete function. Please replace '%s' by '%s'."
+#~ msgstr "%s : Fonction obsolète. Veuillez remplacer '%s' par '%s'."
+
+#~ msgid ""
+#~ "%s: Obsolete function. Former external functions cannot be used anymore."
+#~ msgstr ""
+#~ "%s : Fonction obsolète. Les anciennes fonctions externes ne peuvent plus "
+#~ "être utilisées dorénavant."

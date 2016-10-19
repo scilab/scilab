@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-06-08 22:21+0100\n"
+"Revision-Date: 2016-10-19 10:08+0100\n"
 
 # File: modules/cacsd/sci_gateway/c/gw_cacsd.c, line: 34
 # File: modules/cacsd/sci_gateway/c/gw_cacsd.c, line: 61
@@ -1072,6 +1072,7 @@ msgstr ""
 
 #
 # File: modules/cacsd/macros/abcd.sci, line: 24
+# File: modules/cacsd/macros/g_margin.sci, line: 18
 #, c-format
 msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
@@ -1110,7 +1111,7 @@ msgstr ""
 # File: modules/cacsd/macros/abinv.sci, line: 79
 # File: modules/cacsd/macros/augment.sci, line: 122
 # File: modules/cacsd/macros/augment.sci, line: 253
-# File: modules/cacsd/macros/csim.sci, line: 82
+# File: modules/cacsd/macros/csim.sci, line: 81
 # File: modules/cacsd/macros/ctr_gram.sci, line: 25
 # File: modules/cacsd/macros/damp.sci, line: 26
 # File: modules/cacsd/macros/gamitg.sci, line: 77
@@ -1160,8 +1161,8 @@ msgstr ""
 
 #
 # File: modules/cacsd/macros/arma2p.sci, line: 18
-# File: modules/cacsd/macros/csim.sci, line: 51
-# File: modules/cacsd/macros/narsimul.sci, line: 144
+# File: modules/cacsd/macros/csim.sci, line: 49
+# File: modules/cacsd/macros/narsimul.sci, line: 139
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr ""
@@ -1300,7 +1301,7 @@ msgstr ""
 # File: modules/cacsd/macros/bode.sci, line: 77
 # File: modules/cacsd/macros/bode.sci, line: 84
 # File: modules/cacsd/macros/bode.sci, line: 88
-# File: modules/cacsd/macros/csim.sci, line: 91
+# File: modules/cacsd/macros/csim.sci, line: 90
 # File: modules/cacsd/macros/gainplot.sci, line: 63
 # File: modules/cacsd/macros/gainplot.sci, line: 71
 # File: modules/cacsd/macros/nyquist.sci, line: 75
@@ -1697,7 +1698,7 @@ msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/csim.sci, line: 55
+# File: modules/cacsd/macros/csim.sci, line: 53
 # File: modules/cacsd/macros/lqg2stan.sci, line: 53
 # File: modules/cacsd/macros/nehari.sci, line: 30
 # File: modules/cacsd/macros/obs_gram.sci, line: 32
@@ -1709,25 +1710,25 @@ msgid "%s: Input argument #%d is assumed continuous time.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/csim.sci, line: 60
+# File: modules/cacsd/macros/csim.sci, line: 58
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A proper system expected\n"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/csim.sci, line: 70
+# File: modules/cacsd/macros/csim.sci, line: 69
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A SIMO expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/csim.sci, line: 99
+# File: modules/cacsd/macros/csim.sci, line: 98
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Function expected"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/csim.sci, line: 164
+# File: modules/cacsd/macros/csim.sci, line: 163
 #, c-format
 msgid "%s: Simulation failed before final time is reached.\n"
 msgstr ""
@@ -1975,7 +1976,7 @@ msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/g_margin.sci, line: 29
+# File: modules/cacsd/macros/g_margin.sci, line: 21
 # File: modules/cacsd/macros/krac2.sci, line: 29
 # File: modules/cacsd/macros/p_margin.sci, line: 23
 # File: modules/cacsd/macros/routh_t.sci, line: 54
@@ -2145,9 +2146,10 @@ msgstr ""
 
 #
 # File: modules/cacsd/macros/h_inf.sci, line: 417
-# File: modules/cacsd/macros/h_inf.sci, line: 538
 #, c-format
-msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+msgid ""
+"%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+"The distance to the imaginary axis is less than %g "
 msgstr ""
 
 #
@@ -2166,6 +2168,12 @@ msgstr ""
 #
 # File: modules/cacsd/macros/h_inf.sci, line: 463
 msgid "Unfeasible (spectral radius)"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/h_inf.sci, line: 538
+#, c-format
+msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
 msgstr ""
 
 #
@@ -2253,8 +2261,8 @@ msgstr ""
 # File: modules/cacsd/macros/leqr.sci, line: 87
 # File: modules/cacsd/macros/lqr.sci, line: 51
 # File: modules/cacsd/macros/lqr.sci, line: 92
-# File: modules/cacsd/macros/ui_observer.sci, line: 114
-# File: modules/cacsd/macros/ui_observer.sci, line: 117
+# File: modules/cacsd/macros/ui_observer.sci, line: 112
+# File: modules/cacsd/macros/ui_observer.sci, line: 115
 #, c-format
 msgid "%s: Bad conditionning.\n"
 msgstr ""
@@ -2355,16 +2363,22 @@ msgstr ""
 
 #
 # File: modules/cacsd/macros/narsimul.sci, line: 54
-# File: modules/cacsd/macros/narsimul.sci, line: 87
-# File: modules/cacsd/macros/narsimul.sci, line: 97
-# File: modules/cacsd/macros/narsimul.sci, line: 102
-# File: modules/cacsd/macros/narsimul.sci, line: 112
-# File: modules/cacsd/macros/narsimul.sci, line: 117
-# File: modules/cacsd/macros/syslin.sci, line: 110
-# File: modules/cacsd/macros/ui_observer.sci, line: 74
-# File: modules/cacsd/macros/ui_observer.sci, line: 79
+# File: modules/cacsd/macros/narsimul.sci, line: 96
+# File: modules/cacsd/macros/narsimul.sci, line: 109
 #, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: "
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
+"incompatible with #%d argument.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/narsimul.sci, line: 87
+# File: modules/cacsd/macros/narsimul.sci, line: 100
+# File: modules/cacsd/macros/narsimul.sci, line: 113
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
+"incompatible with #%d argument.\n"
 msgstr ""
 
 #
@@ -2625,6 +2639,22 @@ msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
 
 #
+# File: modules/cacsd/macros/syslin.sci, line: 110
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: number of elements of #%d must "
+"match the column dimension of #%d\n"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/systmat.sci, line: 30
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: state space or a descriptor "
+"representation expected.\n"
+msgstr ""
+
+#
 # File: modules/cacsd/macros/trfmod.sci, line: 102
 # File: modules/cacsd/macros/trfmod.sci, line: 112
 msgid "Denominator :"
@@ -2660,7 +2690,23 @@ msgid "%s: Incorrect answer.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/ui_observer.sci, line: 99
+# File: modules/cacsd/macros/ui_observer.sci, line: 74
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/ui_observer.sci, line: 78
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/ui_observer.sci, line: 97
 #, c-format
 msgid "%s: Residual norm = %g\n"
 msgstr ""
@@ -2693,12 +2739,4 @@ msgstr ""
 #
 # File: modules/cacsd/macros/zgrid.sci, line: 98
 msgid "Imaginary Axis"
-msgstr ""
-
-#
-# File: modules/cacsd/macros/systmat.sci, line: 30
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: state space or a descriptor "
-"representation expected.\n"
 msgstr ""

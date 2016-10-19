@@ -209,6 +209,10 @@ msgstr ""
 msgid "The file %s does not exist.\n"
 msgstr "ファイル %s は存在しません。\n"
 
+#, fuzzy, c-format
+msgid "%s: Cannot read file name.\n"
+msgstr "%s: ファイル %s を読み込めません.\n"
+
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr ""

@@ -259,9 +259,9 @@ msgstr "%s: 入力引数 #%dの型が間違っています: 多項式を指定�
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: 入力引数 #%d は実数でなくてはなりません.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: state space or a descriptor "
-"representation expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 有理分数を指定してください.\n"
+#, fuzzy
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: state space or a descriptor "
+#~ "representation expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の大きさが間違っています: 有理分数を指定してください.\n"

@@ -1173,8 +1173,10 @@ msgstr "%s: Wartość własna %s (kontroler) jest bliska do osi urojonej.\n"
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
 msgstr "%s: Rozwiązanie Riccati'ego niedokładne: błąd rownania = %g.\n"
 
-#, c-format
-msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+#, fuzzy, c-format
+msgid ""
+"%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+"The distance to the imaginary axis is less than %g "
 msgstr "%s: Wartość własna %s (obserwator) jest bliska do osi urojonej.\n"
 
 msgid "Unfeasible (Hx hamiltonian)"
@@ -1185,6 +1187,10 @@ msgstr "Niewykonalne (Hx Hamiltona)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "Niewykonalne (promień spektralny)"
+
+#, c-format
+msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+msgstr "%s: Wartość własna %s (obserwator) jest bliska do osi urojonej.\n"
 
 #, c-format
 msgid "%s: %s not full rank.\n"
@@ -1320,9 +1326,21 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Nieprawidłowa liczba argumentów wyjściowych: oczekiwano %d.\n"
 
-#, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: "
-msgstr "%s: Niekompatybilne parametry wejściowe nr %d i nr %d: "
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
+"incompatible with #%d argument.\n"
+msgstr ""
+"%s: Zły rozmiar parametru wejściowego nr %d: Liczba kolumn jest "
+"niekompatybilna z %s.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
+"incompatible with #%d argument.\n"
+msgstr ""
+"%s: Zły rozmiar parametru wejściowego nr %d: Liczba kolumn jest "
+"niekompatybilna z %s.\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr "Krzywe zmiany amplitudy i fazy y/(y+1)"
@@ -1505,6 +1523,22 @@ msgstr ""
 "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwano macierzy "
 "kwadratowej.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: number of elements of #%d must "
+"match the column dimension of #%d\n"
+msgstr ""
+"%s: Niekompatybilne parametry wejściowe nr %d i nr %d: oczekiwana jednakowa "
+"liczba elementów.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: state space or a descriptor "
+"representation expected.\n"
+msgstr ""
+"%s: Zły typ parametru wejściowego nr %d: Oczekiwano liniowej przestrzeni "
+"stanów lub funkcji przeniesienia.\n"
+
 msgid "Denominator :"
 msgstr "Mianownik"
 
@@ -1528,6 +1562,22 @@ msgstr ""
 msgid "%s: Incorrect answer.\n"
 msgstr "%s: Nieprawidłowa odpowiedź.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr ""
+"%s: Nie kompatybilne parametry wejściowe nr %d i nr %d: oczekiwano "
+"jednakowych wymiarów kolumn.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr ""
+"%s: Nie kompatybilne parametry wejściowe nr %d i nr %d: oczekiwano "
+"jednakowych wymiarów kolumn.\n"
+
 #, c-format
 msgid "%s: Residual norm = %g\n"
 msgstr "%s: Norma błędu = %g\n"
@@ -1550,3 +1600,6 @@ msgstr ""
 
 msgid "Imaginary Axis"
 msgstr ""
+
+#~ msgid "%s: Incompatible input arguments #%d and #%d: "
+#~ msgstr "%s: Niekompatybilne parametry wejściowe nr %d i nr %d: "

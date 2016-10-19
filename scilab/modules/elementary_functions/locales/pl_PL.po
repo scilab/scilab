@@ -385,17 +385,22 @@ msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana macierz ciągów "
 "znaków.\n"
 
+#
+# File: modules/elementary_functions/macros/bit_op.sci, line: 20
 #, c-format
-msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgid "%s: unknown bitwise function %s.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego: Oczekiwano tego samego "
-"typu.\n"
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wielkość wprowadzanych argumentów.  Oczekiwana jest taka "
-"sama wielkość.\n"
+"%s: Niezgodne argumenty wejściowe #%d oraz #%d: Oczekiwany taki sam "
+"rozmiar.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers >=0 expected.\n"
+msgstr ""
+"%s: Nieprawidłowy argument nr %d: oczekiwano liczbę całkowitą dodatnią.\n"
 
 #, c-format
 msgid ""
@@ -417,6 +422,12 @@ msgstr ""
 "i %d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wielkość wprowadzanych argumentów.  Oczekiwana jest taka "
+"sama wielkość.\n"
+
+#, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentów wejściowych: Oczekiwano tego samego "
@@ -433,18 +444,16 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-"expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ dla parametru wejściowego nr %d: Oczekiwany skalar/"
-"macierz z liczbami całkowitymi bez znaku.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: Oczekiwana liczb "
 "rzeczywista dodatnia\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ dla argumentu wejściowego: Oczekiwano tego samego "
+"typu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
@@ -851,6 +860,13 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego: Niekompatybilny "
 "rozmiar.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy typ dla parametru wejściowego nr %d: Oczekiwany skalar/"
+#~ "macierz z liczbami całkowitymi bez znaku.\n"
 
 #~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 #~ msgstr ""

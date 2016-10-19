@@ -268,6 +268,10 @@ msgstr ""
 "Plik %s jest nieprawidłowy:\n"
 "%s\n"
 
+#, fuzzy, c-format
+msgid "%s: Cannot write the file.\n"
+msgstr "%s: Brak możliwości zapisu do pliku: %s\n"
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"
@@ -299,6 +303,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error in getting rhs argument.\n"
+msgstr ""
+
+#
+# File: modules/xml/src/cpp/XMLMlistsManagement.cpp, line: 75
+# File: modules/xml/src/cpp/XMLMlistsManagement.cpp, line: 143
+msgid "Unknown tag.\n"
 msgstr ""
 
 msgid " at line "

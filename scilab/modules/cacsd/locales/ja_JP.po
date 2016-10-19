@@ -1252,8 +1252,10 @@ msgstr "%s: %s （制御器）の固有値が虚軸近傍にあります。\n"
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
 msgstr "%s: リカッチ解が不正確です: 方程式の誤差 = %g.\n"
 
-#, c-format
-msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+#, fuzzy, c-format
+msgid ""
+"%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+"The distance to the imaginary axis is less than %g "
 msgstr "%s: %s （オブザーバ）の固有値が虚軸近傍にあります。\n"
 
 #
@@ -1273,6 +1275,10 @@ msgstr "実行できません(Hy ハミルトニアン)"
 # File: macros/h_inf.sci, line: 415
 msgid "Unfeasible (spectral radius)"
 msgstr "実行できません(スペクトル半径)"
+
+#, c-format
+msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+msgstr "%s: %s （オブザーバ）の固有値が虚軸近傍にあります。\n"
 
 #, c-format
 msgid "%s: %s not full rank.\n"
@@ -1409,9 +1415,20 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: "
-msgstr "%s: 入力引数 #%d と #%d で互換性がありません: "
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
+"incompatible with #%d argument.\n"
+msgstr ""
+"%s: 入力引数 #%d と #%d に互換性がありません: 行の数を同じにしてください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
+"incompatible with #%d argument.\n"
+msgstr ""
+"%s: 入力引数 #%d 及び #%d に互換性がありません : 列の数を同じにする必要があり"
+"ます.\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr "y/(1+y)の振幅と位相の等高線"
@@ -1605,6 +1622,21 @@ msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 正方行列を指定してください.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: number of elements of #%d must "
+"match the column dimension of #%d\n"
+msgstr ""
+"%s: 入力引数 #%d と #%d は互換性がありません: 要素数を同じにしてください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: state space or a descriptor "
+"representation expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が正しくありません: 線形状態空間または伝達関数を指定して"
+"ください.\n"
+
 #
 # File: macros/trfmod.sci, line: 97
 # File: macros/trfmod.sci, line: 107
@@ -1636,6 +1668,54 @@ msgstr "伝達関数の既約因子、固有周波数およびダンピング係
 msgid "%s: Incorrect answer.\n"
 msgstr "%s:  不正確な答えです。\n"
 
+#
+# File: macros/black.sci, line: 83
+# File: macros/black.sci, line: 90
+# File: macros/black.sci, line: 94
+# File: macros/bode.sci, line: 47
+# File: macros/bode.sci, line: 54
+# File: macros/bode.sci, line: 58
+# File: macros/csim.sci, line: 91
+# File: macros/gainplot.sci, line: 47
+# File: macros/gainplot.sci, line: 55
+# File: macros/nyquist.sci, line: 50
+# File: macros/nyquist.sci, line: 57
+# File: macros/nyquist.sci, line: 61
+# File: macros/reglin.sci, line: 23
+# File: macros/sylv.sci, line: 19
+# File: macros/syslin.sci, line: 101
+# File: macros/syslin.sci, line: 127
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr ""
+"%s: 入力引数 #%d と #%d で互換性がありません: 同じ列次元を想定します。\n"
+
+#
+# File: macros/black.sci, line: 83
+# File: macros/black.sci, line: 90
+# File: macros/black.sci, line: 94
+# File: macros/bode.sci, line: 47
+# File: macros/bode.sci, line: 54
+# File: macros/bode.sci, line: 58
+# File: macros/csim.sci, line: 91
+# File: macros/gainplot.sci, line: 47
+# File: macros/gainplot.sci, line: 55
+# File: macros/nyquist.sci, line: 50
+# File: macros/nyquist.sci, line: 57
+# File: macros/nyquist.sci, line: 61
+# File: macros/reglin.sci, line: 23
+# File: macros/sylv.sci, line: 19
+# File: macros/syslin.sci, line: 101
+# File: macros/syslin.sci, line: 127
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr ""
+"%s: 入力引数 #%d と #%d で互換性がありません: 同じ列次元を想定します。\n"
+
 #, c-format
 msgid "%s: Residual norm = %g\n"
 msgstr "%s: 残差ノルム = %g\n"
@@ -1659,3 +1739,6 @@ msgstr "実軸"
 
 msgid "Imaginary Axis"
 msgstr "虚軸"
+
+#~ msgid "%s: Incompatible input arguments #%d and #%d: "
+#~ msgstr "%s: 入力引数 #%d と #%d で互換性がありません: "

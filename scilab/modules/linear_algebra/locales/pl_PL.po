@@ -317,15 +317,6 @@ msgstr ""
 "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwany wektor "
 "kolumnowy.\n"
 
-#, c-format
-msgid "%s: Obsolete function. Please replace '%s' by '%s'."
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Obsolete function. Former external functions cannot be used anymore."
-msgstr ""
-
 #, fuzzy, c-format
 msgid "%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
 msgstr ""

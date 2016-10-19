@@ -69,15 +69,15 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
 #, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "%s: Falscher Wert für Eingangsargument #%d: oder [] wird erwartet.\n"
+
+#, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: Ein boolscher Wert wird "
 "erwartet.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "%s: Falscher Wert für Eingangsargument #%d: oder [] wird erwartet.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d.\n"

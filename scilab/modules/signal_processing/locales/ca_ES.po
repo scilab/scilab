@@ -533,6 +533,12 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"de decimals amb coma flotant.\n"
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real matrix or polynomial expected.\n"

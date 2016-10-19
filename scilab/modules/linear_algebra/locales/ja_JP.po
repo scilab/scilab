@@ -329,15 +329,6 @@ msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 列ベクトルを指定してください.\n"
 
-#, c-format
-msgid "%s: Obsolete function. Please replace '%s' by '%s'."
-msgstr "%s: 廃止された関数です.  '%s' を '%s' で置き換えてください."
-
-#, c-format
-msgid ""
-"%s: Obsolete function. Former external functions cannot be used anymore."
-msgstr "%s: 廃止された関数. 以前の外部関数はもう使用出来ません."
-
 #, fuzzy, c-format
 msgid "%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
 msgstr ""
@@ -431,3 +422,10 @@ msgid ""
 msgstr ""
 "%s: 入力引数 #%d の値が正しくありません: 指定された階数は行列の次元を超えてい"
 "ます."
+
+#~ msgid "%s: Obsolete function. Please replace '%s' by '%s'."
+#~ msgstr "%s: 廃止された関数です.  '%s' を '%s' で置き換えてください."
+
+#~ msgid ""
+#~ "%s: Obsolete function. Former external functions cannot be used anymore."
+#~ msgstr "%s: 廃止された関数. 以前の外部関数はもう使用出来ません."

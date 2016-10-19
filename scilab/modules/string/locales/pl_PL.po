@@ -115,6 +115,12 @@ msgstr "%s: Nieprawidłowy typ argumentu(ów) wejściowego(ych).\n"
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być pomiędzy %d "
+"i %d.\n"
+
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""

@@ -72,13 +72,13 @@ msgstr ""
 "attendue."
 
 #, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n"
-
-#, fuzzy, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : or [] attendu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d.\n"

@@ -161,18 +161,6 @@ msgid "%s: Wrong type for input argument #%d: Hypermatrix expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидалась гиперматрица.\n"
 
 #, c-format
-msgid "%s: Operand is not a boolean hypermatrix.\n"
-msgstr "%s: Операнд не является гиперматрицей логических значений.\n"
-
-#, c-format
-msgid "%s: Incompatible operand dimensions.\n"
-msgstr "%s: Несовместимые размерности операндов.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
-msgstr "%s: Неверный тип входных аргументов: ожидалась гиперматрица.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидалось максимум три "
@@ -181,6 +169,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
 msgstr "%s: Неверный размер аргумента: несовместимые размерности.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be non-negative "
+"integers.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: должно быть из множества "
+"{%s}.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
@@ -195,6 +191,16 @@ msgstr "%s: Допустимо только одно значение: -1.\n"
 msgid "%s: Input and output matrices  must have the same number of elements"
 msgstr ""
 "%s: Входная и выходная матрицы должны иметь одинаковое количество элементов."
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d must have compatible sizes\n"
+msgstr "%s: Входные аргументы №%d и №%d имеют несовместимые размеры.\n"
+
+#
+# File: modules/overloading/macros/%hm_r_s.sci, line: 17
+#, c-format
+msgid "%s: not implemented for argin#1 hypermatrix and argin#2 matrix\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
@@ -294,6 +300,12 @@ msgstr ""
 "%s: Присвоение нуля может иметь только одно указание индексов без "
 "двоеточия.\n"
 
+#
+# File: modules/overloading/macros/%s_l_hm.sci, line: 17
+#, c-format
+msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr "%s: Случай вставки в разрежённую матрицу не реализован.\n"
@@ -350,6 +362,19 @@ msgstr ""
 "%s: Несовместимые размеры для свойств '%s' и '%s': ожидались одинаковые "
 "размеры.\n"
 
+#, fuzzy
+msgid "Invalid index."
+msgstr "%s: Недопустимый индекс.\n"
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#~ msgid "%s: Operand is not a boolean hypermatrix.\n"
+#~ msgstr "%s: Операнд не является гиперматрицей логических значений.\n"
+
+#~ msgid "%s: Incompatible operand dimensions.\n"
+#~ msgstr "%s: Несовместимые размерности операндов.\n"
+
+#~ msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
+#~ msgstr "%s: Неверный тип входных аргументов: ожидалась гиперматрица.\n"

@@ -306,15 +306,6 @@ msgstr "%s：输入参数#%d的值错误：应该为非负整数矩阵。\n"
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个列向量。\n"
 
-#, c-format
-msgid "%s: Obsolete function. Please replace '%s' by '%s'."
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Obsolete function. Former external functions cannot be used anymore."
-msgstr ""
-
 #, fuzzy, c-format
 msgid "%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为实数标量。\n"

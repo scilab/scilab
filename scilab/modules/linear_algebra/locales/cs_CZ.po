@@ -313,15 +313,6 @@ msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván sloupcový vektor.\n"
 
-#, c-format
-msgid "%s: Obsolete function. Please replace '%s' by '%s'."
-msgstr "%s: Zastaralá funkce. Prosím použijte '%s' krát '%s'."
-
-#, c-format
-msgid ""
-"%s: Obsolete function. Former external functions cannot be used anymore."
-msgstr "%s: Zastaralá funkce. Bývalé externí funkce již nemohou být používány."
-
 #, fuzzy, c-format
 msgid "%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván reálný skalár.\n"
@@ -409,3 +400,11 @@ msgid ""
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Požadovaná hodnost větší než "
 "rozměry matice."
+
+#~ msgid "%s: Obsolete function. Please replace '%s' by '%s'."
+#~ msgstr "%s: Zastaralá funkce. Prosím použijte '%s' krát '%s'."
+
+#~ msgid ""
+#~ "%s: Obsolete function. Former external functions cannot be used anymore."
+#~ msgstr ""
+#~ "%s: Zastaralá funkce. Bývalé externí funkce již nemohou být používány."

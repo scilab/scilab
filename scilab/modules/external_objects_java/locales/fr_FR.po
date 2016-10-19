@@ -18,25 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 17865)\n"
 
 #, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr "%s : La fonction %s est obsolète.\n"
-
-msgid "Warning"
-msgstr "Attention"
-
-#, c-format
-msgid "%s: Please see documentation for more details.\n"
-msgstr "%s : Veuillez consulter l'aide pour plus de détails.\n"
-
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-"%s : Cette fonction sera définitivement supprimée dans Scilab %s\n"
-"\n"
-
-#, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument n°%d : Une chaîne de caractères attendue.\n"
@@ -102,3 +83,19 @@ msgstr "Une exception a été lancée dans le fichier"
 
 msgid "at line"
 msgstr "à la ligne"
+
+#~ msgid "%s: Function %s is obsolete.\n"
+#~ msgstr "%s : La fonction %s est obsolète.\n"
+
+#~ msgid "Warning"
+#~ msgstr "Attention"
+
+#~ msgid "%s: Please see documentation for more details.\n"
+#~ msgstr "%s : Veuillez consulter l'aide pour plus de détails.\n"
+
+#~ msgid ""
+#~ "%s: This function will be permanently removed in Scilab %s\n"
+#~ "\n"
+#~ msgstr ""
+#~ "%s : Cette fonction sera définitivement supprimée dans Scilab %s\n"
+#~ "\n"

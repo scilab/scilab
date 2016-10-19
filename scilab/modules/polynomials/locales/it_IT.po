@@ -270,10 +270,10 @@ msgstr ""
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: L'argomento in ingresso #%d deve essere reale.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: state space or a descriptor "
-"representation expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"frazione razionale.\n"
+#, fuzzy
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: state space or a descriptor "
+#~ "representation expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa "
+#~ "una frazione razionale.\n"

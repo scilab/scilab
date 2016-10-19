@@ -66,15 +66,15 @@ msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr "%s : Неверный тип входного аргумента №%d: ожидалась строка.\n"
 
 #, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидался вещественный скаляр.\n"
-
-#, fuzzy, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%ls Неверное значение входного аргумента №%d: ожидалось '%s' или '%s'.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался вещественный скаляр.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d.\n"

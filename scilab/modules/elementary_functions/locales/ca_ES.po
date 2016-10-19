@@ -381,17 +381,21 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
 "de cadenes de text.\n"
 
+#
+# File: modules/elementary_functions/macros/bit_op.sci, line: 20
 #, c-format
-msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgid "%s: unknown bitwise function %s.\n"
 msgstr ""
-"%s: Els arguments d'entrada són d'un tipus incorrecte: Ha de ser del mateix "
-"tipus.\n"
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
-"%s: Els arguments d'entrada tenen una mida incorrecta: Ha de tenir la "
-"mateixa mida.\n"
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de ser del "
+"mateix tipus.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers >=0 expected.\n"
+msgstr "%s: L'argument #%d és incorrecte: Ha de ser un nombre enter positiu.\n"
 
 #, c-format
 msgid ""
@@ -413,6 +417,12 @@ msgstr ""
 "%d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada tenen una mida incorrecta: Ha de tenir la "
+"mateixa mida.\n"
+
+#, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 "%s: Els arguments d'entrada tenen una mida incorrecta: Ha de tenir la "
@@ -429,18 +439,16 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-"expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un escalar "
-"o una matriu d'enters sense signe.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte:  Ha de ser un nombre "
 "real positiu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada són d'un tipus incorrecte: Ha de ser del mateix "
+"tipus.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
@@ -847,6 +855,13 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: La mida dels arguments d'entrada és incorrecte: Han de tenir mides "
 "compatibles.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
+#~ "escalar o una matriu d'enters sense signe.\n"
 
 #~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 #~ msgstr ""

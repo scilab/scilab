@@ -74,14 +74,14 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано рядок.\n"
 
 #, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: мало бути дійсне число.\n"
-
-#, fuzzy, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%ls помилкове значення вхідного параметра №%d: мало бути «%s» або «%s».\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: мало бути дійсне число.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d.\n"

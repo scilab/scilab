@@ -292,6 +292,10 @@ msgstr ""
 "Le fichier %s est invalide :\n"
 "%s\n"
 
+#, fuzzy, c-format
+msgid "%s: Cannot write the file.\n"
+msgstr "%s : Impossible d'écrire le fichier : %s\n"
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"
@@ -330,6 +334,12 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%i : Un double attendu.\n"
 #, c-format
 msgid "%s: Error in getting rhs argument.\n"
 msgstr "%s : Erreur à la lecture de l'argument d'entrée.\n"
+
+#
+# File: modules/xml/src/cpp/XMLMlistsManagement.cpp, line: 75
+# File: modules/xml/src/cpp/XMLMlistsManagement.cpp, line: 143
+msgid "Unknown tag.\n"
+msgstr ""
 
 msgid " at line "
 msgstr " à la ligne "

@@ -53,6 +53,10 @@ msgstr "%s: Невозможно экспортировать %s в %s .\n"
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text(s) expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
 msgid "Generating cleaner.sce...\n"
 msgstr "Формирование cleaner.sce...\n"
 
@@ -115,12 +119,12 @@ msgstr "Формирование loader.sce...\n"
 msgid "Generating unloader.sce...\n"
 msgstr "Формирование unloader.sce...\n"
 
+msgid "Generating localization\n"
+msgstr "Формирование локализации\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался массив строк.\n"
-
-msgid "Generating localization\n"
-msgstr "Формирование локализации\n"
 
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
@@ -136,6 +140,18 @@ msgstr "%s: Компилятор C требуется для данного мо
 
 msgid "Building gateway...\n"
 msgstr "Сборка файлов-шлюзов...\n"
+
+#
+# File: modules/modules_manager/macros/tbx_builder_gateway_lang.sci, line: 84
+#, c-format
+msgid "Could not use the default compilation of gateways in %s."
+msgstr ""
+
+#
+# File: modules/modules_manager/macros/tbx_builder_gateway_lang.sci, line: 88
+#, c-format
+msgid "No builder script found in %s."
+msgstr ""
 
 msgid "Building help...\n"
 msgstr "Сборка справки...\n"
@@ -153,6 +169,26 @@ msgstr ""
 msgid "Building sources...\n"
 msgstr "Сборка исходных текстов...\n"
 
+#
+# File: modules/modules_manager/macros/tbx_builder_src.sci, line: 61
+msgid "No builder file found, nothing to be done"
+msgstr ""
+
+#
+# File: modules/modules_manager/macros/tbx_builder_src_lang.sci, line: 89
+msgid "No builder file found, nothing to be done."
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
+
+#
+# File: modules/modules_manager/tests/unit_tests/testbox/macros/scilab_error.sci, line: 17
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
+msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
+msgstr ""
+
+#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"

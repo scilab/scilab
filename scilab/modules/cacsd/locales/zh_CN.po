@@ -1096,8 +1096,10 @@ msgstr "%s：%s（控制器）的特征值过于靠近虚轴。\n"
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
 msgstr "%s：Riccati解不精确：方程错误=%g。\n"
 
-#, c-format
-msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+#, fuzzy, c-format
+msgid ""
+"%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+"The distance to the imaginary axis is less than %g "
 msgstr "%s：%s（观察者）的特征值过于靠近虚轴。\n"
 
 msgid "Unfeasible (Hx hamiltonian)"
@@ -1108,6 +1110,10 @@ msgstr "不可行(Hy hamiltonian)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "不可行（谱半径）"
+
+#, c-format
+msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+msgstr "%s：%s（观察者）的特征值过于靠近虚轴。\n"
 
 #, c-format
 msgid "%s: %s not full rank.\n"
@@ -1225,9 +1231,17 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
-#, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: "
-msgstr "%s：输入参数#%d和参数#%d不兼容。 "
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
+"incompatible with #%d argument.\n"
+msgstr "%s：输入参数#%d的大小错误：列数与%s不兼容。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
+"incompatible with #%d argument.\n"
+msgstr "%s：输入参数#%d的大小错误：列数与%s不兼容。\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr "y/(1+y)的幅度和相位衬度"
@@ -1387,6 +1401,18 @@ msgstr "%s: 不兼容相同的形式变量名称的输入参数#%d和#%d个。\n
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为方阵。\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: number of elements of #%d must "
+"match the column dimension of #%d\n"
+msgstr "%s：输入参数#%d和参数#%d不兼容：应该有同样的元素数目。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: state space or a descriptor "
+"representation expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为线性状态空间或者一个传递函数。\n"
+
 msgid "Denominator :"
 msgstr "分母："
 
@@ -1407,6 +1433,18 @@ msgstr "不可约的传递函数因素的固有频率和阻尼因子（点击下
 #, c-format
 msgid "%s: Incorrect answer.\n"
 msgstr "%s：不正确的答案。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr "%s：输入参数#%d和参数#%d不兼容：应该有同样的行数。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr "%s：输入参数#%d和参数#%d不兼容：应该有同样的行数。\n"
 
 #, c-format
 msgid "%s: Residual norm = %g\n"
@@ -1430,3 +1468,6 @@ msgstr ""
 
 msgid "Imaginary Axis"
 msgstr ""
+
+#~ msgid "%s: Incompatible input arguments #%d and #%d: "
+#~ msgstr "%s：输入参数#%d和参数#%d不兼容。 "

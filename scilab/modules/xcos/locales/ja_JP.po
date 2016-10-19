@@ -774,6 +774,11 @@ msgstr "Xcosファイル"
 msgid "Xcos (zip) file"
 msgstr "Xcos (zip) ファイル"
 
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 258
+msgid "XMI (Eclipse EMF) file"
+msgstr ""
+
 msgid "Scilab Open Data file"
 msgstr "Scilab オープンデータファイル"
 
@@ -1501,9 +1506,6 @@ msgstr "一時停止"
 msgid "Use the %s button to end the debugging"
 msgstr "デバッグを終了するには %s ボタンを使用してください"
 
-msgid "The Scicos libraries are not loaded"
-msgstr "Scilabライブラリは取り込めませんでした"
-
 #, c-format
 msgid "Unable to simulate %s"
 msgstr "%s をシュミレートできません"
@@ -1550,6 +1552,9 @@ msgstr ""
 #, c-format
 msgid "%s: Syntax error while trying to set up context from"
 msgstr ""
+
+#~ msgid "The Scicos libraries are not loaded"
+#~ msgstr "Scilabライブラリは取り込めませんでした"
 
 #~ msgid "Xcos"
 #~ msgstr "Xcos"

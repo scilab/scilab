@@ -128,6 +128,10 @@ msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
+msgstr "%s: помилкове значення вхідного параметра №%d.\n"
+
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""

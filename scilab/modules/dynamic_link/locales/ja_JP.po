@@ -67,13 +67,13 @@ msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください."
 
 #, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
-
-#, fuzzy, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: または [] を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d.\n"

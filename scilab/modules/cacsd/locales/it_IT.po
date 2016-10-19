@@ -1265,8 +1265,10 @@ msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
 msgstr ""
 "%s: Soluzione alla Riccati non accurata: l'errore dell'equazione =%g.\n"
 
-#, c-format
-msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+#, fuzzy, c-format
+msgid ""
+"%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+"The distance to the imaginary axis is less than %g "
 msgstr ""
 "%s: Un autovalore di %s (osservatore) è vicino all'asse dei numeri "
 "immaginari.\n"
@@ -1279,6 +1281,12 @@ msgstr "Non è possibile (Hy hamiltoniana)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "Non è possibile (raggio spettrale)"
+
+#, c-format
+msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+msgstr ""
+"%s: Un autovalore di %s (osservatore) è vicino all'asse dei numeri "
+"immaginari.\n"
 
 #, c-format
 msgid "%s: %s not full rank.\n"
@@ -1424,9 +1432,21 @@ msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
 
-#, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: "
-msgstr "%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: "
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
+"incompatible with #%d argument.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: era atteso lo "
+"stesso numero di righe.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
+"incompatible with #%d argument.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: era atteso lo "
+"stesso numero di colonne.\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr "Linee di livello dell'ampiezza e della fase di y/(1+y)"
@@ -1626,6 +1646,22 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "matrice quadrata.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: number of elements of #%d must "
+"match the column dimension of #%d\n"
+msgstr ""
+"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: era atteso lo "
+"stesso numero di elementi.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: state space or a descriptor "
+"representation expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno spazio "
+"degli stati lineare o una funzione di trasferimento.\n"
+
 msgid "Denominator :"
 msgstr "Denominatore:"
 
@@ -1649,6 +1685,22 @@ msgstr ""
 #, c-format
 msgid "%s: Incorrect answer.\n"
 msgstr "%s: Risposta non esatta.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso  #%d e #%d sono incompatibili: erano attese le "
+"stesse dimensioni per le colonne.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso  #%d e #%d sono incompatibili: erano attese le "
+"stesse dimensioni per le colonne.\n"
 
 #, c-format
 msgid "%s: Residual norm = %g\n"
@@ -1678,3 +1730,6 @@ msgstr "Asse dei numeri reali"
 
 msgid "Imaginary Axis"
 msgstr "Asse dei numeri immaginari"
+
+#~ msgid "%s: Incompatible input arguments #%d and #%d: "
+#~ msgstr "%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: "

@@ -395,13 +395,20 @@ msgstr "%s: Matice není diagonizovatelná.\n"
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
 
+#
+# File: modules/elementary_functions/macros/bit_op.sci, line: 20
 #, c-format
-msgid "%s: Wrong type for input arguments: Same types expected.\n"
-msgstr "%s: Špatný typ vstupních argumentů: Očekávány stejné velikosti.\n"
+msgid "%s: unknown bitwise function %s.\n"
+msgstr ""
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr "%s: Špatná velikost vstupních argumentů: Očekávána stejná velikost.\n"
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekávány stejné velikosti.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers >=0 expected.\n"
+msgstr "%s: Špatný argument #%d: Očekáváno kladné celé číslo.\n"
 
 #, c-format
 msgid ""
@@ -419,6 +426,10 @@ msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být mezi %d a %d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: Špatná velikost vstupních argumentů: Očekávána stejná velikost.\n"
+
+#, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr "%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
 
@@ -433,17 +444,13 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-"expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván skalár/matice celých čísel "
-"bez znaménka.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáváno kladné reálné číslo.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr "%s: Špatný typ vstupních argumentů: Očekávány stejné velikosti.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
@@ -842,6 +849,13 @@ msgstr "%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekáván stejný ty
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: Špatná velikost vstupních argumentů: Nekompatibilní velikosti.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár/matice celých "
+#~ "čísel bez znaménka.\n"
 
 #~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 #~ msgstr "%s: Špatný počet vstupních argumentů: Očekáváno nejvíce %d.\n"

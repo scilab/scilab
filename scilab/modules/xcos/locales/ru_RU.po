@@ -781,6 +781,11 @@ msgstr "Файл Xcos"
 msgid "Xcos (zip) file"
 msgstr "Xcos (zip) файл"
 
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 258
+msgid "XMI (Eclipse EMF) file"
+msgstr ""
+
 msgid "Scilab Open Data file"
 msgstr "Файл формата открытых данных Scilab"
 
@@ -1498,9 +1503,6 @@ msgstr ""
 msgid "Use the %s button to end the debugging"
 msgstr "Используйте клавишу %s для завершения отладки"
 
-msgid "The Scicos libraries are not loaded"
-msgstr "Библиотеки Scicos не загружены"
-
 #, c-format
 msgid "Unable to simulate %s"
 msgstr "Не удалось моделировать %s"
@@ -1545,6 +1547,9 @@ msgstr ""
 #, c-format
 msgid "%s: Syntax error while trying to set up context from"
 msgstr ""
+
+#~ msgid "The Scicos libraries are not loaded"
+#~ msgstr "Библиотеки Scicos не загружены"
 
 #~ msgid "Xcos"
 #~ msgstr "Xcos"

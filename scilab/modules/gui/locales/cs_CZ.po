@@ -18,16 +18,12 @@ msgstr ""
 "X-Generator: Launchpad (build 17865)\n"
 
 #, c-format
+msgid "%s: Figure number must be given when not in '%s' mode.\n"
+msgstr "%s: Číslo obrazce musí být určeno když nejste v režimu  '%s'.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: Špatný typ argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Chyba při přidělování paměti.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Není více paměti.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -36,23 +32,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být >= %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo reálné číslo.\n"
-
-#, c-format
-msgid "%s: Function not available in NWNI mode.\n"
-msgstr "%s: Funkce není dostupná v režimu NWNI.\n"
-
-#, c-format
-msgid "%s: Figure number must be given when not in '%s' mode.\n"
-msgstr "%s: Číslo obrazce musí být určeno když nejste v režimu  '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
@@ -89,6 +68,10 @@ msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Není více paměti.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr ""
 
@@ -114,6 +97,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
@@ -247,30 +234,6 @@ msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr "%s: Nelze vytvořit obslužnou rutinu 'Uicontrol'.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s: Špatný počet výstupních argumentů: Očekáváno %d nebo %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor reálného řádku "
-"1 x %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo nebo "
-"řetězec.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván vektor reálného řádku 1 x "
-"%d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána grafická obslužná rutina.\n"
@@ -292,6 +255,12 @@ msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána obslužná rutina '%s'.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo nebo "
+"řetězec.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekávána obslužná rutina "
@@ -308,49 +277,24 @@ msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
 msgstr "%s: Chybné vstupní argumenty: Očekávány '%s', '%s' nebo '%s'.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván reálný nebo komplexní "
-"vektor.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor řetězců.\n"
-
-msgid "Scilab Choices Request"
-msgstr "Požadavek Volby Scilab"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor řetězců.\n"
 
 msgid "Scilab Choose Message"
 msgstr "Výběr Zprávy Scilab"
 
-msgid "Scilab Input Value Request"
-msgstr "Požadavek Vstupní Hodnoty Scilab"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Požadavek Více Hodnot Scilab"
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být >= %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: It must have same dimensions as "
-"argument #%d.\n"
+msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
 msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo reálné číslo.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
-msgstr ""
-"%s: Chybná velikost vstupního argumentu #%d: Očekávána matice řetězců %d x "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
+msgid "%s: Function not available in NWNI mode.\n"
+msgstr "%s: Funkce není dostupná v režimu NWNI.\n"
 
 #, c-format
 msgid ""
@@ -408,6 +352,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Invalid value for datatip index %d.\n"
+msgstr "%s: Neplatný nadřazený uzel.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -567,6 +515,24 @@ msgstr ""
 "'gdi'.\n"
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr "%s: Špatný počet výstupních argumentů: Očekáváno %d nebo %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor reálného řádku "
+"1 x %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván vektor reálného řádku 1 x "
+"%d.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána řetězcová matice.\n"
 
@@ -578,6 +544,44 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván reálný nebo komplexní "
+"vektor.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Požadavek Volby Scilab"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor řetězců.\n"
+
+msgid "Scilab Input Value Request"
+msgstr "Požadavek Vstupní Hodnoty Scilab"
+
+msgid "Scilab Multiple Values Request"
+msgstr "Požadavek Více Hodnot Scilab"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: It must have same dimensions as "
+"argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
+msgstr ""
+"%s: Chybná velikost vstupního argumentu #%d: Očekávána matice řetězců %d x "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -768,6 +772,11 @@ msgstr ""
 "Varování: Vlastnost '%s' 'Value' by měla být celé číslo, hodnota bude "
 "zkrácena.\n"
 
+#
+# File: modules/gui/src/cpp/SetUicontrolValue.cpp, line: 140
+msgid "(Max - Min) must be greater than 1 to allow the multiple selection.\n"
+msgstr ""
+
 #, c-format
 msgid "'%s' value must be between 0 and %d.\n"
 msgstr ""
@@ -823,7 +832,12 @@ msgstr "&Přiblížit"
 msgid "&Original View"
 msgstr "&Původní zobrazení"
 
-msgid "Fit zoom to data"
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 14
+# File: modules/gui/src/gui_fake_xml.c, line: 50
+# File: modules/gui/src/gui_fake_xml.c, line: 188
+# File: modules/gui/src/gui_fake_xml.c, line: 196
+msgid "Reframe to contents"
 msgstr ""
 
 msgid "2D/3D &Rotation"
@@ -1374,9 +1388,6 @@ msgstr "Kompatibilní se SciNotes"
 
 msgid "Preview"
 msgstr "Náhled"
-
-msgid "Ok"
-msgstr "Ok"
 
 msgid "Loading help browser..."
 msgstr "Načítám průzkumníka nápovědy"
@@ -2406,6 +2417,15 @@ msgstr ""
 msgid "Uicontrols rendering"
 msgstr ""
 
+#, fuzzy
+msgid "Uicontrols layout"
+msgstr "&Ovládání"
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 36
+msgid "Uicontrols messagebox-like"
+msgstr ""
+
 #
 # File: modules/gui/demos/uicontrol.dem.sce, line: 13
 # File: modules/gui/demos/uicontrol.dem.sce, line: 93
@@ -2629,6 +2649,11 @@ msgstr "Ukázky Scilab"
 #
 # File: modules/gui/demos/uicontrol_LaTeX.dem.sce, line: 16
 msgid "Uicontrols demo with LaTeX"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol_messagebox.dem.sce, line: 13
+msgid "Please fill the table"
 msgstr ""
 
 #, c-format
@@ -2855,6 +2880,9 @@ msgstr "%s: Špatný typ %s: Očekáváno reálné číslo.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Špatná velikost %s: Očekáváno reálné číslo.\n"
+
+#~ msgid "Ok"
+#~ msgstr "Ok"
 
 #~ msgid "Cancel"
 #~ msgstr "Zrušit"

@@ -531,6 +531,12 @@ msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d o "
 "%d.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
+"reale o complesso.\n"
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real matrix or polynomial expected.\n"

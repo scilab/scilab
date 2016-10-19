@@ -243,6 +243,30 @@ msgstr ""
 "%s: невизначена розмірність. outtyp(%d)=%d. Будь ласка, виправте параметри "
 "вашої моделі.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано рядковий "
+"тип.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
+
+#, fuzzy, c-format
+msgid "%s: Unable to load \"%s\" .\n"
+msgstr "%s: не вдалося знайти вхідні дані діаграми\n"
+
+#, fuzzy, c-format
+msgid "%s: Unable to save \"%s\" .\n"
+msgstr "%s: не вдалося знайти вхідні дані діаграми\n"
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
@@ -1003,17 +1027,23 @@ msgstr "Помилкова розмірність поля %s.%s: мало бу�
 msgid "Wrong type for field %s.%s: String matrix expected.\n"
 msgstr "Помилковий тип поля %s.%s: мала бути матриця з рядків.\n"
 
-#, c-format
-msgid "Wrong value for field %s.%s: %s or %s vector expected.\n"
+#, fuzzy, c-format
+msgid ""
+"Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' "
+"vector. Switching to '%s'.\n"
 msgstr "Помилкове значення поля %s.%s: мав бути вектор %s або %s.\n"
 
-#, c-format
-msgid "Wrong type for field %s.%s .\n"
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s.\n"
 msgstr "Помилковий тип поля %s.%s.\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s: Round number expected.\n"
 msgstr "Помилкове значення поля %s.%s: мало бути округлене число.\n"
+
+#, c-format
+msgid "Wrong type for field %s.%s .\n"
+msgstr "Помилковий тип поля %s.%s.\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s: Must be in the interval [%d, %d].\n"
@@ -1151,7 +1181,10 @@ msgid "Wrong type for diagram element #%d: %s, %s or %s expected.\n"
 msgstr ""
 "Помилковий тип елемента діаграми №%d: слід використовувати %s, %s або %s.\n"
 
-msgid "Your model contains states defined in standard Scicos blocks.\n"
+#, fuzzy
+msgid ""
+"Your model contains states defined in standard Scicos blocks.\n"
+"Current initialization interface does not support mixed models."
 msgstr ""
 "У вашій моделі містяться стани, визначені у стандартних блоках Scicos.\n"
 
@@ -1237,8 +1270,13 @@ msgstr "Алгебраїчний цикл для подій."
 msgid "Algebraic loop."
 msgstr "Алгебраїчний цикл."
 
-msgid "A C or Fortran block is used but not linked.\n"
-msgstr "Використано блок C або Fortran, але сам блок не скомпоновано.\n"
+#
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 1223
+msgid ""
+"A C or Fortran block is used but not linked.\n"
+"You can save your compiled diagram and load it.\n"
+"This will automatically link the C or Fortran function."
+msgstr ""
 
 #, c-format
 msgid "Number of modes in block #%d cannot be determined."
@@ -1248,11 +1286,19 @@ msgstr "Не вдалося визначити кількість режимі �
 msgid "Number of zero crossings in block #%d cannot be determined."
 msgstr "Не вдалося визначити кількість точок зміни знаку у блоці №%d."
 
-msgid "Not enough information to find port sizes.\n"
+#, fuzzy
+msgid ""
+"Not enough information to find port sizes.\n"
+"I try to find the problem."
 msgstr "Недостатньо даних для визначення розмірностей портів.\n"
 
-msgid "I cannot find a link with undetermined size.\n"
-msgstr "Виявлення зв’язку з невизначеною розмірністю неможливе.\n"
+#
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2049
+msgid ""
+"I cannot find a link with undetermined size.\n"
+"My guess is that you have a block with unconnected \n"
+"undetermined output ports."
+msgstr ""
 
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
@@ -1313,12 +1359,25 @@ msgstr ""
 "розмірностями, які не можна визначити з контексту.\n"
 "Якою є розмірність цього зв’язку?"
 
-#, c-format
-msgid "the dep_ut size of the %s block is not correct.\n"
+#, fuzzy, c-format
+msgid ""
+"the dep_ut size of the %s block is not correct.\n"
+"It should be a colon vector of size %d."
 msgstr "розмірність dep_ut блоку %s є помилковою.\n"
 
-msgid "Not enough information to find port type.\n"
+#, fuzzy
+msgid ""
+"Not enough information to find port type.\n"
+"I will try to find the problem."
 msgstr "Недостатньо даних для визначення типу порту.\n"
+
+#
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2640
+msgid ""
+"I cannot find a link with undetermined size.\n"
+"My guess is that you have a block with unconnected \n"
+"undetermined types."
+msgstr ""
 
 msgid "Modelica compiler (flat2C)"
 msgstr "Компілятор Modelica (flat2C)"
@@ -1479,8 +1538,13 @@ msgstr "%s: помилкова розмірність параметра бло�
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
 msgstr "%s: помилковий тип параметра блоку «%s»: мало бути %s(%s), маємо %s"
 
-msgid "There are too many Modelica files.\n"
-msgstr "Забагато файлів Modelica.\n"
+#
+# File: modules/scicos/macros/scicos_scicos/translator.sci, line: 73
+msgid ""
+"There are too many Modelica files.\n"
+"It would be better to define several \n"
+"Modelica programs in a single file."
+msgstr ""
 
 msgid "-------Modelica translator error message:-----"
 msgstr "-------Повідомлення про помилку транслятора Modelica:-----"
@@ -1516,6 +1580,15 @@ msgid ""
 msgstr ""
 "Відповідь, вказана для %s \n"
 " є помилковою: %s.\n"
+
+#~ msgid "A C or Fortran block is used but not linked.\n"
+#~ msgstr "Використано блок C або Fortran, але сам блок не скомпоновано.\n"
+
+#~ msgid "I cannot find a link with undetermined size.\n"
+#~ msgstr "Виявлення зв’язку з невизначеною розмірністю неможливе.\n"
+
+#~ msgid "There are too many Modelica files.\n"
+#~ msgstr "Забагато файлів Modelica.\n"
 
 #~ msgid "%s: Wrong value for input argument #%d: %d (String) expected.\n"
 #~ msgstr ""

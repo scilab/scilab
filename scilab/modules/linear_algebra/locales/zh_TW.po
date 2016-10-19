@@ -314,15 +314,6 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為非負整數.\n"
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為列向量.\n"
 
-#, c-format
-msgid "%s: Obsolete function. Please replace '%s' by '%s'."
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Obsolete function. Former external functions cannot be used anymore."
-msgstr ""
-
 #
 # File: sci_gateway/c/sci_schur.c, line: 109
 #, fuzzy, c-format

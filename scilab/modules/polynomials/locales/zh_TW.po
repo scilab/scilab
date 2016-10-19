@@ -242,8 +242,8 @@ msgstr "%s: 第 #%d 的輸入參數的資料型態錯誤: 應該是一個多項�
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: 第 %d 輸入參數應為實數.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: state space or a descriptor "
-"representation expected.\n"
-msgstr "%s: 第 %d 輸入參數長度錯誤: 應為一有理分式陣列.\n"
+#, fuzzy
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: state space or a descriptor "
+#~ "representation expected.\n"
+#~ msgstr "%s: 第 %d 輸入參數長度錯誤: 應為一有理分式陣列.\n"

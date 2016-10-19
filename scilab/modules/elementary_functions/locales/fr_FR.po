@@ -414,14 +414,21 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
 "caractères attendue.\n"
 
+#
+# File: modules/elementary_functions/macros/bit_op.sci, line: 20
 #, c-format
-msgid "%s: Wrong type for input arguments: Same types expected.\n"
-msgstr "%s : Type erroné des arguments d'entrée : Mêmes types attendus.\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgid "%s: unknown bitwise function %s.\n"
 msgstr ""
-"%s : Dimension erronée des arguments d'entrée : Même dimension attendue.\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s : Arguments d'entrée n°%d et n°%d incompatibles : Mêmes dimensions "
+"attendues.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers >=0 expected.\n"
+msgstr "%s : Argument n°%d faux : Un entier positif attendu.\n"
 
 #, c-format
 msgid ""
@@ -438,6 +445,11 @@ msgstr "%s : Argument d'entrée n°%d faux : Un entier non signé attendu.\n"
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être entre %d et %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+"%s : Dimension erronée des arguments d'entrée : Même dimension attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -457,17 +469,13 @@ msgstr ""
 "une hypermatrice d'entiers non signés attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-"expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire ou une matrice "
-"d'entiers non signés attendu.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un réel positif attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr "%s : Type erroné des arguments d'entrée : Mêmes types attendus.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
@@ -923,6 +931,13 @@ msgstr ""
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s : Dimension erronée des arguments d'entrée : Dimensions incompatibles.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire ou une matrice "
+#~ "d'entiers non signés attendu.\n"
 
 #~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 #~ msgstr ""

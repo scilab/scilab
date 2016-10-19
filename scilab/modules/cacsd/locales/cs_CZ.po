@@ -1162,8 +1162,10 @@ msgstr "%s: Vlastní hodnota %s (ovladače) je blízko pomyslné ose.\n"
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
 msgstr "%s: Riccatiho řešení je nepřesné: chyba rovnice = %g.\n"
 
-#, c-format
-msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+#, fuzzy, c-format
+msgid ""
+"%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+"The distance to the imaginary axis is less than %g "
 msgstr "%s: Vlastní hodnota %s (pozorovatele) je blízko pomyslné ose.\n"
 
 msgid "Unfeasible (Hx hamiltonian)"
@@ -1174,6 +1176,10 @@ msgstr "Nemožné (Hy hamiltonián)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "Nemožné (spektrální poloměr)"
+
+#, c-format
+msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+msgstr "%s: Vlastní hodnota %s (pozorovatele) je blízko pomyslné ose.\n"
 
 #, c-format
 msgid "%s: %s not full rank.\n"
@@ -1303,9 +1309,21 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 
-#, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: "
-msgstr "%s: Nekompatibilní vstupní argumenty #%d a #%d: "
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
+"incompatible with #%d argument.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Počet sloupců je nekompatibilní "
+"s %s.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
+"incompatible with #%d argument.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Počet sloupců je nekompatibilní "
+"s %s.\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr "Amplituda a fáze jsou obrysy y/(1+y)"
@@ -1484,6 +1502,22 @@ msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekávána čtvercová matice.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: number of elements of #%d must "
+"match the column dimension of #%d\n"
+msgstr ""
+"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekáván stejný počet "
+"prvků.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: state space or a descriptor "
+"representation expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván lineární stavový prostor "
+"nebo funkce převodu.\n"
+
 msgid "Denominator :"
 msgstr "Jmenovatel :"
 
@@ -1506,6 +1540,22 @@ msgstr ""
 #, c-format
 msgid "%s: Incorrect answer.\n"
 msgstr "%s: Nesprávná odpověď.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr ""
+"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekávány stejné rozměry "
+"sloupce.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr ""
+"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekávány stejné rozměry "
+"sloupce.\n"
 
 #, c-format
 msgid "%s: Residual norm = %g\n"
@@ -1531,3 +1581,6 @@ msgstr "Reálná Osa"
 
 msgid "Imaginary Axis"
 msgstr "Pomyslná Osa"
+
+#~ msgid "%s: Incompatible input arguments #%d and #%d: "
+#~ msgstr "%s: Nekompatibilní vstupní argumenty #%d a #%d: "

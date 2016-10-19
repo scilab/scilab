@@ -262,10 +262,10 @@ msgstr ""
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: O argumento de entrada #%d deve ser um número real.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: state space or a descriptor "
-"representation expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
-"fração racional.\n"
+#, fuzzy
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: state space or a descriptor "
+#~ "representation expected.\n"
+#~ msgstr ""
+#~ "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+#~ "fração racional.\n"

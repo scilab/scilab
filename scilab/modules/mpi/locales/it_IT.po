@@ -17,6 +17,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 17865)\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%s: An MPI communicator expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
+"scalare intero.\n"
+
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
@@ -48,16 +54,16 @@ msgid "%s: Unable to create variable.\n"
 msgstr "%s: Impossibile creare la variabile.\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Errore di allocazione della memoria.\n"
-
-#, c-format
 msgid "%s: Could not finalize the MPI instance: %s\n"
 msgstr "%s: Impossibile finalizzare la seg. istanza di MPI: %s.\n"
 
 #, c-format
 msgid "%s: Could not get processor name: %s\n"
 msgstr "%s: Impossibile ottenere il nome del processore: %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Positive value expected.\n"
@@ -96,3 +102,21 @@ msgstr "%s: Impossibile deserializzare i dati !\n"
 #, c-format
 msgid "%s: MPI_Wait failed while waiting %d: %s\n"
 msgstr "%s: Fallito MPI_Wait attendendo %d: %s\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: era atteso un "
+"valore positivo.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: era atteso un "
+"valore positivo.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A Matrix expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
+"scalare intero.\n"

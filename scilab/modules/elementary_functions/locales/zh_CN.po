@@ -366,13 +366,19 @@ msgstr "%s：矩阵不是对角阵。\n"
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s：第%d个输入参数的类型错误，应该为字符串矩阵。\n"
 
+#
+# File: modules/elementary_functions/macros/bit_op.sci, line: 20
 #, c-format
-msgid "%s: Wrong type for input arguments: Same types expected.\n"
-msgstr "%s：输入参数的类型错误，应该为同一类型。\n"
+msgid "%s: unknown bitwise function %s.\n"
+msgstr ""
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr "%s：输入参数的大小错误：应该为相同的大小。\n"
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s：第%d和第%d个输入参数不兼容：应该为相同尺寸。\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers >=0 expected.\n"
+msgstr "%s：第%d个参数错误：应该为正整数。\n"
 
 #, c-format
 msgid ""
@@ -386,6 +392,10 @@ msgstr "%s：第%d个输入参数错误：应该为无符号整数。\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr "%s：第%d个输入参数的值错误：必须介于%d与%d之间。\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s：输入参数的大小错误：应该为相同的大小。\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -402,14 +412,12 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-"expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为无符号整数标量或矩阵。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为正实数。\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr "%s：输入参数的类型错误，应该为同一类型。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
@@ -768,6 +776,11 @@ msgstr "%s：第%d和第%d个输入参数不兼容：应该为相同类型。\n"
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s：输入参数的大小错误：大小不兼容。\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+#~ "expected.\n"
+#~ msgstr "%s：第%d个输入参数的类型错误：应该为无符号整数标量或矩阵。\n"
 
 #~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 #~ msgstr "%s：输入参数的数目错误：应该最多%d个。\n"

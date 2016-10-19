@@ -26,11 +26,6 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong number of input argument(s) for method %s: %d or %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong method for input argument #%d: %s unknown.\n"
 msgstr ""
 
@@ -191,11 +186,6 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d : A vector of size %d x %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong value for the last %d input argument(s).\n"
 msgstr ""
 
@@ -243,27 +233,6 @@ msgid ""
 "be aware that you may have lost synchronization\n"
 "    between the virtual generator %d and the others.\n"
 "    use grand(\"setall\", s1, s2, s3, s4) if you want to recover it."
-msgstr ""
-
-msgid ""
-"\n"
-"Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"\n"
-"The first component of the fsultra state, must be an int in [0, %d]\n"
-msgstr ""
-
-msgid ""
-"\n"
-"The second component of the fsultra state, must be 0 or 1\n"
-msgstr ""
-
-msgid ""
-"\n"
-"The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
 msgstr ""
 
 msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"

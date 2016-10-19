@@ -516,6 +516,10 @@ msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为浮点数组。\n"
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real matrix or polynomial expected.\n"

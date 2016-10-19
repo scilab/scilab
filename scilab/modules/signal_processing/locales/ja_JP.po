@@ -529,6 +529,12 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: 入力引数の数が不正です: %d または、%d を想定します。\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr ""
+"%s: 引数 #%d の型が間違っています: 実数または複素数ベクトルを指定してくださ"
+"い.\n"
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real matrix or polynomial expected.\n"

@@ -1180,8 +1180,10 @@ msgstr "%s: Un valor propi de %s (controlador) és prop de l'eix imaginari.\n"
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
 msgstr "%s: La sólució de Riccati és poc exacta: error de l'equació = %g.\n"
 
-#, c-format
-msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+#, fuzzy, c-format
+msgid ""
+"%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+"The distance to the imaginary axis is less than %g "
 msgstr "%s: Un valor propi de %s (observador) és prop de l'eix imaginari.\n"
 
 msgid "Unfeasible (Hx hamiltonian)"
@@ -1192,6 +1194,10 @@ msgstr "No factible (Hy hamiltoniana)"
 
 msgid "Unfeasible (spectral radius)"
 msgstr "No factible (radi espectral)"
+
+#, c-format
+msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+msgstr "%s: Un valor propi de %s (observador) és prop de l'eix imaginari.\n"
 
 #, c-format
 msgid "%s: %s not full rank.\n"
@@ -1329,9 +1335,21 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Nombre incorrecte d'arguments de sortida: Se'n necessiten %d.\n"
 
-#, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: "
-msgstr "%s: Els arguments d'entrada #%d i #%d són incompatibles: "
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
+"incompatible with #%d argument.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: El nombre de columnes "
+"és incompatible amb %s.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
+"incompatible with #%d argument.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: El nombre de columnes "
+"és incompatible amb %s.\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr "amplitud i fase de y/(1+y)"
@@ -1516,6 +1534,22 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu "
 "quadrada.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: number of elements of #%d must "
+"match the column dimension of #%d\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir el "
+"mateix nombre d'elements.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: state space or a descriptor "
+"representation expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un espai "
+"d'estat lineal o una funció de transferència.\n"
+
 msgid "Denominator :"
 msgstr "Denominador:"
 
@@ -1539,6 +1573,22 @@ msgstr ""
 msgid "%s: Incorrect answer.\n"
 msgstr "%s: Resposta incorrecta.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir la "
+"mateixa dimensió de columna.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir la "
+"mateixa dimensió de columna.\n"
+
 #, c-format
 msgid "%s: Residual norm = %g\n"
 msgstr "%s: norm residual = %g\n"
@@ -1561,3 +1611,6 @@ msgstr ""
 
 msgid "Imaginary Axis"
 msgstr ""
+
+#~ msgid "%s: Incompatible input arguments #%d and #%d: "
+#~ msgstr "%s: Els arguments d'entrada #%d i #%d són incompatibles: "

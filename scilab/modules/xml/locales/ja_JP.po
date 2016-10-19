@@ -283,6 +283,10 @@ msgstr ""
 "ファイル %s は有効ではありません:\n"
 "%s\n"
 
+#, fuzzy, c-format
+msgid "%s: Cannot write the file.\n"
+msgstr "%s: ファイルに書き込めません: %s\n"
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"
@@ -319,6 +323,12 @@ msgstr "%s: 入力引数 #%i の型が間違っています: double を指定し
 #, c-format
 msgid "%s: Error in getting rhs argument.\n"
 msgstr "%s: 右辺引数を取得する際にエラーが発生しました.\n"
+
+#
+# File: modules/xml/src/cpp/XMLMlistsManagement.cpp, line: 75
+# File: modules/xml/src/cpp/XMLMlistsManagement.cpp, line: 143
+msgid "Unknown tag.\n"
+msgstr ""
 
 msgid " at line "
 msgstr " 行 "

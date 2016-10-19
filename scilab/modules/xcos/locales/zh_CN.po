@@ -757,6 +757,11 @@ msgstr ""
 msgid "Xcos (zip) file"
 msgstr ""
 
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 258
+msgid "XMI (Eclipse EMF) file"
+msgstr ""
+
 msgid "Scilab Open Data file"
 msgstr ""
 
@@ -1463,9 +1468,6 @@ msgstr ""
 
 #, c-format
 msgid "Use the %s button to end the debugging"
-msgstr ""
-
-msgid "The Scicos libraries are not loaded"
 msgstr ""
 
 #, c-format

@@ -62,13 +62,13 @@ msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
 
 #, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr "%s: 第 #%d個參數型別有誤:  matrix of strings 才對.\n"
-
-#, fuzzy, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 int 整數.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr "%s: 第 #%d個參數型別有誤:  matrix of strings 才對.\n"
 
 #
 # File: macros/ilib_gen_Make.sci, line: 33

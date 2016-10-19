@@ -245,6 +245,11 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 msgid "%s: Wrong input argument %d.\n"
 msgstr "%s: Неверный входной аргумент %d.\n"
 
+#
+# File: modules/core/sci_gateway/cpp/sci_fieldnames.cpp, line: 118
+msgid "Could not retrieve sub-type.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Неверное значение входного аргумента №%d.\n"

@@ -315,10 +315,10 @@ msgstr ""
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: вхідний параметр №%d має бути дійсним числом.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: state space or a descriptor "
-"representation expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
-"дійсних чисел.\n"
+#, fuzzy
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: state space or a descriptor "
+#~ "representation expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
+#~ "дійсних чисел.\n"

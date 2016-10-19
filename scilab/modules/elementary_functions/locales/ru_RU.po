@@ -447,13 +447,19 @@ msgstr "%s: Матрица не может быть приведена к диа
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
 
-#, c-format
-msgid "%s: Wrong type for input arguments: Same types expected.\n"
-msgstr "%s: Неверный тип входных параметров: ожидался одинаковый тип.\n"
+#, fuzzy, c-format
+msgid "%s: unknown bitwise function %s.\n"
+msgstr "%s: неизвестная категория свойства.\n"
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Несовместимые входные параметры №%d и №%d: ожидались одинаковые "
+"размеры.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers >=0 expected.\n"
+msgstr "%s: Неверный параметр №%d: ожидалось положительное целое число.\n"
 
 #, c-format
 msgid ""
@@ -472,6 +478,10 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: должно быть между %d и %d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+
+#, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
 
@@ -488,18 +498,14 @@ msgstr ""
 "гиперматрица беззнаковых целочисленных значений.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-"expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался скаляр или матрица целых "
-"чисел без знака.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось положительное "
 "вещественное число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr "%s: Неверный тип входных параметров: ожидался одинаковый тип.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
@@ -940,6 +946,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: Неверный размер входных параметров: ожидался совместимый размер.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидался скаляр или матрица "
+#~ "целых чисел без знака.\n"
 
 #~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 #~ msgstr ""

@@ -30,13 +30,6 @@ msgstr ""
 "«string».\n"
 
 #, c-format
-msgid ""
-"%s: Wrong number of input argument(s) for method %s: %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів для методу %s: мало бути %d або "
-"%d.\n"
-
-#, c-format
 msgid "%s: Wrong method for input argument #%d: %s unknown.\n"
 msgstr ""
 "%s: помилковий метод для вхідного параметра №%d: %s є невідомим методом.\n"
@@ -254,13 +247,6 @@ msgstr ""
 "або вектор розмірності %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d : A vector of size %d x %d expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
-"вектор розмірності %d x %d.\n"
-
-#, c-format
 msgid "%s: Wrong value for the last %d input argument(s).\n"
 msgstr "%s: помилкове значення останніх %d вхідних параметрів.\n"
 
@@ -335,37 +321,6 @@ msgstr ""
 "    та іншими генераторами може бути втрачено.\n"
 "    Скористайтеся командою grand(\"setall\", s1, s2, s3, s4), щоб відновити "
 "її."
-
-msgid ""
-"\n"
-"Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
-msgstr ""
-"\n"
-"Помилкове початкове значення для fsultra, слід використовувати цілі числа у "
-"діапазоні [0, 2^32-1]\n"
-
-#, c-format
-msgid ""
-"\n"
-"The first component of the fsultra state, must be an int in [0, %d]\n"
-msgstr ""
-"\n"
-"Першим компонент вектора fsultra має бути цілим числом у діапазоні [0, %d]\n"
-
-msgid ""
-"\n"
-"The second component of the fsultra state, must be 0 or 1\n"
-msgstr ""
-"\n"
-"Другим компонентом вектора fsultra має бути 0 або 1\n"
-
-msgid ""
-"\n"
-"The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
-msgstr ""
-"\n"
-"Третім компонентом вектора fsultra має бути ціле число у діапазоні [1, "
-"2^32-1]\n"
 
 msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
 msgstr ""
@@ -516,3 +471,47 @@ msgstr ""
 # File: modules/randlib/demos/weibull.dem.sce, line: 26
 msgid "Simulation of a Weibull random variable"
 msgstr ""
+
+#~ msgid ""
+#~ "%s: Wrong number of input argument(s) for method %s: %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів для методу %s: мало бути %d "
+#~ "або %d.\n"
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d : A vector of size %d x %d "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
+#~ "вектор розмірності %d x %d.\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Помилкове початкове значення для fsultra, слід використовувати цілі числа "
+#~ "у діапазоні [0, 2^32-1]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "The first component of the fsultra state, must be an int in [0, %d]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Першим компонент вектора fsultra має бути цілим числом у діапазоні [0, "
+#~ "%d]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "The second component of the fsultra state, must be 0 or 1\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Другим компонентом вектора fsultra має бути 0 або 1\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Третім компонентом вектора fsultra має бути ціле число у діапазоні [1, "
+#~ "2^32-1]\n"

@@ -528,6 +528,12 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d oder %d erwartet.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: Matrix mit Fließpunktzahlen "
+"erwartet.\n"
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real matrix or polynomial expected.\n"

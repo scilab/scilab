@@ -19,25 +19,6 @@ msgstr ""
 "X-Generator: Launchpad (build 17865)\n"
 
 #, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr "%s: функція %s є застрарілою.\n"
-
-msgid "Warning"
-msgstr "Попередження"
-
-#, c-format
-msgid "%s: Please see documentation for more details.\n"
-msgstr "%s: докладніші відомості можна знайти у документації.\n"
-
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-"%s: цю функцію буде назавжди вилучено у Scilab %s\n"
-"\n"
-
-#, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати рядок з одного "
@@ -104,3 +85,19 @@ msgstr "Під час обробки файла сталося виключен�
 
 msgid "at line"
 msgstr "у рядку"
+
+#~ msgid "%s: Function %s is obsolete.\n"
+#~ msgstr "%s: функція %s є застрарілою.\n"
+
+#~ msgid "Warning"
+#~ msgstr "Попередження"
+
+#~ msgid "%s: Please see documentation for more details.\n"
+#~ msgstr "%s: докладніші відомості можна знайти у документації.\n"
+
+#~ msgid ""
+#~ "%s: This function will be permanently removed in Scilab %s\n"
+#~ "\n"
+#~ msgstr ""
+#~ "%s: цю функцію буде назавжди вилучено у Scilab %s\n"
+#~ "\n"

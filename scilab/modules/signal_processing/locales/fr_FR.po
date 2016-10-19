@@ -518,6 +518,11 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument n°%d : Un vecteur réel ou complexe attendu.\n"
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real matrix or polynomial expected.\n"

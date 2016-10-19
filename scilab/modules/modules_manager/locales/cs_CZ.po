@@ -52,6 +52,10 @@ msgstr "%s: Nelze exportovat %s do %s.\n"
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text(s) expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
 msgid "Generating cleaner.sce...\n"
 msgstr "Vytvářím cleaner.ace...\n"
 
@@ -112,12 +116,12 @@ msgstr "Vytvářím loader.sce...\n"
 msgid "Generating unloader.sce...\n"
 msgstr "Vytváření unloader.sce...\n"
 
+msgid "Generating localization\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řetězců.\n"
-
-msgid "Generating localization\n"
-msgstr ""
 
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
@@ -134,6 +138,18 @@ msgstr "%s: Tento modul vyžaduje kompilátor C a ten nebyl nalezen.\n"
 msgid "Building gateway...\n"
 msgstr "Sestavuji bránu...\n"
 
+#
+# File: modules/modules_manager/macros/tbx_builder_gateway_lang.sci, line: 84
+#, c-format
+msgid "Could not use the default compilation of gateways in %s."
+msgstr ""
+
+#
+# File: modules/modules_manager/macros/tbx_builder_gateway_lang.sci, line: 88
+#, c-format
+msgid "No builder script found in %s."
+msgstr ""
+
 msgid "Building help...\n"
 msgstr "Sestavuji nápovědu...\n"
 
@@ -149,6 +165,22 @@ msgstr ""
 msgid "Building sources...\n"
 msgstr "Sestavuji zdroje...\n"
 
+#
+# File: modules/modules_manager/macros/tbx_builder_src.sci, line: 61
+msgid "No builder file found, nothing to be done"
+msgstr ""
+
+#
+# File: modules/modules_manager/macros/tbx_builder_src_lang.sci, line: 89
+msgid "No builder file found, nothing to be done."
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
+
+#
+# File: modules/modules_manager/tests/unit_tests/testbox/macros/scilab_error.sci, line: 17
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
 msgstr ""

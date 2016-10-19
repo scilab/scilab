@@ -63,13 +63,13 @@ msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
 #, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为布尔型。\n"
-
-#, fuzzy, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该一个整数。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为布尔型。\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d.\n"

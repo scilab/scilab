@@ -124,6 +124,10 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: A known color expected.\n"
 msgstr ""
 
@@ -214,6 +218,12 @@ msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus invàlid: Ha de ser un vector %s o "
 "%s.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"2D de cadenes de text.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -605,10 +615,6 @@ msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Unrecognized input argument: '%s'.\n"
 msgstr "%s: No s'ha reconegut l'argument d'entrada: '%s'.\n"
 
@@ -627,11 +633,22 @@ msgstr ""
 msgid "The parent has to be a SUBWIN\n"
 msgstr "El pare ha de ser un SUBWIN\n"
 
+#
+# File: modules/graphics/src/c/Champ.c, line: 147
+#, c-format
+msgid "%s: Could not retrive bounding box.\n"
+msgstr ""
+
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr ""
 "%s només es pot utilitzar per calcular corves de nivell, però no per a "
 "mostrar-les.\n"
+
+#
+# File: modules/graphics/src/c/DrawObjects.c, line: 88
+msgid "Could not retrive bounds.\n"
+msgstr ""
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
 msgstr "Warning: No es pot utilitzar el Log a l'eix X. xmin és negatiu.\n"
@@ -657,6 +674,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type argument %s.\n"
 msgstr "%s: L'argument %s és d'un tipus incorrecte.\n"
+
+#
+# File: modules/graphics/src/c/Format.c, line: 1089
+#, c-format
+msgid "%s: Cannot get coordinates.\n"
+msgstr ""
 
 #, c-format
 msgid "Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"
@@ -972,6 +995,14 @@ msgstr ""
 "La propietat '%s' és d'un tipus incorrecte: Ha de ser una cadena de "
 "caràcters.\n"
 
+#, c-format
+msgid "Wrong type for '%s' property: Matrix expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Wrong size for '%s' property: Matrix with length 3 or [] expected.\n"
+msgstr "La propietat '%s' té un valor incorrecte: Ha de ser %s o %s.\n"
+
 msgid "Datatips property can not be modified directly.\n"
 msgstr ""
 
@@ -989,6 +1020,11 @@ msgstr ""
 msgid "Wrong value for '%s' property: An Integer between %d and %d expected.\n"
 msgstr ""
 "La propietat '%s' té un valor incorrecte: Ha de ser un enter entre %d i %d.\n"
+
+#
+# File: modules/graphics/src/c/getHandleProperty/set_format_n_property.c, line: 63
+msgid "Could not retrieve format.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be -1 or a valid color index.\n"
@@ -1077,10 +1113,6 @@ msgstr ""
 #, c-format
 msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr "La propietat '%s' té una mida incorrecta: Ha de ser un vector fila.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: Matrix expected.\n"
-msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
@@ -1370,6 +1402,11 @@ msgid "datatips on 3D curves"
 msgstr ""
 
 #
+# File: modules/graphics/demos/datatips/datatip_detach.sce, line: 18
+msgid "Datatips detached from curve"
+msgstr ""
+
+#
 # File: modules/graphics/demos/datatips/datatips.dem.gateway.sce, line: 15
 msgid "2D curves"
 msgstr ""
@@ -1377,6 +1414,11 @@ msgstr ""
 #
 # File: modules/graphics/demos/datatips/datatips.dem.gateway.sce, line: 16
 msgid "3D curve"
+msgstr ""
+
+#
+# File: modules/graphics/demos/datatips/datatips.dem.gateway.sce, line: 17
+msgid "Detach"
 msgstr ""
 
 #
@@ -2125,8 +2167,34 @@ msgstr ""
 msgid "%s: '%s' cannot be used with '%s'.\n"
 msgstr ""
 
+#
+# File: modules/graphics/macros/replot.sci, line: 48
 #, c-format
-msgid "%s: Input argument #%d must be a handle on an axis.\n"
+msgid "%s: Argument #%d is badly placed. Please check available syntaxes.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/replot.sci, line: 67
+#, c-format
+msgid "%s: Argument #%d: Wrong type. Please check available syntaxes.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Matrix with 4 or 6 columns expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus invàlid: Ha de ser una matriu de "
+"tractaments.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: tight or on or off values expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
+"tractament de figures o d'eixos.\n"
+
+#
+# File: modules/graphics/macros/replot.sci, line: 290
+#, c-format
+msgid "%s: Handle of unsupported type '%s' as Argument #%d\n"
 msgstr ""
 
 #, c-format
@@ -2280,14 +2348,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value given for %s."
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument %d: a handle expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: a handle expected.\n"
 msgstr ""
 
 #~ msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"

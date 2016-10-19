@@ -149,24 +149,18 @@ msgid "%s: Wrong type for input argument #%d: Hypermatrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Operand is not a boolean hypermatrix.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Incompatible operand dimensions.\n"
-msgstr "%s: Nekompatibilní  rozměry operandu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
-msgstr "%s: Špatný typ vstupních argumentů: očekávána hypermatice.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be non-negative "
+"integers.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
@@ -180,6 +174,16 @@ msgstr "%s: Přijata pouze jedna hodnota -1.\n"
 #, c-format
 msgid "%s: Input and output matrices  must have the same number of elements"
 msgstr "%s: Vstupní a výstupní matice musí mít stejný počet prvků"
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d must have compatible sizes\n"
+msgstr "%s: Vstupní argument #%d a #%d nají nekompatibilní rozměry.\n"
+
+#
+# File: modules/overloading/macros/%hm_r_s.sci, line: 17
+#, c-format
+msgid "%s: not implemented for argin#1 hypermatrix and argin#2 matrix\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
@@ -271,6 +275,12 @@ msgstr "%s: Není ještě zavedeno.\n"
 msgid "%s: A null assignment can have only one non-colon index.\n"
 msgstr "%s? Prázdné přidělení může mít index pouze bez dvojtečky.\n"
 
+#
+# File: modules/overloading/macros/%s_l_hm.sci, line: 17
+#, c-format
+msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr ""
@@ -321,6 +331,16 @@ msgid ""
 "%s: Incompatible sizes for properties '%s' and '%s': Same sizes expected.\n"
 msgstr ""
 
+#, fuzzy
+msgid "Invalid index."
+msgstr "%s: Neplatný index.\n"
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
+
+#~ msgid "%s: Incompatible operand dimensions.\n"
+#~ msgstr "%s: Nekompatibilní  rozměry operandu.\n"
+
+#~ msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
+#~ msgstr "%s: Špatný typ vstupních argumentů: očekávána hypermatice.\n"

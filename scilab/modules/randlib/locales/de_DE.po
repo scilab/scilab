@@ -26,11 +26,6 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong number of input argument(s) for method %s: %d or %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong method for input argument #%d: %s unknown.\n"
 msgstr ""
 
@@ -191,11 +186,6 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d : A vector of size %d x %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong value for the last %d input argument(s).\n"
 msgstr ""
 
@@ -248,36 +238,6 @@ msgid ""
 "    between the virtual generator %d and the others.\n"
 "    use grand(\"setall\", s1, s2, s3, s4) if you want to recover it."
 msgstr ""
-
-msgid ""
-"\n"
-"Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
-msgstr ""
-"\n"
-"Falsche Vorgabe für fsultra, muß eine Integerzahl in [0, 2^32-1] sein.\n"
-
-#, c-format
-msgid ""
-"\n"
-"The first component of the fsultra state, must be an int in [0, %d]\n"
-msgstr ""
-"\n"
-"Die erste Komponente des Zustands fsultra , muß ein Integer in [0,%d] sein\n"
-
-msgid ""
-"\n"
-"The second component of the fsultra state, must be 0 or 1\n"
-msgstr ""
-"\n"
-"Die zweite Komponente des fsultra Status, muß eine 0 oder 1 sein.\n"
-
-msgid ""
-"\n"
-"The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
-msgstr ""
-"\n"
-"Die dritte Komponente des Zustands fsultra, muß ein Integer in [1, 2^32-1] "
-"sein.\n"
 
 msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
 msgstr "Falsche Vorgabe für kiss, muß ein Integer in [0,2e32 -1] sein\n"
@@ -421,3 +381,33 @@ msgstr ""
 # File: modules/randlib/demos/weibull.dem.sce, line: 26
 msgid "Simulation of a Weibull random variable"
 msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Falsche Vorgabe für fsultra, muß eine Integerzahl in [0, 2^32-1] sein.\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "The first component of the fsultra state, must be an int in [0, %d]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Die erste Komponente des Zustands fsultra , muß ein Integer in [0,%d] "
+#~ "sein\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "The second component of the fsultra state, must be 0 or 1\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Die zweite Komponente des fsultra Status, muß eine 0 oder 1 sein.\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Die dritte Komponente des Zustands fsultra, muß ein Integer in [1, "
+#~ "2^32-1] sein.\n"

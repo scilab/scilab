@@ -18,18 +18,15 @@ msgstr ""
 "X-Generator: Launchpad (build 17865)\n"
 
 #, c-format
+msgid "%s: Figure number must be given when not in '%s' mode.\n"
+msgstr ""
+"%s: Якщо програма працює не у режимі «%s», слід вказувати номер рисунка.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати рядок з одного "
 "символу.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: помилка під час спроби виділення пам’яті.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -41,26 +38,6 @@ msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати дійсне "
 "число.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати >= %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
-"або дійсних значень.\n"
-
-#, c-format
-msgid "%s: Function not available in NWNI mode.\n"
-msgstr "%s: У режимі NWNI функція недоступна.\n"
-
-#, c-format
-msgid "%s: Figure number must be given when not in '%s' mode.\n"
-msgstr ""
-"%s: Якщо програма працює не у режимі «%s», слід вказувати номер рисунка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
@@ -102,6 +79,10 @@ msgstr ""
 "цілого типу.\n"
 
 #, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: доступну пам’ять вичерпано.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати одинарний "
@@ -135,6 +116,10 @@ msgstr ""
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати дійсні значення.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
@@ -277,32 +262,6 @@ msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr "%s: Не вдалося створити елемент керування «Uicontrol».\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати %d або "
-"%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор-"
-"рядок 1 x %d дійсних чисел.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
-"значень або «string».\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор-рядок "
-"1 x %d дійсних чисел.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати елемент "
@@ -328,6 +287,12 @@ msgstr ""
 "керування «%s».\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
+"значень або «string».\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати елемент "
@@ -346,56 +311,28 @@ msgstr ""
 "або «%s».\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
-"дійсних або комплексних значень.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
 "рядків.\n"
 
-msgid "Scilab Choices Request"
-msgstr "Запит щодо вибору Scilab"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор з "
-"рядків.\n"
-
 msgid "Scilab Choose Message"
 msgstr "Повідомлення про вибір Scilab"
 
-msgid "Scilab Input Value Request"
-msgstr "Запит Scilab на вхідне значення"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Запит Scilab на декілька значень"
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати >= %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: It must have same dimensions as "
-"argument #%d.\n"
+msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: розмірність має збігатися "
-"з розмірністю параметра №%d.\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
+"або дійсних значень.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю "
-"рядків %d x %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
-"рядків.\n"
+msgid "%s: Function not available in NWNI mode.\n"
+msgstr "%s: У режимі NWNI функція недоступна.\n"
 
 #, c-format
 msgid ""
@@ -471,6 +408,10 @@ msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано тип "
 "елемента керування.\n"
+
+#, fuzzy, c-format
+msgid "%s: Invalid value for datatip index %d.\n"
+msgstr "%s: Некоректна батьківська вершина.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -658,6 +599,26 @@ msgstr ""
 "«pos» або «gdi».\n"
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: слід використовувати %d або "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор-"
+"рядок 1 x %d дійсних чисел.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор-рядок "
+"1 x %d дійсних чисел.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
@@ -674,6 +635,49 @@ msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: слід використовувати матрицю булівських "
 "значень.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
+"дійсних або комплексних значень.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Запит щодо вибору Scilab"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор з "
+"рядків.\n"
+
+msgid "Scilab Input Value Request"
+msgstr "Запит Scilab на вхідне значення"
+
+msgid "Scilab Multiple Values Request"
+msgstr "Запит Scilab на декілька значень"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: It must have same dimensions as "
+"argument #%d.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: розмірність має збігатися "
+"з розмірністю параметра №%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю "
+"рядків %d x %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"рядків.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -892,6 +896,11 @@ msgstr ""
 "Попередження: значенням властивості «Value» «%s» має бути ціле число. Формат "
 "значення буде обрізано до цілого.\n"
 
+#
+# File: modules/gui/src/cpp/SetUicontrolValue.cpp, line: 140
+msgid "(Max - Min) must be greater than 1 to allow the multiple selection.\n"
+msgstr ""
+
 #, c-format
 msgid "'%s' value must be between 0 and %d.\n"
 msgstr "Значенням «%s» має бути число від 0 до %d.\n"
@@ -953,8 +962,13 @@ msgstr "З&більшити"
 msgid "&Original View"
 msgstr "&Початковий масштаб"
 
-msgid "Fit zoom to data"
-msgstr "Підібрати масштаб за даними"
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 14
+# File: modules/gui/src/gui_fake_xml.c, line: 50
+# File: modules/gui/src/gui_fake_xml.c, line: 188
+# File: modules/gui/src/gui_fake_xml.c, line: 196
+msgid "Reframe to contents"
+msgstr ""
 
 msgid "2D/3D &Rotation"
 msgstr "&Обертання на площині/у просторі"
@@ -1507,9 +1521,6 @@ msgstr "Сумісний зі SciNotes"
 
 msgid "Preview"
 msgstr "Перегляд"
-
-msgid "Ok"
-msgstr "Гаразд"
 
 msgid "Loading help browser..."
 msgstr "Завантаження засобу перегляду довідки…"
@@ -2543,6 +2554,15 @@ msgstr ""
 msgid "Uicontrols rendering"
 msgstr ""
 
+#, fuzzy
+msgid "Uicontrols layout"
+msgstr "Керування"
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 36
+msgid "Uicontrols messagebox-like"
+msgstr ""
+
 #
 # File: modules/gui/demos/uicontrol.dem.sce, line: 13
 # File: modules/gui/demos/uicontrol.dem.sce, line: 93
@@ -2764,6 +2784,11 @@ msgstr "Демонстрації Scilab"
 #
 # File: modules/gui/demos/uicontrol_LaTeX.dem.sce, line: 16
 msgid "Uicontrols demo with LaTeX"
+msgstr ""
+
+#
+# File: modules/gui/demos/uicontrol_messagebox.dem.sce, line: 13
+msgid "Please fill the table"
 msgstr ""
 
 #, c-format
@@ -3023,6 +3048,12 @@ msgstr "%s: помилковий тип для %s: слід використов
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: помилковий розмір для %s: слід використовувати дійсне число.\n"
+
+#~ msgid "Fit zoom to data"
+#~ msgstr "Підібрати масштаб за даними"
+
+#~ msgid "Ok"
+#~ msgstr "Гаразд"
 
 #~ msgid "Cancel"
 #~ msgstr "Скасувати"

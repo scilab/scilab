@@ -114,6 +114,10 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: Špatná velikost vstupních argumentů: Nekompatibilní velikosti.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: A known color expected.\n"
 msgstr ""
 
@@ -197,6 +201,11 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor %s nebo %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgstr ""
+"%s: Špatná velikostvstupního argumentu #%d: Očekávána matice řetězců.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -576,10 +585,6 @@ msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Unrecognized input argument: '%s'.\n"
 msgstr "%s: Nerozpoznaný vstupní argument: '%s'.\n"
 
@@ -599,9 +604,20 @@ msgstr ""
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Nadřazena musí být PODOKNO\n"
 
+#
+# File: modules/graphics/src/c/Champ.c, line: 147
+#, c-format
+msgid "%s: Could not retrive bounding box.\n"
+msgstr ""
+
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr "%s je vytvořena pouze pro výpočet křivek, ne pro jejich zobrazení.\n"
+
+#
+# File: modules/graphics/src/c/DrawObjects.c, line: 88
+msgid "Could not retrive bounds.\n"
+msgstr ""
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
 msgstr "Varování: Nelze použít Log na osu X, xmin je záporný.\n"
@@ -627,6 +643,12 @@ msgstr "Chyba: Výpočetní formát musí být použit s objekty OSA\n"
 #, c-format
 msgid "%s: Wrong type argument %s.\n"
 msgstr "%s: Špatný typ argumentu %s.\n"
+
+#
+# File: modules/graphics/src/c/Format.c, line: 1089
+#, c-format
+msgid "%s: Cannot get coordinates.\n"
+msgstr ""
 
 #, c-format
 msgid "Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"
@@ -928,6 +950,14 @@ msgstr ""
 msgid "Wrong value for '%s' property: String with 'x|y|z' expected.\n"
 msgstr "Špatný typ vlastnosti '%s': Očekáván řetězec.\n"
 
+#, c-format
+msgid "Wrong type for '%s' property: Matrix expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Wrong size for '%s' property: Matrix with length 3 or [] expected.\n"
+msgstr "Špatný hodnota vlastnosti '%s': Očekáváno %s nebo %s.\n"
+
 msgid "Datatips property can not be modified directly.\n"
 msgstr ""
 
@@ -944,6 +974,11 @@ msgstr ""
 #, c-format
 msgid "Wrong value for '%s' property: An Integer between %d and %d expected.\n"
 msgstr "Špatný hodnota vlastnosti '%s': Očekáváno celé číslo mezi %d a %d.\n"
+
+#
+# File: modules/graphics/src/c/getHandleProperty/set_format_n_property.c, line: 63
+msgid "Could not retrieve format.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be -1 or a valid color index.\n"
@@ -1029,10 +1064,6 @@ msgstr ""
 #, c-format
 msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr "Špatná velikost vlastnosti '%s': Očekáván řádkový vektor.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: Matrix expected.\n"
-msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
@@ -1319,6 +1350,11 @@ msgid "datatips on 3D curves"
 msgstr ""
 
 #
+# File: modules/graphics/demos/datatips/datatip_detach.sce, line: 18
+msgid "Datatips detached from curve"
+msgstr ""
+
+#
 # File: modules/graphics/demos/datatips/datatips.dem.gateway.sce, line: 15
 msgid "2D curves"
 msgstr ""
@@ -1326,6 +1362,11 @@ msgstr ""
 #
 # File: modules/graphics/demos/datatips/datatips.dem.gateway.sce, line: 16
 msgid "3D curve"
+msgstr ""
+
+#
+# File: modules/graphics/demos/datatips/datatips.dem.gateway.sce, line: 17
+msgid "Detach"
 msgstr ""
 
 #
@@ -2083,9 +2124,32 @@ msgstr ""
 msgid "%s: '%s' cannot be used with '%s'.\n"
 msgstr "%s: '%s' nemůže být použito s '%s'.\n"
 
+#
+# File: modules/graphics/macros/replot.sci, line: 48
 #, c-format
-msgid "%s: Input argument #%d must be a handle on an axis.\n"
-msgstr "%s: Vstupní argument #%d musí být obslužná rutina na ose.\n"
+msgid "%s: Argument #%d is badly placed. Please check available syntaxes.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/replot.sci, line: 67
+#, c-format
+msgid "%s: Argument #%d: Wrong type. Please check available syntaxes.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Matrix with 4 or 6 columns expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána matice obslužné rutiny.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: tight or on or off values expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána obslužná rutina Osy nebo "
+"Obrazce.\n"
+
+#, fuzzy, c-format
+msgid "%s: Handle of unsupported type '%s' as Argument #%d\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
 msgid ""
@@ -2251,13 +2315,8 @@ msgstr "%s: Špatná velikost vstupních argumentů: Očekávány stejné veliko
 msgid "%s: Wrong value given for %s."
 msgstr "%s: Zadána špatná hodnota pro %s."
 
-#, c-format
-msgid "%s: Wrong type for argument %d: a handle expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: a handle expected.\n"
-msgstr ""
+#~ msgid "%s: Input argument #%d must be a handle on an axis.\n"
+#~ msgstr "%s: Vstupní argument #%d musí být obslužná rutina na ose.\n"
 
 #~ msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 #~ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"

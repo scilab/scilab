@@ -212,6 +212,26 @@ msgstr ""
 msgid "%s : Undetermined Size. outtyp(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s: 入力引数 #%d の型が正しくありません: 文字配列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: リストを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Unable to load \"%s\" .\n"
+msgstr "%s: ダイアグラムの入力がありません\n"
+
+#, fuzzy, c-format
+msgid "%s: Unable to save \"%s\" .\n"
+msgstr "%s: ダイアグラムの入力がありません\n"
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
@@ -924,16 +944,24 @@ msgstr ""
 msgid "Wrong type for field %s.%s: String matrix expected.\n"
 msgstr ""
 
+#
+# File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 344
 #, c-format
-msgid "Wrong value for field %s.%s: %s or %s vector expected.\n"
+msgid ""
+"Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' "
+"vector. Switching to '%s'.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: リストを指定してください.\n"
+
+#, c-format
+msgid "Wrong value for field %s.%s: Round number expected.\n"
 msgstr ""
 
 #, c-format
 msgid "Wrong type for field %s.%s .\n"
-msgstr ""
-
-#, c-format
-msgid "Wrong value for field %s.%s: Round number expected.\n"
 msgstr ""
 
 #, c-format
@@ -1059,7 +1087,10 @@ msgstr ""
 msgid "Wrong type for diagram element #%d: %s, %s or %s expected.\n"
 msgstr ""
 
-msgid "Your model contains states defined in standard Scicos blocks.\n"
+#, fuzzy
+msgid ""
+"Your model contains states defined in standard Scicos blocks.\n"
+"Current initialization interface does not support mixed models."
 msgstr "モデルには標準Scicosブロックで定義された状態量が含まれます.\n"
 
 #, c-format
@@ -1142,8 +1173,13 @@ msgstr "イベントに代数ループがあります."
 msgid "Algebraic loop."
 msgstr "代数ループ"
 
-msgid "A C or Fortran block is used but not linked.\n"
-msgstr "CまたはFortranブロックが使用されていますが, リンクされていません.\n"
+#
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 1223
+msgid ""
+"A C or Fortran block is used but not linked.\n"
+"You can save your compiled diagram and load it.\n"
+"This will automatically link the C or Fortran function."
+msgstr ""
 
 #, c-format
 msgid "Number of modes in block #%d cannot be determined."
@@ -1153,11 +1189,19 @@ msgstr "ブロック #%d のモード番号が定義されていません."
 msgid "Number of zero crossings in block #%d cannot be determined."
 msgstr "ブロック #%d 中のゼロ交差の数を定義できませんでした."
 
-msgid "Not enough information to find port sizes.\n"
+#, fuzzy
+msgid ""
+"Not enough information to find port sizes.\n"
+"I try to find the problem."
 msgstr "ポートの大きさを見つけるために十分な情報がありません.\n"
 
-msgid "I cannot find a link with undetermined size.\n"
-msgstr "大きさが未定義のリンクが見つかりません.\n"
+#
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2049
+msgid ""
+"I cannot find a link with undetermined size.\n"
+"My guess is that you have a block with unconnected \n"
+"undetermined output ports."
+msgstr ""
 
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
@@ -1217,12 +1261,25 @@ msgstr ""
 "トを有しています.\n"
 "このリンクの大きさは何ですか?"
 
-#, c-format
-msgid "the dep_ut size of the %s block is not correct.\n"
+#, fuzzy, c-format
+msgid ""
+"the dep_ut size of the %s block is not correct.\n"
+"It should be a colon vector of size %d."
 msgstr "%s ブロックの dep_ut の大きさが間違っています.\n"
 
-msgid "Not enough information to find port type.\n"
+#, fuzzy
+msgid ""
+"Not enough information to find port type.\n"
+"I will try to find the problem."
 msgstr "ポートの型を定義するために十分な情報がありません.\n"
+
+#
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2640
+msgid ""
+"I cannot find a link with undetermined size.\n"
+"My guess is that you have a block with unconnected \n"
+"undetermined types."
+msgstr ""
 
 msgid "Modelica compiler (flat2C)"
 msgstr "Modelicaコンパイラ (flat2C)"
@@ -1385,8 +1442,13 @@ msgstr ""
 "%s: ブロックパラメータ '%s' の型が間違っています:  %s(%s) を予測しましたが, "
 "%s が取得されました"
 
-msgid "There are too many Modelica files.\n"
-msgstr "Modelicaファイルが多すぎます.\n"
+#
+# File: modules/scicos/macros/scicos_scicos/translator.sci, line: 73
+msgid ""
+"There are too many Modelica files.\n"
+"It would be better to define several \n"
+"Modelica programs in a single file."
+msgstr ""
 
 msgid "-------Modelica translator error message:-----"
 msgstr "-------Modelica トランスレータのエラーメッセージ :-----"
@@ -1419,3 +1481,12 @@ msgid ""
 msgstr ""
 "%s に指定された回答は\n"
 "間違っています: %s.\n"
+
+#~ msgid "A C or Fortran block is used but not linked.\n"
+#~ msgstr "CまたはFortranブロックが使用されていますが, リンクされていません.\n"
+
+#~ msgid "I cannot find a link with undetermined size.\n"
+#~ msgstr "大きさが未定義のリンクが見つかりません.\n"
+
+#~ msgid "There are too many Modelica files.\n"
+#~ msgstr "Modelicaファイルが多すぎます.\n"

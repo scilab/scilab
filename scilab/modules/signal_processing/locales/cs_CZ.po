@@ -511,6 +511,10 @@ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekáván reálný nebo komplexní vektor.\n"
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real matrix or polynomial expected.\n"

@@ -251,9 +251,9 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván polynom.\n"
 msgid "%s: Input argument #%d must be real.\n"
 msgstr "%s: Vstupní argument #%d musí být reálné číslo.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: state space or a descriptor "
-"representation expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván racionální zlomek.\n"
+#, fuzzy
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: state space or a descriptor "
+#~ "representation expected.\n"
+#~ msgstr ""
+#~ "%s: Špatná velikost vstupního argumentu #%d: Očekáván racionální zlomek.\n"

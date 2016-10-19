@@ -271,6 +271,11 @@ msgstr ""
 msgid "%s: Wrong input argument %d.\n"
 msgstr "%s: помилковий вхідний параметр %d.\n"
 
+#
+# File: modules/core/sci_gateway/cpp/sci_fieldnames.cpp, line: 118
+msgid "Could not retrieve sub-type.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: помилкове значення вхідного параметра №%d.\n"

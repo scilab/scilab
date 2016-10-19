@@ -1223,8 +1223,10 @@ msgstr ""
 #
 # File: macros/h_inf.sci, line: 353
 # File: macros/h_inf.sci, line: 471
-#, c-format
-msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+#, fuzzy, c-format
+msgid ""
+"%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+"The distance to the imaginary axis is less than %g "
 msgstr "%s:  %s (觀測器) 之一個特徵值接近虛軸.\n"
 
 msgid "Unfeasible (Hx hamiltonian)"
@@ -1235,6 +1237,13 @@ msgstr ""
 
 msgid "Unfeasible (spectral radius)"
 msgstr ""
+
+#
+# File: macros/h_inf.sci, line: 353
+# File: macros/h_inf.sci, line: 471
+#, c-format
+msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+msgstr "%s:  %s (觀測器) 之一個特徵值接近虛軸.\n"
 
 #
 # File: macros/h_inf_st.sci, line: 33
@@ -1386,9 +1395,21 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 輸出參數之數目錯誤: 應為 %d.\n"
 
-#, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: "
-msgstr "%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): "
+#
+# File: macros/armac.sci, line: 34
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
+"incompatible with #%d argument.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤: 列數與 %s 不相容.\n"
+
+#
+# File: macros/armac.sci, line: 34
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
+"incompatible with #%d argument.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤: 列數與 %s 不相容.\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr ""
@@ -1565,6 +1586,20 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為方陣.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: number of elements of #%d must "
+"match the column dimension of #%d\n"
+msgstr "%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 應該有相同的元素數目.\n"
+
+#
+# File: macros/syslin.sci, line: 49
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: state space or a descriptor "
+"representation expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為線性狀態空間或轉移函數.\n"
+
 msgid "Denominator :"
 msgstr ""
 
@@ -1593,6 +1628,18 @@ msgstr "轉移函數之不可約因子之自然頻率及阻尼參數(點擊下�
 msgid "%s: Incorrect answer.\n"
 msgstr "%s: 答案錯誤.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr "%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 列之維度必須相同.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
+"equal to the column dimension of #%d.\n"
+msgstr "%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 列之維度必須相同.\n"
+
 #, c-format
 msgid "%s: Residual norm = %g\n"
 msgstr ""
@@ -1615,3 +1662,6 @@ msgstr ""
 
 msgid "Imaginary Axis"
 msgstr ""
+
+#~ msgid "%s: Incompatible input arguments #%d and #%d: "
+#~ msgstr "%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): "

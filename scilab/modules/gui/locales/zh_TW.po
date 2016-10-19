@@ -18,16 +18,12 @@ msgstr ""
 "X-Generator: Launchpad (build 17865)\n"
 
 #, c-format
+msgid "%s: Figure number must be given when not in '%s' mode.\n"
+msgstr "%s: 當不是在 '%s' 模式時圖形 (Figure) 編號必須給定.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: 記憶體分配錯誤。\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 記憶體耗盡.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -36,22 +32,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一實數.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: Must be >= 應為 %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串或實數.\n"
-
-#, c-format
-msgid "%s: Function not available in NWNI mode.\n"
-msgstr "%s:在  NWNI 模式時函數不存在.\n"
-
-#, c-format
-msgid "%s: Figure number must be given when not in '%s' mode.\n"
-msgstr "%s: 當不是在 '%s' 模式時圖形 (Figure) 編號必須給定.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
@@ -85,6 +65,10 @@ msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 記憶體耗盡.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr ""
 
@@ -108,6 +92,10 @@ msgstr "屬性 '%s' 數值錯誤:  應為一字串或 1 x %d 之實數行向量.
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: 記憶體分配錯誤。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
@@ -221,24 +209,6 @@ msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr "%s: 無法產生 'Uicontrol' 代碼 (handle).\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s: 輸出參數之數目錯誤: 應為 %d 或 %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr "%s: 第 %d 輸入參數長度錯誤: 應為  1 x %d 之實數行向量.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或字串.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr "%s: 第 %d 輸入參數型態錯誤: 應為  1 x %d 之實數行向量.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一圖形代碼 (handle).\n"
 
@@ -256,6 +226,10 @@ msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一 '%s' 代碼 (handle).\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或字串.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一 '%s' 代碼 (handle).\n"
 
@@ -268,44 +242,23 @@ msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
 msgstr "%s: 輸入參數錯誤: 應為 '%s', '%s' 或 '%s'.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或複數向量.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串向量.\n"
-
-msgid "Scilab Choices Request"
-msgstr "Scilab 選取選單"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串向量.\n"
 
 msgid "Scilab Choose Message"
 msgstr "Scilab 選擇訊息"
 
-msgid "Scilab Input Value Request"
-msgstr "要求 Scilab 輸入數值"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Scilab 多值選單"
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: Must be >= 應為 %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: It must have same dimensions as "
-"argument #%d.\n"
-msgstr ""
+msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串或實數.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 %d x %d 字串矩陣d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串矩陣.\n"
+msgid "%s: Function not available in NWNI mode.\n"
+msgstr "%s:在  NWNI 模式時函數不存在.\n"
 
 #, c-format
 msgid ""
@@ -361,6 +314,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Invalid value for datatip index %d.\n"
+msgstr "%s: 無效的父節點.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -514,6 +471,20 @@ msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr "%s: 輸出參數之數目錯誤: 應為 %d 或 %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤: 應為  1 x %d 之實數行向量.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為  1 x %d 之實數行向量.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應是字串陣列型態.\n"
 
@@ -524,6 +495,39 @@ msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是 字串陣列.
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或複數向量.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Scilab 選取選單"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串向量.\n"
+
+msgid "Scilab Input Value Request"
+msgstr "要求 Scilab 輸入數值"
+
+msgid "Scilab Multiple Values Request"
+msgstr "Scilab 多值選單"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: It must have same dimensions as "
+"argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 %d x %d 字串矩陣d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串矩陣.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -688,6 +692,11 @@ msgid ""
 "truncated.\n"
 msgstr ""
 
+#
+# File: modules/gui/src/cpp/SetUicontrolValue.cpp, line: 140
+msgid "(Max - Min) must be greater than 1 to allow the multiple selection.\n"
+msgstr ""
+
 #, c-format
 msgid "'%s' value must be between 0 and %d.\n"
 msgstr ""
@@ -743,7 +752,12 @@ msgstr "&Zoom (對焦)"
 msgid "&Original View"
 msgstr ""
 
-msgid "Fit zoom to data"
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 14
+# File: modules/gui/src/gui_fake_xml.c, line: 50
+# File: modules/gui/src/gui_fake_xml.c, line: 188
+# File: modules/gui/src/gui_fake_xml.c, line: 196
+msgid "Reframe to contents"
 msgstr ""
 
 msgid "2D/3D &Rotation"
@@ -1286,9 +1300,6 @@ msgstr ""
 
 msgid "Preview"
 msgstr "預覽"
-
-msgid "Ok"
-msgstr "確定"
 
 msgid "Loading help browser..."
 msgstr "載入線上手冊瀏覽器..."
@@ -2317,6 +2328,15 @@ msgstr ""
 msgid "Uicontrols rendering"
 msgstr ""
 
+#, fuzzy
+msgid "Uicontrols layout"
+msgstr "控制(&C)"
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 36
+msgid "Uicontrols messagebox-like"
+msgstr ""
+
 #
 # File: modules/gui/demos/uicontrol.dem.sce, line: 13
 # File: modules/gui/demos/uicontrol.dem.sce, line: 93
@@ -2542,6 +2562,11 @@ msgstr "Scilab 展示"
 msgid "Uicontrols demo with LaTeX"
 msgstr ""
 
+#
+# File: modules/gui/demos/uicontrol_messagebox.dem.sce, line: 13
+msgid "Please fill the table"
+msgstr ""
+
 #, c-format
 msgid "%s: can not add a menu in this mode: %s.\n"
 msgstr "%s: 在此模式下無法加入選單: %s.\n"
@@ -2755,6 +2780,9 @@ msgstr "%s:  輸入參數 %s 之型態錯誤: 應為一實數.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: 參數 %s 長度錯誤: 應為一實數.\n"
+
+#~ msgid "Ok"
+#~ msgstr "確定"
 
 #~ msgid "Cancel"
 #~ msgstr "取消"

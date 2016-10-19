@@ -383,17 +383,21 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
 "strings.\n"
 
+#
+# File: modules/elementary_functions/macros/bit_op.sci, line: 20
 #, c-format
-msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgid "%s: unknown bitwise function %s.\n"
 msgstr ""
-"%s: Tipo incorrecto para los argumentos de entrada: Se los esperaba del "
-"mismo tipo.\n"
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
-"%s: Tipo incorrecto de argumentos de entrada: Se los esperaba del mismo "
+"%s: Argumentos de entrada #%d y #%d incompatibles: Se los esperaba del mismo "
 "tamaño.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers >=0 expected.\n"
+msgstr "%s: Argumento #%d incorrecto: Se esperaba un entero positivo.\n"
 
 #, c-format
 msgid ""
@@ -414,6 +418,12 @@ msgstr ""
 "%d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+"%s: Tipo incorrecto de argumentos de entrada: Se los esperaba del mismo "
+"tamaño.\n"
+
+#, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto de los argumentos de entrada: Se los esperaba del "
@@ -430,18 +440,16 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-"expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un escalar o "
-"una matriz de enteros positivos.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un real "
 "positivo.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para los argumentos de entrada: Se los esperaba del "
+"mismo tipo.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
@@ -855,6 +863,13 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: Tamaño incorrecto para los argumentos de entrada: Tamaños "
 "incompatibles.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un escalar "
+#~ "o una matriz de enteros positivos.\n"
 
 #~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 #~ msgstr ""

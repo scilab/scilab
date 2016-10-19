@@ -386,17 +386,23 @@ msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
 "di stringhe.\n"
 
+#
+# File: modules/elementary_functions/macros/bit_op.sci, line: 20
 #, c-format
-msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgid "%s: unknown bitwise function %s.\n"
 msgstr ""
-"%s: Gli argomenti in ingresso sono di tipo sbagliato: erano attesi gli "
-"stessi tipi.\n"
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
-"%s: Gli argomenti in ingresso hanno una dimensione sbagliata: era attesa la "
-"stessa dimensione.\n"
+"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: erano attese le "
+"stesse dimensioni.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers >=0 expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero "
+"positivo.\n"
 
 #, c-format
 msgid ""
@@ -418,6 +424,12 @@ msgstr ""
 "%d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso hanno una dimensione sbagliata: era attesa la "
+"stessa dimensione.\n"
+
+#, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 "%s: Gli argomenti in ingresso hanno una dimensione sbagliata: erano attese "
@@ -434,18 +446,16 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-"expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare/"
-"matrice di interi positivi.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un numero "
 "reale positivo.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso sono di tipo sbagliato: erano attesi gli "
+"stessi tipi.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
@@ -869,6 +879,13 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: La grandezza degli argomenti in ingresso è sbagliata: le grandezze non "
 "sono compatibili.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno "
+#~ "scalare/matrice di interi positivi.\n"
 
 #~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 #~ msgstr ""

@@ -18,25 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build 17865)\n"
 
 #, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr "%s: Funkce %s je zastaralá.\n"
-
-msgid "Warning"
-msgstr "Varování"
-
-#, c-format
-msgid "%s: Please see documentation for more details.\n"
-msgstr "%s: Pro další informace si prosím prohlédněte dokumentaci.\n"
-
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-"%s: Tato funkce bude trvale odstraněna ve Scilab %s\n"
-"\n"
-
-#, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
@@ -96,3 +77,19 @@ msgstr "V souboru nastala výjimka"
 
 msgid "at line"
 msgstr "na řádku"
+
+#~ msgid "%s: Function %s is obsolete.\n"
+#~ msgstr "%s: Funkce %s je zastaralá.\n"
+
+#~ msgid "Warning"
+#~ msgstr "Varování"
+
+#~ msgid "%s: Please see documentation for more details.\n"
+#~ msgstr "%s: Pro další informace si prosím prohlédněte dokumentaci.\n"
+
+#~ msgid ""
+#~ "%s: This function will be permanently removed in Scilab %s\n"
+#~ "\n"
+#~ msgstr ""
+#~ "%s: Tato funkce bude trvale odstraněna ve Scilab %s\n"
+#~ "\n"

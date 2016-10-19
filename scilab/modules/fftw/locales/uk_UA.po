@@ -50,6 +50,12 @@ msgstr ""
 msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
 
+#
+# File: modules/fftw/sci_gateway/c/sci_fftw_flags.c, line: 345
+#, c-format
+msgid "%s: Failed to generate the planner name.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: MKL fftw library does not implement wisdom functions yet.\n"
 msgstr "%s: у бібліотеці MKL fftw ще не реалізовано функції wisdom.\n"

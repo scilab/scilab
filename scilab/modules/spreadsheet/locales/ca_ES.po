@@ -184,6 +184,10 @@ msgstr ""
 msgid "The file %s does not exist.\n"
 msgstr "El fitxer %s no existeix.\n"
 
+#, fuzzy, c-format
+msgid "%s: Cannot read file name.\n"
+msgstr "%s: No s'ha pogut obrir el fitxer %s.\n"
+
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr ""
