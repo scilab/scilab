@@ -11,16 +11,15 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:08+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
+"Language: ja\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
@@ -51,12 +50,7 @@ msgstr "%s: %s は %s にエクスポートできません.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Argument #%d: Text(s) expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 msgid "Generating cleaner.sce...\n"
 msgstr "cleaner.sceを生成中...\n"
@@ -65,27 +59,22 @@ msgstr "cleaner.sceを生成中...\n"
 msgid ""
 "%s: The file %s cannot been created, please check if you have write access "
 "on this file.\n"
-msgstr ""
-"%s: ファイル %s を作成できませんでした,このファイルに書込みアクセス許可を有す"
-"るかどうか確認してください.\n"
+msgstr "%s: ファイル %s を作成できませんでした,このファイルに書込みアクセス許可を有するかどうか確認してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: At most %d rows expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: %d 行以下で指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 行以下で指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: The directory '%s' doesn't exist or "
 "is not read accessible.\n"
-msgstr ""
-"%s: 入力引数#%d の値が間違っています: ディレクトリ '%s' が存在しないか, 読込"
-"権限がありません.\n"
+msgstr "%s: 入力引数#%d の値が間違っています: ディレクトリ '%s' が存在しないか, 読込権限がありません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Can't go to '%s'.\n"
@@ -119,13 +108,12 @@ msgstr "loader.sceを生成中...\n"
 msgid "Generating unloader.sce...\n"
 msgstr "unloader.sce を生成中 ...\n"
 
-msgid "Generating localization\n"
-msgstr "ローカル化を生成中\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が正しくありません: 文字列の配列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が正しくありません: 文字列の配列を指定してください.\n"
+
+msgid "Generating localization\n"
+msgstr "ローカル化を生成中\n"
 
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
@@ -137,23 +125,10 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: This module required a C compiler and it has not been found.\n"
-msgstr ""
-"%s: このモジュールはCコンパイラを必要としますが,見つかりませんでした.\n"
+msgstr "%s: このモジュールはCコンパイラを必要としますが,見つかりませんでした.\n"
 
 msgid "Building gateway...\n"
 msgstr "ゲートウェイを構築中...\n"
-
-#
-# File: modules/modules_manager/macros/tbx_builder_gateway_lang.sci, line: 84
-#, c-format
-msgid "Could not use the default compilation of gateways in %s."
-msgstr ""
-
-#
-# File: modules/modules_manager/macros/tbx_builder_gateway_lang.sci, line: 88
-#, c-format
-msgid "No builder script found in %s."
-msgstr ""
 
 msgid "Building help...\n"
 msgstr "ヘルプを構築中...\n"
@@ -164,34 +139,11 @@ msgstr "マクロを構築中...\n"
 #, c-format
 msgid ""
 "%s: This module requires a C or Fortran compiler and it has not been found.\n"
-msgstr ""
-"%s: このモジュールはCまたはFortranコンパイラを必要としますが,見つかりませんで"
-"した.\n"
+msgstr "%s: このモジュールはCまたはFortranコンパイラを必要としますが,見つかりませんでした.\n"
 
 msgid "Building sources...\n"
 msgstr "ソースを構築中...\n"
 
-#
-# File: modules/modules_manager/macros/tbx_builder_src.sci, line: 61
-msgid "No builder file found, nothing to be done"
-msgstr ""
-
-#
-# File: modules/modules_manager/macros/tbx_builder_src_lang.sci, line: 89
-msgid "No builder file found, nothing to be done."
-msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
-
-#
-# File: modules/modules_manager/tests/unit_tests/testbox/macros/scilab_error.sci, line: 17
 #, c-format
-msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
-msgstr ""
-
-#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-#~ msgstr ""
-#~ "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してくださ"
-#~ "い.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"

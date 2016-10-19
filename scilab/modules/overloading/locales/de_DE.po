@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:08+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
+"Language: de\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -47,7 +47,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid ""
+"%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr ""
 
 #, c-format
@@ -65,7 +66,8 @@ msgid "%s: Invalid field name.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 
 #, c-format
@@ -77,7 +79,8 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 
 #, c-format
@@ -103,7 +106,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: Falsche Größe für Eingabeargument #%d: Ein Skalar wird erwartet.\n"
+msgstr ""
+"%s: Falsche Größe für Eingabeargument #%d: Ein Skalar wird erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
@@ -149,20 +153,24 @@ msgid "%s: Wrong type for input argument #%d: Hypermatrix expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Operand is not a boolean hypermatrix.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible operand dimensions.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
 msgstr ""
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be non-negative "
-"integers.\n"
-msgstr ""
-"%s: Falscher Wert für Eingabeargument #%d: Muss ein Teil der Menge {%s} "
-"sein.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
@@ -176,20 +184,9 @@ msgstr ""
 msgid "%s: Input and output matrices  must have the same number of elements"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%hm_max.sci, line: 48
 #, c-format
-msgid "%s: Arguments #%d and #%d must have compatible sizes\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_r_s.sci, line: 17
-#, c-format
-msgid "%s: not implemented for argin#1 hypermatrix and argin#2 matrix\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Falscher Wert für Eingabeargument #%d: '%s', '%s' or '%s' erwartet.\n"
 
@@ -212,13 +209,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: integer <= ndims(argument #%d) "
 "expected.\n"
 msgstr ""
-"%s: Falscher Wert für Eingabeargument #%d: Skalare positive Ganzzahl "
-"erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
@@ -249,19 +244,12 @@ msgstr ""
 msgid "%s: Wrong size for input argument(s).\n"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%r_j_s.sci, line: 17
 msgid "Invalid exponent: expected real exponents."
 msgstr ""
 
-#
-# File: modules/overloading/macros/%r_j_s.sci, line: 25
-# File: modules/overloading/macros/%r_j_s.sci, line: 53
 msgid "Division by zero"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%r_j_s.sci, line: 59
 msgid "Invalid Exponent"
 msgstr ""
 
@@ -278,21 +266,13 @@ msgstr ""
 msgid "%s: A null assignment can have only one non-colon index.\n"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%s_l_hm.sci, line: 17
-#, c-format
-msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
-msgstr ""
-
 #, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Concatenated arrays must have the same number of dimensions.\n"
 msgstr ""
-"%s: Eingabe- und Ausgabe-Matrizen müssen über die gleiche Anzahl an "
-"Elementen verfügen.\n"
 
 #, c-format
 msgid "%s: Field names mismatch.\n"
@@ -311,7 +291,8 @@ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: Falscher Argumenttyp %d: Echtes Skalar erwartet.\n"
 
 #, c-format
-msgid "%s: input and output matrices  must have the same number of elements.\n"
+msgid ""
+"%s: input and output matrices  must have the same number of elements.\n"
 msgstr ""
 "%s: Eingabe- und Ausgabe-Matrizen müssen über die gleiche Anzahl an "
 "Elementen verfügen.\n"
@@ -336,11 +317,6 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Incompatible sizes for properties '%s' and '%s': Same sizes expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/generic_i_hm.sci, line: 53
-msgid "Invalid index."
 msgstr ""
 
 #, c-format

@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-23 05:35+0000\n"
+"PO-Revision-Date: 2016-06-10 06:18+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -243,30 +243,6 @@ msgstr ""
 "%s: невизначена розмірність. outtyp(%d)=%d. Будь ласка, виправте параметри "
 "вашої моделі.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути використано рядковий "
-"тип.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
-
-#, fuzzy, c-format
-msgid "%s: Unable to load \"%s\" .\n"
-msgstr "%s: не вдалося знайти вхідні дані діаграми\n"
-
-#, fuzzy, c-format
-msgid "%s: Unable to save \"%s\" .\n"
-msgstr "%s: не вдалося знайти вхідні дані діаграми\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
@@ -319,7 +295,8 @@ msgstr ""
 "вектор-рядок.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
+msgid ""
+"%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: тип «%ls» не є керованим.\n"
 
@@ -349,7 +326,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist expected.\n"
@@ -395,7 +373,8 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати %s, %s, "
 "%s, %s або %s.\n"
@@ -537,7 +516,8 @@ msgstr ""
 "одинарну структуру.\n"
 
 #, c-format
-msgid "%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
+msgid ""
+"%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
 msgstr ""
 "%s: помилкові поля вхідного параметра №%d: слід використовувати «%s» і "
 "«%s».\n"
@@ -642,7 +622,8 @@ msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr "**** SUNDIALS.IDA успішно ініціалізовано *****\n"
 
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
-msgstr "**** Не вдалося ініціалізувати SUNDIALS.IDA -> повторна спроба *****\n"
+msgstr ""
+"**** Не вдалося ініціалізувати SUNDIALS.IDA -> повторна спроба *****\n"
 
 #, c-format
 msgid "****daskr from: %f to %f hot= %d  \n"
@@ -660,9 +641,9 @@ msgstr ""
 "**** SUNDIALS.Ida: занадто багато роботи за час=%g (фіксований діапазон, "
 "змініть RTOL і ATOL)\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "block %d [%s] is called "
-msgstr "блок %d викликано "
+msgstr "викликано блок %d [%s] "
 
 #, c-format
 msgid "with flag %d "
@@ -727,8 +708,8 @@ msgid ""
 "Warning: The preconditioner evaluation function returns a NaN at index #%d."
 msgstr ""
 "\n"
-"Попередження: функція обчислення передобумовлення повернула NaN для індексу №"
-"%d."
+"Попередження: функція обчислення передобумовлення повернула NaN для індексу "
+"№%d."
 
 msgid ""
 "\n"
@@ -813,38 +794,42 @@ msgstr ""
 " Будь ласка, перевірте вашу модель:\n"
 " ймовірно, деякі з функцій було викликано з некоректними параметрами."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: unknown integer type.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
+"%s: помилковий тип вхідного параметра №%d: невідомий тип цілого числа.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Could not read its content.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: не придатний до обробки тип.\n"
+"%s: помилкове значення вхідного параметра №%d: не вдалося прочитати його "
+"вміст.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип %s, %s, "
-"%s, %s, %s або %s.\n"
+"%s: помилковий тип вхідного параметра №%d: мало бути використано тип %s, %s, "
+"%s, %s або %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for element #%d of input argument #%d: Integer matrix cannot "
 "be empty.\n"
 msgstr ""
-"%s: помилкове значення елемента №%d вхідного параметра №%d: невідомий тип.\n"
+"%s: помилкове значення елемента №%d вхідного параметра №%d: матриця з цілих "
+"чисел не може бути порожньою.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for element #%d of input argument #%d: String matrix cannot "
 "be empty.\n"
 msgstr ""
-"%s: помилкове значення елемента №%d вхідного параметра №%d: невідомий тип.\n"
+"%s: помилкове значення елемента №%d вхідного параметра №%d: матриця з рядків "
+"не може бути порожньою.\n"
 
 #, c-format
-msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
+msgid ""
+"%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
 msgstr ""
 "%s: помилкове значення елемента №%d вхідного параметра №%d: невідомий тип.\n"
 
@@ -882,7 +867,8 @@ msgstr "Помилкова розмірність поля %s: мала бути
 
 #, c-format
 msgid "Wrong type for field %s.%s: Real matrix expected.\n"
-msgstr "Помилковий тип поля %s.%s: мала бути матриця з дійсними елементами.\n"
+msgstr ""
+"Помилковий тип поля %s.%s: мала бути матриця з дійсними елементами.\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s: %d-by-%d expected.\n"
@@ -904,84 +890,86 @@ msgstr "Помилковий тип поля %s:мала бути матриця
 msgid "Wrong type for field %s: Real matrix expected.\n"
 msgstr "Помилковий тип поля %s: мала бути матриця з дійсних чисел.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong dimension for field %s.%s : %d-by-%d expected.\n"
-msgstr "Помилкова розмірність поля %s.%s: мала бути матриця %d x %d.\n"
+msgstr "Помилкова розмірність поля %s.%s: мало бути %d x %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong length for field %s.%s : %d expected.\n"
-msgstr "Помилкова довжина поля %s.%s: мала бути %d.\n"
+msgstr "Помилкова довжина поля %s.%s: мало бути %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : String matrix expected.\n"
 msgstr "Помилковий тип поля %s.%s: мала бути матриця з рядків.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong value for field %s.%s : Round number expected.\n"
-msgstr "Помилкове значення поля %s.%s: мало бути округлене число.\n"
+msgstr "Помилкове значення поля %s.%s: мало бути вказано округлене число.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : Real matrix expected.\n"
-msgstr "Помилковий тип поля %s.%s: мала бути матриця з дійсними елементами.\n"
+msgstr ""
+"Помилковий тип поля %s.%s: мало бути вказано матрицю з дійсних чисел.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
-msgstr "Помилкова розмірність поля %s.%s: мала бути %d x %d.\n"
+msgstr "Помилкова розмірність поля %s.%s: мало бути %d x %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong dimension for field %s.%s : m-by-1 expected.\n"
-msgstr "Помилкова розмірність поля %s.%s: мало бути m x 1.\n"
+msgstr "Помилкова розмірність поля %s.%s:мало бути m x 1.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : List expected.\n"
 msgstr "Помилковий тип поля %s.%s: мав бути список.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong value for field %s.%s : %s (%s) has an invalid port number.\n"
 msgstr ""
 "Помилкове значення поля %s.%s: %s (%s) містить некоректний номер порту.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong value for field %s.%s : %s (%s) has an invalid implicit port.\n"
 msgstr ""
-"Помилкове значення поля %s.%s: %s (%s) містить некоректний неявний порт.\n"
+"Помилкове значення поля %s.%s : %s (%s) містить некоректний неявний порт.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong value for field %s.%s : %s (%s) has an invalid explicit port.\n"
 msgstr ""
 "Помилкове значення поля %s.%s: %s (%s) містить некоректний явний порт.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : Diagram expected.\n"
-msgstr "Помилковий тип поля %s.%s: мала бути діаграма.\n"
+msgstr "Помилковий тип поля %s.%s: мало бути вказано діаграму.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : List clear previous value.\n"
 msgstr "Помилковий тип поля %s.%s: список спорожнює попереднє значення.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong dimension for field %s.%s : m-by-1 matrix expected.\n"
 msgstr "Помилкова розмірність поля %s.%s: мала бути матриця m x 1.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong value for field %s.%s : Integer values expected.\n"
-msgstr "Помилкове значення поля %s.%s: мали бути цілі значення.\n"
+msgstr "Помилкове значення поля %s.%s: мало бути використано цілі числа.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : String expected.\n"
-msgstr "Помилковий тип поля %s.%s: мав бути рядок.\n"
+msgstr "Помилковий тип поля %s.%s: мало бути використано рядковий тип.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong dimension for field %s.%s : String expected.\n"
-msgstr "Помилкова розмірність поля %s.%s: мав бути рядок.\n"
+msgstr "Помилкова розмірність поля %s.%s: мало бути вказано рядок.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : Boolean matrix expected.\n"
 msgstr "Помилковий тип поля %s.%s: мала бути матриця з булевих значень.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong value for field %s.%s : Valid C identifier expected.\n"
-msgstr "Помилкове значення поля %s.%s: мало бути округлене число.\n"
+msgstr ""
+"Помилкове значення поля %s.%s: мало бути вказано коректний ідентифікатор C.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s: String expected.\n"
@@ -1027,23 +1015,17 @@ msgstr "Помилкова розмірність поля %s.%s: мало бу�
 msgid "Wrong type for field %s.%s: String matrix expected.\n"
 msgstr "Помилковий тип поля %s.%s: мала бути матриця з рядків.\n"
 
-#, fuzzy, c-format
-msgid ""
-"Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' "
-"vector. Switching to '%s'.\n"
+#, c-format
+msgid "Wrong value for field %s.%s: %s or %s vector expected.\n"
 msgstr "Помилкове значення поля %s.%s: мав бути вектор %s або %s.\n"
 
-#, fuzzy, c-format
-msgid "Wrong type for field %s.%s.\n"
+#, c-format
+msgid "Wrong type for field %s.%s .\n"
 msgstr "Помилковий тип поля %s.%s.\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s: Round number expected.\n"
 msgstr "Помилкове значення поля %s.%s: мало бути округлене число.\n"
-
-#, c-format
-msgid "Wrong type for field %s.%s .\n"
-msgstr "Помилковий тип поля %s.%s.\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s: Must be in the interval [%d, %d].\n"
@@ -1129,7 +1111,8 @@ msgstr ""
 "значень типу «string».\n"
 
 msgid "Can't convert old diagram (problem in version)"
-msgstr "Не вдалося перетворити діаграму у старому форматі (проблеми з версією)"
+msgstr ""
+"Не вдалося перетворити діаграму у старому форматі (проблеми з версією)"
 
 #, c-format
 msgid ""
@@ -1170,21 +1153,18 @@ msgstr "Проблема імітації: "
 msgid "End problem: "
 msgstr "Проблема завершення: "
 
-#
-# File: modules/scicos/macros/scicos_scicos/%graphics_e.sci, line: 25
 #, c-format
 msgid "%s: property %s obsolete, please use %s instead.\n"
 msgstr ""
+"%s: властивість %s вважається застарілою, замість неї слід використовувати "
+"%s.\n"
 
 #, c-format
 msgid "Wrong type for diagram element #%d: %s, %s or %s expected.\n"
 msgstr ""
 "Помилковий тип елемента діаграми №%d: слід використовувати %s, %s або %s.\n"
 
-#, fuzzy
-msgid ""
-"Your model contains states defined in standard Scicos blocks.\n"
-"Current initialization interface does not support mixed models."
+msgid "Your model contains states defined in standard Scicos blocks.\n"
 msgstr ""
 "У вашій моделі містяться стани, визначені у стандартних блоках Scicos.\n"
 
@@ -1270,13 +1250,8 @@ msgstr "Алгебраїчний цикл для подій."
 msgid "Algebraic loop."
 msgstr "Алгебраїчний цикл."
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 1223
-msgid ""
-"A C or Fortran block is used but not linked.\n"
-"You can save your compiled diagram and load it.\n"
-"This will automatically link the C or Fortran function."
-msgstr ""
+msgid "A C or Fortran block is used but not linked.\n"
+msgstr "Використано блок C або Fortran, але сам блок не скомпоновано.\n"
 
 #, c-format
 msgid "Number of modes in block #%d cannot be determined."
@@ -1286,19 +1261,11 @@ msgstr "Не вдалося визначити кількість режимі �
 msgid "Number of zero crossings in block #%d cannot be determined."
 msgstr "Не вдалося визначити кількість точок зміни знаку у блоці №%d."
 
-#, fuzzy
-msgid ""
-"Not enough information to find port sizes.\n"
-"I try to find the problem."
+msgid "Not enough information to find port sizes.\n"
 msgstr "Недостатньо даних для визначення розмірностей портів.\n"
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2049
-msgid ""
-"I cannot find a link with undetermined size.\n"
-"My guess is that you have a block with unconnected \n"
-"undetermined output ports."
-msgstr ""
+msgid "I cannot find a link with undetermined size.\n"
+msgstr "Виявлення зв’язку з невизначеною розмірністю неможливе.\n"
 
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
@@ -1318,8 +1285,8 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined size:"
 msgstr ""
-"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br /"
-">Розмірність вихідного порту блоку не визначено:"
+"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br "
+"/>Розмірність вихідного порту блоку не визначено:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
@@ -1340,8 +1307,8 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined size:"
 msgstr ""
-"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br /"
-">Розмірність вхідного порту блоку не визначено:"
+"<em>Будь ласка, оновіть діаграму, щоб усунути це попередження.</em><br "
+"/>Розмірність вхідного порту блоку не визначено:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
@@ -1359,25 +1326,12 @@ msgstr ""
 "розмірностями, які не можна визначити з контексту.\n"
 "Якою є розмірність цього зв’язку?"
 
-#, fuzzy, c-format
-msgid ""
-"the dep_ut size of the %s block is not correct.\n"
-"It should be a colon vector of size %d."
+#, c-format
+msgid "the dep_ut size of the %s block is not correct.\n"
 msgstr "розмірність dep_ut блоку %s є помилковою.\n"
 
-#, fuzzy
-msgid ""
-"Not enough information to find port type.\n"
-"I will try to find the problem."
+msgid "Not enough information to find port type.\n"
 msgstr "Недостатньо даних для визначення типу порту.\n"
-
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2640
-msgid ""
-"I cannot find a link with undetermined size.\n"
-"My guess is that you have a block with unconnected \n"
-"undetermined types."
-msgstr ""
 
 msgid "Modelica compiler (flat2C)"
 msgstr "Компілятор Modelica (flat2C)"
@@ -1470,8 +1424,8 @@ msgid ""
 "%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, "
 "%%scicos_prob=%%%s).\n"
 msgstr ""
-"%s: помилка під час виклику блоку %s [uid=«%s»]: некоректний параметр (ier="
-"%f, %%scicos_prob=%%%s).\n"
+"%s: помилка під час виклику блоку %s [uid=«%s»]: некоректний параметр "
+"(ier=%f, %%scicos_prob=%%%s).\n"
 
 msgid "Cannot load dynamic library: "
 msgstr "Не вдалося завантажити динамічну бібліотеку: "
@@ -1532,19 +1486,15 @@ msgstr "%s: тип %s не реалізовано.\n"
 
 #, c-format
 msgid "%s: Wrong size for block parameter '%s': %s expected, getting %s"
-msgstr "%s: помилкова розмірність параметра блоку «%s»: мало бути %s, маємо %s"
+msgstr ""
+"%s: помилкова розмірність параметра блоку «%s»: мало бути %s, маємо %s"
 
 #, c-format
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
 msgstr "%s: помилковий тип параметра блоку «%s»: мало бути %s(%s), маємо %s"
 
-#
-# File: modules/scicos/macros/scicos_scicos/translator.sci, line: 73
-msgid ""
-"There are too many Modelica files.\n"
-"It would be better to define several \n"
-"Modelica programs in a single file."
-msgstr ""
+msgid "There are too many Modelica files.\n"
+msgstr "Забагато файлів Modelica.\n"
 
 msgid "-------Modelica translator error message:-----"
 msgstr "-------Повідомлення про помилку транслятора Modelica:-----"
@@ -1580,20 +1530,3 @@ msgid ""
 msgstr ""
 "Відповідь, вказана для %s \n"
 " є помилковою: %s.\n"
-
-#~ msgid "A C or Fortran block is used but not linked.\n"
-#~ msgstr "Використано блок C або Fortran, але сам блок не скомпоновано.\n"
-
-#~ msgid "I cannot find a link with undetermined size.\n"
-#~ msgstr "Виявлення зв’язку з невизначеною розмірністю неможливе.\n"
-
-#~ msgid "There are too many Modelica files.\n"
-#~ msgstr "Забагато файлів Modelica.\n"
-
-#~ msgid "%s: Wrong value for input argument #%d: %d (String) expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати %d "
-#~ "(рядок).\n"
-
-#~ msgid "Wrong type for field %s.%s: Equation expected.\n"
-#~ msgstr "Помилковий тип поля %s.%s: мало бути рівняння (Equation).\n"

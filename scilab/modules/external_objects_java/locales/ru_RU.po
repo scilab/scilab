@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 21:59+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
@@ -79,19 +79,3 @@ msgstr "Выдан сигнал исключения в файле"
 
 msgid "at line"
 msgstr "на строке"
-
-#~ msgid "%s: Function %s is obsolete.\n"
-#~ msgstr "%s: Функция %s устарела.\n"
-
-#~ msgid "Warning"
-#~ msgstr "Внимание"
-
-#~ msgid "%s: Please see documentation for more details.\n"
-#~ msgstr "%s: Пожалуйста, смотрите подробности в документации.\n"
-
-#~ msgid ""
-#~ "%s: This function will be permanently removed in Scilab %s\n"
-#~ "\n"
-#~ msgstr ""
-#~ "%s: Эта функция будет окончательно удалена в  Scilab %s\n"
-#~ "\n"

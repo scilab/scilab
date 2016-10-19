@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2011-10-20 14:18+0000\n"
 "Last-Translator: Grzegorz Szostek <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
+"Language: pl\n"
 
 #, c-format
 msgid "%s: Error main TCL interpreter not initialized.\n"
@@ -133,7 +133,8 @@ msgstr ""
 "Inicjalizacja TCL nieudana !\n"
 
 msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
-msgstr "Błąd Tcl: Nie można utworzyć interpretatora Tcl (Tcl_CreateInterp).\n"
+msgstr ""
+"Błąd Tcl: Nie można utworzyć interpretatora Tcl (Tcl_CreateInterp).\n"
 
 #, c-format
 msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
@@ -181,27 +182,18 @@ msgstr ""
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Moduł Scilab TCL/TK nie zainstalowany.\n"
 
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 10
 msgid "Tcl/Tk"
 msgstr ""
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 12
 msgid "Color"
 msgstr ""
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 13
 msgid "Puzzle"
 msgstr ""
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 14
 msgid "Scroll"
 msgstr ""
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 15
 msgid "Scale"
 msgstr ""
 

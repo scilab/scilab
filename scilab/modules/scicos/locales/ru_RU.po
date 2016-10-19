@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-12-11 12:49+0000\n"
+"PO-Revision-Date: 2016-06-09 10:54+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -216,27 +216,6 @@ msgstr ""
 msgid "%s : Undetermined Size. outtyp(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
-"%s: Неверное количество входных аргументов: Ожидалось как минимум %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d : ожидался тип string.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: Ожидался список.\n"
-
-#, fuzzy, c-format
-msgid "%s: Unable to load \"%s\" .\n"
-msgstr "%s: Нельзя найти входы схемы\n"
-
-#, fuzzy, c-format
-msgid "%s: Unable to save \"%s\" .\n"
-msgstr "%s: Нельзя найти входы схемы\n"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
@@ -251,7 +230,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+msgstr ""
+"%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -274,7 +254,8 @@ msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
+msgid ""
+"%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
 msgstr ""
 
 #, c-format
@@ -300,7 +281,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+msgstr ""
+"%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist expected.\n"
@@ -336,7 +318,8 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: ошибка распределения памяти.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -460,7 +443,8 @@ msgid "%s: Wrong size for input argument #%d : A single struct expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
+msgid ""
+"%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
 msgstr ""
 
 #, c-format
@@ -474,7 +458,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
-msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор-строка.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался вектор-строка.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: At least %dx%d expected.\n"
@@ -578,9 +563,9 @@ msgstr ""
 "**** SUNDIALS.Ida: слишком много работы за время=%g (фиксированный диапазон, "
 "смените RTOL и ATOL)\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "block %d [%s] is called "
-msgstr "вызван блок %d "
+msgstr ""
 
 #, c-format
 msgid "with flag %d "
@@ -643,8 +628,8 @@ msgid ""
 "Warning: The preconditioner evaluation function returns a NaN at index #%d."
 msgstr ""
 "\n"
-"Внимание: Функция вычисления предобуславливателя возвращает NaN в индексе №"
-"%d."
+"Внимание: Функция вычисления предобуславливателя возвращает NaN в индексе "
+"№%d."
 
 msgid ""
 "\n"
@@ -666,8 +651,8 @@ msgid ""
 "Warning: The preconditioner application function returns a NaN at index #%d."
 msgstr ""
 "\n"
-"Внимание: Функция применения предобуславливателя возвращает NaN не индексе №"
-"%d."
+"Внимание: Функция применения предобуславливателя возвращает NaN не индексе "
+"№%d."
 
 #, c-format
 msgid ""
@@ -729,32 +714,33 @@ msgstr ""
 " Пожалуйста, проверьте модель: возможно, некоторые\n"
 " функции вызваны с некорректными параметрами."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: unknown integer type.\n"
-msgstr "%s: Неверный тип входного параметра №%d: Ожидался список.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Could not read its content.\n"
-msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"
-msgstr "%s: Неверный тип входного параметра №%d: Ожидался список.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for element #%d of input argument #%d: Integer matrix cannot "
 "be empty.\n"
-msgstr "%s: Неверный тип входного аргумента №%d : ожидалась матрица.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for element #%d of input argument #%d: String matrix cannot "
 "be empty.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
+msgid ""
+"%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
 msgstr ""
 
 #, c-format
@@ -813,99 +799,78 @@ msgstr ""
 msgid "Wrong type for field %s: Real matrix expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong dimension for field %s.%s : %d-by-%d expected.\n"
 msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалась матрица %d на %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong length for field %s.%s : %d expected.\n"
-msgstr "%s: Неверный размер входного аргумента №%d: ожидался %dx%d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : String matrix expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong value for field %s.%s : Round number expected.\n"
-msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : Real matrix expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d : ожидалась вещественная матрица.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
 msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалась матрица %d на %d.\n"
 
-#
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 433
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1370
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1425
 #, c-format
 msgid "Wrong dimension for field %s.%s : m-by-1 expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : List expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: Ожидался список.\n"
+msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 786
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 832
 #, c-format
 msgid "Wrong value for field %s.%s : %s (%s) has an invalid port number.\n"
 msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 848
 #, c-format
 msgid "Wrong value for field %s.%s : %s (%s) has an invalid implicit port.\n"
 msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 858
 #, c-format
 msgid "Wrong value for field %s.%s : %s (%s) has an invalid explicit port.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : Diagram expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась диаграмма.\n"
+msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1102
 #, c-format
 msgid "Wrong type for field %s.%s : List clear previous value.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong dimension for field %s.%s : m-by-1 matrix expected.\n"
 msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалась матрица %d на %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong value for field %s.%s : Integer values expected.\n"
-msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : String expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong dimension for field %s.%s : String expected.\n"
 msgstr ""
-"%s: Неверный размер входного аргумента №%d: ожидалось строковое значение.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : Boolean matrix expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d : ожидалась вещественная матрица.\n"
 
-#
-# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 1326
 #, c-format
 msgid "Wrong value for field %s.%s : Valid C identifier expected.\n"
 msgstr ""
@@ -954,24 +919,16 @@ msgstr ""
 msgid "Wrong type for field %s.%s: String matrix expected.\n"
 msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 344
 #, c-format
-msgid ""
-"Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' "
-"vector. Switching to '%s'.\n"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "Wrong type for field %s.%s.\n"
-msgstr "%s: Неверный тип входного параметра №%d: Ожидался список.\n"
-
-#, c-format
-msgid "Wrong value for field %s.%s: Round number expected.\n"
+msgid "Wrong value for field %s.%s: %s or %s vector expected.\n"
 msgstr ""
 
 #, c-format
 msgid "Wrong type for field %s.%s .\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for field %s.%s: Round number expected.\n"
 msgstr ""
 
 #, c-format
@@ -1016,7 +973,8 @@ msgstr "%s: Диаграмма не скомпилирована в %d прох�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Empty matrix expected.\n"
-msgstr "%s: Неверный размер входого аргумента №%d: ожидалась пустая матрица.\n"
+msgstr ""
+"%s: Неверный размер входого аргумента №%d: ожидалась пустая матрица.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
@@ -1086,8 +1044,6 @@ msgstr "Проблема моделирования: "
 msgid "End problem: "
 msgstr "Проблема завершения: "
 
-#
-# File: modules/scicos/macros/scicos_scicos/%graphics_e.sci, line: 25
 #, c-format
 msgid "%s: property %s obsolete, please use %s instead.\n"
 msgstr ""
@@ -1096,10 +1052,7 @@ msgstr ""
 msgid "Wrong type for diagram element #%d: %s, %s or %s expected.\n"
 msgstr ""
 
-#, fuzzy
-msgid ""
-"Your model contains states defined in standard Scicos blocks.\n"
-"Current initialization interface does not support mixed models."
+msgid "Your model contains states defined in standard Scicos blocks.\n"
 msgstr ""
 "Ваша модель содержит состояния, определённые в стандартных Scicos-блоках.\n"
 
@@ -1177,13 +1130,8 @@ msgstr ""
 msgid "Algebraic loop."
 msgstr ""
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 1223
-msgid ""
-"A C or Fortran block is used but not linked.\n"
-"You can save your compiled diagram and load it.\n"
-"This will automatically link the C or Fortran function."
-msgstr ""
+msgid "A C or Fortran block is used but not linked.\n"
+msgstr "Блок C или Fortran используется но не компонуется.\n"
 
 #, c-format
 msgid "Number of modes in block #%d cannot be determined."
@@ -1193,19 +1141,10 @@ msgstr ""
 msgid "Number of zero crossings in block #%d cannot be determined."
 msgstr ""
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 1930
-msgid ""
-"Not enough information to find port sizes.\n"
-"I try to find the problem."
+msgid "Not enough information to find port sizes.\n"
 msgstr ""
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2049
-msgid ""
-"I cannot find a link with undetermined size.\n"
-"My guess is that you have a block with unconnected \n"
-"undetermined output ports."
+msgid "I cannot find a link with undetermined size.\n"
 msgstr ""
 
 msgid "One of this block output has negative size.<br />Please check."
@@ -1226,15 +1165,15 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined size:"
 msgstr ""
-"<em>Пожалуйста, обновите схему во избежание этого предупреждения.</em><br /"
-">Выходной порт блока имеет неопределённый размер:"
+"<em>Пожалуйста, обновите схему во избежание этого предупреждения.</em><br "
+"/>Выходной порт блока имеет неопределённый размер:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined type:"
 msgstr ""
-"<em>Пожалуйста, обновите схему во избежание этого предупреждения.</em><br /"
-">Выходной порт блока имеет неопределённый тип:"
+"<em>Пожалуйста, обновите схему во избежание этого предупреждения.</em><br "
+"/>Выходной порт блока имеет неопределённый тип:"
 
 #, c-format
 msgid "Output port %s type."
@@ -1248,15 +1187,15 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined size:"
 msgstr ""
-"<em>Пожалуйста, обновите схему во избежание этого предупреждения.</em><br /"
-">Входной порт блока имеет неопределённый размер:"
+"<em>Пожалуйста, обновите схему во избежание этого предупреждения.</em><br "
+"/>Входной порт блока имеет неопределённый размер:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined type:"
 msgstr ""
-"<em>Пожалуйста, обновите схему во избежание этого предупреждения.</em><br /"
-">Входной порт блока имеет енопределённый тип:"
+"<em>Пожалуйста, обновите схему во избежание этого предупреждения.</em><br "
+"/>Входной порт блока имеет енопределённый тип:"
 
 msgid ""
 "Highlighted block(s) have connected ports \n"
@@ -1264,27 +1203,11 @@ msgid ""
 "What is the size of this link?"
 msgstr ""
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2294
 #, c-format
-msgid ""
-"the dep_ut size of the %s block is not correct.\n"
-"It should be a colon vector of size %d."
+msgid "the dep_ut size of the %s block is not correct.\n"
 msgstr ""
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2604
-msgid ""
-"Not enough information to find port type.\n"
-"I will try to find the problem."
-msgstr ""
-
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2640
-msgid ""
-"I cannot find a link with undetermined size.\n"
-"My guess is that you have a block with unconnected \n"
-"undetermined types."
+msgid "Not enough information to find port type.\n"
 msgstr ""
 
 msgid "Modelica compiler (flat2C)"
@@ -1444,12 +1367,7 @@ msgstr "%s: Неверный размер параметра блока «%s»: 
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
 msgstr "%s: Неверный тип параметра блока «%s»: ожидалось %s(%s), получено %s"
 
-#
-# File: modules/scicos/macros/scicos_scicos/translator.sci, line: 73
-msgid ""
-"There are too many Modelica files.\n"
-"It would be better to define several \n"
-"Modelica programs in a single file."
+msgid "There are too many Modelica files.\n"
 msgstr ""
 
 msgid "-------Modelica translator error message:-----"
@@ -1486,6 +1404,3 @@ msgid ""
 msgstr ""
 "Ответ, данный для %s, \n"
 " неверен: %s.\n"
-
-#~ msgid "A C or Fortran block is used but not linked.\n"
-#~ msgstr "Блок C или Fortran используется но не компонуется.\n"

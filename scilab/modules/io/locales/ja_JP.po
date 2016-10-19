@@ -11,12 +11,12 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:07+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -113,17 +113,17 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", \"%s"
-"\" \n"
+"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", "
+"\"%s\" \n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar boolean expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
+msgstr ""
 
 #, c-format
 msgid "-- Creation of [%ls] (Macros) --\n"
@@ -133,8 +133,6 @@ msgstr ""
 msgid "%ls: Cannot open file ''%ls''.\n"
 msgstr ""
 
-#
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 240
 #, c-format
 msgid "%s: Cannot open file ''%s''.\n"
 msgstr ""
@@ -159,13 +157,9 @@ msgstr ""
 msgid "%s: %s is not a valid lib path.\n"
 msgstr ""
 
-#
-# File: modules/io/sci_gateway/cpp/sci_lib.cpp, line: 80
 msgid "Cannot read lib file: Not in proper XML format.\n"
 msgstr ""
 
-#
-# File: modules/io/sci_gateway/cpp/sci_lib.cpp, line: 85
 msgid "Old binary lib detected. Please recompile it for Scilab 6.\n"
 msgstr ""
 
@@ -252,8 +246,7 @@ msgstr "%s: 凡例はカレントのコンテキストに適合しません.　�
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -279,6 +272,3 @@ msgstr "%s: %s 実行中にエラーが発生しました"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr "%s: コマンドはエラーコード %s および以下のメッセージで終了しました:\n"
-
-#~ msgid "%s: Wrong number of input argument.\n"
-#~ msgstr "%s: 入力引数の数が間違っています.\n"

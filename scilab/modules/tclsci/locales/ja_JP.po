@@ -11,12 +11,12 @@ msgstr ""
 "PO-Revision-Date: 2013-06-15 04:58+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -162,17 +162,13 @@ msgstr "TCLエラー: TK初期化(Tk_Init)でエラーです : %s\n"
 msgid ""
 "Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: "
 "%s\n"
-msgstr ""
-"Tclエラー: Scilab/TKの初期化時にエラーが発生しました. SciPathを設定できません"
-"でした: %s\n"
+msgstr "Tclエラー: Scilab/TKの初期化時にエラーが発生しました. SciPathを設定できませんでした: %s\n"
 
 #, c-format
 msgid ""
 "Tcl Error: Error during the Scilab/TK init process. Error while loading %s: "
 "%s\n"
-msgstr ""
-"Tclエラー: Scilab/TKの初期化時にエラーが発生しました. %s のロードでエラー: "
-"%s\n"
+msgstr "Tclエラー: Scilab/TKの初期化時にエラーが発生しました. %s のロードでエラー: %s\n"
 
 #
 # File: src/c/TCL_ArrayDim.c, line: 63
@@ -209,34 +205,24 @@ msgstr ""
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Scilab TCL/TK モジュールはインストールされていません。\n"
 
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 10
 msgid "Tcl/Tk"
 msgstr ""
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 12
 msgid "Color"
 msgstr ""
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 13
 msgid "Puzzle"
 msgstr ""
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 14
 msgid "Scroll"
 msgstr ""
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 15
 msgid "Scale"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
