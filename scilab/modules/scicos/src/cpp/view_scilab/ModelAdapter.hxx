@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -19,7 +19,6 @@
 #include <string>
 
 #include "BaseAdapter.hxx"
-#include "DiagramAdapter.hxx"
 #include "model/Block.hxx"
 
 namespace org_scilab_modules_scicos
@@ -31,7 +30,7 @@ class ModelAdapter : public BaseAdapter<ModelAdapter, org_scilab_modules_scicos:
 {
 public:
     ModelAdapter();
-    ModelAdapter(const Controller& c, model::Block* adaptee, DiagramAdapter* diagramAdapter);
+    ModelAdapter(const Controller& c, model::Block* adaptee);
     ~ModelAdapter();
 
     static const std::wstring getSharedTypeStr()
@@ -41,12 +40,6 @@ public:
 
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
-
-    DiagramAdapter* getDiagram() const;
-    void setDiagram(DiagramAdapter* diagramAdapter);
-
-private:
-    DiagramAdapter* m_diagramAdapter;
 };
 
 } /* namespace view_scilab */

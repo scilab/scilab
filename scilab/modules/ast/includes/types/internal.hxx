@@ -322,7 +322,7 @@ public :
         return m_iRef > _iRef;
     }
 
-    inline int getRef()
+    inline int getRef() const
     {
         return m_iRef;
     }

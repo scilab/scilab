@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -19,6 +19,8 @@
 #include <vector>
 #include <iostream>
 #include <iomanip>
+#include <algorithm>
+#include <functional>
 
 #include "list.hxx"
 #include "tlist.hxx"
@@ -58,6 +60,12 @@ const std::wstring paramv (L"paramv");
 const std::wstring pprop (L"pprop");
 const std::wstring nameF (L"nameF");
 const std::wstring funtxt (L"funtxt");
+
+// shared informations for relinking across adapters hierarchy
+std::map<ScicosID, std::vector<int> > partial_pin;
+std::map<ScicosID, std::vector<int> > partial_pout;
+std::map<ScicosID, std::vector<int> > partial_pein;
+std::map<ScicosID, std::vector<int> > partial_peout;
 
 struct orig
 {
@@ -191,17 +199,182 @@ struct exprs
     }
 };
 
+std::vector<int> cached_ports_init(std::map<ScicosID, std::vector<int> >& cache, const model::Block* adaptee, const object_properties_t port_kind, const Controller& controller)
+{
+    auto it = cache.find(adaptee->id());
+    if (it != cache.end())
+    {
+        // if already present, do not refresh it !
+        return it->second;
+    }
+
+    std::vector<ScicosID> ids;
+    controller.getObjectProperty(adaptee->id(), BLOCK, port_kind, ids);
+
+    std::vector<ScicosID> children;
+    ScicosID parentBlock;
+    controller.getObjectProperty(adaptee->id(), BLOCK, PARENT_BLOCK, parentBlock);
+    if (parentBlock == ScicosID())
+    {
+        // Adding to a diagram
+        ScicosID parentDiagram;
+        controller.getObjectProperty(adaptee->id(), BLOCK, PARENT_DIAGRAM, parentDiagram);
+
+        controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
+    }
+    else
+    {
+        // Adding to a superblock
+        controller.getObjectProperty(parentBlock, BLOCK, CHILDREN, children);
+    }
+
+    std::vector<int> ret(ids.size());
+    // foreach ports, resolve it or discard
+    int i = 0;
+    for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
+    {
+        ScicosID id;
+        controller.getObjectProperty(*it, PORT, CONNECTED_SIGNALS, id);
+
+        if (id == ScicosID())
+        {
+            // Unconnected port, no need to search in 'children'
+            ret[i] = 0;
+        }
+        else
+        {
+            std::vector<ScicosID>::iterator found = std::find(children.begin(), children.end(), id);
+            if (found != children.end())
+            {
+                ret[i] = static_cast<int>(std::distance(children.begin(), found)) + 1;
+            }
+            else
+            {
+                // connected link not found ; discard it !
+                ret[i] = 0;
+            }
+        }
+    }
+
+    cache.insert({adaptee->id(), ret});
+    return ret;
+}
+
+types::InternalType* cached_ports_get(std::map<ScicosID, std::vector<int> >& cache, const GraphicsAdapter& adaptor, const object_properties_t port_kind, const Controller& controller)
+{
+    auto it = cache.find(adaptor.getAdaptee()->id());
+    if (it == cache.end())
+    {
+        return get_ports_property<GraphicsAdapter, CONNECTED_SIGNALS>(adaptor, port_kind, controller);
+    }
+
+    std::vector<int> const& ports = it->second;
+
+    double* data;
+    types::Double* ret = new types::Double(static_cast<int>(ports.size()), 1, &data);
+
+#ifdef _MSC_VER
+    std::transform(ports.begin(), ports.end(), stdext::checked_array_iterator<double*>(data, ports.size()), [](int p)
+    {
+        return p;
+    });
+#else
+    std::transform(ports.begin(), ports.end(), data, [](int p)
+    {
+        return p;
+    });
+#endif
+
+    return ret;
+}
+bool cached_ports_set(std::map<ScicosID, std::vector<int> >& cache, GraphicsAdapter& adaptor, const object_properties_t port_kind, Controller& controller, types::InternalType* v)
+{
+    auto it = cache.find(adaptor.getAdaptee()->id());
+    if (it == cache.end())
+    {
+        return update_ports_property<GraphicsAdapter, CONNECTED_SIGNALS>(adaptor, port_kind, controller, v);
+    }
+
+    if (v->getType() != types::InternalType::ScilabDouble)
+    {
+        return false;
+    }
+    types::Double* value = v->getAs<types::Double>();
+
+    // store the updated value locally
+    {
+        std::vector<int>& ports = it->second;
+
+        ports.resize(value->getSize());
+        for (int i = 0; i < value->getSize(); ++i)
+        {
+            ports[i] = static_cast<int>(value->get(i));
+        }
+    }
+
+    // enforce a the same number of port on the Model
+    {
+        const std::vector<int>& ports = it->second;
+
+        std::vector<ScicosID> objects;
+        controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, port_kind, objects);
+
+        if (ports.size() < objects.size())
+        {
+            // remove existing ports
+            for (size_t i = ports.size(); i < objects.size(); ++i)
+            {
+                ScicosID p = objects[i];
+
+                ScicosID signal;
+                controller.getObjectProperty(p, PORT, CONNECTED_SIGNALS, signal);
+                if (signal != ScicosID())
+                {
+                    ScicosID opposite;
+                    controller.getObjectProperty(signal, LINK, DESTINATION_PORT, opposite);
+                    if (opposite == p)
+                    {
+                        controller.setObjectProperty(signal, LINK, DESTINATION_PORT, ScicosID());
+                    }
+                    controller.getObjectProperty(signal, LINK, SOURCE_PORT, opposite);
+                    if (opposite == p)
+                    {
+                        controller.setObjectProperty(signal, LINK, SOURCE_PORT, ScicosID());
+                    }
+                }
+                controller.deleteObject(p);
+            }
+            objects.resize(ports.size());
+        }
+        else
+        {
+            // add missing ports
+            for (size_t i = objects.size(); i < ports.size(); ++i)
+            {
+                ScicosID p = controller.createObject(PORT);
+
+                controller.setObjectProperty(p, PORT, SOURCE_BLOCK, adaptor.getAdaptee()->id());
+                controller.setObjectProperty(p, PORT, PORT_KIND, port_from_property(port_kind));
+
+                objects.push_back(p);
+            }
+        }
+        controller.setObjectProperty(adaptor.getAdaptee()->id(), BLOCK, port_kind, objects);
+    }
+    return true;
+}
+
 struct pin
 {
 
     static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
-        return get_ports_property<GraphicsAdapter, CONNECTED_SIGNALS>(adaptor, INPUTS, controller);
+        return cached_ports_get(partial_pin, adaptor, INPUTS, controller);
     }
 
     static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        return update_ports_property<GraphicsAdapter, CONNECTED_SIGNALS>(adaptor, INPUTS, controller, v);
+        return cached_ports_set(partial_pin, adaptor, INPUTS, controller, v);
     }
 };
 
@@ -210,12 +383,12 @@ struct pout
 
     static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
-        return get_ports_property<GraphicsAdapter, CONNECTED_SIGNALS>(adaptor, OUTPUTS, controller);
+        return cached_ports_get(partial_pout, adaptor, OUTPUTS, controller);
     }
 
     static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        return update_ports_property<GraphicsAdapter, CONNECTED_SIGNALS>(adaptor, OUTPUTS, controller, v);
+        return cached_ports_set(partial_pout, adaptor, OUTPUTS, controller, v);
     }
 };
 
@@ -224,12 +397,12 @@ struct pein
 
     static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
-        return get_ports_property<GraphicsAdapter, CONNECTED_SIGNALS>(adaptor, EVENT_INPUTS, controller);
+        return cached_ports_get(partial_pein, adaptor, EVENT_INPUTS, controller);
     }
 
     static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        return update_ports_property<GraphicsAdapter, CONNECTED_SIGNALS>(adaptor, EVENT_INPUTS, controller, v);
+        return cached_ports_set(partial_pein, adaptor, EVENT_INPUTS, controller, v);
     }
 };
 
@@ -238,12 +411,12 @@ struct peout
 
     static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
-        return get_ports_property<GraphicsAdapter, CONNECTED_SIGNALS>(adaptor, EVENT_OUTPUTS, controller);
+        return cached_ports_get(partial_peout, adaptor, EVENT_OUTPUTS, controller);
     }
 
     static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        return update_ports_property<GraphicsAdapter, CONNECTED_SIGNALS>(adaptor, EVENT_OUTPUTS, controller, v);
+        return cached_ports_set(partial_peout, adaptor, EVENT_OUTPUTS, controller, v);
     }
 };
 
@@ -257,7 +430,7 @@ struct gr_i
 
     static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& /*controller*/)
     {
-        adaptor.setGrIContent(v->clone());
+        adaptor.setGrIContent(v);
         return true;
     }
 };
@@ -468,22 +641,36 @@ static void initialize_fields()
 
 GraphicsAdapter::GraphicsAdapter() :
     BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(),
-    gr_i_content(types::Double::Empty())
+    gr_i_content(reference_value(types::Double::Empty()))
 {
     initialize_fields();
 }
 
 GraphicsAdapter::GraphicsAdapter(const Controller& c, model::Block* adaptee) :
     BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(c, adaptee),
-    gr_i_content(types::Double::Empty())
+    gr_i_content(reference_value(types::Double::Empty()))
 {
     initialize_fields();
+
+    Controller controller;
+    cached_ports_init(partial_pin, adaptee, INPUTS, controller);
+    cached_ports_init(partial_pout, adaptee, OUTPUTS, controller);
+    cached_ports_init(partial_pein, adaptee, EVENT_INPUTS, controller);
+    cached_ports_init(partial_peout, adaptee, EVENT_OUTPUTS, controller);
 }
 
 GraphicsAdapter::~GraphicsAdapter()
 {
     gr_i_content->DecreaseRef();
     gr_i_content->killMe();
+
+    if (getAdaptee() != nullptr && getAdaptee()->refCount() == 0)
+    {
+        partial_pin.erase(getAdaptee()->id());
+        partial_pout.erase(getAdaptee()->id());
+        partial_pein.erase(getAdaptee()->id());
+        partial_peout.erase(getAdaptee()->id());
+    }
 }
 
 std::wstring GraphicsAdapter::getTypeStr()
@@ -498,17 +685,117 @@ std::wstring GraphicsAdapter::getShortTypeStr()
 
 types::InternalType* GraphicsAdapter::getGrIContent() const
 {
-    gr_i_content->IncreaseRef();
     return gr_i_content;
 }
 
 void GraphicsAdapter::setGrIContent(types::InternalType* v)
 {
-    gr_i_content->DecreaseRef();
-    gr_i_content->killMe();
+    types::InternalType* temp = gr_i_content;
 
     v->IncreaseRef();
     gr_i_content = v;
+
+    temp->DecreaseRef();
+    temp->killMe();
+}
+
+static void relink_cached(Controller& controller, model::BaseObject* adaptee, const std::vector<ScicosID>& children, std::map<ScicosID, std::vector<int> >& cache, object_properties_t p)
+{
+    auto it = cache.find(adaptee->id());
+    if (it == cache.end())
+    {
+        // unable to relink as there is no information to do so
+        return;
+    }
+    std::vector<int>& cached_information = it->second;
+
+    std::vector<ScicosID> ports;
+    controller.getObjectProperty(adaptee->id(), BLOCK, p, ports);
+
+    if (cached_information.size() != ports.size())
+    {
+        // defensive programming: unable to relink as something goes wrong on the adapters
+        return;
+    }
+
+    bool isConnected = true;
+    for (size_t i = 0; i < cached_information.size(); ++i)
+    {
+        ScicosID connectedSignal;
+        controller.getObjectProperty(ports[i], PORT, CONNECTED_SIGNALS, connectedSignal);
+
+        if (connectedSignal != ScicosID())
+        {
+            cached_information[i] = (int)std::distance(children.begin(), std::find(children.begin(), children.end(), connectedSignal));
+        }
+        else
+        {
+            isConnected = false;
+        }
+    }
+
+    if (isConnected)
+    {
+        cache.erase(it);
+    }
+}
+
+void GraphicsAdapter::relink(Controller& controller, model::BaseObject* adaptee, const std::vector<ScicosID>& children)
+{
+    relink_cached(controller, adaptee, children, partial_pin, INPUTS);
+    relink_cached(controller, adaptee, children, partial_pout, OUTPUTS);
+    relink_cached(controller, adaptee, children, partial_pein, EVENT_INPUTS);
+    relink_cached(controller, adaptee, children, partial_peout, EVENT_OUTPUTS);
+}
+
+void copyOnClone(model::BaseObject* original, model::BaseObject* cloned, std::map<ScicosID, std::vector<int> >& cache)
+{
+
+    auto it = cache.find(original->id());
+    if (it != cache.end())
+        cache.insert({cloned->id(), it->second});
+}
+
+void GraphicsAdapter::add_partial_links_information(Controller& controller, model::BaseObject* original, model::BaseObject* cloned)
+{
+    if (original->kind() == BLOCK)
+    {
+        // add the from / to information if applicable
+        copyOnClone(original, cloned, partial_pin);
+        copyOnClone(original, cloned, partial_pout);
+        copyOnClone(original, cloned, partial_pein);
+        copyOnClone(original, cloned, partial_peout);
+    }
+
+    switch (original->kind())
+    {
+        // handle recursion
+        case DIAGRAM:
+        case BLOCK:
+        {
+            std::vector<ScicosID> originalChildren;
+            controller.getObjectProperty(original->id(), original->kind(), CHILDREN, originalChildren);
+            std::vector<ScicosID> clonedChildren;
+            controller.getObjectProperty(cloned->id(), cloned->kind(), CHILDREN, clonedChildren);
+
+            for (size_t i = 0; i < originalChildren.size(); ++i)
+            {
+                add_partial_links_information(controller, controller.getObject(originalChildren[i]), controller.getObject(clonedChildren[i]));
+            }
+            break;
+        }
+
+        default:
+            break;
+    }
+}
+
+void GraphicsAdapter::remove_partial_links_information(model::BaseObject* o)
+{
+    partial_pin.erase(o->id());
+    partial_pout.erase(o->id());
+    partial_pein.erase(o->id());
+    partial_peout.erase(o->id());
 }
 
 } /* namespace view_scilab */

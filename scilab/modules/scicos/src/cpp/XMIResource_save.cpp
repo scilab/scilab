@@ -93,10 +93,52 @@ static std::string to_string(double v)
     }
 
     std::string str(15, '\0');
-	// std::snprintf(const_cast<char*>(str.data()), str.size(), "%.6E", v);
+    // std::snprintf(const_cast<char*>(str.data()), str.size(), "%.6E", v);
     std::sprintf(const_cast<char*>(str.data()), "%.6E", v);
     return str;
 }
+
+/* helper function to decode simple string EXPRS */
+static std::vector<std::string> to_string_vector(const std::vector<double>& v)
+{
+    std::vector<std::string> ret;
+    std::vector<double>::const_iterator it = v.begin();
+
+    int strHeader = *it++;
+    if (strHeader != sci_strings)
+    {
+        return ret;
+    }
+    unsigned int iDims = *it++;
+
+    // manage multi-dimensional arrays (will be serialized as a vector)
+    unsigned int iElements = 1;
+    for (unsigned int i = 0; i < iDims; ++i)
+    {
+        iElements *= static_cast<unsigned int>(*it++);
+    }
+
+    // retrieve the length of each encoded string, stored as a stack
+    std::vector<unsigned int> stringsLength;
+    stringsLength.reserve(iElements + 1);
+    stringsLength.push_back(0);
+    for (unsigned int i = 0; i < iElements; ++i)
+    {
+        stringsLength.push_back(*it++);
+    }
+
+    // Retrieving the pointers (already UTF-8 encoded char*) and store them as strings
+    ret.reserve(ret.size() + iElements);
+    for (unsigned int i = 0; i < iElements; ++i)
+    {
+        // push the data
+        const double* strData = &(*(it + stringsLength[i]));
+        ret.emplace_back((char*) strData);
+    }
+
+    return ret;
+}
+
 
 static int writeBase64(xmlTextWriterPtr writer, const char* name, const std::vector<double>& v)
 {
@@ -605,8 +647,7 @@ int XMIResource::writeBlock(xmlTextWriterPtr writer, ScicosID id)
     else if (is_string_vector(doubleArrayValue))
     {
         // if this is a string the expression is used
-        std::vector<std::string> values;
-        controller.getObjectProperty(id, BLOCK, EXPRS, values);
+        std::vector<std::string> values = to_string_vector(doubleArrayValue);
 
         for (const std::string& s : values)
         {

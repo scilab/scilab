@@ -158,6 +158,10 @@ public class BrowserView extends View {
     }
 
     @Override
+    public void objectCloned(long uid, long cloned, Kind kind) {
+    }
+
+    @Override
     public void propertyUpdated(final long uid, final Kind kind, final ObjectProperties property, final UpdateStatus status) {
         if (model == null) {
             return;

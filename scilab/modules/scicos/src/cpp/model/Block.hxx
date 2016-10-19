@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -95,8 +95,9 @@ class Block: public BaseObject
 {
 public:
     Block() : BaseObject(BLOCK), m_parentDiagram(ScicosID()), m_interfaceFunction(), m_geometry(),
-        m_description(), m_label(), m_style(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
-        m_parameter(), m_state(), m_parentBlock(ScicosID()), m_children(), m_childrenColor(), m_context(), m_portReference(ScicosID())
+        m_exprs(), m_description(), m_label(), m_style(), m_nzcross(), m_nmode(), m_equations(), m_uid(),
+        m_sim(), m_in(), m_out(), m_ein(), m_eout(), m_parameter(), m_state(), m_parentBlock(ScicosID()),
+        m_children(), m_childrenColor(), m_context(), m_portReference(ScicosID())
     {
         // m_exprs default value is an empty matrix encoded by var2vec()
         m_exprs = {1, 2, 0, 0, 0};

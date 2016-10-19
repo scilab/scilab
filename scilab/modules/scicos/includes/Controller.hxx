@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -57,8 +57,15 @@ public:
         referenceObject(o->id());
         return o;
     }
+    template<typename T>
+    T* referenceObject(model::BaseObject* o) const
+    {
+        referenceObject(o->id());
+        return static_cast<T*>(o);
+    }
     void deleteObject(ScicosID uid);
     ScicosID cloneObject(ScicosID uid, bool cloneChildren, bool clonePorts);
+    model::BaseObject* cloneObject(std::map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, bool cloneChildren, bool clonePorts);
 
     kind_t getKind(ScicosID uid) const;
     std::vector<ScicosID> getAll(kind_t k) const;
@@ -69,6 +76,32 @@ public:
     {
         return static_cast<T*>(getObject(uid));
     }
+
+    /*
+     * C++ API
+     */
+
+    template<typename T>
+    bool getObjectProperty(model::BaseObject* object, object_properties_t p, T& v) const
+    {
+        lock(&m_instance.onModelStructuralModification);
+        bool ret = m_instance.model.getObjectProperty(object, p, v);
+        unlock(&m_instance.onModelStructuralModification);
+        return ret;
+    }
+
+    template<typename T>
+    update_status_t setObjectProperty(model::BaseObject* object, object_properties_t p, const T& v)
+    {
+        lock(&m_instance.onModelStructuralModification);
+        update_status_t ret = m_instance.model.setObjectProperty(object, p, v);
+        unlock(&m_instance.onModelStructuralModification);
+        return ret;
+    }
+
+    /*
+     * C / Java API
+     */
 
     bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v) const;
     bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int& v) const;
@@ -113,6 +146,17 @@ private:
         ~SharedData();
     };
 
+    static inline void lock(std::atomic_flag* m)
+    {
+        while (m->test_and_set(std::memory_order_acquire))  // acquire lock
+            ; // spin
+    }
+
+    static inline void unlock(std::atomic_flag* m)
+    {
+        m->clear(std::memory_order_release);
+    }
+
     /**
      * Shared instance of the data
      *
@@ -124,15 +168,14 @@ private:
      * Methods
      */
 
-    ScicosID cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, bool cloneChildren, bool clonePorts);
-    template<typename T> void cloneProperties(model::BaseObject* initial, ScicosID clone);
+    template<typename T> void cloneProperties(model::BaseObject* initial, model::BaseObject* clone);
     template<typename T> bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T& v) const;
     template<typename T> update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T v);
-    void deepClone(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, ScicosID clone, kind_t k, object_properties_t p, bool cloneIfNotFound);
-    void deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, ScicosID clone, kind_t k, object_properties_t p, bool cloneIfNotFound);
-    void unlinkVector(ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop);
-    void unlink(ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop);
-    void deleteVector(ScicosID uid, kind_t k, object_properties_t uid_prop);
+    void deepClone(std::map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound);
+    void deepCloneVector(std::map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound);
+    void unlinkVector(model::BaseObject* o, object_properties_t uid_prop, object_properties_t ref_prop);
+    void unlink(model::BaseObject* o, object_properties_t uid_prop, object_properties_t ref_prop);
+    void deleteVector(model::BaseObject* o, object_properties_t uid_prop);
 };
 
 } /* namespace org_scilab_modules_scicos */

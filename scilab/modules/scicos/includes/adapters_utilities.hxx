@@ -29,4 +29,22 @@ struct link_t
     enum startOrEnd kind;
 };
 
+// partial-link information
+struct partial_link_t
+{
+    link_t from;
+    link_t to;
+};
+
+typedef std::vector<unsigned int> link_indices_t;
+
+// partial-port information
+struct partial_ports_t
+{
+    link_indices_t graphics_pin;
+    link_indices_t graphics_pout;
+    link_indices_t graphics_pein;
+    link_indices_t graphics_peout;
+};
+
 #endif /* ADAPTERS_UTILITIES_HXX_ */

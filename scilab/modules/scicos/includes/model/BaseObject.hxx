@@ -30,20 +30,20 @@ class BaseObject
 {
 public:
     explicit BaseObject(kind_t k) :
-        m_kind(k)
-        // Not initializing m_id on purpose: the ID is given by the model constructor
+        m_id(ScicosID()), m_kind(k), m_refCount()
     {
+        // m_id will be set by the caller
     }
     BaseObject(const BaseObject& b) :
-        m_id(b.m_id), m_kind(b.m_kind)
+        m_id(b.m_id), m_kind(b.m_kind), m_refCount()
     {
     }
     BaseObject(BaseObject&& b) :
-        m_id(b.m_id), m_kind(b.m_kind)
+        m_id(b.m_id), m_kind(b.m_kind), m_refCount()
     {
     }
     BaseObject(ScicosID id, kind_t k) :
-        m_id(id), m_kind(k)
+        m_id(id), m_kind(k), m_refCount()
     {
     }
 
@@ -78,6 +78,11 @@ public:
         return m_kind;
     }
 
+    inline unsigned& refCount()
+    {
+        return m_refCount;
+    }
+
 private:
     /**
      * An id is used as a reference to the current object
@@ -88,6 +93,11 @@ private:
      * Kind of the Object
      */
     kind_t m_kind;
+
+    /**
+     * Refcount of this object
+     */
+    unsigned m_refCount;
 };
 
 /** @defgroup utilities Shared utility classes

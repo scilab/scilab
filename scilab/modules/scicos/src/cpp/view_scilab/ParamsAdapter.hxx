@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -21,18 +21,17 @@
 #include "internal.hxx"
 
 #include "BaseAdapter.hxx"
-#include "model/Diagram.hxx"
 
 namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
 
-class ParamsAdapter : public BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>
+class ParamsAdapter : public BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::BaseObject>
 {
 public:
     ParamsAdapter();
-    ParamsAdapter(const Controller& c, org_scilab_modules_scicos::model::Diagram* adaptee);
+    ParamsAdapter(const Controller& c, org_scilab_modules_scicos::model::BaseObject* adaptee);
     ~ParamsAdapter();
 
     static const std::wstring getSharedTypeStr()

@@ -149,6 +149,10 @@ public class XcosView extends View {
     }
 
     @Override
+    public void objectCloned(long uid, long cloned, Kind kind) {
+    }
+
+    @Override
     public final void propertyUpdated(long uid, Kind kind, ObjectProperties property, UpdateStatus status) {
         List<Entry> listeners = registeredListeners.get(kind);
         if (listeners == null) {

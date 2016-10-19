@@ -31,56 +31,20 @@ extern "C" {
 #include "sci_types.h"
 }
 
+// Check the model at runtime (children / parent ; block / ports)
+#define SANITY_CHECK 0
+
 namespace org_scilab_modules_scicos
 {
 
-/* helper function to encode simple string EXPRS */
-static std::vector<double> encode_string_vector(const std::vector<std::string>& v)
+update_status_t Model::setObjectProperty(model::BaseObject* object, object_properties_t p, double v)
 {
-    std::vector<double> ret;
-
-    // header
-    ret.push_back(sci_strings);
-
-    // serialize as a Scilab vector
-    ret.push_back(2); // MxN
-    ret.push_back(v.size()); // M
-    ret.push_back(1); // N
-
-    // reserve some space to store the length of each string (including the null terminating character)
-    ret.resize(ret.size() + v.size());
-
-    // store the index and the null terminated UTF-8 strings
-    size_t stringOffset = 0;
-    for (size_t i = 0; i < v.size(); ++i)
-    {
-        const std::string& str = v[i];
-        // length as a 64bit index (as we store on a double vector)
-        size_t len = ((str.size() + 1) * sizeof(char) + sizeof(double) - 1) / sizeof(double);
-
-        // insert the offset
-        auto it = ret.begin() + 4 + i;
-        stringOffset += len;
-        *it = stringOffset;
-
-        // reserve some space for the string
-        size_t size = ret.size();
-        ret.resize(size + len);
-
-        // copy the UTF-8 encoded values
-        std::memcpy(ret.data() + size, str.data(), str.size());
-    }
-
-    return ret;
-}
-
-update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double v)
-{
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return FAIL;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -128,13 +92,14 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     return FAIL;
 }
 
-update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int v)
+update_status_t Model::setObjectProperty(model::BaseObject* object, object_properties_t p, int v)
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return FAIL;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -193,13 +158,14 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     return FAIL;
 }
 
-update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool v)
+update_status_t Model::setObjectProperty(model::BaseObject* object, object_properties_t p, bool v)
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return FAIL;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -247,13 +213,14 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     return FAIL;
 }
 
-update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID v)
+update_status_t Model::setObjectProperty(model::BaseObject* object, object_properties_t p, ScicosID v)
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return FAIL;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -324,13 +291,14 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     return FAIL;
 }
 
-update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string v)
+update_status_t Model::setObjectProperty(model::BaseObject* object, object_properties_t p, std::string v)
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return FAIL;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -422,13 +390,14 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     return FAIL;
 }
 
-update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<double>& v)
+update_status_t Model::setObjectProperty(model::BaseObject* object, object_properties_t p, const std::vector<double>& v)
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return FAIL;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -501,13 +470,14 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     return FAIL;
 }
 
-update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<int>& v)
+update_status_t Model::setObjectProperty(model::BaseObject* object, object_properties_t p, const std::vector<int>& v)
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return FAIL;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -569,13 +539,14 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     return FAIL;
 }
 
-update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<bool>& /*v*/)
+update_status_t Model::setObjectProperty(model::BaseObject* object, object_properties_t p, const std::vector<bool>& /*v*/)
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return FAIL;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -620,13 +591,14 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     return FAIL;
 }
 
-update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<std::string>& v)
+update_status_t Model::setObjectProperty(model::BaseObject* object, object_properties_t p, const std::vector<std::string>& v)
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return FAIL;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -643,8 +615,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         {
             case DIAGRAM_CONTEXT:
                 return o->setContext(v);
-            case EXPRS:
-                return o->setExprs(encode_string_vector(v));
             default:
                 break;
         }
@@ -679,13 +649,14 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     return FAIL;
 }
 
-update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<ScicosID>& v)
+update_status_t Model::setObjectProperty(model::BaseObject* object, object_properties_t p, const std::vector<ScicosID>& v)
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return FAIL;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -701,14 +672,93 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         switch (p)
         {
             case INPUTS:
+#if SANITY_CHECK
+                for (ScicosID port : v)
+                {
+                    model::BaseObject* p = getObject(port);
+
+                    ScicosID parent = ScicosID();
+                    getObjectProperty(p, SOURCE_BLOCK, parent);
+                    if (parent != baseObject->id())
+                    {
+                        abort();
+                    }
+                }
+#endif /* SANITY_CHECK */
                 return o->setIn(v);
             case OUTPUTS:
+#if SANITY_CHECK
+                for (ScicosID port : v)
+                {
+                    model::BaseObject* p = getObject(port);
+
+                    ScicosID parent = ScicosID();
+                    getObjectProperty(p, SOURCE_BLOCK, parent);
+                    if (parent != baseObject->id())
+                    {
+                        abort();
+                    }
+                }
+#endif /* SANITY_CHECK */
                 return o->setOut(v);
             case EVENT_INPUTS:
+#if SANITY_CHECK
+                for (ScicosID port : v)
+                {
+                    model::BaseObject* p = getObject(port);
+
+                    ScicosID parent = ScicosID();
+                    getObjectProperty(p, SOURCE_BLOCK, parent);
+                    if (parent != baseObject->id())
+                    {
+                        abort();
+                    }
+                }
+#endif /* SANITY_CHECK */
                 return o->setEin(v);
             case EVENT_OUTPUTS:
+#if SANITY_CHECK
+                for (ScicosID port : v)
+                {
+                    model::BaseObject* p = getObject(port);
+
+                    ScicosID parent = ScicosID();
+                    getObjectProperty(p, SOURCE_BLOCK, parent);
+                    if (parent != baseObject->id())
+                    {
+                        abort();
+                    }
+                }
+#endif /* SANITY_CHECK */
                 return o->setEout(v);
             case CHILDREN:
+#if SANITY_CHECK
+                for (ScicosID child : v)
+                {
+                    if (child == ScicosID())
+                    {
+                        continue;
+                    }
+
+                    model::BaseObject* c = getObject(child);
+
+                    ScicosID parent = ScicosID();
+                    getObjectProperty(c, PARENT_BLOCK, parent);
+                    if (parent != baseObject->id())
+                    {
+                        abort();
+                    }
+
+                    ScicosID parentDiagram = ScicosID();
+                    getObjectProperty(o, PARENT_DIAGRAM, parentDiagram);
+                    ScicosID parentParentDiagram  = ScicosID();
+                    getObjectProperty(parent, BLOCK, PARENT_DIAGRAM, parentParentDiagram);
+                    if (parentDiagram != parentParentDiagram)
+                    {
+                        abort();
+                    }
+                }
+#endif /* SANITY_CHECK */
                 return o->setChildren(v);
             default:
                 break;
@@ -720,6 +770,30 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         switch (p)
         {
             case CHILDREN:
+#if SANITY_CHECK
+                for (ScicosID child : v)
+                {
+                    if (child == ScicosID())
+                    {
+                        continue;
+                    }
+
+                    model::BaseObject* c = getObject(child);
+
+                    ScicosID parent = ScicosID();
+                    getObjectProperty(c, PARENT_BLOCK, parent);
+                    if (parent != ScicosID())
+                    {
+                        abort();
+                    }
+
+                    getObjectProperty(c, PARENT_DIAGRAM, parent);
+                    if (parent != baseObject->id())
+                    {
+                        abort();
+                    }
+                }
+#endif /* SANITY_CHECK */
                 return o->setChildren(v);
             default:
                 break;

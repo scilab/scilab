@@ -27,6 +27,7 @@ extern "C"
 #include <libxml/xmlerror.h>
 #include <libxml/xmlreader.h>
 
+#include "sci_types.h"
 #include "sciprint.h"
 }
 
@@ -206,6 +207,35 @@ int XMIResource::load(const char* uri)
         if (it != references.end())
         {
             controller.setObjectProperty(ref.m_id, ref.m_kind, ref.m_prop, it->second);
+
+            // change the link kind on re-connection
+            if (ref.m_kind == LINK)
+            {
+                if (ref.m_prop == SOURCE_PORT || ref.m_prop == DESTINATION_PORT)
+                {
+                    int kind;
+                    controller.getObjectProperty(it->second, PORT, PORT_KIND, kind);
+
+                    if (kind == PORT_EIN || kind == PORT_EOUT)
+                    {
+                        // this should be an event link
+                        controller.setObjectProperty(ref.m_id, LINK, COLOR, 5);
+                        controller.setObjectProperty(ref.m_id, LINK, KIND, -1);
+                    }
+                    else
+                    {
+                        bool isImplicit;
+                        controller.getObjectProperty(it->second, PORT, IMPLICIT, isImplicit);
+
+                        if (isImplicit)
+                        {
+                            // this should be a modelica link
+                            controller.setObjectProperty(ref.m_id, LINK, KIND, 2);
+                        }
+                    }
+                    // otherwise this should be a regular link
+                }
+            }
         }
         else
         {
@@ -287,6 +317,114 @@ int XMIResource::loadStringArray(xmlTextReaderPtr reader, enum object_properties
     v.push_back(to_string(xmlTextReaderConstValue(reader)));
 
     controller.setObjectProperty(o.id(), o.kind(), property, v);
+    return 1;
+}
+
+/* helper function to encode simple string */
+static std::vector<double> encode_string_vector(const std::vector<std::string>& v)
+{
+    std::vector<double> ret;
+
+    // header
+    ret.push_back(sci_strings);
+
+    // serialize as a Scilab vector
+    ret.push_back(2); // MxN
+    ret.push_back(v.size()); // M
+    if (v.size() > 0)
+    {
+        ret.push_back(1);    // N
+    }
+    else
+    {
+        ret.push_back(0);
+    }
+
+    // reserve some space to store the length of each string (including the null terminating character)
+    ret.resize(ret.size() + v.size());
+
+    // store the index and the null terminated UTF-8 strings
+    size_t stringOffset = 0;
+    for (size_t i = 0; i < v.size(); ++i)
+    {
+        const std::string& str = v[i];
+        // length as a 64bit index (as we store on a double vector)
+        size_t len = ((str.size() + 1) * sizeof(char) + sizeof(double) - 1) / sizeof(double);
+
+        // insert the offset
+        auto it = ret.begin() + 4 + i;
+        stringOffset += len;
+        *it = stringOffset;
+
+        // reserve some space for the string
+        size_t size = ret.size();
+        ret.resize(size + len);
+
+        // copy the UTF-8 encoded values (\0 terminated thanks to the resize)
+        std::memcpy(ret.data() + size, str.data(), str.size());
+    }
+
+    return ret;
+}
+
+/* helper function to decode simple string */
+static std::vector<std::string> decode_string_vector(const std::vector<double>& v)
+{
+    std::vector<std::string> exprs;
+
+    if (v.size() < 3)
+    {
+        return exprs;
+    }
+
+    // decode header
+    int type = v[0];
+    int iDims = v[1];
+    if (type != sci_strings )
+    {
+        return exprs;
+    }
+    if (iDims < 2)
+    {
+        return exprs;
+    }
+
+    // number of elements (setup the first one)
+    int iElements = v[2];
+    for (int i = 1; i < iDims; ++i)
+    {
+        iElements *= v[2 + i];
+    }
+
+    if (iElements == 0)
+    {
+        return exprs;
+    }
+
+    // decode UTF-8 strings
+    char* pString = (char*) (v.data() + 2 + iDims + iElements);
+    size_t len = static_cast<size_t>(v[2 + iDims]);
+    for (int i = 1; i < iElements; i++)
+    {
+        exprs.emplace_back(pString);
+
+        pString = (char*) (v.data() + 2 + iDims + iElements + len);
+        len = static_cast<size_t>(v[2 + iDims + i]);
+    }
+    exprs.emplace_back(pString);
+
+    return exprs;
+}
+
+int XMIResource::loadEncodedStringArray(xmlTextReaderPtr reader, enum object_properties_t property, const model::BaseObject& o)
+{
+    std::vector<double> v;
+    controller.getObjectProperty(o.id(), o.kind(), property, v);
+
+    std::vector<std::string> exprsAsString = decode_string_vector(v);
+    exprsAsString.push_back(to_string(xmlTextReaderConstValue(reader)));
+
+    controller.setObjectProperty(o.id(), o.kind(), property, encode_string_vector(exprsAsString));
     return 1;
 }
 
@@ -919,6 +1057,13 @@ int XMIResource::processElement(xmlTextReaderPtr reader)
 
                         // assign the child
                         model::BaseObject parent = processed.back();
+
+                        controller.referenceObject(o);
+                        controller.setObjectProperty(o, BLOCK, PARENT_DIAGRAM, root);
+                        if (parent.kind() == BLOCK)
+                        {
+                            controller.setObjectProperty(o, BLOCK, PARENT_BLOCK, parent.id());
+                        }
                         std::vector<ScicosID> children;
                         controller.getObjectProperty(parent.id(), parent.kind(), CHILDREN, children);
                         children.push_back(o);
@@ -934,6 +1079,13 @@ int XMIResource::processElement(xmlTextReaderPtr reader)
 
                         // assign the child
                         model::BaseObject parent = processed.back();
+
+                        controller.referenceObject(o);
+                        controller.setObjectProperty(o, LINK, PARENT_DIAGRAM, root);
+                        if (parent.kind() == BLOCK)
+                        {
+                            controller.setObjectProperty(o, LINK, PARENT_BLOCK, parent.id());
+                        }
                         std::vector<ScicosID> children;
                         controller.getObjectProperty(parent.id(), parent.kind(), CHILDREN, children);
                         children.push_back(o);
@@ -949,6 +1101,13 @@ int XMIResource::processElement(xmlTextReaderPtr reader)
 
                         // assign the child
                         model::BaseObject parent = processed.back();
+
+                        controller.referenceObject(o);
+                        controller.setObjectProperty(o, ANNOTATION, PARENT_DIAGRAM, root);
+                        if (parent.kind() == BLOCK)
+                        {
+                            controller.setObjectProperty(o, ANNOTATION, PARENT_BLOCK, parent.id());
+                        }
                         std::vector<ScicosID> children;
                         controller.getObjectProperty(parent.id(), parent.kind(), CHILDREN, children);
                         children.push_back(o);
@@ -993,6 +1152,8 @@ int XMIResource::processElement(xmlTextReaderPtr reader)
 
             model::BaseObject parent = processed.back();
             // add the port them to the parent
+            controller.setObjectProperty(o, PORT, SOURCE_BLOCK, parent.id());
+
             std::vector<ScicosID> ports;
             controller.getObjectProperty(parent.id(), parent.kind(), p, ports);
             ports.push_back(o);
@@ -1126,7 +1287,7 @@ int XMIResource::processText(xmlTextReaderPtr reader)
             break;
         case e_expression:
             // expression is a Block property
-            ret = loadStringArray(reader, EXPRS, processed.back());
+            ret = loadEncodedStringArray(reader, EXPRS, processed.back());
             break;
         case e_context:
             // context is a Layer property

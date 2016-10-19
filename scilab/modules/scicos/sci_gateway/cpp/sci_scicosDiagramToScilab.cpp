@@ -35,8 +35,8 @@ extern "C"
 using namespace org_scilab_modules_scicos;
 /*--------------------------------------------------------------------------*/
 static char funname[] = "scicosDiagramToScilab";
-types::InternalType* importFile(char const* file);
-bool exportFile(int index, char const* file, types::InternalType* uid);
+static types::InternalType* importFile(char const* file);
+static bool exportFile(int index, char const* file, types::InternalType* uid);
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_scicosDiagramToScilab(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -121,7 +121,7 @@ types::Function::ReturnValue sci_scicosDiagramToScilab(types::typed_list &in, in
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
-types::InternalType* importFile(char const* file)
+static types::InternalType* importFile(char const* file)
 {
     // create a diagram
     org_scilab_modules_scicos::Controller controller;
@@ -134,10 +134,11 @@ types::InternalType* importFile(char const* file)
         return nullptr;
     }
 
-    return view_scilab::Adapters::instance().allocate_view(uid, DIAGRAM);
+    types::InternalType* pIT = view_scilab::Adapters::instance().allocate_view(uid, DIAGRAM);
+    return pIT;
 }
 /*--------------------------------------------------------------------------*/
-bool exportFile(int index, char const* file, types::InternalType* type)
+static bool exportFile(int index, char const* file, types::InternalType* type)
 {
     // check that the passed argument is a diagram
     const model::BaseObject* o = view_scilab::Adapters::instance().descriptor(type);

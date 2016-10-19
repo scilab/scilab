@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -33,55 +33,14 @@ extern "C" {
 namespace org_scilab_modules_scicos
 {
 
-/* helper function to decode simple string EXPRS */
-static std::vector<std::string> decode_string_vector(const std::vector<double>& v)
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, double& v)  const
 {
-    std::vector<std::string> ret;
-    std::vector<double>::const_iterator it = v.begin();
-
-    int strHeader = *it++;
-    if (strHeader != sci_strings)
-    {
-        return ret;
-    }
-    unsigned int iDims = *it++;
-
-    // manage multi-dimensionnal arrays (will be serialized as a vector)
-    unsigned int iElements = 1;
-    for (unsigned int i = 0; i < iDims; ++i)
-    {
-        iElements *= static_cast<unsigned int>(*it++);
-    }
-
-    // retrieve the length of each encoded string, stored as a stack
-    std::vector<unsigned int> stringsLength;
-    stringsLength.reserve(iElements + 1);
-    stringsLength.push_back(0);
-    for (unsigned int i = 0; i < iElements; ++i)
-    {
-        stringsLength.push_back(*it++);
-    }
-
-    // Retrieving the pointers (already UTF-8 encoded char*) and store them as strings
-    ret.reserve(iElements);
-    const double* strData = &(*it);
-    for (unsigned int i = 0; i < iElements; ++i)
-    {
-        // push the data
-        ret.push_back((char*) (strData + stringsLength[i]));
-    }
-
-    return ret;
-}
-
-
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v)  const
-{
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -130,13 +89,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, dou
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, int& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -200,13 +160,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, bool& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -255,13 +216,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, boo
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, std::string& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -374,13 +336,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, ScicosID& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -461,13 +424,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<double>& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, std::vector<double>& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -552,13 +516,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<int>& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, std::vector<int>& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -627,13 +592,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<bool>& /*v*/) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, std::vector<bool>& /*v*/) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -678,13 +644,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<std::string>& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, std::vector<std::string>& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -702,14 +669,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case DIAGRAM_CONTEXT:
                 o->getContext(v);
                 return true;
-            case EXPRS:
-            {
-                std::vector<double> data;
-                o->getExprs(data);
-
-                v = decode_string_vector(data);
-                return true;
-            }
             default:
                 break;
         }
@@ -745,13 +704,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<ScicosID>& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, std::vector<ScicosID>& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {

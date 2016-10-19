@@ -23,13 +23,13 @@ endfunction
 funcprot(p);
 // Allocate an Annotation
 o = TEXT_f("define")
-Xcos debug: objectCreated( 1 , ANNOTATION )
-Xcos trace: propertyUpdated( 1 , ANNOTATION , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , ANNOTATION , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , ANNOTATION , DESCRIPTION ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , ANNOTATION , FONT ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , ANNOTATION , FONT_SIZE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , ANNOTATION , STYLE ) : NO_CHANGES
+Xcos info:    objectCreated( 1 , ANNOTATION )
+Xcos trace:   propertyUpdated( 1 , ANNOTATION , GEOMETRY ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 1 , ANNOTATION , GEOMETRY ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 1 , ANNOTATION , DESCRIPTION ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 1 , ANNOTATION , FONT ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 1 , ANNOTATION , FONT_SIZE ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 1 , ANNOTATION , STYLE ) : NO_CHANGES
  o  = 
 GUI     : TEXT_f
 Graphics: 
@@ -54,23 +54,15 @@ o.gui
  TEXT_f
 // Modify it
 o = TEXT_f("set", o)
-Xcos debug: objectCreated( 2 , ANNOTATION )
-Xcos trace: propertyUpdated( 2 , ANNOTATION , DESCRIPTION ) : NO_CHANGES
-Xcos trace: propertyUpdated( 2 , ANNOTATION , FONT ) : NO_CHANGES
-Xcos trace: propertyUpdated( 2 , ANNOTATION , FONT_SIZE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 2 , ANNOTATION , UID ) : NO_CHANGES
-Xcos trace: propertyUpdated( 2 , ANNOTATION , STYLE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 2 , ANNOTATION , PARENT_DIAGRAM ) : NO_CHANGES
-Xcos trace: propertyUpdated( 2 , ANNOTATION , PARENT_BLOCK ) : NO_CHANGES
-Xcos trace: propertyUpdated( 2 , ANNOTATION , RELATED_TO ) : FAIL
-Xcos trace: propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : SUCCESS
-Xcos trace: propertyUpdated( 2 , ANNOTATION , DESCRIPTION ) : SUCCESS
-Xcos trace: propertyUpdated( 2 , ANNOTATION , FONT ) : SUCCESS
-Xcos trace: propertyUpdated( 2 , ANNOTATION , FONT_SIZE ) : SUCCESS
-Xcos trace: propertyUpdated( 2 , ANNOTATION , STYLE ) : NO_CHANGES
-Xcos debug: objectDeleted( 1 , ANNOTATION )
+Xcos info:    objectCreated( 2 , ANNOTATION )
+Xcos info:    objectCloned( 1 , 2 , ANNOTATION )
+Xcos trace:   propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : NO_CHANGES
+Xcos debug:   propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : SUCCESS
+Xcos debug:   propertyUpdated( 2 , ANNOTATION , DESCRIPTION ) : SUCCESS
+Xcos debug:   propertyUpdated( 2 , ANNOTATION , FONT ) : SUCCESS
+Xcos debug:   propertyUpdated( 2 , ANNOTATION , FONT_SIZE ) : SUCCESS
+Xcos trace:   propertyUpdated( 2 , ANNOTATION , STYLE ) : NO_CHANGES
+Xcos info:    objectDeleted( 1 , ANNOTATION )
  o  = 
 GUI     : TEXT_f
 Graphics: 
@@ -96,4 +88,4 @@ o.gui
  TEXT_f
 // Check that all the model items are freed
 clear
-Xcos debug: objectDeleted( 2 , ANNOTATION )
+Xcos info:    objectDeleted( 2 , ANNOTATION )

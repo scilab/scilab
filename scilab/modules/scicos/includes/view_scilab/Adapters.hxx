@@ -59,7 +59,8 @@ public:
 
     adapters_index_t lookup_by_typename(const std::wstring& name);
     std::wstring get_typename(adapters_index_t index);
-    const model::BaseObject* descriptor(types::InternalType* v);
+    model::BaseObject* descriptor(types::InternalType* v);
+    model::BaseObject* descriptor(adapters_index_t index, types::InternalType* v);
     types::InternalType* allocate_view(ScicosID id, kind_t kind);
 
 private:

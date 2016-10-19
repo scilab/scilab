@@ -61,6 +61,7 @@ private:
     int loadDoubleArray(xmlTextReaderPtr reader, enum object_properties_t property, const model::BaseObject& o);
     int loadIntArray(xmlTextReaderPtr reader, enum object_properties_t property, const model::BaseObject& o);
     int loadStringArray(xmlTextReaderPtr reader, enum object_properties_t property, const model::BaseObject& o);
+    int loadEncodedStringArray(xmlTextReaderPtr reader, enum object_properties_t property, const model::BaseObject& o);
     int loadBase64(xmlTextReaderPtr reader, enum object_properties_t property, const model::BaseObject& o);
     int loadPoint(xmlTextReaderPtr reader, const model::BaseObject& o);
     int loadGeometry(xmlTextReaderPtr reader, const model::BaseObject& o);
