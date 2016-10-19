@@ -17,7 +17,8 @@ along with this program.
 tests :
 =======
 
-Files: tests/unit_test/DejaVuSansMono.ttf
+Files:
+tests/unit_tests/DejaVuSansMono.ttf
 
 This package was debianized by Peter Cernak <pce@users.sourceforge.net> on
 Sun,  5 Sep 2004 17:10:26 +0200.

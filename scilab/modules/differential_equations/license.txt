@@ -18,7 +18,8 @@ along with this program.
 DDaskr:
 =======
 
-Files: scr/fortran/ddaskr.f scr/fortran/daux.f
+Files:
+src/fortran/ddaskr.f src/fortran/daux.f
 
 Produced at the Lawrence Livermore National Laboratory
 Written by A.C. Hindmarsh, P. N. Brown, and L. R. Petzold.
@@ -81,7 +82,8 @@ advertising or product endorsement purposes.
 TWODQ:
 ======
 
-File: src/fortran/twodq.f
+Files:
+src/fortran/twodq.f
 
 Copyright:  BARNHILL,ROBERT,UNIV. OF UTAH
 

@@ -17,7 +17,8 @@ along with this program.
 getdynamicdebuginfo:
 ====================
 
-Files: src/c/getdynamicdebuginfo.c
+Files:
+src/c/getdynamicdebuginfo.c
 
 Copyright: Albert Cahalan
 
@@ -27,7 +28,8 @@ LGPL
 md5:
 ====
 
-Files: src/c/md5.c
+Files:
+src/c/md5.c
 
 Copyright: L. Peter Deutsch
 
@@ -49,7 +51,8 @@ License:
 backtrace:
 ==========
 
-Files: src/c/backtrace.c src/c/backtrace.h src/c/signal_mgmt.c
+Files:
+src/c/backtrace.c src/c/backtrace.h src/c/signal_mgmt.c
 
 Copyright: 2006  EDF - Code Saturne
 
@@ -57,7 +60,8 @@ License: LGPL 2.1+
 
 
 
-Files: src/c/signal_mgmt.c (list of exceptions and errors)
+Files: (list of exceptions and errors)
+src/c/signal_mgmt.c
 
 Copyright: 
 Copyright (c) 2004-2010 The Trustees of Indiana University and Indiana

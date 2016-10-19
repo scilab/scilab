@@ -17,7 +17,8 @@ along with this program.
 mt:
 ===
 
-File: src/c/mt.c
+Files:
+src/c/mt.c
 
 Copyright:
 1997, 1999 Makoto Matsumoto and Takuji Nishimura.
@@ -28,7 +29,8 @@ Artistic license
 Freemat:
 ========
 
-File: src/c/{ignbin.c, genbet.c, ignpoi.c, sgamma.c, sexpo.c}
+Files:
+src/c/{ignbin.c,genbet.c,ignpoi.c,sgamma.c,sexpo.c}
 
 Copyright:
 2002-2004 Samit Basu
@@ -53,7 +55,8 @@ License:
 kiss:
 =====
 
-File: src/c/kiss.c
+Files:
+src/c/kiss.c
 
 Copyright:
 G. Marsaglia

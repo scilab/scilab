@@ -16,7 +16,8 @@ along with this program.
 Ripole:
 =======
 
-Files: src/c/ripole/*
+Files:
+src/c/ripole/*
 
 Copyright:
 2003, PLD

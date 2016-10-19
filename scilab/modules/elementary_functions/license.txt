@@ -51,7 +51,8 @@ C   upon privately owned rights.
 qsort:
 ======
 
-File: src/c/qsort.c
+Files:
+src/c/qsort.c
 
 Copyright:
 The Regents of the University of California.
@@ -95,7 +96,8 @@ Redistribution and use in source and binary forms, with or without modification,
 Eispack:
 ========
 
-Files: src/fortran/hqror2.f
+Files:
+src/fortran/hqror2.f
 
 Copyright:
 1983 - Burton s. Garbow

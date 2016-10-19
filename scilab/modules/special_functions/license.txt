@@ -17,7 +17,8 @@ along with this program.
 Faddeeva:
 =======
 
-Files: src/cpp/faddeeva.cpp, src/cpp/faddeeva.h
+Files:
+src/cpp/faddeeva.cpp src/cpp/faddeeva.h
 
 Copyright:
  Copyright (c) 2012 Massachusetts Institute of Technology

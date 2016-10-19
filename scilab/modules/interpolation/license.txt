@@ -17,7 +17,7 @@ Slatec:
 =======
 
 Files:
-src/fortran/slatec/{pchim.f, dtensbs.f}
+src/fortran/slatec/{pchim.f,dtensbs.f}
 
 Copyright:
 

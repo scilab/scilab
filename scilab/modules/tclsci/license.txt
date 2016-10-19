@@ -16,7 +16,8 @@ along with this program.
 BWidget:
 ========
 
-Files: tcl/BWidget-*/
+Files:
+tcl/BWidget-*/
 
 Copyright:
 1998-1999 UNIFIX. 
@@ -28,7 +29,8 @@ X11
 sciGUI:
 =======
 
-Files: tcl/sciGUI/*
+Files:
+tcl/sciGUI/*
 
 Copyright:
 2004 Jaime Urzua Grez

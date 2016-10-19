@@ -15,7 +15,8 @@ along with this program.
 Eispack:
 ========
 
-Files: src/fortran/balbak.f 
+Files:
+src/fortran/balbak.f 
 
 Copyright:
 1983 - Burton s. Garbow
@@ -26,8 +27,9 @@ Public domain
 RPolyPlusPlus:
 ==============
 
-Files: src/cpp/find_polynomial_roots_jenkins_traub.cc src/cpp/polynomial.cc
-       src/cpp/find_polynomial_roots_jenkins_traub.h  src/cpp/polynomial.h
+Files:
+src/cpp/find_polynomial_roots_jenkins_traub.cc src/cpp/polynomial.cc
+src/cpp/find_polynomial_roots_jenkins_traub.h  src/cpp/polynomial.h
 
 Copyright:
 2015 - Chris Sweeney
