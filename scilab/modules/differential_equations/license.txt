@@ -88,3 +88,17 @@ src/fortran/twodq.f
 Copyright:  BARNHILL,ROBERT,UNIV. OF UTAH
 
 License: Public domain (like cmlib)
+
+QUADPACK:
+=========
+
+Files:
+src/fortran/dqags.f
+src/fortran/dqagse.f
+src/fortran/dqelg.f
+src/fortran/dqk21.f
+src/fortran/dqpsrt.f
+
+License: Public domain
+
+
