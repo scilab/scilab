@@ -33,3 +33,20 @@ are properly credited.  The authors and the University of California
 make no representations as to the suitability of this software for
 any purpose.  It is provided `as is', without express or implied warranty.
 
+Esmond G. Ng and Barry W. Peyton:
+=================================
+
+Files:
+src/fortran/blkfct.f
+src/fortran/inpnv.f
+src/fortran/ordmmd.f
+src/fortran/symfct.f
+
+Copyright:
+1994-1995
+Esmond G. Ng and Barry W. Peyton
+Oak Ridge National Laboratory
+
+License:
+Public domain
+
