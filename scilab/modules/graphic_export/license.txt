@@ -16,6 +16,7 @@ PPMEncoder:
 ===========
 
 Files:
+src/java/org/scilab/modules/graphic_export/convertToPPM/ImageEncoder.java
 src/java/org/scilab/modules/graphic_export/convertToPPM/PPMEncoder.java
 
 Copyright:
