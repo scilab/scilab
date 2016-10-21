@@ -101,4 +101,15 @@ src/fortran/dqpsrt.f
 
 License: Public domain
 
+COLNEW:
+=======
+
+Files:
+src/fortran/colnew.f
+
+Copyright:
+u. ascher, university of british columbia
+g. bader, university of heidelberg
+
+License: Public domain
 
