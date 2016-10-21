@@ -54,3 +54,17 @@ Copyright:
 
 License:
 Public domain
+
+DLGAMMA:
+========
+
+Files:
+src/fortran/dlgama.f
+
+Copyright:
+1988 W. J. Cody and L. Stoltz, Argonne National Laboratory
+
+License:
+Public domain
+
+
