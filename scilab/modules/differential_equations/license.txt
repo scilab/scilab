@@ -15,16 +15,22 @@ For more information, see the COPYING file which you should have received
 along with this program.
 
 
-DDaskr:
-=======
+ODEPACK:
+========
 
 Files:
 src/fortran/ddaskr.f src/fortran/daux.f
+src/fortran/lsoda.f
+src/fortran/lsodi.f
 
+Copyright:
 Produced at the Lawrence Livermore National Laboratory
 Written by A.C. Hindmarsh, P. N. Brown, and L. R. Petzold.
 DASKR: UCRL-CODE-2002-058
 All rights reserved.
+
+License:
+BSD
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
