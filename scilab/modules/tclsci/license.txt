@@ -37,3 +37,18 @@ Copyright:
 
 License:
 GPL
+
+
+TCL widgets:
+============
+
+Files:
+tcl/utils/*
+
+Copyright:
+1996-1997 Stewart Allen
+1998-2003, Bryan Oakley
+1996,1997,1998 D. Richard Hipp
+
+License:
+GPLv2+
