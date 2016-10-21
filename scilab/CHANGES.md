@@ -309,7 +309,6 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 Bug Fixes
 ---------
 
-<<<<<<< HEAD
 ### Bugs fixed in 6.0.0:
 * [#2919](http://bugzilla.scilab.org/show_bug.cgi?id=2919): The `fchamp` example and demo were unclear and badly rendered
 * [#4327](http://bugzilla.scilab.org/show_bug.cgi?id=4327): Overloading did not support custom types names longer than 8 characters
@@ -380,6 +379,8 @@ Bug Fixes
 * [#14714](http://bugzilla.scilab.org/show_bug.cgi?id=14714): Crash/Leak when deleting datatip
 * [#14784](http://bugzilla.scilab.org/show_bug.cgi?id=14784): Setting field of graphics handle using children($) failed.
 * [#14796](http://bugzilla.scilab.org/show_bug.cgi?id=14796): `ind2sub(dims, [])` returns [] in version 6. Warnings due to a `[]+1` operation have been removed.
+* [#14775](http://bugzilla.scilab.org/show_bug.cgi?id=14775): load empty (0 bytes) .sod File crashes scilab
+* [#14808](http://bugzilla.scilab.org/show_bug.cgi?id=14808): E=[ 'A' 'B' 'C' 'D' 'E']  ,  E(0:0) Crash Scilab Console
 * [#14821](http://bugzilla.scilab.org/show_bug.cgi?id=14821): `getio`function has been added. An error on the diary file opened has been corrected.
 
 ### Bugs fixed in 6.0.0 beta-2 and earlier 6.0.0 pre-releases:

@@ -72,14 +72,14 @@ types::Function::ReturnValue sci_hdf5_load(types::typed_list &in, int _iRetCount
 
         switch (err)
         {
-            case 1:
-                Scierror(999, _("%s: %s is not a valid lib file.\n"), fname.data(), filename.data());
-                return types::Function::Error;
+            case 0:
+                break;
             case 2:
                 Scierror(999, "%s: %s", fname.data(), _("Redefining permanent variable.\n"));
                 return types::Function::Error;
             default:
-                break;
+                Scierror(999, _("%s: %s is not a valid lib file.\n"), fname.data(), filename.data());
+                return types::Function::Error;
         }
 
         lib->killMe();
