@@ -14,4 +14,19 @@ and continues to be available under such terms.
 For more information, see the COPYING file which you should have received
 along with this program.
 
+IEEE publications:
+==================
+
+Files:
+src/fortran/cmpse2.f
+src/fortran/cmpse3.f
+src/fortran/remez.f
+
+Copyright:
+James H. MCCLELLAN,  Massachusetts Institute of Technology
+Thomas W. PARKS, Rice University
+Lawrence R. RABINER, Bell laboratories
+
+License:
+Public domain
 
