@@ -97,10 +97,13 @@ Eispack:
 ========
 
 Files:
+src/fortran/comqr3.f
 src/fortran/hqror2.f
+
 
 Copyright:
 1983 - Burton s. Garbow
 
 License:
 Public domain
+
