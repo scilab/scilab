@@ -119,3 +119,16 @@ g. bader, university of heidelberg
 
 License: Public domain
 
+DCUTET:
+=======
+
+Files:
+src/fortran/dcutet.f
+
+Copyright:
+Jarle Berntsen, University of Bergen
+Ronald Cools, Katholieke Universiteit Leuven
+Terje O. Espelid, University of Bergen
+
+License: Public domain
+
