@@ -79,7 +79,7 @@ Linpack:
 ========
 
 Files:
-src/c/unsfdcopy.c, src/fortran/linpack/{dgefa.f,dgesl.f,icopy.f,pade.f,wcopy.f,wpade.f}
+src/c/unsfdcopy.c, src/fortran/linpack/{dgefa.f,dgesl.f,icopy.f,pade.f,wcopy.f,wpade.f,util.f}
 
 Copyright:
 1978-1993 - Jack Dongarra
