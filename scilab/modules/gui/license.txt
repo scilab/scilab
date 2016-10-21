@@ -101,3 +101,16 @@ License:
  You acknowledge that Software is not designed, licensed or intended for
  use in the design, construction, operation or maintenance of any nuclear
  facility.
+
+ImagePreview:
+=============
+
+Files:
+src/java/org/scilab/modules/gui/bridge/filechooser/ImagePreview.java
+
+Copyright:
+Copyright (c) 1995 - 2008 Sun Microsystems, Inc.
+
+License:
+BSD
+
