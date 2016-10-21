@@ -78,3 +78,16 @@ Copyright:
 
 License:
 GPL
+
+HOPDM:
+======
+
+Files:
+src/fortran/rdmps1.f
+
+Copyright:
+1996 Jacek Gondzio, Systems Research Institute
+
+License:
+Public Domain
+
