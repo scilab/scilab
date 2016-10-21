@@ -18,7 +18,8 @@ sp:
 ===
 
 Files:
-src/c/{spFortran.c,spSolve.c,spFactor.c,spOutput.c,spUtils.c,spBuild.c,spAllocate.c}
+src/c/spFortran.c src/c/spSolve.c src/c/spFactor.c src/c/spOutput.c src/c/spUtils.c
+src/c/spBuild.c src/c/spAllocate.c src/c/spConfig.h src/c/spDefs.h  src/c/spmatrix.h
 
 Copyright:
 1985,86,87,88 Kenneth S. Kundert and the University of California.
