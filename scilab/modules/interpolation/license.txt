@@ -58,3 +58,16 @@ Copyright:
 License:
 Public domain
 
+NSWC:
+=====
+
+Files:
+src/fortran/dspfit.f
+
+Copyright:
+CARL DE BOOR (UNIVERSITY OF WISCONSIN)
+A.H. MORRIS (NSWC)
+
+License:
+Public domain
+
