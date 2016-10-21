@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [num,den]=mrfit(w,mod,r)
+function [num,den]=mrfit(w,mod,r,weight)
     //Syntax:
     //[num,den]=mrfit(w,mod,r)
     //sys = mrfit(w,mod,r)
@@ -33,7 +33,17 @@ function [num,den]=mrfit(w,mod,r)
     endfunction
 
     w=w(:);mod=mod(:);
-    [LHS,RHS]=argn(0);
+    [LHS, RHS]=argn(0);
+    if RHS < 4 then
+        weight=ones(length(w),1);
+    else
+        if ~iscolumn(weight) then
+            error(msprintf(_("%s: Argument #%d: Column expected.\n"), "mrfit", 4));
+        end
+        if size(weight, "*") <> size(w, "*") then
+            error(msprintf(_("%s: Arguments #%d and #%d: Same numbers of elements expected.\n"), "mrfit", 1, 4));
+        end
+    end
     if w(1)==0 then w(1)=%eps;end
 
     if r==0 then num=sum(mod)/size(mod,"*");den=1;return;end
@@ -47,7 +57,7 @@ function [num,den]=mrfit(w,mod,r)
     if slinf~=0 then mod($)=mod($-1)*10^slinf;end
     logw=log10(w);logmod=log10(mod);delw=mrfitdiff(logw);delmod=mrfitdiff(logmod);
 
-    weight=ones(length(w),1);
+    //weight=ones(length(w),1);
 
     junk=find(abs(mrfitdiff(delmod./delw)) > .6);
     if isempty(junk) then
