@@ -91,3 +91,17 @@ Copyright:
 License:
 Public Domain
 
+QLD:
+====
+
+Files:
+src/fortran/ql0001.f
+
+Copyright:
+Prof. K.Schittkowski, University of Bayreuth
+Prof. MJD Powell, University of Cambridge
+A.L. Tits and J.L. Zhou, University of Maryland
+
+License:
+Public Domain
+

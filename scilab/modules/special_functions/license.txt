@@ -15,7 +15,7 @@ along with this program.
 
 
 Faddeeva:
-=======
+=========
 
 Files:
 src/cpp/faddeeva.cpp src/cpp/faddeeva.h
@@ -42,4 +42,15 @@ License:
  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- 
+
+PSI:
+====
+
+Files:
+src/fortran/psi.f
+
+Copyright:
+1988 W. J. Cody, Argonne National Laboratory
+
+License:
+Public domain
