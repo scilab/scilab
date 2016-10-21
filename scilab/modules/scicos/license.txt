@@ -37,3 +37,16 @@ distribution.
 3. Neither the name of the UC/LLNL nor the names of its contributors
 may be used to endorse or promote products derived from this software
 without specific prior written permission.
+
+EZXML:
+======
+
+Files:
+src/c/ezxml.c src/c/ezxml.h
+
+Copyright:
+2004-2006 Aaron Voisine
+
+License:
+MIT
+
