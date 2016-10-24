@@ -38,6 +38,7 @@ function help(varargin)
             // Search a function name
             key=stripblanks(key)
 
+            global %helps
             if or(part(key,1)==["(",")","[","]","{","}","%","''","""",":","*","/","\",".","<",">","&","^","|","~","+","-"]) & exists(key)==0 then
                 key="symbols";
             end
@@ -47,7 +48,6 @@ function help(varargin)
                 key="symbols";
             end
 
-            global %helps
             helpbrowser(%helps(:,1), key, getlanguage(), %f);
 
             // If the function name does not exists then full-text search is done (See Java code)
