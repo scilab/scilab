@@ -205,7 +205,7 @@ or a 3-components vector to set the position in axes coordinates to draw the dat
 * The zero-pole-gain (zpk) representation added for linear dynamical systems.
 * It is now possible to add a title to the axes via the "Label -> Title" context menu entry
 * `getPreferencesValue` can now read a tag having multiple occurrences, and accepts the path to a preferences file instead of its XML handle.
-
+* atomsSetConfig does not update cache.
 
 Help pages:
 -----------

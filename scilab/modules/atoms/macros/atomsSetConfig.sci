@@ -21,7 +21,6 @@ function nbChanges = atomsSetConfig(field, value)
 
     rhs        = argn(2);
     nbChanges      = 0;
-    systemUpdateNeeded = %F;
 
     // Check number of input arguments
     // =========================================================================
@@ -130,10 +129,6 @@ function nbChanges = atomsSetConfig(field, value)
             continue;
         end
 
-        if field(i) == "offline" then
-            systemUpdateNeeded = %T;
-        end
-
         k = find(field(i) == pref_attrs(1, :));
         if ~isempty(k) then
             if field(i) == "useProxy" then
@@ -172,13 +167,6 @@ function nbChanges = atomsSetConfig(field, value)
     end
 
     mputl(config_str, atoms_directory + "config");
-
-    // SystemUpdate
-    // =========================================================================
-
-    if systemUpdateNeeded then
-        atomsSystemUpdate();
-    end
 
     nbChanges = nbChanges + proxy_changes;
 endfunction
