@@ -335,6 +335,7 @@ Bug Fixes
 * [#13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597): `help format` claimed setting a number of digits instead of characters
 * [#13613](http://bugzilla.scilab.org/show_bug.cgi?id=13613): `isdef(name, 'l')` produced wrong output.
 * [#13757](http://bugzilla.scilab.org/show_bug.cgi?id=13757): The toolbox menu dit not load properly ATOMS modules not autoloaded.
+* [#13895](http://bugzilla.scilab.org/show_bug.cgi?id=13895): p.a.h = 1; p.b.h = 3; p(:).h  CRASH
 * [#13990](http://bugzilla.scilab.org/show_bug.cgi?id=13990): `warning` with localization enabled some memory corruption
 * [#14192](http://bugzilla.scilab.org/show_bug.cgi?id=14192): `g_margin` error-ed for double integrator.
 * [#14367](http://bugzilla.scilab.org/show_bug.cgi?id=14367): `edit_curv` failed opening due to a `[]+1` operation.
