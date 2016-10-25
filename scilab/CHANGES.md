@@ -346,6 +346,7 @@ Bug Fixes
 * [#14379](http://bugzilla.scilab.org/show_bug.cgi?id=14379): Problem with lists of functions having 2 arguments.
 * [#14395](http://bugzilla.scilab.org/show_bug.cgi?id=14395): `dir` displayed a []+".." warning when no subdirectory exists.
 * [#14411](http://bugzilla.scilab.org/show_bug.cgi?id=14411): abort crashes scilab in a loop while
+* [#14437](http://bugzilla.scilab.org/show_bug.cgi?id=14437): Problem with the affectation cmde "=" applied to a "list of struct"
 * [#14448](http://bugzilla.scilab.org/show_bug.cgi?id=14448): removed havewindow() was still documented
 * [#14461](http://bugzilla.scilab.org/show_bug.cgi?id=14461): Calling `grand(n, "markov", P, x0)` did not return all outputs.
 * [#14513](http://bugzilla.scilab.org/show_bug.cgi?id=14513): `isqual` comparing two built-in functions yielded an error.

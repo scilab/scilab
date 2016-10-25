@@ -896,6 +896,15 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             if (pITCurrent->isStruct())
             {
                 types::Struct* pStruct = pITCurrent->getAs<types::Struct>();
+                // In case where pStruct is in several scilab variable,
+                // we have to clone it for keep the other variables unchanged.
+                if (pStruct->getRef() > 1)
+                {
+                    pStruct = pStruct->clone();
+                    pEH->setCurrent(pStruct);
+                    pEH->setReinsertion();
+                }
+
                 std::wstring pwcsFieldname = (*iterFields)->getExpAsString();
 
                 if (pEH->needResize())
