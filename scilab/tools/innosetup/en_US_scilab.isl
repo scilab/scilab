@@ -43,7 +43,7 @@ en_US.DescriptionTclTK =TCL/TK in Scilab
 en_US.DescriptionJVM =Java Runtime
 en_US.DescriptionAtlas =Atlas library 3.8.0 CPU optimized
 en_US.DescriptionFftwModule =FFTW interface for Scilab
-en_US.DescriptionMKLFftwLibrary =FFTW library optimized by Intel Math Kernel Library
+en_US.DescriptionMKLFftwLibrary =FFTW library optimized by Intel Math Kernel Library (subject to Intel EULA)
 en_US.DescriptionRefFftwLibrary =Reference FFTW library
 en_US.DescriptionDevTools =Development Tools
 en_US.DescriptionTests =Tests for Scilab
@@ -95,7 +95,7 @@ en_US.DescriptionCLIInstall =Command Line Installation (no gui)
 en_US.DescriptionCPUOptimization =CPU Optimization for Scilab
 en_US.DescriptionATLASLibrary =Atlas Library for Scilab
 en_US.DescriptionRefBlasLibrary =Blas, Lapack Reference libraries for Scilab
-en_US.DescriptionMKLLibrary =Intel Math Kernel Library for Scilab
+en_US.DescriptionMKLLibrary =Intel Math Kernel Library (subject to Intel EULA)
 ;
 en_US.DoTasksJustAfterInstallMsg2 =BLAS, LAPACK reference libraries will be installed and used.
 en_US.DoTasksJustAfterInstallMsg3 =FFTW3 reference library will be installed and used.
