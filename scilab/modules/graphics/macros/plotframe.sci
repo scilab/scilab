@@ -48,10 +48,6 @@ function plotframe(rect,axisdata,options,legs,subwindow)
     if exists("Captions","local") == 1 then
         f_captions = %t ;
     end
-    if exists("captions","local") == 1 then
-        f_captions = %t ;
-        Captions = captions;
-    end
 
     if exists("subwin","local") == 1 then
         f_subwin = %t ;
