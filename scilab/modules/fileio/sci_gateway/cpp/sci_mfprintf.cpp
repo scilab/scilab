@@ -148,6 +148,11 @@ types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount,
     wcsInput = pFileStr->get(0);
     wcsStringToWrite = scilab_sprintf("mfprintf", wcsInput, in, &nbrOfLines, &iNewLine);
 
+    if (wcsStringToWrite == NULL)
+    {
+        return types::Function::Error;
+    }
+
     if (isSTD)
     {
         for (int i = 0; i < nbrOfLines; i++)

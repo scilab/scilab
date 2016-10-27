@@ -414,6 +414,7 @@ Bug Fixes
 * [#14775](http://bugzilla.scilab.org/show_bug.cgi?id=14775): Loading empty (0 bytes) .sod File crashed scilab
 * [#14808](http://bugzilla.scilab.org/show_bug.cgi?id=14808): E=[ 'A' 'B' 'C' 'D' 'E']  ,  E(0:0) Crash Scilab Console
 * [#14821](http://bugzilla.scilab.org/show_bug.cgi?id=14821): `getio` function was missing. An error on the diary file opened has been corrected
+* [#14824](http://bugzilla.scilab.org/show_bug.cgi?id=14824): Incorrect error message with `mfprintf(fd, "%d", [])`.
 * [#14839](http://bugzilla.scilab.org/show_bug.cgi?id=14839): `plot2d2` crashed Scilab.
 * [#14887](http://bugzilla.scilab.org/show_bug.cgi?id=14887): For many graphic handle types, the display of the `.tag` value missed `".."` delimiters
 * [#14909](http://bugzilla.scilab.org/show_bug.cgi?id=14909): getlongpathname and getshortpathname return values with "\" instead of "/"
