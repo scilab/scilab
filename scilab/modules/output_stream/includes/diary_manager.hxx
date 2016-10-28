@@ -42,7 +42,7 @@ OUTPUT_STREAM_IMPEXP wchar_t **getDiaryFilenames(int *array_size);
 * @param[out] size of returned array
 * @return IDs
 */
-int *getDiaryIDs(int *array_size);
+OUTPUT_STREAM_IMPEXP int *getDiaryIDs(int *array_size);
 
 /**
 * get all IDs in manager

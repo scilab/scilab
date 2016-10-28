@@ -374,6 +374,7 @@ Bug Fixes
 * [#14714](http://bugzilla.scilab.org/show_bug.cgi?id=14714): Crash/Leak when deleting datatip
 * [#14784](http://bugzilla.scilab.org/show_bug.cgi?id=14784): Setting field of graphics handle using children($) failed.
 * [#14796](http://bugzilla.scilab.org/show_bug.cgi?id=14796): `ind2sub(dims, [])` returns [] in version 6. Warnings due to a `[]+1` operation have been removed.
+* [#14821](http://bugzilla.scilab.org/show_bug.cgi?id=14821): `getio`function has been added. An error on the diary file opened has been corrected.
 
 ### Bugs fixed in 6.0.0 beta-2 and earlier 6.0.0 pre-releases:
 

@@ -18,6 +18,8 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 #include "dynlib_io.h"
+#include "c_gateway_prototype.h"
+
 /*--------------------------------------------------------------------------*/
 IO_IMPEXP int gw_io(void);
 /*--------------------------------------------------------------------------*/
@@ -36,7 +38,7 @@ int sci_read4b(char *fname, unsigned long fname_len);
 int sci_write4b(char *fname, unsigned long fname_len);
 int sci_save(char *fname, void *pvApiCtx);
 int sci_percent_load(char *fname, unsigned long fname_len);
-int sci_getio(char *fname, unsigned long fname_len);
+C_GATEWAY_PROTOTYPE(sci_getio);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_IO_H__ */
 /*--------------------------------------------------------------------------*/
