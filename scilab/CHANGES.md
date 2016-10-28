@@ -202,7 +202,7 @@ or a 3-components vector to set the position in axes coordinates to draw the dat
 * When the view property of Axes object is set at `2d`, the rotation becomes impossible.
 * The zero-pole-gain (zpk) representation added for linear dynamical systems.
 
- 
+
 Help pages:
 -----------
 
@@ -390,6 +390,7 @@ Bug Fixes
 * [#14694](http://bugzilla.scilab.org/show_bug.cgi?id=14694): The list of named colors was misaligned and poorly rendered in `help color_list`
 * [#14710](http://bugzilla.scilab.org/show_bug.cgi?id=14710): fullpath(TMPDIR+...) was bugged on MacOS
 * [#14714](http://bugzilla.scilab.org/show_bug.cgi?id=14714): Crash/Leak when deleting datatip
+* [#14758](http://bugzilla.scilab.org/show_bug.cgi?id=14758): xstringb creates a figure when no exists.
 * [#14779](http://bugzilla.scilab.org/show_bug.cgi?id=14779): When used logarithmic mode using coordinates <=0, xsegs crashed Scilab.
 * [#14784](http://bugzilla.scilab.org/show_bug.cgi?id=14784): Setting field of graphics handle using children($) failed.
 * [#14796](http://bugzilla.scilab.org/show_bug.cgi?id=14796): `ind2sub(dims, [])` returns [] in version 6. Warnings due to a `[]+1` operation have been removed.
