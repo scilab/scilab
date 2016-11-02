@@ -585,6 +585,8 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
     while (pIT->isTrue())
     {
         pIT->killMe();
+        setResult(NULL);
+
         try
         {
             e.getBody().accept(*this);
