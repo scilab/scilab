@@ -999,11 +999,6 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         //index are ":"
         bool isForceColVector = il.size() == 4;
 
-        if (start < 1 || end < 1)
-        {
-            return NULL;
-        }
-
         //std::cout << start << ":" << step << ":" << end << std::endl;
         int size = static_cast<int>((end - start) / step + 1);
 
@@ -1012,8 +1007,9 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             return createEmpty();
         }
 
-        if (step > 0 && (size - 1) * step + start > m_iSize ||
-                step < 0 && start > m_iSize)
+        //check bounds
+        if (step > 0 && ((size - 1) * step + start > m_iSize || start < 1) ||
+                (step < 0 && (start > m_iSize || end < 1)))
         {
             return NULL;
         }
