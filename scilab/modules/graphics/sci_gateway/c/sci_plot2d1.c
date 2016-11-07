@@ -323,7 +323,7 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
         FREE(style);
         return 0;
     }
-    freeStrf = isDefStrf(strf);
+    freeStrf = !(isDefStrf(strf));
     if (get_legend_arg(pvApiCtx, fname, 5 + iskip, opts, &legend) == 0)
     {
         if (freeStrf)
@@ -333,7 +333,7 @@ int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
         FREE(style);
         return 0;
     }
-    freeLegend = isDefLegend(legend);
+    freeLegend = !(isDefLegend(legend));
     if (get_rect_arg(pvApiCtx, fname, 6 + iskip, opts, &rect) == 0)
     {
         if (freeLegend)
