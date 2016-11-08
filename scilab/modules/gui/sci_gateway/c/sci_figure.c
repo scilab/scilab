@@ -44,6 +44,7 @@ int sci_figure(char * fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr = NULL;
+    int iType = 0;
     int iFig = 0;
     int iRhs = nbInputArgument(pvApiCtx);
     int iId = 0;
@@ -98,7 +99,8 @@ int sci_figure(char * fname, void* pvApiCtx)
             return 0;
         }
 
-        if (isVarMatrixType(pvApiCtx, piAddr) == 0)
+        sciErr = getVarType(pvApiCtx, piAddr, &iType);
+        if (sciErr.iErr || iType != sci_matrix)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), fname, 1);
             return 0;

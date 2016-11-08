@@ -375,6 +375,7 @@ Bug Fixes
 * [#14553](http://bugzilla.scilab.org/show_bug.cgi?id=14553): find(a=b) crashed Scilab.
 * [#14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557): `csim` failed when the system has no state.
 * [#14564](http://bugzilla.scilab.org/show_bug.cgi?id=14564): fieldnames failed for empty structs.
+* [#14571](http://bugzilla.scilab.org/show_bug.cgi?id=14571): The type of input argument of `figure`function was not checked.
 * [#14578](http://bugzilla.scilab.org/show_bug.cgi?id=14578): LaTeX string used for text uicontrol was not updated.
 * [#14582](http://bugzilla.scilab.org/show_bug.cgi?id=14582): `gettext`or it alias `_()` were sometimes applied to broken literal strings
 * [#14586](http://bugzilla.scilab.org/show_bug.cgi?id=14586): Xcos simulation stop button did not work.
