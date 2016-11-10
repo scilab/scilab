@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
                 {
                     if (ConfigVariable::getWarningMode())
                     {
-                        sciprint(_("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
+                        sciprint(_("%s: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
                     }
                 }
 
@@ -104,7 +104,7 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
                 {
                     if (ConfigVariable::getWarningMode())
                     {
-                        sciprint(_("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
+                        sciprint(_("%s: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
                     }
                 }
                 iAlert = 0;
