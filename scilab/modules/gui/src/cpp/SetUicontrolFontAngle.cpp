@@ -38,9 +38,9 @@ int SetUicontrolFontAngle(void* _pvCtx, int iObjUID, void* _pvData, int valueTyp
 
     fontAngle = (char*)_pvData;
 
-    if (stricmp(fontAngle, "normal") != 0
-            && stricmp(fontAngle, "italic") != 0
-            && stricmp(fontAngle, "oblique") != 0)
+    if (os_stricmp(fontAngle, "normal") != 0
+            && os_stricmp(fontAngle, "italic") != 0
+            && os_stricmp(fontAngle, "oblique") != 0)
     {
         /* Wrong string format */
         Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n")), "FontAngle", "normal", "italic", "oblique");

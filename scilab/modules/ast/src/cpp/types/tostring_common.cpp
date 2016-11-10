@@ -243,17 +243,17 @@ void addDoubleValue(std::ostringstream * _postr, double _dblVal, DoubleFormat * 
         }
     }
 
-    os_sprintf(pstSign, "%s%s%s", pBlank, pSign, pBlank);
+    os_sprintf(pstSign, 32, "%s%s%s", pBlank, pSign, pBlank);
 
     if (ISNAN(_dblVal))
     {
         //NaN
-        os_sprintf(pstOutput, "%s%*s", pstSign, _pDF->iPrec, "Nan");
+        os_sprintf(pstOutput, 32, "%s%*s", pstSign, _pDF->iPrec, "Nan");
     }
     else if (!finite(_dblVal))
     {
         //Inf
-        os_sprintf(pstOutput, "%s%*s", pstSign, _pDF->iPrec, "Inf");
+        os_sprintf(pstOutput, 32, "%s%*s", pstSign, _pDF->iPrec, "Inf");
     }
     else if (_pDF->bExp)
     {
@@ -277,11 +277,11 @@ void addDoubleValue(std::ostringstream * _postr, double _dblVal, DoubleFormat * 
 
         if (_pDF->bPrintPoint)
         {
-            os_sprintf(pstFormat, "%s%%#d.%%0%ddD%%+.02d", pstSign, _pDF->iPrec);
+            os_sprintf(pstFormat, 32, "%s%%#d.%%0%ddD%%+.02d", pstSign, _pDF->iPrec);
         }
         else
         {
-            os_sprintf(pstFormat, "%s%%d%%0%ddD%%+.02d", pstSign, _pDF->iPrec);
+            os_sprintf(pstFormat, 32, "%s%%d%%0%ddD%%+.02d", pstSign, _pDF->iPrec);
         }
 
         if ((int)std::round(dblDec) != (int)dblDec)
@@ -297,25 +297,25 @@ void addDoubleValue(std::ostringstream * _postr, double _dblVal, DoubleFormat * 
             dblDec = d1;
         }
 
-        os_sprintf(pstOutput, pstFormat, (int)dblEnt, (int)dblDec, (int)dblTemp);
+        os_sprintf(pstOutput, 32, pstFormat, (int)dblEnt, (int)dblDec, (int)dblTemp);
     }
     else if ((_pDF->bPrintOne == true) || (isEqual(fabs(_dblVal), 1)) == false)
     {
         //do not print if _bPrintOne == false && _dblVal == 1
         if (_pDF->bPrintPoint)
         {
-            os_sprintf(pstFormat, "%s%%#-%d.%df", pstSign, _pDF->iWidth - 1, _pDF->iPrec);
+            os_sprintf(pstFormat, 32, "%s%%#-%d.%df", pstSign, _pDF->iWidth - 1, _pDF->iPrec);
         }
         else
         {
-            os_sprintf(pstFormat, "%s%%-%d.%df", pstSign, _pDF->iWidth - 2, _pDF->iPrec);  //-2 no point needed
+            os_sprintf(pstFormat, 32, "%s%%-%d.%df", pstSign, _pDF->iWidth - 2, _pDF->iPrec);  //-2 no point needed
         }
 
-        os_sprintf(pstOutput, pstFormat, fabs(_dblVal));
+        os_sprintf(pstOutput, 32, pstFormat, fabs(_dblVal));
     }
     else if (strlen(pstSign) != 0)
     {
-        os_sprintf(pstOutput, "%s", pstSign);
+        os_sprintf(pstOutput, 32, "%s", pstSign);
     }
 
     *_postr << pstOutput;

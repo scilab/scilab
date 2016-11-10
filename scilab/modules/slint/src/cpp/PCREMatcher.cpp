@@ -15,6 +15,7 @@
 
 extern "C"
 {
+#include "os_string.h"
 #include "sci_malloc.h"
 #include "charEncoding.h"
 }

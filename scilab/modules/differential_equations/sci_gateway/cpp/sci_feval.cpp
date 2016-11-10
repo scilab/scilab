@@ -189,7 +189,7 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
                 delete pDblOut;
 
                 char szError[bsiz];
-                os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "feval", "execFevalF");
+                os_sprintf(szError, bsiz, _("%s: An error occured in '%s' subroutine.\n"), "feval", "execFevalF");
                 os << szError;
                 throw ast::InternalError(os.str());
             }

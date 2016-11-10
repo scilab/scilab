@@ -86,7 +86,7 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                             return iRet;
                         }
 
-                        compVar = stricmp(pstData, "upper left");
+                        compVar = os_stricmp(pstData, "upper left");
                         if (compVar == 0)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 0);
@@ -96,7 +96,7 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                             return 0;
                         }
 
-                        compVar = stricmp(pstData, "upper right");
+                        compVar = os_stricmp(pstData, "upper right");
                         if (compVar == 0)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 1);
@@ -106,7 +106,7 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                             return 0;
                         }
 
-                        compVar = stricmp(pstData, "lower left");
+                        compVar = os_stricmp(pstData, "lower left");
                         if (compVar == 0)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 2);
@@ -116,7 +116,7 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                             return 0;
                         }
 
-                        compVar = stricmp(pstData, "lower right");
+                        compVar = os_stricmp(pstData, "lower right");
                         if (compVar == 0)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 3);
@@ -126,7 +126,7 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                             return 0;
                         }
 
-                        compVar = stricmp(pstData, "left");
+                        compVar = os_stricmp(pstData, "left");
                         if (compVar == 0)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 4);
@@ -136,7 +136,7 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                             return 0;
                         }
 
-                        compVar = stricmp(pstData, "right");
+                        compVar = os_stricmp(pstData, "right");
                         if (compVar == 0)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 5);
@@ -146,7 +146,7 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                             return 0;
                         }
 
-                        compVar = stricmp(pstData, "upper");
+                        compVar = os_stricmp(pstData, "upper");
                         if (compVar == 0)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 6);
@@ -156,7 +156,7 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                             return 0;
                         }
 
-                        compVar = stricmp(pstData, "lower");
+                        compVar = os_stricmp(pstData, "lower");
                         if (compVar == 0)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 7);
@@ -166,7 +166,7 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                             return 0;
                         }
 
-                        compVar = stricmp(pstData, "automatic");
+                        compVar = os_stricmp(pstData, "automatic");
                         if (compVar == 0)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 8);

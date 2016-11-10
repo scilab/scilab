@@ -68,7 +68,7 @@ static int findMatchingPrefixSuffix(const char* string, const char* find, BOOL s
         movingPointerOnFindCopy[0] = '\0';
         //Check if the cutted tmpfind match with the suffix of string that has adequat length
         pointerOnString = (char*)(string + stringLength - 1 - strlen(pointerOnFindCopy));
-        if ( !strnicmp(pointerOnFindCopy, pointerOnString, strlen(pointerOnFindCopy)) )
+        if ( !os_strnicmp(pointerOnFindCopy, pointerOnString, strlen(pointerOnFindCopy)) )
         {
             FREE(pointerOnFindCopy);
             pointerOnFindCopy = NULL;

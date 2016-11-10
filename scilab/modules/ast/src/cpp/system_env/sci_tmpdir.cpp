@@ -108,7 +108,7 @@ char* computeTMPDIR()
         char tmp_dir[PATH_MAX + FILENAME_MAX + 1];
         static char bufenv[PATH_MAX + 16];
         char *TmpDir = NULL;
-        os_sprintf(tmp_dir, "%sSCI_TMP_%d_", tmpDirDefault, _getpid());
+        os_sprintf(tmp_dir, PATH_MAX + FILENAME_MAX + 1, "%sSCI_TMP_%d_", tmpDirDefault, _getpid());
         if (CreateDirectoryA(tmp_dir, NULL) == FALSE)
         {
             DWORD attribs = GetFileAttributesA(tmp_dir);
@@ -121,7 +121,7 @@ char* computeTMPDIR()
 #ifdef _DEBUG
                 {
                     char MsgErr[1024];
-                    os_sprintf(MsgErr, _("Impossible to create : %s"), tmp_dir);
+                    os_sprintf(MsgErr, 1024, _("Impossible to create : %s"), tmp_dir);
                     MessageBoxA(NULL, MsgErr, _("Error"), MB_ICONERROR);
                     exit(1);
                 }
@@ -135,7 +135,7 @@ char* computeTMPDIR()
             }
         }
 
-        os_sprintf(bufenv, "TMPDIR=%s", tmp_dir);
+        os_sprintf(bufenv, PATH_MAX + 16, "TMPDIR=%s", tmp_dir);
         _putenv(bufenv);
 
         return os_strdup(tmp_dir);

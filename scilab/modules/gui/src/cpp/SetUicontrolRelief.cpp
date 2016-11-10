@@ -40,13 +40,13 @@ int SetUicontrolRelief(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
 
     relief = (char*)_pvData;
 
-    if (stricmp(relief, "flat") != 0
-            && stricmp(relief, "groove") != 0
-            && stricmp(relief, "raised") != 0
-            && stricmp(relief, "ridge") != 0
-            && stricmp(relief, "solid") != 0
-            && stricmp(relief, "sunken") != 0
-            && stricmp(relief, "default") != 0)
+    if (os_stricmp(relief, "flat") != 0
+            && os_stricmp(relief, "groove") != 0
+            && os_stricmp(relief, "raised") != 0
+            && os_stricmp(relief, "ridge") != 0
+            && os_stricmp(relief, "solid") != 0
+            && os_stricmp(relief, "sunken") != 0
+            && os_stricmp(relief, "default") != 0)
     {
         /* Wrong string format */
         Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken", "default");

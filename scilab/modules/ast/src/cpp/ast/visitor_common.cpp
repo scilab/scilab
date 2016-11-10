@@ -1497,7 +1497,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 {
                     char szError[bsiz];
                     const char* strFName = pITCurrent->getAs<types::Callable>()->getName().c_str();
-                    os_sprintf(szError, _("Wrong insertion: insertion in output of '%s' is not allowed.\n"), strFName);
+                    os_sprintf(szError, bsiz, _("Wrong insertion: insertion in output of '%s' is not allowed.\n"), strFName);
 
                     throw ast::InternalError(szError, 999, pEH->getExp()->getLocation());
                 }

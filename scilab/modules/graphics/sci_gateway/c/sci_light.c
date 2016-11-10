@@ -76,11 +76,11 @@ int sci_light(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, in
                 return 0;
             }
 
-            if (stricmp(str, "on") == 0)
+            if (os_stricmp(str, "on") == 0)
             {
                 visible = 1;
             }
-            else if (stricmp(str, "off") == 0)
+            else if (os_stricmp(str, "off") == 0)
             {
                 visible = 0;
             }
@@ -96,11 +96,11 @@ int sci_light(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, in
                 return 0;
             }
 
-            if (stricmp(str, "directional") == 0)
+            if (os_stricmp(str, "directional") == 0)
             {
                 type = 0;
             }
-            else if (stricmp(str, "point") == 0)
+            else if (os_stricmp(str, "point") == 0)
             {
                 type = 1;
             }

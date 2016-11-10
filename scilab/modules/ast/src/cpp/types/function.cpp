@@ -576,11 +576,7 @@ Callable::ReturnValue DynamicFunction::Init()
             /* Build the full path to the library */
             int iPathToLibLen = (strlen(pstScilabPath) + strlen(pstModulesPath) + strlen(m_stModule.c_str()) + strlen("/") + strlen(pstLTDir) + strlen(m_libName.c_str()) + 1);
             char* pstPathToLib = (char*)MALLOC(iPathToLibLen * sizeof(char));
-#ifdef _MSC_VER
             os_sprintf(pstPathToLib, iPathToLibLen, "%s%s%s/%s%s", pstScilabPath, pstModulesPath, m_stModule.c_str(), pstLTDir, m_libName.c_str());
-#else
-            os_sprintf(pstPathToLib, "%s%s%s/%s%s", pstScilabPath, pstModulesPath, m_stModule.c_str(), pstLTDir, m_libName.c_str());
-#endif
             FREE(pstScilabPath);
             hLib = LoadDynLibrary(pstPathToLib);
 

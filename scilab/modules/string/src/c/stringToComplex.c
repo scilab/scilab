@@ -29,18 +29,6 @@
 #define ComplexScilab "%i"
 #define ComplexI "i"
 /* ========================================================================== */
-#ifndef _MSC_VER
-#ifndef strnicmp
-#define strnicmp strncasecmp
-#endif
-#else
-#define stricmp _stricmp
-#endif
-#ifdef _MSC_VER
-#undef strnicmp
-#define strnicmp _strnicmp
-#endif
-/* ========================================================================== */
 static int ParseNumber(const char* tx);
 static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN, double *real, double *imag);
 static char* midstring(const char *tx, size_t pos, int nb);
@@ -286,27 +274,27 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
         if (lnum <= 1)
         {
             /* manages special cases nan + nani, ... */
-            if (strnicmp(modifiedTxt, NanString, strlen(NanString)) == 0)
+            if (os_strnicmp(modifiedTxt, NanString, strlen(NanString)) == 0)
             {
                 lnum = strlen(NanString);
             }
-            else if (strnicmp(modifiedTxt, InfString, strlen(InfString)) == 0)
+            else if (os_strnicmp(modifiedTxt, InfString, strlen(InfString)) == 0)
             {
                 lnum = strlen(InfString);
             }
-            else if (strnicmp(modifiedTxt, NegInfString, strlen(NegInfString)) == 0)
+            else if (os_strnicmp(modifiedTxt, NegInfString, strlen(NegInfString)) == 0)
             {
                 lnum = strlen(NegInfString);
             }
-            else if (strnicmp(modifiedTxt, PosInfString, strlen(PosInfString)) == 0)
+            else if (os_strnicmp(modifiedTxt, PosInfString, strlen(PosInfString)) == 0)
             {
                 lnum = strlen(PosInfString);
             }
-            else if (strnicmp(modifiedTxt, NegNanString, strlen(NegNanString)) == 0)
+            else if (os_strnicmp(modifiedTxt, NegNanString, strlen(NegNanString)) == 0)
             {
                 lnum = strlen(NegNanString);
             }
-            else if (strnicmp(modifiedTxt, PosNanString, strlen(PosNanString)) == 0)
+            else if (os_strnicmp(modifiedTxt, PosNanString, strlen(PosNanString)) == 0)
             {
                 lnum = strlen(PosNanString);
             }

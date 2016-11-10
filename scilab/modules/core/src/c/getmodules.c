@@ -145,7 +145,7 @@ static BOOL AppendModules(char *xmlfilename)
         /* Don't care about line return / empty line */
         xmlKeepBlanksDefault(0);
         /* check if the XML file has been encoded with utf8 (unicode) or not */
-        if (stricmp("utf-8", encoding) == 0)
+        if (os_stricmp("utf-8", encoding) == 0)
         {
             xmlDocPtr doc = NULL;
             xmlXPathContextPtr xpathCtxt = NULL;
@@ -200,7 +200,7 @@ static BOOL AppendModules(char *xmlfilename)
                         {
                             /* we found the tag activate */
                             const char *str = (const char*)attrib->children->content;
-                            if (stricmp(str, "yes") == 0 || strcmp(str, "1") == 0)
+                            if (os_stricmp(str, "yes") == 0 || strcmp(str, "1") == 0)
                             {
                                 activate = 1;
                             }

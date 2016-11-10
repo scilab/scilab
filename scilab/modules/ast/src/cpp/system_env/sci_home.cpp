@@ -119,8 +119,8 @@ char* computeSCIHOME(void)
     }
 
     /* Set SCIHOME environment variable */
-    os_sprintf(USERPATHSCILAB, "%s%s%s", USERHOMESYSTEM, DIR_SEPARATOR, BASEDIR);
-    os_sprintf(SCIHOMEPATH, "%s%s%s", USERPATHSCILAB, DIR_SEPARATOR, SCI_VERSION_STRING);
+    os_sprintf(USERPATHSCILAB, PATH_MAX, "%s%s%s", USERHOMESYSTEM, DIR_SEPARATOR, BASEDIR);
+    os_sprintf(SCIHOMEPATH, PATH_MAX * 2, "%s%s%s", USERPATHSCILAB, DIR_SEPARATOR, SCI_VERSION_STRING);
 
     /* creates directory if it does not exists */
     if (!isdir(SCIHOMEPATH))

@@ -43,7 +43,7 @@ static unsigned int setGetHashTableHash(void * key)
 /*--------------------------------------------------------------------------*/
 static int setGetHashTableEqualKeys(void * k1, void * k2)
 {
-    if (stricmp((char *)k1, (char *)k2) == 0)
+    if (os_stricmp((char *)k1, (char *)k2) == 0)
     {
         return 1;
     }

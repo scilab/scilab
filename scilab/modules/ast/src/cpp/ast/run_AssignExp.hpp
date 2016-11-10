@@ -100,7 +100,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 {
                     char pstError[1024];
                     const char* pstFuncName = pVar->getSymbol().getName().data();
-                    os_sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
+                    os_sprintf(pstError, 1024,_("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
                     pIT->killMe();
                     CoverageInstance::stopChrono((void*)&e);
                     throw InternalError(pstError, 999, e.getLocation());

@@ -22,7 +22,7 @@ void* GetScreenProperty(void* _pvCtx, char *propertyName)
 
     void* flag = NULL;
 
-    if (!stricmp(propertyName, "screensize_px"))
+    if (!os_stricmp(propertyName, "screensize_px"))
     {
         value[0] = 1.0;
         value[1] = 1.0;
@@ -36,7 +36,7 @@ void* GetScreenProperty(void* _pvCtx, char *propertyName)
         return flag;
 
     }
-    else if (!stricmp(propertyName, "screensize_mm"))
+    else if (!os_stricmp(propertyName, "screensize_mm"))
     {
         value[0] = 0.0;
         value[1] = 0.0;
@@ -49,7 +49,7 @@ void* GetScreenProperty(void* _pvCtx, char *propertyName)
 
         return flag;
     }
-    else if (!stricmp(propertyName, "screensize_cm"))
+    else if (!os_stricmp(propertyName, "screensize_cm"))
     {
         value[0] = 0.0;
         value[1] = 0.0;
@@ -62,7 +62,7 @@ void* GetScreenProperty(void* _pvCtx, char *propertyName)
 
         return flag;
     }
-    else if (!stricmp(propertyName, "screensize_in"))
+    else if (!os_stricmp(propertyName, "screensize_in"))
     {
         value[0] = 0.0;
         value[1] = 0.0;
@@ -75,7 +75,7 @@ void* GetScreenProperty(void* _pvCtx, char *propertyName)
 
         return flag;
     }
-    else if (!stricmp(propertyName, "screensize_pt"))
+    else if (!os_stricmp(propertyName, "screensize_pt"))
     {
         value[0] = 0.0;
         value[1] = 0.0;
@@ -88,7 +88,7 @@ void* GetScreenProperty(void* _pvCtx, char *propertyName)
 
         return flag;
     }
-    else if (!stricmp(propertyName, "screensize_norm"))
+    else if (!os_stricmp(propertyName, "screensize_norm"))
     {
         value[0] = 0.0;
         value[1] = 0.0;
@@ -101,7 +101,7 @@ void* GetScreenProperty(void* _pvCtx, char *propertyName)
 
         return flag;
     }
-    else if (!stricmp(propertyName, "screendepth"))
+    else if (!os_stricmp(propertyName, "screendepth"))
     {
         value[0] = CallScilabBridge::getScreenDepth(getScilabJavaVM());
 

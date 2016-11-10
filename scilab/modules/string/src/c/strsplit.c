@@ -107,12 +107,13 @@ wchar_t **wide_strsplit(wchar_t * wcstringToSplit, double *indices, int sizeIndi
 
 char** strsplit(const char* stringToSplit, double *indices, int sizeIndices, strsplit_error *ierr)
 {
+    int i = 0;
     wchar_t* w = to_wide_string(stringToSplit);
     wchar_t** o = wide_strsplit(w, indices, sizeIndices, ierr);
     if (*ierr == STRSPLIT_NO_ERROR)
     {
         char** output = (char**)MALLOC(sizeof(char*) * (sizeIndices + 1));
-        for (int i = 0; i < sizeIndices + 1; ++i)
+        for (i = 0; i < sizeIndices + 1; ++i)
         {
             output[i] = wide_string_to_UTF8(o[i]);
         }

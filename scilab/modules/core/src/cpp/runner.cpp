@@ -100,7 +100,7 @@ int StaticRunner::launch()
 
             //print msg about recursion limit and trigger an error
             char sz[1024];
-            os_sprintf(sz, _("Recursion limit reached (%d).\n"), ConfigVariable::getRecursionLimit());
+            os_sprintf(sz, 1024, _("Recursion limit reached (%d).\n"), ConfigVariable::getRecursionLimit());
             throw ast::InternalError(sz);
         }
     }

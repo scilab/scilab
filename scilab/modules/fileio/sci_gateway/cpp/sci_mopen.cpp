@@ -33,7 +33,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
     int iErr                = 0;
     int iID                 = 0;
     char* pstFilename       = NULL;
-    char* pstMode           = "rb";
+    const char* pstMode     = "rb";
     int iSwap               = 0;
 
     //check output parameters

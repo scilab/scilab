@@ -70,7 +70,7 @@ types::Function::ReturnValue sci_mcisendstring(types::typed_list &in, int _iRetC
 
         if (mciGetErrorStringA(err, errtxt, 128) == FALSE)
         {
-            os_sprintf(errtxt, "%s", "Unknown MCI error");
+            os_sprintf(errtxt, 128, "%s", "Unknown MCI error");
         }
 
         out3 = errtxt;

@@ -47,11 +47,11 @@ int set_data_mapping_property(void* _pvCtx, int iObjUID, void* _pvData, int valu
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "scaled") == 0)
+    if (os_stricmp((char*)_pvData, "scaled") == 0)
     {
         dataMapping = 0;
     }
-    else if (stricmp((char*)_pvData, "direct") == 0)
+    else if (os_stricmp((char*)_pvData, "direct") == 0)
     {
         dataMapping = 1;
     }

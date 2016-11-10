@@ -46,7 +46,7 @@ void InitializePreferences(int useCWD)
     // Set history
     if (prefs->historyEnable)
     {
-        if (!stricmp(prefs->historyEnable, "true"))
+        if (!os_stricmp(prefs->historyEnable, "true"))
         {
             if (prefs->historyFile && prefs->historyLines)
             {
@@ -69,7 +69,7 @@ void InitializePreferences(int useCWD)
     // Set lines
     if (prefs->adaptToDisplay && prefs->columnsToDisplay && prefs->linesToDisplay)
     {
-        if (stricmp(prefs->adaptToDisplay, "true"))
+        if (os_stricmp(prefs->adaptToDisplay, "true"))
         {
             // it is not true so ...
             int lines = (int)atof(prefs->linesToDisplay);
@@ -82,14 +82,14 @@ void InitializePreferences(int useCWD)
     // Set current directory
     if (!useCWD && prefs->startup_dir_use)
     {
-        if (stricmp(prefs->startup_dir_use, "current"))
+        if (os_stricmp(prefs->startup_dir_use, "current"))
         {
             // Not in cwd
-            if (stricmp(prefs->startup_dir_use, "previous") == 0 && prefs->startup_dir_previous && *prefs->startup_dir_previous)
+            if (os_stricmp(prefs->startup_dir_use, "previous") == 0 && prefs->startup_dir_previous && *prefs->startup_dir_previous)
             {
                 scichdir((char*)prefs->startup_dir_previous);
             }
-            else if (stricmp(prefs->startup_dir_use, "default") == 0 && prefs->startup_dir_default && *prefs->startup_dir_default)
+            else if (os_stricmp(prefs->startup_dir_use, "default") == 0 && prefs->startup_dir_default && *prefs->startup_dir_default)
             {
                 scichdir((char*)prefs->startup_dir_default);
             }

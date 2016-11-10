@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_mclose(types::typed_list &in, int _iRetCount, t
                 }
                 iRet = mclose(iFileID);
             }
-            else if (stricmp(pS->get(0), "all") == 0)
+            else if (os_stricmp(pS->get(0), "all") == 0)
             {
                 iRet = mcloseAll();
             }

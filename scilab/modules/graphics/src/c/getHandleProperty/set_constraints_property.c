@@ -105,23 +105,23 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             }
 
             //convert string value to enum
-            if (stricmp(pstPos, "center") == 0)
+            if (os_stricmp(pstPos, "center") == 0)
             {
                 iPos = BORDER_CENTER;
             }
-            else if (stricmp(pstPos, "bottom") == 0)
+            else if (os_stricmp(pstPos, "bottom") == 0)
             {
                 iPos = BORDER_BOTTOM;
             }
-            else if (stricmp(pstPos, "top") == 0)
+            else if (os_stricmp(pstPos, "top") == 0)
             {
                 iPos = BORDER_TOP;
             }
-            else if (stricmp(pstPos, "left") == 0)
+            else if (os_stricmp(pstPos, "left") == 0)
             {
                 iPos = BORDER_LEFT;
             }
-            else if (stricmp(pstPos, "right") == 0)
+            else if (os_stricmp(pstPos, "right") == 0)
             {
                 iPos = BORDER_RIGHT;
             }
@@ -232,19 +232,19 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             }
 
             //convert string value to enum
-            if (stricmp(pstFill, "none") == 0)
+            if (os_stricmp(pstFill, "none") == 0)
             {
                 iFill = FILL_NONE;
             }
-            else if (stricmp(pstFill, "horizontal") == 0)
+            else if (os_stricmp(pstFill, "horizontal") == 0)
             {
                 iFill = FILL_HORIZONTAL;
             }
-            else if (stricmp(pstFill, "vertical") == 0)
+            else if (os_stricmp(pstFill, "vertical") == 0)
             {
                 iFill = FILL_VERTICAL;
             }
-            else if (stricmp(pstFill, "both") == 0)
+            else if (os_stricmp(pstFill, "both") == 0)
             {
                 iFill = FILL_BOTH;
             }
@@ -269,39 +269,39 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             }
 
             //convert string value to enum
-            if (stricmp(pstAnchor, "center") == 0)
+            if (os_stricmp(pstAnchor, "center") == 0)
             {
                 iAnchor = ANCHOR_CENTER;
             }
-            else if (stricmp(pstAnchor, "upper") == 0)
+            else if (os_stricmp(pstAnchor, "upper") == 0)
             {
                 iAnchor = ANCHOR_UPPER;
             }
-            else if (stricmp(pstAnchor, "lower") == 0)
+            else if (os_stricmp(pstAnchor, "lower") == 0)
             {
                 iAnchor = ANCHOR_LOWER;
             }
-            else if (stricmp(pstAnchor, "right") == 0)
+            else if (os_stricmp(pstAnchor, "right") == 0)
             {
                 iAnchor = ANCHOR_RIGHT;
             }
-            else if (stricmp(pstAnchor, "left") == 0)
+            else if (os_stricmp(pstAnchor, "left") == 0)
             {
                 iAnchor = ANCHOR_LEFT;
             }
-            else if (stricmp(pstAnchor, "upper_right") == 0)
+            else if (os_stricmp(pstAnchor, "upper_right") == 0)
             {
                 iAnchor = ANCHOR_UPPER_RIGHT;
             }
-            else if (stricmp(pstAnchor, "upper_left") == 0)
+            else if (os_stricmp(pstAnchor, "upper_left") == 0)
             {
                 iAnchor = ANCHOR_UPPER_LEFT;
             }
-            else if (stricmp(pstAnchor, "lower_right") == 0)
+            else if (os_stricmp(pstAnchor, "lower_right") == 0)
             {
                 iAnchor = ANCHOR_LOWER_RIGHT;
             }
-            else if (stricmp(pstAnchor, "lower_left") == 0)
+            else if (os_stricmp(pstAnchor, "lower_left") == 0)
             {
                 iAnchor = ANCHOR_LOWER_LEFT;
             }

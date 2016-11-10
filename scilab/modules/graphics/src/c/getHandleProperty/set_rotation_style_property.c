@@ -42,11 +42,11 @@ int set_rotation_style_property(void* _pvCtx, int iObjUID, void* _pvData, int va
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "unary") == 0)
+    if (os_stricmp((char*)_pvData, "unary") == 0)
     {
         rotationStyle = 0;
     }
-    else if (stricmp((char*)_pvData, "multiple") == 0)
+    else if (os_stricmp((char*)_pvData, "multiple") == 0)
     {
         rotationStyle = 1;
     }

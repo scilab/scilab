@@ -184,7 +184,6 @@ void CoverModule::getMacros(const std::string & path, const std::string & module
             }
         }
     }
-    FREE(libFile);
 }
 
 void CoverModule::getBuiltins(const std::vector<std::pair<std::string, std::string>> & paths_mods)
@@ -274,7 +273,7 @@ bool CoverModule::getStringFromXPath(const char * filePath, const char * xpquery
         return false;
     }
 
-    if (!doc->encoding || stricmp((const char *)doc->encoding, "utf-8") != 0)
+    if (!doc->encoding || os_stricmp((const char *)doc->encoding, "utf-8") != 0)
     {
         xmlFreeDoc(doc);
         return false;

@@ -232,7 +232,7 @@ void getDocAndCtxt(xmlDocPtr * doc, xmlXPathContextPtr * xpathCtxt)
         return;
     }
 
-    if (stricmp((*doc)->encoding, "utf-8"))
+    if (os_stricmp((*doc)->encoding, "utf-8"))
     {
         xmlFreeDoc(*doc);
         *doc = NULL;

@@ -45,11 +45,11 @@ int set_cdata_mapping_property(void* _pvCtx, int iObjUID, void* _pvData, int val
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "scaled") == 0)
+    if (os_stricmp((char*)_pvData, "scaled") == 0)
     {
         cdataMapping = 0;
     }
-    else if (stricmp((char*)_pvData, "direct") == 0)
+    else if (os_stricmp((char*)_pvData, "direct") == 0)
     {
         cdataMapping = 1;
     }

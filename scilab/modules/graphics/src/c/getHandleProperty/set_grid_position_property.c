@@ -41,11 +41,11 @@ int set_grid_position_property(void* _pvCtx, int iObjUID, void* _pvData, int val
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "foreground") == 0)
+    if (os_stricmp((char*)_pvData, "foreground") == 0)
     {
         position = 1;
     }
-    else if (stricmp((char*)_pvData, "background") == 0)
+    else if (os_stricmp((char*)_pvData, "background") == 0)
     {
         position = 0;
     }

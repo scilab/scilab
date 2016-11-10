@@ -42,11 +42,11 @@ int set_arc_drawing_method_property(void* _pvCtx, int iObjUID, void* _pvData, in
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "nurbs") == 0)
+    if (os_stricmp((char*)_pvData, "nurbs") == 0)
     {
         arcDrawingMethod = 0;
     }
-    else if (stricmp((char*)_pvData, "lines") == 0)
+    else if (os_stricmp((char*)_pvData, "lines") == 0)
     {
         arcDrawingMethod = 1;
     }

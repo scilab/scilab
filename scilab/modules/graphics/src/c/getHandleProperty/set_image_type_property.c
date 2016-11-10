@@ -51,55 +51,55 @@ int set_image_type_property(void* _pvCtx, int iObjUID, void* _pvData, int valueT
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "rgb") == 0)
+    if (os_stricmp((char*)_pvData, "rgb") == 0)
     {
         imagetype = (int)MATPLOT_RGB;
     }
-    else if (stricmp((char*)_pvData, "rgba") == 0)
+    else if (os_stricmp((char*)_pvData, "rgba") == 0)
     {
         imagetype = (int)MATPLOT_RGBA;
     }
-    else if (stricmp((char*)_pvData, "argb") == 0)
+    else if (os_stricmp((char*)_pvData, "argb") == 0)
     {
         imagetype = (int)MATPLOT_ARGB;
     }
-    else if (stricmp((char*)_pvData, "gray") == 0)
+    else if (os_stricmp((char*)_pvData, "gray") == 0)
     {
         imagetype = (int)MATPLOT_GRAY;
     }
-    else if (stricmp((char*)_pvData, "index") == 0)
+    else if (os_stricmp((char*)_pvData, "index") == 0)
     {
         imagetype = (int)MATPLOT_INDEX;
     }
-    else if (stricmp((char*)_pvData, "red") == 0)
+    else if (os_stricmp((char*)_pvData, "red") == 0)
     {
         imagetype = (int)MATPLOT_RED;
     }
-    else if (stricmp((char*)_pvData, "green") == 0)
+    else if (os_stricmp((char*)_pvData, "green") == 0)
     {
         imagetype = (int)MATPLOT_GREEN;
     }
-    else if (stricmp((char*)_pvData, "blue") == 0)
+    else if (os_stricmp((char*)_pvData, "blue") == 0)
     {
         imagetype = (int)MATPLOT_BLUE;
     }
-    else if (stricmp((char*)_pvData, "rgb332") == 0)
+    else if (os_stricmp((char*)_pvData, "rgb332") == 0)
     {
         imagetype = (int)MATPLOT_RGB_332;
     }
-    else if (stricmp((char*)_pvData, "rgb444") == 0)
+    else if (os_stricmp((char*)_pvData, "rgb444") == 0)
     {
         imagetype = (int)MATPLOT_RGB_444;
     }
-    else if (stricmp((char*)_pvData, "rgba4444") == 0)
+    else if (os_stricmp((char*)_pvData, "rgba4444") == 0)
     {
         imagetype = (int)MATPLOT_RGBA_4444;
     }
-    else if (stricmp((char*)_pvData, "rgb555") == 0)
+    else if (os_stricmp((char*)_pvData, "rgb555") == 0)
     {
         imagetype = (int)MATPLOT_RGB_555;
     }
-    else if (stricmp((char*)_pvData, "rgba5551") == 0)
+    else if (os_stricmp((char*)_pvData, "rgba5551") == 0)
     {
         imagetype = (int)MATPLOT_RGBA_5551;
     }

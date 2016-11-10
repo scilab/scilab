@@ -32,33 +32,33 @@
 #include "fullpath.h"
 #include "os_string.h"
 /*--------------------------------------------------------------------------*/
-static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *SourceFilename);
-static int CopyDirectoryFunction_others(wchar_t *DestinationDirectory, wchar_t *SourceDirectory);
+static int CopyFileFunction_others(char* DestinationFilename, char* SourceFilename);
+static int CopyDirectoryFunction_others(char* DestinationDirectory, char* SourceDirectory);
 static int RecursiveCopyDirectory(char *DestinationDir, char *SourceDir);
 /*--------------------------------------------------------------------------*/
-int CopyFileFunction(wchar_t *DestinationFilename, wchar_t *SourceFilename)
+int CopyFileFunction(char* DestinationFilename, char* SourceFilename)
 {
-    if (os_wcsicmp(DestinationFilename, SourceFilename) == 0)
+    if (os_stricmp(DestinationFilename, SourceFilename) == 0)
     {
         return EPERM;
     }
     return CopyFileFunction_others(DestinationFilename, SourceFilename);
 }
 /*--------------------------------------------------------------------------*/
-int CopyDirectoryFunction(wchar_t *DestinationDirectory, wchar_t *SourceDirectory)
+int CopyDirectoryFunction(char* DestinationDirectory, char* SourceDirectory)
 {
     /* remove last file separator if it does not exists */
-    if ( (SourceDirectory[wcslen(SourceDirectory) - 1] == L'\\') ||
-            (SourceDirectory[wcslen(SourceDirectory) - 1] == L'/') )
+    if ( (SourceDirectory[strlen(SourceDirectory) - 1] == '\\') ||
+            (SourceDirectory[strlen(SourceDirectory) - 1] == '/') )
     {
-        SourceDirectory[wcslen(SourceDirectory) - 1] = L'\0';
+        SourceDirectory[strlen(SourceDirectory) - 1] = '\0';
     }
 
     /* remove last file separator if it does not exists */
-    if ( (DestinationDirectory[wcslen(DestinationDirectory) - 1] == L'\\') ||
-            (DestinationDirectory[wcslen(DestinationDirectory) - 1] == L'/') )
+    if ( (DestinationDirectory[strlen(DestinationDirectory) - 1] == '\\') ||
+            (DestinationDirectory[strlen(DestinationDirectory) - 1] == '/') )
     {
-        DestinationDirectory[wcslen(DestinationDirectory) - 1] = L'\0';
+        DestinationDirectory[strlen(DestinationDirectory) - 1] = '\0';
     }
 
     return CopyDirectoryFunction_others(DestinationDirectory, SourceDirectory);
@@ -66,10 +66,10 @@ int CopyDirectoryFunction(wchar_t *DestinationDirectory, wchar_t *SourceDirector
 }
 /*--------------------------------------------------------------------------*/
 /* Copy file with all attributes  */
-static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *SourceFilename)
+static int CopyFileFunction_others(char* DestinationFilename, char* SourceFilename)
 {
-    char *pStrDest = wide_string_to_UTF8(DestinationFilename);
-    char *pStrSrc = wide_string_to_UTF8(SourceFilename);
+    char *pStrDest = DestinationFilename;
+    char *pStrSrc = SourceFilename;
 
     char strDestFullPath[PATH_MAX * 2 + 1];
     char strSrcFullPath[PATH_MAX * 2 + 1];
@@ -139,16 +139,6 @@ static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *Source
 
     fchmod (dfd, st.st_mode & 0777);
     close (sfd);
-    if (pStrDest)
-    {
-        FREE(pStrDest);
-        pStrDest = NULL;
-    }
-    if (pStrSrc)
-    {
-        FREE(pStrSrc);
-        pStrSrc = NULL;
-    }
     return 0;
 
 err:
@@ -162,63 +152,39 @@ err:
         unlink (pStrDest);
     }
 
-    if (pStrDest)
-    {
-        FREE(pStrDest);
-        pStrDest = NULL;
-    }
-    if (pStrSrc)
-    {
-        FREE(pStrSrc);
-        pStrSrc = NULL;
-    }
     return status;
 }
 /*--------------------------------------------------------------------------*/
-static int CopyDirectoryFunction_others(wchar_t *DestinationDirectory, wchar_t *SourceDirectory)
+static int CopyDirectoryFunction_others(char* DestinationDirectory, char* SourceDirectory)
 {
-    char *pStrDest = wide_string_to_UTF8(DestinationDirectory);
-    char *pStrSrc = wide_string_to_UTF8(SourceDirectory);
+    char *pStrDest = DestinationDirectory;
+    char *pStrSrc = SourceDirectory;
 
     int ierr = 0;
 
     /* we check directory source exists */
     if (!isdir(pStrSrc))
     {
-        if (pStrDest)
-        {
-            FREE(pStrDest);
-            pStrDest = NULL;
-        }
-        FREE(pStrSrc);
         return ENOTDIR;
     }
 
     /* we check destination directory exists */
     if (!isdir(pStrDest))
     {
-        if (FileExistW(DestinationDirectory))
+        if (FileExist(pStrDest))
         {
-            FREE(pStrDest);
-            FREE(pStrSrc);
             return ENOTDIR;
         }
         else
         {
-            if (!createdirectoryW(DestinationDirectory))
+            if (!createdirectory(pStrDest))
             {
-                FREE(pStrDest);
-                FREE(pStrSrc);
                 return ENOTDIR;
             }
         }
     }
 
     ierr = RecursiveCopyDirectory(pStrDest, pStrSrc);
-
-    FREE(pStrDest);
-    FREE(pStrSrc);
-
     if (ierr)
     {
         return errno;
@@ -286,13 +252,7 @@ static int RecursiveCopyDirectory(char *DestinationDir, char *SourceDir)
         }
         else
         {
-            wchar_t* wcfileDest = to_wide_string(filenameDST);
-            wchar_t* wcfileSrc = to_wide_string(filenameSRC);
-
-            int ierr = CopyFileFunction_others(wcfileDest,  wcfileSrc);
-            FREE(wcfileDest);
-            FREE(wcfileSrc);
-
+            int ierr = CopyFileFunction_others(filenameDST,  filenameSRC);
             if (ierr)
             {
                 FREE(filenameDST);

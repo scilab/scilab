@@ -25,7 +25,7 @@ char **completion_generic(char **dictionary, int sizedictionary,
     {
         if (dictionary[i])
         {
-            if ( strnicmp(dictionary[i], somechars, strlen(somechars)) == 0)
+            if ( os_strnicmp(dictionary[i], somechars, strlen(somechars)) == 0)
             {
                 nbElements++;
                 /* +1 in MALLOC because a NULL element is inserted at the end of the array */

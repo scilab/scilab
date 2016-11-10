@@ -285,11 +285,11 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     if (pIT->isCallable())
                     {
                         const char* strFName = pIT->getAs<types::Callable>()->getName().c_str();
-                        os_sprintf(szError, _("%s: Wrong number of output argument(s): %d expected.\n"), strFName, out.size());
+                        os_sprintf(szError, bsiz, _("%s: Wrong number of output argument(s): %d expected.\n"), strFName, out.size());
                     }
                     else
                     {
-                        os_sprintf(szError, _("%s: Wrong number of output argument(s): %d expected.\n"), "extract", out.size());
+                        os_sprintf(szError, bsiz, _("%s: Wrong number of output argument(s): %d expected.\n"), "extract", out.size());
                     }
 
                     throw InternalError(szError, 999, e.getLocation());

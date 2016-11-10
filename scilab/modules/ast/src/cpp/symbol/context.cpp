@@ -276,7 +276,7 @@ int Context::getConsoleVarsName(std::list<std::string>& lst)
 {
     if (console)
     {
-        for (const auto& var : *console)
+        for (const auto & var : *console)
         {
             lst.push_back(var.first.getName());
         }
@@ -513,10 +513,10 @@ void Context::print(std::ostream& ostr, bool sorted) const
         iCurrentWidth += iVarLenMax + 1;
     }
 
-    os_sprintf(varElem, _(" using %10d elements out of  %10d.\n"), iMemUsed, iMemTotal);
+    os_sprintf(varElem, strSize, _(" using %10d elements out of  %10d.\n"), iMemUsed, iMemTotal);
     ostr << std::endl << varElem;
 
-    os_sprintf(varVariable, _(" and   %10d variables out of %10d.\n"), lstVar.size(), nbMaxVar);
+    os_sprintf(varVariable, strSize, _(" and   %10d variables out of %10d.\n"), lstVar.size(), nbMaxVar);
     ostr << varVariable << std::endl;
 
     ostr << std::endl << _("Your global variables are:") << std::endl << std::endl;
@@ -532,10 +532,10 @@ void Context::print(std::ostream& ostr, bool sorted) const
 
     ostr << std::endl;
 
-    os_sprintf(globalElem, _(" using %10d elements out of  %10d.\n"), iMemUsed, iMemTotal);
+    os_sprintf(globalElem, strSize, _(" using %10d elements out of  %10d.\n"), iMemUsed, iMemTotal);
     ostr << std::endl << globalElem;
 
-    os_sprintf(globalVariable, _(" and   %10d variables out of %10d.\n"), lstGlobal.size(), nbMaxVar);
+    os_sprintf(globalVariable, strSize, _(" and   %10d variables out of %10d.\n"), lstGlobal.size(), nbMaxVar);
     ostr << globalVariable;
 }
 

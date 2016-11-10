@@ -186,18 +186,18 @@ int sci_figure(char * fname, void* pvApiCtx)
                 return 1;
             }
 
-            if (stricmp(pstProName, "dockable") != 0 &&
-                    stricmp(pstProName, "toolbar") != 0 &&
-                    stricmp(pstProName, "menubar") != 0 &&
-                    stricmp(pstProName, "default_axes") != 0 &&
-                    stricmp(pstProName, "visible") != 0 &&
-                    stricmp(pstProName, "figure_size") != 0 &&
-                    stricmp(pstProName, "axes_size") != 0 &&
-                    stricmp(pstProName, "position") != 0 &&
-                    stricmp(pstProName, "menubar_visible") != 0 &&
-                    stricmp(pstProName, "toolbar_visible") != 0 &&
-                    stricmp(pstProName, "resize") != 0 &&
-                    stricmp(pstProName, "infobar_visible") != 0)
+            if (os_stricmp(pstProName, "dockable") != 0 &&
+                    os_stricmp(pstProName, "toolbar") != 0 &&
+                    os_stricmp(pstProName, "menubar") != 0 &&
+                    os_stricmp(pstProName, "default_axes") != 0 &&
+                    os_stricmp(pstProName, "visible") != 0 &&
+                    os_stricmp(pstProName, "figure_size") != 0 &&
+                    os_stricmp(pstProName, "axes_size") != 0 &&
+                    os_stricmp(pstProName, "position") != 0 &&
+                    os_stricmp(pstProName, "menubar_visible") != 0 &&
+                    os_stricmp(pstProName, "toolbar_visible") != 0 &&
+                    os_stricmp(pstProName, "resize") != 0 &&
+                    os_stricmp(pstProName, "infobar_visible") != 0)
             {
                 freeAllocatedSingleString(pstProName);
                 continue;
@@ -212,7 +212,7 @@ int sci_figure(char * fname, void* pvApiCtx)
             }
 
             //check property value to compatibility
-            if (stricmp(pstProName, "dockable") == 0)
+            if (os_stricmp(pstProName, "dockable") == 0)
             {
                 bDockable = getStackArgumentAsBoolean(pvApiCtx, piAddrData);
                 if (bDockable == -1)
@@ -222,7 +222,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                     return 1;
                 }
             }
-            else if (stricmp(pstProName, "toolbar") == 0)
+            else if (os_stricmp(pstProName, "toolbar") == 0)
             {
                 char* pstVal = NULL;
                 if (isStringType(pvApiCtx, piAddrData) == FALSE || isScalar(pvApiCtx, piAddrData) == FALSE)
@@ -233,11 +233,11 @@ int sci_figure(char * fname, void* pvApiCtx)
 
                 getAllocatedSingleString(pvApiCtx, piAddrData, &pstVal);
 
-                if (stricmp(pstVal, "none") == 0)
+                if (os_stricmp(pstVal, "none") == 0)
                 {
                     iToolbarType = 0;
                 }
-                else if (stricmp(pstVal, "figure") == 0)
+                else if (os_stricmp(pstVal, "figure") == 0)
                 {
                     iToolbarType = 1;
                 }
@@ -251,7 +251,7 @@ int sci_figure(char * fname, void* pvApiCtx)
 
                 freeAllocatedSingleString(pstVal);
             }
-            else if (stricmp(pstProName, "menubar") == 0)
+            else if (os_stricmp(pstProName, "menubar") == 0)
             {
                 char* pstVal = NULL;
                 if (isStringType(pvApiCtx, piAddrData) == FALSE || isScalar(pvApiCtx, piAddrData) == FALSE)
@@ -263,11 +263,11 @@ int sci_figure(char * fname, void* pvApiCtx)
 
                 getAllocatedSingleString(pvApiCtx, piAddrData, &pstVal);
 
-                if (stricmp(pstVal, "none") == 0)
+                if (os_stricmp(pstVal, "none") == 0)
                 {
                     iMenubarType = 0;
                 }
-                else if (stricmp(pstVal, "figure") == 0)
+                else if (os_stricmp(pstVal, "figure") == 0)
                 {
                     iMenubarType = 1;
                 }
@@ -281,7 +281,7 @@ int sci_figure(char * fname, void* pvApiCtx)
 
                 freeAllocatedSingleString(pstVal);
             }
-            else if (stricmp(pstProName, "default_axes") == 0)
+            else if (os_stricmp(pstProName, "default_axes") == 0)
             {
                 bDefaultAxes = getStackArgumentAsBoolean(pvApiCtx, piAddrData);
                 if (bDefaultAxes == -1)
@@ -291,7 +291,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                     return 1;
                 }
             }
-            else if (stricmp(pstProName, "visible") == 0)
+            else if (os_stricmp(pstProName, "visible") == 0)
             {
                 bVisible = getStackArgumentAsBoolean(pvApiCtx, piAddrData);
                 if (bVisible == -1)
@@ -301,7 +301,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                     return 1;
                 }
             }
-            else if (stricmp(pstProName, "figure_size") == 0)
+            else if (os_stricmp(pstProName, "figure_size") == 0)
             {
                 int iRows = 0;
                 int iCols = 0;
@@ -318,7 +318,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                     return 1;
                 }
             }
-            else if (stricmp(pstProName, "axes_size") == 0)
+            else if (os_stricmp(pstProName, "axes_size") == 0)
             {
                 int iRows = 0;
                 int iCols = 0;
@@ -335,7 +335,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                     return 1;
                 }
             }
-            else if (stricmp(pstProName, "position") == 0)
+            else if (os_stricmp(pstProName, "position") == 0)
             {
                 int iRows = 0;
                 int iCols = 0;
@@ -376,7 +376,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                     return 1;
                 }
             }
-            else if (stricmp(pstProName, "resize") == 0)
+            else if (os_stricmp(pstProName, "resize") == 0)
             {
                 bResize = getStackArgumentAsBoolean(pvApiCtx, piAddrData);
                 if (bResize == -1)
@@ -386,7 +386,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                     return 1;
                 }
             }
-            else if (stricmp(pstProName, "menubar_visible") == 0)
+            else if (os_stricmp(pstProName, "menubar_visible") == 0)
             {
                 bMenuBar = getStackArgumentAsBoolean(pvApiCtx, piAddrData);
                 if (bMenuBar == -1)
@@ -396,7 +396,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                     return 1;
                 }
             }
-            else if (stricmp(pstProName, "toolbar_visible") == 0)
+            else if (os_stricmp(pstProName, "toolbar_visible") == 0)
             {
                 bToolBar = getStackArgumentAsBoolean(pvApiCtx, piAddrData);
                 if (bToolBar == -1)
@@ -406,7 +406,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                     return 1;
                 }
             }
-            else if (stricmp(pstProName, "infobar_visible") == 0)
+            else if (os_stricmp(pstProName, "infobar_visible") == 0)
             {
                 bInfoBar = getStackArgumentAsBoolean(pvApiCtx, piAddrData);
                 if (bInfoBar == -1)
@@ -451,18 +451,18 @@ int sci_figure(char * fname, void* pvApiCtx)
         }
 
         if (bDoCreation && (
-                    stricmp(pstProName, "dockable") == 0 ||
-                    stricmp(pstProName, "toolbar") == 0 ||
-                    stricmp(pstProName, "menubar") == 0 ||
-                    stricmp(pstProName, "default_axes") == 0 ||
-                    stricmp(pstProName, "visible") == 0 ||
-                    stricmp(pstProName, "figure_size") == 0 ||
-                    stricmp(pstProName, "axes_size") == 0 ||
-                    stricmp(pstProName, "position") == 0 ||
-                    stricmp(pstProName, "resize") == 0 ||
-                    stricmp(pstProName, "menubar_visible") == 0 ||
-                    stricmp(pstProName, "toolbar_visible") == 0 ||
-                    stricmp(pstProName, "infobar_visible") == 0))
+                    os_stricmp(pstProName, "dockable") == 0 ||
+                    os_stricmp(pstProName, "toolbar") == 0 ||
+                    os_stricmp(pstProName, "menubar") == 0 ||
+                    os_stricmp(pstProName, "default_axes") == 0 ||
+                    os_stricmp(pstProName, "visible") == 0 ||
+                    os_stricmp(pstProName, "figure_size") == 0 ||
+                    os_stricmp(pstProName, "axes_size") == 0 ||
+                    os_stricmp(pstProName, "position") == 0 ||
+                    os_stricmp(pstProName, "resize") == 0 ||
+                    os_stricmp(pstProName, "menubar_visible") == 0 ||
+                    os_stricmp(pstProName, "toolbar_visible") == 0 ||
+                    os_stricmp(pstProName, "infobar_visible") == 0))
         {
             // Already set creating new figure
             // but let the set_ function fail if figure already exists
@@ -481,7 +481,7 @@ int sci_figure(char * fname, void* pvApiCtx)
 
         getVarType(pvApiCtx, piAddrData, &iType);
 
-        if ((strcmp(pstProName, "user_data") == 0) || (stricmp(pstProName, "userdata") == 0))
+        if ((strcmp(pstProName, "user_data") == 0) || (os_stricmp(pstProName, "userdata") == 0))
         {
             /* in this case set_user_data_property
              * directly uses the  third position in the stack
@@ -508,8 +508,8 @@ int sci_figure(char * fname, void* pvApiCtx)
                 case sci_strings :
                     if (   strcmp(pstProName, "tics_labels") != 0 && strcmp(pstProName, "auto_ticks") != 0 &&
                             strcmp(pstProName, "axes_visible") != 0 && strcmp(pstProName, "axes_reverse") != 0 &&
-                            strcmp(pstProName, "text") != 0 && stricmp(pstProName, "string") != 0 &&
-                            stricmp(pstProName, "tooltipstring") != 0) /* Added for uicontrols */
+                            strcmp(pstProName, "text") != 0 && os_stricmp(pstProName, "string") != 0 &&
+                            os_stricmp(pstProName, "tooltipstring") != 0) /* Added for uicontrols */
                     {
                         if (getAllocatedSingleString(pvApiCtx, piAddrData, (char**)&_pvData))
                         {
@@ -543,7 +543,7 @@ int sci_figure(char * fname, void* pvApiCtx)
         // * add it to colormap => performed by callSetProperty
         // * set background to index => performed by callSetProperty
         // * copy value into axes background property
-        if (stricmp(pstProName, "backgroundcolor") == 0 && iAxes > 0)
+        if (os_stricmp(pstProName, "backgroundcolor") == 0 && iAxes > 0)
         {
             int iBackground = 0;
             int *piBackground = &iBackground;
@@ -633,7 +633,7 @@ int getStackArgumentAsBoolean(void* _pvCtx, int* _piAddr)
             char* pst = NULL;
             getAllocatedSingleString(_pvCtx, _piAddr, &pst);
 
-            if (stricmp(pst, "on") == 0)
+            if (os_stricmp(pst, "on") == 0)
             {
                 ret = TRUE;
             }

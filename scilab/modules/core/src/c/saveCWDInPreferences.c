@@ -24,7 +24,7 @@ void saveCWDInPreferences()
 
     if (values)
     {
-        if (values[0] && stricmp(values[0], "previous") == 0)
+        if (values[0] && os_stricmp(values[0], "previous") == 0)
         {
             int err;
             char * cwd = scigetcwd(&err);

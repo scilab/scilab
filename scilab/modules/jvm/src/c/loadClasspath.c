@@ -55,7 +55,7 @@ BOOL LoadClasspath(char *xmlfilename)
         /* Don't care about line return / empty line */
         xmlKeepBlanksDefault(0);
         /* check if the XML file has been encoded with utf8 (unicode) or not */
-        if ( stricmp("utf-8", encoding) == 0 )
+        if ( os_stricmp("utf-8", encoding) == 0 )
         {
             xmlXPathContextPtr xpathCtxt = NULL;
             xmlXPathObjectPtr xpathObj = NULL;
@@ -118,13 +118,13 @@ BOOL LoadClasspath(char *xmlfilename)
                             load = (char*)attrib->children->content;
 
                             /* By default, it is startup */
-                            if (stricmp(load, "background") == 0)
+                            if (os_stricmp(load, "background") == 0)
                             {
                                 eLoad = BACKGROUND;
                             }
                             else
                             {
-                                if (stricmp(load, "onuse") == 0)
+                                if (os_stricmp(load, "onuse") == 0)
                                 {
                                     eLoad = ONUSE;
                                 }

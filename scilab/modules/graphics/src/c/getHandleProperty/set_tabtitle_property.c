@@ -59,19 +59,19 @@ int set_title_position_property(void* _pvCtx, int iObjUID, void* _pvData, int va
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "top") == 0)
+    if (os_stricmp((char*)_pvData, "top") == 0)
     {
         pos = TITLE_TOP;
     }
-    else if (stricmp((char*)_pvData, "left") == 0)
+    else if (os_stricmp((char*)_pvData, "left") == 0)
     {
         pos = TITLE_LEFT;
     }
-    else if (stricmp((char*)_pvData, "bottom") == 0)
+    else if (os_stricmp((char*)_pvData, "bottom") == 0)
     {
         pos = TITLE_BOTTOM;
     }
-    else if (stricmp((char*)_pvData, "right") == 0)
+    else if (os_stricmp((char*)_pvData, "right") == 0)
     {
         pos = TITLE_RIGHT;
     }

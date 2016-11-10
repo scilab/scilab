@@ -43,7 +43,7 @@ char *stristr(const char *psz, const char *tofind)
                 ptr = ptr2;
             }
 
-            if (!strnicmp(ptr, tofind, strlen(tofind)))
+            if (!os_strnicmp(ptr, tofind, strlen(tofind)))
             {
                 return (char *) ptr;
             }

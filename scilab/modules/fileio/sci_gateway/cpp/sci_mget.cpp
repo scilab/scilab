@@ -31,7 +31,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    char* pstType   = "l";//default type value : long
+    const char* pstType = "l";//default type value : long
     int iSize       = 0;
     int iFile       = -1; //default file : last opened file
     int iErr        = 0;
@@ -85,7 +85,6 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     {
         case 0: // stderr
         case 6: // stdout
-            FREE(pstType);
             Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mget", iFile);
             return types::Function::Error;
     }
@@ -94,7 +93,6 @@ types::Function::ReturnValue sci_mget(types::typed_list &in, int _iRetCount, typ
     // file opened with fortran open function
     if (pFile == NULL || pFile->getFileType() == 1)
     {
-        FREE(pstType);
         Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mget", iFile);
         return types::Function::Error;
     }

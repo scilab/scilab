@@ -33,7 +33,7 @@
 #include "generic_operations.hxx"
 #include "types_or.hxx"
 #include "types_and.hxx"
- 
+
 #include "macrofile.hxx"
 #include "macro.hxx"
 #include "cell.hxx"
@@ -146,7 +146,7 @@ void RunVisitorT<T>::visitprivate(const SimpleVar & e)
     {
         char pstError[bsiz];
         const char* strErr = e.getSymbol().getName().c_str();
-        os_sprintf(pstError, _("Undefined variable: %s\n"), strErr);
+        os_sprintf(pstError, bsiz, _("Undefined variable: %s\n"), strErr);
 
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(pstError, 999, e.getLocation());
@@ -313,7 +313,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     if (!e.getTail()->isSimpleVar())
     {
         char szError[bsiz];
-        os_sprintf(szError, _("/!\\ Unmanaged FieldExp.\n"));
+        os_sprintf(szError, bsiz, _("/!\\ Unmanaged FieldExp.\n"));
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
@@ -331,7 +331,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     if (getResult() == NULL)
     {
         char szError[bsiz];
-        os_sprintf(szError, _("Attempt to reference field of non-structure array.\n"));
+        os_sprintf(szError, bsiz, _("Attempt to reference field of non-structure array.\n"));
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
@@ -343,7 +343,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     {
         clearResult();
         char szError[bsiz];
-        os_sprintf(szError, _("Not yet implemented in Scilab.\n"));
+        os_sprintf(szError, bsiz, _("Not yet implemented in Scilab.\n"));
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
@@ -463,7 +463,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     {
         pValue->killMe();
         char szError[bsiz];
-        os_sprintf(szError, _("Attempt to reference field of non-structure array.\n"));
+        os_sprintf(szError, bsiz, _("Attempt to reference field of non-structure array.\n"));
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
@@ -1524,7 +1524,7 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
     {
         clearResult();
         char szError[bsiz];
-        os_sprintf(szError, _("%s: Can not transpose multiple elements.\n"), "Transpose");
+        os_sprintf(szError, bsiz, _("%s: Can not transpose multiple elements.\n"), "Transpose");
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
@@ -1623,7 +1623,7 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
     {
         char pstError[1024];
         const char* pstFuncName = e.getSymbol().getName().c_str();
-        os_sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
+        os_sprintf(pstError, 1024, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
         pMacro->killMe();
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(pstError, 999, e.getLocation());
@@ -1652,7 +1652,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         pITStart->killMe();
         setResult(NULL);
         char szError[bsiz];
-        os_sprintf(szError,  _("%s: Wrong type for argument %d: Real scalar expected.\n"), "':'", 1);
+        os_sprintf(szError, bsiz, _("%s: Wrong type for argument %d: Real scalar expected.\n"), "':'", 1);
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
@@ -1676,7 +1676,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         pITStep->killMe();
         setResult(NULL);
         char szError[bsiz];
-        os_sprintf(szError, _("%s: Wrong type for argument %d: Real scalar expected.\n"), "':'", 2);
+        os_sprintf(szError, bsiz, _("%s: Wrong type for argument %d: Real scalar expected.\n"), "':'", 2);
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
@@ -1702,7 +1702,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         pITEnd->killMe();
         setResult(NULL);
         char szError[bsiz];
-        os_sprintf(szError, _("%s: Wrong type for argument %d: Real scalar expected.\n"), "':'", 3);
+        os_sprintf(szError, bsiz, _("%s: Wrong type for argument %d: Real scalar expected.\n"), "':'", 3);
         CoverageInstance::stopChrono((void*)&e);
         throw InternalError(szError, 999, e.getLocation());
     }
@@ -2144,7 +2144,7 @@ void RunVisitorT<T>::visitprivate(const TryCatchExp  &e)
 
             //print msg about recursion limit and trigger an error
             char sz[1024];
-            os_sprintf(sz, _("Recursion limit reached (%d).\n"), ConfigVariable::getRecursionLimit());
+            os_sprintf(sz, 1024, _("Recursion limit reached (%d).\n"), ConfigVariable::getRecursionLimit());
             CoverageInstance::stopChrono((void*)&e);
             throw ast::InternalError(sz);
         }

@@ -44,11 +44,11 @@ int SetUicontrolUnits(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
 
         units = (char*)_pvData;
 
-        if (stricmp(units, "points") != 0
-                && stricmp(units, "normalized") != 0
-                && stricmp(units, "inches") != 0
-                && stricmp(units, "centimeters") != 0
-                && stricmp(units, "pixels") != 0)
+        if (os_stricmp(units, "points") != 0
+                && os_stricmp(units, "normalized") != 0
+                && os_stricmp(units, "inches") != 0
+                && os_stricmp(units, "centimeters") != 0
+                && os_stricmp(units, "pixels") != 0)
         {
             /* Wrong string value */
             Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Units", "points", "normalized", "inches", "centimeters", "pixels");

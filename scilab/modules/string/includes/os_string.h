@@ -21,10 +21,10 @@
 #define os_swprintf     swprintf_s
 #define os_sprintf      sprintf_s
 #define os_wcsicmp      _wcsicmp
-#define stricmp         _stricmp
-#define strnicmp        _strnicmp
-#define wcsicmp         _wcsicmp
-#define wcsnicmp        _wcsnicmp
+#define os_stricmp      _stricmp
+#define os_strnicmp     _strnicmp
+#define os_wcsicmp      _wcsicmp
+#define os_wcsnicmp     _wcsnicmp
 #define os_strcpy       strcpy_s
 #define os_splitpath    _splitpath_s
 #define os_wsplitpath   _wsplitpath_s
@@ -49,12 +49,12 @@ wchar_t *_sciwcsdup(const wchar_t *_pwcsSource);
 
 #define os_strdup       strdup
 #define os_swprintf     swprintf
-#define os_sprintf      sprintf
+#define os_sprintf      snprintf
 #define os_wcsicmp      wcscasecmp
-#define stricmp         strcasecmp
-#define strnicmp        strncasecmp
-#define wcsicmp         wcscasecmp
-#define wcsnicmp        wcsncasecmp
+#define os_stricmp      strcasecmp
+#define os_strnicmp     strncasecmp
+#define os_wcsicmp      wcscasecmp
+#define os_wcsnicmp     wcsncasecmp
 #define os_strcpy       strcpy
 #define os_splitpath    _splitpath
 #define os_wsplitpath   _wsplitpath
@@ -67,7 +67,7 @@ wchar_t *_sciwcsdup(const wchar_t *_pwcsSource);
 #define os_wcsdup       _sciwcsdup
 #define os_strdup       strdup
 #define os_swprintf     swprintf
-#define os_sprintf      sprintf
+#define os_sprintf      snprintf
 
 #include <stdlib.h>
 #include <wchar.h>
@@ -103,10 +103,10 @@ static inline int macOSwcscasecmp(const wchar_t *_pwcsS1, const wchar_t *_pwcsS2
 }
 
 #define os_wcsicmp      macOSwcscasecmp
-#define stricmp         strcasecmp
-#define strnicmp        strncasecmp
-#define wcsicmp         wcscasecmp
-#define wcsnicmp        wcsncasecmp
+#define os_stricmp      strcasecmp
+#define os_strnicmp     strncasecmp
+#define os_wcsicmp      wcscasecmp
+#define os_wcsnicmp     wcsncasecmp
 #define os_strcpy       strcpy
 #define os_splitpath    _splitpath
 #define os_wsplitpath   _wsplitpath

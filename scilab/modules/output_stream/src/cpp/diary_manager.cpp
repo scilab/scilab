@@ -14,6 +14,7 @@
 #include "DiaryList.hxx"
 #include "diary.h"
 #include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static DiaryList *SCIDIARY = NULL;
 /*--------------------------------------------------------------------------*/
@@ -38,24 +39,19 @@ static int destroyDiaryManager(void)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-char* getDiaryFilename(int _Id)
+const char* getDiaryFilename(int _Id)
 {
-    char* filename = NULL;
     if (SCIDIARY)
     {
         if (SCIDIARY->getFilename(_Id).compare(""))
         {
-            filename = (char*)MALLOC(sizeof(char) * (SCIDIARY->getFilename(_Id).length() + 1));
-            if (filename)
-            {
-                strcpy(filename, SCIDIARY->getFilename(_Id).c_str());
-            }
+            return SCIDIARY->getFilename(_Id).c_str();
         }
     }
-    return filename;
+    return nullptr;
 }
 /*--------------------------------------------------------------------------*/
-char **getDiaryFilenames(int *array_size)
+const char** getDiaryFilenames(int *array_size)
 {
     *array_size = 0;
     if (SCIDIARY)
@@ -64,18 +60,17 @@ char **getDiaryFilenames(int *array_size)
         *array_size = (int)stringFilenames.size();
         if (array_size > 0)
         {
-            char **filenames = (char **) MALLOC (sizeof(char*) * (*array_size));
+            const char **filenames = (const char **) MALLOC (sizeof(char*) * (*array_size));
             int i = 0;
-            for (const auto& filename : stringFilenames)
+            for (const auto & filename : stringFilenames)
             {
-                filenames[i] = (char*)MALLOC(sizeof(char) * (filename.length() + 1));
-                strcpy(filenames[i], filename.data());
+                filenames[i] = filename.data();
                 ++i;
             }
             return filenames;
         }
     }
-    return NULL;
+    return nullptr;
 }
 /*--------------------------------------------------------------------------*/
 int *getDiaryIDs(int *array_size)

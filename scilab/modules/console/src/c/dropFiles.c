@@ -109,16 +109,16 @@ static char *getCommandByFileExtension(char *File, char *FileExtension)
 
     if (FileExtension)
     {
-        if ( (stricmp(FileExtension, BIN_EXTENSION_FILE) == 0) ||
-                (stricmp(FileExtension, SAV_EXTENSION_FILE) == 0) ||
-                (stricmp(FileExtension, SOD_EXTENSION_FILE) == 0))
+        if ( (os_stricmp(FileExtension, BIN_EXTENSION_FILE) == 0) ||
+                (os_stricmp(FileExtension, SAV_EXTENSION_FILE) == 0) ||
+                (os_stricmp(FileExtension, SOD_EXTENSION_FILE) == 0))
         {
             command = buildCommand(FORMAT_BIN_SCE_EXTENSION_FILES, File);
         }
-        else if ( (stricmp(FileExtension, COS_EXTENSION_FILE) == 0) ||
-                  (stricmp(FileExtension, COSF_EXTENSION_FILE) == 0) ||
-                  (stricmp(FileExtension, ZCOS_EXTENSION_FILE) == 0) ||
-                  (stricmp(FileExtension, XCOS_EXTENSION_FILE) == 0))
+        else if ( (os_stricmp(FileExtension, COS_EXTENSION_FILE) == 0) ||
+                  (os_stricmp(FileExtension, COSF_EXTENSION_FILE) == 0) ||
+                  (os_stricmp(FileExtension, ZCOS_EXTENSION_FILE) == 0) ||
+                  (os_stricmp(FileExtension, XCOS_EXTENSION_FILE) == 0))
         {
             if (with_module("xcos"))
             {
@@ -129,15 +129,15 @@ static char *getCommandByFileExtension(char *File, char *FileExtension)
                 command = os_strdup(XCOS_NOT_INSTALLED);
             }
         }
-        else if (stricmp(FileExtension, SCI_EXTENSION_FILE) == 0)
+        else if (os_stricmp(FileExtension, SCI_EXTENSION_FILE) == 0)
         {
             command = buildCommand(FORMAT_SCI_EXTENSION_FILES, File);
         }
-        else if ( (stricmp(FileExtension, SCE_EXTENSION_FILE) == 0) || (stricmp(FileExtension, TST_EXTENSION_FILE) == 0) || (stricmp(FileExtension, DEM_EXTENSION_FILE) == 0) )
+        else if ( (os_stricmp(FileExtension, SCE_EXTENSION_FILE) == 0) || (os_stricmp(FileExtension, TST_EXTENSION_FILE) == 0) || (os_stricmp(FileExtension, DEM_EXTENSION_FILE) == 0) )
         {
             command = buildCommand(FORMAT_SCE_TST_EXTENSION_FILES, File);
         }
-        else if (stricmp(FileExtension, SCG_EXTENSION_FILE) == 0)
+        else if (os_stricmp(FileExtension, SCG_EXTENSION_FILE) == 0)
         {
             command = buildCommand(FORMAT_SCG_EXTENSION_FILES, File);
         }

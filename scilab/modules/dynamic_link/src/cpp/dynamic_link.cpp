@@ -159,9 +159,7 @@ int Sci_dlopen(const char* _pstDynLibPath)
     }
 #else
     {
-        char* pstDynLibPath = wide_string_to_UTF8(_pstDynLibPath);
-        hLib = LoadDynLibrary (pstDynLibPath);
-        FREE(pstDynLibPath);
+        hLib = LoadDynLibrary (_pstDynLibPath);
     }
 #endif
 

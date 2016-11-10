@@ -343,7 +343,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
             if (bOK == false)
             {
-                const char* pst = pStr->get(0);
+                char* pst = pStr->get(0);
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "daskr", pst);
                 FREE(pst);
                 DifferentialEquation::removeDifferentialEquationFunctions();
@@ -850,8 +850,8 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
         LENWP = pDblX0->getRows() * pDblX0->getRows();
         rworksize += (maxord + 5) * pDblX0->getRows() + 3 * ng
-            + (maxl + 3 + std::min(1, maxl - kmp)) * pDblX0->getRows()
-            + (maxl + 3) * maxl + 1 + LENWP;
+                     + (maxl + 3 + std::min(1, maxl - kmp)) * pDblX0->getRows()
+                     + (maxl + 3) * maxl + 1 + LENWP;
     }
 
     if (info[15] == 1)
@@ -1092,7 +1092,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             if (bCatch)
             {
                 char szError[bsiz];
-                os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "daskr", "ddaskr");
+                os_sprintf(szError, bsiz, _("%s: An error occured in '%s' subroutine.\n"), "daskr", "ddaskr");
                 os << szError;
                 throw ast::InternalError(os.str());
             }

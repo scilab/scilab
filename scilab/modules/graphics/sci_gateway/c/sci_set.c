@@ -341,16 +341,16 @@ int sci_set(char *fname, void *pvApiCtx)
             return 1;
         }
 
-        if ((pstProperty[0] == 'd' || pstProperty[0] == 'D') && stricmp("data", pstProperty) == 0)
+        if ((pstProperty[0] == 'd' || pstProperty[0] == 'D') && os_stricmp("data", pstProperty) == 0)
         {
             //send to datamodel
             isData = 1;
         }
 
-        if (stricmp(pstProperty, "user_data") == 0 ||
-                stricmp(pstProperty, "userdata") == 0 ||
-                stricmp(pstProperty, "display_function_data") == 0 ||
-                stricmp(pstProperty, "data") == 0)
+        if (os_stricmp(pstProperty, "user_data") == 0 ||
+                os_stricmp(pstProperty, "userdata") == 0 ||
+                os_stricmp(pstProperty, "display_function_data") == 0 ||
+                os_stricmp(pstProperty, "data") == 0)
         {
             /* in this case set_user_data_property
             * directly uses the  third position in the stack
@@ -385,8 +385,8 @@ int sci_set(char *fname, void *pvApiCtx)
                 case sci_strings :
                     if (strcmp(pstProperty, "tics_labels") != 0 && strcmp(pstProperty, "auto_ticks") != 0 && strcmp(pstProperty, "tight_limits") != 0 &&
                             strcmp(pstProperty, "axes_visible") != 0 && strcmp(pstProperty, "axes_reverse") != 0 &&
-                            strcmp(pstProperty, "text") != 0 && stricmp(pstProperty, "string") != 0 &&
-                            stricmp(pstProperty, "tooltipstring") != 0 && stricmp(pstProperty, "ticks_format") != 0) /* Added for uicontrols */
+                            strcmp(pstProperty, "text") != 0 && os_stricmp(pstProperty, "string") != 0 &&
+                            os_stricmp(pstProperty, "tooltipstring") != 0 && os_stricmp(pstProperty, "ticks_format") != 0) /* Added for uicontrols */
                     {
                         if (isScalar(pvApiCtx, piAddr3) == 0)
                         {

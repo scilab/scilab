@@ -45,18 +45,7 @@ int scichdir(const char *path)
         {
             sciprint(_("Can't go to directory %s: %s\n"), path, strerror(errno));
         }
-        if (path)
-        {
-            FREE(path);
-            path = NULL;
-        }
         return 1;
-    }
-
-    if (path)
-    {
-        FREE(path);
-        path = NULL;
     }
 
 #else

@@ -72,6 +72,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
     std::vector<std::string> success_files;
     std::vector<std::string> funcs;
 
+    int size = PATH_MAX + FILENAME_MAX;
     char pstParseFile[PATH_MAX + FILENAME_MAX];
     char pstVerbose[65535];
 
@@ -177,11 +178,11 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         delete pS;
     }
 
-    os_sprintf(pstParseFile, "%slib", pstParsePath);
+    os_sprintf(pstParseFile, size, "%slib", pstParsePath);
 
     if (bVerbose)
     {
-        os_sprintf(pstVerbose, _("-- Creation of [%s] (Macros) --\n"), pstLibName);
+        os_sprintf(pstVerbose, 65535, _("-- Creation of [%s] (Macros) --\n"), pstLibName);
 
         //save current prompt mode
         int oldVal = ConfigVariable::getPromptMode();
@@ -205,7 +206,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
 
     if (pWriter == NULL)
     {
-        os_sprintf(pstVerbose, _("%s: Cannot open file ''%s''.\n"), "genlib", pstParseFile);
+        os_sprintf(pstVerbose, 65535, _("%s: Cannot open file ''%s''.\n"), "genlib", pstParseFile);
         scilabWrite(pstVerbose);
 
         out.push_back(new types::Bool(0));
@@ -276,7 +277,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
                     std::string strErr(parser.getErrorMessage());
 
                     char errmsg[256];
-                    os_sprintf(errmsg, _("%s: Error in file %s.\n"), "genlib", stFullPath.data());
+                    os_sprintf(errmsg, 256, _("%s: Error in file %s.\n"), "genlib", stFullPath.data());
                     strErr += errmsg;
 
                     Scierror(999, strErr.data());
@@ -315,7 +316,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
                     {
                         if (AddMacroToXML(pWriter, name, pstPathBin, s_md5) == false)
                         {
-                            os_sprintf(pstVerbose, _("%s: Warning: %s information cannot be added to file %s. File ignored\n"), "genlib", pFD->getSymbol().getName().c_str(), pstPath[k]);
+                            os_sprintf(pstVerbose, 65535, _("%s: Warning: %s information cannot be added to file %s. File ignored\n"), "genlib", pFD->getSymbol().getName().c_str(), pstPath[k]);
                             scilabWrite(pstVerbose);
                         }
 
@@ -506,7 +507,7 @@ bool AddMacroToXML(xmlTextWriterPtr _pWriter, const std::string& name, const std
     {
         return false;
     }
-    
+
     //Add attribute "file"
     iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"file", (xmlChar*)file.data());
     if (iLen < 0)

@@ -28,7 +28,7 @@ static int CopyDirectoryFunction_windows(char* DestinationDirectory, char* Sourc
 /*--------------------------------------------------------------------------*/
 int CopyFileFunction(char* DestinationFilename, char* SourceFilename)
 {
-    if (stricmp(DestinationFilename, SourceFilename) == 0)
+    if (os_stricmp(DestinationFilename, SourceFilename) == 0)
     {
         SetLastError(ERROR_ACCESS_DENIED);
         return 1;
@@ -54,7 +54,7 @@ int CopyDirectoryFunction(char* DestinationDirectory, char* SourceDirectory)
         DestinationDirectory[dstlen - 1] = '\0';
     }
 
-    if (stricmp(DestinationDirectory, SourceDirectory) == 0)
+    if (os_stricmp(DestinationDirectory, SourceDirectory) == 0)
     {
         SetLastError(ERROR_ACCESS_DENIED);
         return 1;

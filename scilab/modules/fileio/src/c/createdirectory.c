@@ -27,6 +27,10 @@
 #include "isdir.h"
 #include "splitpath.h"
 #include "scicurdir.h"
+#include "os_string.h"
+#ifndef _MSC_VER
+#define MAX_PATH PATH_MAX
+#endif
 /*--------------------------------------------------------------------------*/
 #define DIRMODE 0777
 /*--------------------------------------------------------------------------*/
@@ -37,12 +41,18 @@ BOOL createdirectory(const char *path)
     {
         if (!isdir(path))
         {
+#ifndef _MCS_VER
+            if (mkdir(path, DIRMODE) == 0)
+            {
+                bOK = TRUE;
+            }
+#else
             char path_out[MAX_PATH];
             char drv[MAX_PATH];
             char dir[MAX_PATH];
             splitpath(path, TRUE, drv, dir, NULL, NULL);
 
-            strcpy(path_out, drv);
+            os_strcpy(path_out, drv);
             strcat(path_out, dir);
 
             //if there is no path_out, get current dir as reference.
@@ -56,7 +66,7 @@ BOOL createdirectory(const char *path)
                 }
 
                 cur = scigetcwd(&err);
-                strcpy(path_out, cur);
+                os_strcpy(path_out, cur);
                 FREE(cur);
             }
 
@@ -64,6 +74,8 @@ BOOL createdirectory(const char *path)
             {
                 bOK = TRUE;
             }
+#endif // _MCS_VER
+
         }
     }
     return bOK;

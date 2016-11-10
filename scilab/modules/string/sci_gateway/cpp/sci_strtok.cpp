@@ -23,6 +23,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "os_string.h"
+#include "os_wcstok.h"
 #include <stdio.h>
 }
 
@@ -86,11 +87,7 @@ types::Function::ReturnValue sci_strtok(types::typed_list &in, int _iRetCount, t
     }
     else
     {
-#ifndef _MSC_VER
-        pstToken = strtok(pstString, pstSeps, &pstState);
-#else
-        pstToken = strtok_s(pstString, pstSeps, &pstState);
-#endif
+        pstToken = os_strtok(pstString, pstSeps, &pstState);
     }
 
     pOutString  = new types::String(dims, dimsArray);

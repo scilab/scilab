@@ -141,7 +141,7 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
     if (Lhs == 2)
     {
         int nb_diary_filenames = 0;
-        char **diary_filenames = getDiaryFilenames(&nb_diary_filenames);
+        const char** diary_filenames = getDiaryFilenames(&nb_diary_filenames);
 
         if ((diary_filenames) && (nb_diary_filenames > 0))
         {
@@ -155,7 +155,7 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
 
             LhsVar(2) = Rhs + 2;
 
-            freeArrayOfString(diary_filenames, nb_diary_filenames);
+            FREE(diary_filenames);
             nb_diary_filenames = 0;
         }
         else
@@ -173,7 +173,7 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
                 LhsVar(2) = Rhs + 2;
                 if (diary_filenames)
                 {
-                    freeArrayOfString(diary_filenames, nb_diary_filenames);
+                    FREE(diary_filenames);
                     nb_diary_filenames = 0;
                 }
             }
@@ -269,7 +269,7 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
 
                 if (Lhs == 2)
                 {
-                    char* filenameUsed = getDiaryFilename((int)dID);
+                    const char* filenameUsed = getDiaryFilename((int)dID);
                     sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, 1, 1, &filenameUsed);
                     if (sciErr.iErr)
                     {
@@ -279,7 +279,6 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
                     }
 
                     LhsVar(2) = Rhs + 2;
-                    FREE(filenameUsed);
                 }
             }
             else // diary(filename) exists (close diary)
@@ -1422,7 +1421,7 @@ static int AppendByFilenames(char *fname, void* pvApiCtx,
 
         if (Lhs == 2)
         {
-            char* filenameUsed = getDiaryFilename((int)dID);
+            const char* filenameUsed = getDiaryFilename((int)dID);
             sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, 1, 1, &filenameUsed);
             if (sciErr.iErr)
             {
@@ -1432,7 +1431,6 @@ static int AppendByFilenames(char *fname, void* pvApiCtx,
             }
 
             LhsVar(2) = Rhs + 2;
-            freeArrayOfString(&filenameUsed, 1);
         }
         PutLhsVar();
     }
@@ -1486,7 +1484,7 @@ static int NewByFilenames(char *fname, void* pvApiCtx,
 
         if (Lhs == 2)
         {
-            char* filenameUsed = getDiaryFilename((int)dID);
+            const char* filenameUsed = getDiaryFilename((int)dID);
             sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, 1, 1, &filenameUsed);
             if (sciErr.iErr)
             {
@@ -1496,7 +1494,6 @@ static int NewByFilenames(char *fname, void* pvApiCtx,
             }
 
             LhsVar(2) = Rhs + 2;
-            FREE(filenameUsed);
         }
         PutLhsVar();
     }

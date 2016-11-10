@@ -38,9 +38,9 @@ int SetUicontrolHorizontalAlignment(void* _pvCtx, int iObjUID, void* _pvData, in
 
     alignment = (char*)_pvData;
 
-    if (stricmp(alignment, "left") != 0
-            && stricmp(alignment, "center") != 0
-            && stricmp(alignment, "right") != 0)
+    if (os_stricmp(alignment, "left") != 0
+            && os_stricmp(alignment, "center") != 0
+            && os_stricmp(alignment, "right") != 0)
     {
         /* Wrong string format */
         Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n")), "HorizontalAlignment", "left", "center", "right");

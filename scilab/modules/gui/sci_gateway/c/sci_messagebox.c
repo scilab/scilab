@@ -263,7 +263,7 @@ int sci_messagebox(char *fname, void* pvApiCtx)
     /* Modal ? */
     if (modalOptionAdr != NULL)
     {
-        setMessageBoxModal(messageBoxID, !stricmp(modalOptionAdr[0], "modal"));
+        setMessageBoxModal(messageBoxID, !os_stricmp(modalOptionAdr[0], "modal"));
         freeAllocatedMatrixOfString(nbRow, nbCol, modalOptionAdr);
     }
     else

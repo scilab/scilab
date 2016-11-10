@@ -38,7 +38,7 @@ int SetUicontrolVerticalAlignment(void* _pvCtx, int iObjUID, void* _pvData, int 
 
     alignment = (char*)_pvData;
 
-    if (stricmp(alignment, "top") != 0
+    if (os_stricmp(alignment, "top") != 0
             && strcmp(alignment, "middle") != 0
             && strcmp(alignment, "bottom") != 0)
     {

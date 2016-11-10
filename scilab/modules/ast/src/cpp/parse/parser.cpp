@@ -93,7 +93,7 @@ void ParserSingleInstance::parseFile(const std::string& fileName, const std::str
     if (!yyin)
     {
         char szError[bsiz];
-        os_sprintf(szError, _("%s: Cannot open file %s.\n"), "parser", fileName.c_str());
+        os_sprintf(szError, bsiz, _("%s: Cannot open file %s.\n"), "parser", fileName.c_str());
         throw ast::InternalError(szError);
     }
 
@@ -162,7 +162,7 @@ void ParserSingleInstance::parse(const char *command)
 #ifdef _MSC_VER
     char szFile[MAX_PATH];
     char* pstTmpDIr = getTMPDIR();
-    os_sprintf(szFile, "%s\\%s", pstTmpDIr, "command.temp");
+    os_sprintf(szFile, MAX_PATH, "%s\\%s", pstTmpDIr, "command.temp");
     FREE(pstTmpDIr);
     if (fileLocker)
     {
@@ -177,7 +177,7 @@ void ParserSingleInstance::parse(const char *command)
         ParserSingleInstance::setExitStatus(Parser::Failed);
         ParserSingleInstance::resetErrorMessage();
         char szError[bsiz];
-        os_sprintf(szError, _("%s: Cannot open file %s.\n"), "parser", szFile);
+        os_sprintf(szError, bsiz, _("%s: Cannot open file %s.\n"), "parser", szFile);
         appendErrorMessage(szError);
         return;
     }

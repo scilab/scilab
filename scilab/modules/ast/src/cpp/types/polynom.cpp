@@ -1026,7 +1026,7 @@ Polynom* Polynom::insert(typed_list* _pArgs, InternalType* _pSource)
     if (p->getVariableName() != getVariableName())
     {
         char szError[512];
-        os_sprintf(szError, _("Input arguments should have the same formal variable name.\n"));
+        os_sprintf(szError, 512, _("Input arguments should have the same formal variable name.\n"));
         throw ast::InternalError(szError);
     }
 

@@ -59,27 +59,27 @@ int tryGetBooleanValueFromStack(void* _pvData, int _iType, int _iRows, int _iCol
 {
     if (_iType == sci_strings)
     {
-        if (stricmp((char*)_pvData, "on") == 0)
+        if (os_stricmp((char*)_pvData, "on") == 0)
         {
             return TRUE;
         }
-        if (stricmp((char*)_pvData, "off") == 0)
+        if (os_stricmp((char*)_pvData, "off") == 0)
         {
             return FALSE;
         }
-        if (stricmp((char*)_pvData, "1") == 0)
+        if (os_stricmp((char*)_pvData, "1") == 0)
         {
             return TRUE;
         }
-        if (stricmp((char*)_pvData, "0") == 0)
+        if (os_stricmp((char*)_pvData, "0") == 0)
         {
             return FALSE;
         }
-        if (stricmp((char*)_pvData, "T") == 0)
+        if (os_stricmp((char*)_pvData, "T") == 0)
         {
             return TRUE;
         }
-        if (stricmp((char*)_pvData, "F") == 0)
+        if (os_stricmp((char*)_pvData, "F") == 0)
         {
             return FALSE;
         }

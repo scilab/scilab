@@ -1257,19 +1257,19 @@ void ConfigVariable::whereErrorToString(std::ostringstream &ostr)
             if (where.m_name == "execstr")
             {
                 isExecstr = true;
-                os_sprintf(csTmp, strExecStr.c_str(), where.m_line);
+                os_sprintf(csTmp, bsiz, strExecStr.c_str(), where.m_line);
                 ostr << csTmp << std::endl;
                 continue;
             }
             else if (where.m_name == "exec")
             {
-                os_sprintf(csTmp, strExecFile.c_str(), where.m_line);
+                os_sprintf(csTmp, bsiz, strExecFile.c_str(), where.m_line);
                 ostr << csTmp << where.m_file_name << std::endl;
                 continue;
             }
             else
             {
-                os_sprintf(csTmp, strAtLine.c_str(), where.m_line);
+                os_sprintf(csTmp, bsiz, strAtLine.c_str(), where.m_line);
                 ostr << csTmp;
             }
         }

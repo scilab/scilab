@@ -47,17 +47,17 @@ int set_text_box_mode_property(void* _pvCtx, int iObjUID, void* _pvData, int val
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "off") == 0)
+    if (os_stricmp((char*)_pvData, "off") == 0)
     {
         autoSize = 1;
         textBoxMode = 0;
     }
-    else if (stricmp((char*)_pvData, "centered") == 0)
+    else if (os_stricmp((char*)_pvData, "centered") == 0)
     {
         autoSize = 1;
         textBoxMode = 1;
     }
-    else if (stricmp((char*)_pvData, "filled") == 0)
+    else if (os_stricmp((char*)_pvData, "filled") == 0)
     {
         autoSize = 0;
         textBoxMode = 2;

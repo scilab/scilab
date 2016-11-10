@@ -54,19 +54,19 @@ int set_layout_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType,
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "none") == 0)
+    if (os_stricmp((char*)_pvData, "none") == 0)
     {
         layout = LAYOUT_NONE;
     }
-    else if (stricmp((char*)_pvData, "gridbag") == 0)
+    else if (os_stricmp((char*)_pvData, "gridbag") == 0)
     {
         layout = LAYOUT_GRIDBAG;
     }
-    else if (stricmp((char*)_pvData, "grid") == 0)
+    else if (os_stricmp((char*)_pvData, "grid") == 0)
     {
         layout = LAYOUT_GRID;
     }
-    else if (stricmp((char*)_pvData, "border") == 0)
+    else if (os_stricmp((char*)_pvData, "border") == 0)
     {
         layout = LAYOUT_BORDER;
     }

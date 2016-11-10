@@ -43,19 +43,19 @@ int set_y_location_property(void* _pvCtx, int iObjUID, void* _pvData, int valueT
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "left") == 0)
+    if (os_stricmp((char*)_pvData, "left") == 0)
     {
         axisLocation = 4;
     }
-    else if (stricmp((char*)_pvData, "right") == 0)
+    else if (os_stricmp((char*)_pvData, "right") == 0)
     {
         axisLocation = 5;
     }
-    else if (stricmp((char*)_pvData, "middle") == 0)
+    else if (os_stricmp((char*)_pvData, "middle") == 0)
     {
         axisLocation = 2;
     }
-    else if (stricmp((char*)_pvData, "origin") == 0)
+    else if (os_stricmp((char*)_pvData, "origin") == 0)
     {
         axisLocation = 3;
     }

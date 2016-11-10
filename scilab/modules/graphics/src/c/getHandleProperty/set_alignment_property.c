@@ -42,15 +42,15 @@ int set_alignment_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTy
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "left") == 0)
+    if (os_stricmp((char*)_pvData, "left") == 0)
     {
         alignment = 0;
     }
-    else if (stricmp((char*)_pvData, "center") == 0)
+    else if (os_stricmp((char*)_pvData, "center") == 0)
     {
         alignment = 1;
     }
-    else if (stricmp((char*)_pvData, "right") == 0)
+    else if (os_stricmp((char*)_pvData, "right") == 0)
     {
         alignment = 2;
     }

@@ -1130,7 +1130,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     }
 
                     char szError[bsiz];
-                    os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "odedc", "tright");
+                    os_sprintf(szError, bsiz, _("%s: An error occured in '%s' subroutine.\n"), "odedc", "tright");
                     os << szError;
                     throw ast::InternalError(os.str());
                 }
@@ -1247,7 +1247,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     if (bCatch)
                     {
                         char szError[bsiz];
-                        os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "odedc", strMeth.c_str());
+                        os_sprintf(szError, bsiz, _("%s: An error occured in '%s' subroutine.\n"), "odedc", strMeth.c_str());
                         os << szError;
                         throw ast::InternalError(os.str());
                     }
@@ -1442,7 +1442,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 if (bCatch)
                 {
                     char szError[bsiz];
-                    os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "odedc", strMeth.c_str());
+                    os_sprintf(szError, bsiz, _("%s: An error occured in '%s' subroutine.\n"), "odedc", strMeth.c_str());
                     os << szError;
                     throw ast::InternalError(os.str());
                 }
@@ -1496,7 +1496,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     }
 
                     char szError[bsiz];
-                    os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "odedc", tright);
+                    os_sprintf(szError, bsiz, _("%s: An error occured in '%s' subroutine.\n"), "odedc", tright);
                     os << szError;
                     throw ast::InternalError(os.str());
                 }

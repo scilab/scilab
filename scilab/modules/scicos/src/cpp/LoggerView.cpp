@@ -18,6 +18,7 @@
 #include <sstream>
 #include <string>
 
+#include <string.h>
 #include "scilabWrite.hxx"
 
 #include "LoggerView.hxx"

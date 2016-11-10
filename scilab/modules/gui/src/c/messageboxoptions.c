@@ -17,20 +17,20 @@
 
 int isModalOption(char *option)
 {
-    return (!stricmp(option, "modal") || !stricmp(option, "non-modal"));
+    return (!os_stricmp(option, "modal") || !os_stricmp(option, "non-modal"));
 }
 
 /*--------------------------------------------------------------------------*/
 
 int isIconName(char *name)
 {
-    return (stricmp(name, "scilab")
-            || stricmp(name, "error")
-            || stricmp(name, "hourglass")
-            || stricmp(name, "info")
-            || stricmp(name, "passwd")
-            || stricmp(name, "question")
-            || stricmp(name, "warning"));
+    return (os_stricmp(name, "scilab")
+            || os_stricmp(name, "error")
+            || os_stricmp(name, "hourglass")
+            || os_stricmp(name, "info")
+            || os_stricmp(name, "passwd")
+            || os_stricmp(name, "question")
+            || os_stricmp(name, "warning"));
 }
 
 /*--------------------------------------------------------------------------*/

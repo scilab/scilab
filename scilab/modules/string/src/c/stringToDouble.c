@@ -22,13 +22,6 @@
 #include "core_math.h"
 #include "sci_malloc.h"
 #include "os_string.h"
-#ifndef _MSC_VER
-#ifndef stricmp
-#define stricmp strcasecmp
-#endif
-#else
-#define stricmp _stricmp
-#endif
 /* ========================================================================== */
 #define DEFAULT_DOUBLE_MAX_DIGIT_FORMAT "%lg"
 /* ========================================================================== */
@@ -71,42 +64,42 @@ double stringToDouble(const char *pSTR, BOOL bConvertByNAN, stringToDoubleError 
     *ierr = STRINGTODOUBLE_ERROR;
     if (pSTR)
     {
-        if ((stricmp(pSTR, NanString) == 0) || (stricmp(pSTR, NegNanString) == 0) ||
-                (stricmp(pSTR, PosNanString) == 0) || (stricmp(pSTR, ScilabPosNanString) == 0) ||
-                (stricmp(pSTR, ScilabNanString) == 0) || (stricmp(pSTR, ScilabNegNanString) == 0))
+        if ((os_stricmp(pSTR, NanString) == 0) || (os_stricmp(pSTR, NegNanString) == 0) ||
+                (os_stricmp(pSTR, PosNanString) == 0) || (os_stricmp(pSTR, ScilabPosNanString) == 0) ||
+                (os_stricmp(pSTR, ScilabNanString) == 0) || (os_stricmp(pSTR, ScilabNegNanString) == 0))
         {
             dValue = returnNAN();
         }
-        else if ((stricmp(pSTR, InfString) == 0) || (stricmp(pSTR, PosInfString) == 0) ||
-                 (stricmp(pSTR, ScilabInfString) == 0) || (stricmp(pSTR, ScilabPosInfString) == 0))
+        else if ((os_stricmp(pSTR, InfString) == 0) || (os_stricmp(pSTR, PosInfString) == 0) ||
+                 (os_stricmp(pSTR, ScilabInfString) == 0) || (os_stricmp(pSTR, ScilabPosInfString) == 0))
         {
             dValue = returnINF(TRUE);
         }
-        else if ((stricmp(pSTR, NegInfString) == 0) || (stricmp(pSTR, ScilabNegInfString) == 0))
+        else if ((os_stricmp(pSTR, NegInfString) == 0) || (os_stricmp(pSTR, ScilabNegInfString) == 0))
         {
             dValue = returnINF(FALSE);
         }
-        else if ((stricmp(pSTR, ScilabPiString) == 0) || (stricmp(pSTR, ScilabPosPiString) == 0))
+        else if ((os_stricmp(pSTR, ScilabPiString) == 0) || (os_stricmp(pSTR, ScilabPosPiString) == 0))
         {
             dValue = M_PI;
         }
-        else if (stricmp(pSTR, ScilabNegPiString) == 0)
+        else if (os_stricmp(pSTR, ScilabNegPiString) == 0)
         {
             dValue = -M_PI;
         }
-        else if ((stricmp(pSTR, ScilabEpsString) == 0) || (stricmp(pSTR, ScilabPosEpsString) == 0))
+        else if ((os_stricmp(pSTR, ScilabEpsString) == 0) || (os_stricmp(pSTR, ScilabPosEpsString) == 0))
         {
             dValue = EPSILON;
         }
-        else if (stricmp(pSTR, ScilabNegEpsString) == 0)
+        else if (os_stricmp(pSTR, ScilabNegEpsString) == 0)
         {
             dValue = -EPSILON;
         }
-        else if ((stricmp(pSTR, ScilabEString) == 0) || (stricmp(pSTR, ScilabPosEString) == 0))
+        else if ((os_stricmp(pSTR, ScilabEString) == 0) || (os_stricmp(pSTR, ScilabPosEString) == 0))
         {
             dValue = exp(1);
         }
-        else if (stricmp(pSTR, ScilabNegEString) == 0)
+        else if (os_stricmp(pSTR, ScilabNegEString) == 0)
         {
             dValue = -exp(1);
         }

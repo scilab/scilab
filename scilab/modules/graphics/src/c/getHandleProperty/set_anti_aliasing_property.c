@@ -44,23 +44,23 @@ int set_anti_aliasing_property(void* _pvCtx, int iObjUID, void* _pvData, int val
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "off") == 0)
+    if (os_stricmp((char*)_pvData, "off") == 0)
     {
         quality = 0;
     }
-    else if (stricmp((char*)_pvData, "2x") == 0)
+    else if (os_stricmp((char*)_pvData, "2x") == 0)
     {
         quality = 1;
     }
-    else if (stricmp((char*)_pvData, "4x") == 0)
+    else if (os_stricmp((char*)_pvData, "4x") == 0)
     {
         quality = 2;
     }
-    else if (stricmp((char*)_pvData, "8x") == 0)
+    else if (os_stricmp((char*)_pvData, "8x") == 0)
     {
         quality = 3;
     }
-    else if (stricmp((char*)_pvData, "16x") == 0)
+    else if (os_stricmp((char*)_pvData, "16x") == 0)
     {
         quality = 4;
     }

@@ -250,7 +250,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
     if (bCatch)
     {
         char szError[bsiz];
-        os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "intg", "dqags");
+        os_sprintf(szError, bsiz, _("%s: An error occured in '%s' subroutine.\n"), "intg", "dqags");
         os << szError;
         throw ast::InternalError(os.str());
     }

@@ -38,10 +38,10 @@ int SetUicontrolFontWeight(void* _pvCtx, int iObjUID, void* _pvData, int valueTy
 
     fontWeight = (char*)_pvData;
 
-    if (stricmp(fontWeight, "light") != 0
-            && stricmp(fontWeight, "normal") != 0
-            && stricmp(fontWeight, "demi") != 0
-            && stricmp(fontWeight, "bold") != 0)
+    if (os_stricmp(fontWeight, "light") != 0
+            && os_stricmp(fontWeight, "normal") != 0
+            && os_stricmp(fontWeight, "demi") != 0
+            && os_stricmp(fontWeight, "bold") != 0)
     {
         /* Wrong string format */
         Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n")), "FontWeight", "light", "normal", "demi", "bold");

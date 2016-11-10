@@ -44,11 +44,11 @@ int set_mark_size_unit_property(void* _pvCtx, int iObjUID, void* _pvData, int va
     }
 
     /* 0 : point, 1 : tabulated */
-    if (stricmp((char*)_pvData, "point") == 0)
+    if (os_stricmp((char*)_pvData, "point") == 0)
     {
         markSizeUnit = 0;
     }
-    else if (stricmp((char*)_pvData, "tabulated") == 0)
+    else if (os_stricmp((char*)_pvData, "tabulated") == 0)
     {
         markSizeUnit = 1;
     }

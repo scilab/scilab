@@ -28,7 +28,7 @@
 #include "Sciwarning.h"
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
-static BOOL find_spec( char *filename , char *filespec);
+static BOOL find_spec(const char *filename , const char *filespec);
 #endif
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -138,7 +138,7 @@ char **findfiles(const char *path, const char *filespec, int *sizeListReturned, 
  * @param filename the filename
  * @param filespec the mask
  */
-static BOOL find_spec( char *filename , char *filespec)
+static BOOL find_spec(const char *filename , const char *filespec)
 {
     char *any = NULL;
 

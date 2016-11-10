@@ -544,7 +544,7 @@ char* String::copyValue(char* _pstData)
     catch (std::bad_alloc & /*e*/)
     {
         char message[bsiz];
-        os_sprintf(message, _("Can not allocate data.\n"));
+        os_sprintf(message, bsiz, _("Can not allocate data.\n"));
         throw ast::InternalError(message);
     }
 
@@ -623,7 +623,7 @@ char** String::allocData(int _iSize)
     catch (std::bad_alloc & /*e*/)
     {
         char message[bsiz];
-        os_sprintf(message, _("Can not allocate %.2f MB memory.\n"), (double)(_iSize * sizeof(char*)) / 1.e6);
+        os_sprintf(message, bsiz, _("Can not allocate %.2f MB memory.\n"), (double)(_iSize * sizeof(char*)) / 1.e6);
         throw ast::InternalError(message);
     }
     return pStr;

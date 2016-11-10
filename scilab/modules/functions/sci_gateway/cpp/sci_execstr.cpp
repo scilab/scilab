@@ -64,7 +64,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
         }
 
         types::String* pS = in[1]->getAs<types::String>();
-        if (stricmp(pS->get(0), "errcatch") == 0)
+        if (os_stricmp(pS->get(0), "errcatch") == 0)
         {
             bErrCatch = true;
         }
@@ -86,11 +86,11 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        if (stricmp(in[2]->getAs<types::String>()->get(0), MUTE_FLAG) == 0)
+        if (os_stricmp(in[2]->getAs<types::String>()->get(0), MUTE_FLAG) == 0)
         {
             bMute = true;
         }
-        else if (stricmp(in[2]->getAs<types::String>()->get(0), NO_MUTE_FLAG) == 0)
+        else if (os_stricmp(in[2]->getAs<types::String>()->get(0), NO_MUTE_FLAG) == 0)
         {
             bMute = false;
         }
@@ -227,7 +227,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
 
             //print msg about recursion limit and trigger an error
             char sz[1024];
-            os_sprintf(sz, _("Recursion limit reached (%d).\n"), ConfigVariable::getRecursionLimit());
+            os_sprintf(sz, 1024, _("Recursion limit reached (%d).\n"), ConfigVariable::getRecursionLimit());
             throw ast::InternalError(sz);
         }
     }

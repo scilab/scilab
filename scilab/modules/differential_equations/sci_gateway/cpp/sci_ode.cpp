@@ -1136,7 +1136,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 if (bCatch)
                 {
                     char szError[bsiz];
-                    os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "ode", strMeth.c_str());
+                    os_sprintf(szError, bsiz, _("%s: An error occured in '%s' subroutine.\n"), "ode", strMeth.c_str());
                     os << szError;
                     throw ast::InternalError(os.str());
                 }
@@ -1356,7 +1356,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 if (bCatch)
                 {
                     char szError[bsiz];
-                    os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "ode", strMeth.c_str());
+                    os_sprintf(szError, bsiz, _("%s: An error occured in '%s' subroutine.\n"), "ode", strMeth.c_str());
                     os << szError;
                     throw ast::InternalError(os.str());
                 }

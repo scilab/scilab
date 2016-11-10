@@ -56,11 +56,11 @@ int set_tics_direction_property(void* _pvCtx, int iObjUID, void* _pvData, int va
 
     if (yNumberTicks == 1)
     {
-        if (stricmp((char*)_pvData, "top") == 0)
+        if (os_stricmp((char*)_pvData, "top") == 0)
         {
             ticksDirection = 0;
         }
-        else if (stricmp((char*)_pvData, "bottom") == 0)
+        else if (os_stricmp((char*)_pvData, "bottom") == 0)
         {
             ticksDirection = 1;
         }
@@ -72,11 +72,11 @@ int set_tics_direction_property(void* _pvCtx, int iObjUID, void* _pvData, int va
     }
     else
     {
-        if (stricmp((char*)_pvData, "left") == 0)
+        if (os_stricmp((char*)_pvData, "left") == 0)
         {
             ticksDirection = 2;
         }
-        else if (stricmp((char*)_pvData, "right") == 0)
+        else if (os_stricmp((char*)_pvData, "right") == 0)
         {
             ticksDirection = 3;
         }

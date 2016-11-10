@@ -27,6 +27,7 @@
 #include "getshortpathname.h"
 #include "charEncoding.h"
 #include "version.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 BOOL getversionmodule(const char* _pstModule,
                       int *sci_version_major,
@@ -61,7 +62,7 @@ BOOL getversionmodule(const char* _pstModule,
             xmlKeepBlanksDefault(0);
 
             /* check if the XML file has been encoded with utf8 (unicode) or not */
-            if (stricmp("utf-8", encoding) == 0)
+            if (os_stricmp("utf-8", encoding) == 0)
             {
                 xmlDocPtr doc = NULL;
                 xmlXPathContextPtr xpathCtxt = NULL;

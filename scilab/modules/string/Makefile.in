@@ -175,8 +175,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscistring_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 = src/c/libscistring_algo_la-convstr.lo \
-	src/c/libscistring_algo_la-men_Sutils.lo \
+am__objects_1 = src/c/libscistring_algo_la-men_Sutils.lo \
 	src/c/libscistring_algo_la-tokens.lo \
 	src/c/libscistring_algo_la-strsplit.lo \
 	src/c/libscistring_algo_la-partfunction.lo \
@@ -631,7 +630,6 @@ STRING_CPP_SOURCES = \
     src/cpp/os_wtoi.cpp
 
 STRING_C_SOURCES = \
-    src/c/convstr.c \
     src/c/men_Sutils.c \
     src/c/tokens.c \
     src/c/strsplit.c \
@@ -765,7 +763,6 @@ libscistring_la_sci_gateway_DATA = sci_gateway/string_gateway.xml
 libscistring_la_includedir = $(pkgincludedir)
 libscistring_la_include_HEADERS = \
 includes/complex_array.h \
-includes/convstr.h \
 includes/cvstr.h \
 includes/dynlib_string_gw.h \
 includes/dynlib_string.h \
@@ -941,8 +938,6 @@ src/c/$(am__dirstamp):
 src/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/c/$(DEPDIR)
 	@: > src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscistring_algo_la-convstr.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscistring_algo_la-men_Sutils.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscistring_algo_la-tokens.lo: src/c/$(am__dirstamp) \
@@ -1146,7 +1141,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscistring_la-string_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-StringConvert.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-complex_array.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-convstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-cvstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-getfastcode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistring_algo_la-isalphanum.Plo@am__quote@
@@ -1196,13 +1190,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
-
-src/c/libscistring_algo_la-convstr.lo: src/c/convstr.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT src/c/libscistring_algo_la-convstr.lo -MD -MP -MF src/c/$(DEPDIR)/libscistring_algo_la-convstr.Tpo -c -o src/c/libscistring_algo_la-convstr.lo `test -f 'src/c/convstr.c' || echo '$(srcdir)/'`src/c/convstr.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscistring_algo_la-convstr.Tpo src/c/$(DEPDIR)/libscistring_algo_la-convstr.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/convstr.c' object='src/c/libscistring_algo_la-convstr.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -c -o src/c/libscistring_algo_la-convstr.lo `test -f 'src/c/convstr.c' || echo '$(srcdir)/'`src/c/convstr.c
 
 src/c/libscistring_algo_la-men_Sutils.lo: src/c/men_Sutils.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT src/c/libscistring_algo_la-men_Sutils.lo -MD -MP -MF src/c/$(DEPDIR)/libscistring_algo_la-men_Sutils.Tpo -c -o src/c/libscistring_algo_la-men_Sutils.lo `test -f 'src/c/men_Sutils.c' || echo '$(srcdir)/'`src/c/men_Sutils.c

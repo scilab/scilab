@@ -781,7 +781,7 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
             if (bCatch)
             {
                 char szError[bsiz];
-                os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "dasrt", "ddasrt");
+                os_sprintf(szError, bsiz, _("%s: An error occured in '%s' subroutine.\n"), "dasrt", "ddasrt");
                 os << szError;
                 throw ast::InternalError(os.str());
             }

@@ -42,11 +42,11 @@ types::Function::ReturnValue sci_intppty(types::typed_list &in, int _iRetCount, 
         }
 
         types::String* pMode = in[1]->getAs<types::String>();
-        if (stricmp(pMode->get(0), "add") == 0)
+        if (os_stricmp(pMode->get(0), "add") == 0)
         {
             bAdd = true;
         }
-        else if (stricmp(pMode->get(0), "remove") == 0)
+        else if (os_stricmp(pMode->get(0), "remove") == 0)
         {
             bAdd = false;
         }

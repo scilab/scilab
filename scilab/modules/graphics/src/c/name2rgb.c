@@ -1619,7 +1619,7 @@ void name2rgb(char* color, double* _pdblRGB)
     int colorSize2 = sizeof(colorRGB) / (sizeof(int) * 3);
     for (i = 0 ; i < colorSize ; i++)
     {
-        if (stricmp(colorName[i], color) == 0)
+        if (os_stricmp(colorName[i], color) == 0)
         {
             _pdblRGB[0] = (double)colorRGB[i][0];
             _pdblRGB[1] = (double)colorRGB[i][1];

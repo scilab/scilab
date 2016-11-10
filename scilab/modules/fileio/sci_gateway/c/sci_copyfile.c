@@ -29,6 +29,7 @@
 #include "freeArrayOfString.h"
 #include "charEncoding.h"
 #include "expandPathVariable.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static char *getFilenameWithExtension(char* fullFilename);
 static int returnCopyFileResultOnStack(int ierr, char *fname , void* pvApiCtx);
@@ -290,7 +291,7 @@ static int returnCopyFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
-        
+
         strcpy(sciError, "");
     }
 #else

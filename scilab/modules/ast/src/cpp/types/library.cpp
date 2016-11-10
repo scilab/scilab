@@ -54,7 +54,7 @@ Library::~Library()
 bool Library::toString(std::ostringstream& ostr)
 {
     char output[1024] = {0};
-    os_sprintf(output, _("Functions files location : %s.\n"), m_path.c_str());
+    os_sprintf(output, 1024, _("Functions files location : %s.\n"), m_path.c_str());
 
     ostr << output << std::endl;
 
@@ -89,7 +89,7 @@ bool Library::extract(const std::string & name, InternalType *& out)
     if (out == NULL)
     {
         char szError[bsiz];
-        os_sprintf(szError, _("Unknown field : %s.\n"), name.c_str());
+        os_sprintf(szError, bsiz, _("Unknown field : %s.\n"), name.c_str());
         throw std::string(szError);
     }
 

@@ -25,14 +25,14 @@ extern "C"
 * @param[in] _Id
 * @return filename
 */
-OUTPUT_STREAM_IMPEXP char* getDiaryFilename(int _Id);
+OUTPUT_STREAM_IMPEXP const char* getDiaryFilename(int _Id);
 
 /**
 * get all filenames in manager
 * @param[out] size of returned array
 * @return filenames
 */
-OUTPUT_STREAM_IMPEXP char** getDiaryFilenames(int *array_size);
+OUTPUT_STREAM_IMPEXP const char** getDiaryFilenames(int *array_size);
 
 /**
 * get all IDs in manager

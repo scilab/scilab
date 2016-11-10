@@ -118,8 +118,8 @@ void addUnsignedIntValue(std::ostringstream *_postr, T _TVal, int _iWidth, bool 
 
     if (bPrintOne == true || _TVal != 1)
     {
-        os_sprintf(pstFormat, " %s%llu", pstSign, (unsigned long long)(_TVal));
-        os_sprintf(pstOutput, "%*s", _iWidth + 1, pstFormat);//+1 for blank
+        os_sprintf(pstFormat, 32, " %s%llu", pstSign, (unsigned long long)(_TVal));
+        os_sprintf(pstOutput, 32, "%*s", _iWidth + 1, pstFormat);//+1 for blank
         *_postr << pstOutput;
     }
 }
@@ -142,8 +142,8 @@ void addSignedIntValue(std::ostringstream *_postr, T _TVal, int _iWidth, bool bP
     if (bPrintOne == true || _TVal != 1)
     {
         unsigned long long a = _abs64(_TVal);
-        os_sprintf(pstFormat, " %s%llu", pstSign, a);
-        os_sprintf(pstOutput, "%*s", _iWidth + 1, pstFormat);//+1 for blank
+        os_sprintf(pstFormat, 32, " %s%llu", pstSign, a);
+        os_sprintf(pstOutput, 32, "%*s", _iWidth + 1, pstFormat);//+1 for blank
         *_postr << pstOutput;
     }
 }

@@ -44,15 +44,15 @@ int set_clip_state_property(void* _pvCtx, int iObjUID, void* _pvData, int valueT
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "clipgrf") == 0)
+    if (os_stricmp((char*)_pvData, "clipgrf") == 0)
     {
         clipState = 1;
     }
-    else if (stricmp((char*)_pvData, "off") == 0)
+    else if (os_stricmp((char*)_pvData, "off") == 0)
     {
         clipState = 0;
     }
-    else if (stricmp((char*)_pvData, "on") == 0)
+    else if (os_stricmp((char*)_pvData, "on") == 0)
     {
         clipState = 2;
     }

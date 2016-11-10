@@ -85,13 +85,13 @@ types::Function::ReturnValue Overload::call(const std::string& _stOverloadingFun
             char pstError2[512];
             if (_isOperator)
             {
-                os_sprintf(pstError2, _("check or define function %s for overloading.\n"), _stOverloadingFunctionName.c_str());
-                os_sprintf(pstError1, "%s%s", _("Undefined operation for the given operands.\n"), pstError2);
+                os_sprintf(pstError2, 512, _("check or define function %s for overloading.\n"), _stOverloadingFunctionName.c_str());
+                os_sprintf(pstError1, 512, "%s%s", _("Undefined operation for the given operands.\n"), pstError2);
             }
             else
             {
-                os_sprintf(pstError2, _("  check arguments or define function %s for overloading.\n"), _stOverloadingFunctionName.c_str());
-                os_sprintf(pstError1, "%s%s", _("Function not defined for given argument type(s),\n"), pstError2);
+                os_sprintf(pstError2, 512, _("  check arguments or define function %s for overloading.\n"), _stOverloadingFunctionName.c_str());
+                os_sprintf(pstError1, 512, "%s%s", _("Function not defined for given argument type(s),\n"), pstError2);
             }
 
             ast::InternalError ie(pstError1);
@@ -145,7 +145,7 @@ std::string Overload::getNameFromOper(const int _oper)
 {
     switch (_oper)
     {
-        /* standard operators */
+            /* standard operators */
         case ast::OpExp::plus :
             return "a";
         case ast::OpExp::unaryMinus :
@@ -159,7 +159,7 @@ std::string Overload::getNameFromOper(const int _oper)
             return "l";
         case ast::OpExp::power :
             return "p";
-        /* dot operators */
+            /* dot operators */
         case ast::OpExp::dottimes :
             return "x";
         case ast::OpExp::dotrdivide :
@@ -168,14 +168,14 @@ std::string Overload::getNameFromOper(const int _oper)
             return "q";
         case ast::OpExp::dotpower :
             return "j";
-        /* Kron operators */
+            /* Kron operators */
         case ast::OpExp::krontimes :
             return "k";
         case ast::OpExp::kronrdivide :
             return "y";
         case ast::OpExp::kronldivide :
             return "z";
-        /* Control Operators ??? */
+            /* Control Operators ??? */
         case ast::OpExp::controltimes :
             return "u";
         case ast::OpExp::controlrdivide :

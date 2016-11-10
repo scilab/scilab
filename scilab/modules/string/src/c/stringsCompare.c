@@ -52,7 +52,7 @@ int * stringsCompare(char** Input_String_One, int dim_One, char** Input_String_T
 
             if (dostricmp)
             {
-                returnedValues[i] = sign(stricmp(Input_String_One[i], Input_String_Two[j]));
+                returnedValues[i] = sign(os_stricmp(Input_String_One[i], Input_String_Two[j]));
             }
             else
             {

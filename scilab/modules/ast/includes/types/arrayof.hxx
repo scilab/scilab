@@ -117,7 +117,7 @@ protected :
                 if (m_iSize != 0 && iTmpSize / m_iSize != m_piDims[i])
                 {
                     char message[bsiz];
-                    os_sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) ((double) m_iSize * (double) m_piDims[i] * sizeof(T)) / 1.e6);
+                    os_sprintf(message, bsiz, _("Can not allocate %.2f MB memory.\n"),  (double) ((double) m_iSize * (double) m_piDims[i] * sizeof(T)) / 1.e6);
                     throw ast::InternalError(message);
                 }
 
@@ -129,7 +129,7 @@ protected :
                 m_pRealData = NULL;
                 m_pImgData = NULL;
                 char message[bsiz];
-                os_sprintf(message, _("Can not allocate negative size (%d).\n"), m_iSize);
+                os_sprintf(message, bsiz, _("Can not allocate negative size (%d).\n"), m_iSize);
                 throw ast::InternalError(message);
             }
 
@@ -161,7 +161,7 @@ protected :
         catch (std::bad_alloc & /*e*/)
         {
             char message[bsiz];
-            os_sprintf(message, _("Can not allocate %.2f MB memory.\n"), (double)(m_iSize * sizeof(T)) / 1.e6);
+            os_sprintf(message, bsiz, _("Can not allocate %.2f MB memory.\n"), (double)(m_iSize * sizeof(T)) / 1.e6);
             throw ast::InternalError(message);
         }
 

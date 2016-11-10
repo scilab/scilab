@@ -427,7 +427,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                 {
                     if (strlen(propertyName) <= strlen(propertiesNames[k]))
                     {
-                        if (strnicmp(propertyName, propertiesNames[k], strlen(propertyName)) == 0)
+                        if (os_strnicmp(propertyName, propertiesNames[k], strlen(propertyName)) == 0)
                         {
                             propertiesValuesIndices[k] = inputIndex + 1;    /* Position of value for property */
                             found = 1;

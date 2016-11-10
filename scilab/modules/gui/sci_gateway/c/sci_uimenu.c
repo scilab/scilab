@@ -164,12 +164,12 @@ int sci_uimenu(char *fname, void *pvApiCtx)
                 return 1;
             }
 
-            if (stricmp(propertyName, "parent") == 0)
+            if (os_stricmp(propertyName, "parent") == 0)
             {
                 parentDefined = TRUE;
             }
 
-            isUserDataProperty = (stricmp(propertyName, "user_data") == 0) || (stricmp(propertyName, "userdata") == 0);
+            isUserDataProperty = (os_stricmp(propertyName, "user_data") == 0) || (os_stricmp(propertyName, "userdata") == 0);
         }
 
         sciErr = getVarAddressFromPosition(pvApiCtx, iPropertyValuePositionIndex, &piAddrValue);

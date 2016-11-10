@@ -43,11 +43,11 @@ int set_view_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "2d") == 0)
+    if (os_stricmp((char*)_pvData, "2d") == 0)
     {
         viewType = 0;
     }
-    else if (stricmp((char*)_pvData, "3d") == 0)
+    else if (os_stricmp((char*)_pvData, "3d") == 0)
     {
         viewType = 1;
     }

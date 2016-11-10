@@ -47,9 +47,9 @@ int set_tics_style_property(void* _pvCtx, int iObjUID, void* _pvData, int valueT
         return SET_PROPERTY_ERROR;
     }
 
-    if (   stricmp((char*)_pvData, "v") != 0 &&
-            stricmp((char*)_pvData, "r") != 0 &&
-            stricmp((char*)_pvData, "i") != 0)
+    if (   os_stricmp((char*)_pvData, "v") != 0 &&
+            os_stricmp((char*)_pvData, "r") != 0 &&
+            os_stricmp((char*)_pvData, "i") != 0)
     {
         Scierror(999, _("Wrong value for '%s' property: Must be in the set {%s}.\n"), "tics_style", "v, r, i");
         return SET_PROPERTY_ERROR;

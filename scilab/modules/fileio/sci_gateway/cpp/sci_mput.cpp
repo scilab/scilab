@@ -32,7 +32,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    char* pstType   = "l";//default type value : long
+    char* pstType   = (char*)"l";//default type value : long
     int iSize       = 0;
     int iFile       = -1; //default file : last opened file
     double* pData   = NULL;

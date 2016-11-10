@@ -103,7 +103,7 @@ double* SinglePoly::allocData(int _iSize)
             m_pRealData = NULL;
             m_pImgData = NULL;
             char message[bsiz];
-            os_sprintf(message, _("Can not allocate negative size (%d).\n"),  _iSize);
+            os_sprintf(message, bsiz, _("Can not allocate negative size (%d).\n"),  _iSize);
             throw ast::InternalError(message);
         }
         else
@@ -114,7 +114,7 @@ double* SinglePoly::allocData(int _iSize)
     catch (std::bad_alloc &/*e*/)
     {
         char message[bsiz];
-        os_sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) (_iSize * sizeof(double)) / 1.e6);
+        os_sprintf(message, bsiz, _("Can not allocate %.2f MB memory.\n"),  (double) (_iSize * sizeof(double)) / 1.e6);
         throw ast::InternalError(message);
     }
 

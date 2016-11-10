@@ -35,7 +35,7 @@ BOOL LoadLibrarypath(char *xmlfilename)
         /* Don't care about line return / empty line */
         xmlKeepBlanksDefault(0);
         /* check if the XML file has been encoded with utf8 (unicode) or not */
-        if ( stricmp("utf-8", encoding) == 0 )
+        if ( os_stricmp("utf-8", encoding) == 0 )
         {
             xmlDocPtr doc = NULL;
             xmlXPathContextPtr xpathCtxt = NULL;

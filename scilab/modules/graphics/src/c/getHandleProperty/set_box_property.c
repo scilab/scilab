@@ -60,23 +60,23 @@ int set_box_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, in
     {
         int boxType;
 
-        if (stricmp((char*)_pvData, "off") == 0)
+        if (os_stricmp((char*)_pvData, "off") == 0)
         {
             boxType = 0;
         }
-        else if (stricmp((char*)_pvData, "on") == 0)
+        else if (os_stricmp((char*)_pvData, "on") == 0)
         {
             boxType = 1;
         }
-        else if (stricmp((char*)_pvData, "hidden_axes") == 0)
+        else if (os_stricmp((char*)_pvData, "hidden_axes") == 0)
         {
             boxType = 2;
         }
-        else if (stricmp((char*)_pvData, "back_half") == 0)
+        else if (os_stricmp((char*)_pvData, "back_half") == 0)
         {
             boxType = 3;
         }
-        else if (stricmp((char*)_pvData, "hidden_axis") == 0)
+        else if (os_stricmp((char*)_pvData, "hidden_axis") == 0)
         {
             Sciwarning(_("WARNING !!!\nIn '%s' property: '%s' is deprecated use '%s' instead.\n"), "box", "hidden_axis", "hidden_axes");
             boxType = 2;
@@ -104,11 +104,11 @@ int set_box_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, in
     {
         int box;
 
-        if (stricmp((char*)_pvData, "on") == 0)
+        if (os_stricmp((char*)_pvData, "on") == 0)
         {
             box = 1;
         }
-        else if (stricmp((char*)_pvData, "off") == 0)
+        else if (os_stricmp((char*)_pvData, "off") == 0)
         {
             box = 0;
         }

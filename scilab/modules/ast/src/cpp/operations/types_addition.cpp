@@ -1977,7 +1977,7 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
             }
 
             char pMsg[bsiz];
-            os_sprintf(pMsg, _("Error: operator %s: Matrix dimensions must agree (op1 is %s, op2 is %s).\n"),  "+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
+            os_sprintf(pMsg, bsiz, _("Error: operator %s: Matrix dimensions must agree (op1 is %s, op2 is %s).\n"),  "+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
             throw ast::InternalError(pMsg);
         }
     }
@@ -2193,7 +2193,7 @@ template<> InternalType* add_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         if (piDims1[i] != piDims2[i])
         {
             char pMsg[bsiz];
-            os_sprintf(pMsg, _("Error: operator %s: Matrix dimensions must agree (op1 is %s, op2 is %s).\n"),  "+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
+            os_sprintf(pMsg, bsiz, _("Error: operator %s: Matrix dimensions must agree (op1 is %s, op2 is %s).\n"),  "+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
             throw ast::InternalError(pMsg);
         }
     }

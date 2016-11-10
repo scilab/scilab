@@ -685,7 +685,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
             if (bCatch)
             {
                 char szError[bsiz];
-                os_sprintf(szError, _("%s: An error occured in '%s' subroutine.\n"), "impl", "lsodi");
+                os_sprintf(szError, bsiz, _("%s: An error occured in '%s' subroutine.\n"), "impl", "lsodi");
                 os << szError;
                 throw ast::InternalError(os.str());
             }

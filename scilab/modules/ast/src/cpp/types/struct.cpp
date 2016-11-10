@@ -143,7 +143,7 @@ bool Struct::extract(const std::string & name, InternalType *& out)
     else
     {
         char szError[bsiz];
-        os_sprintf(szError, _("Unknown field : %s.\n"), name.c_str());
+        os_sprintf(szError, bsiz, _("Unknown field : %s.\n"), name.c_str());
         throw std::string(szError);
     }
 
@@ -175,7 +175,7 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
                 else
                 {
                     char szError[bsiz];
-                    os_sprintf(szError, _("Field \"%s\" does not exists\n"), stField.c_str());
+                    os_sprintf(szError, bsiz, _("Field \"%s\" does not exists\n"), stField.c_str());
                     throw ast::InternalError(szError, 999, e.getLocation());
                 }
             }

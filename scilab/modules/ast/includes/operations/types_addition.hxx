@@ -134,11 +134,7 @@ inline static void add(char** l, size_t size, char** r, int* length , char** o)
 {
     for (size_t i = 0; i < size ; ++i)
     {
-#ifdef _MSC_VER
         os_sprintf(o[i], length[i], "%s%s", l[i], r[i]);
-#else
-        os_sprintf(o[i], "%s%s", l[i], r[i]);
-#endif
     }
 }
 
@@ -216,11 +212,7 @@ inline static void add(char** l, size_t size, char* r, int* length , char** o)
 {
     for (size_t i = 0; i < size ; ++i)
     {
-#ifdef _MSC_VER
         os_sprintf(o[i], length[i], "%s%s", l[i], r);
-#else
-        os_sprintf(o[i], "%s%s", l[i], r);
-#endif
     }
 }
 
@@ -269,11 +261,7 @@ inline static void add(char* l, size_t size, char** r, int* length , char** o)
 {
     for (size_t i = 0; i < size ; ++i)
     {
-#ifdef _MSC_VER
         os_sprintf(o[i], length[i], "%s%s", l, r[i]);
-#else
-        os_sprintf(o[i], "%s%s", l, r[i]);
-#endif
     }
 }
 
@@ -323,11 +311,7 @@ template<typename T, typename U, typename O> inline static void add(T l, U r, O*
 //string version
 inline static void add(char* l, char* r, int length , char* o)
 {
-#ifdef _MSC_VER
     os_sprintf(o, length, "%s%s", l, r);
-#else
-    os_sprintf(o, "%s%s", l, r);
-#endif
 }
 
 //x1C + x1C

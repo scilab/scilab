@@ -718,11 +718,11 @@ void* scilabReadAndStore(void* param)
                 }
                 else if (commandsize > 1 && command[0] == 'p' && command[1] == ' ')
                 {
-                        std::string s("disp(");
-                        s += command + 2;
-                        s += ")";
-                        tmpCommand = os_strdup(s.data());
-                        disableDebug = true;
+                    std::string s("disp(");
+                    s += command + 2;
+                    s += ")";
+                    tmpCommand = os_strdup(s.data());
+                    disableDebug = true;
                 }
                 else if (commandsize > 6 && strncmp(command, "print ", 6) == 0)
                 {
@@ -736,11 +736,7 @@ void* scilabReadAndStore(void* param)
                 {
                     int iLen = (int)strlen(command) + (int)strlen("debug ") + 1;
                     tmpCommand = (char*)MALLOC(sizeof(char) * iLen);
-#ifdef _MSC_VER
                     os_sprintf(tmpCommand, iLen, "%s %s", "debug", command);
-#else
-                    os_sprintf(tmpCommand, "%s %s", "debug", command);
-#endif
                     disableDebug = true;
                 }
 

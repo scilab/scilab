@@ -122,7 +122,7 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
         return 0;
     }
 
-    if (stricmp(values[0]/*enabled*/, "true") == 0)
+    if (os_stricmp(values[0]/*enabled*/, "true") == 0)
     {
         const unsigned int ulen = (const unsigned int)strlen(values[3]);
         const unsigned int plen = (const unsigned int)strlen(values[4]);

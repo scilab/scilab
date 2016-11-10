@@ -25,9 +25,7 @@ extern "C"
 #include "expandPathVariable.h"
 #include "sci_malloc.h"
 #include "localization.h"
-#ifdef _MSC_VER
 #include "os_string.h"
-#endif
 }
 
 using namespace org_modules_xml;

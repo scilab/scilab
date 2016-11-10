@@ -188,7 +188,7 @@ static JavaVM *SearchCreatedJavaVMPath(void)
 }
 
 /*--------------------------------------------------------------------------*/
-JavaVM *FindCreatedJavaVM(char *SCILAB_PATH)
+JavaVM *FindCreatedJavaVM(const char *SCILAB_PATH)
 {
     JavaVM *jvm = NULL;
 

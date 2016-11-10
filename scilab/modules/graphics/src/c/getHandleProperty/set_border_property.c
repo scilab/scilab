@@ -316,11 +316,11 @@ int createCommonBevelBorder(void* _pvCtx, int* _piAddrList, int _iObjUID, int _i
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp(pstType, "raised") == 0)
+    if (os_stricmp(pstType, "raised") == 0)
     {
         iType = 0;
     }
-    else if (stricmp(pstType, "lowered") == 0)
+    else if (os_stricmp(pstType, "lowered") == 0)
     {
         iType = 1;
     }
@@ -466,11 +466,11 @@ int createEtchedBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
             return SET_PROPERTY_ERROR;
         }
 
-        if (stricmp(pstType, "raised") == 0)
+        if (os_stricmp(pstType, "raised") == 0)
         {
             iType = 0;
         }
-        else if (stricmp(pstType, "lowered") == 0)
+        else if (os_stricmp(pstType, "lowered") == 0)
         {
             iType = 1;
         }
@@ -631,23 +631,23 @@ int createTitledBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
             return SET_PROPERTY_ERROR;
         }
 
-        if (stricmp(pstJustification, "leading") == 0)
+        if (os_stricmp(pstJustification, "leading") == 0)
         {
             iJustification = 0;
         }
-        else if (stricmp(pstJustification, "left") == 0)
+        else if (os_stricmp(pstJustification, "left") == 0)
         {
             iJustification = 1;
         }
-        else if (stricmp(pstJustification, "center") == 0)
+        else if (os_stricmp(pstJustification, "center") == 0)
         {
             iJustification = 2;
         }
-        else if (stricmp(pstJustification, "right") == 0)
+        else if (os_stricmp(pstJustification, "right") == 0)
         {
             iJustification = 3;
         }
-        else if (stricmp(pstJustification, "trailing") == 0)
+        else if (os_stricmp(pstJustification, "trailing") == 0)
         {
             iJustification = 4;
         }
@@ -666,27 +666,27 @@ int createTitledBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
             return SET_PROPERTY_ERROR;
         }
 
-        if (stricmp(pstPosition, "top") == 0)
+        if (os_stricmp(pstPosition, "top") == 0)
         {
             iPosition = 0;
         }
-        else if (stricmp(pstPosition, "above_top") == 0)
+        else if (os_stricmp(pstPosition, "above_top") == 0)
         {
             iPosition = 1;
         }
-        else if (stricmp(pstPosition, "below_top") == 0)
+        else if (os_stricmp(pstPosition, "below_top") == 0)
         {
             iPosition = 2;
         }
-        else if (stricmp(pstPosition, "bottom") == 0)
+        else if (os_stricmp(pstPosition, "bottom") == 0)
         {
             iPosition = 3;
         }
-        else if (stricmp(pstPosition, "above_bottom") == 0)
+        else if (os_stricmp(pstPosition, "above_bottom") == 0)
         {
             iPosition = 4;
         }
-        else if (stricmp(pstPosition, "below_bottom") == 0)
+        else if (os_stricmp(pstPosition, "below_bottom") == 0)
         {
             iPosition = 5;
         }

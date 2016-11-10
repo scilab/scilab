@@ -62,7 +62,7 @@ double getIndex(InternalType* val)
 {
     switch (val->getType())
     {
-        //scalar
+            //scalar
         case InternalType::ScilabDouble:
         {
             return getIndex(val->getAs<Double>());
@@ -669,7 +669,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 if (pCurrentArg->get(j) >= INT_MAX)
                 {
                     char szError[bsiz];
-                    os_sprintf(szError, _("variable size exceeded : less than %d expected.\n"), INT_MAX);
+                    os_sprintf(szError, bsiz, _("variable size exceeded : less than %d expected.\n"), INT_MAX);
                     throw ast::InternalError(szError);
                 }
 
@@ -689,7 +689,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
         else
         {
             char szError[bsiz];
-            os_sprintf(szError, _("Invalid index.\n"));
+            os_sprintf(szError, bsiz, _("Invalid index.\n"));
 
             delete[] _piMaxDim;
             delete[] _piCountDim;

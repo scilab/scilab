@@ -34,11 +34,11 @@ int set_menubar_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "none") == 0)
+    if (os_stricmp((char*)_pvData, "none") == 0)
     {
         menu = NONE;
     }
-    else if (stricmp((char*)_pvData, "figure") == 0)
+    else if (os_stricmp((char*)_pvData, "figure") == 0)
     {
         menu = FIGURE;
     }
