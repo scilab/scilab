@@ -55,11 +55,11 @@ types::Function::ReturnValue sci_setlanguage(types::typed_list &in, int _piRetCo
         {
             if (newlanguage == NULL)
             {
-                sciprint(_("%ls: Unsupported language '%ls'.\n"), L"setlanguage", param);
+                sciprint(_("%s: Unsupported language '%s'.\n"), "setlanguage", param);
             }
             else
             {
-                sciprint(_("%ls: Unsupported language '%ls'.\n"), L"setlanguage", newlanguage);
+                sciprint(_("%s: Unsupported language '%s'.\n"), "setlanguage", newlanguage);
             }
         }
 
@@ -91,8 +91,8 @@ types::Function::ReturnValue sci_setlanguage(types::typed_list &in, int _piRetCo
     {
         if (getWarningMode())
         {
-            sciprint(_("Unsupported language '%ls'.\n"), param);
-            sciprint(_("Switching to default language : '%ls'.\n"), SCILABDEFAULTLANGUAGE);
+            sciprint(_("Unsupported language '%s'.\n"), param);
+            sciprint(_("Switching to default language : '%s'.\n"), SCILABDEFAULTLANGUAGE);
         }
         setlanguage(SCILABDEFAULTLANGUAGE);
         out.push_back(new types::Bool(FALSE));

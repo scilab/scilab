@@ -61,6 +61,8 @@ extern "C" {
     */
     char *wide_string_to_UTF8(const wchar_t *_wide);
 
+    int get_codepoint_count(const char* _UTFStr);
+
     /*file management with UTF filename*/
 #ifdef _MSC_VER
     int wcstat(char* filename, struct _stat *st);

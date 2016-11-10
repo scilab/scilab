@@ -106,8 +106,38 @@ int wcstat(char* filename, struct _stat *st)
     FREE(wfilename);
     return stat_result;
 }
+
+int get_codepoint_count(const char* _UTFStr)
+{
+    DWORD dwFlags = 0;
+    UINT codePage = CP_ACP;
+
+    if (_UTFStr == NULL)
+    {
+        return 0;
+    }
+
+    if (IsValidUTF8(_UTFStr))
+    {
+        codePage = CP_UTF8;
+    }
+
+    return MultiByteToWideChar(codePage, dwFlags, _UTFStr, -1, NULL, 0) - 1; //MultiByteToWideChar return size including any terminating null character. 
+}
+
 /*--------------------------------------------------------------------------*/
 #else
+int get_codepoint_count(const char* _UTFStr)
+{
+    mbstate_t ps;
+    if (_UTFStr == NULL)
+    {
+        return 0;
+    }
+
+    memset (&ps, 0x00, sizeof(ps));
+    return mbsrtowcs(NULL, &_UTFStr, 0, &ps);
+}
 /*--------------------------------------------------------------------------*/
 #ifdef __APPLE__ // Mac OS X
 /*--------------------------------------------------------------------------*/

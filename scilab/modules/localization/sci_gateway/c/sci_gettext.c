@@ -101,7 +101,7 @@ int sci_gettext(char *fname, void* pvApiCtx)
     {
         if (strcmp(StringsToTranslate[i], "") == 0)
         {
-            TranslatedStrings[i] = strdup("");
+            TranslatedStrings[i] = os_strdup("");
         }
         else
         {
@@ -191,7 +191,7 @@ static char *convertString_dgettext(const char *domain, const char *pStr)
             }
 
             revertStrsub = TRUE;
-            tmpStr = strdup(tmpStr1);
+            tmpStr = os_strdup(tmpStr1);
             if (tmpStr1)
             {
                 FREE(tmpStr1);
@@ -201,10 +201,10 @@ static char *convertString_dgettext(const char *domain, const char *pStr)
         else
         {
             revertStrsub = FALSE;
-            tmpStr = strdup(pStr);
+            tmpStr = os_strdup(pStr);
         }
 
-        TranslatedString = strdup(dgettext(domain, tmpStr));
+        TranslatedString = os_strdup(dgettext(domain, tmpStr));
         if (tmpStr)
         {
             FREE(tmpStr);
@@ -260,7 +260,7 @@ static char *convertString_dgettext(const char *domain, const char *pStr)
                 TranslatedString = NULL;
             }
 
-            TranslatedString = strdup(tmpStr2);
+            TranslatedString = os_strdup(tmpStr2);
 
             if (tmpStr2)
             {

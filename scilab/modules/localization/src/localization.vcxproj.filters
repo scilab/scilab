@@ -49,9 +49,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="c\charEncoding.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="c\DllmainLocalization.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -86,6 +83,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cpp\UTF8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="c\charEncoding.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

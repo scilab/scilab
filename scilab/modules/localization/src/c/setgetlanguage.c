@@ -134,7 +134,7 @@ BOOL setlanguage(const char* lang)
                 if (pstRet == NULL)
                 {
                     fprintf(stderr,
-                            "Warning: Localization issue. Failed to change the LC_CTYPE locale category. Does not support the locale '%ls' %ls %s.\nDid you install the system locales?\n",
+                            "Warning: Localization issue. Failed to change the LC_CTYPE locale category. Does not support the locale '%s' %s %s.\nDid you install the system locales?\n",
                             lang, ret, setlocale(LC_CTYPE, NULL));
                 }
 
@@ -160,7 +160,7 @@ BOOL setlanguage(const char* lang)
                 if (ret == NULL)
                 {
 #ifndef _MSC_VER
-                    fprintf(stderr, "Warning: Localization issue. Does not support the locale '%ls'\nReturned: NULL\nCurrent system locale: %s\nDid you install the system locales?\n", lang,
+                    fprintf(stderr, "Warning: Localization issue. Does not support the locale '%s'\nReturned: NULL\nCurrent system locale: %s\nDid you install the system locales?\n", lang,
                             setlocale(LC_MESSAGES, NULL));
 #else
                     fprintf(stderr, "Warning: Localization issue. Cannot detect user locale.\n");
@@ -382,7 +382,7 @@ BOOL exportLocaleToSystem(const char* locale)
 #ifdef _MSC_VER
         fprintf(stderr, "Localization: Have not been able to find a suitable locale. Remains to default %s.\n", "LC_CTYPE");
 #else
-        fprintf(stderr, "Localization: Have not been able to find a suitable locale. Remains to default %ls.\n", EXPORTENVLOCALESTR);
+        fprintf(stderr, "Localization: Have not been able to find a suitable locale. Remains to default %s.\n", EXPORTENVLOCALESTR);
 #endif
         return FALSE;
     }

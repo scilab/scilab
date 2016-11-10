@@ -76,7 +76,7 @@ types::Function::ReturnValue sci_setdefaultlanguage(types::typed_list &in, int _
     */
     if (getWarningMode())
     {
-        sciprint(_("%ls: This feature is only supported on Windows.\n"), L"setdefaultlanguage");
+        sciprint(_("%s: This feature is only supported on Windows.\n"), "setdefaultlanguage");
     }
 
     types::Bool* pbOut = new types::Bool(FALSE);
@@ -95,7 +95,7 @@ types::Function::ReturnValue sci_setdefaultlanguage(types::typed_list &in, int _
     {
         if (getWarningMode())
         {
-            sciprint(_("Unsupported language '%ls'.\n"), newlang);
+            sciprint(_("Unsupported language '%s'.\n"), newlang);
         }
         out.push_back(new types::Bool(FALSE));
 
