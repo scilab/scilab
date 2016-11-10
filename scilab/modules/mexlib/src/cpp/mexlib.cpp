@@ -682,7 +682,7 @@ int mxGetElementSize(const mxArray *ptr)
 {
     if (mxIsChar(ptr))
     {
-        return sizeof(wchar_t*);
+        return sizeof(char*);
     }
     else if (mxIsLogical(ptr))
     {
