@@ -458,7 +458,7 @@ static bool read_string(int dataset, VarInfo6& info)
 
     for (int i = 0; i < size; i++)
     {
-        info.size += (int)strlen(str[i]) * sizeof(wchar_t);
+        info.size += (int)strlen(str[i]) * sizeof(char);
     }
 
     freeStringMatrix(dataset, str.data());
