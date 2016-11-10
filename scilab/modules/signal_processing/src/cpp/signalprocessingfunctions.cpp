@@ -76,7 +76,7 @@ void Signalprocessingfunctions::execFunctionDgetx(double* x, int* siz, int* iss)
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDgetxDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringDgetxDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%s'.\n"), m_pStringDgetxDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((dgetx_f_t)(func->functionPtr))(x, siz, iss);
@@ -137,7 +137,7 @@ void Signalprocessingfunctions::execFunctionDgety(double* y, int* siz, int* iss)
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDgetyDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringDgetyDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%s'.\n"), m_pStringDgetyDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((dgety_f_t)(func->functionPtr))(y, siz, iss);
@@ -205,7 +205,7 @@ void Signalprocessingfunctions::callDgety(double* y, int* siz, int* iss)
 
     if (bOk == false)
     {
-        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallDgety->getName().c_str());
+        sprintf(errorMsg, _("%s: error while calling user function.\n"), m_pCallDgety->getName().c_str());
         throw ast::InternalError(errorMsg);
     }
 
@@ -295,7 +295,7 @@ void Signalprocessingfunctions::callDgetx(double* x, int* siz, int* iss)
 
     if (bOk == false)
     {
-        sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallDgetx->getName().c_str());
+        sprintf(errorMsg, _("%s: error while calling user function.\n"), m_pCallDgetx->getName().c_str());
         throw ast::InternalError(errorMsg);
     }
 
