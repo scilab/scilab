@@ -32,8 +32,6 @@ types::Function::ReturnValue sci_saveconsecutivecommands(types::typed_list &in, 
     }
     else if (in.size() == 1)
     {
-        wchar_t* line = NULL;
-
         if ((in[0]->isBool() == false) || (in[0]->getAs<types::Bool>()->isScalar() == false))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), "saveconsecutivecommands", 1);
