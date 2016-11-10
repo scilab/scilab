@@ -183,7 +183,7 @@ types::Function::ReturnValue sci_scicos_setfield(types::typed_list &in, int _iRe
             out.push_back(returnType);
             break;
         default:
-            Scierror(999, _("%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"), funame.data(), 2, adaptor->getTypeStr().c_str());
+            Scierror(999, _("%s: Wrong value for input argument #%d:  \"%s\" type is not managed.\n"), funame.data(), 2, adaptor->getTypeStr().c_str());
             return types::Function::Error;
             break;
     }

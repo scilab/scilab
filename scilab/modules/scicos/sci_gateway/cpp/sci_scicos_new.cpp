@@ -68,7 +68,7 @@ types::InternalType * alloc_and_set(kind_t k, types::String* type_name, types::t
         std::string name (type_name->get(i));
         if (!adaptor->setProperty(name, in[i], controller))
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"), funame.data(), i, name.data());
+            Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%s\".\n"), funame.data(), i, name.data());
             delete adaptor;
             return 0;
         }
@@ -88,7 +88,7 @@ types::InternalType * alloc_and_set_as_tlist(types::String* type_name, types::ty
         std::string name(type_name->get(i));
         if (!adaptor.hasProperty(name))
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"), funame.data(), i, name.data());
+            Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%s\".\n"), funame.data(), i, name.data());
             return 0;
         }
     }
@@ -115,7 +115,7 @@ types::InternalType * alloc_and_set_as_mlist(types::String* type_name, types::ty
         std::string name(type_name->get(i));
         if (!adaptor.hasProperty(name))
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"), funame.data(), i, name.data());
+            Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%s\".\n"), funame.data(), i, name.data());
             return 0;
         }
     }
@@ -227,7 +227,7 @@ static types::Function::ReturnValue allocate(types::typed_list &in, int _iRetCou
             }
             break;
         default:
-            Scierror(999, _("%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"), funame.data(), 1, type_name->get(0));
+            Scierror(999, _("%s: Wrong value for input argument #%d:  \"%s\" type is not managed.\n"), funame.data(), 1, type_name->get(0));
             return types::Function::Error;
     }
     out.push_back(returnType);
