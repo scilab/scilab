@@ -120,7 +120,7 @@ static char *getCommandByFileExtension(char *File, char *FileExtension)
                   (stricmp(FileExtension, ZCOS_EXTENSION_FILE) == 0) ||
                   (stricmp(FileExtension, XCOS_EXTENSION_FILE) == 0))
         {
-            if (with_module(L"xcos"))
+            if (with_module("xcos"))
             {
                 command = buildCommand(FORMAT_COS_COSF_XCOS_EXTENSION_FILES, File);
             }

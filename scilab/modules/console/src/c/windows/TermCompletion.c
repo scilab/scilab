@@ -25,6 +25,7 @@
 #include "scilines.h"
 #include "os_string.h"
 #include "completeLine.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 static void displayCompletionDictionary(char **dictionary, int sizedictionary, char *namedictionary);
 static char **concatenateStrings(int *sizearrayofstring, char *string1,
