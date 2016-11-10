@@ -29,8 +29,6 @@ extern "C"
 #include "os_wtoi.h"
 }
 
-int new_sprintf(const std::string& funcname, const wchar_t* _pwstInput, types::typed_list &in, int* _piOutputRows, int* _piNewLine, wchar_t*** output);
-
 /*--------------------------------------------------------------------------*/
 types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

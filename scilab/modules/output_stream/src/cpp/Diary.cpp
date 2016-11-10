@@ -115,14 +115,7 @@ void Diary::write(const std::string& _str, bool bInput)
                 {
                     if ((PrefixIoModeFilter == PREFIX_FILTER_INPUT_AND_OUTPUT) || (PrefixIoModeFilter == PREFIX_FILTER_ONLY_INPUT))
                     {
-                        char *timeInfo = wide_string_to_UTF8((wchar_t *) getDiaryDate(PrefixTimeFormat).c_str());
-
-                        if (timeInfo)
-                        {
-                            fileDiary << timeInfo << " ";
-                            FREE(timeInfo);
-                            timeInfo = NULL;
-                        }
+                        fileDiary << getDiaryDate(PrefixTimeFormat) << " ";
                     }
                     if (line)
                     {
@@ -136,26 +129,13 @@ void Diary::write(const std::string& _str, bool bInput)
                 {
                     if ((PrefixIoModeFilter == PREFIX_FILTER_INPUT_AND_OUTPUT) || (PrefixIoModeFilter == PREFIX_FILTER_ONLY_OUTPUT))
                     {
-                        char *timeInfo = wide_string_to_UTF8((wchar_t *) getDiaryDate(PrefixTimeFormat).c_str());
-
-                        if (timeInfo)
-                        {
-                            fileDiary << timeInfo << " ";
-                            FREE(timeInfo);
-                            timeInfo = NULL;
-                        }
+                        fileDiary << getDiaryDate(PrefixTimeFormat) << " ";
                     }
                     if (line)
                     {
                         fileDiary << line;
                     }
                 }
-            }
-
-            if (line)
-            {
-                FREE(line);
-                line = NULL;
             }
         }
         fileDiary.close();

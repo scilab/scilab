@@ -32,8 +32,7 @@ extern "C"
 }
 
 static char* replaceAndCountLines(const char* _pstInput, int* _piLines, int* _piNewLine);
-static char* addl(TokenDef* token);
-static void updatel(TokenDef* token);
+static char* replacebys(TokenDef* token);
 
 #define NanString "Nan"
 #define InfString "Inf"
@@ -341,11 +340,6 @@ char** scilab_sprintf(const std::string& funcname, const char* _pwstInput, types
                         return nullptr;
                     }
 
-                    if (tok->length == false)
-                    {
-                        updatel(tok);
-                    }
-
                     tok->outputType = types::InternalType::ScilabString;
                     tok->pos = p;
                     tok->col = c;
@@ -438,7 +432,7 @@ char** scilab_sprintf(const std::string& funcname, const char* _pwstInput, types
                     }
                     else
                     {
-                        char* newToken = addl(tok);
+                        char* newToken = replacebys(tok);
 
                         if (std::isnan(dblVal))
                         {
@@ -453,7 +447,7 @@ char** scilab_sprintf(const std::string& funcname, const char* _pwstInput, types
                             os_sprintf(pstTemp, bsiz, newToken, InfString);
                         }
 
-                        delete[] newToken;
+                        FREE(newToken);
                     }
 
                     oFirstOutput << pstTemp;
@@ -491,7 +485,7 @@ char** scilab_sprintf(const std::string& funcname, const char* _pwstInput, types
                     }
                     else
                     {
-                        char* newToken = addl(tok);
+                        char* newToken = replacebys(tok);
 
                         if (std::isnan(dblVal))
                         {
@@ -509,7 +503,7 @@ char** scilab_sprintf(const std::string& funcname, const char* _pwstInput, types
                             }
                         }
 
-                        delete[] newToken;
+                        FREE(newToken);
                     }
 
                     oFirstOutput << pstTemp;
@@ -548,7 +542,7 @@ char** scilab_sprintf(const std::string& funcname, const char* _pwstInput, types
                     }
                     else
                     {
-                        char* newToken = addl(tok);
+                        char* newToken = replacebys(tok);
 
                         if (std::isnan(dblVal))
                         {
@@ -566,7 +560,7 @@ char** scilab_sprintf(const std::string& funcname, const char* _pwstInput, types
                             }
                         }
 
-                        delete[] newToken;
+                        FREE(newToken);
                     }
 
                     oFirstOutput << pstTemp;
@@ -779,25 +773,11 @@ static char* replaceAndCountLines(const char* _pstInput, int* _piLines, int* _pi
     return pstFirstOutput;
 }
 /*--------------------------------------------------------------------------*/
-char* addl(TokenDef* token)
+char* replacebys(TokenDef* token)
 {
-    //replace %s or %c by %ls or %lc to wide char compatibility
     int iPos = token->typePos;
-    int sizeTotal = (int)strlen(token->pstToken);
-    char* pstToken = new char[sizeTotal + 2];
-
-    strncpy(pstToken, token->pstToken, iPos);
-    pstToken[iPos] = 'l';
-    pstToken[iPos + 1] = 's';
-    strncpy(&pstToken[iPos + 2], token->pstToken + iPos + 1, sizeTotal - (iPos + 1));
-    pstToken[sizeTotal + 1] = '\0';
-
+    char* pstToken = os_strdup(token->pstToken);
+    pstToken[iPos] = 's';
     return pstToken;
 }
 /*--------------------------------------------------------------------------*/
-void updatel(TokenDef* token)
-{
-    char* newToken = addl(token);
-    delete[] token->pstToken;
-    token->pstToken = newToken;
-}

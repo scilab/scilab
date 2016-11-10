@@ -55,9 +55,9 @@ std::string getDiaryDate(int format_mode)
             unsigned int MINUTES = nowstruct->tm_min;
             unsigned int SECONDS = nowstruct->tm_sec;
 
-            StrStream << YEAR << L"-" << MONTH << L"-" << DAY_OF_MONTH;
-            StrStream << L" ";
-            StrStream << HOUR_OF_DAY << L":" << MINUTES << L":" << SECONDS;
+            StrStream << YEAR << "-" << MONTH << "-" << DAY_OF_MONTH;
+            StrStream << " ";
+            StrStream << HOUR_OF_DAY << ":" << MINUTES << ":" << SECONDS;
             strdate = StrStream.str();
         }
         break;
