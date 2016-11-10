@@ -68,7 +68,7 @@ types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, typ
     {
         if (getWarningMode())
         {
-            sciprint(_("%ls: Cannot check the end of file whose descriptor is %d: File is not active.\n"), "meof", iFile);
+            sciprint(_("%s: Cannot check the end of file whose descriptor is %d: File is not active.\n"), "meof", iFile);
         }
         return types::Function::OK;
     }

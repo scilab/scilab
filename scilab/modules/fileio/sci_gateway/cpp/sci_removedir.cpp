@@ -50,7 +50,7 @@ types::Function::ReturnValue sci_removedir(types::typed_list &in, int _iRetCount
     {
         if (getWarningMode())
         {
-            sciprint(_("%s: Warning: Directory '%ls' does not exist.\n"), "removedir", pstPath);
+            sciprint(_("%s: Warning: Directory '%s' does not exist.\n"), "removedir", pstPath);
         }
     }
     else

@@ -54,7 +54,7 @@ types::Function::ReturnValue sci_createdir(types::typed_list &in, int _iRetCount
     {
         if (getWarningMode())
         {
-            sciprint(_("%ls: Warning: Directory '%ls' already exists.\n"), L"createdir", pstPath);
+            sciprint(_("%s: Warning: Directory '%s' already exists.\n"), "createdir", pstPath);
         }
         iRet = 1;
     }

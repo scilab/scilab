@@ -49,13 +49,7 @@ char *FindFileExtension(char *filename)
         }
 #else
         {
-            wchar_t *wcFilename = to_wide_string(filename);
-            if (wcFilename)
-            {
-                extension = wide_string_to_UTF8(PathFindExtensionW(wcFilename));
-                FREE(wcFilename);
-                wcFilename = NULL;
-            }
+            extension = PathFindExtensionA(filename);
         }
 #endif
     }
