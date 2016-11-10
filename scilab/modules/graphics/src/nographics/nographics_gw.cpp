@@ -14,7 +14,7 @@
 #include "function.hxx"
 #include "context.hxx"
 
-#define MODULE_NAME L"graphics"
+#define MODULE_NAME "graphics"
 extern "C"
 {
 #include "gw_graphics.h"

@@ -285,7 +285,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
                     delete[] axesflag;
                 }
 
-                Scierror(999, _("%s: Wrong type for input argument #%ls: string expected.\n"), "Matplot1", o.first.c_str());
+                Scierror(999, _("%s: Wrong type for input argument #%s: string expected.\n"), "Matplot1", o.first.c_str());
                 return types::Function::Error;
             }
 
@@ -316,7 +316,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
                     delete[] axesflag;
                 }
 
-                Scierror(999, _("%s: Wrong type for input argument #%ls: A matrix expected.\n"), "Matplot1", o.first.c_str());
+                Scierror(999, _("%s: Wrong type for input argument #%s: A matrix expected.\n"), "Matplot1", o.first.c_str());
                 return types::Function::Error;
             }
 

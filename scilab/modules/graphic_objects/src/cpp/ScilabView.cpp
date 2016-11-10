@@ -552,7 +552,7 @@ PathItem* ScilabView::getFigureItem(std::string _pstTag)
     return NULL;
 }
 
-int ScilabView::search_path(char* _pstPath)
+int ScilabView::search_path(const char* _pstPath)
 {
     //copy string to protect it against strtok
     char* pstPath = strdup(_pstPath);

@@ -58,7 +58,7 @@ void unregisterToController()
     ScilabView::unregisterToController();
 }
 
-int search_path(char* _pstPath)
+int search_path(const char* _pstPath)
 {
     return ScilabView::search_path(_pstPath);
 }

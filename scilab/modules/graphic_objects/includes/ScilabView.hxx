@@ -119,7 +119,7 @@ public :
     static PathItem* getItem(std::string _pstTag, std::list<int>& _ignoredList);
     static PathItem* getFigureItem(std::string _pstTag);
 
-    static int search_path(char* _pstPath);
+    static int search_path(const char* _pstPath);
     static std::string get_path(int uid);
 
     static void setUserdata(int _id, int* _data, int _datasize);
