@@ -53,7 +53,7 @@ int getOptionals(void* _pvCtx, char* pstFuncName, rhs_opts opts[])
 
         if (index < 0)
         {
-            sciprint(_("%ls: Unrecognized optional arguments %ls.\n"), pStr->m_pstName, o.first.c_str());
+            sciprint(_("%s: Unrecognized optional arguments %s.\n"), pStr->m_pstName, o.first.c_str());
             printOptionalNames(_pvCtx, opts);
             return 0;
         }

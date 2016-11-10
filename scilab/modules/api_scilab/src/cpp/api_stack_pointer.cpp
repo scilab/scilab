@@ -78,7 +78,7 @@ SciErr createPointer(void* _pvCtx, int _iVar, const void* _pvPtr)
     }
     catch (const ast::InternalError& ie)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), "createPointer", ie.GetErrorMessage().c_str());
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %s"), "createPointer", ie.GetErrorMessage().c_str());
         return sciErr;
     }
 
