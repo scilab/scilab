@@ -142,7 +142,7 @@ void PrintVisitor::visit (const StringExp &e)
         types::String * pStr = static_cast<types::String *>(pIT);
         if (pStr->getSize() == 0)
         {
-            *ostr << L"[]";
+            *ostr << "[]";
         }
         if (pStr->getSize() == 1)
         {
@@ -151,7 +151,7 @@ void PrintVisitor::visit (const StringExp &e)
         }
         else
         {
-            *ostr << L"[";
+            *ostr << "[";
             const int r = pStr->getRows();
             const int c = pStr->getCols();
             for (int i = 0; i < r; ++i)
@@ -160,13 +160,13 @@ void PrintVisitor::visit (const StringExp &e)
                 {
                     std::string str(pStr->get(i, j));
                     printString(str);
-                    *ostr << L" ";
+                    *ostr << " ";
                 }
                 std::string str(pStr->get(i, c - 1));
                 printString(str);
-                *ostr << L";";
+                *ostr << ";";
             }
-            *ostr << L"]";
+            *ostr << "]";
         }
     }
     else
@@ -190,7 +190,7 @@ void PrintVisitor::visit (const DoubleExp  &e)
             types::Double * pDbl = static_cast<types::Double *>(pIT);
             if (pDbl->getSize() == 0)
             {
-                *ostr << L"[]";
+                *ostr << "[]";
             }
             else if (pDbl->getSize() == 1)
             {
@@ -199,7 +199,7 @@ void PrintVisitor::visit (const DoubleExp  &e)
                     const double imag = pDbl->getImg()[0];
                     if (imag != 0)
                     {
-                        *ostr << pDbl->getReal()[0] << (imag > 0 ? L"+%i*" : L"-%i*") << std::abs(imag);
+                        *ostr << pDbl->getReal()[0] << (imag > 0 ? "+%i*" : "-%i*") << std::abs(imag);
                     }
                     else
                     {
@@ -213,7 +213,7 @@ void PrintVisitor::visit (const DoubleExp  &e)
             }
             else
             {
-                *ostr << L"[";
+                *ostr << "[";
                 const int r = pDbl->getRows();
                 const int c = pDbl->getCols();
                 if (pDbl->isComplex())
@@ -225,14 +225,14 @@ void PrintVisitor::visit (const DoubleExp  &e)
                             const double imag = pDbl->getImg(i, j);
                             if (imag != 0)
                             {
-                                *ostr << pDbl->getReal(i, j) << (imag > 0 ? L"+%i*" : L"-%i*") << std::abs(imag) << L" ";
+                                *ostr << pDbl->getReal(i, j) << (imag > 0 ? "+%i*" : "-%i*") << std::abs(imag) << " ";
                             }
                             else
                             {
-                                *ostr << pDbl->get(i, j) << L" ";
+                                *ostr << pDbl->get(i, j) << " ";
                             }
                         }
-                        *ostr << pDbl->get(i, c - 1) << L";";
+                        *ostr << pDbl->get(i, c - 1) << ";";
                     }
                 }
                 else
@@ -241,12 +241,12 @@ void PrintVisitor::visit (const DoubleExp  &e)
                     {
                         for (int j = 0; j < c - 1; ++j)
                         {
-                            *ostr << pDbl->get(i, j) << L" ";
+                            *ostr << pDbl->get(i, j) << " ";
                         }
-                        *ostr << pDbl->get(i, c - 1) << L";";
+                        *ostr << pDbl->get(i, c - 1) << ";";
                     }
                 }
-                *ostr << L"]";
+                *ostr << "]";
             }
         }
     }
@@ -265,7 +265,7 @@ void PrintVisitor::visit (const BoolExp  &e)
             types::Bool * pBool = static_cast<types::Bool *>(pIT);
             if (pBool->getSize() == 0)
             {
-                *ostr << L"[]";
+                *ostr << "[]";
             }
             if (pBool->getSize() == 1)
             {
@@ -273,18 +273,18 @@ void PrintVisitor::visit (const BoolExp  &e)
             }
             else
             {
-                *ostr << L"[";
+                *ostr << "[";
                 const int r = pBool->getRows();
                 const int c = pBool->getCols();
                 for (int i = 0; i < r; ++i)
                 {
                     for (int j = 0; j < c - 1; ++j)
                     {
-                        *ostr << (pBool->get(i, j) ? SCI_TRUE : SCI_FALSE) << L" ";
+                        *ostr << (pBool->get(i, j) ? SCI_TRUE : SCI_FALSE) << " ";
                     }
-                    *ostr << (pBool->get(i, c - 1) ? SCI_TRUE : SCI_FALSE) << L";";
+                    *ostr << (pBool->get(i, c - 1) ? SCI_TRUE : SCI_FALSE) << ";";
                 }
-                *ostr << L"]";
+                *ostr << "]";
             }
         }
     }

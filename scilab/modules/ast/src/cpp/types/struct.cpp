@@ -143,7 +143,7 @@ bool Struct::extract(const std::string & name, InternalType *& out)
     else
     {
         char szError[bsiz];
-        os_sprintf(szError, _("Unknown field : %ls.\n"), name.c_str());
+        os_sprintf(szError, _("Unknown field : %s.\n"), name.c_str());
         throw std::string(szError);
     }
 
@@ -524,7 +524,7 @@ bool Struct::toString(std::ostringstream& ostr)
         ostr << " struct array with ";
 
         String* pwstFields = getFieldNames();
-        ostr <<  L"fields:" << std::endl;
+        ostr <<  "fields:" << std::endl;
         for (int i = 0 ; i < pwstFields->getSize() ; i++)
         {
             ostr << "    " << pwstFields->get(i) << std::endl;

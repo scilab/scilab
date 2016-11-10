@@ -32,20 +32,20 @@ public:
         return bHasToString;
     }
 
-    bool                    toString(std::wostringstream& ostr)
+    bool                    toString(std::ostringstream& ostr)
     {
         ostr << "This is my type.";
         return true;
     }
 
-    std::wstring            getTypeStr()
+    std::string            getTypeStr()
     {
-        return L"NewType";
+        return "NewType";
     }
 
-    std::wstring            getShortTypeStr()
+    std::string            getShortTypeStr()
     {
-        return L"nt";
+        return "nt";
     }
 
     NewType*    clone()

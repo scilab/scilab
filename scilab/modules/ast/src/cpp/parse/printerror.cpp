@@ -45,7 +45,6 @@ void ParserSingleInstance::PrintError(const std::string& msg)
         ostr << std::endl;
     }
     free(codeLine);
-    FREE(str);
 
     /** Underline what causes the trouble */
     int i = 0;

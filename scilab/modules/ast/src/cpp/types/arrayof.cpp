@@ -1700,7 +1700,7 @@ template class EXTERN_AST ArrayOf < unsigned int >;
 template class EXTERN_AST ArrayOf < long long >;
 template class EXTERN_AST ArrayOf < unsigned long long >;
 template class EXTERN_AST ArrayOf < double >;
-template class EXTERN_AST ArrayOf < wchar_t* >;
+template class EXTERN_AST ArrayOf < char* >;
 template class EXTERN_AST ArrayOf < SinglePoly* >;
 template class EXTERN_AST ArrayOf < SingleStruct* >;
 template class EXTERN_AST ArrayOf < InternalType* >; // Cell

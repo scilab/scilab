@@ -89,7 +89,7 @@ bool Library::extract(const std::string & name, InternalType *& out)
     if (out == NULL)
     {
         char szError[bsiz];
-        os_sprintf(szError, _("Unknown field : %ls.\n"), name.c_str());
+        os_sprintf(szError, _("Unknown field : %s.\n"), name.c_str());
         throw std::string(szError);
     }
 

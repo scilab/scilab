@@ -30,7 +30,7 @@ void ConsoleDebugger::onStop(int index)
         debugger::Breakpoint* bp = manager->getBreakPoint(index);
         if (bp)
         {
-            sciprint(_("debugger stop on breakpoint(%d) in function %ls line %d\n"), index, bp->getFunctioName().data(), bp->getMacroLine());
+            sciprint(_("debugger stop on breakpoint(%d) in function %s line %d\n"), index, bp->getFunctioName().data(), bp->getMacroLine());
         }
     }
 
@@ -51,7 +51,7 @@ void ConsoleDebugger::onErrorInFile(const std::string& filename)
 {
     debugger::DebuggerMagager* manager = debugger::DebuggerMagager::getInstance();
     ast::Exp* exp = manager->getExp();
-    sciprint(_("debugger stop on error in file %ls line %d\n"), filename.data(), exp->getLocation().first_line);
+    sciprint(_("debugger stop on error in file %s line %d\n"), filename.data(), exp->getLocation().first_line);
     printExp();
 }
 
@@ -59,7 +59,7 @@ void ConsoleDebugger::onErrorInScript(const std::string& funcname)
 {
     debugger::DebuggerMagager* manager = debugger::DebuggerMagager::getInstance();
     ast::Exp* exp = manager->getExp();
-    sciprint(_("debugger stop on error in function %ls line %d\n"), funcname.data(), exp->getLocation().first_line);
+    sciprint(_("debugger stop on error in function %s line %d\n"), funcname.data(), exp->getLocation().first_line);
     printExp();
 }
 
@@ -79,14 +79,14 @@ void ConsoleDebugger::updateBreakpoints()
         return;
     }
 
-    sciprint("% 3ls % 7ls %24ls % 5ls %ls\n\n", L"num", L"enable", L"function", L"line", L"condition");
+    sciprint("% 3s % 7s %24s % 5s %s\n\n", "num", "enable", "function", "line", "condition");
     int i = 0;
     for (const auto& b : brks)
     {
         if (b->isMacro())
         {
             std::string condition = b->getCondition();
-            sciprint("% 3d % 7s %24s % 5d %ls\n", i, b->isEnable() ? "true" : "false", b->getFunctioName().c_str(), b->getMacroLine(),
+            sciprint("% 3d % 7s %24s % 5d %s\n", i, b->isEnable() ? "true" : "false", b->getFunctioName().c_str(), b->getMacroLine(),
                      condition.size() < 30 ? condition.c_str() :
                      (std::string(condition.begin(), condition.begin() + 27) + "...").c_str());
         }

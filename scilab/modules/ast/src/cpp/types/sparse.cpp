@@ -45,12 +45,12 @@ namespace
 
 /* used for debuging output
 */
-template<typename Os, typename In, typename Sz> Os& writeData(wchar_t const* title, In beg, Sz n, Os& os)
+template<typename Os, typename In, typename Sz> Os& writeData(char const* title, In beg, Sz n, Os& os)
 {
     os << title;
     /* TODO: use tostring_common (with a kind of std::boolalpha for boolean output)
     */
-    mycopy_n(beg, n, std::ostream_iterator<typename std::iterator_traits<In>::value_type, char>(os, L" "));
+    mycopy_n(beg, n, std::ostream_iterator<typename std::iterator_traits<In>::value_type, char>(os, " "));
     os << std::endl;
     return os;
 }

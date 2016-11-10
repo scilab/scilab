@@ -99,7 +99,7 @@ bool Variable::put(types::InternalType* _pIT, int _iLevel)
                 int iFuncProt = ConfigVariable::getFuncprot();
                 if (iFuncProt != 0)
                 {
-                    bool bEquals = false;
+                    bool bEquals = true;
                     if (pIT && pIT->isCallable())
                     {
                         if (pIT->isMacroFile())
@@ -121,13 +121,13 @@ bool Variable::put(types::InternalType* _pIT, int _iLevel)
                             return false;
                         }
 
-                        wchar_t pwstFuncName[1024];
-                        os_swprintf(pwstFuncName, 1024, L"%-24ls", name.getName().c_str());
-                        char* pstFuncName = wide_string_to_UTF8(pwstFuncName);
-
-                        sciprint(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"), pstFuncName);
-                        sciprint("\n");
-                        FREE(pstFuncName);
+                        if (ConfigVariable::getWarningMode())
+                        {
+                            char pstFuncName[1024];
+                            os_sprintf(pstFuncName, 1024, "%-24s", name.getName().c_str());
+                            sciprint(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"), pstFuncName);
+                            sciprint("\n");
+                        }
                     }
                 }
             }

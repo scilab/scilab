@@ -169,7 +169,7 @@ bool Bool::subMatrixToString(std::ostringstream& ostr, int* _piDims, int /*_iDim
                 iLen = 0;
             }
 
-            ostemp << (get(iPos) ? L" T" : L" F");
+            ostemp << (get(iPos) ? " T" : " F");
             iLen += 2;
         }
 
@@ -214,7 +214,7 @@ bool Bool::subMatrixToString(std::ostringstream& ostr, int* _piDims, int /*_iDim
                         _piDims[0] = iRows2;
                         _piDims[1] = iCols2;
                         int iPos = getIndex(_piDims);
-                        ostemp << (get(iPos) == 0 ? L" F" : L" T");
+                        ostemp << (get(iPos) == 0 ? " F" : " T");
                     }
                     ostemp << std::endl << " ";
                 }
@@ -258,7 +258,7 @@ bool Bool::subMatrixToString(std::ostringstream& ostr, int* _piDims, int /*_iDim
                 _piDims[1] = iCols2;
                 int iPos = getIndex(_piDims);
 
-                ostemp << (get(iPos) == 0 ? L" F" : L" T");
+                ostemp << (get(iPos) == 0 ? " F" : " T");
             }
             ostemp << std::endl << " ";
         }

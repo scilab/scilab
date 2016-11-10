@@ -35,13 +35,6 @@ char *getSCI(void)
     return os_strdup(ConfigVariable::getSCIPath().c_str());
 }
 /*--------------------------------------------------------------------------*/
-void setSCIW(const wchar_t* _sci_path)
-{
-    char* pstPath = wide_string_to_UTF8(_sci_path);
-    setSCI(pstPath);
-    FREE(pstPath);
-}
-/*--------------------------------------------------------------------------*/
 void setSCI(const char* _sci_path)
 {
     //

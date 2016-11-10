@@ -73,7 +73,7 @@ InternalType* Inspector::getUnreferencedItem(size_t _iPos)
         {
             if (iCount == _iPos)
             {
-                std::wcout << L"getUnreferencedItem : " << it << std::endl;
+                std::cout << "getUnreferencedItem : " << it << std::endl;
                 return it;
             }
             iCount++;
@@ -142,7 +142,7 @@ void Inspector::displayMemleak()
             std::cerr << "    " << it->second << " " << it->first;
 
             // list the not free-ed pointers
-            std::wcerr << L" : ";
+            std::cerr << " : ";
             bool isFirst = true;
             for (auto pi : m_vIT)
             {

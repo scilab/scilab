@@ -16,8 +16,8 @@
 
 #include "dynlib_ast.h"
 
-EXTERN_AST void addCStackFunction(const char* _wstName, OLDGW_FUNC _pFunc, const char* _wstModule);
-EXTERN_AST void addCFunction(const char* _wstName, GW_C_FUNC _pFunc, const char* _wstModule);
-EXTERN_AST void addMexFunction(const char* _wstName, MEXGW_FUNC _pFunc, const char* _wstModule);
+EXTERN_AST void addCStackFunction(const char* _stName, OLDGW_FUNC _pFunc, const char* _stModule);
+EXTERN_AST void addCFunction(const char* _stName, GW_C_FUNC _pFunc, const char* _stModule);
+EXTERN_AST void addMexFunction(const char* _stName, MEXGW_FUNC _pFunc, const char* _stModule);
 
 #endif // __ADDFUNCTION_H__

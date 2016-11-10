@@ -413,7 +413,7 @@ void SinglePoly::toStringInternal(double *_pdblVal, const std::string& _szVar, s
     {
         if (ostemp.str() == " ")
         {
-            ostemp << L"  0";
+            ostemp << "  0";
             addSpaces(&ostemp2, static_cast<int>(ostemp.str().size()));
         }
 
