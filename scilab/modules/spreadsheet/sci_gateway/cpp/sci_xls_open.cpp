@@ -169,7 +169,7 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
     iErr = mopen(TMP, "rb", iSwap, &iId);
     if (iErr != MOPEN_NO_ERROR)
     {
-        sciprint(_("There is no xls stream in the ole2 file %ls.\n"), filename_IN);
+        sciprint(_("There is no xls stream in the ole2 file %s.\n"), filename_IN);
         if (iErr == MOPEN_CAN_NOT_OPEN_FILE)
         {
             Scierror(999, _("%s: Cannot open file %s.\n"), "xls_open", TMP);
