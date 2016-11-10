@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
 
             if (strName != "" && strName != pPolyIn->getVariableName())
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"), "pppdiv", i + 1, strName.c_str());
+                Scierror(999, _("%s: Wrong value for input argument #%d: A polynomial '%s' expected.\n"), "pppdiv", i + 1, strName.c_str());
                 return types::Function::Error;
             }
 
