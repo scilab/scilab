@@ -127,7 +127,7 @@ public:
         double t = elapsed_time();
         if (_msg.empty() == false)
         {
-            std::cerr << "[" << _msg << "]" << L" : ";
+            std::cerr << "[" << _msg << "]" << " : ";
         }
         std::cerr << "Elapsed time ["
                   << std::setiosflags(std::ios::fixed)

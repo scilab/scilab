@@ -39,7 +39,7 @@ bool isValidName(const char* _pstName)
     int size = (int)strlen(_pstName);
     for (int i = 1 ; i < size ; ++i)
     {
-        wchar_t c = _pstName[i];
+        char c = _pstName[i];
         if (c != '_' && c != '?' && c != '!' && isalnum(c) == false)
         {
             return false;

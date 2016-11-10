@@ -334,7 +334,7 @@ int main(int argc, char *argv[])
     else
     {
         // We probably had a segfault so print error
-        std::wcerr << getLastErrorMessage() << std::endl;
+        std::cerr << getLastErrorMessage() << std::endl;
         return val;
     }
 }

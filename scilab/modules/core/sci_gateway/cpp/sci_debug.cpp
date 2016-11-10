@@ -325,7 +325,7 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
                 std::ostringstream ostr;
                 ast::PrintVisitor pp(ostr, true, true, true);
                 manager->getExp()->accept(pp);
-                sciprint(_("%ls"), ostr.str().data());
+                sciprint(_("%s"), ostr.str().data());
             }
             else
             {
@@ -479,8 +479,8 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
             std::ostringstream ostr;
             ast::PrintVisitor pp(ostr, true, true, true);
             manager->getExp()->accept(pp);
-#define BT_PRINT "#%-5d%ls (line %d)\n"
-            sciprint("#%-5d%ls\n", 0, ostr.str().data());
+#define BT_PRINT "#%-5d%s (line %d)\n"
+            sciprint("#%-5d%s\n", 0, ostr.str().data());
 
             ConfigVariable::WhereVector where = ConfigVariable::getWhere();
             auto it1 = where.rbegin();
@@ -502,7 +502,7 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
             break;
     }
 
-    sciprint("Unknown command \"%ls\".\n\n", command.c_str());
+    sciprint("Unknown command \"%s\".\n\n", command.c_str());
     sciprint("use 'h' for more information\n\n");
     return types::Function::OK;
 }
@@ -545,7 +545,7 @@ void print_help()
 
 EnumCommand getCommand(const std::string& command)
 {
-    wchar_t c = command[0];
+    char c = command[0];
 
     switch (c)
     {

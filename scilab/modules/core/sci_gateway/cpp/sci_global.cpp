@@ -21,7 +21,7 @@ extern "C"
 #include "Scierror.h"
 }
 
-#define FORBIDDEN_CHARS L" */\\.,;:^@><!=+-&|()~\n\t'\""
+#define FORBIDDEN_CHARS " */\\.,;:^@><!=+-&|()~\n\t'\""
 
 types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

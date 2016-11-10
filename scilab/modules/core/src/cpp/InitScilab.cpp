@@ -221,9 +221,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     if (_pSEI->pstLang)
     {
-        wchar_t *pwstLang = to_wide_string(_pSEI->pstLang);
-        setlanguage(pwstLang);
-        FREE(pwstLang);
+        setlanguage(_pSEI->pstLang);
     }
 
 #ifdef _MSC_VER
