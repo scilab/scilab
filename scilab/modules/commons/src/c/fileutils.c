@@ -34,17 +34,15 @@
 #ifdef _MSC_VER
 int isEmptyDirectory(char *dirName)
 {
-    wchar_t *wcpath = NULL;
-    wchar_t wdirpath[PATH_MAX + FILENAME_MAX + 1];
+    char *path = NULL;
+    char dirpath[PATH_MAX + FILENAME_MAX + 1];
     HANDLE hFile;
-    WIN32_FIND_DATAW FileInformation;
+    WIN32_FIND_DATAA FileInformation;
     int ret = 1;
 
-    wcpath = to_wide_string(dirName);
-    os_swprintf(wdirpath, wcslen(wcpath) + 2 + 1, L"%s\\*", wcpath);
-    FREE(wcpath);
+    os_sprintf(dirpath, PATH_MAX + FILENAME_MAX + 1, "%s\\*", dirName);
 
-    hFile = FindFirstFileW(wdirpath, &FileInformation);
+    hFile = FindFirstFile(dirpath, &FileInformation);
 
     if (hFile == INVALID_HANDLE_VALUE)
     {
@@ -53,7 +51,7 @@ int isEmptyDirectory(char *dirName)
 
     do
     {
-        if (!wcscmp(FileInformation.cFileName, L".") || !wcscmp(FileInformation.cFileName, L".."))
+        if (!strcmp(FileInformation.cFileName, ".") || !strcmp(FileInformation.cFileName, ".."))
         {
             continue;
         }
@@ -61,7 +59,7 @@ int isEmptyDirectory(char *dirName)
         ret = 0;
         break;
     }
-    while (FindNextFileW(hFile, &FileInformation) == TRUE);
+    while (FindNextFile(hFile, &FileInformation) == TRUE);
 
     FindClose(hFile);
 
