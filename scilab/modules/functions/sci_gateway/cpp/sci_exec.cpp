@@ -164,8 +164,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         stFile = pstFile;
         file = new std::ifstream(pstFile);
 
-        FREE(pstFile);
-
         char* pstTemp = (char*)MALLOC(sizeof(char) * (PATH_MAX * 2));
         get_full_path(pstTemp, pstFile, PATH_MAX * 2);
         stFile = pstTemp;
