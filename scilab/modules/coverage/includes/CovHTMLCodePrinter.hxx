@@ -97,7 +97,7 @@ public:
     {
         if (lineCount)
         {
-            out << L"</pre></td><td></td><td></td><td></td>\n</tr>\n";
+            out << "</pre></td><td></td><td></td><td></td>\n</tr>\n";
             out.flush();
         }
     }
