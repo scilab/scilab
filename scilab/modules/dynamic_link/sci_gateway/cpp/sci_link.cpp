@@ -86,7 +86,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         }
         else
         {
-            Scierror(999, _("%ls Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "link", 3, "f", "c");
+            Scierror(999, _("%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "link", 3, "f", "c");
             return types::Function::Error;
         }
 
@@ -210,7 +210,7 @@ void displayDynLibInfo(void)
     {
         if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
         {
-            sciprint(_("Entry point %ls in shared library %d.\n"), (*it)->pstEntryPointName, (*it)->iLibIndex);
+            sciprint(_("Entry point %s in shared library %d.\n"), (*it)->pstEntryPointName, (*it)->iLibIndex);
         }
     }
 }

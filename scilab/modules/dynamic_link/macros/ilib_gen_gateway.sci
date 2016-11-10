@@ -86,17 +86,16 @@ function gateway_filename = ilib_gen_gateway(name,tables)
             "#include """ + tname + ".h""";
             "}";
             "";
-            "#define MODULE_NAME L""" + tname + """";
+            "#define MODULE_NAME """ + tname + """";
             "";
-            "int " + tname + "(wchar_t* _pwstFuncName)";
+            "int " + tname + "(const char* _pstFuncName)";
             "{";
-            "    if(wcscmp(_pwstFuncName, L""" + table(:,1) + """) == 0){ " + "symbol::Context::getInstance()->addFunction(types::Function::createFunction(L""" + table(:,1) + """, &" + names(:) + ", MODULE_NAME)); }";
+            "    if(strcmp(_pstFuncName, """ + table(:,1) + """) == 0){ " + "symbol::Context::getInstance()->addFunction(types::Function::createFunction(""" + table(:,1) + """, &" + names(:) + ", MODULE_NAME)); }";
             "";
             "    return 1;";
             "}"];
         else
             t = [
-            "#include <wchar.h>";
             "#include """ + tname + ".hxx""";
             "extern ""C""";
             "{";
@@ -104,21 +103,21 @@ function gateway_filename = ilib_gen_gateway(name,tables)
             "#include ""addfunction.h""";
             "}";
             "";
-            "#define MODULE_NAME L""" + tname + """";
+            "#define MODULE_NAME """ + tname + """";
             "";
-            "int " + tname + "(wchar_t* _pwstFuncName)";
+            "int " + tname + "(char* _pstFuncName)";
             "{";];
 
             for kGw = 1:size(names, "*")
                 if or(table(kGw, 3) == ["cmex" "fmex" "Fmex"]) then
                     t = [t;
-                    "    if(wcscmp(_pwstFuncName, L""" + table(kGw,1) + """) == 0){ " + "addMexFunction(L""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
+                    "    if(strcmp(_pstFuncName, """ + table(kGw,1) + """) == 0){ " + "addMexFunction(""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
                 elseif table(kGw, 3) == "csci6" then
                     t = [t;
-                    "    if(wcscmp(_pwstFuncName, L""" + table(kGw,1) + """) == 0){ " + "addCFunction(L""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
+                    "    if(strcmp(_pstFuncName, """ + table(kGw,1) + """) == 0){ " + "addCFunction(""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
                 else
                     t = [t;
-                    "    if(wcscmp(_pwstFuncName, L""" + table(kGw,1) + """) == 0){ " + "addCStackFunction(L""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
+                    "    if(strcmp(_pstFuncName, """ + table(kGw,1) + """) == 0){ " + "addCStackFunction(""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
                 end
             end
 
@@ -163,7 +162,7 @@ function gateway_filename = ilib_gen_gateway(name,tables)
         "#define " + TNAME + "_GW_IMPEXP";
         "#endif";
         "";
-        "extern ""C"" " + TNAME + "_GW_IMPEXP int " + tname + "(wchar_t* _pwstFuncName);";
+        "extern ""C"" " + TNAME + "_GW_IMPEXP int " + tname + "(const char* _pstFuncName);";
         "";
         unique(gate(:, 2));
         "";

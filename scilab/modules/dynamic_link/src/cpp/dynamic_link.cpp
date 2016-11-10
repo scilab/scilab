@@ -223,7 +223,6 @@ int Sci_dlsym(const char* _pstEntryPointName, int _iLibID, BOOL _bFortran)
 
     ConfigVariable::setEntryPointName(pEP, _pstEntryPointName);
     ConfigVariable::addEntryPoint(pEP);
-    FREE(pstEntryPointName);
     return 0;
 }
 /*---------------------------------------------------------------------------*/
