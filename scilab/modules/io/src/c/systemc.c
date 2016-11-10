@@ -35,17 +35,3 @@ int systemc(char *command, int *stat)
     return  0;
 }
 /*--------------------------------------------------------------------------*/
-int systemcW(wchar_t* _pstCommand, int *stat)
-{
-#ifdef _MSC_VER
-    *stat = CallWindowsShellW(_pstCommand);
-#else
-    char* pstTemp = wide_string_to_UTF8(_pstCommand);
-    int status = system(pstTemp);
-    FREE(pstTemp);
-    /* provide exit value of the child */
-    *stat = WEXITSTATUS(status);
-#endif
-    return  0;
-}
-/*--------------------------------------------------------------------------*/

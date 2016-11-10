@@ -6,4 +6,3 @@ EXPORTS
 ; scilab_windows
 ;
 CallWindowsShell
-CallWindowsShellW

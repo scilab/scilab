@@ -34,12 +34,10 @@ static void searchenv_others(const char *filename, const char *varname,
 void getenvc(int *ierr, const char *var, char *buf, int *buflen, int *iflag)
 {
 #ifdef _MSC_VER
-    wchar_t* wbuf = NULL;
-    wchar_t *wvar = to_wide_string(var);
-    char* temp = NULL;
-    DWORD iLen = GetEnvironmentVariableW(wvar, NULL, 0);
+    DWORD iLen = GetEnvironmentVariableA(var, NULL, 0);
 
     *ierr = 0;
+    char* tmpbuf = NULL;
 
     if (iLen == 0)
     {
@@ -48,37 +46,31 @@ void getenvc(int *ierr, const char *var, char *buf, int *buflen, int *iflag)
             sciprint(_("Undefined environment variable %s.\n"), var);
         }
 
-        FREE(wvar);
         *ierr = 1;
         return;
     }
-    else
-    {
-        wbuf = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-        if (GetEnvironmentVariableW(wvar, wbuf, iLen) == 0)
-        {
-            if (*iflag == 1)
-            {
-                sciprint(_("Undefined environment variable %s.\n"), var);
-            }
 
-            FREE(wbuf);
-            FREE(wvar);
-            *ierr = 1;
-            return;
+    tmpbuf = (char*)MALLOC(sizeof(char) * iLen);
+    if (GetEnvironmentVariableA(var, tmpbuf, iLen) == 0)
+    {
+        if (*iflag == 1)
+        {
+            sciprint(_("Undefined environment variable %s.\n"), var);
         }
+
+        *ierr = 1;
+        FREE(tmpbuf);
+        return;
     }
 
-    temp = wide_string_to_UTF8(wbuf);
-    FREE(wbuf);
-    FREE(wvar);
-    *buflen = (int)strlen(temp);
+
+    *buflen = (int)strlen(tmpbuf);
     if (buf)
     {
-        strcpy(buf, temp);
+        strcpy(buf, tmpbuf);
+        FREE(tmpbuf)
     }
 
-    FREE(temp);
 #else
     char *locale = NULL;
     locale = getenv(var);
@@ -193,24 +185,16 @@ char *searchEnv(const char *name, const char *env_var)
 
 #if _MSC_VER
     {
-        wchar_t *wname			= NULL;
-        wchar_t *wenv_var		= NULL;
-        wchar_t wfullpath[PATH_MAX];
+        char fullpath[PATH_MAX];
 
-        wname			= to_wide_string((char*)name);
-        wenv_var	= to_wide_string((char*)env_var);
+        strcpy(fullpath, "");
 
-        wcscpy(wfullpath, L"");
+        _searchenv(name, env_var, fullpath);
 
-        _wsearchenv(wname, wenv_var, wfullpath);
-
-        if (wcslen(wfullpath) > 0)
+        if (strlen(fullpath) > 0)
         {
-            buffer = wide_string_to_UTF8(wfullpath);
+            buffer = os_strdup(fullpath);
         }
-
-        FREE(wname);
-        FREE(wenv_var);
     }
 #else
     searchenv_others(name, env_var, fullpath);
@@ -220,41 +204,6 @@ char *searchEnv(const char *name, const char *env_var)
     }
 #endif
     return buffer;
-}
-/*--------------------------------------------------------------------------*/
-wchar_t* searchEnvW(const wchar_t* _pwstName, const wchar_t* _pwstEnv)
-{
-    wchar_t* pwstRet = NULL;
-    wchar_t pwstFullpath[PATH_MAX];
-
-#if !_MSC_VER
-    char* pstName   = wide_string_to_UTF8(_pwstName);
-    char* pstEnv    = wide_string_to_UTF8(_pwstEnv);
-    char pstFullpath[PATH_MAX];
-#endif
-
-    wcscpy(pwstFullpath, L"");
-
-#if _MSC_VER
-    {
-        _wsearchenv(_pwstName, _pwstEnv, pwstFullpath);
-
-        if (wcslen(pwstFullpath) > 0)
-        {
-            pwstRet = os_wcsdup(pwstFullpath);
-        }
-    }
-#else
-    searchenv_others(pstName, pstEnv, pstFullpath);
-    if (strlen(pstFullpath) > 0)
-    {
-        pwstRet = to_wide_string(pstFullpath);
-    }
-
-    FREE(pstName);
-    FREE(pstEnv);
-#endif
-    return pwstRet;
 }
 /*--------------------------------------------------------------------------*/
 

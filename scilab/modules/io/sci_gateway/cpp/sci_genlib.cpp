@@ -181,7 +181,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
 
     if (bVerbose)
     {
-        os_sprintf(pstVerbose, _("-- Creation of [%ls] (Macros) --\n"), pstLibName);
+        os_sprintf(pstVerbose, _("-- Creation of [%s] (Macros) --\n"), pstLibName);
 
         //save current prompt mode
         int oldVal = ConfigVariable::getPromptMode();
@@ -264,7 +264,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
 
             if (bVerbose)
             {
-                sciprint(_("%ls: Processing file: %ls\n"), L"genlib", pstPath[k]);
+                sciprint(_("%s: Processing file: %s\n"), "genlib", pstPath[k]);
             }
 
             Parser parser;

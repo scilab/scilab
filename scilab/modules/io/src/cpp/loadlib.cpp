@@ -152,6 +152,7 @@ int parseLibFile(const std::string& _stXML, MacroInfoList& info, std::string& li
         {
             /* we found the tag name */
             stLibName = (const char*)attrib->children->content;
+            libname = stLibName;
             xmlXPathFreeObject(xpathObj);
         }
         else

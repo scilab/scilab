@@ -20,11 +20,4 @@
  */
 IO_IMPEXP int systemc(char *command, int *stat);
 
-/**
- * Execute a command by the system
- * @param[in] command the command
- * @param[out] the status of the operation
- */
-IO_IMPEXP int systemcW(wchar_t* _pstCommand, int *stat);
-
 #endif

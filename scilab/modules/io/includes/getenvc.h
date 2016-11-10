@@ -35,7 +35,6 @@ IO_IMPEXP void getenvc(int *ierr, const char *var, char *buf, int *buflen, int *
 * @return path found
 */
 IO_IMPEXP char *searchEnv(const char *name, const char *env_var);
-IO_IMPEXP wchar_t* searchEnvW(const wchar_t* _pwstName, const wchar_t* _pwstEnv);
 
 
 
