@@ -54,7 +54,6 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
     int line        = 0;
     char typrow[2];
 
-    wchar_t* wcsFileName = NULL;
     char* strErrorBuf = new char[bsiz];
 
     double big = NumericConstants::double_max;
