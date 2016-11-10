@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_winopen(types::typed_list &in, int _iRetCount, 
     }
     else
     {
-        Scierror(999, _("%s: Cannot open file %ls.\n"), fname.data(), pS->get()[0]);
+        Scierror(999, _("%s: Cannot open file %s.\n"), fname.data(), pS->get()[0]);
         return types::Function::Error;
     }
 

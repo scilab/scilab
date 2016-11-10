@@ -117,33 +117,25 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 /*--------------------------------------------------------------------------*/
 BOOL Set_HOME_PATH(char *DefaultPath)
 {
-    wchar_t *wHOME = _wgetenv(L"HOME");
-    if (wHOME == NULL)
+    char *HOME = getenv("HOME");
+    if (HOME == NULL)
     {
-        wchar_t *wUserProfile = _wgetenv(L"USERPROFILE");
-        if (wUserProfile)
+        char* UserProfile = getenv("USERPROFILE");
+        if (UserProfile)
         {
-            return SetEnvironmentVariableW(L"HOME", wUserProfile);
+            return SetEnvironmentVariableA("HOME", UserProfile);
         }
         else
         {
             /* if USERPROFILE is not defined , we use default profile */
-            wchar_t *wAllUsersProfile = _wgetenv(L"ALLUSERSPROFILE");
-            if (wAllUsersProfile)
+            char *AllUsersProfile = getenv("ALLUSERSPROFILE");
+            if (AllUsersProfile)
             {
-                return SetEnvironmentVariableW(L"HOME", wUserProfile);
+                return SetEnvironmentVariableA("HOME", UserProfile);
             }
             else
             {
-                BOOL bRes = FALSE;
-                wchar_t *wDefault = to_wide_string(DefaultPath);
-                if (wDefault)
-                {
-                    bRes = SetEnvironmentVariableW(L"HOME", wDefault);
-                    FREE(wDefault);
-                    wDefault = NULL;
-                }
-                return bRes;
+                return SetEnvironmentVariableA("HOME", DefaultPath);
             }
         }
     }

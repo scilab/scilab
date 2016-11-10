@@ -26,58 +26,58 @@ extern "C"
 char *getScilabDirectory(BOOL UnixStyle)
 {
     char *SciPathName = NULL;
-    wchar_t* wcSciPathName = NULL;
-    wchar_t ScilabModuleName[MAX_PATH + 1];
-    wchar_t drive[_MAX_DRIVE];
-    wchar_t dir[_MAX_DIR];
-    wchar_t fname[_MAX_FNAME];
-    wchar_t ext[_MAX_EXT];
-    wchar_t *DirTmp = NULL;
+    char* cSciPathName = NULL;
+    char ScilabModuleName[MAX_PATH + 1];
+    char drive[_MAX_DRIVE];
+    char dir[_MAX_DIR];
+    char fname[_MAX_FNAME];
+    char ext[_MAX_EXT];
+    char *DirTmp = NULL;
 
 
-    if (!GetModuleFileNameW ((HINSTANCE)GetModuleHandleW(L"core"), (wchar_t*) ScilabModuleName, MAX_PATH))
+    if (!GetModuleFileNameA((HINSTANCE)GetModuleHandleA("core"), ScilabModuleName, MAX_PATH))
     {
         return NULL;
     }
 
-    os_wsplitpath(ScilabModuleName, drive, dir, fname, ext);
+    os_splitpath(ScilabModuleName, drive, dir, fname, ext);
 
-    if (dir[wcslen(dir) - 1] == L'\\')
+    if (dir[strlen(dir) - 1] == '\\')
     {
-        dir[wcslen(dir) - 1] = L'\0';
+        dir[strlen(dir) - 1] = '\0';
     }
 
-    DirTmp = wcsrchr (dir, L'\\');
+    DirTmp = strrchr (dir, '\\');
 
-    if (wcslen(dir) - wcslen(DirTmp) > 0)
+    if (strlen(dir) - strlen(DirTmp) > 0)
     {
-        dir[wcslen(dir) - wcslen(DirTmp)] = L'\0';
+        dir[strlen(dir) - strlen(DirTmp)] = '\0';
     }
     else
     {
         return NULL;
     }
 
-    wcSciPathName = (wchar_t*)MALLOC((int)( wcslen(drive) + wcslen(dir) + 5) * sizeof(wchar_t));
-    if (wcSciPathName)
+    cSciPathName = (char*)MALLOC((int)(strlen(drive) + strlen(dir) + 5) * sizeof(char));
+    if (cSciPathName)
     {
-        _wmakepath(wcSciPathName, drive, dir, NULL, NULL);
+        _makepath(cSciPathName, drive, dir, NULL, NULL);
         if ( UnixStyle )
         {
             int i = 0;
-            for (i = 0; i < (int)wcslen(wcSciPathName); i++)
+            for (i = 0; i < (int)strlen(cSciPathName); i++)
             {
-                if (wcSciPathName[i] == L'\\')
+                if (cSciPathName[i] == '\\')
                 {
-                    wcSciPathName[i] = L'/';
+                    cSciPathName[i] = '/';
                 }
             }
         }
-        wcSciPathName[wcslen(wcSciPathName) - 1] = '\0';
+        cSciPathName[strlen(cSciPathName) - 1] = '\0';
 
-        SciPathName = wide_string_to_UTF8(wcSciPathName);
-        FREE(wcSciPathName);
-        wcSciPathName = NULL;
+        SciPathName = os_strdup(cSciPathName);
+        FREE(cSciPathName);
+        cSciPathName = NULL;
     }
 
     if (SciPathName)
