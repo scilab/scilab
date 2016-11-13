@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="char" xml:lang="ru">
@@ -16,7 +19,7 @@
         <refpurpose>преобразует в массив символов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=char(x)
             y = char(st1, st2, st3,...)
         </synopsis>
@@ -60,7 +63,7 @@
             Для заданного массива ASCII-кодов <varname>x</varname> данная функция
             возвращает массив строковых значений <varname>y</varname>, соответствующих
             ASCII-кодам. Если размеры <varname>x</varname> равны <literal>[n1, n2, n3, n4,...]</literal>,
-            то возвращаемое значение имеет те же размеры, что и входное значение за 
+            то возвращаемое значение имеет те же размеры, что и входное значение за
             исключением второго размера, т. е. размеры <varname>y</varname> равны
             <literal>[n1, n3, n4,...]</literal>.
         </para>
@@ -69,7 +72,7 @@
         </para>
         <para>
             Для заданных массивов строковых значений <literal>st1, st2, st3,...</literal> эта функция
-            возвращает вектор строковых значений в котором строки являются конкатенированными 
+            возвращает вектор строковых значений в котором строки являются конкатенированными
             элементами соответствующих строк <literal>st1, st2, st3,...</literal>. В векторе
             <varname>y</varname> всех строковые значения <literal>sti</literal> дополняются
             пробелами чтобы получить ту же длину, что и максимальная длина <literal>sti</literal>.
@@ -77,20 +80,20 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Пример с гиперматрицей ASCII-кодов:
-x=hypermat([4,2,3],61:84);
+x=matrix(61:84, [4,2,3]);
 y=char(x)
 size(x)
 size(y)
- 
+
 // Пример со множеством входных аргументов:
 st1="zeros";
 st2=["one","two"];
 st3=["three"];
 y=char(st1,st2,st3)
 size(y)
- 
+
 //все строки строковых значений дополняются "пробелами" так, чтобы
 //иметь одинаковую длину: 6
 length(y)

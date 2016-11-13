@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * 
+ *
  * This help file was generated from prettyprint.sci using help_from_sci().
- * 
+ *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="prettyprint" xml:lang="en">
     <refnamediv>
@@ -10,7 +10,7 @@
         <refpurpose>From any Scilab datatype and provide a representation to the TeX, LaTeX or MathML formats</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             str = prettyprint(a) // Show the variable a with the default format (LaTeX)
             str = prettyprint(a, exportFormat) // Show the variable a with the specified format
@@ -109,7 +109,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 str = prettyprint(rand(3,3)) // Return the LaTeX representation of a 3,3 matrix
 xstring(0.2,0.2,str) // Show the representation in a graphic Windows
 
@@ -121,7 +121,7 @@ xstring(0.2,0.2,prettyprint(G*s-1)); // Show a polynomial through a LaTeX repres
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>

@@ -46,7 +46,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=int(10*rand(2,6))
 // 1次の多項式行列を作成
 P=inv_coeff(A,1)

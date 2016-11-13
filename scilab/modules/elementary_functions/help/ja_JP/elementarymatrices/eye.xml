@@ -3,143 +3,146 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="eye" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>eye</refname>
-        
+
         <refpurpose>単位行列</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>X = eye(m,n)
-            
+
             X = eye(A)
-            
+
             X = eye()
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>A,X</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         行列,ハイパー行列または <literal>syslin</literal> リスト
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>m,n</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         整数値:  <varname>X</varname>の行および列の数
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
-        <para>その引数に基づき, 
-            
+
+        <para>その引数に基づき,
+
             <literal>m</literal>x<literal>n</literal> の
-            
+
             主対角項に1を有する行列,または
-            
+
             <literal>A</literal>と同じ次元の単位行列を返します.
-            
-            <varname>A</varname> がハイパー行列の場合, 
-            
+
+            <varname>A</varname> がハイパー行列の場合,
+
             <varname>X</varname> は,1から<literal>min(size(A))</literal>までの全ての
-            
+
             <literal>i</literal>について,<literal>X(i,i,...,i) = 1</literal>として定義されます.
-            
+
         </para>
-        
+
         <warning>
-            
+
             <literal>eye(10)</literal> は,
-            
+
             <literal>A=10</literal>の時の <literal>eye(A)</literal> と
-            
+
             解釈され,すなわち, <literal>1</literal>となります.
-            
+
             (10x10の単位行列とはなりません!)
-            
+
         </warning>
-        
+
         <para>
-            
+
             <literal>A</literal> が<literal>syslin</literal>リスト
-            
+
             で表された線形システムの場合,
-            
+
             <literal>eye(A)</literal>は適当な次元(出力の数x入力の数)の
-            
+
             <literal>eye</literal>行列を返します.
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>eye()</literal> は,
-            
+
             次元が未定義の単位行列を返します.
-            
+
             次元はこの単位行列が次元が固定した行列に加算される時に
-            
+
             定義されます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <programlisting role="example"><![CDATA[
 eye(2,3)
 A=rand(2,3);eye(A)
@@ -149,52 +152,52 @@ A=ssrand(2,2,3);eye(A)
 [1 2;3 4]+2*eye()
 eye(zeros(4,4,4,4))
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="ones">ones</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="zeros">zeros</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>履歴</title>
-        
+
         <revhistory>
-            
+
             <revision>
-                
+
                 <revnumber>5.5.0</revnumber>
-                
+
                 <revdescription>
-                    
+
                     <para>N次元ハイパー行列に一般化</para>
-                    
+
                 </revdescription>
-                
+
             </revision>
-            
+
         </revhistory>
-        
+
     </refsection>
-    
+
 </refentry>
 

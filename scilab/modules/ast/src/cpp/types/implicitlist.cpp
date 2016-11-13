@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 #include <sstream>
@@ -80,6 +83,9 @@ ImplicitList::ImplicitList()
     m_pDblStart = NULL;
     m_pDblStep  = NULL;
     m_pDblEnd   = NULL;
+    m_eStartType = ScilabNull;
+    m_eStepType = ScilabNull;
+    m_eEndType = ScilabNull;
 
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -650,6 +656,7 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
     else
     {
         int* piDims = new int[iDims];
+        int* pIndex = new int[iDims];
         for (int i = 0 ; i < iDims ; i++)
         {
             piDims[i] = 1;
@@ -657,7 +664,6 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
 
         for (int i = 0 ; i < iSeqCount ; i++)
         {
-            int* pIndex = new int[iDims];
             for (int j = 0 ; j < iDims ; j++)
             {
                 Double* pDbl = pArg[j]->getAs<Double>();
@@ -666,6 +672,8 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
 
             index = getIndexWithDims(pIndex, piDims, iDims);
         }
+        delete[] pIndex;
+        delete[] piDims;
     }
 
     switch (index)
@@ -748,7 +756,6 @@ std::string printDouble(types::Double* _pD)
     DoubleFormat df;
     getDoubleFormat(_pD->get(0), &df);
     df.bPrintPoint = false;
-    df.bPaddSign = true;
     df.bPaddSign = false;
     df.bPrintBlank = false;
     addDoubleValue(&ostr, _pD->get(0), &df);

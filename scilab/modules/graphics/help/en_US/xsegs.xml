@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xsegs">
@@ -19,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xsegs(xv, yv, [style])
             xsegs(xv, yv, zv,[style])
@@ -71,7 +74,7 @@
             For instance, using matrices of size <literal>(2,n)</literal>, the
             segments can be defined by:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 xv=[xi_1 xi_2 ...; xf_1 xf_2...]
 yv=[yi_1 yi_2 ...; yf_1 yf_2...]
 zv=[zi_1 zi_2 ...; zf_1 zf_2...]
@@ -143,6 +146,6 @@ e.arrow_size = 0.4;
             e = gce();
             e.arrow_size = 0.4;
         </scilab:image>
-        
+
     </refsection>
 </refentry>

@@ -3,11 +3,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5dataset" xml:lang="ja">
@@ -18,8 +21,8 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            h5dataset(obj, name, sourceInfo [, sourceType], data, targetInfo [, targetType])  
-            h5dataset(filename, name, sourceInfo [, sourceType], data, targetInfo [, targetType])  
+            h5dataset(obj, name, sourceInfo [, sourceType], data, targetInfo [, targetType])
+            h5dataset(filename, name, sourceInfo [, sourceType], data, targetInfo [, targetType])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -84,7 +87,7 @@
         <para>
             ターゲットのHDF5型は,
             <ulink url="http://www.hdfgroup.org/HDF5/doc/RM/PredefDTypes.html">HDF5マニュアル</ulink>で利用可能なリストの中から選択できます.
-            このHDF5型の例は"H5T_MIPS_U32" または "H5T_STD_B64BE"ですが, 
+            このHDF5型の例は"H5T_MIPS_U32" または "H5T_STD_B64BE"ですが,
             "MIPS_U32" または "STD_B64BE" のような短縮形も使用可能です.
         </para>
         <para>
@@ -94,10 +97,10 @@
         </para>
         <simplelist type="inline">
             <member>
-                1行目: データの次元. 
+                1行目: データの次元.
             </member>
             <member>
-                2行目: hyperslabのstart. 
+                2行目: hyperslabのstart.
             </member>
             <member>
                 3行目: hyperslabのカウント.
@@ -110,7 +113,7 @@
             </member>
         </simplelist>
         <para>
-            hyperslab選択に関する詳細については, 
+            hyperslab選択に関する詳細については,
             <link linkend="h5write">h5write</link>を参照ください.
         </para>
         <para>targetInfo行列は 6xn の double 行列です. 最初の行は

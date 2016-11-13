@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
 *
 */
 
@@ -186,18 +189,21 @@ static void encode(types::String* input, std::vector<double> &ret)
         ret.push_back(offsets[i]);
     }
 
-    size_t size = ret.size();
-    ret.resize(size + offsets[iElements - 1]);
-    double* data = ret.data() + size;
-
-    size_t len = pLengths[0];
-    memcpy(data, utf8[0], len * sizeof(char));
-    data += offsets[0];
-    for (int i = 1; i < iElements; ++i)
+    if (iElements > 0)
     {
-        size_t len = pLengths[i];
-        memcpy(data, utf8[i], len * sizeof(char));
-        data += offsets[i] - offsets[i - 1];
+        size_t size = ret.size();
+        ret.resize(size + offsets[iElements - 1]);
+        double* data = ret.data() + size;
+
+        size_t len = pLengths[0];
+        memcpy(data, utf8[0], len * sizeof(char));
+        data += offsets[0];
+        for (int i = 1; i < iElements; ++i)
+        {
+            size_t len = pLengths[i];
+            memcpy(data, utf8[i], len * sizeof(char));
+            data += offsets[i] - offsets[i - 1];
+        }
     }
 
     delete[] offsets;
@@ -215,7 +221,11 @@ static void encode(types::List* input, std::vector<double> &ret)
     for (int i = 0; i < iElements; ++i)
     {
         // Recursively call var2vec on each element and extract the obtained results
-        var2vec(input->get(i), ret);
+        if (!var2vec(input->get(i), ret))
+        {
+            ret.back() = -1;
+            break;
+        }
     }
 
     // An empty list input will return [22; 0], a tlist [23; 0] and an mlist [24; 0]
@@ -261,7 +271,7 @@ bool var2vec(types::InternalType* in, std::vector<double> &out)
     getVarType(nullptr, (int*) in, &iType);
     switch (iType)
     {
-            // Reuse scicos model encoding for 'model.opar' and 'model.odstate' fields
+        // Reuse scicos model encoding for 'model.opar' and 'model.odstate' fields
         case sci_matrix  :
             encode(in->getAs<types::Double>(), out);
             break;
@@ -293,6 +303,9 @@ bool var2vec(types::InternalType* in, std::vector<double> &out)
                 case types::InternalType::ScilabUInt64 :
                     encode(in->getAs<types::UInt64>(), out);
                     break;
+                default :
+                    Scierror(999, _("%s: Wrong type for input argument #%d: unknown integer type.\n"), var2vecName.c_str(), 1);
+                    return false;
             }
             break;
         case sci_boolean :
@@ -314,8 +327,13 @@ bool var2vec(types::InternalType* in, std::vector<double> &out)
             {
                 case types::InternalType::ScilabMList :
                     encode(in->getAs<types::List>(), out);
+                    if (out.back() == -1)
+                    {
+                        Scierror(999, _("%s: Wrong value for input argument #%d: Could not read its content.\n"), var2vecName.c_str(), 1);
+                        return false;
+                    }
                     break;
-                case types::InternalType::ScilabStruct :
+                default : // types::InternalType::ScilabStruct
                     //encode(in->getAs<types::Struct>(), out);
                     Scierror(999, _("%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"), var2vecName.c_str(), 1, "Double", "Integer", "Boolean", "String", "List");
                     return false;

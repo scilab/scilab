@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -29,7 +32,7 @@ struct Vector3d
     double y;
     double z;
 
-    Vector3d() { }
+    Vector3d() : x(0.), y(0.), z(0.) { }
     Vector3d(const double _x, const double _y, const double _z) : x(_x), y(_y), z(_z) { }
 };
 
@@ -63,18 +66,6 @@ private:
 
     /** The polygons's initial number of points, including colinear vertices. */
     int numInitPoints;
-
-    /**
-     * Specifies which of the polygon's axes is the smallest. 0, 1 and 2
-     * respectively correspond to the x, y, and z axes.
-     */
-    int smallestAxis;
-
-    /**
-     * Specifies the polygon's two largest axes, which are the triangle's two axes
-     * other than its smallest one.
-     */
-    int largestAxes[2];
 
     /**
      * Specifies whether the list of vertex indices must be flipped or not
@@ -122,15 +113,10 @@ private:
     double xmin, xmax, ymin, ymax, zmin, zmax;
 
 private:
-    /**
-     * Determines the polygon's smallest axis and its two largest axes.
-     */
-    void determineSmallestAxis(void);
 
     /**
-     * Fills the array of points from the array of input points, depending on the polygon's
-     * smallest axis which must have been determined beforehand.
-     */
+     * Fills the array of points with a projection of the points in the array of input points.
+     **/
     void fillPoints(void);
 
     /**
@@ -230,6 +216,15 @@ private:
     static Vector3d minus(Vector3d v0, Vector3d v1);
 
     /**
+    * Add the first and second vectors
+    * It should be moved to a Vector3d class.
+    * @param[in] the first vector.
+    * @param[in] the second vector.
+    * @return the resulting vector.
+    */
+    static Vector3d plus(Vector3d v0, Vector3d v1);
+
+    /**
      * Computes and returns the dot product of two vectors.
      * It should be moved to a Vector3d class.
      * @param[in] the first vector.
@@ -274,6 +269,53 @@ private:
      * @return the vector perpendicular to vector v.
      */
     static Vector3d perpendicularVector(Vector3d v);
+
+    /**
+     * Computes and returns the cross product of two vectors.
+     * It should be moved to a Vector3d class.
+     * @param[in] the vector a.
+     * @param[in] the vector b.
+     * @return the cross product vector perpendicular to vectors a and b.
+     */
+    static Vector3d cross(Vector3d a, Vector3d b);
+
+    /**
+     * Computes the multimplication of 3x3 matrix Out = A * B;
+     * @param[in] the left matrix a.
+     * @param[in] the right matrix b.
+     * @param[out] the multiplied matrix.
+     **/
+    void matrixMatrixMul(double (&a)[3][3], double (&b)[3][3], double (&out)[3][3]);
+
+    /**
+     * Computes the multimplication of 3x3 matrix and a vector Pout = M * Pin;
+     * @param[in] the matrix m.
+     * @param[in] the vector pin.
+     * @param[out] the multiplied vector pout.
+     **/
+    void matrixVectorMul(double (&m)[3][3], Vector3d & pin, Vector3d & pout);
+
+    /**
+     * Computes the multimplication of 3x3 matrix and a vector PinOut = M * PinOut;
+     * @param[in] the matrix m.
+     * @param[in] the vector pinOut.
+     * @param[out] the multiplied vector pinOut.
+     **/
+    void matrixVectorMul(double (&m)[3][3], Vector3d & pinOut);
+
+    /**
+     * Transform all points from the array of points, to the cube [0,1]^3
+     **/
+    void normalizePoints(void);
+
+    /**
+     * 3x3 Matriz diagonalizer using jacobi method
+     * Original idea from:  http://www.melax.com/diag.html
+     * @param[in] the matrix A to be diagonalized.
+     * @param[out] the matrix Q which diagonalizer A, D = Q' * D * Q.
+     * @param[out] the matrix D diagonal.
+     **/
+    void diagonalize(const double (&A)[3][3], double (&Q)[3][3], double (&D)[3][3]);
 
 public:
     /** Default constructor. */

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -42,7 +45,7 @@ SLintXmlResult::SLintXmlResult(const std::string & _path) : current(nullptr), pa
     else
     {
         (*out) << "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
-               << "<SLintResult>\n";
+            << "<SLintResult>\n";
     }
 }
 
@@ -57,6 +60,11 @@ SLintXmlResult::~SLintXmlResult()
 
 void SLintXmlResult::finalize()
 {
+    if (current.get())
+    {
+        (*out) << "  </File>\n";
+    }
+
     (*out) << "</SLintResult>\n";
     out->close();
     delete out;
@@ -68,7 +76,7 @@ const std::string SLintXmlResult::getStr(const std::string & str)
     return replaceByEntities(str);
 }
 
-void SLintXmlResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::string & msg)
+void SLintXmlResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::string & msg)
 {
     if (context.getSciFile().get() != current.get())
     {
@@ -79,7 +87,7 @@ void SLintXmlResult::handleMessage(SLintContext & context, const Location & loc,
         current = context.getSciFile();
         print(current);
     }
-    print(loc, checker, msg);
+    print(loc, checker, sub, msg);
 }
 
 void SLintXmlResult::print(const SciFilePtr & file)
@@ -87,11 +95,11 @@ void SLintXmlResult::print(const SciFilePtr & file)
     (*out) << "  <File name=\"" << getStr(file->getFilename()) << "\">\n";
 }
 
-void SLintXmlResult::print(const Location & loc, const SLintChecker & checker, const std::string & msg)
+void SLintXmlResult::print(const Location & loc, const SLintChecker & checker, const unsigned sub, const std::string & msg)
 {
     (*out) << "    <Result>\n";
     print(loc);
-    print(checker);
+    print(checker, sub);
     print(msg);
     (*out) << "    </Result>\n";
 }
@@ -99,23 +107,23 @@ void SLintXmlResult::print(const Location & loc, const SLintChecker & checker, c
 void SLintXmlResult::print(const Location & loc)
 {
     (*out) << "      <Location first_line=\"" << loc.first_line
-           << "\" first_column=\"" << loc.first_column
-           << "\" last_line=\"" << loc.last_line
-           << "\" last_column=\"" << loc.last_column
-           << "\"/>\n";
+        << "\" first_column=\"" << loc.first_column
+        << "\" last_line=\"" << loc.last_line
+        << "\" last_column=\"" << loc.last_column
+        << "\"/>\n";
 }
 
-void SLintXmlResult::print(const SLintChecker & checker)
+void SLintXmlResult::print(const SLintChecker & checker, const unsigned sub)
 {
     (*out) << "      <Checker name=\"" << checker.getName()
-           << "\" id=\"" << getStr(checker.getId())
-           << "\"/>\n";
+        << "\" id=\"" << getStr(checker.getId(sub))
+        << "\"/>\n";
 }
 
 void SLintXmlResult::print(const std::string & msg)
 {
     (*out) << "      <Message text=\"" << getStr(msg)
-           << "\"/>\n";
+        << "\"/>\n";
 }
 
 std::string SLintXmlResult::replaceByEntities(const std::string & seq)
@@ -125,23 +133,23 @@ std::string SLintXmlResult::replaceByEntities(const std::string & seq)
     {
         if (c == '<')
         {
-            pushEntity(buf, "&#0060;", 7);
+            pushEntity(buf, "&lt;", 4);
         }
         else if (c == '>')
         {
-            pushEntity(buf, "&#0062;", 7);
+            pushEntity(buf, "&gt;", 4);
         }
         else if (c == '\'')
         {
-            pushEntity(buf, "&#0039;", 7);
+            pushEntity(buf, "&apos;", 6);
         }
         else if (c == '\"')
         {
-            pushEntity(buf, "&#0034;", 7);
+            pushEntity(buf, "&quot;", 6);
         }
         else if (c == '&')
         {
-            pushEntity(buf, "&#0038;", 7);
+            pushEntity(buf, "&amp;", 5);
         }
         else
         {

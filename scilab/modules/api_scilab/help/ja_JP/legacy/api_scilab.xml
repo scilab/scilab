@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010  - DIGITEO - Sylvestre LEDRU
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_scilab_legacy" scilab:needs-examples="no" xml:lang="ja">
+    <refnamediv>
+        <refname>api_scilab</refname>
+        <refpurpose>
+            api_scilab はScilabメモリにデータを読み書きするための
+            Scilabインターフェイスです
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>Scilab 5.2.0以降, Scilab は統一した文書化された簡易な
+            APIを提供しています.
+        </para>
+        <para>このAPIはScilabメモリにデータを読み書きするための
+            関数を提供します.
+        </para>
+        <para>このAPIには以下のような多くの優れた点があります:</para>
+        <itemizedlist>
+            <listitem>
+                <para>全てのScilabデータ型を管理</para>
+            </listitem>
+            <listitem>
+                <para>全データ型を統一的に処理</para>
+            </listitem>
+            <listitem>
+                <para>エラー管理</para>
+            </listitem>
+            <listitem>
+                <para>完全に文書化されている</para>
+            </listitem>
+            <listitem>
+                <para>ユニットテストで完全にテストされている</para>
+            </listitem>
+            <listitem>
+                <para>
+                    直接または名前を指定した変数アクセス
+                    (<link linkend="call_scilab">call_scilab API</link>参照).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Scilabの将来のバージョンで保守される
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>通常, このAPIはScilabの機能を拡張するために使用されますが,
+            他のコンテキストで使用することもできます
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>ライブラリまたはC/C++関数:
+                    多くのライブラリがフリー/オープンソースまたはプロプライエタリ市場で
+                    開発されています.
+                    このライブラリはScilabのような高レベル言語に読み込んで使用することができます.
+                    API Scilabはこのようなライブラリへのインターフェイス機能を提供します.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    サードパーティソフトウエアから計算エンジンとしてScilabを使用すること
+                    も可能です.
+                    この機能は,
+                    C/C++コードから使用する際には
+                    <link linkend="call_scilab">call_scilab</link>,
+                    Javaから使用する際には
+                    <link linkend="javasci">javasci</link>と呼ばれます.
+                    変数へのアクセスはその名前(変数名)で行われます.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            古いAPI (stackX.h)は Scilab 6.0以降使用できなくなることに注意
+            してください.
+        </para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>
+                    スタック関数/マクロを代替するための関数/マクロを追加
+                    <itemizedlist>
+                        <listitem>nbInputArgument
+                            <para>
+                                <literal>Rhs</literal>を代替
+                            </para>
+                        </listitem>
+                        <listitem>nbOutputArgument
+                            <para>
+                                <literal>Lhs</literal>を代替
+                            </para>
+                        </listitem>
+                        <listitem>AssignOutputVariable
+                            <para>
+                                <literal>LhsVar</literal>を代替
+                            </para>
+                        </listitem>
+                        <listitem>ReturnArguments
+                            <para>
+                                <literal>PutLhsVar</literal>を代替
+                            </para>
+                        </listitem>
+                        <listitem>CheckInputArgument
+                            <para>
+                                <literal>CheckRhs</literal>を代替
+                            </para>
+                        </listitem>
+                        <listitem>CheckOutputArgument
+                            <para>
+                                <literal>CheckLhs</literal>を代替
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        リストのデータ型を調べる以下の関数を追加します:
+                        <literal>isListType</literal>, <literal>isNamedListType</literal>, <literal>isTListType</literal>, <literal>isNamedTListType</literal>, <literal>isMListType</literal>,
+                        <literal>isNamedMListType</literal>
+                    </para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+    <refsection>
+        <title>参照 - API_Scilab</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="boolean_reading_API">論理値を読み込むAPI</link>,
+            </member>
+            <member>
+                <link linkend="boolean_writing_API">論理値を書き込むAPI</link>,
+            </member>
+            <member>
+                <link linkend="bsparse_reading_API">論理値の疎行列を読み込むAPI</link>,
+            </member>
+            <member>
+                <link linkend="bsparse_writing_API">論理値の疎行列を書き込むAPI</link>,
+            </member>
+            <member>
+                <link linkend="Common_getvaraddr_API">getvaraddr 共通API</link>,
+            </member>
+            <member>
+                <link linkend="Common_getvardimension_API">getvardimension 共通API</link>,
+            </member>
+            <member>
+                <link linkend="Common_getvartype_API">getvartype 共通API</link>,
+            </member>
+            <member>
+                <link linkend="Common_iscomplex_API">iscomplex 共通API</link>,
+            </member>
+            <member>
+                <link linkend="Common_isvarmatrixtype_API">isvarmatrixtype 共通API</link>,
+            </member>
+            <member>
+                <link linkend="Double_management_reading_API">double管理読み込みAPI</link>,
+            </member>
+            <member>
+                <link linkend="Double_management_writing_API">double管理書き込みAPI</link>,
+            </member>
+            <member>
+                <link linkend="Integer_management_reading_API">整数管理読み込みAPI</link>,
+            </member>
+            <member>
+                <link linkend="Integer_management_writing_API">整数管理書き込みAPI</link>,
+            </member>
+            <member>
+                <link linkend="int_getmatrixofintegerprecision_API">getmatrixofintegerprecision API</link>,
+            </member>
+            <member>
+                <link linkend="Pointer_reading_API">ポインタ読み込みAPI</link>,
+            </member>
+            <member>
+                <link linkend="Pointer_writing_API">ポインタ書き込みAPI</link>,
+            </member>
+            <member>
+                <link linkend="poly_getpolyvariablename_API">多項式getpolyvariablename API</link>,
+            </member>
+            <member>
+                <link linkend="Polynomial_management_reading_API">多項式管理読み込みAPI</link>,
+            </member>
+            <member>
+                <link linkend="Polynomial_management_writing_API">多項式管理書き込みAPI</link>,
+            </member>
+            <member>
+                <link linkend="Sparse_management_reading_API">疎行列管理読み込みAPI</link>,
+            </member>
+            <member>
+                <link linkend="Sparse_management_writing_API">疎行列管理書き込みAPI</link>,
+            </member>
+            <member>
+                <link linkend="String_management_reading_API">文字列管理読み込みAPI</link>,
+            </member>
+            <member>
+                <link linkend="String_management_writing_API">文字列管理書き込みAPI</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>参照 - API_Scilab リスト管理</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="list_boolean_reading_API">論理値リストを読み込むAPI</link>
+            </member>
+            <member>
+                <link linkend="list_boolean_writing_API">論理値リストを書き込むAPI</link>
+            </member>
+            <member>
+                <link linkend="list_bsparse_reading_API">論理値疎リストを読み込むAPI</link>
+            </member>
+            <member>
+                <link linkend="list_bsparse_writing_API">論理値疎リストを書き込むAPI</link>
+            </member>
+            <member>
+                <link linkend="list_createlist_API">list_createlist API</link>
+            </member>
+            <member>
+                <link linkend="list_double_reading_API">doubleリストを読み込むAPI</link>
+            </member>
+            <member>
+                <link linkend="list_double_writing_API">doubleリストを書き込むAPI</link>
+            </member>
+            <member>
+                <link linkend="list_getlistitemaddress_API">getlistitemaddressリスト API</link>
+            </member>
+            <member>
+                <link linkend="list_getlistitemnumber_API">getlistitemnumberリスト API</link>
+            </member>
+            <member>
+                <link linkend="list_integer_reading_API">整数リストを読み込むAPI</link>
+            </member>
+            <member>
+                <link linkend="list_integer_writing_API">整数リストを書き込むAPI</link>
+            </member>
+            <member>
+                <link linkend="list_pointer_reading_API">ポインタリストを読み込むAPI</link>
+            </member>
+            <member>
+                <link linkend="list_pointer_writing_API">ポインタリストを書き込むAPI</link>
+            </member>
+            <member>
+                <link linkend="list_poly_reading_API">多項式リストを読み込むAPI</link>
+            </member>
+            <member>
+                <link linkend="list_poly_writing_API">多項式リストを書き込むAPI</link>
+            </member>
+            <member>
+                <link linkend="list_sparse_reading_API">疎行列リストを読み込むAPI</link>
+            </member>
+            <member>
+                <link linkend="list_sparse_writing_API">疎行列リストを書き込むAPI</link>
+            </member>
+            <member>
+                <link linkend="list_string_reading_API">文字列リストを読み込むAPI</link>
+            </member>
+            <member>
+                <link linkend="list_string_writing_API">文字列リストを書き込むAPI</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>参照 - call_scilab</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="call_scilab">Call_Scilab</link>
+            </member>
+            <member>
+                <link linkend="compile_and_run_call_scilab">call_scilabでコンパイル/実行する</link>
+            </member>
+            <member>
+                <link linkend="DoubleManagement_callscilab">行列の管理</link>
+            </member>
+            <member>
+                <link linkend="BooleanManagement_callscilab">論理値の管理</link>
+            </member>
+            <member>
+                <link linkend="ComplexManagement_callscilab">複素数の管理</link>
+            </member>
+            <member>
+                <link linkend="StringManagement_callscilab">文字列の管理</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

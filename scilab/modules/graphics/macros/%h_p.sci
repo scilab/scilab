@@ -1,10 +1,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function %h_p(h)
     if size(h,"*")>1 then
@@ -81,8 +84,8 @@ function %h_p(h)
             "parent: "+h.parent.type
             "children: "+fmtchildren(h.children)
             "datatips: "+fmtchildren(h.datatips)
-            "display_function: "++sci2exp(h.display_function)
-            "display_function_data: "+fmtuser_data(h.display_function_data)
+            "display_function = "++sci2exp(h.display_function)
+            "display_function_data = "+fmtuser_data(h.display_function_data)
             "visible = "+sci2exp(h.visible)
             "data = "+d
             "closed = "+sci2exp(h.closed)
@@ -407,9 +410,7 @@ function %h_p(h)
 
 
         case "Matplot"
-            if typeof(h.data) == "hypermat" then
-                d="matrix "+strcat(string(h.data.dims),"x")
-            elseif size(h.data,"*") > 10 then
+            if size(h.data,"*") > 10 then
                 d="matrix "+strcat(string(size(h.data)),"x")
             else
                 d=sci2exp(h.data,0)
@@ -603,13 +604,15 @@ function %h_p(h)
             "box_mode = "+sci2exp(h.box_mode)
             "label_mode = "+sci2exp(h.label_mode)
             "orientation = "+sci2exp(h.orientation)
-            "z_component = "+sci2exp(h.z_component)
+            "display_components = "+sci2exp(h.display_components)
             "auto_orientation = "+sci2exp(h.auto_orientation)
             "interp_mode = "+sci2exp(h.interp_mode)
             "display_function = "+sci2exp(h.display_function)
+            "detached_position = "+sci2exp(h.detached_position)
             "font_foreground = "+string(h.font_foreground)
             "foreground = "+string(h.foreground)
             "background = "+string(h.background)
+            "line_style = "+string(h.line_style)
             "mark_mode = "+sci2exp(h.mark_mode)
             "mark_style = "+sci2exp(h.mark_style)
             "mark_size_unit = "+sci2exp(h.mark_size_unit)

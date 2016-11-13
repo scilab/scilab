@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="boolean" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="boolean" xml:lang="pt">
     <refnamediv>
         <refname>boolean</refname>
         <refpurpose>objetos Scilab: variáveis booleanas e operadores '&amp;', '|'
-            e '~' 
+            e '~'
         </refpurpose>
     </refnamediv>
     <refsection>
@@ -16,7 +16,7 @@
             podem ser manipuladas como matrizes ordinárias para extração/inserção de
             elementos e concatenação. Note que outras operações usuais ( +, *, -, ^,
             etc.) não são definidas para matrizes de valores booleanos. Três
-            operadores especiais são definidos para estas matrizes: 
+            operadores especiais são definidos para estas matrizes:
         </para>
         <variablelist>
             <varlistentry>
@@ -63,7 +63,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [1,2]==[1,3]
 [1,2]==1
 a=1:5; a(a&gt;2)

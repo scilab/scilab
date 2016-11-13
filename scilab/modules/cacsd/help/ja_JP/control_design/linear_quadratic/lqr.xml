@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="lqr">
+    <refnamediv>
+        <refname>lqr</refname>
+        <refpurpose>LQ補償器 (全状態)  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[K,X]=lqr(P12)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>P12</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト (状態空間線形システム)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K,X</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>lqr</literal>  は,連続系または離散時間系のプラント
+            <literal>P12=[A,B2,C1,D12]</literal>の
+            線形最適LQ全状態ゲインを計算します.
+        </para>
+        <para>
+            <literal>P12</literal> は <literal>syslin</literal> リスト
+            (例:<literal>P12=syslin('c',A,B2,C1,D12)</literal>)です.
+        </para>
+        <para>
+            評価関数は<literal>z=C1 x + D12 u</literal>の時の<literal>z'*z</literal>の
+            L2ノルム,すなわち, <literal>[x,u]' * BigQ * [x;u]</literal>
+            です.ただし,
+        </para>
+        <programlisting role=""><![CDATA[
+      [C1' ]               [Q  S]
+BigQ= [    ]  * [C1 D12] = [    ]
+      [D12']               [S' R]
+ ]]></programlisting>
+        <para>
+            ゲイン <literal>K</literal> は <literal>A + B2*K</literal> が安定になるように
+            選ばれます.
+        </para>
+        <para>
+            <literal>X</literal>はリカッチ方程式の安定化解です.
+        </para>
+        <para>
+            連続系プラントの場合:
+        </para>
+        <programlisting role=""><![CDATA[
+(A-B2*inv(R)*S')'*X+X*(A-B2*inv(R)*S')-X*B2*inv(R)*B2'*X+Q-S*inv(R)*S'=0
+ ]]></programlisting>
+        <programlisting role=""><![CDATA[
+K=-inv(R)*(B2'*X+S)
+ ]]></programlisting>
+        <para>
+            離散時間系プラントの場合:
+        </para>
+        <programlisting role=""><![CDATA[
+X=A'*X*A-(A'*X*B2+C1'*D12)*pinv(B2'*X*B2+D12'*D12)*(B2'*X*A+D12'*C1)+C1'*C1;
+ ]]></programlisting>
+        <programlisting role=""><![CDATA[
+K=-pinv(B2'*X*B2+D12'*D12)*(B2'*X*A+D12'*C1)
+ ]]></programlisting>
+        <para>
+            <literal>X</literal> と等価な形式は,
+        </para>
+        <programlisting role=""><![CDATA[
+X=Abar'*inv(inv(X)+B2*inv(r)*B2')*Abar+Qbar
+ ]]></programlisting>
+        <para>
+            ただし, <literal>Abar=A-B2*inv(R)*S'</literal> および
+            <literal>Qbar=Q-S*inv(R)*S'</literal>となります.
+        </para>
+        <para>
+            リカッチ方程式に関連する3ブロック行列ペンシルは次のようになります:
+        </para>
+        <programlisting role=""><![CDATA[
+             discrete                           continuous
+ |I   0    0|   | A    0    B2|         |I   0   0|   | A    0    B2|
+z|0   A'   0| - |-Q    I    -S|        s|0   I   0| - |-Q   -A'   -S|
+ |0   B2'  0|   | S'   0     R|         |0   0   0|   | S'  -B2'   R|
+ ]]></programlisting>
+        <para>
+            注意: 行列Rは非特異であるとします. 特に,
+            プラントは縦長 (出力の数 &gt;= 入力の数)である
+            必要があります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A=rand(2,2);B=rand(2,1);   //two states, one input
+Q=diag([2,5]);R=2;     //Usual notations x'Qx + u'Ru
+Big=sysdiag(Q,R);    //Now we calculate C1 and D12
+[w,wp]=fullrf(Big);C1=wp(:,1:2);D12=wp(:,3:$);   //[C1,D12]'*[C1,D12]=Big
+P=syslin('c',A,B,C1,D12);    //The plant (continuous-time)
+[K,X]=lqr(P)
+spec(A+B*K)    //check stability
+norm(A'*X+X*A-X*B*inv(R)*B'*X+Q,1)  //Riccati check
+P=syslin('d',A,B,C1,D12);    // Discrete time plant
+[K,X]=lqr(P)
+spec(A+B*K)   //check stability
+norm(A'*X*A-(A'*X*B)*pinv(B'*X*B+R)*(B'*X*A)+Q-X,1) //Riccati check
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lqe">lqe</link>
+            </member>
+            <member>
+                <link linkend="gcare">gcare</link>
+            </member>
+            <member>
+                <link linkend="leqr">leqr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

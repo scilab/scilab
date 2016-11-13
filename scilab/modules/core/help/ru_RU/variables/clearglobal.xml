@@ -5,7 +5,7 @@
         <refpurpose>уничтожает глобальные переменные</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             clearglobal()
             clearglobal nam1 ... namn
@@ -29,20 +29,20 @@
             <code>clearglobal()</code> уничтожает все глобальные переменные.
         </para>
         <para>
-            <literal>clearglobal nam1 ... namn</literal> уничтожает 
+            <literal>clearglobal nam1 ... namn</literal> уничтожает
             глобальные переменные, перечисленные по именам.
         </para>
         <para>
             <note>
-                Обратите внимание, что <code>clearglobal()</code> 
-                уничтожает только глобальные переменные, но локальные 
+                Обратите внимание, что <code>clearglobal()</code>
+                уничтожает только глобальные переменные, но локальные
                 копии этих глобальных переменных не уничтожаются.
             </note>
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 global a b c
 a=1;b=2;c=3;
 who('global')

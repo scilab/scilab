@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - 2012 - INRIA - Allan CORNET
  * Copyright (C) 2011 - INRIA - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  * This code is also published under the GPL v3 license.
  *
@@ -213,9 +216,6 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
                     complexArray *ptrComplexArray = stringsToComplexArray((const char**)result->pstrValues, result->m * result->n, decimal, TRUE, &ierr);
                     if (ptrComplexArray == NULL)
                     {
-                        freeCsvResult(result);
-                        freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
-
                         if (ierr == STRINGTOCOMPLEX_ERROR)
                         {
                             Scierror(999, _("%s: can not convert data.\n"), fname);
@@ -224,6 +224,8 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
                         {
                             Scierror(999, _("%s: Memory allocation error.\n"), fname);
                         }
+                        freeCsvResult(result);
+                        freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
                         return 0;
                     }
 
@@ -286,13 +288,12 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
                     }
                 }
 
-                freeCsvResult(result);
-                freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
-
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
                     Scierror(17, _("%s: Memory allocation error.\n"), fname);
+                    freeCsvResult(result);
+                    freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
                     return 0;
                 }
                 else
@@ -332,6 +333,7 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
     }
 
     freeVar(&text, nbLines, &lengthText, &separator, &decimal, &conversion, &iRange);
+    freeCsvResult(result);
     return 0;
 }
 // =============================================================================

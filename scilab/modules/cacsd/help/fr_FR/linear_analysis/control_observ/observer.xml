@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="observer">
+    <refnamediv>
+        <refname>observer</refname>
+        <refpurpose>observer design</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>Obs=observer(Sys,J)
+            [Obs,U,m]=observer(Sys [,flag,alfa])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sys</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list (linear system)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>J</term>
+                <listitem>
+                    <para>nx x ny constant matrix (output injection matrix)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        character strings (<literal>'pp'</literal> or <literal>'st'</literal> (default))
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alfa</term>
+                <listitem>
+                    <para>location of closed-loop poles (optional parameter, default=-1)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Obs</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list), the observer
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>
+                        orthogonal matrix (see <literal>dt_ility</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>
+                        integer (dimension of unstable unobservable (<literal>st</literal>)  or unobservable  (<literal>pp</literal>) subspace)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>Obs=observer(Sys,J)</literal> returns the observer
+            <literal>Obs=syslin(td,A+J*C,[B+J*D,-J],eye(A))</literal> obtained from <literal>Sys</literal>
+            by a <literal>J</literal> output injection. (td is the time domain of <literal>Sys</literal>).
+            More generally, <literal>observer</literal> returns in <literal>Obs</literal> an observer for
+            the observable part of linear system
+            <literal>Sys</literal>: <literal>dotx=A x + Bu, y=Cx + Du</literal>  represented by a <literal>syslin</literal> list.
+            <literal>Sys</literal> has <literal>nx</literal> state variables, <literal>nu</literal> inputs and <literal>ny</literal> outputs.
+            <literal>Obs</literal> is a linear system with matrices <literal>[Ao,Bo,Identity]</literal>,
+            where <literal>Ao</literal> is <literal>no x no</literal>, <literal>Bo</literal> is <literal>no x (nu+ny)</literal>, <literal> Co</literal> is
+            <literal>no x no</literal> and <literal>no=nx-m</literal>.
+        </para>
+        <para>
+            Input to <literal>Obs</literal> is <literal>[u,y]</literal> and output of <literal>Obs</literal> is:
+        </para>
+        <para>
+            xhat=estimate of x modulo unobservable subsp. (case <literal>flag='pp'</literal>)
+            or
+        </para>
+        <para>
+            xhat=estimate of x modulo unstable unobservable subsp. (case <literal>flag='st'</literal>)
+        </para>
+        <para>
+            case <literal>flag='st'</literal>:
+            z=H*x can be estimated with stable observer iff <literal>H*U(:,1:m)=0</literal>
+            and assignable poles of the observer are set to <literal>alfa(1),alfa(2),...</literal>
+        </para>
+        <para>
+            case <literal>flag='pp'</literal>:
+            z=H*x can be estimated with given error spectrum iff <literal>H*U(:,1:m)=0</literal>
+            all poles of the observer are assigned and set to <literal>alfa(1),alfa(2),...</literal>
+        </para>
+        <para>
+            If H satisfies the constraint: <literal>H*U(:,1:m)=0</literal>  (ker(H) contains unobs-subsp.
+            of Sys) one has H*U=[0,H2] and the observer for
+            z=H*x is H2*Obs with H2=H*U(:,m+1:nx) i.e. Co, the C-matrix of the
+            observer for H*x, is Co=H2.
+        </para>
+        <para>
+            In the particular case where the pair <literal>(A,C)</literal> of <literal>Sys</literal> is
+            observable, one has <literal>m=0</literal> and the linear system <literal>U*Obs</literal> (resp.
+            <literal>H*U*Obs</literal>) is an observer for <literal>x</literal> (resp. <literal>Hx</literal>).
+            The error spectrum is <literal>alpha(1),alpha(2),...,alpha(nx)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+nx=5;nu=1;ny=1;un=3;us=2;Sys=ssrand(ny,nu,nx,list('dt',us,us,un));
+//nx=5 states, nu=1 input, ny=1 output,
+//un=3 unobservable states, us=2 of them unstable.
+[Obs,U,m]=observer(Sys);  //Stable observer (default)
+W=U';H=W(m+1:nx,:);[A,B,C,D]=abcd(Sys);  //H*U=[0,eye(no,no)];
+Sys2=ss2tf(syslin('c',A,B,H))  //Transfer u-->z
+Idu=eye(nu,nu);Sys3=ss2tf(H*U(:,m+1:$)*Obs*[Idu;Sys])
+//Transfer u-->[u;y=Sys*u]-->Obs-->xhat-->HUxhat=zhat  i.e. u-->output of Obs
+//this transfer must equal Sys2, the u-->z transfer  (H2=eye).
+
+//Assume a Kalman model
+//dotx = A x + B u + G w
+// y   = C x + D u + H w + v
+//with Eww' = QN, Evv' = RN, Ewv' = NN
+//To build a Kalman observer:
+//1-Form BigR = [G*QN*G'         G*QN*H'+G*NN;
+//               H*QN*G'+NN*G'   H*QN*H'+RN];
+//the covariance matrix of the noise vector [Gw;Hw+v]
+//2-Build the plant P21 : dotx = A x + B1 e ; y = C2 x + D21 e
+//with e a unit white noise.
+// [W,Wt]=fullrf(BigR);
+//B1=W(1:size(G,1),:);D21=W(($+1-size(C,1)):$,:);
+//C2=C;
+//P21=syslin('c',A,B1,C2,D21);
+//3-Compute the Kalman gain
+//L = lqe(P21);
+//4- Build an observer for the plant [A,B,C,D];
+//Plant = syslin('c',A,B,C,D);
+//Obs = observer(Plant,L);
+//Test example:
+A=-diag(1:4);
+B=ones(4,1);
+C=B'; D= 0; G=2*B; H=-3; QN=2;
+RN=5; NN=0;
+BigR = [G*QN*G'         G*QN*H'+G*NN;
+        H*QN*G'+NN*G'   H*QN*H'+RN];
+[W,Wt]=fullrf(BigR);
+B1=W(1:size(G,1),:);D21=W(($+1-size(C,1)):$,:);
+C2=C;
+P21=syslin('c',A,B1,C2,D21);
+L = lqe(P21);
+Plant = syslin('c',A,B,C,D);
+Obs = observer(Plant,L);
+spec(Obs.A)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="dt_ility">dt_ility</link>
+            </member>
+            <member>
+                <link linkend="unobs">unobs</link>
+            </member>
+            <member>
+                <link linkend="stabil">stabil</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

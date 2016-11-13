@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="scicos_diagram">
+    <refnamediv>
+        <refname>scicos_diagram</refname>
+        <refpurpose>scs_m構造体の定義</refpurpose>
+    </refnamediv>
+    <refsection id="Module_scicos_diagram">
+        <title>モジュール</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="diagram_scicos_diagram">
+        <title>diagram</title>
+        <para>
+            大きさ : 4.
+        </para>
+        <para>
+            型 : scilabリスト.
+        </para>
+        <para>
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">props</emphasis>
+                </para>
+                <para> ダイアグラムのプロパティ.</para>
+                <para>
+                    このエントリは,
+                    メインダイアグラムの初期値のような種々の情報を有します.
+                </para>
+                <para>
+                    この変数はtypeのtlistで,
+                    wpar, title, tol, tf, context,
+                    options および docを有します.
+                </para>
+                <para>
+                </para>
+                <para>
+                    大きさ: 11.
+                </para>
+                <para>
+                    型: typeのScilab tlist .
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">objs</emphasis>
+                </para>
+                <para>Xcosダイアグラムに含まれるオブジェクトのリスト.</para>
+                <para>
+                    Xcosで使用されるオブジェクトは <link linkend="scicos_block">block</link>,
+                    <link linkend="scicos_link">link</link> およびテキストです.
+                </para>
+                <para> オブジェクトはオブジェクトデータ構造体を削除することもできます.
+                </para>
+                <para> 削除されたオブジェクトデータ構造体は list('Deleted') とマークされます.</para>
+                <para>
+                    大きさ : ダイアグラムにおけるオブジェクトの総数.
+                </para>
+                <para>
+                    型 : typeのScilab tlist, またはテキスト.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">version</emphasis>
+                </para>
+                <para> Xcosダイアグラムのバージョンを指定する文字列.</para>
+                <para> 古いダイアグラムとの互換性を維持するために使用されます.
+                </para>
+                <para>
+                    ヘルプメニューの'Xcosについて'エントリまたは
+                    関数get_scicos_version()により,
+                    現在のXcosのバージョンを取得できます.
+                </para>
+                <para>
+                    大きさ : 1.
+                </para>
+                <para>
+                    型 : 文字列.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Filecontent_scicos_diagram">
+        <title>ファイルの内容</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos/macros/scicos_scicos/scicos_diagram.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

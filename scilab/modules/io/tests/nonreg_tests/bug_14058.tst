@@ -15,8 +15,8 @@
 // Scilab crashes with 'file("close", file())' instruction
 
 [units,typs,nams] = file();
-u = mopen(SCI+'/ACKNOWLEDGEMENTS', 'rt');
-u2 = mopen(SCI+'/CHANGES_6.0.X', 'rt');
+u = mopen(SCI+"/ACKNOWLEDGEMENTS", "rt");
+u2 = mopen(SCI+"/CHANGES.md", "rt");
 [units_open,typs,nams] = file();
 assert_checkequal(gsort([units, u, u2], "c", "i"), units_open);
 file("close", file());

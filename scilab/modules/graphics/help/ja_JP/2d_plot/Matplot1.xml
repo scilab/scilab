@@ -6,115 +6,115 @@
 
  * Copyright (C) ENPC - Jean-Philippe Chancelier
 
- * 
+ *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
  *
 
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="Matplot1">
-    
+
     <refnamediv>
-        
+
         <refname>Matplot1</refname>
-        
+
         <refpurpose>行列の2次元カラープロット</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>Matplot1(a,rect)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>a</term>
-                
+
                 <listitem>
-                    
+
                     <para>
                         大きさ <literal>(n1,n2)</literal>の実数行列.
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>rect</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         <literal>[xmin,ymin,xmax,ymax]</literal>
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             行列  <code>int(a)</code> のエントリは,カレントのカラーマップの
-            
+
             カラーマップエントリとして使用されます.
-            
+
             <varname>rect</varname>は,カレントのスケールで矩形を指定します.
-            
+
             行列はこの矩形の中に描画されます.
-            
+
             各行列のエントリはその色で塗られた小さな矩形として描画されます.
-            
+
             ある行列のエントリがカラーマップの外側の場合,
-            
+
             対応する矩形は表示されません.
-            
+
         </para>
-        
+
         <para>
-            
+
             コマンド <code>Matplot1()</code> を入力すると, デモが表示されます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 clf();
 
@@ -122,7 +122,7 @@ ax=gca();//カレントの軸のハンドルを取得
 
 ax.data_bounds=[0,0;10,10];//data_boundsを設定
 
-ax.box='on'; //ボックスを描画 
+ax.box='on'; //ボックスを描画
 
 a=5*ones(11,11); a(2:10,2:10)=4; a(5:7,5:7)=2;
 
@@ -130,36 +130,36 @@ a=5*ones(11,11); a(2:10,2:10)=4; a(5:7,5:7)=2;
 
 Matplot1(a,[1,1,3,3])
 
-a=ones(10,10); a= 3*tril(a)+ 2*a; 
+a=ones(10,10); a= 3*tril(a)+ 2*a;
 
 // 矩形 [5,6,7,8]に二番目の行列をプロット
 
 Matplot1(a,[5,6,7,8])
 
  ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             ax=gca();//get current axes handle
-            
+
             ax.data_bounds=[0,0;10,10];//set the data_bounds
-            
+
             ax.box='on'; //draw a box
-            
+
             a=5*ones(11,11); a(2:10,2:10)=4; a(5:7,5:7)=2;
-            
+
             // first matrix in rectangle [1,1,3,3]
-            
+
             Matplot1(a,[1,1,3,3])
-            
+
             a=ones(10,10); a= 3*tril(a)+ 2*a;
-            
+
             // second matrix in rectangle [5,6,7,8]
-            
+
             Matplot1(a,[5,6,7,8])
-            
+
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 
 //--- アニメーション)
@@ -176,7 +176,7 @@ ax = gca();//カレントの軸のハンドルを取得
 
 ax.data_bounds = [0, 0 ; 10, 10];//data_boundsを設定
 
-ax.box = 'on'; //ボックスを描画 
+ax.box = 'on'; //ボックスを描画
 
 o = ones(n, n);
 
@@ -205,48 +205,48 @@ for k = (-n + 1):n,
 end
 
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="colormap">colormap</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="plot2d">plot2d</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="Matplot">Matplot</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="grayplot">grayplot</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="Matplot_properties">Matplot_properties</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -405,22 +408,22 @@ int MeshFecDataDecomposer::fillIndices(int id, int* buffer, int bufferLength, in
 
     for (int i = 0; i < numIndices; i++)
     {
-	v0 = triangleIndices[nVertex * i];
-	for (unsigned int j = 1; j < nVertex - 1; ++j)
-	{
-	    v1 = triangleIndices[nVertex * i + j];
-	    v2 = triangleIndices[nVertex * i + j + 1];
-	    
-	    if (areFaceIndicesValid(numVertices, v0, v1, v2) &&
-                areFaceVerticesValid(coordinates, v0, v1, v2, logMask) &&
-                areFaceValuesValid(values, v0, v1, v2))
-	    {
-		buffer[bufferOffset] = v0;
-		buffer[bufferOffset + 1] = v1;
-		buffer[bufferOffset + 2] = v2;
-		bufferOffset += 3;
-	    }
-	}
+        v0 = triangleIndices[nVertex * i];
+        for (unsigned int j = 1; j < nVertex - 1; ++j)
+        {
+            v1 = triangleIndices[nVertex * i + j];
+            v2 = triangleIndices[nVertex * i + j + 1];
+
+            if (areFaceIndicesValid(numVertices, v0, v1, v2) &&
+                    areFaceVerticesValid(coordinates, v0, v1, v2, logMask) &&
+                    areFaceValuesValid(values, v0, v1, v2))
+            {
+                buffer[bufferOffset] = v0;
+                buffer[bufferOffset + 1] = v1;
+                buffer[bufferOffset + 2] = v2;
+                bufferOffset += 3;
+            }
+        }
     }
 
     return bufferOffset;
@@ -456,11 +459,11 @@ int MeshFecDataDecomposer::areSegmentVerticesValid(double* coordinates, int v0, 
 
     getVertexCoordinates(coordinates, v0, vertex0);
     getVertexCoordinates(coordinates, v1, vertex1);
-    
+
     if (DecompositionUtils::isValid(vertex0[0], vertex0[1], vertex0[2]) &&
-	DecompositionUtils::isLogValid(vertex0[0], vertex0[1], vertex0[2], logMask) &&
-	DecompositionUtils::isValid(vertex1[0], vertex1[1], vertex1[2]) &&
-	DecompositionUtils::isLogValid(vertex1[0], vertex1[1], vertex1[2], logMask))
+            DecompositionUtils::isLogValid(vertex0[0], vertex0[1], vertex0[2], logMask) &&
+            DecompositionUtils::isValid(vertex1[0], vertex1[1], vertex1[2]) &&
+            DecompositionUtils::isLogValid(vertex1[0], vertex1[1], vertex1[2], logMask))
     {
         return 1;
     }
@@ -567,30 +570,30 @@ int MeshFecDataDecomposer::fillWireIndices(int id, int* buffer, int bufferLength
 
     for (int i = 0; i < numIndices; i++)
     {
-	for (unsigned int j = 0; j < nVertex - 1; ++j)
-	{
-	    v0 = triangleIndices[nVertex * i + j];
-	    v1 = triangleIndices[nVertex * i + j + 1];
-	    if (areSegmentIndicesValid(numVertices, v0, v1) &&
+        for (unsigned int j = 0; j < nVertex - 1; ++j)
+        {
+            v0 = triangleIndices[nVertex * i + j];
+            v1 = triangleIndices[nVertex * i + j + 1];
+            if (areSegmentIndicesValid(numVertices, v0, v1) &&
+                    areSegmentVerticesValid(coordinates, v0, v1, logMask) &&
+                    areSegmentValuesValid(values, v0, v1))
+            {
+                buffer[bufferOffset] = v0;
+                buffer[bufferOffset + 1] = v1;
+                bufferOffset += 2;
+            }
+        }
+
+        v0 = triangleIndices[nVertex * i + nVertex - 1];
+        v1 = triangleIndices[nVertex * i];
+        if (areSegmentIndicesValid(numVertices, v0, v1) &&
                 areSegmentVerticesValid(coordinates, v0, v1, logMask) &&
                 areSegmentValuesValid(values, v0, v1))
-	    {
-		buffer[bufferOffset] = v0;
-		buffer[bufferOffset + 1] = v1;
-		bufferOffset += 2;
-	    }
-	}
-
-	v0 = triangleIndices[nVertex * i + nVertex - 1];
-	v1 = triangleIndices[nVertex * i];
-	if (areSegmentIndicesValid(numVertices, v0, v1) &&
-	    areSegmentVerticesValid(coordinates, v0, v1, logMask) &&
-	    areSegmentValuesValid(values, v0, v1))
-	{
-	    buffer[bufferOffset] = v0;
-	    buffer[bufferOffset + 1] = v1;
-	    bufferOffset += 2;
-	}
+        {
+            buffer[bufferOffset] = v0;
+            buffer[bufferOffset + 1] = v1;
+            bufferOffset += 2;
+        }
     }
 
     return bufferOffset;

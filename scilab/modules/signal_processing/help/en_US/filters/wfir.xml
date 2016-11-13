@@ -5,7 +5,7 @@
         <refpurpose>linear-phase FIR filters</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -82,7 +82,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [h,hm,fr]=wfir("lp",33,[.2 0],"hm",[0 0])
  ]]></programlisting>
     </refsection>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="kalm">
+    <refnamediv>
+        <refname>kalm</refname>
+        <refpurpose>Kalman update</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[x1,p1,x,p]=kalm(y,x0,p0,f,g,h,q,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>f,g,h</term>
+                <listitem>
+                    <para>current system matrices</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>q, r</term>
+                <listitem>
+                    <para>covariance matrices of dynamics and observation noise</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0,p0</term>
+                <listitem>
+                    <para>state estimate and error variance at t=0 based on data up to t=-1</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>current observation Output</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x1,p1</term>
+                <listitem>
+                    <para>updated estimate and error covariance at t=1 based on data up to t=0</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x,p</term>
+                <listitem>
+                    <para>updated estimate and error covariance at t=0  based on data up to t=0</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function gives the Kalman update and error covariance. To do this, we have to enter <varname>f</varname>,
+            <varname>g</varname>, <varname>h</varname> which are based on the state space model:
+        </para>
+        <para>
+            <literal>
+                x(k+1)=<varname>f</varname>*x(k)+<varname>g</varname>*u(k)+v(k)
+            </literal>
+        </para>
+        <para>
+            <literal>
+                y(k)=<varname>h</varname>*x(k)+w(k)
+            </literal>
+        </para>
+        <para>
+            with <literal>v(k)</literal> (resp. <literal>w(k)</literal>) is the process noise (resp. the observation noise)
+            supposed to be drawn from a zero mean Gaussian white noise with the covariance <varname>q</varname> (resp. <varname>r</varname>).
+        </para>
+        <para>
+            Precisely, Kalman filter is a recursive estimator which gives the estimate of the current state and the error covariance.
+            Its advantage is the fact that it only needs the estimated state from the previous step and the current measurement.
+        </para>
+        <para>
+            Algorithm:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Innovation (output error):
+                    <literal>
+                        E=<varname>y</varname>-<varname>h</varname>*<varname>x0</varname>
+                    </literal>
+                </para>
+            </listitem>
+
+            <listitem>
+                <para>
+                    Output Error covariance:
+                    <literal>
+                        S=<varname>h</varname>*<varname>p0</varname>*<varname>h</varname>'+<varname>r</varname>
+                    </literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Kalman gain:
+                    <literal>
+                        K=<varname>p0</varname>*<varname>h</varname>'*S^-1
+                    </literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Correction of state estimation:
+                    <literal>
+                        <varname>x</varname>=<varname>x0</varname>+K*E
+                    </literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Correction of estimation of error covariance:
+                    <literal>
+                        <varname>p</varname>=<varname>p0</varname>-K*<varname>h</varname>*<varname>p0</varname>
+                    </literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    State prediction:
+                    <literal>
+                        <varname>x1</varname>=<varname>f</varname>*<varname>x</varname>
+                    </literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Error covariance prediction:
+                    <literal>
+                        <varname>p1</varname>=<varname>f</varname>*<varname>p</varname>*<varname>f</varname>'+<varname>g</varname>*<varname>q</varname>*<varname>g</varname>'
+                    </literal>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Example: Extraction of a sinusoid from noise with Kalman filter</title>
+        <programlisting role="Example"><![CDATA[
+// Construction of the sinusoid
+w=%pi/4; // angular frequency
+T=0.1; // period
+t=0:T:500;
+signal=cos(w*t);
+// Sinusoid with noise
+v=rand(t,"normal");
+y=signal+v;
+// Plot the sinusoid with noise
+subplot(2,1,1);
+plot(t,y);
+xtitle("sinusoid with noise","t");
+// System
+n=2; // system order
+f=[cos(w*T) -sin(w*T); sin(w*T) cos(w*T)];
+g=0;
+h=[1 0];
+p0=[1000 0; 0 0];
+R=1;
+Q=0;
+x0=zeros(n,1);
+// Initialize for loop
+x1=x0;
+p1=p0;
+// Kalman filter
+for i=1:length(t)-1
+    [x1(:,i+1),p1,x,p]=kalm(y(i),x1(:,i),p1,f,g,h,Q,R);
+end
+// Plot the results (in red) to compare with the sinusoid (in green)
+subplot(2,1,2);
+plot(t,signal,"color","green");
+plot(t,x1(1,:),"color","red");
+xtitle("Comparison between sinusoid (green) and extraction with Kalman filter (red)","t");
+]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="srkf">srkf</link>
+            </member>
+            <member>
+                <link linkend="sskf">sskf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

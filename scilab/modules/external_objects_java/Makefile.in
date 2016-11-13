@@ -18,22 +18,28 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution. The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 #
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
 # Copyright (C) 2008      - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 #
 
 ##########
@@ -234,7 +240,6 @@ am__objects_3 =  \
 	sci_gateway/cpp/libsciexternal_objects_java_la-sci_jwrapinfloat.lo \
 	sci_gateway/cpp/libsciexternal_objects_java_la-sci_jsetfield.lo \
 	sci_gateway/cpp/libsciexternal_objects_java_la-sci_jautoTranspose.lo \
-	sci_gateway/cpp/libsciexternal_objects_java_la-sci_jconvMatrixMethod.lo \
 	sci_gateway/cpp/libsciexternal_objects_java_la-sci_jgetinfo.lo \
 	sci_gateway/cpp/libsciexternal_objects_java_la-sci_jinvoke_db.lo
 am_libsciexternal_objects_java_la_OBJECTS = $(am__objects_3) \
@@ -734,7 +739,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/cpp/sci_jwrapinfloat.cpp \
     sci_gateway/cpp/sci_jsetfield.cpp \
     sci_gateway/cpp/sci_jautoTranspose.cpp \
-    sci_gateway/cpp/sci_jconvMatrixMethod.cpp \
     sci_gateway/cpp/sci_jgetinfo.cpp \
     sci_gateway/cpp/sci_jinvoke_db.cpp
 
@@ -1008,9 +1012,6 @@ sci_gateway/cpp/libsciexternal_objects_java_la-sci_jsetfield.lo:  \
 sci_gateway/cpp/libsciexternal_objects_java_la-sci_jautoTranspose.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/cpp/libsciexternal_objects_java_la-sci_jconvMatrixMethod.lo:  \
-	sci_gateway/cpp/$(am__dirstamp) \
-	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libsciexternal_objects_java_la-sci_jgetinfo.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1039,7 +1040,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_java_la-sci_jautoUnwrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_java_la-sci_jcast.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_java_la-sci_jcompile.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_java_la-sci_jconvMatrixMethod.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_java_la-sci_jcreatejar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_java_la-sci_jdeff.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_java_la-sci_jdisableTrace.Plo@am__quote@
@@ -1340,13 +1340,6 @@ sci_gateway/cpp/libsciexternal_objects_java_la-sci_jautoTranspose.lo: sci_gatewa
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_jautoTranspose.cpp' object='sci_gateway/cpp/libsciexternal_objects_java_la-sci_jautoTranspose.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciexternal_objects_java_la-sci_jautoTranspose.lo `test -f 'sci_gateway/cpp/sci_jautoTranspose.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_jautoTranspose.cpp
-
-sci_gateway/cpp/libsciexternal_objects_java_la-sci_jconvMatrixMethod.lo: sci_gateway/cpp/sci_jconvMatrixMethod.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciexternal_objects_java_la-sci_jconvMatrixMethod.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_java_la-sci_jconvMatrixMethod.Tpo -c -o sci_gateway/cpp/libsciexternal_objects_java_la-sci_jconvMatrixMethod.lo `test -f 'sci_gateway/cpp/sci_jconvMatrixMethod.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_jconvMatrixMethod.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_java_la-sci_jconvMatrixMethod.Tpo sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_java_la-sci_jconvMatrixMethod.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_jconvMatrixMethod.cpp' object='sci_gateway/cpp/libsciexternal_objects_java_la-sci_jconvMatrixMethod.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciexternal_objects_java_la-sci_jconvMatrixMethod.lo `test -f 'sci_gateway/cpp/sci_jconvMatrixMethod.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_jconvMatrixMethod.cpp
 
 sci_gateway/cpp/libsciexternal_objects_java_la-sci_jgetinfo.lo: sci_gateway/cpp/sci_jgetinfo.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciexternal_objects_java_la-sci_jgetinfo.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_java_la-sci_jgetinfo.Tpo -c -o sci_gateway/cpp/libsciexternal_objects_java_la-sci_jgetinfo.lo `test -f 'sci_gateway/cpp/sci_jgetinfo.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_jgetinfo.cpp

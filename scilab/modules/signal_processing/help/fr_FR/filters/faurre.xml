@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="faurre">
+    <refnamediv>
+        <refname>faurre</refname>
+        <refpurpose>filter computation by simple Faurre algorithm</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[P,R,T]=faurre(n,H,F,G,R0)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>number of iterations.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H, F, G</term>
+                <listitem>
+                    <para>
+                        estimated triple from the covariance sequence of <literal>y</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R0</term>
+                <listitem>
+                    <para>E(yk*yk')</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>solution of the Riccati equation after n iterations.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R, T</term>
+                <listitem>
+                    <para>gain matrix of the filter.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function computes iteratively the minimal solution of the algebraic
+            Riccati equation and gives the matrices <literal>R</literal> and <literal>T</literal> of the
+            filter model.
+            The algorithm tries to compute the solution P as the growing limit of a
+            sequence of matrices Pn such that
+        </para>
+        <programlisting role=""><![CDATA[
+                                     -1
+Pn+1=F*Pn*F'+(G-F*Pn*h')*(R0-H*Pn*H')  *(G'-H*Pn*F')
+       -1
+P0=G*R0 *G'
+ ]]></programlisting>
+        <para>
+            Note that this method may not converge,especially when F has poles
+            near the unit circle. Use preferably the srfaur function.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="srfaur">srfaur</link>
+            </member>
+            <member>
+                <link linkend="lindquist">lindquist</link>
+            </member>
+            <member>
+                <link linkend="phc">phc</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

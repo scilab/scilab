@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="int2d" xml:lang="ru">
@@ -17,7 +20,7 @@
         <refpurpose>определённый двумерный интеграл методом квадратуры и кубатуры</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[I,err]=int2d(X,Y,f [,params])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -60,7 +63,7 @@
                             <term>tol</term>
                             <listitem>
                                 <para>
-                                    желаемые пределы ошибки. Если <literal>iflag=0</literal>, то <literal>tol</literal> 
+                                    желаемые пределы ошибки. Если <literal>iflag=0</literal>, то <literal>tol</literal>
                                     интерпретируется как предел по относительной ошибке; если <literal>iflag=1</literal>, то
                                     предел по абсолютной ошибке.
                                 </para>
@@ -93,9 +96,9 @@
                             <term>mevals</term>
                             <listitem>
                                 <para>
-                                    максимальное число разрешённых вычислений функции. Это число будет эффективным в 
+                                    максимальное число разрешённых вычислений функции. Это число будет эффективным в
                                     ограничении вычислений только если оно меньше, чем
-                                    <literal>94*maxtri</literal>, когда определён LQM1, либо 
+                                    <literal>94*maxtri</literal>, когда определён LQM1, либо
                                     <literal>56*maxtri</literal>, когда определён LQM0.
                                 </para>
                             </listitem>
@@ -104,7 +107,7 @@
                             <term>iflag</term>
                             <listitem>
                                 <para>
-                                    если <literal>iflag=0</literal>, то <literal>tol</literal> 
+                                    если <literal>iflag=0</literal>, то <literal>tol</literal>
                                     интерпретируется как предел по относительной ошибке; если <literal>iflag=1</literal>, то
                                     предел по абсолютной ошибке.
                                 </para>
@@ -130,28 +133,28 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <literal>int2d</literal> вычисляет двумерный интеграл фукнции <literal>f</literal> 
+            Функция <literal>int2d</literal> вычисляет двумерный интеграл фукнции <literal>f</literal>
             по области, состоящей из <literal>n</literal> треугольников. Оценка общей ошибки получается
-            и сравнивается с допуском <literal>tol</literal>, который является входным аргументом функции. Допуск 
+            и сравнивается с допуском <literal>tol</literal>, который является входным аргументом функции. Допуск
             ошибки считается либо относительным, либо абсолютным в зависимости от входного значения <literal>iflag</literal>.
-            Метод "локальный квадратурный модуль" (LQM) применяется к каждому входному треугольнику и оценивает общий 
-            интеграл и вычисляются оценки общего интеграла и общей ошибки. Локальный квадратурный модуль является 
+            Метод "локальный квадратурный модуль" (LQM) применяется к каждому входному треугольнику и оценивает общий
+            интеграл и вычисляются оценки общего интеграла и общей ошибки. Локальный квадратурный модуль является
             либо процедурой LQM0, либо процедурой LQM1 и выбор между ними определяется значением
             входной переменной <literal>iclose</literal>.
         </para>
         <para>
             Если оценка общей ошибки превышает допуск, то треугольник с наибольшей абсолютной ошибкой
-            делится на два треугольника медианой к его наибольшей стороне.  Локальный квадратурный модуль 
+            делится на два треугольника медианой к его наибольшей стороне.  Локальный квадратурный модуль
             затем применяется к каждому из этих треугольников для получения новых оценок интеграла и ошибки.
-            Этот процесс повторяется до тех пор, пока (1) допуск ошибки не будет удовлетворён, 
-            (2) количество сформированных треугольников не превысит входной параметр <literal>maxtri</literal>, 
+            Этот процесс повторяется до тех пор, пока (1) допуск ошибки не будет удовлетворён,
+            (2) количество сформированных треугольников не превысит входной параметр <literal>maxtri</literal>,
             (3) количество вычислений подынтегральной функции не превысит входной параметр <literal>mevals</literal>,
             либо (4) функция не почувствует, что ошибки округления начинают портить результат.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 X=[0,0;1,1;1,0];
 Y=[0,0;0,1;1,1];
 deff('z=f(x,y)','z=cos(x+y)')

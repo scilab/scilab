@@ -5,11 +5,14 @@
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -91,7 +94,10 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
             return 1;
         }
 
-        getAllocatedSingleString(pvApiCtx, opts[0].piAddr, &pstDir);
+        if (getAllocatedSingleString(pvApiCtx, opts[0].piAddr, &pstDir))
+        {
+            return 1;
+        }
         dir = pstDir[0];
         freeAllocatedSingleString(pstDir);
     }
@@ -111,7 +117,10 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
     if (opts[2].iPos != -1)
     {
         /* verfier ce que l'on recoit avec "" XXX */
-        getAllocatedSingleString(pvApiCtx, opts[2].piAddr, &format);
+        if (getAllocatedSingleString(pvApiCtx, opts[2].piAddr, &format))
+        {
+            return 1;
+        }
     }
 
     if (opts[3].iPos != -1)
@@ -121,6 +130,7 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
         if (opts[3].iRows != 1 || opts[3].iCols != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, opts[3].iPos);
+            freeAllocatedSingleString(format);
             return 1;
         }
 
@@ -136,6 +146,7 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
         if (opts[4].iRows != 1 || opts[4].iCols != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, opts[4].iPos);
+            freeAllocatedSingleString(format);
             return 1;
         }
 
@@ -150,6 +161,7 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
         if (opts[5].iRows != 1 || opts[5].iCols != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, opts[5].iPos);
+            freeAllocatedSingleString(format);
             return 1;
         }
 
@@ -164,10 +176,15 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
         if (opts[6].iRows != 1 || opts[6].iCols != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: %d expected.\n"), fname, opts[6].iPos, opts[6].iRows);
+            freeAllocatedSingleString(format);
             return 1;
         }
 
-        getAllocatedSingleString(pvApiCtx, opts[6].piAddr, &pstTics);
+        if (getAllocatedSingleString(pvApiCtx, opts[6].piAddr, &pstTics))
+        {
+            freeAllocatedSingleString(format);
+            return 1;
+        }
         tics = pstTics[0];
         freeAllocatedSingleString(pstTics);
     }
@@ -179,6 +196,7 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
         if (opts[7].iRows != 1 || opts[7].iCols != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, opts[7].iPos);
+            freeAllocatedSingleString(format);
             return 1;
         }
 
@@ -188,7 +206,11 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
 
     if (opts[8].iPos != -1)
     {
-        getAllocatedMatrixOfString(pvApiCtx, opts[8].piAddr, &opts[8].iRows, &opts[8].iCols, &val);
+        if (getAllocatedMatrixOfString(pvApiCtx, opts[8].piAddr, &opts[8].iRows, &opts[8].iCols, &val))
+        {
+            freeAllocatedSingleString(format);
+            return 1;
+        }
     }
 
     if (opts[9].iPos != -1)
@@ -227,6 +249,12 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
         int iCurrentSubwinUID = getCurrentSubWin();
 
         getGraphicObjectProperty(iCurrentSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&bounds);
+        if (!bounds)
+        {
+            freeAllocatedSingleString(format);
+            freeAllocatedMatrixOfString(opts[8].iRows, opts[8].iCols, val);
+            return 1;
+        }
         ny = 1;
         y = y_def;
         if (dir == 'd')
@@ -247,6 +275,8 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
                          opts[10].iPos, opts[10].iRows, opts[10].iCols, y, &ntics) == 0)
             {
                 ReturnArguments(pvApiCtx);
+                freeAllocatedSingleString(format);
+                freeAllocatedMatrixOfString(opts[8].iRows, opts[8].iCols, val);
                 return 0;
             }
             break;
@@ -255,6 +285,8 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
                          opts[10].iPos, opts[10].iRows, opts[10].iCols, y, &ntics) == 0)
             {
                 ReturnArguments(pvApiCtx);
+                freeAllocatedSingleString(format);
+                freeAllocatedMatrixOfString(opts[8].iRows, opts[8].iCols, val);
                 return 0;
             }
             break;
@@ -263,11 +295,15 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
                          opts[10].iPos, opts[10].iRows, opts[10].iCols, y, &ntics) == 0)
             {
                 ReturnArguments(pvApiCtx);
+                freeAllocatedSingleString(format);
+                freeAllocatedMatrixOfString(opts[8].iRows, opts[8].iCols, val);
                 return 0;
             }
             break;
         default:
             Scierror(999, _("%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"), fname, "tics", dir, "r", "v", "i");
+            freeAllocatedSingleString(format);
+            freeAllocatedMatrixOfString(opts[8].iRows, opts[8].iCols, val);
             return 0;
     }
 
@@ -277,6 +313,8 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
         if (opts[8].iRows * opts[8].iCols != ntics)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: %d expected.\n"), fname, opts[8].iPos, opts[8].iRows * opts[8].iCols);
+            freeAllocatedSingleString(format);
+            freeAllocatedMatrixOfString(opts[8].iRows, opts[8].iCols, val);
             return 1;
         }
 
@@ -285,6 +323,11 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
 
     Objdrawaxis(dir, tics, x, &nx, y, &ny, val, sub_int, format, fontsize, textcolor, ticscolor, 'n', seg_flag, nb_tics_labels);
 
+    freeAllocatedSingleString(format);
+    if (val != NULL)
+    {
+        freeAllocatedMatrixOfString(opts[8].iRows, opts[8].iCols, val);
+    }
     createScalarHandle(pvApiCtx, iRhs + 1, getHandle(getCurrentObject()));
     AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
     ReturnArguments(pvApiCtx);

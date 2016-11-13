@@ -3,11 +3,14 @@
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 #
 
 # The order DOES matter !!!
@@ -58,6 +61,7 @@ spreadsheet \
 tclsci \
 commons \
 jvm \
+types \
 action_binding \
 graphic_objects \
 renderer \
@@ -90,7 +94,6 @@ ui_data \
 history_browser \
 preferences \
 xml \
-types \
 external_objects \
 slint \
 coverage
@@ -125,10 +128,16 @@ libscilab_la_rootdir = $(mydatadir)
 pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES =
 
-libscilab_la_LDFLAGS = $(AM_LDFLAGS) $(SCI_LDFLAGS)
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS   = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+AM_FFLAGS   = $(SCI_FFLAGS)
+AM_LDFLAGS  = $(SCI_LDFLAGS)
 
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS += -version-number $(SCILAB_LIBRARY_VERSION)
 
-GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
+GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export.la \
@@ -140,6 +149,7 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/ui_data/libsciui_data.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
 	$(top_builddir)/modules/commons/libscicommons.la \
+	$(top_builddir)/modules/types/libscitypes-java.la \
 	$(top_builddir)/modules/preferences/libscipreferences.la \
 	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \

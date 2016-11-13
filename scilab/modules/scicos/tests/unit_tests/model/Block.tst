@@ -74,6 +74,16 @@ o = BIGSOM_f("set", o)
 o.graphics
 o.model
 
+// Test flip, theta and style
+o.graphics.flip = %f;
+o.graphics.style
+o.graphics.flip = %t;
+o.graphics.style
+o.graphics.theta = 90;
+o.graphics.style
+o.graphics.theta = 0;
+o.graphics.style
+
 // Try with another block containing event inputs
 o = CSCOPE("define")
 o.graphics
@@ -115,7 +125,7 @@ assert_checkequal(o.model.odstate, listRef);
 
 // With hypermatrices
 // Double
-testHM = hypermat([2 2 2], 1:8);
+testHM = matrix(1:8, [2 2 2]);
 listRef = list([], testHM, []);
 o.model.opar = listRef;
 assert_checkequal(o.model.opar, listRef);

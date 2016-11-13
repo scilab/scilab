@@ -5,7 +5,7 @@
         <refpurpose>xwindow dialog for data acquisition</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[ok,x1,..,x14]=getvalue(desc,labels,typ,ini)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -137,7 +137,7 @@ labels=["magnitude";"frequency";"phase    "];
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="x_mdialog">x_mdialog</link>

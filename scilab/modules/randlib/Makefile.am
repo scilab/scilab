@@ -1,11 +1,12 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2016 - Scilab Enterprises - Clement DAVID
+#
 #
 # This file is distributed under the same license as the Scilab package.
 
 
 RANDLIB_C_SOURCES = \
-    src/c/fsultra.c \
     src/c/mt.c \
     src/c/igngeom.c \
     src/c/kiss.c \

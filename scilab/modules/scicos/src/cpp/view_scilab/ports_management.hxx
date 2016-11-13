@@ -3,11 +3,14 @@
  *  Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
  *  Copyright (C) 2014 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -174,10 +177,10 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
                 return new types::Double(1);
             }
             datatypeIndex++;
-        // no break
+            // no break
         case DATATYPE_COLS:
             datatypeIndex++;
-        // no break
+            // no break
         case DATATYPE_ROWS:
         {
             datatypeIndex++;
@@ -316,40 +319,43 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
             }
             case IMPLICIT:
             {
-                if (current->getSize() < static_cast<int>(ids.size()))
+                int maxSize = static_cast<int>(ids.size());
+                if (current->getSize() < maxSize)
                 {
-                    std::string adapter = adapterName<p>(port_kind);
-                    std::string field = adapterFieldName<p>(port_kind);
-                    get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: %d-by-%d expected.\n"), adapter.data(), field.data(), ids.size(), 1);
-                    return false;
+                    maxSize = current->getSize();
                 }
 
-                std::string E = "E";
-                std::string I = "I";
-                for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
+                std::string Explicit = "E";
+                std::string Implicit = "I";
+                for (; i < maxSize; ++i)
                 {
-                    if (current->get(i) == I)
+                    if (current->get(i) == Implicit)
                     {
-                        controller.setObjectProperty(*it, PORT, p, true);
+                        controller.setObjectProperty(ids[i], PORT, p, true);
                     }
-                    else if (current->get(i) == E)
+                    else if (current->get(i) == Explicit)
                     {
-                        controller.setObjectProperty(*it, PORT, p, false);
+                        controller.setObjectProperty(ids[i], PORT, p, false);
                     }
                     else
                     {
                         std::string adapter = adapterName<p>(port_kind);
                         std::string field = adapterFieldName<p>(port_kind);
-                        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s: %s or %s vector expected.\n"), adapter.data(), field.data(), "'E'", "'I'");
-                        return false;
+                        get_or_allocate_logger()->log(LOG_WARNING, _("Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' vector. Switching to '%s'.\n"), adapter.data(), field.data(), current->get(i), Explicit.c_str(), Implicit.c_str(), Explicit.c_str());
+                        controller.setObjectProperty(ids[i], PORT, p, false);
                     }
+                }
+                for (i = maxSize; i < ids.size(); ++i)
+                {
+                    // Tag the missing ports as Explicit. This is done to fix the resizing of pin & pout.
+                    controller.setObjectProperty(ids[i], PORT, p, false);
                 }
                 return true;
             }
             default:
                 std::string adapter = adapterName<p>(port_kind);
                 std::string field = adapterFieldName<p>(port_kind);
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s .\n"), adapter.data(), field.data());
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s.\n"), adapter.data(), field.data());
                 return false;
         }
     }
@@ -391,10 +397,10 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
 
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -560,10 +566,10 @@ inline bool updateNewPort(const ScicosID oldPort, int newPort, Controller& contr
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -610,10 +616,10 @@ inline bool addNewPort(const ScicosID newPortID, int newPort, const std::vector<
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -754,16 +760,16 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
             switch (port_kind)
             {
                 case INPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, PORT_IN);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, static_cast<int>(PORT_IN));
                     break;
                 case OUTPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, PORT_OUT);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, static_cast<int>(PORT_OUT));
                     break;
                 case EVENT_INPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, PORT_EIN);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, static_cast<int>(PORT_EIN));
                     break;
                 case EVENT_OUTPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, PORT_EOUT);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, static_cast<int>(PORT_EOUT));
                     break;
                 default:
                     // should never happen

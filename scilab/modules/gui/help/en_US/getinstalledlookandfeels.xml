@@ -5,7 +5,7 @@
         <refpurpose>returns a string matrix with all Look and Feels.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>lnf=getinstalledlookandfeels()</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -25,12 +25,12 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 getinstalledlookandfeels()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="setlookandfeel">setlookandfeel</link>

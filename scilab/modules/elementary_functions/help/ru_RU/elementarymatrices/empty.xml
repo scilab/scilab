@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="empty">
+    <refnamediv>
+        <refname>empty</refname>
+        <refpurpose>([]) пустая матрица</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal> [] </literal> означает пустую матрицу. Она определяется уникально
+            и имеет 0 строк и 0 столбцов, т.е. <literal> size([]) =[0,0] </literal>.
+            Сделаны следующие удобные соглашения:
+        </para>
+        <para>
+            <literal> [] * A = A * [] = [] </literal>
+        </para>
+        <para>
+            <literal> [] + A = A + [] = []</literal>
+        </para>
+        <para>
+            <literal>[ [], A] = [A, []] = A </literal>
+            <literal> inv([]) =[] </literal>
+        </para>
+        <para>
+            <literal> det([])=cond([])=rcond([])=1, rank([])=0</literal>
+        </para>
+        <para>
+            Матричные функции возвращают <literal>[]</literal> или сообщение об
+            ошибке, если нет однозначного ответа. Пустые линейные системы (списки
+            <literal>syslin</literal>) могут иметь несколько строк или столбцов.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+A = [s, s+1];
+A+[], A*[]
+A=rand(2,2);
+AA=A([],1), size(AA)
+svd([])
+w=ssrand(2,2,2);
+wr=[]*w;
+size(wr), w1=ss2tf(wr), size(w1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="matrices">матрицы</link>
+            </member>
+            <member>
+                <link linkend="poly">poly</link>
+            </member>
+            <member>
+                <link linkend="string">string</link>
+            </member>
+            <member>
+                <link linkend="boolean">boolean</link>
+            </member>
+            <member>
+                <link linkend="rational">rational</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -3,11 +3,14 @@
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction;
@@ -48,7 +51,7 @@ public class ZoomRubberBox extends RubberBox {
                     break;
                 case WAIT_POINT_B:
                     setPointB(e.getPoint());
-                    if (pointBComputer.is2D()) {
+                    if (!valid3D()) {
                         process();
                         setEnable(false);
                         fireRubberBoxEnd();
@@ -68,7 +71,7 @@ public class ZoomRubberBox extends RubberBox {
                     break;
                 default:
             }
-            updateInfoMessage();
+            updateInfoMessage(e.getPoint());
         }
 
         if (e.getButton() == MouseEvent.BUTTON3) {
@@ -82,28 +85,30 @@ public class ZoomRubberBox extends RubberBox {
      */
     @Override
     protected void process() {
-        Double[] bounds = {
-            Math.min(firstPoint.getX(), secondPoint.getX()), Math.max(firstPoint.getX(), secondPoint.getX()),
-            Math.min(firstPoint.getY(), secondPoint.getY()), Math.max(firstPoint.getY(), secondPoint.getY()),
-            Math.min(firstPoint.getZ(), secondPoint.getZ()), Math.max(firstPoint.getZ(), secondPoint.getZ()),
-        };
+        for (AxesZoom axesZoom : axesZoomList) {
+            Double[] bounds = {
+                Math.min(axesZoom.firstPoint.getX(), axesZoom.secondPoint.getX()), Math.max(axesZoom.firstPoint.getX(), axesZoom.secondPoint.getX()),
+                Math.min(axesZoom.firstPoint.getY(), axesZoom.secondPoint.getY()), Math.max(axesZoom.firstPoint.getY(), axesZoom.secondPoint.getY()),
+                Math.min(axesZoom.firstPoint.getZ(), axesZoom.secondPoint.getZ()), Math.max(axesZoom.firstPoint.getZ(), axesZoom.secondPoint.getZ()),
+            };
 
-        if (bounds[0].compareTo(bounds[1]) != 0 && bounds[2].compareTo(bounds[3]) != 0 && bounds[4].compareTo(bounds[5]) != 0) {
-            Boolean zoomed = tightZoomBounds(axes, bounds);
-            double[][] factors = axes.getScaleTranslateFactors();
-            bounds[0] = (bounds[0] - factors[1][0]) / factors[0][0];
-            bounds[1] = (bounds[1] - factors[1][0]) / factors[0][0];
-            bounds[2] = (bounds[2] - factors[1][1]) / factors[0][1];
-            bounds[3] = (bounds[3] - factors[1][1]) / factors[0][1];
-            bounds[4] = (bounds[4] - factors[1][2]) / factors[0][2];
-            bounds[5] = (bounds[5] - factors[1][2]) / factors[0][2];
+            if (bounds[0].compareTo(bounds[1]) != 0 && bounds[2].compareTo(bounds[3]) != 0 && bounds[4].compareTo(bounds[5]) != 0) {
+                Boolean zoomed = tightZoomBounds(axesZoom.axes, bounds);
+                double[][] factors = axesZoom.axes.getScaleTranslateFactors();
+                bounds[0] = (bounds[0] - factors[1][0]) / factors[0][0];
+                bounds[1] = (bounds[1] - factors[1][0]) / factors[0][0];
+                bounds[2] = (bounds[2] - factors[1][1]) / factors[0][1];
+                bounds[3] = (bounds[3] - factors[1][1]) / factors[0][1];
+                bounds[4] = (bounds[4] - factors[1][2]) / factors[0][2];
+                bounds[5] = (bounds[5] - factors[1][2]) / factors[0][2];
 
-            boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
-            ScaleUtils.applyInverseLogScaleToBounds(bounds, logFlags);
+                boolean[] logFlags = { axesZoom.axes.getXAxisLogFlag(), axesZoom.axes.getYAxisLogFlag(), axesZoom.axes.getZAxisLogFlag()};
+                ScaleUtils.applyInverseLogScaleToBounds(bounds, logFlags);
 
-            GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
-            GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
-            getDrawerVisitor().getCanvas().redraw();
+                GraphicController.getController().setProperty(axesZoom.axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
+                GraphicController.getController().setProperty(axesZoom.axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
+                getDrawerVisitor().getCanvas().redraw();
+            }
         }
     }
 }

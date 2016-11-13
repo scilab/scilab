@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+This file is part Scilab
+Copyright (C) 2012 - INRIA - Serge Steer
+Copyright (C) 2012 - 2016 - Scilab Enterprises
+
+This file is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+This file was originally licensed under the terms of the CeCILL v2.1,
+and continues to be available under such terms.
+For more information, see the COPYING file which you should have received
+along with this program.
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcorr" xml:lang="ja">
+
+    <refnamediv>
+
+        <refname>xcorr</refname>
+
+        <refpurpose>離散自己/相互相関を計算する</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>[c [,lagindex]] = xcorr(x [,maxlags [,scaling]])
+
+            [c [,lagindex]] = xcorr(x,y [,maxlags [,scaling]])
+
+        </synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>パラメータ</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>x</term>
+
+                <listitem>
+
+                    <para>実数または複素浮動小数点数のベクトル.</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>y</term>
+
+                <listitem>
+
+                    <para>実数または複素浮動小数点数のベクトル.
+
+                        デフォルト値は <literal>x</literal>.
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>maxlags</term>
+
+                <listitem>
+
+                    <para>スカラーで,1より大きな整数.
+
+                        デフォルト値は <literal>n</literal>.
+
+                        ただし,<literal>n</literal>は<literal>x</literal>,
+
+                        <literal>y</literal>ベクトルの長さの大きい方です.
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>scaling</term>
+
+                <listitem>
+
+                    <para>文字列で,値は以下のどれか:
+
+                        <literal>"biased"</literal>, <literal>"unbiased"</literal>,
+
+                        <literal>"coeff"</literal>, <literal>"none"</literal>.
+
+                        デフォルト値は <literal>"none"</literal>.
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>c</term>
+
+                <listitem>
+
+                    <para>実数または浮動小数点数のベクトルで,向きは
+
+                        <literal>x</literal>と同じです.
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>lagindex</term>
+
+                <listitem>
+
+                    <para>
+
+                        行ベクトルで, <literal>c</literal>の値に
+
+                        対応する添字(lag index)を有します.
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <itemizedlist>
+
+            <listitem>
+
+                <literal>c=xcorr(x)</literal>
+
+                は,以下のように正規化しない離散自己共分散を計算します:
+
+                <latex>{\begin{matrix}C_k = \sum_{i=1}^{n-k}
+
+                    {x_{i+k}*x^{*}_i}, k \geq 0 \\ C_k = C^{*}_{-k}, k \leq
+
+                    -1\end{matrix}.$
+
+                </latex>
+
+                そして,<literal>c</literal> を返します.
+
+                自己共分散の並びは,
+
+                <latex>$C_k,k=-n:n$</latex>
+
+                となります.ただし,<literal>n</literal>は,
+
+                <literal>x</literal>の長さです.
+
+            </listitem>
+
+            <listitem>
+
+                <literal>xcorr(x,y)</literal>
+
+                は正規化しない離散相互共分散を以下のように計算します:
+
+                <latex>{\begin{matrix}C_k = \sum_{i=1}^{n-k}
+
+                    {x_{i+k}*y^{*}_i}, k \geq 0 \\ C_k = C^{*}_{-k}, k \leq
+
+                    -1\end{matrix}}.$
+
+                </latex>
+
+                結果を<literal>c</literal>に返します.
+
+                相互共分散の並びは,
+
+                <latex>$C_k,k=-n:n$</latex>となります.
+
+                ただし,<literal>n</literal>は,
+
+                <literal>x</literal>および<literal>y</literal>
+
+                の長さの大きい方です.
+
+            </listitem>
+
+        </itemizedlist>
+
+        <para>
+
+            <literal>maxlags</literal> 引数が指定された場合,
+
+            <literal>xcorr</literal> は <literal>c</literal> を
+
+            返し,共分散の並びは <latex>$C_k,k=-maxlags:maxlags$</latex> と
+
+            なります.
+
+            <literal>maxlags</literal> が <literal>length(x)</literal>よりも
+
+            大きい場合, <literal>c</literal>の先頭と末尾の複数の値は
+
+            ゼロになります.
+
+        </para>
+
+        <para>
+
+            <literal>scaling</literal> 引数は,
+
+            <literal>c</literal>に結果を出力する前に
+
+            <latex>C(k)</latex>を正規化する方法を以下のように指定します:
+
+            <itemizedlist>
+
+                <listitem>
+
+                    <term>"biased"</term>:<literal>c=</literal><latex>$C$</latex><literal>/n</literal>.
+
+                </listitem>
+
+                <listitem>
+
+                    <term>"unbiased"</term>:<literal>c=</literal><latex>$C$</latex><literal>./(n-(-maxlags:maxlags))</literal>.
+
+                </listitem>
+
+                <listitem>
+
+                    <term>"coeff"</term>:<literal>c=</literal><latex>$C$</latex><literal>/(norm(x)*norm(y))</literal>.
+
+                </listitem>
+
+            </itemizedlist>
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>注意</title>
+
+        <link linkend="corr">corr</link>
+
+        関数は<literal>x</literal>および<literal>y</literal>の
+
+        バイアス付き("biased")共分散を計算し,
+
+        <literal>c</literal>のみを返します.
+
+        自己共分散の並びは,<latex>$C_k,k \geq 0$</latex>となります.
+
+    </refsection>
+
+    <refsection>
+
+        <refsection>
+
+            <title>手法</title>
+
+            この関数は,
+
+            <literal>ifft(fft(x).*conj(fft(y)))</literal>により
+
+            <latex>$C$</latex>を計算します.
+
+        </refsection>
+
+        <refsection>
+
+            <title>例</title>
+
+            <programlisting role="example">t = linspace(0, 100, 2000);
+
+                y = 0.8 * sin(t) + 0.8 * sin(2 * t);
+
+                [c, ind] = xcorr(y, "biased");
+
+                plot(ind, c)
+
+            </programlisting>
+
+            <scilab:image>
+
+                t = linspace(0, 100, 2000);
+
+                y = 0.8 * sin(t) + 0.8 * sin(2 * t);
+
+                [c, ind] = xcorr(y, "biased");
+
+                plot(ind, c)
+
+            </scilab:image>
+
+        </refsection>
+
+        <refsection>
+
+            <title>参照</title>
+
+            <simplelist type="inline">
+
+                <member>
+
+                    <link linkend="xcov">xcov</link>
+
+                </member>
+
+                <member>
+
+                    <link linkend="corr">corr</link>
+
+                </member>
+
+                <member>
+
+                    <link linkend="fft">fft</link>
+
+                </member>
+
+            </simplelist>
+
+        </refsection>
+
+        <refsection>
+
+            <title>作者</title>
+
+            <simplelist type="vert">
+
+                <member>Serge Steer, INRIA</member>
+
+            </simplelist>
+
+        </refsection>
+
+        <title>使用される関数</title>
+
+        <para>
+
+            <link linkend="fft">fft</link>
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>履歴</title>
+
+        <revhistory>
+
+            <revision>
+
+                <revnumber>5.4.0</revnumber>
+
+                <revremark>xcorr追加.</revremark>
+
+            </revision>
+
+        </revhistory>
+
+    </refsection>
+
+</refentry>
+

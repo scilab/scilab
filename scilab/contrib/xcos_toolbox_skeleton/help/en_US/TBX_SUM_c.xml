@@ -69,7 +69,7 @@
         </itemizedlist>
     </refsection>
     <refsection id="SeeAlso_TBX_SUM_c">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="TBX_SUM_c">TBX_SUM_c</link> : corresponding scilab functionnality

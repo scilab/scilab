@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="hinf">
+    <refnamediv>
+        <refname>hinf</refname>
+        <refpurpose>H_infinity design of continuous-time systems</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[AK,BK,CK,DK,(RCOND)] = hinf(A,B,C,D,ncon,nmeas,gamma)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>the n-by-n system state matrix A.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>the n-by-m system input matrix B.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>the p-by-n system output matrix C.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>D</term>
+                <listitem>
+                    <para>the p-by-m system matrix D.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ncon</term>
+                <listitem>
+                    <para>the number of control inputs. m &gt;= ncon &gt;= 0, p-nmeas &gt;= ncon.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nmeas</term>
+                <listitem>
+                    <para>the number of measurements. p &gt;= nmeas &gt;= 0, m-ncon &gt;= nmeas.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gamma</term>
+                <listitem>
+                    <para>
+                        the parameter gamma used in <literal>H_infinity</literal> design.
+                        It is assumed that gamma is sufficiently large so that the controller is admissible. gamma &gt;= 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>AK</term>
+                <listitem>
+                    <para>the n-by-n controller state matrix AK.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>BK</term>
+                <listitem>
+                    <para>the n-by-nmeas controller input matrix BK.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>CK</term>
+                <listitem>
+                    <para>the ncon-by-n controller output matrix CK.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>DK</term>
+                <listitem>
+                    <para>the ncon-by-nmeas controller matrix DK.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>RCOND</term>
+                <listitem>
+                    <para>a vector containing estimates of the reciprocal condition numbers of the matrices which are to be inverted and estimates of the reciprocal condition numbers of the Riccati equations which have to be solved during the computation of the controller. (See the description of the algorithm in [1].)</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>RCOND</term>
+                            <listitem>
+                                <para>(1) contains the reciprocal condition number of the  control transformation matrix TU,</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>RCOND</term>
+                            <listitem>
+                                <para>(2) contains the reciprocal condition number of the  measurement transformation matrix TY,</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>RCOND</term>
+                            <listitem>
+                                <para>(3) contains an estimate of the reciprocal condition number of the X-Riccati equation,</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>RCOND</term>
+                            <listitem>
+                                <para>(4) contains an estimate of the reciprocal condition number of the Y-Riccati equation.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>[AK,BK,CK,DK,(RCOND)] = hinf(A,B,C,D,ncon,nmeas,gamma)</literal>
+            To compute the matrices of an H-infinity (sub)optimal n-state
+            controller
+        </para>
+        <programlisting role=""><![CDATA[
+    | AK | BK |
+K = |----|----|,
+    | CK | DK |
+ ]]></programlisting>
+        <para>
+            for the continuous-time system
+        </para>
+        <programlisting role=""><![CDATA[
+    | A  | B1  B2  |   | A | B |
+P = |----|---------| = |---|---|,
+    | C1 | D11 D12 |   | C | D |
+    | C2 | D21 D22 |
+ ]]></programlisting>
+        <para>
+            and for a given value of gamma, where B2 has column size of the
+            number of control inputs (ncon) and C2 has row size of the number
+            of measurements (nmeas) being provided to the controller.
+        </para>
+    </refsection>
+    <refsection>
+        <title>References</title>
+        <para>
+            [1] P.Hr. Petkov, D.W. Gu and M.M. Konstantinov. Fortran 77 routines     for Hinf and H2 design of continuous-time linear control systems.     Report98-14, Department of Engineering, Leicester University,     August 1998.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//example from Niconet report SLWN1999-12
+//Hinf
+A=[-1  0  4  5 -3 -2
+   -2  4 -7 -2  0  3
+   -6  9 -5  0  2 -1
+   -8  4  7 -1 -3  0
+    2  5  8 -9  1 -4
+    3 -5  8  0  2 -6];
+
+B=[-3 -4 -2  1  0
+    2  0  1 -5  2
+   -5 -7  0  7 -2
+    4 -6  1  1 -2
+   -3  9 -8  0  5
+    1 -2  3 -6 -2];
+
+C=[ 1 -1  2 -4  0 -3
+   -3  0  5 -1  1  1
+   -7  5  0 -8  2 -2
+    9 -3  4  0  3  7
+    0  1 -2  1 -6 -2];
+
+D=[ 1 -2 -3  0  0
+    0  4  0  1  0
+    5 -3 -4  0  1
+    0  1  0  1 -3
+    0  0  1  7  1];
+Gamma=10.18425636157899;
+[AK,BK,CK,DK] = hinf(A,B,C,D,2,2,Gamma)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="dhinf">dhinf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

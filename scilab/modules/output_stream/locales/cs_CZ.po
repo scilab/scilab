@@ -14,7 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -70,7 +71,8 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary ID %d not exists.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: ID deníku %d neexistuje.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: ID deníku %d neexistuje.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary filename not exists.\n"
@@ -84,7 +86,8 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: chyba nemůže uzavřít deník.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: chyba nemůže uzavřít deník %d.\n"
 
@@ -94,7 +97,8 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: chyba nemůže pozastavit deník.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: chyba nemůže pozastavit deník "
 "%d.\n"
@@ -131,6 +135,11 @@ msgstr "  (pokrč) %s\n"
 #, c-format
 msgid "     (end) %s\n"
 msgstr "     (konec) %s\n"
+
+msgid ""
+"*** Execution stopped after a warning. ***\n"
+"Set warning(\"on\") to continue execution after a warning.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -178,14 +187,16 @@ msgstr "%s: Špatný počet vstupních argumentů.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec znaků.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec znaků.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec znaku.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván stavový model.\n"
 
 #, c-format

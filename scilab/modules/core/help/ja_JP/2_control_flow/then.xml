@@ -7,15 +7,15 @@
     <refsection>
         <title>説明</title>
         <para>
-          制御フロー<literal>if</literal>および<literal>select</literal>において
-	  使用されます.
-	  各<literal>then</literal>キーワードは,
-	  <literal>if</literal>, <literal>elseif</literal> または
-	  <literal>case</literal>キーワードと同じ行に置く必要があります.
+            制御フロー<literal>if</literal>および<literal>select</literal>において
+            使用されます.
+            各<literal>then</literal>キーワードは,
+            <literal>if</literal>, <literal>elseif</literal> または
+            <literal>case</literal>キーワードと同じ行に置く必要があります.
         </para>
         <para>
-          キーワード<literal>then</literal> はキャレッジリターンまたはカンマで
-	  置換できます.
+            キーワード<literal>then</literal> はキャレッジリターンまたはカンマで
+            置換できます.
         </para>
     </refsection>
     <refsection>
@@ -36,7 +36,7 @@ select n
 end
         ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">

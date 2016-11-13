@@ -9,7 +9,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y = acot(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,7 +32,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Вычисляет поэлементный арккотангенс аргумента. Для вещественного аргумента 
+            Вычисляет поэлементный арккотангенс аргумента. Для вещественного аргумента
             результат будет вещественным.
         </para>
         <para>
@@ -51,7 +51,7 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[1 2 -2 sqrt(2) -sqrt(2) 2/sqrt(3) -2/sqrt(3) -1];
 acot(x)/%pi
  ]]></programlisting>

@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 */
 
 #include "gatewaystruct.hxx"
@@ -239,7 +242,7 @@ int API_PROTO(isComplex)(scilabEnv env, scilabVar var)
     {
         return 0;
     }
-    
+
     if (it->isGenericType())
     {
         types::GenericType* gt = static_cast<types::GenericType*>(it);
@@ -311,7 +314,7 @@ int API_PROTO(getDim2d)(scilabEnv env, scilabVar var, int* row, int* col)
     return STATUS_ERROR;
 }
 
-int API_PROTO(getDimArray)(scilabEnv env, scilabVar var, const int** dims)
+int API_PROTO(getDimArray)(scilabEnv env, scilabVar var, int** dims)
 {
     types::InternalType* it = (types::InternalType*)var;
     if (it == nullptr)
@@ -424,7 +427,7 @@ int API_PROTO(isSquare)(scilabEnv env, scilabVar var)
         return false;
     }
 
-    const int* dims = nullptr;
+    int* dims = nullptr;
     scilab_getDimArray(env, var, &dims);
 
     int ref = -1;
@@ -447,7 +450,7 @@ int API_PROTO(isSquare)(scilabEnv env, scilabVar var)
 
 int API_PROTO(isVector)(scilabEnv env, scilabVar var)
 {
-    const int* dims = nullptr;
+    int* dims = nullptr;
     int dim = scilab_getDimArray(env, var, &dims);
 
     int ones = 0;
@@ -469,7 +472,7 @@ int API_PROTO(isMatrix2d)(scilabEnv env, scilabVar var)
 
 int API_PROTO(isNVector)(scilabEnv env, scilabVar var, int n)
 {
-    const int* dims = nullptr;
+    int* dims = nullptr;
     int dim = scilab_getDimArray(env, var, &dims);
 
     for (int i = 0; i < dim; ++i)
@@ -568,6 +571,6 @@ scilabStatus API_PROTO(call)(scilabEnv env, const char* name, int nin, scilabVar
     {
         out[i] = (scilabVar)outCall[i];
     }
-    
+
     return STATUS_OK;
 }

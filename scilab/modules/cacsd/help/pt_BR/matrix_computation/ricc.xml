@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="ricc">
+    <refnamediv>
+        <refname>ricc</refname>
+        <refpurpose>Riccati equation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[X,RCOND,FERR]=ricc(A,B,C,"cont""method")
+            [X,RCOND,FERR]=ricc(F,G,H,"disc","method")
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A,B,C</term>
+                <listitem>
+                    <para>real matrices of appropriate dimensions</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>F,G,H</term>
+                <listitem>
+                    <para>real matrices of appropriate dimensions</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>real matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"cont","disc"'  </term>
+                <listitem>
+                    <para>imposed string (flag for continuous or discrete)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>method</term>
+                <listitem>
+                    <para>'schr' or 'sign' for continuous-time systems and 'schr' or 'invf' for discrete-tyme systems</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Riccati solver.
+        </para>
+        <para>
+            Continuous time:
+        </para>
+        <programlisting role=""><![CDATA[
+X=ricc(A,B,C,'cont')
+ ]]></programlisting>
+        <para>
+            gives a solution to the continuous time ARE
+        </para>
+        <programlisting role=""><![CDATA[
+A'*X+X*A-X*B*X+C=0 .
+ ]]></programlisting>
+        <para>
+            <literal>B</literal> and <literal>C</literal> are assumed to be nonnegative definite.
+            <literal>(A,G)</literal> is assumed to be stabilizable with <literal>G*G'</literal> a full rank
+            factorization of <literal>B</literal>.
+        </para>
+        <para>
+            <literal>(A,H)</literal> is assumed to be detectable with <literal>H*H'</literal> a full rank
+            factorization of <literal>C</literal>.
+        </para>
+        <para>
+            Discrete time:
+        </para>
+        <programlisting role=""><![CDATA[
+X=ricc(F,G,H,'disc')
+ ]]></programlisting>
+        <para>
+            gives a solution  to the discrete time ARE
+        </para>
+        <programlisting role=""><![CDATA[
+X=F'*X*F-F'*X*G1*((G2+G1'*X*G1)^-1)*G1'*X*F+H
+ ]]></programlisting>
+        <para>
+            <literal>F</literal> is assumed invertible and   <literal>G = G1*inv(G2)*G1'</literal>.
+        </para>
+        <para>
+            One  assumes  <literal>(F,G1)</literal> stabilizable and <literal>(C,F)</literal> detectable
+            with <literal>C'*C</literal> full rank factorization of <literal>H</literal>. Use preferably
+            <literal>ric_desc</literal>.
+        </para>
+        <para>
+            C, D are symmetric .It is assumed that the matrices A, C and D are such that the corresponding matrix pencil has N eigenvalues with moduli less than one.
+        </para>
+        <para>
+            Error bound on the solution and a condition estimate are also provided.
+            It is assumed that the matrices A, C and D are such that the
+            corresponding Hamiltonian matrix has N eigenvalues with negative real parts.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//Standard formulas to compute Riccati solutions
+A=rand(3,3);
+B=rand(3,2);
+C=rand(3,3);
+C=C*C';
+R=rand(2,2);
+R=R*R'+eye();
+B=B*inv(R)*B';
+X=ricc(A,B,C,'cont');
+norm(A'*X+X*A-X*B*X+C,1)
+H=[A -B;-C -A'];
+[T,d]=schur(eye(H),H,'cont');
+T=T(:,1:d);
+X1=T(4:6,:)/T(1:3,:);
+norm(X1-X,1)
+[T,d]=schur(H,'cont');
+T=T(:,1:d);
+X2=T(4:6,:)/T(1:3,:);
+norm(X2-X,1)
+//       Discrete time case
+F=A;
+B=rand(3,2);
+G1=B;
+G2=R;
+G=G1/G2*G1';
+H=C;
+X=ricc(F,G,H,'disc');
+norm(F'*X*F-(F'*X*G1/(G2+G1'*X*G1))*(G1'*X*F)+H-X)
+H1=[eye(3,3) G;zeros(3,3) F'];
+H2=[F zeros(3,3);-H eye(3,3)];
+[T,d]=schur(H2,H1,'disc');
+T=T(:,1:d);
+X1=T(4:6,:)/T(1:3,:);
+norm(X1-X,1)
+Fi=inv(F);
+Hami=[Fi Fi*G;H*Fi F'+H*Fi*G];
+[T,d]=schur(Hami,'d');
+T=T(:,1:d);
+Fit=inv(F');
+Ham=[F+G*Fit*H -G*Fit;-Fit*H Fit];
+[T,d]=schur(Ham,'d');
+T=T(:,1:d);
+X2=T(4:6,:)/T(1:3,:);
+norm(X2-X,1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="riccati">riccati</link>
+            </member>
+            <member>
+                <link linkend="ric_desc">ric_desc</link>
+            </member>
+            <member>
+                <link linkend="schur">schur</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Used Functions</title>
+        <para>See SCI/modules/cacsd/src/slicot/riccpack.f</para>
+    </refsection>
+</refentry>

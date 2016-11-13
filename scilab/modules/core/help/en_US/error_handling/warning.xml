@@ -5,7 +5,7 @@
         <refpurpose>warning messages</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>warning('string')
             warning(string_matrix)
             warning('off')
@@ -17,7 +17,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>warning('string')</literal> prints the character string 
+            <literal>warning('string')</literal> prints the character string
             <literal>'string'</literal> in a warning message.
         </para>
         <para>
@@ -42,10 +42,10 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 w_flag = warning("query"); // remembering the warning flag
 
-warning('on') 
+warning('on')
 warning('this is a warning')
 warning('off')
 warning('this is a warning')
@@ -67,7 +67,7 @@ warning(w_flag); // resetting the warning flag
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="error">error</link>

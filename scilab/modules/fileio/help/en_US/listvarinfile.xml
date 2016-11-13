@@ -5,7 +5,7 @@
         <refpurpose>list of variables in a saved data file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>listvarinfile(filename)
             [names, typs, dims, vols] = listvarinfile(filename)
         </synopsis>
@@ -71,14 +71,14 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=eye(2,2); b=int16(ones(a)); c=rand(2,3,3);
 save(fullfile(TMPDIR,"vals.sod"),'a','b','c')
 [names,typs,dims,vols] = listvarinfile(fullfile(TMPDIR,"vals.sod"))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="whos">whos</link>

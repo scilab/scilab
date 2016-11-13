@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -  Author: Serge Steer
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function show_margins(h,typ)
     if argn(2)<2 then typ="bode",end
@@ -35,7 +38,7 @@ function show_margins(h,typ)
         sca(axp);
         xpoly([fmin;fmax],[-180;-180])
         e=gce();e.foreground=color("red");e.line_style=4;
-        if fr<>[] then
+        if fr<>[]&fr>0 then
             xpoly([fr;fr],[pmin;pmax])
             e=gce();e.foreground=color("red");e.line_style=4;
             sca(axg);
@@ -49,7 +52,7 @@ function show_margins(h,typ)
         sca(axg);
         xpoly([fmin;fmax],[0;0])
         e=gce();e.foreground=color("blue");e.line_style=4;
-        if fr<>[] then
+        if fr<>[]&fr>0 then
             xpoly([fr;fr],[gmin;gmax])
             e=gce();e.foreground=color("blue");e.line_style=4;
             sca(axp);

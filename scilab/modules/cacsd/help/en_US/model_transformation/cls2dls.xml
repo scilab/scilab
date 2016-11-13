@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="cls2dls">
+    <refnamediv>
+        <refname>cls2dls</refname>
+        <refpurpose>bilinear transform</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[sl1]=cls2dls(sl,T [,fp])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl,sl1</term>
+                <listitem>
+                    <para>
+                        linear systems (<literal>syslin</literal> lists)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>T</term>
+                <listitem>
+                    <para>real number, the sampling period</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fp</term>
+                <listitem>
+                    <para>pre-warning frequency in hertz</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            given <literal>sl=[A,B,C,D]</literal> (<literal>syslin</literal> list),a continuous time system
+            <literal>cls2dls</literal> returns the sampled system obtained by the
+            bilinear transform <literal>s=(2/T)*(z-1)/(z+1)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');z=poly(0,'z');
+sl=syslin('c',(s+1)/(s^2-5*s+2));  //Continuous-time system in transfer form
+slss=tf2ss(sl);  //Now in state-space form
+sl1=cls2dls(slss,0.2);  //sl1= output of cls2dls
+sl1t=ss2tf(sl1) // Converts in transfer form
+sl2=horner(sl,(2/0.2)*(z-1)/(z+1))   //Compare sl2 and sl1
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="horner">horner</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

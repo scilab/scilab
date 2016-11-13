@@ -5,18 +5,18 @@
         <refpurpose>ключевое слово выбора</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             select variable
-            case value1 then 
+            case value1 then
             instructions 1
-            case value2 then 
+            case value2 then
             instructions 2
-            ...  
-            case valuen then 
+            ...
+            case valuen then
             instructions n
             [else instructions]
-            end      
+            end
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -26,7 +26,7 @@
                 <term>variable</term>
                 <listitem>
                     <para>
-                        переменная, значение которой анализируется. 
+                        переменная, значение которой анализируется.
                     </para>
                 </listitem>
             </varlistentry>
@@ -34,8 +34,8 @@
                 <term>value1, ..., valuen</term>
                 <listitem>
                     <para>
-                        значения переменной <literal>variable</literal> для которых предусмотрен соответствующий набор 
-                        инструкций  <literal>instructions 1, ..., instructions n</literal>. 
+                        значения переменной <literal>variable</literal> для которых предусмотрен соответствующий набор
+                        инструкций  <literal>instructions 1, ..., instructions n</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,7 +43,7 @@
                 <term>instructions</term>
                 <listitem>
                     <para>
-                        набор корректных инструкций. 
+                        набор корректных инструкций.
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,15 +60,15 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    Единственное ограничение в том, что каждое ключевое слово <literal>"then"</literal> должно быть на 
-                    той же строке, что и соответствующее ключевое слово <literal>"case"</literal> (либо используйте  
+                    Единственное ограничение в том, что каждое ключевое слово <literal>"then"</literal> должно быть на
+                    той же строке, что и соответствующее ключевое слово <literal>"case"</literal> (либо используйте
                     обозначение продолжения, см <link linkend="dot">точка</link>).
                 </para>
             </listitem>
             <listitem>
                 <para>
                     Ключевое слово <literal>"then"</literal> можно заменить на перевод каретки или запятую.
-                    Инструкции <literal>instructions1</literal> исполняются, если <literal>expr1=expr</literal>, 
+                    Инструкции <literal>instructions1</literal> исполняются, если <literal>expr1=expr</literal>,
                     и т. д.
                 </para>
             </listitem>
@@ -121,11 +121,11 @@ A = 2;select A case 1 then disp(1); case 2 then disp(2); else  disp(3); end
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 while %t do
   n=round(10*rand(1,1))
   select n
-  case 0 then 
+  case 0 then
     disp(0)
   case 1 then
     disp(1)

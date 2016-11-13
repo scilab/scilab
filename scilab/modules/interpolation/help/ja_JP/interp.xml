@@ -15,7 +15,7 @@
                 <term>x,y</term>
                 <listitem>
                     <para>
-                        同じ大きさ <literal>n</literal> の実数ベクトル: 
+                        同じ大きさ <literal>n</literal> の実数ベクトル:
                         補間および関連する3次スプライン
                         (以下,<literal>s(X)</literal>と呼びます)または
                         サブスプライン関数を定義します.
@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>d</term>
                 <listitem>
-                    <para>size(x)の実数ベクトル: 
+                    <para>size(x)の実数ベクトル:
                         微分 s'(x). 多くの場合, s'(x) は関数splin(x, y,..)により
                         適当に推定されます.
                     </para>
@@ -35,7 +35,7 @@
                 <term>out_mode</term>
                 <listitem>
                     <para>
-                        (オプション)<latex>[x_1,\ x_n]</latex>の外側で. 
+                        (オプション)<latex>[x_1,\ x_n]</latex>の外側で.
                         <literal>X</literal> に対する<literal>s(X)</literal>を定義します.
                         利用可能な値: "by_zero" | "by_nan" | "C0" | "natural" | "linear" | "periodic"
                     </para>
@@ -45,9 +45,9 @@
                 <term>xp</term>
                 <listitem>
                     <para>
-                        実数ベクトルまたは行列: 
+                        実数ベクトルまたは行列:
                         <literal>Y</literal> が未知の座標で,
-                        <literal>s(xp)</literal>で推定されます		      
+                        <literal>s(xp)</literal>で推定されます
                     </para>
                 </listitem>
             </varlistentry>
@@ -76,13 +76,13 @@
     <refsection>
         <title>説明</title>
         <para>
-            指定した点の<literal>(x,y)</literal> 集合を補間する3次スプライン関数 <literal>s(X)</literal> 
+            指定した点の<literal>(x,y)</literal> 集合を補間する3次スプライン関数 <literal>s(X)</literal>
             は,<latex>[x_1,\ x_n]</latex>の範囲で定義された,連続で微分可能な関数です.
             これは,3次元多項式の集合からなり,その各々は<latex>p_k(X)</latex>が
             <latex>[x_k,\ x_{k+1}]</latex>で定義され,
             隣接する多項式と値と傾きで接続されています.
             つまり, <latex>X\ \in\ [x_k,\ x_{k+1}],\ s(X) = p_k(X)</latex>の各々について,
-            <latex>s(x_i) = y_i,\quad \mbox{and}\quad s'(x_i) = d_i</latex>を記述できます.	
+            <latex>s(x_i) = y_i,\quad \mbox{and}\quad s'(x_i) = d_i</latex>を記述できます.
         </para>
         <latex style="display" align="center"><![CDATA[ yp_i = s(xp_i) \quad or \quad yp_{i,j} = s(xp_{i,j})  ]]></latex>
         <latex style="display" align="center"><![CDATA[ yp1_i = s'(xp_i) \quad or \quad yp1_{i,j} = s'(xp_{i,j})  ]]></latex>
@@ -146,7 +146,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // splin および lsq_splinの例を参照
 // スプラインおよびサブスプラインの C2およびC1連続性を示す例
 a = -8; b = 8;
@@ -155,8 +155,8 @@ y = sinc(x);
 dk = splin(x,y);  // not_a_knot
 df = splin(x,y, "fast");
 xx = linspace(a,b,800)';
-[yyk, yy1k, yy2k] = interp(xx, x, y, dk); 
-[yyf, yy1f, yy2f] = interp(xx, x, y, df); 
+[yyk, yy1k, yy2k] = interp(xx, x, y, dk);
+[yyf, yy1f, yy2f] = interp(xx, x, y, df);
 clf()
 subplot(3,1,1)
 plot2d(xx, [yyk yyf])
@@ -180,8 +180,8 @@ xtitle("spline interpolation (second derivatives)")
             dk = splin(x,y);  // not_a_knot
             df = splin(x,y, "fast");
             xx = linspace(a,b,800)';
-            [yyk, yy1k, yy2k] = interp(xx, x, y, dk); 
-            [yyf, yy1f, yy2f] = interp(xx, x, y, df); 
+            [yyk, yy1k, yy2k] = interp(xx, x, y, dk);
+            [yyf, yy1f, yy2f] = interp(xx, x, y, df);
             clf()
             subplot(3,1,1)
             plot2d(xx, [yyk yyf])
@@ -198,7 +198,7 @@ xtitle("spline interpolation (second derivatives)")
             legends(["not_a_knot spline","fast sub-spline"], [1 2], "lr",%f)
             xtitle("spline interpolation (second derivatives)")
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 異なる補外の方法を示す例
 x = linspace(0,1,11)';
 y = cosh(x-0.5);
@@ -207,7 +207,7 @@ xx = linspace(-0.5,1.5,401)';
 yy0 = interp(xx,x,y,d,"C0");
 yy1 = interp(xx,x,y,d,"linear");
 yy2 = interp(xx,x,y,d,"natural");
-yy3 = interp(xx,x,y,d,"periodic");  
+yy3 = interp(xx,x,y,d,"periodic");
 clf()
 plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
 xtitle(" different way to evaluate a spline outside its domain")
@@ -220,7 +220,7 @@ xtitle(" different way to evaluate a spline outside its domain")
             yy0 = interp(xx,x,y,d,"C0");
             yy1 = interp(xx,x,y,d,"linear");
             yy2 = interp(xx,x,y,d,"natural");
-            yy3 = interp(xx,x,y,d,"periodic");  
+            yy3 = interp(xx,x,y,d,"periodic");
             clf()
             plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
             xtitle(" different way to evaluate a spline outside its domain")

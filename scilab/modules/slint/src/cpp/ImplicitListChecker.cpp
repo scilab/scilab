@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -20,32 +23,61 @@ namespace slint
 void ImplicitListChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
 {
     const ast::ListExp & le = static_cast<const ast::ListExp &>(e);
-    if (le.getStart().isDoubleExp() && le.getStep().isDoubleExp() && le.getEnd().isDoubleExp())
+    if (le.getStart().isDoubleExp())
     {
         const double start = static_cast<const ast::DoubleExp &>(le.getStart()).getValue();
-        const double step = static_cast<const ast::DoubleExp &>(le.getStep()).getValue();
-        const double end = static_cast<const ast::DoubleExp &>(le.getEnd()).getValue();
-        if (ISNAN(start) || ISNAN(step) || ISNAN(end) || !finite(start) || !finite(step) || !finite(end))
+        if (ISNAN(start) || !finite(start))
         {
             result.report(context, e.getLocation(), *this, _("Invalid list, it contains NaN or Inf."));
         }
-        else
+    }
+
+    if (le.getStart().isSimpleVar())
+    {
+        const std::string start = static_cast<const ast::SimpleVar &>(le.getStart()).getSymbol().getName();
+        if (start == "%nan" || start == "%inf")
         {
-            if (start == end)
-            {
-                result.report(context, e.getLocation(), *this, _("List has the same start and end."));
-            }
-            if (step == 0)
-            {
-                result.report(context, e.getLocation(), *this, _("List has a null step."));
-            }
-            if ((start > end && step > 0) || (start < end && step < 0))
-            {
-                result.report(context, e.getLocation(), *this, _("List is empty."));
-            }
+            result.report(context, e.getLocation(), *this, _("Invalid list, it contains NaN or Inf."));
         }
     }
-    else if (le.getStart().isListExp() || le.getStep().isListExp() || le.getEnd().isListExp())
+
+    if (le.getStep().isDoubleExp())
+    {
+        const double step = static_cast<const ast::DoubleExp &>(le.getStep()).getValue();
+        if (ISNAN(step) || !finite(step))
+        {
+            result.report(context, e.getLocation(), *this, _("Invalid list, it contains NaN or Inf."));
+        }
+    }
+
+    if (le.getStep().isSimpleVar())
+    {
+        const std::string step = static_cast<const ast::SimpleVar &>(le.getStep()).getSymbol().getName();
+        if (step == "%nan" || step == "%inf")
+        {
+            result.report(context, e.getLocation(), *this, _("Invalid list, it contains NaN or Inf."));
+        }
+    }
+
+    if (le.getEnd().isDoubleExp())
+    {
+        const double end = static_cast<const ast::DoubleExp &>(le.getEnd()).getValue();
+        if (ISNAN(end) || !finite(end))
+        {
+            result.report(context, e.getLocation(), *this, _("Invalid list, it contains NaN or Inf."));
+        }
+    }
+
+    if (le.getEnd().isSimpleVar())
+    {
+        const std::string end = static_cast<const ast::SimpleVar &>(le.getEnd()).getSymbol().getName();
+        if (end == "%nan" || end == "%inf")
+        {
+            result.report(context, e.getLocation(), *this, _("Invalid list, it contains NaN or Inf."));
+        }
+    }
+
+    if (le.getStart().isListExp() || le.getStep().isListExp() || le.getEnd().isListExp())
     {
         result.report(context, e.getLocation(), *this, _("Bad use of ':' operator."));
     }

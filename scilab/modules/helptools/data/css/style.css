@@ -42,6 +42,20 @@ h3 {
     margin-bottom: 10px;
 }
 
+h4 {
+    color: #000063;
+    font-weight: bold;
+    font-size:120%;
+    margin-bottom: 5px;
+}
+
+h5 {
+    color: #000063;
+    font-weight: bold;
+    font-size:110%;
+    margin-bottom: 1px;
+}
+
 .programlisting {
     font-family: monospace;
     font-size: 100%;
@@ -100,16 +114,16 @@ a:hover {
 }
 
 .itemizedlist {
-    list-style-type: disk;
+    list-style-type: disc;
 }
 
 .inline-list li {
     display: inline;
-    list-style-type: disk;
+    list-style-type: disc;
 }
 
 .vert-list {
-    list-style-type: disk;
+    list-style-type: disc;
 }
 
 pre {
@@ -336,7 +350,7 @@ div#cadre_help
 }
 
 table.revhistory
-{ 
+{
   width:80%;
   border-color:#CCCCCC;
   border-style:solid;
@@ -345,6 +359,11 @@ table.revhistory
 }
 
 table.revhistory tr.title td
-{ 
+{
   background-color: #9999CC;
+}
+
+td.revnumber
+{
+  vertical-align: top;
 }

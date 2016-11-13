@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="h_inf_st">
+    <refnamediv>
+        <refname>h_inf_st</refname>
+        <refpurpose>static H_infinity problem</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[Kopt,gamaopt]=h_inf_stat(D,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>D</term>
+                <listitem>
+                    <para>real matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>1x2 vector</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Kopt</term>
+                <listitem>
+                    <para>matrix</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            computes a matrix <literal>Kopt</literal> such that largest singular value of:
+        </para>
+        <para>
+            <literal>lft(D,r,K)=D11+D12* K*inv(I-D22*K)* D21</literal>
+            is minimal (Static <literal>H_infinity</literal> four blocks problem).
+        </para>
+        <para>
+            D is partionned as <literal>D=[D11 D12; D21 D22]</literal>
+            where <literal>size(D22)=r=[r1 r2]</literal>
+        </para>
+    </refsection>
+</refentry>

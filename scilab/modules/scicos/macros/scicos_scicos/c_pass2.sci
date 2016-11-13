@@ -1220,9 +1220,8 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
         end
         if funtyp(i,1)>999&funtyp(i,1)<10000 then
             if ~c_link(funs(i)) then
-                messagebox(msprintf(_("A C or Fortran block is used but not linked.\n"+..
-                "You can save your compiled diagram and load it.\n"+..
-                "This will automatically link the C or Fortran function.")),"modal","error")
+                msg = _("A C or Fortran block is used but not linked.\nYou can save your compiled diagram and load it.\nThis will automatically link the C or Fortran function.")
+                messagebox(msprintf(msg), "modal", "error")
             end
         end
         inpnum=ll.in;outnum=ll.out;cinpnum=ll.evtin;coutnum=ll.evtout;
@@ -1928,8 +1927,8 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
             if ok then return, end //if ok is set true then exit adjust_inout
         end
         //if failed then display message
-        messagebox(msprintf(_("Not enough information to find port sizes.\n"+..
-        "I try to find the problem.")),"modal","info");
+        msg = _("Not enough information to find port sizes.\nI try to find the problem.")
+        messagebox(msprintf(msg),"modal","info");
 
         //%%%%% pass 2 %%%%%//
         //Alan 19/01/07 : Warning  : Behavior have changed, To Be more Tested
@@ -2047,10 +2046,10 @@ function [ok,bllst]=adjust_inout(bllst,connectmat)
 
         //if failed then display message
         if ~findflag then
-            messagebox(msprintf(_("I cannot find a link with undetermined size.\n"+..
-            "My guess is that you have a block with unconnected \n"+..
-            "undetermined output ports.")),"modal","error");
-            ok=%f;return;
+            msg = _("I cannot find a link with undetermined size.\nMy guess is that you have a block with unconnected \nundetermined output ports.")
+            messagebox(msprintf(msg), "modal", "error")
+            ok = %f
+            return
         end
     end
 endfunction
@@ -2292,9 +2291,8 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,.
         sizenin=size(ll.in,"*");
         if (size(ll.dep_ut,"*") <> 2) then
             if ( size(ll.dep_ut(1:$-1),"*") <> sizenin) then
-                messagebox(msprintf(_("the dep_ut size of the %s block is not correct.\n"+..
-                "It should be a colon vector of size %d."),..
-                ll.sim(1),sizenin+1),"modal","error");
+                msg = _("the dep_ut size of the %s block is not correct.\nIt should be a colon vector of size %d.")
+                messagebox(msprintf(msg, ll.sim(1), sizenin+1), "modal", "error")
                 ok=%f;
             end
         end
@@ -2603,8 +2601,8 @@ function [ok,bllst]=adjust_typ(bllst,connectmat)
             if ok then return, end //if ok is set true then exit adjust_typ
         end
         //if failed then display message
-        messagebox(msprintf(_("Not enough information to find port type.\n"+..
-        "I will try to find the problem.")),"modal","info");
+        tmp = _("Not enough information to find port type.\nI will try to find the problem.")
+        messagebox(msprintf(tmp),"modal","info");
         findflag=%f
         for jj=1:nlnk
             nouttyp=bllst(connectmat(jj,1)).outtyp(connectmat(jj,2))
@@ -2639,10 +2637,10 @@ function [ok,bllst]=adjust_typ(bllst,connectmat)
         end
         //if failed then display message
         if ~findflag then
-            messagebox(msprintf(_("I cannot find a link with undetermined size.\n"+..
-            "My guess is that you have a block with unconnected \n"+..
-            "undetermined types.")),"modal","error");
-            ok=%f;return;
+            msg = _("I cannot find a link with undetermined size.\nMy guess is that you have a block with unconnected \nundetermined types.")
+            messagebox(msprintf(msg), "modal","error")
+            ok = %f
+            return
         end
     end
 endfunction

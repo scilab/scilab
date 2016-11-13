@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="get_absolute_file_path" xml:lang="en">
@@ -18,7 +21,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>pathname = get_absolute_file_path(filename)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -41,12 +44,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>get_absolute_file_path</function> gives an absolute pathname 
+            <function>get_absolute_file_path</function> gives an absolute pathname
             of a file already opened in Scilab.
         </para>
         <para>
-            <function>get_absolute_file_path</function> searches in Scilab's 
-            internal list of files currently opened <varname>filename</varname> 
+            <function>get_absolute_file_path</function> searches in Scilab's
+            internal list of files currently opened <varname>filename</varname>
             and returns its path <varname>pathname</varname>.
         </para>
         <para>If file is not opened, it will return an error.</para>
@@ -62,7 +65,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // exec this script
 
 a=mopen(TMPDIR+'test.sce','wt');
@@ -71,7 +74,7 @@ mclose(a);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="getshortpathname">getshortpathname</link>

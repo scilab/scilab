@@ -5,7 +5,7 @@
         <refpurpose>2-х и 4-х квадрантный арктангенс</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>phi=atan(x)
             phi=atan(y,x)
         </synopsis>

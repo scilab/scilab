@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -69,7 +72,7 @@ static int getHandleIntVector(int dataset, const char* prop, int* row, int* col,
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -117,7 +120,7 @@ static int getHandleBoolVector(int dataset, const char* prop, int* row, int* col
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -166,7 +169,7 @@ static int getHandleDoubleVector(int dataset, const char* prop, int* row, int* c
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -202,7 +205,7 @@ static int getHandleString(int dataset, const char* prop, char** val)
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -234,7 +237,7 @@ static int getHandleStringVector(int dataset, const char* prop, int* row, int* c
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -344,7 +347,7 @@ static int import_handle_generic(int dataset, int uid, int parent, const HandleP
         import_handle_children(dataset, uid);
     }
 
-    for (auto& prop : props)
+    for (auto & prop : props)
     {
         const char* name = prop.first.data();
         std::vector<int> info(prop.second);
@@ -777,9 +780,6 @@ static int import_handle_border(int dataset)
         case MATTE:
             return import_handle_border_matte(dataset, border);
     }
-
-    closeList6(dataset);
-    return false;
 }
 
 static int import_handle_uicontrol(int dataset, int parent)
@@ -1182,7 +1182,7 @@ static int import_handle_datatip(int dataset, int parent)
     setGraphicObjectProperty(datatip, __GO_DATATIP_INDEXES__, indexes, jni_double_vector, 2);
 
     //import "standards" properties
-    import_handle_generic(dataset, datatip, parent, DatatipHandle::getPropertyList(), true);
+    import_handle_generic(dataset, datatip, -1, DatatipHandle::getPropertyList(), true);
 
     closeList6(dataset);
     return datatip;
@@ -1733,7 +1733,7 @@ void update_link_path(int legend, Links::PathList& paths)
     getGraphicObjectProperty(legend, __GO_PARENT_AXES__, jni_int, (void**)&paxes);
     std::vector<int> links;
     //loop on child following path index
-    for (auto& path : paths)
+    for (auto & path : paths)
     {
         int current = axes;
         for (int j = 0; j < path.size(); ++j)
@@ -1842,7 +1842,7 @@ static bool export_handle_children(int parent, int uid);
 
 static bool export_handle_generic(int parent, int uid, const HandleProp& props)
 {
-    for (auto& prop : props)
+    for (auto & prop : props)
     {
         const char* name = prop.first.data();
         std::vector<int> info(prop.second);
@@ -2413,9 +2413,6 @@ static bool export_handle_border(int dataset, int uid)
         case MATTE:
             return export_handle_border_matte(dataset, uid);
     }
-
-    closeList6(dataset);
-    return false;
 }
 
 static bool export_handle_uicontrol(int parent, int uid)
@@ -2431,13 +2428,10 @@ static bool export_handle_uicontrol(int parent, int uid)
     getHandleIntProperty(uid, __GO_UI_STRING_SIZE__, &size);
     int col = 0;
     getHandleIntProperty(uid, __GO_UI_STRING_COLNB__, &col);
-    int row = size / col;
 
     int dims[2];
-    dims[0] = row;
-    dims[1] = col;
 
-    if (col == 0 || row == 0)
+    if (col == 0)
     {
         dims[0] = 1;
         dims[1] = 1;
@@ -2447,6 +2441,9 @@ static bool export_handle_uicontrol(int parent, int uid)
     }
     else
     {
+        int row = size / col;
+        dims[0] = row;
+        dims[1] = col;
         char** string = nullptr;
         getHandleStringVectorProperty(uid, __GO_UI_STRING__, &string);
         writeStringMatrix6(parent, "string", 2, dims, string);
@@ -2689,7 +2686,7 @@ static bool export_handle_matplot(int parent, int uid)
             {
                 size *= 3;
             }
-            else if ((ImageType)imagetype == MATPLOT_GL_RGBA)
+            else if ((GLType)imagetype == MATPLOT_GL_RGBA)
             {
                 size *= 4;
             }

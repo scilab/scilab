@@ -5,6 +5,12 @@
    fun:tgetent
 }
 {
+   scilab-console/tgetent_sp
+   Memcheck:Leak
+   ...
+   fun:tgetent_sp
+}
+{
    scilab-console/tgetnum
    Memcheck:Leak
    ...
@@ -15,6 +21,12 @@
    Memcheck:Leak
    ...
    fun:tgetstr
+}
+{
+   scilab-console/tgetstr_sp
+   Memcheck:Leak
+   ...
+   fun:tgetstr_sp
 }
 {
    dynamic-leak/dlerror_run

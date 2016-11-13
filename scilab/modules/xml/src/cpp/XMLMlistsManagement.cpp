@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012-2014 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -45,37 +48,32 @@ int createXMLObjectAtPos(int type, int pos, int id, void* pvApiCtx)
     switch (type)
     {
         case XMLDOCUMENT:
-            ;
             fields = _XMLDoc;
             break;
         case XMLELEMENT:
-            ;
             fields = _XMLElem;
             break;
         case XMLATTRIBUTE:
-            ;
             fields = _XMLAttr;
             break;
         case XMLNAMESPACE:
-            ;
             fields = _XMLNs;
             break;
         case XMLLIST:
-            ;
             fields = _XMLList;
             break;
         case XMLNOTHANDLED:
-            ;
             fields = _XMLNotHandled;
             break;
         case XMLSET:
-            ;
             fields = _XMLSet;
             break;
         case XMLVALID:
-            ;
             fields = _XMLValid;
             break;
+        default:
+            Scierror(999, _("Unknown tag.\n"));
+            return 0;
     }
 
     err = createMList(pvApiCtx, pos, 2, &mlistaddr);
@@ -118,37 +116,32 @@ int createXMLObjectAtPosInList(int *list, int stackPos, int type, int pos, int i
     switch (type)
     {
         case XMLDOCUMENT:
-            ;
             fields = _XMLDoc;
             break;
         case XMLELEMENT:
-            ;
             fields = _XMLElem;
             break;
         case XMLATTRIBUTE:
-            ;
             fields = _XMLAttr;
             break;
         case XMLNAMESPACE:
-            ;
             fields = _XMLNs;
             break;
         case XMLLIST:
-            ;
             fields = _XMLList;
             break;
         case XMLNOTHANDLED:
-            ;
             fields = _XMLNotHandled;
             break;
         case XMLSET:
-            ;
             fields = _XMLSet;
             break;
         case XMLVALID:
-            ;
             fields = _XMLValid;
             break;
+        default:
+            Scierror(999, _("Unknown tag.\n"));
+            return 0;
     }
 
     err = createMatrixOfStringInList(pvApiCtx, stackPos, mlistaddr, 1, 1, 2, fields);

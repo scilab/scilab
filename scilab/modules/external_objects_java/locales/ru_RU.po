@@ -14,26 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
-
-#, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr "%s: Функция %s устарела.\n"
-
-msgid "Warning"
-msgstr "Внимание"
-
-#, c-format
-msgid "%s: Please see documentation for more details.\n"
-msgstr "%s: Пожалуйста, смотрите подробности в документации.\n"
-
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-"%s: Эта функция будет окончательно удалена в  Scilab %s\n"
-"\n"
+"X-Generator: Launchpad (build 18232)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"

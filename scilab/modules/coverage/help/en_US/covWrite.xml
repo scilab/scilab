@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="covWrite">
+    <refnamediv>
+        <refname>covWrite</refname>
+        <refpurpose>Exports runtime information to files</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>covWrite("html", dir)</synopsis>
+        <synopsis>covWrite("binary", binaryFile)</synopsis>
+        <synopsis>covWrite("html", binaryFile, dir)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>"html"</term>
+                <listitem>
+                    <para>exports the coverage data as HTML files</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"binary"</term>
+                <listitem>
+                    <para>store the coverage data as binary for later use</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dir</term>
+                <listitem>
+                    <para>output directory as a string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>binaryFile</term>
+                <listitem>
+                    <para>stored binary filename as a string</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This command is used to export, store or "load and export" runtime instrumentation data to the file system. The major usage is to export the current runtime information to HTML files on a directory using <literal>covWrite("html", "TMPDIR/coverage")</literal>.
+        </para>
+        <para>
+            This command is used to export, store or "load and export" runtime instrumentation data to the file system.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Basic example</title>
+        <programlisting role="example"><![CDATA[
+covStart(isempty)                      // instrument isempty by macro value
+for i=1:1e5; isempty(i); end           // run
+covWrite("html", "TMPDIR/coverage")    // write runtime information to a directory
+covStop();                             // remove any instrumentation
+    ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Binary exemple</title>
+        <programlisting role="example"><![CDATA[
+covStart(isempty)
+for i=1:1e5; isempty(i); end
+covWrite("binary", "TMPDIR/isempty1")  // write runtime information
+covStop();                             // clear instrumentation
+
+covStart(isempty)
+for i=1:1e5; isempty(string(i)); end
+covWrite("binary", "TMPDIR/isempty2")  // write other runtime information
+covStop();
+
+covMerge(["TMPDIR/isempty1" "TMPDIR/isempty2"], "TMPDIR/isempty") // merge them
+covWrite("html", "TMPDIR/isempty", "TMPDIR/coverage") // render the information as HTML
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="covStart">covStart</link>
+            </member>
+            <member>
+                <link linkend="covStop">covStop</link>
+            </member>
+            <member>
+                <link linkend="covMerge">covMerge</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

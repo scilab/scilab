@@ -19,7 +19,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=[1,2,3;4,5,6];
 b=1,c=1;d=2
  ]]></programlisting>

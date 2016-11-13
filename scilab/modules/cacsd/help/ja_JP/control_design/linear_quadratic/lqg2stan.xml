@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="lqg2stan">
+    <refnamediv>
+        <refname>lqg2stan</refname>
+        <refpurpose>LQG を標準問題に変換する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[P,r]=lqg2stan(P22,bigQ,bigR)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>P22</term>
+                <listitem>
+                    <para>
+                        状態空間表現の<literal>syslin</literal> リスト (ノミナルプラント)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bigQ</term>
+                <listitem>
+                    <para>
+                        <literal>[Q,S;S',N]</literal> (対称) 重み行列
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bigR</term>
+                <listitem>
+                    <para>
+                        <literal>[R,T;T',V]</literal> (対称) 共分散行列
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        <literal>1</literal>x<literal>2</literal> 行ベクトル = (観測量の数, 入力の数)  (<literal>P</literal>の2,2区画の次元)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト(拡張プラント)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>lqg2stan</literal>  は,
+            線形LQG(H2)コントローラ設計の拡張プラントを返します.
+        </para>
+        <para>
+            <literal>P22=syslin(dom,A,B2,C2)</literal> はノミナルプラントで,
+            連続時間系 (<literal>dom='c'</literal>)または離散時間系 (<literal>dom='d'</literal>)
+            のどちらかとすることができます.
+        </para>
+        <programlisting role=""><![CDATA[
+.
+x = Ax + w1 + B2u
+y = C2x + w2
+ ]]></programlisting>
+        <para>
+            (連続時間プラントの場合).
+        </para>
+        <programlisting role=""><![CDATA[
+x[n+1]= Ax[n] + w1 + B2u
+    y = C2x + w2
+ ]]></programlisting>
+        <para>
+            (離散時間プラントの場合).
+        </para>
+        <para>
+            (ある時間における) 評価関数は <literal>[x' u'] bigQ [x;u]</literal>です.
+        </para>
+        <para>
+            <literal>[w1;w2]</literal> の共分散は <literal>E[w1;w2] [w1',w2'] = bigR</literal>です.
+        </para>
+        <para>
+            <literal>[B1;D21]</literal> が<literal>bigQ</literal>の因数,
+            <literal>[C1,D12]</literal>が<literal>bigR</literal>の因数,
+            <literal>[A,B2,C2,D22]</literal>がP22の実現の場合,
+            <literal>P</literal>は
+            <literal>[A,[B1,B2],[C1,-C2],[0,D12;D21,D22]</literal>の実現です.
+            <literal>lqg</literal>により計算された(負の)フィードバック
+            は<literal>P22</literal>を安定化します.すなわち,
+            <literal>cl=P22/.K</literal>の極は安定となります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+ny=2;nu=3;nx=4;
+P22=ssrand(ny,nu,nx);
+bigQ=rand(nx+nu,nx+nu);bigQ=bigQ*bigQ';
+bigR=rand(nx+ny,nx+ny);bigR=bigR*bigR';
+[P,r]=lqg2stan(P22,bigQ,bigR);K=lqg(P,r);  //K=LQG-controller
+spec(h_cl(P,r,K))      //Closed loop should be stable
+//Same as Cl=P22/.K; spec(Cl('A'))
+s=poly(0,'s')
+lqg2stan(1/(s+2),eye(2,2),eye(2,2))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lqg">lqg</link>
+            </member>
+            <member>
+                <link linkend="lqr">lqr</link>
+            </member>
+            <member>
+                <link linkend="lqe">lqe</link>
+            </member>
+            <member>
+                <link linkend="obscont">obscont</link>
+            </member>
+            <member>
+                <link linkend="h_inf">h_inf</link>
+            </member>
+            <member>
+                <link linkend="augment">augment</link>
+            </member>
+            <member>
+                <link linkend="fstabst">fstabst</link>
+            </member>
+            <member>
+                <link linkend="feedback">feedback</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

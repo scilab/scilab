@@ -17,7 +17,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 for k=1:10
     K=k;
     if k>2 & k<=8 then
@@ -26,7 +26,7 @@ for k=1:10
     end
     k
 end
- 
+
 for j=1:2
   x=[];
   for k=1:10
@@ -40,7 +40,7 @@ end
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="while">while</link>

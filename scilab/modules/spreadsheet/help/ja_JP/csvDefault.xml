@@ -17,9 +17,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>allvalues = csvDefault() </synopsis>
-        <synopsis>value = csvDefault(field) </synopsis>
-        <synopsis>bRes = csvDefault(field, value) </synopsis>
+        <synopsis>
+          allvalues = csvDefault()
+          value = csvDefault(field)
+          bRes = csvDefault(field, value)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -27,7 +29,7 @@
             <varlistentry>
                 <term>allvalues</term>
                 <listitem>
-                    <para>6行2列の文字列行列で, 全フィールドの値です. 
+                    <para>6行2列の文字列行列で, 全フィールドの値です.
                         最初の列には利用可能なフィールドが含まれ,
                         2番目の列には現在の値が含まれます.
                     </para>
@@ -36,7 +38,7 @@
             <varlistentry>
                 <term>field</term>
                 <listitem>
-                    <para>1行1列の文字列行列で, 
+                    <para>1行1列の文字列行列で,
                         取得または設定したフィールドの名前です.
                         <literal>field</literal>で利用可能な値は,
                         "separator", "decimal", "conversion", "precision", "regexp", "eol",
@@ -48,7 +50,7 @@
                 <term>value</term>
                 <listitem>
                     <para>
-                        1行1列の文字列行列で, 
+                        1行1列の文字列行列で,
                         取得または設定したフィールドの値です.
                     </para>
                 </listitem>
@@ -57,7 +59,7 @@
                 <term>bRes</term>
                 <listitem>
                     <para>
-                        1行1列の論理値行列で, 
+                        1行1列の論理値行列で,
                         値が正しく設定された場合は bResがtrueとなり,
                         そうでない場合はbResがfalseとなります.
                     </para>
@@ -82,7 +84,7 @@
             指定したフィールドに対応する値を返します.
         </para>
         <para>
-            呼び出し手順 <literal>bRes = csvDefault(field, value)</literal> 
+            呼び出し手順 <literal>bRes = csvDefault(field, value)</literal>
             により, 指定したフィールドに値を設定できます.
             <itemizedlist>
                 <listitem>
@@ -114,29 +116,29 @@
                     </para>
                 </listitem>
                 <listitem>
-                    <para>field = "conversion": 
+                    <para>field = "conversion":
                         <literal>csvRead</literal>関数の出力型. 指定可能な値は
                         "string" または"double"です.
-                        conversionのデフォルト値 = "double". 
+                        conversionのデフォルト値 = "double".
                         conversion = "string"の場合,
                         <literal>csvRead</literal> 関数は文字列の行列を
                         返します.
-                        conversion = "double"の場合, 
+                        conversion = "double"の場合,
                         <literal>csvRead</literal> 関数はdoubleの行列を
                         返します.
                     </para>
                 </listitem>
                 <listitem>
-                    <para>field = "precision": 
+                    <para>field = "precision":
                         <literal>csvWrite</literal>関数のdoubleから
                         文字列を生成する際に使用されるCフォーマット.
-                        デフォルト値は <literal>precision="%.17lg"</literal>です. 
+                        デフォルト値は <literal>precision="%.17lg"</literal>です.
                         このフォーマットにより読み書きエラーフリーサイクル
                         を実行できます.
                         これは,doubleを.csvに保存してから,doubleを読み込むと,
                         正しく同じ値が取得できることを意味します.
                         サポートされる形式を以下に示します: %type または
-                        %[幅].[精度]型. 
+                        %[幅].[精度]型.
                         <itemizedlist>
                             <listitem>
                                 <para>型: lf, lg, d, i, e, f, g</para>
@@ -146,7 +148,7 @@
                                 </para>
                             </listitem>
                             <listitem>
-                                <para>精度: 
+                                <para>精度:
                                     オプションの数値で,
                                     出力フィールドの全てまたは一部を出力する際の
                                     最大文字数,または
@@ -157,14 +159,14 @@
                     </para>
                 </listitem>
                 <listitem>
-                    <para>field = "regexp": 
+                    <para>field = "regexp":
                         <literal>csvRead</literal>関数のコメントを
                         展開する際に使用する正規表現式.
                     </para>
                     <para>デフォルトでは, この値は'' (正規表現なし)です.</para>
                 </listitem>
                 <listitem>
-                    <para>field = "eol": 
+                    <para>field = "eol":
                         <literal>csvWrite</literal>関数で行を書き込む際に
                         使用される改行.
                     </para>
@@ -197,7 +199,7 @@
             // "precision"フィールドの値を設定
             bRes = csvDefault("precision","%.17e") // 期待値 = %t
             // "precision"フィールドに不正な値を設定
-            bRes = csvDefault("precision","Ouch!") // 期待値 = %f    
+            bRes = csvDefault("precision","Ouch!") // 期待値 = %f
         </programlisting>
     </refsection>
     <refsection>

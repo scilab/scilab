@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -49,26 +52,26 @@ public:
     {
     }
 
-    void handleDefault(const std::string& seq) override;
-    void handleOperator(const std::string& seq) override;
-    void handleOpenClose(const std::string& seq) override;
-    void handleFunctionKwds(const std::string& seq) override;
-    void handleStructureKwds(const std::string& seq) override;
-    void handleControlKwds(const std::string& seq) override;
-    void handleConstants(const std::string& seq) override;
-    void handleCommands(const std::string& seq) override;
-    void handleMacros(const std::string& seq) override;
-    void handleFunctionName(const std::string& seq) override;
-    void handleFunctionNameDec(const std::string& seq) override;
-    void handleName(const std::string& seq) override;
-    void handleInOutArgsDec(const std::string& seq) override;
-    void handleInOutArgs(const std::string& seq) override;
-    void handleNumber(const std::string& seq) override;
-    void handleSpecial(const std::string& seq) override;
-    void handleString(const std::string& seq) override;
-    void handleNothing(const std::string& seq) override;
-    void handleField(const std::string& seq) override;
-    void handleComment(const std::string& seq) override;
+    void handleDefault(const std::string & seq) override;
+    void handleOperator(const std::string & seq) override;
+    void handleOpenClose(const std::string & seq) override;
+    void handleFunctionKwds(const std::string & seq) override;
+    void handleStructureKwds(const std::string & seq) override;
+    void handleControlKwds(const std::string & seq) override;
+    void handleConstants(const std::string & seq) override;
+    void handleCommands(const std::string & seq) override;
+    void handleMacros(const std::string & seq) override;
+    void handleFunctionName(const std::string & seq) override;
+    void handleFunctionNameDec(const std::string & seq) override;
+    void handleName(const std::string & seq) override;
+    void handleInOutArgsDec(const std::string & seq) override;
+    void handleInOutArgs(const std::string & seq) override;
+    void handleNumber(const std::string & seq) override;
+    void handleSpecial(const std::string & seq) override;
+    void handleString(const std::string & seq) override;
+    void handleNothing(const std::string & seq) override;
+    void handleField(const std::string & seq) override;
+    void handleComment(const std::string & seq) override;
     void handleNewLine() override;
     void handleExpStart(const ast::Exp * e) override;
     void handleExpEnd(const ast::Exp * e) override;
@@ -97,12 +100,12 @@ public:
     {
         if (lineCount)
         {
-            out << "</pre></td><td></td><td></td><td></td>\n</tr>\n";
+            out << L"</pre></td><td></td><td></td><td></td>\n</tr>\n";
             out.flush();
         }
     }
 
-    static std::string replaceByEntities(const std::string& seq);
+    static std::string replaceByEntities(const std::string & seq);
     static void getDivPercent(std::ostringstream & out, const unsigned int percent);
     static std::string getOrderButton(const unsigned int tableid, const unsigned int id, const unsigned int col, const bool enabled);
     static void getFunctionStats(std::ostringstream & out, const MacroLoc & ml, const CoverResult & result);
@@ -111,7 +114,7 @@ private:
 
     void addNewLineHeader();
 
-    inline const std::string& getCurrentFunctionName() const
+    inline const std::string & getCurrentFunctionName() const
     {
         return fnStack.top().first.name;
     }
@@ -131,9 +134,9 @@ private:
         return !fnStack.empty() && fnStack.top().second != nullptr;
     }
 
-    inline void count(const std::string& seq)
+    inline void count(const std::string & seq)
     {
-        counter += (unsigned int)seq.length();
+        counter += seq.length();
     }
 
     inline static void pushEntity(std::vector<char> & buf, const char* str, const unsigned char len)

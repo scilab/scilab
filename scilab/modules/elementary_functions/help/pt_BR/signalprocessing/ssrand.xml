@@ -2,15 +2,18 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ssrand" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ssrand" xml:lang="pt">
     <refnamediv>
         <refname>ssrand</refname>
         <refpurpose>gerador de sistema randômico</refpurpose>
@@ -83,11 +86,11 @@
             <literal>flag</literal>. <literal>flag</literal> pode ser um dos
             seguintes:
         </para>
-        <programlisting><![CDATA[ 
-flag=list('co',dim_cont_subs)  
+        <programlisting><![CDATA[
+flag=list('co',dim_cont_subs)
 flag=list('uo',dim_unobs_subs)
 flag=list('ncno',dim_cno,dim_ncno,dim_co,dim_nco)
-flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
+flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)
 flag=list('dt',dim_inst_unob,dim_instb0,dim_unobs)
 flag=list('on',nr,ng,ng0,nv,rk)
 flag=list('ui',nw,nwu,nwui,nwuis,rk)
@@ -108,14 +111,14 @@ flag=list('ui',nw,nwu,nwui,nwuis,rk)
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-//flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
-//dim_cont_subs<=dim_stab_subs<=dim_stab0  
+//flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)
+//dim_cont_subs<=dim_stab_subs<=dim_stab0
 //par (A,B) U-similar a:
-//    [*,*,*,*;     [*;    
+//    [*,*,*,*;     [*;
 //    [0,s,*,*;     [0;
 //A=  [0,0,i,*;   B=[0;
 //    [0,0,0,u]     [0]
-//     
+//
 // (A11,B1) controlável  s=matriz estável i=matriz neutra u=matriz instável
 [Sl,U]=ssrand(2,3,8,list('st',2,5,5));
 w=ss2ss(Sl,inv(U)); //desfaz a mudança aleatória de base=&gt; forma como acima

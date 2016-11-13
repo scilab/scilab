@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="bode" xml:lang="ja">
+    <refnamediv>
+        <refname>bode</refname>
+        <refpurpose>ボード線図</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>bode(sl,[fmin,fmax] [,step] [,comments] )
+            bode(sl,frq [,comments] )
+            bode(frq,db,phi [,comments])
+            bode(frq, repf [,comments])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para> 連続時間系または離散時間系の
+                        <literal>syslin</literal> リスト (SISO または SIMO 線形システム).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmin,fmax</term>
+                <listitem>
+                    <para>real (周波数範囲 (単位: Hz))</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>step</term>
+                <listitem>
+                    <para>real (対数単位の増分ステップ.)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>comments</term>
+                <listitem>
+                    <para>文字列のベクトル (キャプション).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>行ベクトルまたは行列 (周波数 (単位:Hz) )
+                        (各行が各SISOサブシステムに対応).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>db</term>
+                <listitem>
+                    <para>行ベクトルまたは行列 ( ゲイン (単位:dB)).
+                        (各行が各SISOサブシステムに対応).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>phi</term>
+                <listitem>
+                    <para>行ベクトルまたは行列 ( 位相 (単位:度))
+                        (各行が各SISOサブシステムに対応).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>repf</term>
+                <listitem>
+                    <para>
+                        複素数(複素数を含む周波数応答)の行ベクトルまたは行列.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ボード線図,すなわち,<literal>sl</literal>の周波数応答の
+            ゲインと位相.
+        </para>
+        <para>
+            <literal>sl</literal> は,連続時間系または離散時間系の SIMOシステム
+            (<literal>syslin</literal>参照)とすることができます.
+            多出力系の場合,各出力は異なる記号でプロットされます.
+        </para>
+        <para>
+            周波数は範囲の境界値 <literal>fmin,fmax</literal> (単位: Hz)
+            または行ベクトル (多出力系の場合は行列) <literal>frq</literal>で
+            指定します.
+        </para>
+        <para>
+            <literal>step</literal> は(指数単位の)離散化増分です.
+            (デフォルト値の選定方法については,<literal>calfrq</literal> を参照).
+        </para>
+        <para>
+            <literal>comments</literal> は文字列ベクトル(キャプション)です.
+        </para>
+        <para>
+            <literal>db,phi</literal> はゲイン(単位:dB)及び
+            位相(単位:度)の行列です(各行が各応答に対応します).
+        </para>
+        <para>
+            <literal>repf</literal>は複素数の行列です.
+            各行が各応答に対応します.
+        </para>
+        <para>
+            <literal>fmin</literal> および<literal>fmax</literal> のデフォルト値は,
+            <literal>sl</literal> が連続時間系の場合に
+            <literal>1.d-3</literal>,<literal>1.d+3</literal>,
+            <literal>sl</literal> が離散時間系の場合に<literal>1.d-3</literal>,
+            <literal>0.5</literal>/sl.dt (ナイキスト周波数)
+            となります.
+            周波数の自動離散化は<literal>calfrq</literal>により
+            行われます.
+        </para>
+        <para>
+            位相/ゲイン曲線に沿ったデータを表示するために
+            <member>
+                <link linkend="datatips">データティップ</link>
+            </member>
+            ツールを使用することができます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+clf();bode(h,0.01,100);
+ ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s')
+                h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+                clf();bode(h,0.01,100);
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s')
+h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
+den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
+h2=syslin('c',num/den);
+clf();bode([h1;h2],0.01,100,['h1';'h2'])
+ ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s')
+                h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+                num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
+                den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
+                h2=syslin('c',num/den);
+                clf();bode([h1;h2],0.01,100,['h1';'h2'])
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="black">black</link>
+            </member>
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+            <member>
+                <link linkend="gainplot">gainplot</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="g_margin">g_margin</link>
+            </member>
+            <member>
+                <link linkend="p_margin">p_margin</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+            <member>
+                <link linkend="phasemag">phasemag</link>
+            </member>
+            <member>
+                <link linkend="datatips">datatips</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

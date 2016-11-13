@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="slint" xml:lang="en">
+    <refnamediv>
+        <refname>slint</refname>
+        <refpurpose>Call the lint tool</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            slint(files [, conf, out])
+            slint(files [, out])
+            out = slint(files [, conf], print)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>files</term>
+                <listitem>
+                    <para>a matrix of strings, the .sci files or the directories to analyze.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>conf</term>
+                <listitem>
+                    <para>a scalar string, the name of the configuration file (by default it's SCI/modules/slint/etc/slint.xml).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>out</term>
+                <listitem>
+                    <para>a scalar string, the name of the output file.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>print</term>
+                <listitem>
+                    <para>a scalar boolean, if true the result is printed else the result is a struct.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>out</term>
+                <listitem>
+                    <para>a struct (if print is false).</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            slint has been written to check the &quot;quality&quot; of the Scilab's code according to configurable rules.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+slint("SCI/modules/elementary_functions/macros/atanm.sci");
+	]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="GlobalKeywordChecker">GlobalKeyword</link>
+            </member>
+            <member>
+                <link linkend="RedefinitionChecker">Redefinition</link>
+            </member>
+            <member>
+                <link linkend="VariablesChecker">Variables</link>
+            </member>
+            <member>
+                <link linkend="FunctionNameChecker">FunctionName</link>
+            </member>
+            <member>
+                <link linkend="FunctionArgsChecker">FunctionArgs</link>
+            </member>
+            <member>
+                <link linkend="UselessArgChecker">UselessArg</link>
+            </member>
+            <member>
+                <link linkend="VariableNameChecker">VariableName</link>
+            </member>
+            <member>
+                <link linkend="SingleInstrChecker">SingleInstr</link>
+            </member>
+            <member>
+                <link linkend="EmptyBlockChecker">EmptyBlock</link>
+            </member>
+            <member>
+                <link linkend="MopenMcloseChecker">MopenMclose</link>
+            </member>
+            <member>
+                <link linkend="McCabeChecker">McCabe</link>
+            </member>
+            <member>
+                <link linkend="DecimalChecker">Decimal</link>
+            </member>
+            <member>
+                <link linkend="PrintfChecker">Printf</link>
+            </member>
+            <member>
+                <link linkend="LineLengthChecker">LineLength</link>
+            </member>
+            <member>
+                <link linkend="LinesCountChecker">LinesCount</link>
+            </member>
+            <member>
+                <link linkend="TodoChecker">Todo</link>
+            </member>
+            <member>
+                <link linkend="NaNChecker">NaN</link>
+            </member>
+            <member>
+                <link linkend="EqEqChecker">EqEq</link>
+            </member>
+            <member>
+                <link linkend="UselessOpChecker">UselessOp</link>
+            </member>
+            <member>
+                <link linkend="UnreachableCodeChecker">UnreachableCode</link>
+            </member>
+            <member>
+                <link linkend="DeprecatedChecker">Deprecated</link>
+            </member>
+            <member>
+                <link linkend="SelectChecker">Select</link>
+            </member>
+            <member>
+                <link linkend="ImplicitListChecker">ImplicitList</link>
+            </member>
+            <member>
+                <link linkend="StructChecker">Struct</link>
+            </member>
+            <member>
+                <link linkend="LoadSaveChecker">LoadSave</link>
+            </member>
+            <member>
+                <link linkend="OldNotChecker">OldNot</link>
+            </member>
+            <member>
+                <link linkend="SpacesInArgsChecker">SpacesInArgs</link>
+            </member>
+            <member>
+                <link linkend="BreaksInLoopChecker">BreaksInLoop</link>
+            </member>
+            <member>
+                <link linkend="NestedBlocksChecker">NestedBlocks</link>
+            </member>
+            <member>
+                <link linkend="StatInCondChecker">StatInCond</link>
+            </member>
+            <member>
+                <link linkend="BracketedExpChecker">BracketedExp</link>
+            </member>
+            <member>
+                <link linkend="NotNotChecker">NotNot</link>
+            </member>
+            <member>
+                <link linkend="IllegalCallsChecker">IllegalCalls</link>
+            </member>
+            <member>
+                <link linkend="CommentRatioChecker">CommentRatio</link>
+            </member>
+            <member>
+                <link linkend="FunctionArgsOrderChecker">FunctionArgsOrder</link>
+            </member>
+            <member>
+                <link linkend="FunctionTestReturnChecker">FunctionTestReturn</link>
+            </member>
+            <member>
+                <link linkend="SemicolonAtEOLChecker">SemicolonAtEOL</link>
+            </member>
+            <member>
+                <link linkend="ReturnsCountChecker">ReturnsCount</link>
+            </member>
+            <member>
+                <link linkend="NotEqualChecker">NotEqual</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

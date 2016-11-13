@@ -30,12 +30,12 @@
         <para>
             Les composantes de <literal>t</literal> sont les sinus hyperboliques
             inverses des composantes correspondantes de <literal>x</literal>. Le
-            domaine de définition est ]-1, i[. 
+            domaine de définition est ]-1, i[.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[1,2;2,3]
 sinh(asinh(A))
  ]]></programlisting>

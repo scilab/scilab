@@ -27,18 +27,18 @@ int ext14cI(char *fname)
     GetRhsVar( 1, STRING_DATATYPE, &m1, &n1, &l1);
     GetRhsVar( 2, MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
     GetRhsVar( 3, MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
-    if ( m3*n3 != m2 * n2)
+    if ( m3 * n3 != m2 * n2)
     {
         sciprint("%s :Incompatible dimensions\n", fname);
         SciError(999);
-        return(0);
+        return (0);
     }
     CreateVar( 4, MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l4);
     n = m3 * n3;
     ext14c(&n, stk(l2), stk(l3), stk(l4));
     LhsVar(1) = 4;
     PutLhsVar();
-    return(0);
+    return (0);
 }
 
 
@@ -51,6 +51,6 @@ double *a, *b, *c;
     {
         c[k] = a[k] + b[k];
     }
-    return(0);
+    return (0);
 }
 

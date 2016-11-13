@@ -68,7 +68,7 @@ function scs_m=delete_unconnected(scs_m);
         end
     end
 
-    //suppress rigth-most deleted elements
+    //suppress right-most deleted elements
     while getfield(1,scs_m.objs($))=="Deleted" then
         scs_m.objs($)=null();
         if lstsize(scs_m.objs)==0 then

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="leqr">
+    <refnamediv>
+        <refname>leqr</refname>
+        <refpurpose>H無限大 LQ ゲイン (全状態)  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[K,X,err]=leqr(P12,Vx)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>P12</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Vx</term>
+                <listitem>
+                    <para>対称非負定行列 (十分に小さい必要があります)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K,X</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>err</term>
+                <listitem>
+                    <para>実数 (リカッチ方程式の左辺のl1ノルム)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>leqr</literal>  は,
+            連続または離散時間系のプラント <literal>P12=[A,B2,C1,D12]</literal>に関して
+            線形準最適H無限大LQ全状態ゲインを計算します.
+        </para>
+        <para>
+            <literal>P12</literal> は <literal>syslin</literal> リストです (例: <literal>P12=syslin('c',A,B2,C1,D12)</literal>).
+        </para>
+        <programlisting role=""><![CDATA[
+[C1' ]               [Q  S]
+[    ]  * [C1 D12] = [    ]
+[D12']               [S' R]
+ ]]></programlisting>
+        <para>
+            <literal>Vx</literal> は,
+            <literal>x</literal>の外乱の
+            ノイズ <literal>w</literal> の共分散行列に関連します
+            (通常, <literal>Vx=gama^-2*B1*B1'</literal>).
+        </para>
+        <para>
+            ゲイン <literal>K</literal> は, <literal>A + B2*K</literal> が安定となるように設定されます.
+        </para>
+        <para>
+            <literal>X</literal> はリカッチ方程式の安定解です.
+        </para>
+        <para>
+            連続プラントの場合:
+        </para>
+        <programlisting role=""><![CDATA[
+(A-B2*inv(R)*S')'*X+X*(A-B2*inv(R)*S')-X*(B2*inv(R)*B2'-Vx)*X+Q-S*inv(R)*S'=0
+ ]]></programlisting>
+        <programlisting role=""><![CDATA[
+K=-inv(R)*(B2'*X+S)
+ ]]></programlisting>
+        <para>
+            離散時間プラントの場合:
+        </para>
+        <programlisting role=""><![CDATA[
+X-(Abar'*inv((inv(X)+B2*inv(R)*B2'-Vx))*Abar+Qbar=0
+ ]]></programlisting>
+        <programlisting role=""><![CDATA[
+K=-inv(R)*(B2'*inv(inv(X)+B2*inv(R)*B2'-Vx)*Abar+S')
+ ]]></programlisting>
+        <para>
+            ただし, <literal>Abar=A-B2*inv(R)*S'</literal> および <literal>Qbar=Q-S*inv(R)*S'</literal>
+        </para>
+        <para>
+            これらのリカッチ方程式に関連する3ブロック行列ペンシルは次のように
+            なります:
+        </para>
+        <programlisting role=""><![CDATA[
+             離散系                        連続系
+ |I  -Vx  0|   | A    0    B2|       |I   0   0|   | A    Vx    B2|
+z|0   A'  0| - |-Q    I    -S|      s|0   I   0| - |-Q   -A'   -S |
+ |0   B2' 0|   | S'   0     R|       |0   0   0|   | S'   -B2'   R|
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lqr">lqr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

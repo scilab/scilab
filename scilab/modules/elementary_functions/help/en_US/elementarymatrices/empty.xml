@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="empty">
+    <refnamediv>
+        <refname>empty</refname>
+        <refpurpose>([]) empty matrix</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal> [] </literal> denotes the empty matrix. It is uniquely defined
+            and has 0 row and 0 column, i.e. <literal> size([]) =[0,0] </literal>.
+            The following convenient conventions are made:
+        </para>
+        <para>
+            <literal> [] * A = A * [] = [] </literal>
+        </para>
+        <para>
+            <literal> [] + A = A + [] = []</literal>
+        </para>
+        <para>
+            <literal>[ [], A] = [A, []] = A </literal>
+            <literal> inv([]) =[] </literal>
+        </para>
+        <para>
+            <literal> det([])=cond([])=rcond([])=1, rank([])=0</literal>
+        </para>
+        <para>
+            Matrix functions return <literal>[]</literal> or an error message
+            when there is no obvious answer. Empty linear systems
+            (<literal> syslin</literal> lists) may have several rows or columns.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+A = [s, s+1];
+A+[], A*[]
+A=rand(2,2);
+AA=A([],1), size(AA)
+svd([])
+w=ssrand(2,2,2);
+wr=[]*w;
+size(wr), w1=ss2tf(wr), size(w1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="matrices">matrices</link>
+            </member>
+            <member>
+                <link linkend="poly">poly</link>
+            </member>
+            <member>
+                <link linkend="string">string</link>
+            </member>
+            <member>
+                <link linkend="boolean">boolean</link>
+            </member>
+            <member>
+                <link linkend="rational">rational</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    Modified the behaviour of <literal>A+ []</literal> to be the empty matrix <literal>[]</literal> instead of <literal>A</literal>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

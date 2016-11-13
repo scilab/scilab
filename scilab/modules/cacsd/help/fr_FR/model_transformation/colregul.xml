@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="colregul">
+    <refnamediv>
+        <refname>colregul</refname>
+        <refpurpose>removing poles and zeros at infinity</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[Stmp,Ws]=colregul(Sl,alfa,beta)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl,Stmp</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> lists
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alfa,beta</term>
+                <listitem>
+                    <para>reals (new pole and zero positions)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            computes a prefilter <literal>Ws</literal> such that <literal>Stmp=Sl*Ws</literal> is proper and
+            with full rank <literal>D</literal> matrix.
+        </para>
+        <para>
+            Poles at infinity of <literal>Sl</literal> are moved to <literal>alfa</literal>;
+        </para>
+        <para>
+            Zeros at infinity of <literal>Sl</literal> are moved to <literal>beta</literal>;
+        </para>
+        <para>
+            <literal>Sl</literal> is assumed to be a left invertible linear system (<literal>syslin</literal> list)
+            in state-space representation with possibly a polynomial <literal>D</literal> matrix.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="invsyslin">invsyslin</link>
+            </member>
+            <member>
+                <link linkend="inv">inv</link>
+            </member>
+            <member>
+                <link linkend="rowregul">rowregul</link>
+            </member>
+            <member>
+                <link linkend="rowshuff">rowshuff</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

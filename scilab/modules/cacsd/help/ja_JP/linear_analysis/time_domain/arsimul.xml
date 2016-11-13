@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - JPC
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="arsimul">
+    <refnamediv>
+        <refname>arsimul</refname>
+        <refpurpose>armaxシミュレーション</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[z]=arsimul(a,b,d,sig,u,[up,yp,ep])
+            [z]=arsimul(ar,u,[up,yp,ep])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>ar</term>
+                <listitem>
+                    <para>armaxプロセス. armac参照.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>
+                        (n,(r+1)*n)次の行列  <literal>[Id,a1,...,a_r]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>
+                        (n,(s+1)*m)次の行列 <literal>[b0,......,b_s]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>
+                        (n,(t+1)*n)次の行列<literal>[Id,d_1,......,d_t]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    <para>行列(m,N), エントリu(:,j)=u_jを指定</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sig</term>
+                <listitem>
+                    <para>(n,n)行列  e_{k} で分散Iのn次ガウス過程</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>up, yp</term>
+                <listitem>
+                    <para>
+                        前の値を記述するオプションのパラメータ.  <literal>up=[ u_0,u_{-1},...,u_{s-1}]</literal>;
+                        <literal>yp=[ y_0,y_{-1},...,y_{r-1}];</literal>   <literal>ep=[ e_0,e_{-1},...,e_{r-1}]</literal>;
+                        省略された場合, 前の値はゼロであると仮定されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>
+                        <literal>z=[y(1),....,y(N)]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            以下のn次元 armax プロセスのシミュレーションを行います,
+            <literal>A(z^-1) z(k)= B(z^-1)u(k) + D(z^-1)*sig*e(k)</literal>
+        </para>
+        <programlisting role=""><![CDATA[
+A(z)= Id+a1*z+...+a_r*z^r;  ( r=0  => A(z)=Id)
+B(z)= b0+b1*z+...+b_s z^s;  ( s=-1 => B(z)=[])
+D(z)= Id+d1*z+...+d_t z^t;  ( t=0  => D(z)=Id)
+ ]]></programlisting>
+        <para>
+            ただし,
+            z と e は <literal>R^n</literal>,  u は <literal>R^m</literal>です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>手法</title>
+        <para>
+            状態空間表現が構築され,
+            odeにオプション "discrete"を指定することにより,
+            zを計算することができます.
+        </para>
+    </refsection>
+</refentry>

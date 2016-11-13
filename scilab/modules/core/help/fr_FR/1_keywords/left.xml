@@ -42,13 +42,13 @@
             Note : pour éviter les confusions il est plus sûr d'utiliser des virgules pour concaténer des colonnes.
         </para>
         <para>
-            Pour des crochets entourant une liste d'arguments de sortie d'une fonction, 
+            Pour des crochets entourant une liste d'arguments de sortie d'une fonction,
             les noms de variables doivent être séparés par des virgules.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [6.9,9.64; sqrt(-1) 0]
 [1 +%i  2 -%i  3]
 []

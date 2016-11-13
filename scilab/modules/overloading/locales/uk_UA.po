@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-10 09:23+0000\n"
+"PO-Revision-Date: 2016-06-10 06:15+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "Language: uk\n"
 
 #, c-format
@@ -54,7 +54,8 @@ msgstr ""
 "або скаляр.\n"
 
 #, c-format
-msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid ""
+"%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr "%s: прив’язку рядка у числовій матриці не реалізовано.\n"
 
 #, c-format
@@ -76,7 +77,8 @@ msgid "%s: Invalid field name.\n"
 msgstr "%s: некоректна назва поля.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано коректну "
 "назву поля.\n"
@@ -90,7 +92,8 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s: помилкова кількість вихідних параметрів.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: транспонування не може "
 "бути визначено.\n"
@@ -220,7 +223,8 @@ msgstr ""
 "кількості елементів"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
 "«%s» або «%s».\n"
@@ -247,6 +251,14 @@ msgstr ""
 "дійсними елементами.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: integer <= ndims(argument #%d) "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути ціле число, що не "
+"перевищує ndims(параметра №%d).\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано цілі числа.\n"
@@ -263,7 +275,8 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
-msgstr "%s: вставлення розрідженої матриці до числової матриці не визначено.\n"
+msgstr ""
+"%s: вставлення розрідженої матриці до числової матриці не визначено.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
@@ -278,6 +291,15 @@ msgstr "%s: помилкова розмірність вхідних парам�
 #, c-format
 msgid "%s: Wrong size for input argument(s).\n"
 msgstr "%s: помилкова розмірність вхідних параметрів.\n"
+
+msgid "Invalid exponent: expected real exponents."
+msgstr "Некоректний степінь: степінь має бути дійсним."
+
+msgid "Division by zero"
+msgstr "Ділення на нуль"
+
+msgid "Invalid Exponent"
+msgstr "Некоректний степінь"
 
 #, c-format
 msgid ""
@@ -301,6 +323,11 @@ msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr "%s: випадок вставлення розрідженої матриці не реалізовано.\n"
 
 #, c-format
+msgid "%s: Concatenated arrays must have the same number of dimensions.\n"
+msgstr ""
+"%s: масиви, що з’єднуються повинні мати однакову кількість розмірностей.\n"
+
+#, c-format
 msgid "%s: Field names mismatch.\n"
 msgstr "%s: невідоповідність назв полів.\n"
 
@@ -320,7 +347,8 @@ msgstr ""
 "%s: помилковий тип параметра %d: мало бути вказано дійсне числове значення.\n"
 
 #, c-format
-msgid "%s: input and output matrices  must have the same number of elements.\n"
+msgid ""
+"%s: input and output matrices  must have the same number of elements.\n"
 msgstr ""
 "%s: у матрицях вхідних і вихідних даних має бути однакова кількість "
 "елементів.\n"
@@ -353,4 +381,5 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"

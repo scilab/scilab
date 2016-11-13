@@ -43,8 +43,8 @@
                 <term>opts</term>
                 <listitem>
                     <para>
-		      文字列のベクトル:
-		      <literal>[compiler, architecture,[tk, modelicac, ] release_mode, release_date, release_time]</literal>
+                        文字列のベクトル:
+                        <literal>[compiler, architecture,[tk, modelicac, ] release_mode, release_date, release_time]</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -53,27 +53,27 @@
     <refsection>
         <title>説明</title>
         <para>
-	  <literal>[version, opts] = getversion()</literal>は
-          Scilab バージョン名を<literal>version</literal>,
-          構築オプションを <literal>opts</literal>に返します.
-          この構築オプションは,
-          Scilabが tk または modelica を組み込んで構築されたかどうかを
-          定義するために使用され, リリース日や時間も含まれます.
+            <literal>[version, opts] = getversion()</literal>は
+            Scilab バージョン名を<literal>version</literal>,
+            構築オプションを <literal>opts</literal>に返します.
+            この構築オプションは,
+            Scilabが tk または modelica を組み込んで構築されたかどうかを
+            定義するために使用され, リリース日や時間も含まれます.
         </para>
         <para> [tk, modelicac, atlas,] はオプションです. </para>
-        <para> compiler: 
-	  はscilab構築に使用されたコンパイラ ('GCC', 'VC++', 'PGI', 'ICC', 'SUN', 'UKN' unknown)
-	  を返します
-	</para>
+        <para> compiler:
+            はscilab構築に使用されたコンパイラ ('GCC', 'VC++', 'PGI', 'ICC', 'SUN', 'UKN' unknown)
+            を返します
+        </para>
         <para> architecture: 'x86' または 'x64'.</para>
         <para> tk: tcl/tk が有効な場合は 'tk'.</para>
-        <para> modelicac: 
-	  modelica コンパイラが scilab/xcosに同梱されている場合は 'modelicac'.
-	</para>
+        <para> modelicac:
+            modelica コンパイラが scilab/xcosに同梱されている場合は 'modelicac'.
+        </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 getversion()
 
 [version, opts] = getversion()

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="buttmag">
+    <refnamediv>
+        <refname>buttmag</refname>
+        <refpurpose>Power transmission of a Butterworth filter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[h]=buttmag(order,omegac,sample)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>order</term>
+                <listitem>
+                    <para>integer : filter order</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>omegac</term>
+                <listitem>
+                    <para>real : cut-off angular frequency (in rad/s)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sample</term>
+                <listitem>
+                    <para>real vector of angular frequencies (in rad/s), where the transmission must be evaluated.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>Butterworth filter values at sample points</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            squared magnitude response of a Butterworth filter
+            <literal>omegac</literal> = cutoff frequency ; <literal>sample</literal> = sample of frequencies
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//squared magnitude response of Butterworth filter
+h=buttmag(13,300,1:1000);
+mag=20*log(h)'/log(10);
+plot2d((1:1000)',mag,[2],"011"," ",[0,-180,1000,20])
+ ]]></programlisting>
+        <scilab:image><![CDATA[
+h=buttmag(13,300,1:1000);
+mag=20*log(h)'/log(10);
+plot2d((1:1000)',mag,[2],"011"," ",[0,-180,1000,20])
+]]>     </scilab:image>
+    </refsection>
+</refentry>

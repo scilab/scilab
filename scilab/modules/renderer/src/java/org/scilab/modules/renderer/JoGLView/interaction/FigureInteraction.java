@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction;
@@ -18,6 +21,7 @@ import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  * @author Pierre Lando
@@ -25,7 +29,7 @@ import java.awt.Point;
 public abstract class FigureInteraction {
 
     /** parent figure drawer */
-    private DrawerVisitor drawerVisitor;
+    protected DrawerVisitor drawerVisitor;
 
     /** Enable status */
     private boolean isEnable;
@@ -70,6 +74,55 @@ public abstract class FigureInteraction {
             }
         }
         return underlyingAxes;
+    }
+
+    protected Axes[] getAllUnderlyingAxes(Point point) {
+        ArrayList<Axes> underlyingAxes = new ArrayList<Axes>();
+        Dimension size = drawerVisitor.getCanvas().getDimension();
+        double x = point.getX() / size.getWidth();
+        double y = point.getY() / size.getHeight();
+        for (Integer childId : drawerVisitor.getFigure().getChildren()) {
+            GraphicObject child = GraphicController.getController().getObjectFromId(childId);
+            if (child instanceof Axes) {
+                if (child.getVisible()) {
+                    Double[] axesBounds = ((Axes) child).getAxesBounds();  // x y w h
+                    if ((x >= axesBounds[0]) && (x <= axesBounds[0] + axesBounds[2]) && (y >= axesBounds[1]) && (y <= axesBounds[1] + axesBounds[3])) {
+                        underlyingAxes.add((Axes) child);
+                    }
+                }
+            }
+        }
+        Axes [] ret;
+        if (underlyingAxes.size() > 0) {
+            ret = new Axes[underlyingAxes.size()];
+            ret = underlyingAxes.toArray(ret);
+        } else {
+            ret = new Axes[0];
+        }
+        return ret;
+    }
+
+    protected Axes[] getAllVisibleAxes(Point point) {
+        ArrayList<Axes> underlyingAxes = new ArrayList<Axes>();
+        Dimension size = drawerVisitor.getCanvas().getDimension();
+        double x = point.getX() / size.getWidth();
+        double y = point.getY() / size.getHeight();
+        for (Integer childId : drawerVisitor.getFigure().getChildren()) {
+            GraphicObject child = GraphicController.getController().getObjectFromId(childId);
+            if (child instanceof Axes) {
+                if (child.getVisible()) {
+                    underlyingAxes.add((Axes) child);
+                }
+            }
+        }
+        Axes [] ret;
+        if (underlyingAxes.size() > 0) {
+            ret = new Axes[underlyingAxes.size()];
+            ret = underlyingAxes.toArray(ret);
+        } else {
+            ret = new Axes[0];
+        }
+        return ret;
     }
 
     /**

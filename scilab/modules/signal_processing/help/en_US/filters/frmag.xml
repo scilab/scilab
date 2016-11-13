@@ -5,7 +5,7 @@
         <refpurpose>magnitude of FIR and IIR filters</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [xm,fr]=frmag(sys,npts)
             [xm,fr]=frmag(num,den,npts)
@@ -77,7 +77,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 hz=iir(3,'bp','cheb1',[.15 .25],[.08 .03]);
 [hzm,fr]=frmag(hz,256);
 plot(fr,hzm)
@@ -95,7 +95,7 @@ plot(fr,hzm,'r')
 ]]>     </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="iir">iir</link>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="projsl">
+    <refnamediv>
+        <refname>projsl</refname>
+        <refpurpose>線形システム射影</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[slp]=projsl(sl,Q,M)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl,slp</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Q,M</term>
+                <listitem>
+                    <para>行列 (射影分解)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>slp</literal>= <literal>sl</literal>の射影モデル,
+            ただし,<literal>Q*M</literal>は射影のフルランク分解です.
+        </para>
+        <para>
+            <literal>(A,B,C,D)</literal> が<literal>sl</literal>の実現の場合,
+            射影モデルは<literal>(M*A*Q,M*B,C*Q,D)</literal>により与えられます.
+        </para>
+        <para>
+            通常,射影 <literal>Q*M</literal> は適当な相補行列<literal>W</literal>
+            のスペクトル射影により得られます.
+            例えば,
+            <literal>W</literal> = (重みつき)グラミアンの積またはリカッチ方程式の積.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+rand('seed',0);sl=ssrand(2,2,5);[A,B,C,D]=abcd(sl);poles=spec(A)
+[Q,M]=pbig(A,0,'c');  //keeping unstable poles
+slred=projsl(sl,Q,M);spec(slred('A'))
+sl('D')=rand(2,2);  //making proper system
+trzeros(sl)  //zeros of sl
+wi=inv(sl);  //wi=inverse in state-space
+[q,m]=psmall(wi('A'),2,'d');  //keeping small zeros (poles of wi) i.e. abs(z)<2
+slred2=projsl(sl,q,m);
+trzeros(slred2)  //zeros of slred2 = small zeros of sl
+//  Example keeping second order modes
+A=diag([-1,-2,-3]);
+sl=syslin('c',A,rand(3,2),rand(2,3));[nk2,W]=hankelsv(sl)
+[Q,M]=pbig(W,nk2(2)-%eps,'c');    //keeping 2 eigenvalues of W
+slr=projsl(sl,Q,M);  //reduced model
+hankelsv(slr)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pbig">pbig</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

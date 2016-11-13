@@ -1,12 +1,15 @@
 dnl
 dnl Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 dnl Copyright (C) INRIA - 2008 - Sylvestre Ledru
-dnl 
-dnl This file must be used under the terms of the CeCILL.
-dnl This source file is licensed as described in the file COPYING, which
-dnl you should have received as part of this distribution.  The terms
-dnl are also available at    
-dnl http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+dnl
+dnl Copyright (C) 2012 - 2016 - Scilab Enterprises
+dnl
+dnl This file is hereby licensed under the terms of the GNU GPL v2.0,
+dnl pursuant to article 5.3.4 of the CeCILL v.2.1.
+dnl This file was originally licensed under the terms of the CeCILL v2.1,
+dnl and continues to be available under such terms.
+dnl For more information, see the COPYING file which you should have received
+dnl along with this program.
 dnl
 dnl UMFPACK detection
 dnl ------------------------------------------------------
@@ -67,7 +70,7 @@ if test "x$with_umfpack_library" != "xyes"; then
 	AC_MSG_CHECKING([for umfpack_di_solve in $with_umfpack_library])
 	save_LIBS="$LIBS"
 	LIBS="$BLAS_LIBS -L$with_umfpack_library -lm $LIBS"
-	# We need -lm because sometime (ubuntu 7.10 for example) does not link libamd against lib math
+	# We need -lm because sometimes (ubuntu 7.10 for example) does not link libamd against lib math
 
 	AC_CHECK_LIB([umfpack], [umfpack_di_solve],
 			[UMFPACK_LIB="-L$with_umfpack_library -lumfpack $UMFPACK_LIB"; UMFPACK_OK=yes],
@@ -86,7 +89,7 @@ if test $UMFPACK_OK = no; then
     else
         save_LIBS="$LIBS"
         LIBS="$BLAS_LIBS $LIBS -lm" # libamd* is mandatory to link umfpack
-        # We need -lm because sometime (ubuntu 7.10 for example) does not link libamd against lib math
+        # We need -lm because sometimes (ubuntu 7.10 for example) does not link libamd against lib math
 
         AC_CHECK_LIB([amd], [amd_info],
             [UMFPACK_LIB="-lamd"],

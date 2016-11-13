@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="frfit">
+
+    <refnamediv>
+
+        <refname>frfit</refname>
+
+        <refpurpose>周波数応答フィッティング</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>sys=frfit(w,fresp,order)
+
+            [num,den]=frfit(w,fresp,order)
+
+            sys=frfit(w,fresp,order,weight)
+
+            [num,den]=frfit(w,fresp,order,weight)
+
+        </synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>w</term>
+
+                <listitem>
+
+                    <para>周波数 (Hz)のベクトル(正の実数)</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>fresp</term>
+
+                <listitem>
+
+                    <para>
+
+                        周波数応答の複素ベクトル (<literal>w</literal>と同じ大きさ)
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>order</term>
+
+                <listitem>
+
+                    <para>
+
+                        整数 (指定する次数, <literal>den</literal>の次数)
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>weight</term>
+
+                <listitem>
+
+                    <para>
+
+                        正の実数ベクトル (デフォルト値: <literal>ones(w)</literal>).
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>num,den</term>
+
+                <listitem>
+
+                    <para>安定な多項式</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            <literal>sys=frfit(w,fresp,order,weight)</literal> は,
+
+            周波数応答<literal>G(w(i))</literal>が<literal>fresp(i)</literal>に一致する,
+
+            すなわち,<literal>freq(num,den,%i*w)</literal>が<literal>fresp</literal>に
+
+            近くなるような,指定した次数<literal>order</literal>の
+
+            双安定の伝達関数 <literal>G(s)=sys=num/den</literal>を返します.
+
+            <literal>weight(i)</literal>は<literal>w(i)</literal>に関する重みです.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+w=0.01:0.01:2;s=poly(0,'s');
+G=syslin('c',2*(s^2+0.1*s+2), (s^2+s+1)*(s^2+0.3*s+1));
+fresp=repfreq(G,w);
+Gid=frfit(w,fresp,4);
+frespfit=repfreq(Gid,w);
+bode(w,[fresp;frespfit])
+ ]]></programlisting>
+
+        <scilab:image>
+
+            w=0.01:0.01:2;
+
+            s=poly(0,'s');
+
+            G=syslin('c',2*(s.^2+0.1*s+2), (s.^2+s+1)*(s.^2+0.3*s+1));
+
+            fresp=repfreq(G,w);
+
+            Gid=frfit(w,fresp,4);
+
+            frespfit=repfreq(Gid,w);
+
+            bode(w,[fresp;frespfit])
+
+        </scilab:image>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="frep2tf">frep2tf</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="factors">factors</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="cepstrum">cepstrum</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="mrfit">mrfit</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="freq">freq</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="calfrq">calfrq</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="impl" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>differential algebraic equation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=impl([type],y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -81,14 +84,14 @@
             time derivative of <literal>y</literal> at <literal>t0</literal> must also
             be given. The input <literal>res</literal> is an <link linkend="external">external</link> i.e. a
             function with specified syntax, or the name a Fortran subroutine or a C
-            function (character string) with specified calling sequence or a
+            function (character string) with specified syntax or a
             list.
         </para>
         <para>
             If <literal>res</literal> is a function, its syntax must be as
             follows:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 r = res(t,y,ydot)
  ]]></programlisting>
         <para>
@@ -113,7 +116,7 @@ r = res(t,y,ydot)
             If <literal>adda</literal> is a function, its syntax must be as
             follows:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 r = adda(t,y,p)
  ]]></programlisting>
         <para>
@@ -137,7 +140,7 @@ r = adda(t,y,p)
             If <literal>jac</literal> is a function, its syntax must be as
             follows:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[  
+        <programlisting role="no-scilab-exec"><![CDATA[
 j = jac(t,y,ydot)
  ]]></programlisting>
         <para>and it must return the Jacobian of
@@ -156,17 +159,17 @@ j = jac(t,y,ydot)
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
-// Using hot restart 
+// Using hot restart
 //[x1,w,iw]=impl([1;0;0],[-0.04;0.04;0],0,0.2,'resid','aplusp');
-// hot start from previous call 
+// hot start from previous call
 //[x1]=impl([1;0;0],[-0.04;0.04;0],0.2,0.4,'resid','aplusp',w,iw);
 //max(abs(x1-x))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="dassl">dassl</link>

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -333,15 +336,21 @@ error_handler:
 static void appendData(scicos_block * block, double *x, double *y)
 {
     int i;
+    int setLen;
+    int maxNumberOfPoints, numberOfPoints;
 
     sco_data *sco = (sco_data *) * (block->work);
-    int maxNumberOfPoints = sco->internal.maxNumberOfPoints;
-    int numberOfPoints = sco->internal.numberOfPoints;
+    if (sco == NULL)
+    {
+        return;
+    }
+    maxNumberOfPoints = sco->internal.maxNumberOfPoints;
+    numberOfPoints = sco->internal.numberOfPoints;
 
     /*
      * Handle the case where the scope has more points than maxNumberOfPoints
      */
-    if (sco != NULL && numberOfPoints >= maxNumberOfPoints)
+    if (numberOfPoints >= maxNumberOfPoints)
     {
         // on a full scope, re-alloc
         maxNumberOfPoints = maxNumberOfPoints + block->ipar[2];
@@ -351,25 +360,20 @@ static void appendData(scicos_block * block, double *x, double *y)
     /*
      * Update data
      */
-    if (sco != NULL)
+    for (i = 0; i < block->insz[0]; i++)
     {
-        int setLen;
-
-        for (i = 0; i < block->insz[0]; i++)
+        for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
         {
-            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
-            {
-                sco->internal.coordinates[i][numberOfPoints + setLen] = x[i];
-            }
-
-            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
-            {
-                sco->internal.coordinates[i][maxNumberOfPoints + numberOfPoints + setLen] = y[i];
-            }
+            sco->internal.coordinates[i][numberOfPoints + setLen] = x[i];
         }
 
-        sco->internal.numberOfPoints++;
+        for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
+        {
+            sco->internal.coordinates[i][maxNumberOfPoints + numberOfPoints + setLen] = y[i];
+        }
     }
+
+    sco->internal.numberOfPoints++;
 }
 
 static BOOL pushData(scicos_block * block, int row)

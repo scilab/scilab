@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="scicos_sim">
+    <refnamediv>
+        <refname>scicos_sim</refname>
+        <refpurpose>sim構造体の定義</refpurpose>
+    </refnamediv>
+    <refsection id="Module_scicos_sim">
+        <title>モジュール</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="sim_scicos_sim">
+        <title>sim</title>
+        <para>
+            scs型のScilab型指定リスト(tlist).
+            コンパイル結果に基づく静的配列を保持します.
+            この配列はシミュレーション中に変更されません.
+        </para>
+        <para>
+        </para>
+        <para>
+        </para>
+        <para>
+            大きさ : 33.
+        </para>
+        <para>
+            型 : scilab tlist.
+        </para>
+        <para>
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">funs</emphasis>
+                </para>
+                <para>
+                    計算用関数またはscilab関数の名前を保持するリスト.
+                </para>
+                <para>
+                    大きさ : ブロック数.
+                </para>
+                <para>
+                    型 : 文字列またはscilab関数のリスト.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">xptr</emphasis>
+                </para>
+                <para>
+                    連続時間状態量レジスタxへのベクトルポインタ.
+                    ブロックiの連続時間状態量は,
+                    state.x(sim.xptr(i):sim.xptr(i+1)-1) です.
+                </para>
+                <para>
+                    大きさ : ブロック数 + 1.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zptr</emphasis>
+                </para>
+                <para>
+                    離散時間状態量レジスタzへのベクトルポインタ.
+                    ブロックiの離散時間状態量は,
+                    state.z(sim.zptr(i):sim.zptr(i+1)-1) です.
+                </para>
+                <para>
+                    大きさ : ブロック数 + 1.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">ozptr</emphasis>
+                </para>
+                <para>
+                    オブジェクト離散状態量レジスタozへのベクトルポインタ.
+                    ブロックiのオブジェクト離散状態量は,
+                    state.oz(sim.ozptr(i):sim.ozptr(i+1)-1) です.
+                </para>
+                <para>
+                    大きさ : ブロック数 + 1.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zcptr</emphasis>
+                </para>
+                <para> ゼロ交差面へのベクトルポインタ.</para>
+                <para> レジスタ. このベクトルは,ブロック毎のゼロ交差の使用数を指定します.
+                </para>
+                <para>
+                    大きさ : ブロック数 + 1.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">inpptr</emphasis>
+                </para>
+                <para> (sim.inpptr(i+1)-sim.inpptr(i))
+                    は,i番目のブロックの標準入力ポートの数を指定します.
+                </para>
+                <para>
+                    inpptr(i) は,間接参照テーブルinplnkの中の
+                    i番目のブロックの入力の先頭を指します.
+                </para>
+                <para>
+                    大きさ : ブロック数 + 1.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">outptr</emphasis>
+                </para>
+                <para> (sim.outptr(i+1)-sim.outptr(i)) は,
+                    i番目のブロックの標準出力ポートの数を指定します.
+                </para>
+                <para> outptr(i) は,
+                    間接参照テーブルoutlnkの中の
+                    i番目のブロックの出力の先頭を指します.
+                </para>
+                <para>
+                    大きさ : ブロック数 + 1.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">inplnk</emphasis>
+                </para>
+                <para> (cpr.sim.inplnk(cpr.sim.inpptr(i)-1+j)) は,
+                    i番目のブロックのj番目の入力ポートに接続された
+                    リンクの添字です.
+                    ただし,jは1から(cpr.sim.inpptr(i+1)-cpr.sim.inpptr(i))の範囲です.
+                </para>
+                <para>
+                    大きさ : 標準入力ポートの総数.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">outlnk</emphasis>
+                </para>
+                <para> (cpr.sim.outlnk(cpr.sim.outptr(i)-1+j)) は,
+                    i番目のブロックのj番目の出力ポートに接続された
+                    リンクの添字です.
+                    ただし,jは1から(cpr.sim.outptr(i+1)-cpr.sim.outptr(i)) の範囲です.
+                </para>
+                <para>
+                    大きさ : 標準出力ポートの総数.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">rpar</emphasis>
+                </para>
+                <para>
+                    全ブロックの実数パラメータレジスタの結合により得られた
+                    実数パラメータのベクトル
+                </para>
+                <para>
+                    大きさ : 実数パラメータの総数.
+                </para>
+                <para>
+                    型 : 実数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">rpptr</emphasis>
+                </para>
+                <para>
+                    実数パラメータレジスタrparへのベクトルポインタ.
+                    ブロックiの実数パラメータは,
+                    sim.rpar(sim.rpptr(i):sim.rpptr(i+1)-1) です.
+                </para>
+                <para>
+                    大きさ : ブロック数 + 1.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">ipar</emphasis>
+                </para>
+                <para>
+                    全てのブロックの整数パラメータレジスタの結合により得られた
+                    整数パラメータのベクトル.
+                </para>
+                <para>
+                    大きさ : 整数パラメータの総数.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">ipptr</emphasis>
+                </para>
+                <para>
+                    整数パラメータレジスタiparを指すベクトルポインタ.
+                    ブロックiの整数パラメータは,
+                    sim.ipar(sim.ipptr(i):sim.ipptr(i+1)-1)です.
+                </para>
+                <para>
+                    大きさ : ブロック数 + 1.
+                </para>
+                <para>
+                    型 : 実数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">opar</emphasis>
+                </para>
+                <para>
+                    全てのブロックのオブジェクトパラメータのリストの結合により得られた
+                    オブジェクトパラメータのリスト.
+                </para>
+                <para>
+                    大きさ : オブジェクトパラメータの総数.
+                </para>
+                <para>
+                    型 : scilabオブジェクトのリスト.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">opptr</emphasis>
+                </para>
+                <para>
+                    オブジェクトパラメータのリストoparを指すベクトルポインタ.
+                    ブロックiのオブジェクトパラメータは,
+                    sim.opar(sim.opptr(i):sim.opptr(i+1)-1) です.
+                </para>
+                <para>
+                    大きさ : ブロック数 + 1.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">clkptr</emphasis>
+                </para>
+                <para>
+                    出力アクティベーションポートを指すベクトルポインタ.
+                </para>
+                <para> (cpr.sim.clkptr(i):cpr.sim.clkptr(i+1)-1) は
+                    ブロックiの出力イベントポートの数を指定します.
+                </para>
+                <para>
+                    大きさ : ブロック数 + 1.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">ordptr</emphasis>
+                </para>
+                <para>
+                    指定したアクティベーションに対応するordclkの場所を指定する
+                    ordclkへのベクトルポインタ.
+                </para>
+                <para> (cpr.sim.ordptr(i):cpr.sim.ordptr(i+1)-1) は,
+                    番号iの出力イベントポートによりアクティブとなるブロックの数を示す
+                    ordclk内の範囲を指します.
+                </para>
+                <para>
+                    大きさ : アクティベーションのソースの数 + 1.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">execlk</emphasis>
+                </para>
+                <para> 不使用.</para>
+                <para>
+                    大きさ : -
+                    型 : 実数の行列.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">ordclk</emphasis>
+                </para>
+                <para>
+                    出力アクティベーションポートによりアクティブ化されたブロックに関連付けられた
+                    行列. 最初の列はブロック番号,2列目はブロックがコールされた際のイベントコードを有します.
+                </para>
+                <para>
+                    大きさ : アクティベーションのソースを合計したブロックの総数.
+                </para>
+                <para>
+                    型 : 整数行列.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">cord</emphasis>
+                </para>
+                <para> 常にアクティブなブロックに関連付けられた行列.</para>
+                <para>
+                    最初の列はブロック番号,2列目はブロックがコールされた際のイベントコードを有します.
+                </para>
+                <para>
+                    大きさ : ncord.
+                </para>
+                <para>
+                    型 : 整数行列.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">oord</emphasis>
+                </para>
+                <para> cordのサブセット.
+                    連続系状態量の微係数の計算に作用する出力を有する行列のブロック.
+                </para>
+                <para>
+                    大きさ : noord.
+                </para>
+                <para>
+                    型 : 整数行列.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zord</emphasis>
+                </para>
+                <para> zordのサブセット.
+                    ゼロ交差面の計算に作用する出力を有する行列のブロック.
+                </para>
+                <para>
+                    大きさ : nzord.
+                </para>
+                <para>
+                    型 : 整数行列.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">critev</emphasis>
+                </para>
+                <para>
+                    アクティベーションの数と同じ大きさのベクトルで,その値は0または1です.
+                    値1は,
+                    連続時間ソルバーをコールドスタートする必要があるという意味で,
+                    アクティベーションがクリティカルであることを示します.
+                </para>
+                <para>
+                    大きさ : アクティベーションのソースの数.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">nb</emphasis>
+                </para>
+                <para>
+                    ブロックの数.
+                    このブロック数は,
+                    c_pass2がいくつかの条件ブロックで二重化される可能性があるため,
+                    ダイアグラムの元のブロック数と異なる可能性があることに注意してください.
+                </para>
+                <para>
+                    大きさ : 1.
+                </para>
+                <para>
+                    型 : 整数.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">ztyp</emphasis>
+                </para>
+                <para> ブロック数と同じ大きさのベクトル.</para>
+                <para>
+                    エントリ1は,
+                    ダイアグラムのコンテキストに現れないとしても,
+                    このブロックがゼロ交差する可能性があることを示します.
+                    通常,シミュレータでは使用されません.
+                </para>
+                <para>
+                    大きさ : ブロック数.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">nblk</emphasis>
+                </para>
+                <para> 非使用. nbに設定.</para>
+                <para>
+                    大きさ : 1
+                    型 : 整数.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">ndcblk</emphasis>
+                </para>
+                <para> 非使用.</para>
+                <para>
+                    大きさ : -
+                    型 : 整数.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">subscr</emphasis>
+                </para>
+                <para> 非使用.</para>
+                <para>
+                    大きさ : 0
+                    型 : empty real.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">funtyp</emphasis>
+                </para>
+                <para>
+                    ブロックの計算用関数の型を示すブロックの数と同じ大きさのベクトル.
+                    ブロック型は 0 から 5の範囲です.
+                </para>
+                <para>
+                    現在では,4型 (C言語) および5型(Scilab言語)の計算用関数のみを使用することが
+                    規定されています.しかし,古いブロックも使用できます.
+                </para>
+                <para>
+                    大きさ : ブロック数.
+                </para>
+                <para>
+                    型 : 整数列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">iord</emphasis>
+                </para>
+                <para>
+                    シミュレーションの開始時にアクティブ化されるブロックに関連付けられた行列.
+                    この行列は,定数ブロックおよび常にアクティブなブロックから継承した
+                    ブロックを有します.
+                </para>
+                <para>
+                    大きさ : niord.
+                </para>
+                <para>
+                    型 : 整数行列.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">labels</emphasis>
+                </para>
+                <para>
+                    ブロックのラベルを保持するブロックの数と同じ大きさの文字列ベクトル.
+                </para>
+                <para>
+                    大きさ : ブロック数.
+                </para>
+                <para>
+                    型 : 文字列の列ベクトル.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">modptr</emphasis>
+                </para>
+                <para> ブロックモードへのベクトルポインタ.</para>
+                <para>
+                    大きさ : ブロック数 + 1.
+                </para>
+                <para>
+                    型 : 整数の列ベクトル.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Filecontent_scicos_sim">
+        <title>ファイルの内容</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos/macros/scicos_scicos/scicos_sim.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

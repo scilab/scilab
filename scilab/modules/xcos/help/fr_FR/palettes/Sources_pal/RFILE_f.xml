@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="RFILE_f" xml:lang="fr_FR">
@@ -144,7 +147,7 @@ box "Champ #N";
         <itemizedlist>
             <listitem>
                 <para>
-                    Sortie: un scalaire ou un vecteur colonne de données de type double. La longueur du vecteur est égale à la longueur du vecteur 
+                    Sortie: un scalaire ou un vecteur colonne de données de type double. La longueur du vecteur est égale à la longueur du vecteur
                     <emphasis role="bold">Outputs Record Selection</emphasis>.
                 </para>
             </listitem>
@@ -168,11 +171,11 @@ box "Champ #N";
                 </para>
                 <para> Une matrice vide ou un entier positif.</para>
                 <para>
-                    Si un entier 
+                    Si un entier
                     <emphasis>
                         <literal>i</literal>
                     </emphasis>
-                    est donné, le 
+                    est donné, le
                     <emphasis><literal>
                             i<superscript>ième</superscript>
                         </literal>
@@ -188,18 +191,18 @@ box "Champ #N";
                     <emphasis role="bold">Outputs Record Selection</emphasis>
                 </para>
                 <para>
-                    Un vecteur d'entiers positifs 
+                    Un vecteur d'entiers positifs
                     <emphasis><literal>
                             [k<subscript>i</subscript>,...,k<subscript>n</subscript>]
                         </literal>
                     </emphasis>
-                    le 
+                    le
                     <emphasis><literal>
                             k<subscript>i</subscript><superscript>ième</superscript>
                         </literal>
                     </emphasis>
-                    élément 
-                    de l'enregistrement lu donne la valeur de la 
+                    élément
+                    de l'enregistrement lu donne la valeur de la
                     <emphasis><literal>
                             i<superscript>ième</superscript>
                         </literal>
@@ -226,7 +229,7 @@ box "Champ #N";
                 </para>
                 <para>
                     Une chaîne de caractères définissant le format Fortran à utiliser ou rien pour une lecture non formatée (binaire).
-                    S'il est donné, le format doit commencer par une parenthèse gauche et se terminer par une parenthèse droite.Par exemple : 
+                    S'il est donné, le format doit commencer par une parenthèse gauche et se terminer par une parenthèse droite.Par exemple :
                     <emphasis>
                         <literal>(10e3)</literal>
                     </emphasis>
@@ -312,8 +315,7 @@ box "Champ #N";
     <refsection id="Example_RFILE_f">
         <title>Exemple</title>
         <para>
-            Cet exemple lit le fichier : <emphasis>"SCI/modules/xcos/examples/sources_pal/fr_FR/rfile_f.txt"</emphasis> qui contient un jeu de données généré par l'exemple de la page
-            d'aide de <link linkend="WFILE_f">WFILE_f</link>.
+            Cet exemple lit le fichier : <emphasis>"SCI/modules/xcos/examples/sources_pal/fr_FR/rfile_f.txt"</emphasis> qui contient un jeu de données généré.
         </para>
         <para>
             Il utilise sa sortie d'activation comme entrée de CSCOPE. Dans le fichier, le premier champ de l'enregistrement est le temps, les deux autres sont des données régulières.
@@ -355,9 +357,6 @@ box "Champ #N";
             </listitem>
             <listitem>
                 <link linkend="WRITEC_f">WRITEC_f</link>
-            </listitem>
-            <listitem>
-                <link linkend="WFILE_f">WFILE_f</link>
             </listitem>
         </itemizedlist>
     </refsection>

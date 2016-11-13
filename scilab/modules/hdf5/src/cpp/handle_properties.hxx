@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -70,7 +73,7 @@ struct Links
     static std::list<int> legends()
     {
         std::list<int> legs;
-        for (auto& i : paths)
+        for (auto & i : paths)
         {
             legs.push_back(i.first);
         }
@@ -403,7 +406,7 @@ struct DatatipHandle
         m.emplace_back("box_mode", std::vector<int>({SAVE_LOAD, __GO_DATATIP_BOX_MODE__, jni_bool}));
         m.emplace_back("label_mode", std::vector<int>({SAVE_LOAD, __GO_DATATIP_LABEL_MODE__, jni_bool}));
         m.emplace_back("orientation", std::vector<int>({SAVE_LOAD, __GO_DATATIP_ORIENTATION__, jni_int}));
-        m.emplace_back("z_component", std::vector<int>({SAVE_LOAD, __GO_DATATIP_3COMPONENT__, jni_bool}));
+        m.emplace_back("display_components", std::vector<int>({SAVE_LOAD, __GO_DATATIP_DISPLAY_COMPONENTS__, jni_string}));
         m.emplace_back("auto_orientation", std::vector<int>({SAVE_LOAD, __GO_DATATIP_AUTOORIENTATION__, jni_bool}));
         m.emplace_back("interp_mode", std::vector<int>({SAVE_LOAD, __GO_DATATIP_INTERP_MODE__, jni_bool}));
         m.emplace_back("display_function", std::vector<int>({SAVE_LOAD, __GO_DATATIP_DISPLAY_FNC__, jni_string}));
@@ -416,6 +419,9 @@ struct DatatipHandle
         m.emplace_back("mark_size_unit", std::vector<int>({SAVE_LOAD, __GO_MARK_SIZE_UNIT__, jni_int}));
         m.emplace_back("mark_foreground", std::vector<int>({SAVE_LOAD, __GO_MARK_FOREGROUND__, jni_int}));
         m.emplace_back("mark_background", std::vector<int>({SAVE_LOAD, __GO_MARK_BACKGROUND__, jni_int}));
+        m.emplace_back("detached_position", std::vector<int>({SAVE_LOAD, __GO_DATATIP_DETACHED_POSITION__, jni_double_vector, -1, -3}));
+        m.emplace_back("detached_mode", std::vector<int>({SAVE_LOAD, __GO_DATATIP_DETACHED_MODE__, jni_bool}));
+        m.emplace_back("line_style", std::vector<int>({SAVE_LOAD, __GO_LINE_STYLE__, jni_int}));
 
         //@ don't care
 

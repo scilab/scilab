@@ -30,8 +30,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xrects</literal> dessine ou remplit un ensemble de rectangles. 
-            Chaque colonne de <literal>rects</literal> décrit un 
+            <literal>xrects</literal> dessine ou remplit un ensemble de rectangles.
+            Chaque colonne de <literal>rects</literal> décrit un
             rectangle (point en haut à gauche, largeur, hauteur) en coordonnées utilisateur:
             <literal>rects=[x1 x2... ; y1 y2... ; w1 w2... ; h1 h2...]</literal>.
         </para>
@@ -54,7 +54,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot2d([-100,500],[-50,50],[-1,-1],"022")
 cols=[-34,-33,-32,-20:5:20,32,33,34];
 x=400*(0:14)/14; step=20;
@@ -70,7 +70,7 @@ xnumb(x,15*ones(x),cols)
             xrects(rects,cols)
             xnumb(x,15*ones(x),cols)
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

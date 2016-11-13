@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="poly_getpolyvariablename_API" xml:lang="ja">
+    <refnamediv>
+        <refname>多項式の記号変数 (Scilabゲートウェイ)</refname>
+        <refpurpose>
+            記号変数名を取得する方法.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <para>入力引数プロファイル:</para>
+        <synopsis>SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int* _piVarNameLen)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        変数のアドレス.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstVarName</term>
+                <listitem>
+                    <para>
+                        返される記号変数名
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piVarNameLen</term>
+                <listitem>
+                    <para>
+                        返される _pstVarNameの長さ
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        エラー構造体で,エラーメッセージ履歴と最初のエラー番号を格納します.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>このヘルプは記号変数名を取得する方法を示します.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/poly_reading_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/poly_reading_api.tst-->
+        <!--Lib_name: poly_reading-->
+        <!--Func_list: read_poly-->
+        <title>ゲートウェイのソース</title>
+        <programlisting role="code_gateway"><![CDATA[
+#include "api_scilab.h"
+int read_poly(char *fname,void* pvApiCtx)
+{
+	SciErr sciErr;
+	int i,j;
+	//変数の情報
+	int iRows			= 0;
+	int iCols			= 0;
+	int iVarLen			= 0;
+	int* piAddr			= NULL;
+	int* piNbCoef		= NULL;
+	double** pdblReal	= NULL;
+	double** pdblImg	= NULL;
+	char* pstVarname	= NULL;
+	//入力/出力引数を確認
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	if(isVarComplex(pvApiCtx, piAddr) == FALSE)
+	{
+		//Error
+		return 0;
+	}
+	//変数名の長さを取得
+	sciErr = getPolyVariableName(pvApiCtx, piAddr, NULL, &iVarLen);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	//変数名を得るバッファを確保
+	pstVarname = (char*)malloc(sizeof(char) * (iVarLen + 1));//ヌル終端用に1
+	//変数名を取得
+	sciErr = getPolyVariableName(pvApiCtx, piAddr, pstVarname, &iVarLen);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	//最初のコール: 次元を取得
+	sciErr = getComplexMatrixOfPoly(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL, NULL);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	//係数の配列を確保
+	piNbCoef = (int*)malloc(sizeof(int) * iRows * iCols);
+	//2回目のコール: 係数を取得
+	sciErr = getComplexMatrixOfPoly(pvApiCtx, piAddr, &iRows, &iCols, piNbCoef, NULL, NULL);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	//データ配列を確保
+	pdblReal    = (double**)malloc(sizeof(double*) * iRows * iCols);
+	pdblImg     = (double**)malloc(sizeof(double*) * iRows * iCols);
+	for(i = 0 ; i < iRows * iCols ; i++)
+	{
+		pdblReal[i] = (double*)malloc(sizeof(double) * piNbCoef[i]);
+		pdblImg[i] = (double*)malloc(sizeof(double) * piNbCoef[i]);
+	}
+	//3回目のコール: データを取得
+	sciErr = getComplexMatrixOfPoly(pvApiCtx, piAddr, &iRows, &iCols, piNbCoef, pdblReal, pdblImg);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	//何らかのデータ処理
+	//行列の多項式を反転し 係数を反転
+	for(i = 0 ; i < (iRows * iCols) / 2 ; i++)
+	{
+		int iPos1			= iRows * iCols - 1 - i;
+		double* pdblSave	= NULL;
+		int iNbCoefSave		= 0;
+		//switch array of coefficient
+		pdblSave			= pdblReal[i];
+		pdblReal[i]			= pdblReal[iPos1];
+		pdblReal[iPos1]		= pdblSave;
+		pdblSave			= pdblImg[i];
+		pdblImg[i]			= pdblImg[iPos1];
+		pdblImg[iPos1]		= pdblSave;
+		//switch number of coefficient
+		iNbCoefSave			= piNbCoef[i];
+		piNbCoef[i]			= piNbCoef[iPos1];
+		piNbCoef[iPos1]		= iNbCoefSave;
+	}
+	//係数を切り替え
+	for(i = 0 ; i < iRows * iCols ; i++)
+	{
+		for(j = 0 ; j < piNbCoef[i] /2 ; j++)
+		{
+			int iPos2			= piNbCoef[i] - 1 - j;
+			double dblVal		= pdblReal[i][j];
+			pdblReal[i][j]		= pdblReal[i][iPos2];
+			pdblReal[i][iPos2]	= dblVal;
+			dblVal				= pdblImg[i][j];
+			pdblImg[i][j]		= pdblImg[i][iPos2];
+			pdblImg[i][iPos2]	= dblVal;
+		}
+	}
+	sciErr = createComplexMatrixOfPoly(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstVarname, iRows, iCols, piNbCoef, pdblReal, pdblImg);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	//OSメモリを解放
+	free(pstVarname);
+	free(piNbCoef);
+	for(i = 0 ; i < iRows * iCols ; i++)
+	{
+		free(pdblReal[i]);
+		free(pdblImg[i]);
+	}
+	free(pdblReal);
+	free(pdblImg);
+	//assign allocated variables to Lhs position
+	AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+	return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilabテストスクリプト</title>
+        <programlisting role="code_scilab"><![CDATA[
+coeff1 = [ ..
+29*%i,22*%i,16*%i,11*%i,7*%i,30,23,17,12,8,-31*%i,-24*%i,-18*%i,-13*%i,-9*%i,32,25,19,14,10,-33*%i,-26*%i,-20*%i,-15*%i,0,34,27,21,0,0,0,-28*%i,0,0,0,36-35*%i,0,0,0,0; ..
+4*%i,2*%i,%i,22,16,5,-3,0,-23*%i,-17*%i,-6*%i,0,0,24,18,0,0,0,-25*%i,-19*%i,0,0,0,26,20,0,0,0,-27*%i,-21*%i,0,0,0,28,0,0,0,0,0,0; ..
+11,7,4,2,1,-12*%i,-8*%i,-5*%i,3*%i,0,13,9,6,0,0,-14*%i,-10*%i,0,0,0,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+x = poly(0, "x");
+p1  = 1;
+p2  = 2 * x + 3 * %i;
+p3  = 4 * x**2 - 5 * %i * x + 6;
+p4  = 7 * x**3 - 8 * %i * x**2 + 9 * x - 10 * %i;
+p5  = 11 * x**4 - 12 * %i * x**3 + 13 * x**2 - 14 * %i * x + 15;
+p6  = 16 * x**5 - 17 * %i * x**4 + 18 * x**3 - 19 * %i * x**2 + 20 * x  - 21 * %i;
+p7  = 22 * x**6 - 23 * %i * x**5 + 24 * x**4 - 25 * %i * x**3 + 26 * x**2 - 27 * %i * x + 28;
+p8  = %i;
+p9  = 2 * %i * x - 3;
+p10 = 4 * %i * x**2 + 5 * x - 6 * %i;
+p11 = 7 * %i * x**3 + 8 * x**2 - 9 * %i * x + 10;
+p12 = 11 * %i * x**4 + 12 * x**3 - 13 * %i * x**2 + 14 * x - 15 * %i;
+p13 = 16 * %i * x**5 + 17 * x**4 - 18 * %i * x**3 + 19 * x**2 - 20 * %i * x  + 21;
+p14 = 22 * %i * x**6 + 23 * x**5 - 24 * %i * x**4 + 25 * x**3 - 26 * %i * x**2 + 27 * x - 28 * %i;
+p15 = 29 * %i * x**7 + 30 * x**6 - 31 * %i * x**5 + 32 * x**4 - 33 * %i * x**3 + 34 * x**2 - 35 * %i + 36;
+p = [p1, p2, p3, p4, p5 ; p6, p7, p8, p9 ,p10 ; p11, p12, p13, p14, p15];
+p1 = read_poly(p);
+coeff2 = coeff(p1);
+if or(coeff2 <> coeff1) then error("failed"), end
+ ]]></programlisting>
+    </refsection>
+</refentry>

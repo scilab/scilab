@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -122,7 +125,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 }
             }
 
-            if (e.isVerbose() && ConfigVariable::isPromptShow())
+            if (e.isVerbose() && ConfigVariable::isPrintOutput())
             {
                 std::string strName = pVar->getSymbol().getName();
                 std::ostringstream ostr;
@@ -204,7 +207,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
             if (pOut != NULL)
             {
-                if (e.isVerbose() && ConfigVariable::isPromptShow())
+                if (e.isVerbose() && ConfigVariable::isPrintOutput())
                 {
                     std::ostringstream ostr;
                     ostr << " " << *getStructNameFromExp(pCell) << "  = " << std::endl;
@@ -230,6 +233,14 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             CallExp *pCall = static_cast<CallExp*>(&e.getLeftExp());
             //x(?) = ?
             types::InternalType *pOut = NULL;
+
+            if (e.getRightExp().isReturnExp())
+            {
+                // We can't put in the previous scope a variable create like that : a(2)=resume(1)
+                std::ostringstream os;
+                os << _("Indexing not allowed for output arguments of resume.\n");
+                throw ast::InternalError(os.str(), 79, e.getLeftExp().getLocation());
+            }
 
             /*getting what to assign*/
             types::InternalType* pITR = e.getRightVal();
@@ -365,7 +376,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 }
             }
 
-            if (e.isVerbose() && ConfigVariable::isPromptShow())
+            if (e.isVerbose() && ConfigVariable::isPrintOutput())
             {
                 std::ostringstream ostr;
                 ostr << " " << *getStructNameFromExp(&pCall->getName()) << "  = " << std::endl;
@@ -409,7 +420,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             for (i = iLhsCount - 1; i >= 0; i--)
             {
                 //create a new AssignExp and run it
-                pIT[i] = (exec.getResult(i));
+                pIT[i] = exec.getResult(i);
                 //protet rhs against removal [a,b] = (b,a);
                 pIT[i]->IncreaseRef();
             }
@@ -505,7 +516,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 delete i;
             }
 
-            if (e.isVerbose() && ConfigVariable::isPromptShow())
+            if (e.isVerbose() && ConfigVariable::isPrintOutput())
             {
                 const std::string *pstName = getStructNameFromExp(pField);
 
@@ -534,8 +545,6 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
         CoverageInstance::stopChrono((void*)&e);
         throw error;
     }
-
-    CoverageInstance::stopChrono((void*)&e);
 }
 
 } /* namespace ast */

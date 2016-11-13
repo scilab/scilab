@@ -4,7 +4,7 @@
         <refname>external</refname>
         <refpurpose>Objet Scilab, fonction externe ou routine  </refpurpose>
     </refnamediv>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             Fonction ou routine externe nécessitée par des commandes particulières.
@@ -19,10 +19,10 @@
         </para>
         <para>
             Par exemple la fonction externe <literal>costfunc</literal> est un argument de la primitive <literal>optim</literal>.
-            Sa séquence d'appel doit être de la forme : <literal>[f,g,ind]=costfunc(x,ind)</literal> et 
+            Sa séquence d'appel doit être de la forme : <literal>[f,g,ind]=costfunc(x,ind)</literal> et
             <literal>optim</literal> (primitive permettant de résoudre des problèmes d'optimisation) est invoquée ainsi :
         </para>
-        <programlisting><![CDATA[ 
+        <programlisting><![CDATA[
 optim(costfunc,...)
  ]]></programlisting>
         <para>
@@ -34,14 +34,14 @@ optim(costfunc,...)
             peuvent être définies dans son environnement. Elles peuvent aussi être stockées dans une liste :
             par exemple
         </para>
-        <programlisting><![CDATA[ 
-[f,g,ind]=costfunc(x,ind,a,b,c) 
+        <programlisting><![CDATA[
+[f,g,ind]=costfunc(x,ind,a,b,c)
  ]]></programlisting>
         <para>
-            est valide pour <literal>optim</literal> si <literal>costfunc</literal> est remplacé par <literal>list(costfunc,a,b,c)</literal>. 
+            est valide pour <literal>optim</literal> si <literal>costfunc</literal> est remplacé par <literal>list(costfunc,a,b,c)</literal>.
             La séquence d'appel à <literal>optim</literal> est donc maintenant :
         </para>
-        <programlisting><![CDATA[ 
+        <programlisting><![CDATA[
 optim(list(costfunc,a1,b1,c1),....
  ]]></programlisting>
         <para>
@@ -49,7 +49,7 @@ optim(list(costfunc,a1,b1,c1),....
         </para>
         <para>
             Le nom de la routine est donné comme argument à la primitive de haut niveau sous forme d'une
-            chaîne de caractères. La séquence d'appel est aussi imposée. 
+            chaîne de caractères. La séquence d'appel est aussi imposée.
         </para>
         <para>
             Les routines externes Fortran ou C peuvent aussi être liées dynamiquement (voir <literal>link</literal>).
@@ -75,9 +75,6 @@ optim(list(costfunc,a1,b1,c1),....
             </member>
             <member>
                 <link linkend="schur">schur</link>
-            </member>
-            <member>
-                <link linkend="gschur">gschur</link>
             </member>
         </simplelist>
     </refsection>

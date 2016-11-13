@@ -5,7 +5,7 @@
         <refpurpose>computes the residual r = Ax-b with precision  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[r,norm2_r] = res_with_prec(A, x, b)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -47,10 +47,10 @@
         <title>Description</title>
         <para>
             This function computes the residual of a linear system <literal>r = Ax - b</literal> (together
-            with its 2-norm) with the additional precision provided on "Intel like" 
-            FPU (80 bits in place of 64) if the compiler translate "long double" to 
-            use it. Else one must get the same than using <literal>A*x - b</literal> at the scilab level. 
-            In both cases using <literal>[r, nr] = res_with_prec(A,x,b)</literal> is 
+            with its 2-norm) with the additional precision provided on "Intel like"
+            FPU (80 bits in place of 64) if the compiler translate "long double" to
+            use it. Else one must get the same than using <literal>A*x - b</literal> at the scilab level.
+            In both cases using <literal>[r, nr] = res_with_prec(A,x,b)</literal> is
             faster than  <literal>r = A*x - b</literal> (and faster than <literal>r = A*x - b; nr = norm(r)</literal>).
         </para>
         <para>
@@ -59,8 +59,8 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+        <programlisting role="example"><![CDATA[
+[A] = ReadHBSparse(SCI+"/modules/umfpack/demos/bcsstk24.rsa");
 C_ptr = taucs_chfact(A);
 b = rand(size(A,1),1);
 x0 = taucs_chsolve(C_ptr, b);
@@ -69,10 +69,10 @@ norm(res_with_prec(A, x0, b))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="rafiter">rafiter</link>
+                <link linkend="taucs_chsolve">taucs_chsolve</link>
             </member>
         </simplelist>
     </refsection>

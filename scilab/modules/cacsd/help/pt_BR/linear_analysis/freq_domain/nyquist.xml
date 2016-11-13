@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="nyquist" xml:lang="pt">
+    <refnamediv>
+        <refname>nyquist</refname>
+        <refpurpose>diagrama de Nyquist</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>nyquist( sl,[fmin,fmax] [,step] [,comments] )
+            nyquist( sl, frq [,comments] )
+            nyquist(frq,db,phi [,comments])
+            nyquist(frq, repf [,comments])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> (sistema linear SIMO em tempo
+                        contínuo ou discreto)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmin,fmax</term>
+                <listitem>
+                    <para>reais (limites de freqüência (em Hz)) </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>step</term>
+                <listitem>
+                    <para>real (passo de discretização logarítmica) </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>comments</term>
+                <listitem>
+                    <para>vetor de strings (legendas). </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>vetor linha ou matriz (freqüências (em Hz) ) (um linha para
+                        cada saída de <literal>sl</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>db,phi</term>
+                <listitem>
+                    <para>vetores linhas ou matrizes de módulo (em Db) e fases. (uma
+                        linha para cada saída de <literal>sl</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>repf</term>
+                <listitem>
+                    <para>vetor linha ou matriz de números complexos (freqüência de
+                        resposta complexa, uma para cada saída de
+                        <literal>sl</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Diagrama de Nyquist i.e parte imaginária versus parte real da
+            freqüência de resposta de <literal>sl</literal>.
+        </para>
+        <para>
+            Para sistmeas de tempo contínuo <literal>sl(2*%i*%pi*w)</literal> é
+            esboçado. Para sistemas de tempo discreto ou sistemas discretizados
+            <literal>sl(exp(2*%i*%pi*w*fd)</literal> é utilizado (
+            <literal>fd=1</literal> para sistemas de tempo discreto e
+            <literal>fd=sl('dt')</literal> para sistemas discretizados)
+        </para>
+        <para>
+            <literal>sl</literal> para sistemas discretizados
+            <literal>syslin</literal>). No caso de múltiplas saídas, elas são
+            esboçadas com símbolos diferentes.
+        </para>
+        <para>
+            As freqüências são dadas pelos limites <literal>fmin,fmax</literal>
+            (em Hz) ou por um vetor linha (ou uma matriz para múltiplas saídas)
+            <literal>frq</literal>.
+        </para>
+        <para>
+            <literal>step</literal> é o passo de discretização ( logarítmica).
+            (ver <literal>calfrq</literal> para escolha do valor padrão).
+        </para>
+        <para>
+            <literal>comments</literal> é um vetor de strings (legendas).
+        </para>
+        <para>
+            <literal>db,phi</literal> são matrizes de módulos (em Db) e fases
+            (em graus). (Uma linha para cada resposta).
+        </para>
+        <para>
+            <literal>repf</literal> é uma matriz de números complexos. Uma linha
+            para cada resposta.
+        </para>
+        <para>
+            Valores padrões para <literal>fmin</literal> e
+            <literal>fmax</literal> são <literal>1.d-3</literal>,
+            <literal>1.d+3</literal> se <literal>sl</literal> for de tempo contínuo
+            <literal>1.d-3</literal>, <literal>0.5</literal>/sl.dt (freqüência de
+            Nyquist) se <literal>sl</literal> for de tempo discreto.
+        </para>
+        <para>Discretização automática das freqüências é feita por
+            <literal>calfrq</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+clf();
+s=poly(0,'s');
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+comm='(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)';
+nyquist(h,0.01,100,comm);
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+clf();
+nyquist([h1;h],0.01,100,['h1';'h'])
+clf();nyquist([h1;h])
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
+                <link linkend="black">black</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+            <member>
+                <link linkend="freq">freq</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="phasemag">phasemag</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -2,15 +2,19 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
 #include <sstream>
+#include <iomanip>
 #include "core_math.h"
 #include "string.hxx"
 #include "stringexp.hxx"
@@ -161,7 +165,7 @@ bool String::subMatrixToString(std::ostringstream& ostr, int* _piDims, int /*_iD
 
             ostr << " ";
             configureStream(&ostr, iStrMaxSize, iPrecision, ' ');
-            ostr << std::left << cStr + iStrPos;
+            ostr << std::left << cStr + iStrPos << std::resetiosflags(std::ios::adjustfield);
         }
         else
         {
@@ -239,6 +243,7 @@ bool String::subMatrixToString(std::ostringstream& ostr, int* _piDims, int /*_iD
                 ostr << "!" << std::endl;
             }
         }
+        ostr << std::resetiosflags(std::ios::adjustfield);
     }
     else if (getRows() == 1)
     {
@@ -298,7 +303,7 @@ bool String::subMatrixToString(std::ostringstream& ostr, int* _piDims, int /*_iD
             addColumnString(ostr, iLastVal + 1, getCols());
         }
 
-        ostr << "!" << ostemp.str() << "!" << std::endl;
+        ostr << "!" << ostemp.str() << "!" << std::endl << std::resetiosflags(std::ios::adjustfield);
     }
     else //Matrix
     {
@@ -349,6 +354,7 @@ bool String::subMatrixToString(std::ostringstream& ostr, int* _piDims, int /*_iD
                         ostr << ostemp.str();
                         m_iRows2PrintState = iRows2;
                         m_iCols1PrintState = iLastCol;
+                        delete[] piSize;
                         return false;
                     }
 
@@ -426,6 +432,7 @@ bool String::subMatrixToString(std::ostringstream& ostr, int* _piDims, int /*_iD
                 ostr << ostemp.str();
                 m_iRows2PrintState = iRows2;
                 m_iCols1PrintState = iLastCol;
+                delete[] piSize;
                 return false;
             }
 
@@ -487,7 +494,8 @@ bool String::subMatrixToString(std::ostringstream& ostr, int* _piDims, int /*_iD
         {
             addColumnString(ostr, iLastCol + 1, getCols());
         }
-        ostr << ostemp.str();
+        ostr << ostemp.str() << std::resetiosflags(std::ios::adjustfield);
+        delete[] piSize;
     }
 
     return true;

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -79,9 +82,16 @@ struct model
 
                 for (const ScicosID id : children)
                 {
-                    auto o = controller.getObject(id);
-                    neededController.setObjectProperty(o->id(), o->kind(), PARENT_DIAGRAM, newDiag);
-                    neededController.referenceObject(o->id());
+                    if (id == ScicosID())
+                    {
+                        // Deleted object
+                    }
+                    else
+                    {
+                        auto o = controller.getObject(id);
+                        neededController.setObjectProperty(o->id(), o->kind(), PARENT_DIAGRAM, newDiag);
+                        neededController.referenceObject(o->id());
+                    }
                 }
                 subDiagram->setFrom(adaptor.getFrom());
                 subDiagram->setTo(adaptor.getTo());
@@ -100,26 +110,33 @@ struct model
                 std::vector<link_t> to;
                 for (const ScicosID id : children)
                 {
-                    auto o = controller.getObject(id);
-                    controller.referenceObject(o);
-
-                    switch (o->kind())
+                    if (id == ScicosID())
                     {
-                        case ANNOTATION :
-                            listObjects->append(new TextAdapter(controller, static_cast<org_scilab_modules_scicos::model::Annotation*>(o)));
-                            break;
-                        case BLOCK :
+                        // Deleted object
+                    }
+                    else
+                    {
+                        auto o = controller.getObject(id);
+                        controller.referenceObject(o);
+
+                        switch (o->kind())
                         {
-                            BlockAdapter* block = new BlockAdapter(controller, static_cast<org_scilab_modules_scicos::model::Block*>(o));
-                            listObjects->append(block);
-                            break;
+                            case ANNOTATION :
+                                listObjects->append(new TextAdapter(controller, static_cast<org_scilab_modules_scicos::model::Annotation*>(o)));
+                                break;
+                            case BLOCK :
+                            {
+                                BlockAdapter* block = new BlockAdapter(controller, static_cast<org_scilab_modules_scicos::model::Block*>(o));
+                                listObjects->append(block);
+                                break;
+                            }
+                            default : // LINK
+                                LinkAdapter* link = new LinkAdapter(controller, static_cast<org_scilab_modules_scicos::model::Link*>(o));
+                                from.push_back(link->getFrom());
+                                to.push_back(link->getTo());
+                                listObjects->append(link);
+                                break;
                         }
-                        default : // LINK
-                            LinkAdapter* link = new LinkAdapter(controller, static_cast<org_scilab_modules_scicos::model::Link*>(o));
-                            from.push_back(link->getFrom());
-                            to.push_back(link->getTo());
-                            listObjects->append(link);
-                            break;
                     }
                 }
                 const_cast<BlockAdapter&>(adaptor).setFrom(from);

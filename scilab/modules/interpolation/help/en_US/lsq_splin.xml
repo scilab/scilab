@@ -5,7 +5,7 @@
         <refpurpose>weighted least squares cubic spline fitting</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y, d] = lsq_splin(xd, yd [, wd], x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -109,7 +109,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // this is an artificial example where the data xd and yd
 // are build from a perturbed sin function
 a = 0; b = 2*%pi;
@@ -139,13 +139,13 @@ show_window()
             m = 200;       // number of experimental points
             xd = linspace(a,b,m)';
             yd = sin(xd) + grand(xd,"nor",0,sigma);
-            
+
             n = 6; // number of breakpoints
             x = linspace(a,b,n)';
-            
+
             // compute the spline
             [y, d] = lsq_splin(xd, yd, x);  // use equal weights
-            
+
             // plotting
             ye = sin(xd);
             ys = interp(xd, x, y, d);
@@ -155,10 +155,10 @@ show_window()
             xtitle("a least square spline")
             show_window()
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="interp">interp</link>

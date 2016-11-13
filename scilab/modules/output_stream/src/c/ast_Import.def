@@ -3,8 +3,8 @@
 
 EXPORTS
 setLastError
-isPromptShow
-getSilentError
+isPrintOutput
+isSilentError
 getConsoleWidth
 getWarningMode
 getWarningStop

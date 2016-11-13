@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="fft2">
+
+    <refnamediv>
+
+        <refname>fft2</refname>
+
+        <refpurpose>2次元高速フーリエ変換</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>y=fft2(x)
+
+            y=fft2(x,n,m)
+
+        </synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>x</term>
+
+                <listitem>
+
+                    <para>ベクトル/行列/配列 (実数または複素数)</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>y</term>
+
+                <listitem>
+
+                    <para>ベクトル/行列/配列 (実数または複素数)</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>m</term>
+
+                <listitem>
+
+                    <para>整数, 行の数.</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>n</term>
+
+                <listitem>
+
+                    <para>整数, 列の数.</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <programlisting role=""><![CDATA[
+この関数は2次元離散フーリエ変換を行ないます.
+ ]]></programlisting>
+
+        <para>
+
+            <literal>y=fft2(x)</literal>y および x は同じ大きさとなります.
+
+        </para>
+
+        <para>
+
+            <literal>y=fft2(x,m,n):</literal><literal>m</literal> (もしくは
+
+            <literal>n</literal>) が<literal>x</literal>の行(もしくは列)の数よりも小さい場合,
+
+            <literal>x</literal> の行(もしくは列)の数が丸められます.
+
+            また, m (もしくは <literal>n</literal>)	が<literal>x</literal>
+
+            の行(もしくは列)の数よりも大きい場合,
+
+            <literal>x</literal>の行(もしくは列)は　0 で補完されます.
+
+        </para>
+
+        <para>
+
+            <literal>x</literal> が行列の場合, <literal>y</literal> も行列となります.
+
+            <literal>x</literal>がハイパー行列の場合,<literal>y</literal>もハイパー行列となります.
+
+            この際,
+
+            <literal>y</literal>の最初の次元の大きさは<literal>m</literal>,
+
+            <literal>y</literal>の2番目の次元の大きさは<literal>n</literal>,
+
+            (i&gt;2のハイパー行列の場合,)
+
+            <literal>y</literal>のi番目の次元の大きさは<literal>x</literal>の
+
+            i番目の次元の大きさとなります.
+
+            (すなわち, size(y,1)=m, size(y,2)=n ,そして,i&gt;2 の場合,size(y,i)=size(x,i))
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+//明示的な計算との比較
+a=[1 2 3 ;4 5 6 ;7 8 9 ;10 11 12]
+m=size(a,1)
+n=size(a,2)
+// 行方向のフーリエ変換
+for i=1:n
+a1(:,i)=exp(-2*%i*%pi*(0:m-1)'.*.(0:m-1)/m)*a(:,i)
+end
+// 列方向のフーリエ変換
+for j=1:m
+a2temp=exp(-2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*(a1(j,:)).'
+a2(j,:)=a2temp.'
+end
+norm(a2-fft2(a))
+ ]]></programlisting>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="fft">fft</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

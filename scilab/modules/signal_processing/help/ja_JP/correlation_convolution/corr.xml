@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="corr">
+
+    <refnamediv>
+
+        <refname>corr</refname>
+
+        <refpurpose>相関 , 共分散</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>[cov,Mean]=corr(x,[y],nlags)
+
+            [cov,Mean]=corr('fft',xmacro,[ymacro],n,sect)
+
+
+
+            [w,xu]=corr('updt',x1,[y1],w0)
+
+            [w,xu]=corr('updt',x2,[y2],w,xu)
+
+            ...
+
+            [wk]=corr('updt',xk,[yk],w,xu)
+
+        </synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>x</term>
+
+                <listitem>
+
+                    <para>実数ベクトル</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>y</term>
+
+                <listitem>
+
+                    <para>実数ベクトル, デフォルト値 x.</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>nlags</term>
+
+                <listitem>
+
+                    <para>i整数, 指定した相関係数の数.</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>xmacro</term>
+
+                <listitem>
+
+                    <para>scilab 外部ルーチン (下記参照).</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>ymacro</term>
+
+                <listitem>
+
+                    <para>scilab 外部ルーチン (下記参照), デフォルト値: xmacro</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>n</term>
+
+                <listitem>
+
+                    <para>整数, シーケンス全体の大きさ (下記参照).</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>sect</term>
+
+                <listitem>
+
+                    <para>シーケンスのセクションの大きさ (下記参照).</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>xi</term>
+
+                <listitem>
+
+                    <para>実数ベクトル</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>yi</term>
+
+                <listitem>
+
+                    <para>実数ベクトル,デフォルト値: xi.</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>cov</term>
+
+                <listitem>
+
+                    <para>実数ベクトル, 相関係数</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>Mean</term>
+
+                <listitem>
+
+                    <para>実数または実数ベクトル,  x (および y)の平均</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            以下を計算します.
+
+        </para>
+
+        <programlisting role=""><![CDATA[
+         n - m
+         ====
+         \                                       1
+cov(m) =  >   (x(k) - xmean) (y(m+k) - ymean) * ---
+         /                                       n
+         ====
+         k = 1
+ ]]></programlisting>
+
+        <para>
+
+            ただし,   m=0,..,<literal>nlag-1</literal> で,2つのベクトルは
+
+            <literal>x=[x(1),..,x(n)]</literal>,
+
+            <literal>y=[y(1),..,y(n)]</literal>です.
+
+        </para>
+
+        <para>
+
+            シーケンス x および y が異なる場合, corr(x,y,...)はcorr(y,x,...)
+
+            と異なることに注意してください.
+
+        </para>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>短いシーケンス</term>
+
+                <listitem>
+
+                    <para>
+
+                        <literal>[cov,Mean]=corr(x,[y],nlags)</literal> は,
+
+                        最初の nlags 個の相関係数および Mean = <literal>mean(x)</literal>
+
+                        (<literal>y</literal> が引数として指定された場合,<literal>[x,y]</literal> の平均)
+
+                        を返します.
+
+                        シーケンス  <literal>x</literal> (または <literal>y</literal>) は実数,
+
+                        <literal>x</literal>と<literal>y</literal>は同じ次元 n と仮定されます.
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>長いシーケンス</term>
+
+                <listitem>
+
+                    <para>
+
+                        <literal>[cov,Mean]=corr('fft',xmacro,[ymacro],n,sect)</literal>
+
+                        ここで,<literal>xmacro</literal> は以下のどちらかです
+
+                    </para>
+
+                    <itemizedlist>
+
+                        <listitem>
+
+                            <para>
+
+                                <literal>[xx]=xmacro(sect,istart)</literal> という型の関数で,
+
+                                <literal>istart</literal> から
+
+                                <literal>istart+sect-1</literal>までの添字を有するシーケンスの
+
+                                一部を含む
+
+                                <literal>nsect</literal>次のベクトル<literal>xx</literal>を返します.
+
+                            </para>
+
+                        </listitem>
+
+                        <listitem>
+
+                            <para>
+
+                                FortranサブルーチンまたはCプロシージャで,
+
+                                同じ計算を行ないます(例えば,<literal>dgetx</literal>の
+
+                                ソースコードを参照ください).
+
+                                <literal>n</literal> = シーケンスの総数.
+
+                                <literal>sect</literal> = シーケンスのセクションの大きさ.
+
+                                <literal>sect</literal> は 2の累乗とする必要があります.
+
+                                <literal>cov</literal> は
+
+                                <literal>sect</literal>次です.
+
+                                計算は FFT により行われます.
+
+                            </para>
+
+                        </listitem>
+
+                    </itemizedlist>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>更新法</term>
+
+                <listitem>
+
+                    <programlisting role=""><![CDATA[
+[w,xu]=corr('updt',x1,[y1],w0)
+[w,xu]=corr('updt',x2,[y2],w,xu)
+ ...
+wk=corr('updt',xk,[yk],w,xu)
+ ]]></programlisting>
+
+                    <para>
+
+                        この呼び出し手順では,計算結果が<literal>corr</literal>をコールする度に
+
+                        更新されます.
+
+                    </para>
+
+                    <programlisting role=""><![CDATA[
+w0 = 0*ones(1,2*nlags);
+nlags = power of 2.
+ ]]></programlisting>
+
+                    <para>
+
+                        <literal>x1,x2,...</literal> は,
+
+                        <literal>x=[x1,x2,...]</literal>で,<literal>xi</literal>の大きさが
+
+                        2の累乗となるような<literal>x</literal> の一部です.
+
+                        <literal>nlags</literal>個の係数を得るには,
+
+                        最後の fft を <literal>c=fft(w,1)/n</literal>;
+
+                        <literal>cov=c(1nlags)</literal>を実行する必要があります
+
+                        (<literal>n</literal> は <literal>x (y)</literal>の大きさ).
+
+                        注意:
+
+                        この呼び出し手順は <literal>xmean = ymean = 0</literal> を仮定します.
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+x=%pi/10:%pi/10:102.4*%pi;
+rand('seed');rand('normal');
+y=[.8*sin(x)+.8*sin(2*x)+rand(x);.8*sin(x)+.8*sin(1.99*x)+rand(x)];
+c=[];
+for j=1:2,for k=1:2,c=[c;corr(y(k,:),y(j,:),64)];end;end;
+c=matrix(c,2,128);cov=[];
+for j=1:64,cov=[cov;c(:,(j-1)*2+1:2*j)];end;
+rand('unif')
+
+rand('normal');x=rand(1,256);y=-x;
+deff('[z]=xx(inc,is)','z=x(is:is+inc-1)');
+deff('[z]=yy(inc,is)','z=y(is:is+inc-1)');
+[c,mxy]=corr(x,y,32);
+x=x-mxy(1)*ones(x);y=y-mxy(2)*ones(y);  //centring
+c1=corr(x,y,32);c2=corr(x,32);
+norm(c1+c2,1)
+[c3,m3]=corr('fft',xx,yy,256,32);
+norm(c1-c3,1)
+[c4,m4]=corr('fft',xx,256,32);
+norm(m3,1),norm(m4,1)
+norm(c3-c1,1),norm(c4-c2,1)
+x1=x(1:128);x2=x(129:256);
+y1=y(1:128);y2=y(129:256);
+w0=0*ones(1:64);   //32 coeffs
+[w1,xu]=corr('u',x1,y1,w0);w2=corr('u',x2,y2,w1,xu);
+zz=real(fft(w2,1))/256;c5=zz(1:32);
+norm(c5-c1,1)
+[w1,xu]=corr('u',x1,w0);w2=corr('u',x2,w1,xu);
+zz=real(fft(w2,1))/256;c6=zz(1:32);
+norm(c6-c2,1)
+rand('unif')
+
+// Fortran または C 外部ルーチンのテスト
+//
+deff('[y]=xmacro(sec,ist)','y=sin(ist:(ist+sec-1))');
+x=xmacro(100,1);
+[cc1,mm1]=corr(x,2^3);
+[cc,mm]=corr('fft',xmacro,100,2^3);
+[cc2,mm2]=corr('fft','corexx',100,2^3);
+[max(abs(cc-cc1)),max(abs(mm-mm1)),max(abs(cc-cc2)),max(abs(mm-mm2))]
+
+deff('[y]=ymacro(sec,ist)','y=cos(ist:(ist+sec-1))');
+y=ymacro(100,1);
+[cc1,mm1]=corr(x,y,2^3);
+[cc,mm]=corr('fft',xmacro,ymacro,100,2^3);
+[cc2,mm2]=corr('fft','corexx','corexy',100,2^3);
+[max(abs(cc-cc1)),max(abs(mm-mm1)),max(abs(cc-cc2)),max(abs(mm-mm2))]
+ ]]></programlisting>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="fft">fft</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

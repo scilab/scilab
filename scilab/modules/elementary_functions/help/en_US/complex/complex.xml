@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="complex" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>Create a complex number.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             c=complex(a)
             c=complex(a,b)
@@ -30,7 +33,7 @@
                 <listitem>
                     <para>
                         a 1-by-1 or a n-by-m real matrix of doubles, the real part.
-                        If <literal>a</literal> has an imaginary part, an error 
+                        If <literal>a</literal> has an imaginary part, an error
                         is generated.
                     </para>
                 </listitem>
@@ -40,7 +43,7 @@
                 <listitem>
                     <para>
                         a 1-by-1 or a n-by-m real matrix of doubles, the imaginary part (default b=0).
-                        If <literal>b</literal> has an imaginary part, an error 
+                        If <literal>b</literal> has an imaginary part, an error
                         is generated.
                     </para>
                 </listitem>
@@ -56,11 +59,11 @@
     <refsection>
         <title>Description</title>
         <para>
-            c=complex(a) creates a complex number from its real part <literal>a</literal> 
+            c=complex(a) creates a complex number from its real part <literal>a</literal>
             and zero as the imaginary part.
         </para>
         <para>
-            c=complex(a,b) creates a complex number from its real part <literal>a</literal> 
+            c=complex(a,b) creates a complex number from its real part <literal>a</literal>
             and imaginary part <literal>b</literal>.
         </para>
         <para>
@@ -76,44 +79,44 @@
             In the following example, we create a complex number from
             its real and imaginary parts.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 complex(1,2)
 complex([1 2],[3 4])
  ]]></programlisting>
         <para>
-            If <literal>a</literal> only is specified, then the imaginary 
+            If <literal>a</literal> only is specified, then the imaginary
             part is set to zero.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 complex([1 2 3])
  ]]></programlisting>
         <para>
-            If <literal>a</literal> is a scalar and <literal>b</literal> 
-            is a matrix, then the result <literal>c</literal> has the same 
+            If <literal>a</literal> is a scalar and <literal>b</literal>
+            is a matrix, then the result <literal>c</literal> has the same
             size as <literal>b</literal>.
-            Similarly, if <literal>b</literal> is a scalar and <literal>a</literal> 
-            is a matrix, then the result <literal>c</literal> has the same 
+            Similarly, if <literal>b</literal> is a scalar and <literal>a</literal>
+            is a matrix, then the result <literal>c</literal> has the same
             size as <literal>a</literal>.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 c = complex([1 2 3], 4)
 c = complex(1, [2 3 4])
  ]]></programlisting>
         <para>
-            If <literal>a</literal> and <literal>b</literal> are two 
-            matrices with different sizes, an error is generated, as in the 
+            If <literal>a</literal> and <literal>b</literal> are two
+            matrices with different sizes, an error is generated, as in the
             following session.
         </para>
-        <screen><![CDATA[ 
+        <screen><![CDATA[
 -->complex(ones(2,3),ones(4,5))
- !--error 10000 
+ !--error 10000
 complex: Incompatible input arguments #1 and #2: Same sizes expected.
-at line      33 of function complex called by :  
+at line      33 of function complex called by :
 complex(ones(2,3),ones(4,5))
  ]]></screen>
         <para>
-            The purpose of the <literal>complex</literal> function is to manage 
-            IEEE floating point numbers such as Nans or Infinities. 
+            The purpose of the <literal>complex</literal> function is to manage
+            IEEE floating point numbers such as Nans or Infinities.
             In the following example, we show that creating a complex number where
             the real and imaginary parts are complex is not straightforward if
             we use the complex arithmetic.
@@ -122,23 +125,23 @@ complex(ones(2,3),ones(4,5))
             This produces the intermediate expression <literal>0*%inf</literal>,
             which is <literal>%nan</literal>.
         </para>
-        <screen><![CDATA[ 
+        <screen><![CDATA[
 -->%inf+%i*%inf
  ans  =
-    Nan + Inf 
+    Nan + Inf
  ]]></screen>
         <para>
             The solution of this issue is to use the <literal>complex</literal>
             function.
         </para>
-        <screen><![CDATA[ 
+        <screen><![CDATA[
 -->complex(%inf,%inf)
  ans  =
-    Inf + Inf 
+    Inf + Inf
  ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="imult">imult</link>

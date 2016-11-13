@@ -19,11 +19,14 @@
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 #
 
 # The order DOES matter !!!
@@ -198,9 +201,6 @@ libscilab_la_DEPENDENCIES = $(am__append_7) $(am__append_8) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
-libscilab_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(libscilab_la_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -281,13 +281,13 @@ DIST_SUBDIRS = prebuildjava threads output_stream arnoldi \
 	linear_algebra localization polynomials special_functions time \
 	windows_tools sparse completion history_manager string hdf5 \
 	fftw statistics dynamic_link console spreadsheet tclsci \
-	commons jvm action_binding graphic_objects renderer gui \
+	commons jvm types action_binding graphic_objects renderer gui \
 	graphic_export graphics optimization randlib interpolation \
 	sound overloading m2sci development_tools \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms graph ast \
 	scinotes parallel modules_manager ui_data history_browser \
-	preferences xml types external_objects slint coverage \
+	preferences xml external_objects slint coverage \
 	external_objects_java scicos_blocks scicos xcos mpi . javasci
 am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/config/mkinstalldirs
@@ -613,13 +613,13 @@ SUBDIRS = prebuildjava threads output_stream arnoldi \
 	polynomials special_functions time windows_tools sparse \
 	completion history_manager output_stream string hdf5 fftw \
 	statistics dynamic_link console arnoldi spreadsheet tclsci \
-	commons jvm action_binding graphic_objects renderer gui \
+	commons jvm types action_binding graphic_objects renderer gui \
 	graphic_export graphics optimization randlib interpolation \
 	sound overloading m2sci development_tools \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \
 	hdf5 graph ast scinotes parallel modules_manager ui_data \
-	history_browser preferences xml types external_objects slint \
+	history_browser preferences xml external_objects slint \
 	coverage $(am__append_1) $(am__append_2) $(am__append_3) \
 	$(am__append_4) . $(am__append_5)
 
@@ -630,7 +630,13 @@ libscilab_la_rootdir = $(mydatadir)
 # libscilab-cli is for scilab-cli (without GUI)
 pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES = 
-libscilab_la_LDFLAGS = $(AM_LDFLAGS) $(SCI_LDFLAGS)
+AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CFLAGS = $(SCI_CFLAGS)
+AM_CXXFLAGS = $(SCI_CXXFLAGS)
+AM_FFLAGS = $(SCI_FFLAGS)
+
+# Tag shared libraries with the Scilab version
+AM_LDFLAGS = $(SCI_LDFLAGS) -version-number $(SCILAB_LIBRARY_VERSION)
 GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
@@ -643,6 +649,7 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/ui_data/libsciui_data.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
 	$(top_builddir)/modules/commons/libscicommons.la \
+	$(top_builddir)/modules/types/libscitypes-java.la \
 	$(top_builddir)/modules/preferences/libscipreferences.la \
 	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la \
 	$(top_builddir)/modules/helptools/libscihelptools.la \
@@ -803,7 +810,7 @@ libscilab-cli.la: $(libscilab_cli_la_OBJECTS) $(libscilab_cli_la_DEPENDENCIES) $
 	$(AM_V_CCLD)$(libscilab_cli_la_LINK) -rpath $(pkglibdir) $(libscilab_cli_la_OBJECTS) $(libscilab_cli_la_LIBADD) $(LIBS)
 
 libscilab.la: $(libscilab_la_OBJECTS) $(libscilab_la_DEPENDENCIES) $(EXTRA_libscilab_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(libscilab_la_LINK) -rpath $(pkglibdir) $(libscilab_la_OBJECTS) $(libscilab_la_LIBADD) $(LIBS)
+	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libscilab_la_OBJECTS) $(libscilab_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

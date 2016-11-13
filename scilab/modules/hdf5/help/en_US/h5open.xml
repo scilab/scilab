@@ -3,11 +3,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5open" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>Open an HDF5 file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             obj = h5open(filename [, access])
             obj = h5open(filename, access, driver [, driver_options...])
@@ -90,7 +93,7 @@
                 "core": Uses a file in memory (improves read/write). This driver has two options:
                 <simplelist type="inline">
                     <member>
-                        backingStore: a boolean, if %T (default), the changes are saved in the real file. 
+                        backingStore: a boolean, if %T (default), the changes are saved in the real file.
                     </member>
                     <member>
                         blockSize: a double: increment (in bytes) to use to increase buffer size (default 64K).
@@ -106,7 +109,7 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 x = 1:10;
-save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones 	
+save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones
 
 // Open the created file
 a = h5open(TMPDIR + "/x.sod");
@@ -135,7 +138,7 @@ h5close(a);
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="h5close">h5close</link>

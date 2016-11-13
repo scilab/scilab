@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="stabil">
+    <refnamediv>
+        <refname>stabil</refname>
+        <refpurpose>安定化</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>F=stabil(A,B,alfa)
+            K=stabil(Sys,alfa,beta)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>
+                        正方実数行列 (<literal>nx x nx</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>
+                        実数行列 (<literal>nx x nu</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alfa, beta</term>
+                <listitem>
+                    <para> 実数または(共役対の)複素ベクトルまたは実数.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>F</term>
+                <listitem>
+                    <para>
+                        実数行列 (<literal>nx x nu</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Sys</term>
+                <listitem>
+                    <para>
+                        線形システム (<literal>syslin</literal> リスト) (<literal>m</literal> 入力, <literal>p</literal> 出力).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>
+                        線形システム (<literal>p</literal> 入力, <literal>m</literal> 出力)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>F=stabil(A,B,alfa)</literal> は,
+            対<literal>(A,B)</literal>が可安定の場合, <literal>A+B*F</literal> が安定となるような
+            ゲイン行列 <literal>F</literal> を返します.
+            配置可能な極は,<literal>alfa(1),alfa(2),...</literal>に設定されます.
+            <literal>(A,B)</literal> が可安定でない場合, 警告が出力され,
+            配置可能な極が <literal>alfa(1),alfa(2),...</literal> に設定されます.
+            <literal>alfa</literal> は,
+            全ての固有値がこの<literal>alfa</literal>に設定される数値です
+            (デフォルト値は <literal>alfa=-1</literal>).
+        </para>
+        <para>
+            <literal>K=stabil(Sys,alfa,beta)</literal> は,
+            <literal>(A,B)</literal> の可制御な固有値を<literal>alfa</literal>に設定し,
+            <literal>(C,A)</literal>の可観測な固有値を<literal>beta</literal>に設定する
+            <literal>Sys</literal>の補償器<literal>K</literal>を返します.
+        </para>
+        <para>
+            全ての配置可能な閉ループ極  (
+            これは,<literal>Aclosed=h_cl(Sys,K)</literal>の固有値として指定されます)
+            は, <literal>alfa(i)</literal>および<literal>beta(j)</literal>に設定されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+// Gain:
+Sys=ssrand(0,2,5,list('st',2,3,3));
+A=Sys('A');B=Sys('B');F=stabil(A,B);
+spec(A) //2 controllable modes 2 unstable uncontrollable modes
+//and one stable uncontrollable mode
+spec(A+B*F) //the two controllable modes are set to -1.
+// Compensator:
+Sys=ssrand(3,2,5,list('st',2,3,3)); //3 outputs, 2 inputs, 5 states
+//2 controllables modes, 3 controllable or stabilizable modes.
+K=stabil(Sys,-2,-3);  //Compensator for Sys.
+spec(Sys('A'))
+spec(h_cl(Sys,K))   //K Stabilizes what can be stabilized.
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="st_ility">st_ility</link>
+            </member>
+            <member>
+                <link linkend="contr">contr</link>
+            </member>
+            <member>
+                <link linkend="ppol">ppol</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

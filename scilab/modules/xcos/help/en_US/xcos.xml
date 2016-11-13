@@ -9,16 +9,16 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  *
  -->
@@ -28,7 +28,7 @@
         <refpurpose>Block diagram editor and GUI for the hybrid simulator</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xcos()
             xcos(filename)
@@ -179,7 +179,7 @@ xcos(scs_m);]]></programlisting>
     </refsection>
     <refsection>
         <title>Example</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 xcos();
 xcos(SCI+"/modules/xcos/demos/Discrete-KalmanFilter.zcos");
 scs_m = scicos_diagram();
@@ -188,7 +188,7 @@ xcos(scs_m);
  ]]></programlisting>
     </refsection>
     <refsection id="SeeAlso_xcos">
-        <title role="see also">See Also</title>
+        <title role="see also">See also</title>
         <itemizedlist>
             <listitem>
                 <link linkend="scicosim">scicosim</link>

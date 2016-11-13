@@ -8,51 +8,54 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-03-01 15:31+0000\n"
+"PO-Revision-Date: 2016-07-30 02:01+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "Language: ru\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась строка.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong number of input argument(s) for method %s: %d or %d expected.\n"
 msgstr ""
+"%s: Неверное количество входных аргументов метода %s: ожидалось %d или %d.\n"
 
 #, c-format
 msgid "%s: Wrong method for input argument #%d: %s unknown.\n"
-msgstr ""
+msgstr "%s: Неверный метод входного аргумента №%d: %s не известен.\n"
 
 #, c-format
 msgid "%s: Wrong position for input argument #%d : Must be in position %d.\n"
 msgstr ""
+"%s: Неверная позиция входного аргумента №%d: должно быть в позиции %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d : ожидалась матрица.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип водного аргумента №%d : ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d : ожидался тип string.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : Only one string expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d:  ожидалась только одна строка.\n"
 
 msgid "Missing vect for random permutation\n"
 msgstr "Отсутствует vect для случайной перестановки\n"
@@ -66,103 +69,132 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d : At least %lf expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d : ожидалось не менее %lf.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Positive integer expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d : ожидалось положительное "
+"число.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : A value expected.\n"
-msgstr ""
+msgstr "%s: Неверное значение входного аргумента №%d : ожидалось значение.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Positive no null value expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d : ожидалось положительное "
+"ненулевое значение.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : value > 1.0 expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d : ожидалось значение  > 1.0.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Positive value expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d : ожидалось положительное "
+"значение.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Positive non null value expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d : ожидалось положительное "
+"ненулевое значение.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A matrix of size m x 1 expected.(m > "
 "0)\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d : ожидалась матрица размером m x "
+"1. (m > 0)\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Mean and Cov have "
 "incompatible dimensions.\n"
 msgstr ""
+"%s: Неверный размер входных аргументов №%d и #%d: у Mean и Cov несовместимые "
+"размерности.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A square symmetric positive definite "
 "matrix expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d :ожидалась квадратная "
+"симметричная положительно определённая матрица.\n"
 
 #, c-format
 msgid "%s: setgmn return with state %d.\n"
-msgstr ""
+msgstr "%s: setgmn возвратила состояние %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d : должно быть между %lf и %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A square matrix or a row vector "
 "expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d : ожидалась квадратная матрица "
+"или вектор-строка.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: No empty matrix expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалось, что матрица не будет "
+"пустой.\n"
 
 #, c-format
 msgid "%s: X0(%d) must be in the range [1,%d[.\n"
-msgstr ""
+msgstr "%s: X0(%d) должен быть в диапазоне [1,%d[.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: P(%d,%d) must be in the range [0 "
 "1].\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: P(%d,%d) должно быть в "
+"диапазоне [0 1].\n"
 
 #, c-format
 msgid "%s: Sum of P(%d,1:%d)=%lf ~= 1.\n"
-msgstr ""
+msgstr "%s: Сумма P(%d,1:%d)=%lf ~= 1.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A positive scalar expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидался положительный "
+"скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался вектор-столбец.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: P(%d) must be in the range [0 1].\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: P(%d) должно быть в диапазоне "
+"[0 1].\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Sum of P(i) > 1.\n"
-msgstr ""
+msgstr "%s: Неверное значение входного аргумента №%d: Сумма P(i) > 1.\n"
 
 #, c-format
 msgid ""
@@ -174,14 +206,19 @@ msgstr ""
 "строковых или полиномиальных значений.\n"
 
 #, c-format
-msgid "%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
+msgid ""
+"%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
 msgstr ""
+"%s: Неверные значения входных аргументов №%d и №%d: ожидалось, что Low < "
+"High.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input arguments #%d and #%d: Low and High must be "
 "integers and (high - low + 1) <=  2147483561.\n"
 msgstr ""
+"%s: Неверные значения входных аргументов №%d и №%d: Low и High должны быть "
+"целыми и (high - low + 1) <=  2147483561.\n"
 
 #, c-format
 msgid ""
@@ -196,19 +233,25 @@ msgid ""
 "%s: Wrong size for input argument #%d : A scalar or a vector of size %d "
 "expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d : ожидался скаляр или вектор "
+"размером %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A vector of size %d x %d expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d : ожидался вектор размером %d x "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for the last %d input argument(s).\n"
-msgstr ""
+msgstr "%s: Неверное значение последнего %d входного аргумента.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : One string expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d : ожидалось одно строковое "
+"значение.\n"
 
 #, c-format
 msgid "The %s option affects only the %s generator\n"
@@ -217,15 +260,18 @@ msgstr "Параметр %s влияет только на генератор %s
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Must be between %d and %d.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d : должно быть между %d и %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Must be between %d, %d or %d.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d : должно быть между %d, %d или "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Must be > %d.\n"
-msgstr ""
+msgstr "%s: Неверное значение входного аргумента №%d : должно быть > %d.\n"
 
 msgid ""
 "\n"
@@ -279,8 +325,8 @@ msgid ""
 "Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
 msgstr ""
 "\n"
-"Неверное начальное число для fsultra, должно быть целым в диапазоне [0, "
-"2^32-1]\n"
+"Неверное начальное число для fsultra, должно быть целым в диапазоне [0, 2^32-"
+"1]\n"
 
 #, c-format
 msgid ""
@@ -308,8 +354,8 @@ msgstr ""
 
 msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
 msgstr ""
-"Неверное начальное число для kiss, должно быть целым в диапазоне [0, "
-"2^32-1]\n"
+"Неверное начальное число для kiss, должно быть целым в диапазоне [0, 2^32-"
+"1]\n"
 
 msgid "Bad seed for mt, must be an int in [0, 2^32-1]\n"
 msgstr ""
@@ -328,3 +374,73 @@ msgstr ""
 
 msgid "Scilab randlib interface not installed.\n"
 msgstr "Интерфейс Scilab randlib не установлен.\n"
+
+msgid "Simulation of a binomial random variable"
+msgstr "Симуляция переменной по биномиальному закону распределения"
+
+msgid "Simulation"
+msgstr "Моделирование"
+
+msgid "Theory"
+msgstr "Теория"
+
+msgid "Simulation of a discrete random variable"
+msgstr "Симуляция переменной по дискретному закону распределения"
+
+msgid "Simulation of a discrete uniform random variable"
+msgstr ""
+"Симуляция переменной по дискретному равновероятному закону распределения"
+
+msgid "Simulation of a Erlang random variable"
+msgstr ""
+
+msgid "Simulation of an exponential random variable"
+msgstr ""
+
+msgid "Classes"
+msgstr "Классы"
+
+msgid "p must be < 1"
+msgstr "p должно быть < 1"
+
+msgid "Simulation of a geometric random variable"
+msgstr ""
+
+msgid "Simulation of a hyper geometric random variable"
+msgstr ""
+
+msgid "Simulation of a Poisson random variable"
+msgstr ""
+
+msgid "Random"
+msgstr ""
+
+msgid "binomial random variable"
+msgstr ""
+
+msgid "discrete random variable"
+msgstr ""
+
+msgid "discrete uniform random variable"
+msgstr ""
+
+msgid "geometric random variable"
+msgstr ""
+
+msgid "Poisson random variable"
+msgstr ""
+
+msgid "Exponential random variable"
+msgstr ""
+
+msgid "Weibull random variable"
+msgstr ""
+
+msgid "Hyper geometric random variable"
+msgstr ""
+
+msgid "Erlang random variable"
+msgstr ""
+
+msgid "Simulation of a Weibull random variable"
+msgstr ""

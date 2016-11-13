@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -22,16 +25,14 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
         if (!assigned.empty())
         {
             // we declare the function in the current scope
-            std::pair<Location, ast::AssignListExp *> p = { e.getLocation(), nullptr };
-            assigned.top().emplace(fd.getSymbol().getName(), p);
+            assigned.top().emplace(fd.getSymbol().getName(), std::make_tuple(e.getLocation(), false, nullptr));
         }
 
-        assigned.emplace(std::unordered_map<std::string, std::pair<Location, ast::AssignListExp *>>());
+        assigned.emplace(std::unordered_map<std::string, std::tuple<Location, bool, ast::AssignListExp *>>());
         used.emplace(std::unordered_map<std::string, const ast::Exp *>());
 
         // a function cans refer to itself
-        std::pair<Location, ast::AssignListExp *> p = { e.getLocation(), nullptr };
-        assigned.top().emplace(fd.getSymbol().getName(), p);
+        assigned.top().emplace(fd.getSymbol().getName(), std::make_tuple(e.getLocation(), false, nullptr));
     }
     else
     {
@@ -40,6 +41,8 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
             if (e.isSimpleVar())
             {
                 const ast::SimpleVar & var = static_cast<const ast::SimpleVar &>(e);
+
+                const std::string & Name = var.getSymbol().getName();
                 if (context.isAssignedVar(var))
                 {
                     // if we are not in the context on a nested assignment in a function call (foo(a,b=2))
@@ -60,13 +63,11 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
                                 // if rhs is used and lhs is not used then this not an "error":
                                 // we are obliged to define lhs just to get rhs.
                                 // So when rhs is used lhs is "used" too.
-                                std::pair<Location, ast::AssignListExp *> p = { var.getLocation(), static_cast<ast::AssignListExp *>(var.getParent()) };
-                                assigned.top().emplace(name, p);
+                                assigned.top().emplace(name, std::make_tuple(var.getLocation(), false, static_cast<ast::AssignListExp *>(var.getParent())));
                             }
                             else
                             {
-                                std::pair<Location, ast::AssignListExp *> p = { var.getLocation(), nullptr };
-                                assigned.top().emplace(name, p);
+                                assigned.top().emplace(name, std::make_tuple(var.getLocation(), false, nullptr));
                             }
                         }
                         else /*if (context.topLoop() && i != used.top.end() && isParentOf(context.topLoop(), i->second))*/
@@ -101,7 +102,7 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
                                 {
                                     if (!pIT->isFunction() && !pIT->isMacroFile() && !pIT->isMacro())
                                     {
-                                        result.report(context, e.getLocation(), *this, _("Use of non-initialized variable \'%s\' may have any side-effects."), name);
+                                        result.report(context, e.getLocation(), *this, 1, _("Use of non-initialized variable \'%s\' may have any side-effects."), name);
                                     }
                                 }
                                 else if (!context.isPrivateFunction(sym))
@@ -120,19 +121,19 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
                                     std::string fname;
                                     if (context.isExternPrivateFunction(sym, fname))
                                     {
-                                        result.report(context, e.getLocation(), *this, _("Use of a private macro \'%s\' defined in an other file %s."), name, fname);
+                                        result.report(context, e.getLocation(), *this, 3, _("Use of a private macro \'%s\' defined in an other file %s."), name, fname);
                                     }
-                                    else if (!context.getPublicFunction(fname))
+                                    else if (!context.getPublicFunction(sym.getName()))
                                     {
                                         // The macro has not been declared somewhere in the project
-                                        result.report(context, e.getLocation(), *this, _("Use of non-initialized variable \'%s\' may have any side-effects."), name);
+                                        result.report(context, e.getLocation(), *this, 1, _("Use of non-initialized variable \'%s\' may have side effects."), name);
                                     }
                                 }
                             }
                         }
                         else
                         {
-                            if (ast::AssignListExp * ale = i->second.second)
+                            if (ast::AssignListExp * ale = std::get<2>(i->second))
                             {
                                 // the variable is in an AssignListExp
                                 // so we must "use" the variables which preceed it too
@@ -162,14 +163,13 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
                 }
             }
             // for i=1:10... end even if i is not used, i is useful to make the loop
-            /*else if (e.isVarDec())
+            else if (e.isVarDec())
             {
                 const ast::VarDec & vd = static_cast<const ast::VarDec &>(e);
                 const std::string & name = vd.getSymbol().getName();
-                std::pair<Location, ast::AssignListExp *> p = { vd.getLocation(), nullptr };
-                assigned.top().emplace(name, p);
+                assigned.top().emplace(name, std::make_tuple(vd.getLocation(), true, nullptr));
                 used.top().erase(name);
-            }*/
+            }
         }
     }
 }
@@ -188,7 +188,10 @@ void VariablesChecker::postCheckNode(const ast::Exp & e, SLintContext & context,
         map.erase(fd.getSymbol().getName());
         for (const auto & p : map)
         {
-            result.report(context, p.second.first, *this, _("Declared variable and might be unused: %s."), p.first);
+            if (!std::get<1>(p.second)) // the variable has an explicit assignment, i.e. we are not in the case for i=1:10...
+            {
+                result.report(context, std::get<0>(p.second), *this, 2, _("Declared variable and might be unused: %s."), p.first);
+            }
         }
         assigned.pop();
         used.pop();
@@ -209,5 +212,22 @@ bool VariablesChecker::isParentOf(const ast::Exp * potentialParent, const ast::E
 const std::string VariablesChecker::getName() const
 {
     return "VariablesChecker";
+}
+
+const std::string VariablesChecker::getId(const unsigned sub) const
+{
+    switch (sub)
+    {
+    case 0:
+	return SLintChecker::getId();
+    case 1:
+	return SLintChecker::getId() + ".Uninitialized";
+    case 2:
+	return SLintChecker::getId() + ".Unused";
+    case 3:
+	return SLintChecker::getId() + ".PrivateMacro";
+    default:
+	return "";
+    }
 }
 }

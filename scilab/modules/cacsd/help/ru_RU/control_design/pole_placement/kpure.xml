@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="kpure">
+    <refnamediv>
+        <refname>kpure</refname>
+        <refpurpose>continuous SISO system limit feedback gain</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            K=kpure(sys [,tol])
+            [K,R]=kpure(sys [,tol])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sys</term>
+                <listitem>
+                    <para>SISO linear system (syslin)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>a positive scalar.  tolerance used to determine if a
+                        root is imaginary or not. The default value is
+                        <literal>1e-6</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>Real vector, the vector of gains for which at least
+                        one closed loop pole is imaginary.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R</term>
+                <listitem>
+                    <para>Complex vector, the imaginary closed loop poles
+                        associated with the values of <literal>K</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>K=kpure(sys)</literal> computes the gains <literal>K</literal> such that the system
+            <literal>sys</literal> feedback by <literal>K(i)</literal> (<literal>sys/.K(i)</literal>) has  poles on imaginary axis.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+num=real(poly([-1+%i, -1-%i, -1+8*%i  -1-8*%i],'s'));
+den=real(poly([0.5 0.5  -6+7*%i  -6-7*%i  -3 -7 -11],'s'));
+h=num/den;
+
+[K,Y]=kpure(h)
+clf();evans(h)
+plot(real(Y),imag(Y),'+r')
+ ]]></programlisting>
+        <scilab:image>
+            num=real(poly([-1+%i, -1-%i, -1+8*%i  -1-8*%i],'s'));
+            den=real(poly([0.5 0.5  -6+7*%i  -6-7*%i  -3 -7 -11],'s'));
+            h=num/den;
+
+            [K,Y]=kpure(h)
+            clf();evans(h)
+            plot(real(Y),imag(Y),'+r')
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+num=real(poly([-1+%i*1, -1-%i*1, 2+%i*8  2-%i*8 -2.5+%i*13 -2.5-%i*13],'s'));
+den=real(poly([1 1 3+%i*3 3-%i*3 -15+%i*7  -15-%i*7  -3 -7 -11],'s'));
+h=num/den;
+
+[K,Y]=kpure(h)
+clf();evans(h,100000)
+plot(real(Y),imag(Y),'+r')
+ ]]></programlisting>
+        <scilab:image>
+            num=real(poly([-1+%i*1, -1-%i*1, 2+%i*8  2-%i*8 -2.5+%i*13 -2.5-%i*13],'s'));
+            den=real(poly([1 1 3+%i*3 3-%i*3 -15+%i*7  -15-%i*7  -3 -7 -11],'s'));
+            h=num/den;
+
+            [K,Y]=kpure(h)
+            clf();evans(h,100000)
+            plot(real(Y),imag(Y),'+r')
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="evans">evans</link>
+            </member>
+            <member>
+                <link linkend="krac2">krac2</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

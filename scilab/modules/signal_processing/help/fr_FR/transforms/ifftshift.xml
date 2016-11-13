@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="ifftshift">
+    <refnamediv>
+        <refname>ifftshift</refname>
+        <refpurpose>inverse de fftshift</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>y=ifftshift(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y</term>
+                <listitem>
+                    <para>vecteurs ou matrices réel(le)s ou complexes.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>ifftshift(x)</literal> échange les moitiés gauche et droite du vecteur <literal>x</literal>.
+        </para>
+        <para>
+            Pour les matrices, <literal>ifftshift(x)</literal> échange le premier quadrant avec le troisième et le second avec le quatrième.
+        </para>
+        <para>
+            Si <literal>x</literal> est un tableau multidimensionnel,
+            <literal>ifftshift(x)</literal> échange les "mi-espaces" de <literal>x</literal> selon chaque dimension.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <para>
+            Exemple #1:
+        </para>
+        <programlisting role="example"><![CDATA[
+// Création d'un signal
+t = 0:0.1:1000;
+x = 3*sin(t)+8*sin(3*t)+0.5*sin(5*t)+3*rand(t);
+// Calcul de sa fft
+y = fft(x, -1);
+// Inversion du résultat
+shift = fftshift(y);
+// Inversion du résultat inversé
+invShift = ifftshift(shift);
+// On vérifie qu'on a bien recréé le résultat de départ
+and(y == invShift)
+ ]]></programlisting>
+        <para>
+            Example #2:
+        </para>
+        <programlisting role="example"><![CDATA[
+// Création d'une image 2D
+t = 0:0.1:30;
+x = 3*sin(t')*cos(2*t)+8*sin(3*t')*sin(5*t)+..
+  0.5*sin(5*t')*sin(5*t)+3*rand(t')*rand(t);
+// Calcul de la fft
+y = fft(x,-1);
+
+// Inversion du résultat
+shift = fftshift(y);
+// Inversion du résultat inversé
+invShift = ifftshift(shift);
+// On vérifie qu'on a bien recréé le résultat de départ
+and(y == invShift)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fftshift">fftshift</link>
+            </member>
+            <member>
+                <link linkend="fft">fft</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

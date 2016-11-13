@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="iconvert">
     <refnamediv>
         <refname>iconvert</refname>
-        <refpurpose>преобразование в 1- или 4-байтное представление целого числа</refpurpose>
+        <refpurpose>преобразование в 1- или 8-байтное представление целого числа</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y = iconvert(X, itype)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -37,7 +40,7 @@
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>матрица целых чисел, закодированных в одном, двух или четырёх байтах.</para>
+                    <para>матрица целых чисел, закодированных в 1, 2, 4 или 8 байтах.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,8 +48,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>iconvert</function> преобразует и хранит данные в виде одно-,
-            двух- или четырёхбайтных целых чисел.
+            Функция <function>iconvert</function> преобразует и хранит данные в виде 1-,
+            2-, 4- или 8-байтных целых чисел.
         </para>
         <variablelist>
             <varlistentry>
@@ -105,14 +108,30 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>itype = 8</term>
+                <listitem>
+                    <para>
+                        возвращает числа <literal>int64</literal> в диапазоне <literal>[-9223372036854775808,9223372036854775807]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>itype = 18</term>
+                <listitem>
+                    <para>
+                        возвращает числа <literal>uint64</literal> в диапазоне <literal>[0, 18446744073709551616]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
-b=int32([1 -120 127 312])
-y=iconvert(b,1)
- 
+        <programlisting role="example"><![CDATA[
+b = int32([1 -120 127 312])
+y = iconvert(b,1)
+
 typeof(b)
 typeof(y)
  ]]></programlisting>

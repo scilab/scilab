@@ -5,7 +5,7 @@
         <refpurpose>return or resume execution and copy some local variables</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>return
             [x1,..,xn]=return(a1,..,an)
         </synopsis>
@@ -70,9 +70,9 @@ assert_checkequal(b,43)
 
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="abort">abort</link>

@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -182,6 +185,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
                 if (bOK == false)
                 {
                     Scierror(50, _("%s: Subroutine not found: %s\n"), "fsolve", pst);
+                    FREE(pst);
                     return types::Function::Error;
                 }
 
@@ -204,22 +208,6 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
         }
-        else if (in[2]->isDouble() && in.size() == 3)
-        {
-            pDblTol = in[2]->getAs<types::Double>();
-            if (pDblTol->isScalar() == false)
-            {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "fsolve", 3);
-                return types::Function::Error;
-            }
-
-            dTol = pDblTol->get(0);
-        }
-        else
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar or a function expected.\n"), "fsolve", 3);
-            return types::Function::Error;
-        }
     }
 
     if (in.size() == 4)
@@ -237,7 +225,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar or a function expected.\n"), "fsolve", 4);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "fsolve", 4);
             return types::Function::Error;
         }
     }
@@ -280,16 +268,16 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
         delete pDblX;
         if (pdblJac)
         {
-            delete pdblJac;
+            delete[] pdblJac;
         }
 
         return types::Function::Error;
     }
 
-    delete pdblWork;
+    delete[] pdblWork;
     if (pdblJac)
     {
-        delete pdblJac;
+        delete[] pdblJac;
     }
 
     /*** return output arguments ***/

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "Language: ca\n"
 
 #, c-format
@@ -52,7 +52,8 @@ msgstr "%s : El primer argument ha de ser una llista de scicos_block.\n"
 
 #, c-format
 msgid "%s : First argument must be a valid scicos_block typed list.\n"
-msgstr "%s : El primer argument ha de ser una llista de scicos_block vàlida.\n"
+msgstr ""
+"%s : El primer argument ha de ser una llista de scicos_block vàlida.\n"
 
 #, c-format
 msgid "%s : Second argument must be scalar.\n"
@@ -241,7 +242,8 @@ msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
+msgid ""
+"%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
 msgstr ""
 
 #, c-format
@@ -302,7 +304,8 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: Error de memòria.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -426,7 +429,8 @@ msgid "%s: Wrong size for input argument #%d : A single struct expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
+msgid ""
+"%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
 msgstr ""
 
 #, c-format
@@ -541,8 +545,8 @@ msgstr ""
 "RTOL i ATOL)\n"
 
 #, c-format
-msgid "block %d is called "
-msgstr "s'ha cridat al bloc %d "
+msgid "block %d [%s] is called "
+msgstr ""
 
 #, c-format
 msgid "with flag %d "
@@ -678,15 +682,32 @@ msgstr ""
 " pot ser que crideu algunes funcions amb entrades incorrectes."
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: %s, %s, %s, %s, %s or %s type.\n"
+msgid "%s: Wrong type for input argument #%d: unknown integer type.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %d (String) expected.\n"
+msgid "%s: Wrong value for input argument #%d: Could not read its content.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
+msgid "%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for element #%d of input argument #%d: Integer matrix cannot "
+"be empty.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for element #%d of input argument #%d: String matrix cannot "
+"be empty.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
 msgstr ""
 
 #, c-format
@@ -730,10 +751,6 @@ msgid "Wrong dimension for field %s.%s: %d-by-%d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong type for field %s.%s: Boolean matrix expected.\n"
-msgstr ""
-
-#, c-format
 msgid "Wrong type for field %s.%s: string expected.\n"
 msgstr ""
 
@@ -750,55 +767,79 @@ msgid "Wrong type for field %s: Real matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong length for field %s.%s: %d expected.\n"
+msgid "Wrong dimension for field %s.%s : %d-by-%d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong type for field %s.%s : string expected.\n"
+msgid "Wrong length for field %s.%s : %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for field %s.%s: Round number expected.\n"
+msgid "Wrong type for field %s.%s : String matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong size for field %s.%s: %d-by-%d expected.\n"
+msgid "Wrong value for field %s.%s : Round number expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong dimension for field %s.%s: m-by-1 expected.\n"
+msgid "Wrong type for field %s.%s : Real matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong type for field %s.%s: List expected.\n"
+msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for field %s.%s: %s (%s) has an invalid port number.\n"
+msgid "Wrong dimension for field %s.%s : m-by-1 expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for field %s.%s: %s (%s) has an invalid implicit port.\n"
+msgid "Wrong type for field %s.%s : List expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for field %s.%s: %s (%s) has an invalid explicit port.\n"
+msgid "Wrong value for field %s.%s : %s (%s) has an invalid port number.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong type for field %s.%s: Diagram expected.\n"
+msgid "Wrong value for field %s.%s : %s (%s) has an invalid implicit port.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong type for field %s.%s: List clear previous value.\n"
+msgid "Wrong value for field %s.%s : %s (%s) has an invalid explicit port.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong dimension for field %s.%s: m-by-1 matrix expected.\n"
+msgid "Wrong type for field %s.%s : Diagram expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for field %s.%s: Integer values expected.\n"
+msgid "Wrong type for field %s.%s : List clear previous value.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong dimension for field %s.%s : m-by-1 matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for field %s.%s : Integer values expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s : String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong dimension for field %s.%s : String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s : Boolean matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for field %s.%s : Valid C identifier expected.\n"
 msgstr ""
 
 #, c-format
@@ -810,15 +851,19 @@ msgid "Wrong dimension for field %s.%s: String expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong type for field %s.%s: Equation expected.\n"
-msgstr ""
-
-#, c-format
 msgid "Wrong type for field %s.%s: Real expected.\n"
 msgstr ""
 
 #, c-format
 msgid "Wrong dimension for field %s.%s: Real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong dimension for field %s.%s: m-by-1 expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s : string expected.\n"
 msgstr ""
 
 #, c-format
@@ -847,6 +892,10 @@ msgstr ""
 
 #, c-format
 msgid "Wrong type for field %s.%s .\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for field %s.%s: Round number expected.\n"
 msgstr ""
 
 #, c-format
@@ -951,6 +1000,10 @@ msgid "Simulation problem: "
 msgstr ""
 
 msgid "End problem: "
+msgstr ""
+
+#, c-format
+msgid "%s: property %s obsolete, please use %s instead.\n"
 msgstr ""
 
 #, c-format

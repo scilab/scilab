@@ -3,11 +3,14 @@
  * Copyright (C) 2005-2008 - INRIA - Allan CORNET
  * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -57,8 +60,8 @@ int sci_TCL_ExistArray(char *fname, void* pvApiCtx)
 
         if (!existsGlobalInterp())
         {
-            freeAllocatedSingleString(VarName);
             Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
+            freeAllocatedSingleString(VarName);
             return 0;
         }
 
@@ -71,14 +74,15 @@ int sci_TCL_ExistArray(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    freeAllocatedSingleString(VarName);
                     return 1;
                 }
 
                 // Retrieve a matrix of double at position 2.
                 if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
                 {
-                    freeAllocatedSingleString(VarName);
                     Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                    freeAllocatedSingleString(VarName);
                     return 1;
                 }
 
@@ -86,15 +90,15 @@ int sci_TCL_ExistArray(char *fname, void* pvApiCtx)
                 freeAllocatedSingleString(l2);
                 if (TCLinterpreter == NULL)
                 {
-                    freeAllocatedSingleString(VarName);
                     Scierror(999, _("%s: No such slave interpreter.\n"), fname);
+                    freeAllocatedSingleString(VarName);
                     return 0;
                 }
             }
             else
             {
-                freeAllocatedSingleString(VarName);
                 Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+                freeAllocatedSingleString(VarName);
                 return 0;
             }
         }

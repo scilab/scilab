@@ -95,7 +95,7 @@
         <para>
             An output event is generated when the unique input crosses zero with a
             positive slope.
-            
+
         </para>
     </refsection>
     <refsection id="Defaultproperties_NEGTOPOS_f">

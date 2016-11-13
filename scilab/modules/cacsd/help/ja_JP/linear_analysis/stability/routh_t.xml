@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="routh_t" xml:lang="ja">
+    <refnamediv>
+        <refname>routh_t</refname>
+        <refpurpose>ラウス表</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            [r [,num] ]=routh_t(p)
+            [r [,num] ]=routh_t(h ,kp)
+            r=routh_t(h ,k [,normalized])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>実数多項式</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>実数 SISO 伝達システム</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>実数多項式またはスカラー</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>kp</term>
+                <listitem>
+                    <para>スカラー: 比例制御定数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>normalized</term>
+                <listitem>
+                    <para>論理値 (%t (デフォルト値) または %f)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>行列またはリスト: ラウス配列要素</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>num</term>
+                <listitem>
+                    <para>スカラー: 符号変更の数</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>r=routh_t(p)</literal> は,
+            多項式<literal>p</literal>のラウス表を計算します.
+        </para>
+        <para>
+            <literal>r=routh_t(h,k)</literal> は,
+            ゲイン<literal>k</literal>によるフィードバックを有する
+            SISO伝達行列 <literal>h</literal>で記述されたシステムの
+            分母のラウス表を計算します.
+        </para>
+        <para>
+            <literal>k=poly(0,'k')</literal> の場合,ダミー変数<literal>k</literal>
+            で表した多項式行列でラウス表が記述されます.
+        </para>
+        <para>
+            <literal>normalized=%f</literal> の場合,
+            正規化されていない要素を有する多項式行列を有します.
+            他の場合, 有理数または正規化された行列を有します.
+        </para>
+        <para>
+            2番目の引数 <literal>num</literal> はラウス表の最初の列の
+            符号変化の数を返します.
+            この引数の値は,表が正規化された場合のみ意味を有します.
+        </para>
+        <para>
+            <note>
+                ヒント: <literal>h=1/p</literal>の場合,
+                <literal>routh_t(h, kp)</literal> は
+                <literal>routh_t(p+kp)</literal> に等価です.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+s=%s;
+P=5*s^3-10*s^2+7*s+20;
+routh_t(P)
+// フィードバックを有する伝達関数, 正規化された場合
+routh_t((1+s)/P,poly(0,'k'))
+// フィードバックを有する伝達関数, 正規化されていない場合
+routh_t((1+s)/P,poly(0,'k'),%f)
+// 多項式の係数の一つが0
+P1=2*s^3-24*s+32;
+routh_t(P1)
+// ある行が全てゼロ
+P2=s^4-6*s^3+10*s^2-6*s+9;
+routh_t(P2)
+// 右辺の根の数を2番目の出力引数として取得可能
+P3=5*s^3-10*s^2+7*s;
+[r,num]=routh_t(1/P3,20)
+if num==0
+   disp("System is stable")
+else
+   mprintf("There is %g sign changes in entries of first column.\nTherefore, system is unstable.", num)
+end
+//
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="roots">roots</link>
+            </member>
+            <member>
+                <link linkend="spec">spec</link>
+            </member>
+            <member>
+                <link linkend="evans">evans</link>
+            </member>
+            <member>
+                <link linkend="kpure">kpure</link>
+            </member>
+            <member>
+                <link linkend="krac2">krac2</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>参考文献</title>
+        <para>
+            <ulink url="http://controls.engin.umich.edu/wiki/index.php/RouthStability">http://controls.engin.umich.edu/wiki/index.php/RouthStability</ulink>
+        </para>
+        <para>
+            <ulink url="http://www.jdotec.net/s3i/TD_Info/Routh/Routh.pdf">http://www.jdotec.net/s3i/TD_Info/Routh/Routh.pdf</ulink>
+        </para>
+        <para>Comments on the Routh-Hurwitz criterion, Shamash, Y.,Automatic
+            Control, IEEE T.A.C Volume 25, Issue 1, Feb 1980 Page(s): 132 - 133
+        </para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>新規出力引数が追加されました: num (SEP #104).</revremark>
+            </revision>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>新規入力引数が追加されました: normalized (SEP #89).</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

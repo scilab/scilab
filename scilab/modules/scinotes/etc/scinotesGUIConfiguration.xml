@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Configuration>
-    
+
     <MenuBar>
         <menu label="File" mnemonic="F">
             <menuitem action="scinotes-new" label="New"/>
@@ -34,7 +34,7 @@
             <separator/>
             <menuitem action="scinotes-exit" label="Exit Scinotes"/>
         </menu>
-        
+
         <menu label="Edit" mnemonic="E">
             <menuitem action="scinotes-undo" label="Undo"/>
             <menuitem action="scinotes-redo" label="Redo"/>
@@ -69,9 +69,9 @@
                 <separator/>
                 <menuitem action="scinotes-code-navigator" label="Code Navigator"/>
             </menu>
-            
+
         </menu>
-        
+
         <menu label="Format" mnemonic="P">
             <menuitem action="scinotes-tabify" label="Shift Right"/>
             <menuitem action="scinotes-untabify" label="Shift Left"/>
@@ -91,7 +91,7 @@
             <separator/>
             <menuitem action="scinotes-double-quote" label="Single to double quote strings"/>
         </menu>
-        
+
         <menu label="Options">
             <menuitem action="scinotes-encoding" label="Current file encoding"/>
             <menuitem action="scinotes-eof" label="Line Endings"/>
@@ -112,7 +112,7 @@
       <separator/>
       <menuitem action="SuppressCommentsAction" label="Suppress comments when executing selection"/-->
         </menu>
-        
+
         <menu label="Window" mnemonic="N">
             <menuitem action="scinotes-clone-current" label="Copy tab in new window"/>
             <menuitem action="scinotes-export-current" label="Detach tab in new window"/>
@@ -121,7 +121,7 @@
             <separator/>
             <menuitem action="scinotes-split" label="Split View;Off;Split in two columns;Split in two rows"/>
         </menu>
-        
+
         <menu label="Execute" mnemonic="X">
             <menuitem action="scinotes-execute-scilab" label="... file with no echo"/>
             <menuitem action="scinotes-load-scilab" label="... file with echo"/>
@@ -130,14 +130,14 @@
             <menuitem action="scinotes-save-execute" label="Save and execute"/>
             <menuitem action="scinotes-save-execute-all" label="Save and execute all files"/>
         </menu>
-        
+
         <menu label="?">
             <menuitem action="scinotes-help" label="Scinotes help"/>
             <menuitem action="scinotes-help-keyword" label="Help on ;Help on selection"/>
             <menuitem action="scinotes-about" label="About"/>
         </menu>
     </MenuBar>
-    
+
     <RightClickMenu>
         <menuitem action="scinotes-evaluate-selection" label="Evaluate Selection with echo;Evaluate until the caret, with echo"/>
         <separator/>
@@ -154,23 +154,23 @@
         <menuitem action="scinotes-paste-column" label="Paste Column"/>
         <separator/>
         <menuitem action="scinotes-indent" label="Correct Indentation"/>
-        
+
         <separator/>
         <menuitem action="scinotes-copy-with-lines" label="Copy as HTML with line number"/>
         <separator/>
         <menuitem action="scinotes-open-source" label="Open function source file"/>
         <menuitem action="scinotes-open-url" label="Open URL"/>
     </RightClickMenu>
-    
+
     <ToolBar>
         <button action="scinotes-new" tooltip="New" icon="document-new"/>
         <button action="scinotes-open" tooltip="Open" icon="document-open"/>
-        
+
         <!-- The second token of the button OpenFileInAction is the full path of the directory
          where to open files.
          The shortcuts SCI or MODULES can be used (not in path but alone) -->
         <button action="scinotes-open-file-in" tooltip="Open in ;MODULES" icon="document-open-sci"/>
-        
+
         <separator/>
         <button action="scinotes-save" tooltip="Save" icon="media-floppy"/>
         <button action="scinotes-save-as" tooltip="Save as" icon="document-save-as"/>
@@ -196,5 +196,5 @@
         <separator/>
         <button action="scinotes-help" tooltip="Scinotes help" icon="help-browser"/>
     </ToolBar>
-    
+
 </Configuration>

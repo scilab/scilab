@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Add some comments about XML file
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="nyquistfrequencybounds">
+    <refnamediv>
+        <refname>nyquistfrequencybounds</refname>
+        <refpurpose>ナイキスト軌跡が指定した矩形に入る周波数および出る周波数を計算する.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[fmin,fmax] = nyquistfrequencybounds(H,bounds)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>H</term>
+                <listitem>
+                    <para>
+                        SISO線形動的システム.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bounds</term>
+                <listitem>
+                    <para>
+                        2行2列配列:複素平面の矩形を定義する配列 [Rmin Imin;Rmax Imax] .
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmin</term>
+                <listitem>
+                    <para>
+                        実数: ナイキスト軌跡が指定した矩形に入る最小の周波数 (Hz)
+                        または 0 (矩形に 0 Hzの点が含まれる場合)または
+                        [] (軌跡が完全に矩形の外側).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmax</term>
+                <listitem>
+                    <para>
+                        実数: ナイキスト軌跡が指定した矩形から出る最大の周波数 (Hz)
+                        または %inf (周波数に %inf (Hz)となる点が含まれる場合,
+                        または軌跡が完全に矩形の外側にある場合).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title><para>
+            複素平面の矩形を指定すると,
+            <literal>nyquistfrequencybounds</literal> は,
+            ナイキスト軌跡が矩形に入る最小の周波数と,
+            ナイキスト軌跡が矩形から離れる最大の周波数を計算します.
+        </para>
+        この関数はナイキスト軌跡の高解像度の拡大図を作成する用途では有用です.
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    s=%s
+    num=2+9*s-9*s^2-11*s^3+0.01*s^4;
+    den=43*s^2+65*s^3+34*s^4+8*s^5+s^6+0.1*s^7
+    H=syslin('c',num,den)-1
+    clf;set(gcf(),'axes_size',[805,549])
+    subplot(221)
+    nyquist(H)
+    subplot(222)
+    bounds=[-2 -2;2 2]
+    [fmin,fmax]=nyquistfrequencybounds(H,bounds)
+    nyquist(H,fmin,fmax)
+    title("bounds:"+sci2exp(bounds,0));
+    subplot(223)
+    bounds=[-1.3 -0.3;0 0.3]
+    [fmin,fmax]=nyquistfrequencybounds(H,bounds)
+    nyquist(H,fmin,fmax)
+    title("bounds:"+sci2exp(bounds,0));
+    subplot(224)
+    bounds=[-1.1 -0.1;-0.8 0.1]
+    [fmin,fmax]=nyquistfrequencybounds(H,bounds)
+    nyquist(H,fmin,1d8)
+    title("bounds:"+sci2exp(bounds,0));
+    ]]></programlisting>
+        <para>
+            <scilab:image>
+                s=%s
+                num=2+9*s-9*s^2-11*s^3+0.01*s^4;
+                den=43*s^2+65*s^3+34*s^4+8*s^5+s^6+0.1*s^7
+                H=syslin('c',num,den)-1
+                clf;set(gcf(),'axes_size',[805,549])
+                subplot(221)
+                nyquist(H)
+                subplot(222)
+                bounds=[-2 -2;2 2]
+                [fmin,fmax]=nyquistfrequencybounds(H,bounds)
+                nyquist(H,fmin,fmax)
+                title("bounds:"+sci2exp(bounds,0));
+                subplot(223)
+                bounds=[-1.3 -0.3;0 0.3]
+                [fmin,fmax]=nyquistfrequencybounds(H,bounds)
+                nyquist(H,fmin,fmax)
+                title("bounds:"+sci2exp(bounds,0));
+                subplot(224)
+                bounds=[-1.1 -0.1;-0.8 0.1]
+                [fmin,fmax]=nyquistfrequencybounds(H,bounds)
+                nyquist(H,fmin,1d8)
+                title("bounds:"+sci2exp(bounds,0));
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection>
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

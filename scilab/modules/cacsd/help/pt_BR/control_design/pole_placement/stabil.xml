@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="stabil">
+    <refnamediv>
+        <refname>stabil</refname>
+        <refpurpose>stabilization</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>F=stabil(A,B,alfa)
+            K=stabil(Sys,alfa,beta)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>
+                        square real matrix (<literal>nx x nx</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>
+                        real matrix (<literal>nx x nu</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alfa, beta</term>
+                <listitem>
+                    <para> real or complex vector (in conjugate pairs) or real number.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>F</term>
+                <listitem>
+                    <para>
+                        real matrix (<literal>nx x nu</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Sys</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list) (<literal>m</literal> inputs, <literal>p</literal> outputs).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>p</literal> inputs, <literal>m</literal> outputs)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>F=stabil(A,B,alfa)</literal> returns a gain matrix <literal>F</literal> such that
+            <literal>A+B*F</literal> is stable if pair <literal>(A,B)</literal> is stabilizable.
+            Assignable poles are set to <literal>alfa(1),alfa(2),...</literal>.
+            If <literal>(A,B)</literal> is not stabilizable a warning is given
+            and assignable poles are set to <literal>alfa(1),alfa(2),...</literal>.
+            If <literal>alfa</literal> is a number all eigenvalues are set to this
+            <literal>alfa</literal> (default value is <literal>alfa=-1</literal>).
+        </para>
+        <para>
+            <literal>K=stabil(Sys,alfa,beta)</literal> returns <literal>K</literal>, a compensator for <literal>Sys</literal>
+            such that <literal>(A,B)</literal>-controllable eigenvalues are set to
+            <literal>alfa</literal> and <literal>(C,A)</literal>-observable eigenvalues are set to <literal>beta</literal>.
+        </para>
+        <para>
+            All assignable closed loop poles (which are given by the
+            eigenvalues of <literal>Aclosed=h_cl(Sys,K)</literal> are set to <literal>alfa(i)</literal>'s
+            and <literal>beta(j)</literal>'s.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Gain:
+Sys=ssrand(0,2,5,list('st',2,3,3));
+A=Sys('A');B=Sys('B');F=stabil(A,B);
+spec(A) //2 controllable modes 2 unstable uncontrollable modes
+//and one stable uncontrollable mode
+spec(A+B*F) //the two controllable modes are set to -1.
+// Compensator:
+Sys=ssrand(3,2,5,list('st',2,3,3)); //3 outputs, 2 inputs, 5 states
+//2 controllables modes, 3 controllable or stabilizable modes.
+K=stabil(Sys,-2,-3);  //Compensator for Sys.
+spec(Sys('A'))
+spec(h_cl(Sys,K))   //K Stabilizes what can be stabilized.
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="st_ility">st_ility</link>
+            </member>
+            <member>
+                <link linkend="contr">contr</link>
+            </member>
+            <member>
+                <link linkend="ppol">ppol</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

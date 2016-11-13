@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atanh" xml:lang="ru">
@@ -16,7 +19,7 @@
         <refpurpose>гиперболический арктангенс</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t = atanh(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -48,7 +51,7 @@
             В Scilab (как и в некоторых других вычислительных программах), когда вы пытаетесь вычислить элементарную математическую функцию вне её области определения для вещественных значений, то используется комплексное расширение (с комплексным результатом). Самый знаменитый пример - это функция квадратного корня (попробуйте найти <code>sqrt(-1)</code>!).
             Этот подход имеет недостатки, когда вы вычисляете функцию в неопределённой точке, что может привести к различным результатам, когда точка считается вещественной или комплексной.
             Для <function>atanh</function> это происходит для <literal>-1</literal> и
-            <literal>1</literal>, поскольку в этих точках мнимая часть не сходится и поэтому 
+            <literal>1</literal>, поскольку в этих точках мнимая часть не сходится и поэтому
             <literal>atanh(1) = +Inf + i NaN</literal>, в то время как
             <literal>atanh(1) = +Inf</literal> для вещественных значений (в качестве предела <literal>x-&gt;1</literal> функции <code>atanh(x)</code>). Поэтому, когда вы вычисляете эту функцию для вектора <literal>[1 2]</literal>, то, поскольку <literal>2</literal> лежит вне области определения, используется комплексное расширение для всего вектора и вы получите
             <literal>atanh(1) = +Inf + i NaN</literal>, хотя вы получаете <literal>atanh(1)
@@ -59,16 +62,16 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // пример 1
 x=[0,%i,-%i]
 tanh(atanh(x))
- 
+
 // пример 2
 x = [-%inf -3 -2 -1 0 1 2 3 %inf]
 ieee(2)
 atanh(tanh(x))
- 
+
 // пример 3 (см. Примечание)
 ieee(2)
 atanh([1 2])

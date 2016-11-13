@@ -5,7 +5,7 @@
         <refpurpose>linear interpolation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y]=interpln(xyd,x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -42,7 +42,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[1 10 20 30 40];
 y=[1 30 -10 20 40];
 plot2d(x',y',[-3],"011"," ",[-10,-40,50,50]);
@@ -58,7 +58,7 @@ plot2d((-4:45)',yi',[3],"000");
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="splin">splin</link>

@@ -5,7 +5,7 @@
         <refpurpose>Function for running xcos simulation in batch mode</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Info, status]=xcos_simulate(scs_m, needcompile)</synopsis>
     </refsynopsisdiv>
     <refsection id="Parameters_xcos_simulate">
@@ -258,7 +258,7 @@ xcos_simulate(scs_m, 4);
         </para>
     </refsection>
     <refsection id="SeeAlso_xcos_simulate">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="scicos_diagram">scs_m structure</link>

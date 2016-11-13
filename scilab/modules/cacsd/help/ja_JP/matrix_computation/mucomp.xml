@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="mucomp">
+    <refnamediv>
+        <refname>mucomp</refname>
+        <refpurpose>mu (構造化特異値) 計算</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[BOUND, D, G] = mucomp(Z, K, T)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Z</term>
+                <listitem>
+                    <para>
+                        構造化特異値を計算するn行n列の複素行列
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>
+                        誤差に関するブロック構造を含む長さmのベクトル.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>T</term>
+                <listitem>
+                    <para>
+                        各ブロックの型を指す長さmのベクトル.
+                        対応するブロックが実数の場合は T(I) = 1,
+                        対応するブロックが複素数の場合は T(I) = 2.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>BOUND</term>
+                <listitem>
+                    <para>構造化特異値の上界.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>D, G</term>
+                <listitem>
+                    <para>
+                        それぞれ対角行列DおよびGの対角要素を含む長さnのベクトル.
+                        この際,行列<literal> Z'*D^2*Z + sqrt(-1)*(G*Z-Z'*G) - bound^2*D^2 </literal>
+                        は負の半正定行列となります.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            正方複素行列および
+            誤差のブロック構造を指定して,構造化特異値の上界を計算します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>参考文献</title>
+        <para>
+            Slicot ルーチン AB13MD.
+        </para>
+    </refsection>
+</refentry>

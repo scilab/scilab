@@ -4,11 +4,14 @@
  * Copyright (C) 2009-2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2015 - Scilab Enterprises - Anais AUBERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
  * However, the API (profile of the functions in the header files) will be
@@ -150,9 +153,7 @@ SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, con
 /*--------------------------------------------------------------------------*/
 SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const char* const* _pstStrings)
 {
-    SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
+    SciErr sciErr = sciErrInit();
 
     // check variable name
     if (checkNamedVarFormat(_pvCtx, _pstName) == 0)
@@ -437,6 +438,7 @@ int getAllocatedSingleString(void* _pvCtx, int* _piAddress, char** _pstData)
     {
         addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_SINGLE_STRING, _("%s: Unable to get argument data"), "getAllocatedSingleString");
         printError(&sciErr, 0);
+        FREE(*_pstData);
         return sciErr.iErr;
     }
 
@@ -473,6 +475,7 @@ int getAllocatedSingleWideString(void* _pvCtx, int* _piAddress, wchar_t** _pwstD
     {
         addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_SINGLE_WIDE_STRING, _("%s: Unable to get argument data"), "getAllocatedSingleWideString");
         printError(&sciErr, 0);
+        FREE(*_pwstData);
         return sciErr.iErr;
     }
 
@@ -490,7 +493,6 @@ int getAllocatedMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int*
     }
 
     int* piLen = (int*)MALLOC(sizeof(int) **_piRows **_piCols);
-    *_pstData = (char**)MALLOC(sizeof(char*) **_piRows **_piCols);
 
     sciErr = getMatrixOfString(_pvCtx, _piAddress, _piRows, _piCols, piLen, NULL);
     if (sciErr.iErr)
@@ -505,6 +507,7 @@ int getAllocatedMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int*
         return sciErr.iErr;
     }
 
+    *_pstData = (char**)MALLOC(sizeof(char*) **_piRows **_piCols);
     for (int i = 0 ; i < *_piRows **_piCols ; i++)
     {
         (*_pstData)[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+1 for null termination
@@ -520,6 +523,11 @@ int getAllocatedMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int*
     {
         addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_STRING_MATRIX, _("%s: Unable to get argument data"), "getAllocatedMatrixOfString");
         printError(&sciErr, 0);
+        for (int i = 0 ; i < *_piRows **_piCols ; i++)
+        {
+            FREE((*_pstData)[i]);
+        }
+        FREE(*_pstData);
         return sciErr.iErr;
     }
 
@@ -537,7 +545,6 @@ int getAllocatedMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, 
     }
 
     int* piLen = (int*)MALLOC(sizeof(int) **_piRows **_piCols);
-    *_pwstData = (wchar_t**)MALLOC(sizeof(wchar_t*) **_piRows **_piCols);
 
     sciErr = getMatrixOfWideString(_pvCtx, _piAddress, _piRows, _piCols, piLen, NULL);
     if (sciErr.iErr)
@@ -548,15 +555,11 @@ int getAllocatedMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, 
             FREE(piLen);
             piLen = NULL;
         }
-        if (*_pwstData)
-        {
-            FREE(*_pwstData);
-            *_pwstData = NULL;
-        }
         printError(&sciErr, 0);
         return sciErr.iErr;
     }
 
+    *_pwstData = (wchar_t**)MALLOC(sizeof(wchar_t*) **_piRows **_piCols);
     for (int i = 0 ; i < *_piRows **_piCols ; i++)
     {
         (*_pwstData)[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (piLen[i] + 1));//+1 for null termination
@@ -574,6 +577,11 @@ int getAllocatedMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, 
     {
         addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_WIDE_STRING_MATRIX, _("%s: Unable to get argument data"), "getAllocatedMatrixOfWideString");
         printError(&sciErr, 0);
+        for (int i = 0 ; i < *_piRows **_piCols ; i++)
+        {
+            FREE((*_pwstData)[i]);
+        }
+        FREE(*_pwstData);
         return sciErr.iErr;
     }
     return 0;
@@ -608,6 +616,7 @@ int getAllocatedNamedSingleString(void* _pvCtx, const char* _pstName, char** _ps
     {
         addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_NAMED_SINGLE_STRING, _("%s: Unable to get argument data"), "getAllocatedNamedSingleString");
         printError(&sciErr, 0);
+        FREE(*_pstData);
         return sciErr.iErr;
     }
 
@@ -643,6 +652,7 @@ int getAllocatedNamedSingleWideString(void* _pvCtx, const char* _pstName, wchar_
     {
         addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_NAMED_SINGLE_WIDE_STRING, _("%s: Unable to get argument data"), "getAllocatedNamedSingleWideString");
         printError(&sciErr, 0);
+        FREE(*_pwstData);
         return sciErr.iErr;
     }
 
@@ -690,6 +700,11 @@ int getAllocatedNamedMatrixOfString(void* _pvCtx, const char* _pstName, int* _pi
     {
         addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_NAMED_STRING_MATRIX, _("%s: Unable to get argument data"), "getAllocatedNamedMatrixOfString");
         printError(&sciErr, 0);
+        for (int i = 0 ; i < *_piRows **_piCols ; i++)
+        {
+            FREE((*_pstData)[i]);
+        }
+        FREE(*_pstData);
         return sciErr.iErr;
     }
 
@@ -742,6 +757,11 @@ int getAllocatedNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int*
     {
         addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_NAMED_WIDE_STRING_MATRIX, _("%s: Unable to get argument data"), "getAllocatedNamedMatrixOfWideString");
         printError(&sciErr, 0);
+        for (int i = 0 ; i < *_piRows **_piCols ; i++)
+        {
+            FREE((*_pwstData)[i]);
+        }
+        FREE(*_pwstData);
         return sciErr.iErr;
     }
 
@@ -770,21 +790,23 @@ int allocSingleString(void* _pvCtx, int _iVar, int _iLen, const char** _pstStrin
     types::InternalType** out = pGstr->m_pOut;
     types::String *pStr = NULL;
 
+    char* pstStrings;
 
-    char* pstStrings = new char[_iLen];
-
-    memset(pstStrings, ' ', _iLen);
-    _pstStrings[0] = pstStrings;
     if (_pstStrings == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), "allocSingleString");
         return sciErr.iErr;
     }
 
+    pstStrings = new char[_iLen];
+    memset(pstStrings, ' ', _iLen);
+    _pstStrings[0] = pstStrings;
+
     pStr = new types::String(pstStrings);
 
     if (pStr == NULL)
     {
+        delete[] pstStrings;
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), "allocSingleString");
         return sciErr.iErr;
     }

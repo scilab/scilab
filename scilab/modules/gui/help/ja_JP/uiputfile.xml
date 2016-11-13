@@ -72,7 +72,7 @@
                     <para>
                         ユーザが"Ok"を押した場合は,
                         ユーザが選択したファイルパス ,または
-                        ユーザが"Cancel"を押した場合は" "文字列.		      
+                        ユーザが"Cancel"を押した場合は" "文字列.
                     </para>
                 </listitem>
             </varlistentry>
@@ -80,7 +80,7 @@
                 <term>FilterIndex</term>
                 <listitem>
                     <para>
-                        ユーザが"Ok"を押した場合は,		      
+                        ユーザが"Ok"を押した場合は,
                         リストボックスでユーザが選択したフィルタ添字,
                         ユーザが"Cancel"を押した場合は" "文字列.
                     </para>
@@ -96,12 +96,12 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 uiputfile(["*.bin";"*.sce";"*.cos*"])
 uiputfile(["*.sci";"*.bin"],"SCI/modules/gui/macros/")
 uiputfile(["*.sc*";"*.bin"],"SCI/modules/gui/macros/")
 uiputfile(["*.x*","X files";"*.bin","BIN files"],"SCI/modules/gui/macros/")
-uiputfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name"); 
+uiputfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name");
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

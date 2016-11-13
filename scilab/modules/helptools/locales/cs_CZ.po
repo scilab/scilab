@@ -8,13 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:08+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2016-03-09 19:47+0000\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -138,7 +139,7 @@ msgstr " * Přidat nějaké komentáře o souboru XML"
 msgid "Add short description here."
 msgstr "Zadejte sem krátký popis."
 
-msgid "Calling Sequence"
+msgid "Syntax"
 msgstr "Sekvence volání"
 
 msgid "Arguments"
@@ -295,15 +296,16 @@ msgstr "%s: Soubor KAPITOLA není na řádku %d dobře formátován\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with ."
-"last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáván řetězec končící ."
-"last_successful_build.\n"
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván řetězec končící "
+".last_successful_build.\n"
 
 #, c-format
 msgid "%s: The last_successful_build file is not well formated at line %d\n"
-msgstr "%s: Soubor last_successful_build není na řádku %d dobře formátován.\n"
+msgstr ""
+"%s: Soubor last_successful_build není na řádku %d dobře formátován.\n"
 
 #, c-format
 msgid ""

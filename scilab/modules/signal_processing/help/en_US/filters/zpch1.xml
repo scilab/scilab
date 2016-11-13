@@ -5,7 +5,7 @@
         <refpurpose>Chebyshev analog filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[poles,gain]=zpch1(n,epsilon,omegac)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -50,18 +50,18 @@
         <para>
             Poles of a Type 1 Chebyshev analog filter. The transfer function is given by :
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 H(s)=gain/poly(poles,'s')
  ]]></programlisting>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 n = 13;
 epsilon = 0.2;
 omegac = 3;
 [p,gain] = zpch1(n,epsilon,omegac)
  ]]></programlisting>
     </refsection>
-    
+
 </refentry>

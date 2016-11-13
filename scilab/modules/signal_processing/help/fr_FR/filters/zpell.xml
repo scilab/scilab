@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="zpell">
+    <refnamediv>
+        <refname>zpell</refname>
+        <refpurpose>lowpass elliptic filter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[zeros,poles,gain]=zpell(epsilon,A,omegac,omegar)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>epsilon</term>
+                <listitem>
+                    <para>
+                        real : ripple of filter in pass band (<literal>0&lt;epsilon&lt;1</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>
+                        real : attenuation of filter in stop band (<literal>A&gt;1</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>omegac</term>
+                <listitem>
+                    <para>real : pass band cut-off angular frequency in radians per second</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>omegar</term>
+                <listitem>
+                    <para>real : stop band cut-off angular frequency in radians per second</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zeros</term>
+                <listitem>
+                    <para>resulting zeros of filter</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>poles</term>
+                <listitem>
+                    <para>resulting poles of filter</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gain</term>
+                <listitem>
+                    <para>resulting gain of filter</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Poles and zeros of prototype lowpass elliptic filter.
+            <literal>gain</literal> is the gain of the filter
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ell1mag">ell1mag</link>
+            </member>
+            <member>
+                <link linkend="eqiir">eqiir</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -5,7 +5,7 @@
         <refpurpose>steady-state Kalman filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             xe = sskf(y,f,h,q,r,x0)
             [xe, pe]=sskf(y,f,h,q,r,x0)
@@ -74,7 +74,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rand("seed",5);
 rand("normal");
 q=[.03 0.01;.01 0.03];

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
  * However, the API (profile of the functions in the header files) will be
@@ -114,8 +117,6 @@ int returnArguments(void* _pvCtx)
 
 int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
 {
-    SciErr sciErr = sciErrInit();
-
     types::GatewayStruct *pStr = (types::GatewayStruct*)_pvCtx;
     int iRhs            = *getNbInputArgument(_pvCtx);
 
@@ -155,8 +156,6 @@ SciErr reshapeArray(void* _pvCtx, int* _piAddress, int* _iDimsArray, int _iDims)
 /*--------------------------------------------------------------------------*/
 int checkInputArgumentAtLeast(void* _pvCtx, int _iMin)
 {
-    SciErr sciErr = sciErrInit();
-
     if (_iMin <= nbInputArgument(_pvCtx))
     {
         return 1;
@@ -169,8 +168,6 @@ int checkInputArgumentAtLeast(void* _pvCtx, int _iMin)
 /*--------------------------------------------------------------------------*/
 int checkInputArgumentAtMost(void* _pvCtx, int _iMax)
 {
-    SciErr sciErr = sciErrInit();
-
     if (_iMax >= nbInputArgument(_pvCtx))
     {
         return 1;
@@ -183,8 +180,6 @@ int checkInputArgumentAtMost(void* _pvCtx, int _iMax)
 /*--------------------------------------------------------------------------*/
 int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax)
 {
-    SciErr sciErr = sciErrInit();
-
     if (_iMin <= nbOutputArgument(_pvCtx) && _iMax >= nbOutputArgument(_pvCtx))
     {
         return 1;
@@ -205,8 +200,6 @@ int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax)
 /*--------------------------------------------------------------------------*/
 int checkOutputArgumentAtLeast(void* _pvCtx, int _iMin)
 {
-    SciErr sciErr = sciErrInit();
-
     if (_iMin <= nbOutputArgument(_pvCtx))
     {
         return 1;
@@ -219,8 +212,6 @@ int checkOutputArgumentAtLeast(void* _pvCtx, int _iMin)
 /*--------------------------------------------------------------------------*/
 int checkOutputArgumentAtMost(void* _pvCtx, int _iMax)
 {
-    SciErr sciErr = sciErrInit();
-
     if (_iMax >= nbOutputArgument(_pvCtx))
     {
         return 1;
@@ -490,9 +481,9 @@ SciErr getVarType(void *_pvCtx, int *_piAddress, int *_piType)
         case types::InternalType::ScilabSparseBool :
             *_piType = sci_boolean_sparse;
             break;
-        //case types::InternalType::RealMatlabSparse :
-        //    *_piType = sci_matlab_sparse;
-        //    break;
+            //case types::InternalType::RealMatlabSparse :
+            //    *_piType = sci_matlab_sparse;
+            //    break;
         case types::InternalType::ScilabInt8 :
         case types::InternalType::ScilabUInt8 :
         case types::InternalType::ScilabInt16 :
@@ -577,7 +568,7 @@ SciErr getNamedVarType(void *_pvCtx, const char *_pstName, int *_piType)
 /*--------------------------------------------------------------------------*/
 int isVarComplex(void *_pvCtx, int *_piAddress)
 {
-    SciErr sciErr;
+    SciErr sciErr = sciErrInit();
     int iType = 0;
     int iComplex = 0;
 

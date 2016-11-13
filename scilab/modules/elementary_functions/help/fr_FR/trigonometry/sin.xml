@@ -28,7 +28,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 asin(sin([1,0,%i]))
  ]]></programlisting>
     </refsection>

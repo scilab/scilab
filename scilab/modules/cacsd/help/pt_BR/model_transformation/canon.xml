@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="canon">
+    <refnamediv>
+        <refname>canon</refname>
+        <refpurpose>canonical controllable form</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[Ac,Bc,U,ind]=canon(A,B)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Ac,Bc</term>
+                <listitem>
+                    <para>canonical form</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>current basis (square nonsingular matrix)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ind</term>
+                <listitem>
+                    <para>vector of integers, controllability indices</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            gives the canonical controllable form of the pair <literal>(A,B)</literal>.
+        </para>
+        <para>
+            <literal>Ac=inv(U)*A*U, Bc=inv(U)*B</literal>
+        </para>
+        <para>
+            The vector <literal>ind</literal> is made of the <literal>epsilon_i</literal>'s indices
+            of the pencil <literal>[sI - A ,  B]</literal> (decreasing order).
+            For example with <literal>ind=[3,2]</literal>, <literal>Ac</literal> and <literal>Bc</literal> are as follows:
+        </para>
+        <programlisting role=""><![CDATA[
+      [*,*,*,*,*]           [*]
+      [1,0,0,0,0]           [0]
+Ac=   [0,1,0,0,0]        Bc=[0]
+      [*,*,*,*,*]           [*]
+      [0,0,0,1,0]           [0]
+ ]]></programlisting>
+        <para>
+            If <literal>(A,B)</literal> is controllable, by an appropriate choice
+            of <literal>F</literal> the <literal>*</literal> entries of <literal>Ac+Bc*F</literal>
+            can be arbitrarily set to desired values (pole placement).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A=[1,2,3,4,5;
+   1,0,0,0,0;
+   0,1,0,0,0;
+   6,7,8,9,0;
+   0,0,0,1,0];
+B=[1,2;
+   0,0;
+   0,0;
+   2,1;
+   0,0];
+X=rand(5,5);A=X*A*inv(X);B=X*B;    //Controllable pair
+[Ac,Bc,U,ind]=canon(A,B);  //Two indices --> ind=[3.2];
+index=1;for k=1:size(ind,'*')-1,index=[index,1+sum(ind(1:k))];end
+Acstar=Ac(index,:);Bcstar=Bc(index,:);
+s=poly(0,'s');
+p1=s^3+2*s^2-5*s+3;p2=(s-5)*(s-3);
+//p1 and p2 are desired closed-loop polynomials with degrees 3,2
+c1=coeff(p1);c1=c1($-1:-1:1);c2=coeff(p2);c2=c2($-1:-1:1);
+Acstardesired=[-c1,0,0;0,0,0,-c2];
+//Acstardesired(index,:) is companion matrix with char. pol=p1*p2
+F=Bcstar\(Acstardesired-Acstar);   //Feedbak gain
+Ac+Bc*F         // Companion form
+spec(A+B*F/U)   // F/U is the gain matrix in original basis.
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="obsv_mat">obsv_mat</link>
+            </member>
+            <member>
+                <link linkend="cont_mat">cont_mat</link>
+            </member>
+            <member>
+                <link linkend="ctr_gram">ctr_gram</link>
+            </member>
+            <member>
+                <link linkend="contrss">contrss</link>
+            </member>
+            <member>
+                <link linkend="ppol">ppol</link>
+            </member>
+            <member>
+                <link linkend="contr">contr</link>
+            </member>
+            <member>
+                <link linkend="stabil">stabil</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

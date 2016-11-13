@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:08+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2016-10-10 12:51+0000\n"
+"Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "Language: \n"
 
 #, c-format
@@ -38,54 +38,66 @@ msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Argument #%d: %s expected.\n"
+msgstr "%s：第%d个参数：应该为%s。\n"
+
+#, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr "%s：第%d个参数：应该为标量。\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s：无法读取第%d个输入参数。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为布尔型。\n"
 
 #, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
+"无法加载jgraphx库。\n"
+"要求版本%s；获取版本%s。"
 
 #, c-format
 msgid ""
 "Unable to load the Batik library. \n"
 "Expecting version %s ; Getting version %s ."
 msgstr ""
+"无法加载Batik库。  \n"
+"要求版本%s；获取版本%s。"
 
 msgid "Preview"
-msgstr ""
+msgstr "预览"
 
 msgid "Error on export"
-msgstr ""
+msgstr "导出时发生错误"
 
 msgid "Please specify a valid file format"
-msgstr ""
+msgstr "请指定有效文件格式"
 
 msgid "Incompatibility detected"
-msgstr ""
+msgstr "检测到不兼容问题"
 
 msgid "Please check the diagram, before trying to simulate it."
-msgstr ""
+msgstr "仿真前请检查图表。"
 
 msgid "Some blocks have been removed to ensure compatibility."
 msgstr ""
 
 #, c-format
 msgid "Unable to decode \"%s\" : invalid data."
-msgstr ""
+msgstr "无法解码“%s”：无效数据。"
 
 #, c-format
 msgid "Unable to decode \"%s.%s\" : invalid field."
@@ -98,13 +110,13 @@ msgid "name"
 msgstr ""
 
 msgid "id"
-msgstr ""
+msgstr "编号"
 
 msgid "kind"
 msgstr ""
 
 msgid "fixed"
-msgstr ""
+msgstr "固定"
 
 msgid "initial"
 msgstr ""
@@ -122,7 +134,7 @@ msgid "nominal"
 msgstr ""
 
 msgid "comment"
-msgstr ""
+msgstr "注释"
 
 msgid "selected"
 msgstr ""
@@ -229,9 +241,6 @@ msgstr ""
 
 msgid "Loading the block"
 msgstr ""
-
-msgid "Xcos"
-msgstr "Xcos"
 
 msgid "Untitled"
 msgstr "无标题"
@@ -343,6 +352,9 @@ msgstr "普通 100%"
 
 msgid "Palette browser"
 msgstr "组件盘浏览"
+
+msgid "tree_show(scs_m)"
+msgstr ""
 
 msgid "Diagram browser"
 msgstr "图表浏览器"
@@ -515,7 +527,8 @@ msgstr ""
 msgid "Palette name"
 msgstr ""
 
-msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid ""
+"Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 
 #, c-format
@@ -579,9 +592,6 @@ msgstr ""
 msgid "Export to XML"
 msgstr ""
 
-msgid "Export in progress"
-msgstr ""
-
 msgid "Import from XML"
 msgstr ""
 
@@ -591,16 +601,20 @@ msgstr "添加到"
 msgid "Add to new diagram"
 msgstr "添加到新图表"
 
-msgid "Explicit data input port must be connected to explicit data output port"
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
 msgstr "显式的数据输入端口必须跟显式的数据数出端口相连"
 
-msgid "Implicit data input port must be connected to implicit data output port"
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
 msgstr "隐式的数据输入端口必须跟隐式的数据数出端口相连"
 
-msgid "Explicit data output port must be connected to explicit data input port"
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
 msgstr "显式的数据输出端口必须跟显式的数据数入端口相连"
 
-msgid "Implicit data output port must be connected to implicit data input port"
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
 msgstr "隐式的数据输出端口必须跟隐式的数据数入端口相连"
 
 msgid "Command port must be connected to control port"
@@ -715,14 +729,14 @@ msgstr ""
 msgid "Simulation in progress"
 msgstr ""
 
-msgid ""
-"Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+msgid "Compilation in progress, results will be stored in the 'cpr' variable"
 msgstr ""
 
 msgid "Generate SuperBlock, please wait"
 msgstr ""
 
-msgid "Click on diagram to add link point or on a compatible target to finish"
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 
 msgid "No trace nor debug printing"
@@ -824,8 +838,44 @@ msgid "Expecting '%d'."
 msgstr ""
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. <br/"
-">Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. "
+"<br/>Please reconnect it.</body></html>"
+msgstr ""
+
+msgid "Block name: "
+msgstr ""
+
+msgid "Simulation: "
+msgstr ""
+
+msgid "UID: "
+msgstr ""
+
+msgid "Style: "
+msgstr ""
+
+msgid "Rpar: "
+msgstr ""
+
+msgid "Ipar: "
+msgstr ""
+
+msgid "Opar: "
+msgstr ""
+
+msgid "Datatype: "
+msgstr ""
+
+msgid "Implicit: "
+msgstr ""
+
+msgid "Source datatype: "
+msgstr ""
+
+msgid "Target datatype: "
+msgstr ""
+
+msgid "Label: "
 msgstr ""
 
 #, c-format
@@ -848,6 +898,153 @@ msgstr ""
 msgid "Default trace settings"
 msgstr ""
 
+msgid "Basic controller"
+msgstr ""
+
+msgid "Water tank"
+msgstr ""
+
+msgid "Discrete Controller"
+msgstr ""
+
+msgid "Kalman Filter"
+msgstr ""
+
+msgid "Discrete Kalman Filter"
+msgstr ""
+
+msgid "Cont.Plant-Hybrid Observer"
+msgstr ""
+
+msgid "Temperature Controller"
+msgstr ""
+
+msgid "Inverted pendulum"
+msgstr ""
+
+msgid "Lorenz butterfly"
+msgstr ""
+
+msgid "RLC Circuit"
+msgstr ""
+
+msgid "Bridge Rectifer"
+msgstr ""
+
+msgid "Transformer"
+msgstr ""
+
+msgid "Differential amplifier"
+msgstr ""
+
+msgid "OpAmp amplifier"
+msgstr ""
+
+msgid "Switched capacitor integrator"
+msgstr ""
+
+msgid "DC/DC Buck Converter"
+msgstr ""
+
+msgid "DC/DC Boost Converter"
+msgstr ""
+
+msgid "Colpitts oscillator"
+msgstr ""
+
+msgid "Logic AND gate"
+msgstr ""
+
+msgid "Logic NOR gate"
+msgstr ""
+
+msgid "If Then Else"
+msgstr ""
+
+msgid "And"
+msgstr ""
+
+msgid "Automotive Suspension"
+msgstr ""
+
+msgid "Ball on a Platform"
+msgstr ""
+
+msgid "Bouncing Ball"
+msgstr ""
+
+msgid "Chaos Modelica"
+msgstr ""
+
+msgid "Hydraulics blocks"
+msgstr ""
+
+msgid "RLC circuit"
+msgstr ""
+
+msgid "Heat conduction in a rod"
+msgstr ""
+
+msgid "Second order rotational system"
+msgstr ""
+
+msgid "Old Gain Block"
+msgstr ""
+
+msgid "Standard demos"
+msgstr ""
+
+msgid "Control Systems"
+msgstr ""
+
+msgid "Electrical Systems"
+msgstr ""
+
+msgid "Mechanical Systems"
+msgstr ""
+
+msgid "Modelica demos"
+msgstr ""
+
+msgid "Old demos"
+msgstr ""
+
+msgid "Simple Demo"
+msgstr ""
+
+msgid "Bouncing Balls"
+msgstr ""
+
+msgid "Simple Thermostat"
+msgstr ""
+
+msgid "Table Lookup"
+msgstr ""
+
+msgid "Signal Builder"
+msgstr ""
+
+msgid "Fibonacci Numbers"
+msgstr ""
+
+msgid "Scilab block"
+msgstr ""
+
+msgid "Xcos data types"
+msgstr ""
+
+msgid "Zero Crossing"
+msgstr ""
+
+msgid "_IF_ Xcos block"
+msgstr ""
+
+msgid "Goto/From blocks"
+msgstr ""
+
+msgid "Event demos"
+msgstr ""
+
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
 msgstr ""
@@ -861,7 +1058,8 @@ msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr ""
 
 #, c-format
@@ -871,10 +1069,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument %s: string expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: boolean expected.\n"
@@ -945,7 +1139,8 @@ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr ""
 
 #, c-format
@@ -954,10 +1149,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string vector expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -1002,10 +1193,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -1090,7 +1277,7 @@ msgstr ""
 msgid "ReInitialization"
 msgstr ""
 
-msgid "Continous states properties update"
+msgid "Continuous states properties update"
 msgstr ""
 
 msgid "Zero crossing surfaces computation"
@@ -1185,4 +1372,16 @@ msgid "Simulation problem"
 msgstr ""
 
 msgid "Error in post_xcos_simulate: ending simulation."
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file '%s' for reading.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error while trying to read file contents from '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Syntax error while trying to set up context from"
 msgstr ""

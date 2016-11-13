@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="lft">
+    <refnamediv>
+        <refname>lft</refname>
+        <refpurpose>linear fractional transformation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[P1]=lft(P,K)
+            [P1]=lft(P,r,K)
+            [P1,r1]=lft(P,r,Ps,rs)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list), the ``augmented'' plant, implicitly partitioned into four blocks (two input ports and two output ports).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list), the controller (possibly an ordinary gain).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 row vector, dimension of <literal>P22</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ps  </term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list), implicitly partitioned into four blocks (two input ports and two output ports).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rs  </term>
+                <listitem>
+                    <para>
+                        1x2 row vector, dimension of <literal>Ps22</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Linear fractional transform between two standard plants
+            <literal>P</literal> and <literal>Ps</literal> in state space form or in
+            transfer form (<literal>syslin</literal> lists).
+        </para>
+        <para>
+            <literal>r= size(P22) rs=size(P22s)</literal>
+        </para>
+        <para>
+            <literal>lft(P,r, K)</literal> is the linear fractional transform
+            between <literal>P</literal> and a controller <literal>K</literal>
+            (<literal>K</literal> may be a gain or a controller in state space form
+            or in transfer form);
+        </para>
+        <para>
+            <literal>lft(P,K)</literal> is <literal>lft(P,r,K)</literal> with
+            <literal>r</literal>=size of <literal>K</literal> transpose;
+        </para>
+        <para>
+            <literal>P1= P11+P12*K* (I-P22*K)^-1 *P21</literal>
+        </para>
+        <para>
+            <literal>[P1,r1]=lft(P,r,Ps,rs)</literal> returns the generalized (2
+            ports) lft of <literal>P</literal> and <literal>Ps</literal>.
+        </para>
+        <para>
+            <literal>P1</literal> is the pair two-port interconnected plant and the
+            partition of <literal>P1</literal> into 4 blocks in given by
+            <literal>r1</literal> which is the dimension of the <literal>22</literal>
+            block of <literal>P1</literal>.
+        </para>
+        <para>
+            <literal>P</literal> and <literal>R</literal> can be PSSDs i.e. may admit a
+            polynomial <literal>D</literal> matrix.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+P=[1/s, 1/(s+1); 1/(s+2),2/s]; K= 1/(s-1);
+lft(P,K)
+lft(P,[1,1],K)
+P(1,1)+P(1,2)*K*inv(1-P(2,2)*K)*P(2,1)   //Numerically dangerous!
+ss2tf(lft(tf2ss(P),tf2ss(K)))
+lft(P,-1)
+f=[0,0;0,1];w=P/.f; w(1,1)
+//Improper plant (PID control)
+W=[1,1;1,1/(s^2+0.1*s)];K=1+1/s+s
+lft(W,[1,1],K); ss2tf(lft(tf2ss(W),[1,1],tf2ss(K)))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sensi">sensi</link>
+            </member>
+            <member>
+                <link linkend="augment">augment</link>
+            </member>
+            <member>
+                <link linkend="feedback">feedback</link>
+            </member>
+            <member>
+                <link linkend="sysdiag">sysdiag</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

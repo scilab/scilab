@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="csim">
+    <refnamediv>
+        <refname>csim</refname>
+        <refpurpose>線形システムのシミュレーション (時間応答)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[y [,x]]=csim(u,t,sl,[x0 [,tol]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    <para>関数, リストまたは文字列 (制御入力)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>
+                        時間を指定するための実数ベクトルで、<literal>t(1)</literal> は
+                        初期時間 (<literal>x0=x(t(1))</literal>)を表す.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        連続時間系の<literal>syslin</literal>リスト (SIMO線形システム)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        <literal>y=[y(t(i)]</literal>, i=1,..,n となる行列
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        <literal>x=[x(t(i)]</literal>, i=1,..,n となる行列
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>2つの要素 [atol rtol] からなるベクトルであり、それぞれ
+                        ODEソルバ(ode参照)の絶対許容誤差および相対許容誤差を定義する
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            線形制御系 <literal>sl</literal>のシミュレーションを行います.
+            ただし,<literal>sl</literal>は,
+            <literal>syslin</literal>リストで表された連続時間システムとします.
+        </para>
+        <para>
+            <literal>u</literal> は制御入力,<literal>x0</literal> は状態量初期値です.
+        </para>
+        <para>
+            <literal>y</literal> は出力,<literal>x</literal> は状態量です.
+        </para>
+        <para>
+            制御入力は以下のいずれかとすることができます:
+        </para>
+        <para>
+            1. 関数 : <literal>[inputs]=u(t)</literal>
+        </para>
+        <para>
+            2. リスト : <literal>list(ut,parameter1,....,parametern)</literal>.
+            ただし、<literal>inputs=ut(t,parameter1,....,parametern)</literal> (<literal>ut</literal> は関数)
+        </para>
+        <para>
+            3. インパルス応答の計算を表す文字列 <literal>"impuls"</literal>
+            (ここで,<literal>sl</literal>の入力は単一で<literal>x0=0</literal>が必要).
+            直達項を有する系の場合, t=0における無限インパルスは無視されます.
+        </para>
+        <para>
+            4. ステップ応答の計算を表す文字列 <literal>"step"</literal>
+            (ここで、<literal>sl</literal>の入力は単一で,<literal>x0=0</literal>が必要)
+        </para>
+        <para>
+            5. t の各値に対応する u　の値を指定するベクトル.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+//impulse(w) = step (s * w)
+plot2d([t',t'],[(csim('step',t,tf2ss(s)*w))',0*t'])
+]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            rand('seed',0);
+            w=ssrand(1,1,3);
+            w('A')=w('A')-2*eye();
+            t=0:0.05:5;
+            plot2d([t',t'],[(csim('step',t,tf2ss(s)*w))',0*t'])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+plot2d([t',t'],[(csim('impulse',t,w))',0*t'])
+]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            rand('seed',0);
+            w=ssrand(1,1,3);
+            w('A')=w('A')-2*eye();
+            t=0:0.05:5;
+            plot2d([t',t'],[(csim('impulse',t,w))',0*t'])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+//step(w) = impulse (s^-1 * w)
+plot2d([t',t'],[(csim('step',t,w))',0*t'])
+]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            rand('seed',0);
+            w=ssrand(1,1,3);
+            w('A')=w('A')-2*eye();
+            t=0:0.05:5;
+            plot2d([t',t'],[(csim('step',t,w))',0*t'])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+plot2d([t',t'],[(csim('impulse',t,tf2ss(1/s)*w))',0*t'])
+]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            rand('seed',0);
+            w=ssrand(1,1,3);
+            w('A')=w('A')-2*eye();
+            t=0:0.05:5;
+            plot2d([t',t'],[(csim('impulse',t,tf2ss(1/s)*w))',0*t'])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+//時間関数で定義された入力
+deff('u=timefun(t)','u=abs(sin(t))')
+clf();plot2d([t',t'],[(csim(timefun,t,w))',0*t'])
+]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            rand('seed',0);
+            w=ssrand(1,1,3);
+            w('A')=w('A')-2*eye();
+            t=0:0.05:5;
+            deff('u=timefun(t)','u=abs(sin(t))')
+            clf();plot2d([t',t'],[(csim(timefun,t,w))',0*t'])
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="dsimul">dsimul</link>
+            </member>
+            <member>
+                <link linkend="flts">flts</link>
+            </member>
+            <member>
+                <link linkend="ltitr">ltitr</link>
+            </member>
+            <member>
+                <link linkend="rtitr">rtitr</link>
+            </member>
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="impl">impl</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

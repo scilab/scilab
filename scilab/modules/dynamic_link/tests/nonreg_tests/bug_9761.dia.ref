@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // NDEBUG not defined by default in release mode on Windows for dynamic link
 if getos() == "Windows" then
-  assert_checkequal(getenv('DEBUG_SCILAB_DYNAMIC_LINK',''),'');
+  setenv('DEBUG_SCILAB_DYNAMIC_LINK','NO');
   ilib_verbose(0);
   currentpath = pwd();
   cd TMPDIR;

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="sysfact">
+    <refnamediv>
+        <refname>sysfact</refname>
+        <refpurpose>system factorization</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[S,Series]=sysfact(Sys,Gain,flag)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sys</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list containing the matrices <literal>[A,B,C,D]</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Gain</term>
+                <listitem>
+                    <para>real matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        string <literal>'post'</literal> or <literal>'pre'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Series</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            If <literal>flag</literal> equals <literal>'post'</literal>, <literal>sysfact</literal> returns in <literal>S</literal> the linear
+            system with ABCD matrices <literal>(A+B*Gain, B , Gain, I)</literal>, and   <literal>Series</literal>,
+            a minimal realization of the series system <literal>Sys*S</literal>.
+            If <literal>flag</literal> equals <literal>'pre'</literal>,  <literal>sysfact</literal> returns  the linear system
+            <literal>(A+Gain*C, Gain , C, I)</literal> and <literal>Series</literal>, a minimal realization of the
+            series system <literal>S*Sys</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//Kalman filter
+Sys=ssrand(3,2,4);Sys('D')=rand(3,2);
+S=sysfact(Sys,lqr(Sys),'post');
+ww=minss(Sys*S);
+ss2tf(gtild(ww)*ww),Sys('D')'*Sys('D')
+//Kernel
+Sys=ssrand(2,3,4);
+[X,d,F,U,k,Z]=abinv(Sys);
+ss2tf(Sys*Z)
+ss2tf(Sys*sysfact(Sys,F,'post')*U)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lqr">lqr</link>
+            </member>
+            <member>
+                <link linkend="lqe">lqe</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

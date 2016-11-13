@@ -5,7 +5,7 @@
         <refpurpose>Закрывает Scilab или уменьшает уровень паузы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>quit</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,7 +30,7 @@
                 </term>
                 <listitem>
                     <para>
-                        команда <literal>quit</literal> прекращает выполнение инструкций, запущенных на 
+                        команда <literal>quit</literal> прекращает выполнение инструкций, запущенных на
                         этом уровне  и закрывает текущий уровень паузы.
                     </para>
                 </listitem>
@@ -39,15 +39,15 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // выход из Scilab'а
 function foo(x)
-if x then 
+if x then
    quit
 end
 endfunction
 foo(%t) //выходит из Scilab'А
- 
+
 //прекращение инструкций, запущенных в контексте паузы
 function foo(x)
 if x then
@@ -56,16 +56,16 @@ end
 endfunction
 pause
 foo(%t) //возвращает на главный уровень командной строки
- 
+
 function foo1(x)
 mprintf('P1\n')
-if x then 
+if x then
    pause
    mprintf('P2\n')
 end
 mprintf('P3\n')
 endfunction
-     
+
 foo1(%t) // введите quit в следующей командной строке
  ]]></programlisting>
     </refsection>

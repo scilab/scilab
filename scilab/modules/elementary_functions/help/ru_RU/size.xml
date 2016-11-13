@@ -4,12 +4,15 @@
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - INRIA - Serge STEER
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="size" xml:lang="ru">
@@ -18,7 +21,7 @@
         <refpurpose>размер объекта</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             sz = size(x)
             [n1, n2] = size(x)
@@ -79,19 +82,19 @@
                     <itemizedlist>
                         <listitem>
                             <literal>sz = size(x)</literal>
-                            
-                            возвращает вектор размером <literal>1</literal> на 
+
+                            возвращает вектор размером <literal>1</literal> на
                             <literal>ndims(x)</literal>. Каждый элемент вектора даёт значение
-                            соответствующего измерения. 
+                            соответствующего измерения.
                         </listitem>
                         <listitem>
                             <literal>[n1, n2, ...] = size(x)</literal>, функция возвращает в каждом
-                            аргументе значение соответствующего измерения. 
+                            аргументе значение соответствующего измерения.
                         </listitem>
                         <listitem>
-                            Синтаксис <literal>n = size(x, sel)</literal> может быть использован 
+                            Синтаксис <literal>n = size(x, sel)</literal> может быть использован
                             для определения размерности, которую нужно получить:
-                            
+
                             <itemizedlist mark="dash"><listitem>
                                     Установите <literal>sel</literal> равным 1 или <literal>'r'</literal>, чтобы получить число строк.
                                 </listitem>
@@ -101,11 +104,11 @@
                                 <listitem>
                                     Установите <literal>sel</literal> равным <literal>m</literal>, где
                                     <literal>m</literal> является положительным целым числом, чтобы получить
-                                    <literal>m</literal>-тую размерность. Если <literal>m</literal> больше, чем 
+                                    <literal>m</literal>-тую размерность. Если <literal>m</literal> больше, чем
                                     <literal>ndims(x)</literal>, то <literal>size(x,m)</literal> возвращает 1.
                                 </listitem>
                                 <listitem>
-                                    Установите <literal>sel</literal> равным <literal>'*'</literal>, чтобы получить произведение 
+                                    Установите <literal>sel</literal> равным <literal>'*'</literal>, чтобы получить произведение
                                     размерностей.
                                 </listitem>
                             </itemizedlist>
@@ -116,7 +119,7 @@
             <varlistentry>
                 <term>Применимо к:</term>
                 <listitem>
-                    <para>списку; возвращает количество элементов. В этом случае может использоваться только 
+                    <para>списку; возвращает количество элементов. В этом случае может использоваться только
                         синтаксис <literal>y = size(x)</literal> .
                     </para>
                 </listitem>
@@ -125,12 +128,12 @@
                 <term>Применимо к:</term>
                 <listitem>
                     <para>
-                        линейной системе; <literal>y = size(x)</literal> возвращает в 
+                        линейной системе; <literal>y = size(x)</literal> возвращает в
                         <literal>y</literal> вектор-(строку) [число выходных значений, число входных значений]
-                        т.е. размер соответствующей передаточной матрицы. Синтаксис 
-                        <literal>[nr, nc] = size(x)</literal> также корректен (с 
+                        т.е. размер соответствующей передаточной матрицы. Синтаксис
+                        <literal>[nr, nc] = size(x)</literal> также корректен (с
                         <literal>(nr, nc) = (y(1), y(2))</literal>). Если <literal>x</literal>
-                        является линейной системой в форме пространства состояний, то <literal>[nr, nc, nx] = 
+                        является линейной системой в форме пространства состояний, то <literal>[nr, nc, nx] =
                             size(x)
                         </literal>
                         возвращает дополнительно размерность
@@ -145,12 +148,12 @@
         <programlisting role="example">
             [n, m] = size(rand(3, 2))
             [n, m] = size(['a', 'b'; 'c', 'd'])
-            
+
             x = ssrand(3, 2, 4);
             [ny, nu] = size(x)
             [ny, nu] = size(ss2tf(x))
             [ny, nu, nx] = size(x)
-            
+
             // Возвращает количество строк
             n = size(rand(3, 2), "r")
             // Возвращает количество столбцов

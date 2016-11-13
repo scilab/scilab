@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="h_cl">
+    <refnamediv>
+        <refname>h_cl</refname>
+        <refpurpose>閉ループ行列</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[Acl]=h_cl(P,r,K)
+            [Acl]=h_cl(P22,K)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>P, P22</term>
+                <listitem>
+                    <para>
+                        連続時間動的システム:
+                        それぞれ拡張プラントまたはノミナルプラント
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 行ベクトル, <literal>P</literal> の
+                        2,2 部分の次元 (<literal>r=[rows,cols]=size(P22)</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>
+                        連続時間線形動的システム: コントローラ
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Acl</term>
+                <listitem>
+                    <para>実数正方行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            標準プラント <literal>P</literal> を
+            (<literal>r=size(P22)</literal> とコントローラ <literal>K</literal> と共に)
+            指定すると,この関数は閉ループ行列 <literal>Acl</literal> を返します.
+        </para>
+        <para>
+            閉ループ系の内部安定性を確保するために,<literal>Acl</literal> の極は,
+            安定である必要があります.
+        </para>
+        <para>
+            <literal>Acl</literal> は線形システム<literal>[I -P22;-K I]^-1</literal>
+            の<literal>A</literal>行列,すなわち,
+            <literal>lft(P,r,K)</literal>の<literal>A</literal>行列です
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lft">lft</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <para>F. D.  </para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal>が
+                    連続時間線形システムであることを確認するようになりました.
+                    この修正は,この <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">コミット</ulink>により導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

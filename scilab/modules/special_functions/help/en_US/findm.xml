@@ -5,7 +5,7 @@
         <refpurpose>for elliptic filter design</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[m]=findm(chi)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -16,7 +16,7 @@
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="percentk">%k</link>

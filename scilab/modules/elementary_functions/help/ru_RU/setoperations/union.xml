@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="union" xml:lang="ru">
@@ -16,7 +19,7 @@
         <refpurpose>выделяет объединение компонентов векторов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             [v [,ka, kb] ] = union(a,b)
             [v [,ka, kb] ] = union(a,b,orient)
@@ -66,34 +69,34 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>union(a,b)</literal> возвращает отсортированный вектор-строку, который 
+            <literal>union(a,b)</literal> возвращает отсортированный вектор-строку, который
             содержит уникальные элементы <literal>[a(:);b(:)]</literal>.
         </para>
         <para>
             <literal>union(a,b,"r")</literal> или <literal>union(a,b,1)</literal>
-            возвращает матрицу, сформированную объединением уникальных строк <literal>a</literal> 
+            возвращает матрицу, сформированную объединением уникальных строк <literal>a</literal>
             и <literal>b</literal>, отсортированную в лексикографическом порядке возрастания. В этом случае матрицы <literal>a</literal> и <literal>b</literal> должны иметь одинаковое количество столбцов.
         </para>
         <para>
-            <literal>union(a,b,"c")</literal> или <literal>union(a,b,2)</literal> 
-            возвращает матрицу, сформированную объединением уникальных столбцов 
+            <literal>union(a,b,"c")</literal> или <literal>union(a,b,2)</literal>
+            возвращает матрицу, сформированную объединением уникальных столбцов
             <literal>a</literal> and <literal>b</literal>, отсортированную в лексикографическом порядке возрастания. В этом случае матрицы <literal>a</literal> и <literal>b</literal> должны иметь одинаковое количество строк.
         </para>
         <para>
-            <literal>[v,ka,kb]=union(a,b)</literal> также возвращает векторы индексов     <literal>ka</literal> и <literal>kb</literal> такие, что <literal>v</literal> является  
-            сортированной комбинацией элементов <literal>a(ka)</literal> и 
+            <literal>[v,ka,kb]=union(a,b)</literal> также возвращает векторы индексов     <literal>ka</literal> и <literal>kb</literal> такие, что <literal>v</literal> является
+            сортированной комбинацией элементов <literal>a(ka)</literal> и
             <literal>b(kb)</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=round(5*rand(10,1));
 B=round(5*rand(7,1));
- 
+
 union(A,B)
 [N,ka,kb]=union(A,B)
- 
+
 union('a'+string(A),'b'+string(B))
  ]]></programlisting>
     </refsection>

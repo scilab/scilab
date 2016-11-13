@@ -40,7 +40,7 @@ function []=GeomT(n)
     plot2d3("onn", i', z'/n, [1,3]);
     zt = [0];
     for i1=1:N; zt=[zt,pr*(1-pr)^(i1-1)];end
-    plot2d1("onn", i', zt', [-2,6]);
+    plot2d(i, zt', [-2,6])
     xtitle(_("Simulation of a geometric random variable"));
     current_axe = gca();
     current_axe.title.font_size = 3;

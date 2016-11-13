@@ -6,132 +6,132 @@
 
  *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
 -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="datatipSetOrientation">
-    
+
     <refnamediv>
-        
+
         <refname>datatipSetOrientation</refname>
-        
+
         <refpurpose>
-            
+
             指定したtipに関係するテキストボックスの位置を設定.
-            
+
         </refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>
-            
+
             datatipSetOrientation(tip_handle,orient)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>tip_handle</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         datatipのハンドル.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>orient</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         文字列で,以下の値を指定可能:
-                        
+
                         <literal>"automatic"</literal> <literal>"upper
-                            
+
                             left"
-                            
+
                         </literal>
-                        
+
                         <literal>"upper right"</literal>,
-                        
+
                         <literal>"lower left"</literal>, <literal>"lower
-                            
+
                             right"
-                            
+
                         </literal>
-                        
+
                         .
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             ポリラインの点に相対的にテキストボックスの位置を設定します.
-            
+
             <literal>"automatic"</literal>を向きに設定すると,
-            
+
             プログラムはテキストがポリラインの重なるのを
-            
+
             避けられるような位置を選択します.
-            
+
             また,プロット境界内にテキストボックスを収めるように
-            
+
             選択を行ないます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <programlisting role="example"><![CDATA[
 
     x=linspace(-20,20,1000);
@@ -151,54 +151,54 @@
     datatipSetOrientation(d2,"lower right");
 
     ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             x=linspace(-20,20,1000);
-            
+
             plot(x,sinc(x),x,sinc(x.^2));
-            
+
             e=gce();e=e.children;
-            
+
             d1=datatipCreate(e(1),500);
-            
+
             d2=datatipCreate(e(2),60);
-            
+
             datatipSetOrientation(d1,"lower left");
-            
+
             datatipSetOrientation(d2,"lower right");
-            
+
         </scilab:image>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="datatips">datatips</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="datatipCreate">datatipCreate</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="datatipRemove">datatipRemove</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

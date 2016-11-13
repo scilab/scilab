@@ -3,16 +3,20 @@
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -20,6 +24,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.text.DecimalFormat;
+
+import java.util.ArrayList;
 
 import javax.swing.event.EventListenerList;
 
@@ -51,6 +57,23 @@ import org.scilab.modules.localization.Messages;
  * @author Pierre Lando
  */
 public class RubberBox extends FigureInteraction implements PostRendered, MouseListener, MouseMotionListener, KeyListener {
+
+    protected class AxesZoom {
+
+        public final Axes axes;
+        public PointComputer pointAComputer;
+        public PointComputer pointBComputer;
+        public PointComputer pointCComputer;
+        public PointComputer pointDComputer;
+        public Vector3d firstPoint;
+        public Vector3d secondPoint;
+
+        public AxesZoom(Axes axes) {
+            this.axes = axes;
+            firstPoint = new Vector3d(0.0, 0.0, 0.0);
+            secondPoint = new Vector3d(0.0, 0.0, 0.0);
+        }
+    };
 
     /** Decimal format used to show info messages */
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("0.###E0");
@@ -104,16 +127,11 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
     /** Current status */
     protected Status status;
 
-    protected Axes axes;
-
-    private PointComputer pointAComputer;
-    protected PointComputer pointBComputer;
-    private PointComputer pointCComputer;
-    private PointComputer pointDComputer;
-    protected Vector3d firstPoint;
-    protected Vector3d secondPoint;
+    protected ArrayList<AxesZoom> axesZoomList;
 
     protected int mouseButton;
+
+    protected Point lastPoint;
 
     /**
      * Default constructor.
@@ -122,8 +140,9 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
      */
     protected RubberBox(DrawerVisitor drawerVisitor) {
         super(drawerVisitor);
-        axes = drawerVisitor.getAxes();
         status = Status.WAIT_POINT_A;
+        axesZoomList = new ArrayList<AxesZoom>();
+        lastPoint = null;
     }
 
     /**
@@ -155,21 +174,24 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
 
     @Override
     public final void draw(DrawingTools drawingTools) throws SciRendererException {
-        if (isEnable() && (axes != null)) {
-            drawingTools.getTransformationManager().useSceneCoordinate();
-            drawingTools.getTransformationManager().getModelViewStack().push(
-                getDrawerVisitor().getAxesDrawer().getSceneProjection(axes.getIdentifier())
-            );
 
-            if (status != Status.WAIT_POINT_A) {
-                drawingTools.draw(getCubeGeometry(drawingTools), getCubeAppearance());
+        if (isEnable()) {
+            for (AxesZoom axesZoom : axesZoomList) {
+                drawingTools.getTransformationManager().useSceneCoordinate();
+                drawingTools.getTransformationManager().getModelViewStack().push(
+                    getDrawerVisitor().getAxesDrawer().getSceneProjection(axesZoom.axes.getIdentifier())
+                );
+
+                if (status != Status.WAIT_POINT_A) {
+                    drawingTools.draw(getCubeGeometry(drawingTools, axesZoom), getCubeAppearance());
+                }
+
+                if (axesZoom.secondPoint != null) {
+                    drawingTools.draw(getHelpersGeometry(drawingTools, axesZoom), getHelpersAppearance());
+                }
+
+                drawingTools.getTransformationManager().getModelViewStack().pop();
             }
-
-            if (secondPoint != null) {
-                drawingTools.draw(getHelpersGeometry(drawingTools), getHelpersAppearance());
-            }
-
-            drawingTools.getTransformationManager().getModelViewStack().pop();
         }
     }
 
@@ -178,7 +200,7 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
         Component component = getDrawerVisitor().getComponent();
         if (isEnable) {
             //status = Status.WAIT_POINT_A;
-            pointAComputer = null;
+            axesZoomList.clear();
             component.addMouseListener(this);
             component.addMouseMotionListener(this);
             component.addKeyListener(this);
@@ -190,7 +212,7 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
             component.removeMouseMotionListener(this);
             component.removeKeyListener(this);
         }
-        updateInfoMessage();
+        updateInfoMessage(null);
         getDrawerVisitor().getCanvas().redraw();
     }
 
@@ -206,6 +228,7 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
     @Override
     public void mouseClicked(MouseEvent e) {
         mouseButton = e.getButton();
+        lastPoint = e.getPoint();
         switch (status) {
             case WAIT_POINT_A:
                 if (setPointA(e.getPoint())) {
@@ -217,7 +240,7 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
                 break;
             case WAIT_POINT_B:
                 setPointB(e.getPoint());
-                if (pointBComputer.is2D()) {
+                if (!valid3D()) {
                     process();
                     setEnable(false);
                     fireRubberBoxEnd();
@@ -237,9 +260,7 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
                 break;
             default:
         }
-        updateInfoMessage();
-
-
+        updateInfoMessage(e.getPoint());
     }
 
     @Override
@@ -263,26 +284,36 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
                 break;
             default:
         }
-        updateInfoMessage();
+        updateInfoMessage(e.getPoint());
     }
 
     /**
      * Update displayed info message.
      */
-    protected void updateInfoMessage() {
+    protected void updateInfoMessage(Point point) {
         if (isEnable()) {
+            Axes axes = null;
+            PointComputer pointAComputer = null, pointBComputer = null, pointCComputer = null, pointDComputer = null;
+            AxesZoom axesZoom = getClosestAxesZoom(point);
+            if (axesZoom != null) {
+                axes = axesZoom.axes;
+                pointAComputer = axesZoom.pointAComputer;
+                pointBComputer = axesZoom.pointBComputer;
+                pointCComputer = axesZoom.pointCComputer;
+                pointDComputer = axesZoom.pointDComputer;
+            }
             switch (status) {
                 case WAIT_POINT_A:
-                    setInfoMessage(Messages.gettext("Click to set first bounds"), pointAComputer, false);
+                    setInfoMessage(Messages.gettext("Click to set first bounds"), axes, pointAComputer, false);
                     break;
                 case WAIT_POINT_B:
-                    setInfoMessage(Messages.gettext("Click to set second bounds"), pointBComputer, false);
+                    setInfoMessage(Messages.gettext("Click to set second bounds"), axes, pointBComputer, false);
                     break;
                 case WAIT_POINT_C:
-                    setInfoMessage(Messages.gettext("Click to set first"), pointCComputer, true);
+                    setInfoMessage(Messages.gettext("Click to set first"), axes, pointCComputer, true);
                     break;
                 case WAIT_POINT_D:
-                    setInfoMessage(Messages.gettext("Click to set second"), pointDComputer, true);
+                    setInfoMessage(Messages.gettext("Click to set second"), axes, pointDComputer, true);
                     break;
                 default:
             }
@@ -298,10 +329,11 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
     /**
      * Set the info message.
      * @param baseMessage the base of the message.
+     * @param axes the axes to get data from.
      * @param pointComputer current used point computer.
      * @param oneAxis true if only one coordinate is currently set.
      */
-    private void setInfoMessage(String baseMessage, PointComputer pointComputer, boolean oneAxis) {
+    private void setInfoMessage(String baseMessage, Axes axes, PointComputer pointComputer, boolean oneAxis) {
         if ((pointComputer != null) && (pointComputer.isValid())) {
             String message = baseMessage + " ";
             double[] data = pointComputer.getSecondPosition().getData();
@@ -352,17 +384,21 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
      * @return true if the first point is valid.
      */
     protected boolean setPointA(Point point) {
-        axes = getUnderlyingAxes(point);
-        if (axes != null) {
+        axesZoomList.clear();
+        boolean status = false;
+        Axes[] allAxes = getAllVisibleAxes(point);
+        for (Axes axes : allAxes) {
+            AxesZoom axesZoom = new AxesZoom(axes);
             PointAComputer pointComputer = new PointAComputer(axes, point);
             if (pointComputer.isValid()) {
-                this.pointAComputer = pointComputer;
-                firstPoint = pointComputer.getPosition();
-                secondPoint = firstPoint;
-                return true;
+                axesZoom.pointAComputer = pointComputer;
+                axesZoom.firstPoint = pointComputer.getPosition();
+                axesZoom.secondPoint = axesZoom.firstPoint;
+                axesZoomList.add(axesZoom);
+                status = true;
             }
         }
-        return false;
+        return status;
     }
 
     /**
@@ -371,16 +407,18 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
      * @return true if the point is valid.
      */
     protected boolean setPointB(Point point) {
-        PointBComputer pointComputer = new PointBComputer(axes, pointAComputer, point);
-        if (pointComputer.isValid()) {
-            this.pointBComputer = pointComputer;
-            firstPoint = pointComputer.getFirstPosition();
-            secondPoint = pointComputer.getSecondPosition();
-            getDrawerVisitor().getCanvas().redraw();
-            return true;
-        } else {
-            return false;
+        boolean status = false;
+        for (AxesZoom axesZoom : axesZoomList) {
+            PointBComputer pointComputer = new PointBComputer(axesZoom.axes, axesZoom.pointAComputer, point);
+            if (pointComputer.isValid()) {
+                axesZoom.pointBComputer = pointComputer;
+                axesZoom.firstPoint = pointComputer.getFirstPosition();
+                axesZoom.secondPoint = pointComputer.getSecondPosition();
+                getDrawerVisitor().getCanvas().redraw();
+                status = true;
+            }
         }
+        return status;
     }
 
     /**
@@ -389,16 +427,20 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
      * @return true if the point is valid.
      */
     protected boolean setPointC(Point point) {
-        PointCComputer pointComputer = new PointCComputer(axes, pointBComputer, point);
-        if (pointComputer.isValid()) {
-            this.pointCComputer = pointComputer;
-            firstPoint = pointComputer.getFirstPosition();
-            secondPoint = pointComputer.getSecondPosition();
-            getDrawerVisitor().getCanvas().redraw();
-            return true;
-        } else {
-            return false;
+        boolean status = false;
+        for (AxesZoom axesZoom : axesZoomList) {
+            if (!axesZoom.pointBComputer.is2D()) {
+                PointCComputer pointComputer = new PointCComputer(axesZoom.axes, axesZoom.pointBComputer, point);
+                if (pointComputer.isValid()) {
+                    axesZoom.pointCComputer = pointComputer;
+                    axesZoom.firstPoint = pointComputer.getFirstPosition();
+                    axesZoom.secondPoint = pointComputer.getSecondPosition();
+                    getDrawerVisitor().getCanvas().redraw();
+                    status = true;
+                }
+            }
         }
+        return status;
     }
 
     /**
@@ -407,28 +449,33 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
      * @return true if the point is valid.
      */
     protected boolean setPointD(Point point) {
-        PointDComputer pointComputer = new PointDComputer(axes, pointCComputer, point);
-        if (pointComputer.isValid()) {
-            this.pointDComputer = pointComputer;
-            firstPoint = pointComputer.getFirstPosition();
-            secondPoint = pointComputer.getSecondPosition();
-            getDrawerVisitor().getCanvas().redraw();
-            return true;
-        } else {
-            return false;
+        boolean status = false;
+        for (AxesZoom axesZoom : axesZoomList) {
+            if (!axesZoom.pointBComputer.is2D()) {
+                PointDComputer pointComputer = new PointDComputer(axesZoom.axes, axesZoom.pointCComputer, point);
+                if (pointComputer.isValid()) {
+                    axesZoom.pointDComputer = pointComputer;
+                    axesZoom.firstPoint = pointComputer.getFirstPosition();
+                    axesZoom.secondPoint = pointComputer.getSecondPosition();
+                    getDrawerVisitor().getCanvas().redraw();
+                    status = true;
+                }
+            }
         }
+        return status;
     }
 
     /**
      * Initialise or update the helpers geometry.
      * @param drawingTools the drawing tools used to draw the helpers.
+     * @param axesZoom the structure containing the axes and points
      * @return updated helpers geometry.
      */
-    private Geometry getHelpersGeometry(DrawingTools drawingTools) {
+    private Geometry getHelpersGeometry(DrawingTools drawingTools, AxesZoom axesZoom) {
         if (helpersGeometry == null) {
             helpersGeometry = new HelpersGeometry(drawingTools);
         }
-        helpersGeometry.updateVertex(axes, pointAComputer, secondPoint, status);
+        helpersGeometry.updateVertex(axesZoom.axes, axesZoom.pointAComputer, axesZoom.secondPoint, status);
         return helpersGeometry;
     }
 
@@ -449,9 +496,10 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
     /**
      * Rubber box cube geometry getter.
      * @param drawingTools the drawing tools.
+     * @param axesZoom the structure containing the axes and points
      * @return the rubber box cubeGeometry.
      */
-    private Geometry getCubeGeometry(DrawingTools drawingTools) {
+    private Geometry getCubeGeometry(DrawingTools drawingTools, AxesZoom axesZoom) {
         if (cubeGeometry == null) {
             cubeGeometry = new DefaultGeometry();
 
@@ -467,14 +515,14 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
         }
 
         cubeGeometry.getVertices().setData(new float[] {
-                                               (float) firstPoint.getX(), (float) firstPoint.getY(), (float) firstPoint.getZ(), 1,
-                                               (float) firstPoint.getX(), (float) firstPoint.getY(), (float) secondPoint.getZ(), 1,
-                                               (float) firstPoint.getX(), (float) secondPoint.getY(), (float) secondPoint.getZ(), 1,
-                                               (float) firstPoint.getX(), (float) secondPoint.getY(), (float) firstPoint.getZ(), 1,
-                                               (float) secondPoint.getX(), (float) firstPoint.getY(), (float) firstPoint.getZ(), 1,
-                                               (float) secondPoint.getX(), (float) firstPoint.getY(), (float) secondPoint.getZ(), 1,
-                                               (float) secondPoint.getX(), (float) secondPoint.getY(), (float) secondPoint.getZ(), 1,
-                                               (float) secondPoint.getX(), (float) secondPoint.getY(), (float) firstPoint.getZ(), 1
+                                               (float) axesZoom.firstPoint.getX(), (float) axesZoom.firstPoint.getY(), (float) axesZoom.firstPoint.getZ(), 1,
+                                               (float) axesZoom.firstPoint.getX(), (float) axesZoom.firstPoint.getY(), (float) axesZoom.secondPoint.getZ(), 1,
+                                               (float) axesZoom.firstPoint.getX(), (float) axesZoom.secondPoint.getY(), (float) axesZoom.secondPoint.getZ(), 1,
+                                               (float) axesZoom.firstPoint.getX(), (float) axesZoom.secondPoint.getY(), (float) axesZoom.firstPoint.getZ(), 1,
+                                               (float) axesZoom.secondPoint.getX(), (float) axesZoom.firstPoint.getY(), (float) axesZoom.firstPoint.getZ(), 1,
+                                               (float) axesZoom.secondPoint.getX(), (float) axesZoom.firstPoint.getY(), (float) axesZoom.secondPoint.getZ(), 1,
+                                               (float) axesZoom.secondPoint.getX(), (float) axesZoom.secondPoint.getY(), (float) axesZoom.secondPoint.getZ(), 1,
+                                               (float) axesZoom.secondPoint.getX(), (float) axesZoom.secondPoint.getY(), (float) axesZoom.firstPoint.getZ(), 1
                                            }, 4);
 
         return cubeGeometry;
@@ -492,6 +540,103 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
             cubeAppearance.setLinePattern(RUBBER_BOX_PATTERN);
         }
         return cubeAppearance;
+    }
+
+    /**
+     * Calculates the minimum squared distance from
+     * the given x,y to the given axes bounds.
+     *
+     * @param bounds the axes bounds [x, y, w, h]
+     * @param x the coordinate x
+     * @param y the coordinate y
+     * @return the squared distance
+     **/
+    private double calculateAxesDistance2(Double[] bounds, double x, double y) {
+
+        double x2 = bounds[0] + bounds[2];
+        double y2 = bounds[1] + bounds[3];
+        double x1 = bounds[0];
+        double y1 = bounds[1];
+        boolean xbounded = (x >= x1) && (x <= x2);
+        boolean ybounded = (y >= y1) && (y <= y2);
+
+        if (xbounded && ybounded) {
+            return 0.0;
+        }
+
+        y1 -= y;
+        y2 -= y;
+        y1 *= y1;
+        y2 *= y2;
+        if (xbounded) {
+            return Math.min(y1, y2);
+        }
+
+        x1 -= x;
+        x2 -= x;
+        x1 *= x1;
+        x2 *= x2;
+        if (ybounded) {
+            return Math.min(x1, x2);
+        }
+
+        return Math.min(Math.min(x1 + y1, x1 + y2), Math.min(x2 + y1, x2 + y2));
+    }
+
+    /**
+     * Selects the axesZoom structure containing
+     * the closest axes.
+     *
+     * @param point the point to calculate distance
+     * @return the axesZoom structure
+     **/
+    protected AxesZoom getClosestAxesZoom(Point point) {
+        AxesZoom ret = null;
+        if (point == null) {
+            point = new Point(0, 0);
+        }
+        double minDist2 = Double.MAX_VALUE;
+        Dimension size = drawerVisitor.getCanvas().getDimension();
+        double x = point.getX() / size.getWidth();
+        double y = point.getY() / size.getHeight();
+        for (AxesZoom axesZoom : axesZoomList) {
+
+            Double[] bounds = axesZoom.axes.getAxesBounds();//x, y, w, h
+            double d2 = calculateAxesDistance2(bounds, x, y);
+            if (minDist2 > d2) {
+                ret = axesZoom;
+                minDist2 = d2;
+            }
+        }
+
+        return ret;
+    }
+
+    /**
+     * Check if exists any valid 3d zoom
+     * going on the axesZoomList.
+     *
+     * @return true if exists false otherwise
+     **/
+    protected boolean valid3D() {
+        boolean valid = false;
+        for (AxesZoom axesZoom : axesZoomList) {
+            if (axesZoom.pointBComputer != null && !axesZoom.pointBComputer.is2D()) {
+                Double[] bounds = { axesZoom.firstPoint.getX(), axesZoom.secondPoint.getX(),
+                                    axesZoom.firstPoint.getY(), axesZoom.secondPoint.getY(),
+                                    axesZoom.firstPoint.getZ(), axesZoom.secondPoint.getZ(),
+                                  };
+                int count = 0;
+                count = bounds[0].compareTo(bounds[1]) != 0 ? ++count : count;
+                count = bounds[2].compareTo(bounds[3]) != 0 ? ++count : count;
+                count = bounds[4].compareTo(bounds[5]) != 0 ? ++count : count;
+                //Atleast 2 axis must be different to be a valid zoom selection
+                if (count >= 2) {
+                    valid = true;
+                }
+            }
+        }
+        return valid;
     }
 
     @Override
@@ -521,19 +666,29 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
     @Override
     public void keyReleased(KeyEvent e) {
     }
-    
-    public double[] getResults() {
-        double[][] factors = axes.getScaleTranslateFactors();
-        double result[] = {
-            mouseButton - 1,
-            (Math.min(firstPoint.getX(), secondPoint.getX()) - factors[1][0]) / factors[0][0],
-            (Math.max(firstPoint.getY(), secondPoint.getY()) - factors[1][1]) / factors[0][1],
-            (Math.max(firstPoint.getZ(), secondPoint.getZ()) - factors[1][2]) / factors[0][2],
-            (Math.abs(firstPoint.getX() - secondPoint.getX())) / factors[0][0],
-            (Math.abs(firstPoint.getY() - secondPoint.getY())) / factors[0][1],
-            (Math.abs(firstPoint.getZ() - secondPoint.getZ())) / factors[0][2]
-        };
 
-        return result;
+    /**
+     * Computes the current selection box
+     * using the closest axes coordinates
+     *
+     * @return the selection box
+     **/
+    public double[] getResults() {
+        AxesZoom axesZoom = getClosestAxesZoom(lastPoint);
+        if (axesZoom != null) {
+            double[][] factors = axesZoom.axes.getScaleTranslateFactors();
+            double result[] = {
+                mouseButton - 1,
+                (Math.min(axesZoom.firstPoint.getX(), axesZoom.secondPoint.getX()) - factors[1][0]) / factors[0][0],
+                (Math.max(axesZoom.firstPoint.getY(), axesZoom.secondPoint.getY()) - factors[1][1]) / factors[0][1],
+                (Math.max(axesZoom.firstPoint.getZ(), axesZoom.secondPoint.getZ()) - factors[1][2]) / factors[0][2],
+                (Math.abs(axesZoom.firstPoint.getX() - axesZoom.secondPoint.getX())) / factors[0][0],
+                (Math.abs(axesZoom.firstPoint.getY() - axesZoom.secondPoint.getY())) / factors[0][1],
+                (Math.abs(axesZoom.firstPoint.getZ() - axesZoom.secondPoint.getZ())) / factors[0][2]
+            };
+            return result;
+        } else {
+            return new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+        }
     }
 }

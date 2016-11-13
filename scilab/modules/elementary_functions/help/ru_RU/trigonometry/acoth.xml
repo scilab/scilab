@@ -8,7 +8,7 @@
         <refpurpose>поэлементный гиперболический арккотангенс.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y = acoth(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -44,7 +44,7 @@ plot(x,acoth(x))
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=-30:0.1:30;
 x(abs(x)<=1)=%nan;
 plot(x,acoth(x))

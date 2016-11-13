@@ -25,13 +25,13 @@
         </para>
         <para>
             <literal>'query'</literal> は, <literal>'on'</literal> または
-	    <literal>'off'</literal> の状態を取得します.
+            <literal>'off'</literal> の状態を取得します.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
-warning('on') 
+        <programlisting role="example"><![CDATA[
+warning('on')
 warning('this is a warning')
 warning('off')
 warning('this is a warning')

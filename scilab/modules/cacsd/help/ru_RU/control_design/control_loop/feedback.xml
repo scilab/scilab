@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="feedback">
+    <refnamediv>
+        <refname>feedback</refname>
+        <refpurpose>feedback operation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>Sl=Sl1/.Sl2</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl1,Sl2</term>
+                <listitem>
+                    <para>
+                        linear systems (<literal>syslin</literal> list) in state-space or transfer form, or ordinary gain matrices.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list) in state-space or transfer form
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The feedback operation is denoted by <literal> /. </literal> (slashdot).
+            This command returns <literal>Sl=Sl1*(I+Sl2*Sl1)^-1</literal>, i.e the (negative)
+            feedback of <literal>Sl1</literal> and <literal>Sl2</literal>. <literal>Sl</literal> is the transfer
+            <literal> v -&gt; y</literal> for <literal> y = Sl1 u</literal>, <literal>u = v - Sl2 y</literal>.
+        </para>
+        <para>
+            The result is the same as <literal>Sl=LFT([0,I;I,-Sl2],Sl1)</literal>.
+        </para>
+        <para>
+            <warning>
+                Caution: do not use with decimal point (e.g. <literal>1/.1</literal> is ambiguous!)
+            </warning>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+S1=ssrand(2,2,3);S2=ssrand(2,2,2);
+W=S1/.S2;
+ss2tf(S1/.S2)
+//Same operation by LFT:
+ss2tf(lft([zeros(2,2),eye(2,2);eye(2,2),-S2],S1))
+//Other approach: with constant feedback
+BigS=sysdiag(S1,S2); F=[zeros(2,2),eye(2,2);-eye(2,2),zeros(2,2)];
+Bigclosed=BigS/.F;
+W1=Bigclosed(1:2,1:2);   //W1=W (in state-space).
+ss2tf(W1)
+//Inverting
+ss2tf(S1*inv(eye()+S2*S1))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lft">lft</link>
+            </member>
+            <member>
+                <link linkend="sysdiag">sysdiag</link>
+            </member>
+            <member>
+                <link linkend="augment">augment</link>
+            </member>
+            <member>
+                <link linkend="obscont">obscont</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

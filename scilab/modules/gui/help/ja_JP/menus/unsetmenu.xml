@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="unsetmenu">
+    <refnamediv>
+        <refname>unsetmenu</refname>
+        <refpurpose>
+            対話的なボタンまたはメニューを無効化
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>unsetmenu(button,[nsub])
+            unsetmenu(gwin,button,[nsub])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>button</term>
+                <listitem>
+                    <para>文字列. ボタンの名前</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gwin</term>
+                <listitem>
+                    <para>整数. ボタンをインストールしたグラフィックウインドウの暗号</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nsub</term>
+                <listitem>
+                    <para>
+                        整数. 無効化するサブメニューの数.
+                        ボタンにサブメニューがない場合,
+                        <literal>nsub</literal>は無視されます
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数により,ユーザは<literal>addmenu</literal>
+            によりメインまたはグラフィックウインドウコマンドパネルに
+            作成されたボタンまたはメニューを無効化できます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+addmenu('foo')
+unsetmenu('foo')
+unsetmenu(gettext("File"), 3)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="delmenu">delmenu</link>
+            </member>
+            <member>
+                <link linkend="setmenu">setmenu</link>
+            </member>
+            <member>
+                <link linkend="addmenu">addmenu</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

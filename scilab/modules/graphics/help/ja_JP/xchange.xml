@@ -6,159 +6,159 @@
 
  * Copyright (C) ENPC - Jean-Philippe Chancelier
 
- * 
+ *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
  *
 
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="xchange">
-    
+
     <refnamediv>
-        
+
         <refname>xchange</refname>
-        
+
         <refpurpose>実座標をピクセル座標に変換する</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>[x1, y1, rect] = xchange(x, y, dir)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>x,y</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         大きさ<literal>(n1, n2)</literal>(点の集合の座標)の行列.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>dir</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         変換の種類を指定するパラメータ (詳細は "説明" 参照)
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>x1,y1</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         t大きさ<literal>(n1, n2)</literal>(点の集合の座標)の行列.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>rect</term>
-                
+
                 <listitem>
-                    
+
                     <para>大きさ 4のベクトル.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <function>xchange</function>は,
-            
+
             グラフィック関数を使用した後,
-            
+
             パラメータ<varname>dir</varname>の値に基づき,
-            
+
             実座標からピクセル座標への変換またはその逆変換を計算します:
-            
-            <literal>"f2i"</literal>(float to int) は実座標からピクセルを意味し, 
-            
+
+            <literal>"f2i"</literal>(float to int) は実座標からピクセルを意味し,
+
             <literal>"i2f"</literal> (int to float)
-            
+
             はピクセルから実座標を意味します.
-            
+
         </para>
-        
-        <para>	  
-            
-            <varname>x1</varname> および <varname>y1</varname>は,
-            
-            古い座標 <varname>x</varname> と <varname>y</varname>により
-            
-            定義される一連の点の新しい座標です.
-            
-        </para>
-        
+
         <para>
-            
-            <varname>rect</varname>  は,
-            
-            プロットが行われる矩形のピクセル単位の座標です:
-            
-            [左上の点, 幅, 高さ].
-            
+
+            <varname>x1</varname> および <varname>y1</varname>は,
+
+            古い座標 <varname>x</varname> と <varname>y</varname>により
+
+            定義される一連の点の新しい座標です.
+
         </para>
-        
+
+        <para>
+
+            <varname>rect</varname>  は,
+
+            プロットが行われる矩形のピクセル単位の座標です:
+
+            [左上の点, 幅, 高さ].
+
+        </para>
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 t=[0:0.1:2*%pi]';
 
@@ -169,8 +169,8 @@ plot2d(t,sin(t))
 [x,y,rect]=xchange(0,0,"i2f")
 
  ]]></programlisting>
-        
+
     </refsection>
-    
+
 </refentry>
 

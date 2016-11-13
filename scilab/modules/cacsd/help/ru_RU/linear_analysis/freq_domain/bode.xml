@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="bode" xml:lang="ru">
+    <refnamediv>
+        <refname>bode</refname>
+        <refpurpose>Bode plot</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            bode(sl, [fmin, fmax] [,step] [,comments] )
+            bode(sl, [fmin, fmax] [,step] [,comments] [,"rad"] )
+            bode(sl, frq [,comments] )
+            bode(sl, frq [,comments] [,"rad"] )
+            bode(frq, db, phi [,comments] )
+            bode(frq, repf [,comments] [,"rad"] )
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list (SISO or SIMO linear system)
+                        in continuous or discrete time.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmin,fmax</term>
+                <listitem>
+                    <para>real (frequency bounds (in Hz))</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>step</term>
+                <listitem>
+                    <para>real (logarithmic step.)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>comments</term>
+                <listitem>
+                    <para>vector of character strings (captions).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>row vector or matrix (frequencies (in Hz) ) (one row for each
+                        SISO subsystem).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>db</term>
+                <listitem>
+                    <para>row vector or matrix ( magnitudes (in Db)). (one row for each
+                        SISO subsystem).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>phi</term>
+                <listitem>
+                    <para>row vector or matrix ( phases (in degree)) (one row for each
+                        SISO subsystem).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>repf</term>
+                <listitem>
+                    <para>row vector or matrix of complex numbers (complex frequency
+                        response).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"rad"</term>
+                <listitem>
+                    <para>converts the frequency from Hz into rad/s (multiplies by 2&#960;),
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Bode plot, i.e magnitude and phase of the frequency response of
+            <literal>sl</literal>.
+        </para>
+        <para>
+            <literal>sl</literal> can be a continuous-time or discrete-time SIMO
+            system (see <literal>syslin</literal>). In case of multi-output the
+            outputs are plotted with different symbols.
+        </para>
+        <para>
+            The frequencies are given by the bounds <literal>fmin,fmax</literal>
+            (in Hz) or by a row-vector (or a matrix for multi-output)
+            <literal>frq</literal>.
+        </para>
+        <para>
+            <literal>step</literal> is the ( logarithmic ) discretization step.
+            (see <literal>calfrq</literal> for the choice of default value).
+        </para>
+        <para>
+            <literal>comments</literal> is a vector of character strings
+            (captions).
+        </para>
+        <para>
+            <literal>db,phi</literal> are the matrices of modulus (in Db) and
+            phases (in degrees). (One row for each response).
+        </para>
+        <para>
+            <literal>repf</literal> matrix of complex numbers. One row for each
+            response.
+        </para>
+        <para>
+            Default values for <literal>fmin</literal> and
+            <literal>fmax</literal> are <literal>1.d-3</literal>,
+            <literal>1.d+3</literal> if <literal>sl</literal> is continuous-time or
+            <literal>1.d-3</literal>, <literal>0.5</literal>/sl.dt (nyquist frequency)
+            if <literal>sl</literal> is discrete-time. Automatic discretization of
+            frequencies is made by <literal>calfrq</literal>.
+        </para>
+        <para>
+            The
+            <link linkend="datatips">datatips</link>
+            tool may be used
+            to display data along the phase and modulus curves.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s = poly(0, 's');
+h = syslin('c', (s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+
+clf(); bode(h, 0.01, 100);
+ ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s = poly(0, 's');
+                h = syslin('c', (s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+                clf(); bode(h, 0.01, 100);
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+s = poly(0, 's');
+h1 = syslin('c', (s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+num = 22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
+den = 22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4;
+h2 = syslin('c', num/den);
+
+clf(); bode([h1; h2], 0.01, 100, ['h1'; 'h2']);
+ ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s = poly(0, 's');
+                h1 = syslin('c', (s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+                num = 22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
+                den = 22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4;
+                h2 = syslin('c', num/den);
+                clf(); bode([h1; h2], 0.01, 100, ['h1'; 'h2']);
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+s = %s;
+G = (10*(s+3))/(s*(s+2)*(s^2+s+2)); // A rational matrix
+sys = syslin('c', G); // A continuous-time linear system in transfer matrix representation.
+f_min = .0001; f_max = 16; // Frequencies in Hz
+
+clf(); bode(sys, f_min, f_max, "rad"); // Converts Hz to rad/s
+ ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s = %s;
+                G = (10*(s+3))/(s*(s+2)*(s^2+s+2)); // A rational matrix
+                sys = syslin('c', G); // A continuous-time linear system in transfer matrix representation.
+                f_min = .0001; f_max = 16; // Frequencies in Hz
+                clf(); bode(sys, f_min, f_max, "rad"); // Converts Hz to rad/s
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bode_asymp">bode_asymp</link>
+            </member>
+            <member>
+                <link linkend="black">black</link>
+            </member>
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+            <member>
+                <link linkend="gainplot">gainplot</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="g_margin">g_margin</link>
+            </member>
+            <member>
+                <link linkend="p_margin">p_margin</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+            <member>
+                <link linkend="phasemag">phasemag</link>
+            </member>
+            <member>
+                <link linkend="datatips">datatips</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

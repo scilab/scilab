@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="dt_ility">
+    <refnamediv>
+        <refname>dt_ility</refname>
+        <refpurpose>detectability test</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[k, [n [,U [,Sld ] ] ]]=dt_ility(Sl [,tol])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>dimension of unobservable subspace</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>
+                        dimension of unstable, unobservable subspace (<literal> k&lt;=n</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>orthogonal matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Sld</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>threshold for controllability test.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Detectability test for <literal>sl</literal>, a linear system in state-space
+            representation.
+            <literal>U</literal> is a basis whose <literal>k</literal> first columns span the
+            unstable, unobservable subspace of <literal>Sl</literal> (intersection
+            of unobservable subspace of <literal>(A,C)</literal> and unstable subspace
+            of <literal>A</literal>). Detectability means <literal>k=0</literal>.
+        </para>
+        <para>
+            <literal>Sld = (U'*A*U,U'*B,C*U,D)</literal> displays the "detectable part"
+            of <literal>Sl=(A,B,C,D)</literal>, i.e.
+        </para>
+        <programlisting role=""><![CDATA[
+         [*,*,*]
+U'*A*U = [0,*,*]
+         [0,0,*]
+
+C*U = [0,0,*]
+ ]]></programlisting>
+        <para>
+            with <literal>(A33,C3)</literal> observable (dimension <literal>nx-n</literal>), <literal>A22</literal> stable
+            (dimension <literal>n-k</literal>) and <literal>A11</literal> unstable (dimension <literal>k</literal>).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A=[2,1,1;0,-2,1;0,0,3];
+C=[0,0,1];
+X=rand(3,3);A=inv(X)*A*X;C=C*X;
+W=syslin('c',A,[],C);
+[k,n,U,W1]=dt_ility(W);
+W1("A")
+W1("C")
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="contr">contr</link>
+            </member>
+            <member>
+                <link linkend="st_ility">st_ility</link>
+            </member>
+            <member>
+                <link linkend="unobs">unobs</link>
+            </member>
+            <member>
+                <link linkend="stabil">stabil</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

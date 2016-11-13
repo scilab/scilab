@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="rowinout">
+    <refnamediv>
+        <refname>rowinout</refname>
+        <refpurpose>inner-outer factorization</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[Inn,X,Gbar]=rowinout(G)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list) <literal>[A,B,C,D]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Inn</term>
+                <listitem>
+                    <para>
+                        inner factor (<literal>syslin</literal> list)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Gbar</term>
+                <listitem>
+                    <para>
+                        outer factor (<literal>syslin</literal> list)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>
+                        row-compressor of <literal>G</literal> (<literal>syslin</literal> list)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Inner-outer factorization (and row compression) of (<literal>l</literal>x<literal>p</literal>) <literal>G =[A,B,C,D]</literal> with <literal>l&gt;=p</literal>.
+        </para>
+        <para>
+            <literal>G</literal> is assumed to be tall (<literal>l&gt;=p</literal>) without zero on the imaginary axis
+            and with a <literal>D</literal> matrix which is full column rank.
+        </para>
+        <para>
+            <literal>G</literal> must also be stable for having <literal>Gbar</literal> stable.
+        </para>
+        <para>
+            <literal>G</literal> admits the following inner-outer factorization:
+        </para>
+        <programlisting role=""><![CDATA[
+ G = [ Inn ] | Gbar |
+             |  0   |
+ ]]></programlisting>
+        <para>
+            where <literal>Inn</literal> is square and inner (all pass and stable) and <literal>Gbar</literal>
+            square and outer i.e:
+            Gbar is square bi-proper and bi-stable (Gbar inverse is also proper
+            and stable);
+        </para>
+        <para>
+            Note that:
+        </para>
+        <programlisting role=""><![CDATA[
+      [ Gbar ]
+X*G = [  -   ]
+      [  0   ]
+ ]]></programlisting>
+        <para>
+            is a row compression of <literal>G</literal> where <literal>X</literal> = <literal>Inn</literal> inverse is all-pass i.e:
+        </para>
+        <programlisting role=""><![CDATA[
+ T
+X (-s) X(s) = Identity
+ ]]></programlisting>
+        <para>
+            (for the continuous time case).
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="colinout">colinout</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

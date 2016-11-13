@@ -4,11 +4,14 @@
 // Copyright (C) 2010-2012 - DIGITEO - Antoine ELIAS
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 // test_run  --
 //   Launch unit tests.
@@ -55,6 +58,9 @@ function test_run_result = test_run(varargin)
     if rhs >= 3 then
 
         option_mat = varargin(3);
+        if (option_mat == "[]")
+            option_mat = [];
+        end
         if (check_option(option_mat, "unit_tests") & check_option(option_mat, "nonreg_tests")) | check_option(option_mat, "all_tests") then
             params.testTypes = "all_tests";
         elseif check_option(option_mat, "unit_tests") then
@@ -138,8 +144,8 @@ function test_run_result = test_run(varargin)
     // Management of the tests to run
     // =======================================================
     if (rhs == 0) ..
-        | ((rhs == 1) & (varargin(1)==[])) ..
-        | (((rhs == 2)|(rhs == 3)|(rhs == 4)) & (varargin(1)==[]) & (varargin(2)==[])) then
+        | ((rhs == 1) & (varargin(1)==[] | varargin(1)=="[]")) ..
+        | (rhs >= 2 & rhs <= 4) & ( varargin(1)==[]|varargin(1)=="[]") & (varargin(2)==[]|varargin(2)=="[]") then
 
 
         // No input argument
@@ -179,9 +185,9 @@ function test_run_result = test_run(varargin)
         end
 
     elseif (rhs == 1) ..
-        | ((rhs == 2) & (varargin(2)==[])) ..
-        | ((rhs == 3) & (varargin(2)==[])) ..
-        | ((rhs == 4) & (varargin(2)==[])) ..
+        | ((rhs == 2) & (varargin(2)==[] || varargin(2)=="[]")) ..
+        | ((rhs == 3) & (varargin(2)==[] || varargin(2)=="[]")) ..
+        | ((rhs == 4) & (varargin(2)==[] || varargin(2)=="[]")) ..
         | ( ~ isempty(params.skip_mat)) then
 
         // One input argument
@@ -723,10 +729,18 @@ function status = test_single(_module, _testPath, _testName)
     "mode(3);" ;
     "lines(28,72);";
     "lines(0);" ;
-    "function %onprompt" ;
-    "   quit;" ;
-    "endfunction" ;
     "function []=bugmes(), printf(''error on test'');endfunction"
+    "function %onprompt" ;
+    "   [msg, num] = lasterror();" ;
+    "   if (num <> 0) then" ;
+    "       bugmes()" ;
+    "   end" ;
+    "   quit;" ;
+    "endfunction"];
+    if ~interactive then
+        head($+1) = "function []=messagebox(msg, msg_title, info), disp(''messagebox: '' + msg);endfunction";
+    end
+    head = [ head ;
     "predef(''all'');";
     "tmpdirToPrint = msprintf(''TMPDIR1=''''%s'''';//\n'',TMPDIR);"
     ];
@@ -824,18 +838,23 @@ function status = test_single(_module, _testPath, _testName)
 
     loader_path = pathconvert(fullfile(_module.moduleName, "loader.sce"), %f);
 
+    SCI_ARGS = " -nb -quit "
+    if ~_module.longtime then
+        SCI_ARGS = SCI_ARGS + "--timeout 15m "
+    end
+
     // Build final command
     if getos() == "Windows" then
         if (isdir(_module.moduleName) & isfile(loader_path)) // external module not in Scilab
-            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + SCI_ARGS + "-e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         else // standard module
-            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + SCI_ARGS + "-e ""exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         end
     else
         if (isdir(_module.moduleName) & isfile(loader_path))
-            test_cmd = "( " + valgrind_opt + " " + SCI_BIN + "/bin/scilab " + mode_arg + " " + language_arg + " -nb -e ""exec(''" + loader_path + "'');exec(''" + tmp_tst +"'');""" + " > " + tmp_res + " ) 2> " + tmp_err;
+            test_cmd = "( " + valgrind_opt + " " + SCI_BIN + "/bin/scilab " + mode_arg + " " + language_arg + SCI_ARGS + "-e ""exec(''" + loader_path + "'');exec(''" + tmp_tst +"'');""" + " > " + tmp_res + " ) 2> " + tmp_err;
         else
-            test_cmd = "( " + valgrind_opt + " " + prefix_bin + " " + SCI_BIN + "/bin/scilab " + mode_arg + " " + language_arg + " -nb -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
+            test_cmd = "( " + valgrind_opt + " " + prefix_bin + " " + SCI_BIN + "/bin/scilab " + mode_arg + " " + language_arg + SCI_ARGS + " -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
         end
     end
 
@@ -897,20 +916,23 @@ function status = test_single(_module, _testPath, _testName)
             if ~isempty(tmp_errfile_info) then
                 txt = mgetl(tmp_err);
                 txt(txt==msg) = [];
+
+                // Remove messages due to warning message from external
+                // libraries
+
+                if ~isempty(txt) then
+                    // MESA / EGL display some warning on stderr
+                    toRemove = grep(txt, "libEGL warning:");
+                    txt(toRemove) = [];
+                end
+
+                if ~isempty(txt) then
+                    toRemove = grep(txt, "extension ""RANDR"" missing on display");
+                    txt(toRemove) = [];
+                end
+
                 if isempty(txt) then
                     deletefile(tmp_err);
-                else // Remove messages due to warning message from library
-                    toRemove = grep(txt, "libEGL warning: failed to find any driver");
-                    txt(toRemove) = [];
-
-                    if ~isempty(txt) then
-                        toRemove = grep(txt, "extension ""RANDR"" missing on display");
-                        txt(toRemove) = [];
-                    end
-
-                    if isempty(txt) then
-                        deletefile(tmp_err);
-                    end
                 end
             end
         end

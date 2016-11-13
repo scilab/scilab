@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="pack" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>Compress a list of block-diagonal symmetric matrices.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             CA = pack(A,blocksizes)
             [CA,sel] = pack(A,blocksizes)
@@ -29,7 +32,7 @@
                 <term>A</term>
                 <listitem>
                     <para>
-                        m-by-n real matrix of doubles, the entries of a list of block-diagonal symmetric matrices. 
+                        m-by-n real matrix of doubles, the entries of a list of block-diagonal symmetric matrices.
                         n is the number of matrices stored into <literal>A</literal>.
                     </para>
                 </listitem>
@@ -46,7 +49,7 @@
                 <term>CA</term>
                 <listitem>
                     <para>
-                        p-by-n real matrix of doubles, a compressed representation of <literal>A</literal>. 
+                        p-by-n real matrix of doubles, a compressed representation of <literal>A</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -54,8 +57,8 @@
                 <term>sel</term>
                 <listitem>
                     <para>
-                        1-by-s real matrix of doubles, the indices of the rows of <literal>A</literal> 
-                        which have been selected in <literal>CA</literal>. 
+                        1-by-s real matrix of doubles, the indices of the rows of <literal>A</literal>
+                        which have been selected in <literal>CA</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,27 +67,27 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function takes as input argument a list of 
-            block-diagonal matrices stored in the m-by-n matrix <literal>A</literal>. 
-            Only the non-zero entries of the block-diagonal matrices are stored. 
-            The integer <literal>n</literal> is the number of block-diagonal matrices, 
-            while the integer <literal>m</literal> is the number of nonzero entries of 
-            one single block-diagonal matrix. 
+            This function takes as input argument a list of
+            block-diagonal matrices stored in the m-by-n matrix <literal>A</literal>.
+            Only the non-zero entries of the block-diagonal matrices are stored.
+            The integer <literal>n</literal> is the number of block-diagonal matrices,
+            while the integer <literal>m</literal> is the number of nonzero entries of
+            one single block-diagonal matrix.
             The function removes the symmetric entries, and returns in <literal>CA</literal>
             the compressed representation of <literal>A</literal>.
         </para>
         <para>
-            In the <literal>CA</literal> matrix, the symmetric entries stored in <literal>A</literal> 
-            have been removed. 
-            The rows which have been selected in <literal>CA</literal> are stored in the vector 
-            <literal>sel</literal>, so that, on output, we have 
+            In the <literal>CA</literal> matrix, the symmetric entries stored in <literal>A</literal>
+            have been removed.
+            The rows which have been selected in <literal>CA</literal> are stored in the vector
+            <literal>sel</literal>, so that, on output, we have
             <literal>CA == A(sel,:)</literal>.
         </para>
         <para>
-            For example, the matrix  
+            For example, the matrix
         </para>
         <para>
-            <latex><![CDATA[ 
+            <latex><![CDATA[
         \begin{eqnarray}
         Z = \left(
         \begin{array}{cccccc}
@@ -109,18 +112,18 @@
             with <literal>blocksizes=[2,3,1]</literal>.
         </para>
         <para>
-            This function is designed to be used when preparing the input arguments of the 
+            This function is designed to be used when preparing the input arguments of the
             <literal>semidef</literal> function.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <para>
-            In the following example, we compress a single block-diagonal symmetric matrix <literal>Z</literal>. 
-            This is the example presented in "SP: Software for Semidefinite Programming, User's Guide, Beta Version", 
+            In the following example, we compress a single block-diagonal symmetric matrix <literal>Z</literal>.
+            This is the example presented in "SP: Software for Semidefinite Programming, User's Guide, Beta Version",
             November 1994, L. Vandenberghe and S. Boyd, 1994, on page 5.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 Z = [
 1 2 0 0 0 0
 2 3 0 0 0 0
@@ -137,10 +140,10 @@ A = list2vec(list(Z1,Z2,Z3));
 [CA,sel] = pack(A,blocksizes)
  ]]></programlisting>
         <para>
-            In the following example, we compress three block-diagonal symmetric matrices <literal>F0</literal>, 
-            <literal>F1</literal> and <literal>F2</literal>. 
+            In the following example, we compress three block-diagonal symmetric matrices <literal>F0</literal>,
+            <literal>F1</literal> and <literal>F2</literal>.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Define 3 symmetric block-diagonal matrices: F0, F1, F2
 F0=[2,1,0,0;
     1,2,0,0;
@@ -155,7 +158,7 @@ F2=[2,2,0,0;
     0,0,3,4;
     0,0,4,4]
 // Define the size of the two blocks:
-// the first block has size 2, 
+// the first block has size 2,
 // the second block has size 2.
 blocksizes=[2,2];
 // Extract the two blocks of the matrices.
@@ -165,12 +168,12 @@ F11=F1(1:2,1:2);
 F12=F1(3:4,3:4);
 F21=F2(1:2,1:2);
 F22=F2(3:4,3:4);
-// Create 3 column vectors, containing nonzero entries 
+// Create 3 column vectors, containing nonzero entries
 // in F0, F1, F2.
 F0nnz = [F01(:);F02(:)];
 F1nnz = [F11(:);F12(:)];
 F2nnz = [F21(:);F22(:)];
-// Create a 16-by-3 matrix, representing the 
+// Create a 16-by-3 matrix, representing the
 // nonzero entries of the 3 matrices F0, F1, F2.
 A=[F0nnz,F1nnz,F2nnz]
 // Pack the list of matrices A into CA.
@@ -192,13 +195,13 @@ A(sel,:)
             1994.
         </para>
         <para>
-            SP: Software for Semidefinite Programming, User's Guide, Beta Version, November 1994, 
+            SP: Software for Semidefinite Programming, User's Guide, Beta Version, November 1994,
             L. Vandenberghe and S. Boyd, 1994
             <ulink url="http://www.ee.ucla.edu/~vandenbe/sp.html">http://www.ee.ucla.edu/~vandenbe/sp.html</ulink>
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="unpack">unpack</link>

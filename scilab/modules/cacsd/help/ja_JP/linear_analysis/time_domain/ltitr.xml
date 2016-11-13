@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="ltitr">
+    <refnamediv>
+        <refname>ltitr</refname>
+        <refpurpose>離散時間応答 (状態空間)  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[X]=ltitr(A,B,U,[x0])
+            [xf,X]=ltitr(A,B,U,[x0])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>A,B</term>
+                <listitem>
+                    <para>適当な次元の実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U,X</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0,xf</term>
+                <listitem>
+                    <para>
+                        実数ベクトル (<literal>x0</literal>のデフォルト=0)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            離散時間システムの時間応答を計算します
+        </para>
+        <programlisting role=""><![CDATA[
+x[t+1] = Ax[t] + Bu[t].
+ ]]></programlisting>
+        <para>
+            入力 <literal>ui</literal>は<literal>U</literal>行列の
+            列です.
+        </para>
+        <programlisting role=""><![CDATA[
+U=[u0,u1,...,un];
+ ]]></programlisting>
+        <para>
+            <literal>x0</literal> は状態量の初期値のベクトルです (デフォルト値 : 0) ;
+        </para>
+        <para>
+            <literal>X</literal> は出力行列です(<literal>U</literal>と同じ列の数).
+        </para>
+        <programlisting role=""><![CDATA[
+X=[x0,x1,x2,...,xn]
+ ]]></programlisting>
+        <para>
+            <literal>xf</literal> は状態量の終端値 <literal>xf=X[n+1]</literal>です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A=eye(2,2);B=[1;1];
+x0=[-1;-2];
+u=[1,2,3,4,5];
+x=ltitr(A,B,u,x0)
+x1=A*x0+B*u(1)
+x2=A*x1+B*u(2)
+x3=A*x2+B*u(3) //....
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="rtitr">rtitr</link>
+            </member>
+            <member>
+                <link linkend="flts">flts</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

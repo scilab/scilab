@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="h_norm">
+    <refnamediv>
+        <refname>h_norm</refname>
+        <refpurpose>H無限大ノルム</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[hinfnorm [,frequency]]=h_norm(sl [,rerr])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        状態空間システム (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rerr</term>
+                <listitem>
+                    <para>
+                        最大相対誤差, デフォルト値 <literal>1e-8</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>hinfnorm</term>
+                <listitem>
+                    <para>
+                        <literal>Sl</literal>のH無限大ノルム
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frequency</term>
+                <listitem>
+                    <para>最大値となる周波数</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            状態空間システムのH無限大ノルム
+            (最大特異値の全周波数における最大値)
+            を出力します.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="linfn">linfn</link>
+            </member>
+            <member>
+                <link linkend="linf">linf</link>
+            </member>
+            <member>
+                <link linkend="svplot">svplot</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

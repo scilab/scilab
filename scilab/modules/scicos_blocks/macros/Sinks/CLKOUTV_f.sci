@@ -30,7 +30,6 @@ function [x,y,typ]=CLKOUTV_f(job,arg1,arg2)
         yf=40;
         orig=arg1.graphics.orig;
         sz=arg1.graphics.sz;
-        orient=arg1.graphics.flip;
         prt=arg1.model.ipar;
         pat=xget("pattern");
         xset("pattern",default_color(-1));

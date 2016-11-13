@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="specfact">
+    <refnamediv>
+        <refname>specfact</refname>
+        <refpurpose>spectral factor</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[W0,L]=specfact(A,B,C,D)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Given a spectral density matrix <literal>phi(s)</literal>:
+        </para>
+        <programlisting role=""><![CDATA[
+            -1                   -1
+R + C*(s*I-A) * B  +  B'*(-s*I-A') * C'  with R=D+D' > 0
+ ]]></programlisting>
+        <para>
+            <literal>specfact</literal> computes  <literal>W0</literal> and <literal>L</literal> such
+            that  <literal>W(s)=W0+L*(s*I-A)^-1*B</literal>  is a
+            spectral factor of of <literal>PHI(s)</literal>, i.e.
+        </para>
+        <para>
+            <literal>phi(s)=W'(-s)*W(s)</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A=diag([-1,-2]);B=[1;1];C=[1,1];D=1;s=poly(0,'s');
+W1=syslin('c',A,B,C,D);
+phi=gtild(W1,'c')+W1;
+phis=clean(ss2tf(phi))
+clean(phis-horner(phis,-s)');   //check this is 0...
+[A,B,C,D]=abcd(W1);
+[W0,L]=specfact(A,B,C,D);
+W=syslin('c',A,B,L,W0)
+Ws=ss2tf(W);
+horner(Ws,-s)*Ws
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gtild">gtild</link>
+            </member>
+            <member>
+                <link linkend="sfact">sfact</link>
+            </member>
+            <member>
+                <link linkend="fspecg">fspecg</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -3,380 +3,383 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rand" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>rand</refname>
-        
+
         <refpurpose>乱数生成</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>
-            
+
             r = rand()
-            
+
             r = rand(m1,m2,...)
-            
+
             r = rand(m1,m2,...,key)
-            
+
             r = rand(x)
-            
+
             r = rand(x,key)
-            
-            
-            
+
+
+
             s = rand("seed")
-            
+
             rand("seed",s)
-            
-            
-            
+
+
+
             rand(key)
-            
+
             key = rand("info")
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>m1, m2, ...</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         整数, ランダム行列<literal>r</literal>の大きさ.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>key</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         文字列, 乱数の分布 (デフォルト <literal>key="uniform" </literal>).
-                        
+
                         利用可能な値は <literal>"uniform"</literal> および
-                        
+
                         <literal>"normal"</literal>です.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>x</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
-                        実数または複素数の行列. 
-                        
+
+                        実数または複素数の行列.
+
                         実数または複素数の内容とその次元のみが処理されます.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>r</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         m1 x m2 x... ランダムなエントリを有するdoubleの実数配列.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>s</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         1行1列double行列, 整数値, 正, シード (デフォルト <literal>s=0</literal>).
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             この関数の目的は,実数または複素数のランダムなエントリを有するdoubleの行列
-            
+
             を返すことです.
-            
+
             入力引数に依存して,この関数はdoubleのランダム行列を返したり,または,
-            
+
             乱数の分布を取得または設定したり,
-            
+
             乱数生成器のシードを取得または設定したりできます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
-        <title>乱数生成器</title>            
-        
+
+        <title>乱数生成器</title>
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>r=rand()</term>
-                
+
                 <listitem>
-                    
+
                     <para>乱数1個を有する1行1列double行列を返します.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>r=rand(m1,m2)</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         は, 次元が <literal>m1</literal> 行
-                        
+
                         <literal>m2</literal>列のランダム行列です.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>r=rand(m1,m2,..,mn)</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         は,次元が<literal>m1</literal> x
-                        
+
                         <literal>m2</literal>,.. x <literal>mn</literal>
-                        
+
                         のランダム行列を返します.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>r=rand(a)</term>
-                
+
                 <listitem>
-                    
+
                     <para>は,aと同じ大きさのランダム行列を返します.
-                        
+
                         <literal>a</literal>が実数行列の場合,
-                        
+
                         <literal>r</literal>は実数,
-                        
+
                         <literal>a</literal>が複素数行列の場合,
-                        
+
                         <literal>r</literal>は複素数です.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>乱数の分布の変更</title>
-        
+
         <para>
-            
+
             入力引数<literal>key</literal> は乱数生成器の分布を設定します.
-            
+
         </para>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>rand("uniform")</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         乱数生成器が一様分布の乱数生成器に
-                        
+
                         設定されます.乱数は(0,1)の範囲の一様分布となります.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>rand("normal")</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         乱数生成器がガウス乱数生成器(平均0,分散1)に設定されます.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>key=rand("info")</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         カレントの乱数生成器の型("uniform" または
-                        
+
                         "normal")を返します.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>シートの取得または設定</title>
-        
+
         <para>
-            
+
             乱数生成器のシードを取得または設定することが可能です.
-            
+
         </para>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>s=rand("seed")</term>
-                
+
                 <listitem>
-                    
+
                     <para>カレントのシードの値を返します.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>rand("seed",s)</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         シードを<literal>n</literal>に設定します. (デフォルトでは,
-                        
+
                         最初のコールで<literal>s=0</literal> ).
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <para>
-            
+
             以下の例では, 様々な分布を有するランダムdoubleを生成します.
-            
+
         </para>
-        
-        <programlisting role="example"><![CDATA[  
+
+        <programlisting role="example"><![CDATA[
 // Get one random double (based on the current distribution)
 r=rand()
 // Get one 4-by-6 matrix of doubles (based on the current distribution)
@@ -389,18 +392,18 @@ r=rand(x,"normal")
 // Produce a 2-by-2-by-2 array of random doubles
 r=rand(2,2,2)
  ]]></programlisting>
-        
+
         <para>
-            
+
             以下の例では, <literal>rand</literal>により生成された
-            
+
             数の分布を変更します.
-            
+
             まず正規分布を作成した後, 一様分布 [0,1)を作成します.
-            
+
         </para>
-        
-        <programlisting role="example"><![CDATA[  
+
+        <programlisting role="example"><![CDATA[
     // Set the rand generator to normal
     rand("normal")
     r=rand(4,6)
@@ -411,223 +414,223 @@ r=rand(2,2,2)
     r=rand(4,6)
     key=rand("info")
     ]]></programlisting>
-        
+
         <para>
-            
+
             以下の例では,正規分布の2行3列のdouble複素数行列を作成します.
-            
+
         </para>
-        
-        <programlisting role="example"><![CDATA[  
+
+        <programlisting role="example"><![CDATA[
     // Produce a 2-by-3 matrix of random complex doubles
     x=rand(2,3)+%i*rand(2,3)
     // Produce a matrix of random complex doubles with
     // normal entries and the same size as x
     r=rand(x,"normal")
     ]]></programlisting>
-        
+
         <para>
-            
+
             以下の例では,
-            
+
             <literal>rand</literal>により生成された一様分布の数値をプロットします.
-            
+
         </para>
-        
-        <programlisting role="example"><![CDATA[  
+
+        <programlisting role="example"><![CDATA[
     r=rand(1000,1,"uniform");
     scf();
     histplot(10,r);
     xtitle("Uniform numbers from rand","X","Frequency")
     ]]></programlisting>
-        
+
         <para>
-            
+
             以下の例では,
-            
+
             <literal>rand</literal>により生成された標準正規分布の数値をプロットします.
-            
+
         </para>
-        
-        <programlisting role="example"><![CDATA[  
+
+        <programlisting role="example"><![CDATA[
     r=rand(1000,1,"normal");
     scf();
     histplot(10,r);
     xtitle("Normal numbers from rand","X","Frequency")
     ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>予測可能または予測困難な数を取得</title>
-        
+
         <para>
-            
+
             "uniform" 擬似乱数生成器は,
-            
+
             範囲(0,1)において独立して一様分布する
-            
+
             数を再現することを目的とする決定論的数列です.
-            
+
         </para>
-        
+
         <para>
-            
+
             再現可能なシミュレーションを行うには,
-            
+
             数列がセッション間で同じであるように,生成器の初期シードをゼロにします.
-            
+
             言い換えると,
-            
+
             <literal>rand()</literal>により生成される最初の数は,
-            
+
             常に 0.2113249,  0.7560439, ... となります.
-            
+
         </para>
-        
+
         <para>
-            
+
             いくつかのケースでは,
-            
+
             より予測しくい数列を出力するように生成器のシードを初期化したい場合があります.
-            
+
             この場合,以下のように<literal>getdate</literal>関数の出力で
-            
+
             初期化することができます:
-            
+
         </para>
-        
-        <programlisting role="example"><![CDATA[  
+
+        <programlisting role="example"><![CDATA[
 n=getdate("s");
 rand("seed",n);
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>生成器</title>
-        
+
         <para>
-            
+
             <literal>"uniform"</literal> 乱数生成器は
-            
+
             "Urand, A Universal Random Number Generator" において
-            
+
             Michael A. Malcolm, Cleve B. Moler, Stan-Cs-73-334, January 1973, Computer
-            
+
             Science Department, School Of Humanities And Sciences, Stanford University
-            
+
             により記述されています.
-            
+
         </para>
-        
+
         <para>
-            
+
             これは,以下の形式の線形共役生成器です :
-            
+
         </para>
-        
+
         <para>
-            
+
             <latex>
-                
+
                 $$
-                
+
                 x = (a x + c) \textrm{mod} M
-                
+
                 $$
-                
+
             </latex>
-            
+
         </para>
-        
+
         <para>
-            
+
             ただし,定数を以下に示します
-            
+
         </para>
-        
+
         <para>
-            
-            <latex><![CDATA[  
+
+            <latex><![CDATA[
 	  \begin{eqnarray}
       a &=& 843314861\\
       c &=& 453816693\\
       M &=& 2^{31}
 	  \end{eqnarray}
  ]]></latex>
-            
+
         </para>
-        
+
         <para>
-            
+
             著者によれば,この生成器はフルレングス生成器であり,
-            
+
             つまり,周期は<latex>M=2^{31}=2147483648</latex>です.
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>"normal"</literal> 乱数生成器は Box-Muller 法に
-            
+
             基づいており, 一様乱数のソースは Urand です.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>生成器の統計的品質</title>
-        
+
         <para>
-            
+
             より長い周期とより良い統計的特性を有するという意味で,
-            
+
             より優れた乱数生成器が
-            
+
             <link linkend="grand">grand</link>関数で利用可能です.
-            
+
             乱数の品質が問題となる場合,代わりに
-            
+
             <literal>grand</literal> 関数を検討するべきです.
-            
+
             更に,<literal>grand</literal> にはより多くの機能があります.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="grand">grand</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="ssrand">ssrand</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="sprand">sprand</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

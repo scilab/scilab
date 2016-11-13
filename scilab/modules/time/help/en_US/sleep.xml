@@ -1,48 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="sleep">
     <refnamediv>
         <refname>sleep</refname>
-        <refpurpose>suspend Scilab</refpurpose>
+        <refpurpose>suspend all code executions (console, scripts, callbacks,..)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>sleep(milliseconds)</synopsis>
+        <title>Syntax</title>
+        <synopsis>
+            sleep(milliseconds)
+            sleep(seconds, "s")
+        </synopsis>
     </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>milliseconds</term>
+                <listitem>duration of the sleep, in milliseconds (decimal number)
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>seconds</term>
+                <listitem>duration of the sleep, in seconds (decimal number)
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
     <refsection>
         <title>Description</title>
         <para>
-            <literal>sleep</literal> : Sleep process for specified number of miliseconds
-            specified by the argument. The actual suspension time may be longer
-            because of other activities in the system, or because of the time spent in
-            processing the call.
+            <function>sleep</function> stops Scilab processing any instruction for
+            a specified number of miliseconds or seconds:
+            <para>
+                <variablelist>
+                    <varlistentry>
+                        <term>Console:</term>
+                        <listitem> input and output in console are suspended.
+                            <warning>The CTRL-C interruption is caught but performed only at
+                                the end of the sleep.
+                            </warning>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>Scripts and functions:</term>
+                        <listitem>
+                            When <function>sleep(..)</function>
+                            is called inside a script or a function, Scilab waits for the
+                            given duration before processing the next instruction.
+                            CTRL-C in the console is caught but performed only at the end of
+                            the sleep.
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>callbacks:</term>
+                        <listitem> .. are actions triggered by interactions
+                            with menus and with <literal>uicontrol</literal> interactive
+                            graphical components. During the sleep(..), these interactions
+                            are caught, and related instructions are buffered.
+                            Buffered actions are all performed after sleep()'s end.
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>Graphics interactions:</term>
+                        <listitem>
+                            <function>sleep(..)</function>
+                            does not prevent interacting with graphics, providing that the
+                            interaction mode has been turned on before entering the sleep.
+                            Then, moving curves, editing graphics labels, etc is still
+                            possible during Scilab's sleep. The wake-up does not reset these
+                            actions.
+                        </listitem>
+                    </varlistentry>
+                </variablelist>
+            </para>
+            <note>Time resolution:
+                <simplelist>
+                    <member>Windows systems: 0.5 ms</member>
+                    <member>Linux systems: 1 µs</member>
+                </simplelist>
+            </note>
+            <warning>Time resolution is not.. time accuracy: The actual suspension
+                time may be longer than the specified one, due to other processes run
+                in the system, or due to the time spent to process the call.
+            </warning>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-tic;sleep(6000);toc
+        <programlisting role="example"><![CDATA[
+// Simple examples
+tic; sleep(4350); toc
+tic; sleep(4.35, "s"); toc
+
+// Testing the sleep's accuracy:
+results = [];
+disp("Please wait... sleep()s and wake-up are performed...")
+for i = -1:4
+    dt = 10^i;        // specified duration [ms]
+    tic;
+    sleep(dt);
+    dta = toc()*1000; // actual duration [ms]
+    results = [results ; dt dta ];
+end
+results
+
+// Test of the CTRL-C interruption:
+disp("Press CTRL + C keys now: the 15 s sleep is going on")
+sleep(15,"s")
+
+// Test of interactions with menus:
+clf
+plot2d()
+// [If you are a MacOS user, select the menu "Edit=> Clear figure" instead]
+mprintf("During this 30s sleep, click on the figure\n  then on its menu ""Edit => Figure properties""")
+// The graphical editor will be actually called only at wake-up
+sleep(30, "s")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="xpause">xpause</link>
-            </member>
             <member>
                 <link linkend="pause">pause</link>
             </member>
+            <member>
+                <link linkend="halt">halt</link>
+            </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            The fractional part of <varname>milliseconds</varname>
+                            is now accepted and processed (replace xpause(microseconds)).
+                        </listitem>
+                        <listitem>Syntax sleep(seconds, "s") added.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
+

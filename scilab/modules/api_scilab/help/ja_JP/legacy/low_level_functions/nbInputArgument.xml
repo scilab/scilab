@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="nbInputArgument" xml:lang="ja">
+    <refnamediv>
+        <refname>nbInputArgument (Scilab ゲートウェイ)</refname>
+        <refpurpose>
+            Scilab関数コール時の入力引数の数を取得するCゲートウェイ関数
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>int nb_params = nbInputArgument(void* _pvCtx)</synopsis>
+        <synopsis>int nb_params = Rhs</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ,
+                        api_scilab.hにより提供された"pvApiCtx"を指定
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nb_params</term>
+                <listitem>
+                    <para>
+                        Scilab関数コール時の入力引数の数
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            Scilab関数コール時の入力引数の数を取得するCゲートウェイ関数.
+            この関数を使用するにはapi_scilab.hをインクルードしておく
+            必要があります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <para>
+            この例では,Cインターフェイス関数は
+            複数の入力をとり,Scilab関数コール時に検出された
+            入力引数の数に対応する整数をScilabコンソールに出力します.
+        </para>
+        <programlisting role="example">
+            <![CDATA[
+#include "api_scilab.h"
+#include "sciprint.h"
+int sci_myrhs(char * fname)
+{
+  sciprint("The number of input parameters is %d\n", nbInputArgument);
+  return 0;
+}
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getNbInputArgument">getNbInputArgument</link>
+            </member>
+            <member>
+                <link linkend="sciprint">sciprint</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

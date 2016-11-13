@@ -4,289 +4,292 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="odeoptions" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>odeoptions</refname>
-        
+
         <refpurpose>ODEソルバのオプションを設定する</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>odeoptions()</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>この関数はODEソルバに様々なオプションを設定する
-            
+
             コマンドを対話的に表示します.
-            
+
             グローバル変数
-            
+
             <literal>%ODEOPTIONS</literal> はオプションを設定します.
-            
+
         </para>
-        
+
         <para>
-            
+
             <caution>
-                
+
                 <literal>ode</literal> 関数は,この変数が存在するかどうかを調べ,
-                
+
                 存在する場合にはこれを使用します.
-                
+
                 デフォルト値を使用するには,この変数を消去してください.
-                
-                この変数を作成するには, 
-                
+
+                この変数を作成するには,
+
                 <literal>%ODEOPTIONS=odeoptions()</literal>命令
-                
+
                 を実行する必要があります.
-                
+
             </caution>
-            
+
         </para>
-        
+
         <para>
-            
+
             変数 <literal>%ODEOPTIONS</literal> は以下の要素を
-            
+
             有するベクトルです:
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>[itask, tcrit, h0, hmax, hmin, jactyp, mxstep, maxordn, maxords, ixpr, ml, mu]</literal>.
-            
+
         </para>
-        
+
         <para>
-            
+
             デフォルト値は以下となります:<literal>[1,0,0,%inf,0,2,500,12,5,0,-1,-1]</literal>
-            
+
         </para>
-        
+
         <para>これらの要素の意味を以下に示します.</para>
-        
+
         <para>
-            
+
             <itemizedlist>
-                
+
                 <listitem>
-                    
+
                     <literal>itask</literal> sets the integration mode:
-                    
+
                     <itemizedlist>
-                        
+
                         <listitem>1: 指定した時間で通常の計算を行う</listitem>
-                        
-                        <listitem>2 : 
-                            
+
+                        <listitem>2 :
+
                             (<literal>ode</literal>の出力の最初行で指定した) メッシュ点で計算
-                            
+
                         </listitem>
-                        
+
                         <listitem>3 : 1内部メッシュ点で1ステップ進め,戻る</listitem>
-                        
+
                         <listitem>
-                            
+
                             4 : オーバーシュート<literal>tcrit</literal>なしに通常の計算を行う
-                            
+
                         </listitem>
-                        
+
                         <listitem>
-                            
+
                             5 : <literal>tcrit</literal>を指定せずに,1ステップ進め,戻る
-                            
+
                         </listitem>
-                        
+
                     </itemizedlist>
-                    
+
                 </listitem>
-                
+
                 <listitem>
-                    
+
                     判定時間 <literal>tcrit</literal> は上記のように
-                    
+
                     <literal>itask</literal>が 4または5の場合のみ使用されます.
-                    
+
                 </listitem>
-                
+
                 <listitem>
-                    
+
                     <literal>h0</literal> 最初に試すステップ
-                    
+
                 </listitem>
-                
+
                 <listitem>
-                    
+
                     <literal>hmax</literal> ステップの最大値
-                    
+
                 </listitem>
-                
+
                 <listitem>
-                    
+
                     <literal>hmin</literal> ステップの最小値
-                    
+
                 </listitem>
-                
+
                 <listitem>
-                    
+
                     <literal>jactype</literal> やヤコビアンのプロパティを以下のように設定します:
-                    
+
                     <itemizedlist>
-                        
+
                         <listitem>0: 関数反復, ヤコビアンを用いない
-                            
+
                             (<literal>"adams"</literal> または <literal>"stiff"</literal>
-                            
-                            のみ) 
-                            
+
+                            のみ)
+
                         </listitem>
-                        
+
                         <listitem>1 : ユーザ提供の完全なヤコビアン</listitem>
-                        
+
                         <listitem>2 : 内部的に生成した対角ヤコビアン </listitem>
-                        
+
                         <listitem>3: 内部的に生成した対角ヤコビアン
-                            
+
                             (<literal>"adams"</literal> または <literal>"stiff"</literal>
-                            
-                            のみ) 
-                            
+
+                            のみ)
+
                         </listitem>
-                        
+
                         <listitem>4 : ユーザが提供したバンド行列のヤコビアン (
-                            
+
                             以下の<literal>ml</literal>および<literal>mu</literal>参照)
-                            
+
                         </listitem>
-                        
+
                         <listitem>5 : 内部生成されたバンド行列のヤコビアン
-                            
+
                             (以下の<literal>ml</literal> および <literal>mu</literal>
-                            
+
                             参照)
-                            
+
                         </listitem>
-                        
+
                     </itemizedlist>
-                    
+
                 </listitem>
-                
+
                 <listitem>
-                    
+
                     <literal>maxordn</literal> は非スティッフの最大次数で, 最大
-                    
+
                     12です.
-                    
+
                 </listitem>
-                
+
                 <listitem>
-                    
+
                     <literal>maxords</literal> はスティッフの最大次数で, 最大5です.
-                    
+
                 </listitem>
-                
+
                 <listitem>
-                    
+
                     <literal>ixpr</literal> は出力レベルで, 0 または 1です.
-                    
+
                 </listitem>
-                
+
                 <listitem>
-                    
+
                     <literal>ml</literal>,<literal>mu</literal>
-                    
+
                     <para>
-                        
+
                         <literal>jactype</literal> が 4 または 5の場合,
-                        
+
                         <literal>ml</literal> および
-                        
+
                         <literal>mu</literal> はバンド行列のヤコビアンの
-                        
-                        上部および下部の半分のバンド幅です: 
-                        
+
+                        上部および下部の半分のバンド幅です:
+
                         このバンドは,
-                        
-                        <literal>i-ml</literal> &lt;= <literal>j</literal> &lt;= 
-                        
+
+                        <literal>i-ml</literal> &lt;= <literal>j</literal> &lt;=
+
                         <literal>ny-1</literal>となる<literal>i,j</literal>で定義されます.
-                        
+
                     </para>
-                    
+
                     <para>
-                        
+
                         <literal>jactype</literal> が 4の場合,ヤコビアン関数は
-                        
+
                         <literal>ml+mu+1 x ny</literal>
-                        
+
                         (ただし,<literal>y</literal>の<literal>ny=dim</literal>,
-                        
+
                         <literal>ydot=f(t,y)</literal>)の行列<literal>J</literal>
-                        
+
                         を返す必要があります.
-                        
+
                         <literal>J</literal>の1列目は<literal>mu</literal>個のゼロの後に
-                        
-                        <literal>df1/dy1</literal>, <literal>df2/dy1</literal>, 
-                        
-                        <literal>df3/dy1</literal>, ... 
-                        
+
+                        <literal>df1/dy1</literal>, <literal>df2/dy1</literal>,
+
+                        <literal>df3/dy1</literal>, ...
+
                         (<literal>1+ml</literal>個のゼロでないエントリ)が続きます.
-                        
+
                         2列目は, <literal>mu-1</literal>個のゼロの後に
-                        
-                        <literal>df1/dx2</literal>, 
-                        
+
+                        <literal>df1/dx2</literal>,
+
                         <literal>df2/dx2</literal>, などが続きます.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </itemizedlist>
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <para>
-            
+
             以下の例では, 常微分方程式
-            
+
             <literal>dy/dt=y^2-y sin(t)+cos(t)</literal> を,
-            
+
             初期条件 <literal>y(0)=0</literal>で解きます.
-            
+
             解は各メッシュ点で保存します.
-            
+
         </para>
-        
+
         <programlisting role="example"><![CDATA[
 function ydot=f(t,y)
     ydot=y^2-y*sin(t)+cos(t)
@@ -296,42 +299,42 @@ y=ode(0,0,%pi,f);
 plot(y(1,:),y(2,:))
 clear %ODEOPTIONS
  ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             function ydot=f(t,y)
-            
+
             ydot=y^2-y*sin(t)+cos(t)
-            
+
             endfunction
-            
+
             %ODEOPTIONS=[2,0,0,%inf,0,2,500,12,5,0,-1,-1];
-            
+
             y=ode(0,0,%pi,f);
-            
+
             plot(y(1,:),y(2,:))
-            
+
             clear %ODEOPTIONS
-            
+
         </scilab:image>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="ode">ode</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

@@ -19,7 +19,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 getshell()
  ]]></programlisting>
     </refsection>

@@ -2,15 +2,18 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="beta" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="beta" xml:lang="pt">
     <refnamediv>
         <refname>beta</refname>
         <refpurpose>função beta</refpurpose>
@@ -46,7 +49,7 @@
     <refsection>
         <title>Descrição</title>
         <para>Computa a função beta completa : </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
                /1
                |   x-1     y-1        gamma(x) gamma(y)
   beta(x,y) =  |  t   (1-t)    dt  =  ----------------
@@ -64,14 +67,14 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // exemplo 1 :
 beta(5,2) - beta(2,5)   // simetria (deve ser exatamente 0)
 beta(0.5,0.5)           // o valor exato é pi
 
 // exemplo 2 : um estudo de erros baseado na relação B(1,x) = 1/x
 // (a computação de 1/x deve levar apenas a um erro relativo de eps_m, então
-//  pode ser usada como referência para avaliar o erro em B(1,x))  
+//  pode ser usada como referência para avaliar o erro em B(1,x))
 x = logspace(-8,8,20000)';
 e = beta(ones(x),x) - (1)./x;
 er = abs(e) .* x;
@@ -82,7 +85,7 @@ plot2d(x(ind),[er(ind) eps 2*eps],style=[1 2 3],logflag="ll",leg="er@eps_m@2 eps
 xtitle("erro relativo aproximado na computação de beta(1,x)")
 show_window()
 
-// exemplo 3 : plotando a função beta 
+// exemplo 3 : plotando a função beta
 t = linspace(0.2,10,60);
 X = t'*ones(t); Y = ones(t')*t;
 Z = beta(X,Y);

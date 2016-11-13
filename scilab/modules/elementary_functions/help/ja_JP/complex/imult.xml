@@ -1,87 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="imult" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>imult</refname>
-        
+
         <refpurpose>虚数単位 i を乗じる</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>y = imult(x)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>x</term>
-                
+
                 <listitem>
-                    
+
                     <para>実数または複素数のスカラー,ベクトルまたは行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>y</term>
-                
+
                 <listitem>
-                    
+
                     <para>複素数のスカラー,ベクトルまたは行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <code>imult(x)</code> は,
-            
+
             <varname>x</varname> が <constant>%inf</constant> や <constant>%nan</constant>
-            
+
             のような "特殊な"浮動小数点数を含む時に発生する問題を生じることなく,
-            
+
             <code>y = %i*x</code> よりも効率的に <varname>x</varname> x <varname>i</varname>
-            
+
             を実行します.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 z1 = imult(%inf)
 z2 = %i * %inf
  ]]></programlisting>
-        
+
     </refsection>
-    
+
 </refentry>
 

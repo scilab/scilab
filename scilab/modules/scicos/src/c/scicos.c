@@ -113,6 +113,7 @@ enum Solver
     Dormand_Prince,
     Runge_Kutta,
     Implicit_Runge_Kutta,
+    Crank_Nicolson,
     IDA_BDF_Newton = 100,
     DDaskr_BDF_Newton = 101,
     DDaskr_BDF_GMRes = 102
@@ -369,16 +370,15 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     critev = critev_in - 1;
     --ztyp;
     zcptr = zcptr_in - 1;
-    --simpar;
 
     /* Function Body */
-    Atol = simpar[1];
-    rtol = simpar[2];
-    ttol = simpar[3];
-    deltat = simpar[4];
-    C2F(rtfactor).scale = simpar[5];
-    C2F(cmsolver).solver = (int) simpar[6];
-    hmax = simpar[7];
+    Atol = simpar[0];
+    rtol = simpar[1];
+    ttol = simpar[2];
+    deltat = simpar[3];
+    C2F(rtfactor).scale = simpar[4];
+    C2F(cmsolver).solver = (int) simpar[5];
+    hmax = simpar[6];
 
     nordptr = *nordptr1;
     nblk  = *nblk1;
@@ -881,6 +881,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
             case Dormand_Prince:
             case Runge_Kutta:
             case Implicit_Runge_Kutta:
+            case Crank_Nicolson:
                 cossim(t0);
                 break;
             case IDA_BDF_Newton:
@@ -1473,6 +1474,7 @@ static void cossim(double *told)
         case Dormand_Prince:
         case Runge_Kutta:
         case Implicit_Runge_Kutta:
+        case Crank_Nicolson:
             ODEFree = &CVodeFree;
             ODE = &CVode;
             ODEReInit = &CVodeReInit;
@@ -1567,6 +1569,9 @@ static void cossim(double *told)
                 break;
             case Implicit_Runge_Kutta:
                 ode_mem = CVodeCreate(CV_ImpRK, CV_FUNCTIONAL);
+                break;
+            case Crank_Nicolson:
+                ode_mem = CVodeCreate(CV_CRANI, CV_FUNCTIONAL);
                 break;
         }
 
@@ -3610,7 +3615,7 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
     {
         if (cosd != 3)
         {
-            sciprint(_("block %d is called "), C2F(curblk).kfun);
+            sciprint(_("block %d [%s] is called "), C2F(curblk).kfun, block->uid);
             sciprint(_("with flag %d "), *flag);
             sciprint(_("at time %f \n"), *t);
         }

@@ -108,7 +108,7 @@
             threshold value, or nonzero. If the control input meets the condition
             set in the Criteria for passing first input parameter, then the first
             input is passed. Otherwise, the third input is passed.
-            
+
         </para>
     </refsection>
     <refsection id="Dialogbox_SWITCH2_m">
@@ -121,7 +121,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>
@@ -168,7 +168,7 @@
                     <listitem>
                         <para>
                             <emphasis role="bold">8:</emphasis> matrix of uint8 numbers.
-                            
+
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -177,7 +177,7 @@
             <listitem>
                 <para>
                     <emphasis role="bold">
-                        Pass first input if: u2 ≥ a 
+                        Pass first input if: u2 ≥ a
                     </emphasis>
                 </para>
                 <para> Select the conditions under which the first input is passed. You can make the block check whether the control input is greater than or equal to the threshold value, purely greater than the threshold value, or nonzero. If the control input meets the condition set in this parameter, then the first input is passed. Otherwise, the third input is passed.</para>

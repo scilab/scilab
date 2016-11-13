@@ -5,7 +5,7 @@
         <refpurpose>Logger utility for scicos</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             log=scicos_log(log);
             log=scicos_log(log, msg);
@@ -44,7 +44,7 @@ scicos_log("TRACE", "this is a trace message");
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="scicos_debug">scicos_debug</link>

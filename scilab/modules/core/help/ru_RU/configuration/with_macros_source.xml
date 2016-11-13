@@ -5,7 +5,7 @@
         <refpurpose>проверка: установлены ли исходники макросов</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>r = with_macros_source()</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -22,7 +22,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Возвращает <literal>%t</literal>, если исходники макросов установлены, и     
+            Возвращает <literal>%t</literal>, если исходники макросов установлены, и
             <literal>%f</literal>, если нет.
         </para>
     </refsection>

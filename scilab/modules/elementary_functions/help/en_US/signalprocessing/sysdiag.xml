@@ -4,11 +4,14 @@
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2013 - A. Khorshidi
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sysdiag" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>Create a block diagonal matrix from provided inputs or block diagonal system connection</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>r=sysdiag(a1,a2,...,an)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -63,7 +66,7 @@
             For boolean matrices <code>sysdiag()</code> always returns a zero one matrix in the corresponding block
             ("true" values are replaced by 1 and "false" value by 0).
         </para>
-        
+
         <para>
             <code>sysdiag()</code> cannot be used to arrange matrices made of character strings,
             but you can overload it (see: <link linkend="overloading">overloading</link>).
@@ -75,21 +78,21 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s')
 sysdiag(rand(2,2),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
 sysdiag(tf2ss(1/s),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
-// a matrix of doubles: 
+        <programlisting role="example"><![CDATA[
+// a matrix of doubles:
 A=[1 0; 0 1], B=[3 4 5; 6 7 8], C=7
 D=sysdiag(A,B,C)
-// 
+//
 sysdiag([%t %f; %f %t], eye(2,2), ones(3,3))
-// a polynomial matrix: 
-s=%s; 
+// a polynomial matrix:
+s=%s;
 sysdiag([s 4*s; 4 s^4], [1 s^2 s+2; 3*s 2 s^2-1])
-// a rational matrix: 
+// a rational matrix:
 sysdiag([1/s 2*s/(4*s+3)], [s; 4; 1/(s^2+2*s+1)])
 // a block diagonal sparse matrix:
 S=sysdiag([1 2; 3 4], [5 6; 7 8], [9 10; 11 12], [13 14; 15 16])
@@ -97,7 +100,7 @@ S=sparse(S)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="brackets">brackets</link>

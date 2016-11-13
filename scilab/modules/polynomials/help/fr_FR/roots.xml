@@ -4,11 +4,14 @@
  * Copyright (C) ???? - 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="roots" xml:lang="fr">
@@ -30,22 +33,29 @@
                 <term>p</term>
                 <listitem>
                     <para>
-                        un polynôme réel ou complexe, ou
-                        une m-par-1 or 1-par-m matrice de doubles, les coefficients du polynômes par ordre de puissance décroissante.
+                        un polynôme réel ou complexe ; ou un vecteur de nombres
+                        décimaux ou complexes = les coefficients du polynôme
+                        par ordre de puissances décroissantes.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>algo</term>
                 <listitem>
-                    <para>
-                        une chaîne de caractères, l'algorithme à utiliser (défaut algo="e").
-                        Si algo="e", alors les valeurs propres de la matrice compagnion sont utilisées.
-                        Si algo="f", alors l'algorithme de Jenkins-Traub est utilisé (si les coefficients
-                        du polynôme sont réels et que le degré du polynôme est plus petit que 100).
-                        Si algo="f" et que le polynôme est complexe, alors une erreur est générée.
-                        Si algo="f" et que le polynôme est de degré inférieur à 100, alors une erreur est
-                        générée.
+                    <para>un caractère désignant l'algorithme à utiliser :
+                        <itemizedlist>
+                            <listitem>"e" (par défaut) : les valeurs propres de
+                                la matrice compagnon sont utilisées.
+                            </listitem>
+                            <listitem>"f" : si isreal(p) et degree(p)&lt;100 :
+                                l'algorithme de Jenkins-Traub est utilisé.
+                            </listitem>
+                            <listitem>"f" : si isreal(p) et degree(p)>=100: une
+                                erreur est émise.
+                            </listitem>
+                            <listitem>"f" : si ~isreal(p), une erreur est émise.
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
@@ -156,15 +166,6 @@ max(abs(r1-r2))
         <para>
             La routine RPOLY est decrite dans "Algorithm 493: Zeros of a Real
             Polynomial", ACM TOMS Volume 1, Issue 2 (June 1975), pp. 178-189
-        </para>
-    </refsection>
-    <refsection>
-        <title>Fonctions Utilisées</title>
-        <para>
-            Le code source de rpoly.f peut être trouvé dans le répertoire
-            SCI/modules/polynomials/src/fortran/ de la distribution source de Scilab. Dans le cas où la
-            matrix compagnon est utilisée, le calcul des valeurs propres est effectué
-            en utilisant les routines DGEEV et ZGEEV de LAPACK.
         </para>
     </refsection>
 </refentry>

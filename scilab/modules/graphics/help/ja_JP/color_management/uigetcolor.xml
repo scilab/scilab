@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="uigetcolor">
+    <refnamediv>
+        <refname>uigetcolor</refname>
+        <refpurpose>色を選択するダイアログを開く.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            uigetcolor()
+            RGB = uigetcolor([title])
+            RGB = uigetcolor([title,] defaultRGB)
+            RGB = uigetcolor([title,] defaultRed, defaultGreen, defaultBlue)
+            [R, G, B] = uigetcolor([title])
+            [R, G, B] = uigetcolor([title,] defaultRGB)
+            [R, G, B] = uigetcolor([title,] defaultRed, defaultGreen, defaultBlue)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>title</term>
+                <listitem>
+                    <para>文字列: オプション引数,
+                        ダイアログに表示する表題.
+                        デフォルト値は"Color Chooser"です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>defaultRGB</term>
+                <listitem>
+                    <para>1x3 ベクトル: デフォルト値は
+                        ベクトル[red, green, blue]で指定した
+                        赤, 緑および青の値です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>defaultRed</term>
+                <listitem>
+                    <para>スカラー: 赤のデフォルト値.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>defaultGreen</term>
+                <listitem>
+                    <para>スカラー: 緑のデフォルト値.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>defaultBlue</term>
+                <listitem>
+                    <para>スカラー: 青のデフォルト値.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>RGB</term>
+                <listitem>
+                    <para>1x3 ベクトル:
+                        ベクトル [red, green, blue]として指定した
+                        赤, 緑および青の値,または
+                        ユーザがキャンセルした場合は [].
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R</term>
+                <listitem>
+                    <para>スカラー: 赤の値,ユーザがキャンセルした場合は [].</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>スカラー: 緑の値,ユーザがキャンセルした場合は [].</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>スカラー: 青の値,ユーザがキャンセルした場合は [].</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>色を選択するダイアログウインドウを作成します.
+            全ての(デフォルトまたは返された)値は範囲 [0 255]と
+            なります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+uigetcolor()
+[R, G, B] = uigetcolor([255 128 0])
+RBG = uigetcolor(0, 128, 255)
+RBG = uigetcolor("My color chooser", 0, 128, 255)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getcolor">getcolor</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

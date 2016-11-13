@@ -2,10 +2,10 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2016 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 
 funcprot(0);
 
@@ -262,34 +262,91 @@ assert_checkequal(x1 .* x2, int8(X1 .* X2));
 assert_checkequal(x1' * x2, int8(X1' * X2));
 assert_checkequal(x1 * x2', int8(X1 * X2'));
 
-// comparaisons
-X1 = 1;X2 = 7;x1 = int8(X1);x2 = int8(X2);
-assert_checkequal(x1>x2, X1>X2);
-assert_checkequal(x1>=x2, X1>=X2);
-assert_checkequal(x1<x2, X1<X2);
-assert_checkequal(x1<=x2, X1<=X2);
-assert_checkequal(x1<>x2, X1<>X2);
+// Implicit conversions by a*b, a/b, a+b, a-b
+icodes = [ 1 2 4 8 11 12 14 18];
+for i = 1:8
+    for j = i:8
+        ic = icodes(i);
+        jc = icodes(j);
+        if ic<10 & jc<10 | ic>10 & jc>10
+            expected = max(ic,jc);
+        else
+            expected = 10 + max(modulo([ic jc],10));
+        end
+        ap = iconvert(120,ic);
+        am = iconvert(-125,ic);
+        bp = iconvert(120,jc);
+        bm = iconvert(-125,jc);
+        // *
+        assert_checkequal(inttype(ap*bp), expected);
+        assert_checkequal(inttype(am*bp), expected);
+        assert_checkequal(inttype(ap*bm), expected);
+        assert_checkequal(inttype(am*bm), expected);
+        // +
+        assert_checkequal(inttype(ap+bp), expected);
+        assert_checkequal(inttype(am+bp), expected);
+        assert_checkequal(inttype(ap+bm), expected);
+        assert_checkequal(inttype(am+bm), expected);
+        // -
+        assert_checkequal(inttype(ap-bp), expected);
+        assert_checkequal(inttype(am-bp), expected);
+        assert_checkequal(inttype(ap-bm), expected);
+        assert_checkequal(inttype(am-bm), expected);
+        // /
+        assert_checkequal(inttype(ap/bp), expected);
+        assert_checkequal(inttype(am/bp), expected);
+        assert_checkequal(inttype(ap/bm), expected);
+        assert_checkequal(inttype(am/bm), expected);
+        // ^
+//        assert_checkequal(inttype(ap^bp), expected);
+//        assert_checkequal(inttype(am^bp), expected);
+//        assert_checkequal(inttype(ap^bm), expected);
+//        assert_checkequal(inttype(am^bm), expected);
+    end
+end
 
-X1 = 1:10; x1 = int8(X1);
-assert_checkequal(x1>x2, X1>X2);
-assert_checkequal(x1>=x2, X1>=X2);
-assert_checkequal(x1<x2, X1<X2);
-assert_checkequal(x1<=x2, X1<=X2);
-assert_checkequal(x1<>x2, X1<>X2);
+// Comparisons
+// -----------
+icodes = [0 1 2 4 8 11 12 14 18];
+for i = icodes
+    for j = icodes
+        a = iconvert(2,i);
+        b = iconvert(1,j);
+        assert_checktrue(a>b);
+        assert_checktrue(a>=b);
+        assert_checktrue(b<a);
+        assert_checktrue(b<=a);
+        assert_checktrue(a~=b);
+        assert_checkfalse(a==b);
 
-X2 = 2:11;x2 = int8(X2);
-assert_checkequal(x1>x2, X1>X2);
-assert_checkequal(x1>=x2, X1>=X2);
-assert_checkequal(x1<x2, X1<X2);
-assert_checkequal(x1<=x2, X1<=X2);
-assert_checkequal(x1<>x2, X1<>X2);
+        a = iconvert(2:10,i);
+        b = iconvert(1,j);
+        assert_checktrue(and(a>b));
+        assert_checktrue(and(a>=b));
+        assert_checktrue(and(b<a));
+        assert_checktrue(and(b<=a));
+        assert_checktrue(and(a~=b));
+        assert_checkfalse(or(a==b));
 
-X1 = 1;x1 = int8(X1);
-assert_checkequal(x1>x2, X1>X2);
-assert_checkequal(x1>=x2, X1>=X2);
-assert_checkequal(x1<x2, X1<X2);
-assert_checkequal(x1<=x2, X1<=X2);
-assert_checkequal(x1<>x2, X1<>X2);
+        a = iconvert(10,i);
+        b = iconvert(1:9,j);
+        assert_checktrue(and(a>b));
+        assert_checktrue(and(a>=b));
+        assert_checktrue(and(b<a));
+        assert_checktrue(and(b<=a));
+        assert_checktrue(and(a~=b));
+        assert_checkfalse(or(a==b));
+
+        a = iconvert(2:10,i);
+        b = iconvert(1:9,j);
+        assert_checktrue(and(a>b));
+        assert_checktrue(and(a>=b));
+        assert_checktrue(and(b<a));
+        assert_checktrue(and(b<=a));
+        assert_checktrue(and(a~=b));
+        assert_checkfalse(or(a==b));
+    end
+end
 
 //division
 X1 = 1;X2 = 7;x1 = int8(X1);x2 = int8(X2);

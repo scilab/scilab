@@ -5,11 +5,14 @@
  * Copyright (C) 2008 - 2009 - INRIA - Michael Baudin
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="optim" xml:lang="en">
@@ -18,7 +21,7 @@
         <refpurpose>non-linear optimization routine</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             fopt = optim(costf, x0)
             fopt = optim(costf [,&lt;contr&gt;],x0 [,algo] [,df0 [,mem]] [,work] [,&lt;stop&gt;] [,&lt;params&gt;] [,imp=iflag])
@@ -507,34 +510,34 @@
                         The success flag is <literal>9</literal> and possible values are:
                         <itemizedlist>
                             <listitem>
-                                <literal>err=1</literal>: Norm of projected gradient lower than... 
+                                <literal>err=1</literal>: Norm of projected gradient lower than...
                             </listitem>
                             <listitem>
-                                <literal>err=2</literal>: At last iteration f decreases by less than... 
+                                <literal>err=2</literal>: At last iteration f decreases by less than...
                             </listitem>
                             <listitem>
-                                <literal>err=3</literal>: Optimization stops because of too small variations for x. 
+                                <literal>err=3</literal>: Optimization stops because of too small variations for x.
                             </listitem>
                             <listitem>
-                                <literal>err=4</literal>: Optim stops: maximum number of calls to f is reached. 
+                                <literal>err=4</literal>: Optim stops: maximum number of calls to f is reached.
                             </listitem>
                             <listitem>
-                                <literal>err=5</literal>: Optim stops: maximum number of iterations is reached. 
+                                <literal>err=5</literal>: Optim stops: maximum number of iterations is reached.
                             </listitem>
                             <listitem>
-                                <literal>err=6</literal>: Optim stops: too small variations in gradient direction. 
+                                <literal>err=6</literal>: Optim stops: too small variations in gradient direction.
                             </listitem>
                             <listitem>
-                                <literal>err=7</literal>: Stop during calculation of descent direction. 
+                                <literal>err=7</literal>: Stop during calculation of descent direction.
                             </listitem>
                             <listitem>
-                                <literal>err=8</literal>: Stop during calculation of estimated hessian. 
+                                <literal>err=8</literal>: Stop during calculation of estimated hessian.
                             </listitem>
                             <listitem>
-                                <literal>err=9</literal>: End of optimization, successful completion. 
+                                <literal>err=9</literal>: End of optimization, successful completion.
                             </listitem>
                             <listitem>
-                                <literal>err=10</literal>: End of optimization (linear search fails). 
+                                <literal>err=10</literal>: End of optimization (linear search fails).
                             </listitem>
                         </itemizedlist>
                     </para>
@@ -597,7 +600,7 @@ binf <= x <= bsup]]>
                         <literal>costf</literal> argument can be the list
                         <literal>(real_costf, arg1,...,argn)</literal>. In this case,
                         <literal>real_costf</literal>, the first element in the list, must
-                        be a Scilab function with calling sequence:
+                        be a Scilab function with syntax:
                         <screen><![CDATA[
 [f,g,ind]=real_costf(x,ind,arg1,...,argn)]]>
                         </screen>
@@ -605,7 +608,7 @@ binf <= x <= bsup]]>
                         <literal>g</literal>, <literal>ind</literal> arguments have the same
                         meaning as before. In this case, each time the objective function is
                         called back, the arguments <literal>arg1,...,argn</literal> are
-                        automatically appended at the end of the calling sequence of
+                        automatically appended at the end of the syntax of
                         <literal>real_costf</literal>.
                     </para>
                 </listitem>
@@ -645,7 +648,7 @@ real tr(*)]]></screen>
                         <varlistentry>
                             <term>C case</term>
                             <listitem>
-                                <para>The calling sequence of the C function computing the
+                                <para>The syntax of the C function computing the
                                     objective must be:
                                 </para>
                                 <screen>void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr, double *td)</screen>
@@ -876,20 +879,20 @@ plot(xopt(1), xopt(2), "r*")
             g(1) = - 400. * (x(2) - x(1)**2) * x(1) -2. * (1. - x(1))
             g(2) = 200. * (x(2) - x(1)**2)
             endfunction
-            
+
             function f=rosenbrockC(x1, x2)
             x = [x1 x2]
             ind = 4
             [f, g, ind] = rosenbrock (x, ind)
             endfunction
-            
+
             function [f, g, ind]=rosenbrockPlot(x, ind)
             [f, g, ind] = rosenbrock (x, ind)
             if (ind == 1) then
             plot (x(1), x(2), "g.")
             end
             endfunction
-            
+
             x0 = [-1.2 1.0];
             xopt = [1.0 1.0];
             xdata = linspace(-2,2,100);
@@ -899,7 +902,7 @@ plot(xopt(1), xopt(2), "r*")
             plot(xopt(1), xopt(2), "r*")
             [fopt, xopt] = optim (rosenbrockPlot, x0, imp = -1)
         </scilab:image>
-        
+
     </refsection>
     <refsection>
         <title>Example: Optimizing with numerical derivatives</title>
@@ -1482,7 +1485,7 @@ xopt = .1*bs;
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="external">external</link>

@@ -9,10 +9,7 @@
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../images/palettes/SELF_SWITCH_on.png" align="center" valign="middle"/>
-                </imageobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/SELF_SWITCH_off.png" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/SELF_SWITCH.png" align="center" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </para>

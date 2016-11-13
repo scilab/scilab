@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="krac2">
+    <refnamediv>
+        <refname>krac2</refname>
+        <refpurpose>連続SISOシステムのフィードバックゲインの限界値</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>g=krac2(sys)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sys</term>
+                <listitem>
+                    <para>SISO線形システム (syslin)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>g</term>
+                <listitem>
+                    <para>定数</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>krac2(sys)</literal> は
+            フィードバック g を有するシステム<literal>sys</literal>
+            (<literal>sys/.g</literal>)が2つの等しい実数の極を有するような
+            ゲイン<literal>g</literal>を計算します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+h=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+clf();evans(h,100)
+g=krac2(h)
+hf1=h/.g(1);roots(denom(hf1))
+hf2=h/.g(2);roots(denom(hf2))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="evans">evans</link>
+            </member>
+            <member>
+                <link linkend="kpure">kpure</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

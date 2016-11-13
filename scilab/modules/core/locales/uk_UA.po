@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-23 05:31+0000\n"
+"PO-Revision-Date: 2016-06-10 05:50+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "Language: uk\n"
 
 #, c-format
@@ -52,7 +52,8 @@ msgstr "%s: помилкова кількість вхідних парамет�
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -114,12 +115,8 @@ msgstr "Повторне визначення незмінної змінної.
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -173,6 +170,9 @@ msgstr "команди діагностикиs : \n"
 msgid "show this help"
 msgstr "показати цю довідкову інформацію"
 
+msgid "open debug documentation page"
+msgstr "відкрити сторінку документації щодо діагностики"
+
 msgid "stop debugging"
 msgstr "припинити діагностику"
 
@@ -181,6 +181,9 @@ msgstr "показати стек викликів"
 
 msgid "execute cmd"
 msgstr "виконати команду"
+
+msgid "display variable"
+msgstr "показати змінну"
 
 msgid "continue execution"
 msgstr "продовжити виконання"
@@ -197,8 +200,8 @@ msgstr "увійти у функцію"
 msgid "step outside function"
 msgstr "вийти з функції"
 
-msgid "set a breakpoint"
-msgstr "встановити точку зупинки"
+msgid "add a breakpoint"
+msgstr "додати точку зупинки"
 
 msgid "delete all breakpoints"
 msgstr "вилучити усі точки зупинки"
@@ -224,8 +227,8 @@ msgstr "показати усі точки зупинки"
 msgid "show a specific breakpoint"
 msgstr "показати певну точку зупинки"
 
-msgid "  for more details, help debug.\n"
-msgstr "  щоб дізнатися більше, віддайте команду help debug.\n"
+msgid "  for more details, show help page.\n"
+msgstr "  докладніші відомості на сторінці довідки.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -236,6 +239,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
 
 #, c-format
 msgid ""
@@ -269,10 +276,6 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути додатне значення.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: string expected."
 msgstr "%s: помилковий тип вхідного параметра №%d: мало бути вказано рядок."
 
@@ -281,7 +284,8 @@ msgid "%s: Wrong type for input argument #%d: An integer expected."
 msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число."
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати рядок або "
 "ціле число.\n"
@@ -299,7 +303,8 @@ msgstr "%s: помилкова кількість вихідних параме�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0, 1 or 2 expected.\n"
-msgstr "%s: помилкове значення вхідного параметра №%d: мало бути 0, 1 або 2.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути 0, 1 або 2.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -346,12 +351,21 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : 0, 1 or 2 expected.\n"
-msgstr "%s: помилкове значення вхідного параметра №%d: мало бути 0, 1 або 2.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути 0, 1 або 2.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: struct array or tlist or mlist "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мав бути масив struct, tlist або "
+"mlist.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
@@ -361,10 +375,40 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: macro expected.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: мало бути вказано макрос.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано макрос.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgid "%s: Wrong size for input arguments: more than %d expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідних параметрів: розмірність мала перевищувати "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for output arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова розмірність вихідних параметрів: розмірність мала дорівнювати "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input arguments: Dimensions given as first argument do not match "
+"specified cell contents.\n"
+msgstr ""
+"%s: помилкові вхідні параметри: розмірності, вказані за допомогою першого "
+"параметра, не відповідають вказаному вмісту комірок.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор.\n"
+
+msgid "Pause mode: enter empty lines to continue.\n"
+msgstr "Режим призупинення: для продовження натискайте Enter.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Valid function name expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути вказано коректну "
 "функцію.\n"
@@ -372,6 +416,18 @@ msgstr ""
 #, c-format
 msgid "%s: function-name is incorrect.\n"
 msgstr "%s: помилкова назва функції.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано "
+"одинарний рядок.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значення має належати набору "
+"{№%s}.\n"
 
 #, c-format
 msgid "%s: function is disabled in debug mode.\n"
@@ -383,7 +439,8 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано рядок."
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
 "«%s» або «%s».\n"
@@ -405,8 +462,26 @@ msgstr ""
 "ціле значення.\n"
 
 #, c-format
-msgid "%s: Insert a new type is not managed.\n"
-msgstr "%s: вставлено новий некерований тип.\n"
+msgid "%s: Wrong number of input argument(s): An even number is expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: їх кількість мала бути парною.\n"
+
+#, c-format
+msgid "%s: Field names must be strings.\n"
+msgstr "%s: назвами полів мають бути рядкові значення.\n"
+
+#, c-format
+msgid "%s: Arguments must be scalar or must have same dimensions.\n"
+msgstr ""
+"%s: параметрами мають бути числа або узгоджені за розмірностями об’єкти.\n"
+
+#, c-format
+msgid "%s: Can not create a %s with input argument #%d.\n"
+msgstr "%s: не вдалося створити %s із вхідним параметром №%d.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: '%s' expected .\n"
+msgstr "%s: помилкові значення вхідного параметра №%d: мало бути «%s» .\n"
 
 #, c-format
 msgid "WARNING: %ls\n"
@@ -487,26 +562,21 @@ msgstr ""
 #, c-format
 msgid ""
 "A fatal error has been detected by Scilab.\n"
-"Your instance will probably quit unexpectedly soon.\n"
-"If a graphic feature has been used, this might be caused by the system "
-"graphic drivers.\n"
-"Please try to update them and run this feature again.\n"
-"You can report a bug on %s with:\n"
-"* a sample code which reproduces the issue\n"
-"* the result of [a, b] = getdebuginfo()\n"
-"* the following information:\n"
+"Please check your user-defined functions (or external module ones) should "
+"they appear in the stack trace.\n"
+"Otherwise you can report a bug on %s with:\n"
+" * a sample code which reproduces the issue\n"
+" * the result of [a, b] = getdebuginfo()\n"
+" * the following information:\n"
 "%s %s\n"
 msgstr ""
-"У Scilab сталася критична помилка.\n"
-"Ймовірно, невдовзі роботу програми буде завершено.\n"
-"Якщо використовувалася якась графічна можливість, помилку, ймовірно, "
-"спричинено графічними драйверами системи.\n"
-"Будь ласка, спробуйте оновити драйвери і потім знову скористатися графічною "
-"можливістю.\n"
-"Повідомити про ваду можна за адресою %s, вказавши:\n"
-"* зразок коду, за допомогою якого можна відтворити ваду;\n"
-"* результат виконання команди [a, b] = getdebuginfo()\n"
-"* а також такі відомості:\n"
+"Виявлено критичну помилку у Scilab.\n"
+"Будь ласка, перевірте, чи визначені вами функції (або функції зовнішніх "
+"модулів) з’являються у трасуванні стеку.\n"
+"Якщо цього не сталося, ви можете повідомити про ваду на %s, вказавши:\n"
+" * зразок коду для відтворення вади\n"
+" * результат виконання [a, b] = getdebuginfo()\n"
+" * вказані нижче дані:\n"
 "%s %s\n"
 
 #, c-format
@@ -538,7 +608,8 @@ msgstr "Відомості щодо версії Scilab."
 msgid "Debugger is on a breakpoint\n"
 msgstr "Засіб діагностики зупинився на точці зупинки\n"
 
-msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
+msgid ""
+"(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 "продовжити (c) чи перервати (a) виконання поточної дії до виконання "
 "наступної команди\n"
@@ -560,8 +631,8 @@ msgstr ""
 msgid "Scilab Enterprises\n"
 msgstr "Scilab Enterprises\n"
 
-msgid "Copyright (c) 2011-2015 (Scilab Enterprises)\n"
-msgstr "© Scilab Enterprises, 2011–2015\n"
+msgid "Copyright (c) 2011-2016 (Scilab Enterprises)\n"
+msgstr "© Scilab Enterprises, 2011–2016\n"
 
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
 msgstr "© INRIA, 1989–2012\n"
@@ -619,6 +690,30 @@ msgstr "&Довідка"
 msgid "&Toolboxes"
 msgstr "&Набори інструментів"
 
+msgid "Introduction: Getting started with Scilab"
+msgstr "Вступ: Перші кроки у Scilab"
+
+msgid "Scilab objects"
+msgstr "Об’єкти Scilab"
+
+msgid "Operations and numerical primitives"
+msgstr "Операції і числові примітиви"
+
+msgid "Online definition of function"
+msgstr "Вбудоване визначення функції"
+
+msgid "Optimization and simulation"
+msgstr "Оптимізація та імітація"
+
+msgid "Systems: definition and analysis"
+msgstr "Системи: визначення і аналіз"
+
+msgid "Linear algebra"
+msgstr "Лінійна алгебра"
+
+msgid "Call an external routine"
+msgstr "Викликати зовнішню процедуру"
+
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
 msgstr "%s: не вдалося знайти «%s». Переконайтеся, що макрос було зібрано.\n"
@@ -652,6 +747,10 @@ msgid "%s: %s is an uneditable hard coded function.\n"
 msgstr "%s: %s є непридатною до редагування вбудованою функцією.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: помилкова кількість вхідних параметрів.\n"
+
+#, c-format
 msgid "%s: Unable to find Perl file: %s"
 msgstr "%s: не вдалося знайти файл Perl: %s"
 
@@ -676,11 +775,6 @@ msgstr "%s: не вдалося знайти інтерпретатор Perl.\n"
 #, c-format
 msgid "%s: System error: Command executed: %s"
 msgstr "%s: помилка системи: виконувалася команда: %s"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
 
 msgid "Scilab Version: "
 msgstr "Версія Scilab: "

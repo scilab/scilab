@@ -5,7 +5,7 @@
         <refpurpose>Jacobi's elliptic function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y]=%sn(x,m)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -38,11 +38,11 @@
     <refsection>
         <title>Description</title>
         <para>
-            Jacobi 's sn elliptic function with parameter <literal>m</literal>: the inverse 
+            Jacobi 's sn elliptic function with parameter <literal>m</literal>: the inverse
             of the elliptic integral for the parameter <literal>m</literal>.
         </para>
         <para>
-            The amplitude am is computed in fortran and 
+            The amplitude am is computed in fortran and
             the addition formulas for elliptic functions are applied
         </para>
     </refsection>
@@ -87,7 +87,7 @@ xgrid(3)
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="delip">delip</link>

@@ -29,7 +29,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 asinh(sinh([0,1,%i]))
  ]]></programlisting>
     </refsection>

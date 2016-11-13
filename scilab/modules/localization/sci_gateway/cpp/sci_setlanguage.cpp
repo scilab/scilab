@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -49,25 +52,16 @@ types::Function::ReturnValue sci_setlanguage(types::typed_list &in, int _piRetCo
     char* param = in[0]->getAs<types::String>()->get(0);
     const char *newlanguage = convertlanguagealias(param);
 
-    if ( !LanguageIsOK(param) && (newlanguage == NULL) )
+    if (!LanguageIsOK(param) && (newlanguage == NULL))
     {
         if (getWarningMode())
         {
-            if (newlanguage == NULL)
-            {
-                sciprint(_("%s: Unsupported language '%s'.\n"), "setlanguage", param);
-            }
-            else
-            {
-                sciprint(_("%s: Unsupported language '%s'.\n"), "setlanguage", newlanguage);
-            }
+            sciprint(_("%s: Unsupported language '%s'.\n"), "setlanguage", param);
         }
 
         out.push_back(new types::Bool(FALSE));
         return types::Function::OK;
     }
-
-
 
     if (newlanguage)
     {

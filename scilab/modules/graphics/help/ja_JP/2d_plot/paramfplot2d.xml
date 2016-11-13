@@ -6,171 +6,171 @@
 
  * Copyright (C) INRIA
 
- * 
+ *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
  *
 
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="paramfplot2d">
-    
+
     <refnamediv>
-        
+
         <refname>paramfplot2d</refname>
-        
+
         <refpurpose>関数で定義された曲線の2次元アニメーションプロット</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>paramfplot2d(f,x,theta)
-            
+
             paramfplot2d(f,x,theta,flag)
-            
+
             paramfplot2d(f,x,theta,flag,rect)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>x</term>
-                
+
                 <listitem>
-                    
+
                     <para>実数ベクトル.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>f</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         関数 <literal>y=f(x,t)</literal> . f は
-                        
+
                         Scilab関数または(文字列で参照される)動的にリンクされるルーチンです.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>theta</term>
-                
+
                 <listitem>
-                    
+
                     <para>実数ベクトル (パラメータの集合).</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>flag</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         文字列 <literal>'no'</literal> または <literal>'yes'</literal>: "yes" の場合,
-                        
+
                         2回の連続するプロットの画面の間で画面がクリアされます.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>rect</term>
-                
+
                 <listitem>
-                    
+
                     <para>"矩形" [xmin, xmax, ymin, ymax] (1 x 4 実数ベクトル),</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             関数 <literal>x</literal>, <literal>t</literal>--&gt;<literal>f(x,t)</literal>
-            
+
             の <literal>t=theta(1),theta(2),等</literal>
-            
+
             に関するアニメーションプロット.
-            
+
             <literal>f</literal> は Scilab関数または
-            
+
             <literal>y=f(x,t)</literal> が <literal>y=feval(x(:),t,f)</literal>
-            
+
             のように評価される動的にリンクされるルーチンのどちらかとすることができます.
-            
+
             <link linkend="feval">feval</link>を参照ください.
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>f</literal>は,  <literal>x</literal>,
-            
+
             <literal>t</literal>--&gt; <literal>f(x,t) = R^N</literal>
-            
+
             へのマッピングです.
-            
+
             ただし, <literal>x</literal> は<literal>R^N</literal>のベクトル,
-            
+
             <literal>t</literal>は実数です.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 deff('y=f(x,t)','y=t*sin(x)')
 
@@ -179,8 +179,8 @@ x=linspace(0,2*%pi,50);theta=0:0.05:1;
 paramfplot2d(f,x,theta);
 
  ]]></programlisting>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 function V=twosoliton(x,t)
 
@@ -188,7 +188,7 @@ function V=twosoliton(x,t)
 
   a2=4;s2=40;v2=a2^2;
 
-  
+
 
   f1=exp(-a1*(x-s1-v1*t));
 
@@ -205,42 +205,42 @@ x=linspace(1,100,3000);
 clf;paramfplot2d(twosoliton,x,0:0.05:3);
 
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="comet">comet</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="plot2d">plot2d</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="feval">feval</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="fplot2d">fplot2d</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

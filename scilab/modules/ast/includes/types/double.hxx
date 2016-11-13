@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -78,6 +81,23 @@ public :
     bool isComplex()
     {
         return (m_pImgData != NULL) || isViewAsZComplex();
+    }
+
+    inline bool isNumericallyComplex(double tolerance = 0)
+    {
+        if(isComplex())
+        {
+            int listSize = getSize();
+            double* bImg = getImg();
+            for(int i = 0; i < listSize; i++)
+            {
+                if(abs(bImg[i]) > tolerance)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     bool isTrue();
@@ -251,7 +271,7 @@ public :
 
     virtual ast::Exp*           getExp(const Location& loc);
 
-    virtual Double* set(int _iPos, double _data)
+    virtual Double* set(int _iPos, const double _data)
     {
         if (_iPos >= m_iSize)
         {
@@ -269,7 +289,7 @@ public :
         return this;
     }
 
-    virtual Double* set(int _iRows, int _iCols, double _data)
+    virtual Double* set(int _iRows, int _iCols, const double _data)
     {
         return set(_iCols * getRows() + _iRows, _data);
     }

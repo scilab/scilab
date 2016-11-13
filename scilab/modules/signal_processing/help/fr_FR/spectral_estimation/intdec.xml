@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="intdec">
+    <refnamediv>
+        <refname>intdec</refname>
+        <refpurpose>Changes  sampling rate of a signal</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[y]=intdec(x,lom)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>input sampled signal</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lom</term>
+                <listitem>
+                    <para>
+                        For a 1D signal this is a scalar which gives the rate change. For a 2D signal this is a 2-Vector of sampling rate changes <literal>lom</literal>=(col rate change,row rate change)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>Output sampled signal</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Changes the sampling rate of a 1D or 2D signal by the rates in lom
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+Fs1 = 10000;
+Fs2 = 14000;
+t1 = 0:1/Fs1:10;
+t2 = 0:1/Fs2:10;
+F0 = 500;
+u1 = sin(2*%pi*F0*t1);
+u2 = sin(2*%pi*F0*t2);
+u2b = intdec(u1, Fs2/Fs1)
+plot(u2b, u2);
+ ]]></programlisting>
+        <scilab:image>
+
+            Fs1 = 10000; Fs2 = 14000;
+            t1 = 0:1/Fs1:10; t2 = 0:1/Fs2:10;
+            F0 = 500;
+            u1 = sin(2*%pi*F0*t1); u2 = sin(2*%pi*F0*t2);
+            u2b = intdec(u1, Fs2/Fs1);
+            plot(u2b, u2);
+        </scilab:image>
+    </refsection>
+</refentry>

@@ -8,7 +8,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>int* nb_params = getNbOutputArgument(void* _pvCtx)</synopsis>
         <synopsis>int nb_params = nbOutputArgument(void* _pvCtx)</synopsis>
         <synopsis>int nb_params = Lhs</synopsis>
@@ -52,7 +52,7 @@
             function.
         </para>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 #include "api_scilab.h"
 #include "sciprint.h"
 
@@ -66,7 +66,7 @@ int sci_mylhs(char * fname)
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="getNbInputArgument">getNbInputArgument</link>

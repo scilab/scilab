@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge STEER
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="repfreq">
+    <refnamediv>
+        <refname>repfreq</refname>
+        <refpurpose>frequency response</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[ [frq,] repf]=repfreq(sys,fmin,fmax [,step])
+            [ [frq,] repf]=repfreq(sys [,frq])
+            [ frq,repf,splitf]=repfreq(sys,fmin,fmax [,step])
+            [ frq,repf,splitf]=repfreq(sys [,frq])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sys</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list : SIMO linear system
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmin,fmax</term>
+                <listitem>
+                    <para>two real numbers (lower and upper frequency bounds)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>real vector of frequencies (Hz)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>step</term>
+                <listitem>
+                    <para>logarithmic discretization step</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>splitf</term>
+                <listitem>
+                    <para>vector of indexes of critical frequencies.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>repf</term>
+                <listitem>
+                    <para>vector of the complex frequency response</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>repfreq</literal> returns the frequency response calculation of a linear
+            system. If <literal>sys(s)</literal> is the transfer function of <literal>Sys</literal>, <literal>repf(k)</literal>
+            equals <literal>sys(s)</literal> evaluated at <literal>s= %i*frq(k)*2*%pi</literal> for continuous time systems and
+            at <literal>exp(2*%i*%pi*dt*frq(k))</literal> for discrete time systems (<literal>dt</literal> is the sampling period).
+        </para>
+        <para>
+            <literal>db(k)</literal> is the magnitude of <literal>repf(k)</literal> expressed in dB i.e.
+            <literal>db(k)=20*log10(abs(repf(k)))</literal> and <literal>phi(k)</literal> is the phase
+            of <literal>repf(k)</literal> expressed in degrees.
+        </para>
+        <para>
+            If <literal>fmin,fmax,step</literal> are input parameters, the response is calculated
+            for the vector of frequencies <literal>frq</literal> given by:
+            <literal>frq=[10.^((log10(fmin)):step:(log10(fmax))) fmax];</literal>
+        </para>
+        <para>
+            If <literal>step</literal> is not given, the output parameter <literal>frq</literal> is calculated by <literal>frq=calfrq(sys,fmin,fmax)</literal>.
+        </para>
+        <para>
+            Vector <literal>frq</literal> is split into regular parts with the <literal>split</literal> vector.
+            <literal>frq(splitf(k):splitf(k+1)-1)</literal> has no critical frequency.
+            <literal>sys</literal> has a pole in the range <literal>[frq(splitf(k)),frq(splitf(k)+1)]</literal> and
+            no poles outside.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A=diag([-1,-2]);B=[1;1];C=[1,1];
+Sys=syslin('c',A,B,C);
+frq=0:0.02:5;w=frq*2*%pi; //frq=frequencies in Hz ;w=frequencies in rad/sec;
+[frq1,rep] =repfreq(Sys,frq);
+[db,phi]=dbphi(rep);
+Systf=ss2tf(Sys)    //Transfer function of Sys
+x=horner(Systf,w(2)*sqrt(-1))    // x is Systf(s) evaluated at s = i w(2)
+rep=20*log(abs(x))/log(10)   //magnitude of x in dB
+db(2)    // same as rep
+ang=atan(imag(x),real(x));   //in rad.
+ang=ang*180/%pi              //in degrees
+phi(2)
+repf=repfreq(Sys,frq);
+repf(2)-x
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
+                <link linkend="freq">freq</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+            <member>
+                <link linkend="horner">horner</link>
+            </member>
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+            <member>
+                <link linkend="dbphi">dbphi</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

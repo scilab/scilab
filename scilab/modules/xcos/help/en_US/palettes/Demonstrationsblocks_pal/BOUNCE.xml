@@ -95,7 +95,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>
@@ -257,7 +257,7 @@
         </link>
     </refsection>
     <refsection>
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="BOUNCEXY">BOUNCEXY</link>

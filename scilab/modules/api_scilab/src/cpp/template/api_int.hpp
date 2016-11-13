@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 */
 
 #include "gatewaystruct.hxx"
@@ -37,9 +40,9 @@ int API_PROTO(getIntegerPrecision)(scilabEnv env, scilabVar var)
             return SCI_INT64;
         case types::InternalType::ScilabUInt64:
             return SCI_UINT64;
+        default:
+            return 0;
     }
-
-    return 0;
 }
 
 int API_PROTO(isInt8)(scilabEnv env, scilabVar var)
@@ -481,32 +484,32 @@ scilabStatus API_PROTO(getUnsignedInteger64)(scilabEnv env, scilabVar var, unsig
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(getIntegerArray)(scilabEnv env, scilabVar var, const void** vals)
+scilabStatus API_PROTO(getIntegerArray)(scilabEnv env, scilabVar var, void** vals)
 {
     switch (((types::InternalType*)var)->getType())
     {
         case types::InternalType::ScilabInt8:
-            return scilab_getInteger8Array(env, var, (const char**)vals);
+            return scilab_getInteger8Array(env, var, (char**)vals);
         case types::InternalType::ScilabInt16:
-            return scilab_getInteger16Array(env, var, (const short**)vals);
+            return scilab_getInteger16Array(env, var, (short**)vals);
         case types::InternalType::ScilabInt32:
-            return scilab_getInteger32Array(env, var, (const int**)vals);
+            return scilab_getInteger32Array(env, var, (int**)vals);
         case types::InternalType::ScilabInt64:
-            return scilab_getInteger64Array(env, var, (const long long**)vals);
+            return scilab_getInteger64Array(env, var, (long long**)vals);
         case types::InternalType::ScilabUInt8:
-            return scilab_getUnsignedInteger8Array(env, var, (const unsigned char**)vals);
+            return scilab_getUnsignedInteger8Array(env, var, (unsigned char**)vals);
         case types::InternalType::ScilabUInt16:
-            return scilab_getUnsignedInteger16Array(env, var, (const unsigned short**)vals);
+            return scilab_getUnsignedInteger16Array(env, var, (unsigned short**)vals);
         case types::InternalType::ScilabUInt32:
-            return scilab_getUnsignedInteger32Array(env, var, (const unsigned int**)vals);
+            return scilab_getUnsignedInteger32Array(env, var, (unsigned int**)vals);
         case types::InternalType::ScilabUInt64:
-            return scilab_getUnsignedInteger64Array(env, var, (const unsigned long long**)vals);
+            return scilab_getUnsignedInteger64Array(env, var, (unsigned long long**)vals);
+        default:
+            return STATUS_ERROR;
     }
-
-    return STATUS_ERROR;
 }
 
-scilabStatus API_PROTO(getInteger8Array)(scilabEnv env, scilabVar var, const char** vals)
+scilabStatus API_PROTO(getInteger8Array)(scilabEnv env, scilabVar var, char** vals)
 {
     types::Int8* i = (types::Int8*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -520,7 +523,7 @@ scilabStatus API_PROTO(getInteger8Array)(scilabEnv env, scilabVar var, const cha
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(getInteger16Array)(scilabEnv env, scilabVar var, const short** vals)
+scilabStatus API_PROTO(getInteger16Array)(scilabEnv env, scilabVar var, short** vals)
 {
     types::Int16* i = (types::Int16*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -534,7 +537,7 @@ scilabStatus API_PROTO(getInteger16Array)(scilabEnv env, scilabVar var, const sh
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(getInteger32Array)(scilabEnv env, scilabVar var, const int** vals)
+scilabStatus API_PROTO(getInteger32Array)(scilabEnv env, scilabVar var, int** vals)
 {
     types::Int32* i = (types::Int32*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -548,7 +551,7 @@ scilabStatus API_PROTO(getInteger32Array)(scilabEnv env, scilabVar var, const in
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(getInteger64Array)(scilabEnv env, scilabVar var, const long long** vals)
+scilabStatus API_PROTO(getInteger64Array)(scilabEnv env, scilabVar var, long long** vals)
 {
     types::Int64* i = (types::Int64*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -562,7 +565,7 @@ scilabStatus API_PROTO(getInteger64Array)(scilabEnv env, scilabVar var, const lo
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(getUnsignedInteger8Array)(scilabEnv env, scilabVar var, const unsigned char** vals)
+scilabStatus API_PROTO(getUnsignedInteger8Array)(scilabEnv env, scilabVar var, unsigned char** vals)
 {
     types::UInt8* i = (types::UInt8*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -576,7 +579,7 @@ scilabStatus API_PROTO(getUnsignedInteger8Array)(scilabEnv env, scilabVar var, c
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(getUnsignedInteger16Array)(scilabEnv env, scilabVar var, const unsigned short** vals)
+scilabStatus API_PROTO(getUnsignedInteger16Array)(scilabEnv env, scilabVar var, unsigned short** vals)
 {
     types::UInt16* i = (types::UInt16*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -590,7 +593,7 @@ scilabStatus API_PROTO(getUnsignedInteger16Array)(scilabEnv env, scilabVar var, 
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(getUnsignedInteger32Array)(scilabEnv env, scilabVar var, const unsigned int** vals)
+scilabStatus API_PROTO(getUnsignedInteger32Array)(scilabEnv env, scilabVar var, unsigned int** vals)
 {
     types::UInt32* i = (types::UInt32*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -604,7 +607,7 @@ scilabStatus API_PROTO(getUnsignedInteger32Array)(scilabEnv env, scilabVar var, 
     return STATUS_OK;
 }
 
-scilabStatus API_PROTO(getUnsignedInteger64Array)(scilabEnv env, scilabVar var, const unsigned long long** vals)
+scilabStatus API_PROTO(getUnsignedInteger64Array)(scilabEnv env, scilabVar var, unsigned long long** vals)
 {
     types::UInt64* i = (types::UInt64*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -623,24 +626,25 @@ scilabStatus API_PROTO(setIntegerArray)(scilabEnv env, scilabVar var, const void
     switch (((types::InternalType*)var)->getType())
     {
         case types::InternalType::ScilabInt8:
-            return scilab_getInteger8Array(env, var, (const char**)vals);
+            return scilab_setInteger8Array(env, var, (const char*)vals);
         case types::InternalType::ScilabInt16:
-            return scilab_getInteger16Array(env, var, (const short**)vals);
+            return scilab_setInteger16Array(env, var, (const short*)vals);
         case types::InternalType::ScilabInt32:
-            return scilab_getInteger32Array(env, var, (const int**)vals);
+            return scilab_setInteger32Array(env, var, (const int*)vals);
         case types::InternalType::ScilabInt64:
-            return scilab_getInteger64Array(env, var, (const long long**)vals);
+            return scilab_setInteger64Array(env, var, (const long long*)vals);
         case types::InternalType::ScilabUInt8:
-            return scilab_getUnsignedInteger8Array(env, var, (const unsigned char**)vals);
+            return scilab_setUnsignedInteger8Array(env, var, (const unsigned char*)vals);
         case types::InternalType::ScilabUInt16:
-            return scilab_getUnsignedInteger16Array(env, var, (const unsigned short**)vals);
+            return scilab_setUnsignedInteger16Array(env, var, (const unsigned short*)vals);
         case types::InternalType::ScilabUInt32:
-            return scilab_getUnsignedInteger32Array(env, var, (const unsigned int**)vals);
+            return scilab_setUnsignedInteger32Array(env, var, (const unsigned int*)vals);
         case types::InternalType::ScilabUInt64:
-            return scilab_getUnsignedInteger64Array(env, var, (const unsigned long long**)vals);
-    }
+            return scilab_setUnsignedInteger64Array(env, var, (const unsigned long long*)vals);
+        default:
+            return STATUS_ERROR;
 
-    return STATUS_ERROR;
+    }
 }
 
 scilabStatus API_PROTO(setInteger8Array)(scilabEnv env, scilabVar var, const char* vals)

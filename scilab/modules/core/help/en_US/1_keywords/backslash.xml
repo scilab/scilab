@@ -5,7 +5,7 @@
         <refpurpose>(\) left matrix division.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>X=A\B</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -53,7 +53,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[
    9.   -36.    30.
   -36.   192.  -180.
@@ -110,7 +110,7 @@ mprintf('\ntime with backslash: %.3f\n',toc());
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="slash">slash</link>

@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -53,7 +56,7 @@ import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxGraphView;
 import com.mxgraph.view.mxStylesheet;
-import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 
 /**
  * Utility class which is the entry point from Scilab for palette related
@@ -282,7 +285,7 @@ public final class Palette {
                 if (root instanceof PreLoaded) {
                     pal = (PreLoaded) root;
                 } else if (root instanceof Category) {
-                    LinkedList<Category> stash = new LinkedList<Category>();
+                    LinkedList<Category> stash = new LinkedList<>();
                     stash.add((Category) root);
 
                     pal = new PreLoaded();
@@ -315,7 +318,7 @@ public final class Palette {
     }
 
     private static List<PaletteBlock> list(Deque<Category> stash, PreLoaded pal) {
-        final ArrayList<PaletteBlock> blocks = new ArrayList<PaletteBlock>();
+        final ArrayList<PaletteBlock> blocks = new ArrayList<>();
         while (!stash.isEmpty()) {
             final Category c = stash.pop();
             for (PaletteNode n : c.getNode()) {
@@ -512,16 +515,7 @@ public final class Palette {
         JavaController controller = new JavaController();
         Kind kind = controller.getKind(uid);
 
-        String[] strUID = new String[] { "" };
-        controller.getObjectProperty(uid, kind, ObjectProperties.UID, strUID);
-
-        String[] label = new String[] { "" };
-        controller.getObjectProperty(uid, kind, ObjectProperties.LABEL, label);
-
-        String[] style = new String[] { "" };
-        controller.getObjectProperty(uid, kind, ObjectProperties.STYLE, style);
-
-        final BasicBlock block = new BasicBlock(new JavaController(), uid, kind, label[0], null, style[0], strUID[0]);
+        final BasicBlock block = XcosCellFactory.createBlock(controller, uid, kind);
         generateIcon(block, iconPath);
 
         if (LOG.isLoggable(Level.FINEST)) {
@@ -568,8 +562,5 @@ public final class Palette {
 
         final String extension = iconPath.substring(iconPath.lastIndexOf('.') + 1);
         ImageIO.write(image, extension, new File(iconPath));
-
-
-        controller.deleteObject(graph.getUID());
     }
 }

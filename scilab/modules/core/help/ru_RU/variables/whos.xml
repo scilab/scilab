@@ -5,7 +5,7 @@
         <refpurpose>список переменных в длинной форме</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             whos()
             whos -type typ
@@ -36,16 +36,16 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <code>whos()</code> выводит на экран все имена текущих 
-            переменных, сортированных по имени (регистр не имеет 
+            <code>whos()</code> выводит на экран все имена текущих
+            переменных, сортированных по имени (регистр не имеет
             значения), типы и используемую память.
         </para>
         <para>
-            <literal>whos -type typ</literal> выводит на экран все 
+            <literal>whos -type typ</literal> выводит на экран все
             текущие переменные определённого типа <varname>typ</varname>.
         </para>
         <para>
-            <literal>whos -name nam</literal> выводит на экран имена 
+            <literal>whos -name nam</literal> выводит на экран имена
             переменных, которые начинаются с <varname>nam</varname>.
         </para>
         <para>
@@ -56,8 +56,8 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
-lines(0) 
+        <programlisting role="example"><![CDATA[
+lines(0)
 whos()
 whos -type boolean
 whos -name %

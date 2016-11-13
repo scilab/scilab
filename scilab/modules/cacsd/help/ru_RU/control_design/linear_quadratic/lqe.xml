@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="lqe">
+    <refnamediv>
+        <refname>lqe</refname>
+        <refpurpose>linear quadratic estimator (Kalman Filter)  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[K,X]=lqe(P21)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P21</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K, X</term>
+                <listitem>
+                    <para>real matrices</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>lqe</literal> returns the Kalman gain for the filtering
+            problem in continuous or discrete time.
+        </para>
+        <para>
+            <literal>P21</literal> is a <literal>syslin</literal> list representing the system <literal>P21=[A,B1,C2,D21] P21=syslin('c',A,B1,C2,D21) or P21=syslin('d',A,B1,C2,D21)</literal>
+        </para>
+        <para>
+            The input to <literal>P21</literal> is a white noise with variance:
+        </para>
+        <programlisting role=""><![CDATA[
+     [B1 ]               [Q  S]
+BigV=[   ] [ B1' D21'] = [    ]
+     [D21]               [S' R]
+ ]]></programlisting>
+        <para>
+            <literal>X</literal> is the solution of the stabilizing Riccati
+            equation and <literal>A+K*C2</literal> is stable.
+        </para>
+        <para>
+            In continuous time:
+        </para>
+        <programlisting role=""><![CDATA[
+(A-S*inv(R)*C2)*X+X*(A-S*inv(R)*C2)'-X*C2'*inv(R)*C2*X+Q-S*inv(R)*S'=0
+ ]]></programlisting>
+        <programlisting role=""><![CDATA[
+K=-(X*C2'+S)*inv(R)
+ ]]></programlisting>
+        <para>
+            In discrete time:
+        </para>
+        <programlisting role=""><![CDATA[
+X=A*X*A'-(A*X*C2'+B1*D21')*pinv(C2*X*C2'+D21*D21')*(C2*X*A'+D21*B1')+B1*B1'
+ ]]></programlisting>
+        <para>
+            <literal>K=-(A*X*C2'+B1*D21')*pinv(C2*X*C2'+D21*D21')</literal>
+        </para>
+        <para>
+            <literal>xhat(t+1)= E(x(t+1)| y(0),...,y(t))</literal> (one-step predicted <literal>x</literal>)
+            satisfies the recursion:
+        </para>
+        <programlisting role=""><![CDATA[
+xhat(t+1)=(A+K*C2)*xhat(t) - K*y(t).
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//Assume the equations
+//.
+//x = Ax + Ge
+//y = Cx + v
+//with
+//E ee' = Q_e,    Evv' = R,    Eev' = N
+//
+//This is equivalent to
+//.
+//x = Ax  + B1 w
+//y = C2x + D21 w
+//with E { [Ge ]  [Ge v]' } = E { [B1w ] [B1w D21w]' } = bigR =
+//         [ v ]                  [D21w]
+//
+//[B1*B1'  B1*D21';
+// D21*B1'  D21*D21']
+//=
+//[G*Q_e*G' G*N;
+// N*G' R]
+
+//To find (B1,D21) given (G,Q_e,R,N) form bigR =[G*Q_e*G' G*N;N'*G' R].
+//Then [W,Wt]=fullrf(bigR);  B1=W(1:size(G,1),:);
+//D21=W(($+1-size(C2,1)):$,:)
+//
+//P21=syslin('c',A,B1,C2,D21);
+//[K,X]=lqe(P21);
+
+//Example:
+nx=5;ne=2;ny=3;
+A=-diag(1:nx);G=ones(nx,ne);
+C=ones(ny,nx); Q_e(ne,ne)=1; R=diag(1:ny); N=zeros(ne,ny);
+bigR =[G*Q_e*G' G*N;N'*G' R];
+[W,Wt]=fullrf(bigR);B1=W(1:size(G,1),:);
+D21=W(($+1-size(C,1)):$,:);
+C2=C;
+P21=syslin('c',A,B1,C2,D21);
+[K,X]=lqe(P21);
+//Riccati check:
+S=G*N;Q=B1*B1';
+(A-S*inv(R)*C2)*X+X*(A-S*inv(R)*C2)'-X*C2'*inv(R)*C2*X+Q-S*inv(R)*S'
+
+//Stability check:
+spec(A+K*C)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lqr">lqr</link>
+            </member>
+            <member>
+                <link linkend="observer">observer</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -8,51 +8,63 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-31 08:34+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"PO-Revision-Date: 2016-06-29 16:40+0000\n"
+"Last-Translator: Mickael Albertus <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "Language: fr\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong number of input argument(s) for method %s: %d or %d expected.\n"
 msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée pour la méthode %s : %d ou %d "
+"attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong method for input argument #%d: %s unknown.\n"
-msgstr ""
+msgstr "%s : Méthode erronée  pour l'argument d'entrée n°%d : %s inconnu.\n"
 
 #, c-format
 msgid "%s: Wrong position for input argument #%d : Must be in position %d.\n"
 msgstr ""
+"%s : Position erronée pour l'argument d'entrée n°%d : Il doit être en "
+"position %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
 msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : Une matrice attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
 msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : Only one string expected.\n"
 msgstr ""
+"%s : Taille erronée pour l'argument d'entrée n°%d : Seulement une chaîne de "
+"caractères attendue.\n"
 
 msgid "Missing vect for random permutation\n"
 msgstr "vect manquant pour la permutation aléatoire\n"
@@ -66,103 +78,138 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d : At least %lf expected.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Au moins %lf attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Positive integer expected.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Un entier positif "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : A value expected.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Une valeur attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Positive no null value expected.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Une valeur positive non "
+"nulle attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : value > 1.0 expected.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Une valeur > 1.0 "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Positive value expected.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Une valeur positive "
+"attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Positive non null value expected.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Une valeur positive non "
+"nulle attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A matrix of size m x 1 expected.(m > "
 "0)\n"
 msgstr ""
+"%s : Taille erronée pour l'argument d'entrée n°%d : Une matrice de taille m "
+"x 1 attendue. (m > 0)\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Mean and Cov have "
 "incompatible dimensions.\n"
 msgstr ""
+"%s : Valeur erronée pour les arguments d'entrée n°%d et n°%d : Mean et Cov "
+"ont des dimensions incompatibles.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A square symmetric positive definite "
 "matrix expected.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Une matrice symétrique "
+"carrée définie positive attendue.\n"
 
 #, c-format
 msgid "%s: setgmn return with state %d.\n"
-msgstr ""
+msgstr "%s : setgmn retourne avec l'état %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Il doit être compris "
+"entre %lf et %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A square matrix or a row vector "
 "expected.\n"
 msgstr ""
+"%s : Taille erronée pour l'argument d'entrée n°%d : Une matrice carrée ou un "
+"vecteur en ligne attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: No empty matrix expected.\n"
 msgstr ""
+"%s : Taille erronée pour l'argument d'entrée n°%d : Une matrice non vide "
+"attendue.\n"
 
 #, c-format
 msgid "%s: X0(%d) must be in the range [1,%d[.\n"
-msgstr ""
+msgstr "%s : X0(%d) doit appartenir à [1,%d[.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: P(%d,%d) must be in the range [0 "
 "1].\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : P(%d,%d) doit appartenir "
+"à [0 1].\n"
 
 #, c-format
 msgid "%s: Sum of P(%d,1:%d)=%lf ~= 1.\n"
-msgstr ""
+msgstr "%s : Somme de P(%d,1:%d)=%lf ~= 1.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
+"%s : Taille erronée pour l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A positive scalar expected.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Un scalaire positif "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Un vecteur colonne "
+"attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: P(%d) must be in the range [0 1].\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : P(%d) doit appartenir à "
+"[0 1].\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Sum of P(i) > 1.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : La somme des P(i) > 1.\n"
 
 #, c-format
 msgid ""
@@ -174,14 +221,19 @@ msgstr ""
 "de caractères ou de polynômes attendue.\n"
 
 #, c-format
-msgid "%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
+msgid ""
+"%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
 msgstr ""
+"%s : Valeur erronée pour les arguments d'entrée n°%d et n°%d : Low < High "
+"attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input arguments #%d and #%d: Low and High must be "
 "integers and (high - low + 1) <=  2147483561.\n"
 msgstr ""
+"%s : Valeur erronée pour les arguments d'entrée n°%d et n°%d : Low et High "
+"doivent être des entiers et (high - low + 1) <= 2147483561.\n"
 
 #, c-format
 msgid ""
@@ -196,19 +248,25 @@ msgid ""
 "%s: Wrong size for input argument #%d : A scalar or a vector of size %d "
 "expected.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Un scalaire ou un "
+"vecteur de taille %d attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A vector of size %d x %d expected.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Un vecteur de taille %d "
+"x %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for the last %d input argument(s).\n"
-msgstr ""
+msgstr "%s : Valeur erronée pour le dernier %d argument(s) d'entrée.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : One string expected.\n"
 msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "The %s option affects only the %s generator\n"
@@ -217,15 +275,20 @@ msgstr "L'option %s affecte seulement le générateur %s\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Must be between %d and %d.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Il doit être compris "
+"entre %d et %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Must be between %d, %d or %d.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Il doit être compris "
+"entre %d, %d ou %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Must be > %d.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : Il doit être > %d.\n"
 
 msgid ""
 "\n"
@@ -274,8 +337,8 @@ msgid ""
 "Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
 msgstr ""
 "\n"
-"Souche erronée de fsultra, doit être un entier dans l'intervalle [0, "
-"2^32-1]\n"
+"Souche erronée de fsultra, doit être un entier dans l'intervalle [0, 2^32-"
+"1]\n"
 
 #, c-format
 msgid ""
@@ -325,3 +388,72 @@ msgstr ""
 
 msgid "Scilab randlib interface not installed.\n"
 msgstr "L'interface randlib de Scilab n'est pas installée.\n"
+
+msgid "Simulation of a binomial random variable"
+msgstr "Simulation d'une variable aléatoire binomiale"
+
+msgid "Simulation"
+msgstr "Simulation"
+
+msgid "Theory"
+msgstr "Théorie"
+
+msgid "Simulation of a discrete random variable"
+msgstr "Simulation d'une variable aléatoire discrète"
+
+msgid "Simulation of a discrete uniform random variable"
+msgstr "Simulation d'une variable aléatoire discrète uniforme"
+
+msgid "Simulation of a Erlang random variable"
+msgstr "Simulation d'une variable aléatoire Erlang"
+
+msgid "Simulation of an exponential random variable"
+msgstr "Simulation d'une variable aléatoire exponentielle"
+
+msgid "Classes"
+msgstr "Classes"
+
+msgid "p must be < 1"
+msgstr "p doit être < 1"
+
+msgid "Simulation of a geometric random variable"
+msgstr "Simulation d'une variable aléatoire géométrique"
+
+msgid "Simulation of a hyper geometric random variable"
+msgstr "Simulation d'une variable aléatoire hypergéométrique"
+
+msgid "Simulation of a Poisson random variable"
+msgstr "Simulation d'une variable aléatoire de Poisson"
+
+msgid "Random"
+msgstr "Aléatoire"
+
+msgid "binomial random variable"
+msgstr "variable aléatoire binomiale"
+
+msgid "discrete random variable"
+msgstr "variable aléatoire discrète"
+
+msgid "discrete uniform random variable"
+msgstr "variable aléatoire discrète uniforme"
+
+msgid "geometric random variable"
+msgstr "variable aléatoire géométrique"
+
+msgid "Poisson random variable"
+msgstr "variable aléatoire de Poisson"
+
+msgid "Exponential random variable"
+msgstr "variable aléatoire exponentielle"
+
+msgid "Weibull random variable"
+msgstr "variable aléatoire de Weibull"
+
+msgid "Hyper geometric random variable"
+msgstr "Variable aléatoire hypergéométrique"
+
+msgid "Erlang random variable"
+msgstr "Variable aléatoire d'Erlang"
+
+msgid "Simulation of a Weibull random variable"
+msgstr "Simulation d'une variable aléatoire de Weibull"

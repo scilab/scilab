@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="bessel" xml:lang="ja">
@@ -77,7 +80,7 @@
                 <para>
                     <literal>besseli(alpha,x)</literal> は,
                     実数の次数<literal>alpha</literal> および引数 <literal>x</literal>に関する
-                    第1種修正ベッセル関数(I_alpha)を計算します, 
+                    第1種修正ベッセル関数(I_alpha)を計算します,
                     <literal>besseli(alpha,x,1)</literal> は
                     <literal>besseli(alpha,x).*exp(-abs(real(x)))</literal>を計算します.
                 </para>
@@ -168,7 +171,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //  besselI 関数
 // ==================
    x = linspace(0.01,10,5000)';
@@ -194,7 +197,7 @@
             legend('I'+string(0:4),1);
             xtitle("Some modified scaled Bessel functions of the first kind")
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // besselJ 関数
 // =================
    x = linspace(0,40,5000)';
@@ -209,7 +212,7 @@
             legend('I'+string(0:4),1);
             xtitle("Some Bessel functions of the first kind")
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // J_(1/2)(x) = sqrt(2/(x pi)) sin(x)　の関係を用いて
 //  besselj(0.5,x) のアルゴリズムをより直接的な式と比較します
    x = linspace(0.1,40,5000)';
@@ -223,9 +226,9 @@
    xtitle("besselj(0.5,x)")
    subplot(2,1,2)
    plot2d(x(ind), er(ind), style=2, logflag="nl")
-   xtitle("relative error between 2 formulae for besselj(0.5,x)") 
+   xtitle("relative error between 2 formulae for besselj(0.5,x)")
  ]]></programlisting>
-        <scilab:image><![CDATA[ 
+        <scilab:image><![CDATA[
    x = linspace(0.1,40,5000)';
    y1 = besselj(0.5, x);
    y2 = sqrt(2 ./(%pi*x)).*sin(x);
@@ -237,9 +240,9 @@
    xtitle("besselj(0.5,x)")
    subplot(2,1,2)
    plot2d(x(ind), er(ind), style=2, logflag="nl")
-   xtitle("relative error between 2 formulae for besselj(0.5,x)") 
+   xtitle("relative error between 2 formulae for besselj(0.5,x)")
  ]]></scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // besselK 関数
 // =================
    x = linspace(0.01,10,5000)';
@@ -281,12 +284,12 @@
             legend('Y'+string(0:4),4);
             xtitle("Some Bessel functions of the second kind")
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // besselH 関数
 // =================
    x=-4:0.025:2; y=-1.5:0.025:1.5;
    [X,Y] = ndgrid(x,y);
-   H = besselh(0,1,X+%i*Y); 
+   H = besselh(0,1,X+%i*Y);
    clf();f=gcf();
    xset("fpf"," ")
    f.color_map=jetcolormap(16);
@@ -297,7 +300,7 @@
         <scilab:image>
             x=-4:0.025:2; y=-1.5:0.025:1.5;
             [X,Y] = ndgrid(x,y);
-            H = besselh(0,1,X+%i*Y); 
+            H = besselh(0,1,X+%i*Y);
             clf();f=gcf();
             xset("fpf"," ")
             f.color_map=jetcolormap(16);

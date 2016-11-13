@@ -44,15 +44,15 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xrpoly</literal> dessine un polygone régulier à <literal>n</literal> faces contenu dans le disque de 
-            diamètre <literal>r</literal> et avec l'origine au point <literal>orig</literal>. 
+            <literal>xrpoly</literal> dessine un polygone régulier à <literal>n</literal> faces contenu dans le disque de
+            diamètre <literal>r</literal> et avec l'origine au point <literal>orig</literal>.
             <literal>theta</literal>  spécifie un angle de rotation en radians. Cette fonction utilise
-            l'échelle graphique courante. 
+            l'échelle graphique courante.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot2d(0,0,-1,"012"," ",[0,0,10,10])
 xrpoly([5,5],5,5)
  ]]></programlisting>

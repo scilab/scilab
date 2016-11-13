@@ -5,11 +5,14 @@
  * Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
  * Copyright (C) 2013 - Samuel GOUGEON : extension to hypermatrices
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="grand">
@@ -18,7 +21,7 @@
         <refpurpose>Случайные числа</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             Y = grand(m, n, "bet", A, B)
             Y = grand(m, n, "bin", N, p)
@@ -36,30 +39,32 @@
             Y = grand(m, n, "unf", Low, High)
             Y = grand(m, n, "uin", Low, High)
             Y = grand(m, n, "lgi")
-            
+
             Y = grand(m, n, o,..,"..",...)
             Y = grand(X, ...)
-            
+        </synopsis>
+
+        <synopsis>
             Y = grand(n, "mn", Mean, Cov)
             Y = grand(n, "markov", P, x0)
             Y = grand(n, "mul", nb, P)
             Y = grand(n, "prm", vect)
-            
+        </synopsis>
+
+        <synopsis>
             S = grand("getgen")
             grand("setgen", gen)
-            
+
             S = grand("getsd")
             grand("setsd", S)
-            
-            S = grand("phr2sd", phrase)
-            
+
             grand("setcgn", G)
             S = grand("getcgn")
-            
+
+            S = grand("phr2sd", phrase)
+
             grand("initgn", I)
-            
             grand("setall", s1, s2, s3, s4)
-            
             grand("advnst", K)
         </synopsis>
     </refsynopsisdiv>
@@ -132,7 +137,7 @@
         <para>
             формируют матрицу размером <varname>m</varname> на <varname>n</varname>,
             элементы которой являются случайными числами.
-            
+
             Все эти последовательности вызова могут быть расширены для создания гиперматрицы случайных чисел, у которой более двух размерностей, определённых в виде целых чисел, перечисленных перед типом статистического распределения:
         </para>
         <para>
@@ -440,7 +445,7 @@
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>[0, 2^32 - 1]</literal>  для mt, kiss и fsultra;
+                                <literal>[0, 2^32 - 1]</literal>  для mt и kiss;
                             </para>
                         </listitem>
                         <listitem>
@@ -516,20 +521,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>fsultra</term>
-                <listitem>
-                    <para>
-                        Генератор вычитания с займом (Subtract-with-Borrow), смешанный с
-                        конгруэнтным генератором Арифа Замана (Arif Zaman) и Джорджа
-                        Марсальи (George Marsaglia), с периодом свыше
-                        <literal>10^356</literal>, состояние задаётся массивом из
-                        <literal>37</literal> целых чисел (плюс индекс на этот массив,
-                        флаг (<literal>0</literal> или <literal>1</literal>) и другое
-                        целое число).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>urand</term>
                 <listitem>
                     <para>
@@ -557,7 +548,7 @@
                         генератор. В данном случае <varname>S</varname> является одной
                         строкой из <literal>"mt"</literal>, <literal>"kiss"</literal>,
                         <literal>"clcg2"</literal>, <literal>"clcg4"</literal>,
-                        <literal>"urand"</literal>, <literal>"fsultra"</literal>.
+                        <literal>"urand"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -569,7 +560,7 @@
                         генератор. В данном случае <varname>gen</varname> может быть одной
                         строкой из <literal>"mt"</literal>, <literal>"kiss"</literal>,
                         <literal>"clcg2"</literal>, <literal>"clcg4"</literal>,
-                        <literal>"urand"</literal>, <literal>"fsultra"</literal>.
+                        <literal>"urand"</literal>.
                         Заметьте, что этот вызов возвращает новый текущий генератор, т.е.
                         <varname>gen</varname>.
                     </para>
@@ -586,8 +577,7 @@
                         <literal>"mt"</literal> (первое значение является индексом в
                         интервале <literal>[1,624]</literal>),  <literal>4</literal> для
                         <literal>"kiss"</literal>,  <literal>2</literal> для
-                        <literal>"clcg2"</literal>, <literal>40</literal> для
-                        <literal>"fsultra"</literal>,  <literal>4</literal> для
+                        <literal>"clcg2"</literal>, <literal>4</literal> для
                         <literal>"clcg4"</literal> (для последнего вы получите текущее
                         состояние текущего виртуального генератора) и
                         <literal>1</literal> для <literal>"urand"</literal>.
@@ -657,19 +647,6 @@
                             <listitem>
                                 <para>
                                     должно быть указано одно целое число <varname>s1</varname> на интервале <literal>[0,2^31)</literal>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>для fsultra</term>
-                            <listitem>
-                                <para>
-                                    <varname>S</varname> является вектором целых чисел, состоящий из 40 элементов  (первый элемент является
-                                    индексом и должен быть на интервале <literal>[0,37]</literal>, второй элемент является
-                                    флагом (0 или 1), третий элемент является целым числом на интервале  <literal>[1,2^32[</literal>, а 37
-                                    остальных целых чисел должны быть на интервале <literal>[0,2^32[</literal>. Более простая (и
-                                    рекомендованная) инициализация может быть сделана с помощью двух целых чисел <varname>s1</varname> и
-                                    <varname>s2</varname> на интервале <literal>[0,2^32[</literal>.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -815,7 +792,7 @@ xtitle("Случайные числа по нормальному закону �
             histplot(10,R);
             xtitle("Случайные числа по нормальному закону распределения из функции grand","X","Частота");
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // Возвращает матрицу размером 400 на 800 случайных чисел
 // с равномерным распределением в [0,1).
@@ -829,7 +806,7 @@ xtitle("Случайные числа с равномерным распреде
             histplot(10,R);
             xtitle("Случайные числа с равномерным распределением из функции grand","X","Частота");
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // Возвращает матрицу размером 400 на 800 случайных чисел
 // по распределению Пуассона и матожиданием, равным 5.
@@ -843,7 +820,7 @@ xtitle("Случайные числа по закону распределени
             histplot(10,R);
             xtitle("Случайные числа по закону распределения Пуассона из grand","X","Частота");
         </scilab:image>
-        
+
         <para>
             В следующем примере мы генерируем случайные числа по экспоненциальному распределению, а затем сравниваем эмпирическое распределение с теоретическим.
         </para>

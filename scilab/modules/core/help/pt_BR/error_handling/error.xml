@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="error" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="error" xml:lang="pt">
     <refnamediv>
         <refname>error</refname>
         <refpurpose>mensagens de erro</refpurpose>
@@ -52,7 +52,7 @@
         <para>
             <literal>error(message,n)</literal> imprime o string contido em
             <literal>message</literal>. O número associado à mensagem de erro é dado
-            por n . Este número deve ser maior que 10000. 
+            por n . Este número deve ser maior que 10000.
         </para>
         <para>
             <literal>error(n)</literal> imprime a mensagem de erro predefinda

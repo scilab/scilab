@@ -20,7 +20,7 @@
             <varlistentry>
                 <term>tl</term>
                 <listitem>
-                    <para>"splin3d"型のtlistで, 
+                    <para>"splin3d"型のtlistで,
                         3次元テンソルスプライン(以下では<literal>s</literal>と
                         呼びます)を定義します.
                     </para>
@@ -39,7 +39,7 @@
                 <term>dfp</term>
                 <listitem>
                     <para>
-                        <literal>xp</literal>,<literal>yp</literal>および 
+                        <literal>xp</literal>,<literal>yp</literal>および
                         <literal>zp</literal>と同じ大きさのベクトルまたは行列で,
                         これらの点における<literal>s</literal>の要素毎に特定の微分の評価値.
                     </para>
@@ -77,7 +77,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff("v=f(x,y,z)","v=cos(x).*sin(y).*cos(z)");
 deff("v=fx(x,y,z)","v=-sin(x).*sin(y).*cos(z)");
 deff("v=fxy(x,y,z)","v=-sin(x).*cos(y).*cos(z)");
@@ -88,10 +88,10 @@ x = linspace(0,2*%pi,n); y=x; z=x; // 補間グリッド
 [X,Y,Z] = ndgrid(x,y,z); V = f(X,Y,Z);
 tl = splin3d(x,y,z,V,[5 5 5]);
 // ある点で f および微係数を計算し,
-// スプライン補間値と比較 
-xp = grand(1,1,"unf",0,2*%pi); 
-yp = grand(1,1,"unf",0,2*%pi); 
-zp = grand(1,1,"unf",0,2*%pi); 
+// スプライン補間値と比較
+xp = grand(1,1,"unf",0,2*%pi);
+yp = grand(1,1,"unf",0,2*%pi);
+zp = grand(1,1,"unf",0,2*%pi);
 f_e = f(xp,yp,zp)
 f_i = bsplin3val(xp,yp,zp,tl,[0 0 0])
 fx_e = fx(xp,yp,zp)

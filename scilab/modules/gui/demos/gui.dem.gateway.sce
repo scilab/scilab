@@ -29,6 +29,12 @@ function subdemolist = demo_gateway()
     subdemolist = [ subdemolist ;
     _("Uicontrols rendering") ,  "usedeprecatedskin.dem.sce" ];
 
+    subdemolist = [ subdemolist ;
+    _("Uicontrols layout") ,  "uicontrol_layout.dem.sce" ];
+
+    subdemolist = [ subdemolist ;
+    _("Uicontrols messagebox-like") ,  "uicontrol_messagebox.dem.sce" ];
+
     subdemolist(:,2) = demopath + subdemolist(:,2);
 endfunction
 

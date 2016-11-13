@@ -3,15 +3,18 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="arc_properties" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="arc_properties" xml:lang="pt">
     <refnamediv>
         <refname>arc_properties</refname>
         <refpurpose>Descrição das propriedades da entidade Arc (arco)</refpurpose>
@@ -36,7 +39,7 @@
                 <term>children:</term>
                 <listitem>
                     <para>esta propriedade contém um vetor com os galhos do manipulador.
-                        Contudo, manipuladores arc não possuem galhos correntemente. 
+                        Contudo, manipuladores arc não possuem galhos correntemente.
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,7 +48,7 @@
                 <listitem>
                     <para>este campo contém a propriedade de linha
                         <literal>thickness</literal> (espessura). Deve ser um inteiro
-                        positivo. 
+                        positivo.
                     </para>
                 </listitem>
             </varlistentry>
@@ -74,7 +77,7 @@
                     <para>
                         se o valor da propriedade <literal>fill_mode</literal> é
                         <literal>"on" </literal>, o arco é preenchido com a cor
-                        <literal>background</literal> (de plano de fundo). 
+                        <literal>background</literal> (de plano de fundo).
                     </para>
                 </listitem>
             </varlistentry>
@@ -84,7 +87,7 @@
                     <para>este campo contém o valor padrão da propriedade
                         <literal>foreground</literal> (primeiro plano) para desenhar ou
                         preencher o arco. Deve ser um índice de cor (relativo ao mapa de
-                        cores corrente). 
+                        cores corrente).
                     </para>
                 </listitem>
             </varlistentry>
@@ -92,7 +95,7 @@
                 <term>background:</term>
                 <listitem>
                     <para>este campo contém a cor usada para preencher o arco. Deve ser
-                        um índice de cor (relativo ao mapa de cores corrente). 
+                        um índice de cor (relativo ao mapa de cores corrente).
                     </para>
                 </listitem>
             </varlistentry>
@@ -104,7 +107,7 @@
                         ângulos de froenteira do setor. É a matriz
                         <literal>[xleft,yup,[zup],width,height,a1,a2]</literal> onde
                         <literal>a1</literal> e <literal>a2</literal> são os ângulos de
-                        fronteira dados em graus. 
+                        fronteira dados em graus.
                     </para>
                     <para>
                         <emphasis role="bold">Aviso:</emphasis> nas versões do Scilab
@@ -121,7 +124,7 @@
                         </literal>
                         ou <literal>"off"</literal>. Se <literal>"on"</literal> o
                         arco é desenhado, se <literal>"off"</literal> o arco não é exibido
-                        na tela. 
+                        na tela.
                     </para>
                 </listitem>
             </varlistentry>
@@ -154,13 +157,13 @@
                         <listitem>
                             <para>
                                 <literal>"off"</literal> significa que o arco não é
-                                recortado 
+                                recortado
                             </para>
                         </listitem>
                         <listitem>
                             <para>
                                 <literal>"clipgrf"</literal> significa que o arco é
-                                recortado fora da caixa dos eixos. 
+                                recortado fora da caixa dos eixos.
                             </para>
                         </listitem>
                         <listitem>
@@ -197,7 +200,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=get("current_axes");//obtendo o manipulador dos novos eixos criados
 a.data_bounds=[-2,-2;2,2];
 
@@ -206,7 +209,7 @@ xarc(-1.5,1.5,3,3,0,360*64)
 arc=get("hdl"); //obtendo o manipulador da entidade corrente (aqui é a entidade Arc)
 arc.fill_mode="on";
 arc.foreground=5;
-arc.data(:,[3 6])=[2 270*64];  
+arc.data(:,[3 6])=[2 270*64];
 xfarc(-.5,1,.4,.6,0,360*64);
 arc.visible="off";
  ]]></programlisting>

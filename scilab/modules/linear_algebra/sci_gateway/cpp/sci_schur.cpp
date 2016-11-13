@@ -3,11 +3,14 @@
 * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
 * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -221,12 +224,11 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if (pDbl[0]->getCols() == 0)
             {
-                types::Double* zero = new types::Double(0);
-
                 for (int i = 0; i < _iRetCount; i++)
                 {
                     if (i == 1 && !bIsComplexStr && !bIsRealStr)
                     {
+                        types::Double* zero = new types::Double(0);
                         out.push_back(zero);
                     }
                     else
@@ -242,8 +244,6 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         {
             if (pDbl[0]->getCols() == 0)
             {
-                types::Double* zero = new types::Double(0);
-
                 for (int i = 1; i < _iRetCount; i++)
                 {
                     out.push_back(types::Double::Empty());
@@ -251,6 +251,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
 
                 if (_iRetCount > 1)
                 {
+                    types::Double* zero = new types::Double(0);
                     out.push_back(zero);
                 }
                 else

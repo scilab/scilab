@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="h_cl">
+    <refnamediv>
+        <refname>h_cl</refname>
+        <refpurpose>closed loop matrix</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[Acl]=h_cl(P,r,K)
+            [Acl]=h_cl(P22,K)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P, P22</term>
+                <listitem>
+                    <para>continuous time linear dynamical systems: augmented plant or nominal plant respectively</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        a two elements vector, dimensions of 2,2 part of <literal>P</literal> (<literal>r=[rows,cols]=size(P22)</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>a continuous time linear dynamical system: the controller</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Acl</term>
+                <listitem>
+                    <para>real square matrix</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Given the standard plant <literal>P</literal> (with <literal>r=size(P22)</literal>) and the controller
+            <literal>K</literal>, this function returns the closed loop matrix <literal>Acl</literal>.
+        </para>
+        <para>
+            The poles of <literal>Acl</literal> must be stable for the internal stability
+            of the closed loop system.
+        </para>
+        <para>
+            <literal>Acl</literal> is the <literal>A</literal>-matrix of the linear system <literal>[I -P22;-K I]^-1</literal> i.e.
+            the <literal>A</literal>-matrix of <literal>lft(P,r,K)</literal>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lft">lft</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Authors</title>
+        <para>F. D.  </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal> is now checked for
+                    continuous time linear dynamical system.  This modification
+                    has been introduced by this <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">commit</ulink>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

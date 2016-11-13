@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -19,28 +22,39 @@ namespace slint
 {
 void LineLengthChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
 {
-    if (max > 0)
-    {
-        if (context.isFirstLevelFn())
-        {
-            std::vector<unsigned int> out;
-            if (!context.checkLineLength((unsigned int)max, out))
-            {
-                std::ostringstream os;
-                for (std::vector<unsigned int>::const_iterator i = out.begin(), end = std::prev(out.end()); i != end; ++i)
-                {
-                    os << *i << ", ";
-                }
-
-                os << *std::prev(out.end());
-                result.report(context, e.getLocation(), *this, _("Maximum line length exceeded at lines: %s."), os.str());
-            }
-        }
-    }
 }
 
 void LineLengthChecker::postCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
 {
+}
+
+bool LineLengthChecker::isFileChecker() const
+{
+    return true;
+}
+
+void LineLengthChecker::preCheckFile(SLintContext & context, SLintResult & result)
+{
+    if (max > 0)
+    {
+        std::vector<unsigned int> out;
+        if (!context.checkLineLength((unsigned int)max, out))
+        {
+            std::ostringstream os;
+            for (std::vector<unsigned int>::const_iterator i = out.begin(), end = std::prev(out.end()); i != end; ++i)
+            {
+                os << *i << ", ";
+            }
+            
+            os << *std::prev(out.end());
+            result.report(context, Location(), *this, _("Maximum line length exceeded at lines: %s."), os.str());
+        }
+    }
+}
+
+void LineLengthChecker::postCheckFile(SLintContext & context, SLintResult & result)
+{
+
 }
 
 const std::string LineLengthChecker::getName() const

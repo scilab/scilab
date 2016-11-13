@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="empty">
+    <refnamediv>
+        <refname>empty</refname>
+        <refpurpose>([]) 空行列</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal> [] </literal> は空行列を定義します.
+            この行列は特殊な行列として定義され,
+            0行0列,すなわち<literal> size([]) =[0,0] </literal>となります.
+            以下の便利な表記が使用可能です:
+        </para>
+        <para>
+            <literal> [] * A = A * [] = [] </literal>
+        </para>
+        <para>
+            <literal> [] + A = A + [] = []</literal>
+        </para>
+        <para>
+            [ [], A] = [A, []] = A
+            <literal> inv([]) =[] </literal>
+        </para>
+        <para>
+            <literal> det([])=cond([])=rcond([])=1, rank([])=0</literal>
+        </para>
+        <para>
+            明示的な答えがない場合,行列関数は <literal>[]</literal> またはエラーメッセージを
+            返します. 空の線形システム
+            (<literal> syslin</literal> リスト) は複数の行または列を有する可能性があります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例s</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s'); A = [s, s+1];
+A+[], A*[]
+A=rand(2,2); AA=A([],1), size(AA)
+svd([])
+w=ssrand(2,2,2); wr=[]*w; size(wr), w1=ss2tf(wr), size(w1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="matrices">matrices</link>
+            </member>
+            <member>
+                <link linkend="poly">poly</link>
+            </member>
+            <member>
+                <link linkend="string">string</link>
+            </member>
+            <member>
+                <link linkend="boolean">boolean</link>
+            </member>
+            <member>
+                <link linkend="rational">rational</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

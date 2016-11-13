@@ -5,7 +5,7 @@
         <refpurpose>set floating point exception mode</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>mod=ieee()
             ieee(mod)
         </synopsis>
@@ -63,7 +63,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 ieee(1);1/0
 ieee(2);1/0,log(0)
  ]]></programlisting>

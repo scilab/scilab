@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="getcolor">
@@ -16,7 +19,7 @@
         <refpurpose>opens a dialog to show colors in the current colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>c=getcolor(title,[cini])
             c=getcolor()
         </synopsis>
@@ -47,7 +50,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>getcolor</literal> opens a window displaying the palette of the current colormap. 
+            <literal>getcolor</literal> opens a window displaying the palette of the current colormap.
             The user can click on a color to show its id and RGB values.
             <literal>getcolor</literal> returns the id of the selected color or [] if the "Cancel" button has been clicked or the window closed.
         </para>
@@ -62,9 +65,9 @@ getcolor("Title foo");
 getcolor("foo",21); // Select the red
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="color">color</link>

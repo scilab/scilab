@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="leqr">
+    <refnamediv>
+        <refname>leqr</refname>
+        <refpurpose>H-infinity LQ gain (full state)  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[K,X,err]=leqr(P12,Vx)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P12</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Vx</term>
+                <listitem>
+                    <para>symmetric nonnegative matrix (should be small enough)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K,X</term>
+                <listitem>
+                    <para>two real matrices</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>err</term>
+                <listitem>
+                    <para>a real number (l1 norm of LHS of Riccati equation)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>leqr</literal>  computes the linear suboptimal H-infinity LQ full-state gain
+            for the plant <literal>P12=[A,B2,C1,D12]</literal> in continuous or discrete time.
+        </para>
+        <para>
+            <literal>P12</literal> is a <literal>syslin</literal> list (e.g. <literal>P12=syslin('c',A,B2,C1,D12)</literal>).
+        </para>
+        <programlisting role=""><![CDATA[
+[C1' ]               [Q  S]
+[    ]  * [C1 D12] = [    ]
+[D12']               [S' R]
+ ]]></programlisting>
+        <para>
+            <literal>Vx</literal> is related to the variance matrix of the noise <literal>w</literal> perturbing <literal>x</literal>;
+            (usually <literal>Vx=gama^-2*B1*B1'</literal>).
+        </para>
+        <para>
+            The gain <literal>K</literal> is such that <literal>A + B2*K</literal> is stable.
+        </para>
+        <para>
+            <literal>X</literal> is the stabilizing solution of the Riccati equation.
+        </para>
+        <para>
+            For a continuous plant:
+        </para>
+        <programlisting role=""><![CDATA[
+(A-B2*inv(R)*S')'*X+X*(A-B2*inv(R)*S')-X*(B2*inv(R)*B2'-Vx)*X+Q-S*inv(R)*S'=0
+ ]]></programlisting>
+        <programlisting role=""><![CDATA[
+K=-inv(R)*(B2'*X+S)
+ ]]></programlisting>
+        <para>
+            For a discrete time plant:
+        </para>
+        <programlisting role=""><![CDATA[
+X-(Abar'*inv((inv(X)+B2*inv(R)*B2'-Vx))*Abar+Qbar=0
+ ]]></programlisting>
+        <programlisting role=""><![CDATA[
+K=-inv(R)*(B2'*inv(inv(X)+B2*inv(R)*B2'-Vx)*Abar+S')
+ ]]></programlisting>
+        <para>
+            with <literal>Abar=A-B2*inv(R)*S'</literal> and <literal>Qbar=Q-S*inv(R)*S'</literal>
+        </para>
+        <para>
+            The 3-blocks matrix pencils associated with these Riccati equations are:
+        </para>
+        <programlisting role=""><![CDATA[
+             discrete                        continuous
+ |I  -Vx  0|   | A    0    B2|       |I   0   0|   | A    Vx    B2|
+z|0   A'  0| - |-Q    I    -S|      s|0   I   0| - |-Q   -A'   -S |
+ |0   B2' 0|   | S'   0     R|       |0   0   0|   | S'   -B2'   R|
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lqr">lqr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

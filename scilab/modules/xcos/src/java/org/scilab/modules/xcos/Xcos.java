@@ -4,11 +4,14 @@
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -71,9 +74,6 @@ import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.view.mxStylesheet;
-import javax.swing.SwingWorker;
-import org.scilab.modules.graph.ScilabCanvas;
-import org.scilab.modules.xcos.graph.swing.GraphComponent;
 
 /**
  * Xcos entry point class
@@ -118,22 +118,6 @@ public final class Xcos {
         });
 
         XConfiguration.addXConfigurationListener(new XcosConfiguration());
-
-        /*
-         * Load some classes in the background to avoid any lag on the first drag'n drop.
-         *
-         * This will setup the whole rendering stack by dummy rendering a block' style
-         */
-        (new SwingWorker<Void, Void>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                Map<String, Object> style = Xcos.getInstance().getStyleSheet().getCellStyle("CLOCK_c", new HashMap<>());
-                ScilabCanvas canvas = new GraphComponent(null).createCanvas();
-                canvas.paintSvgForegroundImage(1, 1, canvas.getImageForStyle(style));
-                return null;
-            }
-
-        }).execute();
     }
 
     /*
@@ -460,6 +444,22 @@ public final class Xcos {
         if (f == null && diag != null && diag.getModel().getChildCount(diag.getDefaultParent()) > 0) {
             diag = null;
         }
+        // looking for an empty, unsaved diagram to use if opening a new file
+        // if not found an already open instance of the file
+        if (diag == null) {
+            // traverse through the key set of all the opened diagrams
+            for (long key : diagrams.keySet()) {
+                List<XcosDiagram> diagramsWithKey = diagrams.get(key);
+                XcosDiagram diagramWithKey = diagramsWithKey.get(0); // get the diagram that maps to that key
+                int childCount = diagramWithKey.countChildren(); //count the number of children in the diagram
+                // if empty, unsaved and unused
+                if (childCount == 0 && diagramWithKey.getSavedFile() == null && !diagramWithKey.isModified()) {
+                    // use that open diagram
+                    diag = diagramWithKey;
+                    diag.transformAndLoadFile(controller, file);
+                }
+            }
+        }
         // if reuse then request focus
         if (diag != null) {
             XcosTab tab = XcosTab.get(diag);
@@ -724,8 +724,7 @@ public final class Xcos {
         }
 
         if (openedDiagrams().size() <= 0) {
-            /* halt scicos (stop the simulation) */
-            InterpreterManagement.requestScilabExec("if isdef('haltscicos'), haltscicos(), end;");
+            JavaController.end_simulation();
         }
     }
 
@@ -820,7 +819,7 @@ public final class Xcos {
             instance.diagrams.keySet().clear();
 
             /* terminate any remaining simulation */
-            InterpreterManagement.putCommandInScilabQueue("if isdef('haltscicos'), haltscicos(), end;");
+            JavaController.end_simulation();
 
             /* Saving modified data */
             instance.palette.saveConfig();
@@ -848,7 +847,7 @@ public final class Xcos {
      * @param file
      *            The filename (can be null)
      * @param diagramId
-     *            The Xcos DIAGRAM model ID (can be null)
+     *            The Xcos DIAGRAM model ID (can be 0)
      */
     @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
     public static void xcos(final String file, final long diagramId) {
@@ -897,17 +896,14 @@ public final class Xcos {
             throw new IllegalArgumentException("not handled filetype");
         }
 
-        switch (filetype) {
-            case XCOS:
-            case ZCOS:
-                if (export) {
-                    filetype.save(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
-                } else {
-                    filetype.load(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
-                }
-                break;
-            case COSF:
-                throw new IllegalArgumentException("not handled filetype");
+        if (XcosFileType.getAvailableSaveFormats().contains(filetype)) {
+            if (export) {
+                filetype.save(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
+            } else {
+                filetype.load(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
+            }
+        } else {
+            throw new IllegalArgumentException("not handled filetype");
         }
     }
 

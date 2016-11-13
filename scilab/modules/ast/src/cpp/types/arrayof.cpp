@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -26,6 +29,21 @@ extern "C"
 
 namespace types
 {
+
+static int get_max_size(int* _piDims, int _iDims)
+{
+    if (_iDims == 0)
+    {
+        return 0;
+    }
+
+    int iMax = 1;
+    for (int i = 0 ; i < _iDims ; i++)
+    {
+        iMax *= _piDims[i];
+    }
+    return iMax;
+}
 
 template <typename T>
 GenericType* ArrayOf<T>::createEmpty()
@@ -752,6 +770,7 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         }
     }
 
+    delete[] pbFull;
 
     if (bTooMuchNotEntire == true)
     {
@@ -759,8 +778,6 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
         cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
-
-    delete[] pbFull;
 
     //find index to keep
     int iNotEntireSize = pArg[iNotEntire]->getAs<GenericType>()->getSize();
@@ -982,13 +999,15 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 
         //std::cout << start << ":" << step << ":" << end << std::endl;
         int size = static_cast<int>((end - start) / step + 1);
+
         if (size <= 0 || m_iSize == 0)
         {
             return createEmpty();
         }
 
-        if (step > 0 && (size - 1) * step + start > m_iSize ||
-                step < 0 && start > m_iSize)
+        //check bounds
+        if (step > 0 && ((size - 1) * step + start > m_iSize || start < 1) ||
+                (step < 0 && (start > m_iSize || end < 1)))
         {
             return NULL;
         }

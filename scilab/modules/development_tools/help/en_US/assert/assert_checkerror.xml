@@ -4,11 +4,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_checkerror" xml:lang="en">
@@ -19,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             flag = assert_checkerror ( instr , expectedmsg )
             flag = assert_checkerror ( instr , expectedmsg , expectederrnb )
@@ -100,7 +103,7 @@
             expression can be used.
         </para>
         <para>If the error message is not expected or the error number is not
-            expected, 
+            expected,
             <itemizedlist>
                 <listitem>
                     <para>if the errmsg output variable is not used, an error is
@@ -116,7 +119,7 @@
         </para>
         <para>The goal of this function is to enable the tester to check the error
             cases in a simplified framework. Checking the error messages of a function
-            has the following advantages: 
+            has the following advantages:
             <itemizedlist>
                 <listitem>
                     <para>it checks that the correct error is generated when

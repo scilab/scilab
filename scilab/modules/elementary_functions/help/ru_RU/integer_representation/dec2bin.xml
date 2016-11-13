@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dec2bin" xml:lang="ru">
@@ -17,7 +20,7 @@
         <refpurpose>преобразование из десятичной системы счисления в двоичную</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             str=dec2bin(x)
             str=dec2bin(x,n)
@@ -51,28 +54,28 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Для заданного <literal>x</literal>, положительного целого (или вектора/матрицы 
-            целых чисел) эта функция возвращает строку (или вектор-столбец строк), которая 
-            является двоичным представлением <literal>x</literal>. Если размер 
-            <literal>x</literal> больше 1, то тогда каждый компонент вектора-столбца 
-            <literal>str</literal> является двоичным представлением компонентов 
-            <literal>x</literal> (то есть <literal>str(i)</literal> является двоичным 
+            Для заданного <literal>x</literal>, положительного целого (или вектора/матрицы
+            целых чисел) эта функция возвращает строку (или вектор-столбец строк), которая
+            является двоичным представлением <literal>x</literal>. Если размер
+            <literal>x</literal> больше 1, то тогда каждый компонент вектора-столбца
+            <literal>str</literal> является двоичным представлением компонентов
+            <literal>x</literal> (то есть <literal>str(i)</literal> является двоичным
             представлением <literal>x(i)</literal>).
         </para>
         <para>
             Если длина компонентов <literal>str</literal> меньше <literal>n</literal>
-            (то есть длина str(i) &lt; n ), то тогда к компонентам  <literal>str</literal> 
-            слева добавляются символы '0' для того, чтобы сделать длину компонент равной 
+            (то есть длина str(i) &lt; n ), то тогда к компонентам  <literal>str</literal>
+            слева добавляются символы '0' для того, чтобы сделать длину компонент равной
             <literal>n</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Пример 1 :
 x=86;
 str=dec2bin(x)
- 
+
 // Пример 2 :
 // Двоичное представление числа 86: '1010110'.
 // Его длина равна 7 (меньше, чем n).
@@ -80,7 +83,7 @@ str=dec2bin(x)
 x=86;
 n=15;
 str=dec2bin(x,n)
- 
+
 // Пример 3 :
 x=[12;45;135]
 z=dec2bin(x)

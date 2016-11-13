@@ -5,7 +5,7 @@
         <refpurpose>Get the position of a block in the Xcos editor.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x,y] = standard_origin(block)
         </synopsis>
     </refsynopsisdiv>
@@ -54,7 +54,7 @@ o = CSCOPE("define");
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="standard_inputs">standard_inputs</link>

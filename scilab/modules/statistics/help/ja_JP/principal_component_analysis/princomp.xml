@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="princomp">
@@ -35,7 +38,7 @@
             <varlistentry>
                 <term>eco</term>
                 <listitem>
-                    <para>論理値, 
+                    <para>論理値,
                         小さな大きさの特異値分解を可能とするために使用されます.
                     </para>
                 </listitem>
@@ -75,7 +78,7 @@
                 <term>tsquare</term>
                 <listitem>
                     <para>
-                        <literal>n</literal>列ベクトル. 
+                        <literal>n</literal>列ベクトル.
                         各データ点に関するHotellingのT^2統計量を有します.
                     </para>
                 </listitem>
@@ -103,14 +106,14 @@
             言い換えると,
             投影のk次元部分空間への投影の慣性は最大化される必要があります.
         </para>
-        <para> 
+        <para>
             標準化された変数について主成分解析を計算する際に,
             <literal>princomp(wcenter(x,1))</literal>または<link linkend="pca">pca</link>関数を使用することができます.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=rand(100,10,'n');
 [facpr,comprinc,lambda,tsquare] = princomp(a);
  ]]></programlisting>

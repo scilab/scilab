@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2011 - INRIA - Serge Steer <serge.steer@inria.fr>
+*
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="phaseplot">
+    <refnamediv>
+        <refname>phaseplot</refname>
+        <refpurpose>周波数位相プロット</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            phaseplot(sl)
+            phaseplot(sl,fmin,fmax [,step] [,comments] )
+            phaseplot(frq,db,phi [,comments])
+            phaseplot(frq, repf [,comments])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        一入力多出力 (SIMO) 線形動的システム (<link linkend="syslin">syslin</link>参照).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmin</term>
+                <listitem>
+                    <para>実スカラー: 表示する最小周波数 (単位:Hz) .</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmax</term>
+                <listitem>
+                    <para>実スカラー: 表示する最大周波数 (単位:Hz).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>step</term>
+                <listitem>
+                    <para>実スカラー: 周波数離散化刻み (指数スケール)).
+                        指定しない場合、このアルゴリズムは、
+                        適用型周波数刻みを使用します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>comments</term>
+                <listitem>
+                    <para>文字列ベクトル: 各曲線に付随する凡例ラベル.
+                        オプションの値は空の配列です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>行ベクトルまたは n x m 配列: 周波数離散化(Hz).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>db</term>
+                <listitem>
+                    <para>n x m 配列:
+                        <literal>frq</literal>に対応する大きさ. この引数が使用されない場合、
+                        <literal>phaseplot</literal>は<literal>gainplot</literal>および
+                        <literal>bode</literal>と同じ呼び出し手順となります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>phi</term>
+                <listitem>
+                    <para>
+                        n x m 配列:  <literal>frq</literal>に対応する位相[deg].
+                        <literal>phaseplot</literal>関数は曲線
+                        <literal>phi(i,:)</literal> 対 <literal>frq(i,:)</literal>
+                        をプロットします.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>repf</term>
+                <listitem>
+                    <para>n x m 複素数配列.
+                        <literal>phaseplot</literal> 関数は,曲線
+                        <literal>phase(repf(i,:))</literal> 対
+                        <literal>frq(i,:)</literal> をプロットします.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数はシステムの周波数応答の位相を描画します.
+            このシステムは異なる表現で指定することができます:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>phaseplot(sl,...)</literal> の場合,
+                </para>
+                <para>
+                    <literal>sl</literal>
+                    は連続系または離散系SIMOとすることができます.
+                    多出力の場合,出力は異なる記号でプロットされます.
+                </para>
+                <para>この場合,周波数は以下のように指定できます:</para>
+                <itemizedlist mark="point">
+                    <listitem>
+                        <para>
+                            上限および下限周波数[Hz]
+                            <literal>fmin</literal>, <literal>fmax</literal>および
+                            周波数刻み(オプション) <literal>step</literal>.
+                            <literal>fmin</literal> および
+                            <literal>fmax</literal>のデフォルト値は,
+                            <literal>sl</literal>が連続系の場合
+                            <literal>1.e-3</literal>および
+                            <literal>1.e3</literal>,
+                            離散系の場合 <literal>1.e-3</literal>,
+                            <literal>0.5/sl.dt</literal> (ナイキスト周波数) です.
+                            引数<literal>step</literal> が省略された場合,
+                            この関数は適用型周波数刻み
+                            (<link linkend="calfrq">calfrq</link>参照)を使用します.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            行ベクトルまたは二次元配列 <literal>frq</literal>は
+                            周波数をHzで指定します.
+                            2次元配列は多出力系において各入出力の組について
+                            異なる周波数刻みを適用する場合に使用されます.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>phaseplot(frq,...)</literal> の場合
+                </para>
+                <para>
+                    この場合,事前に計算された周波数応答により周波数位相プロットを
+                    描画することができます.
+                    周波数応答は複素数表現<literal>repf</literal>または
+                    ゲイン/位相表現<literal>db</literal>,
+                    <literal>phi</literal>で指定できます.
+                </para>
+                <para>
+                    <literal>frq</literal> および <literal>repf</literal> は,
+                    行ベクトルまたは(各行が入出力の組みを表わす) n x m 配列です.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            The <link linkend="datatips">データティップ</link>ツールは位相曲線に沿ってデータを表示する際に使用できます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    s=poly(0,'s')
+    h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+    h2=syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+    clf();phaseplot([h1;h2],0.01,100,..
+                       ["$\frac{s^2+18 s+100}{s^2+6.06 s+102.1}$";
+                        "$\frac{s^2+3.02 s+228.01}{s^2+27 s+225}$"])
+    title('Phaseplot')
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s')
+                h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+                h2=syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+                clf();phaseplot([h1;h2],0.01,100,..
+                ["$\frac{s^2+18 s+100}{s^2+6.06 s+102.1}$";
+                "$\frac{s^2+3.02 s+228.01}{s^2+27 s+225}$"])
+                title('Phaseplot')
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
+                <link linkend="gainplot">gainplot</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+            <member>
+                <link linkend="datatips">datatips</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>関数phaseplotが導入されました.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

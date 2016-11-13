@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="LineSpec">
@@ -22,7 +25,7 @@
         <para>
             The <literal>LineSpec</literal> is an optional argument
             that can be used inside a <function>plot</function>
-            command to customize each new line aspect. It has to 
+            command to customize each new line aspect. It has to
             be given as a concatenated string containing information
             about color, line style or markers. It is very useful to
             quickly specify such basic line properties.
@@ -341,7 +344,7 @@ plot(x,sin(x),'r-.>') // plots a dash-dotted line with a right-pointing triangle
 clf();
 x=1:0.1:10;
 // If you specify a marker without a line style, only the marker is drawn
-plot(x,sin(x),'d') 
+plot(x,sin(x),'d')
  ]]></programlisting>
         <scilab:image>
             x=1:0.1:10;
@@ -351,7 +354,7 @@ plot(x,sin(x),'d')
 clf();
 x = 1:0.5:10; // Init.
 // The order of information about color, line style or markers does not matter
-// BUT the information must be unambiguous 
+// BUT the information must be unambiguous
 subplot(311);plot(x,sin(x),'.b-');
 subplot(312);plot(x,sin(x),'b.-');
 subplot(313);plot(x,sin(x),'b-.');// The point belongs to information about line style (not marker!)
@@ -375,7 +378,7 @@ plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="color">color</link>

@@ -4,11 +4,14 @@
  * Copyright (C) INRIA -
  * Copyright (C) DIGITEO - 2012 - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="call" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>Fortran or C user routines call</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>// long form 'out' is present
             [y1,...,yk] = call("ident",x1,px1,"tx1",...,xn,pxn,"txn","out",[ny1,my1],py1,"ty1",...,[nyl,myl],pyl,"tyl")
             // short form : no 'out' parameter
@@ -142,7 +145,7 @@
                 <term>py1, ...</term>
                 <listitem>
                     <para>are the positions of output variables (possibly equal to
-                        <literal>pxi</literal> ) in the calling sequence of the routine. The
+                        <literal>pxi</literal> ) in the syntax of the routine. The
                         <literal>pyi</literal>'s integers must be in increasing
                         order.
                     </para>
@@ -177,22 +180,22 @@
             '   for ( i =0 ; i &lt; (*m)*(*n) ; i++) '
             '     c[i] = sin(a[i]) + *b; '
             '}'];
-            
+
             mputl(f1,'fooc.c')
-            
+
             //creating the shared library (a gateway, a Makefile and a loader are
             //generated.
-            
+
             ilib_for_link('fooc','fooc.c',[],"c")
-            
+
             // load the shared library
-            
+
             exec loader.sce
-            
+
             //using the new primitive
             a=[1,2,3;4,5,6];b= %pi;
             [m,n]=size(a);
-            
+
             // Inputs:
             // a is in position 2 and double
             // b                3     double
@@ -201,7 +204,7 @@
             // Outputs:
             // c is in position 1 and double with size [m,n]
             c=call("fooc",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
-            
+
             //Example 2 with  a simple Fortran code
             f1=['      subroutine foof(c,a,b,n,m)'
             '      integer n,m'
@@ -211,16 +214,16 @@
             '   10 continue'
             '      end'];
             mputl(f1,'foof.f')
-            
+
             //creating the shared library (a gateway, a Makefile and a loader are
             //generated.
-            
+
             ilib_for_link('foof','foof.f',[],"f")
-            
+
             // load the shared library
-            
+
             exec loader.sce
-            
+
             //using the new primitive
             a=[1,2,3;4,5,6];b= %pi;
             [m,n]=size(a);
@@ -254,7 +257,7 @@
         </refsection>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="link">link</link>

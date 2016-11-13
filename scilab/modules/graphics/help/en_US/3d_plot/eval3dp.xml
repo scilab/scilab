@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="eval3dp">
@@ -16,7 +19,7 @@
         <refpurpose>compute facets of a 3D parametric surface</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[Xf,Yf,Zf]=eval3dp(fun,p1,p2)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -57,16 +60,16 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>eval3dp</literal> computes a four sided facets representation of a 3D parametric surface 
-            defined by the function <literal>fun</literal>. <literal>fun(p1,p2)</literal> computes the 
-            x-axis ,y-axis and z-axis coordinates of the corresponding points on the 
+            <literal>eval3dp</literal> computes a four sided facets representation of a 3D parametric surface
+            defined by the function <literal>fun</literal>. <literal>fun(p1,p2)</literal> computes the
+            x-axis ,y-axis and z-axis coordinates of the corresponding points on the
             surface, as [x(i),y(i),z(i)]=fun(p1(i),p2(i)). This is used for efficiency.
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 p1=linspace(0,2*%pi,10);
 p2=linspace(0,2*%pi,10);
 deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
@@ -85,7 +88,7 @@ plot3d(Xf,Yf,Zf)
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="genfac3d">genfac3d</link>

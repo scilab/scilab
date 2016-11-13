@@ -6,11 +6,14 @@
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2014-2015 - Scilab Enterprises - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -991,6 +994,10 @@ static void updateXYDataBounds(int iSubwinUID, double rect[6])
         double * dataBounds = NULL;
         getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
 
+        if (!dataBounds)
+        {
+            return;
+        }
         rect[0] = Min(rect[0], dataBounds[0]);
         rect[1] = Max(rect[1], dataBounds[1]);
         rect[2] = Min(rect[2], dataBounds[2]);
@@ -1013,12 +1020,15 @@ static void updateXYZDataBounds(int iSubwinUID, double rect[6])
         double * dataBounds = NULL;
         getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
 
-        rect[0] = Min(rect[0], dataBounds[0]);
-        rect[1] = Max(rect[1], dataBounds[1]);
-        rect[2] = Min(rect[2], dataBounds[2]);
-        rect[3] = Max(rect[3], dataBounds[3]);
-        rect[4] = Min(rect[4], dataBounds[4]);
-        rect[5] = Max(rect[5], dataBounds[5]);
+        if (dataBounds)
+        {
+            rect[0] = Min(rect[0], dataBounds[0]);
+            rect[1] = Max(rect[1], dataBounds[1]);
+            rect[2] = Min(rect[2], dataBounds[2]);
+            rect[3] = Max(rect[3], dataBounds[3]);
+            rect[4] = Min(rect[4], dataBounds[4]);
+            rect[5] = Max(rect[5], dataBounds[5]);
+        }
     }
 
     setGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);

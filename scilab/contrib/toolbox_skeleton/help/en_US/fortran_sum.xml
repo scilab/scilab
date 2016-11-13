@@ -8,7 +8,7 @@
         <refpurpose>sum from fortran</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>a = fortran_sum(b,c)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -47,7 +47,7 @@
         <programlisting role="example">fortran_sum(3,4)</programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="c_sum">c_sum</link>

@@ -5,7 +5,7 @@
         <refpurpose>добавление имени в таблицу функций</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>newfun(function_name, function_ptr)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,43 +32,43 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Специальная функция (только для экспертов). 
+            Специальная функция (только для экспертов).
         </para>
         <para>
             Добавляет имя<literal>function_name</literal> в таблицу функций, известных интерпретатору.
         </para>
         <para>
-            <literal>function_ptr</literal> целое число <literal>1000*fun+fin</literal>, где 
+            <literal>function_ptr</literal> целое число <literal>1000*fun+fin</literal>, где
             <literal>fun</literal> и <literal>fin</literal> являются внутренним кодом примитива
-            <literal>function_name</literal>. 
+            <literal>function_name</literal>.
         </para>
         <para>
-            Эта функция может быть полезная для связи примитива со шлюзом, вызываемым в 
+            Эта функция может быть полезная для связи примитива со шлюзом, вызываемым в
             <literal>"gw_user.c"</literal> (<literal>fun=14</literal>). Тем не менее, заметьте, что
-            функция <link linkend="ilib_build">ilib_build</link> является более лёгким способом расширить  
+            функция <link linkend="ilib_build">ilib_build</link> является более лёгким способом расширить
             Scilab новыми функциями, основанными на программном коде C, C++ или Fortran.
         </para>
         <para>
             Эта функция также может быть использована для добавления псевдонимов или для того, чтобы переименовать существующие функции-примитивы.
         </para>
         <para>
-            Используя вместе с <literal>funptr</literal> и <literal>clearfun</literal> можно добавить 
+            Используя вместе с <literal>funptr</literal> и <literal>clearfun</literal> можно добавить
             псевдоним или переименовать существующую функцию-примитив.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
      absptr=funptr("abs");// получить function_ptr, связанный с функцией abs
      newfun("abs_bis",absptr) // создать псевдоним функции abs
      abs_bis(-1+%i)
      clearfun("abs") // удалить abs, как известную функцию
-     
+
      //переопределить abs
      function y=abs(x)
 	y=abs_bis(real(x));
      endfunction
-     
+
      abs(-1+%i)
   ]]></programlisting>
     </refsection>

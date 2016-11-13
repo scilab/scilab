@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"  xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="nicholschart">
+    <refnamediv>
+        <refname>nicholschart</refname>
+        <refpurpose>Nichols chart</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>nicholschart([modules] [,args] [,colors])</synopsis>
+        <synopsis/>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>modules</term>
+                <listitem>
+                    <para>real vector ( modules (in dB))</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>args</term>
+                <listitem>
+                    <para>real vector (phases (in degree))</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>colorss</term>
+                <listitem>
+                    <para>a scalar or a vector, the color indices for isogain and iso phase curves</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para> plot the Nichols'chart: iso-module and iso-argument  contours of
+            <literal>y/(1+y)</literal> in <literal>y</literal> phase/gain plane
+        </para>
+        <para>
+            <literal>nicholschart</literal> may be used in conjunction with
+            <link linkend="black">black</link>.
+        </para>
+        <para>
+            The default values for <literal>modules</literal> and
+            <literal>args</literal> are respectively :
+        </para>
+        <para>
+            <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
+        </para>
+        <para>
+            <literal>[-(1:10) , -(20:10:160)]</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Remark</title>
+        <para>
+            Traditionally, the syntax for <code>nicholschart</code> is: nicholschart(modules=gains, args=phases, colors=colors),
+            but the following syntax is also allowed: nicholschart(gains, phases, colors).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    //Nichols chart
+    clf()
+    nicholschart(modules=[-6 -3 -1 1 3 6], args=[-1 -20 20 40 80 160 180]);
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                nicholschart(modules=[-6 -3 -1 1 3 6], args=[-1 -20 20 40 80 160 180]);
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+    //Black diagram with Nichols chart as a grid
+    s=poly(0,'s');
+    Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+    //two degree of freedom PID
+    tau=0.2;xsi=1.2;
+    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+    clf();
+    black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
+    //move the caption in the lower right corner
+    ax=gca();Leg=ax.children(1);
+    Leg.legend_location="in_lower_right";
+    nicholschart(colors=color('light gray')*[1 1])
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s');
+                Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+                //two degree of freedom PID
+                tau=0.2;xsi=1.2;
+                PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+                clf();
+                black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
+                //move the caption in the lower right corner
+                ax=gca();Leg=ax.children(1);
+                Leg.legend_location="in_lower_right";
+                nicholschart(colors=color('light gray')*[1 1])
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="black">black</link>
+            </member>
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+            <member>
+                <link linkend="hallchart">hallchart</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark> Syntax allowed: nicholschart(gains, phases, colors).</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

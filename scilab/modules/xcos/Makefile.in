@@ -19,22 +19,28 @@
 # Copyright (C) DIGITEO - 2009-2010 - Allan CORNET <allan.cornet@scilab.org>
 # Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 #
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
 # Copyright (C) 2008      - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 #
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 #
 
 ##########
@@ -189,7 +195,8 @@ am__objects_1 = src/jni/libscixcos_algo_la-Xcos.lo \
 	src/jni/libscixcos_algo_la-Modelica.lo \
 	src/jni/libscixcos_algo_la-JavaController_wrap.lo \
 	src/cpp/libscixcos_algo_la-xcosUtilities.lo \
-	src/cpp/libscixcos_algo_la-loadStatus.lo
+	src/cpp/libscixcos_algo_la-loadStatus.lo \
+	src/jni/libscixcos_algo_la-JavaXMIResource_wrap.lo
 am_libscixcos_algo_la_OBJECTS = $(am__objects_1)
 libscixcos_algo_la_OBJECTS = $(am_libscixcos_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -635,7 +642,8 @@ XCOS_CXX_SOURCES = \
     src/jni/Modelica.hxx \
     src/jni/JavaController_wrap.cxx \
     src/cpp/xcosUtilities.cpp \
-    src/cpp/loadStatus.cpp
+    src/cpp/loadStatus.cpp \
+    src/jni/JavaXMIResource_wrap.cxx
 
 GIWS_WRAPPERS = \
     src/jni/Xcos.giws.xml \
@@ -644,7 +652,9 @@ GIWS_WRAPPERS = \
     src/jni/Modelica.giws.xml
 
 SWIG_WRAPPERS = \
-    src/jni/JavaController.i
+    src/jni/JavaController.i \
+    src/jni/JavaXMIResource.i
+
 
 # FORCE directors due to a bug into swig
 SWIG_OPTIONS = -c++ -directors
@@ -675,6 +685,8 @@ libscixcos_la_CPPFLAGS = \
     -I$(srcdir)/src/cpp/ \
     -I$(srcdir)/src/c/ \
     -I$(top_srcdir)/modules/scicos/includes/ \
+    -I$(top_srcdir)/modules/scicos_blocks/includes/ \
+    -I$(top_srcdir)/modules/scicos_blocks/src/jni/ \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/ast/includes/ast/ \
@@ -692,8 +704,8 @@ libscixcos_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/commons/src/jni/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/fileio/includes/ \
-    -I$(top_srcdir)/modules/scicos_blocks/src/jni/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
+    $(XML_FLAGS) \
     $(JAVA_JNI_INCLUDE) \
     $(AM_CPPFLAGS)
 
@@ -710,6 +722,7 @@ libscixcos_disable_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/types/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes \
+    $(XML_FLAGS) \
     $(AM_CPPFLAGS)
 
 XCOS_DISABLE_C_SOURCES = src/noxcos/noxcos.c
@@ -726,7 +739,8 @@ INCLUDE_FLAGS = $(libscixcos_la_CPPFLAGS)
 libscixcos_la_LIBADD = libscixcos-algo.la \
 		$(top_builddir)/modules/scicos/libsciscicos.la \
 		$(top_builddir)/modules/commons/libscicommons.la \
-		$(top_builddir)/modules/jvm/libscijvm.la
+		$(top_builddir)/modules/jvm/libscijvm.la \
+		$(LIBXML_LIBS)
 
 
 #### xcos : gateway declaration ####
@@ -995,8 +1009,6 @@ images/palettes/SAWTOOTH_f.png \
 images/palettes/SCALAR2VECTOR.png \
 images/palettes/scifunc_block_m.png \
 images/palettes/SELECT_m.png \
-images/palettes/SELF_SWITCH_off.png \
-images/palettes/SELF_SWITCH_on.png \
 images/palettes/SELF_SWITCH.png \
 images/palettes/SHIFT.png \
 images/palettes/Sigbuilder.png \
@@ -1031,7 +1043,6 @@ images/palettes/VirtualCLK0.png \
 images/palettes/VoltageSensor.png \
 images/palettes/VsourceAC.png \
 images/palettes/VVsourceAC.png \
-images/palettes/WFILE_f.png \
 images/palettes/WRITEAU_f.png \
 images/palettes/WRITEC_f.png \
 images/palettes/ZCROSS_f.png
@@ -1217,6 +1228,8 @@ src/cpp/libscixcos_algo_la-xcosUtilities.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscixcos_algo_la-loadStatus.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/jni/libscixcos_algo_la-JavaXMIResource_wrap.lo:  \
+	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
 
 libscixcos-algo.la: $(libscixcos_algo_la_OBJECTS) $(libscixcos_algo_la_DEPENDENCIES) $(EXTRA_libscixcos_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscixcos_algo_la_rpath) $(libscixcos_algo_la_OBJECTS) $(libscixcos_algo_la_LIBADD) $(LIBS)
@@ -1327,6 +1340,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixcos_algo_la-loadStatus.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscixcos_algo_la-xcosUtilities.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscixcos_algo_la-JavaController_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscixcos_algo_la-JavaXMIResource_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscixcos_algo_la-Modelica.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscixcos_algo_la-Palette.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscixcos_algo_la-Xcos.Plo@am__quote@
@@ -1436,6 +1450,13 @@ src/cpp/libscixcos_algo_la-loadStatus.lo: src/cpp/loadStatus.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/loadStatus.cpp' object='src/cpp/libscixcos_algo_la-loadStatus.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscixcos_algo_la-loadStatus.lo `test -f 'src/cpp/loadStatus.cpp' || echo '$(srcdir)/'`src/cpp/loadStatus.cpp
+
+src/jni/libscixcos_algo_la-JavaXMIResource_wrap.lo: src/jni/JavaXMIResource_wrap.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscixcos_algo_la-JavaXMIResource_wrap.lo -MD -MP -MF src/jni/$(DEPDIR)/libscixcos_algo_la-JavaXMIResource_wrap.Tpo -c -o src/jni/libscixcos_algo_la-JavaXMIResource_wrap.lo `test -f 'src/jni/JavaXMIResource_wrap.cxx' || echo '$(srcdir)/'`src/jni/JavaXMIResource_wrap.cxx
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscixcos_algo_la-JavaXMIResource_wrap.Tpo src/jni/$(DEPDIR)/libscixcos_algo_la-JavaXMIResource_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/JavaXMIResource_wrap.cxx' object='src/jni/libscixcos_algo_la-JavaXMIResource_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscixcos_algo_la-JavaXMIResource_wrap.lo `test -f 'src/jni/JavaXMIResource_wrap.cxx' || echo '$(srcdir)/'`src/jni/JavaXMIResource_wrap.cxx
 
 sci_gateway/cpp/libscixcos_la-sci_Xcos.lo: sci_gateway/cpp/sci_Xcos.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_Xcos.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_Xcos.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_Xcos.lo `test -f 'sci_gateway/cpp/sci_Xcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_Xcos.cpp

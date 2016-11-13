@@ -24,8 +24,8 @@
     <refsection>
         <title>説明</title>
         <para>
-            <varname>level_int</varname> の値 0,1,2,3,4 により, 
-            <code>debug</code> はデバッグのレベルを定義します. 
+            <varname>level_int</varname> の値 0,1,2,3,4 により,
+            <code>debug</code> はデバッグのレベルを定義します.
             この関数はパーサ用で,
             Scilabスクリプト用ではなく, Scilabのエキスパート専用です.
         </para>
@@ -37,7 +37,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 debug(3);
 2+2
 //  0.200E+01

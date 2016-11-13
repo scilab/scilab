@@ -5,7 +5,7 @@
         <refpurpose>find an object with specified property</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             h =  findobj(propertyName, propertyValue)
         </synopsis>
@@ -44,7 +44,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Create a figure
 h=figure();
 // Put a text in the figure
@@ -61,7 +61,7 @@ close();
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="uicontrol">uicontrol</link>

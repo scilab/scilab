@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="copyfile" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>copies a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>copyfile(source, destination)
             [status, message] = copyfile(source, destination)
         </synopsis>
@@ -45,19 +48,19 @@
     <refsection>
         <title>Description</title>
         <para>
-            <code>copyfile(source,destination)</code> copies the file or 
+            <code>copyfile(source,destination)</code> copies the file or
             directory <varname>source</varname> (and subdirectories) to the file or
             directory <varname>destination</varname>.
         </para>
         <para>
-            If <varname>source</varname> is a directory, <varname>destination</varname> can not be a file. 
+            If <varname>source</varname> is a directory, <varname>destination</varname> can not be a file.
             <warning>
                 <code>copyfile</code> replaces existing files without warning.
             </warning>
         </para>
         <para>
             <code>[status, message] = copyfile(source, destination)</code>
-            copies <varname>source</varname> to <varname>destination</varname>, returning the <varname>status</varname> and a <varname>message</varname>. 
+            copies <varname>source</varname> to <varname>destination</varname>, returning the <varname>status</varname> and a <varname>message</varname>.
         </para>
         <para>
             Whatever the operating system, if the copy succeeds, the <varname>status</varname> is 1
@@ -71,13 +74,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"> 
+        <programlisting role="example">
             copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
             [status,message] = copyfile(SCI+"/etc/scilab.start",TMPDIR);
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="movefile">movefile</link>

@@ -5,7 +5,7 @@
         <refpurpose>generate special matrices, such as Hilbert, Franck</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[y] = testmatrix(name, n)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -65,11 +65,11 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 testmatrix('magi',3)
 testmatrix('frk',10)
 testmatrix('hilb',4)
  ]]></programlisting>
     </refsection>
-    
+
 </refentry>

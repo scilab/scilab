@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="setmenu">
+    <refnamediv>
+        <refname>setmenu</refname>
+        <refpurpose>対話的なボタン/メニュー有効化</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>setmenu(button [,nsub])
+            setmenu(gwin,button [,nsub])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>button</term>
+                <listitem>
+                    <para>文字列. ボタンの名前</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gwin</term>
+                <listitem>
+                    <para>整数. ボタンをインストールしたグラフィックウインドウの
+                        番号
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nsub</term>
+                <listitem>
+                    <para>
+                        整数.
+                        無効化するサブメニューの数.
+                        ボタンにサブメニューがない場合,
+                        <literal>nsub</literal>は無視されます
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数により,ユーザは<literal>addmenu</literal>
+            によりメインまたはグラフィックウインドウコマンドパネルに
+            作成された
+            ボタンまたはメニューを有効化できます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+addmenu('foo')   // scilabメインウインドウにボタンを新規作成
+unsetmenu('foo') // ボタンfooを無効化 (文字列は灰色)
+setmenu('foo')   // ボタンfooを有効化 (文字列は黒)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="delmenu">delmenu</link>
+            </member>
+            <member>
+                <link linkend="unsetmenu">unsetmenu</link>
+            </member>
+            <member>
+                <link linkend="addmenu">addmenu</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

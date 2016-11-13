@@ -2,141 +2,144 @@
 
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="tokenpos">
-    
+
     <refnamediv>
-        
+
         <refname>tokenpos</refname>
-        
+
         <refpurpose>文字列の中のトークンの位置を返す </refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>kdf = tokenpos(str [,delimiter])</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>str</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列. トークンを探す文字列.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>delimiter</term>
-                
+
                 <listitem>
-                    
+
                     <para>(オプション) 文字列または文字列のベクトル. トークンデリミタ.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>kdf</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         2列の行列で, 最初の列はトークン開始位置の添字,
-                        
+
                         2列目はトークンの最後の文字の添字を出力します.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <code>kdf = tokenpos(str [,delimiter])</code>は文字列
-            
+
             <varname>str</varname>に含まれるトークンを探します.
-            
-            <varname>delimiter</varname> のデフォルト値は 
-            
+
+            <varname>delimiter</varname> のデフォルト値は
+
             <literal>[" ",&lt;Tab&gt;]</literal>です.
-            
-            ただし,  <literal>&lt;Tab&gt;</literal> は<code>ascii(9)</code>を意味します. 
-            
+
+            ただし,  <literal>&lt;Tab&gt;</literal> は<code>ascii(9)</code>を意味します.
+
             この関数は各トークンが見つかった最初および最後の文字のインデックスを返します.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 str = 'This is a character string';
 kdf = tokenpos(str)
 first = part(str, kdf(1,1):kdf(1,2))
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="strindex">strindex</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="tokens">tokens</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

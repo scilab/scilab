@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added 32/64bits separation
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="test_run" xml:lang="fr">
+    <refnamediv>
+        <refname>test_run</refname>
+        <refpurpose>
+            Lance les tests unitaires et de non régression présents dans un module ou dans un répertoire. La passe de test vérifie d'abord que le test s'exécute sans erreur, puis que la sortie console (fichier <literal>dia</literal>) est conforme à un fichier de référence préalablement généré (fichier <literal>dia.ref</literal>).
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxe</title>
+        <synopsis>
+            status = test_run()
+            status = test_run(module)
+            status = test_run(module, test_name)
+            status = test_run(module, test_name, options, exportToFile)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>module</term>
+                <listitem>
+                    <para>
+                        Un tableau de chaînes de caractères ou <literal>[]</literal> (ou <literal>"[]"</literal>). Nom des modules ou répertoires à tester, tous les modules internes de scilab si <literal>[]</literal>
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                le nom d'un module interne de Scilab ("core", "time", ...) ou d'un sous-module ("optimization|neldermead").
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                le nom d'un module ATOMS ("module_lycee", "nisp", ...). Pour être pris en compte le module doit être chargé à l'appel de test_run().
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                le chemin absolu vers le répertoire d'un module.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>test_name</term>
+                <listitem>
+                    <para>
+                        Un tableau de chaînes de caractères ou <literal>[]</literal> (ou <literal>"[]"</literal>). Le nom des tests à exécuter lors de cette passe de tests, tous les tests si <literal>[]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>options</term>
+                <listitem>
+                    <para>
+                        Un tableau de chaînes de caractères ou <literal>[]</literal> (ou <literal>"[]"</literal>). Les options à utiliser pour la passe de test, les options par défaut si <literal>[]</literal>
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>"no_check_ref"</term>
+                            <listitem>
+                                <para>n'effectue pas la comparaison entre les fichiers .dia et .dia.ref</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"no_check_error_output"</term>
+                            <listitem>
+                                <para>ignore les messages affichés en sortie d'erreur standard. Cette option peut être utilisé pour certains messages présents en sortie d'erreur dans la localisation par exemple.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"create_ref"</term>
+                            <listitem>
+                                <para>génère un fichier .dia.ref (ignore la comparaison avec tout précédent fichier .dia.ref)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"show_error"</term>
+                            <listitem>
+                                <para>affiche les 10 dernières lignes d'exécution du script si un test échoue.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"show_diff"</term>
+                            <listitem>
+                                <para>
+                                    si une différence avec le fichier .dia.ref est trouvée, affiche la différence avec une commande <literal>diff -u</literal>
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"list"</term>
+                            <listitem>
+                                <para>liste les tests disponibles (aucun test n'est exécuté)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"help"</term>
+                            <listitem>
+                                <para>affiche des exemples d'utilisation de cette commande</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"mode_nw"</term>
+                            <listitem>
+                                <para>ajoute l'option "-nw" au lancement de chaque test</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"mode_nwni"</term>
+                            <listitem>
+                                <para>ajoute l'option "-nwni" au lancement de chaque test</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"mode_nwni_profiling"</term>
+                            <listitem>
+                                <para>ajoute les options "-nwni -profiling" pour permettre le profiling (seulement disponible sous linux)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"nonreg_tests"</term>
+                            <listitem>
+                                <para>lance uniquement les tests de non régression</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"unit_tests"</term>
+                            <listitem>
+                                <para>lance uniquement les tests unitaires</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"skip_tests"</term>
+                            <listitem>
+                                <para>
+                                    ignore les tests spécifiés dans <term>test_name</term>
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"enable_lt"</term>
+                            <listitem>
+                                <para>active les tests taggés à long temps d'exécution</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"short_summary"</term>
+                            <listitem>
+                                <para>n'affiche pas les statistiques complètes d'exécutions (seuls le nombre de tests exécutés, réussis, échoués et ignorés sont affichés sur une seule ligne de résumé)</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>exportToFile</term>
+                <listitem>
+                    <para>
+                        une chaîne de caractères. Chemin d'accès à un fichier d'export.
+                    </para>
+                    <para>
+                        Exporte le resultat de la passe de test dans le fichier XML <varname>exportToFile</varname>. Ce fichier suit le format XUnit.
+                        L'utilisation de cet argument d'entrée active automatiquement les options <literal>"show_diff"</literal> et <literal>"show_error"</literal>.
+                    </para>
+                    <para>
+                        Si le fichier spécifié par <varname>exportToFile</varname> existe préalablement, les résultats de tests sont ajoutés en fin de fichier.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>status</term>
+                <listitem>
+                    <para>
+                        Une valeur booléenne.
+                        Renvoie %t dans le cas où aucune erreur n'est détectée pour cette passe.
+                        Renvoie %f sinon.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Cherche les fichiers .tst dans les répertoires unit_tests et nonreg_tests, les exécute et affiche un résumé des succès et échecs pour la passe de test.
+            Les ficheirs .tst se trouvent dans les répertoire SCI+"/modules/*/tests/unit_tests" et SCI+"/modules/*/tests/nonreg_tests".
+        </para>
+        <para>
+            Tout d'abord, <literal>test_run</literal> vérifie que le test ne produit aucune erreur.
+            Si le test produit une erreur, le test est considéré en échec.
+        </para>
+        <para>
+            Ensuite, <literal>test_run</literal> s'assure que les commandes et l'affichage de leurs résultats dans la console sont conformes à un fichier de référence préalablement constitué. Chaque exécution d'un test donne lieu à un fichier <literal>.dia</literal> qui est comparé à une fichier <literal>.dia.ref</literal>.
+            Le fichier <literal>.dia.ref</literal> doit se trouver dans le même répertoire que le fichier <literal>.tst</literal> correspondant.
+            Si les deux fichiers sont différents le test est considéré en échec.
+        </para>
+        <para>
+            Des tags spécifiques insérés dans les fichiers .tst peuvent modifier la gestion des fichiers .tst. Ces tags se trouvent dans des commentaires Scilab présents dans le fichier de test.
+        </para>
+        <para>liste des tags disponbiles : </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    &lt;-- INTERACTIVE TEST --&gt;
+                    Le test est taggé Interactif. Les tests interactifs sont ignorés.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- LONG TIME EXECUTION --&gt;
+                    Le test est taggé comme étant long à exécuter. Ces test sont ignorés sauf si l'option <literal>"enable-lt"</literal> est spécifiée.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- NOT FIXED --&gt;
+                    Le test est taggé comme non corrigé. Les tests non corrigés sont ignorés.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- TEST WITH GRAPHIC --&gt;
+                    Ce test est taggé comme nécessitant les fonctionnalités graphiques de Scilab. Ils sont automatiquement exécutés avec l'option de lancement "-nw" (mode par défaut).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- NO TRY CATCH --&gt;
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- NO CHECK ERROR OUTPUT --&gt;
+                    La sortie d'erreur standard de scilab n'est pas vérifiée.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- NO CHECK REF --&gt;
+                    Les fichiers <literal>.dia</literal> et <literal>.dia.ref</literal> ne sont pas vérifiés.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- ENGLISH IMPOSED --&gt;
+                    Le test est lancé avec l'option <literal>-l en_US</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- FRENCH IMPOSED --&gt;
+                    Le test est lancé avec l'option <literal>-l fr_FR</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- CLI SHELL MODE --&gt;
+                    (anciennement &lt;-- JVM NOT MANDATORY --&gt; maintenant obsolète)
+                    Le test est exécuté avec l'option de lancement <literal>-nwni</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- WINDOWS ONLY --&gt;
+                    Ignore le test sur tout autre système d'exploitation que Windows.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- UNIX ONLY --&gt;
+                    Ignore le test sur tout autre système d'exploitation que Unix.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- LINUX ONLY --&gt;
+                    Ignore le test sur tout autre système d'exploitation que GNU/Linux.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- MACOSX ONLY --&gt;
+                    Ignore le test sur tout autre système d'exploitations que Mac OS X.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    &lt;-- XCOS TEST --&gt;
+                    Charge préalablement les librairies d'Xcos pour exécuter le test.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Chaque test est éxécuté dans un processus séparé, créé avec la commande <link linkend="host">host</link>.
+            Ceci permet de continuer à lancer les tests même si l'environnement exécutant le test est devenu instable suite aux commandes passées.
+            Cela permet aussi de rendre les tests indépendants les uns des autres.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Tests spécifiques à une platforme</title>
+        <para>
+            Il est possible que le résultat d'un test dépende de l'OS sur lequel il est exécuté.
+            Si tel est le cas, le fichier <literal>.ref</literal> peut dépendre d'une plateforme et le test peut échouer sur les autres plateformes.
+            Des fichiers <literal>.ref</literal> additionnels peuvent être créés avec des extensions spéciques à la plateforme :
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <literal>.unix.dia.ref</literal> pour la plateforme Unix,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>.linux.dia.ref</literal> pour la plateforme GNU/Linux,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>.linux32.dia.ref</literal> pour la plateforme GNU/Linux 32bits,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>.win.dia.ref</literal> pour la platforme Windows,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>.win32.dia.ref</literal> pour la plateforme Windows 32bits,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>.macosx.dia.ref</literal> pour la plateforme Max OS X.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            L'algorithme est le suivant :
+            D'abord les fichiers <literal>.ref</literal> sont sélectionnés pour le test. Si ces fichiers n'existent pas le fichier <literal>platform.ref</literal> est examiné pour la platforme sur lequel le test est lancé.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Sur les plateformes Windows : <literal>.win.dia.ref</literal>, <literal>.win32.dia.ref</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    sur les plateformes Mac OS : <literal>.unix.dia.ref</literal>, <literal>.macosx.dia.ref</literal>,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    sur les plateformes GNU/Linux : <literal>.unix.dia.ref</literal>, <literal>.linux.dia.ref</literal>, <literal>.linux32.dia.ref</literal>.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Lance tous les tests
+// Cela peut prendre du temps...
+// =============================================
+
+// test_run();
+// test_run([]);
+// test_run([],[]);
+// test_run("[]","[]");
+// test_run [] [];
+
+// Teste un ou plusieurs modules
+// =============================================
+
+// Teste un seul module
+test_run('time');
+
+// Teste plusieurs modules
+test_run(['time','string']);
+
+// Teste un sous-module
+test_run('optimization|neldermead');
+
+// Teste définit par le chemin d'accès
+test_run(SCI+'/modules/core');
+
+// Lance un test spécifique
+// =============================================
+
+// Un seul test
+test_run('time','datenum');
+
+// Plusieurs tests
+test_run('time',['datenum';'calendar']);
+
+// Ignorer plusieurs tests
+// =============================================
+
+test_run('time',['datenum';'calendar'],'skip_tests');
+
+// Options
+// =============================================
+
+// sans comparaison entre .dia et .dia.ref
+test_run('time','datenum','no_check_ref');
+
+// création d'un fichier .dia.ref
+// test_run([],[],'create_ref');
+
+// liste des tests disponibles
+test_run([],[],'list');
+
+// affichage des exemples d'utilisation de la commande
+test_run([],[],'help');
+
+// Exécution de tous les tests de non régression
+test_run([],[],'nonreg_test');
+
+// Exécution de tous les tests unitaires
+test_run([],[],'unit_test');
+
+// non vérification de la sortie d'erreur standard (std err)
+test_run('boolean','bug_2799','no_check_error_output');
+
+// Combinaisons d'options
+test_run([],[],['no_check_ref','mode_nw']);
+
+// Console mode
+test_run time [] no_check_ref //tests time module with no_check_ref option
+ ]]></programlisting>
+
+        <programlisting role="example"><![CDATA[
+// lance les tests d'un module externe
+test_run('SCI/contrib/toolbox_skeleton')
+ ]]></programlisting>
+
+        <programlisting role="example"><![CDATA[
+// Export XML Xunit
+test_run('boolean',[],[],TMPDIR+"/boolean_test_run.xml");
+test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Design interne</title>
+        <para>
+            Les tests sont exécutés dans un répertoire temporaire, non pas dans le repertoire les contenant.
+        </para>
+        <para>
+            Les scripts de tests ne sont pas exécutés tels qu'écrit, un en-tête et un pied de page spécifiques sont rajoutés à chaque test.
+            Le but est d'instrumenter le fichier de tests afin de rediriger les sorties dans un fichier de log spécique au test.
+        </para>
+        <para>
+            La durée d'exécution pour chaque test est fixé à 5 minutes. Pour
+            désactiver la terminaison du test après ce délai, utilisez le tag
+            <literal>LONG TIME EXECUTION</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>test_run renvoie un statut:
+                    <itemizedlist><listitem>
+                            Renvoie %t si aucune erreur n'est détectée
+                        </listitem>
+                        <listitem>
+                            Renvoie %f si une erreur est détectée
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        <literal>show_diff</literal> et <literal>show_error</literal> ajoutés comme nouvelles options
+                    </para>
+                    <para>
+                        tag <literal>CLI SHELL MODE</literal> ajouté. Remplace <literal>JVM NOT MANDATORY</literal> (toujours supporté)
+                    </para>
+                    <para>
+                        <literal>test_run</literal> peut fonctionner sur un module externe.
+                    </para>
+                    <para>
+                        Quatrième paramètre d'appel pour l'export vers un fichier XML XUnit
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>séparation 32/64bits disponible</revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    <para>mode profiling ajouté pour permettre l'analyse du profil d'exécution avec valgrind (Linux uniquement)</para>
+                    <para>
+                        durée d'exécution maximale d'un test sans <literal>LONG TIME EXECUTION</literal> configurée à 5 minutes.
+                    </para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

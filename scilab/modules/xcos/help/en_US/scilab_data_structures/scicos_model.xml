@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scicos_model">
+    <refnamediv>
+        <refname>scicos_model</refname>
+        <refpurpose>Define a model structure</refpurpose>
+    </refnamediv>
+    <refsection id="Module_scicos_model">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsect1 id="model_scicos_model">
+        <title>model</title>
+        <para>
+            Scilab object including simulation information concerning the features of the block. These information are used on the simulator to simulate the block. Most of these values are propagated to the compiled <link linkend="scicos_cpr">cpr</link> representation.
+        </para>
+        <para>
+            Type : scilab tlist of type <code>"model"</code> with fields :
+            <link linkend="scicos_block_model_sim">sim</link>,
+            <link linkend="scicos_block_model_in">in</link>,
+            <link linkend="scicos_block_model_in2">in2</link>,
+            <link linkend="scicos_block_model_intyp">intyp</link>,
+            <link linkend="scicos_block_model_out">out</link>,
+            <link linkend="scicos_block_model_out2">out2</link>,
+            <link linkend="scicos_block_model_outtyp">outtyp</link>,
+            <link linkend="scicos_block_model_evtin">evtin</link>,
+            <link linkend="scicos_block_model_evtout">evtout</link>,
+            <link linkend="scicos_block_model_state">state</link>,
+            <link linkend="scicos_block_model_dstate">dstate</link>,
+            <link linkend="scicos_block_model_odstate">odstate</link>,
+            <link linkend="scicos_block_model_rpar">rpar</link>,
+            <link linkend="scicos_block_model_ipar">ipar</link>,
+            <link linkend="scicos_block_model_opar">opar</link>,
+            <link linkend="scicos_block_model_blocktype">blocktype</link>,
+            <link linkend="scicos_block_model_firing">firing</link>,
+            <link linkend="scicos_block_model_dep_ut">dep_ut</link>,
+            <link linkend="scicos_block_model_label">label</link>,
+            <link linkend="scicos_block_model_nzcross">nzcross</link>,
+            <link linkend="scicos_block_model_nmode">nmode</link>,
+            <link linkend="scicos_block_model_equations">equations</link> and
+            <link linkend="scicos_block_model_uid">uid</link>.
+        </para>
+        <refsect2 id="scicos_block_model_sim">
+            <title>sim</title>
+            <para>
+                A list containing two elements. The first element is a string containing the name of the computational function (C, Fortran,or Scilab). The second element is an integer specifying the type of the computational function.
+            </para>
+            <para>
+                Currently type <code>4</code> and <code>5</code> are used, but older types continue to work to ensure backward compatibility. For some older case, sim can be a single string and that means that the type is supposed to be <code>0</code>.
+            </para>
+            <para>
+                Size : 2.
+            </para>
+            <para>
+                Type : Scilab list.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_funs">funs</link>
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_in">
+            <title>in</title>
+            <para>
+                A vector specifying the number and size of the first dimension of regular input ports indexed from top to bottom of the block. If no input port exist <code>in==[]</code>.
+            </para>
+            <para>
+                The size can be negative, equal to zero or positive :
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>If a size is less than zero, the compiler will
+                        try to find the appropriate size.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>If a size is equal to zero, the compiler will
+                        affect this dimension by added all positive size
+                        found in that vector
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>If a size is greater than zero, then the size is
+                        explicitly given.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                Size : number of regular input ports.
+            </para>
+            <para>
+                Type : column vector of integer numbers.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_inpptr">inpptr</link> , <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_inplnk">inplnk</link> and <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_state">state</link>.<link linkend="scicos_cpr_state_outtb">outtb</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_in2">
+            <title>in2</title>
+            <para>
+                A vector specifying the second dimension of regular input ports indexed from top to bottom of the block. <varname>in</varname> with <varname>in2</varname> formed then the regular input sizes matrix. For compatibility, this dimension can stay empty (<code>[]</code>). That means that the dimensions of input ports will be <code>[in,1]</code>
+            </para>
+            <para>
+                The size can be negative, equal to zero or positive :
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>If a size is less than zero, the compiler will
+                        try to find the appropriate size.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>If a size is equal to zero, the compiler will
+                        affect this dimension by added all positive size
+                        found in that vector.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>If a size is greater than zero, then the size is
+                        explicitly given.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                Size : number of regular input ports.
+            </para>
+            <para>
+                Type : column vector of integer numbers.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_inpptr">inpptr</link> , <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_inplnk">inplnk</link> and <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_state">state</link>.<link linkend="scicos_cpr_state_outtb">outtb</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_intyp">
+            <title>intyp</title>
+            <para>
+                A vector specifying the types of regular input ports. Its sizes is equal to the sizes of <varname>in</varname>.
+            </para>
+            <para>The types of regular input ports can be : </para>
+            <variablelist>
+                <varlistentry>
+                    <term>1</term>
+                    <listitem>
+                        <para>real matrix,</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>2</term>
+                    <listitem>
+                        <para>complex matrix,</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>3</term>
+                    <listitem>
+                        <para>int32 matrix,</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>4</term>
+                    <listitem>
+                        <para>int16 matrix,</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>5</term>
+                    <listitem>
+                        <para>int8 matrix,</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>6</term>
+                    <listitem>
+                        <para>uint32 matrix,</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>7</term>
+                    <listitem>
+                        <para>uint16 matrix,</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>8</term>
+                    <listitem>
+                        <para>uint8 matrix</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <para>
+                Size : number of regular input ports.
+            </para>
+            <para>
+                Type : column vector of integer numbers.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_inpptr">inpptr</link> , <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_inplnk">inplnk</link> and <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_state">state</link>.<link linkend="scicos_cpr_state_outtb">outtb</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_out">
+            <title>out</title>
+            <para>
+                A vector specifying the number and size of the first
+                dimension of regular output ports indexed from top to
+                bottom of the block. If no output port exist <code>out==[]</code>.
+            </para>
+            <para>
+                The size can be negative, equal to zero or positive :
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>If a size is less than zero, the compiler will
+                        try to find the appropriate size.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>If a size is equal to zero, the compiler will
+                        affect this dimension by added all positive size
+                        found in that vector.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>If a size is greater than zero, then the size is
+                        explicitly given.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                Size : number of regular output ports.
+            </para>
+            <para>
+                Type : column vector of integer numbers.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_outptr">outptr</link> , <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_outlnk">outlnk</link> and <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_state">state</link>.<link linkend="scicos_cpr_state_outtb">outtb</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_out2">
+            <title>out2</title>
+            <para>
+                A vector specifying the second dimension of regular output ports indexed from top to bottom of the block. <varname>out</varname> with <varname>out2</varname> formed then the regular output sizes matrix. For compatibility, this dimension can stay empty (<code>[]</code>). That means that the dimensions of output ports will be <code>out,1</code>
+            </para>
+            <para>
+                That dimension can be negative, equal to zero or positive :
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>If a size is less than zero, the compiler will
+                        try to find the appropriate size.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>If a size is equal to zero, the compiler will
+                        affect this dimension by added all positive size
+                        found in that vector.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>If a size is greater than zero, then the size is
+                        explicitly given.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                Size : number of regular output ports.
+            </para>
+            <para>
+                Type : column vector of integer numbers.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_outptr">outptr</link> , <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_outlnk">outlnk</link> and <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_state">state</link>.<link linkend="scicos_cpr_state_outtb">outtb</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_outtyp">
+            <title>outtyp</title>
+            <para>
+                A vector specifying the types of regular output ports. Its sizes is equal to the sizes of <varname>out</varname>.
+            </para>
+            <para>The types of regular output ports can be :</para>
+            <variablelist>
+                <varlistentry>
+                    <term>1</term>
+                    <listitem>
+                        <para>real matrix,</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>2</term>
+                    <listitem>
+                        <para>complex matrix,</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>3</term>
+                    <listitem>
+                        <para>int32 matrix,</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>4</term>
+                    <listitem>
+                        <para>int16 matrix,</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>5</term>
+                    <listitem>
+                        <para>int8 matrix,</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>6</term>
+                    <listitem>
+                        <para>uint32 matrix,</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>7</term>
+                    <listitem>
+                        <para>uint16 matrix,</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>8</term>
+                    <listitem>
+                        <para>uint8 matrix</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <para>
+                Size : number of regular output ports.
+            </para>
+            <para>
+                Type : column vector of integer numbers.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_outptr">outptr</link> , <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_outlnk">outlnk</link> and <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_state">state</link>.<link linkend="scicos_cpr_state_outtb">outtb</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_evtin">
+            <title>evtin</title>
+            <para>
+                A vector specifying the number and sizes of activation inputs. Currently activation ports can be only of size one. If no event input port exists evtin must be equal to <code>[]</code>.
+            </para>
+            <para>
+                Size : number of input event ports.
+            </para>
+            <para>
+                Type : column vector of integer numbers.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_clkptr">clkptr</link> , <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_state">state</link>.<link linkend="scicos_cpr_state_pointi">pointi</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_evtout">
+            <title>evtout</title>
+            <para>
+                A vector specifying the number and sizes of activation outputs. Currently activation ports can be only of size one. If no event output port exists <varname>evtout</varname> must be equal to <code>[]</code>.
+            </para>
+            <para>
+                Size : number of output event ports.
+            </para>
+            <para>
+                Type : column vector of integer numbers.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_ordptr">ordptr</link> , <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_ordclk">ordclk</link>, <link linkend="scicos_cpr">cpr</link> and <link linkend="scicos_state">state</link>.<link linkend="scicos_cpr_state_evtspt">evtspt</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_state">
+            <title>state</title>
+            <para>
+                Vector containing initial values of continuous-time state. Must be <code>[]</code> if no continuous state.
+            </para>
+            <para>
+                Size : number of continuous-time state.
+            </para>
+            <para>
+                Type : column vector of real numbers.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_state">state</link>.<link linkend="scicos_cpr_state_x">x</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_dstate">
+            <title>dstate</title>
+            <para>
+                Vector containing initial values of discrete-time state. Must be <code>[]</code> if no discrete state.
+            </para>
+            <para>
+                Size : number of discrete-time state.
+            </para>
+            <para>
+                Type : column vector of real numbers.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_state">state</link>.<link linkend="scicos_cpr_state_z">z</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_odstate">
+            <title>odstate</title>
+            <para>
+                List containing initial values of objects state. Must be <code>list()</code> if no objects state. Objects state can be any types of scilab variable.
+            </para>
+            <para>
+                In the computational function case of type <code>4</code> (C blocks)
+                only elements containing matrix of <literal>real</literal>, <literal>complex</literal>, <literal>int32</literal>, <literal>int16</literal> ,<literal>int8</literal> ,<literal>uint32</literal>, <literal>uit16</literal> and <literal>uint8</literal> will be correctly provided for reading or writing.
+            </para>
+            <para>
+                Size : number of objects state.
+            </para>
+            <para>
+                Type : scilab list of scilab objects.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_state">state</link>.<link linkend="scicos_cpr_state_oz">oz</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_rpar">
+            <title>rpar</title>
+            <para>
+                The vector of floating point block parameters. Must be <code>[]</code> if no floating point parameters.
+            </para>
+            <para>
+                Size : number of real parameters.
+            </para>
+            <para>
+                Type : column vector of real numbers.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_rpar">rpar</link> and <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_rpptr">rpptr</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_ipar">
+            <title>ipar</title>
+            <para>
+                The vector of integer block parameters. Must be <code>[]</code> if no integer parameters.
+            </para>
+            <para>
+                Size : number of integer parameters.
+            </para>
+            <para>
+                Type : column vector of integer numbers.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_ipar">ipar</link> and <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_ipptr">ipptr</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_opar">
+            <title>opar</title>
+            <para>
+                List of objects block parameters. Must be <code>list()</code> if no objects parameters. Objects parameters can be any types of scilab variable.
+            </para>
+            <para>
+                In the computational function case of type <code>4</code> (C blocks)
+                only elements containing matrix of <literal>real</literal>, <literal>complex</literal>, <literal>int32</literal>, <literal>int16</literal> ,<literal>int8</literal> ,<literal>uint32</literal>, <literal>uit16</literal> and <literal>uint8</literal> will be correctly provided for reading.
+            </para>
+            <para>
+                Size : number of objects parameters.
+            </para>
+            <para>
+                Type : list of scilab object.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_opar">opar</link> and <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_opptr">opptr</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_blocktype">
+            <title>blocktype</title>
+            <para>
+                Character that can be set to <code>'c'</code> or <code>'d'</code> indifferently for standard blocks. <code>'x'</code> is used if we want to force the computational function to be called during the simulation phase even if the block does not contribute to computation of the state derivative.
+            </para>
+            <para>
+                <code>'l'</code>, <code>'m'</code> and <code>'s'</code> are reserved. Not to be used.
+            </para>
+            <para>
+                Size : 1.
+            </para>
+            <para>
+                Type : Character.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_firing">
+            <title>firing</title>
+            <para>
+                Vector of initial event firing times of size equal to the number of activation output ports (see <varname>evout</varname>). It contains output initial event dates (Events generated before any input event arises). Negative values stands for no initial event on the corresponding port.
+            </para>
+            <para>
+                Size : number of output event ports.
+            </para>
+            <para>
+                Type : column vector of real numbers.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_state">state</link>.<link linkend="scicos_cpr_state_tevts">tevts</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_dep_ut">
+            <title>dep_ut</title>
+            <para>
+                Boolean vector <code>[dep_u, dep_t]</code> where values are :
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <varname>dep_t</varname>
+                    </para>
+                    <para>
+                        <code>%t</code> if block is always active. Output depends continuously of the time.
+                    </para>
+                    <para>
+                        For instance, the <link linkend="GENSIN_f">GENSIN_f</link> block computes <code>y=sin(t)</code> so <code>dep_ut=[%f %t]</code>.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <varname>dep_u</varname>
+                    </para>
+                    <para>
+                        <code>%t</code> if block has direct feed-through,
+                        i.e., at least one of the outputs depends
+                        directly (not through the states) on one
+                        of the inputs.
+                        In other words, when the computational
+                        function is called with flag <code>1</code>, the value
+                        of an input is used to compute the output.
+                    </para>
+                    <para>
+                        For instance, the <link linkend="SUM_f">SUM_f</link> block computes <code>y=u1+u2</code> so <code>dep_ut=[%t %f]</code>.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                Size : 2.
+            </para>
+            <para>
+                Type : Boolean vector.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_label">
+            <title>label</title>
+            <para>String that defines a label. It can be used to identify a block in order to access or modify its parameters during simulation.</para>
+            <para>
+                Size : 1.
+            </para>
+            <para>
+                Type : string.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_labels">labels</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_nzcross">
+            <title>nzcross</title>
+            <para>Number of zero-crossing surfaces.</para>
+            <para>
+                Size : Number of zero-crossing surfaces.
+            </para>
+            <para>
+                Type : column vector of integer numbers.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_ztyp">ztyp</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_nmode">
+            <title>nmode</title>
+            <para>Length of the mode register. Note that this gives the size of the vector mode and not the total number of modes in which a block can operate in. Suppose a block has 3 modes and each mode can take two values, then the block can have up to 23=8 modes.</para>
+            <para>
+                Size : Number of modes.
+            </para>
+            <para>
+                Type : column vector of integer numbers.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_modptr">modptr</link> .
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_equations">
+            <title>equations</title>
+            <para>Used in case of implicit blocks.</para>
+            <para>
+                Data structure of type modelica which contains modelica code description if any. That list contains four entries : <link linkend="scicos_block_model_equations_model">model</link>, <link linkend="scicos_block_model_equations_inputs">inputs</link>, <link linkend="scicos_block_model_equations_outputs">outputs</link> and <link linkend="scicos_block_model_equations_parameters">parameters</link>.
+            </para>
+            <refsect3 id="scicos_block_model_equations_model">
+                <title>model</title>
+                <para>
+                    a string given the name of the file that contains
+                    the modelica function.
+                </para>
+            </refsect3>
+            <refsect3 id="scicos_block_model_equations_inputs">
+                <title>inputs</title>
+                <para>
+                    a column vector of strings that contains the names of
+                    the modelica variables used as inputs.
+                </para>
+            </refsect3>
+            <refsect3 id="scicos_block_model_equations_outputs">
+                <title>outputs</title>
+                <para>
+                    a column vector of strings that contains the names of
+                    the modelica variables used as outputs.
+                </para>
+            </refsect3>
+            <refsect3 id="scicos_block_model_equations_parameters">
+                <title>parameters</title>
+                <para>
+                    a list with two entries. The first is a vector of strings
+                    for the name of modelica variable names used as parameters
+                    and the second entries is a list that contains the value of
+                    parameters.
+                </para>
+                <para>
+                    Names of modelica states can also be informed with
+                    parameters. In that case a third entry is used to do the
+                    difference between parameters and states.
+                </para>
+                <para>
+                    For i,e :
+                    <code>mo.parameters=list(['C','v'],list(C,v),[0,1])</code>
+                    means that <literal>C</literal> is a parameter(<literal>0</literal>) of value <literal>C</literal>, and <literal>v</literal>
+                    is a state(<literal>1</literal>) with initial value <literal>v</literal>.
+                </para>
+            </refsect3>
+            <para>
+                Size : 5.
+            </para>
+            <para>
+                Type : scilab list.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_block_model_uid">
+            <title>uid</title>
+            <para>Unique identifier string of the block (2^16 per host)</para>
+            <para>This identifier will be only set using the Xcos GUI. To set a specific value at bloc allocation, use the following code:</para>
+            <programlisting role="example">
+                jimport("java.rmi.server.UID");
+                juid =  jnewInstance("java.rmi.server.UID");
+                uid = juid.toString()
+            </programlisting>
+            <para>
+                Size : 1x1.
+            </para>
+            <para>
+                Type : String.
+            </para>
+            <para>
+                Compiled to : <link linkend="scicos_cpr">cpr</link>.<link linkend="scicos_sim">sim</link>.<link linkend="scicos_cpr_sim_uids">uids</link> .
+            </para>
+        </refsect2>
+    </refsect1>
+</refentry>

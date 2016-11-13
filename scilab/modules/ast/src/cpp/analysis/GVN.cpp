@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -123,23 +126,28 @@ GVN::Value * GVN::getExistingValue(const symbol::Symbol & sym)
     }
 }
 
+GVN::Value * GVN::getValue(const int64_t x)
+{
+    const auto i = mapi64.find(x);
+    if (i == mapi64.end())
+    {
+        GVN::Value & value = mapi64.emplace(x, current++).first->second;
+        insertValue(x, value);
+
+        return &value;
+    }
+    else
+    {
+        return &i->second;
+    }
+}
+
 GVN::Value * GVN::getValue(const double x)
 {
     int64_t _x;
     if (tools::asInteger(x, _x))
     {
-        const auto i = mapi64.find(_x);
-        if (i == mapi64.end())
-        {
-            GVN::Value & value = mapi64.emplace(_x, current++).first->second;
-            insertValue(_x, value);
-
-            return &value;
-        }
-        else
-        {
-            return &i->second;
-        }
+        return getValue(_x);
     }
 
     return nullptr;
@@ -246,13 +254,13 @@ std::ostream & operator<<(std::ostream & out, const GVN & gvn)
     // Don't remove: useful to debug
 
     /*const bool show_collisions = true;
-    out << std::endl << L"Map polynomials stats:" << std::endl;
+    out << std::endl << "Map polynomials stats:" << std::endl;
     tools::printMapInfo(out, gvn.mapp, show_collisions);
 
-    out << std::endl << L"Map constants stats:" << std::endl;
+    out << std::endl << "Map constants stats:" << std::endl;
     tools::printMapInfo(out, gvn.mapi64, show_collisions);
 
-    out << std::endl << L"Map values stats:" << std::endl;
+    out << std::endl << "Map values stats:" << std::endl;
     tools::printMapInfo(out, gvn.mapv, show_collisions);*/
 
     return out;

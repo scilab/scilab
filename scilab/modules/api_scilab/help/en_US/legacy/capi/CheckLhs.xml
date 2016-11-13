@@ -9,7 +9,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>CheckLhs(nb_min_params,nb_max_params)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -61,7 +61,7 @@
             This function has been replaced by <link linkend="CheckOutputArgument">CheckOutputArgument</link>.
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
         <programlisting role="code_gateway"><![CDATA[
@@ -78,9 +78,9 @@ int sci_my_function(char *fname, unsigned long l)
 }
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="CheckOutputArgument">CheckOutputArgument</link>

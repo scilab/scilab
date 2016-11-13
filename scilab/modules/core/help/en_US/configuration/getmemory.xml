@@ -5,7 +5,7 @@
         <refpurpose>returns free and total system memory</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[free, total]=getmemory()</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,5 +30,5 @@
 [a,b]=getmemory()
  ]]></programlisting>
     </refsection>
-    
+
 </refentry>

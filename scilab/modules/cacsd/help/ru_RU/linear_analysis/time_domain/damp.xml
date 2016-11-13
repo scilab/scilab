@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en_US" xml:id="damp">
+    <refnamediv>
+        <refname>damp</refname>
+        <refpurpose>Natural frequencies and damping factors. </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            [wn,z] = damp(sys)
+            [wn,z] = damp(P [,dt])
+            [wn,z] = damp(R [,dt])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>sys</term>
+                <listitem>
+                    <para>
+                        A linear dynamical system (see <link linkend="syslin">syslin</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        An array of polynomials.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R</term>
+                <listitem>
+                    <para>
+                        An array of real or complex floating point numbers.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dt</term>
+                <listitem>
+                    <para>
+                        A non negative scalar, with default value 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wn</term>
+                <listitem>
+                    <para>
+                        vector of floating point numbers in increasing
+                        order: the natural pulsation in rad/s.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>
+                        vector of floating point numbers: the damping factors.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The denominator second order continuous time transfer function
+            with complex poles can be written as <literal>s^2 + 2*z*wn*s + wn^2</literal> where <literal>z</literal>
+            is the damping factor and <literal>wn</literal> the natural pulsation.
+        </para>
+        <para>
+            If <literal>sys</literal> is a continuous time system,
+            <literal>[wn,z] = damp(sys)</literal> returns in <literal>wn</literal> the natural
+            pulsation <latex>\omega_n</latex>(in rad/s) and in <literal>z</literal> the damping factors
+            <latex>\xi</latex> of the poles of the linear dynamical system
+            <literal>sys</literal>. The <literal>wn</literal> and
+            <literal>z</literal> arrays are ordered according to the increasing
+            pulsation order.
+        </para>
+        <para>
+            If <literal>sys</literal> is a discrete time system
+            <literal>[wn,z] = damp(sys)</literal> returns in
+            <literal>wn</literal> the natural pulsation
+            <latex>\omega_n</latex>(in rad/s) and in <literal>z</literal> the
+            damping factors <latex>\xi</latex> of the continuous time
+            equivalent poles of <literal>sys</literal>. The
+            <literal>wn</literal> and <literal>z</literal> arrays are
+            ordered according to the increasing pulsation order.
+        </para>
+        <para>
+            <literal>[wn,z] = damp(P)</literal> returns in
+            <literal>wn</literal> the natural pulsation
+            <latex>\omega_n</latex>(in rad/s) and in <literal>z</literal> the
+            damping factors <latex>\xi</latex> of the set of roots of the polynomials
+            stored in the <literal>P</literal> array. If
+            <literal>dt</literal> is given and non 0, the roots are first
+            converted to their continuous time equivalents.
+
+            The <literal>wn</literal> and <literal>z</literal> arrays are ordered
+            according to the increasing pulsation order.
+        </para>
+        <para>
+            <literal>[wn,z] = damp(R)</literal> returns in
+            <literal>wn</literal> the natural pulsation
+            <latex>\omega_n</latex>(in rad/s) and in <literal>z</literal> the
+            damping factors <latex>\xi</latex> of the set of roots stored in the
+            <literal>R</literal> array.
+
+            If <literal>dt</literal> is given and non 0, the roots are first
+            converted to their continuous time equivalents.
+            <literal>wn(i)</literal> and <literal>z(i)</literal> are the the
+            natural pulsation and damping factor of <literal>R(i)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    s = %s;
+    num = 22801 + 4406.18*s + 382.37*s^2 + 21.02*s^3 + s^4;
+    den = 22952.25 + 4117.77*s + 490.63*s^2 + 33.06*s^3 + s^4
+    h = syslin('c', num/den);
+    [wn,z] = damp(h)
+    ]]></programlisting>
+        <para>
+            The following example illustrates the effect of the damping factor on
+            the frequency response of a second order system.
+        </para>
+        <programlisting role="example"><![CDATA[
+   s = %s;
+   wn = 1;
+   clf();
+   Z = [0.95 0.7 0.5 0.3 0.13 0.0001];
+   for k=1:size(Z,'*')
+     z = Z(k)
+     H = syslin('c', 1 + 5*s + 10*s^2, s^2 + 2*z*wn*s + wn^2);
+     gainplot(H, 0.01, 1)
+     p = gce();
+     p = p.children;
+     p.foreground = k;
+   end
+   title("$\frac{1+5 s+10 s^2}{\omega_n^2+2\omega_n\xi s+s^2}, \quad \omega_n=1$")
+   legend('$\xi = '+string(Z)+'$')
+   plot(wn/(2*%pi)*[1 1], [0 70], 'r') // Natural pulsation
+   ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=%s;
+                wn=1;
+                clf();
+                Z=[0.95 0.7 0.5 0.3 0.13 0.0001];
+                for k=1:size(Z,'*')
+                z=Z(k)
+                H=syslin('c',1+5*s+10*s^2,s^2+2*z*wn*s+wn^2);
+                gainplot(H,0.01,1)
+                p=gce();p=p.children;
+                p.foreground=k;
+                end
+                title("$\frac{1+5 s+10 s^2}{\omega_n^2+2\omega_n\xi s+s^2}, \quad \omega_n=1$")
+                legend('$\xi='+string(Z)+'$')
+                plot(wn/(2*%pi)*[1 1],[0 70],'r')
+            </scilab:image>
+        </para>
+        <para>
+            Computing the natural pulsations and daping ratio for a set of roots:
+        </para>
+        <programlisting role="example"><![CDATA[
+    [wn,z] = damp((1:5)+%i)
+    ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="spec">spec</link>
+            </member>
+            <member>
+                <link linkend="roots">roots</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

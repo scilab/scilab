@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -39,7 +42,7 @@ class EXTERN_AST RunVisitor : public ConstVisitor
 public:
     RunVisitor()
     {
-        _excepted_result = -1;
+        _expected_result = -1;
         _resultVect.push_back(nullptr);
         _result = nullptr;
         m_bSingleResult = true;
@@ -95,12 +98,12 @@ public:
 public:
     int getExpectedSize(void)
     {
-        return _excepted_result;
+        return _expected_result;
     }
 
     void setExpectedSize(int _iSize)
     {
-        _excepted_result = _iSize;
+        _expected_result = _iSize;
     }
 
     int getResultSize(void)
@@ -260,10 +263,18 @@ public:
         }
     }
 
-    void cleanOpt(const types::optional_list & opt)
+    void cleanOpt(const types::optional_list & opt, const types::typed_list & out)
     {
         if (!opt.empty())
         {
+            for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
+            {
+                if (*o)
+                {
+                    (*o)->IncreaseRef();
+                }
+            }
+
             for (types::optional_list::const_iterator o = opt.begin(); o != opt.end(); ++o)
             {
                 if (o->second)
@@ -271,6 +282,14 @@ public:
                     //decreasef ref after increaseref in callexp
                     o->second->DecreaseRef();
                     o->second->killMe();
+                }
+            }
+
+            for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
+            {
+                if (*o)
+                {
+                    (*o)->DecreaseRef();
                 }
             }
         }
@@ -283,7 +302,7 @@ protected:
     std::vector<types::InternalType*>    _resultVect;
     types::InternalType*    _result;
     bool m_bSingleResult;
-    int _excepted_result;
+    int _expected_result;
     symbol::Variable* m_pAns;
 };
 

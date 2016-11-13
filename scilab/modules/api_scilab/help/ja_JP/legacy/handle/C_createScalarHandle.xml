@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="createScalarHandle" xml:lang="ja">
+    <refnamediv>
+        <refname>createScalarHandle</refname>
+        <refpurpose>
+            Scilabメモリにスカラーハンドル変数を作成.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>int createScalarHandle(void* _pvCtx, int _iVar, long long _llHandle)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        変数を保存するScilabメモリの位置.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_llHandle</term>
+                <listitem>
+                    <para>
+                        ハンドルの値.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>戻り値</title>
+        <para>成功した場合は 0, それ以外はScilabコンソールにエラーメッセージを出力し,
+            最初のエラー番号を返します.
+        </para>
+    </refsection>
+    <title>履歴</title>
+    <revhistory>
+        <revision>
+            <revnumber>5.5.0</revnumber>
+            <revremark>この関数はScilab 5.5.0で追加されました</revremark>
+        </revision>
+    </revhistory>
+</refentry>

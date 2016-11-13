@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Farid BELAHCENE
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function yi=interp1(varargin)
 
@@ -61,13 +64,7 @@ function yi=interp1(varargin)
     //xi components must be reals
     xi=varargin(3)
     if type(xi)<>1 then
-        if typeof(xi)=="hypermat" then
-            if type(xi.entries)<>1 then
-                error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"interp1",3));
-            end
-        else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"interp1",3));
-        end
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"interp1",3));
     end
     //delete the dimension of xi equal to one after the second dimension
     //or the first dimension
@@ -93,13 +90,7 @@ function yi=interp1(varargin)
     end
     //y components must be reals
     if type(y)<>1 then
-        if typeof(y)=="hypermat" then
-            if type(y.entries)<>1 then
-                error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"interp1",2));
-            end
-        else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"interp1",2));
-        end
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"interp1",2));
     end
     //verification of x,y line/column
     if isvector(x) then
@@ -197,7 +188,7 @@ function yi=interp1(varargin)
             xitemp=matrix(xi,-1,1)
             // y is a vector
             if isvector(y) then
-                yi=hypermat(size(xitemp))
+                yi = resize_matrix(0, size(xitemp))
                 [x,ind]=gsort(matrix(x,1,-1),"c","i")
                 if varargin(5)==%nan then
                     yi=linear_interpn(xitemp,x,y(ind),"by_nan");
@@ -225,7 +216,7 @@ function yi=interp1(varargin)
             elseif size(size(y),"*")>=2 then
                 ysize=size(y)
                 ky=ysize(2:$)
-                yi=hypermat([size(xitemp),ky])
+                yi = resize_matrix(0, [size(xitemp) ky])
                 [x,ind]=gsort(matrix(x,1,-1),"c","i")
                 //extrapolation
                 if type(varargin(5))==10 then
@@ -275,7 +266,7 @@ function yi=interp1(varargin)
             xitemp=matrix(xi,-1,1)
             //y is a vector
             if isvector(y) then
-                yi=hypermat(size(xitemp))
+                yi = resize_matrix(0, size(xitemp))
                 yi=interp(xitemp,matrix(x,1,-1),matrix(y,1,-1),splin(matrix(x,1,-1),matrix(y,1,-1)),"natural");
                 if type(varargin(5))==10 then
                     if varargin(5)<>"extrap" then
@@ -294,7 +285,7 @@ function yi=interp1(varargin)
             elseif size(size(y),"*")>=2 then
                 ky=size(y)
                 ky=ky(2:$)
-                yi=hypermat([size(xitemp),ky])
+                yi = resize_matrix(0, [size(xitemp) ky])
                 for l=1:size(y,"*")/size(y,1)
                     yi(:,l)=matrix(interp(matrix(xi,-1,1),matrix(x,-1,1),y(:,l),splin(matrix(x,-1,1),y(:,l)),"natural"),size(xitemp))//les composante de yi
                 end
@@ -390,7 +381,7 @@ function yi=interp1(varargin)
                 [xitemp,p]=gsort(xitemp(knotnan),"c","i")
                 ind=size(y)
                 ind=ind(2:$)
-                yi=hypermat([size(xitemp,"*"),ind])
+                yi = resize_matrix(0, [size(xitemp,"*") ind])
                 k=zeros(xitemp)
                 x_size=size(x,"*")
                 j=size(xitemp,"*")
@@ -431,7 +422,7 @@ function yi=interp1(varargin)
                     yi(p,l)=yitemp(:,l)
                 end
                 yitemp=yi
-                yi=hypermat([size(xi,"*"),ind])
+                yi = resize_matrix(0, [size(xi,"*") ind])
                 for l=1:size(y,"*")/size(y,1)
                     yi(knan,l)=%nan
                     yi(knotnan,l)=yitemp(:,l)

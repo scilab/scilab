@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="ndgrid" xml:lang="fr">
+    <refnamediv>
+        <refname>ndgrid</refname>
+        <refpurpose>construit des matrices ou hypermatrices en répliquant des vecteurs
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquences d'appel</title>
+        <synopsis>
+            [X, Y] = ndgrid(x,y)
+            [X, Y, Z] = ndgrid(x,y,z)
+            [X, Y, Z, T] = ndgrid(x,y,z,t)
+            [X1, X2, ..., Xm] = ndgrid(x1,x2,...,xm)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y, z, ...</term>
+                <listitem>
+                    <para>vecteurs de types simples quelconques possiblement
+                        distincts (booléens,
+                        entiers encodés, décimaux, complexes, polynômes, rationnels,
+                        textes).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X, Y, Z, ...</term>
+                <listitem>
+                    <para>Matrices (si seulement 2 vecteurs d'entrée),
+                        ou hypermatrices, toutes de tailles identiques :
+                       size(x,"*") lignes, size(y,"*") colonnes,
+                        size(z,"*") feuilles, etc.
+                  </para>
+                  <para>Par ailleurs,
+                        <varname>X</varname> a le type de <varname>x</varname>;
+                        <varname>Y</varname> a le type de <varname>y</varname>;
+                        etc.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            La première application de <function>ndgrid</function> consiste à
+            construire une grille multidimensionnelle de noeuds échantillonnant
+            l'espace 2D ou 3D ou N-D, à partir de 2, 3 ou N vecteurs
+            <literal>x</literal>, <literal> y</literal>, etc.. indiquant
+            l'échantillonage de chaque direction de l'espace.
+        </para>
+        <para>Pour ce faire,
+            <itemizedlist>
+                <listitem>la matrice ou l'hypermatrice <literal>X</literal>
+                est construite en répliquant le vecteur  <literal>x</literal>
+                dans toutes ses colonnes ;
+            </listitem>
+            <listitem>
+                la matrice ou l'hypermatrice <literal>Y</literal>
+                est construite en répliquant le vecteur  <literal>y</literal>
+                dans toutes ses lignes ;
+            </listitem>
+            <listitem>
+                la matrice ou l'hypermatrice <literal>Z</literal>
+                est construite en répliquant le vecteur  <literal>z</literal>
+                en épaisseur pour tous les points (x,y) ;
+                etc.
+            </listitem>
+        </itemizedlist>
+    </para>
+    <screen><![CDATA[--> [X, Y] = ndgrid([1 3 4], [0 2 4 6])
+ X  =
+   1.   1.   1.   1.
+   3.   3.   3.   3.
+   4.   4.   4.   4.
+
+ Y  =
+   0.   2.   4.   6.
+   0.   2.   4.   6.
+   0.   2.   4.   6.
+]]>
+    </screen>
+    <para>
+        Les coordonnées du noeud node(i,j) dans l'espace 2D seront alors
+        simplement <literal>[x(i), y(j)]</literal> maintenant données par
+        <literal>[X(i,j), Y(i,j)]</literal>. De même, les coordonnées du noeud
+        <literal>node(i,j,k)</literal> dans une grille 3D seront
+        <literal>[x(i), y(j), z(k)]</literal> données par
+        <literal>[X(i,j,k), Y(i,j,k), Z(i,j,k)]</literal>.
+    </para>
+    <para>Ce schéma de construction par réplication peut être utilisé
+        pour construire une grille à un nombre N quelconque de dimensions.
+        Par ailleurs, il est indépendant de la nature des vecteurs de base répliqués
+        et peut donc être utilisé pour tous les types de données uniformes.
+        A titre d'exemple, considérons un ensemble d'objets ayant tous 2 attributs :
+        <orderedlist>
+            <listitem>
+                Le premier est un nombre <literal>n</literal>,
+                avec 2 valeurs possibles, par exemple: <literal>n = [ 3 7 ]</literal>
+            </listitem>
+            <listitem>Le second est une lettre, avec 6 choix possibles,
+                par exemple: <literal>c = ["a" "e" "i" "o" "u" "y"]</literal>
+            </listitem>
+        </orderedlist>
+        Nous souhaitons maintenant générer l'ensemble complet des
+        objets {n,c} possibles. Il s'agit juste d'une grille 2D
+        d'<literal>objets</literal> :
+    </para>
+    <screen><![CDATA[--> [N, C] = ndgrid([3 7],["a" "e" "i" "o" "u" "y"])
+ C  =
+!a  e  i  o  u  y  !
+!a  e  i  o  u  y  !
+
+ N  =
+   3.   3.   3.   3.   3.   3.
+   7.   7.   7.   7.   7.   7.
+]]></screen>
+    <para>De là, l'objet(i,j) aura les attributs
+        <literal>{n(i) c(j)}</literal> que l'on pourra maintenant désigner par
+        <literal>{N(i,j) C(i,j)}</literal>.
+        Ce type de grille pourra être utilisée pour initialiser un tableau
+        2D de structures ayant 2 champs <literal>n</literal> et <literal>c</literal>.
+    </para>
+    <para>Les exemples suivants montrent comment utiliser les matrices ou
+        hypermatrices <varname>X, Y, Z</varname> produites, pour des applications
+        usuelles.
+    </para>
+</refsection>
+<refsection role="examples">
+    <title>Exemples</title>
+    <para>
+        <emphasis role="bold">Exemple #1:</emphasis>
+    </para>
+    <programlisting role="example"><![CDATA[
+// Créons une grille de points {X,Y}
+x = linspace(-10,2,40);
+y = linspace(-5,5,40);
+[X,Y] = ndgrid(x,y); // x et y sont répliqués pour créer la grille
+
+// Calculons des ordonnées Z(X,Y) et traçons Z(X,Y) :
+Z = X - 3*X.*sin(X).*cos(Y-4) ;
+
+clf()
+plot3d(x,y,Z, flag=[color("green") 2 4], alpha=7, theta=60); show_window()
+ ]]></programlisting>
+    <scilab:image>
+        x = linspace(-10,2,40);
+        y = linspace(-5,5,40);
+        [X,Y] = ndgrid(x,y);
+        Z = X - 3*X.*sin(X).*cos(Y-4) ;
+        clf()
+        plot3d(x,y,Z, flag=[color("green") 2 4], alpha=7, theta=60); show_window()
+    </scilab:image>
+    <para>
+        <emphasis role="bold">Exemple #2:</emphasis>
+    </para>
+    <programlisting role="example"><![CDATA[
+// Créons une grille en 3 dimensions
+nx = 10; ny = 6; nz = 4;
+x = linspace(0,2,nx);
+y = linspace(0,1,ny);
+z = linspace(0,0.5,nz);
+[X,Y,Z] = ndgrid(x,y,z);
+
+// Nous choisissons ici une représentation cartésienne, mais l'on pourrait
+// aussi travailler en coordonnées cylindriques, sphériques, ou autres.
+// Transformons les coordonnées pour plot3d() :
+XF=[]; YF=[]; ZF=[];
+for k=1:nz
+   [xf,yf,zf] = nf3d(X(:,:,k),Y(:,:,k),Z(:,:,k));
+   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
+end
+for j=1:ny
+   [xf,yf,zf] = nf3d(matrix(X(:,j,:),[nx,nz]),...
+                     matrix(Y(:,j,:),[nx,nz]),...
+                     matrix(Z(:,j,:),[nx,nz]));
+   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
+end
+
+// Affichage :
+clf()
+plot3d(XF,YF,ZF, flag=[0 6 3], 66, 61, leg="X@Y@Z")
+xtitle("A 3d grid !"); show_window()
+ ]]></programlisting>
+    <scilab:image>
+        nx = 10; ny = 6; nz = 4;
+        x = linspace(0,2,nx);
+        y = linspace(0,1,ny);
+        z = linspace(0,0.5,nz);
+        [X,Y,Z] = ndgrid(x,y,z);
+        XF=[]; YF=[]; ZF=[];
+        for k=1:nz
+        [xf,yf,zf] = nf3d(X(:,:,k),Y(:,:,k),Z(:,:,k));
+        XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
+        end
+        for j=1:ny
+        [xf,yf,zf] = nf3d(matrix(X(:,j,:),[nx,nz]),...
+        matrix(Y(:,j,:),[nx,nz]),...
+        matrix(Z(:,j,:),[nx,nz]));
+        XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf];
+        end
+        plot3d(XF,YF,ZF, flag=[0 6 3], 66, 61, leg="X@Y@Z")
+        xtitle("A 3d grid !");
+    </scilab:image>
+    <para>
+        <emphasis role="bold">Exemple #3: création d'une table de digrammes</emphasis>
+    </para>
+    <programlisting role="example"><![CDATA[
+[c1, c2] = ndgrid(["a" "b" "c"], ["a" "b" "c" "d" "e" "f" "g" "h"])
+c1+c2
+ ]]></programlisting>
+    <screen><![CDATA[--> [c1, c2] = ndgrid(["a" "b" "c"], ["a" "b" "c" "d" "e" "f" "g" "h"])
+ c2  =
+!a  b  c  d  e  f  g  h  !
+!a  b  c  d  e  f  g  h  !
+!a  b  c  d  e  f  g  h  !
+
+ c1  =
+!a  a  a  a  a  a  a  a  !
+!b  b  b  b  b  b  b  b  !
+!c  c  c  c  c  c  c  c  !
+
+--> c1+c2
+ ans  =
+!aa  ab  ac  ad  ae  af  ag  ah  !
+!ba  bb  bc  bd  be  bf  bg  bh  !
+!ca  cb  cc  cd  ce  cf  cg  ch  !
+]]></screen>
+</refsection>
+<refsection role="see also">
+    <title>Voir aussi</title>
+    <simplelist type="inline">
+        <member>
+            <link linkend="meshgrid">meshgrid</link>
+        </member>
+        <member>
+            <link linkend="kron">kron</link>
+        </member>
+        <member>
+            <link linkend="feval">feval</link>
+        </member>
+        <member>
+            <link linkend="nf3d">nf3d</link>
+        </member>
+    </simplelist>
+</refsection>
+<refsection role="history">
+    <title>Historique</title>
+    <revhistory>
+        <revision>
+            <revnumber>6.0</revnumber>
+            <revdescription>Extension à tous les types de données uniformes ([], booleans, encoded integers, polynomials, rationals, strings). Révision de la page d'aide.
+            </revdescription>
+        </revision>
+    </revhistory>
+</refsection>
+</refentry>

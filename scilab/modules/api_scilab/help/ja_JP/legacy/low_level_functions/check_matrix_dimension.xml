@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="check_matrix_dimension" xml:lang="ja">
+    <refnamediv>
+        <refname>変数の次元を確認 (Scilabゲートウェイ)</refname>
+        <refpurpose>変数の次元を調べる C ゲートウェイ関数.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>int checkVarDimension(void* _pvCtx, int* _piAddress, int _iRows, int _iCols)</synopsis>
+        <synopsis>int isRowVector(void* _pvCtx, int* _piAddress)</synopsis>
+        <synopsis>int isColumnVector(void* _pvCtx, int* _piAddress)</synopsis>
+        <synopsis>int isVector(void* _pvCtx, int* _piAddress)</synopsis>
+        <synopsis>int isScalar(void* _pvCtx, int* _piAddress)</synopsis>
+        <synopsis>int isSquareMatrix(void* _pvCtx, int* _piAddress)</synopsis>
+        <synopsis>int isEmptyMatrix(void* _pvCtx, int* _piAddress)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.hで定義される "pvApiCtx" を指定
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Scilab変数のアドレス.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>予定する行数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>予定する列数</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            変数の次元を調べるCゲートウェイ関数.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <para>
+            この例では, Cインターフェイス関数は複数の入力引数をとり,
+            入力の次元と複数のテスト結果を出力します.
+        </para>
+        <programlisting role="example">
+            <![CDATA[
+#include "api_scilab.h"
+#include "sciprint.h"
+int check_matrix_dimension(char * fname)
+{
+    SciErr sciErr;
+    int* piAddr = NULL;
+    int iRows = 0;
+    int iCols = 0;
+    CheckInputArgument(pvApiCtx, 1, 1);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+    sciErr = getVarDimension(pvApiCtx, piAddr, &iRows, &iCols);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+    if(checkVarDimension(pvApiCtx, piAddr, iCols, iRows))
+    {
+        sciprint("checkVarDimension returns false\n");
+    }
+    else
+    {
+        sciprint("checkVarDimension returns true\n");
+    }
+    if(isRowVector(pvApiCtx, piAddr))
+    {
+        sciprint("isRowVector\n");
+    }
+    if(isColumnVector(pvApiCtx, piAddr))
+    {
+        sciprint("isColumnVector\n");
+    }
+    if(isVector(pvApiCtx, piAddr))
+    {
+        sciprint("isVector\n");
+    }
+    if(isScalar(pvApiCtx, piAddr))
+    {
+        sciprint("isScalar\n");
+    }
+    if(isSquareMatrix(pvApiCtx, piAddr))
+    {
+        sciprint("isSquareMatrix\n");
+    }
+    if(isEmptyMatrix(pvApiCtx, piAddr))
+    {
+        sciprint("isEmptyMatrix\n");
+    }
+    //no return value
+    AssignOutputVariable(pvApiCtx, 0) = 1;
+    return 0;
+}
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilabテストスクリプト</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
+check_matrix_dimension([1,2,3;4,5,6]);
+check_matrix_dimension([1,2,3]);
+check_matrix_dimension([1;2;3]);
+check_matrix_dimension([1]);
+check_matrix_dimension([1,2;3,4]);
+check_matrix_dimension([]);
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sciprint">sciprint</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

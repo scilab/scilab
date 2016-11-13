@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="tlist">
@@ -16,7 +19,7 @@
         <refpurpose>объект Scilab'а и определение типизированного списка</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>tlist(typ, a1, ..., an)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -112,32 +115,32 @@ t.field1(2) = 20;
 t.field2(1) = "Scilab";
 t.field2(2) = "tlist";
 t.field2(3) = "пример";
- 
+
 // Отображение содержимого полей
 disp(t.field1)
 disp(t.field2)
- 
+
 // Общее отображение типизированного списка
 disp(t)
- 
+
 // Перегрузка отображения для этого типа типизированного списка
 function %listtype_p(mytlist)
   f = fieldnames(mytlist);
- 
+
   // typeof(mytlist) <=> f(1)
   mprintf("Отображение типизированного списка типа: %s\n", typeof(mytlist));
- 
+
   mprintf("\n");
- 
+
   mprintf("-- Поле ''%s'' --\n", f(1));
   mprintf("Содержимое: %s\n", sci2exp(mytlist(f(1))));
- 
+
   mprintf("\n");
- 
+
   mprintf("-- Поле ''%s'' --\n", f(2));
   mprintf("Содержимое: %s\n", sci2exp(mytlist(f(2))));
 endfunction
- 
+
 // Отображение с помощью функции перегрузки
 disp(t)
  ]]></programlisting>

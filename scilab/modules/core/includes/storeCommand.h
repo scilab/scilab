@@ -3,11 +3,14 @@
  * Copyright (C) 2007-2008 - INRIA
  * Copyright (C) 2008-2008 - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -30,7 +33,7 @@ enum command_origin_t
  * @param iCmdorigin        : origine of the command
  * @return <ReturnValue>
  */
-int StoreCommandWithFlags(char* command, int iPrioritary, int iInterruptible, enum command_origin_t iCmdorigin);
+int StoreCommandWithFlags(const char* command, int iPrioritary, int iInterruptible, enum command_origin_t iCmdorigin);
 
 /**
  * Store a non-prioritary and interruptible command
@@ -38,7 +41,7 @@ int StoreCommandWithFlags(char* command, int iPrioritary, int iInterruptible, en
  * @param command : the command
  * @return <ReturnValue>
  */
-int StoreCommand(char *command);
+int StoreCommand(const char *command);
 
 /**
  * Store a prioritary and interruptible command
@@ -47,14 +50,14 @@ int StoreCommand(char *command);
  * @return <ReturnValue>
  */
 
-int StoreConsoleCommand(char *command, int iWaitFor);
+int StoreConsoleCommand(const char *command, int iWaitFor);
 /**
  * Store a prioritary and non-interruptible command
  *
  * @param command : the command
  * @return <ReturnValue>
  */
-int StorePrioritaryCommand(char *command);
+int StorePrioritaryCommand(const char *command);
 
 /**
  * Get the next command to execute

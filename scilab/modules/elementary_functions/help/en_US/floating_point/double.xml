@@ -2,65 +2,218 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="double" xml:lang="en">
     <refnamediv>
         <refname>double</refname>
-        <refpurpose>conversion from integer to double precision
-            representation
+        <refpurpose>converts inttype integers or booleans into decimal encoding
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>y=double(X)
-            y=int16(X)
-            y=int32(X)
-            y=uint8(X)
-            y=uint16(X)
-            y=uint32(X)
+        <title>Syntax</title>
+        <synopsis>y = double(X)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>matrix of floats or integers</para>
+                    <para>matrix of encoded integers or booleans</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>matrix of floats</para>
+                    <para>matrix of numbers in decimal notation</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
-        <para>converts data stored using one, two or four bytes integers into
-            double precision floating point representation. If <literal>X</literal>
-            entries are already double precision floats, nothing is done.
+        <para>converts data stored using 1, 2, 4 or 8 bytes integers into
+            decimal representation on 8 bytes. If <literal>X</literal>
+                entries are already double precision floats, nothing is done.
+          <note><function>double()</function> and <literal>iconvert(..,0)</literal>
+          are equivalent and have the same speed.
+          </note>
+          <note>Booleans can also be processed with <function>double()</function>.
+            However, <literal>bool2s()</literal> does it roughly twice faster.
+          </note>
+          <important>Since the mantissa of <literal>uint64</literal> is encoded on
+          64 bits while the mantissa of (<literal>double</literal> precision) decimal
+          numbers is encoded only on 52 bits, the relative accuracy of
+          <literal>uint64</literal> integers greater than 2<superscript>52</superscript>
+          may then be up to
+          2<superscript>12</superscript> ~4000 times better for them
+          than for "<literal>double</literal>". As a consequence, applying
+          <function>double()</function> on <literal>int64</literal> or
+          <literal>uint64</literal> integers greater than 2<superscript>52</superscript>
+          change their values
+          and downgrades their accuracy (roundoff errors). Some examples illustrating
+          such effects are provided herebelow.
+          </important>
         </para>
     </refsection>
-    <refsection>
+
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-x=int8([0 12 140])
+        <programlisting role="example"><![CDATA[
+x = int8([0 12 140])
 double(x)
+
+// Applying double() rounds off and truncates int64() or uint64() numbers
+// ----------------------------------------------------------------------
+i = int64(2)^52        // 52 bits, as for decimal numbers mantissa
+i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+err = i - double(i)    // no errors for |integers|<= 2^52
+i = int64(2)^53        // 53 bits integers => more accurate than decimal numbers
+i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+err = i - double(i)    // round-off errors appear
+i = int64(2)^55
+i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+err = i - double(i)
+i = int64(2)^62
+i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+err = i - double(i)
+]]></programlisting>
+    <screen>
+<![CDATA[--> i = int64(2)^52     // 52 bits, as for decimal numbers mantissa
+ i  =
+  4503599627370496
+
+--> i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+ i  =
+  4503599627370496  4503599627370499  4503599627370526
+  4503599627370499  4503599627370529  4503599627370826
+  4503599627370502  4503599627370559  4503599627371126
+  4503599627370505  4503599627370589  4503599627371426
+
+--> err = i - double(i)   // no errors for |integers|<= 2^52
+ err  =
+  0  0  0
+  0  0  0
+  0  0  0
+  0  0  0
+
+--> i = int64(2)^53      // 53 bits integers => more accurate than decimal numbers
+ i  =
+  9007199254740992
+
+--> i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+ i  =
+  9007199254740992  9007199254740995  9007199254741022
+  9007199254740995  9007199254741025  9007199254741322
+  9007199254740998  9007199254741055  9007199254741622
+  9007199254741001  9007199254741085  9007199254741922
+
+--> err = i - double(i)     // round-off errors appear
+ err  =
+  0 -1  0
+ -1  1  0
+  0 -1  0
+  1  1  0
+
+--> i = int64(2)^55
+ i  =
+  36028797018963968
+
+--> i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+ i  =
+  36028797018963968  36028797018963971  36028797018963998
+  36028797018963971  36028797018964001  36028797018964298
+  36028797018963974  36028797018964031  36028797018964598
+  36028797018963977  36028797018964061  36028797018964898
+
+--> err = i - double(i)
+ err  =
+  0  3 -2
+  3  1  2
+ -2 -1 -2
+  1 -3  2
+
+--> i = int64(2)^62
+ i  =
+  4611686018427387904
+
+--> i = [i+(0:3:9)'  i+(3:30:93)'  i+(30:300:930)']
+ i  =
+  4611686018427387904  4611686018427387907  4611686018427387934
+  4611686018427387907  4611686018427387937  4611686018427388234
+  4611686018427387910  4611686018427387967  4611686018427388534
+  4611686018427387913  4611686018427387997  4611686018427388834
+
+--> err = i - double(i)
+ err  =
+  0  3  30
+  3  33  330
+  6  63 -394
+  9  93 -94
+]]></screen>
+        <para></para>
+        <programlisting role="example"><![CDATA[
+// Comparing speeds of double(), bool2s() and iconvert(,0) on booleans
+// -------------------------------------------------------------------
+b = (rand(1000,1000)<0.5);
+tic(),for i=1:100, bool2s(b); end, toc()
+tic(),for i=1:100, double(b); end, toc()
+tic(),for i=1:100, iconvert(b,0); end, toc()
  ]]></programlisting>
+    <screen>
+<![CDATA[--> b = (rand(1000,1000)<0.5);
+--> tic(),for i=1:100, bool2s(b); end, toc()
+ ans  =
+   1.1680533
+
+--> tic(),for i=1:100, double(b); end, toc()
+ ans  =
+   2.9003021
+
+--> tic(),for i=1:100, iconvert(b,0); end, toc()
+ ans  =
+   2.1867567
+]]></screen>
+        <para></para>
+      <programlisting role="example"><![CDATA[
+// Speed comparison between double() and iconvert(..,0) on int32 integers
+// ----------------------------------------------------------------------
+i = int32((rand(1000,1000)-0.5)*1000);
+tic(),for j=1:100, double(i); end, toc()
+tic(),for j=1:100, iconvert(i,0); end, toc()
+ ]]></programlisting>
+      <screen>
+<![CDATA[--> i = int32((rand(1000,1000)-0.5)*10000);
+--> tic(),for j=1:100, double(i); end, toc()
+ ans  =
+   2.2464656
+
+--> tic(),for j=1:100, iconvert(i,0); end, toc()
+ ans  =
+   2.2771408
+]]></screen>
     </refsection>
+
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="iconvert">iconvert</link>
+            </member>
+            <member>
+                <link linkend="bool2s">bool2s</link>
+            </member>
             <member>
                 <link linkend="int8">int8</link>
             </member>
@@ -70,6 +223,29 @@ double(x)
             <member>
                 <link linkend="type">type</link>
             </member>
+            <member>
+                <link linkend="bin2dec">bin2dec</link>
+            </member>
+            <member>
+                <link linkend="oct2dec">oct2dec</link>
+            </member>
+            <member>
+                <link linkend="hex2dec">hex2dec</link>
+            </member>
+            <member>
+                <link linkend="base2dec">base2dec</link>
+            </member>
         </simplelist>
+    </refsection>
+      <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    New int64 and uint64 encoded integers can now be converted.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

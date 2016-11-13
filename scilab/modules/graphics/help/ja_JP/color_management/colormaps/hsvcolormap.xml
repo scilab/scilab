@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+
+ * Copyright (C) INRIA - Serge Steer
+
+ *
+
+
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+
+ *
+
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="hsvcolormap">
+
+    <refnamediv>
+
+        <refname>hsvcolormap</refname>
+
+        <refpurpose>Hue-saturation-value カラーマップ</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>cmap = hsvcolormap(n)</synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>n</term>
+
+                <listitem>
+
+                    <para>整数 &gt;= 1,カラーマップの大きさ.
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>cmap</term>
+
+                <listitem>
+
+                    <para>
+
+                        3つの列 <literal>[R,G,B]を有する行列</literal>.
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            <literal>hsvcolormap</literal> は<literal>n</literal>色を有するカラーマップを
+
+            計算します.このカラーマップは hsv カラーモデルの hue 要素を変化させます.
+
+            色は, 赤から始まり,黄色, 緑, シアン, 青, マゼンタを通り, 赤に戻ります.
+
+            このマップは特に周期関数を表示する際に有用です.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+
+t=[0:0.1:2*%pi]'; z=sin(t)*cos(t');
+
+f=gcf();f.color_map=hsvcolormap(64);
+
+plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
+
+ ]]></programlisting>
+
+        <scilab:image>
+
+            t=[0:0.1:2*%pi]'; z=sin(t)*cos(t');
+
+            f=gcf();f.color_map=hsvcolormap(64);
+
+            plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
+
+        </scilab:image>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="colormap">colormap</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="autumncolormap">autumncolormap</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="bonecolormap">bonecolormap</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="coolcolormap">coolcolormap</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="coppercolormap">coppercolormap</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="graycolormap">graycolormap</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="hotcolormap">hotcolormap</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="hsvcolormap">hsvcolormap</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="jetcolormap">jetcolormap</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="oceancolormap">oceancolormap</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="pinkcolormap">pinkcolormap</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="rainbowcolormap">rainbowcolormap</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="springcolormap">springcolormap</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="summercolormap">summercolormap</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="whitecolormap">whitecolormap</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="wintercolormap">wintercolormap</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

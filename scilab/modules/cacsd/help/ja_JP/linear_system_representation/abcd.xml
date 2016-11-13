@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="abcd">
+    <refnamediv>
+        <refname>abcd</refname>
+        <refpurpose>状態空間行列</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出しの手順</title>
+        <synopsis>[A,B,C,D]=abcd(sl)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>状態空間表現または伝達関数表現の
+                        線形システム (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A,B,C,D</term>
+                <listitem>
+                    <para>適当な次元の実数行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            線形システム<literal>Sl</literal>の<literal>A,B,C,D</literal> 行列を返す.
+        </para>
+        <para>
+            ユーティリティ関数.伝達関数行列<literal>Sl</literal>の場合、
+            <literal>tf2ss</literal>により状態空間表現に変換される.
+        </para>
+        <para>
+            行列 <literal>A,B,C,D</literal> は<literal>syslin</literal>リスト
+            <literal>Sl</literal>の <literal>2</literal> から <literal>5</literal>
+            までの要素、すなわち、<literal>[A,B,C,D] = Sl(2:5)</literal>、である.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A=diag([1,2,3]);B=[1;1;1];C=[2,2,2];
+sys=syslin('c',A,B,C);
+sys("A")
+sys("C")
+[A1,B1,C1,D1]=abcd(sys);
+A1
+systf=ss2tf(sys);
+[a,b,c,d]=abcd(systf)
+spec(a)
+c*b-C*B
+c*a*b-C*A*B
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="ssrand">ssrand</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

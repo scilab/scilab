@@ -5,7 +5,7 @@
         <refpurpose>determine floating-point parameters</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>pr = number_properties(prop)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -156,13 +156,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 b = number_properties("radix")
 eps = number_properties("eps")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="nearfloat">nearfloat</link>

@@ -5,11 +5,11 @@
         <refpurpose>group delay for digital filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [tg [,fr]] = group(npts, H) (call with a siso transfert function)
             [tg [,fr]] = group(npts, C) (call with a vector of transfert functions, cascaded second order representation)
-            
+
             [tg [,fr]] = group(npts, F) (call with the vector of an FIR filter coefficients)
             [tg [,fr]] = group(npts, a1i, a2i, b1i, b2i) (call with 4 vectors of numbers, cascaded second order Deczky representation)
         </synopsis>

@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -63,6 +66,7 @@ int sci_plot2d(char* fname, void *pvApiCtx)
     BOOL flagNax = FALSE;
     char strfl[4];
     BOOL freeStrf = FALSE;
+    BOOL freeLegend = FALSE;
 
     rhs_opts opts[] =
     {
@@ -95,7 +99,10 @@ int sci_plot2d(char* fname, void *pvApiCtx)
     if (checkInputArgumentType(pvApiCtx, 1, sci_strings))
     {
         /* logflags */
-        GetLogflags(pvApiCtx, fname, 1, opts, &logFlags);
+        if (get_logflags_arg(pvApiCtx, fname, 1, opts, &logFlags) == 0)
+        {
+            return 0;
+        }
         iskip = 1;
     }
 
@@ -336,18 +343,69 @@ int sci_plot2d(char* fname, void *pvApiCtx)
         return 0;
     }
 
-    sciGetStyle(pvApiCtx, fname, 3 + iskip, n1, opts, &style);
-    GetStrf(pvApiCtx, fname, 4 + iskip, opts, &strf);
-    GetLegend(pvApiCtx, fname, 5 + iskip, opts, &legend);
-    GetRect(pvApiCtx, fname, 6 + iskip, opts, &rect);
-    GetNax(pvApiCtx, 7 + iskip, opts, &nax, &flagNax);
+    if (get_style_arg(pvApiCtx, fname, 3 + iskip, n1, opts, &style) == 0)
+    {
+        return 0;
+    }
+    if (get_strf_arg(pvApiCtx, fname, 4 + iskip, opts, &strf) == 0)
+    {
+        FREE(style);
+        return 0;
+    }
+    freeStrf = !isDefStrf(strf);
+    if (get_legend_arg(pvApiCtx, fname, 5 + iskip, opts, &legend) == 0)
+    {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        FREE(style);
+        return 0;
+    }
+    freeLegend = !isDefLegend(legend);
+    if (get_rect_arg(pvApiCtx, fname, 6 + iskip, opts, &rect) == 0)
+    {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        if (freeLegend)
+        {
+            freeAllocatedSingleString(legend);
+        }
+        FREE(style);
+        return 0;
+    }
+    if (get_nax_arg(pvApiCtx, 7 + iskip, opts, &nax, &flagNax)==0)
+    {
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        if (freeLegend)
+        {
+            freeAllocatedSingleString(legend);
+        }
+        FREE(style);
+        return 0;
+    }
 
     if (iskip == 0)
     {
-        GetLogflags(pvApiCtx, fname, 8, opts, &logFlags);
+        if (get_logflags_arg(pvApiCtx, fname, 8, opts, &logFlags) == 0)
+        {
+            if (freeStrf)
+            {
+                freeAllocatedSingleString(strf);
+            }
+            if (freeLegend)
+            {
+                freeAllocatedSingleString(legend);
+            }
+            FREE(style);
+            return 0;
+        }
     }
-
-    freeStrf = !isDefStrf(strf);
 
     // Check strf [0-1][0-8][0-5]
     if (!isDefStrf(strf) && (strlen(strf) != 3 || strf[0] < '0' || strf[0] > '1' || strf[1] < '0' || strf[1] > '8' || strf[2] < '0' || strf[2] > '5'))
@@ -357,6 +415,11 @@ int sci_plot2d(char* fname, void *pvApiCtx)
         {
             freeAllocatedSingleString(strf);
         }
+        if (freeLegend)
+        {
+            freeAllocatedSingleString(legend);
+        }
+        FREE(style);
         return -1;
     }
 
@@ -374,7 +437,15 @@ int sci_plot2d(char* fname, void *pvApiCtx)
             strfl[0] = '1';
         }
 
-        GetOptionalIntArg(pvApiCtx, fname, 9, "frameflag", &frame, 1, opts);
+        if (get_optional_int_arg(pvApiCtx, fname, 9, "frameflag", &frame, 1, opts) == 0)
+        {
+            if (freeLegend)
+            {
+                freeAllocatedSingleString(legend);
+            }
+            FREE(style);
+            return 0;
+        }
         if (frame != &frame_def)
         {
             if (*frame >= 0 && *frame <= 8)
@@ -384,15 +455,24 @@ int sci_plot2d(char* fname, void *pvApiCtx)
             else
             {
                 Scierror(999, _("%s: Wrong value for frameflag option.\n"), fname);
-                if (freeStrf)
+                if (freeLegend)
                 {
-                    freeAllocatedSingleString(strf);
+                    freeAllocatedSingleString(legend);
                 }
+                FREE(style);
                 return -1;
             }
         }
 
-        GetOptionalIntArg(pvApiCtx, fname, 9, "axesflag", &axes, 1, opts);
+        if (get_optional_int_arg(pvApiCtx, fname, 9, "axesflag", &axes, 1, opts) == 0)
+        {
+            if (freeLegend)
+            {
+                freeAllocatedSingleString(legend);
+            }
+            FREE(style);
+            return 0;
+        }
         if (axes != &axes_def)
         {
             if ((*axes >= 0 && *axes <= 5) || *axes == 9)
@@ -402,10 +482,11 @@ int sci_plot2d(char* fname, void *pvApiCtx)
             else
             {
                 Scierror(999, _("%s: Wrong value for axesflag option.\n"), fname);
-                if (freeStrf)
+                if (freeLegend)
                 {
-                    freeAllocatedSingleString(strf);
+                    freeAllocatedSingleString(legend);
                 }
+                FREE(style);
                 return -1;
             }
         }
@@ -430,31 +511,46 @@ int sci_plot2d(char* fname, void *pvApiCtx)
             /* based on Rect arg */
             if (rect[0] > rect[2] || rect[1] > rect[3])
             {
+                Scierror(999, _("%s: Impossible status min > max in x or y rect data.\n"), fname);
                 if (freeStrf)
                 {
                     freeAllocatedSingleString(strf);
                 }
-                Scierror(999, _("%s: Impossible status min > max in x or y rect data.\n"), fname);
+                if (freeLegend)
+                {
+                    freeAllocatedSingleString(legend);
+                }
+                FREE(style);
                 return -1;
             }
 
             if (rect[0] <= 0. && logFlags[1] == 'l') /* xmin */
             {
+                Scierror(999, _("%s: Bounds on x axis must be strictly positive to use logarithmic mode.\n"), fname);
                 if (freeStrf)
                 {
                     freeAllocatedSingleString(strf);
                 }
-                Scierror(999, _("%s: Bounds on x axis must be strictly positive to use logarithmic mode.\n"), fname);
+                if (freeLegend)
+                {
+                    freeAllocatedSingleString(legend);
+                }
+                FREE(style);
                 return -1;
             }
 
             if (rect[1] <= 0. && logFlags[2] == 'l') /* ymin */
             {
+                Scierror(999, _("%s: Bounds on y axis must be strictly positive to use logarithmic mode.\n"), fname);
                 if (freeStrf)
                 {
                     freeAllocatedSingleString(strf);
                 }
-                Scierror(999, _("%s: Bounds on y axis must be strictly positive to use logarithmic mode.\n"), fname);
+                if (freeLegend)
+                {
+                    freeAllocatedSingleString(legend);
+                }
+                FREE(style);
                 return -1;
             }
 
@@ -492,11 +588,16 @@ int sci_plot2d(char* fname, void *pvApiCtx)
             {
                 if (logFlags[1] == 'l' && sciFindStPosMin((l1), size_x) <= 0.0)
                 {
+                    Scierror(999, _("%s: At least one x data must be strictly positive to compute the bounds and use logarithmic mode.\n"), fname);
                     if (freeStrf)
                     {
                         freeAllocatedSingleString(strf);
                     }
-                    Scierror(999, _("%s: At least one x data must be strictly positive to compute the bounds and use logarithmic mode.\n"), fname);
+                    if (freeLegend)
+                    {
+                        freeAllocatedSingleString(legend);
+                    }
+                    FREE(style);
                     return -1;
                 }
             }
@@ -507,11 +608,16 @@ int sci_plot2d(char* fname, void *pvApiCtx)
             {
                 if (logFlags[2] == 'l' && sciFindStPosMin((l2), size_y) <= 0.0)
                 {
+                    Scierror(999, _("%s: At least one y data must be strictly positive to compute the bounds and use logarithmic mode\n"), fname);
                     if (freeStrf)
                     {
                         freeAllocatedSingleString(strf);
                     }
-                    Scierror(999, _("%s: At least one y data must be strictly positive to compute the bounds and use logarithmic mode\n"), fname);
+                    if (freeLegend)
+                    {
+                        freeAllocatedSingleString(legend);
+                    }
+                    FREE(style);
                     return -1;
                 }
             }
@@ -530,6 +636,10 @@ int sci_plot2d(char* fname, void *pvApiCtx)
     if (freeStrf)
     {
         freeAllocatedSingleString(strf);
+    }
+    if (freeLegend)
+    {
+        freeAllocatedSingleString(legend);
     }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;

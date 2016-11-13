@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  --><!-- This document was created with Syntext Serna Free. -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="histc">
@@ -16,13 +19,13 @@
         <refpurpose>computes an histogram</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [cf, ind] = histc(n, data [,normalization])
             [cf, ind] = histc(x, data [,normalization])
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -61,7 +64,7 @@
                 <listitem>
                     <para>
                         vector or matrix of same size as <varname>data</varname>,
-                        representing the repective belonging of each element of data <varname>data</varname>
+                        representing the respective belonging of each element of data <varname>data</varname>
                         to the classes defined by <varname>n</varname> or <varname>x</varname>
                     </para>
                 </listitem>
@@ -71,14 +74,14 @@
                 <listitem>
                     <para>
                         scalar boolean.
-                        <varname>normalization=%f (default)</varname>: <varname>cf</varname> represents the total number of points in each class,
-                        <varname>normalization=%t</varname>: <varname>cf</varname> represents the number of points in each class, relatively to the total number of points
+                        <varname>normalization=%t (default)</varname>: <varname>cf</varname> represents the number of points in each class, relatively to the total number of points,
+                        <varname>normalization=%f</varname>: <varname>cf</varname> represents the total number of points in each class
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             This function computes a histogram of the <literal>data</literal> vector using the
@@ -103,7 +106,7 @@
             when <emphasis>x(1)&lt;=min(data)</emphasis> and <emphasis>max(data) &lt;= x(n+1)</emphasis>
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
         <simplelist>
             <member> Example #1: variations around a histogram of a gaussian random sample
@@ -133,11 +136,11 @@ clf()
 subplot(2,1,1)
 [cf, ind] = histc(c, d)
 histplot(c, d, style=2);
-xtitle("Normalized histogram")
+xtitle(_("Normalized histogram"))
 subplot(2,1,2)
 [cf, ind] = histc(c, d, normalization=%f)
 histplot(c, d, normalization=%f, style=5);
-xtitle("Non normalized histogram")
+xtitle(_("Non normalized histogram"))
 ]]></programlisting>
                 <scilab:image localized="true">
                     d = grand(1000,1,"bin", 6, 0.5);
@@ -146,11 +149,11 @@ xtitle("Non normalized histogram")
                     subplot(2,1,1)
                     [cf, ind] = histc(c, d)
                     histplot(c, d, style=2);
-                    xtitle("Normalized histogram")
+                    xtitle(_("Normalized histogram"))
                     subplot(2,1,2)
                     [cf, ind] = histc(c, d, normalization=%f)
                     histplot(c, d, normalization=%f, style=5);
-                    xtitle("Non normalized histogram")
+                    xtitle(_("Non normalized histogram"))
                 </scilab:image>
             </member>
             <member>
@@ -164,7 +167,7 @@ clf()
 histplot(40, X, style=2);
 x = linspace(0, max(Xmax), 100)';
 plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
-legend(["exponential random sample histogram" "exact density curve"]);
+legend([_("exponential random sample histogram") _("exact density curve")]);
 ]]></programlisting>
                 <scilab:image localized="true">
                     lambda = 2;
@@ -175,7 +178,7 @@ legend(["exponential random sample histogram" "exact density curve"]);
                     histplot(40, X, style=2);
                     x = linspace(0, max(Xmax), 100)';
                     plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
-                    legend(["exponential random sample histogram" "exact density curve"]);
+                    legend([_("exponential random sample histogram") _("exact density curve")]);
                 </scilab:image>
             </member>
             <member>
@@ -185,20 +188,20 @@ n = 10;
 data = rand(1, 1000, "normal");
 [cf, ind] = histc(n, data)
 clf(); histplot(n, data, style=12, polygon=%t);
-legend(["normalized histogram" "frequency polygon chart"]);
+legend([_("normalized histogram") _("frequency polygon chart")]);
 ]]></programlisting>
                 <scilab:image localized="true">
                     n = 10;
                     data = rand(1, 1000, "normal");
                     [cf, ind] = histc(n, data)
                     clf(); histplot(n, data, style=12, polygon=%t);
-                    legend(["normalized histogram" "frequency polygon chart"]);
+                    legend([_("normalized histogram") _("frequency polygon chart")]);
                 </scilab:image>
             </member>
         </simplelist>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="histplot">histplot</link>
@@ -214,7 +217,7 @@ legend(["normalized histogram" "frequency polygon chart"]);
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>History</title>
         <revhistory>
             <revision>

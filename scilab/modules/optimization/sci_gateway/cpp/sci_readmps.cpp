@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -53,8 +56,6 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
     int ierr        = 0;
     int line        = 0;
     char typrow[2];
-
-    char* strErrorBuf = new char[bsiz];
 
     double big = NumericConstants::double_max;
 
@@ -183,6 +184,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
     pstrRwName[8 * iM] = '\0';
     char* pstrClName = new char[8 * iN + 1];
     pstrClName[8 * iN] = '\0';
+    char* strErrorBuf = new char[bsiz];
 
     int irobj       = 0;
     int* piStavar   = new int[iN];
@@ -211,8 +213,8 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
                 pDblBnds->get() + iN, pDblBnds->get(), pdblRelt,
                 bsiz, 8L, 8L, 8L, 8L, 8L);
 
-    delete piRow;
-    delete pdblRelt;
+    delete[] piRow;
+    delete[] pdblRelt;
 
     mlunit = -lunit;
     C2F(clunit)(&mlunit, NULL, piMode, 0);
@@ -278,7 +280,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pStr->set(i, pstrTemp);
     }
     pTL->append(pStr);
-    delete pstrRwName;
+    delete[] pstrRwName;
 
     pStr = new types::String(1, iN);
     for (int i = 0; i < iN; i++)
@@ -289,7 +291,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pStr->set(i, pstrTemp);
     }
     pTL->append(pStr);
-    delete pstrClName;
+    delete[] pstrClName;
 
     pDbl = new types::Double(iM, 1);
     pdbl = pDbl->get();
@@ -298,7 +300,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piRwstat[i];
     }
     pTL->append(pDbl);
-    delete piRwstat;
+    delete[] piRwstat;
 
     pDbl = new types::Double(iM, 2);
     pdbl = pDbl->get();
@@ -307,7 +309,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piRowcod[i];
     }
     pTL->append(pDbl);
-    delete piRowcod;
+    delete[] piRowcod;
 
     pDbl = new types::Double(iN, 2);
     pdbl = pDbl->get();
@@ -316,7 +318,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piColcod[i];
     }
     pTL->append(pDbl);
-    delete piColcod;
+    delete[] piColcod;
 
     pDbl = new types::Double(iNza, 1);
     pdbl = pDbl->get();
@@ -325,7 +327,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piRwnmbs[i];
     }
     pTL->append(pDbl);
-    delete piRwnmbs;
+    delete[] piRwnmbs;
 
     pDbl = new types::Double(1, iN + 1);
     pdbl = pDbl->get();
@@ -334,7 +336,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piClpnts[i];
     }
     pTL->append(pDbl);
-    delete piClpnts;
+    delete[] piClpnts;
 
     pTL->append(pDblCoef);
     pTL->append(pDblRhsb);
@@ -348,7 +350,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
         pdbl[i] = (double)piStavar[i];
     }
     pTL->append(pDbl);
-    delete piStavar;
+    delete[] piStavar;
 
     out.push_back(pTL);
     return types::Function::OK;

@@ -5,6 +5,9 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
+prot = funcprot();
+funcprot(0);
+
 function [X,Y]=field(x,y)
     // x and y are two vectors defining a grid
     // X and Y are two matrices which gives the grid point coordinates
@@ -56,7 +59,7 @@ function [z] = bezier(p,t)
 endfunction
 
 
-function bezier3d (p)
+function bezier3d(p)
     // Shows a 3D Bezier curve and its polygon
     t=linspace(0,1,300);
     s=bezier(p,t);
@@ -71,7 +74,7 @@ function bezier3d (p)
 endfunction
 
 
-function [X,Y,Z]=beziersurface (x,y,z,n)
+function [X,Y,Z]=beziersurface(x,y,z,n)
     // Compute a Bezier surface. Return {bx,by,bz}.
     [lhs,rhs]=argn(0);
     if rhs <= 3 ; n=20;end
@@ -94,3 +97,5 @@ function [X,Y,Z]=beziersurface (x,y,z,n)
     end
     X=b1*x*b2';Y=b1*y*b2';Z=b1*z*b2';
 endfunction
+
+funcprot(prot);

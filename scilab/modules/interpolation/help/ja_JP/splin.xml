@@ -36,7 +36,7 @@
             <varlistentry>
                 <term>der</term>
                 <listitem>
-                    <para>(オプション) 2つの要素を有するベクトルで, 
+                    <para>(オプション) 2つの要素を有するベクトルで,
                         (spline_type="clamped"の場合に使用される)端点の微係数を有します
                     </para>
                 </listitem>
@@ -66,7 +66,7 @@
             ただし,<literal>d</literal>は<literal>xi</literal>における
             微係数のベクトルです:
             <emphasis>s'(xi)=di</emphasis> (これは
-            <emphasis>エルミート</emphasis>形式と呼ばれます). 
+            <emphasis>エルミート</emphasis>形式と呼ばれます).
             いつくかの点におけるスプラインの評価は<link linkend="interp">interp</link>
             関数により行われます.
             適当な<literal>spline_type</literal>パラメータを選択することにより,
@@ -205,7 +205,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 例 1
 deff("y=runge(x)","y=1 ./(1 + x.^2)")
 a = -5; b = 5; n = 11; m = 400;
@@ -234,7 +234,7 @@ xtitle("interpolation of the Runge function")
             plot2d(x, y, -9)
             xtitle("interpolation of the Runge function")
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 例 2 : ランダムなデータで異なるスプラインの動作を示す
 a = 0; b = 1;        // 補間の間隔
 n = 10;              // 補間点のnb

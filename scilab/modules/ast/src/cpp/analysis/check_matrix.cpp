@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014-2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -16,10 +19,10 @@
 
 namespace analysis
 {
-    TIType Checkers::check_matrix(GVN & gvn, const TIType & in0, const TIType & in1)
+TIType Checkers::check_matrix(GVN & gvn, const TIType & in0, const TIType & in1)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::EMPTY :
         {
             if (in1.type == TIType::DOUBLE)
@@ -247,13 +250,13 @@ namespace analysis
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
-    TIType Checkers::check_matrix(GVN & gvn, const TIType & in0, const TIType & in1, const TIType & in2)
+TIType Checkers::check_matrix(GVN & gvn, const TIType & in0, const TIType & in1, const TIType & in2)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::EMPTY :
         {
             if (in1.type == TIType::DOUBLE)
@@ -275,7 +278,6 @@ namespace analysis
             {
                 return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::BOOLEAN :
         {
@@ -298,7 +300,6 @@ namespace analysis
             {
                 return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::COMPLEX :
         {
@@ -321,7 +322,6 @@ namespace analysis
             {
                 return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::DOUBLE :
         {
@@ -344,7 +344,6 @@ namespace analysis
             {
                 return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::INT16 :
         {
@@ -367,7 +366,6 @@ namespace analysis
             {
                 return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::INT32 :
         {
@@ -390,7 +388,6 @@ namespace analysis
             {
                 return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::INT64 :
         {
@@ -413,7 +410,6 @@ namespace analysis
             {
                 return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::INT8 :
         {
@@ -436,7 +432,6 @@ namespace analysis
             {
                 return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::POLYNOMIAL :
         {
@@ -459,7 +454,6 @@ namespace analysis
             {
                 return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::STRING :
         {
@@ -482,7 +476,6 @@ namespace analysis
             {
                 return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::SPARSE :
         {
@@ -505,7 +498,6 @@ namespace analysis
             {
                 return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::UINT16 :
         {
@@ -528,7 +520,6 @@ namespace analysis
             {
                 return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::UINT32 :
         {
@@ -551,7 +542,6 @@ namespace analysis
             {
                 return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::UINT64 :
         {
@@ -574,7 +564,6 @@ namespace analysis
             {
                 return TIType(gvn);
             }
-            return TIType(gvn);
         }
         case TIType::UINT8 :
         {
@@ -597,11 +586,10 @@ namespace analysis
             {
                 return TIType(gvn);
             }
-            return TIType(gvn);
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
 } // namespace analysis

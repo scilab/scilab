@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
- * 
+ *
  * This help file was generated from help_from_sci.sci using help_from_sci().
- * 
+ *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="help_from_sci" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="help_from_sci" xml:lang="pt">
     <refnamediv>
         <refname>help_from_sci</refname>
         <refpurpose>Geração de arquivos de ajuda e de arquivos de demonstração a
@@ -89,7 +89,7 @@
             conter uma descrição breve da função.
         </para>
         <para>Os comentários restantes são formatados de acordo com os seguintes
-            cabeçalhos (opcionais): "Calling Sequence", "Parameters", "Description",
+            cabeçalhos (opcionais): "Syntax", "Parameters", "Description",
             "Examples", "See also", "Used functions", "Authors" e
             "Bibliography".
         </para>
@@ -99,20 +99,20 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <literal>Calling Sequence</literal>
-                    - um exemplo por linha. 
+                    <literal>Syntax</literal>
+                    - um exemplo por linha.
                 </para>
             </listitem>
             <listitem>
                 <para>
                     <literal>Parameters</literal>
-                    - separe o nome do parâmetro e a descrição por um ":". Mantenha a descrição de cada parâmetro na mesma linha. 
+                    - separe o nome do parâmetro e a descrição por um ":". Mantenha a descrição de cada parâmetro na mesma linha.
                 </para>
             </listitem>
             <listitem>
                 <para>
                     <literal>Description</literal>
-                    - a formatação do texto pode ser feita utilizando comandos XML. Adicionar uma linha de comentário vazia na seção Description é interpretado como começo de um novo parágrafo. 
+                    - a formatação do texto pode ser feita utilizando comandos XML. Adicionar uma linha de comentário vazia na seção Description é interpretado como começo de um novo parágrafo.
                 </para>
             </listitem>
             <listitem>
@@ -124,13 +124,13 @@
             <listitem>
                 <para>
                     <literal>Authors</literal>
-                    - escreva um autor em cada linha após o cabeçalho Authors. Use ";" para separar os autores de qualquer informação adicional. 
+                    - escreva um autor em cada linha após o cabeçalho Authors. Use ";" para separar os autores de qualquer informação adicional.
                 </para>
             </listitem>
             <listitem>
                 <para>
                     <literal>Bibliography</literal>
-                    - escreva uma referência por linha seguindo o cabeçalho References. 
+                    - escreva uma referência por linha seguindo o cabeçalho References.
                 </para>
             </listitem>
         </itemizedlist>
@@ -138,7 +138,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 help_from_sci()   // abrindo um modelo de código-fonte vazio no editor.
 // salve este modelo como test_fun.sci no diretório corrente antes de executar
 // os próximos comandos do exemplo

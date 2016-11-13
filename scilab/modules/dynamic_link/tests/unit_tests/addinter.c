@@ -10,7 +10,7 @@ void fun1(double *x, double *y)
 
 static double fun2(double x)
 {
-    return( sin(x + 1));
+    return ( sin(x + 1));
 }
 
 int intfun1(char *fname, void *pvApiCtx)

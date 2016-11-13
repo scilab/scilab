@@ -10,7 +10,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = acot(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -46,19 +46,19 @@
     <refsection>
         <title>Sample</title>
         <scilab:image>
-            x=-30:0.1:30; 
+            x=-30:0.1:30;
             plot(x,acot(x))
         </scilab:image>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[1 2 -2 sqrt(2) -sqrt(2) 2/sqrt(3) -2/sqrt(3) -1];
 acot(x)/%pi
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cotg">cotg</link>

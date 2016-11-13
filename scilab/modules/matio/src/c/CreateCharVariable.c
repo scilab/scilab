@@ -3,11 +3,14 @@
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <string.h>
@@ -44,10 +47,11 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
 
         for (K = 0; K < nbRow; K++)
         {
-            charData[K] =  (char*) MALLOC(sizeof(char*) * (matVariable->dims[1] + 1));
+            charData[K] =  (char*) MALLOC(sizeof(char) * (matVariable->dims[1] + 1));
             if (charData[K] == NULL)
             {
                 Scierror(999, _("%s: No more memory.\n"), "CreateCharVariable");
+                freeArrayOfString(charData, K);
                 return FALSE;
             }
         }
@@ -70,6 +74,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    freeArrayOfString(charData, nbRow);
                     return 0;
                 }
             }
@@ -79,6 +84,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    freeArrayOfString(charData, nbRow);
                     return 0;
                 }
             }
@@ -97,6 +103,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    freeArrayOfString(tmp_char, 1);
                     return 0;
                 }
                 freeArrayOfString(tmp_char, 1);

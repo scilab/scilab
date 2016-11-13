@@ -194,11 +194,11 @@
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_getio.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_lib.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_read.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_write.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\sci_getenv.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_getio.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_getpid.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_read4b.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_readb.c" />

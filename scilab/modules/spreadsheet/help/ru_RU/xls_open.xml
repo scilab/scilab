@@ -5,185 +5,188 @@
  * Copyright (C) 2005      - INRIA - Pierrick MODE
  * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="xls_open">
-    
+
     <refnamediv>
-        
+
         <refname>xls_open</refname>
-        
+
         <refpurpose>открывает Excel-файл для чтения</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
-        <title>Последовательность вызова</title>
-        
+
+        <title>Синтаксис</title>
+
         <synopsis>[fd,SST,Sheetnames,Sheetpos] = xls_open(file_path)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>Аргументы</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>file_path</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         символьная строка: путь до Excel-файла.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>fd</term>
-                
+
                 <listitem>
-                    
+
                     <para>число: логический блок на потоке Excel.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>SST</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         вектор всех символьных строк, которые встретились на Excel-листах.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>Sheetnames</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         вектор строк: имена листов.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>Sheetpos</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         вектор чисел: положение начала листов в потоке
-                        
+
                         Excel.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>Описание</title>
-        
+
         <para>
-            
+
             Эта функция сначала анализирует структуру данных ole2, связанную с
-            
-            указанным файлом, для того, чтобы  выделить поток Excel, который 
-            
+
+            указанным файлом, для того, чтобы  выделить поток Excel, который
+
             включён в него. После этого, поток Excel  сохраняется в директории
-            
-            <literal>TMDIR</literal> и открывается. Логический блок 
-            
+
+            <literal>TMDIR</literal> и открывается. Логический блок
+
             <literal>fd</literal> указывает на этот временный файл. Затем читается
-            
-            первый лист в этом потоке для того, чтобы получить общую информацию, 
-            
-            такую, как количество листов, имена листов  <literal>Sheetnames</literal>, 
-            
+
+            первый лист в этом потоке для того, чтобы получить общую информацию,
+
+            такую, как количество листов, имена листов  <literal>Sheetnames</literal>,
+
             адреса листов в потоке <literal>Sheetpos</literal> и
-            
+
             <literal>SST</literal>, который содержит все строки, используемые в
-            
+
             следующих листах.
-            
+
         </para>
-        
+
         <para>
-            
+
             Данные <literal>fd</literal> и <literal>Sheetpos</literal> должны быть переданы
-            
-            в <link linkend="xls_read">xls_read</link> для того, чтобы прочитать данные 
-            
+
+            в <link linkend="xls_read">xls_read</link> для того, чтобы прочитать данные
+
             листов.
-            
+
         </para>
-        
+
         <para>
-            
+
             Функция <link linkend="readxls">readxls</link> может быть использована для
-            
+
             чтения всего Excel-файла в одной функции за единственный вызов функции.
-            
+
         </para>
-        
-        <para> 
-            
+
+        <para>
+
             <warning>
-                
+
                 Обрабатываются только Excel-файлы BIFF8 Excel (последняя версия Excel-файлов (2003)).
-                
+
             </warning>
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>Примеры</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 //Декодируем ole-файл, выделим и откроем поток Excel
 [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/modules/spreadsheet/demos/xls/Test1.xls')
 
@@ -193,63 +196,63 @@
 //закрываем поток электронной таблицы
 mclose(fd)
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>Смотрите также</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="xls_read">xls_read</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="readxls">readxls</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>Литература</title>
-        
+
         <para>
-            
+
             Эта функция основана на документации Microsoft по файлу ole2
-            
+
             (<ulink url="http://chicago.sourceforge.net/devel/docs/ole/">http://chicago.sourceforge.net/devel/docs/ole/</ulink>)
-            
-            и на описании потока Excel из OpenOffice 
-            
+
+            и на описании потока Excel из OpenOffice
+
             (<ulink url="http://sc.openoffice.org/spreadsheetfileformat.pdf">http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>).
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>Используемые функции</title>
-        
+
         <para>
-            
+
             Для выделения потока электронной таблицы из ole-файла используется
-            
+
             процедура ripole-0.1.4 (<ulink url="http://www.pldaniels.com/ripole">http://www.pldaniels.com/ripole</ulink>).
-            
+
         </para>
-        
+
     </refsection>
-    
+
 </refentry>
 
 

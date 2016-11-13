@@ -2,57 +2,140 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aime AGNEL
+ * Copyright (C) 2016 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tbx_build_loader" xml:lang="en">
+
     <refnamediv>
         <refname>tbx_build_loader</refname>
-        <refpurpose>Generate loader.sce and unloader scripts (toolbox compilation process)</refpurpose>
+        <refpurpose>Generate loader and unloader scripts (toolbox compilation process)</refpurpose>
     </refnamediv>
+
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
-            tbx_build_loader(toolbox_name)
-            tbx_build_loader(toolbox_name, toolbox_path)
+            tbx_build_loader()
+            tbx_build_loader(toolbox_path)
+            tbx_build_loader(toolbox_name)                 // obsolete
+            tbx_build_loader(toolbox_name, toolbox_path)   // obsolete
         </synopsis>
     </refsynopsisdiv>
+
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>toolbox_name</term>
+                <term>toolbox_path</term>
                 <listitem>
-                    <para>Toolbox short name ; that is, the prefix of the .start file of the toolbox (which shall be in the etc subdirectory).</para>
+                    <para>a single string. Root directory of toolbox sources ;
+                        the script will be generated here (default: current directory).
+                        The file <literal>toolbox_path/etc/*.start</literal> must exist.
+                        The toolbox_name is retrieved from its basename.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>toolbox_path</term>
+                <term>toolbox_name (obsolete)</term>
                 <listitem>
-                    <para>Root directory of toolbox sources ; the script will be generated here (default: current directory).</para>
+                    <para>a single string. Toolbox short name ; the library and help chapter name when generating the default loader.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
+
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// Recommended usage
-tbx_build_loader("mytoolbox", get_absolute_file_path('builder.sce'))
+        <programlisting role="example"><![CDATA[
+// Recommended usage, from any builder.sce:
+tbx_build_loader(get_absolute_file_path('builder.sce'))
  ]]></programlisting>
     </refsection>
+
     <refsection>
+        <title>Description</title>
+        <para>
+            <literal>tbx_build_loader</literal> is used for generating the loader and unloader files of a toolbox.
+            This macro is usally called from the <literal>builder.sce</literal> script when creating a toolbox.
+        </para>
+        <para>
+            The name of the toolbox is retrieved from the name of the <literal>.start</literal> file present in the <literal>etc</literal> directory.
+        </para>
+        <para>
+            If the file <literal>toolbox_path/etc/*.start</literal> is not empty (even not a single space)
+            <function>tbx_build_loader</function> generates a <literal>loader.sce</literal>
+            script that will executes it at toolbox startup.
+            Otherwise, a default <literal>loader.sce</literal> file performing the following is generated:
+            <orderedlist>
+                <listitem>
+                    loads the lib inside the <literal>macros/</literal> directory, if it exists;
+                </listitem>
+                <listitem>
+                    executes the loader files in <literal>sci_gateway/</literal> directory, if it exists;
+                </listitem>
+                <listitem>
+                    executes the loader files in <literal>src/java/</literal> directory, if it exists;
+                </listitem>
+                <listitem>
+                    loads the help from the <literal>jar/</literal> directory, if it exists;
+                </listitem>
+                <listitem>
+                    loads the demos in the <literal>demos/</literal> directory, if it exists;
+                </listitem>
+                <listitem>
+                    loads the GUI preference configuration file in <literal>etc</literal>, if it exists.
+                </listitem>
+            </orderedlist>
+        </para>
+        <para>
+            Also generates an unloader file calling the <literal>etc</literal> .quit file, if it exists.
+        </para>
+    </refsection>
+
+    <refsection role="history">
         <title>History</title>
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>This function generates also an unloader.sce script</revremark>
             </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <itemizedlist>
+                        <listitem>
+                            Syntaxes using <literal>toolbox_name</literal> are declared obsolete.
+                        </listitem>
+                        <listitem>The toolbox_skeleton.start file is now empty.</listitem>
+                        <listitem>
+                            When <literal>~/etc/toolbox.start</literal> is empty,
+                            <literal>tbx_build_loader</literal> now creates the default
+                            loader.sce content that was formerly in the default toolbox.start file.
+                        </listitem>
+                        <listitem>
+                            <literal>tbx_build_loader</literal> now creates a default
+                            unloader.sce file when there is no <literal>~/etc/toolbox.quit</literal> file.
+                        </listitem>
+                        <listitem>
+                            <literal>loader.sce</literal> and <literal>unloader.sce</literal>
+                            can no longer modify current <literal>mode()</literal> and <literal>lines()</literal>
+                            settings in case of inner error.
+                        </listitem>
+                    </itemizedlist>
+                </revremark>
+            </revision>
         </revhistory>
     </refsection>
+
 </refentry>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="gamitg">
+    <refnamediv>
+        <refname>gamitg</refname>
+        <refpurpose>連続時間システムのH無限大ガンマ・イタレーション</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[gopt]=gamitg(G,r,prec [,options]);</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>
+                        連続時間動的システム (プラント実現 )
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 行ベクトル ( <literal>G22</literal>の次元)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prec</term>
+                <listitem>
+                    <para>ノルムの相対精度を指定</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>option</term>
+                <listitem>
+                    <para>
+                        文字列 <literal>'t'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gopt</term>
+                <listitem>
+                    <para>実数スカラー, 最適 H無限大ゲイン </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>gopt=gamitg(G,r,prec [,options])</literal>
+            は,H無限大最適ゲイン<literal>gopt</literal>を返します.
+        </para>
+        <para>
+            <literal>G</literal> は
+            プラント<literal>[A,B,C,D]</literal>を以下のように
+            分割した状態空間行列を含みます:
+        </para>
+        <programlisting role=""><![CDATA[
+B = ( B1 , B2 ) ,    C = ( C1 ) ,    D = ( D11  D12)
+                         ( C2 )          ( D21  D22)
+ ]]></programlisting>
+        <para>
+            これらの分割は,<literal>r</literal>により暗黙のうちに
+            指定されます:
+            <literal>r(1)</literal> および <literal>r(2)</literal> は
+            <literal>D22</literal> の次元(行 x 列)です.
+        </para>
+        <para>
+            <literal>option='t'</literal>を指定すると,
+            <literal>gamitg</literal> は,各二分探索ステップのトレースを行います.
+            すなわち, カレントの下界と上界と試行点を表示します.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ccontrg">ccontrg</link>
+            </member>
+            <member>
+                <link linkend="h_inf">h_inf</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>著者</title>
+        <para>P. Gahinet</para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal> は連続時間線形動的システム
+                    について確認されるようになりました.
+                    この修正はこの
+                    <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">コミット</ulink>により導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

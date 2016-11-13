@@ -39,9 +39,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xstringb</literal> dessine la matrice de chaînes de caractères <literal>str</literal> centrée dans le 
+            <literal>xstringb</literal> dessine la matrice de chaînes de caractères <literal>str</literal> centrée dans le
             le rectangle <literal>rect=[x,y,w,h]</literal> (point en bas à gauche, largeur, hauteur) en coordonnées utilisateurs.
-            Si <literal>option</literal> est spécifiée avec la valeur <literal>"fill"</literal>, la taille de la police est calculée 
+            Si <literal>option</literal> est spécifiée avec la valeur <literal>"fill"</literal>, la taille de la police est calculée
             de manière à remplir le rectangle au maximum.
         </para>
         <para>
@@ -65,11 +65,11 @@ xstringb(r(1),r(2),str,r(3),r(4),"fill");
         <scilab:image>
             str=["Scilab" "is";"$\sqrt{not}$" "elisaB"];
             plot2d(0,0,[-1,1],"010"," ",[0,0,1,1]);
-            
+
             r=[0,0,1,0.5];
             xstringb(r(1),r(2),str,r(3),r(4),"fill");
             xrect(r(1),r(2)+r(4),r(3),r(4));
-            
+
             r=[r(1),r(2)+r(4)+0.01,r(3),r(4)/2];
             xrect(r(1),r(2)+r(4),r(3),r(4))
             xstringb(r(1),r(2),str,r(3),r(4),"fill");

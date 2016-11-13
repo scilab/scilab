@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="addmenu" xml:lang="ja">
+    <refnamediv>
+        <refname>addmenu</refname>
+        <refpurpose>対話的にボタン/メニューを定義</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>addmenu(button [,submenus] [,action])
+            addmenu(gwin,button [,submenus] [,action])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>button</term>
+                <listitem>
+                    <para>文字列. ボタン名.
+                        キーボードショートカットで使用される名前の文字を前に
+                        &amp;を置くことができます;
+                        この文字はGUIで下線が引かれます.
+                        MacOSXでは,同じ名前のサブメニューが自動的に追加されます
+                        (メニューバーにボタンは追加されません).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>submenus</term>
+                <listitem>
+                    <para>文字列のベクトル. sub_menus項目名</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>action</term>
+                <listitem>
+                    <para>２つの要素を有するリスト action=list(flag,proc_name)</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>flag</term>
+                            <listitem>
+                                <para>整数 (デフォルト値は 0)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>flag==0</term>
+                            <listitem>
+                                <para>処理はscilab命令により定義される</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>flag==1</term>
+                            <listitem>
+                                <para>処理はCまたはFortran処理により定義される</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>flag==2</term>
+                            <listitem>
+                                <para>処理はscilab関数により定義される</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>proc_name</term>
+                            <listitem>
+                                <para>
+                                    命令またはコールするプロシージャ名を有する
+                                    scilab変数名を指定する文字列.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gwin</term>
+                <listitem>
+                    <para>整数. ボタンをインストールするグラフィックウインドウの
+                        番号
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数によりメインウインドウまたは
+            グラフィックウインドウコマンドパネルに
+            ボタンまたはメニューをユーザーが追加できます.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <listitem>
+                    <para>
+                        <literal>action</literal>引数が指定されない場合,
+                        ボタンに関連する処理を
+                        文字列に指定したscilab命令により定義する必要があります.
+                        この文字列の名前は,
+                    </para>
+                    <para>
+                        + <literal>button</literal> (メインウインドウコマンドの場合)
+                    </para>
+                    <para>
+                        + <literal>button_gwin</literal>
+                        (グラフィックウインドウコマンドの場合)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <listitem>
+                    <para>
+                        <literal>action</literal> 引数に 0を指定した場合,
+                        <literal>proc_name</literal> には,Scilab文字列ベクトル
+                        の名前を指定します.
+                        k番目のsub_menuに関連する処理は,
+                        この文字列変数のk番目の要素に保存したscilab命令で定義します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <listitem>
+                    <para>
+                        <literal>action</literal>引数に1を指定した場合,
+                        <literal>proc_name</literal> はCまたはFortranプロシージャ
+                        を指します.
+                        このプロシージャはFortranサブルーチン(default/fbutn.f)
+                        によりインターフェイスが作成されるか,
+                        または<literal>link</literal>関数によりscilabに
+                        動的にリンクされます.
+                        Cの呼び出し手順は以下のようになります:
+                        <literal>(char* button_name, int* gwin,int *k)
+                        </literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <listitem>
+                    <para>
+                        <literal>action</literal>引数に2を指定した場合,
+                        <literal>proc_name</literal> はScilab関数を指します.
+                        この関数の呼び出し手順は以下のようになります:
+                    </para>
+                    <para>
+                        + <literal>proc_name(k)</literal>
+                        (メインウインドウコマンドの場合)
+                    </para>
+                    <para>
+                        + <literal>proc_name(k,gwin)</literal>
+                        (グラフィックウインドウまたは
+                        メインウインドウコマンドの場合)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example">if (getscilabmode() == "STD") then
+            addmenu('foo');
+            foo = 'disp(''hello'')';
+            addmenu('Hello',['Franck';'Peter'])
+            Hello = ['disp(''hello Franck'')';'disp(''hello Peter'')'];
+            addmenu('Bye',list(0,'French_Bye'));
+            French_Bye = 'disp(''Au revoir'')';
+            else
+            mprintf('This example requires to use scilab with GUI mode.\n');
+            end
+            addmenu(0,'Hello',['Franck';'Peter']);
+            Hello_0 = ['disp(''hello Franck'')';'disp(''hello Peter'')'];
+            //Cで定義したコールバック
+            // コールバックコードを作成
+            code=[ '#include ""machine.h""'
+            '#include ""sciprint.h""'
+            'void foo(char *name, int *win, int *entry)'
+            '{'
+            '  if (*win==-1) '
+            '    sciprint(""menu %s(%i) in Scilab window selected.\n"", name, *entry+1);'
+            '  else'
+            '    sciprint(""menu %s(%i) in window %i selected.\n"", name, *entry+1, *win);'
+            '}'];
+            // foo.cファイルを作成
+            current_dir = pwd();
+            chdir(TMPDIR);
+            mputl(code, TMPDIR+'/foo.c');
+            // Makefileを作成
+            ilib_for_link('foo','foo.c',[],'c');
+            exec('loader.sce');
+            chdir(current_dir);
+            // メニューを追加
+            addmenu(0,'foo',['a','b','c'],list(1,'foo'));
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="setmenu">setmenu</link>
+            </member>
+            <member>
+                <link linkend="unsetmenu">unsetmenu</link>
+            </member>
+            <member>
+                <link linkend="delmenu">delmenu</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

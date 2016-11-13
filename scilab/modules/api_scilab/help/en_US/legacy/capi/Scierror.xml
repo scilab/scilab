@@ -8,7 +8,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>void Scierror(error_level,format,value_1,..,value_n)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -62,7 +62,7 @@
         <para>In this example, the C gateway function prints an error message and
             returns the error level 133.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 #include <stack-c.h>
 #include <Scierror.h>
 
@@ -75,7 +75,7 @@ int sci_myscierror(char * fname)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="printf_conversion">printf_conversion</link>

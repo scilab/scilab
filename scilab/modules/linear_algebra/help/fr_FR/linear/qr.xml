@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="qr">
@@ -79,7 +82,7 @@
             dimensions que <literal>X</literal> et une matrice carrée othogonale
             (unitaire dans le cas complexe) <literal>Q</literal> telles que
             <literal>X = Q*R</literal>.
-            
+
             <literal>[Q,R] = qr(X,"e")</literal>  renvoie une decomposition de
             taille réduite: si <literal>X</literal> est une matrice <literal>m x
                 n
@@ -87,7 +90,7 @@
             avec <literal>m &gt; n</literal> alors seulement les
             <literal>n</literal> premières colonnes de <literal>Q</literal> sont calculées
             ainsi que les <literal>n</literal> premières lignes de
-            <literal>R</literal>.   
+            <literal>R</literal>.
         </para>
         <para>
             Il découle de <literal>Q*R = X</literal> que la
@@ -110,7 +113,7 @@
                 ...
             </literal>
             sont nulles.
-            
+
         </para>
         <para>
             <literal>[Q,R,E] = qr(X)</literal> renvoie une matrice de permutations (de
@@ -127,15 +130,15 @@
             avec <literal>m &gt; n</literal> alors seulement les
             <literal>n</literal> premières colonnes de <literal>Q</literal> sont calculées
             ainsi que les <literal>n</literal> premières lignes de
-            <literal>R</literal>.   
+            <literal>R</literal>.
         </para>
         <para>
-            <literal>[Q,R,rk,E] = qr(X [,tol])</literal>renvoie de plus 
-            <literal>rk</literal> =rang estimé de <literal>X</literal>. 
-            Plus précisément, 
+            <literal>[Q,R,rk,E] = qr(X [,tol])</literal>renvoie de plus
+            <literal>rk</literal> =rang estimé de <literal>X</literal>.
+            Plus précisément,
             <literal>rk</literal> est le nombre d'éléments diagonaux de
             <literal>R</literal> supérieurs à <literal>tol</literal>. La valeur par défaut
-            de <literal>tol</literal> est <literal>R(1,1)*%eps*max(size(R))</literal> 
+            de <literal>tol</literal> est <literal>R(1,1)*%eps*max(size(R))</literal>
         </para>
         <para>
             renvoie <literal>rk</literal> = rang estimé de <literal>X</literal>. Ici,
@@ -145,7 +148,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // QR factorization, generic case
 // X is tall (full rank)
 X=rand(5,2);[Q,R]=qr(X); [Q'*X R]

@@ -5,11 +5,14 @@
 * Copyright (C) 2013 - S/E - Sylvestre Ledru
 * Copyright (C) 2012 - CNES - Simon Billemont
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 *
 -->
@@ -184,7 +187,7 @@ public class CircularWindow implements IWindow {
 	}
 }
       ]]></programlisting>
-        
+
         <programlisting role="example"><![CDATA[
 // The examples are shipped in the Scilab distribution.
 directory=SCI+"/modules/external_objects_java/examples/com/foo/"
@@ -196,16 +199,16 @@ jcompile(ls(directory + "/*.java"))
         </para>
         <screen>
             -->jimport("com.foo.HouseFactory")
-            
+
             -->house = HouseFactory.basicHouse()
             house  =
-            
+
             This is a house painted in white, has a white door, and 1 windows
-            
+
         </screen>
         <para>
             This shows that static methods can be called as one would in Java. Also keep in mind that this is equivalent to "jinvoke(HouseFactory, 'basicHouse')"
-            
+
             Also the message of the object has changed from something like:
             <screen>
                 com.foo.House@ae8022
@@ -216,34 +219,34 @@ jcompile(ls(directory + "/*.java"))
             <screen>
                 -->jgetclassname(house)
                 ans  =
-                
+
                 com.foo.House
             </screen>
-            
+
             What is also interesting to know is that we now have a description of a house, without having to import House into Scilab directly!
             Now that a house has been constructed, it is time to add another window to that house. For this purpose we need to create a new window and add it to the house using the function <literal>addWindow(IWindow)</literal>. <literal>IWindow</literal> is an abstract description of what a window should be and cannot be instantiated directly. There are however two implementations available that we can construct; <literal>RectangularWindow</literal> and <literal>CircularWindow</literal>. Since the house starts with a <literal>RectangularWindow</literal> from the factory, a new <literal>CircularWindow</literal> shall be made.
         </para>
         <screen>
             -->jimport("com.foo.IWindow")
-            
+
             -->IWindow.new()
             !--error 999
             Method invocation: An error occurred: Exception when calling Java method : No such constructor in the class com.foo.IWindow.
-            
+
             -->jimport("com.foo.CircularWindow")
-            
+
             --> newWindow = CircularWindow.new(0.5)
             newWindow  =
-            
+
             com.foo.CircularWindow@3e389405
-            
+
             -->house.addWindow(newWindow);
-            
+
             -->house
             house  =
-            
+
             This is a house painted in white, has a white door, and 2 windows
-            
+
         </screen>
         <para>
             A new window was made, and it's reference stored in the "newWindow" variable. Next, the window was directly added to the house, without any need to wrap the variable. It basically works as one would expect it to work. Finally, we notice that our house now has 2 windows.
@@ -253,19 +256,19 @@ jcompile(ls(directory + "/*.java"))
         </para>
         <screen>
             -->jimport("com.foo.Color")
-            
+
             -->jimport("com.foo.Door")
-            
+
             -->newDoor = Door.new(Color.RED)
             newDoor  =
-            
+
             com.foo.Door@54a5f709
-            
+
             -->house.replaceDoor(newDoor);
-            
+
             -->house
             house  =
-            
+
             This is a house painted in white, has a red door, and 2 windows
         </screen>
         <para>
@@ -274,17 +277,17 @@ jcompile(ls(directory + "/*.java"))
         <screen>
             -->c = Color.random()
             c  =
-            
+
             BLACK
-            
+
             -->c = Color.random()
             c  =
-            
+
             BLUE
-            
+
             -->c.getDescr()
             ans  =
-            
+
             blue
         </screen>
         <para>
@@ -301,20 +304,20 @@ jcompile(ls(directory + "/*.java"))
         <screen>
             -->c.descr
             ans  =
-            
+
             blue
-            
+
             -->house.door
             !--error 999
             %_EObj_e: An error occurred: Exception when calling Java method : Invalid field door
-            
+
             -->house.repaint();
-            
+
             -->house
             house  =
-            
+
             This is a house painted in red, has a white door, and 2 windows
-            
+
             -->house.swapDoorHouseColor()
             !--error 999
             %_EObj_e: An error occurred: Exception when calling Java method : Invalid field swapDoorHouseColor

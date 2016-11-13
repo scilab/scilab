@@ -32,6 +32,15 @@
     <ClInclude Include="includes\dynlib_mpi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\getOptionalComm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\sciMpiComm.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mpi_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\c\deserialization.c">
@@ -74,6 +83,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\DllmainMpi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\getOptionalComm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_mpi_createComm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

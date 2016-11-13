@@ -201,9 +201,6 @@ calelm: low level routines (INRIA).
 
 control: LINPACK + EISPACK + INRIA routines.
          dsubsp and exchnqz: Paul van Dooren.
-         rpoly: copyrighted by the ACM (alg. 493), which grants
-                 general permission to distribute provided 
-                 the copies are not made for direct commercial advantage. 
          lybsc, lydsr, lybad,sydsr and sybad are adapted from SLICE 
                 (M. Denham).
          sszer: Emami-naeini, A. and van Dooren, P. (Automatica paper).

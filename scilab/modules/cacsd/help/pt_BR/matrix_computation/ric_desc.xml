@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="ric_desc">
+    <refnamediv>
+        <refname>ric_desc</refname>
+        <refpurpose>Riccati equation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>X=ric_desc(H [,E))
+            [X1,X2,zero]=ric_desc(H [,E])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>H,E</term>
+                <listitem>
+                    <para>real square matrices</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X1,X2</term>
+                <listitem>
+                    <para>real square matrices</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zero</term>
+                <listitem>
+                    <para>real number</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Riccati solver with hamiltonian matrices as inputs.
+        </para>
+        <para>
+            In the continuous time case, the syntax is <literal>ric_descr(H)</literal> (one input):
+        </para>
+        <para>
+            Riccati equation is:
+        </para>
+        <programlisting role=""><![CDATA[
+(Ec)   A'*X + X*A + X*R*X -Q = 0.
+ ]]></programlisting>
+        <para>
+            Defining the hamiltonian matrix <literal>H</literal> by:
+        </para>
+        <programlisting role=""><![CDATA[
+H = [A  R;
+     Q -A']
+ ]]></programlisting>
+        <para>
+            with the syntax <literal>[X1,X2,zero]=ric_descr(H)</literal>, the
+            solution <literal>X</literal> is given by <literal>X=X1/X2</literal>.
+        </para>
+        <para>
+            <literal>zero</literal> = L1 norm of rhs of (<literal>Ec</literal>)
+        </para>
+        <para>
+            The solution <literal>X</literal> is also given by <literal>X=riccati(A,Q,R,'c'))</literal>
+        </para>
+        <para>
+            In the discrete-time case, the syntax is <literal>ric_descr(H,E)</literal> (two inputs):
+        </para>
+        <para>
+            The Riccati equation is:
+        </para>
+        <programlisting role=""><![CDATA[
+(Ed)  A'*X*A-(A'*X*B*(R+B'*X*B)^-1)*(B'*X*A)+C-X = 0.
+ ]]></programlisting>
+        <para>
+            Defining <literal>G=B/R*B'</literal> and the hamiltonian pencil <literal>(E,H)</literal> by:
+        </para>
+        <programlisting role=""><![CDATA[
+E=[eye(n,n),G;               H=[A, 0*ones(n,n);
+   0*ones(n,n),A']             -C, eye(n,n)];
+ ]]></programlisting>
+        <para>
+            with the syntax <literal>[X1,X2,err]=ric_descr(H,E)</literal>, the
+            solution <literal>X</literal> is given by <literal>X=X1/X2</literal>.
+        </para>
+        <para>
+            <literal>zero</literal>= L1 norm of rhs of (<literal>Ed</literal>)
+        </para>
+        <para>
+            The solution <literal>X</literal> is also given by <literal>X=riccati(A,G,C,'d')</literal>
+            with <literal>G=B/R*B'</literal>
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+h=[0.5,4;
+0,-0.5]
+x=ric_desc(h)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="riccati">riccati</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

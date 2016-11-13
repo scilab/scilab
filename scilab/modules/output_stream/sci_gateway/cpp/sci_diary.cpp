@@ -2,16 +2,20 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009 - DIGITEO - Allan CORNET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
-#include "diary_manager.hxx"
 /*--------------------------------------------------------------------------*/
+#include "diary_manager.hxx"
+
 extern "C"
 {
 #include "gw_output_stream.h"
@@ -98,21 +102,23 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
     if ((diary_ids) && (nb_diary_ids > 0))
     {
         sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, nb_diary_ids, 1, diary_ids);
+        delete [] diary_ids;
+        diary_ids = NULL;
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 0;
         }
-
         LhsVar(1) = Rhs + 1;
-
-        delete[] diary_ids;
-        diary_ids = NULL;
-        nb_diary_ids = 0;
     }
     else
     {
+        if (diary_ids)
+        {
+            delete [] diary_ids;
+            diary_ids = NULL;
+        }
         if (nb_diary_ids == 0)
         {
             sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, NULL);
@@ -123,13 +129,6 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
                 return 0;
             }
             LhsVar(1) = Rhs + 1;
-
-            if (diary_ids)
-            {
-                delete[] diary_ids;
-                diary_ids = NULL;
-                nb_diary_ids = 0;
-            }
         }
         else
         {
@@ -154,9 +153,6 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
             }
 
             LhsVar(2) = Rhs + 2;
-
-            FREE(diary_filenames);
-            nb_diary_filenames = 0;
         }
         else
         {
@@ -171,11 +167,6 @@ static int sci_diary_no_rhs(char *fname, void* pvApiCtx)
                 }
 
                 LhsVar(2) = Rhs + 2;
-                if (diary_filenames)
-                {
-                    FREE(diary_filenames);
-                    nb_diary_filenames = 0;
-                }
             }
             else
             {
@@ -254,6 +245,7 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
                 if (dID == -1)
                 {
                     Scierror(999, _("%s: error can not create diary: %s.\n"), fname, filenames[0]);
+                    freeArrayOfString(filenames, sizeFilenames);
                     return 0;
                 }
 
@@ -262,6 +254,7 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    freeArrayOfString(filenames, sizeFilenames);
                     return 0;
                 }
 
@@ -275,6 +268,7 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
                     {
                         printError(&sciErr, 0);
                         Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                        freeArrayOfString(filenames, sizeFilenames);
                         return 0;
                     }
 
@@ -285,12 +279,9 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
             {
                 if (diaryClose(filenames[0]))
                 {
-                    if (filenames)
-                    {
-                        freeArrayOfString(filenames, 1);
-                        Scierror(999, _("%s: error can not close diary.\n"), fname);
-                        return 0;
-                    }
+                    Scierror(999, _("%s: error can not close diary.\n"), fname);
+                    freeArrayOfString(filenames, sizeFilenames);
+                    return 0;
                 }
                 LhsVar(1) = 0;
             }
@@ -300,8 +291,8 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
         }
         else
         {
-            freeArrayOfString(filenames, sizeFilenames);
             Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
+            freeArrayOfString(filenames, sizeFilenames);
         }
     }
     else
@@ -615,8 +606,6 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
                     return 0;
                 }
 
-                FREE(argumentTwo);
-                argumentTwo = NULL;
                 if (iType == sci_strings)
                 {
                     return NewByFilenames(fname, pvApiCtx, filterMode, iPrefixMode, iPrefixIoModeFilter, suspendedDiary);
@@ -638,8 +627,6 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
                     return 0;
                 }
 
-                FREE(argumentTwo);
-                argumentTwo = NULL;
                 if (iType == sci_strings)
                 {
                     return AppendByFilenames(fname, pvApiCtx, filterMode, iPrefixMode, iPrefixIoModeFilter, suspendedDiary);
@@ -652,8 +639,6 @@ static int sci_diary_three_rhs(char *fname, void* pvApiCtx)
             }
             else
             {
-                FREE(argumentTwo);
-                argumentTwo = NULL;
                 Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
                 return 0;
             }
@@ -799,6 +784,7 @@ static char** getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *siz
                 {
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     *ierror = 1;
+                    FREE(lenStVarOne);
                 }
                 else
                 {
@@ -809,6 +795,14 @@ static char** getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *siz
                         {
                             Scierror(999, _("%s: Memory allocation error.\n"), fname);
                             *ierror = 1;
+                            for (int j = 0; j < i; j++)
+                            {
+                                FREE(filenames[i]);
+                            }
+
+                            FREE(filenames);
+                            FREE(lenStVarOne);
+                            return NULL;
                         }
                     }
 
@@ -819,6 +813,11 @@ static char** getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *siz
                         printError(&sciErr, 0);
                         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                         *ierror = 1;
+                        for (int i = 0; i < m1 * n1; i++)
+                        {
+                            FREE(filenames[i]);
+                        }
+                        FREE(filenames);
                         return NULL;
                     }
 
@@ -1000,6 +999,11 @@ static char** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeReturn
                     {
                         printError(&sciErr, 0);
                         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+                        for (int i = 0; i < m3 * n3; i++)
+                        {
+                            FREE(inputArgumentThree[i]);
+                        }
+                        FREE(inputArgumentThree);
                         return 0;
                     }
 

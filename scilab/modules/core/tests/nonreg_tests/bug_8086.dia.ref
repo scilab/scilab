@@ -45,7 +45,6 @@ macros_error_type_1 = ["isscalar"; ..
 "isinf"; ..
 "isnan"; ..
 "isvector"; ..
-"lex_sort"; ..
 "log10"; ..
 "log2"; ..
 "logm"; ..

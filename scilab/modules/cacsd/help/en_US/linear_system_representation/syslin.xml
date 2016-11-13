@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="syslin" xml:lang="en">
+    <refnamediv>
+        <refname>syslin</refname>
+        <refpurpose>linear system definition</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[sl]=syslin(dom,A,B,C [,D [,x0] ])
+            [sl]=syslin(dom,N,D)
+            [sl]=syslin(dom,H)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>dom</term>
+                <listitem>
+                    <para>
+                        character string (<literal>'c'</literal>,
+                        <literal>'d'</literal>), or <literal>[]</literal> or a
+                        scalar.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A,B,C,D</term>
+                <listitem>
+                    <para>matrices of the state-space representation
+                        (<literal>D</literal> optional with default value zero matrix). For
+                        improper systems <literal>D</literal> is a polynomial matrix.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0</term>
+                <listitem>
+                    <para>vector (initial state; default value is
+                        <literal>0</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>N, D</term>
+                <listitem>
+                    <para>polynomial matrices</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H</term>
+                <listitem>
+                    <para>rational matrix or linear state space representation</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        tlist ("<literal>syslin</literal>" list) representing the
+                        linear system
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>syslin</literal> defines a linear system as a list and
+            checks consistency of data.
+        </para>
+        <para>
+            <literal>dom</literal> specifies the time domain of the system and
+            can have the following values:
+        </para>
+        <para>
+            <literal>dom='c'</literal> for a continuous time system,
+            <literal>dom='d'</literal> for a discrete time system,
+            <literal>n</literal> for a sampled system with sampling period
+            <literal>n</literal> (in seconds).
+        </para>
+        <para>
+            <literal>dom=[]</literal> if the time domain is undefined
+        </para>
+        <para>State-space representation:</para>
+        <programlisting><![CDATA[
+sl=syslin(dom,A,B,C [,D [,x0] ])
+ ]]></programlisting>
+        <para>represents the system :</para>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../mml/syslin_equation_1.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
+        <para>
+            The output of <literal>syslin</literal> is a list of the following
+            form:
+            <literal>sl=tlist(['lss','A','B','C','D','X0','dt'],A,B,C,D,x0,dom)</literal>
+            Note that <literal>D</literal> is allowed to be a polynomial matrix
+            (improper systems).
+        </para>
+        <para>Transfer matrix representation:</para>
+        <programlisting><![CDATA[
+sl=syslin(dom,N,D)
+sl=syslin(dom,H)
+ ]]></programlisting>
+        <para>
+            The output of <literal>syslin</literal> is a list of the following
+            form : <literal>sl = rlist(N,D,dom)</literal> or
+            <literal>sl=rlist(H(2),H(3),dom)</literal>.
+        </para>
+        <para>
+            Linear systems defined as <literal>syslin</literal> can be
+            manipulated as usual matrices (concatenation, extraction, transpose,
+            multiplication, etc) both in state-space or transfer
+            representation.
+        </para>
+        <para>Most of state-space control functions receive a
+            <literal>syslin</literal> list as input instead of the four matrices
+            defining the system.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A=[0,1;0,0];B=[1;1];C=[1,1];
+S1=syslin('c',A,B,C)   //Linear system definition
+S1("A")    //Display of A-matrix
+S1("X0"), S1("dt") // Display of X0 and time domain
+s=poly(0,'s');
+D=s;
+S2=syslin('c',A,B,C,D)
+H1=(1+2*s)/s^2, S1bis=syslin('c',H1)
+H2=(1+2*s+s^3)/s^2, S2bis=syslin('c',H2)
+S1+S2
+[S1,S2]
+ss2tf(S1)-S1bis
+S1bis+S2bis
+S1*S2bis
+size(S1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="lsslist">lsslist</link>
+            </member>
+            <member>
+                <link linkend="rlist">rlist</link>
+            </member>
+            <member>
+                <link linkend="ssrand">ssrand</link>
+            </member>
+            <member>
+                <link linkend="ss2tf">ss2tf</link>
+            </member>
+            <member>
+                <link linkend="tf2ss">tf2ss</link>
+            </member>
+            <member>
+                <link linkend="dscr">dscr</link>
+            </member>
+            <member>
+                <link linkend="abcd">abcd</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

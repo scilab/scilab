@@ -5,6 +5,9 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
+prot = funcprot();
+funcprot(0);
+
 //The graphics objects builder and subsidiaries
 //--------------------------------------------
 function [H]=build_levitron(h)
@@ -38,6 +41,7 @@ function [H]=build_levitron(h)
     plot3d([-1 1]*1.5, [-1 1]*1.5, zeros(2, 2))
     e=gce();e.color_mode=color("red");
 
+    isoview()
     levitron_axes = gca();
     //Axes definition for the plot
     //plot will be on the left-hand side of the screen
@@ -48,14 +52,13 @@ function [H]=build_levitron(h)
     levitron_axes.axes_visible="off";
     levitron_axes.box="off";
     levitron_axes.cube_scaling="on";
-    levitron_axes.isoview="on";
     levitron_axes.rotation_angles=[76 45];
     levitron_axes.foreground=N
     levitron_axes.x_label.text=""
     levitron_axes.y_label.text=""
     levitron_axes.z_label.text=""
 
-    immediate_drawing ="on"
+    f.immediate_drawing ="on"
     f.visible = "on"
 endfunction
 
@@ -412,3 +415,5 @@ function gui_createButtonFrame();
     c = createConstraints("gridbag", [7, 1, 1, 1], [1, 1], "horizontal", "right");
     empty = uicontrol(button_frame, "style", "frame", "backgroundcolor", [1, 1, 1], "constraints", c);
 endfunction
+
+funcprot(prot);

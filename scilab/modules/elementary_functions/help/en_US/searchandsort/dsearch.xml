@@ -5,11 +5,14 @@
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
  * Copyright (C) 2013 - Samuel GOUGEON
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"   xmlns:scilab="http://www.scilab.org"  xml:id="dsearch" xml:lang="en">
@@ -20,7 +23,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [i_bin [,counts [,outside]]] = dsearch(X, bins )
             [i_bin [,counts [,outside]]] = dsearch(X, bins , pm )
@@ -103,7 +106,7 @@
             The default pm="c" option can be used to compute the empirical histogram of a function given a dataset.
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
@@ -130,7 +133,7 @@ bins = unique(matrix(strsplit(s, L:L:nC*L-1), 1, nC))
 T
 [i_bin, counts, outside] = dsearch(T, bins)
     ]]></programlisting>
-        
+
         <para>
             In the following example, we consider 3 intervals <literal>I1 = [5,11]</literal>,
             <literal>I2 = (11,15]</literal> and <literal>I3 = (15,20]</literal>.
@@ -373,7 +376,7 @@ legend(["Experiment","Expectation"]);
       // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
       ]]></programlisting>
         <scilab:image>
-            
+
             function y=Ll(t,k,x)
             y=(t-x(k+1))./(x(k)-x(k+1))
             endfunction
@@ -392,13 +395,13 @@ legend(["Experiment","Expectation"]);
             function y=Kr(t,k,x)
             y=(t-x(k+1)).*Lr(t,k,x).^2
             endfunction
-            
+
             x = [0 ; 0.2 ; 0.35 ; 0.5 ; 0.65 ; 0.8 ;  1];
             y = [0 ; 0.1 ;-0.1  ; 0   ; 0.4  ;-0.1 ;  0];
             d = [1 ; 0   ; 0    ; 1   ; 0    ; 0   ; -1];
             X = linspace(0, 1, 200)';
             i_bin = dsearch(X, x);
-            
+
             Y = y(i_bin).*Hl(X,i_bin) + y(i_bin+1).*Hr(X,i_bin) + d(i_bin).*Kl(X,i_bin) + d(i_bin+1).*Kr(X,i_bin);
             scf();
             plot(X,Y,"k-");
@@ -407,9 +410,9 @@ legend(["Experiment","Expectation"]);
             legend(["Polynomial","Data"]);
         </scilab:image>
     </refsection>
-    
+
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="find">find</link>
@@ -422,7 +425,7 @@ legend(["Experiment","Expectation"]);
             </member>
         </simplelist>
     </refsection>
-    
+
     <refsection>
         <title>History</title>
         <revhistory>

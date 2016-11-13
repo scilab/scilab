@@ -8,7 +8,7 @@
         <refpurpose>element wise hyperbolic cotangent inverse.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = acoth(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -36,7 +36,7 @@
     </refsection>
     <refsection>
         <title>Sample</title>
-        <scilab:image><![CDATA[ 
+        <scilab:image><![CDATA[
 x=-30:0.1:30;
 x(abs(x)<=1)=%nan;
 plot(x,acoth(x))
@@ -44,14 +44,14 @@ plot(x,acoth(x))
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=-30:0.1:30;
 x(abs(x)<=1)=%nan;
 plot(x,acoth(x))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="atanh">atanh</link>

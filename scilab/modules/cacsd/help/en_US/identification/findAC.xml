@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="findAC">
+    <refnamediv>
+        <refname>findAC</refname>
+        <refpurpose>discrete-time system subspace identification</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[A,C] = findAC(S,N,L,R,METH,TOL,PRINTW)
+            [A,C,RCND] = findAC(S,N,L,R,METH,TOL,PRINTW)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>integer, the number of block rows in the block-Hankel matrices</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>N</term>
+                <listitem>
+                    <para>integer</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>L</term>
+                <listitem>
+                    <para>integer</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R</term>
+                <listitem>
+                    <para>matrix, relevant part of the  R factor of the concatenated block-Hankel matrices computed by a call to findr.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>METH</term>
+                <listitem>
+                    <para>integer, an option for the method to use</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>= 1</term>
+                            <listitem>
+                                <para> MOESP method with past inputs and outputs;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>= 2</term>
+                            <listitem>
+                                <para> N4SID method;</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        Default:    METH = 3.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>TOL</term>
+                <listitem>
+                    <para>the tolerance used for estimating the rank of matrices.  If  TOL &gt; 0,  then the given value of  TOL  is used as a lower bound for the reciprocal condition number. Default: prod(size(matrix))*epsilon_machine where epsilon_machine is the relative machine precision.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PRINTW</term>
+                <listitem>
+                    <para>integer, switch for printing the warning messages.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>PRINTW</term>
+                            <listitem>
+                                <para>= 1: print warning messages;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>= 0</term>
+                            <listitem>
+                                <para>do not print warning messages.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        Default:    PRINTW = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>matrix, state system matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>matrix, output system matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>RCND</term>
+                <listitem>
+                    <para>vector of length 4,  condition numbers of the matrices involved in rank decision</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            finds the system matrices A and C of a discrete-time system, given the
+            system order and the relevant part of the R factor of the concatenated
+            block-Hankel matrices, using subspace identification techniques (MOESP
+            or N4SID).
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>[A,C] = findAC(S,N,L,R,METH,TOL,PRINTW)  computes the system matrices A and C. The model structure is:       x(k+1) = Ax(k) + Bu(k) + Ke(k),   k &gt;= 1,      y(k)   = Cx(k) + Du(k) + e(k),  where x(k) and y(k) are vectors of length N and L, respectively.</para>
+            </listitem>
+            <listitem>
+                <para>[A,C,RCND] = findAC(S,N,L,R,METH,TOL,PRINTW)  also returns the vector RCND of length 4 containing the condition numbers of the matrices involved in rank decisions.</para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Matrix R, computed by findR, should be determined with suitable arguments
+            METH and JOBD.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//generate data from a given linear system
+A = [ 0.5, 0.1,-0.1, 0.2;
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
+B = [0.8;0.1;1;-1];
+C = [1 2 -1 0];
+SYS=syslin(0.1,A,B,C);
+nsmp=100;
+U=prbs_a(nsmp,nsmp/5);
+Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
+
+// Compute R
+S=15;L=1;
+[R,N,SVAL] = findR(S,Y',U');
+
+N=3;
+METH=3;TOL=-1;
+[A,C] = findAC(S,N,L,R,METH,TOL);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="findABCD">findABCD</link>
+            </member>
+            <member>
+                <link linkend="findBD">findBD</link>
+            </member>
+            <member>
+                <link linkend="findBDK">findBDK</link>
+            </member>
+            <member>
+                <link linkend="findR">findR</link>
+            </member>
+            <member>
+                <link linkend="sorder">sorder</link>
+            </member>
+            <member>
+                <link linkend="sident">sident</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

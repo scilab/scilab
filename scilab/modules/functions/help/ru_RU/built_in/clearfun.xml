@@ -5,7 +5,7 @@
         <refpurpose>удаляет примитивы</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>ret=clearfun('name')</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -28,9 +28,9 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>clearfun('name')</literal> удаляет примитив с именем <literal>'name'</literal> 
+            <literal>clearfun('name')</literal> удаляет примитив с именем <literal>'name'</literal>
             из набора примитивов (встроенных функций)from the set of
-            primitives (built-in functions). <literal>clearfun</literal> возвращает 
+            primitives (built-in functions). <literal>clearfun</literal> возвращает
             <literal>%t</literal> или <literal>%f</literal>. Эта функция позволяет переименовывать
             примитивы: примитивы Scilab'а могут быть заменены функцией, определённой пользователем.
             Для экспертов...

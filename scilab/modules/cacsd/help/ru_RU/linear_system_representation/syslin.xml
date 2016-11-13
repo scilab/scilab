@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="syslin" xml:lang="ru">
+    <refnamediv>
+        <refname>syslin</refname>
+        <refpurpose>определение линейной системы</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>[sl]=syslin(dom,A,B,C [,D [,x0] ])
+            [sl]=syslin(dom,N,D)
+            [sl]=syslin(dom,H)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>dom</term>
+                <listitem>
+                    <para>
+                        символьная строка (<literal>'c'</literal>, <literal>'d'</literal>) или <literal>[]</literal> для скаляра.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A,B,C,D</term>
+                <listitem>
+                    <para>
+                        матрицы в виде пространства состояний (<literal>D</literal> не обязательная матрица, по умолчанию - нулевая). Для сингулярных систем  <literal>D</literal> является
+                        матрицей многочленов.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0</term>
+                <listitem>
+                    <para>
+                        вектор (исходное состояние; значение по умолчанию <literal>0</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>N, D</term>
+                <listitem>
+                    <para>матрицы многочленов</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>H</term>
+                <listitem>
+                    <para>матрица рациональных дробей или в виде линейного пространства состояний</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        типизированный список (tlist) ("<literal>syslin</literal>" список), представляющий линейную систему
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>syslin</literal> определяет линейную систему в виде списка и проверяет правильность данных.
+        </para>
+        <para>
+            <literal>dom</literal> определяет временную область системы и может иметь следующие значения:
+        </para>
+        <para>
+            <literal>dom='c'</literal> для систем с непрерывным временем,
+            <literal>dom='d'</literal> для систем с дискретным временем,
+            <literal>n</literal> для дискретных систем с периодом дискретизации <literal>n</literal>
+            (в секундах).
+        </para>
+        <para>
+            <literal>dom=[]</literal>, если временная область не определена.
+        </para>
+        <para>Представление в виде пространства состояний:</para>
+        <programlisting><![CDATA[
+sl=syslin(dom,A,B,C [,D [,x0] ])
+ ]]></programlisting>
+        <para>представляет систему :</para>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../mml/syslin_equation_1.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
+        <para>
+            Выход <literal>syslin</literal> является списком следующей формы:
+            <literal>sl=tlist(['lss','A','B','C','D','X0','dt'],A,B,C,D,x0,dom)</literal>
+            Заметим, что <literal>D</literal> может быть матрицей многочленов (сингулярные системы).
+        </para>
+        <para>Представление в виде передаточной матрицы:</para>
+        <programlisting><![CDATA[
+sl=syslin(dom,N,D)
+sl=syslin(dom,H)
+ ]]></programlisting>
+        <para>
+            Выход <literal>syslin</literal> является списком следующей формы: <literal>sl=rlist(,N,D,dom)</literal> или
+            <literal>sl=rlist(H(2),H(3),dom)</literal>.
+        </para>
+        <para>
+            Линейные системы, определённые как <literal>syslin</literal>, могут управляться как обычные матрицы (конкатенация, извлечение, перестановка, умножение и т. д.) как в виде пространства состояний, так и в передаточном виде.
+        </para>
+        <para>
+            Большинство функций управления в пространстве состояний получают на входе список     <literal>syslin</literal> вместо четырёх матриц, определяющих систему.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+A=[0,1;0,0];B=[1;1];C=[1,1];
+S1=syslin('c',A,B,C)   //Определение линейной системы
+S1("A")    //распечатка матрицы A
+S1("X0"), S1("dt") // распечатка X0 и временной области
+s=poly(0,'s');
+D=s;
+S2=syslin('c',A,B,C,D)
+H1=(1+2*s)/s^2, S1bis=syslin('c',H1)
+H2=(1+2*s+s^3)/s^2, S2bis=syslin('c',H2)
+S1+S2
+[S1,S2]
+ss2tf(S1)-S1bis
+S1bis+S2bis
+S1*S2bis
+size(S1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="lsslist">lsslist</link>
+            </member>
+            <member>
+                <link linkend="rlist">rlist</link>
+            </member>
+            <member>
+                <link linkend="ssrand">ssrand</link>
+            </member>
+            <member>
+                <link linkend="ss2tf">ss2tf</link>
+            </member>
+            <member>
+                <link linkend="tf2ss">tf2ss</link>
+            </member>
+            <member>
+                <link linkend="dscr">dscr</link>
+            </member>
+            <member>
+                <link linkend="abcd">abcd</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

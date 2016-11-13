@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-23 05:34+0000\n"
+"PO-Revision-Date: 2016-02-12 18:42+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "Language: uk\n"
 
 #, c-format
@@ -202,6 +202,168 @@ msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати матрицю дійсних "
 "значень.\n"
 
+msgid "Simulation of an ARMAX process:"
+msgstr "Моделювання процесу ARMAX:"
+
+msgid "Identification ARX (least square):"
+msgstr "ARX ідентифікації (найменший квадрат):"
+
+msgid "Simulation of an ARMAX process: "
+msgstr "Моделювання процесу ARMAX: "
+
+msgid "Identification ARX (least square): "
+msgstr "Визначення ARX (метод найменших квадратів): "
+
+msgid "Arma Spectral power estimation:"
+msgstr "Оцінка потужності спектра ARMA:"
+
+msgid "Arma identification"
+msgstr "Визначення за ARMA"
+
+msgid "Theoretical value"
+msgstr "Теоретичне значення"
+
+msgid "Using macro mese"
+msgstr "Використання макросу mese"
+
+msgid "Spectral power"
+msgstr "Спектральна потужність"
+
+msgid "frequency"
+msgstr "частота"
+
+msgid "spectral estimate"
+msgstr "оцінка спектральної щільності"
+
+msgid "Press Return to continue ... \n"
+msgstr "Натисніть Enter, щоб продовжити… \n"
+
+msgid "filtered signal"
+msgstr "фільтрований сигнал"
+
+msgid "given noisy signal"
+msgstr "заданий шумний сигнал"
+
+msgid "Signal"
+msgstr "Сигнал"
+
+msgid "2 points convolution"
+msgstr "двоточкова згортка"
+
+msgid "3 points convolution"
+msgstr "триточкова згортка"
+
+msgid "Signal derivative estimate"
+msgstr "Наближена похідна сигналу"
+
+msgid "Choose filter type and parameters"
+msgstr "Виберіть тип фільтрування та параметри"
+
+msgid "Discrete IIR filter "
+msgstr "Дискретний IIR-фільтр "
+
+msgid "Discrete IIR filter: low pass  fr < 0.2"
+msgstr "Дискретний IIR-фільтр: нижні частоти < 0.2"
+
+msgid "Discrete IIR filter: band pass 0.15 < fr < 0.25"
+msgstr "Дискретний IIR-фільтр за діапазоном частот 0.15 < fr < 0.25"
+
+msgid "Minimax FIR filter"
+msgstr "Мінімаксний FIR-фільтр"
+
+msgid "low pass  cut-off in [.23,.27]"
+msgstr "нижні частоти обрізання на [.23,.27]"
+
+msgid "length 33"
+msgstr "довжина 33"
+
+msgid "Remez Triangular filter"
+msgstr "Трикутний фільтр Ремеза"
+
+msgid "magnitude error"
+msgstr "помилка у амплітуді"
+
+msgid "Signal Processing"
+msgstr "Обробка сигналів"
+
+msgid "Spectral Estimation"
+msgstr "Спектральна оцінка"
+
+msgid "IIR filter design"
+msgstr "Схема з IIR-фільтром"
+
+msgid "Minimax FIR filter design"
+msgstr "Схема з мінімаксним FIR-фільтром"
+
+msgid "Discrete IIR filter"
+msgstr "Дискретний IIR-фільтр"
+
+msgid "Wiener filter"
+msgstr "Фільтр Вінера"
+
+msgid "Bode plots"
+msgstr "Графіки Боде"
+
+msgid "Window FIR filters"
+msgstr "Діапазонні FIR-фільтри"
+
+msgid "1-D convolution"
+msgstr "Одновимірна згортка"
+
+msgid "2-D convolution"
+msgstr "Двовимірна згортка"
+
+msgid "Arma simulation and identification"
+msgstr "Моделювання та визначення ARMA"
+
+msgid "Arma, bidimensional version"
+msgstr "ARMA, двовимірна версія"
+
+msgid "Arma, Spectral power estimation"
+msgstr "ARMA, оцінка потужності спектра"
+
+msgid "Data spectrum"
+msgstr "Спектр даних"
+
+msgid "magnitude"
+msgstr "амплітуда"
+
+msgid "Spectral estimation"
+msgstr "Спектральна оцінка"
+
+msgid "spectral power"
+msgstr "спектральна потужність"
+
+msgid "estimates xf"
+msgstr "оцінки xf"
+
+msgid "estimates xs"
+msgstr "оцінки xs"
+
+msgid "real state"
+msgstr "поточний стан"
+
+msgid "Windowed FIR Low pass Filter"
+msgstr "Віконний фільтр низьких частот зі СІХ (FIR)"
+
+msgid "Kaiser window, cut-off: 0.2"
+msgstr "Вікно Кайзера, обрізання: 0.2"
+
+msgid "Hamming window, cut-off: 0.2, 0.3"
+msgstr "Вікно Гаммінґа, обрізання: 0.2, 0.3"
+
+msgid "length 127"
+msgstr "довжина 127"
+
+msgid "Windowed FIR Band pass Filter"
+msgstr "Віконний фільтр діапазону частот зі СІХ (FIR)"
+
+msgid "Chebyshev window, cut-off: 0.15, 0.35"
+msgstr "Вікно Чебишева, обрізання: 0.15, 0.35"
+
+msgid "length 55"
+msgstr "довжина 55"
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floating point numbers "
@@ -265,7 +427,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
@@ -304,7 +467,8 @@ msgstr ""
 "матрицю 1х1 або два поліноми.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: першим елементом не може бути "
 "%s.\n"
@@ -355,7 +519,8 @@ msgstr ""
 "число.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути використано додатне "
 "ціле число.\n"
@@ -367,7 +532,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
-msgstr "%s: помилкові розмірності вхідних параметрів: несумісні розмірності.\n"
+msgstr ""
+"%s: помилкові розмірності вхідних параметрів: несумісні розмірності.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An odd integer expected.\n"
@@ -438,7 +604,8 @@ msgstr ""
 "раціональних дробів.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати масив "
 "з %d елементами.\n"

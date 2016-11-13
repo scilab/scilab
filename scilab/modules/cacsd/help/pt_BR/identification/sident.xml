@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="sident">
+    <refnamediv>
+        <refname>sident</refname>
+        <refpurpose>discrete-time state-space realization and Kalman gain</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[[A,C][,B[,D]][,K,Q,Ry,S][,rcnd]] = sident(meth,job,s,n,l,R[,tol,t,Ai,Ci,printw])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>meth</term>
+                <listitem>
+                    <para>integer option to determine the method to use:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : MOESP method with past inputs and outputs;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : N4SID method;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>3 : combined method: A and C via MOESP, B and D via N4SID.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>job</term>
+                <listitem>
+                    <para>integer option to determine the calculation to be performed:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : compute all system matrices, A, B, C, D;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : compute the matrices A and C only;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>3 : compute the matrix B only;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>4 : compute the matrices B and D only.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>the number of block rows in the processed input and output block Hankel matrices.  s &gt; 0.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>integer, the order of the system</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>l</term>
+                <listitem>
+                    <para>integer, the number of the system outputs</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R</term>
+                <listitem>
+                    <para>the 2*(m+l)*s-by-2*(m+l)*s part of  R  contains the processed upper triangular factor  R  from the QR factorization of the concatenated block-Hankel matrices, and further details needed for computing system matrices.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>(optional) tolerance used for estimating the rank of matrices. If  tol &gt; 0,  then the given value of  tol  is used as a lower bound for the reciprocal condition number; an m-by-n matrix whose estimated condition number is less than  1/tol  is considered to be of full rank. Default:    m*n*epsilon_machine where epsilon_machine is the relative machine precision.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>(optional) the total number of samples used for calculating the covariance matrices.  Either t = 0, or t &gt;= 2*(m+l)*s. This parameter is not needed if the covariance matrices and/or the Kalman predictor gain matrix are not desired. If t = 0, then K, Q, Ry, and S are not computed. Default:    t = 0.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ai</term>
+                <listitem>
+                    <para>real matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ci</term>
+                <listitem>
+                    <para> real matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>printw</term>
+                <listitem>
+                    <para>(optional) switch for printing the warning messages.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1:  print warning messages;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>0:  do not print warning messages.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        Default:    printw = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>real matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>real matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>real matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>D</term>
+                <listitem>
+                    <para>real matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>real matrix, kalman gain</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Q</term>
+                <listitem>
+                    <para>(optional) the n-by-n positive semidefinite state covariance matrix used as state weighting matrix when computing the Kalman gain.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>RY</term>
+                <listitem>
+                    <para>(optional) the l-by-l positive (semi)definite output covariance matrix used as output weighting matrix when computing the Kalman gain.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>(optional) the n-by-l state-output cross-covariance matrix used as cross-weighting matrix when computing the Kalman gain.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rcnd</term>
+                <listitem>
+                    <para>(optional) vector of length lr, containing estimates of the reciprocal condition numbers of the matrices involved in rank decisions, least squares, or Riccati equation solutions, where   lr = 4,  if Kalman gain matrix K is not required, and  lr = 12, if Kalman gain matrix K is required.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            SIDENT function for computing a discrete-time state-space realization
+            (A,B,C,D) and Kalman gain K using SLICOT routine IB01BD.
+        </para>
+        <programlisting role=""><![CDATA[
+              [A,C,B,D] = sident(meth,1,s,n,l,R)
+[A,C,B,D,K,Q,Ry,S,rcnd] = sident(meth,1,s,n,l,R,tol,t)
+                  [A,C] = sident(meth,2,s,n,l,R)
+                      B = sident(meth,3,s,n,l,R,tol,0,Ai,Ci)
+      [B,K,Q,Ry,S,rcnd] = sident(meth,3,s,n,l,R,tol,t,Ai,Ci)
+                  [B,D] = sident(meth,4,s,n,l,R,tol,0,Ai,Ci)
+    [B,D,K,Q,Ry,S,rcnd] = sident(meth,4,s,n,l,R,tol,t,Ai,Ci)
+ ]]></programlisting>
+        <para>
+            SIDENT computes a state-space realization (A,B,C,D) and the Kalman
+            predictor gain K of a discrete-time system, given the system
+            order and the relevant part of the R factor of the concatenated
+            block-Hankel matrices, using subspace identification techniques
+            (MOESP, N4SID, or their combination).
+        </para>
+        <para>
+            The model structure is :
+        </para>
+        <programlisting role=""><![CDATA[
+x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
+y(k)   = Cx(k) + Du(k) + e(k),
+ ]]></programlisting>
+        <para>
+            where
+            x(k)  is the  n-dimensional state vector (at time k),
+        </para>
+        <para>
+            u(k)  is the  m-dimensional input vector,
+        </para>
+        <para>
+            y(k)  is the  l-dimensional output vector,
+        </para>
+        <para>
+            e(k)  is the  l-dimensional disturbance vector,
+        </para>
+        <para>
+            and  A, B, C, D, and K  are real matrices of appropriate dimensions.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Comments</title>
+        <para>
+            1. The n-by-n system state matrix A, and the p-by-n system output  matrix C are computed for job &lt;= 2.
+        </para>
+        <para>
+            2. The n-by-m system input matrix B is computed for job &lt;&gt; 2.
+        </para>
+        <para>
+            3. The l-by-m system matrix D is computed for job = 1 or 4.
+        </para>
+        <para>
+            4. The n-by-l Kalman predictor gain matrix K and the covariance matrices Q, Ry, and S are computed for t &gt; 0.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//generate data from a given linear system
+A = [ 0.5, 0.1,-0.1, 0.2;
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
+B = [0.8;0.1;1;-1];
+C = [1 2 -1 0];
+SYS=syslin(0.1,A,B,C);
+nsmp=100;
+U=prbs_a(nsmp,nsmp/5);
+Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
+
+S = 15;
+N = 3;
+METH=1;
+[R,N1] = findR(S,Y',U',METH);
+[A,C,B,D,K] = sident(METH,1,S,N,1,R);
+SYS1=syslin(1,A,B,C,D);
+SYS1.X0 = inistate(SYS1,Y',U');
+
+Y1=flts(U,SYS1);
+clf();plot2d((1:nsmp)',[Y',Y1'])
+
+METH = 2;
+[R,N1,SVAL] = findR(S,Y',U',METH);
+tol = 0;
+t = size(U',1)-2*S+1;
+
+[A,C,B,D,K] = sident(METH,1,S,N,1,R,tol,t)
+SYS1=syslin(1,A,B,C,D)
+SYS1.X0 = inistate(SYS1,Y',U');
+
+Y1=flts(U,SYS1);
+clf();plot2d((1:nsmp)',[Y',Y1'])
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="findBD">findBD</link>
+            </member>
+            <member>
+                <link linkend="sorder">sorder</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

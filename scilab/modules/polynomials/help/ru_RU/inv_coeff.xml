@@ -5,7 +5,7 @@
         <refpurpose>построение матрицы полиномов по их коэффициентам</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>[P]=inv_coeff(C,[,d,[name])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -39,14 +39,14 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>P=inv_coeff(Mp,k)</literal>, когда <literal>k</literal> совместима с размером <literal>Mp</literal>, 
-            возвращает полиномиальную матрицу степени <literal>k</literal>. <literal>C=[C0,C1,...,Ck]</literal> и 
+            <literal>P=inv_coeff(Mp,k)</literal>, когда <literal>k</literal> совместима с размером <literal>Mp</literal>,
+            возвращает полиномиальную матрицу степени <literal>k</literal>. <literal>C=[C0,C1,...,Ck]</literal> и
             <literal>P= C0 + C1*x +... +Ck*x^k</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=int(10*rand(2,6))
 // Building a degree 1 polynomial matrix
 P=inv_coeff(A,1)

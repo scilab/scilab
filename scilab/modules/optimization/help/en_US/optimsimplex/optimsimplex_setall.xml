@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_setall" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>Sets all in the simplex object.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             opt = optimsimplex_setall(opt, simplex)
         </synopsis>
@@ -36,9 +39,9 @@
                     <para>The simplex to set.</para>
                     <para>
                         The given matrix is expected to be a <literal>nbve</literal>-by-
-                        <literal>n</literal>, where <literal>n</literal> is the dimension of the space, 
-                        <literal>nbve</literal> is the number of vertices and with the following content 
-                        (where the data is organized by row with function value first, and 
+                        <literal>n</literal>, where <literal>n</literal> is the dimension of the space,
+                        <literal>nbve</literal> is the number of vertices and with the following content
+                        (where the data is organized by row with function value first, and
                         <literal>x</literal> coordinates)
                     </para>
                     <itemizedlist>
@@ -62,14 +65,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimsimplex_setall</literal> function sets all the coordinates and the 
+            The <literal>optimsimplex_setall</literal> function sets all the coordinates and the
             function values of all the vertices.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
      simplex = [
         3.  0.  0.
         4. 1.  0.
@@ -81,13 +84,13 @@
     s1 = optimsimplex_setall ( s1 , simplex );
     all = optimsimplex_getall(s1);
     disp(all)
-    
+
     s1 = optimsimplex_destroy(s1);
  ]]>
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optimsimplex_getall">optimsimplex_getall</link>

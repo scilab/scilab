@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"  xml:lang="fr" xmlns:scilab="http://www.scilab.org" xml:id="analpf">
+    <refnamediv>
+        <refname>analpf</refname>
+        <refpurpose>create analog low-pass filter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            [hs,pols,zers,gain]=analpf(n,fdesign,rp,omega)
+            hs=analpf(n,fdesign,rp,omega)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>positive integer: filter order</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fdesign</term>
+                <listitem>
+                    <para>a string: that indicated the filter design method: </para>
+                    <itemizedlist mark="bullet">
+                        <listitem>
+                            <para>"butt" is for  Butterworth filter.</para>
+                        </listitem>
+                        <listitem>
+                            <para>"cheb1" is for Chebyshev type I filter.</para>
+                        </listitem>
+                        <listitem>
+                            <para>"cheb2" is for Chebyshev type II filter (also called inverse  Chebyshev filter).</para>
+                        </listitem>
+                        <listitem>
+                            <para>"ellip" is for  elliptic filter.</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rp</term>
+                <listitem>
+                    <para>a 2-vector of ripples values for "cheb1", "cheb2" and
+                        "ellip" filters. It's elements value must respect
+                        <literal>0&lt;rp(1),rp(2)&lt;1</literal>.
+                    </para>
+                    <itemizedlist mark="bullet">
+                        <listitem>
+                            <para>
+                                For "cheb1" filters only <literal>rp(1)</literal>
+                                is used. The passband ripple is between
+                                <literal>1-rp(1)</literal> and <literal>1</literal>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                For "cheb2" filters only <literal>rp(2)</literal>
+                                is used. The stopband ripple is between
+                                <literal>0</literal> and
+                                <literal>rp(2)</literal>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                For "ellip" filters <literal>rp(1)</literal> and
+                                <literal>rp(2)</literal> are both used.  The passband
+                                ripple is between <literal>1-rp(1)</literal> and
+                                <literal>1</literal> while the stopband ripple is
+                                between <literal>0</literal> and
+                                <literal>rp(2)</literal>.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>omega</term>
+                <listitem>
+                    <para>cut-off frequency of low-pass filter in rad/s</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>hs</term>
+                <listitem>
+                    <para>
+                        the rational polynomial transfer function (see <link linkend="syslin">syslin</link>). Is is
+                        <literal>hs = gain*syslin("c", real(poly(zers, "s")), real(poly(pols, "s")))
+                        </literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pols</term>
+                <listitem>
+                    <para>a row vector: the poles of transfer function</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zers</term>
+                <listitem>
+                    <para>a row vector: zeros of transfer function</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gain</term>
+                <listitem>
+                    <para>a scalar: the gain of transfer function</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This Creates analog low-pass filter with cut-off pulsation at
+            omega. It is a driver over the <link linkend="zpbutt">zpbutt</link>, <link linkend="zpch1">zpch1</link>, <link linkend="zpch2">zpch2</link>
+            and <link linkend="zpell">zpell</link> functions.
+        </para>
+        <para>
+            The Butterworth filter has no ripples in the passband and slowly
+            rolls off towards zero in the stopband.  Butterworth filters
+            have a monotonically changing magnitude function with omega,
+            unlike other filter types that have non-monotonic ripple in the
+            passband and/or the stopband.  Butterworth filters have a more
+            linear phase response in the pass-band than the others.
+        </para>
+        <para>
+            Chebyshev filters have a steeper roll-off and more passband ripple
+            (type I) or stopband ripple (type II) than Butterworth
+            filters. Chebyshev filters have the property that they minimize
+            the error between the idealized and the actual filter
+            characteristic over the range of the filter, but with ripples in
+            the passband.
+        </para>
+        <para>
+            Elliptic filter have equalized ripple behavior in both the
+            passband and the stopband. The amount of ripple in each band is
+            independently adjustable, and no other filter of equal order can
+            have a faster transition in gain between the passband and the
+            stopband, for the given values of ripple.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Evaluate magnitude response of the filter
+fcut = 5; //hz
+n = 7; // Filter order
+hc1 = analpf(n, 'cheb1', [0.1 0], fcut*2*%pi);
+hc2 = analpf(n, 'cheb2', [0 0.1], fcut*2*%pi);
+he = analpf(n, 'ellip', [0.1 0.1], fcut*2*%pi);
+hb = analpf(n, 'butt', [0 0], fcut*2*%pi);
+hc1.dt = 'c';
+hc2.dt = 'c';
+he.dt = 'c';
+hb.dt = 'c';
+clf();
+[fr, hf] = repfreq(hc1, 0, 15);
+plot(fr, abs(hf), 'b')
+[fr, hf] = repfreq(hc2, 0, 15);
+plot(fr,abs(hf),'g')
+[fr, hf] = repfreq(he, 0, 15);
+plot(fr,abs(hf),'r')
+[fr, hf] = repfreq(hb, 0, 15);
+plot(fr, abs(hf), 'c')
+
+legend(["Chebyshev I", "Chebyshev II", "Elliptic", "Butterworth"]);
+xgrid()
+xlabel("Frequency (Hz)")
+ylabel("Gain")
+title("Analog filters of order 7")
+ ]]></programlisting>
+        <para>
+            <scilab:image>
+                fcut=5; //hz
+                n=7;//filter order
+                hc1=analpf(n,'cheb1',[0.1 0],fcut*2*%pi);
+                hc2=analpf(n,'cheb2',[0 0.1],fcut*2*%pi);
+                he=analpf(n,'ellip',[0.1 0.1],fcut*2*%pi);
+                hb=analpf(n,'butt',[0 0],fcut*2*%pi);
+                hc1.dt='c';hc2.dt='c';he.dt='c';hb.dt='c';
+                clf();
+                [fr, hf]=repfreq(hc1,0,15);
+                plot(fr,abs(hf),'b')
+                [fr, hf]=repfreq(hc2,0,15);
+                plot(fr,abs(hf),'g')
+                [fr, hf]=repfreq(he,0,15);
+                plot(fr,abs(hf),'r')
+                [fr, hf]=repfreq(hb,0,15);
+                plot(fr,abs(hf),'c')
+
+                legend(["Chebyshev I","Chebyshev II","Elliptic","Butterworth"]);
+                xgrid()
+                xlabel("Frequency (Hz)")
+                ylabel("Gain")
+                title("Analog filters of order 7")
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
+                <link linkend="csim">csim</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

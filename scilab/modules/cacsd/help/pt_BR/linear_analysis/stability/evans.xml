@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="evans" xml:lang="pt">
+    <refnamediv>
+        <refname>evans</refname>
+        <refpurpose>lugar geométrico das raízes Evans</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>evans(H [,kmax])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>H</term>
+                <listitem>
+                    <para>
+                        lista (sistema linear <literal>syslin</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>kmax</term>
+                <listitem>
+                    <para>real (ganho máximo desejado para o esboço)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Fornece o lugar geométrico das raízes Evans para um sistema linear
+            em estado-espaço ou forma de transferência H(s) (lista
+            <literal>syslin</literal>). Este é o lugar geométrico das raízes de
+            <literal>1+k*H(s)=1+k*N(s)/D(s)</literal>, no plano dos complexos. Para
+            uma amostra seleta de ganhos <literal>k &lt;= kmax</literal>, a parte
+            imaginária das raízes de <literal>D(s)+k*N(s)</literal> é esboçada versus
+            a parte real.
+        </para>
+        <para>Para obter o ganho num dado ponto do lugar geométrico, você pode
+            simplesmente executar a seguinte instrução:
+            <literal>k=-1/real(horner(h,[1,%i]*locate(1)))</literal> e clicar no ponto
+            desejado sobre lugar geométrico das raízes. Se as coordenadas dos pontos
+            selecionados estão no vetor de reais 2 x 1 <literal>P=locate(1)</literal>
+            este <literal>k</literal> resolve a equação <literal>k*N(w) + D(w)
+                =0
+            </literal>
+            com <literal>w=P(1)+%i*P(2)=[1,%i]*P</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+    H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+    clf();evans(H,100);sgrid()
+    [Ki,s]=kpure(H) // Gains that give pure imaginary closed loop poles
+    plot([real(s) real(s)],[imag(s) -imag(s)],'*r')
+
+    [Kr,s]=krac2(H)
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+                clf();evans(H,100);sgrid()
+                [Ki,s]=kpure(H)
+                plot([real(s) real(s)],[imag(s) -imag(s)],'*r')
+
+                [Kr,s]=krac2(H)
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="kpure">kpure</link>
+            </member>
+            <member>
+                <link linkend="krac2">krac2</link>
+            </member>
+            <member>
+                <link linkend="locate">locate</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -70,22 +73,23 @@ int sci_x_choose_modeless(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
             return 1;
         }
 
         // Retrieve a matrix of string at position 2.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrmessageAdr, &nbRow, &nbCol, &messageAdr))
         {
-            freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
             Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
+            freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
             return 1;
         }
 
     }
     else
     {
-        freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
         Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), fname, 2);
+        freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
         return FALSE;
     }
 

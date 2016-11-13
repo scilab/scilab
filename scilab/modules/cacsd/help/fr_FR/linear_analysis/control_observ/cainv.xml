@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="cainv">
+    <refnamediv>
+        <refname>cainv</refname>
+        <refpurpose>Dual of abinv</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[X,dims,J,Y,k,Z]=cainv(Sl,alfa,beta,flag)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list containing the matrices <literal>[A,B,C,D]</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alfa</term>
+                <listitem>
+                    <para>real number or vector (possibly complex, location of closed loop poles)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>beta</term>
+                <listitem>
+                    <para>real number or vector (possibly complex, location of closed loop poles)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        (optional) character string <literal>'ge'</literal> (default) or <literal>'st'</literal> or <literal>'pp'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>orthogonal matrix of size nx (dim of state space).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    <para>
+                        integer row vector <literal>dims=[nd1,nu1,dimS,dimSg,dimN]</literal>  (5 entries, nondecreasing order).If <literal>flag='st'</literal>, (resp. <literal>'pp'</literal>), <literal>dims</literal> has 4 (resp. 3) components.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>J</term>
+                <listitem>
+                    <para>real matrix (output injection)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Y</term>
+                <listitem>
+                    <para>orthogonal matrix of size ny (dim of output space).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>
+                        integer (normal rank of <literal>Sl</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Z</term>
+                <listitem>
+                    <para>
+                        non-singular linear system (<literal>syslin</literal> list)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>cainv</literal> finds a bases <literal>(X,Y)</literal> (of state space and output space resp.)
+            and output injection matrix <literal>J</literal> such that the matrices of Sl in
+            bases (X,Y) are displayed as:
+        </para>
+        <programlisting role=""><![CDATA[
+               [A11,*,*,*,*,*]                [*]
+               [0,A22,*,*,*,*]                [*]
+X'*(A+J*C)*X = [0,0,A33,*,*,*]   X'*(B+J*D) = [*]
+               [0,0,0,A44,*,*]                [0]
+               [0,0,0,0,A55,*]                [0]
+               [0,0,0,0,0,A66]                [0]
+
+       Y*C*X = [0,0,C13,*,*,*]          Y*D = [*]
+               [0,0,0,0,0,C26]                [0]
+ ]]></programlisting>
+        <para>
+            The partition of <literal>X</literal> is defined by the vector
+            <literal>dims=[nd1,nu1,dimS,dimSg,dimN]</literal> and the partition of <literal>Y</literal>
+            is determined by <literal>k</literal>.
+        </para>
+        <para>
+            Eigenvalues of <literal>A11</literal> <literal>(nd1 x nd1)</literal> are unstable.
+            Eigenvalues of <literal>A22</literal> <literal>(nu1-nd1 x nu1-nd1)</literal> are stable.
+        </para>
+        <para>
+            The pair <literal>(A33, C13)</literal> <literal>(dimS-nu1 x dimS-nu1, k x dimS-nu1)</literal> is observable,
+            and eigenvalues of <literal>A33</literal> are set to <literal>alfa</literal>.
+        </para>
+        <para>
+            Matrix <literal>A44</literal> <literal>(dimSg-dimS x dimSg-dimS)</literal> is unstable.
+            Matrix <literal>A55</literal> <literal>(dimN-dimSg,dimN-dimSg)</literal> is stable
+        </para>
+        <para>
+            The pair <literal>(A66,C26)</literal> <literal>(nx-dimN x nx-dimN)</literal> is observable,
+            and eigenvalues of <literal>A66</literal> set to <literal>beta</literal>.
+        </para>
+        <para>
+            The <literal>dimS</literal> first columns of <literal>X</literal> span S= smallest (C,A) invariant
+            subspace which contains Im(B), <literal>dimSg</literal> first columns of <literal>X</literal>
+            span Sg the maximal "complementary detectability subspace" of <literal>Sl</literal>
+        </para>
+        <para>
+            The <literal>dimN</literal> first columns of <literal>X</literal> span the maximal
+            "complementary observability subspace" of <literal>Sl</literal>.
+            (<literal>dimS=0</literal> if B(ker(D))=0).
+        </para>
+        <para>
+            If <literal>flag='st'</literal> is given, a five blocks partition of the matrices is
+            returned and <literal>dims</literal> has four components. If <literal>flag='pp'</literal> is
+            given a four blocks partition is returned (see abinv).
+        </para>
+        <para>
+            This function can be used to calculate an unknown input observer:
+        </para>
+        <programlisting role=""><![CDATA[
+// DDEP: dot(x)=A x + Bu + Gd
+//           y= Cx   (observation)
+//           z= Hx    (z=variable to be estimated, d=disturbance)
+//  Find: dot(w) = Fw + Ey + Ru such that
+//          zhat = Mw + Ny
+//           z-Hx goes to zero at infinity
+//  Solution exists iff Ker H contains Sg(A,C,G) inter KerC (assuming detectability)
+//i.e. H is such that:
+// For any W which makes a column compression of [Xp(1:dimSg,:);C]
+// with Xp=X' and [X,dims,J,Y,k,Z]=cainv(syslin('c',A,G,C));
+// [Xp(1:dimSg,:);C]*W = [0 | *] one has
+// H*W = [0 | *]  (with at least as many aero columns as above).
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="abinv">abinv</link>
+            </member>
+            <member>
+                <link linkend="dt_ility">dt_ility</link>
+            </member>
+            <member>
+                <link linkend="ui_observer">ui_observer</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

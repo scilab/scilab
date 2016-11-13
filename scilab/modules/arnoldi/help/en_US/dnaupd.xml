@@ -12,7 +12,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[IDO, RESID, V, IPARAM, IPNTR, WORKD, WORKL, INFO] = dnaupd(ID0, BMAT, N, WHICH, NEV, TOL, RESID, NCV, V, IPARAM, IPNTR, WORKD, WORKL, INFO)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -814,7 +814,7 @@ printf('The convergence criterion is %d\n', tol);
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="dsaupd">dsaupd</link>

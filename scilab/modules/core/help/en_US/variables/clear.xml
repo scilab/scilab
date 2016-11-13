@@ -5,7 +5,7 @@
         <refpurpose>kills variables</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             clear a b c
             clear('a', 'b', 'c')
@@ -68,7 +68,7 @@ isdef("a") | isdef("b") | isdef("c") // F
         ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="predef">predef</link>

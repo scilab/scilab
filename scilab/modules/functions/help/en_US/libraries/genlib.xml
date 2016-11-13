@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="genlib">
@@ -16,7 +19,7 @@
         <refpurpose>build library from functions in given directory</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>genlib(lib_name [[,dir_name, [ Force [,verb [,Names]]]])
             genlib(lib_name [,path=dir_name] [,verbose=verb] [,force=Force] [,names=Names])
         </synopsis>
@@ -34,7 +37,7 @@
                 <term>dir_name:  </term>
                 <listitem>
                     <para>Scilab string.  The name of the directory to look for
-                        <literal>.sci</literal>-files. 
+                        <literal>.sci</literal>-files.
                     </para>
                 </listitem>
             </varlistentry>
@@ -77,8 +80,8 @@
             <literal>.sci</literal> file, <literal>genlib</literal> does not translate and save the file.
         </para>
         <para>
-            This default behaviour can be changed if <literal>force</literal> is given and 
-            set to <literal>%t</literal>. In this latter case the recompilation is always 
+            This default behaviour can be changed if <literal>force</literal> is given and
+            set to <literal>%t</literal>. In this latter case the recompilation is always
             performed for each <literal>.sci</literal> file.
         </para>
         <para>
@@ -89,7 +92,7 @@
             variable is updated.
         </para>
         <para>
-            If <literal>verbose</literal> is et to <literal>%t</literal> information are displayed during 
+            If <literal>verbose</literal> is et to <literal>%t</literal> information are displayed during
             the build process.
         </para>
         <para>
@@ -108,7 +111,7 @@
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="getd">getd</link>

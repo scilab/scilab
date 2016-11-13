@@ -70,7 +70,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot2d([0;1],[0;1],0)
 xstring(0.5,0.5,["$\overbrace{Scilab}$" "n''est ";"pas" "$\underbrace{Matlab}$"])
 // Rendu LaTeX (>= Scilab 5.2)
@@ -95,7 +95,7 @@ xset("font",1,24); xstring(0.1,0.6,"a") // un grand alpha
             plot2d([0;1],[0;1],0)
             xstring(0.5,0.5,["$\overbrace{Scilab}$" "n''est ";"pas" "$\underbrace{Matlab}$"])
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

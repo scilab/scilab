@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="mseek">
@@ -17,7 +20,7 @@
         <refpurpose>устанавливает текущую позицию в двоичном файле</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>mseek(n [,fd, flag])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -35,7 +38,7 @@
                 <term>fd</term>
                 <listitem>
                     <para>
-                        скаляр: дескриптор файла, возвращённый функцией <function>mopen</function>. <literal>-1</literal> 
+                        скаляр: дескриптор файла, возвращённый функцией <function>mopen</function>. <literal>-1</literal>
                         указывает на последний открытый файл. Значение по умолчанию равно <literal>-1</literal>.
                     </para>
                 </listitem>
@@ -44,7 +47,7 @@
                 <term>flag</term>
                 <listitem>
                     <para>
-                        строка: определяет исходное положение. Значение по умолчанию -- 
+                        строка: определяет исходное положение. Значение по умолчанию --
                         <literal>'set'</literal>.
                     </para>
                 </listitem>
@@ -54,38 +57,38 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>mseek</function> устанавливает положение следующей 
-            операции ввода или вывода потока <varname>fd</varname>. Новое 
-            положение находится на расстоянии (со знаком), указанном в 
-            <varname>n</varname> байт от начала, от текущего положения или от 
-            конца файла в соответствии со значением <varname>flag</varname>, 
-            которое может быть <literal>'set'</literal>, <literal>'cur'</literal> 
+            Функция <function>mseek</function> устанавливает положение следующей
+            операции ввода или вывода потока <varname>fd</varname>. Новое
+            положение находится на расстоянии (со знаком), указанном в
+            <varname>n</varname> байт от начала, от текущего положения или от
+            конца файла в соответствии со значением <varname>flag</varname>,
+            которое может быть <literal>'set'</literal>, <literal>'cur'</literal>
             или <literal>'end'</literal>.
         </para>
         <para>
-            Функция <function>mseek</function> позволяет индикатору положения в 
-            файле быть установленным за пределами конца существующих данных  в 
-            файле. Если данные будут позднее записаны в это место, то последующее 
-            чтение этих данных в пропущенном месте будет возвращать ноль до тех 
-            пор, пока данные не будут действительно записаны в пропущенное место. 
+            Функция <function>mseek</function> позволяет индикатору положения в
+            файле быть установленным за пределами конца существующих данных  в
+            файле. Если данные будут позднее записаны в это место, то последующее
+            чтение этих данных в пропущенном месте будет возвращать ноль до тех
+            пор, пока данные не будут действительно записаны в пропущенное место.
             Функция <function>mseek</function> сама по себе не увеличивает
             размер файла.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 file3=fullfile(TMPDIR,'test3.bin');
 fd1= mopen(file3,'wb');
 for i=1:10
   mput(i,'d');
-end 
+end
 mseek(0);
 mput(678,'d');
 mseek(0,fd1,'end');
 mput(932,'d');
 mclose(fd1)
- 
+
 fd1= mopen(file3,'rb');
 res=mget(11,'d')
 res1=[1:11]; res1(1)=678;res1($)=932;
@@ -93,7 +96,7 @@ if res1<>res then
   write(%io(2),'Ошибка в программе');
 end
 mseek(0,fd1,'set');
- 
+
 // попытка чтения данных более, чем сохранено
 res1=mget(100,'d',fd1);
 if res1<>res then

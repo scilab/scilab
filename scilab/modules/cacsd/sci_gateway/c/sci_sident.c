@@ -2,11 +2,14 @@
 * Scilab (http://www.scilab.org/) - This file is part of Scilab
 * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -209,8 +212,11 @@ int sci_sident(char *fname, void* pvApiCtx)
         case 2 :
             cMETH = 'N';
             break;
+        case 3 :
+            cMETH = 'C';
+            break;
         default :
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "1", "2");
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), fname, 1, "1", "2", "3");
             return 0;
     }
 
@@ -229,8 +235,11 @@ int sci_sident(char *fname, void* pvApiCtx)
         case 3 :
             cJOB = 'B';
             break;
+        case 4 :
+            cJOB = 'D';
+            break;
         default:
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), fname, 2, "1", "2", "3");
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), fname, 2, "1", "2", "3", "4");
             return 0;
     }
 
@@ -330,7 +339,7 @@ int sci_sident(char *fname, void* pvApiCtx)
     {
         cJOBCK = 'K';
         CHECK_PARAM(pvApiCtx, 8);
-        iNSMPL = getInputArgumentType(pvApiCtx, 8);
+        iNSMPL = getIntegerValue(pvApiCtx, 8);
 
         if (iNSMPL != 0 && iNSMPL < iNR)
         {
@@ -457,7 +466,7 @@ int sci_sident(char *fname, void* pvApiCtx)
     {
         iLIWORK = Max(iLIWORK, iM * iNPL);
     }
-    else
+    else // not handled yet
     {
         iLIWORK = Max(iLIWORK, Max(iLNOBR, iM * iNPL));
     }

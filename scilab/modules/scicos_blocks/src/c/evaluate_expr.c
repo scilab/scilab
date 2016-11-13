@@ -49,7 +49,7 @@ double acosh(double x)
 }
 /*--------------------------------------------------------------------------*/
 /*
-Inverse hyperbolic tangent (Atanh(x)) Log((1 + x) / (1 � x)) / 2
+Inverse hyperbolic tangent (Atanh(x)) Log((1 + x) / (1 – x)) / 2
 */
 double atanh(double x)
 {
@@ -491,11 +491,11 @@ SCICOS_BLOCKS_IMPEXP void evaluate_expr(scicos_block *block, int flag)
                                 stack[bottom] = (double) block->mode[nzcr];
                             }
                             break;
-                        /*  if (stack[bottom]>0) {
-                          stack[bottom]=floor(stack[bottom]+.5);
-                        }else{
-                          stack[bottom]=ceil(stack[bottom]-.5);
-                        }*/
+                            /*  if (stack[bottom]>0) {
+                              stack[bottom]=floor(stack[bottom]+.5);
+                            }else{
+                              stack[bottom]=ceil(stack[bottom]-.5);
+                            }*/
                         case 111:
                             if (block->ng > 0)
                             {
@@ -595,13 +595,13 @@ SCICOS_BLOCKS_IMPEXP void evaluate_expr(scicos_block *block, int flag)
                                 stack[bottom] = (double) block->mode[nzcr];
                             }
                             break;
-                        /* if (stack[bottom]>0) {
-                          stack[bottom]=1.0;
-                        }else if(stack[bottom]<0){
-                          stack[bottom]=-1.0;
-                        }else{
-                          stack[bottom]=0.0;
-                          }*/
+                            /* if (stack[bottom]>0) {
+                              stack[bottom]=1.0;
+                            }else if(stack[bottom]<0){
+                              stack[bottom]=-1.0;
+                            }else{
+                              stack[bottom]=0.0;
+                              }*/
                         case 114:  /* abs */
                             if (block->ng > 0)
                             {
@@ -643,11 +643,11 @@ SCICOS_BLOCKS_IMPEXP void evaluate_expr(scicos_block *block, int flag)
                                 stack[bottom] = stack[bottom] * (block->mode[nzcr]);
                             }
                             break;
-                        /* if (stack[bottom]>0) {
-                          stack[bottom]=stack[bottom];
-                        }else {
-                          stack[bottom]=-stack[bottom];
-                          }*/
+                            /* if (stack[bottom]>0) {
+                              stack[bottom]=stack[bottom];
+                            }else {
+                              stack[bottom]=-stack[bottom];
+                              }*/
                         case 115:
                             if (block->ng > 0)
                             {
@@ -737,7 +737,17 @@ SCICOS_BLOCKS_IMPEXP void evaluate_expr(scicos_block *block, int flag)
                             stack[bottom] = log10(stack[bottom]);
                             break;
                     }
+                    break;
+
+                default:
+                    set_block_error(-2);
+                    return;
             }
+        }
+        if (bottom < 0)
+        {
+            set_block_error(-2);
+            return;
         }
 #if _MSC_VER
         if (!_finite(stack[bottom]) || _isnan(stack[bottom]))

@@ -78,17 +78,17 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
     deff("result         = dialog(labels,valueini)","result=valueini")
     deff("[result,Quit]  = scstxtedit(valueini,v2)","result=valueini,Quit=0")
     deff("[ok,tt]        = MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)",..
-    "[dirF, nameF, extF] = fileparts(funam);..
-    [modelica_path, modelica_directory] = getModelicaPath();..
-    funam1 = []; ..
-    if (extF == """")  then, ..
-        funam1 = modelica_directory + nameF + "".mo""; ..
-    elseif fileinfo(funam) == [] then, ..
-        funam1 = funam; ..
-    end; ..
-    if funam1 <> [] then, ..
-        mputl(tt, funam1); ..
-    end");
+    "[dirF, nameF, extF] = fileparts(funam);"+..
+    "[modelica_path, modelica_directory] = getModelicaPath();"+..
+    "funam1 = []; "+..
+    "if (extF == """")  then, "+..
+    "    funam1 = modelica_directory + nameF + "".mo""; "+..
+    "elseif fileinfo(funam) == [] then, "+..
+    "    funam1 = funam; "+..
+    "end; "+..
+    "if funam1 <> [] then, "+..
+    "    mputl(tt, funam1); "+..
+    "end");
     %nx=lstsize(scs_m.objs)
     funcprot(%mprt)
     for %kk=1:%nx

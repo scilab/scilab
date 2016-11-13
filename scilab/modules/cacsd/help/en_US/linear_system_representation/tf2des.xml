@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="tf2des">
+    <refnamediv>
+        <refname>tf2des</refname>
+        <refpurpose>transfer function to descriptor</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>S=tf2des(G)
+            S=tf2des(G,flag)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list) with possibly polynomial <literal>D</literal> matrix
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        character string <literal>"withD"</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>list</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Transfer function to descriptor form: <literal>S=list('d',A,B,C,D,E)</literal>
+        </para>
+        <programlisting role=""><![CDATA[
+E*xdot = A*x+B*u
+y = C*x + D*u
+ ]]></programlisting>
+        <para>
+            <note>
+                Note that <literal>D=0</literal> if the optional parameter flag=<literal>"withD"</literal> is not
+                given. Otherwise a maximal rank <literal>D</literal> matrix is returned in the fifth
+                entry of the list <literal>S</literal>.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+G=[1/(s-1),s;1,2/s^3];
+S1=tf2des(G);des2tf(S1)
+S2=tf2des(G,"withD");des2tf(S2)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pol2des">pol2des</link>
+            </member>
+            <member>
+                <link linkend="tf2ss">tf2ss</link>
+            </member>
+            <member>
+                <link linkend="ss2des">ss2des</link>
+            </member>
+            <member>
+                <link linkend="des2tf">des2tf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

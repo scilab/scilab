@@ -95,7 +95,7 @@
         <para>
             One event is generated on the unique output event port if  Event time
             is larger than equal to zero, if not, no event is generated.
-            
+
         </para>
     </refsection>
     <refsection id="Dialogbox_EVTGEN_f">
@@ -108,7 +108,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>

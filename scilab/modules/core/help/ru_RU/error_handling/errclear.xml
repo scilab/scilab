@@ -5,7 +5,7 @@
         <refpurpose>очистка ошибки</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>errclear([n])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -14,8 +14,8 @@
             Удаляет действие (реакцию на ошибку), связанную с ошибкой типа <literal>n</literal>.
         </para>
         <para>
-            Если <literal>n</literal> положительно (<literal>n</literal> &gt; 0), то оно обозначает номер 
-            очищаемой ошибки, если же <literal>n</literal> &lt;= 0, то очищаются все ошибки 
+            Если <literal>n</literal> положительно (<literal>n</literal> &gt; 0), то оно обозначает номер
+            очищаемой ошибки, если же <literal>n</literal> &lt;= 0, то очищаются все ошибки
             (поведение по умолчанию).
         </para>
     </refsection>
@@ -24,15 +24,15 @@
         <programlisting role="example">a = 1;
             b = undefinedvariable + a;
             lasterror()
-            
+
             b = undefinedvariable + a;
             errclear()
             lasterror()
-            
+
             b = undefinedvariable + a;
-            errclear(5)  // последней ошибкой является ошибка 4 
+            errclear(5)  // последней ошибкой является ошибка 4
             lasterror()
-            
+
             b = undefinedvariable + a;
             errclear(4)
             lasterror()

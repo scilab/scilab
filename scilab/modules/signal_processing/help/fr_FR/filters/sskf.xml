@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="sskf">
+    <refnamediv>
+        <refname>sskf</refname>
+        <refpurpose>steady-state Kalman filter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            xe = sskf(y,f,h,q,r,x0)
+            [xe, pe]=sskf(y,f,h,q,r,x0)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        data in form <literal>[y0,y1,...,yn]</literal>, <literal>yk</literal> a column vector
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>system matrix dim(NxN)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>observations matrix dim(MxN)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>q</term>
+                <listitem>
+                    <para>dynamics noise matrix dim(NxN)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>observations noise matrix dim(MxM)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0</term>
+                <listitem>
+                    <para>initial state estimate</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xe</term>
+                <listitem>
+                    <para>estimated state</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pe</term>
+                <listitem>
+                    <para>steady-state error covariance</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            steady-state Kalman filter
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+rand("seed",5);
+rand("normal");
+q=[.03 0.01;.01 0.03];
+u=rand(2,11);
+f=[1.1 0.1;0 0.8];
+g=(chol(q))';
+m0=[10 10]';
+p0=[2 0;0 2];
+x0=m0+(chol(p0))'*rand(2,1);
+x=ltitr(f,g,u,x0);
+r=[2 0;0 2];
+v=(chol(r))'*rand(2,11);
+y=x+v;
+h=eye(2,2);
+[xe pe]=sskf(y,f,h,q,r,m0)
+ ]]></programlisting>
+    </refsection>
+</refentry>

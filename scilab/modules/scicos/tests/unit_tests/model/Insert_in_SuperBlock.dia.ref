@@ -1,0 +1,1024 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2016 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+loadXcosLibs
+scicos_log("TRACE");
+b = scicos_block();
+Xcos debug: objectCreated( 1 , BLOCK )
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , EXPRS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , RPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
+Xcos trace: propertyUpdated( 1 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
+l = scicos_link();
+Xcos debug: objectCreated( 2 , LINK )
+Xcos trace: propertyUpdated( 2 , LINK , CONTROL_POINTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , LINK , CONTROL_POINTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , LINK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , LINK , THICK ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , LINK , COLOR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , LINK , KIND ) : NO_CHANGES
+super = SUPER_f("define");
+Xcos debug: objectCreated( 3 , DIAGRAM )
+Xcos debug: objectReferenced( 3 , DIAGRAM ) : 1
+Xcos trace: propertyUpdated( 3 , DIAGRAM , TITLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , DIAGRAM , PATH ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , DIAGRAM , CONTEXT ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 3 , DIAGRAM ) : 0
+Xcos trace: propertyUpdated( 3 , DIAGRAM , CHILDREN ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
+Xcos debug: objectReferenced( 3 , DIAGRAM ) : 1
+Xcos debug: objectUnreferenced( 3 , DIAGRAM ) : 0
+Xcos debug: objectReferenced( 3 , DIAGRAM ) : 1
+Xcos trace: propertyUpdated( 3 , DIAGRAM , TITLE ) : SUCCESS
+Xcos trace: propertyUpdated( 3 , DIAGRAM , PATH ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , DIAGRAM , CONTEXT ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 3 , DIAGRAM ) : 0
+Xcos debug: objectCreated( 4 , BLOCK )
+Xcos debug: objectReferenced( 4 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 4 , BLOCK ) : 0
+Xcos debug: objectReferenced( 4 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , GEOMETRY ) : SUCCESS
+Xcos trace: propertyUpdated( 4 , BLOCK , EXPRS ) : SUCCESS
+Xcos debug: objectCreated( 5 , PORT )
+Xcos trace: propertyUpdated( 5 , PORT , SOURCE_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 5 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace: propertyUpdated( 4 , BLOCK , OUTPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 4 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , PORT , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , PORT , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , STYLE ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 4 , BLOCK ) : 0
+Xcos debug: objectReferenced( 4 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 4 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+Xcos trace: propertyUpdated( 4 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 5 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 5 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 4 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , RPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , IPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 4 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , UID ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 4 , BLOCK ) : 0
+Xcos trace: propertyUpdated( 4 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+Xcos debug: objectReferenced( 4 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 4 , BLOCK ) : 0
+Xcos debug: objectReferenced( 4 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 4 , BLOCK , GEOMETRY ) : SUCCESS
+Xcos trace: propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , EXPRS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , PORT , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , PORT , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , STYLE ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 4 , BLOCK ) : 0
+Xcos debug: objectReferenced( 4 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 4 , BLOCK ) : 0
+Xcos debug: objectReferenced( 4 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , GEOMETRY ) : SUCCESS
+Xcos trace: propertyUpdated( 4 , BLOCK , EXPRS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , PORT , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , PORT , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , STYLE ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 4 , BLOCK ) : 0
+Xcos debug: objectCreated( 6 , BLOCK )
+Xcos debug: objectReferenced( 6 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 6 , BLOCK ) : 0
+Xcos debug: objectReferenced( 6 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 6 , BLOCK , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , GEOMETRY ) : SUCCESS
+Xcos trace: propertyUpdated( 6 , BLOCK , EXPRS ) : SUCCESS
+Xcos debug: objectCreated( 7 , PORT )
+Xcos trace: propertyUpdated( 7 , PORT , SOURCE_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 7 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace: propertyUpdated( 6 , BLOCK , INPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 6 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 7 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 7 , PORT , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 7 , PORT , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , STYLE ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 6 , BLOCK ) : 0
+Xcos debug: objectReferenced( 6 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 6 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+Xcos trace: propertyUpdated( 6 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 7 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 7 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 7 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 6 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , RPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , IPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 6 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , UID ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 6 , BLOCK ) : 0
+Xcos trace: propertyUpdated( 6 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+Xcos debug: objectReferenced( 6 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 6 , BLOCK ) : 0
+Xcos debug: objectReferenced( 6 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 6 , BLOCK , GEOMETRY ) : SUCCESS
+Xcos trace: propertyUpdated( 6 , BLOCK , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , EXPRS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 7 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 7 , PORT , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 7 , PORT , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , STYLE ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 6 , BLOCK ) : 0
+Xcos debug: objectReferenced( 6 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 6 , BLOCK ) : 0
+Xcos debug: objectReferenced( 6 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 6 , BLOCK , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , GEOMETRY ) : SUCCESS
+Xcos trace: propertyUpdated( 6 , BLOCK , EXPRS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 7 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 7 , PORT , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 7 , PORT , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , STYLE ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 6 , BLOCK ) : 0
+Xcos debug: objectCreated( 8 , BLOCK )
+Xcos trace: propertyUpdated( 8 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+Xcos trace: propertyUpdated( 8 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+Xcos trace: propertyUpdated( 8 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , GEOMETRY ) : SUCCESS
+Xcos trace: propertyUpdated( 8 , BLOCK , EXPRS ) : SUCCESS
+Xcos trace: propertyUpdated( 8 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , RPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , IPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 8 , BLOCK , COLOR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , CONTEXT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , INPUTS ) : NO_CHANGES
+Xcos debug: objectCreated( 9 , PORT )
+Xcos trace: propertyUpdated( 9 , PORT , FIRING ) : NO_CHANGES
+Xcos trace: propertyUpdated( 9 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace: propertyUpdated( 9 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 9 , PORT , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 9 , PORT , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 9 , PORT , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 9 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 9 , PORT , SOURCE_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 9 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , OUTPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , DIAGRAM , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 8 , BLOCK ) : 1
+Xcos debug: objectReferenced( 8 , BLOCK ) : 2
+Xcos debug: objectReferenced( 8 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 8 , BLOCK ) : 2
+Xcos debug: objectCreated( 10 , BLOCK )
+Xcos trace: propertyUpdated( 10 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+Xcos trace: propertyUpdated( 10 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+Xcos trace: propertyUpdated( 10 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , GEOMETRY ) : SUCCESS
+Xcos trace: propertyUpdated( 10 , BLOCK , EXPRS ) : SUCCESS
+Xcos trace: propertyUpdated( 10 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , RPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , IPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 10 , BLOCK , COLOR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , CONTEXT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+Xcos debug: objectCreated( 11 , PORT )
+Xcos trace: propertyUpdated( 11 , PORT , FIRING ) : NO_CHANGES
+Xcos trace: propertyUpdated( 11 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace: propertyUpdated( 11 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 11 , PORT , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 11 , PORT , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 11 , PORT , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 11 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 11 , PORT , SOURCE_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 11 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , INPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 10 , BLOCK , OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , DIAGRAM , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 10 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 10 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 8 , BLOCK ) : 1
+Xcos debug: objectCreated( 12 , BLOCK )
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 12 , BLOCK , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , GEOMETRY ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , EXPRS ) : NO_CHANGES
+Xcos debug: objectCreated( 13 , PORT )
+Xcos trace: propertyUpdated( 13 , PORT , SOURCE_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 13 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , INPUTS ) : SUCCESS
+Xcos debug: objectCreated( 14 , PORT )
+Xcos trace: propertyUpdated( 14 , PORT , SOURCE_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 14 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , OUTPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , PORT , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , PORT , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , STYLE ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 14 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos debug: objectCreated( 15 , BLOCK )
+Xcos trace: propertyUpdated( 15 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , GEOMETRY ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , EXPRS ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , RPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , IPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , COLOR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , CONTEXT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , INPUTS ) : NO_CHANGES
+Xcos debug: objectCreated( 16 , PORT )
+Xcos trace: propertyUpdated( 16 , PORT , FIRING ) : NO_CHANGES
+Xcos trace: propertyUpdated( 16 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace: propertyUpdated( 16 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 16 , PORT , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 16 , PORT , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 16 , PORT , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 16 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 16 , PORT , SOURCE_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 16 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , OUTPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , CHILDREN ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_BLOCK ) : SUCCESS
+Xcos debug: objectCreated( 17 , BLOCK )
+Xcos trace: propertyUpdated( 17 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , GEOMETRY ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , EXPRS ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , RPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , IPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , COLOR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , CONTEXT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+Xcos debug: objectCreated( 18 , PORT )
+Xcos trace: propertyUpdated( 18 , PORT , FIRING ) : NO_CHANGES
+Xcos trace: propertyUpdated( 18 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace: propertyUpdated( 18 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 18 , PORT , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 18 , PORT , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 18 , PORT , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 18 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 18 , PORT , SOURCE_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 18 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , INPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , CHILDREN ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , CONTEXT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , PORT_REFERENCE ) : SUCCESS
+Xcos trace: propertyUpdated( 10 , BLOCK , PORT_REFERENCE ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , UID ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos trace: propertyUpdated( 12 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+Xcos trace: propertyUpdated( 4 , BLOCK , INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , OUTPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 4 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos debug: objectDeleted( 5 , PORT )
+Xcos debug: objectDeleted( 4 , BLOCK )
+Xcos trace: propertyUpdated( 6 , BLOCK , INPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 6 , BLOCK , OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos debug: objectDeleted( 7 , PORT )
+Xcos debug: objectDeleted( 6 , BLOCK )
+Xcos trace: propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 10 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectUnreferenced( 8 , BLOCK ) : 0
+Xcos debug: objectUnreferenced( 10 , BLOCK ) : 0
+Xcos debug: objectDeleted( 3 , DIAGRAM )
+super.model.rpar.objs($+1) = b;
+Xcos debug: objectCreated( 19 , DIAGRAM )
+Xcos trace: propertyUpdated( 19 , DIAGRAM , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 15 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 17 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 19 , DIAGRAM , CONTEXT ) : NO_CHANGES
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
+Xcos debug: objectCreated( 20 , BLOCK )
+Xcos trace: propertyUpdated( 20 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , EXPRS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , RPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , COLOR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , CONTEXT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 20 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+Xcos trace: propertyUpdated( 19 , DIAGRAM , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 20 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 20 , BLOCK ) : 1
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos debug: objectCreated( 21 , BLOCK )
+Xcos trace: propertyUpdated( 21 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , EXPRS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , RPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , COLOR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , CONTEXT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , CHILDREN ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , CONTEXT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , PORT_REFERENCE ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , PORT_REFERENCE ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , OUTPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos debug: objectDeleted( 9 , PORT )
+Xcos debug: objectDeleted( 8 , BLOCK )
+Xcos trace: propertyUpdated( 10 , BLOCK , INPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 10 , BLOCK , OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 10 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos debug: objectDeleted( 11 , PORT )
+Xcos debug: objectDeleted( 10 , BLOCK )
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 20 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 20 , BLOCK ) : 0
+Xcos debug: objectDeleted( 19 , DIAGRAM )
+super.model.rpar.objs($+1) = l;
+Xcos debug: objectCreated( 22 , DIAGRAM )
+Xcos trace: propertyUpdated( 22 , DIAGRAM , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 21 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 22 , DIAGRAM , CONTEXT ) : NO_CHANGES
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 15 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
+Xcos debug: objectCreated( 23 , LINK )
+Xcos trace: propertyUpdated( 23 , LINK , COLOR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 23 , LINK , KIND ) : NO_CHANGES
+Xcos trace: propertyUpdated( 23 , LINK , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 23 , LINK , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 23 , LINK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 23 , LINK , CONTROL_POINTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 23 , LINK , THICK ) : NO_CHANGES
+Xcos trace: propertyUpdated( 23 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
+Xcos trace: propertyUpdated( 23 , LINK , PARENT_BLOCK ) : NO_CHANGES
+Xcos trace: propertyUpdated( 23 , LINK , SOURCE_PORT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 23 , LINK , DESTINATION_PORT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 22 , DIAGRAM , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 23 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 23 , LINK ) : 1
+Xcos trace: propertyUpdated( 23 , LINK , SOURCE_PORT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 23 , LINK , DESTINATION_PORT ) : NO_CHANGES
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos debug: objectCreated( 24 , LINK )
+Xcos trace: propertyUpdated( 24 , LINK , COLOR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 24 , LINK , KIND ) : NO_CHANGES
+Xcos trace: propertyUpdated( 24 , LINK , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 24 , LINK , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 24 , LINK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 24 , LINK , CONTROL_POINTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 24 , LINK , THICK ) : NO_CHANGES
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_BLOCK ) : NO_CHANGES
+Xcos trace: propertyUpdated( 24 , LINK , SOURCE_PORT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 24 , LINK , DESTINATION_PORT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , CHILDREN ) : SUCCESS
+Xcos debug: objectReferenced( 24 , LINK ) : 1
+Xcos trace: propertyUpdated( 24 , LINK , SOURCE_PORT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 24 , LINK , DESTINATION_PORT ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 24 , LINK ) : 0
+Xcos trace: propertyUpdated( 12 , BLOCK , CONTEXT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , PORT_REFERENCE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , PORT_REFERENCE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , UID ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
+Xcos debug: objectDeleted( 20 , BLOCK )
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 23 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 23 , LINK ) : 0
+Xcos debug: objectDeleted( 22 , DIAGRAM )
+assert_checkequal(length(super.model.rpar.objs), 4);
+Xcos debug: objectCreated( 25 , DIAGRAM )
+Xcos trace: propertyUpdated( 25 , DIAGRAM , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 24 , LINK ) : 1
+Xcos trace: propertyUpdated( 25 , DIAGRAM , CONTEXT ) : NO_CHANGES
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 15 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 24 , LINK ) : 2
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 24 , LINK ) : 1
+Xcos debug: objectDeleted( 25 , DIAGRAM )
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 24 , LINK ) : 0
+super.model.rpar.objs($).from = [1 1 0];
+Xcos debug: objectCreated( 26 , DIAGRAM )
+Xcos trace: propertyUpdated( 26 , DIAGRAM , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 24 , LINK ) : 1
+Xcos trace: propertyUpdated( 26 , DIAGRAM , CONTEXT ) : NO_CHANGES
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 15 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 24 , LINK ) : 2
+Xcos trace: propertyUpdated( 16 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+Xcos trace: propertyUpdated( 24 , LINK , SOURCE_PORT ) : SUCCESS
+Xcos trace: propertyUpdated( 26 , DIAGRAM , CHILDREN ) : NO_CHANGES
+Xcos trace: propertyUpdated( 16 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+Xcos trace: propertyUpdated( 16 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+Xcos trace: propertyUpdated( 24 , LINK , SOURCE_PORT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 24 , LINK , DESTINATION_PORT ) : NO_CHANGES
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , CHILDREN ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , CONTEXT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , PORT_REFERENCE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , PORT_REFERENCE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , UID ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
+Xcos debug: objectDeleted( 23 , LINK )
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 24 , LINK ) : 1
+Xcos debug: objectDeleted( 26 , DIAGRAM )
+super.model.rpar.objs($).to = [3 1 1];
+Xcos debug: objectCreated( 27 , DIAGRAM )
+Xcos trace: propertyUpdated( 27 , DIAGRAM , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 24 , LINK ) : 2
+Xcos trace: propertyUpdated( 27 , DIAGRAM , CONTEXT ) : NO_CHANGES
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 15 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 24 , LINK ) : 3
+Xcos debug: objectCreated( 28 , PORT )
+Xcos trace: propertyUpdated( 28 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 28 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace: propertyUpdated( 28 , PORT , SOURCE_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 28 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 28 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 21 , BLOCK , INPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 28 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+Xcos trace: propertyUpdated( 24 , LINK , DESTINATION_PORT ) : SUCCESS
+Xcos trace: propertyUpdated( 27 , DIAGRAM , CHILDREN ) : NO_CHANGES
+Xcos trace: propertyUpdated( 16 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+Xcos trace: propertyUpdated( 16 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+Xcos trace: propertyUpdated( 24 , LINK , SOURCE_PORT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 28 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+Xcos trace: propertyUpdated( 28 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+Xcos trace: propertyUpdated( 24 , LINK , DESTINATION_PORT ) : NO_CHANGES
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , PORT , DATATYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , CHILDREN ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , CONTEXT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , PORT_REFERENCE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , PORT_REFERENCE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , UID ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 24 , LINK ) : 2
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 24 , LINK ) : 1
+Xcos debug: objectDeleted( 27 , DIAGRAM )
+assert_checkequal(super.model.rpar.objs(1).graphics.pout, 4);
+Xcos debug: objectCreated( 29 , DIAGRAM )
+Xcos trace: propertyUpdated( 29 , DIAGRAM , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 24 , LINK ) : 2
+Xcos trace: propertyUpdated( 29 , DIAGRAM , CONTEXT ) : NO_CHANGES
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 15 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 24 , LINK ) : 3
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 24 , LINK ) : 2
+Xcos debug: objectDeleted( 29 , DIAGRAM )
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 24 , LINK ) : 1
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 1
+assert_checkequal(super.model.rpar.objs(3).graphics.pin, 4);
+Xcos debug: objectCreated( 30 , DIAGRAM )
+Xcos trace: propertyUpdated( 30 , DIAGRAM , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 24 , LINK ) : 2
+Xcos trace: propertyUpdated( 30 , DIAGRAM , CONTEXT ) : NO_CHANGES
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 15 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 24 , LINK ) : 3
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 24 , LINK ) : 2
+Xcos debug: objectDeleted( 30 , DIAGRAM )
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 24 , LINK ) : 1
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
+assert_checkequal(super.model.rpar.objs(4).from, [1 1 0]);
+Xcos debug: objectCreated( 31 , DIAGRAM )
+Xcos trace: propertyUpdated( 31 , DIAGRAM , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 24 , LINK ) : 2
+Xcos trace: propertyUpdated( 31 , DIAGRAM , CONTEXT ) : NO_CHANGES
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 15 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 24 , LINK ) : 3
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 24 , LINK ) : 2
+Xcos debug: objectDeleted( 31 , DIAGRAM )
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 24 , LINK ) : 1
+assert_checkequal(super.model.rpar.objs(4).to, [3 1 1]);
+Xcos debug: objectCreated( 32 , DIAGRAM )
+Xcos trace: propertyUpdated( 32 , DIAGRAM , CHILDREN ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 15 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 17 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 21 , BLOCK ) : 2
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 24 , LINK ) : 2
+Xcos trace: propertyUpdated( 32 , DIAGRAM , CONTEXT ) : NO_CHANGES
+Xcos debug: objectReferenced( 12 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 12 , BLOCK ) : 0
+Xcos debug: objectReferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 15 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 17 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 21 , BLOCK ) : 4
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 3
+Xcos debug: objectReferenced( 24 , LINK ) : 3
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 24 , LINK ) : 2
+Xcos debug: objectDeleted( 32 , DIAGRAM )
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 24 , LINK ) : 1
+// Check that all the model items are freed
+clear
+Xcos debug: objectDeleted( 1 , BLOCK )
+Xcos debug: objectDeleted( 2 , LINK )
+Xcos debug: objectUnreferenced( 15 , BLOCK ) : 0
+Xcos debug: objectUnreferenced( 17 , BLOCK ) : 0
+Xcos debug: objectUnreferenced( 21 , BLOCK ) : 0
+Xcos debug: objectUnreferenced( 24 , LINK ) : 0
+Xcos trace: propertyUpdated( 12 , BLOCK , INPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos debug: objectDeleted( 13 , PORT )
+Xcos trace: propertyUpdated( 12 , BLOCK , INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , OUTPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos debug: objectDeleted( 14 , PORT )
+Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 24 , LINK , PARENT_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , OUTPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 15 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 24 , LINK , SOURCE_PORT ) : SUCCESS
+Xcos debug: objectDeleted( 16 , PORT )
+Xcos debug: objectDeleted( 15 , BLOCK )
+Xcos trace: propertyUpdated( 17 , BLOCK , INPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos debug: objectDeleted( 18 , PORT )
+Xcos debug: objectDeleted( 17 , BLOCK )
+Xcos trace: propertyUpdated( 21 , BLOCK , INPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 21 , BLOCK , OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 21 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 24 , LINK , DESTINATION_PORT ) : SUCCESS
+Xcos debug: objectDeleted( 28 , PORT )
+Xcos debug: objectDeleted( 21 , BLOCK )
+Xcos debug: objectDeleted( 24 , LINK )
+Xcos debug: objectDeleted( 12 , BLOCK )

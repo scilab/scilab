@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -20,7 +23,7 @@ void NaNChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLintR
     const ast::OpExp & oe = static_cast<const ast::OpExp &>(e);
     const ast::OpExp::Oper oper = oe.getOper();
 
-    if (oper == ast::OpExp::lt || ast::OpExp::le || ast::OpExp::gt || ast::OpExp::ge || ast::OpExp::ne || ast::OpExp::eq)
+    if (oper == ast::OpExp::lt || oper == ast::OpExp::le || oper == ast::OpExp::gt || oper == ast::OpExp::ge || oper == ast::OpExp::ne || oper == ast::OpExp::eq)
     {
         bool hasNaN = false;
 

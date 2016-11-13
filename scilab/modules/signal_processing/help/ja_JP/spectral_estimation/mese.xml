@@ -78,7 +78,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rand("seed",12345),
 y = (0:10);
 x1 = sin(2*%pi*y/20);

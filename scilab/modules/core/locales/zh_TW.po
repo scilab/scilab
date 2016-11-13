@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:09+0000\n"
+"PO-Revision-Date: 2016-06-09 10:43+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -137,10 +137,6 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的型態錯誤: 應該是字串.\n"
 
@@ -182,6 +178,9 @@ msgstr ""
 msgid "show this help"
 msgstr ""
 
+msgid "open debug documentation page"
+msgstr ""
+
 msgid "stop debugging"
 msgstr ""
 
@@ -189,6 +188,9 @@ msgid "show callstack"
 msgstr ""
 
 msgid "execute cmd"
+msgstr ""
+
+msgid "display variable"
 msgstr ""
 
 msgid "continue execution"
@@ -206,7 +208,7 @@ msgstr ""
 msgid "step outside function"
 msgstr ""
 
-msgid "set a breakpoint"
+msgid "add a breakpoint"
 msgstr ""
 
 msgid "delete all breakpoints"
@@ -233,7 +235,7 @@ msgstr ""
 msgid "show a specific breakpoint"
 msgstr ""
 
-msgid "  for more details, help debug.\n"
+msgid "  for more details, show help page.\n"
 msgstr ""
 
 #, c-format
@@ -243,6 +245,10 @@ msgstr "%s: 輸入參數數目錯誤: 應在 %d ,%d 之間.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數的長度錯誤.\n"
 
 #, c-format
 msgid ""
@@ -270,10 +276,6 @@ msgid "%s: Wrong value for input argument #%d: A positive value expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 第 %d 個輸入參數的長度錯誤.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: string expected."
 msgstr ""
 
@@ -282,7 +284,8 @@ msgid "%s: Wrong type for input argument #%d: An integer expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -346,6 +349,12 @@ msgid "%s: Wrong size for input argument #%d: a string expected.\n"
 msgstr ""
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: struct array or tlist or mlist "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
 msgstr ""
 
@@ -354,7 +363,29 @@ msgid "%s: Wrong type for input argument #%d: macro expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgid "%s: Wrong size for input arguments: more than %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for output arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong input arguments: Dimensions given as first argument do not match "
+"specified cell contents.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr ""
+
+msgid "Pause mode: enter empty lines to continue.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Valid function name expected.\n"
 msgstr ""
 
 #
@@ -362,6 +393,14 @@ msgstr ""
 #, c-format
 msgid "%s: function-name is incorrect.\n"
 msgstr "%s: 函數名稱不正確.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: function is disabled in debug mode.\n"
@@ -372,7 +411,8 @@ msgid "%s: Wrong size for input argument #%d: string expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -388,7 +428,23 @@ msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Insert a new type is not managed.\n"
+msgid "%s: Wrong number of input argument(s): An even number is expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Field names must be strings.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Arguments must be scalar or must have same dimensions.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Can not create a %s with input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: '%s' expected .\n"
 msgstr ""
 
 #, c-format
@@ -452,8 +508,8 @@ msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"錯誤:不是一個有效的版本檔%s (開頭應是<MODULE_VERSION>且包含<VERSION major='' "
-"minor='' maintenance='' revision='' string=''>)\n"
+"錯誤:不是一個有效的版本檔%s (開頭應是<MODULE_VERSION>且包含<VERSION major='' minor='' "
+"maintenance='' revision='' string=''>)\n"
 
 #, c-format
 msgid ""
@@ -464,14 +520,12 @@ msgstr "錯誤:  版本檔 %s 不正確(不是以 'utf-8' 編碼), 所用之編�
 #, c-format
 msgid ""
 "A fatal error has been detected by Scilab.\n"
-"Your instance will probably quit unexpectedly soon.\n"
-"If a graphic feature has been used, this might be caused by the system "
-"graphic drivers.\n"
-"Please try to update them and run this feature again.\n"
-"You can report a bug on %s with:\n"
-"* a sample code which reproduces the issue\n"
-"* the result of [a, b] = getdebuginfo()\n"
-"* the following information:\n"
+"Please check your user-defined functions (or external module ones) should "
+"they appear in the stack trace.\n"
+"Otherwise you can report a bug on %s with:\n"
+" * a sample code which reproduces the issue\n"
+" * the result of [a, b] = getdebuginfo()\n"
+" * the following information:\n"
 "%s %s\n"
 msgstr ""
 
@@ -512,7 +566,8 @@ msgstr "Scilab 版本 資訊."
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
-msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
+msgid ""
+"(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
 msgid ""
@@ -532,7 +587,7 @@ msgstr ""
 msgid "Scilab Enterprises\n"
 msgstr ""
 
-msgid "Copyright (c) 2011-2015 (Scilab Enterprises)\n"
+msgid "Copyright (c) 2011-2016 (Scilab Enterprises)\n"
 msgstr ""
 
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
@@ -595,6 +650,30 @@ msgstr "&?"
 msgid "&Toolboxes"
 msgstr "工具箱(&)"
 
+msgid "Introduction: Getting started with Scilab"
+msgstr ""
+
+msgid "Scilab objects"
+msgstr ""
+
+msgid "Operations and numerical primitives"
+msgstr ""
+
+msgid "Online definition of function"
+msgstr ""
+
+msgid "Optimization and simulation"
+msgstr ""
+
+msgid "Systems: definition and analysis"
+msgstr ""
+
+msgid "Linear algebra"
+msgstr ""
+
+msgid "Call an external routine"
+msgstr ""
+
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
 msgstr "%s: 無法找到 '%s': 請檢查一下此巨集是否已經建立.\n"
@@ -621,6 +700,10 @@ msgstr "%s: 輸入參數 #%d 的型態錯誤: 應該是雙精度.\n"
 
 #, c-format
 msgid "%s: %s is an uneditable hard coded function.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
 msgstr ""
 
 # File: macros/perl.sci, line: 12
@@ -655,12 +738,6 @@ msgstr "%s: 無法找到 Perl.\n"
 #, c-format
 msgid "%s: System error: Command executed: %s"
 msgstr "%s: 系統錯誤: 執行指令為: %s"
-
-#
-# File: macros/perl.sci, line: 65
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: 輸入參數數目錯誤: 預期最少為 %d 個.\n"
 
 msgid "Scilab Version: "
 msgstr ""

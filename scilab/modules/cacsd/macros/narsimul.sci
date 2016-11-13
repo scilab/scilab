@@ -1,11 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC -
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 
 function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
@@ -48,9 +51,8 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
         u=x2;
         [mmu,Nu]=size(u);
         if mmu<>x1("nu") then
-            error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
-            "Number of rows of #%d are incompatible with #%d argument.\n"),..
-            "narsimul",1,2,2,1));
+            msg = _("%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are incompatible with #%d argument.\n")
+            error(msprintf(msg, "narsimul", 1, 2, 2, 1));
         end;
         // dimensions
         [al,ac]=size(a);adeg=int(ac/al);
@@ -78,12 +80,12 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
         else
             up=x3
             if size(up,1)<>mmu then
-                error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"),"narsimul",2,3))
+                msg = _("%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n")
+                error(msprintf(msg, "narsimul",2,3))
             end
             if size(up,2)<>bdeg-1,
-                error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
-                "Number of columns of #%d are incompatible with #%d argument.\n"),..
-                "narsimul",1,3,3,1));
+                msg = _("%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are incompatible with #%d argument.\n")
+                error(msprintf(msg, "narsimul",1,3,3,1));
             end
         end
         if rhs <=4 then
@@ -91,14 +93,12 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
         else
             yp=x4
             if size(yp,1)<>al then
-                error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
-                "Number of rows of #%d are incompatible with #%d argument.\n"),..
-                "narsimul",1,4,4,1));
+                msg = _("%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are incompatible with #%d argument.\n")
+                error(msprintf(msg, "narsimul",1,4,4,1));
             end
             if size(yp,2)<>(adeg-1)  then
-                error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
-                "Number of columns of #%d are incompatible with #%d argument.\n"),..
-                "narsimul",1,4,4,1));
+                msg = _("%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are incompatible with #%d argument.\n")
+                error(msprintf(msg, "narsimul",1,4,4,1));
             end
         end
         if rhs <=5,
@@ -106,14 +106,12 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
         else
             ep=x5
             if size(ep,1)<>al then
-                error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
-                "Number of rows of #%d are incompatible with #%d argument.\n"),..
-                "narsimul",1,5,5,1));
+                msg = _("%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are incompatible with #%d argument.\n")
+                error(msprintf(msg, "narsimul", 1,5,5,1))
             end
             if size(ep,2)<>(adeg-1)  then
-                error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: "+..
-                "Number of columns of #%d are incompatible with #%d argument.\n"),..
-                "narsimul",1,5,5,1));
+                msg = _("%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are incompatible with #%d argument.\n")
+                error(msprintf(msg, "narsimul",1,5,5,1))
             end
 
         end;
@@ -138,6 +136,7 @@ function z=narsimul(x1,x2,x3,x4,x5,x6,x7,x8)
         // z(k) = y(k) + bru(k)
         z=y+bru(:,1:Nu);
     else
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: %s data structure expected.\n"),"narsimul",1,"arma"));
+        msg = _("%s: Wrong type for input argument #%d: %s data structure expected.\n")
+        error(msprintf(msg, "narsimul",1,"arma"))
     end;
 endfunction

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="nicholschart">
+    <refnamediv>
+        <refname>nicholschart</refname>
+        <refpurpose>ニコルス線図</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>nicholschart([modules] [,args] [,colors])</synopsis>
+        <synopsis/>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>modules</term>
+                <listitem>
+                    <para>実数ベクトル (モジュール (単位: dB))</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>args</term>
+                <listitem>
+                    <para>r実数ベクトル (位相 (単位: 度))</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>colorss</term>
+                <listitem>
+                    <para>スカラーまたはベクトル, 等ゲインまたは等位相曲線の色インデックス</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ニコルス線図をプロット: <literal>y</literal>の位相/ゲイン平面への
+            <literal>y/(1+y)</literal>の等モジュールおよび等引数等高線をプロット
+        </para>
+        <para>
+            <literal>nicholschart</literal> は,<link linkend="black">black</link>
+            と組み合わせて使用することができます.
+        </para>
+        <para>
+            <literal>modules</literal>および<literal>args</literal>の
+            デフォルト値はそれぞれ次のようになります :
+        </para>
+        <para>
+            <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
+        </para>
+        <para>
+            <literal>[-(1:10) , -(20:10:160)]</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>注意</title>
+        <para>
+            従来からの<code>nicholschart</code>のニコルス線図の呼び出し手順は以下の形式でした:
+            nicholschart(modules=gains, args=phases, colors=colors),
+            しかし,以下の呼び出し手順も利用可能です: nicholschart(gains, phases, colors).
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    //ニコルス線図
+    clf()
+    nicholschart(modules=[-6 -3 -1 1 3 6], args=[-1 -20 20 40 80 160 180]);
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                nicholschart(modules=[-6 -3 -1 1 3 6], args=[-1 -20 20 40 80 160 180]);
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+    //ニコルス線図のグリッドを付けたブラック図
+    s=poly(0,'s');
+    Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+    // 2自由度PID
+    tau=0.2;xsi=1.2;
+    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+    clf();
+    black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
+    // 右下隅にキャプションを移動
+    ax=gca();Leg=ax.children(1);
+    Leg.legend_location="in_lower_right";
+    nicholschart(colors=color('light gray')*[1 1])
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s');
+                Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+                tau=0.2;xsi=1.2;
+                PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+                clf();
+                black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
+                ax=gca();Leg=ax.children(1);
+                Leg.legend_location="in_lower_right";
+                nicholschart(colors=color('light gray')*[1 1])
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="black">black</link>
+            </member>
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+            <member>
+                <link linkend="hallchart">hallchart</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark> 使用可能な呼び出し手順: nicholschart(gains, phases, colors).</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -5,7 +5,7 @@
         <refpurpose>Terminates Scilab or  decreases the pause level </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>quit</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -40,10 +40,10 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // quit Scilab
 function foo(x)
-if x then 
+if x then
    quit
 end
 endfunction
@@ -60,18 +60,18 @@ foo(%t) //returns at the main prompt level
 
 function foo1(x)
 mprintf('P1\n')
-if x then 
+if x then
    pause
    mprintf('P2\n')
 end
 mprintf('P3\n')
 endfunction
-     
+
 foo1(%t) //enter quit at the following prompt
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="pause">pause</link>

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -25,10 +28,10 @@ namespace slint
 SLintScilabResult::SLintScilabResult() { }
 SLintScilabResult::~SLintScilabResult() { }
 
-void SLintScilabResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::string & msg)
+void SLintScilabResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::string & msg)
 {
     auto & mmap = results[context.getFilename()];
-    mmap.emplace(loc, checker.getId() + ": " + msg);
+    mmap.emplace(loc, checker.getId(sub) + ": " + msg);
 }
 
 void SLintScilabResult::finalize()
@@ -39,7 +42,7 @@ void SLintScilabResult::finalize()
         scilabWrite(str.c_str());
         for (const auto & p2 : p1.second)
         {
-            std::string str = "  At line " + std::to_string(p2.first.first_line) + ": " + p2.second + "\n";
+            std::string str = "  At l. " + std::to_string(p2.first.first_line) + ", c. " +  std::to_string(p2.first.first_column) + ": " + p2.second + "\n";
             scilabWrite(str.c_str());
         }
     }
@@ -48,9 +51,9 @@ void SLintScilabResult::finalize()
 SLintScilabOut::SLintScilabOut() { }
 SLintScilabOut::~SLintScilabOut() { }
 
-void SLintScilabOut::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::string & msg)
+void SLintScilabOut::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::string & msg)
 {
-    results[context.getFilename()][checker.getId()].emplace_back(loc, msg);
+    results[context.getFilename()][checker.getId(sub)].emplace_back(loc, msg);
 }
 
 void SLintScilabOut::finalize()

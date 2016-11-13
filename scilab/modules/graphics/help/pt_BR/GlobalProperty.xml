@@ -2,15 +2,18 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="GlobalProperty" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="GlobalProperty" xml:lang="pt">
     <refnamediv>
         <refname>GlobalProperty</refname>
         <refpurpose>Customização de aparência dos objetos (curvas, superfícies...)
@@ -19,9 +22,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>    Nenhuma. GlobalProperty é um argumento opcional que pode ser utilizado dentro de um comando plot ou surf. Permite uma customização global de todas as novas linhas esboçadas (respectivamente superfícies). Deve ser fornecido como o par{PropertyName, PropertyValue}. Vários pares podem ser ajustados ao mesmo tempo. 
-            PropertyName deve ser um string definido a propriedade a ser ajustada. PropertyValue pode ser um real, um inteiro ou um string (um escalar, ou matriz de) dependendo do tipo de propriedade usada. Por exemplo, para especificar um (estilo de linha) traço longo vermelho (cor) com marca diamante (marca), a seqüência deve ser : 'Colo','red','LineSt','-.','Marker','diam'. 
-            Como você pode ver, uma escrita completa dos nomes e valores das propriedades não é necessária mas os argumentos, especificados em qualquer ordem, não podem ser ambíguos. Além disso, a especificação dos strings não diferencia letras minúsculas de maiúsculas. GlobalProperty é predominante em todos os LineSpec anteriormente citados. 
+        <synopsis>    Nenhuma. GlobalProperty é um argumento opcional que pode ser utilizado dentro de um comando plot ou surf. Permite uma customização global de todas as novas linhas esboçadas (respectivamente superfícies). Deve ser fornecido como o par{PropertyName, PropertyValue}. Vários pares podem ser ajustados ao mesmo tempo.
+            PropertyName deve ser um string definido a propriedade a ser ajustada. PropertyValue pode ser um real, um inteiro ou um string (um escalar, ou matriz de) dependendo do tipo de propriedade usada. Por exemplo, para especificar um (estilo de linha) traço longo vermelho (cor) com marca diamante (marca), a seqüência deve ser : 'Colo','red','LineSt','-.','Marker','diam'.
+            Como você pode ver, uma escrita completa dos nomes e valores das propriedades não é necessária mas os argumentos, especificados em qualquer ordem, não podem ser ambíguos. Além disso, a especificação dos strings não diferencia letras minúsculas de maiúsculas. GlobalProperty é predominante em todos os LineSpec anteriormente citados.
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -392,7 +395,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // --------------------
 // com o comando plot:
 // --------------------

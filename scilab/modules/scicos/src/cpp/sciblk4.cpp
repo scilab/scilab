@@ -149,6 +149,8 @@ static bool sci2var(types::InternalType* p, void* dest, const int desttype, cons
                 return sci2var(p->getAs<types::UInt32>(), dest, row, col);
             }
         }
+        default:
+            return false;
     }
 
     return false;
@@ -284,9 +286,9 @@ void sciblk4(scicos_block* Blocks, const int flag)
 
     switch (flag)
     {
-            /**************************
-            * update continuous state
-            **************************/
+        /**************************
+        * update continuous state
+        **************************/
         case 0:
         {
             if (Blocks->nx != 0)

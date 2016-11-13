@@ -5,7 +5,7 @@
         <refpurpose>observation update</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x1,y]=system(x0,f,g,h,q,r)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -68,7 +68,7 @@
             observation given the old state.
             System recursively calculated
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 x1=f*x0+g*u
 y=h*x0+v
  ]]></programlisting>
@@ -79,8 +79,8 @@ y=h*x0+v
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// initialize state statistics 
+        <programlisting role="example"><![CDATA[
+// initialize state statistics
 // (mean and err. variance)
 m0=[10 10]';
 p0=[2 0;0 2];
@@ -104,5 +104,5 @@ ecv=[pk0(1,1) pk0(2,2)]';
 [x1,y]=system(x0,f,g,h,q,r)
  ]]></programlisting>
     </refsection>
-    
+
 </refentry>

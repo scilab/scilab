@@ -45,7 +45,7 @@
                         ,... où <literal>clé1,
                             clé2,...
                         </literal>
-                        peut être n'importe quel paramètre optionnel de <link linkend="plot3d">plot3d</link> 
+                        peut être n'importe quel paramètre optionnel de <link linkend="plot3d">plot3d</link>
                         (<literal>theta,alpha,leg,flag,ebox</literal>).
                     </para>
                 </listitem>

@@ -72,12 +72,12 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 diag([1,2])
 
 A=[1,2;3,4];
 diag(A)  // diagonale principale
-diag(A,1) 
+diag(A,1)
 
 diag(sparse(1:10))  // matrice diagonale creuse
 

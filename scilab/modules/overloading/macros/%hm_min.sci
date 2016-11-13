@@ -2,11 +2,17 @@
 // Copyright (C) INRIA
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
+
+// THIS OVERLOAD SEEMS NO LONGER CALLED  => NOT UPDATED : TO BE DELETED
+
 function [x,k] = %hm_min(varargin)
     n = size(varargin)
     // One input argument
@@ -46,8 +52,8 @@ function [x,k] = %hm_min(varargin)
             // min between hypermatrix and hypermatrix
             [x,k]=min(x,varargin(kk)(:))
         end
-        x=hypermat(dims,x)
-        k=hypermat(dims,k)
+        x=matrix(x, dims)
+        k=matrix(k, dims)
     end
 endfunction
 
@@ -90,8 +96,8 @@ function [x,k]=%hm_oriented_min(m,d)
         k=matrix(k,dims(1),dims(2))
     else
         if flag==1 then dims=int32(dims);end
-        x=hypermat(dims,x)
-        k=hypermat(dims,matrix(k,-1,1))
+        x=matrix(x, dims)
+        k=matrix(matrix(k,-1,1), dims)
     end
 endfunction
 

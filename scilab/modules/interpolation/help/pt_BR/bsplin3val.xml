@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bsplin3val" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bsplin3val" xml:lang="pt">
     <refnamediv>
         <refname>bsplin3val</refname>
         <refpurpose>função de avaliação de derivada arbitrária de spline
@@ -23,7 +23,7 @@
                 <term>tl</term>
                 <listitem>
                     <para>tlist de tipo "splin3d", definindo um tensor spline 3d
-                        (chamado de <literal>s</literal> a seguir) 
+                        (chamado de <literal>s</literal> a seguir)
                     </para>
                 </listitem>
             </varlistentry>
@@ -32,7 +32,7 @@
                 <listitem>
                     <para>
                         vetor com três componentes <literal>[ox,oy,oz]</literal>
-                        definindo qual derivada de <literal>s</literal> computar. 
+                        definindo qual derivada de <literal>s</literal> computar.
                     </para>
                 </listitem>
             </varlistentry>
@@ -58,7 +58,7 @@
             <literal>s</literal>. A derivada a ser computada é especificada pelo
             argumento <literal>der=[ox,oy,oz]</literal> :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
             ox   oy   oz
            d    d    d
 dfp(i) =  ---  ---  ---   s (xp(i),yp(i),zp(i))
@@ -78,7 +78,7 @@ dfp(i) =  ---  ---  ---   s (xp(i),yp(i),zp(i))
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff("v=f(x,y,z)","v=cos(x).*sin(y).*cos(z)");
 deff("v=fx(x,y,z)","v=-sin(x).*sin(y).*cos(z)");
 deff("v=fxy(x,y,z)","v=-sin(x).*cos(y).*cos(z)");
@@ -91,9 +91,9 @@ tl = splin3d(x,y,z,V,[5 5 5]);
 
 // computando f e algumas derivadas em um ponto
 // e comparando com o spline interpolante
-xp = grand(1,1,"unf",0,2*%pi); 
-yp = grand(1,1,"unf",0,2*%pi); 
-zp = grand(1,1,"unf",0,2*%pi); 
+xp = grand(1,1,"unf",0,2*%pi);
+yp = grand(1,1,"unf",0,2*%pi);
+zp = grand(1,1,"unf",0,2*%pi);
 
 f_e = f(xp,yp,zp)
 f_i = bsplin3val(xp,yp,zp,tl,[0 0 0])

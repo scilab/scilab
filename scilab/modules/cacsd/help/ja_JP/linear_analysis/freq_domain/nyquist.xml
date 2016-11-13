@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA
+*
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="nyquist" xml:lang="ja">
+    <refnamediv>
+        <refname>nyquist</refname>
+        <refpurpose>ナイキスト線図</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出しの手順</title>
+        <synopsis>
+            nyquist( sl,[fmin,fmax] [,step] [,comments] [,symmetry])
+            nyquist( sl, frq [,comments] [,symmetry])
+            nyquist(frq,db,phi [,comments] [,symmetry])
+            nyquist(frq, repf [,comments] [,symmetry])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        連続または離散時間 SIMO 線形システム
+                        ( 参照: <link linkend="syslin">syslin</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmin,fmax</term>
+                <listitem>
+                    <para>スカラー (周波数範囲の境界(単位:Hz))</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>step</term>
+                <listitem>
+                    <para>real (対数単位の離散化増分),
+                        指定されない場合,適応型離散化が行われます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>commments</term>
+                <listitem>
+                    <para>文字列ベクトル (キャプション).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>symmetry</term>
+                <listitem>
+                    <para>論理値, デフォルト値は %t.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>周波数のベクトルまたは行列 (単位: Hz)
+                        (各行が<literal>sl</literal>の各出力に対応).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>db,phi</term>
+                <listitem>
+                    <para>ゲイン(単位:dB)および位相(単位:度)の行列
+                        (各行が<literal>sl</literal>の各出力に対応).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>repf</term>
+                <listitem>
+                    <para>
+                        周波数応答を表す複素行列.
+                        (各行が<literal>sl</literal>の各出力に対応).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ナイキスト線図は,
+            <literal>sl</literal>の周波数応答の虚部と実部の関係をプロットします.
+            <literal>symmetry</literal>引数がtrueまたは省略された場合,
+            ナイキスト線図は対称グラフを表示します(正および負の周波数).
+        </para>
+        <para>
+            連続時間システムの場合, <literal>sl(2*%i*%pi*w)</literal> が
+            プロットされます.
+            離散時間システムまたは離散化されたシステムの場合,
+            <literal>sl(exp(2*%i*%pi*w*fd)</literal>が使用されます.
+            (離散時間システムの場合は <literal>fd=1</literal>,
+            離散化されたシステムの場合は <literal>fd=sl('dt')</literal>)
+        </para>
+        <para>
+            <literal>sl</literal> は
+            連続時間または離散時間 SIMOシステム (<literal>syslin</literal>参照)と
+            することができます.
+            多出力系の場合,各出力は異なる記号でプロットされます.
+        </para>
+        <para>
+            周波数は範囲の境界 <literal>fmin,fmax</literal> (単位: Hz)
+            または行ベクトル (多出力系の場合は行列) <literal>frq</literal>
+            で指定すします
+        </para>
+        <para>
+            <literal>step</literal> は (対数表現の) 離散刻みです.
+            (デフォルト値の選択については <literal>calfrq</literal> を参照).
+        </para>
+        <para>
+            <literal>comments</literal> は(キャプション)文字列のベクトルです.
+        </para>
+        <para>
+            <literal>db,phi</literal> はゲイン(単位:dB)および位相(単位:度)の
+            行列です (各行が各応答に対応します).
+        </para>
+        <para>
+            <literal>repf</literal> は複素行列です.
+            各行が各応答に対応します.
+        </para>
+        <para>
+            <literal>fmin</literal> および<literal>fmax</literal> のデフォルト値は,
+            <literal>sl</literal> が連続時間系の場合に
+            <literal>1.d-3</literal>,<literal>1.d+3</literal>,
+            <literal>sl</literal> が離散時間系の場合に<literal>1.d-3</literal>,
+            <literal>0.5</literal>/sl.dt (ナイキスト周波数)
+            となります.
+        </para>
+        <para>
+            周波数の自動離散化は<link linkend="calfrq">calfrq</link>
+            により行われます.
+        </para>
+        <para>
+            選択された点における周波数の値を得るには,
+            <link linkend="datatips">データティップ</link>マネージャを
+            有効にし,ナイキスト線図の任意の点をクリックします.
+        </para>
+    </refsection>
+    <refsection>
+        <title>グラフィックエンティティの構築</title>
+        <para>
+            <literal>nyquist</literal> 関数は各SISOシステムの複合オブジェクトを
+            作成します.
+            以下のコードにより,i番目のシステムの複合オブジェクトのハンドルを取得
+            することができます:
+        </para>
+        <programlisting role="getcompound"><![CDATA[
+    ax=gca();//カレントの軸のハンドル
+    hi=ax.children($+i-1)// i番目のシステムの複合オブジェクトのハンドル
+    ]]></programlisting>
+        <para>
+            この複合オブジェクトは2つの子を有します:
+            小さな矢印(小さな線分群の集合)と曲線ラベル(テキストの複合要素)
+            を定義する複合オブジェクトおよび曲線自体の線分群.
+            以下のコードは,特定のナイキスト線図の表示をカスタマイズする方法を
+            示します.
+        </para>
+        <programlisting role="customize"><![CDATA[
+    hi.children(1).visible='off'; //矢印とラベルを隠す
+    hi.children(2).thickness=2; //曲線を太くする
+    ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    //ナイキスト線図
+    s=poly(0,'s')
+    h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+    h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+    clf();    nyquist(h1)
+    // データティップを追加
+    ax=gca();
+    h_h=ax.children($).children(2);//hのナイキスト線図のハンドル
+    tip=datatipCreate(h_h,[1.331,0.684]);
+    datatipSetOrientation(tip,"upper left");
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s')
+                h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+                h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+                clf();    nyquist(h1)
+                ax=gca();
+                h_h=ax.children($).children(2);//hのナイキスト線図のハンドル
+                tip=datatipCreate(h_h,[1.331,0.684]);
+                datatipSetOrientation(tip,"upper left");
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+    //ナイキスト線図のグリッドによるホール図
+    s=poly(0,'s');
+    Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+    //2自由度PID
+    tau=0.2;xsi=1.2;
+    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+    clf();
+    nyquist([Plant;Plant*PID],0.5,100,["Plant";"Plant and PID corrector"]);
+    hallchart(colors=color('light gray')*[1 1])
+    //右下隅に凡例を移動
+    ax=gca();Leg=ax.children(1);
+    Leg.legend_location="in_upper_left";
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s');
+                Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+                tau=0.2;xsi=1.2;
+                PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+                clf();
+                nyquist([Plant;Plant*PID],0.5,100,["Plant";"Plant and PID corrector"]);
+                hallchart(colors=color('light gray')*[1 1])
+                ax=gca();Leg=ax.children(1);
+                Leg.legend_location="in_upper_left";
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
+                <link linkend="black">black</link>
+            </member>
+            <member>
+                <link linkend="nyquistfrequencybounds">nyquistfrequencybounds</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+            <member>
+                <link linkend="freq">freq</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="phasemag">phasemag</link>
+            </member>
+            <member>
+                <link linkend="datatips">datatips</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="global">
+    <refnamediv>
+        <refname>global</refname>
+        <refpurpose>Define global variable</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>global('nam1',...,'namn')
+            global nam1 ... namn
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>nam1,..., namn</term>
+                <listitem>
+                    <para>valid variable names</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Ordinarily, each Scilab function, has its
+            own local variables and can "read" all variables created in the base
+            workspace or by the calling functions. The <literal>global</literal> keyword allow to make
+            variables read/write across functions. Any assignment to that variable,
+            in any function, is available to all the other functions declaring
+            it <literal>global</literal>.
+        </para>
+        <para>
+            If the global variable does not exist the first time you issue
+            the <literal>global</literal> statement, it will be initialized to the empty matrix.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//first: calling environment and a function share a variable
+global a
+a=1
+deff('y=f1(x)','global a,a=x^2,y=a^2')
+f1(2)
+a
+//second: three functions share variables
+deff('initdata()','global A C ;A=10,C=30')
+deff('letsgo()','global A C ;disp(A) ;C=70')
+deff('letsgo1()','global C ;disp(C)')
+initdata()
+letsgo()
+letsgo1()
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="isglobal">isglobal</link>
+            </member>
+            <member>
+                <link linkend="clearglobal">clearglobal</link>
+            </member>
+            <member>
+                <link linkend="resume">resume</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

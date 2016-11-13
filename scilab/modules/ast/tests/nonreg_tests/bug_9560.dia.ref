@@ -1,0 +1,42 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2016 - Scilab Enterprises - Pierre-Aime AGNEL
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- Non-regression test for bug 9560 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=9560
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Short Description -->
+// 1./M and 1 ./ M did not lead to the same result 
+// as 1./M was parsed as (1.)/M instead of (1) ./ M
+x1=0:1:5;
+y1=1./(1+(((5-x1)/2).^2));
+y1_ref =1 ./ (1+(((5-x1)/2) .^ 2));
+assert_checkequal(y1, y1_ref);
+x2=5:1:10;
+y2=1./(1+(2*(x2-5)/3));
+y2_ref=1 ./ (1+(2*(x2-5)/3));
+assert_checkequal(y2, y2_ref);
+y3 = 2.;
+assert_checkequal(y3, 2);
+y4 = 2.\[1 2 3 4];
+y4_ref = 2 .\ [1 2 3 4];
+assert_checkequal(y4, y4_ref);
+y5 = 2.^[1 2; 3 4];
+y5_ref = 2 .^ [1 2; 3 4];
+assert_checkequal(y5, y5_ref);
+y6 = 2. / [1 2; 3 4];
+y6_ref = 2 / [1 2; 3 4];
+assert_checkequal(y6, y6_ref);
+y7 = 2. \ [1 2; 3 4];
+y7_ref = 2 \ [1 2; 3 4];
+assert_checkequal(y7, y7_ref);
+y8 = 2. ^ [1 2; 3 4];
+y8_ref = 2 ^ [1 2; 3 4];
+assert_checkequal(y8, y8_ref);

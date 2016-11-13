@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="abinv">
+    <refnamediv>
+        <refname>abinv</refname>
+        <refpurpose>AB 不変部分空間</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[X,dims,F,U,k,Z]=abinv(Sys,alpha,beta,flag)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sys</term>
+                <listitem>
+                    <para>
+                        行列<literal>[A,B,C,D]</literal>を含む
+                        <literal>syslin</literal> リスト.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alpha</term>
+                <listitem>
+                    <para>(オプション) 実数の数値またはベクトル
+                        (複素数の可能性もある閉ループ極の位置)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>beta</term>
+                <listitem>
+                    <para>(オプション)
+                        実数の数値またはベクトル
+                        (複素数の可能性もある閉ループ極の位置)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>(オプション)
+                        文字列 <literal>'ge'</literal> (デフォルト) または
+                        <literal>'st'</literal> または <literal>'pp'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>大きさ nx (状態空間の次元) の直交行列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    <para>
+                        <literal>dimR&lt;=dimVg&lt;=dimV&lt;=noc&lt;=nos</literal>となる
+                        整数行ベクトル <literal>dims=[dimR,dimVg,dimV,noc,nos]</literal>.
+                        <literal>flag='st'</literal>の場合,
+                        (resp. <literal>'pp'</literal>), <literal>dims</literal> は
+                        4 (resp. 3) 個の要素となる.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>F</term>
+                <listitem>
+                    <para>実数行列 (状態フィードバック)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>
+                        整数 (<literal>Sys</literal>のノーマルランク)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Z</term>
+                <listitem>
+                    <para>
+                        特異でない線形システム (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>Sys</literal>の行列[A,B,C,D]を含む
+            <literal>Sys</literal> = syslinリストで定義された線形システム
+            に関する出力ゼロ部分空間 (不可観測となる最大部分空間).
+            ベクトル <literal>dims=[dimR,dimVg,dimV,noc,nos]</literal> は
+            以下の区分に基づき
+            <literal>X</literal>の列で定義される部分空間の次元を出力します.
+            <literal>X</literal>の最初の<literal>dimV</literal>列,すなわち,
+            <literal>V=X(:,1:dimV)</literal>は
+            <literal>Sys</literal>のAB不変な部分空間
+            すなわち,
+            <literal>(A+B*F,C+D*F)</literal>の不可観測な部分空間に
+            広がっています.
+            (<literal>C^(-1)(D)=X</literal>の時に限り,<literal>dimV=nx</literal>).
+        </para>
+        <para>
+            <literal>X</literal>の最初の<literal>dimR</literal> 列,
+            すなわち <literal>R=X(:,1:dimR)</literal>は,
+            <literal>V</literal>, <literal>(dimR&lt;=dimV)</literal>の中の
+            <literal>Sys</literal>の可制御部を含んでいます.
+            (左可逆システムの場合,<literal>dimR=0</literal>).
+            <literal>R</literal> は<literal>kernel(C)</literal>の中の
+            <literal>Sys</literal> の可制御な最大部分空間です.
+        </para>
+        <para>
+            <literal>X</literal> の最初の<literal>dimVg</literal>列は,
+            <literal>Sys</literal>の<literal>Vg</literal>=AB-最大可安定部分空間
+            に広がっています.
+        </para>
+        <para>
+            <literal>F</literal>は非干渉化フィードバックです:
+            <literal>X=[V,X2] (X2=X(:,dimV+1:nx))</literal> について,
+            <literal>X2'*(A+B*F)*V=0 および (C+D*F)*V=0</literal>が満たされます.
+        </para>
+        <para>
+            <literal>Sys</literal> のゼロは以下のように取得できます :
+            <literal>X0=X(:,dimR+1:dimV); spec(X0'*(A+B*F)*X0)</literal>
+            すなわち, <literal>dimV-dimR</literal> 個の閉ループ固定モードがあります.
+        </para>
+        <para>
+            オプションのパラメータ <literal>alpha</literal> が入力として指定された場合,
+            <literal>dimR</literal>個の<literal>V</literal>に含まれる
+            <literal>(A+BF)</literal>の可制御モードが<literal>alpha</literal>
+            (または<literal>[alpha(1), alpha(2), ...]</literal>)に設定されます.
+            (<literal>alpha</literal> はベクトル (実数または複素数の組) または (実数の)
+            数値とすることができます).
+            デフォルト値は <literal>alpha=-1</literal>です.
+        </para>
+        <para>
+            オプションの実数パラメータIr <literal>beta</literal> が入力に指定された場合,
+            <literal>noc-dimV</literal> 個の<literal>V</literal>"以外の"<literal>(A+BF)</literal>の
+            可制御モードが<literal>beta</literal>
+            (または<literal>[beta(1),beta(2),...]</literal>)に設定されます.
+            デフォルト値は <literal>beta=-1</literal>です.
+        </para>
+        <para>
+            <literal>X,U</literal> に基づくと, 行列
+            <literal>[X'*(A+B*F)*X,X'*B*U;(C+D*F)*X,D*U]</literal>
+            は以下のように表示されます:
+        </para>
+        <programlisting><![CDATA[
+[A11,*,*,*,*,*]  [B11 * ]
+[0,A22,*,*,*,*]  [0   * ]
+[0,0,A33,*,*,*]  [0   * ]
+[0,0,0,A44,*,*]  [0  B42]
+[0,0,0,0,A55,*]  [0   0 ]
+[0,0,0,0,0,A66]  [0   0 ]
+[0,0,0,*,*,*]    [0  D2]
+ ]]></programlisting>
+        <para>
+            ただし,Xの分割は<literal>dims</literal>で定義され,
+            Uの分割は<literal>k</literal>で定義されます.
+        </para>
+        <para>
+            <literal>A11</literal> は <literal>(dimR x dimR)</literal> 次で,
+            <literal>alpha(i)'s</literal>の固有値を有しています.
+            <literal>(A11,B11)</literal> の組は可制御で,
+            <literal>B11</literal> は <literal>nu-k</literal> 列です.
+            <literal>A22</literal> は安定な
+            <literal>(dimVg-dimR x dimVg-dimR)</literal> 次の行列です.
+            <literal>A33</literal> は不安定な
+            <literal>(dimV-dimVg x dimV-dimVg)</literal> 行列です
+            (<literal>st_ility</literal>参照).
+        </para>
+        <para>
+            <literal>A44</literal> は
+            <literal>(noc-dimV x noc-dimV)</literal> 次であり,
+            その固有値は<literal>beta(i)</literal>となります.
+            <literal>(A44,B42)</literal> は可制御です.
+            <literal>A55</literal> は安定な <literal>(nos-noc x nos-noc)</literal> 次の行列となります.
+            <literal>A66</literal> は不安定な <literal>(nx-nos x nx-nos)</literal>次の行列
+            (<literal>st_ility</literal>参照).
+        </para>
+        <para>
+            <literal>Z</literal> は<literal>Sys</literal> の列圧縮です.
+            <literal>k</literal> は<literal>Sys</literal>のランク,
+            すなわち, <literal>Sys*Z</literal>は列圧縮された線形システムとなります.
+            <literal>k</literal> は
+            <literal>B42,B52,B62</literal> と <literal>D2</literal>の列の次元です.
+            <literal>[B42;B52;B62;D2]</literal> は列フルランクでランク
+            <literal>k</literal>を有しています.
+        </para>
+        <para>
+            <literal>flag='st'</literal> が指定された場合,
+            行列の5個のブロック区画が返され,<literal>dims</literal>は4個の要素を有します.
+            <literal>flag='pp'</literal> が指定された場合,
+            5個のブロック区画が返されます.
+            <literal>flag='ge'</literal> の場合,
+            <literal>dims=[dimR,dimVg,dimV,dimV+nc2,dimV+ns2]</literal> となります.
+            ここで where <literal>nc2</literal>
+            (resp. <literal>ns2</literal>) は可制御 (resp.
+            stabilizable)対 <literal>(A44,B42)</literal> (resp. (<literal>[A44,*;0,A55],[B42;0])</literal>)の次元です.
+            <literal>flag='st'</literal>の場合,
+            <literal>dims=[dimR,dimVg,dimVg+nc,dimVg+ns]</literal>となり,
+            <literal>flag='pp'</literal>の場合,
+            <literal>dims=[dimR,dimR+nc,dimR+ns]</literal>となります.
+            <literal>nc</literal> (resp. <literal>ns</literal>) は
+            ブロック数3から6(resp. 2 to 6)の
+            可制御(resp. stabilizable) 部分空間の次元です.
+        </para>
+        <para>
+            この関数は(正確な)外乱非干渉化問題に使用することができます.
+        </para>
+        <programlisting role=""><![CDATA[
+DDPS:
+   Find u=Fx+Rd=[F,R]*[x;d] which rejects Q*d and stabilizes the plant:
+    xdot = Ax+Bu+Qd
+       y = Cx+Du+Td
+Im(Q)がVg + Im(B)に含まれる場合,DDPS は解を有し,可安定性の仮定は満たされます.
+Let G=(X(:,dimVg+1:$))'= left annihilator of Vg i.e. G*Vg=0;
+B2=G*B; Q2=G*Q; DDPS solvable iff [B2;D]*R + [Q2;T] =0 has a solution.
+G=(X(:,dimVg+1:$))'= Vgの左零化イデアル, すなわち G*Vg=0 とおくと,
+B2=G*B; Q2=G*Q; DDPS が可解であることは,
+[B2;D]*R + [Q2;T] =0が解を有することと必要十分の関係にあります.
+対 F,R  (F=abinvの出力)は解です.
+Im(B2)の中にあるIm(Q2)は,B2の列圧縮=>Q2の列圧縮を意味します.
+これにより, C*[(sI-A-B*F)^(-1)+D]*(Q+B*R) =0   (<=>G*(Q+B*R)=0)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+nu=3;ny=4;nx=7;
+nrt=2;ngt=3;ng0=3;nvt=5;rk=2;
+flag=list('on',nrt,ngt,ng0,nvt,rk);
+Sys=ssrand(ny,nu,nx,flag);my_alpha=-1;my_beta=-2;
+[X,dims,F,U,k,Z]=abinv(Sys,my_alpha,my_beta);
+[A,B,C,D]=abcd(Sys);dimV=dims(3);dimR=dims(1);
+V=X(:,1:dimV);X2=X(:,dimV+1:nx);
+X2'*(A+B*F)*V
+(C+D*F)*V
+X0=X(:,dimR+1:dimV); spec(X0'*(A+B*F)*X0)
+trzeros(Sys)
+spec(A+B*F)   //nr=2 evals at -1 and noc-dimV=2 evals at -2.
+clean(ss2tf(Sys*Z))
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+nx=6;ny=3;nu=2;
+A=diag(1:6);A(2,2)=-7;A(5,5)=-9;B=[1,2;0,3;0,4;0,5;0,0;0,0];
+C=[zeros(ny,ny),eye(ny,ny)];D=[0,1;0,2;0,3];
+sl=syslin('c',A,B,C,D);//sl=ss2ss(sl,rand(6,6))*rand(2,2);
+[A,B,C,D]=abcd(sl);  //The matrices of sl.
+my_alpha=-1;my_beta=-2;
+[X,dims,F,U,k,Z]=abinv(sl,my_alpha,my_beta);dimVg=dims(2);
+clean(X'*(A+B*F)*X)
+clean(X'*B*U)
+clean((C+D*F)*X)
+clean(D*U)
+G=(X(:,dimVg+1:$))';
+B2=G*B;nd=3;
+R=rand(nu,nd);Q2T=-[B2;D]*R;
+p=size(G,1);Q2=Q2T(1:p,:);T=Q2T(p+1:$,:);
+Q=G\Q2;   //a valid [Q;T] since
+[G*B;D]*R + [G*Q;T]  // is zero
+closed=syslin('c',A+B*F,Q+B*R,C+D*F,T+D*R); // closed loop: d-->y
+ss2tf(closed)       // Closed loop is zero
+spec(closed('A'))   //The plant is not stabilizable!
+[ns,nc,W,sl1]=st_ility(sl);
+[A,B,C,D]=abcd(sl1);A=A(1:ns,1:ns);B=B(1:ns,:);C=C(:,1:ns);
+slnew=syslin('c',A,B,C,D);  //Now stabilizable
+//Fnew=stabil(slnew('A'),slnew('B'),-11);
+//slnew('A')=slnew('A')+slnew('B')*Fnew;
+//slnew('C')=slnew('C')+slnew('D')*Fnew;
+[X,dims,F,U,k,Z]=abinv(slnew,my_alpha,my_beta);dimVg=dims(2);
+[A,B,C,D]=abcd(slnew);
+G=(X(:,dimVg+1:$))';
+B2=G*B;nd=3;
+R=rand(nu,nd);Q2T=-[B2;D]*R;
+p=size(G,1);Q2=Q2T(1:p,:);T=Q2T(p+1:$,:);
+Q=G\Q2;   //a valid [Q;T] since
+[G*B;D]*R + [G*Q;T]  // is zero
+closed=syslin('c',A+B*F,Q+B*R,C+D*F,T+D*R); // closed loop: d-->y
+ss2tf(closed)       // Closed loop is zero
+spec(closed('A'))
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>参考</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cainv">cainv</link>
+            </member>
+            <member>
+                <link linkend="st_ility">st_ility</link>
+            </member>
+            <member>
+                <link linkend="ssrand">ssrand</link>
+            </member>
+            <member>
+                <link linkend="ss2ss">ss2ss</link>
+            </member>
+            <member>
+                <link linkend="ddp">ddp</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

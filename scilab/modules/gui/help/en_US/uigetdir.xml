@@ -5,7 +5,7 @@
         <refpurpose>dialog for selecting a directory</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>directory = uigetdir()
             directory = uigetdir(start_path [,title])
         </synopsis>
@@ -41,14 +41,14 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 uigetdir()
 uigetdir("SCI/modules/")
 uigetdir("SCI/modules/", "Choose a directory")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="uigetfile">uigetfile</link>

@@ -5,7 +5,7 @@
         <refpurpose>response of type 2 Chebyshev filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[h2]=cheb2mag(n,omegar,A,sample)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -49,13 +49,13 @@
             Square magnitude response of a type 2 Chebyshev filter.
         </para>
         <para>
-            <literal>omegar</literal> = stopband edge, <literal>sample</literal> = vector of 
+            <literal>omegar</literal> = stopband edge, <literal>sample</literal> = vector of
             frequencies where the square magnitude <literal>h2</literal> is desired.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Chebyshev; ripple in the stopband
 n=10;
 omegar=6;
@@ -87,7 +87,7 @@ plot2d(Samples',attenuation*ones(Samples)',[5],"000")
 ]]>     </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cheb1mag">cheb1mag</link>

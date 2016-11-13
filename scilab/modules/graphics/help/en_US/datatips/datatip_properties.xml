@@ -15,7 +15,7 @@
             <varlistentry>
                 <term>parent: </term>
                 <listitem>
-                    <para>See 
+                    <para>See
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
@@ -26,7 +26,7 @@
             <varlistentry>
                 <term>children: </term>
                 <listitem>
-                    <para>See 
+                    <para>See
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
@@ -37,7 +37,7 @@
             <varlistentry>
                 <term>visible: </term>
                 <listitem>
-                    <para>See 
+                    <para>See
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
@@ -48,7 +48,7 @@
             <varlistentry>
                 <term>data: </term>
                 <listitem>
-                    <para>See 
+                    <para>See
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
@@ -79,18 +79,21 @@
             <varlistentry>
                 <term>orientation: </term>
                 <listitem>
-                    <para>This field sets the position on the text box with respect to polyline point. 
-                        The possible values are 0 (upper left), 1 (upper right), 2 (lower left), 3 (lower right), 4 (left), 5 (right), 
+                    <para>This field sets the position on the text box with respect to polyline point.
+                        The possible values are 0 (upper left), 1 (upper right), 2 (lower left), 3 (lower right), 4 (left), 5 (right),
                         6 (upper) or 7 (lower).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>z_component: </term>
+                <term>display_components: </term>
                 <listitem>
                     <para>
-                        This field adds z position in the box. Its value should be <literal>"on" </literal>
-                        (z position written) or <literal>"off"</literal> (no z position written).
+                        This field controls which components are displayed. Its default value
+                        is <literal>"xy"</literal>for 2D views and <literal>"xyz"</literal> for 3D views.
+                        Possible values for this field are any combination of <literal>"x"</literal>, <literal>"y"</literal> and <literal>"z"</literal>.
+                        Some examples for this field are <literal>"zy"</literal>, <literal>"xzy"</literal>, <literal>"xz"</literal>, <literal>"y"</literal> and so on.
+                        PS: The components are drawn in the same order they are found in the string.
                     </para>
                 </listitem>
             </varlistentry>
@@ -100,7 +103,7 @@
                     <para>
                         This field contains the default <literal>auto_orientation</literal> property
                         value for the datatip. Its value should be <literal>"on" </literal>(automatic orientation)
-                        or <literal>"off"</literal> (no automatic orientation). In the <literal>"off"</literal> case, 
+                        or <literal>"off"</literal> (no automatic orientation). In the <literal>"off"</literal> case,
                         See <literal>orientation</literal> property.
                     </para>
                 </listitem>
@@ -108,7 +111,7 @@
             <varlistentry>
                 <term>interp_mode: </term>
                 <listitem>
-                    <para>This field sets the interpolation mode for tip location. Its value should be 
+                    <para>This field sets the interpolation mode for tip location. Its value should be
                         <literal>"on" </literal>(interpolation is made between mesh points) or <literal>"off"
                         </literal>
                         (the tips can only be located at the mesh points).
@@ -118,11 +121,21 @@
             <varlistentry>
                 <term>display_function: </term>
                 <listitem>
-                    <para>See 
+                    <para>See
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
                         help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>detached_position: </term>
+                <listitem>
+                    <para>
+                        This field sets the position to draw the datatip text box. When its value  is <literal>[]</literal>
+                        the datatip text box is drawn attached to its anchor point in the polyline, if its value is a 3-components
+                        vector <literal>[x y z]</literal>, the text box is drawn in the given position.
                     </para>
                 </listitem>
             </varlistentry>
@@ -148,7 +161,23 @@
             <varlistentry>
                 <term>background: </term>
                 <listitem>
-                    <para>See 
+                    <para>See
+                        <literal>
+                            <link linkend="polyline_properties">polyline_properties</link>
+                        </literal>
+                        help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>line_style: </term>
+                <listitem>
+                    <para>
+                        This field contains the <literal>line_style</literal> used in the line linking
+                        the datatip anchor point to its text box when <literal>detached_position</literal>
+                        is set.
+                    </para>
+                    <para>See
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
@@ -159,7 +188,7 @@
             <varlistentry>
                 <term>mark_mode: </term>
                 <listitem>
-                    <para>See 
+                    <para>See
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
@@ -170,7 +199,7 @@
             <varlistentry>
                 <term>mark_style: </term>
                 <listitem>
-                    <para>See 
+                    <para>See
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
@@ -181,7 +210,7 @@
             <varlistentry>
                 <term>mark_size_unit: </term>
                 <listitem>
-                    <para>See 
+                    <para>See
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
@@ -192,7 +221,7 @@
             <varlistentry>
                 <term>mark_size: </term>
                 <listitem>
-                    <para>See 
+                    <para>See
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
@@ -203,7 +232,7 @@
             <varlistentry>
                 <term>mark_foreground: </term>
                 <listitem>
-                    <para>See 
+                    <para>See
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
@@ -214,7 +243,7 @@
             <varlistentry>
                 <term>mark_background: </term>
                 <listitem>
-                    <para>See 
+                    <para>See
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
@@ -225,7 +254,7 @@
             <varlistentry>
                 <term>user_data: </term>
                 <listitem>
-                    <para>See 
+                    <para>See
                         <literal>
                             <link linkend="polyline_properties">polyline_properties</link>
                         </literal>
@@ -247,7 +276,7 @@
         </variablelist>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="polyline_properties">polyline_properties</link>

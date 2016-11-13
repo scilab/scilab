@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:03+0000\n"
-"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"PO-Revision-Date: 2016-07-16 21:42+0000\n"
+"Last-Translator: Dmitriy Nogay <imcatwhocode@protonmail.ch>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "Language: ru\n"
 
 #, c-format
@@ -187,7 +187,8 @@ msgstr "%s: Неверные входные параметры: ожидалис
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
-msgstr "%s: Неверное значение входного параметра №%d: должно быть больше %d.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: должно быть больше %d.\n"
 
 #, c-format
 msgid ""
@@ -277,16 +278,6 @@ msgstr ""
 "вещественных чисел.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-msgstr ""
-"%s: Неверный тип аргумента №%d: ожидалась матрица логических значений.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалось логическое значение.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: Ожидался графический дескриптор.\n"
@@ -311,7 +302,8 @@ msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидался дескриптор «%s».\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидался действительный "
 "дескриптор «%s».\n"
@@ -375,17 +367,24 @@ msgstr ""
 "%s"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалось логическое значение.\n"
+
+#, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string or macro name expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: string or macro name expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидалось строковое значение или "
 "имя макроса.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string or macro name expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: string or macro name expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась строка или имя сценария.\n"
 
@@ -413,7 +412,8 @@ msgstr ""
 "на 1.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидался скаляр или вектор-"
 "столбец.\n"
@@ -432,27 +432,32 @@ msgstr "%s: Неверный размер входного аргумента �
 
 #, c-format
 msgid "%s:  Wrong number of output argument(s): %d to %d expected."
-msgstr ""
+msgstr "%s:  Неверное количество выходных аргументов: ожидалось от %d до %d."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A list expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d : ожидался список.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : At least %d elements expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d : ожидалось не менее %d "
+"элементов.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of input argument #%d : string expected.\n"
 msgstr ""
+"%s: Неверный тип элемента №%d  входного аргумента №%d : ожидалась строка.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for element #%d of input argument #%d : At least %d element "
 "expected.\n"
 msgstr ""
+"%s: Неверный размер элемента №%d входного аргумента №%d : ожидалось не менее "
+"%d элементов.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Tree expected.\n"
@@ -462,24 +467,31 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 msgid ""
 "%s: Wrong type for element #%d of input argument #%d : A struct expected.\n"
 msgstr ""
+"%s: Неверный тип элемента №%d входного аргумента №%d : ожидалась структура.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong fields for element #%d of input argument #%d : \"%s\" and \"%s\" "
 "expected.\n"
 msgstr ""
+"%s: Неверные поля элемента №%d входного аргумента №%d : ожидались \"%s\" и "
+"\"%s\".\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of element #%d of input argument #%d : string "
 "expected.\n"
 msgstr ""
+"%s: Неверный тип элемента №%d элемента №%d входного аргумента №%d : "
+"ожидалась строка.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for element #%d of element #%d of input argument #%d : A "
 "single string expected.\n"
 msgstr ""
+"%s: Неверный размер элемента №%d элемента №%d входного аргумента №%d : "
+"ожидалась одиночная строка.\n"
 
 #, c-format
 msgid "%s: Error in the tree parsing.\n"
@@ -490,6 +502,8 @@ msgid ""
 "%s: A Java exception has arisen:\n"
 "%s"
 msgstr ""
+"%s: Возникло исключение Java:\n"
+"%s"
 
 #, c-format
 msgid "%s: An error occurred: %s.\n"
@@ -501,14 +515,15 @@ msgstr "Текущий внешний вид получить невозможн
 #, c-format
 msgid "%s:  Wrong type for input argument #%d: A boolean expected."
 msgstr ""
+"%s:  Неверный тип входного аргумента №%d: ожидалось логическое значение."
 
 #, c-format
 msgid "%s:  Wrong type for input argument #%d: string expected."
-msgstr ""
+msgstr "%s:  Неверный тип входного аргумента №%d: ожидалась строка."
 
 #, c-format
 msgid "%s:  Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+msgstr "%s:  Неверное количество входных аргументов: ожидалось от %d до %d."
 
 #, c-format
 msgid "%s: This file %s does not exist.\n"
@@ -583,7 +598,8 @@ msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: Неверный входной параметр №%d: ожидался «%s» или «%s».\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалось значение «pos» или "
 "«gdi».\n"
@@ -594,7 +610,13 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась матрица строк.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась матрица строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента №%d: ожидалась матрица логических значений.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -682,7 +704,8 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "Неверное значение свойства «%s: ожидалось «%s», «%s», «%s» или «%s».\n"
+msgstr ""
+"Неверное значение свойства «%s: ожидалось «%s», «%s», «%s» или «%s».\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
@@ -777,7 +800,8 @@ msgstr ""
 "численное значение.\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid ""
+"Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 "Неверный тип свойства «%s»: ожидался вектор-строка вещественных чисел.\n"
 
@@ -803,7 +827,8 @@ msgstr "Неверный размер свойства «%s»: ожидался 
 
 #, c-format
 msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "Неверное значение для свойства «%s»: ожидалось «%s», «%s» или «%s».\n"
+msgstr ""
+"Неверное значение для свойства «%s»: ожидалось «%s», «%s» или «%s».\n"
 
 msgid "&File"
 msgstr "&Файл"
@@ -1005,6 +1030,9 @@ msgstr "&Журнал команд"
 
 msgid "&File Browser"
 msgstr "&Обозреватель файлов"
+
+msgid "&News feed"
+msgstr "&Новостная лента"
 
 msgid "Scilab &Help"
 msgstr "&Содержание"
@@ -1297,9 +1325,6 @@ msgstr "Альбом"
 msgid "Confirm"
 msgstr "Подтвердить"
 
-msgid "Cancel"
-msgstr "Отменить"
-
 msgid "Orientation"
 msgstr "Ориентация"
 
@@ -1589,12 +1614,6 @@ msgstr "Вставить текст подписи"
 msgid "Set legend text"
 msgstr "Вставить текст легенды"
 
-msgid "Close"
-msgstr "Закрыть"
-
-msgid "File"
-msgstr "Файл"
-
 msgid "Quick GED"
 msgstr "Быстрый редактор графики"
 
@@ -1803,9 +1822,6 @@ msgstr "Скрытые оси"
 msgid "Style/Appearance"
 msgstr "Стиль/Вид"
 
-msgid "Background Color"
-msgstr "Цвет фона"
-
 msgid "Foreground Color"
 msgstr "Цвет переднего плана"
 
@@ -1822,13 +1838,13 @@ msgid "dash dot"
 msgstr "штрихпунктирная"
 
 msgid "longdash dot"
-msgstr ""
+msgstr "пунктирная с длинными штрихами"
 
 msgid "bigdash dot"
 msgstr ""
 
 msgid "bigdash longdash"
-msgstr ""
+msgstr "штрихпунктирная с широкими элементами"
 
 msgid "dot"
 msgstr "пунктирная"
@@ -1840,22 +1856,22 @@ msgid "Polyline Style"
 msgstr "Стиль ломаной линии"
 
 msgid "interpolated"
-msgstr ""
+msgstr "интерполированная"
 
 msgid "staircase"
 msgstr ""
 
 msgid "barplot"
-msgstr ""
+msgstr "столбчатая диаграмма"
 
 msgid "bar"
 msgstr ""
 
 msgid "arrowed"
-msgstr ""
+msgstr "стрелочная"
 
 msgid "filled"
-msgstr ""
+msgstr "заполненная"
 
 msgid "Min"
 msgstr "Мин."
@@ -1882,7 +1898,7 @@ msgid "unary"
 msgstr ""
 
 msgid "multiple"
-msgstr ""
+msgstr "несколько"
 
 msgid "Arrow Size Factor"
 msgstr "Коэффициент размера стрелки"
@@ -1897,7 +1913,7 @@ msgid "Color Flag"
 msgstr ""
 
 msgid "Hidden Color"
-msgstr ""
+msgstr "Цвет скрытого элемента"
 
 msgid "Thickness"
 msgstr "Толщина"
@@ -1917,8 +1933,8 @@ msgstr "Размер метки"
 msgid "Mark Style"
 msgstr "Стиль метки"
 
-msgid "3 Components"
-msgstr "3 компонента"
+msgid "Components display"
+msgstr ""
 
 msgid "Data Properties"
 msgstr "Свойства данных"
@@ -1927,16 +1943,16 @@ msgid "Data Mapping"
 msgstr ""
 
 msgid "Direct"
-msgstr ""
+msgstr "Прямой"
 
 msgid "Clip Box"
 msgstr ""
 
 msgid "Upper-left"
-msgstr ""
+msgstr "Левый-верхний"
 
 msgid "Point"
-msgstr ""
+msgstr "Точка"
 
 msgid "Clip State"
 msgstr ""
@@ -1977,9 +1993,6 @@ msgstr "Подпись Z"
 msgid "Scaled"
 msgstr "Масштабированный"
 
-msgid "Title"
-msgstr "Название"
-
 msgid "Start Angle"
 msgstr "Начальный угол"
 
@@ -1999,7 +2012,7 @@ msgid "Submit and close"
 msgstr "Принять и закрыть"
 
 msgid "Append"
-msgstr ""
+msgstr "Добавить"
 
 msgid "Data Editor"
 msgstr "Редактор данных"
@@ -2071,7 +2084,7 @@ msgid "Enter a y size."
 msgstr "Введите размер по y."
 
 msgid "Axis Rulers"
-msgstr ""
+msgstr "Разлиновка Оси"
 
 msgid "X Location"
 msgstr "Расположение X"
@@ -2095,7 +2108,7 @@ msgid "top"
 msgstr "сверху"
 
 msgid "left"
-msgstr ""
+msgstr "лево"
 
 msgid "right"
 msgstr "справа"
@@ -2110,7 +2123,7 @@ msgid "Title Page"
 msgstr "Титульный лист"
 
 msgid "Axis Title"
-msgstr ""
+msgstr "Название Оси"
 
 msgid "Font Angle"
 msgstr "Наклон шрифта"
@@ -2177,12 +2190,6 @@ msgstr "Сдвиг по Y"
 
 msgid "Z Shift"
 msgstr "Сдвиг по Z"
-
-msgid "Yes"
-msgstr "Да"
-
-msgid "No"
-msgstr "Нет"
 
 msgid "Save and execute"
 msgstr "Сохранить и выполнить"
@@ -2258,6 +2265,9 @@ msgstr "Все изображения PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Все файлы RTF (Rich Text Format)"
 
+msgid "All HTML files"
+msgstr "Все HTML файлы"
+
 #, c-format
 msgid "All %s files"
 msgstr "Все файлы %s"
@@ -2274,8 +2284,10 @@ msgstr "Не удалось открыть: "
 msgid "Restoration error"
 msgstr "Ошибка восстановления"
 
-msgid "The configuration file has been corrupted and reset to the default one."
-msgstr "Файл настроек был повреждён и восстановлен со значениями по умолчанию."
+msgid ""
+"The configuration file has been corrupted and reset to the default one."
+msgstr ""
+"Файл настроек был повреждён и восстановлен со значениями по умолчанию."
 
 msgid "The configuration file has been corrupted. Scilab needs to restart."
 msgstr "Файл настроек был повреждён. Необходимо перезапустить Scilab."
@@ -2290,6 +2302,244 @@ msgstr "%s: Доступно только в режиме 'STANDARD'.\n"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "Ошибка. Был получен сигнал.\n"
+
+msgid "Control Plot3d"
+msgstr ""
+
+msgid "Control Panel"
+msgstr "Панель управления"
+
+msgid "Rotation angle"
+msgstr "Угол вращения"
+
+msgid "Colormap"
+msgstr "Цветовая карта"
+
+msgid "Show / Hide"
+msgstr "Скрыть или показать"
+
+msgid "messagebox"
+msgstr "messagebox"
+
+msgid "x_choose"
+msgstr "x_choose"
+
+msgid "x_dialog"
+msgstr "x_dialog"
+
+msgid "x_mdialog"
+msgstr "x_mdialog"
+
+msgid "Simple example of message"
+msgstr "Простой пример сообщения"
+
+msgid "Button 1Button 2"
+msgstr "Button 1Button 2"
+
+msgid "Button 1 clicked."
+msgstr "Нажата кнопка 1"
+
+msgid "Button 2 clicked"
+msgstr "Нажата кнопка 2"
+
+msgid ""
+"Message: Selection (double-click on an item --> returns the item number)"
+msgstr ""
+"Сообщение: Выбор (двойной щелчок по элементу --> вернёт номер элемента)"
+
+msgid "Item selected: "
+msgstr "Выбранный элемент: "
+
+msgid "Message: enter a value"
+msgstr "Сообщение: введите значение"
+
+msgid "Value entered: "
+msgstr "Введённое значение: "
+
+msgid "Message"
+msgstr "Сообщение"
+
+msgid "first row"
+msgstr "первая строка"
+
+msgid "Values entered: "
+msgstr "Введённые значения: "
+
+msgid "row"
+msgstr "строка"
+
+msgid "col"
+msgstr "столбец"
+
+msgid "Matrix to edit"
+msgstr "Матрица для правки"
+
+msgid "Matrix entered: "
+msgstr "Введённая матрица: "
+
+msgid "GUI"
+msgstr "Графический интерфейс пользователя"
+
+msgid "Dialogs"
+msgstr "Диалоговые окна"
+
+msgid "Uicontrols 1"
+msgstr ""
+
+msgid "Uicontrols 2"
+msgstr ""
+
+msgid "Uicontrols with LaTeX/MathML"
+msgstr ""
+
+msgid "Show images with uicontrols "
+msgstr ""
+
+msgid "Listboxes and Popupmenus"
+msgstr ""
+
+msgid "Uicontrols rendering"
+msgstr ""
+
+msgid "<Enter color name here>"
+msgstr "<Введите здесь название цвета>"
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Please enter a color name first."
+msgstr "Пожалуйста, введите сначала название цвета"
+
+msgid "Unknown color."
+msgstr "Неизвестный цвет."
+
+msgid "No color selected."
+msgstr "Цвет не выбран."
+
+msgid "Color selection"
+msgstr "Выбор цвета"
+
+#, c-format
+msgid "Selected colors are: %s."
+msgstr "Выбранные цвета: %s."
+
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr "Удалённые цвета: %s."
+
+#, c-format
+msgid "You clicked on menu '%s'."
+msgstr "Вы щёлкнули в меню '%s'."
+
+msgid "Selected menu"
+msgstr "Выбранное меню"
+
+msgid "checked"
+msgstr "отмечено"
+
+msgid "unchecked"
+msgstr "не отмечено"
+
+#, c-format
+msgid "Menu '%s' is %s."
+msgstr "Меню '%s' является %s."
+
+msgid "Menu status"
+msgstr ""
+
+msgid "Slider value: "
+msgstr "Значение ползунка: "
+
+#, c-format
+msgid "You selected '%s'."
+msgstr "Вы выбрали '%s'."
+
+msgid "Popupmenu selection"
+msgstr ""
+
+msgid "Do you really want to quit Scilab?"
+msgstr "Вы действительно хотите выйти из Scilab?"
+
+msgid "Quit Scilab"
+msgstr "Выйти из Scilab"
+
+msgid "Uicontrols demo"
+msgstr ""
+
+msgid "Application"
+msgstr "Приложение"
+
+msgid "Close figure"
+msgstr "Закрыть фигуру"
+
+msgid "Scilab Graphics"
+msgstr ""
+
+msgid "Launch plot3d"
+msgstr "Запустить plot3d"
+
+msgid "Launch plot2d"
+msgstr "Запустить plot2d"
+
+msgid "Menu"
+msgstr "Меню"
+
+msgid "Sub-menu 1"
+msgstr "Подменю 1"
+
+msgid "Sub-menu 2"
+msgstr "Подменю 2"
+
+msgid "Sub-menu 2-1"
+msgstr "Подменю 2-1"
+
+msgid "Sub-menu 2-2"
+msgstr "Подменю 2-2"
+
+msgid "item1|item2|item3|item4"
+msgstr "item1|item2|item3|item4"
+
+msgid "Pop-up menu"
+msgstr "Выпадающий список"
+
+msgid "Slider demo"
+msgstr "Демонстрация ползунка"
+
+msgid "Colors list edition"
+msgstr "Правка списка цветов"
+
+msgid "Add color in listbox"
+msgstr "Добавить цвет в listbox"
+
+msgid "Delete color in listbox"
+msgstr "Удалить цвет из listbox"
+
+msgid "blue"
+msgstr "синий"
+
+msgid "green"
+msgstr "зелёный"
+
+msgid "red"
+msgstr "красный"
+
+msgid "yellow"
+msgstr "жёлтый"
+
+msgid "Display selection"
+msgstr "Показать выбор"
+
+msgid "Delete selection"
+msgstr "Удалить выбранное"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Quit demonstration"
+msgstr "Выйти из демонстрации"
+
+msgid "Uicontrols demo with LaTeX"
+msgstr ""
 
 #, c-format
 msgid "%s: can not add a menu in this mode: %s.\n"
@@ -2357,12 +2607,14 @@ msgstr ""
 "строковое значение.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A border or a string expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась рамка или строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Font Border expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась рамка шрифта.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
@@ -2370,7 +2622,7 @@ msgstr "%s: Неверное количество входных парамет�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A border expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась рамка.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected."
@@ -2434,7 +2686,8 @@ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 "%s: Неверный тип элемента %d входного аргумента №%d: ожидался uitree.\n"
 
@@ -2510,7 +2763,8 @@ msgstr "%s: Неверный тип %s: ожидался вектор-строк
 
 #, c-format
 msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
-msgstr "%s: Неверный размер %s: ожидался вектор-строка строковых переменных.\n"
+msgstr ""
+"%s: Неверный размер %s: ожидался вектор-строка строковых переменных.\n"
 
 #, c-format
 msgid "%s: Wrong type for %s: A real expected.\n"

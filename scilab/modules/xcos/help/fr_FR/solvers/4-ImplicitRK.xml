@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Scilab Enterprises - 2012 - Paul Bignier
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr_FR" xml:id="ImpRK">
+    <refnamediv>
+        <refname>Implicit Runge-Kutta 4(5)</refname>
+        <refpurpose>
+            <emphasis>Implicit Runge-Kutta</emphasis> est un solveur numérique fournissant une méthode implicite efficace et stable pour résoudre des Problèmes à Valeur Initiale d'Equations Différentielles Ordinarires (EDOs). Called by <link linkend="xcos">xcos</link>.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <emphasis>Runge-Kutta</emphasis> est un solveur numérique fournissant une méthode explicite efficace pour résoudre des Problèmes à Valeur Initiale de la forme :
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                \dot{y} = f(t,y), \hspace{3 mm} y(t_0) = y_0, \hspace{3 mm} y \in R^N
+                \end{eqnarray}
+            </latex>
+        </para>
+        <para>
+            <emphasis>CVode</emphasis> et <emphasis>IDA</emphasis> utilisent un pas variable dans l'intégration.
+        </para>
+        <para>
+            Le défaut de cela est l'imprévisibilité du temps de calcul. Avec <emphasis>Runge-Kutta</emphasis>, on ne s'adapte pas à la complexité du problème, mais on garantit un temps de calcul stable.
+        </para>
+        <para>
+            Cette méthode étant implicite, elle peut être utilisée sur des problèmes raides.
+        </para>
+        <para>
+            C'est une amélioration de la méthode d'Euler implicite, qui approxime
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+            en calculant
+            <emphasis>
+                f(t<subscript>n</subscript>+h, y<subscript>n+1</subscript>)
+            </emphasis>
+            et tronquant le développement de Taylor.
+        </para>
+        <para>
+            Le schéma implémenté est inspiré de "Low-Dispersion Low-Dissipation Implicit Runge-Kutta Scheme" (lien en bas de page).
+        </para>
+        <para>
+            Par convention, pour utiliser des pas fixes, le programme commence par calculer un pas <emphasis>h</emphasis> qui approche le paramère de simulation <link linkend="Simulatemenu_Menu_entries">max step size</link>.
+        </para>
+        <para>
+            Une différence notable de <emphasis>Runge-Kutta implicite</emphasis> par rapport à <emphasis>Sundials</emphasis> est qu'il calcule jusqu'à la dérivée quatrième de <emphasis>y</emphasis>, alors que les autres n'utilisent que des combinaisons linéaires de <emphasis>y</emphasis> et <emphasis>y'</emphasis>.
+        </para>
+        <para>
+            Ici, la valeur suivante
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+            est déterminée par la valeur actuelle
+            <emphasis>
+                y<subscript>n</subscript>
+            </emphasis>
+            plus la moyenne pondérée de trois increments, où chaque incrément est le produit du pas, <emphasis>h</emphasis>, et une estimation de la pente spécifiée par la fonction <emphasis>f(t,y)</emphasis>. Ils sont distribués de manière à peu près égale sur l'intervalle.
+            <itemizedlist>
+                <listitem>
+                    <emphasis>k1</emphasis> est l'incrément basé sur la pente au début de l'intervalle, utilisant
+                    <emphasis>
+                        y<subscript>n</subscript>+ a11*h*k1,
+                    </emphasis>
+                    ,
+                </listitem>
+                <listitem>
+                    <emphasis>k2</emphasis> est l'incrément basé sur la pente près du milieu de l'intervalle, utilisant
+                    <emphasis>
+                        y<subscript>n</subscript> + a21*h*k1 + a22*h*k2,
+                    </emphasis>
+                    ,
+                </listitem>
+                <listitem>
+                    <emphasis>k3</emphasis> est l'incrément basé sur la pente trois quarts de l'intervalle, utilisant
+                    <emphasis>
+                        y<subscript>n</subscript> + a31*h*k1 + a32*h*k2 + a33*h*k3.
+                    </emphasis>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            On peut voir que le calcul d'un <emphasis>ki</emphasis> requiert <emphasis>ki</emphasis>, nécéssitant ainsi l'utilisation d'un solveur non linéraire (ici, itérations point-fixes).
+        </para>
+        <para>
+            D'abord, on initialise
+            <emphasis>
+                k0 = h * f(t<subscript>n</subscript>, y<subscript>n</subscript>)
+            </emphasis>
+            comme première estimation pour tous les <emphasis>ki</emphasis>, pour obtenir de nouveaux <emphasis>ki</emphasis> et une première valeur pour
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+            .
+        </para>
+        <para>
+            Ensuite, on sauve les valeurs et on recalcule
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+            avec ces nouveaux <emphasis>ki</emphasis>.
+        </para>
+        <para>
+            Puis on compare les deux
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+            et on le recalcule jusqu'à ce que son écart avec le dernier soit inférieur au paramètre de simulation <emphasis>reltol</emphasis>.
+        </para>
+        <para>
+            Ce processus ajoute un temps de calcul significatif à la méthode, mais améliore grandement la stabilité.
+        </para>
+        <para>
+            On peut voir qu'avec les <emphasis>ki</emphasis>, on progresse dans les dérivées de
+            <emphasis>
+                y<subscript>n</subscript>
+            </emphasis>
+            . Donc avec <emphasis>k3</emphasis>, on approxime
+            <emphasis>
+                y<superscript>(3)</superscript><subscript>n</subscript>
+            </emphasis>
+            , faisant donc une erreur en
+            <emphasis>
+                O(h<superscript>4</superscript>)
+            </emphasis>
+            . Mais un choix judicieux des coefficients du calcul des <emphasis>ki</emphasis> (notamment
+            <emphasis>
+                a<subscript>ij</subscript>
+            </emphasis>
+            ) nous fait gagner un ordre, produisant ainsi une erreur par pas de temps en
+            <emphasis>
+                O(h<superscript>5</superscript>)
+            </emphasis>
+            .
+        </para>
+        <para>
+            L'erreur totale est donc
+            <emphasis>
+                nombre de pas * O(h<superscript>5</superscript>)
+            </emphasis>
+            . Et puisque par définition <emphasis>nombre de pas = taille de l'intervalle / h</emphasis>, l'erreur totale est en
+            <emphasis>
+                O(h<superscript>4</superscript>)
+            </emphasis>
+            .
+        </para>
+        <para>
+            Cette analyse d'erreur a baptisé la méthode <emphasis>Runge-Kutta Implicite 4(5)</emphasis>:
+            <emphasis>
+                O(h<superscript>5</superscript>)
+            </emphasis>
+            par pas,
+            <emphasis>
+                O(h<superscript>4</superscript>)
+            </emphasis>
+            au total.
+        </para>
+        <para>
+            Bien que le solveur fonctionne bien pour <link linkend="Simulatemenu_Menu_entries">max step size</link> jusqu'à
+            <emphasis>
+                10<superscript>-3</superscript>
+            </emphasis>
+            , les erreurs d'arrondi surviennent parfois quand l'on approche
+            <emphasis>
+                4*10<superscript>-4</superscript>
+            </emphasis>
+            . En effet, le scindage de l'intervalle ne peut pas être effectué correctement et l'on obtient des résultats imprévisibles.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/ODE_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.zcos");
+scs_m.props.tol(2) = 10^-5;
+scs_m.props.tol(6) = 7;
+scs_m.props.tol(7) = 10^-2;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+        <para>
+            Le bloc intégrale retourne son état continu, on peut l'évaluer avec <emphasis>RK implicite</emphasis> en lançant l'exemple :
+        </para>
+        <para>
+            <programlisting language="example"><![CDATA[
+      // Import du diagramme et réglage du temps final
+      loadScicos();
+      loadXcosLibs();
+      importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.zcos");
+      scs_m.props.tf = 5000;
+
+      // Sélection de RK implicite et réglage de la précision
+      scs_m.props.tol(2) = 10^-10;
+      scs_m.props.tol(6) = 7;
+      scs_m.props.tol(7) = 10^-2;
+
+      // Lancement du chrono, de la simulation et affichage du temps
+      tic();
+      try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+      t = toc();
+      disp(t, "Temps pour Runge-Kutta implicite :");
+      ]]></programlisting>
+        </para>
+        <para>
+            La console Scilab affiche :
+            <screen><![CDATA[
+Temps pour Runge-Kutta implicite :
+ 8.911
+            ]]></screen>
+        </para>
+        <para>
+            Maintenant, dans le script suivant, on compare la différence de temps entre <emphasis>RK implicite</emphasis> et <emphasis>CVode</emphasis> en lançant l'exemple avec les cinq solveurs tour à tour :
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integImpRK.sce">
+                Ouverture du script
+            </link>
+        </para>
+        <para>
+            <screen><![CDATA[
+Temps pour BDF / Newton :
+ 18.894
+
+Temps pour BDF / Functional :
+ 18.382
+
+Temps pour Adams / Newton :
+ 10.368
+
+Temps pour Adams / Functional :
+ 9.815
+
+Temps pour Runge-Kutta implicite :
+ 6.652
+            ]]></screen>
+        </para>
+        <para>
+            Ces résultats montrent que pour un problème non-raide, pour à peu près la même précision demandée et en forçant la même taille de pas, <emphasis>RK implicite</emphasis> est plus rapide.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Voir Aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="LSodar">LSodar</link>
+            </member>
+            <member>
+                <link linkend="CVode">CVode</link>
+            </member>
+            <member>
+                <link linkend="IDA">IDA</link>
+            </member>
+            <member>
+                <link linkend="RK">Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DoPri">Dormand-Prince 4(5)</link>
+            </member>
+            <member>
+                <link linkend="CRANI">Crank-Nicolson 2(3)</link>
+            </member>
+            <member>
+                <link linkend="DDaskr">DDaskr</link>
+            </member>
+            <member>
+                <link linkend="Comparaisons">Comparaisons</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
+            </member>
+            <member>
+                <link linkend="ode_root">ode_root</link>
+            </member>
+            <member>
+                <link linkend="odedc">odedc</link>
+            </member>
+            <member>
+                <link linkend="impl">impl</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliographie</title>
+        <para>
+            Journal of Computational Physics, Volume 233, Janvier 2013, Pages 315-323 <ulink url="http://dl.acm.org/citation.cfm?id=2397727.2397975&amp;coll=DL&amp;dl=GUIDE&amp;CFID=295003167&amp;CFTOKEN=37159263">A low-dispersion and low-dissipation implicit Runge-Kutta scheme</ulink>
+        </para>
+        <para>
+            <ulink url="https://computation.llnl.gov/casc/sundials/documentation/documentation.html">Documentation Sundials</ulink>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Histoire</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>Runge-Kutta Implicite 4(5) ajouté</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

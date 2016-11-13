@@ -40,8 +40,8 @@ function ok=Compute_cic(method,Nunknowns)
     nxModelica=evstr(Nunknowns);
 
     if nxModelica~=nx2 then
-        messagebox(msprintf(_("Your model contains states defined in standard Scicos blocks.\n"+..
-        "Current initialization interface does not support mixed models.")),"error","modal");
+        msg = _("Your model contains states defined in standard Scicos blocks.\nCurrent initialization interface does not support mixed models.")
+        messagebox(msprintf(msg),"error","modal")
         return
     end
 

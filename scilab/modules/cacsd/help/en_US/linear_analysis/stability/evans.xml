@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"  xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="evans">
+    <refnamediv>
+        <refname>evans</refname>
+        <refpurpose>Evans root locus</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>evans(H [,kmax])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>H</term>
+                <listitem>
+                    <para>SISO linear system given by a transfer or a state
+                        space representation (see:<link linkend="syslin">syslin</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>kmax</term>
+                <listitem>
+                    <para>real (maximum gain desired for the plot )</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Gives the Evans root locus for a SISO linear system in state-space or
+            transfer form H(s) (<link linkend="syslin">syslin</link>). This is
+            the locus of the roots of
+            <literal>1+k*H(s)=1+k*N(s)/D(s)</literal>, in the complex
+            plane. For a selected sample of gains <literal>k &lt;=
+                kmax
+            </literal>
+            ,the imaginary part of the roots of
+            <literal>D(s)+k*N(s)</literal> is plotted vs the real part.
+        </para>
+        <para>To obtain the gain at a given point of the locus you can
+            activate the <link linkend="datatips">datatips</link> manager and
+            click the desired point on the root locus.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+    clf();evans(H,100);sgrid()
+    [Ki,s]=kpure(H) // Gains that give pure imaginary closed loop poles
+    plot([real(s) real(s)],[imag(s) -imag(s)],'*r')
+
+    [Kr,s]=krac2(H)
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+                clf();evans(H,100);sgrid()
+                [Ki,s]=kpure(H)
+                plot([real(s) real(s)],[imag(s) -imag(s)],'*r')
+
+                [Kr,s]=krac2(H)
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="sgrid">sgrid</link>
+            </member>
+            <member>
+                <link linkend="zgrid">zgrid</link>
+            </member>
+            <member>
+                <link linkend="kpure">kpure</link>
+            </member>
+            <member>
+                <link linkend="krac2">krac2</link>
+            </member>
+            <member>
+                <link linkend="datatips">datatips</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

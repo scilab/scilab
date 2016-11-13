@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="end">
+    <refnamediv>
+        <refname>end</refname>
+        <refpurpose>ключевое слово конца конструкции</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Используется в конце конструкций циклов или условий.
+            Конструкции <literal>for</literal>, <literal>while</literal>, <literal>if</literal>, <literal>select</literal>
+            должны заканчиваться ключевым словом <literal>end</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+a=42
+if a==42 then
+   disp("Ответ на все вопросы.")
+end
+
+i = 0
+while i<5
+   disp("i");
+   i = i + 1;
+end
+
+n=5;
+for i = 1:n
+    for j = 1:n
+        a(i,j) = 1/(i+j-1);
+    end;
+end
+
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="for">for</link>
+            </member>
+            <member>
+                <link linkend="while">while</link>
+            </member>
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="select">select</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

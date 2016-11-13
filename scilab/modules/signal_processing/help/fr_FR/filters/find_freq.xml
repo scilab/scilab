@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="find_freq">
+    <refnamediv>
+        <refname>find_freq</refname>
+        <refpurpose>parameter compatibility for elliptic filter design</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[m]=find_freq(epsilon,A,n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>epsilon</term>
+                <listitem>
+                    <para>passband ripple</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>stopband attenuation</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>filter order</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>frequency needed for construction of elliptic filter</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Search for m such that <literal>n=K(1-m1)K(m)/(K(m1)K(1-m))</literal>
+            with
+        </para>
+        <para>
+            <literal>m1=(epsilon*epsilon)/(A*A-1)</literal>;
+        </para>
+        <para>
+            If <literal>m = omegar^2/omegac^2</literal>, the parameters
+            <literal>epsilon,A,omegac,omegar</literal> and <literal>n</literal> are then
+            compatible for defining a prototype elliptic filter.
+            Here, <literal>K=%k(m)</literal> is the complete elliptic integral with parameter <literal>m</literal>.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="percentk">%k</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

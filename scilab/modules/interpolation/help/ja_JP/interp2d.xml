@@ -50,14 +50,14 @@
                 <listitem>
                     <para>
                         双3次スプラインの係数. interp2d関数の入力引数は
-                        <link linkend="splin2d">splin2d</link>関数の出力引数です.                    
+                        <link linkend="splin2d">splin2d</link>関数の出力引数です.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>out_mode</term>
                 <listitem>
-                    <para>1行1列の文字列行列, 
+                    <para>1行1列の文字列行列,
                         [x(1),x(nx)]x[y(1),y(ny)]の外にある値の評価
                     </para>
                 </listitem>
@@ -118,7 +118,7 @@
         <title>説明</title>
         <para>
             双3次スプラインまたはサブスプライン関数を定義する
-            3つのベクトル <literal>(x,y,C)</literal> 
+            3つのベクトル <literal>(x,y,C)</literal>
             (<link linkend="splin2d">splin2d</link>参照)を指定すると,
             この関数は, 次のように<emphasis>(xp(i),yp(i))</emphasis>における
             <emphasis>s</emphasis> (要すれば <emphasis>ds/dx,
@@ -156,8 +156,8 @@
                 <term>"C0"</term>
                 <listitem>
                     <para>捕外は以下のように定義されます :</para>
-                    <programlisting role=""><![CDATA[ 
-s(x,y) = s(proj(x,y)) where proj(x,y) is nearest point 
+                    <programlisting role=""><![CDATA[
+s(x,y) = s(proj(x,y)) where proj(x,y) is nearest point
                       of [x(1),x(nx)]x[y(1),y(ny)] from (x,y)
  ]]></programlisting>
                 </listitem>

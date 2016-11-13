@@ -4,27 +4,33 @@ Copyright (c) 1989-2008 - INRIA
 Copyright (c) 1989-2007 - ENPC
 
 License:
-This module must be used under the terms of the CeCILL.
-This module file is licensed as described in the file COPYING, which
-you should have received as part of this distribution.  The terms
-are also available at
-http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+Copyright (C) 2012 - 2016 - Scilab Enterprises
+
+This module is hereby licensed under the terms of the GNU GPL v2.0,
+pursuant to article 5.3.4 of the CeCILL v.2.1.
+This module was originally licensed under the terms of the CeCILL v2.1,
+and continues to be available under such terms.
+For more information, see the COPYING file which you should have received
+along with this program.
 
 
 getdynamicdebuginfo:
 ====================
 
-Files: src/c/getdynamicdebuginfo.c
+Files:
+src/c/getdynamicdebuginfo.c
 
 Copyright: Albert Cahalan
 
-License: 
+License:
 LGPL
 
 md5:
 ====
 
-Files: src/c/md5.c
+Files:
+src/c/md5.c
+includes/md5.h
 
 Copyright: L. Peter Deutsch
 
@@ -46,7 +52,8 @@ License:
 backtrace:
 ==========
 
-Files: src/c/backtrace.c src/c/backtrace.h src/c/signal_mgmt.c
+Files:
+src/c/backtrace.c src/c/backtrace.h src/c/signal_mgmt.c src/cpp/backtrace_print.cpp
 
 Copyright: 2006  EDF - Code Saturne
 
@@ -54,21 +61,22 @@ License: LGPL 2.1+
 
 
 
-Files: src/c/signal_mgmt.c (list of exceptions and errors)
+Files: (list of exceptions and errors)
+src/c/signal_mgmt.c
 
-Copyright: 
+Copyright:
 Copyright (c) 2004-2010 The Trustees of Indiana University and Indiana
                         University Research and Technology
                         Corporation.  All rights reserved.
 Copyright (c) 2004-2010 The University of Tennessee and The University
                         of Tennessee Research Foundation.  All rights
                         reserved.
-Copyright (c) 2004-2010 High Performance Computing Center Stuttgart, 
+Copyright (c) 2004-2010 High Performance Computing Center Stuttgart,
                         University of Stuttgart.  All rights reserved.
 Copyright (c) 2004-2008 The Regents of the University of California.
                         All rights reserved.
 Copyright (c) 2006-2010 Los Alamos National Security, LLC.  All rights
-                        reserved. 
+                        reserved.
 Copyright (c) 2006-2010 Cisco Systems, Inc.  All rights reserved.
 Copyright (c) 2006-2010 Voltaire, Inc. All rights reserved.
 Copyright (c) 2006-2010 Sandia National Laboratories. All rights reserved.
@@ -78,7 +86,7 @@ Copyright (c) 2006-2010 The University of Houston. All rights reserved.
 Copyright (c) 2006-2009 Myricom, Inc.  All rights reserved.
 Copyright (c) 2007-2008 UT-Battelle, LLC. All rights reserved.
 Copyright (c) 2007-2010 IBM Corporation.  All rights reserved.
-Copyright (c) 1998-2005 Forschungszentrum Juelich, Juelich Supercomputing 
+Copyright (c) 1998-2005 Forschungszentrum Juelich, Juelich Supercomputing
                         Centre, Federal Republic of Germany
 Copyright (c) 2005-2008 ZIH, TU Dresden, Federal Republic of Germany
 Copyright (c) 2007      Evergrid, Inc. All rights reserved.

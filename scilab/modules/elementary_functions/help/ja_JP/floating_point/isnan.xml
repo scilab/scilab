@@ -3,154 +3,157 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isnan" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>isnan</refname>
-        
+
         <refpurpose>"Not a Number" エントリを調べる</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>r=isnan(x)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>x</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         実数または複素数のベクトルまたは行列 r : 論理値のベクトルまたは行列
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <literal>isnan(x)</literal> は,
-            
+
             <literal>x</literal>の"Not a Number"のエントリに対応するエントリに真,
-            
+
             <literal>x</literal>の通常のエントリに対応するエントリに偽を含む
-            
+
             論理値のベクトルまたは行列を返します.
-            
+
         </para>
-        
+
         <para>
-            
+
             このパラグラフでは,この関数が存在する理由を記述します.
-            
+
             ここで,浮動小数点数<literal>x</literal>について考え,
-            
+
             この数が非数(Not A Number)かどうかを知りたいを仮定します.
-            
+
             条件<literal>(x==%nan)</literal>は,
-            
+
             <literal>x</literal>が<literal>%nan</literal>の場合に
-            
+
             falseとなります.
-            
+
             これは,関数<literal>isnan</literal>が有用な理由です:
-            
+
             この関数により,
-            
+
             その値を<literal>%nan</literal>と実際に比較することなく
-            
+
             浮動小数点数がNaNであるかどうかを調べることができるようになります.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 isnan([1 0.01 -%nan %inf-%inf])
  ]]></programlisting>
-        
+
         <para>
-            
+
             以下の例では,<literal>%nan</literal>が特に変わった
-            
+
             比較特性を有することを確認し,<literal>isnan</literal>関数の結果と比較します.
-            
+
         </para>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
     %nan == %nan
     %nan <> %nan
     isnan(%nan)
  ]]></programlisting>
-        
+
         <para>
-            
+
             以下の例では,NaNでない値<literal>y</literal> を
-            
+
             配列 <literal>x</literal>から展開します.
-            
+
         </para>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 x = [1 2 %nan 3 %nan 4]
 k = find(~isnan(x))
 y = x(k)
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="isinf">isinf</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

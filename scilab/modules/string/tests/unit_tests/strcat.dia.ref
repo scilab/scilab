@@ -26,13 +26,13 @@ if strcat(['','']) <> '' then bugmes();quit;end
 //===============================
 if strcat('','')<>'' then bugmes();quit;end
 //===============================
-if strcat([])<>'' then bugmes();quit;end
+if strcat([])<>[] then bugmes();quit;end
 //===============================
-if strcat([],'')<>'' then bugmes();quit;end
+if strcat([],'')<>[] then bugmes();quit;end
 //===============================
 if execstr('strcat([],3)','errcatch') == 0  then bugmes();quit;end
 //===============================
-if strcat([],'3') <> '' then bugmes();quit;end
+if strcat([],'3') <> [] then bugmes();quit;end
 //===============================
 if strcat(['abc','abd','aa','bxe']) <> 'abc'+'abd'+'aa'+'bxe' then bugmes();quit;end
 //===============================

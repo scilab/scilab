@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="odeoptions" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>set options for ode solvers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>odeoptions()</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -29,7 +32,7 @@
             <caution>
                 The <literal>ode</literal> function checks if this variable
                 exists and in this case it uses it. For using default values you should
-                clear this variable. To create it you must execute the instruction 
+                clear this variable. To create it you must execute the instruction
                 <literal>%ODEOPTIONS=odeoptions()</literal>.
             </caution>
         </para>
@@ -78,11 +81,11 @@
                     <itemizedlist>
                         <listitem>0: functional iterations, no jacobian used
                             (<literal>"adams"</literal> or <literal>"stiff"</literal>
-                            only) 
+                            only)
                         </listitem>
                         <listitem>1 : user-supplied full jacobian </listitem><listitem>2 : internally generated full jacobian </listitem><listitem>3: internally generated diagonal jacobian
                             (<literal>"adams"</literal> or <literal>"stiff"</literal>
-                            only) 
+                            only)
                         </listitem>
                         <listitem>4 : user-supplied banded jacobian (see
                             <literal>ml</literal> and <literal>mu</literal> below)
@@ -109,17 +112,17 @@
                         <literal>jactype</literal> equals 4 or 5, <literal>ml</literal>
                         and <literal>mu</literal> are the lower and upper
                         half-bandwidths of the banded jacobian: the band is the <literal>i,j</literal>'s
-                        with <literal>i-ml</literal> &lt;= <literal>j</literal> &lt;= <literal>ny-1</literal>. 
+                        with <literal>i-ml</literal> &lt;= <literal>j</literal> &lt;= <literal>ny-1</literal>.
                     </para>
                     <para>
                         If <literal>jactype</literal> equals 4 the jacobian
-                        function must return a matrix <literal>J</literal> which is <literal>ml+mu+1 x ny</literal> 
-                        (where <literal>ny=dim</literal> of <literal>y</literal> in <literal>ydot=f(t,y))</literal> 
-                        such that column 1 of <literal>J</literal> is made of <literal>mu</literal> zeros followed 
-                        by <literal>df1/dy1</literal>, <literal>df2/dy1</literal>, <literal>df3/dy1</literal>, ... 
-                        (<literal>1+ml</literal> possibly non-zero entries), column 2 is made of 
-                        <literal>mu-1</literal> zeros followed by <literal>df1/dx2</literal>, 
-                        <literal>df2/dx2</literal>, etc. 
+                        function must return a matrix <literal>J</literal> which is <literal>ml+mu+1 x ny</literal>
+                        (where <literal>ny=dim</literal> of <literal>y</literal> in <literal>ydot=f(t,y))</literal>
+                        such that column 1 of <literal>J</literal> is made of <literal>mu</literal> zeros followed
+                        by <literal>df1/dy1</literal>, <literal>df2/dy1</literal>, <literal>df3/dy1</literal>, ...
+                        (<literal>1+ml</literal> possibly non-zero entries), column 2 is made of
+                        <literal>mu-1</literal> zeros followed by <literal>df1/dx2</literal>,
+                        <literal>df2/dx2</literal>, etc.
                     </para>
                 </listitem>
             </itemizedlist>
@@ -152,7 +155,7 @@ clear %ODEOPTIONS
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ode">ode</link>

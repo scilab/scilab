@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 21:58+0000\n"
+"PO-Revision-Date: 2016-06-09 10:57+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -29,8 +29,7 @@ msgstr "%s: 引数 %d の型が間違っています: 実数スカラーを指�
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr ""
-"%s: 引数 %d の大きさが間違っています: 実数スカラーを指定してください.\n"
+msgstr "%s: 引数 %d の大きさが間違っています: 実数スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -50,8 +49,7 @@ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
+msgstr "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -59,12 +57,11 @@ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -72,7 +69,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 整数値を指定�
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d から%d個の引数を指定してください."
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -88,26 +85,18 @@ msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s', '%s' または '%s' を指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 msgid "Redefining permanent variable.\n"
-msgstr ""
+msgstr "永続的変数を再定義しています.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -115,95 +104,101 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 
 #, c-format
 msgid "%s: Debugger can be activated only at console scope level\n"
-msgstr ""
+msgstr "%s: デバッガはコンソールスコープレベルでのみ有効にできます\n"
 
 #, c-format
 msgid "%s: Debugger is not running. Call \"%s\" without parameter first.\n"
-msgstr ""
+msgstr "%s: デバッガが実行中です. パラメータfirstを指定せずに \"%s\" をコールしてください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 正のスカラー整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Unable to retrieve information about breakpoint %d.\n"
-msgstr ""
+msgstr "%s: ブレークポイント %d に関する情報を取得できません.\n"
 
 #, c-format
 msgid "%ls"
-msgstr ""
+msgstr "%ls"
 
 msgid "callstack:"
-msgstr ""
+msgstr "コールスタック:"
 
 msgid "debug commands : \n"
-msgstr ""
+msgstr "デバッグコマンド: \n"
 
 msgid "show this help"
-msgstr ""
+msgstr "このヘルプを表示"
+
+msgid "open debug documentation page"
+msgstr "デバッグのページをオープン"
 
 msgid "stop debugging"
-msgstr ""
+msgstr "デバッグを停止"
 
 msgid "show callstack"
-msgstr ""
+msgstr "コールスタックを表示"
 
 msgid "execute cmd"
-msgstr ""
+msgstr "コマンドを実行"
+
+msgid "display variable"
+msgstr "変数を表示"
 
 msgid "continue execution"
-msgstr ""
+msgstr "実行を継続"
 
 msgid "abort execution"
-msgstr ""
+msgstr "実行をアボート"
 
 msgid "continue to next statement"
-msgstr ""
+msgstr "次の命令を実行"
 
 msgid "step into function"
-msgstr ""
+msgstr "ステップ実行(関数内)"
 
 msgid "step outside function"
-msgstr ""
+msgstr "ステップ実行(関数外)"
 
-msgid "set a breakpoint"
-msgstr ""
+msgid "add a breakpoint"
+msgstr "ブレークポイントを追加"
 
 msgid "delete all breakpoints"
-msgstr ""
+msgstr "ブレークポイントを全て削除"
 
 msgid "delete a specific breakpoint"
-msgstr ""
+msgstr "指定したブレークポイントを削除"
 
 msgid "enable all breakpoints"
-msgstr ""
+msgstr "全てのブレークポイントを有効化"
 
 msgid "enable a specific breakpoint"
-msgstr ""
+msgstr "指定したブレークポイントを有効化"
 
 msgid "disable all breakpoints"
-msgstr ""
+msgstr "全てのブレークポイントを無効化"
 
 msgid "disable a specific breakpoint"
-msgstr ""
+msgstr "指定したブレークポイントを無効化"
 
 msgid "show all breakpoints"
-msgstr ""
+msgstr "全てのブレークポイントを表示"
 
 msgid "show a specific breakpoint"
-msgstr ""
+msgstr "指定したブレークポイントを表示"
 
-msgid "  for more details, help debug.\n"
-msgstr ""
+msgid "  for more details, show help page.\n"
+msgstr "  詳細については, ヘルプを参照.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -214,10 +209,13 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 0 より大きい値を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 0 より大きい値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
@@ -225,11 +223,11 @@ msgstr "%s: 引数 %d の型が間違っています:　文字列の行列を指
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数#%dの型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
-msgstr ""
+msgstr "%s: 入力引数 %d が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -237,23 +235,20 @@ msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A positive value expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 正の値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected."
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected."
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください."
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
-msgstr ""
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgstr "%s: 入力引数  #%d の型が間違っています: 文字列または整数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -262,7 +257,7 @@ msgstr "%s: 入力引数 #%d の値が間違っています: [%d,%d] の範囲�
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています: %d個の引数を指定してください."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0, 1 or 2 expected.\n"
@@ -282,12 +277,11 @@ msgstr "%s: ファイル %s は存在しません.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr ""
-"%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
+msgstr "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong file version.xml %s.\n"
@@ -295,71 +289,124 @@ msgstr "%s: ファイル version.xml %s に誤りがあります.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At most %d expected.\n"
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています: 最大でも %d 個としてください.\n"
 
 #, c-format
 msgid "%s : Wrong value for argument #%d: %s\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: %s\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : 0, 1 or 2 expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 0,1または2を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: struct array or tlist or mlist "
+"expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 構造体配列またはtlistまたはmlistを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
-msgstr ""
+msgstr "%s: 入力引数#%dの型が間違っています: 論理値ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: macro expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: マクロを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
-msgstr ""
+msgid "%s: Wrong size for input arguments: more than %d expected.\n"
+msgstr "%s: 入力引数の大きさは %d より大きくする必要があります.\n"
+
+#, c-format
+msgid "%s: Wrong size for output arguments: %d expected.\n"
+msgstr "%s:  出力引数の大きさが間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input arguments: Dimensions given as first argument do not match "
+"specified cell contents.\n"
+msgstr "%s: 入力引数が間違っています: 最初の引数に指定された次元が指定されたセルの内容に一致しません.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
+
+msgid "Pause mode: enter empty lines to continue.\n"
+msgstr "中断モード: 継続するには空行を入力してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 有効な関数名を指定してください.\n"
 
 #, c-format
 msgid "%s: function-name is incorrect.\n"
 msgstr "%s: 関数名が間違っています.\n"
 
 #, c-format
-msgid "%s: function is disabled in debug mode.\n"
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: function is disabled in debug mode.\n"
+msgstr "%s: 関数がデバッグモードで無効になりました.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected."
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください."
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr ""
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s'  または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: ’%s’ を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A value >= %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています:  %d 以上の値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  文字列または整数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): An even number is expected.\n"
+msgstr "%s: 入力引数の数が間違っています: 偶数の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Field names must be strings.\n"
+msgstr "%s: フィールド名には文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Arguments must be scalar or must have same dimensions.\n"
+msgstr "%s: 引数はスカラーまたは同じ次元とする必要があります.\n"
+
+#, c-format
+msgid "%s: Can not create a %s with input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Insert a new type is not managed.\n"
-msgstr ""
+msgid "%s: Wrong values for input argument #%d: '%s' expected .\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s'を指定してください.\n"
 
 #, c-format
 msgid "WARNING: %ls\n"
-msgstr ""
+msgstr "警告: %ls\n"
 
 #, c-format
 msgid "%s:\n"
@@ -408,8 +455,8 @@ msgstr "%s モジュールが見つかりません。\n"
 msgid ""
 "Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
 msgstr ""
-"エラー: モジュールファイル %s に誤りがあります. (エンコーディングが '%s'　で"
-"はありません) エンコーディング '%s' が見つかりました  .\n"
+"エラー: モジュールファイル %s に誤りがあります. (エンコーディングが '%s'　ではありません) エンコーディング '%s' が見つかりました  "
+".\n"
 
 #
 # File: src/c/loadversion.c, line: 74
@@ -422,49 +469,35 @@ msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"エラー: バージョンファイル %s に誤りがあります. ( <MODULE_VERSION>で始まり,  "
-"<VERSION major='' minor='' maintenance='' revision='' string=''> を含む必要が"
-"あります)\n"
+"エラー: バージョンファイル %s に誤りがあります. ( <MODULE_VERSION>で始まり,  <VERSION major='' "
+"minor='' maintenance='' revision='' string=''> を含む必要があります)\n"
 
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
 msgstr ""
-"エラー: バージョンファイル %s に誤りがあります. エンコーディング '%s' が見つ"
-"かりました  (エンコーディングが 'utf-8'　ではありません).\n"
+"エラー: バージョンファイル %s に誤りがあります. エンコーディング '%s' が見つかりました  (エンコーディングが 'utf-"
+"8'　ではありません).\n"
 
 #, c-format
 msgid ""
 "A fatal error has been detected by Scilab.\n"
-"Your instance will probably quit unexpectedly soon.\n"
-"If a graphic feature has been used, this might be caused by the system "
-"graphic drivers.\n"
-"Please try to update them and run this feature again.\n"
-"You can report a bug on %s with:\n"
-"* a sample code which reproduces the issue\n"
-"* the result of [a, b] = getdebuginfo()\n"
-"* the following information:\n"
+"Please check your user-defined functions (or external module ones) should "
+"they appear in the stack trace.\n"
+"Otherwise you can report a bug on %s with:\n"
+" * a sample code which reproduces the issue\n"
+" * the result of [a, b] = getdebuginfo()\n"
+" * the following information:\n"
 "%s %s\n"
 msgstr ""
-"致命的なエラーがScilabにより検出されました.\n"
-"このインスタンスは突然終了すると思われます.\n"
-"グラフィック機能が使用されている場合, システムのグラフィックドライバにより発"
-"生した可能性があります.\n"
-"ドライバを更新した後, この機能を再度実行してみてください.\n"
-"以下のように %s にバグをリポートできます:\n"
-"* 問題を再現するサンプルコード\n"
-"* [a, b] = getdebuginfo() の結果\n"
-"* 以下の情報:\n"
-"%s %s\n"
 
 #, c-format
 msgid ""
 "%s: Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
 "\n"
 msgstr ""
-"%s: texmacs ATOMS モジュールをインストールしてください:  "
-"atomsInstall('texmacs')\n"
+"%s: texmacs ATOMS モジュールをインストールしてください:  atomsInstall('texmacs')\n"
 "\n"
 
 #
@@ -499,7 +532,8 @@ msgstr "Scilabバージョン情報."
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
-msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
+msgid ""
+"(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
 msgid ""
@@ -519,7 +553,7 @@ msgstr ""
 msgid "Scilab Enterprises\n"
 msgstr ""
 
-msgid "Copyright (c) 2011-2015 (Scilab Enterprises)\n"
+msgid "Copyright (c) 2011-2016 (Scilab Enterprises)\n"
 msgstr ""
 
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
@@ -600,10 +634,33 @@ msgstr "その他(&?)"
 msgid "&Toolboxes"
 msgstr "ツールボックス(&T)"
 
+msgid "Introduction: Getting started with Scilab"
+msgstr ""
+
+msgid "Scilab objects"
+msgstr ""
+
+msgid "Operations and numerical primitives"
+msgstr ""
+
+msgid "Online definition of function"
+msgstr ""
+
+msgid "Optimization and simulation"
+msgstr ""
+
+msgid "Systems: definition and analysis"
+msgstr ""
+
+msgid "Linear algebra"
+msgstr ""
+
+msgid "Call an external routine"
+msgstr ""
+
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
-msgstr ""
-"%s:  '%s' が見つかりませんでした: 構築されたマクロをチェックしてください.\n"
+msgstr "%s:  '%s' が見つかりませんでした: 構築されたマクロをチェックしてください.\n"
 
 #, c-format
 msgid "Checking: %s\n"
@@ -634,6 +691,10 @@ msgid "%s: %s is an uneditable hard coded function.\n"
 msgstr "%s: %s は編集不可のハードコードされた関数です.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Unable to find Perl file: %s"
 msgstr "%s: Perlファイルが見つかりません: %s"
 
@@ -662,11 +723,6 @@ msgstr "%s: Perlを見つけられません。\n"
 #, c-format
 msgid "%s: System error: Command executed: %s"
 msgstr "%s: システム・エラー: コマンドは実行されました: %s"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
 
 msgid "Scilab Version: "
 msgstr "Scilabバージョン: "

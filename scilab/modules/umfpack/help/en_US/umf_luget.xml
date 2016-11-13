@@ -5,7 +5,7 @@
         <refpurpose>retrieve lu factors at the Scilab level</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[L,U,p,q,Rd] = umf_luget(LU_ptr)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -52,19 +52,19 @@
             where P and Q are permutation matrices, R is a diagonal matrix (row scaling), L
             a lower triangular matrix with a diagonal of 1, and U an upper triangular matrix.
             The function provides the matrices L and U as Sparse scilab matrices but
-            P and Q are given as permutation vectors p and q (in fact p is the permutation 
+            P and Q are given as permutation vectors p and q (in fact p is the permutation
             associated to P') and Rd is the vector corresponding to the diagonal
             of R.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // this is the test matrix from UMFPACK
 A = sparse( [ 2  3  0  0  0;
-              3  0  4  0  6; 
-              0 -1 -3  2  0; 
-              0  0  1  0  0; 
+              3  0  4  0  6;
+              0 -1 -3  2  0;
+              0  0  1  0  0;
               0  4  2  0  1] );
 Lup = umf_lufact(A);
 [L,U,p,q,R] = umf_luget(Lup);
@@ -94,7 +94,7 @@ umf_ludel(Lup) // clear memory
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="umfpack">umfpack</link>

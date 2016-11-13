@@ -5,7 +5,7 @@
         <refpurpose>linear quadratic programming solver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [x [,lagr [,info]]] = qld(Q, p, C, b, ci, cs, me [,tol])
         </synopsis>
@@ -167,7 +167,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 //Find x in R^6 such that:
 //C1*x = b1 (3 equality constraints i.e me=3)
 C1= [1,-1,1,0,3,1;
@@ -196,7 +196,7 @@ me=3;
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="qpsolve">qpsolve</link>

@@ -4,11 +4,14 @@
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.xcos.utils;
@@ -252,6 +255,7 @@ public final class XcosMessages {
     public static final String FILE_COS = FILE_COSF;
     public static final String FILE_XCOS = Messages.gettext("Xcos file");
     public static final String FILE_ZCOS = Messages.gettext("Xcos (zip) file");
+    public static final String FILE_XMI = Messages.gettext("XMI (Eclipse EMF) file");
     public static final String FILE_SOD = Messages.gettext("Scilab Open Data file");
 
     /* Superblock mask editor */
@@ -290,6 +294,22 @@ public final class XcosMessages {
     public static final String EXPECTING_NUMBER = Messages.gettext("Expecting '%d'.");
     public static final String LINK_NOT_CONNECTED = Messages
             .gettext("<html><body>Compilation error: link ignored because it is not connected. <br/>Please reconnect it.</body></html>");
+
+    /* Tooltips */
+    public static final String TOOLTIP_BLOCK = Messages.gettext("Block name: ");
+    public static final String TOOLTIP_BLOCK_SIMULATION = Messages.gettext("Simulation: ");
+    public static final String TOOLTIP_BLOCK_UID = Messages.gettext("UID: ");
+    public static final String TOOLTIP_BLOCK_STYLE = Messages.gettext("Style: ");
+    public static final String TOOLTIP_BLOCK_RPAR = Messages.gettext("Rpar: ");
+    public static final String TOOLTIP_BLOCK_IPAR = Messages.gettext("Ipar: ");
+    public static final String TOOLTIP_BLOCK_OPAR = Messages.gettext("Opar: ");
+    public static final String TOOLTIP_PORT_DATATYPE = Messages.gettext("Datatype: ");
+    public static final String TOOLTIP_PORT_IMPLICIT = Messages.gettext("Implicit: ");
+    public static final String TOOLTIP_PORT_STYLE = Messages.gettext("Style: ");
+    public static final String TOOLTIP_LINK_SRC_DATATYPE = Messages.gettext("Source datatype: ");
+    public static final String TOOLTIP_LINK_TRG_DATATYPE = Messages.gettext("Target datatype: ");
+    public static final String TOOLTIP_LINK_LABEL = Messages.gettext("Label: ");
+    public static final String TOOLTIP_LINK_STYLE = Messages.gettext("Style: ");
 
     // CSON: JavadocVariable
     // CSON: LineLength

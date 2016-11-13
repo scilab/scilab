@@ -1,0 +1,1456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ * See the file ./license.txt
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="scicos_model">
+
+    <refnamediv>
+
+        <refname>scicos_model</refname>
+
+        <refpurpose>モデルの構造を定義</refpurpose>
+
+    </refnamediv>
+
+    <refsection id="Module_scicos_model">
+
+        <title>モジュール</title>
+
+        <itemizedlist>
+
+            <listitem>
+
+                <para>
+
+                    <link linkend="xcos">xcos</link>
+
+                </para>
+
+            </listitem>
+
+        </itemizedlist>
+
+    </refsection>
+
+    <refsection id="model_scicos_model">
+
+        <title>モデル</title>
+
+        <para>
+
+            コンパイル時に使用されるブロックの機能を有するScilabリスト.
+
+        </para>
+
+        <para>
+
+        </para>
+
+        <para>
+
+        </para>
+
+        <para>
+
+            大きさ : 23.
+
+        </para>
+
+        <para>
+
+            型 : Scilabリスト.
+
+        </para>
+
+        <para>
+
+
+
+        </para>
+
+        <itemizedlist>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">sim</emphasis>
+
+                </para>
+
+                <para>
+
+                    2つの要素を有するリスト.最初の要素は計算する関数((C, Fortran,または Scilab))の名前を有する文字列です.2番目の要素は計算する関数の型を指定する整数です.
+
+                    現在,型4および5が使用されていますが,下位互換性を維持するためにより古い型も使用可能です.
+
+                </para>
+
+                <para>
+
+                    過去のケースの中には, sim は文字列とすることができ,この場合typeは0と仮定されます.
+
+                </para>
+
+                <para>
+
+                    大きさ : 2.
+
+                </para>
+
+                <para>
+
+                    型 : Scilabリスト.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">in</emphasis>
+
+                </para>
+
+                <para>
+
+                    標準入力ポートの最初の次元の数と大きさを指定するベクトル.添字は最上位から最下位.
+
+                    入力ポートが存在しない場合 in==[] とします.
+
+                </para>
+
+                <para>
+
+                    大きさは負,0または正とすることができます:
+
+
+
+                </para>
+
+                <itemizedlist>
+
+                    <listitem>
+
+                        <para>大きさが負の場合, コンパイラが適当な大きさを設定します.
+
+                        </para>
+
+                        <para>
+
+
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>大きさが0の場合,コンパイラは
+
+                            当該ベクトルの正の大きさを加算した次元に変更します
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>大きさが正の場合,その大きさが明示的に指定されます.
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                    </listitem>
+
+                </itemizedlist>
+
+                <para>
+
+                    大きさ : 標準入力ポートの数.
+
+                </para>
+
+                <para>
+
+                    型 : 整数列ベクトル.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">in2</emphasis>
+
+                </para>
+
+                <para>
+
+                    標準入力ポートの2番目の次元を指定するベクトル.添字は最上位から最下位.
+
+                </para>
+
+                <para>
+
+                    in2が指定された場合,標準入力の大きさは行列となります.
+
+                </para>
+
+                <para> 互換性維持のため,この次元は空([])を指定することができます.
+
+                </para>
+
+                <para> これは入力ポートの次元を in,1 とすることを意味します.
+
+                    大きさは負,0または正とすることができます:
+
+
+
+                </para>
+
+                <itemizedlist>
+
+                    <listitem>
+
+                        <para>大きさが負の場合,コンパイラが適当な大きさを設定します.
+
+                        </para>
+
+                        <para>
+
+
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>大きさが0の場合,コンパイラがベクトル内の正の大きさを
+
+                            加算した次元に変更します.
+
+                        </para>
+
+                        <para>
+
+
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>大きさが正の場合,その大きさが明示的に使用されます.
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                    </listitem>
+
+                </itemizedlist>
+
+                <para>
+
+                    大きさ : 標準入力ポートの数.
+
+                </para>
+
+                <para>
+
+                    型 : 整数の列ベクトル.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">intyp</emphasis>
+
+                </para>
+
+                <para> 標準入力ポートの型を指定するベクトル.</para>
+
+                <para> 大きさはinの大きさと同じです.</para>
+
+                <para> 標準入力ポートの型は以下のどれかとします :
+
+
+
+                </para>
+
+                <itemizedlist>
+
+                    <listitem>
+
+                        <para>1  実数行列,
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>2  複素行列,
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>3  int32 行列,
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>4  int16 行列,
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>5  int8 行列,
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>6  uint32 行列,
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>7  uint16 行列,
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>8  uint8 行列.
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                    </listitem>
+
+                </itemizedlist>
+
+                <para>
+
+                    大きさ : 標準入力ポートの数.
+
+                </para>
+
+                <para>
+
+                    型 : 整数列ベクトル.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">out</emphasis>
+
+                </para>
+
+                <para>
+
+                    標準出力ポートの最初の次元の数と大きさを指定するベクトルで,
+
+                    ブロックの上から下方向に添字がふられます.
+
+                    出力ポートがない場合, out == [] となります.
+
+                </para>
+
+                <para>
+
+                    大きさ(size)は負,ゼロまたは正とすることができます:
+
+
+
+
+
+                </para>
+
+                <itemizedlist>
+
+                    <listitem>
+
+                        <para>ある大きさが負の場合, コンパイラが適当な大きさを指定します.
+
+                        </para>
+
+                        <para>
+
+
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>
+
+                            ある大きさがゼロの場合, コンパイラが
+
+                            このベクトルに存在する
+
+                            大きさが正の要素を加算したものに修正します.
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>ある大きさが正の場合,その大きさが
+
+                            明示的に指定されます.
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                    </listitem>
+
+                </itemizedlist>
+
+                <para>
+
+                    大きさ : 標準出力ポートの数.
+
+                </para>
+
+                <para>
+
+                    型: 整数列ベクトル.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">out2</emphasis>
+
+                </para>
+
+                <para>
+
+                    通常の出力ポートの2番目の次元を指定するベクトルで,ブロックの最上位から最下位に添字が付けられます.
+
+                </para>
+
+                <para>
+
+                    out2が作成されて出力された後,
+
+                    通常の出力の大きさを表す行列が作成されます.
+
+                </para>
+
+                <para> 互換性のため, この次元は空 ([]) のままとすることも可能です.
+
+                    これは,出力ポートの次元が out,1 となることを意味します.
+
+                    この次元を負,ゼロまたは正とすることが可能です:
+
+
+
+
+
+                </para>
+
+                <itemizedlist>
+
+                    <listitem>
+
+                        <para>ある大きさ負の場合, コンパイラは適当な大きさを見つけようとします.
+
+                        </para>
+
+                        <para>
+
+
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>
+
+                            ある大きさがゼロの場合, コンパイラは
+
+                            このベクトルにあった全ての正の大きさを加算したもので
+
+                            この次元を更新します.
+
+                        </para>
+
+                        <para>
+
+
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>
+
+                            サイズがゼロより大きい場合, サイズは明示的に指定されています.
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                    </listitem>
+
+                </itemizedlist>
+
+                <para>
+
+                    大きさ : 標準出力ポートの数.
+
+                </para>
+
+                <para>
+
+                    型 : 整数列ベクトル.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">outtyp</emphasis>
+
+                </para>
+
+                <para> 標準出力ポートの型を指定するベクトル.</para>
+
+                <para> 大きさは出力サイズに等しくなります.</para>
+
+                <para> 標準出力ポートの型は以下のいずれかとなります :
+
+
+
+                </para>
+
+                <itemizedlist>
+
+                    <listitem>
+
+                        <para>1  実数行列,
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>2  複素数行列,
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>3  int32 行列,
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>4  int16 行列,
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>5  int8 行列,
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>6  uint32 行列,
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>7  uint16 行列,
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>8  uint8 行列.
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                    </listitem>
+
+                </itemizedlist>
+
+                <para>
+
+                    大きさ : 標準出力ポートの数.
+
+                </para>
+
+                <para>
+
+                    型 : 整数の列ベクトル.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">evtin</emphasis>
+
+                </para>
+
+                <para>
+
+                    アクティベーション入力の数と大きさを指定するベクトル.
+
+                    現在,アクティベーションポートは大きさ1に限定されています.
+
+                </para>
+
+                <para> イベント入力ポートが存在しない場合, evtin を [] とする
+
+                    必要があります.
+
+                </para>
+
+                <para>
+
+                    大きさ : 入力イベントポートの数.
+
+                </para>
+
+                <para>
+
+                    型 : 整数の列ベクトル.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">evtout</emphasis>
+
+                </para>
+
+                <para> アクティベーション出力の数と大きさを指定するベクトル.</para>
+
+                <para> 現在,アクティベーションポートは大きさ1に限定されています.</para>
+
+                <para> イベント出力ポートが存在しない場合, evtout を [] とする必要があります.
+
+                </para>
+
+                <para>
+
+                    大きさ : 出力イベントポートの数.
+
+                </para>
+
+                <para>
+
+                    型 : 整数の列ベクトル
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">state</emphasis>
+
+                </para>
+
+                <para> 連続時間状態量の初期値を有するベクトル.</para>
+
+                <para> 連続時間状態量がない場合, [] とする必要があります.</para>
+
+                <para>
+
+                    大きさ : 連続時間状態量の数.
+
+                </para>
+
+                <para>
+
+                    型 : 実数の列ベクトル.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">dstate</emphasis>
+
+                </para>
+
+                <para> 離散時間状態量の初期値を有するベクトル.</para>
+
+                <para> 離散状態量がない場合, [] とする必要があります.</para>
+
+                <para>
+
+                    大きさ : 離散時間状態量の数.
+
+                </para>
+
+                <para>
+
+                    型 : 実数の列ベクトル.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">odstate</emphasis>
+
+                </para>
+
+                <para>オブジェクト状態量の初期値を有するリスト.</para>
+
+                <para> オブジェクト状態量がない場合, list() を指定します.</para>
+
+                <para>
+
+                    オブジェクト状態量は任意の型のScilab変数とすることができます.
+
+                </para>
+
+                <para>
+
+                    4型 (Cブロック)の計算用関数の場合,
+
+                    実数, 複素数, int32, int16 ,int8 ,uint32, uit16 および uint8
+
+                    の行列を含む要素のみが正しく読み書きされます.
+
+                </para>
+
+                <para>
+
+                </para>
+
+                <para>
+
+                    大きさ : オブジェクト状態の数.
+
+                </para>
+
+                <para>
+
+                    型 : scilabオブジェクトのscilabリスト.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">rpar</emphasis>
+
+                </para>
+
+                <para> 浮動小数点ブロックパラメータのベクトル.</para>
+
+                <para> 浮動小数点パラメータがない場合は [] を指定します.</para>
+
+                <para>
+
+                    大きさ : 実数パラメータの数.
+
+                </para>
+
+                <para>
+
+                    型 : 実数の列ベクトル.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">ipar</emphasis>
+
+                </para>
+
+                <para> 整数ブロックパラメータのベクトル.</para>
+
+                <para> 整数パラメータがない場合は [] を指定します.</para>
+
+                <para>
+
+                    大きさ : 整数パラメータの数.
+
+                </para>
+
+                <para>
+
+                    型 : 整数の列ベクトル.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">opar</emphasis>
+
+                </para>
+
+                <para> オブジェクトブロックパラメータのリスト. オブジェクトパラメータがない場合, list() を指定します.
+
+                </para>
+
+                <para>
+
+                    オブジェクトパラメータは任意のscilab変数とすることができます.
+
+                </para>
+
+                <para>
+
+                    4型 (Cブロック)の計算用関数の場合,
+
+                    実数, 複素数, int32, int16 ,int8 ,uint32, uit16 および uint8
+
+                    の行列を含む要素のみが正しく読み込みされます.
+
+                </para>
+
+                <para>
+
+                </para>
+
+                <para>
+
+                    大きさ : オブジェクトパラメータの数.
+
+                </para>
+
+                <para>
+
+                    型 : scilabオブジェクトのリスト.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">blocktype</emphasis>
+
+                </para>
+
+                <para>
+
+                    標準ブロックの場合,文字  'c' または 'd' を指定できます.
+
+                    シミュレーション時にコールされる計算用関数として指定する場合は,
+
+                    このブロックが状態量の微係数の計算に寄与しない場合でも,'x' を使用します.
+
+                </para>
+
+                <para> 'l', 'm' および 's' は予約されており,使用できません.</para>
+
+                <para>
+
+                    大きさ : 1.
+
+                </para>
+
+                <para>
+
+                    型 : 文字.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">firing</emphasis>
+
+                </para>
+
+                <para>
+
+                    アクティベーション出力ポート(evout参照)の数と等しい大きさの
+
+                    初期化イベントの起動時間のベクトル.
+
+                    出力初期化イベント(何らかの入力イベントが発生する前に生成されたイベント)の日付を有します.
+
+                    負の値は対応するポートに初期化イベントが設定されないことを意味します.
+
+                </para>
+
+                <para>
+
+                    大きさ : 出力イベントポートの数.
+
+                </para>
+
+                <para>
+
+                    型 : 実数の列ベクトル.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">dep_ut</emphasis>
+
+                </para>
+
+                <para> 論理値ベクトル [dep_u, dep_t].</para>
+
+                <para>
+
+
+
+                </para>
+
+                <itemizedlist>
+
+                    <listitem>
+
+                        <para>
+
+                            <emphasis role="bold">dep_t</emphasis>
+
+                        </para>
+
+                        <para>
+
+                            ブロックが常にアクティブな場合に true.
+
+                        </para>
+
+                        <para>
+
+                            出力は時間の連続性に依存します.
+
+                            例えば, GENSIN_f ブロックは<code>y=sin(t)</code>を計算するため,
+
+                            <code>dep_ut=[%f %t]</code>.
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>
+
+                            <emphasis role="bold">dep_u</emphasis>
+
+                        </para>
+
+                        <para>
+
+                            ブロックが直達項を有する,
+
+                            つまり,少なくとも１つの出力が(状態量を通じてではなく)直接入力に依存している,
+
+                            場合にtrue.
+
+                            言い換えると,計算用関数がフラグ1を指定してコールされた場合,
+
+                            ある入力の値は出力の計算に使用されます.
+
+                            例えば, SUM_f ブロックは <code>y=u1+u2</code> を計算するため,
+
+                            <code>dep_ut=[%t %f]</code>.
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                    </listitem>
+
+                </itemizedlist>
+
+                <para>
+
+                    大きさ : 2.
+
+                </para>
+
+                <para>
+
+                    型 : 論理値ベクトル.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">label</emphasis>
+
+                </para>
+
+                <para>
+
+                    ラベルを定義する文字列.
+
+                    シミュレーション時にパラメータにアクセスまたは修正する際に特定のブロックを指定するために
+
+                    使用できます.
+
+                </para>
+
+                <para>
+
+                    大きさ : 1.
+
+                </para>
+
+                <para>
+
+                    型 : 文字列.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">nzcross</emphasis>
+
+                </para>
+
+                <para> ゼロと交差する面の数.</para>
+
+                <para>
+
+                    大きさ : ゼロと交差する面の数.
+
+                </para>
+
+                <para>
+
+                    型 : 整数の列ベクトル.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">nmode</emphasis>
+
+                </para>
+
+                <para>
+
+                    モードレジスタの長さ.これはベクトルモードの大きさを指定するもので,
+
+                    ブロックが動作可能なモードの総数ではないことに注意してください.
+
+                    あるブロックが3個のモードを有し,各モードが2つの値をとることができると,
+
+                    このブロックは最大 2^3=8個のモードを有します.
+
+                </para>
+
+                <para>
+
+                    大きさ : モードの数.
+
+                </para>
+
+                <para>
+
+                    型 : 整数の列ベクトル.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">equations</emphasis>
+
+                </para>
+
+                <para> 陰的なブロックで使用される.</para>
+
+                <para>
+
+                    modelicaコードの説明を有するmodelica型のデータ構造体.
+
+                    このリストは以下の4個のエントリを有します:
+
+
+
+                </para>
+
+                <itemizedlist>
+
+                    <listitem>
+
+                        <para>
+
+                            <emphasis role="bold">model</emphasis>
+
+                        </para>
+
+                        <para>
+
+                            modelica関数を有するファイルの名前を指定する文字列.
+
+                        </para>
+
+                        <para>
+
+
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>
+
+                            <emphasis role="bold">inputs</emphasis>
+
+                        </para>
+
+                        <para>
+
+                            入力として使用されるmodelica変数の名前を有する文字列の列ベクトル.
+
+                        </para>
+
+                        <para>
+
+
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>
+
+                            <emphasis role="bold">outputs</emphasis>
+
+                        </para>
+
+                        <para>
+
+                            出力として使用されるmodelica変数の名前を有する文字列の列ベクトル.
+
+                        </para>
+
+                        <para>
+
+
+
+                        </para>
+
+                    </listitem>
+
+                    <listitem>
+
+                        <para>
+
+                            <emphasis role="bold">parameters</emphasis>
+
+                        </para>
+
+                        <para>
+
+                            2個のエントリのリスト. 最初のエントリはパラメータとして使用されるmodelica変数の
+
+                            名前の文字列のベクトル,2番目のエントリはパラメータの値を有するリストです.
+
+                        </para>
+
+                        <para>
+
+                            パラメータとしても使用できるmodelica状態量の名前.
+
+                            この場合,パラメータと状態量を区別するために
+
+                            3番目のエントリが使用されます.
+
+                        </para>
+
+                        <para>
+
+                            例 :
+
+                            mo.parameters=list(['C','v'],list(C,v),[0,1])
+
+                            は,'C' が 値Cの parameter(0) , 'v'が初期値vの
+
+                            state(1)であることを意味します.
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                        <para>
+
+                        </para>
+
+                    </listitem>
+
+                </itemizedlist>
+
+                <para>
+
+                    大きさ : 5.
+
+                </para>
+
+                <para>
+
+                    型 : scilabリスト.
+
+                </para>
+
+            </listitem>
+
+            <listitem>
+
+                <para>
+
+                    <emphasis role="bold">uid</emphasis>
+
+                </para>
+
+                <para>
+
+                    ブロックの文字列のユニークなID (ホストあたり 2^16)
+
+                </para>
+
+                <para>
+
+                    このIDは, Xcos GUIでのみ設定されます.
+
+                    ブロック作成時に特定の値を設定するには,
+
+                    以下のコードを使用します :
+                </para>
+
+                <programlisting role="example">
+
+                    jimport("java.rmi.server.UID");
+
+                    juid =  jnewInstance("java.rmi.server.UID");
+
+                    uid = juid.toString()
+
+                </programlisting>
+
+                <para>
+
+                    大きさ : 1x1.
+
+                </para>
+
+                <para>
+
+                    型 : 文字列.
+
+                </para>
+
+            </listitem>
+
+        </itemizedlist>
+
+    </refsection>
+
+    <refsection id="Filecontent_scicos_model">
+
+        <title>ファイルの実体</title>
+
+        <itemizedlist>
+
+            <listitem>
+
+                <para> SCI/modules/scicos/macros/scicos_scicos/scicos_model.sci</para>
+
+            </listitem>
+
+        </itemizedlist>
+
+    </refsection>
+
+</refentry>
+

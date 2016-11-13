@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="ppol">
+    <refnamediv>
+        <refname>ppol</refname>
+        <refpurpose>極配置</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[K]=ppol(A,B,poles)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>A,B</term>
+                <listitem>
+                    <para>
+                        次元 <literal>nxn</literal> および <literal>nxm</literal>の実数行列.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>poles</term>
+                <listitem>
+                    <para>
+                        <literal>n</literal>次の実数または虚数ベクトル.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>実数行列 (負方向のフィードバックゲイン)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>K=ppol(A,B,poles)</literal> は,
+            <literal>A-B*K</literal>の固有値が<literal>poles</literal>となるような
+            mxn 次のゲイン行列 <literal>K</literal> を返します.
+            <literal>(A,B)</literal> は可制御である必要があります.
+            <literal>poles</literal>が複素数の場合,共役の組で指定する必要があります.
+        </para>
+        <para>
+            <literal>(A,C)</literal>の出力注入ゲイン <literal>F</literal> は
+            以下のように得られます:
+        </para>
+        <para>
+            <literal>Ft=ppol(A',C',poles);  F=Ft'</literal>
+        </para>
+        <para>
+            本アルゴリズムは P.H. Petkovによるものです.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A=rand(3,3);B=rand(3,2);
+F=ppol(A,B,[-1,-2,-3]);
+spec(A-B*F)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="canon">canon</link>
+            </member>
+            <member>
+                <link linkend="stabil">stabil</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

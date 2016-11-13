@@ -5,7 +5,7 @@
         <refpurpose>Simple sum with 2 inputs and 1 output</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             out = tbx_sum(in1, in2);
         </synopsis>
@@ -44,7 +44,7 @@
         </itemizedlist>
     </refsection>
     <refsection id="SeeAlso_tbx_sum">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="TBX_SUM_c">TBX_SUM_c</link> : corresponding <link type="scilab" linkend="scilab.help/xcos">Xcos</link> block.

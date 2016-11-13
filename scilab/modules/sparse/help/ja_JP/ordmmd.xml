@@ -3,174 +3,177 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ordmmd" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>ordmmd</refname>
-        
+
         <refpurpose>
-            
+
             複数の最小次元順序付けを計算する
-            
+
         </refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>
-            
+
             [perm,invp,nofsub]=ordmmd(xadj,iadj,n)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>n</term>
-                
+
                 <listitem>
-                    
+
                     <para>double、整数値の1行1列の行列,方程式の数</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>xadj</term>
-                
+
                 <listitem>
-                    
+
                     <para>double、整数値の(n+1)行1列の行列,Aの行へのポインタ</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>iadj</term>
-                
+
                 <listitem>
-                    
+
                     <para>double、整数値のnnz行1列の行列,Aの行添字</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>perm</term>
-                
+
                 <listitem>
-                    
+
                     <para>double、整数値のn行1列の行列,最小次元規則配列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>invp</term>
-                
+
                 <listitem>
-                    
+
                     <para>double、整数値のn行1列の行列,permの逆行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>nofsub</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         double、整数値の1行1列の行列,圧縮記憶方式における非ゼロ要素の数の上限
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             コレスキー分解を適用する前に対称疎行列の行および列を交換する際に
-            
+
             最小次元アルゴリズムが使用されます.
-            
+
             このアルゴリズムはコレスキー分解の非ゼロ要素の数を減らします.
-            
+
         </para>
-        
+
         <para>
-            
+
             n行n列の実対称疎行列<literal>A</literal>を指定すると,
-            
+
             このコレスキー分解 <literal>U</literal> は,通常,
-            
+
             <literal>A</literal>の上三角要素よりも非ゼロ要素が多くなる
-            
+
             "塗りつぶし(fill in)"に苦しめられます.
-            
+
             行列<literal>P'*A*P</literal>が同じく対称で,
-            
+
             そのコレスキー分解の非ゼロ要素の数が最小となる
-            
+
             交換行列 <literal>P</literal>を探します.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <para>
-            
+
             以下の例では,対称疎行列の順序付けを計算します.
-            
+
             隣接構造体を計算する際に<literal>sp2adj</literal> を使用します.
-            
+
         </para>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 A = [
 4. 1. 2. 0.5 2.
 1. 0.5 0. 0. 0.
@@ -183,18 +186,18 @@ A = sparse(A);
 n = size(A,"r");
 [perm,invp,nofsub]=ordmmd(xadj,iadj,n)
  ]]></programlisting>
-        
+
         <para>
-            
+
             以下の例では,対称疎行列の順序付けを計算します.
-            
+
             <literal>invp</literal>が<literal>perm</literal>の
-            
+
             逆行列であることを確認します.
-            
+
         </para>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
     A = [
     0.,  0.,  0.,  2.,  0.,  0.,  2.,  0.,  2.,  0.,  0. ;
     0.,  0.,  4.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0. ;
@@ -211,24 +214,24 @@ n = size(A,"r");
     A=sparse(A);
     [xadj,adjncy,anz]=sp2adj(A);
     [perm,invp,nofsub]=ordmmd(xadj,adjncy,n);
-    perm(invp) 
+    perm(invp)
  ]]></programlisting>
-        
+
         <para>
-            
+
             以下の例では, 行列<literal>A</literal>と行列<literal>P'*A*P</literal>
-            
+
             のコレスキー分解の疎パターンを計算します.
-            
+
             "Computer Solution of Large Sparse Positive Definite Systems"のp.3 "Chapter 1: Introduction"を参照.
-            
+
             コレスキー分解の非ゼロ要素の数は15,一方,行列<literal>P'*A*P</literal>のコレスキー分解は
-            
+
             9個の非ゼロ要素を有することがわかります.
-            
+
         </para>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 A = [
 4. 1. 2. 0.5 2.
 1. 0.5 0. 0. 0.
@@ -259,130 +262,130 @@ subplot(2,1,2);
 PlotSparse(U,"x");
 xtitle("Sparsity pattern of U, such that P''*A*P=U''*U");
  ]]></programlisting>
-        
+
         <scilab:image localized="true">
-            
+
             A = [
-            
+
             4. 1. 2. 0.5 2.
-            
+
             1. 0.5 0. 0. 0.
-            
+
             2. 0. 3. 0. 0.
-            
+
             0.5 0. 0. 0.625 0.
-            
+
             2. 0. 0. 0. 16.
-            
+
             ];
-            
+
             A = sparse(A);
-            
+
             U = sparse(chol(full(A)));
-            
+
             scf();
-            
+
             subplot(2,1,1);
-            
+
             PlotSparse(U,"x");
-            
+
             xtitle("Sparsity pattern of U, such that A=U''*U");
-            
+
             [xadj,iadj,val]=sp2adj(A);
-            
+
             n = size(A,"r");
-            
+
             [perm,invp,nofsub]=ordmmd(xadj,iadj,n);
-            
+
             P=spzeros(n,n);
-            
+
             for i=1:n
-            
+
             P(perm(i),i)=1;
-            
+
             end
-            
+
             U = sparse(chol(full(P'*A*P)));
-            
+
             subplot(2,1,2);
-            
+
             PlotSparse(U,"x");
-            
+
             xtitle("Sparsity pattern of U, such that P''*A*P=U''*U");
-            
+
         </scilab:image>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>実装に関する注記</title>
-        
+
         <para>
-            
+
             この関数はMathematical Sciences Section, Oak Ridge National Laboratoryの
-            
+
             Esmond G. Ng および Barry W. Peytonによる
-            
+
             ソースコード "ordmmd.f",に基づいています.
-            
+
             アルゴリズムはSPARSPAKライブラリのJoseph W.H. Liuによる genmmdルーチンに基づいています.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>参考文献</title>
-        
+
         <para>
-            
+
             "Minimum degree algorithm", Wikipedia contributors, Wikipedia, The Free Encyclopedia. http://en.wikipedia.org/wiki/Minimum_degree_algorithm
-            
+
         </para>
-        
+
         <para>
-            
+
             "A new release of SPARSPAK: the Waterloo sparse matrix package", Alan George and Esmond Ng. 1984. SIGNUM Newsl. 19, 4 (October 1984), 9-13.
-            
+
         </para>
-        
+
         <para>
-            
+
             "Computer Solution of Large Sparse Positive Definite Systems" by Alan George and Joseph Liu, Prentice-Hall, Inc. Englewood Cliffs, New Jersey, 1981
-            
+
         </para>
-        
+
         <para>
-            
+
             "Implementation of Lipsol in Scilab", Rubio Scola, 1997, INRIA, No 0215
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="sp2adj">sp2adj</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="spchol">spchol</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

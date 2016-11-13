@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="power">
+    <refnamediv>
+        <refname>power</refname>
+        <refpurpose>élévation à la puissance (^,.^)   </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>
+            t=A^b
+            t=A**b
+            t=A.^b
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>A,t  </term>
+                <listitem>
+                    <para>matrice réelle, complexe, polynomiale ou rationnelle
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b  </term>
+                <listitem>
+                    <para>matrice réelle, complexe, polynomiale ou rationnelle
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Si <literal>A</literal> est une matrice carrée et <literal>b</literal> un scalaire alors  <literal>A^b</literal> est la matrice <literal>A</literal> élevée à la puissance <literal>b</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Si <literal>b</literal> est un un scalaire et <literal>A</literal> une matrice alors <literal>A.^b</literal>  est la matrice formée par les éléments de <literal>A</literal> élevés à la puissance <literal>b</literal> (puissance élément par élément). Si <literal>A</literal> est un vecteur et <literal>b</literal> un scalaire alors  <literal>A^b</literal> et <literal>A.^b</literal> donnent le même résultat (puissance élément par élément).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Si <literal>A</literal> est un scalaire et <literal>b</literal> est une matrice carrée <literal>A^b</literal> est la matrice <literal>expm(log(A)*b)</literal>.
+                </para>
+                <para>
+                    Si <literal>A</literal> est un scalaire et <literal>b</literal> est une matrice <literal>A.^b</literal> est une matrice de même taille que b dont les termes sont égaux à <literal> a^(b(i,j))</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Si <literal>A</literal> et <literal>b</literal> sont des matrices de même taille <literal>A.^b</literal> est la matrice dont les termes sont égaux à <literal>A(i,j)^b(i,j)</literal>.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Notes :
+        </para>
+        <para>
+            -
+            Pour les matrices carrées <literal>A^p</literal> est calculé par multiplications successives si <literal>p</literal> est un entier positif, et par diagonalisation sinon.
+        </para>
+        <para>
+            -
+            Les opérateurs <literal>**</literal> et <literal>^</literal> sont synonymes.
+        </para>
+        <para>
+            <warning>
+                L'élévation à la puissance est associative à droite dans Scilab contrairement à Matlab&#174; et Octave. Par exemple 2^3^4 est égal à 2^(3^4) dans Scilab mais est égal à (2^3)^4 dans Matlab&#174; et Octave.
+            </warning>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+A=[1 2;3 4];
+A^2.5,
+A.^2.5
+(1:10)^2
+(1:10).^2
+
+s=poly(0,'s')
+s^(1:10)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="exp">exp</link>
+            </member>
+            <member>
+                <link linkend="hat">hat</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

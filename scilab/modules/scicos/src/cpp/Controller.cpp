@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -26,19 +29,19 @@
 #define REF_PRINT(uid, refCount) \
 	do { \
 	std::stringstream print; \
-	print << "referenceObject( " << uid << " ) : " << refCount << std::endl; \
+	print << "referenceObject( " << uid << " ) : " << refCount << '\n'; \
 	scilabForcedWrite(print.str().data()); \
 	} while(0)
 #define UNREF_PRINT(uid, count) \
 	do { \
 	std::stringstream print; \
-	print << "unreferenceObject( " << uid << " ) : " << refCount << std::endl; \
+	print << "unreferenceObject( " << uid << " ) : " << refCount << '\n'; \
 	scilabForcedWrite(print.str().data()); \
 	} while(0)
 #define CLONE_PRINT(uid, clone) \
 	do { \
 	std::stringstream print; \
-	print << "cloneObject( " << uid << " ) : " << clone << std::endl; \
+	print << "cloneObject( " << uid << " ) : " << clone << '\n'; \
 	scilabForcedWrite(print.str().data()); \
 	} while(0)
 #else
@@ -51,6 +54,10 @@
 #include "model/BaseObject.hxx"
 
 #include "LoggerView.hxx"
+
+extern "C" {
+#include "scicos.h"
+}
 
 namespace org_scilab_modules_scicos
 {
@@ -73,8 +80,8 @@ Controller::SharedData::SharedData() :
     onModelStructuralModification(), model(),
     onViewsStructuralModification(), allNamedViews(), allViews()
 {
-    onModelStructuralModification.clear();
-    onViewsStructuralModification.clear();
+    unlock(&onModelStructuralModification);
+    unlock(&onViewsStructuralModification);
 }
 
 Controller::SharedData::~SharedData()
@@ -150,6 +157,11 @@ View* Controller::look_for_view(const std::string& name)
     return view;
 }
 
+void Controller::end_simulation()
+{
+    end_scicos_sim();
+}
+
 Controller::Controller()
 {
 }
@@ -183,6 +195,11 @@ unsigned Controller::referenceObject(const ScicosID uid) const
 
     auto o = m_instance.model.getObject(uid);
     unlock(&m_instance.onModelStructuralModification);
+    if (o == nullptr)
+    {
+        // defensive programming
+        return 0u;
+    }
 
     lock(&m_instance.onViewsStructuralModification);
     for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
@@ -197,7 +214,7 @@ unsigned Controller::referenceObject(const ScicosID uid) const
 void Controller::deleteObject(ScicosID uid)
 {
     // if this object is the empty uid, ignore it : is is not stored in the model
-    if (uid == 0)
+    if (uid == ScicosID())
     {
         return;
     }
@@ -208,6 +225,7 @@ void Controller::deleteObject(ScicosID uid)
     if (initial == nullptr)
     {
         // defensive programming
+        unlock(&m_instance.onModelStructuralModification);
         return;
     }
     const kind_t k = initial->kind();
@@ -293,7 +311,7 @@ void Controller::unlinkVector(ScicosID uid, kind_t k, object_properties_t uid_pr
 {
     ScicosID v;
     getObjectProperty(uid, k, uid_prop, v);
-    if (v != 0)
+    if (v != ScicosID())
     {
         auto o = getObject(v);
         if (o == nullptr)
@@ -320,7 +338,7 @@ void Controller::unlink(ScicosID uid, kind_t k, object_properties_t uid_prop, ob
     getObjectProperty(uid, k, uid_prop, v);
     for (const ScicosID id : v)
     {
-        if (id != 0)
+        if (id != ScicosID())
         {
             auto o = getObject(id);
             if (o == nullptr)
@@ -435,7 +453,7 @@ void Controller::deepClone(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, S
     ScicosID v;
     getObjectProperty(uid, k, p, v);
 
-    ScicosID cloned = 0;
+    ScicosID cloned = ScicosID();
 
     std::map<ScicosID, ScicosID>::iterator it = mapped.find(v);
     if (it != mapped.end())
@@ -446,24 +464,24 @@ void Controller::deepClone(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, S
     {
         if (cloneIfNotFound)
         {
-            if (v != 0)
+            if (v != ScicosID())
             {
                 cloned = cloneObject(mapped, v, true, true);
             }
             else
             {
-                cloned = 0;
+                cloned = ScicosID();
             }
         }
         else
         {
-            cloned = 0;
+            cloned = ScicosID();
         }
     }
 
     setObjectProperty(clone, k, p, cloned);
     // When cloning a Link, connect both extremities together
-    if ((p == SOURCE_PORT || p == DESTINATION_PORT) && cloned != 0)
+    if ((p == SOURCE_PORT || p == DESTINATION_PORT) && cloned != ScicosID())
     {
         setObjectProperty(cloned, PORT, CONNECTED_SIGNALS, clone);
     }
@@ -479,7 +497,7 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
 
     for (const ScicosID & id : v)
     {
-        if (id == 0)
+        if (id == ScicosID())
         {
             // Deleted Block, the cloning is done at Adapter level
             cloned.push_back(id);
@@ -489,13 +507,29 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
         std::map<ScicosID, ScicosID>::iterator it = mapped.find(id);
         if (it != mapped.end())
         {
+            if (k == PORT)
+            {
+                // We get here if we are cloning a block connected to a link that comes before itself in the objects list,
+                // so which has already been cloned but could not be connected yet.
+                int port_kind;
+                getObjectProperty(clone, PORT, PORT_KIND, port_kind);
+                if (port_kind == PORT_IN || port_kind == PORT_EIN)
+                {
+                    setObjectProperty(it->second, LINK, DESTINATION_PORT, clone);
+                }
+                else
+                {
+                    // FIXME: fix case for implicit ports, in which case connect the first unconnected link end, it doesn't matter which one
+                    setObjectProperty(it->second, LINK, SOURCE_PORT, clone);
+                }
+            }
             cloned.push_back(it->second);
         }
         else
         {
             if (cloneIfNotFound)
             {
-                if (id != 0)
+                if (id != ScicosID())
                 {
                     cloned.push_back(cloneObject(mapped, id, true, true));
                 }
@@ -579,7 +613,112 @@ void Controller::sortAndFillKind(std::vector<ScicosID>& uids, std::vector<int>& 
     unlock(&m_instance.onModelStructuralModification);
 }
 
+template<typename T>
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T& v) const
+{
+    lock(&m_instance.onModelStructuralModification);
+    bool ret = m_instance.model.getObjectProperty(uid, k, p, v);
+    unlock(&m_instance.onModelStructuralModification);
+    return ret;
+}
 
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<double>& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<int>& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<bool>& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector< std::string >& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<ScicosID>& v) const
+{
+    return getObjectProperty<>(uid, k, p, v);
+}
+
+template<typename T>
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T v)
+{
+    lock(&m_instance.onModelStructuralModification);
+    update_status_t status = m_instance.model.setObjectProperty(uid, k, p, v);
+    unlock(&m_instance.onModelStructuralModification);
+
+    lock(&m_instance.onViewsStructuralModification);
+    for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
+    {
+        (*iter)->propertyUpdated(uid, k, p, status);
+    }
+    unlock(&m_instance.onViewsStructuralModification);
+    return status;
+}
+
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::string& v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<double>& v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<int>& v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<bool>& v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector< std::string >& v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
+update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<ScicosID>& v)
+{
+    return setObjectProperty<>(uid, k, p, v);
+}
 
 model::BaseObject* Controller::getObject(ScicosID uid) const
 {
@@ -590,3 +729,4 @@ model::BaseObject* Controller::getObject(ScicosID uid) const
 }
 
 } /* namespace org_scilab_modules_scicos */
+

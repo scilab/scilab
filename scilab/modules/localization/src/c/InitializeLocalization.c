@@ -3,11 +3,14 @@
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2011 - 2011 - DIGITEO - Bruno JOFRET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <stdio.h>
@@ -61,11 +64,8 @@ BOOL InitializeLocalization(void)
     {
         /* source tree and classic build */
         previousPathLocales = os_strdup(pathLocales);
-        if (pathLocales)
-        {
-            FREE(pathLocales);
-            pathLocales = NULL;
-        }
+        FREE(pathLocales);
+        pathLocales = NULL;
 
         pathLocales = (char *)MALLOC(sizeof(char) * (strlen(SCIpath) + strlen("/..") + strlen(PATHLOCALIZATIONFILE) + 1));
         strcpy(pathLocales, SCIpath);
@@ -100,16 +100,10 @@ BOOL InitializeLocalization(void)
                 FREE(previousPathLocales);
                 previousPathLocales = NULL;
             }
-            if (pathLocales)
-            {
-                FREE(pathLocales);
-                pathLocales = NULL;
-            }
-            if (SCIpath)
-            {
-                FREE(SCIpath);
-                SCIpath = NULL;
-            }
+            FREE(pathLocales);
+            pathLocales = NULL;
+            FREE(SCIpath);
+            SCIpath = NULL;
             return FALSE;
         }
         if (previousPathLocales)
@@ -117,25 +111,18 @@ BOOL InitializeLocalization(void)
             FREE(previousPathLocales);
             previousPathLocales = NULL;
         }
-        if (pathLocales)
-        {
-            FREE(pathLocales);
-            pathLocales = NULL;
-        }
-        if (SCIpath)
-        {
-            FREE(SCIpath);
-            SCIpath = NULL;
-        }
-
     }
+
+    FREE(SCIpath);
+    SCIpath = NULL;
+    FREE(pathLocales);
+    pathLocales = NULL;
 
     /* set domain for future gettext() calls */
     ret = textdomain(NAMELOCALIZATIONDOMAIN);
     if (ret == NULL)
     {
         fprintf(stderr, "Localization: Error while declaring the text domain %s\n", NAMELOCALIZATIONDOMAIN);
-        FREE(pathLocales);
         return FALSE;
     }
     bind_textdomain_codeset (NAMELOCALIZATIONDOMAIN, "UTF-8"); /*such that gettext and dgettext return UTF8 string*/
@@ -164,20 +151,6 @@ BOOL InitializeLocalization(void)
 #endif
     }
 #endif
-
-    if (previousPathLocales)
-    {
-        FREE(previousPathLocales);
-    }
-    if (pathLocales)
-    {
-        FREE(pathLocales);
-    }
-    if (SCIpath)
-    {
-        FREE(SCIpath);
-    }
-
     return TRUE;
 #else
     fprintf(stderr, "Localization: setlocale didn't exist on the computer used to compile Scilab ! This is abnormal ! No localization will be working for this distribution of Scilab.\n");

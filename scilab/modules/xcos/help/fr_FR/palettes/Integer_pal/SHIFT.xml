@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SHIFT" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
@@ -117,7 +120,7 @@
                     copies du bit de signe sont insérées à gauche.
                 </para>
                 <para>
-                    Par exemple un décalage arithmétique à droite de 1 bit donne : 
+                    Par exemple un décalage arithmétique à droite de 1 bit donne :
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata fileref="../../../images/palettes/integer_pal/shift_arithmetic_right.gif"/>
@@ -139,13 +142,13 @@
                     est la valeur qui est décalée et sortie à gauche et vice et versa.
                 </para>
                 <para>
-                    Par exemple une rotation à droite de 1 bit donne : 
+                    Par exemple une rotation à droite de 1 bit donne :
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata fileref="../../../images/palettes/integer_pal/shift_rotate_right.gif"/>
                         </imageobject>
                     </inlinemediaobject>
-                    et une rotation à gauche : 
+                    et une rotation à gauche :
                     <inlinemediaobject>
                         <imageobject>
                             <imagedata fileref="../../../images/palettes/integer_pal/shift_rotate_left.gif"/>
@@ -155,11 +158,11 @@
             </listitem>
         </itemizedlist>
         <para>
-            Le registre à décalage effectue une multiplication par 
+            Le registre à décalage effectue une multiplication par
             <literal>
                 2<superscript>n</superscript>
             </literal>
-            (décalage à gauche arithmétique) ou une division entière par 
+            (décalage à gauche arithmétique) ou une division entière par
             <literal>
                 2<superscript>n</superscript>
             </literal>
@@ -334,24 +337,24 @@
     <refsection id="Example_SHIFT">
         <title>Exemple</title>
         <para>
-            Dans cet exemple le Super bloc est un compteur binaire 3 bits. De façon à obtenir les données décimales correspondantes, 
-            les sorties 
+            Dans cet exemple le Super bloc est un compteur binaire 3 bits. De façon à obtenir les données décimales correspondantes,
+            les sorties
             <emphasis><literal>
                     Q<subscript>1</subscript>
                 </literal>
             </emphasis>
-            et 
+            et
             <emphasis><literal>
                     Q<subscript>2</subscript>
                 </literal>
             </emphasis>
-            du compteur sont respectivement 
-            décalées à gauche de un et de deux bits. Finalement la sortie 
+            du compteur sont respectivement
+            décalées à gauche de un et de deux bits. Finalement la sortie
             <emphasis><literal>
                     Q<subscript>0</subscript>
                 </literal>
             </emphasis>
-            
+
             et les sorties décalées sont additionnées.
         </para>
         <para>

@@ -13,27 +13,27 @@ fmt = format();
 format("v")
 sqrt(3)
  ans  =
-    1.7320508
+   1.7320508
 format(10)
 sqrt(3)
  ans  =
-    1.7320508
+   1.7320508
 format(12,"v")
 sqrt(3)
  ans  =
-    1.732050808
+   1.732050808
 format("v",15)
 sqrt(3)
  ans  =
-    1.732050807569
+   1.732050807569
 format("e")
 sqrt(3)
  ans  =
-    1.73205081D+00
+   1.73205081D+00
 format(10)
 sqrt(3)
  ans  =
-    1.732D+00
+   1.732D+00
 f = format();
 assert_checkequal(f, [0 10]);
 format(10,"v");
@@ -70,8 +70,8 @@ assert_checkequal(f, [0 10]);
 format("v", 10);
 16278*12286
  ans  =
-    2.000D+08
+   2.000D+08
 format(11);
 16278*12286
  ans  =
-    199991508.
+   199991508.

@@ -5,7 +5,7 @@
         <refpurpose>Design of iir filters</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[cells,fact,zzeros,zpoles]=eqiir(ftype,approx,om,deltap,deltas)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -101,13 +101,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [cells,fact,zzeros,zpoles]=eqiir('lp','ellip',[2*%pi/10,4*%pi/10],0.02,0.001)
 h=fact*poly(zzeros,'z')/poly(zpoles,'z')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="eqfir">eqfir</link>

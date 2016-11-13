@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - JPC
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="armax1">
+    <refnamediv>
+        <refname>armax1</refname>
+        <refpurpose>armax 同定</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[arc,resid]=armax1(r,s,q,y,u [,b0f])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>出力信号</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    <para>入力信号</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r,s,q</term>
+                <listitem>
+                    <para>自己回帰の次数, ただし, r &gt;=0, s &gt;=-1.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b0f</term>
+                <listitem>
+                    <para>オプションのパラメータ.
+                        デフォルト値は 0で,この場合,
+                        係数 b0 を同定する必要があります.
+                        bof=1の場合, b0 は0であると仮定され,同定されません.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>arc</term>
+                <listitem>
+                    <para>
+                        "ar"型のtlistおよびフィールド a,  b,  d,  ny,  nu,  sig
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>a</term>
+                            <listitem>
+                                <para>
+                                    ベクトル <literal>[1,a1,...,a_r]</literal>
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>b</term>
+                            <listitem>
+                                <para>
+                                    ベクトル <literal>[b0,......,b_s]</literal>
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>d</term>
+                            <listitem>
+                                <para>
+                                    ベクトル <literal>[1,d1,....,d_q]</literal>
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>sig</term>
+                            <listitem>
+                                <para>  resid=[ sig*echap(1),....,];</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            armax1 は1次元のARXプロセスの係数を同定するために使用されます:
+        </para>
+        <programlisting role=""><![CDATA[
+A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)
+e(t) is a 1-dimensional white noise with variance 1.
+A(z)= 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
+B(z)= b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
+D(z)= 1+d1*z+...+d_q*z^q  ( q=0 => D(z)=1)
+ ]]></programlisting>
+        <para>
+            この手法については,Eykhoffの96ページ,
+            "trends and progress in system identification"を参照ください.
+        </para>
+        <programlisting role=""><![CDATA[
+z(t)=[y(t-1),..,y(t-r),u(t),...,
+      u(t-s),e(t-1),...,e(t-q)]
+ ]]></programlisting>
+        <para>
+            および
+        </para>
+        <programlisting role=""><![CDATA[
+coef= [-a1,..,-ar,b0,...,b_s,d1,...,d_q]'
+y(t)= coef'* z(t) + sig*e(t).
+ ]]></programlisting>
+        <para>
+            とすると,
+            逐次型のAR推定(RLLS)が使用されます.
+            この際, e(t-i)は推定値により置換されます.
+            q=0の場合,この手法は逐次型のarmaxに完全に一致します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+a = [1, -2.851, 2.717, -0.865];
+b = [0, 1, 1, 1];
+d = [1, 0.7, 0.2];
+ar = armac(a, b, d, 1, 1, 1);
+disp(_("Simulation of an ARMAX process:"));
+disp(ar);
+n = 300;
+u = -prbs_a(n, 1, int([2.5,5,10,17.5,20,22,27,35]*100/12));
+zd = narsimul(ar, u);
+// armax1を使用: 有色ノイズ同定
+// 同じ例を以下のように試すことができます
+[arc1, resid] = armax1(3,3,2,zd(1:n),u,1);
+disp(arc1);
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>重要な警告</title>
+        <para>バージョン4.1.2までのScilabは,
+            <literal>sig</literal>の2乗を戻り値
+            <literal>arc.sig</literal>として返していました.
+            armaモデルの表示とarmax関数について
+            確認し易くするために, Scilabバージョン5.0以降では,
+            戻り値<literal>arc.sig</literal>は<literal>sig</literal>となっています.
+        </para>
+    </refsection>
+</refentry>

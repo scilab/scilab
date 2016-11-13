@@ -5,7 +5,7 @@
         <refpurpose>Wiener estimate</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[xs,ps,xf,pf]=wiener(y,x0,p0,f,g,h,q,r)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -182,7 +182,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // initialize state statistics (mean and er. variance)
 m0=[10 10]';
 p0=[100 0;0 100];
@@ -211,7 +211,7 @@ qt=[q];
 rt=[r];
 n=10;
 for k=1:n
-    // generate the state and observation 
+    // generate the state and observation
     // at time k (i.e. xk and yk)
     [x1,y]=system(x0,f2,g,h,q,r);
     x=[x x1];
@@ -248,5 +248,5 @@ plot2d(xf(1,:)',xf(2,:)',[-3],"000")
 plot2d(x(1,:)',x(2,:)',[-4],"000")
  ]]></programlisting>
     </refsection>
-    
+
 </refentry>

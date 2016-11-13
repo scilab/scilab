@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Scilab Enterprises - 2016 - Paul Bignier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.
+ * The terms are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr_FR" xml:id="CRANI">
+    <refnamediv>
+        <refname>Crank-Nicolson 2(3)</refname>
+        <refpurpose>
+            <emphasis>Crank-Nicolson</emphasis> est un solveur numérique basé sur le schéma <emphasis>Runge-Kutta</emphasis> fournissant une méthode implicite efficace et stable pour résoudre des Problèmes à Valeur Initiale d'Equations Différentielles Ordinaires (EDOs). Appelé par <link linkend="xcos">xcos</link>.
+        </refpurpose>
+    </refnamediv>
+
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            <emphasis>Crank-Nicolson</emphasis> est un solveur numérique basé sur le schéma
+            <emphasis>Runge-Kutta</emphasis> fournissant une méthode explicite efficace
+            pour résoudre des Problèmes à Valeur Initiale de la forme :
+        </para>
+        <para>
+            <latex>
+                \begin{eqnarray}
+                \dot{y} = f(t,y), \hspace{3 mm} y(t_0) = y_0, \hspace{3 mm} y \in R^N
+                \end{eqnarray}
+            </latex>
+        </para>
+        <para>
+            <emphasis>CVode</emphasis> et <emphasis>IDA</emphasis>
+            utilisent un pas variable dans l'intégration.
+        </para>
+        <para>
+            Cela a pour défaut de rendre les temps de calcul imprévisibles.
+            Les solveurs basés sur <emphasis>Runge-Kutta</emphasis> ne s'adaptent
+            pas à la complexité du problème, mais garantissent un temps de calcul stable.
+        </para>
+        <para>
+            Cette méthode étant implicite, elle peut être utilisée sur des problèmes raides.
+        </para>
+        <para>
+            C'est une amélioration de la méthode d'Euler implicite, qui approxime
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+            en calculant
+            <emphasis>
+                f(t<subscript>n</subscript>+h, y<subscript>n+1</subscript>)
+            </emphasis>
+            et en tronquant le développement de Taylor.
+        </para>
+        <para>
+            Par convention, pour utiliser des pas fixes, le programme commence par calculer un pas
+            <emphasis>h</emphasis> qui approche le paramètre de simulation
+            <link linkend="Simulatemenu_Menu_entries">max step size</link>.
+        </para>
+        <para>
+            Une différence notable de <emphasis>Crank-Nicolson</emphasis>
+            par rapport à <emphasis>Sundials</emphasis> est qu'il calcule
+            jusqu'à la dérivée seconde de <emphasis>y</emphasis>,
+            alors que les autres n'utilisent que des combinaisons linéaires de
+            <emphasis>y</emphasis> et <emphasis>y'</emphasis>.
+        </para>
+        <para>
+            Ici, la valeur suivante est déterminée par la valeur actuelle
+            <emphasis>
+                y<subscript>n</subscript>
+            </emphasis>
+            plus la moyenne pondérée de deux increments, où chaque incrément est le produit du pas,
+            <emphasis>h</emphasis>, et une estimation de la pente spécifiée par la fonction
+            <emphasis>f(t,y)</emphasis>. Ils sont distribués de manière à peu près égale sur l'intervalle.
+            <itemizedlist>
+                <listitem>
+                    <emphasis>k1</emphasis> est l'incrément basé sur la pente au milieu de l'intervalle, utilisant
+                    <emphasis>
+                        y<subscript>n</subscript>+ a11*h*k1/2 + a12*h*k2/2
+                    </emphasis>
+                    ,
+                </listitem>
+                <listitem>
+                    <emphasis>k2</emphasis> est l'incrément basé sur la pente au milieu de l'intervalle, mais utilisant
+                    <emphasis>
+                        y<subscript>n</subscript>
+                    </emphasis>
+                    ,
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            On peut voir que le calcul d'un <emphasis>ki</emphasis>
+            requiert <emphasis>ki</emphasis>, nécéssitant ainsi l'utilisation
+            d'un solveur non linéraire (ici, itérations point-fixes).
+        </para>
+        <para>
+            D'abord, on initialise
+            <emphasis>
+                k0 = h * f(t<subscript>n</subscript>, y<subscript>n</subscript>)
+            </emphasis>
+            comme première estimation pour les deux <emphasis>ki</emphasis>,
+            pour obtenir de nouveaux <emphasis>ki</emphasis> et une première valeur pour
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+            .
+        </para>
+        <para>
+            Ensuite, on sauve les valeurs et on recalcule
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+            avec ces nouveaux <emphasis>ki</emphasis>.
+        </para>
+        <para>
+            Puis on compare les deux
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+            et on le recalcule jusqu'à ce que son écart avec le dernier
+            soit inférieur au paramètre de simulation <emphasis>reltol</emphasis>.
+        </para>
+        <para>
+            Ce processus ajoute un temps de calcul significatif à la méthode,
+            mais améliore grandement la stabilité.
+        </para>
+        <para>
+            Alors que le calcul d'un nouveau <emphasis>k2</emphasis> ne requiert qu'un appel à la dérivée de
+            <emphasis>
+                y<subscript>n</subscript>
+            </emphasis>
+            ,faisant donc une erreur en
+            <emphasis>
+                O(h<superscript>2</superscript>)
+            </emphasis>
+            ,
+            <emphasis>k1</emphasis> requiert deux appels (un pour sa valeur initiale et un pour sa nouvelle valeur).
+            Donc avec <emphasis>k1</emphasis>, on approxime
+            <emphasis>
+                y<superscript>(2)</superscript><subscript>n</subscript>
+            </emphasis>
+            ,
+            faisant donc une erreur en
+            <emphasis>
+                O(h<superscript>3</superscript>)
+            </emphasis>
+            .
+        </para>
+        <para>
+            L'erreur totale est donc
+            <emphasis>
+                nombre de pas * O(h<superscript>3</superscript>)
+            </emphasis>
+            .
+            Et puisque par définition <emphasis>nombre de pas = taille de l'intervalle / h</emphasis>, l'erreur totale est en
+            <emphasis>
+                O(h<superscript>2</superscript>)
+            </emphasis>
+            .
+        </para>
+        <para>
+            Cette analyse d'erreur a baptisé la méthode <emphasis>Crank-Nicolson 2(3)</emphasis>:
+            <emphasis>
+                O(h<superscript>3</superscript>)
+            </emphasis>
+            par pas,
+            <emphasis>
+                O(h<superscript>2</superscript>)
+            </emphasis>
+            au total.
+        </para>
+        <para>
+            Bien que le solveur fonctionne bien pour
+            <link linkend="Simulatemenu_Menu_entries">max step size</link> jusqu'à
+            <emphasis>
+                10<superscript>-3</superscript>
+            </emphasis>
+            ,
+            les erreurs d'arrondi surviennent parfois quand l'on approche
+            <emphasis>
+                4*10<superscript>-4</superscript>
+            </emphasis>
+            .
+            En effet, le scindage de l'intervalle ne peut pas être effectué
+            correctement et l'on obtient des résultats imprévisibles.
+        </para>
+    </refsection>
+
+    <refsection role="examples">
+        <title>Examples</title>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/ODE_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+loadScicos();
+loadXcosLibs();
+importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.zcos");
+scs_m.props.tol(2) = 10^-5;
+scs_m.props.tol(6) = 8;
+scs_m.props.tol(7) = 10^-2;
+try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+]]></scilab:image>
+        </para>
+        <para>
+            Le bloc intégrale retourne son état continu, on peut l'évaluer avec <emphasis>Crank-Nicolson</emphasis> en lançant l'exemple :
+        </para>
+        <para>
+            <programlisting language="example"><![CDATA[
+      // Import du diagramme et réglage du temps final
+      loadScicos();
+      loadXcosLibs();
+      importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.zcos");
+      scs_m.props.tf = 5000;
+
+      // Sélection de Crank-Nicolson et réglage de la précision
+      scs_m.props.tol(2) = 10^-10;
+      scs_m.props.tol(6) = 8;
+      scs_m.props.tol(7) = 10^-2;
+
+      // Lancement du chrono, de la simulation et affichage du temps
+      tic();
+      try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
+      t = toc();
+      disp(t, "Temps pour Crank-Nicolson :");
+      ]]></programlisting>
+        </para>
+        <para>
+            La console Scilab affiche :
+            <screen><![CDATA[
+Temps pour Crank-Nicolson :
+ 4.615
+            ]]></screen>
+        </para>
+        <para>
+            Maintenant, dans le script suivant, on compare la différence de temps entre <emphasis>Crank-Nicolson</emphasis> et <emphasis>CVode</emphasis> en lançant l'exemple avec différents solveurs tour à tour :
+            <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integCRANI.sce">
+                Ouverture du script
+            </link>
+        </para>
+        <para>
+            <screen><![CDATA[
+Temps pour BDF / Newton :
+ 18.894
+
+Temps pour BDF / Functional :
+ 18.382
+
+Temps pour Adams / Newton :
+ 10.368
+
+Temps pour Adams / Functional :
+ 9.815
+
+Temps pour Crank-Nicolson :
+ 4.652
+            ]]></screen>
+        </para>
+        <para>
+            Ces résultats montrent que pour un problème non-raide, pour à peu près la même précision demandée et en forçant la même taille de pas, <emphasis>Crank-Nicolson</emphasis> est plus rapide.
+        </para>
+    </refsection>
+
+    <refsection role="see also">
+        <title>Voir Aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="LSodar">LSodar</link>
+            </member>
+            <member>
+                <link linkend="CVode">CVode</link>
+            </member>
+            <member>
+                <link linkend="IDA">IDA</link>
+            </member>
+            <member>
+                <link linkend="RK">Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DoPri">Dormand-Prince 4(5)</link>
+            </member>
+            <member>
+                <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DDaskr">DDaskr</link>
+            </member>
+            <member>
+                <link linkend="Comparaisons">Comparaisons</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
+            </member>
+            <member>
+                <link linkend="ode_root">ode_root</link>
+            </member>
+            <member>
+                <link linkend="odedc">odedc</link>
+            </member>
+            <member>
+                <link linkend="impl">impl</link>
+            </member>
+        </simplelist>
+    </refsection>
+
+    <refsection role="bibliography">
+        <title>Bibliographie</title>
+        <para>
+            Advances in Computational Mathematics, Volume 6, Issue 1, 1996,
+            Pages 207-226
+            <ulink url="http://link.springer.com/article/10.1007%2FBF02127704">
+                A practical method for numerical evaluation of
+                solutions of partial differential equations of the heat-conduction type
+            </ulink>
+        </para>
+        <para>
+            Pages 81-82
+            <ulink url="http://repository.lib.ncsu.edu/ir/bitstream/1840.16/6653/1/etd.pdf">
+                A family of higher-order implicit time integration methods for unsteady compressible flows
+            </ulink>
+        </para>
+        <para>
+            <ulink url="https://computation.llnl.gov/casc/sundials/documentation/documentation.html">Documentation Sundials</ulink>
+        </para>
+    </refsection>
+
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>Crank-Nicolson 2(3) ajouté</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+
+</refentry>

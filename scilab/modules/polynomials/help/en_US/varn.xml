@@ -5,7 +5,7 @@
         <refpurpose>symbolic variable of a polynomial or a rational</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[symb]=varn(p)
             [pm]=varn(p,varname)
         </synopsis>
@@ -54,7 +54,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s = poly(0,'s'); p = [s^2+1,s];
 varn(p)
 varn(p,'x')
@@ -65,7 +65,7 @@ varn(f,"x")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="poly">poly</link>

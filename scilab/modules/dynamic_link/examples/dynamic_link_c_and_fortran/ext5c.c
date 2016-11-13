@@ -28,5 +28,5 @@ int ext5c(double *b, double *c)
     {
         c[k] = a[k] + b[k] * 2.;
     }
-    return(0);
+    return (0);
 }

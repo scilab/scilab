@@ -27,7 +27,7 @@
         <refpurpose>Supervisor utility function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[myvar]=getscicosvars(str) [myvar]=getscicosvars([str1;str2;...])</synopsis>
     </refsynopsisdiv>
     <refsection id="Module_getscicosvars">
@@ -214,7 +214,7 @@
         </itemizedlist>
     </refsection>
     <refsection id="SeeAlso_getscicosvars">
-        <title>See Also</title>
+        <title>See also</title>
         <itemizedlist>
             <listitem>
                 <para>

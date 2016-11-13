@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="des2ss">
+    <refnamediv>
+        <refname>des2ss</refname>
+        <refpurpose>descriptor to state-space</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[Sl]=des2ss(A,B,C,D,E [,tol])
+            [Sl]=des2ss(Des)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A,B,C,D,E</term>
+                <listitem>
+                    <para>real matrices of appropriate dimensions</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Des</term>
+                <listitem>
+                    <para>list</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>
+                        real parameter (threshold) (default value <literal>100*%eps</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Descriptor to state-space transform.
+        </para>
+        <para>
+            <literal>Sl=des2ss(A,B,C,D,E)</literal> returns
+            a linear system <literal>Sl</literal> equivalent to the descriptor system
+            <literal>(E,A,B,C,D)</literal>.
+        </para>
+        <para>
+            For index one <literal>(E,A)</literal> pencil, explicit formula is used and
+            for higher index pencils <literal>rowshuff</literal> is used.
+        </para>
+        <para>
+            <literal>Sl=des2ss(Des)</literal> with <literal>Des=list('des',A,B,C,D,E)</literal> returns
+            a linear system <literal>Sl</literal> in state-space form with possibly
+            a polynomial <literal>D</literal> matrix.
+        </para>
+        <para>
+            A generalized Leverrier algorithm is used.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');G=[1/(s-1),s;1,2/s^3];
+S1=tf2des(G);S2=tf2des(G,"withD");
+W1=des2ss(S1);W2=des2ss(S2);
+clean(ss2tf(W1))
+clean(ss2tf(W2))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="des2tf">des2tf</link>
+            </member>
+            <member>
+                <link linkend="glever">glever</link>
+            </member>
+            <member>
+                <link linkend="rowshuff">rowshuff</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

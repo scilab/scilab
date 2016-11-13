@@ -4,6 +4,7 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
+prot = funcprot();
 funcprot(0);
 
 function demo_custom()
@@ -814,7 +815,7 @@ function updateStatusBar(tag,msg, msg_color)
     end
 endfunction
 
-funcprot(1);
+funcprot(prot);
 
 demo_custom();
 

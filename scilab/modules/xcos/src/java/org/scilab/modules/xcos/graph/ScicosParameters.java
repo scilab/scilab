@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -87,9 +90,9 @@ public class ScicosParameters implements Serializable, Cloneable {
     public static final int INTEGRATOR_RELATIVE_TOLERANCE = 2;
     public static final int TOLERANCE_ON_TIME = 3;
     public static final int MAX_INTEGRATION_TIME_INTERVAL = 4;
-    public static final int MAXIMUM_STEP_SIZE = 5;
-    public static final int REAL_TIME_SCALING = 6;
-    public static final int SOLVER = 7;
+    public static final int REAL_TIME_SCALING = 5;
+    public static final int SOLVER = 6;
+    public static final int MAXIMUM_STEP_SIZE = 7;
 
     /*
      * Default values from the preferences

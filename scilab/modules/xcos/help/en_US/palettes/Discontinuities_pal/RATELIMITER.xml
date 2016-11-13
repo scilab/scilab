@@ -96,7 +96,7 @@
             The Rate Limiter block limits the first derivative of the signal
             passing through it. The output changes no faster than the specified
             limit.
-            
+
         </para>
     </refsection>
     <refsection id="Dialogbox_RATELIMITER">
@@ -109,7 +109,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="copfac">
+    <refnamediv>
+        <refname>copfac</refname>
+        <refpurpose>連続時間動的システムの右既約分解</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[N,M,XT,YT]=copfac(G [,polf,polc,tol])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>
+                        連続時間線形動的システム
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>polf, polc</term>
+                <listitem>
+                    <para>
+                        それぞれ,<literal>XT</literal>と<literal>YT</literal>の極と,
+                        <literal>N</literal>  と <literal>M</literal>の極 (デフォルト値=-1).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>
+                        安定な極を検出ための実数閾値 (デフォルト値 <literal>100*%eps</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>N,M,XT,YT</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal>連続時間線形動的システム
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>[N,M,XT,YT]=copfac(G,[polf,polc,[tol]])</literal> は,
+            <literal>G</literal>の右既約分解を返します.
+        </para>
+        <para>
+            <literal>G= N*M^-1</literal>, ただし,
+            <literal>N</literal> と <literal>M</literal>は安定で,プロパーで,右既約です.
+            (すなわち, <literal>[N M]</literal> は安定な左可逆)
+        </para>
+        <para>
+            <literal>XT</literal> と <literal>YT</literal> は以下を満たします:
+        </para>
+        <para>
+            <literal>[XT -YT].[M N]' = eye</literal> (ベズー恒等式)
+        </para>
+        <para>
+            <literal>G</literal> は可安定で可検出であると仮定します.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="lcf">lcf</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal> は連続時間線形動的システムについて
+                    確認されるようになりました.
+                    この変換は
+                    <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">コミット</ulink>により導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

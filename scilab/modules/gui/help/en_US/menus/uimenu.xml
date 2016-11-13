@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uimenu" xml:lang="en">
+    <refnamediv>
+        <refname>uimenu</refname>
+        <refpurpose>Create a menu or a submenu in a figure</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>h=uimenu([prop1,val1] [,prop2, val2] ...)
+            h=uimenu(parent,[prop1, val1] [,prop2, val2] ...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>parent</term>
+                <listitem>
+                    <para>Handle</para>
+                    <para>Handle of the parent of the menu.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prop{1, 2 ...}</term>
+                <listitem>
+                    <para>String</para>
+                    <para>Name of a property to set up.</para>
+                    <para>
+                        All available properties are listed on the <link linkend="uimenu_properties">uimenu properties</link> help page.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>val{1, 2 ...}</term>
+                <listitem>
+                    <para>Scilab object</para>
+                    <para>Value to affect to the corresponding property.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>Handle</para>
+                    <para>Handle of the created menu.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This function allows to create menus in a figure. If
+            <literal>parent</literal> is a figure, then the menu item will be added to
+            the menu bar of the figure. If <literal>parent</literal> is a menu item ,
+            then the new item will be added to the parent item, allowing to create
+            cascaded menus.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+f=figure('position', [10 10 300 200]);
+// create a figure
+m=uimenu(f,'label', 'windows');
+// create an item on the menu bar
+m1=uimenu(m,'label', 'operations');
+m2=uimenu(m,'label', 'quit scilab', 'callback', "exit");
+//create two items in the menu "windows"
+m11=uimenu(m1,'label', 'new window', 'callback',"show_window()");
+m12=uimenu(m1,'label', 'clear  window', 'callback',"clf()");
+// create a submenu to the item "operations"
+close(f);
+// close the figure
+ ]]></programlisting>
+        <para>Menus or menuitem can have a LaTeX or a MathML label</para>
+        <programlisting role="example"><![CDATA[
+f=figure();
+//LaTeX
+mlatex=uimenu(f,'label', '$\LaTeX$');
+ml1=uimenu(mlatex,'label', '$\int_0^\infty\mathrm{e}^{-x^2}\,dx$');
+ml2=uimenu(mlatex,'label', '$\frac\sqrt{\pi}2$');
+//MathML
+mmathml=uimenu(f,'label', 'MathML');
+mm1=uimenu(mmathml,'label', '<msup><mn>x</mn><mi>2</mi></msup>');
+mm2=uimenu(mmathml,'label', '<mrow><msup><mn>a</mn><mi>2</mi></msup><mo>+</mo><msup><mn>b</mn><mi>2</mi></msup><mo>=</mo><msup><mn>c</mn><mi>2</mi></msup></mrow>');
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uimenu_properties">uimenu properties</link>
+            </member>
+            <member>
+                <link linkend="figure">figure</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontextmenu">uicontextmenu</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="get">get</link>
+            </member>
+            <member>
+                <link linkend="math_rendering_features_in_graphic">LaTeX and MathML</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

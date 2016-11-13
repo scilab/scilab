@@ -9,7 +9,7 @@
         <refpurpose>sum from C</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>a = c_sum(b,c)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -48,7 +48,7 @@
         <programlisting role="example">c_sum(3,4)</programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="fortran_sum">fortran_sum</link>

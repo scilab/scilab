@@ -2,76 +2,86 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="plot2d4" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="plot2d4" xml:lang="pt">
     <refnamediv>
         <refname>plot2d4</refname>
-        <refpurpose>esboÁo 2d (setas)</refpurpose>
+        <refpurpose>esbo√ßo 2d (setas)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seq¸Íncia de Chamamento</title>
+        <title>Seq√º√™ncia de Chamamento</title>
         <synopsis>plot2d4([logflag,] x,y,[style,strf,leg,rect,nax])
             plot2d4(y)
             plot2d4(x,y &lt;,opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Par‚metros</title>
+    <refsection role="parameters">
+        <title>Par√¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>args</term>
                 <listitem>
                     <para>
-                        ver <literal>plot2d</literal> para uma descriÁ„o dos
-                        par‚metros.for a description of parameters.
+                        ver <literal>plot2d</literal> para uma descri√ß√£o dos
+                        par√¢metros.for a description of parameters.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>DescriÁ„o</title>
+    <refsection role="description">
+        <title>Descri√ß√£o</title>
         <para>
-            <literal>plot2d4</literal> È o mesmo que <literal>plot2d</literal>
-            mas as curvas s„o esboÁadas utilizando-se setas. Isto pode ser ˙til para
-            se esboÁar solulÁıes de uma EDO (equaÁ„o diferencial ordin·ria) em um
-            espaÁo f·sico.
+            <literal>plot2d4</literal> √© o mesmo que <literal>plot2d</literal>
+            mas as curvas s√£o esbo√ßadas utilizando-se setas. Isto pode ser √∫til para
+            se esbo√ßar solul√ß√µes de uma EDO (equa√ß√£o diferencial ordin√°ria) em um
+            espa√ßo f√°sico.
         </para>
-        <para>Por padr„o, esboÁos sucessivos s„o superpostos. Para limpar o esboÁo
+        <para>Por padr√£o, esbo√ßos sucessivos s√£o superpostos. Para limpar o esbo√ßo
             anterior, use <literal>clf()</literal>.
         </para>
         <para>
             Entre com o comando <literal>plot2d4()</literal> para visualizar uma
-            demonstraÁ„o. Note que todos os modos propostos por
+            demonstra√ß√£o. Note que todos os modos propostos por
             <literal>plot2dxx</literal> (xx = 1 a 4) podem ser habilitados
-            utilizando-se <literal>plot2d</literal> e ajustando-se a opÁ„o
-            <literal>polyline_style</literal> para o n˙mero correspondente.
+            utilizando-se <literal>plot2d</literal> e ajustando-se a op√ß√£o
+            <literal>polyline_style</literal> para o n√∫mero correspondente.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-// compare o seguinte com plot2d1
-x=[0:0.1:2*%pi]';
+        Demo: plot2d4();
+        <scilab:image>plot2d4();</scilab:image>
+        Exemplos:
+        <programlisting role="example"><![CDATA[
+// compare o seguinte com plot2d + .polyline_style=4
+clf
+subplot(2,1,1)
+x = [0:0.1:2*%pi]';
 plot2d4(x,[sin(x) sin(2*x) sin(3*x)])
- // apenas no novo modo gr·fico
-clf()
+
+subplot(2,1,2)
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
-e=gce();
-e.children(1).polyline_style=4;
-e.children(2).polyline_style=4;
-e.children(3).polyline_style=4;
+e = gce();
+e.children.polyline_style=4;
  ]]></programlisting>
+        <scilab:image>
+            x = [0:0.1:2*%pi]';
+            plot2d4(x, [sin(x) sin(2*x) sin(3*x)])
+        </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>Ver TambÈm</title>
+        <title>Ver Tamb√©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="fchamp">fchamp</link>

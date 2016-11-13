@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -31,6 +34,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     {
         for (auto& arg : args)
         {
+            int iSize = getExpectedSize();
             if (arg->isAssignExp())
             {
                 AssignExp* pAssign = static_cast<AssignExp*>(arg);
@@ -46,6 +50,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
                 SimpleVar* pVar = pL->getAs<SimpleVar>();
                 Exp* pR = &pAssign->getRightExp();
+                // optional parameter have only one output argument
+                setExpectedSize(1);
                 try
                 {
                     pR->accept(*this);
@@ -55,6 +61,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     CoverageInstance::stopChrono((void*)&e);
                     throw;
                 }
+                setExpectedSize(iSize);
                 types::InternalType* pITR = getResult();
                 // IncreaseRef to protect opt argument of scope_end delete
                 // It will be deleted by clear_opt
@@ -68,7 +75,6 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 continue;
             }
 
-            int iSize = getExpectedSize();
             setExpectedSize(-1);
             try
             {
@@ -115,6 +121,9 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         throw ie;
     }
 
+    // reset expected size for recursive call
+    // ie [a, b] = l(1)(1), where l is a list containing a function with two output argument
+    setExpectedSize(-1);
     // get function/variable
     try
     {
@@ -125,7 +134,19 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         CoverageInstance::stopChrono((void*)&e);
         throw;
     }
+    setExpectedSize(iSaveExpectedSize);
+
     types::InternalType* pIT = getResult();
+
+    // pIT can be NULL if one of call return nothing. foo()(1) with foo return nothing.
+    if(pIT == NULL)
+    {
+        clearResult();
+        std::ostringstream os;
+        os << _("Cannot extract from nothing.") << std::endl;
+        CoverageInstance::stopChrono((void*)&e);
+        throw ast::InternalError(os.str(), 999, e.getLocation());
+    }
 
     types::typed_list out;
     types::typed_list in;
@@ -160,6 +181,23 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             continue;
         }
 
+        //extract implicit list for call()
+        if (pIT->isCallable() || pIT->isUserType())
+        {
+            if (inTmp[iterIn]->isImplicitList())
+            {
+                types::ImplicitList* pIL = inTmp[iterIn]->getAs<types::ImplicitList>();
+                if (pIL->isComputable())
+                {
+                    types::InternalType* pITExtract = pIL->extractFullMatrix();
+                    pITExtract->IncreaseRef();
+                    inTmp[iterIn] = pITExtract;
+                    pIL->DecreaseRef();
+                    pIL->killMe();
+                }
+            }
+        }
+
         // management of optional input
         if (arg->isAssignExp())
         {
@@ -182,25 +220,6 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             continue;
         }
 
-        //extract implicit list for call()
-        if (pIT->isCallable() || pIT->isUserType())
-        {
-            if (inTmp[iterIn]->isImplicitList())
-            {
-                types::ImplicitList* pIL = inTmp[iterIn]->getAs<types::ImplicitList>();
-                if (pIL->isComputable())
-                {
-                    types::InternalType* pITExtract = pIL->extractFullMatrix();
-                    pITExtract->IncreaseRef();
-                    in.push_back(pITExtract);
-                    pIL->DecreaseRef();
-                    pIL->killMe();
-                    iterIn++;
-                    continue;
-                }
-            }
-        }
-
         // default case
         for (int i = 0; i < vectNbResult[iLoop]; i++, iterIn++)
         {
@@ -218,7 +237,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         {
             pListArg = in[0]->getAs<types::List>();
             iLoopSize = pListArg->getSize();
-            cleanOpt(opt);
+            cleanOpt(opt, out);
         }
 
         setExpectedSize(iSaveExpectedSize);
@@ -265,7 +284,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             if (pIT->isInvokable() == false)
             {
                 // call overload
-                ret = Overload::call("%" + pIT->getShortTypeStr() + "_e", in, iRetCount, out) == types::Function::OK;
+                ret = Overload::call("%" + pIT->getShortTypeStr() + "_e", in, iRetCount, out, true);
             }
             else
             {
@@ -273,7 +292,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 if (ret == false && pIT->isUserType())
                 {
                     // call overload
-                    ret = Overload::call("%" + pIT->getShortTypeStr() + "_e", in, iRetCount, out) == types::Function::OK;
+                    ret = Overload::call("%" + pIT->getShortTypeStr() + "_e", in, iRetCount, out, true);
                 }
             }
 
@@ -298,7 +317,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 setExpectedSize(iSaveExpectedSize);
                 setResult(out);
                 cleanIn(in, out);
-                cleanOpt(opt);
+                cleanOpt(opt, out);
 
                 // In case a.b(), getResult contain pIT ("b").
                 // If out == pIT, do not delete it.
@@ -351,7 +370,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
         clearResult();
         cleanInOut(in, out);
-        cleanOpt(opt);
+        cleanOpt(opt, out);
         CoverageInstance::stopChrono((void*)&e);
 
         throw ia;
@@ -366,7 +385,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
         clearResult();
         cleanInOut(in, out);
-        cleanOpt(opt);
+        cleanOpt(opt, out);
         CoverageInstance::stopChrono((void*)&e);
 
         throw ie;

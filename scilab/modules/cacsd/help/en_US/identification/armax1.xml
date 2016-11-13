@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - JPC
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="armax1">
+    <refnamediv>
+        <refname>armax1</refname>
+        <refpurpose>armax identification</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[arc,resid]=armax1(r,s,q,y,u [,b0f])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>output signal</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    <para>input signal</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r,s,q</term>
+                <listitem>
+                    <para>auto regression orders with r &gt;=0, s &gt;=-1.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b0f</term>
+                <listitem>
+                    <para>optional parameter. Its default value is 0 and it
+                        means that the coefficient b0 must be identified. if bof=1
+                        the b0 is supposed to be zero and is not identified
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>arc</term>
+                <listitem>
+                    <para>is tlist with type "ar" and fields a,  b,  d,  ny,  nu,  sig</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>a</term>
+                            <listitem>
+                                <para>
+                                    is the vector <literal>[1,a1,...,a_r]</literal>
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>b</term>
+                            <listitem>
+                                <para>
+                                    is the vector <literal>[b0,......,b_s]</literal>
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>d</term>
+                            <listitem>
+                                <para>
+                                    is the vector <literal>[1,d1,....,d_q]</literal>
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>sig</term>
+                            <listitem>
+                                <para>  resid=[ sig*echap(1),....,];</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            armax1 is used to identify the coefficients of a 1-dimensional
+            ARX process:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)
+e(t) is a 1-dimensional white noise with variance 1.
+A(z)= 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
+B(z)= b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
+D(z)= 1+d1*z+...+d_q*z^q  ( q=0 => D(z)=1)
+ ]]></programlisting>
+        <para>
+            for the method, see Eykhoff in trends and progress in system
+            identification) page 96.  with
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+z(t)=[y(t-1),..,y(t-r),u(t),...,
+      u(t-s),e(t-1),...,e(t-q)]
+ ]]></programlisting>
+        <para>
+            and
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+coef= [-a1,..,-ar,b0,...,b_s,d1,...,d_q]'
+y(t)= coef'* z(t) + sig*e(t).
+ ]]></programlisting>
+        <para>
+            a sequential version of the AR estimation where e(t-i) is replaced
+            by an estimated value is used (RLLS). With q=0 this method is exactly
+            a sequential version of armax
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+
+a = [1, -2.851, 2.717, -0.865];
+b = [0, 1, 1, 1];
+d = [1, 0.7, 0.2];
+ar = armac(a, b, d, 1, 1, 1);
+disp(_("Simulation of an ARMAX process:"));
+disp(ar);
+
+n = 300;
+u = -prbs_a(n, 1, int([2.5,5,10,17.5,20,22,27,35]*100/12));
+zd = narsimul(ar, u);
+
+// using now armax1 : colored noise identification
+// you can test the same example with
+[arc1, resid] = armax1(3,3,2,zd(1:n),u,1);
+disp(arc1);
+
+ ]]></programlisting>
+    </refsection>
+
+
+    <refsection>
+        <title>Important notice</title>
+        <para>In Scilab versions up to 4.1.2 the returned value in
+            <literal>arc.sig</literal> is the square of <literal>sig</literal>
+            square. To be conform with the help, the display of arma models
+            and the armax function, starting from Scilab-5.0 version the
+            returned <literal>arc.sig</literal> is <literal>sig</literal>.
+        </para>
+    </refsection>
+</refentry>

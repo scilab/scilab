@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="covStart">
+    <refnamediv>
+        <refname>covStart</refname>
+        <refpurpose>Instruments some macros to store runtime information on code coverage and execution time</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>covStart(paths)</synopsis>
+        <synopsis>covStart(lib)</synopsis>
+        <synopsis>covStart([path ; lib])</synopsis>
+        <synopsis>covStart(macro)</synopsis>
+        <synopsis>covStart("all")</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>paths</term>
+                <listitem>
+                    <para>string paths to identify macros</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lib</term>
+                <listitem>
+                    <para>a library or a string which is a library name</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>macro</term>
+                <listitem>
+                    <para>a specific function (as a string name or a function value)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"all"</term>
+                <listitem>
+                    <para>special argument to instrument all the loaded macros</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Instruments the passed arguments to store runtime informations on execution. These informations can be latter exported by calling <literal>covWrite</literal>. To remove any instrumentation data <literal>covStop</literal> can be used.
+        </para>
+        <para>
+            You can either select a set of function or all the available one on a specific call. The <literal>"all"</literal> analysis is useful to have a global overview and later specific informations can be produced for one or a set of identified functions.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+covStart(isempty)                      // instrument isempty by macro value
+for i=1:1e5; isempty(i); end           // run
+covWrite("html", "TMPDIR/coverage")    // write runtime information to a directory
+covStop();                             // remove any instrumentation
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="covStop">covStop</link>
+            </member>
+            <member>
+                <link linkend="covWrite">covWrite</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

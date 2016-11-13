@@ -10,7 +10,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = acscd(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -47,14 +47,14 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=linspace(1,20,200);
 x=[-x($:-1:1) %nan x];
 plot(x,acscd(x))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cscd">cscd</link>

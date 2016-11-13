@@ -62,7 +62,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [n,d]=rat([3.5, 1.333333,-0.8])
 [n,d]=rat(%pi)
 [n,d]=rat(%pi,1.d-12)

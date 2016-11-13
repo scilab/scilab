@@ -4,12 +4,15 @@
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - Digiteo - Vincent LIARD
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mgetstr" xml:lang="en">
@@ -18,7 +21,7 @@
         <refpurpose>reads a character string from a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>str = mgetstr(n, [fd])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -36,7 +39,7 @@
                 <term>fd</term>
                 <listitem>
                     <para>
-                        an integer: file descriptor as returned by 
+                        an integer: file descriptor as returned by
                         <link linkend="mopen">mopen</link>: where characters should be read. The value <literal>-1</literal> stands for the last opened file and is the default.
                     </para>
                 </listitem>
@@ -82,7 +85,7 @@
   ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="mclose">mclose</link>

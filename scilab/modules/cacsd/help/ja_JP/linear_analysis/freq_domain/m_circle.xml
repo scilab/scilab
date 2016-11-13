@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="m_circle">
+    <refnamediv>
+        <refname>m_circle</refname>
+        <refpurpose>y/(1+y) の等ゲイン等高線を複素平面にプロットする (廃止) </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>m_circle()
+            m_circle(gain)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>gain</term>
+                <listitem>
+                    <para>ゲインベクトル (単位:DB). デフォルト値は</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>gain</term>
+                            <listitem>
+                                <para>=[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>m_circle</literal> は,複素平面(Re,Im)に
+            <literal>gain</literal>引数で指定した
+            等ゲイン等高線を描画します.
+        </para>
+        <para>
+            <literal>gain</literal>のデフォルト値は:
+        </para>
+        <para>
+            <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
+        </para>
+        <para>
+            <literal>m_circle</literal> は <literal>nyquist</literal>と共に使用されます.
+        </para>
+        <para>
+            この関数は,<link linkend="hallchart">hallchart</link> 関数で代替されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+nyquist(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
+m_circle();
+]]></programlisting>
+        <scilab:image localized="true">
+            s=poly(0,'s')
+            h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+            nyquist(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
+            m_circle();
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+clf();
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+nyquist([h1;h],0.01,100,['h1';'h'])
+m_circle([-8 -6 -4]);
+]]></programlisting>
+        <scilab:image localized="true">
+            clf();
+            s=poly(0,'s')
+            h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+            h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+            nyquist([h1;h],0.01,100,['h1';'h'])
+            m_circle([-8 -6 -4]);
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+            <member>
+                <link linkend="nicholschart">nicholschart</link>
+            </member>
+            <member>
+                <link linkend="black">black</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

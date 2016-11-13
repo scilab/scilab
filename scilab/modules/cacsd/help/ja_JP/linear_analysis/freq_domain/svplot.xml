@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F.D
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"  xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="svplot">
+    <refnamediv>
+        <refname>svplot</refname>
+        <refpurpose>特異値シグマプロット</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[SVM]=svplot(sl,[w])</synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト (連続, 離散またはサンプル値システム)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w</term>
+                <listitem>
+                    <para>実数ベクトル (オプションのパラメータ)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>説明</title>
+        <para>
+            システム <literal>sl=(A,B,C,D)</literal>の伝達関数行列の特異値を計算します:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+             G(jw) = C(jw*I-A)B^-1+D
+or
+             G(exp(jw)) = C(exp(jw)*I-A)B^-1+D
+or
+             G(exp(jwT)) = C(exp(jw*T)*I-A)B^-1+D
+ ]]></programlisting>
+        <para>
+            は,<literal>w</literal>で指定された周波数範囲で評価されます.
+            (Tはサンプリング周期, <literal>T=sl('dt')</literal> はサンプル値システムです)
+        </para>
+        <para>
+            <literal>sl</literal> は,
+            状態空間形式のシステム <literal>[A,B,C,D]</literal>を表す
+            <literal>syslin</literal> リストです.
+            <literal>sl</literal>は連続または離散時間またはサンプル値システムとすることができます.
+        </para>
+        <para>
+            出力行列 <literal>SVM</literal> の <literal>i</literal>番目の列には,
+            <literal>i</literal>番目の周波数<literal>w(i)</literal>に関する
+            <literal>G</literal> の特異値が含まれます.
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+SVM = svplot(sl)
+ ]]></programlisting>
+        <para>
+            は以下と等価です
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+SVM = svplot(sl,logspace(-3,3))  (連続系)
+ ]]></programlisting>
+        <programlisting role="no-scilab-exec"><![CDATA[
+SVM = svplot(sl,logspace(-3,%pi)) (離散系)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="examples">
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+x = logspace(-3,3);
+y = svplot(ssrand(2,2,4),x);
+clf()
+plot2d("ln", x, 20*log(y')/log(10))
+xgrid(12)
+xtitle("Singular values plot","(Rd/sec)", "Db")
+ ]]></programlisting>
+    </refsection>
+</refentry>

@@ -28,9 +28,9 @@ if ls(SCIHOME+"/scilab.ini") == [] & ls(SCIHOME+"/.scilab") == []
 end
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="scilab">scilab</link>

@@ -5,11 +5,14 @@
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * desc : interface for xs2file routine
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -185,8 +188,8 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
 
                     if ((!checkInputArgumentType(pvApiCtx, 3, sci_strings)))
                     {
-                        freeAllocatedMatrixOfString(m1, n1, fileName);
                         Scierror(999, _("%s: Wrong type for input argument #%d: Single character string expected.\n"), fname, 3);
+                        freeAllocatedMatrixOfString(m1, n1, fileName);
                         return 1;
                     }
 
@@ -194,14 +197,15 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
+                        freeAllocatedMatrixOfString(m1, n1, fileName);
                         return 1;
                     }
 
                     // Retrieve a matrix of string at position 3.
                     if (getAllocatedMatrixOfString(pvApiCtx, piAddrsciOrientation, &nbRow, &nbCol, &sciOrientation))
                     {
-                        freeAllocatedMatrixOfString(m1, n1, fileName);
                         Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
+                        freeAllocatedMatrixOfString(m1, n1, fileName);
                         return 1;
                     }
 
@@ -221,17 +225,17 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
                         }
                         else
                         {
+                            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 3, "portrait", "landscape");
                             freeAllocatedMatrixOfString(m1, n1, fileName);
                             freeAllocatedMatrixOfString(nbRow, nbCol, sciOrientation);
-                            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 3, "portrait", "landscape");
                             return 1;
                         }
                     }
                     else
                     {
+                        Scierror(999, _("%s: Wrong size for input argument #%d: Single character string expected.\n"), fname, 3);
                         freeAllocatedMatrixOfString(m1, n1, fileName);
                         freeAllocatedMatrixOfString(nbRow, nbCol, sciOrientation);
-                        Scierror(999, _("%s: Wrong size for input argument #%d: Single character string expected.\n"), fname, 3);
                         return 1;
                     }
                 }
@@ -241,6 +245,7 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
+                        freeAllocatedMatrixOfString(m1, n1, fileName);
                         return 1;
                     }
 
@@ -248,16 +253,16 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
                     sciErr = getMatrixOfDouble(pvApiCtx, piAddrquality, &nbRow, &nbCol, &quality);
                     if (sciErr.iErr)
                     {
-                        freeAllocatedMatrixOfString(m1, n1, fileName);
                         printError(&sciErr, 0);
                         Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
+                        freeAllocatedMatrixOfString(m1, n1, fileName);
                         return 1;
                     }
 
                     if (nbRow != 1 || nbCol != 1 || *quality < 0 || *quality > 1)
                     {
-                        freeAllocatedMatrixOfString(m1, n1, fileName);
                         Scierror(999, _("%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"), fname, 3);
+                        freeAllocatedMatrixOfString(m1, n1, fileName);
                         return 1;
                     }
                     jpegCompressionQuality = (float) * quality;
@@ -266,6 +271,7 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
 
             /* Replaces SCI, ~, HOME, TMPDIR by the real path */
             real_filename = expandPathVariable(fileName[0]);
+            freeAllocatedMatrixOfString(m1, n1, fileName);
 
             /* Call the function for exporting file */
             status = exportToFile(figureUID, real_filename, fileType, jpegCompressionQuality, orientation);
@@ -276,7 +282,6 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
                 FREE(real_filename);
                 real_filename = NULL;
             }
-            freeAllocatedMatrixOfString(m1, n1, fileName);
 
             /* treat errors */
             if (strlen(status) != 0)
@@ -290,8 +295,8 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
         }
         else
         {
-            freeAllocatedMatrixOfString(m1, n1, fileName);
             Scierror(999, _("%s: Wrong size for input argument #%d: Single character string expected.\n"), fname, 2);
+            freeAllocatedMatrixOfString(m1, n1, fileName);
             return 1;
         }
     }

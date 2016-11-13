@@ -5,7 +5,7 @@
         <refpurpose>utility function used with umf_lufact  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>umf_ludel(LU_ptr) or umf_ludel()</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -24,7 +24,7 @@
         <para>
             This function must be used in conjunction with <link linkend="umf_lufact">umf_lufact</link> and <link linkend="umf_lusolve">umf_lusolve</link>.
             It clears the internal memory space used to store the LU factors (got with umf_lufact).
-            Use without argument it frees the memory for all the current scilab umfpack LU factors. 
+            Use without argument it frees the memory for all the current scilab umfpack LU factors.
         </para>
     </refsection>
     <refsection>
@@ -34,7 +34,7 @@
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="umfpack">umfpack</link>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"  xml:lang="fr" xmlns:scilab="http://www.scilab.org" xml:id="wfir">
+    <refnamediv>
+        <refname>wfir</refname>
+        <refpurpose>linear-phase FIR filters</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>ftype</term>
+                <listitem>
+                    <para>
+                        string : <literal>'lp','hp','bp','sb'</literal> (filter type)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>forder</term>
+                <listitem>
+                    <para>
+                        Filter order (pos integer)(odd for <literal>ftype='hp'</literal> or <literal>'sb'</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cfreq</term>
+                <listitem>
+                    <para>
+                        2-vector of cutoff frequencies (<literal>0&lt;cfreq(1),cfreq(2)&lt;.5</literal>)  only <literal>cfreq(1)</literal> is used when <literal>ftype='lp'</literal> or <literal>'hp'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wtype</term>
+                <listitem>
+                    <para>
+                        Window type (<literal>'re','tr','hm','hn','kr','ch'</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fpar</term>
+                <listitem>
+                    <para>
+                        2-vector of window parameters. Kaiser window <literal>fpar(1)&gt;0 fpar(2)=0</literal>. Chebyshev window  <literal>fpar(1)&gt;0, fpar(2)&lt;0</literal> or <literal>fpar(1)&lt;0, 0&lt;fpar(2)&lt;.5</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wft</term>
+                <listitem>
+                    <para>time domain filter coefficients</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wfm</term>
+                <listitem>
+                    <para>frequency domain filter response on the grid fr</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fr</term>
+                <listitem>
+                    <para>Frequency grid</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Function which makes linear-phase, FIR low-pass, band-pass,
+            high-pass, and stop-band filters
+            using the windowing technique.
+            Works interactively if called with no arguments.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+[h,hm,fr]=wfir("lp",33,[.2 0],"hm",[0 0])
+ ]]></programlisting>
+    </refsection>
+</refentry>

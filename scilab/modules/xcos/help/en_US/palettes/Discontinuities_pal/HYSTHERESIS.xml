@@ -104,7 +104,7 @@
             point parameter. When the relay is off, it remains off until the input
             exceeds the value of the Switch on point parameter. The block accepts
             one input and generates one output.
-            
+
         </para>
     </refsection>
     <refsection id="Dialogbox_HYSTHERESIS">
@@ -117,7 +117,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>

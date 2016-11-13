@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - P. Gahinet
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="ccontrg">
+    <refnamediv>
+        <refname>ccontrg</refname>
+        <refpurpose>H無限大コントローラの中央解</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[K]=ccontrg(P,r,gamma);</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト (状態空間表現の線形システム)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 行ベクトル, <literal>P</literal>の2,2 区域の次元
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gamma</term>
+                <listitem>
+                    <para>実数</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            状態空間形式の一般標準問題の中央解であるコントローラの実現 <literal>K</literal>
+            を返します.
+        </para>
+        <para>
+            gamma &gt; gopt (<literal>gamitg</literal>の出力)が必要なことに注意してください
+        </para>
+        <para>
+            P は,以下のようなプラント実現のパラメータ <literal>(A,B,C,D)</literal>
+            (<literal>syslin</literal> リスト)を有します.
+        </para>
+        <programlisting role=""><![CDATA[
+B = ( B1 , B2 ) ,        C= ( C1 ) ,    D = ( D11  D12)
+                            ( C2 )          ( D21  D22)
+ ]]></programlisting>
+        <para>
+            <literal>r(1)</literal> および <literal>r(2)</literal> は,
+            <literal>D22</literal> の次元(行 x 列)です.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gamitg">gamitg</link>
+            </member>
+            <member>
+                <link linkend="h_inf">h_inf</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal> は連続時間系の線形動的システムであることが確認されるようになりました.
+                    この修正は,
+                    <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">このcommit</ulink>
+                    により行われました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -3,11 +3,14 @@
  *  Copyright (C) 2005-2008 - INRIA - Allan CORNET
  *  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -22,6 +25,7 @@
 #include "GlobalTclInterp.h"
 #include "os_string.h"
 #include "api_scilab.h"
+#include "sci_malloc.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_TCL_EvalStr(char *fname, void* pvApiCtx)
@@ -38,7 +42,7 @@ int sci_TCL_EvalStr(char *fname, void* pvApiCtx)
     {
         char *tclSlave = NULL;
         char **Str = NULL;
-        int m1, n1, i;
+        int m1, n1, i, j;
         int m2, n2;
         char **ReturnArrayString = NULL;
         int k = 0;
@@ -60,8 +64,8 @@ int sci_TCL_EvalStr(char *fname, void* pvApiCtx)
 
         if (!existsGlobalInterp())
         {
-            freeAllocatedMatrixOfString(m1, n1, Str);
             Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
+            freeAllocatedMatrixOfString(m1, n1, Str);
             return 0;
         }
 
@@ -74,6 +78,7 @@ int sci_TCL_EvalStr(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
+                    freeAllocatedMatrixOfString(m1, n1, Str);
                     return 1;
                 }
 
@@ -81,13 +86,14 @@ int sci_TCL_EvalStr(char *fname, void* pvApiCtx)
                 if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
                 {
                     Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                    freeAllocatedMatrixOfString(m1, n1, Str);
                     return 1;
                 }
 
                 if (!existsSlaveInterp((l2)))
                 {
-                    freeAllocatedMatrixOfString(m1, n1, Str);
                     Scierror(999, _("%s: No such slave interpreter.\n"), fname);
+                    freeAllocatedMatrixOfString(m1, n1, Str);
                     return 0;
                 }
                 tclSlave =  os_strdup((l2));
@@ -95,13 +101,13 @@ int sci_TCL_EvalStr(char *fname, void* pvApiCtx)
             }
             else
             {
-                freeAllocatedMatrixOfString(m1, n1, Str);
                 Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+                freeAllocatedMatrixOfString(m1, n1, Str);
                 return 0;
             }
         }
 
-        ReturnArrayString = (char **) MALLOC(m1 * n1 * sizeof(char **));
+        ReturnArrayString = (char **) MALLOC(m1 * n1 * sizeof(char *));
 
         for (i = 0; i < m1 * n1 ; i++)
         {
@@ -129,6 +135,11 @@ int sci_TCL_EvalStr(char *fname, void* pvApiCtx)
                     trace = Tcl_GetVar(getTclInterp(), "errorInfo", TCL_GLOBAL_ONLY);
                 }
                 releaseTclInterp();
+                for (j = 0; j < k; ++j)
+                {
+                    FREE(ReturnArrayString[j]);
+                }
+                FREE(ReturnArrayString);
                 freeAllocatedMatrixOfString(m1, n1, Str);
 
                 {
@@ -145,6 +156,7 @@ int sci_TCL_EvalStr(char *fname, void* pvApiCtx)
                     Scierror(999, "%s, %s at line %i\n	%s\n", fname, (char *)result, i + 1, (char *)trace);
                     releaseTclInterp();
                 }
+                FREE(tclSlave);
                 return 0;
             }
             else
@@ -160,6 +172,9 @@ int sci_TCL_EvalStr(char *fname, void* pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            freeAllocatedMatrixOfString(m1, n1, ReturnArrayString);
+            freeAllocatedMatrixOfString(m1, n1, Str);
+            FREE(tclSlave);
             return 1;
         }
 
@@ -167,6 +182,7 @@ int sci_TCL_EvalStr(char *fname, void* pvApiCtx)
 
         freeAllocatedMatrixOfString(m1, n1, ReturnArrayString);
         freeAllocatedMatrixOfString(m1, n1, Str);
+        FREE(tclSlave);
 
         ReturnArguments(pvApiCtx);
     }

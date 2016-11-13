@@ -1,392 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-
  * Copyright (C) Serge Steer
-
- * 
-
- * This file must be used under the terms of the CeCILL.
-
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 -->
-
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="comet">
-    
     <refnamediv>
-        
         <refname>comet</refname>
-        
         <refpurpose>2次元 comet アニメーションプロット. </refpurpose>
-        
     </refnamediv>
-    
     <refsynopsisdiv>
-        
         <title>呼び出し手順</title>
-        
         <synopsis>comet(y)</synopsis>
-        
         <synopsis>comet(x,y)</synopsis>
-        
         <synopsis>comet(x,fun)</synopsis>
-        
         <synopsis>comet(x,y,p)</synopsis>
-        
         <synopsis>comet(x,fun,p)</synopsis>
-        
         <synopsis>comet(...,"colors",c)</synopsis>
-        
     </refsynopsisdiv>
-    
     <refsection>
-        
         <title>パラメータ</title>
-        
         <variablelist>
-            
             <varlistentry>
-                
                 <term>x</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         実数ベクトルまたは行列. 省略された場合,
-                        
                         ベクトル <literal>1:ny</literal> が指定されたと仮定されます.
-                        
                         ただし,<literal>ny</literal> は曲線の点の数(下記参照)です.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>y</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         長さの実数ベクトルまたは行列.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>p</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         範囲 <literal>[0 1[</literal> の実数スカラー.
-                        
                         デフォルト値は 0.1です.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>fun</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         呼び出し手順  <literal>y=fun(x)</literal> のScilab関数.
-                        
                         <varname>fun</varname> は多項式または有理数とすることもできます.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>c</term>
-                
                 <listitem>
-                    
                     <para>
-                        
                         <literal>ny</literal> 色添字のベクトル.
-                        
                     </para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
         </variablelist>
-        
     </refsection>
-    
     <refsection>
-        
         <title>説明</title>
-        
         <para>
-            
             <literal>(x,y)</literal> が同じ要素数のベクトルの場合,
-            
             この関数は,
-            
             <literal>k</literal>を<literal>1</literal> から
-            
             <literal>size(x,'*')</literal>まで変えて
-            
             曲線<literal>(x(1:k),y(1:k))</literal>の漸進を示す
-            
             2次元アニメーションプロットを描画します.
-            
         </para>
-        
         <para>
-            
             このプロットは以下の3つの部分から構成されます:
-            
             <variablelist>
-                
                 <varlistentry>
-                    
-                    <term>ヘッド</term> 
-                    
+                    <term>ヘッド</term>
                     <listitem>
-                        
-                        <para>                        
-                            
-                            カレントの位置<literal>(x(i),y(i))</literal>を示すマーカ.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>ボディ</term>
-                    
-                    <listitem>
-                        
-                        <para> 
-                            
-                            ヘッドにつらなる曲線を表示します:曲線の一部
-                            
-                            <literal>(x(i-k:i),y(i-k:i))</literal>.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>テール</term>
-                    
-                    <listitem>
-                        
                         <para>
-                            
-                            曲線の<literal>(x(1:i-k),y(1:i-k))</literal>の部分を表示.
-                            
+                            カレントの位置<literal>(x(i),y(i))</literal>を示すマーカ.
                         </para>
-                        
                     </listitem>
-                    
                 </varlistentry>
-                
+                <varlistentry>
+                    <term>ボディ</term>
+                    <listitem>
+                        <para>
+                            ヘッドにつらなる曲線を表示します:曲線の一部
+                            <literal>(x(i-k:i),y(i-k:i))</literal>.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>テール</term>
+                    <listitem>
+                        <para>
+                            曲線の<literal>(x(1:i-k),y(1:i-k))</literal>の部分を表示.
+                        </para>
+                    </listitem>
+                </varlistentry>
             </variablelist>
-            
             <para>
-                
                 <literal>comet(x,fun,...)</literal>  は, <literal>comet(x,feval(x,fun),...)</literal> と等価です.
-                
             </para>
-            
             <para>
-                
                 <literal>comet(...,p)</literal> はボディの相対的な長さを設定する
-                
                 際に使用することができます.
-                
                 <literal>k</literal> は
-                
                 <literal>k = round(p*ny)</literal>のように定義できます.
-                
             </para>
-            
             <para>
-                
                 <varname>y</varname> が行列の場合,
-                
                 曲線のアニメーション表示が,
-                
                 <literal>(x,y(:,l))</literal>の各組について描画されます.
-                
                 この場合, <literal>ny</literal> は<varname>y</varname>の
-                
                 行の数です.
-                
             </para>
-            
             <para>
-                
                 <varname>x</varname> および <varname>y</varname> は
-                
                 同じ大きさの行列の場合,
-                
                 各組　 <literal>(x(:,l),y(:,l))</literal> 毎に.
-                
                 アニメーション表示された曲線が描画されます.
-                
                 この場合, <literal>ny</literal>は
-                
                 <varname>x</varname>および  <varname>y</varname>の
-                
                 行の数です.
-                
             </para>
-            
-            
-            
             <para>
-                
                 <literal>comet(...,"colors",c)</literal> は
-                
                 各曲線の色を設定する際に使用できます.
-                
             </para>
-            
         </para>
-        
     </refsection>
-    
     <refsection>
-        
         <title>例</title>
-        
         <programlisting role="example"><![CDATA[
-
 t = linspace(0,10*%pi,500);
-
 clf();set(gca(),"isoview","on"); // 等軸に設定
-
 comet(t.*sin(t),t.*cos(t))
-
     ]]></programlisting>
-        
-        
-        
         <programlisting role="example"><![CDATA[
-
 t = linspace(0,10*%pi,500)';
-
 clf();comet(t.*sin(t),[t.*sin(2*t) t.*sin(3*t)])
-
     ]]></programlisting>
-        
         <programlisting role="example"><![CDATA[
-
 t = linspace(0,10*%pi,500)';
-
 clf();comet(t.*sin(t),[t.*sin(2*t) t.*sin(3*t)],"colors",[3 5])
-
     ]]></programlisting>
-        
         <programlisting role="example"><![CDATA[
-
 function y=traj(x),y=1.5*sin(x^2),endfunction
-
 clf();comet(linspace(0,5,500),traj)
-
     ]]></programlisting>
-        
         <programlisting role="example"><![CDATA[
-
 clf();comet(linspace(-2,4,500),(%s-3)/(%s^3+2*%s^2+1))
-
     ]]></programlisting>
-        
     </refsection>
-    
     <refsection>
-        
         <title>参照</title>
-        
         <simplelist type="inline">
-            
             <member>
-                
                 <link linkend="color">color</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="comet3d">comet3d</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="paramfplot2d">paramfplot2d</link>
-                
             </member>
-            
         </simplelist>
-        
     </refsection>
-    
     <refsection>
-        
         <title>履歴</title>
-        
         <revhistory>
-            
             <revision>
-                
                 <revnumber>5.3.2</revnumber>
-                
                 <revremark>
-                    
                     関数 <function>comet</function> が導入されました.
-                    
                 </revremark>
-                
             </revision>
-            
         </revhistory>
-        
     </refsection>
-    
 </refentry>
-
-
-

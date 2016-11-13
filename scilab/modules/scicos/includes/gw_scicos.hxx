@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -28,7 +31,6 @@ CPP_GATEWAY_PROTOTYPE_EXPORT(sci_duplicate, SCICOS_IMPEXP);
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_end_scicosim, SCICOS_IMPEXP);
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_getblocklabel, SCICOS_IMPEXP);
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_getscicosvars, SCICOS_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_haltscicos, SCICOS_IMPEXP);
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_phase_simulation, SCICOS_IMPEXP);
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_pointer_xproperty, SCICOS_IMPEXP);
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_scicos_debug, SCICOS_IMPEXP);
@@ -46,5 +48,6 @@ CPP_GATEWAY_PROTOTYPE_EXPORT(sci_var2vec, SCICOS_IMPEXP);
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_vec2var, SCICOS_IMPEXP);
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_model2blk, SCICOS_IMPEXP);
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_callblk, SCICOS_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_scicosDiagramToScilab, SCICOS_IMPEXP);
 
 #endif /* GW_SCICOS_HXX_ */

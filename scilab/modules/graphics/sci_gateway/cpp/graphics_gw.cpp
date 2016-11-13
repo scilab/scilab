@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -51,7 +54,6 @@ int GraphicsModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction("param3d1", &sci_param3d1, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction("xstringb", &sci_xstringb, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction("plot2d", &sci_plot2d, &GraphicsModule::LoadDeps, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction("plot2d1", &sci_plot2d1_1, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction("plot2d2", &sci_plot2d1_2, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction("plot2d3", &sci_plot2d1_3, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction("plot2d4", &sci_plot2d1_4, &GraphicsModule::LoadDeps, MODULE_NAME));

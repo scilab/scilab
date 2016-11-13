@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="rowinout">
+    <refnamediv>
+        <refname>rowinout</refname>
+        <refpurpose>インナ-アウタ分解</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[Inn,X,Gbar]=rowinout(G)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>
+                        線形システム (<literal>syslin</literal> リスト) <literal>[A,B,C,D]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Inn</term>
+                <listitem>
+                    <para>
+                        インナ因子 (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Gbar</term>
+                <listitem>
+                    <para>
+                        アウタ因子 (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>
+                        <literal>G</literal> (<literal>syslin</literal> リスト)の行圧縮
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>G=[A,B,C,D]</literal>(<literal>l</literal>x<literal>p</literal>)
+            のインナ-アウタ分解(おとび行圧縮) (ただし,<literal>l&gt;=p</literal>).
+        </para>
+        <para>
+            <literal>G</literal> は虚軸上にゼロを持たない縦長(<literal>l&gt;=p</literal>) で
+            ,<literal>D</literal>は列フルランクであると仮定します.
+        </para>
+        <para>
+            <literal>G</literal> は<literal>Gbar</literal>が安定な場合には
+            安定となります.
+        </para>
+        <para>
+            <literal>G</literal> は以下のアウタ-インナ分解を許容します:
+        </para>
+        <programlisting role=""><![CDATA[
+ G = [ Inn ] | Gbar |
+             |  0   |
+ ]]></programlisting>
+        <para>
+            ただし <literal>Inn</literal> は正方行列の
+            インナ (全通過で安定),
+            <literal>Gbar</literal>は
+            正方行列のアウタ,すなわち,
+            Gbar は正方で双方向プロパーかつ双方向安定
+            (Gbarの逆行列もプロパーで安定)です.
+        </para>
+        <para>
+            注意:
+        </para>
+        <programlisting role=""><![CDATA[
+      [ Gbar ]
+X*G = [  -   ]
+      [  0   ]
+ ]]></programlisting>
+        <para>
+            は <literal>G</literal> の行圧縮です.
+            ただし, <literal>X</literal> = <literal>Inn</literal>
+            の逆行列は全通過特性を有します.すなわち:
+        </para>
+        <programlisting role=""><![CDATA[
+ T
+X (-s) X(s) = Identity
+ ]]></programlisting>
+        <para>
+            (連続時間系の場合).
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="colinout">colinout</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="lqg_ltr">
+    <refnamediv>
+        <refname>lqg_ltr</refname>
+        <refpurpose>LQG with loop transform recovery</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[kf,kc]=lqg_ltr(sl,mu,ro)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        linear system in state-space form (<literal>syslin</literal> list)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mu,ro</term>
+                <listitem>
+                    <para> real positive numbers chosen ``small enough''</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>kf,kc</term>
+                <listitem>
+                    <para>controller and observer Kalman gains.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            returns the Kalman gains for:
+        </para>
+        <programlisting role=""><![CDATA[
+         x = a*x + b*u + l*w1
+(sl)
+         y = c*x + mu*I*w2
+
+         z = h*x
+ ]]></programlisting>
+        <para>
+            Cost function:
+        </para>
+        <programlisting role=""><![CDATA[
+         /+oo
+         |
+J    = E(| [z(t)'*z(t) + ro^2*u(t)'*u(t)]dt)
+ lqg     |
+         / 0
+  ]]></programlisting>
+        <para>
+            The lqg/ltr approach looks for <literal>L,mu,H,ro</literal> such that:
+            J(lqg) = J(freq) where
+        </para>
+        <programlisting role=""><![CDATA[
+        /+oo        *  *           *
+J    =  | tr[S  W  W  S ] + tr[T  T]dw
+ freq   |
+        /0
+ ]]></programlisting>
+        <para>
+            and
+        </para>
+        <programlisting role=""><![CDATA[
+ S = (I + G*K)^(-1)
+ T = G*K*(I+G*K)^(-1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

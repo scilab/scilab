@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strtod" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="strtod" xml:lang="en">
     <refnamediv>
         <refname>strtod</refname>
-        <refpurpose>convert string to double</refpurpose>
+        <refpurpose>parse and convert literal numbers STRings TO Decimal numbers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             d =  strtod(str [,decimalseparator])
-            [d, endstr] = strtod(str [,decimalseparator])
+            [d, tails] = strtod(str [,decimalseparator])
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="arguments">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>str</term>
                 <listitem>
                     <para>
-                        a character string or matrix of character strings.
+                        single component, vector, or matrix of text (strings).
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,71 +51,158 @@
                 <term>d</term>
                 <listitem>
                     <para>
-                        a real or matrix of reals.
+                        scalar, vector, or matrix of decimal numbers.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>endstr</term>
+                <term>tails</term>
                 <listitem>
                     <para>
-                        a character string or matrix of character strings (next
-                        character in <varname>str</varname> after the numerical
-                        value).
+                        a string or matrix of strings: remaining parts of
+                        <varname>str</varname> after the numerical heads
+                        (if any).
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
-            <code>[d, endstr] = strtod(str)</code> parses strings
-            <varname>str</varname> interpreting its content as a floating point
-            number and returns its value as a real. If <varname>str</varname> does not contain any numerical value then <varname>d</varname> equals <literal>Nan</literal>.
+            <code>[d, tails] = strtod(str)</code> parses each string of
+            <varname>str</varname> and tries to interpret its content as a decimal
+            number:
+            <itemizedlist>
+                <listitem>If it succeeds, at least for the heading part of
+                    <varname>str(i)</varname>, the corresponding decimal number
+                    is returned in <varname>d(i)</varname>. If any, the
+                    trailing part of <varname>str(i)</varname> is ignored and
+                    returned in <varname>tails(i)</varname>; otherwise,
+                    <varname>tails(i)</varname> returns "".
+                </listitem>
+                <listitem>
+                    Otherwise, <varname>d(i)</varname> returns
+                    <literal>%nan</literal>, and <varname>tails(i)</varname> is
+                    the whole <varname>str(i)</varname>.
+                </listitem>
+            </itemizedlist>
         </para>
+        <warning>
+            <itemizedlist>
+                <listitem>
+                    Complex numbers: <function>strtod(..)</function> parses
+                    and returns only their real part, provided that it is writen
+                    before their imaginary part.
+                </listitem>
+                <listitem>
+                    <function>strtod(..)</function> does not acknowledge any
+                    thousands separator, neither " ", nor "," nor any other one.
+                </listitem>
+                <listitem>
+                    <function>strtod(..)</function> parses strings only against
+                    decimal numbers. It does not interpret hexadecimal, octal
+                    or other radix strings.
+                </listitem>
+                <listitem>
+                    <function>strtod(..)</function> does not interpret any
+                    name of Scilab predefined or user-defined variables or special
+                    strings for <literal>%inf</literal> or <literal>%nan</literal>.
+                    Hence we have:
+                    <programlisting role="example"><![CDATA[
+s = ["-0.034" "- 0.034"  "+1234.5678" "1234 5678"
+     "-.764"  "+.432"    "12,231.7"   "-5.458,871"
+     "1e43"   "-3.5d-12" "-1.2+i"     "i+1.2"
+     ""       "%inf"     "Inf"        "-Inf"
+     "%i"     "%pi"      "%e"         "%eps"
+     "%F"     "0x19B"    "#14C4"      "o5745"
+     ]
+strtod(s)
+]]>             </programlisting>
+                    <screen><![CDATA[  s  =
+!-0.034  - 0.034   +1234.5678  1234 5678   !
+!-.764   +.432     12,231.7    -5.458,871  !
+!1e43    -3.5d-12  -1.2+i      i+1.2       !
+!        %inf      Inf         -Inf        !
+!%i      %pi       %e          %eps        !
+!%F      0x19B     #14C4       o5745       !
+
+--> strtod(s)
+ ans  =
+  -0.034       Nan         1234.5678   1234.
+  -0.764       0.432       12.        -5.458
+   1.000D+43  -3.500D-12  -1.2         Nan
+   Nan         Nan         Nan         Nan
+   Nan         Nan         Nan         Nan
+   Nan         0.          Nan         Nan
+]]></screen>
+                </listitem>
+                <listitem>
+                    <function>strtod(..)</function> does not interpret
+                    escape sequences <literal>"\n"</literal>, <literal>"\t"</literal>,
+                    etc.
+                </listitem>
+                <listitem>
+                    This function is based on the strtod C function which
+                    causes different behaviors on Windows and Linux. In fact, on
+                    Windows, it is possible to use "d" or "D" for exponents,
+                    but it is not possible to use hexadecimal numbers.
+                </listitem>
+            </itemizedlist>
+        </warning>
     </refsection>
-    <refsection>
-        <title>Remarks</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    This function is based on the strtod C function which causes different behaviors on Windows and Linux. In fact, on Windows, it is possible to use
-                    d or D for exponents, but it is not possible to use hexadecimal numbers.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    Note that <literal>strtod("%inf")</literal> returns <literal>Nan</literal>.
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    
-    <refsection>
+
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-strtod('123.556This is a sample real')
-strtod('123,556This is a sample real', ",")
-[d,endstr] = strtod('123.556This is a sample real')
-strtod(['123.556This is a sample real','888.666 here'])
-[d,endstr] =strtod(['123.556This is a sample real','888.666 here'])
-[d,endstr] =strtod(['123.556This is a sample real','888,666 here'], ",")
+        <programlisting role="example"><![CDATA[
+s = ["123.556 abc " ".543"      "#58B" "0x73 " "%inf"
+     "-1.47e-71"    "67,432.57" " 23,5" "-,57" "Inf" ]
+[num, trail] = strtod(s);
+num, "/"+trail+"/"
+
+// With "," as decimal separator:
+[num, trail] = strtod(s, ",");
+num, "/"+trail+"/"
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="evstr">evstr</link>
+            </member>
+            <member>
+                <link linkend="isnum">isnum</link>
+            </member>
+            <member>
+                <link linkend="isdigit">isdigit</link>
+            </member>
+            <member>
+                <link linkend="bin2dec">bin2dec</link>
+            </member>
+            <member>
+                <link linkend="oct2dec">oct2dec</link>
+            </member>
+            <member>
+                <link linkend="hex2dec">hex2dec</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
         <title>History</title>
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
-                    New optional input: decimalseparator (SEP 97).
+                    Option decimalseparator introduced (SEP 97).
                 </revremark>
             </revision>
             <revision>
                 <revnumber>5.4.1</revnumber>
                 <revremark>
-                    If <varname>str</varname> does not contain any numerical value then <varname>d</varname> equals <literal>Nan</literal> instead of <literal>0</literal> in previous versions.
+                    If <varname>str</varname> does not contain any numerical value,
+                    <varname>d</varname> now returns <literal>Nan</literal>
+                    instead of <literal>0</literal>.
                 </revremark>
             </revision>
         </revhistory>

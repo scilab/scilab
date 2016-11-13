@@ -6,155 +6,155 @@
 
  * Copyright (C) ENPC - Jean-Philippe Chancelier
 
- * 
+ *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
  *
 
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="fplot2d">
-    
+
     <refnamediv>
-        
+
         <refname>fplot2d</refname>
-        
+
         <refpurpose>関数で定義された曲線の二次元プロット</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>fplot2d(xr,f,[style,strf,leg,rect,nax])
-            
+
             fplot2d(xr,f,&lt;opt_args&gt;)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>xr</term>
-                
+
                 <listitem>
-                    
+
                     <para>ベクトル.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>f</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         <literal>y=f(x)</literal>型の外部ルーチン. すなわち,scilab関数または
-                        
+
                         文字列として参照された動的にリンクされるルーチン.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>style,strf,leg,rect,nax</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         <literal>plot2d</literal>参照
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>&lt;opt_args&gt;</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         <literal>plot2d</literal>参照
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <literal>fplot2d</literal> は外部関数<literal>f</literal>
-            
+
             で定義された曲線をプロットします.
-            
+
             曲線は点<literal>(xr(i),f(xr(i))</literal>により
-            
+
             区分線形補間で近似されます.
-            
+
             f(x)の値は<literal>feval(xr,f)</literal>により取得されます.
-            
+
         </para>
-        
+
         <para>
-            
+
             コマンド <literal>fplot2d()</literal> を入力すると,デモが表示されます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>サンプル</title>
-        
+
         <scilab:image>fplot2d();</scilab:image>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 deff("[y]=f(x)","y=sin(x)+cos(x)")
 
@@ -167,20 +167,20 @@ clf();
 fplot2d(1:10,'parab')
 
  ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             deff("[y]=f(x)","y=sin(x)+cos(x)")
-            
+
             x=[0:0.1:10]*%pi/10;
-            
+
             fplot2d(x,f)
-            
+
         </scilab:image>
-        
-        
-        
-        <programlisting role="example"><![CDATA[ 
+
+
+
+        <programlisting role="example"><![CDATA[
 
 clf();
 
@@ -193,46 +193,46 @@ fplot2d(x,f)
 fplot2d(1:10,'parab')
 
  ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             deff("[y]=f(x)","y=sin(x)+cos(x)")
-            
+
             x=[0:0.1:10]*%pi/10;
-            
+
             fplot2d(1:10,'parab')
-            
+
         </scilab:image>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="plot2d">plot2d</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="feval">feval</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="paramfplot2d">paramfplot2d</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

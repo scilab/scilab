@@ -1,6 +1,7 @@
 /*
   Copyright (C) 2006  EDF - Code Saturne
   Copyright (C) 2001 - DIGITEO - Sylvestre LEDRU. Adapted for Scilab
+  Copyright (C) 2016 - Scilab Enterprises - Clement DAVID
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -18,16 +19,20 @@
 */
 
 
+#include <errno.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <signal.h>
 #include <string.h>
+#include <time.h>
 #include <libintl.h>
+#include <pthread.h>
 
 #include <setjmp.h>
 
 #include <sys/types.h>          /* getpid */
+#include <sys/time.h>           /* gettimeofday */
 #include <unistd.h>             /* gethostname */
 
 #include "csignal.h"
@@ -62,12 +67,14 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
 
     char stacktrace_hostname[64];
 
-    const char * bt;
+    char* bt;
 
     gethostname(stacktrace_hostname, sizeof(stacktrace_hostname));
     stacktrace_hostname[sizeof(stacktrace_hostname) - 1] = '\0';
     /* to keep these somewhat readable, only print the machine name */
-    for (i = 0; i < (int)sizeof(stacktrace_hostname); ++i)
+    for (i = 0;
+            i < (int)sizeof(stacktrace_hostname) && stacktrace_hostname[i] != '\0';
+            ++i)
     {
         if (stacktrace_hostname[i] == '.')
         {
@@ -81,17 +88,9 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
 
     /* This list comes from OpenMPI sources */
 #ifdef HAVE_STRSIGNAL
-    /* On segfault, avoid calling strsignal which may allocate some memory (through gettext) */
     {
         char* str;
-        if (signum == 11)
-        {
-            str = "Segmentation fault";
-        }
-        else
-        {
-            str = strsignal(signum);
-        }
+        str = strsignal(signum);
         ret = snprintf(tmp, size, HOSTFORMAT "Signal: %s (%d)\n", stacktrace_hostname, getpid(), str, signum);
     }
 #else
@@ -406,7 +405,7 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
     // 4 is to ignore the first 4 functions
     bt = backtrace_print(4, 1);
     Scierror(42,
-             _("A fatal error has been detected by Scilab.\nYour instance will probably quit unexpectedly soon.\nIf a graphic feature has been used, this might be caused by the system graphic drivers.\nPlease try to update them and run this feature again.\nYou can report a bug on %s with:\n* a sample code which reproduces the issue\n* the result of [a, b] = getdebuginfo()\n* the following information:\n%s %s\n"),
+             _("A fatal error has been detected by Scilab.\nPlease check your user-defined functions (or external module ones) should they appear in the stack trace.\nOtherwise you can report a bug on %s with:\n * a sample code which reproduces the issue\n * the result of [a, b] = getdebuginfo()\n * the following information:\n%s %s\n"),
              PACKAGE_BUGREPORT, print_buffer, bt);
 
     free(bt);
@@ -481,6 +480,66 @@ void base_error_init(void)
         {
             fprintf(stderr, "Could not set handler for signal %d\n", signals[j]);
         }
+    }
+
+#ifdef HAVE_STRSIGNAL
+    // initialize the glibc internal string representation.
+    strsignal(SIGABRT);
+#endif
+}
+
+static void* watchdog_thread(void* arg)
+{
+    long timeoutDelay = (long) arg;
+
+    pthread_mutex_t watchdog_mutex;
+    pthread_cond_t dummy_condition;
+    struct timeval tv;
+    struct timespec abstime;
+
+    if (pthread_mutex_init(&watchdog_mutex, NULL) != 0)
+    {
+        return NULL;
+    }
+
+    if (pthread_cond_init(&dummy_condition, NULL) != 0)
+    {
+        pthread_mutex_destroy(&watchdog_mutex);
+        return NULL;
+    }
+
+    if (gettimeofday(&tv, NULL) != 0)
+    {
+        pthread_cond_destroy(&dummy_condition);
+        pthread_mutex_destroy(&watchdog_mutex);
+        return NULL;
+    }
+
+    memset(&abstime, 0, sizeof(struct timespec));
+    abstime.tv_sec = tv.tv_sec + timeoutDelay;
+
+    while (1)
+    {
+        if (pthread_cond_timedwait(&dummy_condition, &watchdog_mutex, &abstime) == ETIMEDOUT)
+        {
+            /*
+             * Send a SIGABRT to ensure process termination, if used with the signal
+             * trap a backtrace might be displayed.
+             */
+            kill(getpid(), SIGABRT);
+        }
+    }
+    return NULL;
+}
+
+void timeout_process_after(int timeoutDelay)
+{
+    pthread_t watchdog;
+
+    // Spawn a watchdog thread as POSIX timer API is not available on MacOS X
+    if (pthread_create(&watchdog, NULL, watchdog_thread, (void*) (long) timeoutDelay) != 0)
+    {
+        return;
     }
 }
 

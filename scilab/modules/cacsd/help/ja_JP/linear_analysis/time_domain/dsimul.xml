@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="dsimul">
+    <refnamediv>
+        <refname>dsimul</refname>
+        <refpurpose>離散時間状態空間シミュレーション</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>y=dsimul(sl,u)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        離散時間線形システムを含む<literal>syslin</literal> リスト
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    <para>適当な次元の実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        <literal>sl</literal>の出力
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ユーティリティ関数.
+            <literal>[A,B,C,D]=abcd(sl)</literal> および <literal>x0=sl('X0')</literal>の時,
+            <literal>dsimul</literal> は <literal>y=C*ltitr(A,B,u,x0)+D*u</literal>,
+            すなわち,入力<literal>u</literal>に対する <literal>sl</literal>の時間応答
+            を返します.
+            <literal>sl</literal> は状態空間形式 (<literal>syslin</literal> リスト)であると
+            仮定されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+z=poly(0,'z');
+h=(1-2*z)/(z^2-0.2*z+1);
+sl=tf2ss(h);
+u=zeros(1,20);u(1)=1;
+x1=dsimul(sl,u)   //インパルス応答
+u=ones(1,20);
+x2=dsimul(sl,u);  //ステップ応答
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="flts">flts</link>
+            </member>
+            <member>
+                <link linkend="ltitr">ltitr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

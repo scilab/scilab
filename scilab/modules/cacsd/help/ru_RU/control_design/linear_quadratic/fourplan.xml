@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="fourplan">
+    <refnamediv>
+        <refname>fourplan</refname>
+        <refpurpose>augmented plant to four plants</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[P11,P12,P21,P22]=fourplan(P,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list (linear system)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 row vector, dimension of <literal>P22</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P11,P12,P21,P22</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> lists.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Utility function.
+        </para>
+        <para>
+            <literal>P</literal> being partitioned as follows:
+        </para>
+        <programlisting role=""><![CDATA[
+P=[ P11 P12;
+    P21 P22]
+ ]]></programlisting>
+        <para>
+            with <literal>size(P22)=r</literal> this function returns the four linear systems <literal>P11,P12,P21,P22</literal>.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lqg">lqg</link>
+            </member>
+            <member>
+                <link linkend="lqg2stan">lqg2stan</link>
+            </member>
+            <member>
+                <link linkend="lqr">lqr</link>
+            </member>
+            <member>
+                <link linkend="lqe">lqe</link>
+            </member>
+            <member>
+                <link linkend="lft">lft</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

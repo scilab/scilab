@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="unobs">
+    <refnamediv>
+        <refname>unobs</refname>
+        <refpurpose>unobservable subspace</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[n,[U]]=unobs(A,C,[tol])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A, C</term>
+                <listitem>
+                    <para>real matrices</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>tolerance used when evaluating ranks (QR factorizations).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>dimension of unobservable subspace.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>
+                        orthogonal change of basis which puts <literal>(A,B)</literal> in canonical form.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>[n,[U]]=unobs(A,C,[tol])</literal> gives the unobservable form of an <literal>(A,C)</literal>
+            pair.
+            The <literal>n</literal> first columns of <literal>U</literal> make a basis for the unobservable
+            subspace.
+        </para>
+        <para>
+            The <literal>(2,1)</literal> block (made of last <literal>nx-n</literal> rows and <literal>n</literal> first
+            columns) of <literal>U'*A*U</literal> is zero and the <literal>n</literal> first columns
+            of <literal>C*U</literal> are zero.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A=diag([1,2,3]);C=[1,0,0];
+unobs(A,C)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="contr">contr</link>
+            </member>
+            <member>
+                <link linkend="contrss">contrss</link>
+            </member>
+            <member>
+                <link linkend="canon">canon</link>
+            </member>
+            <member>
+                <link linkend="cont_mat">cont_mat</link>
+            </member>
+            <member>
+                <link linkend="spantwo">spantwo</link>
+            </member>
+            <member>
+                <link linkend="dt_ility">dt_ility</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

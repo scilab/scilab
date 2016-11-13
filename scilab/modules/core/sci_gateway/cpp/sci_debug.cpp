@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -27,7 +30,7 @@ extern "C"
 #include "Thread_Wrapper.h"
 }
 
-typedef enum EnumCommand
+enum EnumCommand
 {
     AbortCommand,
     BreakCommand,
@@ -48,6 +51,7 @@ typedef enum EnumCommand
 };
 
 const char fname[] = "debug";
+const std::string HELP_DEBUG_COMMAND("help debug");
 
 void print_help();
 EnumCommand getCommand(const std::string& command);
@@ -294,7 +298,7 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
 
             if (ConfigVariable::getScilabMode() == SCILAB_NW || ConfigVariable::getScilabMode() == SCILAB_STD)
             {
-                StorePrioritaryCommand("help debug");
+                StorePrioritaryCommand(HELP_DEBUG_COMMAND.data());
                 return types::Function::OK;
             }
 
@@ -514,16 +518,16 @@ void print_help()
     sciprint(_("debug commands : \n"));
     sciprint("  h                            : %s.\n", _("show this help"));
     sciprint("  help                         : %s.\n", _("open debug documentation page"));
-    sciprint("\n");                          
+    sciprint("\n");
     sciprint("  (q)uit                       : %s.\n", _("stop debugging"));
     sciprint("  (w)here or bt                : %s.\n", _("show callstack"));
-    sciprint("\n");                          
+    sciprint("\n");
     sciprint("  (e)xec cmd                   : %s.\n", _("execute cmd"));
     sciprint("  (r)un cmd                    : %s.\n", _("execute cmd"));
-    sciprint("\n");                          
+    sciprint("\n");
     sciprint("  (d)isp var                   : %s.\n", _("display variable"));
     sciprint("  (p)rint var                  : %s.\n", _("display variable"));
-    sciprint("\n");                          
+    sciprint("\n");
     sciprint("  (c)ontinue                   : %s.\n", _("continue execution"));
     sciprint("  (a)bort                      : %s.\n", _("abort execution"));
     sciprint("  step(n)ext or next           : %s.\n", _("continue to next statement"));

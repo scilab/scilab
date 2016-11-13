@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="global">
+
+    <refnamediv>
+
+        <refname>global</refname>
+
+        <refpurpose>グローバル変数を定義する</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼出し手順</title>
+
+        <synopsis>global('nam1',...,'namn')
+
+            global nam1 ... namn
+
+        </synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>nam1,..., namn</term>
+
+                <listitem>
+
+                    <para>有効な変数名</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            もともと, 各 Scilab 関数は固有のローカルな変数を有し,
+
+            基本ワークスペースで作成された全ての変数を"読む"または
+
+            関数コールにより読むことができます.
+
+            <literal>global</literal> キーワードにより,複数の関数をまたがって
+
+            変数を読み/書きすることができます.
+
+            関数の内部で変数に代入すると,この変数を<literal>global</literal>として
+
+            宣言した他の関数でも利用可能となります.
+
+        </para>
+
+        <para>
+
+            <literal>global</literal>命令を初めて実行した時点で
+
+            そのグローバス変数が存在しない場合,空行列に初期化されます.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+//最初: 環境でコールし, 関数は変数を共用する
+global a
+a=1
+deff('y=f1(x)','global a,a=x^2,y=a^2')
+f1(2)
+a
+//2回目: 3つの関数が変数を共用
+deff('initdata()','global A C ;A=10,C=30')
+deff('letsgo()','global A C ;disp(A) ;C=70')
+deff('letsgo1()','global C ;disp(C)')
+initdata()
+letsgo()
+letsgo1()
+ ]]></programlisting>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="who">who</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="isglobal">isglobal</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="clearglobal">clearglobal</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="resume">resume</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

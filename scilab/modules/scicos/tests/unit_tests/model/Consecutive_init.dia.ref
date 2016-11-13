@@ -15,10 +15,8 @@ Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , EXPRS ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
@@ -57,10 +55,8 @@ Xcos debug: objectUnreferenced( 3 , BLOCK ) : 0
 Xcos debug: objectReferenced( 3 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 3 , BLOCK , ANGLE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 3 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , EXPRS ) : NO_CHANGES
-Xcos trace: propertyUpdated( 3 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , STYLE ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 3 , BLOCK ) : 0
 Xcos debug: objectReferenced( 3 , BLOCK ) : 1
@@ -92,7 +88,6 @@ Xcos trace: propertyUpdated( 4 , BLOCK , UID ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 4 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , EXPRS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , DSTATE ) : NO_CHANGES
@@ -134,7 +129,6 @@ Xcos trace: propertyUpdated( 5 , BLOCK , UID ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 5 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , EXPRS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , DSTATE ) : NO_CHANGES
@@ -211,7 +205,6 @@ Xcos trace: propertyUpdated( 8 , BLOCK , UID ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 8 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , EXPRS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , DSTATE ) : NO_CHANGES
@@ -287,7 +280,6 @@ Xcos trace: propertyUpdated( 11 , BLOCK , UID ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 11 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , EXPRS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , DSTATE ) : NO_CHANGES
@@ -330,7 +322,6 @@ Xcos trace: propertyUpdated( 13 , BLOCK , UID ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 13 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , EXPRS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , DSTATE ) : NO_CHANGES
@@ -409,7 +400,6 @@ Xcos trace: propertyUpdated( 15 , BLOCK , UID ) : NO_CHANGES
 Xcos trace: propertyUpdated( 15 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 15 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 15 , BLOCK , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 15 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 15 , BLOCK , EXPRS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 15 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 15 , BLOCK , DSTATE ) : NO_CHANGES
@@ -452,7 +442,6 @@ Xcos trace: propertyUpdated( 17 , BLOCK , UID ) : NO_CHANGES
 Xcos trace: propertyUpdated( 17 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 17 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 17 , BLOCK , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 17 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 17 , BLOCK , EXPRS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 17 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 17 , BLOCK , DSTATE ) : NO_CHANGES

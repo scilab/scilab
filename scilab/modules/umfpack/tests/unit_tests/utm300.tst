@@ -11,7 +11,7 @@
 // http://math.nist.gov/MatrixMarket/data/SPARSKIT/tokamak/utm300.html
 warning("off");
 
-[A, dsc]=ReadHBSparse(SCI+"/modules/umfpack/examples/utm300.rua");
+[A, dsc]=ReadHBSparse(SCI+"/modules/umfpack/demos/utm300.rua");
 if dsc <> "utm300" then pause, end
 
 [nl,nc] = size(A)

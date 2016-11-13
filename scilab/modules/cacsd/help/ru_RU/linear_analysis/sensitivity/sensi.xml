@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="sensi">
+    <refnamediv>
+        <refname>sensi</refname>
+        <refpurpose>sensitivity functions</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[Se,Re,Te]=sensi(G,K)
+            [Si,Ri,Ti]=sensi(G,K,flag)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>
+                        standard plant (<literal>syslin</literal> list)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>
+                        compensator (<literal>syslin</literal> list)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        character string <literal>'o'</literal> (default value) or <literal>'i'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Se</term>
+                <listitem>
+                    <para>
+                        output sensitivity function <literal>(I+G*K)^-1</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Re</term>
+                <listitem>
+                    <para>
+                        <literal>K*Se</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Te</term>
+                <listitem>
+                    <para>
+                        <literal>G*K*Se</literal> (output complementary sensitivity function)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>sensi</literal> computes sensitivity functions. If <literal>G</literal> and <literal>K</literal> are
+            given in state-space form, the systems returned are generically minimal.
+            Calculation is made by <literal>lft</literal>, e.g.,
+            <literal>Se</literal> can be given by the commands
+            <literal> P = augment(G,'S')</literal>, <literal>Se=lft(P,K)</literal>.
+            If <literal>flag</literal> = <literal>'i'</literal>, <literal>[Si,Ri,Ti]=sensi(G,K,'i')</literal>
+            returns the input sensitivity functions.
+        </para>
+        <programlisting role=""><![CDATA[
+[Se;Re;Te]= [inv(eye()+G*K);K*inv(eye()+G*K);G*K*inv(eye()+G*K)];
+[Si;Ri;Ti]= [inv(eye()+K*G);G*inv(eye()+K*G);K*G*inv(eye()+K*G)];
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+G=ssrand(1,1,3);
+K=ssrand(1,1,3);
+[Se,Re,Te]=sensi(G,K);
+Se1=inv(eye()+G*K);  //Other way to compute
+ss2tf(Se)    //Se seen in transfer form
+ss2tf(Se1)
+ss2tf(Te)
+ss2tf(G*K*Se1)
+[Si,Ri,Ti]=sensi(G,K,'i');
+w1=[ss2tf(Si);ss2tf(Ri);ss2tf(Ti)]
+w2=[ss2tf(inv(eye()+K*G));ss2tf(G*inv(eye()+K*G));ss2tf(K*G*inv(eye()+K*G))];
+clean(w1-w2)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="augment">augment</link>
+            </member>
+            <member>
+                <link linkend="lft">lft</link>
+            </member>
+            <member>
+                <link linkend="h_cl">h_cl</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

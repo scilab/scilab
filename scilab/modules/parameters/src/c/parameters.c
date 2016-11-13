@@ -4,11 +4,14 @@
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
@@ -120,10 +123,7 @@ SciErr getIntInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, int
     int pos_label = 0, i = 0;
     int m_tmp = 0, n_tmp = 0;
     double * tmp_dbl = NULL;
-    SciErr _SciErr;
-
-    _SciErr.iErr = 0;
-    _SciErr.iMsgCount = 0;
+    SciErr _SciErr = sciErrInit();
 
     pos_label = commonFindLabel(_pvCtx, _piAddress, _pstLabel);
     *_piFound = pos_label;
@@ -257,6 +257,8 @@ SciErr getIntInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, int
 
                 va_end(vl);
                 break;
+            default:
+                va_end(vl);
         }
     }
     return _SciErr;
@@ -268,10 +270,7 @@ SciErr getDoubleInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, 
     int pos_label = 0, i = 0;
     int m_tmp = 0, n_tmp = 0;
     double * tmp_values = NULL;
-    SciErr _SciErr;
-
-    _SciErr.iErr = 0;
-    _SciErr.iMsgCount = 0;
+    SciErr _SciErr = sciErrInit();
 
     pos_label = commonFindLabel(_pvCtx, _piAddress, _pstLabel);
     *_piFound = pos_label;
@@ -402,9 +401,10 @@ SciErr getDoubleInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, 
                     addErrorMessage(&_SciErr, 999, _("%s: wrong value for parameter %s: value %f\n"), "getDoubleInPList", _pstLabel, *_pdblValue);
                     return _SciErr;
                 }
-
                 va_end(vl);
                 break;
+            default:
+                va_end(vl);
         }
     }
 
@@ -418,10 +418,7 @@ SciErr getStringInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, 
     int m_label = 0, n_label = 0;
     int * len_label = NULL;
     char ** label_list = NULL;
-    SciErr _SciErr;
-
-    _SciErr.iErr = 0;
-    _SciErr.iMsgCount = 0;
+    SciErr _SciErr = sciErrInit();
 
     pos_label = commonFindLabel(_pvCtx, _piAddress, _pstLabel);
     *_piFound = pos_label;
@@ -528,6 +525,8 @@ SciErr getStringInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, 
 
                 va_end(vl);
                 break;
+            default:
+                va_end(vl);
         }
     }
 
@@ -541,10 +540,7 @@ SciErr getColVectorOfIntInPList(void* _pvCtx, int * _piAddress, const char * _ps
     int pos_label = 0, i = 0;
     int m_tmp = 0, n_tmp = 0;
     double * tmp_dbl = 0;
-    SciErr _SciErr;
-
-    _SciErr.iErr = 0;
-    _SciErr.iMsgCount = 0;
+    SciErr _SciErr = sciErrInit();
 
     *_piSize = -1;
 
@@ -700,6 +696,8 @@ SciErr getColVectorOfIntInPList(void* _pvCtx, int * _piAddress, const char * _ps
 
                 va_end(vl);
                 break;
+            default:
+                va_end(vl);
         }
     }
 
@@ -712,24 +710,15 @@ SciErr getColVectorOfDoubleInPList(void* _pvCtx, int * _piAddress, const char * 
     int pos_label = 0, i = 0;
     int m_label = 0, n_label = 0;
     int m_tmp = 0, n_tmp = 0;
-    int * len_label = NULL;
     double * tmp_values = NULL;
     char ** label_list = NULL;
-    SciErr _SciErr;
-
-    _SciErr.iErr = 0;
-    _SciErr.iMsgCount = 0;
+    SciErr _SciErr = sciErrInit();
 
     *_piSize = -1;
 
     pos_label = commonFindLabel(_pvCtx, _piAddress, _pstLabel);
     *_piFound = pos_label;
 
-    if (len_label)
-    {
-        FREE(len_label);
-        len_label = NULL;
-    }
     freeArrayOfString(label_list, m_label * n_label);
 
     if (pos_label != -1)
@@ -904,6 +893,8 @@ SciErr getColVectorOfDoubleInPList(void* _pvCtx, int * _piAddress, const char * 
                 }
                 va_end(vl);
                 break;
+            default:
+                va_end(vl);
         }
     }
 
@@ -930,10 +921,7 @@ SciErr createPList(void* _pvCtx, int _iVar, int ** _piAddress, char ** _pstLabel
 
     _SciErr = createMatrixOfStringInList(_pvCtx, _iVar, *_piAddress, 1, 1, _iNbParams + 1, (char const * const*) label_list);
 
-    if (label_list)
-    {
-        freeArrayOfString(label_list, _iNbParams + 1);
-    }
+    freeArrayOfString(label_list, _iNbParams + 1);
 
     return _SciErr;
 }

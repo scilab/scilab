@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="legendre" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>associated Legendre functions</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y = legendre(n,m,x [,normflag])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -103,11 +106,11 @@
         <para>
             In any case, the format of <literal>y</literal> is :
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 max(length(n),length(m)) x length(x)
  ]]></programlisting>
         <para>and :</para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 y(i,j) = P(n(i),m;x(j))   if n is a vector
 y(i,j) = P(n,m(i);x(j))   if m is a vector
 y(1,j) = P(n,m;x(j))      if both n and m are scalars
@@ -138,7 +141,7 @@ xtitle("the 6 th first Legendre polynomials")
             xtitle("the 6 th first Legendre polynomials")
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// example 2 : plot of the associated Legendre functions of degree 5 
+// example 2 : plot of the associated Legendre functions of degree 5
 l = nearfloat("pred",1);
 x = linspace(-l,l,200)';
 y = legendre(5, 0:5, x, "norm");

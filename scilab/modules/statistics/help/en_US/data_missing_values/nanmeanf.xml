@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="nanmeanf">
@@ -16,7 +19,7 @@
         <refpurpose>mean (ignoring Nan's) with a given frequency.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>m=nanmean(val,fre)
             m=nanmean(val,fre,'r') (or m=nanmean(val,fre,1))
             m=nanmean(val,fre,'c') (or m=nanmean(val,fre,2))
@@ -45,13 +48,13 @@
         <title>Description</title>
         <para>
             This function returns in scalar <literal> m</literal> the mean of the
-            values (ignoring  the NANs) of a vector  or matrix 
+            values (ignoring  the NANs) of a vector  or matrix
             <literal>val</literal>,   each counted  with   a  frequency signaled  by  the
-            corresponding values of the  integer vector or matrix  <literal>fre</literal> 
+            corresponding values of the  integer vector or matrix  <literal>fre</literal>
             with the same type of <literal>val</literal>.
         </para>
         <para>
-            For      a  vector    or  matrix    <literal>    val</literal>, 
+            For      a  vector    or  matrix    <literal>    val</literal>,
             <literal> m=nanmeanf(val,fre)</literal>  or  <literal> m=nanmeanf(val,fre,'*')</literal>
             returns in scalar  <literal> m</literal>  the mean of all  the entries
             (ignoring  the NANs) of   <literal> val</literal>, each  value counted
@@ -80,7 +83,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[0.2113249 %nan 0.6653811;0.7560439 0.3303271 0.6283918]
 fre=[34 12 25;12 23 5]
 m=nanmeanf(x,fre)

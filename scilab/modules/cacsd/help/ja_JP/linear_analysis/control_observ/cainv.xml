@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="cainv">
+    <refnamediv>
+        <refname>cainv</refname>
+        <refpurpose>abinvの双対</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[X,dims,J,Y,k,Z]=cainv(Sl,alfa,beta,flag)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        行列 <literal>[A,B,C,D]</literal>を含む<literal>syslin</literal> リスト.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alfa</term>
+                <listitem>
+                    <para>実数の数値またはベクトル (複素数となる場合もある,閉ループ極の位置)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>beta</term>
+                <listitem>
+                    <para>実数の数値またはベクトル (複素数となる場合もある,閉ループ極の位置)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        (オプションの) 文字列 <literal>'ge'</literal> (default)または <literal>'st'</literal> または <literal>'pp'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>大きさ nx (状態空間の次元)の直交行列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    <para>
+                        整数行ベクトル <literal>dims=[nd1,nu1,dimS,dimSg,dimN]</literal>  (5エントリ
+                        , 非降順).
+                        <literal>flag='st'</literal>
+                        (もしくは<literal>'pp'</literal>)の場合, <literal>dims</literal> は 4
+                        (もしくは3)個の要素を有します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>J</term>
+                <listitem>
+                    <para>実数行列 (出力)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Y</term>
+                <listitem>
+                    <para>大きさnyの直交行列 (出力空間の次元).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>
+                        整数 (<literal>Sl</literal>のランク)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Z</term>
+                <listitem>
+                    <para>
+                        正則な線形システム (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>cainv</literal> は
+            (状態空間および出力状態応答の)基底 <literal>(X,Y)</literal>を見つけます.
+            基底を (X,Y)とする行列 Slは以下のように表示されます:
+        </para>
+        <programlisting role=""><![CDATA[
+               [A11,*,*,*,*,*]                [*]
+               [0,A22,*,*,*,*]                [*]
+X'*(A+J*C)*X = [0,0,A33,*,*,*]   X'*(B+J*D) = [*]
+               [0,0,0,A44,*,*]                [0]
+               [0,0,0,0,A55,*]                [0]
+               [0,0,0,0,0,A66]                [0]
+       Y*C*X = [0,0,C13,*,*,*]          Y*D = [*]
+               [0,0,0,0,0,C26]                [0]
+ ]]></programlisting>
+        <para>
+            The partition of <literal>X</literal>の分割は
+            ベクトル<literal>dims=[nd1,nu1,dimS,dimSg,dimN]</literal>により定義され,
+            <literal>Y</literal>の分割は<literal>k</literal>により定義されます.
+        </para>
+        <para>
+            <literal>A11</literal><literal>(nd1 x nd1)</literal> の固有値は不安定です.
+            <literal>A22</literal> <literal>(nu1-nd1 x nu1-nd1)</literal>の固有値は安定です.
+        </para>
+        <para>
+            対 <literal>(A33, C13)</literal> <literal>(dimS-nu1 x dimS-nu1, k x dimS-nu1)</literal>は
+            可観測, <literal>A33</literal>の固有値は <literal>alfa</literal>に設定されます.
+        </para>
+        <para>
+            行列 <literal>A44</literal> <literal>(dimSg-dimS x dimSg-dimS)</literal> は不安定です.
+            行列 <literal>A55</literal> <literal>(dimN-dimSg,dimN-dimSg)</literal> は安定です.
+        </para>
+        <para>
+            対 <literal>(A66,C26)</literal> <literal>(nx-dimN x nx-dimN)</literal> は可観測,
+            <literal>A66</literal>の固有値は<literal>beta</literal>に設定されます.
+        </para>
+        <para>
+            <literal>X</literal>の最初の<literal>dimS</literal>列は,
+            Im(B)を含む不変部分空間 S= smallest (C,A) に広がり,
+            <literal>X</literal>の最初の<literal>dimSg</literal>列は,
+            <literal>Sl</literal>の最大"相補可検出部分空間" Sg に広がります.
+        </para>
+        <para>
+            <literal>X</literal>の最初の<literal>dimN</literal>列は,
+            <literal>Sl</literal> の最大"相補可観測部分空間"に広がります.
+            (B(ker(D))=0の場合,<literal>dimS=0</literal>)
+        </para>
+        <para>
+            <literal>flag='st'</literal> が指定された場合,
+            5個の分割ブロック行列が返され,
+            <literal>dims</literal>は4つの要素を有します.
+            <literal>flag='pp'</literal>が指定された場合,
+            4個の分割ブロックが返されます(abinv参照).
+        </para>
+        <para>
+            この関数は次のように未知入力オブザーバを計算する際に使用することができます:
+        </para>
+        <programlisting role=""><![CDATA[
+// DDEP: dot(x)=A x + Bu + Gd
+//           y= Cx   (observation)
+//           z= Hx    (z=variable to be estimated, d=disturbance)
+//  Find: dot(w) = Fw + Ey + Ru such that
+//          zhat = Mw + Ny
+//           z-Hx goes to zero at infinity
+//  Solution exists iff Ker H contains Sg(A,C,G) inter KerC (assuming detectability)
+//i.e. H is such that:
+// For any W which makes a column compression of [Xp(1:dimSg,:);C]
+// with Xp=X' and [X,dims,J,Y,k,Z]=cainv(syslin('c',A,G,C));
+// [Xp(1:dimSg,:);C]*W = [0 | *] one has
+// H*W = [0 | *]  (with at least as many aero columns as above).
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="abinv">abinv</link>
+            </member>
+            <member>
+                <link linkend="dt_ility">dt_ility</link>
+            </member>
+            <member>
+                <link linkend="ui_observer">ui_observer</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

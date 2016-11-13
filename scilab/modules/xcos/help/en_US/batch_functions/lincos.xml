@@ -27,7 +27,7 @@
         <refpurpose>Constructs by linearization a linear state-space model from a general dynamical system described by a Xcos diagram</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>sys = lincos(scs_m [,x0,u0 [,param] ])</synopsis>
     </refsynopsisdiv>
     <refsection id="Module_lincos">
@@ -111,7 +111,7 @@ bode(sys);
         </itemizedlist>
     </refsection>
     <refsection id="SeeAlso_lincos">
-        <title>See Also</title>
+        <title>See also</title>
         <itemizedlist>
             <listitem>
                 <para>

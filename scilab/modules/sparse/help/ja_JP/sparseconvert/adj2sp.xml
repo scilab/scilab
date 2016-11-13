@@ -3,191 +3,194 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="adj2sp" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>adj2sp</refname>
-        
+
         <refpurpose>隣接形式を疎行列に変換.</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>
-            
+
             A=adj2sp(xadj,iadj,v)
-            
+
             A=adj2sp(xadj,iadj,v,mn)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>xadj</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         長さ (n+1)の整数ベクトル.
-                        
+
                         <literal>j=1:n</literal>の場合,
-                        
+
                         浮動小数点整数
-                        
+
                         <literal>xadj(j+1)-xadj(j)</literal> は
-                        
+
                         j列における非ゼロエントリの数です.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>iadj</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         nz行1列の浮動小数点整数の行列, 非ゼロエントリの行添字.
-                        
-                        <literal>j=1:n</literal>および, 
-                        
-                        <literal>k = xadj(j):xadj(j+1)-1</literal>に関して, 
-                        
+
+                        <literal>j=1:n</literal>および,
+
+                        <literal>k = xadj(j):xadj(j+1)-1</literal>に関して,
+
                         浮動小数点整数 <literal>i = iadj(k)</literal> は
-                        
+
                         非ゼロエントリ #k の行添字です.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>v</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         nz行1列の浮動小数点整数の行列, Aの非ゼロエントリ.
-                        
-                        <literal>j=1:n</literal>および, 
-                        
-                        <literal>k = xadj(j):xadj(j+1)-1</literal>に関して, 
-                        
+
+                        <literal>j=1:n</literal>および,
+
+                        <literal>k = xadj(j):xadj(j+1)-1</literal>に関して,
+
                         浮動小数点整数<literal>Aij = v(k)</literal>は
-                        
+
                         非ゼロエントリ #k の値です.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>mn</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         1行2列または2行1列の浮動小数点整数の行列(オプション),
-                        
+
                         <literal>mn(1)</literal> はAの行数,
-                        
+
                         <literal>mn(2)</literal> はAの列数です.
-                        
-                        <literal>mn</literal> が指定されない場合, 
-                        
+
+                        <literal>mn</literal> が指定されない場合,
+
                         <literal>mn=[m,n]</literal> は,
-                        
+
                         <literal>m=max(iadj)</literal> および
-                        
+
                         <literal>n=size(xadj,"*")-1</literal>がデフォルトとなります.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>A</term>
-                
+
                 <listitem>
-                    
+
                     <para>m行n列実数または複素数の疎行列 (nz 個の非ゼロエントリ)</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             adj2sp は,隣接形式を疎行列に変換します.
-            
+
             隣接形式の値は列毎に保存されています.
-            
+
             これは,この形式がしばしば
-            
+
             "Compressed sparse column" または CSCと呼ばれる理由です.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <para>
-            
+
             以下の例では,隣接形式から疎行列を作成します.
-            
+
             その後,期待した疎行列と一致するかどうかを確認します.
-            
+
         </para>
-        
+
         <programlisting role="example"><![CDATA[
 xadj = [1 3 4 7 9 11]';
 iadj = [3 5 3 1 2 4 3 5 1 4]';
@@ -203,15 +206,15 @@ A = [
 C=sparse(A)
 and(B==C)
  ]]></programlisting>
-        
+
         <para>
-            
+
             以下の例では,隣接形式から疎行列を作成します.
-            
+
             その後,期待した疎行列と一致するかどうかを確認します.
-            
+
         </para>
-        
+
         <programlisting role="example"><![CDATA[
 xadj = [1 2 3 4 5 5 6 6 7 8 9]';
 iadj = [2 5 2 3 1 2 7 6]';
@@ -229,15 +232,15 @@ A = [
 B=sparse(A)
 and(B==C)
  ]]></programlisting>
-        
+
         <para>
-            
+
             以下の例では,mnパラメータの使用法を確認します.
-            
+
             mnパラメータとxadjおよびiadjの実際の内容の整合性をadj2spで確認します.
-            
+
         </para>
-        
+
         <programlisting role="example"><![CDATA[
 xadj = [1 2 3 4 5 5 6 6 7 8 9]';
 iadj = [2 5 2 3 1 2 7 6]';
@@ -245,28 +248,28 @@ v = [3 7 5 3 6 5 2 3]';
 mn=[7 10];
 C=adj2sp(xadj,iadj,v,mn)
  ]]></programlisting>
-        
+
         <para>
-            
+
             以下の例では,3行3列の疎行列を作成します.
-            
+
             この例は, SciPyの文書からの引用です.
-            
+
         </para>
-        
+
         <programlisting role="example"><![CDATA[
 xadj =  [1,3,4,7]
 iadj =  [1,3,3,1,2,3]
 v = [1,2,3,4,5,6]
 full(adj2sp(xadj,iadj,v))
  ]]></programlisting>
-        
+
         <para>
-            
+
             前のスクリプトは以下の出力を生成します.
-            
+
         </para>
-        
+
         <programlisting role="no-scilab-exec"><![CDATA[
 -->full(adj2sp(xadj,iadj,v))
  ans  =
@@ -274,15 +277,15 @@ full(adj2sp(xadj,iadj,v))
     0.    0.    5.
     2.    3.    6.
  ]]></programlisting>
-        
+
         <para>
-            
+
             以下の例では,sp2adjおよびadj2sp関数が逆関数であることを
-            
+
             確認します.
-            
+
         </para>
-        
+
         <programlisting role="example"><![CDATA[
 // Templates for the Solution of Algebraic Eigenvalue Problems: a Practical Guide
 // Edited by Zhaojun Bai, James Demmel, Jack Dongarra, Axel Ruhe, and Henk van der Vorst
@@ -313,72 +316,72 @@ AAsp=adj2sp(row_ptr,col_ind,val)'
 // Check the conversion
 AAsp - A
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="sp2adj">sp2adj</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="sparse">sparse</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="spcompack">spcompack</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="spget">spget</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>参考文献</title>
-        
+
         <para>
-            
+
             "Implementation of Lipsol in Scilab", Hector E. Rubio Scola, INRIA, Decembre 1997, Rapport Technique No 0215
-            
+
         </para>
-        
+
         <para>
-            
+
             "Solving Large Linear Optimization Problems with Scilab : Application to Multicommodity Problems", Hector E. Rubio Scola, Janvier 1999, Rapport Technique No 0227
-            
+
         </para>
-        
+
         <para>
-            
+
             "Toolbox Scilab : Detection signal design for failure detection and isolation for linear dynamic systems User's Guide", Hector E. Rubio Scola, 2000, Rapport Technique No 0241
-            
+
         </para>
-        
+
         <para>
-            
+
             "Computer Solution of Large Sparse Positive Definite Systems", A. George, Prentice-Hall, Inc. Englewood Cliffs, New Jersey, 1981.
-            
+
         </para>
-        
+
     </refsection>
-    
+
 </refentry>
 

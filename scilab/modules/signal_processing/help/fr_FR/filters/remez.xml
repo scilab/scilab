@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="remez" xml:lang="fr">
+    <refnamediv>
+        <refname>remez</refname>
+        <refpurpose>Remez exchange algorithm for the weighted chebyshev
+            approximation of a continuous function with a sum of cosines.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>an=remez(guess,mag,fgrid,weight)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>guess</term>
+                <listitem>
+                    <para>
+                        real array of size <literal>n+2 the </literal>initial
+                        guess
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fgrid</term>
+                <listitem>
+                    <para>
+                        real array of size <literal>ng</literal>: the grid of
+                        normalized frequency points in [0,.5[
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mag</term>
+                <listitem>
+                    <para>
+                        real array of size <literal>ng</literal>: the desired
+                        magnitude on grid <literal>fg</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>weight</term>
+                <listitem>
+                    <para>
+                        real array of size <literal>ng</literal>: weighting function
+                        on error on grid <literal>fg</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>an</term>
+                <listitem>
+                    <para>
+                        real array of size <literal>n</literal>: cosine
+                        coefficients
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Minimax approximation of a frequency domain magnitude response. The
+            approximation takes the form
+        </para>
+        <programlisting role=""><![CDATA[
+h = sum[a(i)*cos(weight)], i=1:n
+ ]]></programlisting>
+        <para>An FIR, linear-phase filter can be obtained from the output of
+            <literal>remez</literal> by using the following commands:
+        </para>
+        <programlisting role=""><![CDATA[
+hn(1:nc-1)=an(nc:-1:2)/2;
+hn(nc)=an(1);
+hn(nc+1:2*nc-1)=an(2:nc)/2;
+ ]]></programlisting>
+        <para>
+            This function is mainly intended to be called by the <link linkend="remezb">remezb function</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Bibliography</title>
+        <para>E.W. Cheney, Introduction to Approximation Theory, McGraw-Hill,
+            1966
+        </para>
+        <para>
+            <ulink url="http://en.wikipedia.org/wiki/Remez_algorithm">http://en.wikipedia.org/wiki/Remez_algorithm</ulink>
+        </para>
+    </refsection>
+    <refsection>
+        <title>References</title>
+        <para>
+            This function is based on the fortran code <literal>remez.f
+            </literal>
+            written by:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>James H. Mcclellan, department of electrical engineering and
+                    computer science, Massachusetts Institute of Technology, Cambridge,
+                    Massachussets. 02139
+                </para>
+            </listitem>
+            <listitem>
+                <para>Thomas W. Parks, department of electrical engineering, Rice
+                    university, Houston, Texas 77001
+                </para>
+            </listitem>
+            <listitem>
+                <para>Thomas W. Parks, department of electrical engineering, Rice
+                    university, Houston, Texas 77001
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+nc=21;
+ngrid=nc*250;
+fgrid=.5*(0:(ngrid-1))/(ngrid-1);
+mag(1:ngrid/2)=ones(1:ngrid/2);
+mag(ngrid/2+1:ngrid)=0*ones(1:ngrid/2);
+weight=ones(fgrid);
+guess=round(1:ngrid/nc:ngrid);
+guess(nc+1)=ngrid;
+guess(nc+2)=ngrid;
+an=remez(guess,mag,fgrid,weight);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="remezb">remezb</link>
+            </member>
+            <member>
+                <link linkend="eqfir">eqfir</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

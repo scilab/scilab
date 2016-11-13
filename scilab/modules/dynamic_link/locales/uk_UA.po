@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-09 14:45+0000\n"
+"PO-Revision-Date: 2016-06-09 10:43+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "Language: uk\n"
 
 #, c-format
@@ -40,13 +40,60 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
 msgid "%s : second argument must be a unique id of a shared library.\n"
 msgstr ""
 "%s: другим параметром має бути унікальний ідентифікатор бібліотеки спільного "
 "використання.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: unable to find entry point %ls.\n"
+msgstr "%s: не вдалося знайти точку входу %ls.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип матриці "
+"дійсних значень або «string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано дійсний "
+"числовий тип.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано рядковий "
+"тип.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано матрицю з "
+"дійсними елементами.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано «%s», «%s», "
+"«%s» або «%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: помилкове значення вхідного параметра №%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
@@ -74,7 +121,8 @@ msgid "Unique id of a shared library expected."
 msgstr "Слід використовувати унікальний ідентифікатор спільної бібліотеки."
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
 "або скалярний тип.\n"
@@ -163,13 +211,48 @@ msgstr "%ls не є вхідною точкою.\n"
 msgid "Linking %ls.\n"
 msgstr "Пов’язуємо %ls.\n"
 
+msgid "Calling a C function from Scilab.\n"
+msgstr "Викликаємо функцію C з Scilab.\n"
+
+msgid "Calling ilib_for_link to build C function.\n"
+msgstr "Викликаємо ilib_for_link для збирання функції C.\n"
+
+msgid "Calling C function. Z = X+Y"
+msgstr "Викликаємо функцію C. Z = X+Y"
+
+#, c-format
+msgid "with X = %d"
+msgstr "де X = %d"
+
+#, c-format
+msgid "with Y = %d"
+msgstr "де Y = %d"
+
+#, c-format
+msgid "Result Z = %d"
+msgstr "Результат Z = %d"
+
+msgid "Calling a Fortran subroutine from Scilab.\n"
+msgstr "Викликаємо підпрограму Fortran з Scilab.\n"
+
+msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
+msgstr "Викликаємо ilib_for_link для збирання підпрограми Fortran.\n"
+
+msgid "Calling Fortran subroutine. Z = X+Y"
+msgstr "Викликаємо підпрограму Fortran. Z = X+Y"
+
+msgid "Dynamic link"
+msgstr "Динамічне посилання"
+
+msgid "Call a C function"
+msgstr "Виклик функції C"
+
+msgid "Call a Fortran subroutine"
+msgstr "Виклик підпрограми Fortran"
+
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s: потрібен компілятор Fortran або C.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: помилкова кількість вхідних параметрів.\n"
 
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr "Не знайдено компілятора Fortran Intel версії 9, 10, 11 або 12."
@@ -202,7 +285,8 @@ msgstr "%s: цією можливість не можна скористатис
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 msgid ""
 "Due to the multivendors nature of the Unix world, the function "
@@ -218,7 +302,8 @@ msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
 "рядків.\n"
@@ -351,8 +436,8 @@ msgid ""
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
 "%s: попередження: Scilab не вдалося виявити місце зберігання вихідних кодів "
-"Scilab. Будь ласка, повідомте про це на сторінці http://bugzilla.scilab."
-"org/\n"
+"Scilab. Будь ласка, повідомте про це на сторінці "
+"http://bugzilla.scilab.org/\n"
 
 #, c-format
 msgid "%s: Build command: %s\n"
@@ -404,7 +489,8 @@ msgstr "%s: помилкова розмірність вхідного пара�
 
 #, c-format
 msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
-msgstr "   %s: копіювання файлів збирання (Makefile*, libtool...) до TMPDIR\n"
+msgstr ""
+"   %s: копіювання файлів збирання (Makefile*, libtool...) до TMPDIR\n"
 
 #, c-format
 msgid "   %s: Copy %s to TMPDIR\n"
@@ -436,7 +522,8 @@ msgstr ""
 
 #, c-format
 msgid "   %s: Use the previous detection of compiler.\n"
-msgstr "   %s: використання попереднього визначення параметрів компілятора.\n"
+msgstr ""
+"   %s: використання попереднього визначення параметрів компілятора.\n"
 
 #, c-format
 msgid "   %s: Modification of the Makefile in TMPDIR.\n"
@@ -484,7 +571,8 @@ msgstr "%s: помилкова розмірність вхідного пара�
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"

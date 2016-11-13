@@ -6,113 +6,113 @@
 
  * Copyright (C) ENPC - Jean-Philippe Chancelier
 
- * 
+ *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
  *
 
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="geom3d">
-    
+
     <refnamediv>
-        
+
         <refname>geom3d</refname>
-        
+
         <refpurpose>3次元プロットの後に3次元から2次元へ投影する</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>[x,y]=geom3d(x1,y1,z1)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>x1,y1,z1</term>
-                
+
                 <listitem>
-                    
+
                     <para>同じ大きさの実数ベクトル (3次元の点).</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>x,y</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         <literal>x1</literal>,
-                        
+
                         <literal>y1</literal> および <literal>z1</literal>と同じ
-                        
+
                         大きさの実数ベクトル.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
-            <literal>geom3d</literal>は, 
-            
+
+            <literal>geom3d</literal>は,
+
             <literal>plot3d</literal>,　<literal>plot3d1</literal> または <literal>param3d</literal>
-            
+
             のような3次元プロット関数の後に使用され,
-            
+
             3次元空間<literal>(x1(i),y1(i),z1(i))</literal>
-            
+
             における点と投影された二次元平面上の対応する点<literal>(x(i),y(i))</literal>
-            
+
             の間のマッピングを行ないます.
-            
+
             この後,<literal>(x,y)</literal>に行う全ての2次元グラフィックプリミティブを
-            
+
             この3次元プロット上への重ね合わせるために使用できます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 deff("[z]=surface(x,y)","z=sin(x)*cos(y)")
 
@@ -129,17 +129,17 @@ fplot3d(t,t,surface,35,45,"X@Y@Z")
 [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
 
  ]]></programlisting>
-        
+
         <scilab:image>deff("[z]=surface(x,y)","z=sin(x)*cos(y)")
-            
+
             t=%pi*(-10:10)/10;
-            
+
             fplot3d(t,t,surface,35,45,"X@Y@Z")
-            
+
             [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
-            
+
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 
 
@@ -213,80 +213,80 @@ xtitle(my_plot_desc," "," "," ");
 
 
  ]]></programlisting>
-        
+
         <scilab:image>
-            
-            
-            
+
+
+
             my_plot_desc          = "plot3d and use of geom3d";
-            
-            
-            
+
+
+
             r = (%pi):-0.01:0;
-            
+
             x = r.*cos(10*r);
-            
+
             y = r.*sin(10*r);
-            
-            
-            
+
+
+
             deff("[z]=Surf(x,y)","z=sin(x)*cos(y)");
-            
+
             t=%pi*(-10:10)/10;
-            
-            
-            
+
+
+
             // Plot the surface'
-            
+
             fplot3d(t,t,Surf,35,45,"X@Y@Z",[19,2,3]);
-            
-            
-            
+
+
+
             // Add 2d graphics on 3d graphic'
-            
+
             z=(sin(x).*cos(y));
-            
+
             [x1,y1] = geom3d(x,y,z);
-            
+
             xpoly(x1,y1,"lines");
-            
-            
-            
+
+
+
             // Adjust some plotting parameters'
-            
+
             BackgroundColorId           = color(70,174,255);
-            
+
             current_axe                 = gca();
-            
+
             plot_3d                     = current_axe.children(2);
-            
+
             plot_3d.hiddencolor         = 32;
-            
+
             polyline                    = current_axe.children(1)';;
-            
+
             polyline.foreground         = 8;
-            
+
             current_axe.rotation_angles = [70,47];
-            
+
             current_axe.background      = BackgroundColorId;
-            
-            
-            
+
+
+
             // A second 2d graphics'
-            
+
             [x1,y1] = geom3d([0,0],[0,0],[5,0]);
-            
+
             xsegs(x1,y1);
-            
+
             xstring(x1(1),y1(1),"The point (0,0,0)");
-            
-            
-            
+
+
+
             xtitle(my_plot_desc," "," "," ");
-            
+
         </scilab:image>
-        
+
     </refsection>
-    
+
 </refentry>
 

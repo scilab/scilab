@@ -79,8 +79,8 @@ function demo_mandelbrot()
     Matplot1(matrix(A,size(M)),[xmin ymin xmax ymax]);
 
     // Post-tuning the graphics
+    isoview()
     ca = gca();
-    ca.isoview = "on";
     ca.data_bounds = [xmin ymin ; xmax ymax];
     ca.tight_limits = "on";
     ca.axes_visible = ["on" "on" "off"];

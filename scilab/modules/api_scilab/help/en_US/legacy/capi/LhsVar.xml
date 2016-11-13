@@ -10,7 +10,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>LhsVar(RankPos) = RankVar;</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -98,7 +98,7 @@ int sci_mysizedouble(char * fname, unsigned long fname_len)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="AssignOutputVariable">AssignOutputVariable</link>

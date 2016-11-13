@@ -4,178 +4,181 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="copyfile" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>copyfile</refname>
-        
+
         <refpurpose>ファイルをコピー</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>copyfile(source, destination)
-            
+
             [status, message] = copyfile(source, destination)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>source</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         文字列: ファイル名またはディレクトリ名.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>destination</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列: ディレクトリ名.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <code>copyfile(source,destination)</code> は,
-            
+
             ファイルまたはディレクトリ<varname>source</varname>を,
-            
+
             ファイルまたはディレクトリ<varname>destination</varname>に
-            
+
             コピーします.
-            
+
         </para>
-        
+
         <para>
-            
-            <varname>source</varname>がディレクトリの場合, 
-            
+
+            <varname>source</varname>がディレクトリの場合,
+
             <varname>destination</varname>にファイルを指定することは
-            
-            できません. 
-            
+
+            できません.
+
             <warning>
-                
+
                 <code>copyfile</code> 警告を発生せずに既存のファイルを置換します.
-                
+
             </warning>
-            
+
         </para>
-        
+
         <para>
-            
+
             <code>[status, message] = copyfile(source, destination)</code>は,
-            
+
             <varname>source</varname> から <varname>destination</varname>にコピーし,
-            
-            <varname>status</varname> および <varname>message</varname>を返します.	
-            
+
+            <varname>status</varname> および <varname>message</varname>を返します.
+
         </para>
-        
+
         <para>
-            
+
             どのようなオペレーティン部システムであろうと,
-            
+
             コピーに成功した場合,<varname>status</varname>は1となり,
-            
+
             <varname>message</varname>は空になります ;
-            
+
             コピーに失敗した場合,
-            
+
             <varname>status</varname>は0となり,<varname>message</varname>は空でなくなります.
-            
+
         </para>
-        
+
         <para>
-            
+
             コピー先のファイルに指定されるタイムスタンプは
-            
+
             コピー元のファイルのものと同じになります.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"> 
-            
+
+        <programlisting role="example">
+
             copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
-            
+
             [status,message] = copyfile(SCI+"/etc/scilab.start",TMPDIR);
-            
+
         </programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="movefile">movefile</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mdelete">mdelete</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

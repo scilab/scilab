@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="find" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="find" xml:lang="pt">
     <refnamediv>
         <refname>find</refname>
         <refpurpose>encontra índices de elementos verdadeiros em uma matriz ou
@@ -30,7 +33,7 @@
                 <term>x</term>
                 <listitem>
                     <para>pode ser um vetor, matriz ou hipermatriz de booleanos, uma
-                        matriz ou hipermatriz "padrão". 
+                        matriz ou hipermatriz "padrão".
                     </para>
                 </listitem>
             </varlistentry>
@@ -40,7 +43,7 @@
                     <para>um inteiro fornecendo o número máximo de índices a serem
                         retornados. o valor padrão é -1, que significa "todos". Esta opção
                         pode ser usada por eficiência, para evitar uma busca por todos os
-                        índices. 
+                        índices.
                     </para>
                 </listitem>
             </varlistentry>
@@ -81,17 +84,17 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=rand(1,20);
 w=find(A<0.4)
 A(w)
-w=find(A>100) 
+w=find(A>100)
 
 B=rand(1,20);
 w=find(B<0.4,2) //no máximo dois valores retornados
 
 H=rand(4,3,5); //uma hipermatriz
-[i,j,k]=find(H>0.9)  
+[i,j,k]=find(H>0.9)
 
 H(i(1),j(1),k(1))
  ]]></programlisting>

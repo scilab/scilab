@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="schur">
@@ -16,11 +19,11 @@
         <refpurpose>[ordered] Schur decomposition of matrix and pencils</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[U,T] = schur(A)
             [U,dim [,T] ]=schur(A,flag)
             [U,dim [,T] ]=schur(A,extern1)
-            
+
             [As,Es [,Q,Z]]=schur(A,E)
             [As,Es [,Z,dim]] = schur(A,E,flag)
             [Z,dim] = schur(A,E,flag)
@@ -163,7 +166,7 @@
                                     associated with the eigenvalues which are selected by the
                                     external function <literal>extern1</literal> (see external for
                                     details).  This external can be described by a Scilab function
-                                    or by C or Fortran procedure: 
+                                    or by C or Fortran procedure:
                                 </para>
                                 <variablelist>
                                     <varlistentry>
@@ -171,7 +174,7 @@
                                         <listitem>
                                             <para>
                                                 If <literal>extern1</literal> is described by a Scilab function, it
-                                                should have the following calling sequence:
+                                                should have the following syntax:
                                                 <literal>s=extern1(Ev)</literal>, where <literal>Ev</literal> is an eigenvalue and
                                                 <literal>s</literal> a boolean.
                                             </para>
@@ -182,7 +185,7 @@
                                         <listitem>
                                             <para>
                                                 If <literal>extern1</literal> is described by a C or Fortran function it
-                                                should have the following calling sequence:
+                                                should have the following syntax:
                                                 <literal>int extern1(double *EvR, double *EvI)</literal>
                                                 where <literal>EvR</literal> and <literal>EvI</literal> are  eigenvalue real and complex parts.
                                                 a true or non zero returned value stands for selected eigenvalue.
@@ -221,8 +224,8 @@
                                 <para>
                                     <literal>[As,Es,Z,dim] = schur(A,E,'c')</literal>
                                     returns the real generalized
-                                    Schur form of the pencil <literal>s*E-A</literal>. In addition, the dim first columns 
-                                    of <literal>Z</literal> span a basis of the right eigenspace  associated with 
+                                    Schur form of the pencil <literal>s*E-A</literal>. In addition, the dim first columns
+                                    of <literal>Z</literal> span a basis of the right eigenspace  associated with
                                     eigenvalues with negative real parts (stable "continuous
                                     time" generalized eigenspace).
                                 </para>
@@ -231,8 +234,8 @@
                                 </para>
                                 <para>
                                     returns the real generalized
-                                    Schur form of the pencil <literal>s*E-A</literal>. In addition, the dim first columns 
-                                    of <literal>Z</literal> make a basis of the right eigenspace  associated with 
+                                    Schur form of the pencil <literal>s*E-A</literal>. In addition, the dim first columns
+                                    of <literal>Z</literal> make a basis of the right eigenspace  associated with
                                     eigenvalues with magnitude lower than 1 (stable "discrete
                                     time" generalized eigenspace).
                                 </para>
@@ -240,13 +243,13 @@
                                     <literal>[As,Es,Z,dim] = schur(A,E,extern2)</literal>
                                 </para>
                                 <para>
-                                    returns the real generalized Schur form of the pencil <literal>s*E-A</literal>. 
-                                    In addition, the dim first columns 
-                                    of <literal>Z</literal> make a basis of the right eigenspace  associated with 
+                                    returns the real generalized Schur form of the pencil <literal>s*E-A</literal>.
+                                    In addition, the dim first columns
+                                    of <literal>Z</literal> make a basis of the right eigenspace  associated with
                                     eigenvalues of the pencil which are selected according to a
                                     rule which is given by the function <literal>extern2</literal>. (see external
                                     for details). This external can be described by a Scilab
-                                    function or by C or Fortran procedure:      
+                                    function or by C or Fortran procedure:
                                 </para>
                                 <variablelist>
                                     <varlistentry>
@@ -254,7 +257,7 @@
                                         <listitem>
                                             <para>
                                                 If <literal>extern2</literal> is described by a Scilab function, it should
-                                                have the following calling sequence:
+                                                have the following syntax:
                                                 <literal>s=extern2(Alpha,Beta)</literal>, where <literal>Alpha</literal> and
                                                 <literal>Beta</literal> defines a generalized eigenvalue and
                                                 <literal>s</literal> a boolean.
@@ -304,7 +307,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //SCHUR FORM OF A MATRIX
 //----------------------
 A=diag([-0.9,-2,2,0.9]);X=rand(A);A=inv(X)*A*X;
@@ -315,7 +318,7 @@ T(1:dim,1:dim)      //stable cont. eigenvalues
 
 function t=mytest(Ev),t=abs(Ev)<0.95,endfunction
 [U,dim,T]=schur(A,mytest);
-T(1:dim,1:dim)  
+T(1:dim,1:dim)
 
 // The same function in C (a Compiler is required)
 cd TMPDIR;
@@ -327,7 +330,7 @@ mputl(C,TMPDIR+'/mytest.c')
 
 //build and link
 lp=ilib_for_link('mytest','mytest.c',[],'c');
-link(lp,'mytest','c'); 
+link(lp,'mytest','c');
 
 //run it
 [U,dim,T]=schur(A,'mytest');
@@ -356,7 +359,7 @@ mputl('      '+ftn,TMPDIR+'/mytestf.f')
 
 //build and link
 lp=ilib_for_link('mytestf','mytestf.f',[],'F');
-link(lp,'mytestf','f'); 
+link(lp,'mytestf','f');
 
 //run it
 
@@ -364,7 +367,7 @@ link(lp,'mytestf','f');
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="spec">spec</link>

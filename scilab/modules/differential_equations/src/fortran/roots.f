@@ -23,7 +23,7 @@ c kathie l. hiebert and lawrence f. shampine, implicitly defined
 c output points for solutions of ode-s, sandia report sand80-0180,
 c february, 1980.
 c
-c!Calling sequence
+c!Syntax
 c
 c ng     = number of functions gi, or the number of components of
 c          the vector valued function g(x).  input only.

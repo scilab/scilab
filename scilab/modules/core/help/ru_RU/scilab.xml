@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             scilab &lt;Options&gt;
             scilab-adv-cli &lt;Options&gt;
@@ -121,10 +121,11 @@
             <varlistentry>
                 <term>-quit</term>
                 <listitem>
-                    <para>This option forces scilab to always exit after the instruction(s) passed with the <literal>-e</literal>
-                    option, or the script referred to by the <literal>-f</literal> option, have been executed,
-                    even in case of a runtime error. This option should always be used in batch mode.
-                    It is ignored if neither <literal>-e</literal> nor <literal>-f</literal> options are present.
+                    <para>
+                        This option forces scilab to always exit after the instruction(s) passed with the <literal>-e</literal>
+                        option, or the script referred to by the <literal>-f</literal> option, have been executed,
+                        even in case of a runtime error. This option should always be used in batch mode.
+                        It is ignored if neither <literal>-e</literal> nor <literal>-f</literal> options are present.
                     </para>
                 </listitem>
             </varlistentry>

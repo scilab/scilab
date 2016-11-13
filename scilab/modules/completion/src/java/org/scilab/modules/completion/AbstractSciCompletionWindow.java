@@ -3,11 +3,14 @@
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010-2011 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -85,6 +88,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * @param component the component to focus
      * @see com.artenum.rosetta.interfaces.ui.CompletionWindow#setFocusOut(javax.swing.JComponent)
      */
+    @Override
     public void setFocusOut(JComponent component) {
         focusOutComponent = component;
     }
@@ -94,6 +98,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * @param inputParsingManager the input parsing manager to set
      * @see com.artenum.rosetta.interfaces.ui.CompletionWindow#setInputParsingManager(com.artenum.rosetta.interfaces.core.InputParsingManager)
      */
+    @Override
     public void setInputParsingManager(InputParsingManager inputParsingManager) {
         this.inputParsingManager = inputParsingManager;
     }
@@ -104,6 +109,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * Caution, the component shouldn't be null otherwise the completion window
      * will never get the focus
      */
+    @Override
     public void setGraphicalContext(Component component) {
 
         /* List to display all completion items */
@@ -143,6 +149,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * @param location position of the top left corner of the window
      * @see com.artenum.rosetta.interfaces.ui.CompletionWindow#show(java.util.List, java.awt.Point)
      */
+    @Override
     public abstract void show(List<CompletionItem> list, Point location);
 
     /**
@@ -150,6 +157,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * @return the character string
      * @see com.artenum.rosetta.interfaces.ui.CompletionWindow#getCompletionResult()
      */
+    @Override
     public String getCompletionResult() {
         return ((CompletionItem) listUI.getSelectedValue()).getReturnValue();
     }
@@ -203,6 +211,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
          * @return the corresponding element
          * @see javax.swing.ListModel#getElementAt(int)
          */
+        @Override
         public Object getElementAt(int index) {
             /* Filtering is done by Scilab */
             return data.get(index);
@@ -213,13 +222,14 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
          * @return the size
          * @see javax.swing.ListModel#getSize()
          */
+        @Override
         public int getSize() {
             /* Filtering is done by Scilab */
             return data.size();
         }
 
         /**
-         * Set the filter to apply to the dictionnary
+         * Set the filter to apply to the dictionary
          * @param filterToSet the filter to set
          */
         public void setFilter(String filterToSet) {
@@ -259,7 +269,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
 
         boolean typeStringIsFile = false;
 
-        if (stringToAddType.equals(Messages.gettext("File or Directory"))) {
+        if (stringToAddType.equals(Messages.gettext("File")) || stringToAddType.equals(Messages.gettext("Directory"))) {
             typeStringIsFile = true;
         }
 
@@ -289,6 +299,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * Management of the key typing for the filtering
      * @param e event
      */
+    @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             /* The user validates an entry in the list */
@@ -352,6 +363,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * What to do when a key is released ?
      * @param e event
      */
+    @Override
     public void keyReleased(KeyEvent e) {
     }
 
@@ -359,6 +371,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * What to do when a key is typed ?
      * @param e event
      */
+    @Override
     public void keyTyped(KeyEvent e) {
     }
 
@@ -366,6 +379,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * What to do when the completion window gets the focus ?
      * @param e event
      */
+    @Override
     public void focusGained(FocusEvent e) {
     }
 
@@ -373,6 +387,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * To support the auto hide when focus is lost
      * @param e event
      */
+    @Override
     public void focusLost(FocusEvent e) {
         setVisible(false);
     }
@@ -381,6 +396,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * To support the completion window resize
      * @param e event
      */
+    @Override
     public void mouseDragged(MouseEvent e) {
         Point origine = window.getLocationOnScreen();
         Point destination = ((Component) e.getSource()).getLocationOnScreen();
@@ -394,6 +410,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * What to do when the mouse is moved over the completion window ?
      * @param e event
      */
+    @Override
     public void mouseMoved(MouseEvent e) {
     }
 
@@ -401,6 +418,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * What to do when a mouse button is clicked over the completion window ?
      * @param e event
      */
+    @Override
     public void mouseClicked(MouseEvent e) {
         if (model.getSize() > 0) {
             /* Select the list item under the mouse */
@@ -420,6 +438,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * What to do when the mouse enters the completion window ?
      * @param e event
      */
+    @Override
     public void mouseEntered(MouseEvent e) {
     }
 
@@ -427,6 +446,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * What to do when the mouse exits over the completion window ?
      * @param e event
      */
+    @Override
     public void mouseExited(MouseEvent e) {
     }
 
@@ -434,6 +454,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * What to do when a mouse button mouse is pressed over the completion window ?
      * @param e event
      */
+    @Override
     public void mousePressed(MouseEvent e) {
     }
 
@@ -441,6 +462,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
      * What to do when a mouse button mouse is released over the completion window ?
      * @param e event
      */
+    @Override
     public void mouseReleased(MouseEvent e) {
         window.validate();
     }

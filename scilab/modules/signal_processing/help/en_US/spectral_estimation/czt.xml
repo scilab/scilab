@@ -5,7 +5,7 @@
         <refpurpose>chirp z-transform algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[czx]=czt(x,m,w,phi,a,theta)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -68,7 +68,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=.7*exp(%i*%pi/6);
 [ffr,bds]=xgetech(); //preserve current context
 rect=[-1.2,-1.2*sqrt(2),1.2,1.2*sqrt(2)];

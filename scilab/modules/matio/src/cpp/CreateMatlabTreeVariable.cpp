@@ -4,11 +4,14 @@
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  * Copyright (C) 2015 - Scilab Enterprises - Sylvain GENIN
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -24,6 +27,7 @@ extern "C"
 #include "CreateMatlabVariable.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "sci_malloc.h"
 }
 
 types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
@@ -52,6 +56,11 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
                 piDims[i] = (int)matVariable->dims[i];
             }
         }
+    }
+
+    if (!piDims)
+    {
+        return types::Double::Empty();
     }
 
     switch (matVariable->class_type)
@@ -90,7 +99,7 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
             {
                 pOut = new types::Struct(iRank, piDims);
                 int iSizeStruct = Mat_VarGetNumberOfFields(matVariable);
-
+                wchar_t* temp;
                 matvar_t** allData = (matvar_t**)(matVariable->data);
 
                 bool bSearchSizeStruck = false;
@@ -127,6 +136,7 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
             strncat(pChar, (char*)matVariable->data, piDims[1]);
             types::String* pString = new types::String(pChar);
             pOut = pString;
+            FREE(pChar);
         }
         break;
         case MAT_C_SPARSE: /* 5 */
@@ -144,6 +154,8 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
                 if (colIndexes == NULL)
                 {
                     Scierror(999, _("%s: No more memory.\n"), "CreateMatlabTreeVariable");
+                    delete pSparse;
+                    FREE(piDims);
                     return NULL;
                 }
 
@@ -158,6 +170,9 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
             if (rowIndexes == NULL)
             {
                 Scierror(999, _("%s: No more memory.\n"), "CreateMatlabTreeVariable");
+                delete pSparse;
+                FREE(colIndexes);
+                FREE(piDims);
                 return NULL;
             }
 
@@ -307,13 +322,9 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
         case MAT_C_FUNCTION: /* 16 to be written */
         default:
             /* Empty matrix returned */
+            FREE(piDims);
             return types::Double::Empty();
     }
-
-    if (iRank != 0)
-    {
-        FREE(piDims);
-    }
-
+    FREE(piDims);
     return pOut;
 }

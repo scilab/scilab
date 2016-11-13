@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="fftshift">
+    <refnamediv>
+        <refname>fftshift</refname>
+        <refpurpose>rearranges the fft output, moving the zero frequency to the center of the spectrum</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>y=fftshift(x [,job])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>real or complex vector or matrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>real or complex vector or matrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>job</term>
+                <listitem>
+                    <para>integer, dimension selection, or string 'all'</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            If <literal>x</literal> results of an fft computation <literal>y=fftshift(x)</literal> or <literal>y=fftshift(x,"all")</literal> moves the zero frequency component to the center
+            of the spectrum, which is sometimes a more convenient form.
+        </para>
+        <para>
+            If <literal>x</literal> is a vector of size n, y is the vector <literal>x([n/2+1:n,1:n/2])</literal>
+        </para>
+        <para>
+            If <literal>x</literal> is an <literal>m</literal> by <literal>n</literal> matrix <literal>y</literal> is the matrix
+            <literal>x([m/2+1:n,1:m/2],[n/2+1:n,1:n/2])</literal>.
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+  [x11 x12]                  [x22 x21]
+x=[       ]        gives   y=[       ]
+  [x21 x22]                  [x12 x11]
+ ]]></programlisting>
+        <para>
+            <literal>y=fftshift(x,n)</literal> makes the swap only along the <literal>n</literal>th dimension
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Make a signal
+t=0:0.1:1000;
+x=3*sin(t)+8*sin(3*t)+0.5*sin(5*t)+3*rand(t);
+// Compute the fft
+y=fft(x,-1);
+
+// Display
+clf();
+subplot(2,1,1);plot2d(abs(y))
+subplot(2,1,2);plot2d(fftshift(abs(y)))
+ ]]></programlisting>
+        <scilab:image>
+            t=0:0.1:1000;
+            x=3*sin(t)+8*sin(3*t)+0.5*sin(5*t)+3*rand(t);
+            y=fft(x,-1);
+            subplot(2,1,1);plot2d(abs(y))
+            subplot(2,1,2);plot2d(fftshift(abs(y)))
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// Make a 2D image
+t=0:0.1:30;
+x=3*sin(t')*cos(2*t)+8*sin(3*t')*sin(5*t)+..
+  0.5*sin(5*t')*sin(5*t)+3*rand(t')*rand(t);
+// Compute the fft
+y=fft(x,-1);
+
+// Display
+clf();
+xset('colormap',hotcolormap(256))
+subplot(2,1,1);Matplot(abs(y))
+subplot(2,1,2);Matplot(fftshift(abs(y)))
+ ]]></programlisting>
+        <scilab:image>
+            t=0:0.1:30;
+            x=3*sin(t')*cos(2*t)+8*sin(3*t')*sin(5*t)+..
+            0.5*sin(5*t')*sin(5*t)+3*rand(t')*rand(t);
+            y=fft(x,-1);
+            xset('colormap',hotcolormap(256))
+            subplot(2,1,1);Matplot(abs(y))
+            subplot(2,1,2);Matplot(fftshift(abs(y)))
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fft">fft</link>
+            </member>
+            <member>
+                <link linkend="ifftshift">ifftshift</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

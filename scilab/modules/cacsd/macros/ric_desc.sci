@@ -1,17 +1,20 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function [X1,X2,zero]=ric_desc(H,E)
     //[X1,X2,zero]=ric_desc(H [,E])  Descriptor Riccati solver with
     // hamiltonian matrices as inputs.
     //        (see also riccati)
-    //In the continuous time case calling sequence is ric_desc(H) (one input).
+    //In the continuous time case, the syntax is ric_desc(H) (one input).
     // Riccati equation is:
     //  (Ec)   A'*X + X*A + X*R*X -Q = 0.
     // Defining the hamiltonian matrix H by:
@@ -23,7 +26,7 @@ function [X1,X2,zero]=ric_desc(H,E)
     // (solution X is also given by   X=riccati(A,Q,R,'c'))
     //
     //
-    //In the discrete-time case calling sequence is ric_desc(H,E) (two inputs).
+    //In the discrete-time case, the syntax is ric_desc(H,E) (two inputs).
     // Riccati solution is:
     //   (Ed)  A'*X*A-(A'*X*B*(R+B'*X*B)^-1)*(B'*X*A)+C-X = 0.
     //

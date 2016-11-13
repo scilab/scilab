@@ -5,7 +5,7 @@
         <refpurpose>Handle of the object whose callback is executing.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             gcbo
         </synopsis>
@@ -27,7 +27,7 @@
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="getcallbackobject">getcallbackobject</link>

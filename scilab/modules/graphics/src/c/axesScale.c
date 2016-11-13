@@ -3,11 +3,14 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -49,12 +52,18 @@ int sciZoom2D(int iSubwinUID, const double zoomRect[4])
         // add Z scale to data bounds.
         getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **) &zoomBox);
 
-        zoomBox[0] = zoomRect[0];
-        zoomBox[1] = zoomRect[1];
-        zoomBox[2] = zoomRect[2];
-        zoomBox[3] = zoomRect[3];
-
-        return sciZoom3D(iSubwinUID, zoomBox);
+        if (zoomBox)
+        {
+            zoomBox[0] = zoomRect[0];
+            zoomBox[1] = zoomRect[1];
+            zoomBox[2] = zoomRect[2];
+            zoomBox[3] = zoomRect[3];
+            return sciZoom3D(iSubwinUID, zoomBox);
+        }
+        else
+        {
+            return SET_PROPERTY_ERROR;
+        }
     }
     else
     {

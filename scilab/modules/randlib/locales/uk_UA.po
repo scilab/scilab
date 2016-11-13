@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-23 05:49+0000\n"
+"PO-Revision-Date: 2016-02-12 17:33+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "Language: uk\n"
 
 #, c-format
@@ -151,7 +151,8 @@ msgid "%s: setgmn return with state %d.\n"
 msgstr "%s: функція setgmn завершила роботу зі станом %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
 "між %lf та %d.\n"
@@ -225,7 +226,8 @@ msgstr ""
 "булевих, рядкових або поліноміальних значень.\n"
 
 #, c-format
-msgid "%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
+msgid ""
+"%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
 msgstr ""
 "%s: помилкове значення вхідних параметрів №%d і №%d: мало бути Low < High.\n"
 
@@ -364,8 +366,8 @@ msgid ""
 "The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
 msgstr ""
 "\n"
-"Третім компонентом вектора fsultra має бути ціле число у діапазоні [1, "
-"2^32-1]\n"
+"Третім компонентом вектора fsultra має бути ціле число у діапазоні [1, 2^32-"
+"1]\n"
 
 msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
 msgstr ""
@@ -392,3 +394,73 @@ msgstr ""
 
 msgid "Scilab randlib interface not installed.\n"
 msgstr "Інтерфейс randlib Scilab не встановлено.\n"
+
+msgid "Simulation of a binomial random variable"
+msgstr ""
+"Моделювання випадкової величини, розподіленої за біноміальним законом"
+
+msgid "Simulation"
+msgstr "Моделювання"
+
+msgid "Theory"
+msgstr "Теорія"
+
+msgid "Simulation of a discrete random variable"
+msgstr "Моделювання випадкової величини із дискретним розподілом"
+
+msgid "Simulation of a discrete uniform random variable"
+msgstr "Моделювання випадкової величини із дискретним рівномірним розподілом"
+
+msgid "Simulation of a Erlang random variable"
+msgstr "Моделювання випадкової величини із розподілом Ерланга"
+
+msgid "Simulation of an exponential random variable"
+msgstr "Моделювання випадкової величини із експоненційним розподілом"
+
+msgid "Classes"
+msgstr "Класи"
+
+msgid "p must be < 1"
+msgstr "p має бути < 1"
+
+msgid "Simulation of a geometric random variable"
+msgstr "Моделювання випадкової величини із геометричним розподілом"
+
+msgid "Simulation of a hyper geometric random variable"
+msgstr "Моделювання випадкової величини із гіпергеометричним розподілом"
+
+msgid "Simulation of a Poisson random variable"
+msgstr "Моделювання випадкової величини із розподілом Пуассона"
+
+msgid "Random"
+msgstr "Випадкова"
+
+msgid "binomial random variable"
+msgstr "змінна із біноміальним розподілом"
+
+msgid "discrete random variable"
+msgstr "змінна із дискретним розподілом"
+
+msgid "discrete uniform random variable"
+msgstr "змінна із дискретним рівномірним розподілом"
+
+msgid "geometric random variable"
+msgstr "випадкова змінна із геометричним розподілом"
+
+msgid "Poisson random variable"
+msgstr "випадкова змінна із розподілом Пуассона"
+
+msgid "Exponential random variable"
+msgstr "випадкова змінна із експоненційним розподілом"
+
+msgid "Weibull random variable"
+msgstr "випадкова змінна із розподілом Вейбулла"
+
+msgid "Hyper geometric random variable"
+msgstr "випадкова змінна із гіпергеометричним розподілом"
+
+msgid "Erlang random variable"
+msgstr "випадкова змінна із розподілом Ерланга"
+
+msgid "Simulation of a Weibull random variable"
+msgstr "Моделювання випадкової величини із розподілом Вейбулла"

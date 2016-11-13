@@ -4,165 +4,168 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="fprintfMat">
-    
+
     <refnamediv>
-        
+
         <refname>fprintfMat</refname>
-        
+
         <refpurpose>行列をファイルに書き込む</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>fprintfMat(file, M [,format,text])</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>fil</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列, 書き込むファイルのパス名</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>M</term>
-                
+
                 <listitem>
-                    
+
                     <para>実数の行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>format</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
-                        形式を指定する文字列. オプションのパラメータで, 
-                        
+
+                        形式を指定する文字列. オプションのパラメータで,
+
                         デフォルト値は<literal>"%lf"</literal>.
-                        
+
                     </para>
-                    
+
                     <para>サポートされる形式:
-                        
+
                         <literal>%[width].[precision]type</literal> または
-                        
+
                         <literal>%type</literal>, ただし:
-                        
+
                     </para>
-                    
+
                     <para>
-                        
-                        <literal>width</literal>: 
-                        
+
+                        <literal>width</literal>:
+
                         文字出力の最小数を指定するオプションの数値;
-                        
+
                     </para>
-                    
+
                     <para>
-                        
-                        <literal>precision</literal>: 
-                        
+
+                        <literal>precision</literal>:
+
                         出力フィールド全てまたは一部に関する
-                        
+
                         出力される文字の最大数を指定するオプションの数値;
-                        
+
                         または整数値を印字する桁の最小数;
-                        
+
                     </para>
-                    
+
                     <para>
-                        
+
                         <literal>type</literal>: lf, lg, d, i, e, f, g (詳細は<link
             linkend="scanf_conversion">scanf_conversion</link> を参照).
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>text</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         ファイルの先頭に保存される
-                        
+
                         数値以外のコメントを指定する文字列の行(列)ベクトル.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <function>fprintfMat</function> 関数は,整形済みのファイルに
-            
+
             行列を書き込みます.
-            
+
             行列の各行はファイルの中で1行となります.
-            
+
             <varname>text</varname>が指定された場合,
-            
+
             ファイルの先頭に1行に1要素/行で
-            
+
             <varname>text</varname>の要素が要素毎に挿入されます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 n = 50;
 a = rand(n, n, "u");
 fprintfMat(TMPDIR + "/Mat", a, "%5.2f");
@@ -172,114 +175,114 @@ a1 = fscanfMat(TMPDIR + "/Mat");
 some_comment = ["This is a comment","This the second line of the comment.","This is the third line of the comment."];
 fprintfMat(TMPDIR + "/Mat1", a, "%5.2f",some_comment);
    ]]> </programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="scanf_conversion">scanf_conversion</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mclose">mclose</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="meof">meof</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mfprintf">mfprintf</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mfscanf">mfscanf</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="fscanfMat">fscanfMat</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mget">mget</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mgetstr">mgetstr</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mopen">mopen</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mprintf">mprintf</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mput">mput</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mputstr">mputstr</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mscanf">mscanf</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mseek">mseek</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mtell">mtell</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="mdelete">mdelete</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -30,7 +33,6 @@ import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfString;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.io.HandledElement;
 import org.scilab.modules.xcos.io.ScilabTypeCoder;
@@ -97,13 +99,13 @@ class RawDataHandler implements ScilabHandler {
 
         switch (found) {
             case ScilabBoolean:
-                // no break on purpose
+            // no break on purpose
             case ScilabDouble:
-                // no break on purpose
+            // no break on purpose
             case ScilabInteger:
-                // no break on purpose
+            // no break on purpose
             case ScilabString:
-                // no break on purpose
+            // no break on purpose
             case Array: {
                 String as = atts.getValue("as");
 
@@ -306,25 +308,25 @@ class RawDataHandler implements ScilabHandler {
                     switch (ScilabIntegerTypeEnum.valueOf(v)) {
                         case sci_int8:
                             unsigned = false;
-                            // no break on purpose
+                        // no break on purpose
                         case sci_uint8:
                             container = new ScilabInteger(new byte[height][width], unsigned);
                             break;
                         case sci_int16:
                             unsigned = false;
-                            // no break on purpose
+                        // no break on purpose
                         case sci_uint16:
                             container = new ScilabInteger(new short[height][width], unsigned);
                             break;
                         case sci_int32:
                             unsigned = false;
-                            // no break on purpose
+                        // no break on purpose
                         case sci_uint32:
                             container = new ScilabInteger(new int[height][width], unsigned);
                             break;
                         case sci_int64:
                             unsigned = false;
-                            // no break on purpose
+                        // no break on purpose
                         case sci_uint64:
                             container = new ScilabInteger(new long[height][width], unsigned);
                             break;
@@ -358,13 +360,13 @@ class RawDataHandler implements ScilabHandler {
     public void endElement(HandledElement found) {
         switch (found) {
             case Array:
-                // no break on purpose
+            // no break on purpose
             case ScilabBoolean:
-                // no break on purpose
+            // no break on purpose
             case ScilabDouble:
-                // no break on purpose
+            // no break on purpose
             case ScilabInteger:
-                // no break on purpose
+            // no break on purpose
             case ScilabString: {
                 // defensive programming
                 if (!(saxHandler.parents.peek() instanceof RawDataDescriptor)) {
@@ -399,10 +401,10 @@ class RawDataHandler implements ScilabHandler {
                     }
                     case DIAGRAM_CONTEXT: {
                         // defensive programming
-                        if (!(parent instanceof ScicosObjectOwner)) {
+                        if (!(parent instanceof XcosCell)) {
                             return;
                         }
-                        ScicosObjectOwner diagram = (ScicosObjectOwner) parent;
+                        XcosCell diagramOrSuperBlockRoot = (XcosCell) parent;
 
                         @SuppressWarnings("unchecked")
                         ArrayList value = (ArrayList) fieldValue.value;
@@ -410,7 +412,7 @@ class RawDataHandler implements ScilabHandler {
                         for (int i = 0; i < value.size(); i++) {
                             ctx.set(i, (String) value.get(i));
                         }
-                        saxHandler.controller.setObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.DIAGRAM_CONTEXT, ctx);
+                        saxHandler.controller.setObjectProperty(diagramOrSuperBlockRoot.getUID(), diagramOrSuperBlockRoot.getKind(), ObjectProperties.DIAGRAM_CONTEXT, ctx);
                         break;
                     }
                     case STATE:

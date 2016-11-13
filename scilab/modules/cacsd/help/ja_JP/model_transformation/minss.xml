@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="minss">
+    <refnamediv>
+        <refname>minss</refname>
+        <refpurpose>最小実現</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[slc]=minss( sl [,tol])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl,slc</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト (状態空間形式の線形システム)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>
+                        実数 (ランク定義の閾値 (<literal>contr</literal>参照)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>minss</literal> は,<literal>sl</literal>の
+            最小実現を<literal>slc</literal>に返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+sl=syslin('c',[1 0;0 2],[1;0],[2 1]);
+ssprint(sl);
+ssprint(minss(sl))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="contr">contr</link>
+            </member>
+            <member>
+                <link linkend="minreal">minreal</link>
+            </member>
+            <member>
+                <link linkend="arhnk">arhnk</link>
+            </member>
+            <member>
+                <link linkend="contrss">contrss</link>
+            </member>
+            <member>
+                <link linkend="obsvss">obsvss</link>
+            </member>
+            <member>
+                <link linkend="balreal">balreal</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

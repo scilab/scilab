@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge STEER
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="p_margin">
+    <refnamediv>
+        <refname>p_margin</refname>
+        <refpurpose>phase margin and associated crossover frequency</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            [phm,fr] = p_margin(h)
+            phm=p_margin(h)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>
+                        a SISO linear system (see :<link linkend="syslin">syslin</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>phm</term>
+                <listitem>
+                    <para>a number, the phase margin in degree if it exists or an empty matrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fr</term>
+                <listitem>
+                    <para>a number, the corresponding frequency (in Hz) or an empty matrix.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Given a SISO linear system in continuous or discrete time,
+            <literal>p_margin</literal> returns <literal>phm</literal>, the
+            phase margin in degree of <literal>h</literal> and
+            <literal>fr</literal>, the achieved corresponding frequency in
+            Hz.
+        </para>
+        <para>The phase margin is the values of the phase at frequency
+            points where the nyquist plot of <literal>h</literal> crosses the
+            unit circle. In other words the phase margin is the difference
+            between the phase of the frequency response of
+            <literal>h</literal> and -180° when the gain of
+            <literal>h</literal> is 1.
+        </para>
+        <para>The algorithm uses polynomial root finder to solve the equations:</para>
+        <variablelist>
+            <varlistentry>
+                <term>h(s)*h(-s)=1</term>
+                <listitem>
+                    <para> for the continuous time case.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h(z)*h(1/z)=1</term>
+                <listitem>
+                    <para> for the discrete time case.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//continuous case
+h=syslin('c',-1+%s,3+2*%s+%s^2)
+[p,fr]=p_margin(h)
+[p,fr]=p_margin(h+0.7)
+show_margins(h+0.7,'nyquist')
+
+//discrete case
+h = syslin(0.1,0.04798*%z+0.0464,%z^2-1.81*%z+0.9048);//ok
+[p ,f]=p_margin(h)
+show_margins(h,'nyquist')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="g_margin">g_margin</link>
+            </member>
+            <member>
+                <link linkend="show_margins">show_margins</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="black">black</link>
+            </member>
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
+                <link linkend="nicholschart">nicholschart</link>
+            </member>
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

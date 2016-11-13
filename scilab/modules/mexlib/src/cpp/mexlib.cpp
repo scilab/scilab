@@ -4,11 +4,14 @@
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,7 +26,7 @@
  *    -Assumes that sparse matrices have been converted into the Matlab
  *    format. Scilab sparse matrices are stored in the transposed Matlab
  *    format. If A is a sparse Scilab matrix, it should be converted
- *    by the command A=mtlb_sparse(A) in the calling sequence of the
+ *    by the command A=mtlb_sparse(A) in the syntax of the
  *    mex function.
  *    -Structs and Cells are Scilab mlists:
  *    Struct=mlist(["st","dims","field1",...,"fieldk"],
@@ -69,6 +72,7 @@
 
 extern "C"
 {
+#include "sci_malloc.h"
 #include "machine.h"
 #include "mex.h"
 #include "os_string.h"
@@ -91,6 +95,7 @@ static int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, con
     symbol::Symbol *symbol = new symbol::Symbol(name);
 
     types::InternalType *value = context->get(*symbol);
+    delete symbol;
     types::Function *func = value->getAs<types::Function>();
     if (func == NULL)
     {
@@ -111,7 +116,6 @@ static int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, con
     {
         plhs[i] = (mxArray *) (out[i]);
     }
-
     return 0;
 }
 
@@ -284,7 +288,7 @@ void mxDestroyArray(mxArray *ptr)
     if (mxGetClassID(ptr) != mxUNKNOWN_CLASS)
     {
         delete (types::InternalType*)ptr;
-        *ptr = NULL;
+        ptr = NULL;
     }
 }
 
@@ -608,7 +612,7 @@ char *mxArrayToString(const mxArray *ptr)
         length += (int)strlen(strings[k]);
     }
 
-    char *str = (char *)malloc(sizeof(char *) * length);
+    char *str = (char *)malloc(sizeof(char) * length);
     for (int k = 0; k < items; k++)
     {
         int dest_length = strlen(strings[k]);
@@ -1673,6 +1677,7 @@ int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm
     {
         return 1;
     }
+
     return 0;
 }
 

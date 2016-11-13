@@ -1,10 +1,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004-2006 - INRIA - Farid Belahcene
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function pie(varargin)
     // Copyright INRIA
@@ -65,7 +68,8 @@ function pie(varargin)
             txt = varlist(3);
         elseif iscellstr(varlist(3)) then
             for j=1:size(varlist(3),"*")
-                txt(j) = varlist(3).entries(j);
+                tmp = varlist(3);
+                txt(j) = tmp{j};
             end
         else
             error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector of strings expected.\n"),"pie", 3));
@@ -87,6 +91,7 @@ function pie(varargin)
     CurColor = 0;
 
     drawlater();
+    a = gca();
     // Create a close polyline for every parts of pie, the polyline inside color is determinated by the plot colormap
     for i=1:size(x,"*")
         xi = [];
@@ -115,7 +120,6 @@ function pie(varargin)
 
         xfpolys(xi,yi);
         e = gce();
-        a = gca();
         ei = e.children;
         if or(i == iesp) then
             ei.x_shift = ones(1,size(xi,"*")) * (1/10) * cos((teta_2+teta_1)/2);
@@ -136,12 +140,11 @@ function pie(varargin)
         [Color,CurColor] = setDefaultColor(CurColor);
         ei.background = Color;
         ei.fill_mode = "on";
-        a.isoview = "on";
-        a.box = "off";
-        a.axes_visible = "off";
         // Update data_bounds
         a.data_bounds = [min(-1.3,a.data_bounds(1,1)) min(-1.3,a.data_bounds(1,2));max(1.3,a.data_bounds(2,1)) max(1.3,a.data_bounds(2,2))];
     end
+    isoview("on")
+    a.box = "off";
+    a.axes_visible = "off";
     drawnow();
-
 endfunction

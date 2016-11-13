@@ -16,7 +16,7 @@
             <varlistentry>
                 <term>v  </term>
                 <listitem>
-                    <para>un vecteur, une matrice ou une hypermatrice 
+                    <para>un vecteur, une matrice ou une hypermatrice
                     </para>
                 </listitem>
             </varlistentry>
@@ -30,7 +30,7 @@
             <varlistentry>
                 <term>sizes  </term>
                 <listitem>
-                    <para>vecteur d'entiers
+                    <para>vecteur d'entiers positifs
                     </para>
                 </listitem>
             </varlistentry>
@@ -62,7 +62,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=[1 2 3;4 5 6]
 matrix(a,1,6)
 matrix(a,1,-1)
@@ -83,6 +83,9 @@ matrix(a,3,2)
             </member>
             <member>
                 <link linkend="zeros">zeros</link>
+            </member>
+            <member>
+                <link linkend="emptystr">emptystr</link>
             </member>
             <member>
                 <link linkend="rand">rand</link>

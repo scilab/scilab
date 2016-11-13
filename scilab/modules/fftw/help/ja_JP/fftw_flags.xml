@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fftw_flags" xml:lang="ja">
@@ -27,7 +30,7 @@
                 <listitem>
                     <para>
                         文字列または整数. プランナアルゴリズムを指定.
-			下記参照.
+                        下記参照.
                     </para>
                 </listitem>
             </varlistentry>
@@ -35,7 +38,7 @@
                 <term>a</term>
                 <listitem>
                     <para>整数. プランナコード.下記参照.
-		    </para>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -49,70 +52,70 @@
     <refsection>
         <title>説明</title>
         <para>
-	  この関数により,fftwプランナアルゴリズムを定義する際に
-	  使用されるアルゴリズムを選択できます.
-	  プランナはfftを計算する効率的な手法を定義する
-	  際に使用されます.
+            この関数により,fftwプランナアルゴリズムを定義する際に
+            使用されるアルゴリズムを選択できます.
+            プランナはfftを計算する効率的な手法を定義する
+            際に使用されます.
         </para>
         <para>
-          <warning>
-            警告: デフォルト値 "FFTW_ESTIMATE" は通常かなり効率的な
-	    プランです.
-	    fft効率が実際に重要で
-	    類似のコールを数多く行う場合にのみ変更を検討ください.
-          </warning>
+            <warning>
+                警告: デフォルト値 "FFTW_ESTIMATE" は通常かなり効率的な
+                プランです.
+                fft効率が実際に重要で
+                類似のコールを数多く行う場合にのみ変更を検討ください.
+            </warning>
         </para>
         <para>以下のエントリを指定可能です :</para>
         <itemizedlist>
             <listitem>
-                <para>{FFTW_ESTIMATE} または 64. 
-		  これを指定すると, 他のアルゴリズムで使用される
-		  実際の観測量の代わりに, 
-		  (おそらく準最適の)プランを簡単に選択できる
-		  簡単な経験則が使用されます.
-		  このフラグを指定すると,
-		  入力/出力配列はプランニングの間は上書きされません.
-		  これがデフォルト値です.
+                <para>{FFTW_ESTIMATE} または 64.
+                    これを指定すると, 他のアルゴリズムで使用される
+                    実際の観測量の代わりに,
+                    (おそらく準最適の)プランを簡単に選択できる
+                    簡単な経験則が使用されます.
+                    このフラグを指定すると,
+                    入力/出力配列はプランニングの間は上書きされません.
+                    これがデフォルト値です.
                 </para>
             </listitem>
             <listitem>
-                <para>FFTW_MEASURE または 0. 
-		  実際に計算した複数回のFFTとそれらの実行時間
-		  の計測値から最適なプランをみつけるようFFTWに指示します.
-		  実行する計算機に依存した時間がかかります(通常は数秒).
+                <para>FFTW_MEASURE または 0.
+                    実際に計算した複数回のFFTとそれらの実行時間
+                    の計測値から最適なプランをみつけるようFFTWに指示します.
+                    実行する計算機に依存した時間がかかります(通常は数秒).
                 </para>
             </listitem>
             <listitem>
-                <para>FFTW_PATIENT または 32. 
-		  "FFTW_MEASURE"と似ていますが, 
-		  より広範なアルゴリズムを検討し,しばしば
-		  "より最適な"プランを出力します
-		  (特に大規模な変換の場合).
-		  しかし,プランニング時間は数倍かかります
-		  (特に大規模な変換の場合).
+                <para>FFTW_PATIENT または 32.
+                    "FFTW_MEASURE"と似ていますが,
+                    より広範なアルゴリズムを検討し,しばしば
+                    "より最適な"プランを出力します
+                    (特に大規模な変換の場合).
+                    しかし,プランニング時間は数倍かかります
+                    (特に大規模な変換の場合).
                 </para>
             </listitem>
-            
+
             <listitem>
-                <para>FFTW_EXHAUSTIVE または 8. 
-		  "FFTW_PATIENT"に似ていますが, 
-		  高速と思われないようなものを多く含む
-		  さらにより広範なアルゴリズムを検討します.
-		  最も最適なプランを出力しますが,
-		  プランニング時間は著しく増加します.
+                <para>FFTW_EXHAUSTIVE または 8.
+                    "FFTW_PATIENT"に似ていますが,
+                    高速と思われないようなものを多く含む
+                    さらにより広範なアルゴリズムを検討します.
+                    最も最適なプランを出力しますが,
+                    プランニング時間は著しく増加します.
                 </para>
             </listitem>
         </itemizedlist>
-        
-        
+
+
         <para>注意 : FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE を使用する時,
-	  fftwを2回コールする必要があります.
-	  (最初のコールは初期化用, 2回目以降は計算用)
+            fftwを2回コールする必要があります.
+            (最初のコールは初期化用, 2回目以降は計算用)
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=rand(1, 2^9 + 2^15);
 fftw_forget_wisdom();
 fftw_flags("FFTW_ESTIMATE");

@@ -5,7 +5,7 @@
         <refpurpose>выполнение возврата или возобновление и копирование некоторых локальных переменных</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>resume
             [x1, ..., xn] = resume(a1, ..., an)
         </synopsis>

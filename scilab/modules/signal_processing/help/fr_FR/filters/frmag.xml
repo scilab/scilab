@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="frmag">
+    <refnamediv>
+        <refname>frmag</refname>
+        <refpurpose>magnitude of FIR and IIR filters</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            [xm,fr]=frmag(sys,npts)
+            [xm,fr]=frmag(num,den,npts)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sys</term>
+                <listitem>
+                    <para>a single input,
+                        single output discrete transfer function, or a polynomial or
+                        the vector of polynomial coefficients, the filter.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>num</term>
+                <listitem>
+                    <para>a polynomial or the vector of polynomial coefficients,
+                        the numerator of the filter
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>den</term>
+                <listitem>
+                    <para>a polynomial or the vector of polynomial coefficients,
+                        the denominator of the filter (the default value is 1).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>npts</term>
+                <listitem>
+                    <para>integer, the number of points in frequency response.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xm</term>
+                <listitem>
+                    <para>vector of magnitude of frequency response at the
+                        points <literal>fr</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fr</term>
+                <listitem>
+                    <para>points in the normalized frequency domain where magnitude is
+                        evaluated.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            calculates the magnitude of the frequency responses of
+            FIR and IIR filters. The filter description can be
+            one or two vectors of coefficients, one or two polynomials,
+            or a single output discrete transfer function.
+        </para>
+        <para> the frequency discretization is given by
+            <literal>fr=linspace(0,1/2,npts)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+hz=iir(3,'bp','cheb1',[.15 .25],[.08 .03]);
+[hzm,fr]=frmag(hz,256);
+plot(fr,hzm)
+hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
+[hzm,fr]=frmag(hz,256);
+plot(fr,hzm,'r')
+ ]]></programlisting>
+        <scilab:image><![CDATA[
+hz=iir(3,'bp','cheb1',[.15 .25],[.08 .03]);
+[hzm,fr]=frmag(hz,256);
+plot(fr,hzm)
+hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
+[hzm,fr]=frmag(hz,256);
+plot(fr,hzm,'r')
+]]>     </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="iir">iir</link>
+            </member>
+            <member>
+                <link linkend="eqfir">eqfir</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="calfrq">calfrq</link>
+            </member>
+            <member>
+                <link linkend="phasemag">phasemag</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

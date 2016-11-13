@@ -6,132 +6,132 @@
 
  * Copyright (C) INRIA - Djalel Abdemouche
 
- * 
+ *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
  *
 
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="move">
-    
+
     <refnamediv>
-        
+
         <refname>move</refname>
-        
+
         <refpurpose>
-            
+
             グラフィックエンティティおよびその子を移動, 変換する
-            
+
         </refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>move(h,t)
-            
+
             move(h,t,"alone")
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>h</term>
-                
+
                 <listitem>
-                    
+
                     <para>移動するエンティティのハンドル.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>t</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
-                        配列で, <literal>[dx,dy]</literal> または [dx,dy,dz]のどちらか, 
-                        
+
+                        配列で, <literal>[dx,dy]</literal> または [dx,dy,dz]のどちらか,
+
                         適用する変換ベクトルを指定.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>"alone" </term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列キーワード (オプション).</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             このルーチンはグラフィックエンティティに変換を適用するために使用できます.
-            
+
             エンティティが子を有する場合,これらも変換されます.
-            
+
         </para>
-        
+
         <para>
-            
+
             キーワード<literal>"alone"</literal>を指定した場合,指定された
-            
+
             エンティティのみが再描画されます.
-            
+
             この機能は特にfigureエンティティの
-            
+
             <literal>pixel_drawing_mode</literal>プロパティで使用されます
-            
+
             (<literal>"xor"</literal> 描画モードにおけるオブジェクトの描画を参照ください).
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <programlisting role="example"><![CDATA[
 
 plot3d();
@@ -145,56 +145,56 @@ t=[1,0,-1.25];
 move(p,t);
 
  ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             plot3d();
-            
+
             a=gca();
-            
+
             p=a.children(1);
-            
+
             t=[1,0,-1.25];
-            
-            move(p,t);      
-            
+
+            move(p,t);
+
         </scilab:image>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="get">get</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="set">set</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="figure_properties">figure_properties</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="graphics_entities">graphics_entities</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

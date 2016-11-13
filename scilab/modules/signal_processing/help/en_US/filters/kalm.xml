@@ -5,7 +5,7 @@
         <refpurpose>Kalman update</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x1,p1,x,p]=kalm(y,x0,p0,f,g,h,q,r)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -85,7 +85,7 @@
                     </literal>
                 </para>
             </listitem>
-            
+
             <listitem>
                 <para>
                     Output Error covariance:

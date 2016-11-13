@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="frep2tf">
+    <refnamediv>
+        <refname>frep2tf</refname>
+        <refpurpose>transfer function realization from frequency response</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[h [,err]]=frep2tf(frq,repf,dg [,dom,tols,weight])</synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>vector of frequencies in Hz.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>repf</term>
+                <listitem>
+                    <para>vector of frequency response</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dg</term>
+                <listitem>
+                    <para>degree of linear system</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dom</term>
+                <listitem>
+                    <para>
+                        time domain (<literal>'c'</literal> or <literal>'d'</literal> or <literal>dt</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tols</term>
+                <listitem>
+                    <para>
+                        a vector of size 3 giving the relative and absolute tolerance  and the maximum number of iterations (default values are <literal>rtol=1.e-2; atol=1.e-4, N=10</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>weight</term>
+                <listitem>
+                    <para>vector of weights on frequencies</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>SISO transfer function</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>err</term>
+                <listitem>
+                    <para>
+                        error (for example if <literal>dom='c'</literal> <literal>sum(abs(h(2i*pi*frq) - rep)^2)/size(frq,*)</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            Frequency response to  transfer function conversion. The order of <literal>h</literal>
+            is a priori given in <literal>dg</literal> which must be provided.
+            The following linear system is solved in the least square sense.
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+ weight(k)*(n( phi_k) - d(phi_k)*rep_k)=0, k=1,..,n
+ ]]></programlisting>
+        <para>
+            where <literal>phi_k= 2*%i*%pi*frq</literal> when <literal>dom='c'</literal> and
+            <literal>phi_k=exp(2*%i*%pi*dom*frq</literal> if not. If the <literal>weight</literal>
+            vector is not given a default
+            penalization is used (when <literal>dom='c'</literal>).
+        </para>
+        <para>
+            A stable and minimum phase system can be obtained by using function <literal>factors</literal>.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+h=syslin('c',(s-1)/(s^3+5*s+20))
+frq=0:0.05:3;
+repf=repfreq(h,frq);
+clean(frep2tf(frq,repf,3))
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+
+Sys=ssrand(1,1,10);
+frq=logspace(-3,2,200);
+[frq,rep]=repfreq(Sys,frq);  //Frequency response of Sys
+[Sys2,err]=frep2tf(frq,rep,10);
+Sys2=clean(Sys2) //Sys2 obtained from freq. resp of Sys
+
+[frq,rep2]=repfreq(Sys2,frq); //Frequency response of Sys2
+clf();
+bode(frq,[rep;rep2])   //Responses of Sys and Sys2
+[gsort(spec(Sys('A'))), gsort(roots(Sys2('den')))] //poles
+ ]]></programlisting>
+        <scilab:image>
+            Sys=ssrand(1,1,10);
+            frq=logspace(-3,2,200);
+            [frq,rep]=repfreq(Sys,frq);
+            [Sys2,err]=frep2tf(frq,rep,10);
+            Sys2=clean(Sys2)
+
+            [frq,rep2]=repfreq(Sys2,frq);
+            bode(frq,[rep;rep2])
+            [gsort(spec(Sys('A'))), gsort(roots(Sys2('den')))]
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+dom = 1/1000; // Sampling time
+z = poly(0,'z');
+h = syslin(dom,(z^2+0.5)/(z^3+0.1*z^2-0.5*z+0.08))
+frq = (0:0.01:0.5)/dom;
+repf = repfreq(h,frq);
+[Sys2,err] = frep2tf(frq,repf,3,dom);
+[frq,rep2] = repfreq(Sys2,frq); //Frequency response of Sys2
+clf();
+plot2d(frq, abs([repf;rep2])')
+ ]]></programlisting>
+        <scilab:image>
+            dom=1/1000;
+            z=poly(0,'z');
+            h=syslin(dom,(z^2+0.5)/(z^3+0.1*z^2-0.5*z+0.08))
+            frq=(0:0.01:0.5)/dom;
+            repf=repfreq(h,frq);
+            [Sys2,err]=frep2tf(frq,repf,3,dom);
+            [frq,rep2]=repfreq(Sys2,frq);
+            plot2d(frq, abs([repf;rep2])')
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="imrep2ss">imrep2ss</link>
+            </member>
+            <member>
+                <link linkend="arl2">arl2</link>
+            </member>
+            <member>
+                <link linkend="time_id">time_id</link>
+            </member>
+            <member>
+                <link linkend="armax">armax</link>
+            </member>
+            <member>
+                <link linkend="frfit">frfit</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

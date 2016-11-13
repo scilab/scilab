@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>perl('perlfile')
             perl('perlfile',arg1,arg2,...)
             result = perl(...)
@@ -19,13 +19,13 @@
             <literal>perl('perlfile')</literal> вызывает Perl-скрипт <literal>perlfile</literal>, с помощью соответствующей команды операционной системы.
         </para>
         <para>
-            <literal>perl('perlfile',arg1,arg2,...)</literal> вызывает Perl-скрипт 
-            <literal>perlfile</literal>, с помощью соответствующей команды операционной системы и 
-            передаёт в <literal>perlfile</literal> аргументы <literal>arg1</literal>, 
+            <literal>perl('perlfile',arg1,arg2,...)</literal> вызывает Perl-скрипт
+            <literal>perlfile</literal>, с помощью соответствующей команды операционной системы и
+            передаёт в <literal>perlfile</literal> аргументы <literal>arg1</literal>,
             <literal>arg2</literal> и так далее.
         </para>
         <para>
-            <literal>result = perl(...)</literal> возвращает результаты попытки Perl-вызова в 
+            <literal>result = perl(...)</literal> возвращает результаты попытки Perl-вызова в
             <literal>result</literal>.
         </para>
     </refsection>

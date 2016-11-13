@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="addmenu" xml:lang="en">
+    <refnamediv>
+        <refname>addmenu</refname>
+        <refpurpose>interactive button or menu definition</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>addmenu(button [,submenus] [,action])
+            addmenu(gwin,button [,submenus] [,action])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>button</term>
+                <listitem>
+                    <para>a character string. The button name. An &amp; can be placed
+                        before the character in the name to be used for keyboard shortcut;
+                        this character will be underlined on the GUI. Under MacOSX, a
+                        sub-menu with the same name is automatically added (no button can be
+                        added to the menu bar).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>submenus</term>
+                <listitem>
+                    <para>a vector of character string. The sub_menus items names</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>action</term>
+                <listitem>
+                    <para>a list with 2 elements action=list(flag,proc_name)</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>flag</term>
+                            <listitem>
+                                <para>an integer (default value is 0)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>flag==0</term>
+                            <listitem>
+                                <para>the action is defined by a scilab instruction</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>flag==1</term>
+                            <listitem>
+                                <para>the action is defined by a C or Fortran procedure</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>flag==2</term>
+                            <listitem>
+                                <para>the action is defined by a scilab function</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>proc_name</term>
+                            <listitem>
+                                <para>a character string which gives the name of scilab
+                                    variable containing the instruction or the name of procedure
+                                    to call.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gwin</term>
+                <listitem>
+                    <para>integer. The number of graphic window where the button is
+                        required to be installed
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>The function allows the user to add new buttons or menus in the main
+            window or graphics windows command panels.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>If</term>
+                <listitem>
+                    <para>
+                        <literal>action</literal> argument is not given the action
+                        associated with a button must be defined by a scilab instruction
+                        given by the character string variable which name is
+                    </para>
+                    <para>
+                        + <literal>button</literal> for a main window command
+                    </para>
+                    <para>
+                        + <literal>button_gwin</literal> for a graphic window
+                        command
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>If</term>
+                <listitem>
+                    <para>
+                        <literal>action</literal> argument is set to 0
+                        <literal>proc_name</literal> should be the name of a Scilab string
+                        vector. Actions associated with the kth sub_menu must be defined by
+                        scilab instructions stored in the kth element of the character
+                        string variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>If</term>
+                <listitem>
+                    <para>
+                        <literal>action</literal> argument is set to 1
+                        <literal>proc_name</literal> designes a C or Fortran procedure, this
+                        procedure may be interfaced in Fortran subroutine default/fbutn.f or
+                        dynamically linked with scilab using the <literal>link</literal>
+                        function. The C syntax is: <literal>(char* button_name,
+                            int* gwin,int *k)
+                        </literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>If</term>
+                <listitem>
+                    <para>
+                        <literal>action</literal> argument is set to 2
+                        <literal>proc_name</literal> designes a Scilab function. This
+                        function syntax should be:
+                    </para>
+                    <para>
+                        + <literal>proc_name(k)</literal>for a main window
+                        command
+                    </para>
+                    <para>
+                        + <literal>proc_name(k,gwin)</literal>for a graphic window
+                        command or a main window command
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">if (getscilabmode() == "STD") then
+            addmenu('foo');
+            foo = 'disp(''hello'')';
+
+            addmenu('Hello',['Franck';'Peter'])
+            Hello = ['disp(''hello Franck'')';'disp(''hello Peter'')'];
+
+            addmenu('Bye',list(0,'French_Bye'));
+            French_Bye = 'disp(''Au revoir'')';
+            else
+            mprintf('This example requires to use scilab with GUI mode.\n');
+            end
+
+            addmenu(0,'Hello',['Franck';'Peter']);
+            Hello_0 = ['disp(''hello Franck'')';'disp(''hello Peter'')'];
+
+            //C defined Callback
+            // creating Callback code
+            code=[ '#include ""machine.h""'
+            '#include ""sciprint.h""'
+            'void foo(char *name, int *win, int *entry)'
+            '{'
+            '  if (*win==-1) '
+            '    sciprint(""menu %s(%i) in Scilab window selected.\n"", name, *entry+1);'
+            '  else'
+            '    sciprint(""menu %s(%i) in window %i selected.\n"", name, *entry+1, *win);'
+            '}'];
+            //creating foo.c file
+            current_dir = pwd();
+            chdir(TMPDIR);
+            mputl(code, TMPDIR+'/foo.c');
+            //creating Makefile
+            ilib_for_link('foo','foo.c',[],'c');
+            exec('loader.sce');
+            chdir(current_dir);
+            //add menu
+            addmenu(0,'foo',['a','b','c'],list(1,'foo'));
+
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="setmenu">setmenu</link>
+            </member>
+            <member>
+                <link linkend="unsetmenu">unsetmenu</link>
+            </member>
+            <member>
+                <link linkend="delmenu">delmenu</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

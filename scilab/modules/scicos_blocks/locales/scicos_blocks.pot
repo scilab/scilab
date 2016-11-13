@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-12-17 09:34+0100\n"
+"Revision-Date: 2016-10-19 10:08+0100\n"
 
 # File: modules/scicos_blocks/src/c/convert.c, line: 1214
 # File: modules/scicos_blocks/src/c/convert.c, line: 1239
@@ -157,30 +157,30 @@ msgid "Could not open /dev/audio!\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 139
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 142
 #, c-format
 msgid "The '%s' variable does not exist.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 150
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 153
 #, c-format
 msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 160
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 165
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 163
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 168
 msgid "Erroneous saved file.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 195
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 198
 msgid "Invalid variable type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 205
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 208
 #, c-format
 msgid ""
 "Data dimensions are inconsistent:\n"
@@ -189,74 +189,74 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 220
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 223
 msgid "Output should be of Real type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 230
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 233
 msgid "Output should be of complex type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 246
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 249
 msgid "Output should be of int8 type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 256
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 259
 msgid "Output should be of int16 type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 266
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 269
 msgid "Output should be of int32 type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 276
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 279
 msgid "Output should be of uint8 type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 286
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 289
 msgid "Output should be of uint16 type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 296
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 299
 msgid "Output should be of uint32 type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 369
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 372
 msgid "Cannot read the values field.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 390
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 394
 msgid "The Time vector type is not double.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 405
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 409
 msgid "The Time vector type is complex.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 415
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 420
 #, c-format
 msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 430
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 436
 msgid "Cannot read the time field.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 446
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 453
 msgid "The time vector should be an increasing vector.\n"
 msgstr ""
 
@@ -274,7 +274,7 @@ msgstr ""
 # File: modules/scicos_blocks/macros/IntegerOp/LOGIC.sci, line: 34
 # File: modules/scicos_blocks/macros/IntegerOp/SHIFT.sci, line: 34
 # File: modules/scicos_blocks/macros/IntegerOp/SRFLIPFLOP.sci, line: 44
-# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 95
+# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 94
 # File: modules/scicos_blocks/macros/Sinks/OUTIMPL_f.sci, line: 37
 # File: modules/scicos_blocks/macros/Sinks/OUT_f.sci, line: 37
 # File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 43
@@ -963,12 +963,12 @@ msgid "The code generation, the compilation and link took %.2f seconds"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 95
+# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 94
 msgid "Event output port"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 96
+# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 95
 # File: modules/scicos_blocks/macros/Sinks/OUTIMPL_f.sci, line: 38
 # File: modules/scicos_blocks/macros/Sinks/OUT_f.sci, line: 38
 # File: modules/scicos_blocks/macros/Sources/IN_f.sci, line: 41
@@ -976,7 +976,7 @@ msgid "Port number"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 102
+# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 101
 # File: modules/scicos_blocks/macros/Sinks/OUTIMPL_f.sci, line: 44
 # File: modules/scicos_blocks/macros/Sinks/OUT_f.sci, line: 44
 # File: modules/scicos_blocks/macros/Sources/INIMPL_f.sci, line: 45
@@ -985,7 +985,7 @@ msgid "Wrong value for 'Port Number' parameter: %d."
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 103
+# File: modules/scicos_blocks/macros/Sinks/CLKOUTV_f.sci, line: 102
 # File: modules/scicos_blocks/macros/Sinks/OUTIMPL_f.sci, line: 45
 # File: modules/scicos_blocks/macros/Sinks/OUT_f.sci, line: 45
 # File: modules/scicos_blocks/macros/Sinks/WFILE_f.sci, line: 86
@@ -1647,4 +1647,10 @@ msgstr ""
 #
 # File: modules/scicos_blocks/macros/Sources/STEP.sci, line: 46
 msgid "Same sizes expected."
+msgstr ""
+
+#
+# File: modules/scicos_blocks/tests/unit_tests/scicos_unitary.sci, line: 96
+#, c-format
+msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""

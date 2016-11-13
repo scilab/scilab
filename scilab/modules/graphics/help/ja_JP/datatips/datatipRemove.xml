@@ -4,118 +4,118 @@
 
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
 
- * 
+ *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
 -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="datatipRemove">
-    
+
     <refnamediv>
-        
+
         <refname>datatipRemove</refname>
-        
+
         <refpurpose>選択したdatatipを削除する</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>
-            
+
             datatipRemove(polyline_handle,ind)
-            
+
             datatipRemove(datatip_handle)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>polyline_handle</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         tipを有するポリラインのハンドル
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>datatip_handle</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         削除するtipのハンドル.
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>ind</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         整数, tipのインデックス
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             選択されたdatatipを削除します.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <programlisting role="example"><![CDATA[
 
     x=linspace(0,1,100)';
@@ -132,57 +132,57 @@
 
     datatipCreate(p,20);
 
-    datatipRemove(p,2) 
+    datatipRemove(p,2)
 
     datatipRemove(t1)
 
     ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             x=linspace(0,1,100)';
-            
+
             y=x.^3;
-            
+
             clf()
-            
+
             plot(x,y);
-            
+
             e=gce();p=e.children(1);//get the handle on the polyline
-            
+
             t1=datatipCreate(p,80);
-            
+
             datatipCreate(p,40);
-            
+
             datatipRemove(p,2);
-            
+
             datatipRemove(t1);
-            
+
         </scilab:image>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="datatips">datatips</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="datatipCreate">datatipCreate</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

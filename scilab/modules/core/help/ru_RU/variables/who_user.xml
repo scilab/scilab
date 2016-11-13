@@ -5,7 +5,7 @@
         <refpurpose>список имён пользовательских переменных</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>who_user()</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -28,8 +28,8 @@
                 <term>varList</term>
                 <listitem>
                     <para>
-                        вектор-столбец пользовательских переменных, либо 
-                        <literal>[]</literal>, если у пользователя нет 
+                        вектор-столбец пользовательских переменных, либо
+                        <literal>[]</literal>, если у пользователя нет
                         переменных.
                     </para>
                 </listitem>
@@ -39,7 +39,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <function>who_user</function> выводит на экран и/или 
+            <function>who_user</function> выводит на экран и/или
             возвращает имена пользовательских переменных.
         </para>
     </refsection>

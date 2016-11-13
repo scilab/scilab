@@ -334,7 +334,7 @@ assert_checkequal(S(2).a.b, list([],[0,1]));
 clear S;
 S(1,2).a(1,2).b(1,2,3)=4;
 assert_checkequal(S(1).a, []);
-assert_checkequal(S(2).a.b, list([], hypermat([1 2 3], [0;0;0;0;0;4])));
+assert_checkequal(S(2).a.b, list([], matrix( [0;0;0;0;0;4], [1 2 3])));
 tl=tlist(["ltype" "f1"], 12);
 assert_checkequal(typeof(tl), "ltype");
 tl(1) = 12;

@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2015 - 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="typeof" xml:lang="fr">
+    <refnamediv>
+        <refname>typeof</refname>
+        <refpurpose>type explicite ou code de surcharge d'un objet Scilab</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxe</title>
+        <synopsis>
+            t  = typeof(object)
+            oc = typeof(object, "overload")
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>object</term>
+                <listitem>
+                    <para>un objet Scilab quelconque</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>texte (un ou plusieurs mots séparés): nom du type de
+                        <varname>object</varname>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>oc</term>
+                <listitem>
+                    <para>mot (sans espace) : nom du code à utiliser pour
+                        surcharger une function devant traiter ce type
+                        d'<varname>object</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            <code>t = typeof(object)</code> retourne une des expressions texte suivantes :
+        </para>
+        <table>
+            <tr>
+                <td>
+                    <emphasis role="bold">string</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une matrice ou hypermatrice de
+                    <link linkend="strings">caractères</link> et/ou de textes.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">boolean</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une
+                    <link linkend="matrices">matrice ou hypermatrice booléenne</link>.
+                </td>
+            </tr>
+            <tr><td colspan="2">
+                    <emphasis role="bold">int8</emphasis> ou
+                    <emphasis role="bold">int16</emphasis> ou
+                    <emphasis role="bold">int32</emphasis> ou
+                    <emphasis role="bold">int64</emphasis> ou
+                    <emphasis role="bold">uint8</emphasis> ou
+                    <emphasis role="bold">uint16</emphasis> ou
+                    <emphasis role="bold">uint32</emphasis> ou
+                    <emphasis role="bold">uint64</emphasis>
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td>
+                    <varname>object</varname> est une matrice ou hypermatrice d'entiers
+                    [positifs ou signés] encodés sur
+                    8, 16, 32 or 64 bits (voir <link linkend="inttype">inttype</link>).
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">constant</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une matrice ou hypermatrice
+                    de nombres
+                    décimaux réels ou complexes.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">polynomial</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une matrice ou hypermatrice de
+                    <link linkend="poly">polynômes</link> à coefficients
+                    réels ou complexes.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">rational</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une matrice ou hypermatrice de
+                    <link linkend="rational">fractions rationelles</link>
+                    (telle qu'une matrice de transfert), à coefficients décimaux
+                    réels ou complexes.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">handle</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est un
+                    <link linkend="graphics_entities">handle</link> (identifiant)
+                    graphique. Le (sous)type d'élément graphique
+                    (Figure, Axes, Polyline, Compound, etc) est indiqué
+                    par leur attribut <literal>.type</literal>. Voir les
+                    exemples ci-après.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">list</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une
+                    <link linkend="list">liste</link> simple.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">st</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une
+                    <link linkend="struct">structure</link>
+                    ou un nD-tableau de structures.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">ce</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une
+                    <link linkend="cell">cell</link> ou un nD-tableau de cells.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">boolean sparse</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une matrice booléenne creuse.
+                    <warning>Hypermatrices booléennes creuses non supportées.</warning>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">sparse</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une
+                    <link linkend="sparse">matrice creuse</link>
+                    de nombres décimaux réels ou complexes.
+                    <warning>Hypermatrices numériques creuses non supportées.</warning>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">"Matlab sparse"</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une matrice numérique creuse
+                    au format Matlab
+                    (voir <link linkend="mtlb_sparse">mtlb_sparse()</link>).
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">fptr</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une primitive Scilab,
+                    aussi appelée <emphasis role="italic">gateway</emphasis>
+                    (code C, C++ ou Fortran compilé).
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">function</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une
+                    <link linkend="function">function</link>
+                    écrite en langage Scilab.
+                    Voir aussi <link linkend="deff">deff</link>.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">library</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une
+                    <link linkend="library">bibliothèque</link>
+                    de functions écrites en langage Scilab et compilées.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">pointer</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est un pointeur, par exemple
+                    utilisé par <link linkend="lufact">lufact</link>.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">implicitlist</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une liste implicite avec
+                    un index formel polynomial, utilisée en indexation.
+                    Voir  <link linkend="dollar">n:$</link> et
+                    <link linkend="colon">: (colon)</link>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">listdelete</emphasis>
+                </td>
+                <td>
+                    est retourné par
+                    <function>
+                        typeof(<literal>null()</literal>)
+                    </function>
+                    .
+                    Voir  <link linkend="null">null()</link>.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">void</emphasis>
+                </td>
+                <td>est le typeof des éléments de list() indéfinis.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr><td colspan="2">
+                    <emphasis role="bold italic">Listes typées T-Lists ou M-Lists :</emphasis>
+                </td>
+            </tr>
+            <tr><td colspan="2">
+                    Si l'<varname>object</varname> est une
+                    <link linkend="tlist">tlist</link>
+                    ou une <link linkend="mlist">mlist</link>,
+                    <function>typeof</function>
+                    retourne le nom du type défini pour la liste, lequel est
+                    enregistré dans le premier élément de la liste.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr><td colspan="2">
+                    <emphasis role="bold italic">Types de T-List ou M-List
+                        prédéfinis et réservés :
+                    </emphasis>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">dir</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est la réponse d'une instruction
+                    <link linkend="dir">dir(..)</link>. Les champs définis
+                    sont <literal>name</literal>, <literal>date</literal>,
+                    <literal>bytes</literal>, et <literal>isdir</literal>.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">state-space</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une réprésentation d'état
+                    d'un système dynamique (voir <link linkend="syslin">syslin</link>).
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">XMLDoc</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est un pointeur de document XML
+                    ouvert créé avec
+                    <link linkend="xmlRead">xmlRead</link>,
+                    <link linkend="xmlReadStr">xmlReadStr</link>,
+                    <link linkend="htmlRead">htmlRead</link>, ou
+                    <link linkend="htmlReadStr">htmlReadStr</link>.
+                    D'autres typeof d'objets XML sont disponibles et réservés.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">H5Object</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est un identifiant de fichier
+                    HDF5 ouvert avec
+                    <link linkend="h5open">h5open</link>.
+                    D'autres typeof d'objets HDF5 sont disponibles et réservés :
+                    Voir <link linkend="h5objects">HDF5 Objects</link>.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">uitree</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est un arbre graphique interactif,
+                    ou un composant (branche, feuille) d'un tel arbre, créé
+                    avec une des fonctions dédiées. Voir par exemple
+                    <link linkend="uiCreateNode">uiCreateNode</link>.
+                </td>
+            </tr>
+        </table>
+    </refsection>
+    <refsection role="examples">
+        <title>Exemples</title>
+        <programlisting role="no-scilab-exec"><![CDATA[
+// Caractères et textes
+t = ["a" "Hello"   "à é è ï ô û ñ"
+     "1" "Bonjour" "указывает тип объекта"
+     ";" "Chao"    "オブジェクトの型"
+    ]
+typeof(t)
+
+// Booléens
+typeof(%t)
+typeof("abc"=="def")
+hm = grand(2,2,2,"uin",0,9)<5
+typeof(hm)
+
+// Entiers encodés
+[ typeof(uint8(%pi))  typeof(int8(-%pi))
+  typeof(uint16(%pi)) typeof(int16(-%pi))
+  typeof(uint32(%pi)) typeof(int32(-%pi))
+  typeof(uint64(%pi)) typeof(int64(-%pi))
+]
+
+// Nombres décimaux
+n = 1:0.3:2
+typeof(n)
+hm = grand(2,2,2,"uin",0,9)
+typeof(hm)
+
+// Décimaux entiers
+n = 1:7
+typeof(n)
+
+// Nombres complexes
+n = [%i 1-%i %pi - 3*%i]
+typeof(n)
+
+// "constant" spéciale
+typeof([])   // empty matrix
+
+// Polynômes
+n = [ %z (1-%z)^2]
+typeof(n)
+n = [ 3*%i + %z (1-%i*%z)^2]
+typeof(n)
+
+// Fractions rationnelles (polynomiales)
+r = [%s/(1-%s) (1+%s)^2/(1-%s)]   // à coefficients réels
+typeof(r)
+r = [%s/(%i-%s) (%i+%s)^2/(1-%s)] // à coefficients complexes
+typeof(r)
+
+// Matrices creuses
+// ----------------
+w = sprand(100,100,0.001)
+typeof(w)     // numérique
+typeof(w==w)  // booléenne
+//x = mtlb_sparse(sprand(10,10,0.1));
+//typeof(x)
+
+// Functions et bibliothèques écrites en Scilab
+// --------------------------------------------
+deff('y=f(x)','y=2*x');  // Function en langage Scilab
+f(%pi)
+typeof(f)
+typeof(cosd)    // écrite en Scilab
+
+typeof(corelib) // Bibliothèque de functions en langage Scilab
+
+typeof(sin)     // Fonctions primitives non éditables
+mysin = sin;
+mysin(%pi/2)
+
+// Identifiants graphiques
+// -----------------------
+clf
+plot2d()
+typeof(gcf())
+// Le type graphique de l'objet graphique est indiqué par l'attribut "type" :
+gcf().type
+gca().type
+gce().type
+
+close(gcf())
+
+// Conteneurs de données hétérogènes
+// ---------------------------------
+// Liste simple
+L = list(%pi, %t, %z, %s/(1-%s), "Bonjour", sin, cosd, list("list_in_list", 432));
+typeof(L)
+
+// Tableau de cells
+C = {%pi, %t, %z ; %s/(1-%s), "Bonjour", list("list_in_list", 432) }
+typeof(C)
+
+// (Tableau de) Structures
+S.num = %pi;
+S.b = %t;
+S(2).t = "Bonjour"
+typeof(S)
+
+// Indices formels génériques
+// --------------------------
+typeof($)
+typeof(:)    // équivalent à "eye()"  (tous les éléments)
+typeof(3:$)
+
+// Typeof de deletion ou d'éléments indéfinis
+// ------------------------------------------
+typeof([])      // matrice vide
+typeof(null())
+L = list(%pi, ,"hey!")
+typeof(L(2))   // élément indéfini
+
+// typeof de T-Listes ou M-listes à façon :
+// --------------------------------------
+L = tlist(['myLongTypeOf','a','b'], 18, 'Scilab');
+typeof(L)
+
+// Typeof de T-List ou M-list prédéfinis réservés
+// ----------------------------------------------
+typeof(dir())  // listage du contenu d'un dossier
+
+doc = xmlReadStr("<root><a att=""foo"">Hello</a></root>");
+typeof(doc)
+xmlDelete(doc)
+
+x = 1;
+save(TMPDIR + "/x.sod", "x"); // Les fichiers SOD d'enregistrement d'objets
+                              //  Scilab sont au format HDF5
+a = h5open(TMPDIR + "/x.sod");
+typeof(a)
+h5close(a)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="type">type</link>
+            </member>
+            <member>
+                <link linkend="inttype">inttype</link>
+            </member>
+            <member>
+                <link linkend="overloading">overloading</link>
+            </member>
+            <member>
+                <link linkend="isreal">isreal</link>
+            </member>
+            <member>
+                <link linkend="strings">strings</link>
+            </member>
+            <member>
+                <link linkend="poly">poly</link>
+            </member>
+            <member>
+                <link linkend="rlist">rlist</link>
+            </member>
+            <member>
+                <link linkend="null">null</link>
+            </member>
+            <member>
+                <link linkend="sparse">sparse</link>
+            </member>
+            <member>
+                <link linkend="issparse">issparse</link>
+            </member>
+            <member>
+                <link linkend="mtlb_sparse">mtlb_sparse</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="dir">dir</link>
+            </member>
+            <member>
+                <link linkend="XMLObjects">XML Objects</link>
+            </member>
+            <member>
+                <link linkend="h5objects">HDF5 Objects</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>Ajout de l'option "overload". </listitem>
+                        <listitem>Ajout des typeof "uint64" et "int64". </listitem>
+                        <listitem>Suppression du typeof "hypermat". Toute hypermatrice
+                            de type "simple" homogène est désormais encodée de manière
+                            native.
+                        </listitem>
+                        <listitem>Ajout des typeof "listdelete" et "void".</listitem>
+                        <listitem>typeof(:) était "constant" et devient "implicitlist". typeof(1:$) était
+                            "size implicit" etdevient "implicitlist".
+                        </listitem>
+                        <listitem>Le typeof des T-lists et M-lists était limité à 8 caractères.
+                            Les noms de types peuvent maintenant être plus longs.
+                        </listitem>
+                        <listitem>
+                            Typeof "size implicit" renommé en "implicitlist" (<literal>1:$</literal>)
+                        </listitem>
+                        <listitem>Page d'aide revue.</listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

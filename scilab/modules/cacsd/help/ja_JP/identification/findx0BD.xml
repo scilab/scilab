@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="findx0BD">
+    <refnamediv>
+        <refname>findx0BD</refname>
+        <refpurpose>状態量,離散時間システムのBおよびD行列を推定</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[X0,B,D] = findx0BD(A,C,Y,U,WITHX0,WITHD,TOL,PRINTW)
+            [x0,B,D,V,rcnd] = findx0BD(A,C,Y,U)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>システムの状態行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>システムのC行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Y</term>
+                <listitem>
+                    <para>システム出力</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>システム入力</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>WITHX0</term>
+                <listitem>
+                    <para>状態量の初期値 x0 の推定に関するスイッチ.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1: x0を推定します;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>0: x0を推定しません.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        デフォルト:    WITHX0 = 1.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>WITHD</term>
+                <listitem>
+                    <para>行列 Dの推定に関するスイッチ.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1: 行列Dを推定します;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>0: 行列Dを推定しません.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        デフォルト:    WITHD = 1.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>TOL</term>
+                <listitem>
+                    <para>
+                        行列のランクを推定する際の許容誤差.TOL &gt; 0 の場合,TOLに指定した値が
+                        条件数の逆数の下界として使用されます.
+                        デフォルト:    prod(size(matrix))*epsilon_machine
+                        ただし, epsilon_machine は相対機械精度です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PRINTW</term>
+                <listitem>
+                    <para>警告メッセージの出力に関するスイッチ.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1: 警告メッセージを出力;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>0: 警告メッセージを出力しない.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        デフォルト:    PRINTW = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X0</term>
+                <listitem>
+                    <para>推定された線形システムの状態量の初期値.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>推定された線形システムのB行列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>D</term>
+                <listitem>
+                    <para>推定された線形システムのD行列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>V</term>
+                <listitem>
+                    <para>
+                        状態行列Aを実数Schur形式に縮減する直交行列
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rcnd</term>
+                <listitem>
+                    <para>
+                        ランク決定に関連する行列の条件数の逆数を推定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            findx0BD  は,
+            (推定された)システム行列 A, C および入出力データを指定し,
+            状態量の初期値と離散時間システムのBおよびD行列を推定します.
+        </para>
+        <para>
+            [X0,B,D] = findx0BD(A,C,Y,U,WITHX0,WITHD,TOL,PRINTW)  は,
+            システム行列 A, C 出力データ Yおよび入力データ U を用いて,
+            状態量初期値 X0 および離散時間システムの行列 B および D を推定します.
+            モデルの構造は以下のようになります :
+        </para>
+        <programlisting role=""><![CDATA[
+x(k+1) = Ax(k) + Bu(k),   k >= 1,
+y(k)   = Cx(k) + Du(k),
+ ]]></programlisting>
+        <para>
+            ベクトル y(k) および u(k) それぞれ Y および U のk行目の転置です.
+        </para>
+        <para>
+            [x0,B,D,V,rcnd] = findx0BD(A,C,Y,U)  は,システム状態行列 A を実数 Schur 形式に縮減する
+            直交行列 V も返します.
+            同時にランク決定に関連する行列の条件数の逆数の推定値も返します.
+        </para>
+        <programlisting role=""><![CDATA[
+    B = findx0BD(A,C,Y,U,0,0)   は B のみを返し,
+[B,D] = findx0BD(A,C,Y,U,0)    は B および D のみを返します.
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+//指定した線形システムからデータを生成
+A = [ 0.5, 0.1,-0.1, 0.2;
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
+B = [0.8;0.1;1;-1];
+C = [1 2 -1 0];
+SYS=syslin(0.1,A,B,C);
+nsmp=100;
+U=prbs_a(nsmp,nsmp/5);
+Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
+// Rを計算
+S=15;L=1;
+[R,N,SVAL] = findR(S,Y',U');
+N=3;
+METH=3;TOL=-1;
+[A,C] = findAC(S,N,L,R,METH,TOL);
+[X0,B,D,V,rcnd] = findx0BD(A,C,Y',U');
+SYS1=syslin(1,A,B,C,D,X0);
+Y1=flts(U,SYS1);
+clf();plot2d((1:nsmp)',[Y',Y1'])
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="findBD">findBD</link>
+            </member>
+            <member>
+                <link linkend="inistate">inistate</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

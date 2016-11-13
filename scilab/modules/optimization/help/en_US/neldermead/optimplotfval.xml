@@ -2,13 +2,13 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimplotfval" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimplotfval" xml:lang="en">
     <refnamediv>
         <refname>optimplotfval</refname>
         <refpurpose>Plot the function value of an optimization algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>SYNOPSIS</title>
+        <title>Syntax</title>
         <synopsis>
             optimplotfval ( x , optimValues , state )
         </synopsis>
@@ -16,8 +16,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function creates and updates a plot of the function value, depending on the 
-            number of iterations. It is a pre-defined plot function which should be used as 
+            This function creates and updates a plot of the function value, depending on the
+            number of iterations. It is a pre-defined plot function which should be used as
             an option of the "PlotFcns" option.
         </para>
     </refsection>
@@ -27,7 +27,7 @@
             In the following example, we use the <literal>optimplotfval</literal> function
             for use with the <literal>fminsearch</literal> function.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -36,7 +36,7 @@ opt = optimset ( "PlotFcns" , optimplotfval );
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optimset">optimset</link>

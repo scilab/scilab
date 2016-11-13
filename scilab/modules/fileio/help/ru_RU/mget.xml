@@ -3,31 +3,34 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mget" xml:lang="ru">
     <refnamediv>
         <refname>mget</refname>
         <refpurpose>
-            считывает байт или слово в заданном двоичном формате и преобразует в 
+            считывает байт или слово в заданном двоичном формате и преобразует в
             число удвоенной точности
         </refpurpose>
     </refnamediv>
     <refnamediv xml:id="mgeti">
         <refname>mgeti</refname>
         <refpurpose>
-            считывает байт или слово в заданном двоичном формате и возвращает 
+            считывает байт или слово в заданном двоичном формате и возвращает
             целочисленное значение типа int
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             x = mget([n, type, fd])
             x = mgeti([n, type, fd])
@@ -72,9 +75,9 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>mget</function> считывает данные со входа, определённого параметром потока <varname>fd</varname> и возвращает вектор данных с плавающей запятой. 
+            Функция <function>mget</function> считывает данные со входа, определённого параметром потока <varname>fd</varname> и возвращает вектор данных с плавающей запятой.
         </para>
-        
+
         <para>
             Функция <function>mgeti</function> считывает данные со входа, определённого параметром потока <varname>fd</varname> и возвращает вектор целочисленных данных.
         </para>
@@ -86,7 +89,7 @@
         </para>
         <para>
             <note>
-                В Windows, поведение по умолчанию состоит в пропуске байта 13 (<literal>0x0D</literal>). 
+                В Windows, поведение по умолчанию состоит в пропуске байта 13 (<literal>0x0D</literal>).
                 Функцию	<function>mopen</function> следует вызывать с опцией
                 <literal>'b'</literal>, например, <code>fd1 = mopen(file1,'rb')</code>, так что все байты без исключения будут прочитаны.
             </note>
@@ -144,7 +147,7 @@
                 <term>..l</term>
                 <listitem>
                     <para>
-                        прямой порядок байтов (в сочетании с одним из вышеперечисленных 
+                        прямой порядок байтов (в сочетании с одним из вышеперечисленных
                         типов)
                     </para>
                 </listitem>
@@ -153,7 +156,7 @@
                 <term>..b</term>
                 <listitem>
                     <para>
-                        обратный порядок байтов (в сочетании с одним из вышеперечисленных 
+                        обратный порядок байтов (в сочетании с одним из вышеперечисленных
                         типов)
                     </para>
                 </listitem>
@@ -166,8 +169,8 @@
             Такое поведение переключения можно подавить, если добавить флаг в функцию <function>mopen</function>.
         </para>
         <para>
-            Форматы <literal>"l"</literal>, <literal>"d"</literal> и 
-            <literal>"f"</literal> корректны только с функцией     
+            Форматы <literal>"l"</literal>, <literal>"d"</literal> и
+            <literal>"f"</literal> корректны только с функцией
             <function>mget</function>.
         </para>
     </refsection>
@@ -182,17 +185,17 @@ mput(1996,'ull',fd1);
 mput(1996,'ull',fd2);
 mclose(fd1);
 mclose(fd2);
- 
+
 fd1=mopen(file1,'rb');
 if 1996<>mget(1,'ull',fd1)
   write(%io(2),'Bug');
 end
- 
+
 fd2=mopen(file2,'rb');
 if 1996<>mget(1,'ull',fd2)
   write(%io(2),'Bug');
 end
- 
+
 mclose(fd1);
 mclose(fd2);
  ]]></programlisting>

@@ -5,7 +5,7 @@
         <refpurpose>Xwindow editing of matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[result]=x_matrix(label,matrix-init)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -33,12 +33,12 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 m=evstr(x_matrix('enter a  3x3 matrix ',rand(3,3)))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="x_mdialog">x_mdialog</link>

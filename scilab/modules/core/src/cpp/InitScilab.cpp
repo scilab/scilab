@@ -3,11 +3,14 @@
  * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -38,6 +41,7 @@
 
 extern "C"
 {
+#include <locale.h>
 #include "machine.h"
 #include "InitializeLocalization.h"
 #include "elem_common.h"
@@ -74,6 +78,7 @@ extern "C"
 #include "InnosetupMutex.h"
 #include "MutexClosingScilab.h"
 #include "WinConsole.h"
+#include "SignalManagement.h"
 #else
 #include "signal_mgmt.h"
 #include "initConsoleMode.h"
@@ -84,6 +89,7 @@ extern "C"
 #endif
 
 #include "InitializeTclTk.h"
+#include "dynamic_link.h"
 
     /* Defined without include to avoid useless header dependency */
     extern BOOL isItTheDisabledLib(void);
@@ -129,8 +135,10 @@ ScilabEngineInfo* InitScilabEngineInfo()
     pSEI->isPrioritary = 0;         // by default all thread are non-prioritary
     pSEI->iStartConsoleThread = 1;  // used in call_scilab to avoid "prompt" thread execution
     pSEI->iForceQuit = 0;           // management of -quit argument
+    pSEI->iTimeoutDelay = 0;        // watchdog delay to avoid deadlocking tests
     pSEI->iCommandOrigin = NONE;
 
+    pSEI->iCodeAction = -1; //default value, no code action ( used on windows by file associations -O -X -P arguments)
     return pSEI;
 }
 
@@ -148,6 +156,12 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     // ignore -quit if -e or -f are not given
     _pSEI->iForceQuit = _pSEI->iForceQuit && (_pSEI->pstExec || _pSEI->pstFile);
     ConfigVariable::setForceQuit(_pSEI->iForceQuit == 1);
+
+    // setup timeout delay
+    if (_pSEI->iTimeoutDelay != 0)
+    {
+        timeout_process_after(_pSEI->iTimeoutDelay);
+    }
 
     /* This bug only occurs under Linux 32 bits
      * See: http://wiki.scilab.org/Scilab_precision
@@ -168,6 +182,9 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     /* floating point exceptions */
     fpsetmask(0);
 #endif
+
+    // Make sure the default locale is applied at startup
+    setlocale(LC_NUMERIC, "C");
 
     ThreadManagement::initialize();
     NumericConstants::Initialize();
@@ -326,6 +343,13 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         }
         iMainRet = ConfigVariable::getExitStatus();
         iScript = 1;
+
+        if (_pSEI->iCodeAction != -1)
+        {
+            //alloc in main to manage shell interaction
+            FREE(_pSEI->pstExec);
+            _pSEI->pstExec = NULL;
+        }
     }
     else if (_pSEI->pstFile)
     {
@@ -348,6 +372,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     //register console debugger as debugger
     debugger::DebuggerMagager::getInstance()->addDebugger(new debugger::ConsoleDebugger());
+
     return iMainRet;
 }
 
@@ -389,14 +414,6 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
 
     clearScilabPreferences();
 
-    //close console scope
-    //symbol::Context::getInstance()->scope_end();
-
-    // close macros scope before close dynamic library.
-    // all pointers allocated by a dynamic library have to be free before dlclose.
-    symbol::Context::getInstance()->scope_end();
-
-    //execute scilab.quit
     if (_pSEI->pstFile)
     {
         //-f option execute exec('%s',-1)
@@ -409,10 +426,14 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     }
     else if (_pSEI->iNoStart == 0)
     {
+        //execute scilab.quit
         execScilabQuitTask(_pSEI->iSerialize != 0);
         //call all modules.quit
         EndModules();
     }
+
+    // close macros scope
+    symbol::Context::getInstance()->scope_end();
 
     //close gateways scope
     symbol::Context::getInstance()->scope_end();
@@ -421,10 +442,25 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     symbol::Context::getInstance()->clearAll();
     //destroy context
     symbol::Context::destroyInstance();
+
 #ifndef NDEBUG
     //uncomment to print mem leak log
     //types::Inspector::displayMemleak();
 #endif
+
+    //close dynamic linked libraries
+    std::vector<ConfigVariable::DynamicLibraryStr*>* pDLLIst = ConfigVariable::getDynamicLibraryList();
+    int size = pDLLIst->size();
+    for (int i = 0; i < size; i++)
+    {
+        ConfigVariable::DynamicLibraryStr* pStr = ConfigVariable::getDynamicLibrary(i);
+        if (pStr)
+        {
+            DynLibHandle iLib = pStr->hLib;
+            ConfigVariable::removeDynamicLibrary(i);
+            Sci_dlclose(iLib);
+        }
+    }
 
     // cleanup Java dependent features
     saveCWDInPreferences();
@@ -564,6 +600,7 @@ void* scilabReadAndExecCommand(void* param)
         {
             scilabWrite(parser.getErrorMessage());
             ThreadManagement::UnlockParser();
+            FREE(command);
             continue;
         }
 
@@ -616,7 +653,7 @@ void* scilabReadAndStore(void* param)
 
         Parser::ParserStatus exitStatus = Parser::Failed;
 
-        if (ConfigVariable::isEmptyLineShow())
+        if (ConfigVariable::isPrintCompact() == false)
         {
             scilabWrite("\n");
         }
@@ -631,12 +668,10 @@ void* scilabReadAndStore(void* param)
             //set prompt value
             C2F(setprlev) (&pause);
 
-            ConfigVariable::setScilabCommand(1);
-            scilabRead();
-            if (ConfigVariable::isScilabCommand() == 0)
+            if (scilabRead() == 0)
             {
-                // happens when the return of scilabRead is used
-                // in other thread (ie: call mscanf in a callback)
+                // happens when the return of scilabRead must not be interpreted by Scilab.
+                // ie: mscanf, step by step execution (mode 4 or 7)
                 ThreadManagement::WaitForConsoleExecDoneSignal();
                 continue;
             }
@@ -657,18 +692,36 @@ void* scilabReadAndStore(void* param)
             }
             else
             {
-                //+1 for null termination and +1 for '\n'
-                size_t iLen = strlen(command) + strlen(pstRead) + 2;
-                char *pstNewCommand = (char *)MALLOC(iLen * sizeof(char));
+                if (ConfigVariable::isExecutionBreak())
+                {
+                    //clean parser state and close opened instruction.
+                    if (parser.getControlStatus() != Parser::AllControlClosed)
+                    {
+                        parser.cleanup();
+                        FREE(command);
+                        command = NULL;
+                        parser.setControlStatus(Parser::AllControlClosed);
+                        controlStatus = parser.getControlStatus();
+                    }
+
+                    ConfigVariable::resetExecutionBreak();
+                    break;
+                }
+                else
+                {
+                    //+1 for null termination and +1 for '\n'
+                    size_t iLen = strlen(command) + strlen(pstRead) + 2;
+                    char *pstNewCommand = (char *)MALLOC(iLen * sizeof(char));
 
 #ifdef _MSC_VER
-                sprintf_s(pstNewCommand, iLen, "%s\n%s", command, pstRead);
+                    sprintf_s(pstNewCommand, iLen, "%s\n%s", command, pstRead);
 #else
-                sprintf(pstNewCommand, "%s\n%s", command, pstRead);
+                    sprintf(pstNewCommand, "%s\n%s", command, pstRead);
 #endif
-                FREE(pstRead);
-                FREE(command);
-                command = pstNewCommand;
+                    FREE(pstRead);
+                    FREE(command);
+                    command = pstNewCommand;
+                }
             }
 
             if (ConfigVariable::getEnableDebug())
@@ -697,6 +750,7 @@ void* scilabReadAndStore(void* param)
                     {
                         sciprint(_("Debugger is on a breakpoint\n"));
                         sciprint(_("(c)ontinue or (a)bort current execution before execute a new command\n"));
+                        FREE(tmpCommand);
                         continue;
                     }
                 }
@@ -925,7 +979,9 @@ static int batchMain(ScilabEngineInfo* _pSEI)
 #ifdef DEBUG
     std::cerr << "To end program press [ENTER]" << std::endl;
 #endif
-    return parser->getExitStatus();
+    int ret = parser->getExitStatus();
+    delete parser;
+    return ret;
 }
 
 /*
@@ -961,7 +1017,7 @@ static void checkForLinkerErrors(void)
 {
 #ifndef _MSC_VER
     /*
-       Depending on the linking order, sometime, libs are not loaded the right way.
+       Depending on the linking order, sometimes, libs are not loaded the right way.
        This can cause painful debugging tasks for packager or developer, we are
        doing the check to help them.
     */

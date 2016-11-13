@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA - Francois DELBECQUE
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="pol2des" xml:lang="pt">
+    <refnamediv>
+        <refname>pol2des</refname>
+        <refpurpose>conversão de matrizes de polinômios para formas
+            descritoras
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title> Seqüência de Chamamento </title>
+        <synopsis>[N,B,C]=pol2des(Ds)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>Ds</term>
+                <listitem>
+                    <para>matriz de polinômios</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>N, B, C</term>
+                <listitem>
+                    <para>três matrizes de reais</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Dada a matriz de polinômios <literal>Ds=D_0 +D_1 s +D_2 s^2 +...
+                +D_k s^k
+            </literal>
+            ,<literal>pol2des</literal> retorna três matrizes
+            <literal>N, B, C</literal>, com sendo <literal>N</literal> nilpotente tais
+            que:
+        </para>
+        <para>
+            <literal>Ds = C (s*N-eye())^-1 B</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+G=[1,s;1+s^2,3*s^3];[N,B,C]=pol2des(G);
+G1=clean(C*inv(s*N-eye())*B),G2=numer(G1)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ss2des">ss2des</link>
+            </member>
+            <member>
+                <link linkend="tf2des">tf2des</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

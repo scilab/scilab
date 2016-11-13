@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="contour">
@@ -16,7 +19,7 @@
         <refpurpose>level curves on a 3D surface</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>contour(x,y,z,nz,[theta,alpha,leg,flag,ebox,zlev])
             contour(x,y,z,nz,&lt;opt_args&gt;)
         </synopsis>
@@ -34,7 +37,7 @@
                 <term>z</term>
                 <listitem>
                     <para>real matrix of size (n1,n2), the values of the function or  a
-                        Scilab function which defines the surface  <literal>z=f(x,y)</literal>. 
+                        Scilab function which defines the surface  <literal>z=f(x,y)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -50,7 +53,7 @@
                                     If <literal>nz</literal> is an integer, its value gives the number of
                                     level curves  equally spaced from zmin to zmax as follows:
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
  ]]></programlisting>
                                 <para>
@@ -61,8 +64,8 @@ z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
                                         with
                                     </note>
                                 </para>
-                                <programlisting role=""><![CDATA[ 
-[im,jm] = find(z == zmin);     // or zmax 
+                                <programlisting role=""><![CDATA[
+[im,jm] = find(z == zmin);     // or zmax
 plot2d(x(im)',y(jm)',-9,"000")
  ]]></programlisting>
                             </listitem>
@@ -275,8 +278,8 @@ plot2d(x(im)',y(jm)',-9,"000")
         <title>Description</title>
         <para>
             <literal>contour</literal> draws level curves of a surface z=f(x,y). The level curves are
-            drawn on a 3D surface. The optional arguments are the same as for the function 
-            <literal>plot3d</literal> (except <literal>zlev</literal>) and their meanings are the same. 
+            drawn on a 3D surface. The optional arguments are the same as for the function
+            <literal>plot3d</literal> (except <literal>zlev</literal>) and their meanings are the same.
             They control the drawing of level curves on a 3D plot.
             Only <literal>flag(1)=mode</literal> has a special meaning.
         </para>
@@ -304,9 +307,9 @@ plot2d(x(im)',y(jm)',-9,"000")
         </variablelist>
         <para>
             You can change the format of the floating point number printed on the levels
-            by using <literal>xset("fpf",string)</literal> where <literal>string</literal> gives the 
-            format in C format syntax (for example <literal>string="%.3f"</literal>). Use 
-            <literal>string=""</literal> to switch back to default format and Use 
+            by using <literal>xset("fpf",string)</literal> where <literal>string</literal> gives the
+            format in C format syntax (for example <literal>string="%.3f"</literal>). Use
+            <literal>string=""</literal> to switch back to default format and Use
             <literal>string=" "</literal> to suppress printing.
         </para>
         <para>
@@ -318,7 +321,7 @@ plot2d(x(im)',y(jm)',-9,"000")
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t=linspace(-%pi,%pi,30);
 function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
 contour(t,t,my_surface,10)
@@ -328,7 +331,7 @@ contour(t,t,my_surface,10)
             function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
             contour(t,t,my_surface,10)
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t=linspace(-%pi,%pi,30);
 // changing the format of the printing of the levels
 xset("fpf","%.1f")
@@ -344,7 +347,7 @@ contour(t,t,my_surface,10)
             function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
             contour(t,t,my_surface,10)
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 3D
 t=linspace(-%pi,%pi,30);
 function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
@@ -359,7 +362,7 @@ plot3d(t,t,z);contour(t,t,z+0.2*abs(z),20,flag=[0 2 4]);
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="contour2d">contour2d</link>

@@ -3,11 +3,14 @@
  * Copyright (C) 2009 - DIGITEO - Allan Simon
  * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -211,12 +214,12 @@ public class BasicPortCodec extends XcosObjectCodec {
      */
     private void updateRotationFromOrientation(StyleMap map, BasicPort obj) {
         final Orientation orientation = obj.getOrientation();
-        double rotation = 0;
+        int rotation = 0;
         boolean flipped = false;
         boolean mirrored = false;
 
         if (map.get(mxConstants.STYLE_ROTATION) != null) {
-            rotation = Double.parseDouble(map.get(mxConstants.STYLE_ROTATION));
+            rotation = Double.valueOf(map.get(mxConstants.STYLE_ROTATION)).intValue();
         } else {
             rotation = 0;
         }
@@ -235,7 +238,7 @@ public class BasicPortCodec extends XcosObjectCodec {
         // Calculate the rotation for this kind of port.
         rotation = orientation.getAbsoluteAngle(obj.getClass(), flipped, mirrored);
 
-        map.put(mxConstants.STYLE_ROTATION, Double.toString(rotation));
+        map.put(mxConstants.STYLE_ROTATION, Integer.toString(rotation));
     }
 }
 // CSON: ClassDataAbstractionCoupling

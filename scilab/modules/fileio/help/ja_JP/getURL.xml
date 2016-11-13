@@ -3,12 +3,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) - S/E - Sylvestre Ledru
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
@@ -20,268 +23,268 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:scilab="http://www.scilab.org"
           xmlns:db="http://docbook.org/ns/docbook">
-    
+
     <refnamediv>
-        
+
         <refname>getURL</refname>
-        
+
         <refpurpose>URL (HTTP, HTTPS, FTP...) をダウンロード</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>filename = getURL(URL);
-            
+
             [filename, [content]] = getURL(URL [, targetDir [, username [, password]]]]);
-            
+
             [filename, [content]] = getURL(URL [, targetFile [, username [, password]]]]);
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>URL</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列: URL. サポートされており,テスト済みです: HTTP, HTTPS, FTP (IPv4 およびIPv6)</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>targetDir</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列オプションパラメータ:ファイルを保存するディレクトリ (空の場合はカレントディレクトリ)</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>targetFile</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列オプションパラメータ: ファイルの保存先(空の場合はカレントディレクトリ)
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>username</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列オプションパラメータ: 認証が必要なWebサイト用のユーザ名</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>password</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列オプションパラメータ: 認証が必要なWebサイト用のパスワード</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>filename</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列: ファイルをダウンロードするパス</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>content</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列: ダウンロードしたファイルの内容</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>URLからファイルをダウンロード.</para>
-        
+
         <para>
-            
+
             getURL はリモートURLからファイルをダウンロードします.
-            
+
             getURLはURLで指定するものと同じ名前を使用します.
-            
+
             しかし,いくつかの習慣に基づき(例えば,<emphasis role="italic">http://www.scilab.org/</emphasis>)
-            
+
             ファイル名がURLで指定されない場合に,
-            
+
             getURLはファイル名を<emphasis role="italic">index.html</emphasis>に変更します.
-            
+
         </para>
-        
+
         <para>content はURLに指定されたページの内容を有します.</para>
-        
+
         <para>
-            
+
             この関数は <ulink url="http://curl.haxx.se/libcurl/">curlライブラリ</ulink>にもとづいています.
-            
+
         </para>
-        
+
         <para> 認証が必要なWebサイト用にusername と password を指定できます.
-            
+
             使用される認証方法はCURLAUTH_ANYで,
-            
+
             libcurlライブラリのCURLOPT_HTTPAUTHパラメータで指定されます.
-            
+
         </para>
-        
+
         <para>IPv6 (そして当然 IPv4) が getURLにより標準でサポートされます.</para>
-        
+
         <para>このバージョンではプロキシ設定が有効となっています.
-            
+
             ATOMS設定ファイルのパラメータを使用します.
-            
+
         </para>
-        
+
         <para>
-            
+
             URLに追従して確実にダウンロードを行うには,
-            
+
             curlオプション<emphasis role="italic">CURLOPT_FOLLOWLOCATION</emphasis> を有効にします.
-            
+
         </para>
-        
+
         <para>
-            
-            <literal>getURL</literal> は libcurlにもとづいています. 
-            
+
+            <literal>getURL</literal> は libcurlにもとづいています.
+
             公式のScilabバイナリにおけるこのライブラリのバージョンは,
-            
+
             HTTP, HTTPS, FTP および FTPS サポートを有効にしてコンパイルされています.
-            
+
             Scilabがディストリビューションのパッケージシステムによりインストールされた場合,
-            
+
             HTTP, HTTPS および FTPS以外の
-            
+
             <ulink url="http://curl.haxx.se/docs/features.html">他のプロトコル</ulink>
-            
+
             も動作する可能性があります.しかし, これらはまだ十分に試験されていません.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <programlisting role="example">
-            
+
             // URLをダウンロードし, ファイル maths_simulation に保存します
-            
+
             getURL("http://www.scilab.org/products/scilab/features/maths_simulation");
-            
+
             // Scilabホームページをカレントディレクトリに保存します (そしてファイルにリネーム)
-            
+
             getURL("http://www.scilab.org","scilab_homepage.html");
-            
+
             // Scilabの例をダウンロードし, 実行します
-            
+
             myFile = getURL("http://fileexchange.scilab.org/toolboxes/contour3d/10.03/files/contour3d.sci",TMPDIR)
-            
+
             exec(myFile);
-            
+
             contour3d();
-            
+
             // 認証を使用
-            
+
             getURL("http://httpbin.org/basic-auth/user/passwd",TMPDIR+"/testfile.html","user","passwd")
-            
+
             // IPv6接続を使用
-            
+
             getURL("http://ipv6.google.com/intl/en_com/images/srpr/logo3w.png")
-            
+
             // 内容を取得
-            
+
             [myFile, content] = getURL("http://fileexchange.scilab.org/toolboxes/contour3d/10.03/files/contour3d.sci",TMPDIR)
-            
+
         </programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="splitURL">splitURL</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>History</title>
-        
+
         <revhistory>
-            
+
             <revision>
-                
+
                 <revnumber>5.5.0</revnumber>
-                
+
                 <revremark>この関数はScilab 5.5.0で追加されました</revremark>
-                
+
             </revision>
-            
+
         </revhistory>
-        
+
     </refsection>
-    
+
 </refentry>
 

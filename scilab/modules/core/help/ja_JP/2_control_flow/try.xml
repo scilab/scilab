@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="try" xml:lang="ja">
+    <refnamediv>
+        <refname>try</refname>
+        <refpurpose>try-catch 制御命令のtryブロックを開始</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="catch">
+        <refname>catch</refname>
+        <refpurpose>try-catch 制御命令のcatchブロックを開始</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>try
+            statements
+            catch
+            statements
+            end
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>try</literal>-<literal>catch</literal> 制御構文
+            はエラーを発生する可能性があるコードを管理するために
+            使用されます.
+        </para>
+        <para>
+            <literal>try</literal>-<literal>catch</literal>制御命令が
+            実行されている場合,通常,
+            <literal>try</literal> と <literal>catch</literal>キーワードの
+            間の命令のみが実行されます.
+            しかし,これらの命令のどれかでエラーが発生した場合,
+            <literal>catch</literal>キーワードまでの命令はスキップされ,
+            <literal>catch</literal> および <literal>end</literal>
+            キーワードの間の命令が,デフォルトのエラーモードで
+            実行されます.
+        </para>
+        <para>
+            <link linkend="lasterror">lasterror</link> 関数により
+            記録されたエラーを取得することができます.
+        </para>
+        <para>
+            代替命令が指定されない場合,<literal>catch</literal> 命令
+            は無視されます.
+        </para>
+        <para>
+            エラー処理用の<literal>'errcatch'</literal>引数を指定して
+            <link linkend="execstr">execstr</link> 関数を
+            使用することも可能であることに注意してください.
+            これは,特に構文エラーを処理する際に有用です.
+        </para>
+        <para>
+            <literal>try-catch</literal> は以下に
+            多少なりとも似ていることにも注意してください:
+        </para>
+        <programlisting role=""><![CDATA[
+if execstr("<try instructions>","errcatch")<>0 then
+  <catch instructions>
+end
+ ]]></programlisting>
+        <para>
+            この命令は,"errcatch" と同様の
+            内部機構を使用しています.
+            これが,
+            <emphasis>execstr(...,"errcatch")</emphasis>
+            を<literal>try</literal>-<literal>catch</literal>
+            制御構造の中に含めることができない理由です.
+            このコンテキストは検出され,
+            特定のエラーメッセージが発生します
+            (この誤差は<literal>try</literal>でトリガーされた場合の
+            他の誤差と同様に捕捉,保持されます).
+        </para>
+        <para>
+            しかし, <literal>try</literal>-<literal>catch</literal>
+            制御構造はネスト可能です (以下の例2を参照ください).
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+// 例 1
+file_path=TMPDIR+'/wrong'
+try
+  u=mopen(file_path,'r')
+  x=mget(10,'c',u)
+catch
+  disp(['file '+file_path+ 'cannot be read',
+        'using default values for x'])
+  x=1:10
+end
+ [error_message,error_number]=lasterror(%t)
+
+// 例 2 (ネストしたtry/catch構造)
+function nestedtry(a,b)
+disp("START")
+mprintf("\ta is %s\t\tb is %s\n",string(a),string(b))
+try
+  disp("try 1")
+  try
+    disp("try 2")
+    z=a+1;  // 文字列の場合はエラー
+  catch
+    disp("catch 2")
+    t=b+1;  // 文字列の場合はエラー
+  end
+  disp("after try 2")
+catch
+  disp("catch 1")
+end
+disp("after try 1 - THE END")
+endfunction
+nestedtry(1,1)
+nestedtry("a string",1)
+nestedtry(1,"a string")
+nestedtry("a string","a string")
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="error">error</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="lasterror">lasterror</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

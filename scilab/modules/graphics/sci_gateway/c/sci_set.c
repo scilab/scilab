@@ -6,11 +6,14 @@
  * Copyright (C) 2006 - INRIA - Vincent Couvert
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -275,6 +278,7 @@ int sci_set(char *fname, void *pvApiCtx)
             freeAllocatedSingleString(pstPath);
             return 1;
         }
+        freeAllocatedSingleString(pstPath);
     }
     else
     {
@@ -338,6 +342,7 @@ int sci_set(char *fname, void *pvApiCtx)
         if (sciErr.iErr)
         {
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, iPos + 1);
+            freeAllocatedSingleString(pstProperty);
             return 1;
         }
 
@@ -366,8 +371,8 @@ int sci_set(char *fname, void *pvApiCtx)
             sciErr = getVarType(pvApiCtx, piAddr3, &iType3);
             if (sciErr.iErr)
             {
-                freeAllocatedSingleString(pstProperty);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, iPos + 1);
+                freeAllocatedSingleString(pstProperty);
                 return 1;
             }
 
@@ -390,15 +395,15 @@ int sci_set(char *fname, void *pvApiCtx)
                     {
                         if (isScalar(pvApiCtx, piAddr3) == 0)
                         {
-                            freeAllocatedSingleString(pstProperty);
                             Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, iPos + 1);
+                            freeAllocatedSingleString(pstProperty);
                             return 1;
                         }
 
                         if (getAllocatedSingleString(pvApiCtx, piAddr3, (char**)&pvData))
                         {
-                            freeAllocatedSingleString(pstProperty);
                             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, iPos + 1);
+                            freeAllocatedSingleString(pstProperty);
                             return 1;
                         }
                         iRows3 = (int)strlen((char*)pvData);
@@ -408,7 +413,12 @@ int sci_set(char *fname, void *pvApiCtx)
                     else
                     {
                         isMatrixOfString = 1;
-                        getAllocatedMatrixOfString(pvApiCtx, piAddr3, &iRows3, &iCols3, (char***)&pvData);
+                        if (getAllocatedMatrixOfString(pvApiCtx, piAddr3, &iRows3, &iCols3, (char***)&pvData))
+                        {
+                            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, iPos + 1);
+                            freeAllocatedSingleString(pstProperty);
+                            return 1;
+                        }
                     }
                     break;
                 case sci_list :
@@ -423,8 +433,16 @@ int sci_set(char *fname, void *pvApiCtx)
 
             if (sciErr.iErr)
             {
-                freeAllocatedSingleString(pstProperty);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, iPos + 1);
+                freeAllocatedSingleString(pstProperty);
+                if (isMatrixOfString == 1)
+                {
+                    freeAllocatedMatrixOfString(iRows3, iCols3, (char**)pvData);
+                }
+                else
+                {
+                    freeAllocatedSingleString((char*)pvData);
+                }
                 return 1;
             }
         }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="lcf">
+    <refnamediv>
+        <refname>lcf</refname>
+        <refpurpose>Continuous time dynamical systems normalized coprime factorization</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[N,M]=lcf(sl)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>a continuous time linear dynamical system.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>N</term>
+                <listitem>
+                    <para>a continuous linear dynamical system.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>M</term>
+                <listitem>
+                    <para>a continuous linear dynamical system.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Computes normalized coprime factorization of the linear dynamic
+            system <literal>sl</literal>.
+        </para>
+        <para>
+            <literal>sl = M^-1 N</literal>
+        </para>
+        <para>
+            <literal>M</literal> and <literal>N</literal> are returned in the same
+            representation (transfer function or state-space) than
+            <literal>sl</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Authors</title>
+        <para>F. D.; ;   </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal> is now checked for
+                    continuous time linear dynamical system.  This modification
+                    has been introduced by this <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">commit</ulink>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

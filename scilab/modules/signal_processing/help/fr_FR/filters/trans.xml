@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="trans">
+    <refnamediv>
+        <refname>trans</refname>
+        <refpurpose>low-pass to other filter transform</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            hzt=trans(hz,tr_type,frq)
+            hzt=trans(pd,zd,gd,tr_type,frq)
+            [pt,zt,gt]=trans(hz,tr_type,frq)
+            [pt,zt,gt]=trans(pd,zd,gd,tr_type,frq)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>hz</term>
+                <listitem>
+                    <para>a single input single output discrete transfer function, the low pass filter</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pd</term>
+                <listitem>
+                    <para>Vector of given filter poles</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zd</term>
+                <listitem>
+                    <para>Vector of given filter zeros</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gd</term>
+                <listitem>
+                    <para>scalar: the given filter gain</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tr_type</term>
+                <listitem>
+                    <para>string, the type of transformation, see description for possible values </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>2-vector of discrete cut-off frequencies
+                        (i.e.,<literal>0&lt;frq&lt;.5</literal>). see description
+                        for details.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>hzt</term>
+                <listitem>
+                    <para>transformed filter transfert function.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pt</term>
+                <listitem>
+                    <para>vector of transformed filter zeros.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zt</term>
+                <listitem>
+                    <para>vector of transformed filter poles.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gt</term>
+                <listitem>
+                    <para>a scalar: transformed filter gain.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>function for transforming standardized low-pass filter given its
+            poles-zeros_gain representation into
+            one of the following filters:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>tr_type='lp'</term>
+                <listitem>
+                    <para>low pass filter, the cutoff frequency is given by the
+                        first entry of <literal>frq</literal>, the second one is ignored.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tr_type='hp'</term>
+                <listitem>
+                    <para>high pass filter, the cutoff frequency is given by the
+                        first entry of  <literal>frq</literal>, the second one is ignored.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tr_type='bp'</term>
+                <listitem>
+                    <para>
+                        band pass filter, the frequency range is given by <literal>frq(1)</literal> and <literal>frq(2)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tr_type='sb'</term>
+                <listitem>
+                    <para>
+                        stop band filter, the frequency range is given by <literal>frq(1)</literal> and <literal>frq(2)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Used functions</title>
+        <para>
+            <link linkend="bilt">bilt</link>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+Hlp=iir(3,'lp','ellip',[0.1 0],[.08 .03]);
+Hbp=trans(Hlp,'bp',[0.01 0.1]);
+Hsb=trans(Hlp,'sb',[0.01 0.1])
+
+clf();gainplot([Hlp;Hbp;Hsb],1d-3,0.48);
+l=legend(['original low pass';'band pass';'stop band']);
+l.legend_location="in_lower_left";
+ ]]></programlisting>
+        <scilab:image><![CDATA[
+Hlp=iir(3,'lp','ellip',[0.1 0],[.08 .03]);
+Hbp=trans(Hlp,'bp',[0.01 0.1]);
+Hsb=trans(Hlp,'sb',[0.01 0.1])
+
+clf();gainplot([Hlp;Hbp;Hsb],1d-3,0.48);
+l=legend(['original low pass';'band pass';'stop band']);
+l.legend_location="in_lower_left";
+]]>     </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="iir">iir</link>
+            </member>
+            <member>
+                <link linkend="bilt">bilt</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

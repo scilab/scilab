@@ -2,139 +2,142 @@
 
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="strncpy">
-    
+
     <refnamediv>
-        
+
         <refname>strncpy</refname>
-        
+
         <refpurpose>文字列から文字をコピーする</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>res = strncpy(str1, num)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>str1</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列または文字列の行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>num</term>
-                
+
                 <listitem>
-                    
+
                     <para>行列で,ソースからコピーされる文字の最大長</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>res</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列または文字列の行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <code>res = strncpy(str1, num)</code> は,
-            
+
             ソース<varname>str1</varname>から
-            
+
             デスティネーション<varname>res</varname>に
-            
+
             最初の<varname>num</varname>文字をコピーします.
-            
+
         </para>
-        
-        <para> 
-            
+
+        <para>
+
             <varname>num</varname>は<varname>str1</varname>と同じ次元であるか,
-            
+
             <varname>num</varname>が整数値である必要があります.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 strncpy('scilab',3)
 strncpy(['scilab','SciLab';'strncpy','strstr'],3)
 strncpy(['scilab','SciLab';'strncpy','strstr'],[1,2;3,4])
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="strcat">strcat</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="strcmp">strcmp</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

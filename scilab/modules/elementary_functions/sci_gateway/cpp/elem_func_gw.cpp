@@ -3,11 +3,14 @@
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 //for Visual Leak Detector in debug compilation mode
@@ -156,16 +159,16 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
         {
             if (in[i]->isArrayOf() == false)
             {
-                delete[] * _piDims;
                 Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), _pstName.c_str(), i + 1);
+                delete[] * _piDims;
                 return false;
             }
 
             types::GenericType* pGTIn = in[i]->getAs<types::GenericType>();
             if (pGTIn->isScalar() == false || pGTIn->isComplex())
             {
-                delete[] * _piDims;
                 Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), _pstName.c_str(), i + 1);
+                delete[] * _piDims;
                 return false;
             }
 
@@ -176,8 +179,8 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
                     double dValue = in[i]->getAs<types::Double>()->get(0);
                     if (dValue >= INT_MAX)
                     {
-                        delete[] * _piDims;
                         Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
+                        delete[] * _piDims;
                         return false;
                     }
                     (*_piDims)[i] = static_cast<int>(dValue);
@@ -206,8 +209,8 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
                     long long llValue = in[i]->getAs<types::Int64>()->get(0);
                     if (llValue >= INT_MAX)
                     {
-                        delete[] * _piDims;
                         Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
+                        delete[] * _piDims;
                         return false;
                     }
                     (*_piDims)[i] = static_cast<int>(llValue);
@@ -218,8 +221,8 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
                     unsigned long long ullValue = in[i]->getAs<types::UInt64>()->get(0);
                     if (ullValue >= INT_MAX)
                     {
-                        delete[] * _piDims;
                         Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
+                        delete[] * _piDims;
                         return false;
                     }
                     (*_piDims)[i] = static_cast<int>(ullValue);
@@ -227,6 +230,7 @@ bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, in
                 }
                 default:
                     Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), _pstName.c_str(), i + 1);
+                    delete[] * _piDims;
                     return false;
             }
         }

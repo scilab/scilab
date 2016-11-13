@@ -2,14 +2,16 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * Copyright (C) 2012 - Scilab Enterprises
- * Copyright (C) 2013 - Samuel GOUGEON
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2013, 2016 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="replot">
@@ -19,49 +21,125 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>replot(area)</synopsis>
-        <synopsis>replot(area, axesHandles)</synopsis>
+        <title>Syntaxe</title>
+        <synopsis>
+          replot()
+          replot(area)
+          replot(idAxes)
+          replot(area, idAxes)
+          replot(.., tight_limits)
+      </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
                 <term>area</term>
                 <listitem>
-                    <para>vecteur [xmin ymin xmax ymax] ou [xmin ymin zmin xmax ymax zmax]: nouvelles bornes de la zone à réafficher. 
-                        Utiliser <literal>%nan</literal> pour conserver une borne telle quelle.
+                    <para>vecteur [xmin ymin xmax ymax] ou [xmin ymin zmin xmax ymax zmax]:
+                      nouvelles bornes de la zone à réafficher.
+                      <note>
+                            <itemizedlist>
+                                <listitem>
+                                    La valeur <literal>%nan</literal> peut être
+                                    utilisée pour conserver une borne telle quelle.
+                                </listitem>
+                                <listitem>
+                                    La valeur <literal>%inf</literal> peut être
+                                    utilisée pour établir une borne à la position
+                                    de l'objet graphique le plus marginal présent
+                                    dans le repère, dans la direction considérée.
+                                </listitem>
+                            </itemizedlist>
+                        </note>
+                    </para>
+                    <para>
+                        La zone <literal>area</literal> par défaut
+                        est [%inf %inf %inf %inf] pour un repère 2D,
+                        ou [%inf %inf %inf %inf %inf %inf] en 3D.
+                    </para>
+                    <para>Si N repères graphiques sont identifiés dans
+                        <literal>idAxes</literal>, <literal>area</literal>
+                        peut être une matrice de N lignes et 4 ou 6 colonnes.
+                        Chaque ligne correspond alors à un repère graphique
+                        respectif de <literal>idAxes</literal>.
+                        Si <literal>area</literal> est seulement un vecteur de
+                        4 ou 6 bornes, celles-ci sont utilisées pour tous les
+                        repères à recadrer.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>axesHandles</term>
+                <term>idAxes</term>
                 <listitem>
-                    <para>Vecteur d'identifiants graphiques de type Axes: repères graphiques à retailler. Par défaut, le repère graphique actif de la fenêtre graphique active est considéré.
+                    <para>Vecteur d'identifiants graphiques soit de type Axes,
+                        soit ayant des descendants directs de type Axes, tels
+                        que les Figures ou certains composants uicontrol de style
+                        <literal>frame</literal>.
+                        <literal>idAxes</literal> spécifie les repères graphiques
+                        à recadrer, directement ou via leur parents directs.
+                        Si aucun repère n'est identifié, l'instruction
+                        <literal>replot</literal> est simplement ignorée.
+                    </para>
+                    <para>
+                        Par défaut, le repère graphique actif est considéré.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tight_limits</term>
+                <listitem>
+                    <para>
+                    Mot simple <literal>"tight"</literal> ou <literal>"on"</literal> ou
+                    <literal>"off"</literal>, ou vecteur de 2 (en 2D)
+                    ou 3 (en 3D) mots <literal>"tight"</literal>, <literal>"on"</literal> ou
+                    <literal>"off"</literal>. Si un seul mot est fourni, il
+                    est utilisé pour les 2 ou 3 axes de chaque repère.
+                    </para>
+                    <para>
+                    Cette option force la valeur de l'attribut
+                    <literal>.tight_limits</literal> des repères
+                    aux valeurs <literal>"on"</literal> ou
+                    <literal>"off"</literal> données.
+                    </para>
+                    <para>
+                        Par défaut, les attributs tight_limits en cours sont inchangés.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
-            <literal>replot</literal> est utilisée pour recadrer les repères graphiques spécifiés par <literal>axesHandles</literal> 
-            (ou par défaut le repère graphique actif de la fenêtre graphique active) en changeant leurs bornes communes spécifiées sous la forme
-            <literal>rect = [xmin,ymin, xmax,ymax]</literal> ou <literal>rect = [xmin,ymin,zmin, xmax,ymax,zmax]</literal>.
+            <literal>replot</literal> recadre les repères graphiques spécifiés
+            par <literal>idAxes</literal> (ou par défaut le repère graphique actif)
+            en changeant leurs bornes spécifiées sous la forme
+            <literal>area = [xmin, ymin, xmax, ymax]</literal> ou
+            <literal>area = [xmin,ymin,zmin, xmax,ymax,zmax]</literal>.
         </para>
         <para>
-            <varname>replot</varname> modifie les valeurs <literal>data_bounds</literal> des repères. 
-            <note>
-                La propriété <literal>tight_limits</literal> des repères doit
-                être mise à  <literal>"on"</literal> pour sélectionner strictement ces bornes
-                (voir <link linkend="axes_properties">axes_properties</link>).
-            </note>
+            <varname>replot</varname> modifie l'attribut
+            <literal>data_bounds</literal> des repères.
+        </para>
+        <para>
+            Lorsque la valeur spécifiée pour une borne est infinie (%inf et -%inf
+            sont équivalentes),
+            <literal>replot</literal> recherche dans le repère l'objet graphique
+            le plus marginal du coté de la borne considérée, et assigne la
+            position de l'objet comme borne effective. Les dimensions des objets
+            sont prises en compte, de sorte à assurer qu'aucun objet ne soit
+            partiellement ou totalement caché hors du repère dans la direction
+            choisie.
+        </para>
+        <para>Lorsque l'option <literal>tight_limits</literal> est fournie,
+            sa valeur est affectée à l'attribut <literal>.tight_limits</literal>
+            de chaque repère graphique considéré, axe par axe.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
       // Premier exemple
       x=[0:0.1:2*%pi]';
       plot2d(x,sin(x))
@@ -72,13 +150,13 @@
             plot2d(x,sin(x))
             replot([-1,-1,10,2])
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // second exemple
 xdel(winsid());
 plot() // plot demo
 f=gcf();
 replot([-1,-1,10,2],f.children(1)) // specify axes handle's value
-replot([-3,-2,8,4],f.children(2)) 
+replot([-3,-2,8,4],f.children(2))
  ]]></programlisting>
         <scilab:image>
             xdel(winsid());
@@ -93,9 +171,12 @@ x = linspace(0,360,200).';
 clf
 plot2d(x,[sind(x) tand(x)])
 ax = gca();
-ax.data_bounds				// bornes initiales
-replot([%nan,-10,%nan,10])	// Seules Ymin and Ymax sont modifiées
-ax.data_bounds				// nouvelles bornes
+ax.data_bounds              // bornes initiales
+replot([%nan,-10,%nan,10])  // Seules Ymin and Ymax sont modifiées
+ax.data_bounds              // nouvelles bornes
+     ]]></programlisting>
+        <para></para>
+        <programlisting role="example"><![CDATA[
 // En 3D, les bornes en Z peuvent également être modifiées :
 clf
 x = linspace(-4,4,100);
@@ -110,6 +191,9 @@ ax.data_bounds
 sleep(3000)
 replot([-5 0 -0.4 0 5 0.5])
 ax.data_bounds
+     ]]></programlisting>
+        <para></para>
+        <programlisting role="example"><![CDATA[
 // Plusieurs repères graphiques peuvent être simultanément recadrés :
 clf
 x = linspace(-%pi,%pi,400);
@@ -140,7 +224,7 @@ replot([-1 %nan 1.5 %nan], [ax1 ax2])
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>Historique</title>
         <revhistory>
             <revision>
@@ -151,12 +235,38 @@ replot([-1 %nan 1.5 %nan], [ax1 ax2])
                             <para>Extension en 3D</para>
                         </listitem>
                         <listitem>
-                            <para>Plusieurs repères graphiques peuvent être désormais redimensionnés simultanément</para>
+                            <para>Plusieurs repères graphiques peuvent être désormais
+                                 redimensionnés simultanément
+                            </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>%nan</literal> peut être utilisé pour spécifier une borne inchangée.
+                                <literal>%nan</literal> peut être utilisé pour
+                                spécifier une borne inchangée.
                             </para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Les identifiants de composants uicontrol de style frame
+                            ayant des children de type Axes à traiter sont
+                            désormais acceptés.
+                        </listitem>
+                        <listitem>
+                            %inf peut être utilisée pour fixer une borne à la
+                            position du contenu le plus marginal.
+                        </listitem>
+                        <listitem>
+                            Ajout de la syntaxe replot() abrégeant
+                            replot([%inf %inf %inf %inf]).
+                        </listitem>
+                        <listitem>
+                            Option tight_limits ajoutée.
                         </listitem>
                     </itemizedlist>
                 </revdescription>

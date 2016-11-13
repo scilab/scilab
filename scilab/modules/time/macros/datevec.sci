@@ -2,11 +2,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Pierre MARECHAL
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 // Copyright INRIA
 // Date : 28 Dec 2005
@@ -55,29 +58,45 @@ function [Y,M,D,h,m,s] = datevec(N)
     // On retranche 1 si la valeur est inferieur à 0
 
     mask       = (temp <= 0);
-    Year(mask) = Year(mask)-1;
+    if or(mask)
+        Year(mask) = Year(mask)-1;
 
-    N(mask)    = N(mask) - (365.0*Year(mask) + ceil(0.25*Year(mask)) - ceil(0.01*Year(mask)) + ceil(0.0025*Year(mask)));
-    N(~mask)   = temp(~mask);
+        N(mask)    = N(mask) - (365.0*Year(mask) + ceil(0.25*Year(mask)) - ceil(0.01*Year(mask)) + ceil(0.0025*Year(mask)));
+        N(~mask)   = temp(~mask);
+    else
+        N = temp;
+    end
 
     // ... and the month
     // =========================================================================
 
-    Month = int (N/29);
+    Month = int(N/29);
 
     // construction de la matrice
 
     month_day_mat = ones(nr,nc);
+    idx_leap_year = isLeapYear(Year);
 
-    month_day_mat(isLeapYear(Year))  = leap_year(Month(isLeapYear(Year))+1);
-    month_day_mat(~isLeapYear(Year)) = common_year(Month(~isLeapYear(Year))+1);
+    if ~isempty(Month(idx_leap_year))
+        month_day_mat(idx_leap_year)  = leap_year(Month(idx_leap_year)+1);
+    end
+    if ~isempty(Month(~idx_leap_year))
+        month_day_mat(~idx_leap_year) = common_year(Month(~idx_leap_year)+1);
+    end
 
-    Month( N>month_day_mat ) = Month( N>month_day_mat )+1;
+    if or(N > month_day_mat) then
+        Month( N>month_day_mat ) = Month( N>month_day_mat )+1;
+    end
+
 
     Day = ones(nr,nc);
 
-    month_day_mat(isLeapYear(Year))  = leap_year(Month(isLeapYear(Year)));
-    month_day_mat(~isLeapYear(Year)) = common_year(Month(~isLeapYear(Year)));
+    if ~isempty(Month(idx_leap_year))
+        month_day_mat(idx_leap_year)  = leap_year(Month(idx_leap_year));
+    end
+    if ~isempty(Month(~idx_leap_year))
+        month_day_mat(~idx_leap_year) = common_year(Month(~idx_leap_year));
+    end
 
     Day = N - month_day_mat;
 

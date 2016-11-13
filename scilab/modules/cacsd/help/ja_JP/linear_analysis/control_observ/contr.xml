@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="contr">
+    <refnamediv>
+        <refname>contr</refname>
+        <refpurpose>可制御性, 可制御部分空間, 階段化</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出しの手順</title>
+        <synopsis>n=contr(A,B [,tol])
+            [n,U]=contr(A,B [,tol])
+            [n,U,ind,V,Ac,Bc]=contr(A,B,[,tol])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>A, B</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>虚数パラメータ</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>可制御部分空間の次元.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>
+                        <literal>(A,B)</literal>を正準形に変換する直交変換基底.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>V</term>
+                <listitem>
+                    <para>制御空間の基底を変更する直交行列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ac</term>
+                <listitem>
+                    <para>
+                        ブロックヘッセ行列 <literal>Ac=U'*A*U</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Bc</term>
+                <listitem>
+                    <para>
+                        is <literal>U'*B*V</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ind</term>
+                <listitem>
+                    <para>
+                        可制御インデックス
+                        (サブスペース <literal>B, B+A*B,...=ind(1),ind(1)+ind(2),...</literal>の次元)
+                        を有するp整数ベクトル
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>[n,[U]]=contr(A,B,[tol])</literal> は
+            <literal>(A,B)</literal> の可制御形式を与える.
+            (<literal>dx/dt = A x + B u</literal> または
+            <literal>x(n+1) = A x(n) +b u(n)</literal>).
+            <literal>U</literal> の最初の <literal>n</literal> 列は、
+            可制御サブスペースの基底を構成する.
+        </para>
+        <para>
+            <literal>V=U(:,1:n)</literal>の場合,
+            <literal>V'*A*V</literal> と <literal>V'*B</literal> は
+            <literal>(A,B)</literal> の可制御部を与える.
+        </para>
+        <para>
+            <literal>(Bc, Ac)</literal> は階段化可制御形式である.
+        </para>
+        <programlisting role=""><![CDATA[
+                   |B |sI-A      *  . . .  *      *       |
+                   | 1|    11       .      .      .       |
+                   |  |  A    sI-A    .    .      .       |
+                   |  |   21      22    .  .      .       |
+                   |  |        .     .     *      *       |
+[U'BV|sI - U'AU] = |0 |     0    .     .                  |
+                   |  |            A     sI-A     *       |
+                   |  |             p,p-1    pp           |
+                   |  |                                   |
+                   |0 |         0          0   sI-A       |
+                   |  |                            p+1,p+1|
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <para>
+            Slicot ライブラリ (SCI/modules/cacsd/src/slicotのab01od参照).
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+W=ssrand(2,3,5,list('co',3));  //cont. subspace has dim 3.
+A=W("A");B=W("B");
+[n,U]=contr(A,B);n
+A1=U'*A*U;
+spec(A1(n+1:$,n+1:$))  //uncontrollable modes
+spec(A+B*rand(3,5))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="canon">canon</link>
+            </member>
+            <member>
+                <link linkend="cont_mat">cont_mat</link>
+            </member>
+            <member>
+                <link linkend="unobs">unobs</link>
+            </member>
+            <member>
+                <link linkend="stabil">stabil</link>
+            </member>
+            <member>
+                <link linkend="st_ility">st_ility</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="fr" xml:id="isoview">
+    <refnamediv>
+        <refname>isoview</refname>
+        <refpurpose>Règle la vue isométrique des repères graphiques (taille de fenêtre fixe)
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxe</title>
+        <synopsis>isoview
+            isoview on
+            isoview off
+            isoview(idGraphics [,"on"|"off"])
+            isoview(xmin, xmax, ymin, ymax)    // OBSOLETE. utiliser replot()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>"on" | "off" | &lt;none&gt;</term>
+                <listitem>Active, désactive ou commute la vue isométrique pour
+                    les repères graphiques considérés.
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>idGraphics</term>
+                <listitem>
+                    Vecteur d'identifiants graphiques. Tous les repères
+                    graphiques afférents sont traités. Par défaut, le repère
+                    actif est traité.
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xmin, xmax, ymin, ymax</term>
+                <listitem>
+                    4 nombres décimaux : nouvelles bornes du repère actif.
+                    <warning>
+                        Ces paramètres seront supprimés de <literal>isoview()</literal>
+                        dans Scilab 6.1. SVP désormais utiliser
+                        <link linkend="replot">replot</link>
+                        à la suite de <function>isoview</function>.
+                    </warning>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            <function>isoview</function> est utilisée pour activer ou désactiver
+            l'affichage graphique en échelles isométriques sur les axes
+            x, y, voire z, sans modifier la taille de la fenêtre graphique.
+        </para>
+        <para>
+            <literal>isoview()</literal> ou simplement <literal>isoview</literal>
+            commute la vue isométrique/normale pour le repère actif, en conservant
+            ses bornes.
+        </para>
+        <para>
+            <literal>isoview("on")</literal> ou <literal>isoview on</literal>
+            active la vue isométrique pour le repère actif.
+        </para>
+        <para>
+            <literal>isoview("off")</literal> ou <literal>isoview off</literal>
+            relaxe les échelles en x, y (voire z) pour le repère actif.
+        </para>
+        <para>
+            <literal>isoview(idGraphics,..)</literal> agit sur tous les repères
+            graphiques impliqués dans le vecteur d'identifiants graphiques donné :
+            <itemizedlist>
+                <listitem>
+                    Si <varname>idGraphics(i)</varname> désigne une figure,
+                    tous ses repères graphiques sont considérés.
+                </listitem>
+                <listitem>
+                    Si <varname>idGraphics(i)</varname> représente un repère
+                    graphique, il est modifié comme tel.
+                </listitem>
+                <listitem>
+                    Si <varname>idGraphics(i)</varname> désigne un
+                    sous-composant d'un repère (telle qu'une courbe polyline, un agrégat
+                    compound, etc), son repère graphique parent est considéré.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            <literal>isoview(xmin, xmax, ymin, ymax)</literal> sets the current
+            axes in isometric mode, and then sets its bounds to the given values.
+            <warning>
+                Cette utilisation sera supprimée à partir de Scilab 6.1. Merci d'utiliser
+                <link linkend="replot">replot</link> après
+                <function>isoview</function> à la place.
+            </warning>
+        </para>
+        <note>
+            Après l'appel à <literal>isoview(..)</literal>, le repère actif
+            reste le même, y compris lorsque plusieurs repères ont été traités.
+        </note>
+        <note>Il est possible de tracer directement des courbes en échelles isométriques
+            en utilisant l'option <literal>plot2d(...,frameflag=4)</literal> lors
+            de l'appel, sans devoir utiliser <function>isoview</function> après coup.
+        </note>
+    </refsection>
+    <refsection role="examples">
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+t = [0:0.1:2*%pi]';
+clf
+nc = 3;
+
+subplot(2,nc,1)
+plot2d(cos(t),sin(t))
+xtitle("Véritable cercle")
+a1 = gca();
+
+subplot(2,nc,nc+1)
+plot2d(cos(t),sin(t))
+isoview
+
+subplot(2,nc,2)
+plot2d(7*cos(t),2*sin(t))
+xtitle("Véritable ellipse")
+a2 = gca();
+
+subplot(2,nc,nc+2)
+plot2d(7*cos(t),2*sin(t))
+isoview
+
+// Dessinons une sphère à facettes calculées avec eval3dp()
+deff("[x,y,z] = sph(alp,tet)",[
+      "x = r*cos(alp).*cos(tet)+orig(1)*ones(tet)"; ..
+      "y = r*cos(alp).*sin(tet)+orig(2)*ones(tet)"; ..
+      "z = r*sin(alp)+orig(3)*ones(tet)"]);
+r = 3; orig = [0 0 0];
+[xx,yy,zz] = eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,40));
+subplot(2,nc,3)
+plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+xtitle("Véritable sphère")
+a3 = gca();
+subplot(2,nc,nc+3)
+plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+isoview
+
+// Commutation en vue isométrique/normale pour tous les repères de la fenêtre
+isoview(gcf())
+
+// Passage en vue isométrique de tous les repères de la fenêtre graphique
+isoview(gcf(), "on")
+
+// Passage en vue normale du repère actif
+isoview off
+
+// Passage en vue isométrique des repères graphiques du haut
+isoview(gcf(),"off")
+isoview([a1 a2 a3], "on")
+ ]]></programlisting>
+        <scilab:image>
+            t = [0:0.1:2*%pi]';
+            clf
+            f = gcf();
+            f.axes_size = [850 400];
+            nc = 3;
+            subplot(2,nc,1)
+            plot2d(cos(t),sin(t))
+            xtitle("True circle")
+            a1 = gca();
+            subplot(2,nc,nc+1)
+            plot2d(cos(t),sin(t))
+            isoview
+
+            subplot(2,nc,2)
+            plot2d(7*cos(t),2*sin(t))
+            xtitle("True ellipse")
+            a2 = gca();
+            subplot(2,nc,nc+2)
+            plot2d(7*cos(t),2*sin(t))
+            isoview
+
+            // plot of a sphere using facets computed by eval3dp
+            deff("[x,y,z] = sph(alp,tet)",["x = r*cos(alp).*cos(tet)+orig(1)*ones(tet)"; ..
+            "y = r*cos(alp).*sin(tet)+orig(2)*ones(tet)"; ..
+            "z = r*sin(alp)+orig(3)*ones(tet)"]);
+            r = 3; orig = [0 0 0];
+            [xx,yy,zz] = eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,40));
+            subplot(2,nc,3)
+            plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+            xtitle("True sphere")
+            a3 = gca();
+            subplot(2,nc,nc+3)
+            plot3d(xx, yy, zz, alpha=60, flag=[color("green") 8 4])
+            isoview
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// Utilisation de l'option frameflag=4  de plot2d() :
+r = linspace(1,10,200);
+t = r*3;
+scf();
+subplot(1,2,1)
+plot2d(r.*sin(t),r.*cos(t))
+xtitle("plot2d(..)")
+
+subplot(1,2,2)
+plot2d(r.*sin(t),r.*cos(t),frameflag=4)
+xtitle("with frameflag=4")
+ ]]></programlisting>
+        <scilab:image>
+            r = linspace(1,10,200);
+            t = r*3;
+            scf();
+            subplot(1,2,1)
+            plot2d(r.*sin(t),r.*cos(t))
+            xtitle("plot2d(..)")
+
+            subplot(1,2,2)
+            plot2d(r.*sin(t),r.*cos(t),frameflag=4)
+            xtitle("with frameflag=4")
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="square">square</link>
+            </member>
+            <member>
+                <link linkend="replot">replot</link>
+            </member>
+            <member>
+                <link linkend="axes_properties">Axes properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>Ajout des drapeaux "on", "off".</listitem>
+                        <listitem>Ajout des paramètres d'entrée &lt;none&gt; et idGraphics.</listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+
+</refentry>

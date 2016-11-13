@@ -14,7 +14,7 @@
             <varlistentry>
                 <term>x  </term>
                 <listitem>
-                    <para>une variable 
+                    <para>une variable
                     </para>
                 </listitem>
             </varlistentry>
@@ -35,7 +35,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 isglobal(1)
 global a
 isglobal(a)

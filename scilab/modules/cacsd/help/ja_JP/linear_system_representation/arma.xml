@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - JPC
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="arma">
+    <refnamediv>
+        <refname>arma</refname>
+        <refpurpose>Scilab armaライブラリ</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            Armax は,Scilab tlist型<literal>'ar'</literal>を有するデータを処理します.
+            <literal>armac</literal>が,
+            <literal>Armax</literal> Scilabオブジェクトを構築する際に使用されます.
+            <literal>'ar'</literal> tlist には,フィールド
+            <literal>['a','b','d','ny','nu','sig']</literal>が含まれます.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>armac</term>
+                <listitem>
+                    <para>
+                        この間巣は,Armaxプロセス<literal> A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal>
+                        を符号化するScilab tlistを作成します.
+                    </para>
+                    <programlisting role=""><![CDATA[
+-->ar=armac([1,2],[3,4],1,1,1,sig);
+-->ar('a')
+ ans  =
+!   1.    2. !
+-->ar('sig')
+ ans  =
+    1.
+ ]]></programlisting>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>armap(ar [,out])</term>
+                <listitem>
+                    <para>
+                        <literal>ar</literal>に関するarmax方程式を表示します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>armap_p(ar [,out])</term>
+                <listitem>
+                    <para>
+                        <literal>ar</literal>
+                        に関するarmax方程式を多項式行列表示で表示します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>[A,B,D]=armap2p(ar)</term>
+                <listitem>
+                    <para>ar表現から多項式行列を展開します.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>armax</term>
+                <listitem>
+                    <para>
+                        n次元ARXプロセス<literal>A(z^-1)y= B(z^-1)u + sig*e(t)</literal>の係数を
+                        同定するために使用されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>armax1</term>
+                <listitem>
+                    <para>
+                        armax1 は,1次元 ARX プロセス<literal>A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal>
+                        の係数を同定するために使用されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>arsimul</term>
+                <listitem>
+                    <para>armax 軌道シミュレーション.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>narsimul</term>
+                <listitem>
+                    <para>armax シミュレーション (rtitrを使用)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>odedi</term>
+                <listitem>
+                    <para>ode および arsimulの簡単なテスト. ODEの 'discret' オプションを試します.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prbs_a</term>
+                <listitem>
+                    <para>擬似乱数バイナリ列を生成</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>reglin</term>
+                <listitem>
+                    <para>線形回帰</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+// Example extracted from the demo arma3.dem.sce in the cacsd module
+// Spectral power estimation
+// ( form Sawaragi et all)
+m = 18;
+a = [1,-1.3136,1.4401,-1.0919,+0.83527];
+b = [0.0,0.13137,0.023543,0.10775,0.03516];
+u = rand(1,1000,'n');
+z = arsimul(a,b,[0],0,u);
+//----Using macro mese
+[sm,fr]=mese(z,m);
+//----The theorical result
+function gx=gxx(z,a,b)
+  w  = exp(-%i*2*%pi*z*(0:4))'
+  gx = abs(b*w)^2/(abs(a*w)^2);
+endfunction
+res=[];
+for x=fr
+  res=[ res, gxx(x,a,b)];
+end
+//----using armax estimation of order  (4,4)
+// it's a bit tricky because we are not supposed to know the order
+[arc,la,lb,sig,resid]=armax(4,4,z,u);
+res1=[];
+for x=fr
+  res1=[ res1, gxx(x,la(1),lb(1))];
+end
+//-- visualization of the results
+plot2d([fr;fr;fr]',[20*log10(sm/sm(1));20*log10(res/res(1));20*log10(res1/res1(1))]',[2,1,-1])
+legend(["Using macro mese";"Theoretical value";"Arma identification"])
+xtitle("Spectral power","frequency","spectral estimate")
+ ]]></programlisting>
+    </refsection>
+</refentry>

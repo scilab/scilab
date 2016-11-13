@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="elseif">
+    <refnamediv>
+        <refname>elseif</refname>
+        <refpurpose>keyword in if-then-else</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            If there is more than one condition then keyword <literal>elseif</literal> is useful.
+            If there is more than one <literal>elseif</literal> then the first true condition
+            is selected (even other also are true).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=1;
+if a==1 then
+    disp("a equals 1")
+elseif a==2 then
+    disp("a equals 2")
+elseif a==1 & a>0 then
+    disp("this condition is true, but never will be selected, because it is the second true condition.")
+else
+    disp("Case not handled.")
+end
+     ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="select">select</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

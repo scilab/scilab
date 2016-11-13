@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Bruno Pincon
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dsearch" xml:lang="ru">
@@ -19,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             [ind, occ, info] = dsearch(X, s )
             [ind, occ, info] = dsearch(X, s , ch )
@@ -41,8 +44,8 @@
                 <term>s</term>
                 <listitem>
                     <para>
-                        матрица чисел двойной точности размером n на 1 или 1 на n, интервалы (если 
-                        ch="c") или набор (если ch="d"). 
+                        матрица чисел двойной точности размером n на 1 или 1 на n, интервалы (если
+                        ch="c") или набор (если ch="d").
                         Значения в s должны быть в строго возрастающем порядке:
                         s(1) &lt; s(2) &lt; ... &lt; s(n)
                     </para>
@@ -70,8 +73,8 @@
                 <term>occ</term>
                 <listitem>
                     <para>
-                        Если ch="c", то (n-1) на 1 или 1 на (n-1) чисел двойной точности. 
-                        Если ch="d", то n на 1 или 1 на n чисел двойной точности. Количество элементов X 
+                        Если ch="c", то (n-1) на 1 или 1 на (n-1) чисел двойной точности.
+                        Если ch="d", то n на 1 или 1 на n чисел двойной точности. Количество элементов X
                         на интервалах s.
                     </para>
                 </listitem>
@@ -80,7 +83,7 @@
                 <term>info</term>
                 <listitem>
                     <para>
-                        матрица чисел двойной точности размером 1 на 1. Количество элементов X, которые 
+                        матрица чисел двойной точности размером 1 на 1. Количество элементов X, которые
                         не входят в интервал(ы).
                     </para>
                 </listitem>
@@ -90,17 +93,17 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Эта функция определяет местоположение индексов элементов в X на интервалах или наборах, 
+            Эта функция определяет местоположение индексов элементов в X на интервалах или наборах,
             определённых s.
         </para>
         <para>
-            Если <literal>ch="c"</literal> (по умолчанию), рассматриваются интервалы 
-            <literal>I1 = [s(1), s(2)]</literal> и <literal>Ik = (s(k), s(k+1)]</literal> для 
-            <literal>k=2,...,n-1</literal>. 
-            Заметьте, что границы <literal>I1</literal> закрыты, а левые границы 
-            <literal>I2</literal>, ..., <literal>In</literal> открыты. 
-            Для каждого элемента <literal>X(i)</literal> ищется интервал <literal>Ik</literal>, 
-            который содержит X(i), т. е. ищется такое k, что 
+            Если <literal>ch="c"</literal> (по умолчанию), рассматриваются интервалы
+            <literal>I1 = [s(1), s(2)]</literal> и <literal>Ik = (s(k), s(k+1)]</literal> для
+            <literal>k=2,...,n-1</literal>.
+            Заметьте, что границы <literal>I1</literal> закрыты, а левые границы
+            <literal>I2</literal>, ..., <literal>In</literal> открыты.
+            Для каждого элемента <literal>X(i)</literal> ищется интервал <literal>Ik</literal>,
+            который содержит X(i), т. е. ищется такое k, что
             <literal>s(k)&lt;X(i)&lt;=s(k+1)</literal>.
         </para>
         <para>
@@ -119,7 +122,7 @@
                 <term>occ(k)</term>
                 <listitem>
                     <para>
-                        число компонентов <literal>X</literal>, которые располагаются на 
+                        число компонентов <literal>X</literal>, которые располагаются на
                         <literal>Ik</literal>.
                     </para>
                 </listitem>
@@ -134,11 +137,11 @@
             </varlistentry>
         </variablelist>
         <para>
-            Если <literal>ch="d"</literal>, то рассматривается набор {s(1),s(2),...,s(n)}. 
+            Если <literal>ch="d"</literal>, то рассматривается набор {s(1),s(2),...,s(n)}.
             Для каждого X(i) ищется такое k, что X(i)=s(k).
         </para>
         <para>
-            Более точно, 
+            Более точно,
         </para>
         <variablelist>
             <varlistentry>
@@ -161,7 +164,7 @@
                 <term>info</term>
                 <listitem>
                     <para>
-                        число элементов X, которые не располагаются в наборе 
+                        число элементов X, которые не располагаются в наборе
                         {s(1),...,s(n)}.
                     </para>
                 </listitem>
@@ -175,18 +178,18 @@
     <refsection>
         <title>Примеры</title>
         <para>
-            В следующем примере мы рассматриваем 3 интервала <literal>I1=[5,11]</literal>, 
+            В следующем примере мы рассматриваем 3 интервала <literal>I1=[5,11]</literal>,
             <literal>I2=(11,15]</literal> и <literal>I3=(15,20]</literal>.
             Мы ищем расположение элементов <literal>X=[11 13 1 7 5 2 9]</literal> в этих
             интервалах.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [ind, occ, info] = dsearch([11 13 1 7 5 2 9], [5 11 15 20])
     ]]></programlisting>
         <para>
             Предыдущий пример даёт следующий выход.
         </para>
-        <screen><![CDATA[ 
+        <screen><![CDATA[
 -->[ind, occ, info] = dsearch([11 13 1 7 5 2 9], [5 11 15 20])
  info  =
     2.
@@ -230,7 +233,7 @@
                 <para> В I3 ни одного элемента X, следовательно occ(3)=0.</para>
             </listitem>
             <listitem>
-                <para> 
+                <para>
                     Есть два элемента X (т. е. 1, 2), которые не находятся ни в одном из интервалов, следовательно info=2.
                 </para>
             </listitem>
@@ -239,13 +242,13 @@
             В следующем примере мы рассматриваем набор [5 11 15 20] и ищем расположение элементов
             X в этом наборе.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [ind, occ, info] = dsearch([11 13 1 7 5 2 9], [5 11 15 20],"d" )
     ]]></programlisting>
         <para>
             Предыдущий пример производит следующий вывод.
         </para>
-        <screen><![CDATA[ 
+        <screen><![CDATA[
 -->[ind, occ, info] = dsearch([11 13 1 7 5 2 9], [5 11 15 20],"d" )
  info  =
     5.
@@ -317,11 +320,11 @@
             </listitem>
         </itemizedlist>
         <para>
-            Значения в <literal>s</literal> должны идти в порядке возрастания при любом значении 
-            опции <literal>ch</literal>. В противном случае будет сформирована ошибка, как в 
+            Значения в <literal>s</literal> должны идти в порядке возрастания при любом значении
+            опции <literal>ch</literal>. В противном случае будет сформирована ошибка, как в
             следующем примере.
         </para>
-        <screen><![CDATA[ 
+        <screen><![CDATA[
 -->dsearch([11 13 1 7 5 2 9], [2 1])
 !--error 999
 dsearch   : the array val (arg 2) is not well ordered
@@ -333,43 +336,43 @@ dsearch   : the array val (arg 2) is not well ordered
     <refsection>
         <title>Более сложные примеры</title>
         <para>
-            В следующем примере мы сравним эмпирическую гистограмму случайных равновероятных 
+            В следующем примере мы сравним эмпирическую гистограмму случайных равновероятных
             чисел на интервале [0,1) с функцией равновероятного распределения. Чтобы выполнить
-            это сравнение, мы используем алгоритм поиска по умолчанию, основанный на интервалах 
-            (ch="c"). Сформируем X в виде набора случайных равновероятных чисел на интервале [0,1). Возьмём n=10 значений лежащих на одинаковом расстоянии друг от друга на 
-            интервале [0,1] и примем связанные интервалы. Затем подсчитаем число элементов в X, 
-            которые попали в эти интервалы: 
-            это эмпирическая гистограмма функции равновероятного распределения. Ожидается, что 
+            это сравнение, мы используем алгоритм поиска по умолчанию, основанный на интервалах
+            (ch="c"). Сформируем X в виде набора случайных равновероятных чисел на интервале [0,1). Возьмём n=10 значений лежащих на одинаковом расстоянии друг от друга на
+            интервале [0,1] и примем связанные интервалы. Затем подсчитаем число элементов в X,
+            которые попали в эти интервалы:
+            это эмпирическая гистограмма функции равновероятного распределения. Ожидается, что
             occ/m равно 1/(n-1).
         </para>
-        <programlisting role="example"><![CDATA[ 
-m = 50000 ; 
+        <programlisting role="example"><![CDATA[
+m = 50000 ;
 n = 10;
 X = grand(m,1,"def");
 s = linspace(0,1,n)';
 [ind, occ] = dsearch(X, s);
 e = 1/(n-1)*ones(1,n-1);
-scf() ; 
+scf() ;
 plot(s(1:n-1), occ/m,"bo");
 plot(s(1:n-1), e,"r-");
 legend(["Эксперимент","Ожидание"]);
 xtitle("Случайные равновероятные числа","X","P(X)");
  ]]></programlisting>
         <para>
-            В следующем примере мы сравним гистограмму случайных чисел с биномиальным законом распределения с функцией биномиального закона распределения B(N,p), с N=8 и p=0,5. 
-            Чтобы выполнить это сравнение, мы используем алгоритм дискретного поиска, основанный на 
+            В следующем примере мы сравним гистограмму случайных чисел с биномиальным законом распределения с функцией биномиального закона распределения B(N,p), с N=8 и p=0,5.
+            Чтобы выполнить это сравнение, мы используем алгоритм дискретного поиска, основанный на
             наборе (ch="d").
         </para>
-        <programlisting role="example"><![CDATA[ 
-N = 8 ; 
-p = 0.5; 
+        <programlisting role="example"><![CDATA[
+N = 8 ;
+p = 0.5;
 m = 50000;
-X = grand(m,1,"bin",N,p); 
+X = grand(m,1,"bin",N,p);
 s = (0:N)';
 [ind, occ] = dsearch(X, s, "d");
-Pexp = occ/m; 
+Pexp = occ/m;
 Pexa = binomial(p,N);
-scf() ; 
+scf() ;
 plot(s,Pexp,"bo");
 plot(s,Pexa',"r-");
 xtitle("Биномиальное распределение B(8,0.5)","X","P(X)");
@@ -378,8 +381,8 @@ legend(["Эксперимент","Ожидание"]);
         <para>
             В следующем примере мы используем кусочные полиномы Эрмита для интерполяции набора данных.
         </para>
-        <programlisting role="example"><![CDATA[ 
- 
+        <programlisting role="example"><![CDATA[
+
       // определяем основные функции Эрмита
       function y=Ll(t,k,x)
         // Lagrange left on Ik
@@ -401,13 +404,13 @@ legend(["Эксперимент","Ожидание"]);
       function y=Kr(t,k,x)
         y=(t-x(k+1)).*Lr(t,k,x).^2
       endfunction
- 
+
       x = [0 ; 0.2 ; 0.35 ; 0.5 ; 0.65 ; 0.8 ;  1];
       y = [0 ; 0.1 ;-0.1  ; 0   ; 0.4  ;-0.1 ;  0];
       d = [1 ; 0   ; 0    ; 1   ; 0    ; 0   ; -1];
       X = linspace(0, 1, 200)';
       ind = dsearch(X, x);
- 
+
       // построение кривой
       Y = y(ind).*Hl(X,ind) + y(ind+1).*Hr(X,ind) + d(ind).*Kl(X,ind) + d(ind+1).*Kr(X,ind);
       scf();

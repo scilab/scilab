@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2015 - Scilab Enteprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 */
 
 #ifndef __CELL_API__
@@ -27,13 +30,13 @@ extern "C" {
 #define scilab_setCellValue         API_PROTO(setCellValue)
 #define scilab_setCell2dValue       API_PROTO(setCell2dValue)
 
-    scilabVar API_PROTO(createCellMatrix)(scilabEnv env, int dim, const int* dims);
-    scilabVar API_PROTO(createCellMatrix2d)(scilabEnv env, int row, int col);
+scilabVar API_PROTO(createCellMatrix)(scilabEnv env, int dim, const int* dims);
+scilabVar API_PROTO(createCellMatrix2d)(scilabEnv env, int row, int col);
 
-    scilabStatus API_PROTO(getCellValue)(scilabEnv env, scilabVar var, int* index, scilabVar* const val);
-    scilabStatus API_PROTO(getCell2dValue)(scilabEnv env, scilabVar var, int row, int col, scilabVar* const val);
-    scilabStatus API_PROTO(setCellValue)(scilabEnv env, scilabVar var, int* index, scilabVar val);
-    scilabStatus API_PROTO(setCell2dValue)(scilabEnv env, scilabVar var, int row, int col, scilabVar val);
+scilabStatus API_PROTO(getCellValue)(scilabEnv env, scilabVar var, int* index, scilabVar* val);
+scilabStatus API_PROTO(getCell2dValue)(scilabEnv env, scilabVar var, int row, int col, scilabVar* val);
+scilabStatus API_PROTO(setCellValue)(scilabEnv env, scilabVar var, int* index, scilabVar val);
+scilabStatus API_PROTO(setCell2dValue)(scilabEnv env, scilabVar var, int row, int col, scilabVar val);
 #ifdef __cplusplus
 }
 #endif

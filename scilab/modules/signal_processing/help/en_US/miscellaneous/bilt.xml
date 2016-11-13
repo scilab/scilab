@@ -5,7 +5,7 @@
         <refpurpose>bilinear or biquadratic transform SISO system given by a zero/poles representation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[npl,nzr,ngn] = bilt(pl,zr,gn,num,den)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -67,7 +67,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 Hlp=iir(3,'lp','ellip',[0.1 0],[.08 .03]);
 pl=roots(Hlp.den);
 zr=roots(Hlp.num);
@@ -85,7 +85,7 @@ horner(Hlp,num/den)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="iir">iir</link>

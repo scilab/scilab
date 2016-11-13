@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Marcos CARDINOT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.gui.ged.graphic_objects.properties;
@@ -29,7 +32,7 @@ import org.scilab.modules.gui.ged.MessagesGED;
 /**
 * Datatip properties:
 * TIP_AUTOORIENTATION, TIP_DATA, TIP_BOX_MODE, TIP_LABEL_MODE,
-* TIP_ORIENTATION, TIP_3COMPONENT, TIP_INTERP_MODE, TIP_DISPLAY_FNC
+* TIP_ORIENTATION, TIP_DISPLAY_COMPONENTS, TIP_INTERP_MODE, TIP_DISPLAY_FNC
 *
 * @author Marcos CARDINOT <mcardinot@gmail.com>
 */
@@ -40,32 +43,36 @@ public class Datatip extends ContentLayout {
     private JTextField cTipDataZ = new JTextField();
 
     /**
-     * Components of the property: Tip 3Component
+     * Components of the property: Tip display components
      * @param panel
      * @param ROW
      * @param COLUMN
      * @param LEFTMARGIN
      * @param UID
      */
-    public void tip3Component(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
-        String[] messageOffOn = new String[] {MessagesGED.off , MessagesGED.on};
-        JLabel lTip3Comp = new JLabel();
-        final JComboBox cTip3Comp = new JComboBox();
-        addLabelComboBox(panel, lTip3Comp, MessagesGED._3_Components,
-                         cTip3Comp, messageOffOn, LEFTMARGIN, COLUMN, ROW);
-        cTip3Comp.addActionListener(new ActionListener() {
+    public void tipDisplayComponents(JPanel panel, int ROW, int COLUMN, int LEFTMARGIN, final Integer UID) {
+
+        JLabel lTipDisplayComp = new JLabel();
+        final JTextField cTipDisplayComp = new JTextField();
+
+        addLabelTextField(panel, lTipDisplayComp, MessagesGED.display_components,
+                          cTipDisplayComp, true, LEFTMARGIN, COLUMN, ROW);
+        cTipDisplayComp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                GraphicController.getController().setProperty(
-                    UID, GraphicObjectProperties.__GO_DATATIP_3COMPONENT__,
-                    cTip3Comp.getSelectedIndex() == 0 ? false : true);
+                if (!GraphicController.getController().setProperty(
+                            UID, GraphicObjectProperties.__GO_DATATIP_DISPLAY_COMPONENTS__,
+                            cTipDisplayComp.getText())) {
+                    cTipDisplayComp.setText((String) GraphicController.getController()
+                                            .getProperty(UID, GraphicObjectProperties.__GO_DATATIP_DISPLAY_COMPONENTS__));
+                }
                 getTipData(UID);
             }
         });
-        // Get the current status of the property: Tip 3Components
-        boolean enable = (Boolean) GraphicController.getController()
-                         .getProperty(UID, GraphicObjectProperties.__GO_DATATIP_3COMPONENT__);
-        cTip3Comp.setSelectedIndex(enable ? 1 : 0);
+        // Get the current status of the property: Tip display components
+        String comp = (String) GraphicController.getController()
+                      .getProperty(UID, GraphicObjectProperties.__GO_DATATIP_DISPLAY_COMPONENTS__);
+        cTipDisplayComp.setText(comp);
     }
 
     /**

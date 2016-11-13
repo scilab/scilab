@@ -5,7 +5,7 @@
         <refpurpose>Description of the line borders properties.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             lineBorder = createBorder("line", color)
             lineBorder = createBorder("line", color, thickness)
@@ -52,7 +52,7 @@
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="createBorder">createBorder</link>

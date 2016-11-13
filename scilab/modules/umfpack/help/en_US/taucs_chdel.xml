@@ -5,7 +5,7 @@
         <refpurpose>utility function used with taucs_chfact  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>taucs_chdel(C_ptr) or taucs_chdel()</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -23,9 +23,9 @@
         <title>Description</title>
         <para>
             This function is used in conjunction with <link linkend="taucs_chfact">taucs_chfact</link> and
-            <link linkend="taucs_chsolve">taucs_chsolve</link>. It clears the internal memory space used to store 
-            the Cholesky factorization (got with taucs_chfact). Use without argument 
-            it frees the memory for all the current scilab (taucs) Cholesky factorizations. 
+            <link linkend="taucs_chsolve">taucs_chsolve</link>. It clears the internal memory space used to store
+            the Cholesky factorization (got with taucs_chfact). Use without argument
+            it frees the memory for all the current scilab (taucs) Cholesky factorizations.
         </para>
     </refsection>
     <refsection>
@@ -35,7 +35,7 @@
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="taucs_chfact">taucs_chfact</link>

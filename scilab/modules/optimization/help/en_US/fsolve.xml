@@ -4,11 +4,14 @@
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fsolve" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>find a zero of a system of n nonlinear functions</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[x [,v [,info]]]=fsolve(x0,fct [,fjac] [,tol])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -122,7 +125,7 @@
             <literal>v=fct(x)</literal> given <literal>x</literal>.
         </para>
         <para>
-            The simplest calling sequence for <literal>fct</literal> is:
+            The simplest syntax for <literal>fct</literal> is:
         </para>
         <programlisting role=""><![CDATA[
 [v]=fct(x).
@@ -137,7 +140,7 @@ fct(n,x,v,iflag)
 integer n,iflag
 double precision x(n),v(n)
  ]]></programlisting>
-        <para>and C Calling sequence must be</para>
+        <para>and C Syntax must be</para>
         <programlisting role=""><![CDATA[
 fct(int *n, double x[],double v[],int *iflag)
  ]]></programlisting>
@@ -149,7 +152,7 @@ fct(int *n, double x[],double v[],int *iflag)
             <literal>v=d(fct)/dx (x)</literal> given <literal>x</literal>.
         </para>
         <para>
-            The simplest calling sequence for <literal>jac</literal> is:
+            The simplest syntax for <literal>jac</literal> is:
         </para>
         <programlisting role=""><![CDATA[
 [v]=jac(x).
@@ -221,10 +224,10 @@ a.grid=[5 5];
             function J=dFdx(x)
             J=1-dt*(2*x-3*x^2);
             endfunction
-            
+
             r = 0.04257794928862307 ;
             dt = 10;
-            
+
             [x,v,info]=fsolve(r,list(feuler,r),dFdx);
             [x,v,info]=fsolve(1,list(feuler,r),dFdx);
             x=linspace(0,1,1000);
@@ -235,7 +238,7 @@ a.grid=[5 5];
         <para>So, each time you use fsolve, be sure to check the termination indicator and the residual value to see if fsolve has converged.</para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="external">external</link>

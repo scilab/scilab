@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -23,8 +26,54 @@
 #include "model/Link.hxx"
 #include "model/Port.hxx"
 
+extern "C" {
+#include "sci_types.h"
+}
+
 namespace org_scilab_modules_scicos
 {
+
+/* helper function to decode simple string EXPRS */
+static std::vector<std::string> decode_string_vector(const std::vector<double>& v)
+{
+    std::vector<std::string> ret;
+    std::vector<double>::const_iterator it = v.begin();
+
+    int strHeader = *it++;
+    if (strHeader != sci_strings)
+    {
+        return ret;
+    }
+    unsigned int iDims = *it++;
+
+    // manage multi-dimensionnal arrays (will be serialized as a vector)
+    unsigned int iElements = 1;
+    for (unsigned int i = 0; i < iDims; ++i)
+    {
+        iElements *= static_cast<unsigned int>(*it++);
+    }
+
+    // retrieve the length of each encoded string, stored as a stack
+    std::vector<unsigned int> stringsLength;
+    stringsLength.reserve(iElements + 1);
+    stringsLength.push_back(0);
+    for (unsigned int i = 0; i < iElements; ++i)
+    {
+        stringsLength.push_back(*it++);
+    }
+
+    // Retrieving the pointers (already UTF-8 encoded char*) and store them as strings
+    ret.reserve(iElements);
+    const double* strData = &(*it);
+    for (unsigned int i = 0; i < iElements; ++i)
+    {
+        // push the data
+        ret.push_back((char*) (strData + stringsLength[i]));
+    }
+
+    return ret;
+}
+
 
 bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v)  const
 {
@@ -291,6 +340,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Link* o = static_cast<model::Link*>(baseObject);
         switch (p)
         {
+            case STYLE:
+                o->getStyle(v);
+                return true;
             case LABEL:
                 o->getLabel(v);
                 return true;
@@ -436,9 +488,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         {
             case GEOMETRY:
                 o->getGeometry(v);
-                return true;
-            case ANGLE:
-                o->getAngle(v);
                 return true;
             case EXPRS:
                 o->getExprs(v);
@@ -653,6 +702,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case DIAGRAM_CONTEXT:
                 o->getContext(v);
                 return true;
+            case EXPRS:
+            {
+                std::vector<double> data;
+                o->getExprs(data);
+
+                v = decode_string_vector(data);
+                return true;
+            }
             default:
                 break;
         }

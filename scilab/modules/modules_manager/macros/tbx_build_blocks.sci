@@ -1,16 +1,19 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Clément DAVID <clement.david@scilab.org>
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 function tbx_build_blocks(module, names, macros_path)
     // Build a default block instance
     //
-    // Calling Sequence
+    // Syntax
     //   tbx_build_blocks(module, names)
     //
     // Parameters
@@ -58,7 +61,7 @@ function tbx_build_blocks(module, names, macros_path)
     mprintf(gettext("Building blocks...\n"));
 
     // load Xcos libraries when not already loaded.
-    if ~exists("scicos_diagram") then loadXcosLibs(); end
+    if ~exists("Sourceslib") then loadXcosLibs(); end
 
     // create directories
     if ~isdir(module + "/images") then
@@ -108,7 +111,7 @@ function tbx_build_blocks(module, names, macros_path)
         files = files(isfile(files));
         if files == [] then
             filename = gif_tlbx + "/" + names(i) + ".gif";
-            xcosPalGenerateIcon(filename);
+            xcosPalGenerateIcon(blk, filename);
         end
     end
 endfunction

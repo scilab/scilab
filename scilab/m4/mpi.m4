@@ -2,11 +2,14 @@ dnl
 dnl Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 dnl Copyright (C) INRIA - 2007 - Sylvestre Ledru
 dnl
-dnl This file must be used under the terms of the CeCILL.
-dnl This source file is licensed as described in the file COPYING, which
-dnl you should have received as part of this distribution.  The terms
-dnl are also available at
-dnl http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+dnl Copyright (C) 2012 - 2016 - Scilab Enterprises
+dnl
+dnl This file is hereby licensed under the terms of the GNU GPL v2.0,
+dnl pursuant to article 5.3.4 of the CeCILL v.2.1.
+dnl This file was originally licensed under the terms of the CeCILL v2.1,
+dnl and continues to be available under such terms.
+dnl For more information, see the COPYING file which you should have received
+dnl along with this program.
 dnl
 dnl Detection of openmpi
 dnl When we check :

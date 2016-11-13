@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) - S/E - Sylvestre Ledru
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xml:id="splitURL" xml:lang="en"
@@ -18,20 +21,20 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:scilab="http://www.scilab.org"
           xmlns:db="http://docbook.org/ns/docbook">
-    
+
     <refnamediv>
         <refname>splitURL</refname>
-        
+
         <refpurpose>Split an URL (HTTP, HTTPS, FTP...) </refpurpose>
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        
+        <title>Syntax</title>
+
         <synopsis>[proto, server, path, query, username, port, fragment] = splitURL(URL);
         </synopsis>
     </refsynopsisdiv>
-    
+
     <refsection>
         <title>Arguments</title>
         <variablelist>
@@ -105,30 +108,30 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection>
         <title>Description</title>
-        
+
         <para>Split an URL by component </para>
-        
+
         <para>
             This function is based on the <ulink url="http://xmlsoft.org/html/libxml-uri.html#xmlParseURI">libxml2 library (in particular, the function xmlParseURI)</ulink>.
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        
+
         <programlisting role="example">
             [proto, server, path, query, username, port, fragment] = splitURL("http://xmlsoft.org/html/libxml-uri.html#xmlParseURI")
-            
+
             [proto, server, path] = splitURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README")
-            
+
             [a,b,c,d]=splitURL("http://www.scilab.org/content/search?SearchText=plot")
-            
+
         </programlisting>
-        <!-- 
+        <!--
 // This example fails for now (probably a bug on evstr)
 // Retrieve the content and execute it
 [f,content]=getURL("http://fileexchange.scilab.org/toolboxes/161000/1.0/files/cshift.sci")
@@ -136,18 +139,18 @@ evstr(content);
 M = grand(3,4,"uin",0,9);
 cshift(M,1);
 -->
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="getURL">getURL</link>
             </member>
         </simplelist>
     </refsection>
-    
+
     <refsection>
         <title>History</title>
         <revhistory>
@@ -159,5 +162,5 @@ cshift(M,1);
             </revision>
         </revhistory>
     </refsection>
-    
+
 </refentry>

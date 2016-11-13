@@ -5,11 +5,14 @@
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
  * Copyright (C) 2013 - Samuel GOUGEON : extension aux hypermatrices
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="fr" xml:id="grand">
@@ -36,30 +39,32 @@
             Y = grand(m, n, "unf", Low, High)
             Y = grand(m, n, "uin", Low, High)
             Y = grand(m, n, "lgi")
-            
+
             Y = grand(m, n, o,..,"..",...)
-            Y = grand(X,...)
-            
+            Y = grand(X, ...)
+        </synopsis>
+
+        <synopsis>
             Y = grand(n, "mn", Mean, Cov)
             Y = grand(n, "markov", P, x0)
             Y = grand(n, "mul", nb, P)
             Y = grand(n, "prm", vect)
-            
+        </synopsis>
+
+        <synopsis>
             S = grand("getgen")
             grand("setgen", gen)
-            
-            S = grand("phr2sd", phrase)
-            
+
             S = grand("getsd")
             grand("setsd", S)
-            
+
             grand("setcgn", G)
             S = grand("getcgn")
-            
+
+            S = grand("phr2sd", phrase)
+
             grand("initgn", I)
-            
             grand("setall", s1, s2, s3, s4)
-            
             grand("advnst", K)
         </synopsis>
     </refsynopsisdiv>
@@ -128,7 +133,7 @@
         </screen>
         <para>
             produisent une matrice de taille <literal>m</literal>-par-<literal>n</literal> de nombres aléatoires.
-            
+
             Toutes ces séquences peuvent être étendues pour créer une hypermatrice à plus de 2 dimensions, les
             tailles (m, n, o,...) étant spécifiées avant le mot ".." indiquant le type de distribution statistique
             souhaitée :
@@ -169,19 +174,19 @@
         <screen>
             S = grand("getgen")
             grand("setgen", gen)
-            
+
             S = grand("getsd")
             grand("setsd", S)
-            
+
             S = grand("phr2sd", phrase)
-            
+
             grand("setcgn", G)
             S = grand("getcgn")
-            
+
             grand("initgn", I)
-            
+
             grand("setall", s1, s2, s3, s4)
-            
+
             grand("advnst", K)
         </screen>
         <para>
@@ -444,7 +449,7 @@
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>[0, 2^32 - 1]</literal> for mt, kiss and fsultra;
+                                <literal>[0, 2^32 - 1]</literal> for mt and kiss;
                             </para>
                         </listitem>
                         <listitem>
@@ -518,18 +523,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>fsultra</term>
-                <listitem>
-                    <para>
-                        Un générateur SWB (subtract-with-borrow) mixé avec un générator congruentiel
-                        concu par Arif Zaman et George Marsaglia. Sa période est supérieure à <literal>10^356</literal>,
-                        et son état interne est constitué d'un tableau de 37 entiers, d'un index sur
-                        ce tableau et d'un drapeau (0 ou 1) ainsi qu'un autre entier donnant l'état interne
-                        du générateur congruentiel.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>urand</term>
                 <listitem>
                     <para>
@@ -554,7 +547,7 @@
                 <listitem>
                     <para>
                         <literal>S = grand("getgen")</literal> retourne le nom du générateur de base actuel (<literal>S</literal> est
-                        l'une des chaînes de caractères "mt", "kiss", "clcg2", "clcg4", "urand", "fsultra").
+                        l'une des chaînes de caractères "mt", "kiss", "clcg2", "clcg4", "urand").
                     </para>
                 </listitem>
             </varlistentry>
@@ -563,7 +556,7 @@
                 <listitem>
                     <para>
                         <literal>grand("setgen", gen)</literal> permet de changer le générateur de base : <literal>gen</literal>
-                        doit être l'une des chaînes de caractères "mt", "kiss", "clcg2", "clcg4", "urand", "fsultra".
+                        doit être l'une des chaînes de caractères "mt", "kiss", "clcg2", "clcg4", "urand".
                         En cas de succès la fonction retourne cette même chaîne.
                     </para>
                 </listitem>
@@ -577,7 +570,7 @@
                         <literal>S</literal> est un vecteur colonne (d'entiers) de dimension <literal>625</literal>
                         pour mt (la première composante étant un 'index' sur l'état, c-a-d un entier de l'intervalle
                         <literal>[1,624]</literal>), <literal>4</literal>
-                        pour kiss, <literal>2</literal> pour clcg2 , <literal>40</literal>pour fsultra, <literal>4</literal> pour clcg4
+                        pour kiss, <literal>2</literal> pour clcg2 , <literal>4</literal> pour clcg4
                         (pour ce dernier vous obtenez l'état interne du générateur virtuel courant), et <literal>1</literal>
                         pour urand.
                     </para>
@@ -642,18 +635,6 @@
                                 <para>
                                     <literal>1</literal> entier <literal>s1</literal> appartenant à
                                     <literal>[0, 2^31[</literal> est requis.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>for fsultra</term>
-                            <listitem>
-                                <para>
-                                    <literal>S</literal> est un vecteur de <literal>40</literal> entiers (son premier élément doit être dans
-                                    l'intervalle<literal>[0, 37]</literal>, son deuxième (drapeau) doit être 0 ou 1, le troisième un
-                                    entier de <literal>[1, 2^32[</literal> et les 37 composantes suivantes, des entiers de <literal>[0, 2^32[</literal>) ; il est recommandé
-                                    d'utiliser l'autre procédure d'initialisation (plus simple) avec deux entiers <literal>s1</literal> et
-                                    <literal>s2</literal> de <literal>[0, 2^32[</literal>.
                                 </para>
                             </listitem>
                         </varlistentry>

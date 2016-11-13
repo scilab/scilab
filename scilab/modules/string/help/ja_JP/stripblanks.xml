@@ -2,97 +2,100 @@
 
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="stripblanks">
-    
+
     <refnamediv>
-        
+
         <refname>stripblanks</refname>
-        
+
         <refpurpose>
-            
+
             文字列の先頭または末尾の空白(およびタブ)を取り除く
-            
+
         </refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>txt = stripblanks(txt[,tabs])</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>txt</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列または文字列の行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>tabs</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         論理値, <constant>%t</constant>の場合タブも削除されます
-                        
+
                         (デフォルト値は <constant>%f</constant>です).
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <function>stripblanks</function>関数は,
-            
+
             文字列の先頭または末尾の空白(およびタブ)を取り除きます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 a='  123   ';
 '!'+a+'!'
 '!'+stripblanks(a)+'!'
@@ -103,8 +106,8 @@ a = msprintf("\t  \tHello world!\t\t")
 strcat(stripblanks(a,%f)+'?')
 strcat(stripblanks(a,%t)+'?')
  ]]></programlisting>
-        
+
     </refsection>
-    
+
 </refentry>
 

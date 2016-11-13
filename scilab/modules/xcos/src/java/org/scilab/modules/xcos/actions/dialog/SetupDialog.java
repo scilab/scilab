@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2013 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -166,7 +169,12 @@ public class SetupDialog extends JDialog {
                              "Method: Fixed step",
                              EnumSet.of(SetupDialog.SolverModifiers.MAX_STEP_SIZE)),
 
-        new SolverDescriptor(7, "Implicit RK45 - Runge-Kutta 4(5)",
+        new SolverDescriptor(7, "Implicit RK45 - Implicit Runge-Kutta 4(5)",
+                             "Method: Fixed step, Nonlinear solver= FIXED-POINT",
+                             EnumSet.of(SetupDialog.SolverModifiers.MAX_STEP_SIZE,
+                                        SetupDialog.SolverModifiers.RELATIVE_TOLERANCE)),
+
+        new SolverDescriptor(8, "CRANI - Crank-Nicolson 2(3)",
                              "Method: Fixed step, Nonlinear solver= FIXED-POINT",
                              EnumSet.of(SetupDialog.SolverModifiers.MAX_STEP_SIZE,
                                         SetupDialog.SolverModifiers.RELATIVE_TOLERANCE)),
@@ -483,15 +491,15 @@ public class SetupDialog extends JDialog {
                      */
                     int solverSelectedIndex = solver.getSelectedIndex();
 
-                    VectorOfDouble v = new VectorOfDouble();
-                    v.add(ScicosParameters.FINAL_INTEGRATION_TIME, ((BigDecimal) integration.getValue()).doubleValue());
-                    v.add(ScicosParameters.INTEGRATOR_ABSOLUTE_TOLERANCE, ((BigDecimal) integrator.getValue()).doubleValue());
-                    v.add(ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE, ((BigDecimal) integratorRel.getValue()).doubleValue());
-                    v.add(ScicosParameters.TOLERANCE_ON_TIME, ((BigDecimal) toleranceOnTime.getValue()).doubleValue());
-                    v.add(ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL, ((BigDecimal) maxIntegrationTime.getValue()).doubleValue());
-                    v.add(ScicosParameters.MAXIMUM_STEP_SIZE, ((BigDecimal) maxStepSize.getValue()).doubleValue());
-                    v.add(ScicosParameters.REAL_TIME_SCALING, ((BigDecimal) rts.getValue()).doubleValue());
-                    v.add(ScicosParameters.SOLVER, AVAILABLE_SOLVERS[solverSelectedIndex].getNumber());
+                    VectorOfDouble v = new VectorOfDouble(8);
+                    v.set(ScicosParameters.FINAL_INTEGRATION_TIME, ((BigDecimal) integration.getValue()).doubleValue());
+                    v.set(ScicosParameters.INTEGRATOR_ABSOLUTE_TOLERANCE, ((BigDecimal) integrator.getValue()).doubleValue());
+                    v.set(ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE, ((BigDecimal) integratorRel.getValue()).doubleValue());
+                    v.set(ScicosParameters.TOLERANCE_ON_TIME, ((BigDecimal) toleranceOnTime.getValue()).doubleValue());
+                    v.set(ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL, ((BigDecimal) maxIntegrationTime.getValue()).doubleValue());
+                    v.set(ScicosParameters.REAL_TIME_SCALING, ((BigDecimal) rts.getValue()).doubleValue());
+                    v.set(ScicosParameters.SOLVER, AVAILABLE_SOLVERS[solverSelectedIndex].getNumber());
+                    v.set(ScicosParameters.MAXIMUM_STEP_SIZE, ((BigDecimal) maxStepSize.getValue()).doubleValue());
 
                     parameters.setProperties(new JavaController(), v);
 

@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -24,6 +27,7 @@
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "DefaultCommandArg.h"
 /*--------------------------------------------------------------------------*/
 int sci_param3d1(char *fname, void *pvApiCtx)
 {
@@ -49,6 +53,7 @@ int sci_param3d1(char *fname, void *pvApiCtx)
     };
 
     char * labels = NULL;
+    BOOL freeLabels = FALSE;
 
     int* piAddr1  = NULL;
     int* piAddr2  = NULL;
@@ -78,7 +83,7 @@ int sci_param3d1(char *fname, void *pvApiCtx)
     if (FirstOpt(pvApiCtx) < 4)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 4);
-        return(0);
+        return (0);
     }
 
     //get variable address
@@ -237,22 +242,40 @@ int sci_param3d1(char *fname, void *pvApiCtx)
     }
 
 
-    GetOptionalDoubleArg(pvApiCtx, fname, 4, "theta", &theta, 1, opts);
-    GetOptionalDoubleArg(pvApiCtx, fname, 5, "alpha", &alpha, 1, opts);
-    GetLabels(pvApiCtx, fname, 6, opts, &labels);
+    if (get_optional_double_arg(pvApiCtx, fname, 4, "theta", &theta, 1, opts) == 0)
+    {
+        return 0;
+    }
+    if (get_optional_double_arg(pvApiCtx, fname, 5, "alpha", &alpha, 1, opts) == 0)
+    {
+        return 0;
+    }
+    if (get_labels_arg(pvApiCtx, fname, 6, opts, &labels) == 0)
+    {
+        return 0;
+    }
+    freeLabels = !isDefLegend(labels);
     iflag_def[1] = 8;
     ifl = &(iflag_def[1]);
-    GetOptionalIntArg(pvApiCtx, fname, 7, "flag", &ifl, 2, opts);
+    if (get_optional_int_arg(pvApiCtx, fname, 7, "flag", &ifl, 2, opts) == 0)
+    {
+        if (freeLabels)
+        {
+            freeAllocatedSingleString(labels);
+        }
+        return 0;
+    }
     iflag[0] = iflag_def[0];
     iflag[1] = ifl[0];
     iflag[2] = ifl[1];
 
-    GetOptionalDoubleArg(pvApiCtx, fname, 8, "ebox", &ebox, 6, opts);
-
-    if (m1 == 1 && n1 > 1)
+    if (get_optional_double_arg(pvApiCtx, fname, 8, "ebox", &ebox, 6, opts) == 0)
     {
-        m1 = n1;
-        n1 = 1;
+        if (freeLabels)
+        {
+            freeAllocatedSingleString(labels);
+        }
+        return 0;
     }
 
     getOrCreateDefaultSubwin();
@@ -262,6 +285,10 @@ int sci_param3d1(char *fname, void *pvApiCtx)
 
     Objplot3d (fname, &isfac, &izcol, (l1), (l2), (l3), zcol, &m1, &n1, theta, alpha, labels, iflag, ebox, &m1, &n1, &m2, &n2, &m3, &n3, &m3n, &n3n); /*Adding F.Leray 12.03.04*/
 
+    if (freeLabels)
+    {
+        freeAllocatedSingleString(labels);
+    }
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
     return 0;

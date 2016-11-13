@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
  * However, the API (profile of the functions in the header files) will be
@@ -198,18 +201,32 @@ SciErr createNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int _i
 SciErr readNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
 {
     SciErr sciErr       = sciErrInit();
-    int* piAddr         = NULL;
-    int* piNbItemRow    = 0;
-    int* piColPos       = 0;
-
-    sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
+    struct Attr
+    {
+        public:
+            int *piAddr;
+            int *piNbItemRow;
+            int *piColPos;
+            Attr() : piAddr(NULL), piNbItemRow(NULL), piColPos(NULL) {}
+            ~Attr()
+            {
+                if(piNbItemRow)
+                    FREE(piNbItemRow);
+                if(piColPos)
+                    FREE(piColPos);
+                if(piAddr)
+                    FREE(piAddr);
+            }
+    };
+    struct Attr attr;
+    sciErr = getVarAddressFromName(_pvCtx, _pstName, &attr.piAddr);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_READ_NAMED_BOOLEAN_SPARSE, _("%s: Unable to get variable \"%s\""), "readNamedBooleanSparseMatrix", _pstName);
         return sciErr;
     }
 
-    sciErr = getBooleanSparseMatrix(_pvCtx, piAddr, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos);
+    sciErr = getBooleanSparseMatrix(_pvCtx, attr.piAddr, _piRows, _piCols, _piNbItem, &attr.piNbItemRow, &attr.piColPos);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_READ_NAMED_BOOLEAN_SPARSE, _("API_ERROR_READ_NAMED_BOOLEAN_SPARSE"));
@@ -221,14 +238,14 @@ SciErr readNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int* _pi
         return sciErr;
     }
 
-    memcpy(_piNbItemRow, piNbItemRow, *_piRows * sizeof(int));
+    memcpy(_piNbItemRow, attr.piNbItemRow, *_piRows * sizeof(int));
 
     if (_piColPos == NULL)
     {
         return sciErr;
     }
 
-    memcpy(_piColPos, piColPos, *_piNbItem * sizeof(int));
+    memcpy(_piColPos, attr.piColPos, *_piNbItem * sizeof(int));
     return sciErr;
 }
 /*--------------------------------------------------------------------------*/
@@ -253,6 +270,8 @@ int getAllocatedBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows,
     {
         addErrorMessage(&sciErr, API_ERROR_GET_ALLOC_BOOLEAN_SPARSE, _("%s: Unable to get argument #%d"), "getAllocatedBooleanSparseMatrix", getRhsFromAddress(_pvCtx, _piAddress));
         printError(&sciErr, 0);
+        FREE(piNbItemRow);
+        FREE(piColPos);
         return sciErr.iErr;
     }
 

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="calfrq" xml:lang="ja">
+    <refnamediv>
+        <refname>calfrq</refname>
+        <refpurpose>離散的な周波数応答</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[frq,bnds,split]=calfrq(h,fmin,fmax)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>状態空間または伝達関数表現の線形システム
+                        (
+                        <literal>
+                            <link linkend="syslin">syslin</link>
+                        </literal>
+                        参照)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmin,fmax</term>
+                <listitem>
+                    <para>実数スカラー (周波数範囲の下限/上限,単位:Hz)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>行ベクトル (周波数間隔の離散値)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bnds</term>
+                <listitem>
+                    <para>
+                        ベクトル <literal>[Rmin Rmax Imin Imax]</literal>,
+                        ただし, <literal>Rmin</literal> および<literal>Rmax</literal> は
+                        周波数応答の実部の下限と上限,
+                        <literal>Imin</literal> および <literal>Imax</literal> は
+                        周波数応答の虚部の下限と上限です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>split</term>
+                <listitem>
+                    <para>周波数分割点の添え字のベクトル</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            周波数応答を離散的に取得します; <literal>frq</literal> は
+            <literal>[fmin,fmax]</literal>の範囲で,
+            周波数応答における極値がうまく表現されるように
+            離散化したものです.
+        </para>
+        <para>
+            <literal>frq(split(k)-1)</literal>と<literal>frq(split(k))</literal> (<literal>k&gt;1</literal>)の
+            間には特異となる周波数があります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+[f1,bnds,spl]=calfrq(h1,0.01,1000);
+rf=repfreq(h1,f1);
+plot2d(real(rf)',imag(rf)')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bode">bode</link>
+            </member>
+            <member>
+                <link linkend="black">black</link>
+            </member>
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+            <member>
+                <link linkend="freq">freq</link>
+            </member>
+            <member>
+                <link linkend="repfreq">repfreq</link>
+            </member>
+            <member>
+                <link linkend="logspace">logspace</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

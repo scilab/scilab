@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
  * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="zoom_rect">
@@ -17,7 +20,7 @@
         <refpurpose>zoom a selection of the current graphic figure</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>zoom_rect()
             zoom_rect(rect)
             zoom_rect(h)
@@ -68,7 +71,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf()
 x=0:0.01:6*%pi;
 plot2d(x,sin(x.^2))
@@ -90,12 +93,12 @@ plot2d(x,cos(x))
 subplot(212)
 plot2d(x,cos(2*x))
 rect=[3 -2 7 10]; //a rectangle specified in the current axes (last one) coordinates
-zoom_rect(rect) 
+zoom_rect(rect)
 unzoom()
 //set the global underlying axes as current
-f=gcf();set('current_axes',f.children($)) 
+f=gcf();set('current_axes',f.children($))
 rect=[0.4 0 0.6 1] //a rectangle specified in ratio of the window size
-zoom_rect(rect) 
+zoom_rect(rect)
 rect=[0.4 0.2 0.6 0.8]; //a rectangle specified in ratio of the window size
 zoom_rect(rect)
 
@@ -106,7 +109,7 @@ zoom_rect(gcf());
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="unzoom">unzoom</link>

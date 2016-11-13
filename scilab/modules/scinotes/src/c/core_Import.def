@@ -3,6 +3,11 @@ LIBRARY    core.dll
 
 EXPORTS
 ;
-freeArrayOfWideString
+freeArrayOfString
 MyHeapAlloc
 MyHeapFree
+MyHeapRealloc
+getVariablesName
+getcommandkeywords
+getFunctionsName
+getMacrosName

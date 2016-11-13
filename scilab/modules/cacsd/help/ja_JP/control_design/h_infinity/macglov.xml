@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="macglov">
+    <refnamediv>
+        <refname>macglov</refname>
+        <refpurpose>連続時間動的システムのMac Farlane Glover 問題</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[P,r]=macglov(Sl)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        連続時間線形動的システム
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        連続時間線形動的システム, "拡張" プラント
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 ベクトル, <literal>P22</literal>の次元
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>[P,r]=macglov(Sl)</literal> は,
+            Glover-McFarlane問題の
+            標準プラント<literal>P</literal>を返します.
+        </para>
+        <para>
+            この問題の場合,
+            ro_optimal = 1-ハンケルノルム(<literal>[N,M]</literal>)
+            ただし, <literal>[N,M]=lcf(sl)</literal> (正規化既約分解) すなわち,
+        </para>
+        <para>
+            gama_optimal = <literal>1/sqrt(ro_optimal)</literal>
+        </para>
+        <para>
+            <literal>P</literal> は,<literal>Sl</literal>と
+            同じ表現(伝達関数または状態空間)を返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        MAC-FARLANE PROBLEM for G=1/s^3;
+        <programlisting role="example"><![CDATA[
+    G=syslin("c",1/%s^3);
+    [P,r]=macglov(G);
+    //K Optimal controller , ro = gamaopt^-2;
+    [K,ro]=h_inf(P,r,0,1,30);
+    ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>著者</title>
+        <para>F. Delebecque INRIA</para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal>が
+                    連続時間線形システムであることを確認するようになりました.
+                    この修正は,この <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">コミット</ulink>により導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

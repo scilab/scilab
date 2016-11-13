@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="trzeros">
+    <refnamediv>
+        <refname>trzeros</refname>
+        <refpurpose>transmission zeros and normal rank</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis> tr  = trzeros(Sl)
+            [nt,dt,rk] = trzeros(Sl)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nt</term>
+                <listitem>
+                    <para>complex vectors</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dt</term>
+                <listitem>
+                    <para>real vector</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rk</term>
+                <listitem>
+                    <para>integer (normal rank of Sl)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            Called with one output argument, <literal>trzeros(Sl)</literal> returns the
+            transmission zeros of the linear system <literal>Sl</literal>.
+        </para>
+        <para>
+            <literal>Sl</literal> may have a polynomial (but square) <literal>D</literal> matrix.
+        </para>
+        <para>
+            Called with 2 output arguments, <literal>trzeros</literal> returns the
+            transmission zeros of the linear system <literal>Sl</literal> as <literal>tr=nt./dt</literal>;
+        </para>
+        <para>
+            (Note that some components of <literal>dt</literal> may be zeros)
+        </para>
+        <para>
+            Called with 3 output arguments, <literal>rk</literal>  is the normal rank of <literal>Sl</literal>
+        </para>
+        <para>
+            Transfer matrices are converted to state-space.
+        </para>
+        <para>
+            If <literal>Sl</literal> is a (square) polynomial matrix <literal>trzeros</literal> returns the
+            roots of its determinant.
+        </para>
+        <para>
+            For usual state-space system <literal>trzeros</literal> uses the state-space
+            algorithm of Emami-Naeni and Van Dooren.
+        </para>
+        <para>
+            If <literal>D</literal> is invertible the transmission zeros are the eigenvalues
+            of the "<literal>A</literal> matrix" of the inverse system : <literal>A - B*inv(D)*C</literal>;
+        </para>
+        <para>
+            If <literal>C*B</literal> is invertible the transmission zeros are the eigenvalues
+            of <literal>N*A*M</literal> where <literal>M*N</literal> is a full rank factorization of
+            <literal>eye(A)-B*inv(C*B)*C</literal>;
+        </para>
+        <para>
+            For systems with a polynomial <literal>D</literal> matrix zeros are
+            calculated as the roots of the determinant of the system matrix.
+        </para>
+        <para>
+            <warning>
+                Caution: the computed zeros are not always reliable, in particular
+                in case of repeated zeros.
+            </warning>
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+W1=ssrand(2,2,5);trzeros(W1)    //call trzeros
+roots(det(systmat(W1)))         //roots of det(system matrix)
+s=poly(0,'s');W=[1/(s+1);1/(s-2)];W2=(s-3)*W*W';[nt,dt,rk]=trzeros(W2);
+St=systmat(tf2ss(W2));[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(St);
+St1=Q*St*Z;rowf=(Qd(1)+Qd(2)+1):(Qd(1)+Qd(2)+Qd(3));
+colf=(Zd(1)+Zd(2)+1):(Zd(1)+Zd(2)+Zd(3));
+roots(St1(rowf,colf)), nt./dt     //By Kronecker form
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="spec">spec</link>
+            </member>
+            <member>
+                <link linkend="kroneck">kroneck</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

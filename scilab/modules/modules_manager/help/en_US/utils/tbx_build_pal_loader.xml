@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) - DIGITEO
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tbx_build_pal_loader" xml:lang="en">
+    <refnamediv>
+        <refname>tbx_build_pal_loader</refname>
+        <refpurpose>Generate a loader_pal.sce script for loading Xcos palette module(toolbox compilation process)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            tbx_build_pal_loader(palette_name, block_names , module_path [, script_path])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>palette_name</term>
+                <listitem>
+                    <para>a character string, the name of the palette.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>block_names</term>
+                <listitem>
+                    <para>Block interface function list (in a string vector) ; all name should have a corresponding interface function macro (on the macros subdirectory).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>module_path</term>
+                <listitem>
+                    <para>a character string, the path of the directory containing the module.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>script_path</term>
+                <listitem>
+                    <para>an optional character string that can be used
+                        to specify the location of the created
+                        loader_pal.sce script file. If not given the script
+                        file will be created in the module_path+"/macros"
+                        directory.
+                    </para>
+                    <para>Generaly the loader_pal.sce script file is
+                        created in the directory which contains the block
+                        interface functions files. The script_path argument
+                        can be used to handle modules that define several
+                        palettes.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//The recommended buildmacros.sce file
+function buildMacrosAndBlocks()
+  script_path = get_absolute_file_path("buildmacros.sce");
+  module_path = part(script_path,1:length(script_path)-length("macros"))
+
+  tbx_build_macros(NAME,  script_path);
+  interface_functions = //to be defined
+
+  tbx_build_blocks(module_path, interface_functions);
+  tbx_build_pal_loader(TITLE,interface_functions,module_path,script_path)
+endfunction
+buildMacrosAndBlocks()
+clear buildMacrosAndBlocks;
+ ]]></programlisting>
+
+    </refsection>
+</refentry>

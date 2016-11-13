@@ -4,16 +4,19 @@
 //                                       custom padding are now supported.
 //                                       Inline examples added.
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 
 
 function mat = resize_matrix(mat, varargin)
 
-    // Calling Sequence:
+    // Syntax:
     //     resize_matrix(M, nRows, nCols )
     //     resize_matrix(M, [nRows nCols] )
     //     resize_matrix(M, newSizes )
@@ -81,9 +84,6 @@ function mat = resize_matrix(mat, varargin)
     padding = []
     // Default type of the result:
     resType = typeof(mat)
-    if resType=="hypermat" then
-        resType = typeof(mat(1))
-    end
 
     // ARGUMENTS ANALYSIS & CHECKING
     // -----------------------------
@@ -92,11 +92,10 @@ function mat = resize_matrix(mat, varargin)
         error(msprintf(msg, "resize_matrix", 2, 5))
     end
 
-    if ~((typeof(mat)=="hypermat" | or(type(mat)~=[15 16 17])) ..
+    if ~(or(type(mat)~=[15 16 17]) ..
         & or(type(mat(:))==[1 2 4 5 6 8 10]))
         msg = _("%s: Wrong type of input argument #%d: ""%s"" not supported.\n")
         error(msprintf(msg, "resize_matrix", 1, typeof(mat(:))))
-        // typeof(hypermat(rational)): "rational" overrides "hypermat"...
     end
 
     arg = varargin(1)

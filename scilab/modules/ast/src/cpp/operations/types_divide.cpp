@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -336,7 +339,6 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
                 iRightDivisionComplexMatrixByComplexMatrix(pC->get(), pC->getImg(), 1, &dblDivR, &dblDivI, 0, pC->get(), pC->getImg(), 1, pC->getSize());
             }
         }
-
         return 0;
     }
 
@@ -373,50 +375,7 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
         (*_pPolyOut)->setComplex(true);
     }
 
-    if (bScalar2)
-    {
-        //[p] * cst
-        for (int i = 0 ; i < _pPoly->getSize() ; i++)
-        {
-            SinglePoly *pPolyIn   = _pPoly->get(i);
-            double* pRealIn  = pPolyIn->get();
-            double* pImgIn  = pPolyIn->getImg();
-
-            SinglePoly *pPolyOut  = (*_pPolyOut)->get(i);
-            double* pRealOut = pPolyOut->get();
-            double* pImgOut  = pPolyOut->getImg();
-
-            if (bComplex1 == false && bComplex2 == false)
-            {
-                iRightDivisionRealMatrixByRealMatrix(
-                    pRealIn, 1,
-                    _pDouble->getReal(), 0,
-                    pRealOut, 1, pPolyOut->getSize());
-            }
-            else if (bComplex1 == false && bComplex2 == true)
-            {
-                iRightDivisionRealMatrixByComplexMatrix(
-                    pRealIn, 1,
-                    _pDouble->getReal(), _pDouble->getImg(), 0,
-                    pRealOut, pImgOut, 1, pPolyOut->getSize());
-            }
-            else if (bComplex1 == true && bComplex2 == false)
-            {
-                iRightDivisionComplexMatrixByRealMatrix(
-                    pRealIn, pImgIn, 1,
-                    _pDouble->getReal(), 0,
-                    pRealOut, pImgOut, 1, pPolyOut->getSize());
-            }
-            else if (bComplex1 == true && bComplex2 == true)
-            {
-                iRightDivisionComplexMatrixByComplexMatrix(
-                    pRealIn, pImgIn, 1,
-                    _pDouble->getReal(), _pDouble->getImg(), 0,
-                    pRealOut, pImgOut, 1, pPolyOut->getSize());
-            }
-        }
-    }
-    else if (bScalar1)
+    if (bScalar1)
     {
         for (int i = 0 ; i < pTemp->get(0)->getSize() ; i++)
         {
@@ -466,7 +425,7 @@ int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, Internal
 
     if (_pDouble->isIdentity())
     {
-        *_pSpOut    = new Sparse(*_pSp);
+        *_pSpOut = new Sparse(*_pSp);
         return 0;
     }
 
@@ -554,14 +513,25 @@ int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, Internal
             iResultat = RDivideDoubleByDouble(pDblSp[i], pDbl[i], &ppDblGet);
             if (iResultat != 0)
             {
+                for (int i = 0; i < iSize; ++i)
+                {
+                    delete pDbl[i];
+                    delete pDblSp[i];
+                }
+                delete[] pDbl;
+                delete[] pDblSp;
+                delete[] iPositVal;
+                delete pSpTemp;
                 delete ppDblGet;
                 return iResultat;
             }
             std::complex<double> cplx(ppDblGet->get(0), ppDblGet->getImg(0));
-            pSpTemp->set(iPositVal[i], cplx, true);
+            pSpTemp->set(iPositVal[i], cplx, false);
             delete ppDblGet;
         }
     }
+
+    pSpTemp->finalize();
 
     delete[] iPositVal;
 

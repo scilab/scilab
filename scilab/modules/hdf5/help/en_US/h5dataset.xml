@@ -3,11 +3,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5dataset" xml:lang="en">
@@ -16,10 +19,10 @@
         <refpurpose>Create a dataset and write the data</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
-            h5dataset(obj, name, sourceInfo [, sourceType], data, targetInfo [, targetType])  
-            h5dataset(filename, name, sourceInfo [, sourceType], data, targetInfo [, targetType])  
+            h5dataset(obj, name, sourceInfo [, sourceType], data, targetInfo [, targetType])
+            h5dataset(filename, name, sourceInfo [, sourceType], data, targetInfo [, targetType])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -85,10 +88,10 @@
         <para>The source info gives information on how to get the data. It is a matrix 5xn where n is the number of dimensions of the data. The rows give the following information:</para>
         <simplelist type="inline">
             <member>
-                1st row: the data dimensions. 
+                1st row: the data dimensions.
             </member>
             <member>
-                2nd row: the start point of the hyperslab. 
+                2nd row: the start point of the hyperslab.
             </member>
             <member>
                 3rd row: the hyperslab's count.
@@ -103,7 +106,7 @@
         <para>
             For more explanation about hyperslab selection, see <link linkend="h5write">h5write</link>.
         </para>
-        <para>The targetInfo matrix is 6xn double matrix. The first row gives the dimensions of the target dataset and the second one gives the maximal possible dimensions. When the first and the second row are not equal, the dataset will be chunked. The rows 3 to 6 give the hyperslab's start, count, stride and block.</para> 
+        <para>The targetInfo matrix is 6xn double matrix. The first row gives the dimensions of the target dataset and the second one gives the maximal possible dimensions. When the first and the second row are not equal, the dataset will be chunked. The rows 3 to 6 give the hyperslab's start, count, stride and block.</para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -133,7 +136,7 @@ h5close(a)
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="h5group">h5group</link>

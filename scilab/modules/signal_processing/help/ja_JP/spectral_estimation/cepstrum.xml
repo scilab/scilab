@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="cepstrum">
+
+    <refnamediv>
+
+        <refname>cepstrum</refname>
+
+        <refpurpose>ケプストラム計算</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>fresp = cepstrum(w,mag)</synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>w</term>
+
+                <listitem>
+
+                    <para>周波数の実数ベクトル(正) (rad/sec)</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>mag</term>
+
+                <listitem>
+
+                    <para>
+
+                        振幅の実数ベクトル (<literal>w</literal>と同じ大きさ)
+
+                    </para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>fresp</term>
+
+                <listitem>
+
+                    <para>複素ベクトル</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            <literal>fresp = cepstrum(w,mag)</literal> は,
+
+            周波数<literal>w(i)</literal>における振幅が<literal>mag(i)</literal>で,
+
+            <literal>freq</literal>の位相が安定な最小位相システムとなる
+
+            周波数応答<literal>fresp(i)</literal>を返します.
+
+            <literal>w</literal> はソートされている必要はありませんが,
+
+            エントリの最小値がゼロに近くなることはできず,
+
+            <literal>w</literal>のエントリは全て異なる必要があります.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+w=0.1:0.1:5;mag=1+abs(sin(w));
+fresp=cepstrum(w,mag);
+plot2d([w',w'],[mag(:),abs(fresp)])
+ ]]></programlisting>
+
+        <scilab:image>
+
+            w=0.1:0.1:5;mag=1+abs(sin(w));
+
+            fresp=cepstrum(w,mag);
+
+            plot2d([w',w'],[mag(:),abs(fresp)])
+
+        </scilab:image>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="frfit">frfit</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

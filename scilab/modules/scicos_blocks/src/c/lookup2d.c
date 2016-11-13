@@ -49,7 +49,7 @@ SCICOS_BLOCKS_IMPEXP void lookup2d(scicos_block *block, int flag)
 
     switch (flag)
     {
-            /* init */
+        /* init */
         case 4  :
 
         case 1  :

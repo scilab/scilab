@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="object_editor">
@@ -17,21 +20,9 @@
             description of the graphic object editor capacities
         </refpurpose>
     </refnamediv>
-    <refnamediv xml:id="graphic">
-        <refname>graphic </refname>
-        <refpurpose>
-            description of the graphic object editor capacities
-        </refpurpose>
-    </refnamediv>
-    <refnamediv xml:id="menus">
-        <refname>menus</refname>
-        <refpurpose>
-            description of the graphic object editor capacities
-        </refpurpose>
-    </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>
+        <!--para>
             Scilab graphics allow the user to have interaction with graphics
             before and after having them drawn. Each graphics window and the
             drawing it contains are represented by hierarchical entities. The
@@ -69,7 +60,39 @@
             details) that can be enabled for each graphic window. To make it
             work, select the <literal>Edit</literal> menu in the graphic window.
             Seven graphics editing operations are available :
+        </para-->
+        <para>
+            The graphic Object Editor is a set of visual (GUI) editors, available
+            in the <literal>Edit</literal> menu of graphic windows. They provide graphic editing operations
+            for the different kind of graphics objects (see <link linkend="graphics_entities">graphics entities</link>
+            for more details), including the enabling them, disabling them, and editing their properties,
+            before or after they have been drawn.
         </para>
+        <para>
+            Internally, each graphic window, and the drawing it contains, are represented by
+            a hierarchy of entities. The hierarchy top level is the <literal>Figure</literal>.
+            Each <literal>Figure</literal> defines at least one child of type <literal>Axes</literal>.
+            Each <literal>Axes</literal> entity contains a set of leaf entities which are the basic graphics
+            objects like <literal>Polylines</literal>, <literal>Rectangles</literal>, <literal>Arcs</literal>, <literal>Segs</literal>,...
+            It can also contain a <literal>Compound</literal> type which is recursive sets of entities.
+            The graphic Object Editor manipulates this hierarchy of entities.
+        </para>
+        <para>
+            In the Scilab language, graphics entities are associated to Scilab variables of type <literal>handle</literal>.
+            The handle is a unique identifier which is associated to each instance of a created graphical entity.
+            Using this handle, it will be possible to reach entities' properties through
+            <function>set</function> and <function>get</function> routines.
+            The handles are also used to manipulate graphics objects, to move them, to make copies or delete them.
+            A set of high-level graphing routines (see <link linkend="set">set</link>, <link
+            linkend="get">get</link>) allow accessing and editing the objects'
+            properties such as data, coordinates and scaling, color and appearances without requiring
+            to replay the initial graphics commands.
+        </para>
+        <para>
+            The graphic Object Editor is implemented using the Tcl/Tk language; it is not available on MacOS,
+            where Tcl/TK is not available.
+        </para>
+        <para>The following editing operations are available in the Object Editor:</para>
         <para/>
         <variablelist>
             <varlistentry>
@@ -190,7 +213,7 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-        
+
         <para>
             Once the graphic interface is enabled (using the <literal>Figure Properties</literal> or <literal>Current Axes Properties</literal> options), two main areas appear:
         </para>
@@ -342,7 +365,7 @@
         </variablelist>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="graphics_entities">graphics_entities</link>
@@ -358,6 +381,9 @@
             </member>
             <member>
                 <link linkend="plot">plot</link>
+            </member>
+            <member>
+                <link linkend="ged">ged</link>
             </member>
         </simplelist>
     </refsection>

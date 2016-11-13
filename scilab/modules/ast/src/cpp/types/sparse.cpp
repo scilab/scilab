@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010 - DIGITEO - Bernard HUGUENEY
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 
@@ -691,7 +694,7 @@ void Sparse::whoAmI() SPARSE_CONST
     std::cout << "types::Sparse";
 }
 
-Sparse* Sparse::clone(void) const
+Sparse* Sparse::clone(void)
 {
     return new Sparse(*this);
 }
@@ -711,7 +714,7 @@ bool Sparse::zero_set()
 }
 
 // TODO: handle precision and line length
-bool Sparse::toString(std::ostringstream& ostr) const
+bool Sparse::toString(std::ostringstream& ostr)
 {
     int iPrecision = ConfigVariable::getFormatSize();
     std::string res;
@@ -1104,7 +1107,7 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
     //now you are sure to be able to insert values
     if (bNeedToResize)
     {
-        if (resize(iNewRows, iNewCols) == false)
+        if (resize(iNewRows, iNewCols) == NULL)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
@@ -1275,7 +1278,7 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
     //now you are sure to be able to insert values
     if (bNeedToResize)
     {
-        if (resize(iNewRows, iNewCols) == false)
+        if (resize(iNewRows, iNewCols) == NULL)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
@@ -1440,14 +1443,14 @@ GenericType* Sparse::remove(typed_list* _pArgs)
         }
     }
 
+    delete[] pbFull;
+
     if (bTooMuchNotEntire == true)
     {
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
-
-    delete[] pbFull;
 
     //find index to keep
     int iNotEntireSize          = pArg[iNotEntire]->getAs<GenericType>()->getSize();
@@ -1697,7 +1700,10 @@ GenericType* Sparse::extract(typed_list* _pArgs)
                 {
                     delete pOut;
                     pOut = NULL;
-                    break;
+                    delete[] piMaxDim;
+                    delete[] piCountDim;
+                    cleanIndexesArguments(_pArgs, &pArg);
+                    return NULL;
                 }
                 int iRowRead = static_cast<int>(pIdx[i] - 1) % getRows();
                 int iColRead = static_cast<int>(pIdx[i] - 1) / getRows();
@@ -1754,7 +1760,11 @@ GenericType* Sparse::extract(typed_list* _pArgs)
                     {
                         delete pOut;
                         pOut = NULL;
-                        break;
+                        delete[] piMaxDim;
+                        delete[] piCountDim;
+                        //free pArg content
+                        cleanIndexesArguments(_pArgs, &pArg);
+                        return NULL;
                     }
                     if (isComplex())
                     {
@@ -2181,7 +2191,7 @@ int* Sparse::getColPos(int* _piColPos)
         mycopy_n(matrixReal->innerIndexPtr(), nonZeros(), _piColPos);
     }
 
-    for (int i = 0; i < nonZeros(); i++)
+    for (size_t i = 0; i < nonZeros(); i++)
     {
         _piColPos[i]++;
     }
@@ -2366,7 +2376,7 @@ SparseBool* Sparse::newLessThan(Sparse &o)
         outputRowCol(rowcolL.data());
 
         double r = o.get(0, 0);
-        if (r >= 0)
+        if (r > 0)
         {
             ret->setTrue(true);
         }
@@ -2906,7 +2916,7 @@ SparseBool::~SparseBool()
 #endif
 }
 
-bool SparseBool::toString(std::ostringstream& ostr) const
+bool SparseBool::toString(std::ostringstream& ostr)
 {
     ostr << ::toString(*matrixBool, 0);
     return true;
@@ -2917,7 +2927,7 @@ void SparseBool::whoAmI() SPARSE_CONST
     std::cout << "types::SparseBool";
 }
 
-SparseBool* SparseBool::clone(void) const
+SparseBool* SparseBool::clone(void)
 {
     return new SparseBool(*this);
 }
@@ -3062,7 +3072,7 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
     //now you are sure to be able to insert values
     if (bNeedToResize)
     {
-        if (resize(iNewRows, iNewCols) == false)
+        if (resize(iNewRows, iNewCols) == NULL)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
@@ -3213,7 +3223,7 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
     //now you are sure to be able to insert values
     if (bNeedToResize)
     {
-        if (resize(iNewRows, iNewCols) == false)
+        if (resize(iNewRows, iNewCols) == NULL)
         {
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
@@ -3341,14 +3351,14 @@ GenericType* SparseBool::remove(typed_list* _pArgs)
         }
     }
 
+    delete[] pbFull;
+
     if (bTooMuchNotEntire == true)
     {
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
-
-    delete[] pbFull;
 
     //find index to keep
     int iNotEntireSize          = pArg[iNotEntire]->getAs<GenericType>()->getSize();
@@ -3751,7 +3761,11 @@ GenericType* SparseBool::extract(typed_list* _pArgs)
                     {
                         delete pOut;
                         pOut = NULL;
-                        break;
+                        delete[] piMaxDim;
+                        delete[] piCountDim;
+                        //free pArg content
+                        cleanIndexesArguments(_pArgs, &pArg);
+                        return NULL;
                     }
                     bool bValue = get((int)pIdxRow[iRow] - 1, (int)pIdxCol[iCol] - 1);
                     if (bValue)
@@ -3900,7 +3914,7 @@ int* SparseBool::getNbItemByRow(int* _piNbItemByRows)
 int* SparseBool::getColPos(int* _piColPos)
 {
     mycopy_n(matrixBool->innerIndexPtr(), nbTrue(), _piColPos);
-    for (int i = 0; i < nbTrue(); i++)
+    for (size_t i = 0; i < nbTrue(); i++)
     {
         _piColPos[i]++;
     }

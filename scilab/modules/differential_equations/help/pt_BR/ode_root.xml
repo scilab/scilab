@@ -1,32 +1,35 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ode_root" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ode_root" xml:lang="pt">
     <refnamediv>
         <refname>ode_root</refname>
-        <refpurpose>solucionador de EDOs com busca de raízes</refpurpose>
+        <refpurpose>solucionador de EDOs com busca de raÃ­zes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])</synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Parâmemtros</title>
+    <refsection role="parameters">
+        <title>ParÃ¢memtros</title>
         <variablelist>
             <varlistentry>
                 <term>y0</term>
                 <listitem>
-                    <para>vetor de reais ou matriz (condições iniciais)</para>
+                    <para>vetor de reais ou matriz (condiÃ§Ãµes iniciais)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -38,7 +41,7 @@
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>vetor de reais (tempos nos quais a solução é
+                    <para>vetor de reais (tempos nos quais a soluÃ§Ã£o Ã©
                         computada).
                     </para>
                 </listitem>
@@ -46,7 +49,7 @@
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>função externa i.e. função, string ou lista.</para>
+                    <para>funÃ§Ã£o externa i.e. funÃ§Ã£o, string ou lista.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -60,13 +63,7 @@
             <varlistentry>
                 <term>jac</term>
                 <listitem>
-                    <para>função externa i.e. função, string ou lista.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>w, iw</term>
-                <listitem>
-                    <para>vetores de reais</para>
+                    <para>funÃ§Ã£o externa i.e. funÃ§Ã£o, string ou lista.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -78,59 +75,79 @@
             <varlistentry>
                 <term>g</term>
                 <listitem>
-                    <para>função externa i.e. função, string ou lista.</para>
+                    <para>funÃ§Ã£o externa i.e. funÃ§Ã£o, string ou lista.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>a real vector or matrix. The solution.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rd</term>
+                <listitem>
+                    <para>a real vector.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w, iw</term>
+                <listitem>
+                    <para>vetores de reais.
+                    See <link linkend="ode_optional_output">ode() optional output</link>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>Descrição</title>
+    <refsection role="description">
+        <title>DescriÃ§Ã£o</title>
         <para>Com esta sintaxe (primeiro argumento igual a
-            <literal>"root"</literal>) <literal>ode</literal> computa a solução da EDO
-            <literal>dy/dt=f(t,y)</literal> até que o estado <literal>y(t)</literal>
-            cruze a superfície <literal>g(t,y)=0</literal>.
+            <literal>"root"</literal>) <literal>ode</literal> computa a soluÃ§Ã£o da EDO
+            <literal>dy/dt=f(t,y)</literal> atÃ© que o estado <literal>y(t)</literal>
+            cruze a superfÃ­cie <literal>g(t,y)=0</literal>.
         </para>
         <para>
-            <literal>g</literal> deve fornecer a equação da superfície. É uma
-            função externa, i.e. uma função com sintaxe especificada, ou o nome de uma
-            subrotina FORTRAN ou função C (string) com seqüência de chamamento
+            <literal>g</literal> deve fornecer a equaÃ§Ã£o da superfÃ­cie. Ã‰ uma
+            funÃ§Ã£o externa, i.e. uma funÃ§Ã£o com sintaxe especificada, ou o nome de uma
+            subrotina FORTRAN ou funÃ§Ã£o C (string) com seqÃ¼Ãªncia de chamamento
             especificada ou uma lista.
         </para>
         <para>
-            Se <literal>g</literal> é uma função, a sintaxe deve ser como
+            Se <literal>g</literal> Ã© uma funÃ§Ã£o, a sintaxe deve ser como
             segue:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 z=g(t,y)
  ]]></programlisting>
         <para>
-            onde <literal>t</literal> é um escalar real (tempo) e
+            onde <literal>t</literal> Ã© um escalar real (tempo) e
             <literal>y</literal> um vetor de reais (estado). Ela retorna um vetor de
-            tamanho <literal>ng</literal> que corresponde às <literal>ng</literal>
-            restrições. Se <literal>g</literal> é um string, ele se refere a uma
-            subrotina FORTRAN ou uma função C, com a seguinte seqüência de chamamento:
-            <literal>g(n,t,y,ng,gout)</literal> onde <literal>ng</literal> é o número
-            de restrições e <literal>gout</literal> é o valor de <literal>g</literal>
-            (saída do programa). Se <literal>g</literal> é uma lista, as mesmas
-            convenções para <literal>f</literal> se aplicam (ver ajuda de <link linkend="ode">ode</link>).
+            tamanho <literal>ng</literal> que corresponde Ã s <literal>ng</literal>
+            restriÃ§Ãµes. Se <literal>g</literal> Ã© um string, ele se refere a uma
+            subrotina FORTRAN ou uma funÃ§Ã£o C, com a seguinte seqÃ¼Ãªncia de chamamento:
+            <literal>g(n,t,y,ng,gout)</literal> onde <literal>ng</literal> Ã© o nÃºmero
+            de restriÃ§Ãµes e <literal>gout</literal> Ã© o valor de <literal>g</literal>
+            (saÃ­da do programa). Se <literal>g</literal> Ã© uma lista, as mesmas
+            convenÃ§Ãµes para <literal>f</literal> se aplicam (ver ajuda de <link linkend="ode">ode</link>).
         </para>
         <para>
-            A saída <literal>rd</literal> é um vetor <literal>1 x k</literal> .
-            A primeira entrada contém o tempo de parada. Outras entradas indicam que
+            A saÃ­da <literal>rd</literal> Ã© um vetor <literal>1 x k</literal> .
+            A primeira entrada contÃ©m o tempo de parada. Outras entradas indicam que
             componentes de <literal>g</literal> possuem sinal trocado.
-            <literal>k</literal> maior que 2 indica que mais de uma superfície
-            (<literal>(k-1)</literal> superfícies) foram simultaneamente
+            <literal>k</literal> maior que 2 indica que mais de uma superfÃ­cie
+            (<literal>(k-1)</literal> superfÃ­cies) foram simultaneamente
             atravessadas.
         </para>
-        <para>Outros argumentos e opções são os mesmos que para
-            <literal>ode</literal>, ver a página de ajuda de <link linkend="ode">ode</link>.
+        <para>Outros argumentos e opÃ§Ãµes sÃ£o os mesmos que para
+            <literal>ode</literal>, ver a pÃ¡gina de ajuda de <link linkend="ode">ode</link>.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-// Integração da equação diferencial
-// dy/dt=y , y(0)=1, e acha o tempo mínimo t tal que y(t)=2
+        <programlisting role="example"><![CDATA[
+// IntegraÃ§Ã£o da equaÃ§Ã£o diferencial
+// dy/dt=y , y(0)=1, e acha o tempo mÃ­nimo t tal que y(t)=2
 deff("[ydot]=f(t,y)","ydot=y")
 deff("[z]=g(t,y)","z=y-2")
 y0=1;ng=1;
@@ -141,13 +158,22 @@ deff("[z]=g(t,y)","z=y-[2;2;33]")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="ode_optional_output">ode_optional_output</link>
+            </member>
+            <member>
+                <link linkend="ode_discrete">ode_discrete</link>
+            </member>
             <member>
                 <link linkend="dasrt">dasrt</link>
             </member>
             <member>
-                <link linkend="ode">ode</link>
+                <link linkend="daskr">daskr</link>
             </member>
         </simplelist>
     </refsection>

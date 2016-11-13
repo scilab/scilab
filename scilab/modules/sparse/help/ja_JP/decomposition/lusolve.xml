@@ -3,128 +3,131 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="lusolve">
-    
+
     <refnamediv>
-        
+
         <refname>lusolve</refname>
-        
+
         <refpurpose>疎な線形システムの解を得る</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>x=lusolve(hand,b)
-            
+
             x=lusolve(A,b)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>b</term>
-                
+
                 <listitem>
-                    
+
                     <para>通常の実数行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>A</term>
-                
+
                 <listitem>
-                    
+
                     <para>可逆な実数正方疎行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>hand</term>
-                
+
                 <listitem>
-                    
+
                     <para>疎行列LU分解を計算した際のハンドル(lufactの出力)</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>x</term>
-                
+
                 <listitem>
-                    
+
                     <para>通常の実数行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <literal>x=lusolve(hand,b)</literal> は疎な線形システム
-            
+
             <literal>A*x = b</literal>を解きます.
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>[hand,rk]=lufact(A)</literal> は lufact の出力です.
-            
+
         </para>
-        
+
         <para>
-            
+
             <literal>x=lusolve(A,b)</literal>は,疎な線形システム
-            
+
             <literal>A*x = b</literal>を解きます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 non_zeros=[1,2,3,4];rows_cols=[1,1;2,2;3,3;4,4];
 sp=sparse(rows_cols,non_zeros);
 [h,rk]=lufact(sp);x=lusolve(h,[1;1;1;1]);ludel(h)
@@ -134,42 +137,42 @@ sp=sparse(rows_cols,non_zeros);
 x=lusolve(sp,-ones(4,1));
 sp*x
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="sparse">sparse</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="lufact">lufact</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="slash">slash</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="backslash">backslash</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F.D
+ * Revised July 2011, S. Steer, INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="pfss">
+    <refnamediv>
+        <refname>pfss</refname>
+        <refpurpose>partial fraction decomposition</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>elts=pfss(Sl)
+            elts=pfss(Sl,rmax)
+            elts=pfss(Sl,cord)
+            elts=pfss(Sl,rmax,cord)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        A linear dynamical system in state-space or transfer
+                        function representation (see <link linkend="syslin">syslin</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rmax</term>
+                <listitem>
+                    <para>
+                        A real number controlling the conditioning of block
+                        diagonalization (see  <link linkend="bdiag">bdiag</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cord</term>
+                <listitem>
+                    <para>
+                        A character string with possible values <literal>'c'</literal>
+                        or <literal>'d'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Partial fraction decomposition of the linear system <literal>Sl</literal>.
+        </para>
+        <para>
+            <literal>elts</literal> is the list of linear systems which add up to <literal>Sl</literal>
+            i.e. <literal>elts=list(S1,S2,S3,...,Sn)</literal> with:
+        </para>
+        <para>
+            <literal>Sl = S1 + S2 +... +Sn</literal>.
+        </para>
+        <para>
+            Each <literal>Si</literal> contains some poles of <literal/>
+            Saccording to the
+            block-diagonalization of the <literal>A</literal> matrix of <literal>S</literal>.
+        </para>
+        <para>
+            For non proper systems the polynomial part of <literal>Sl</literal> is put
+            in the last entry of <literal>elts</literal>.
+        </para>
+        <para>
+            If <literal>Sl</literal> is given in transfer form, it is first
+            converted into state-space by <link linkend="tf2ss">tf2ss</link>
+            and each subsystem <literal>Si</literal> is then converted in
+            transfer form by <link linkend="ss2tf">ss2tf</link>.
+        </para>
+        <para>
+            The A matrix is of the state-space is put into block diagonal form
+            by function <link linkend="bdiag">bdiag</link>. The optional parameter
+            <literal>rmax</literal> is sent to <literal>bdiag</literal>,
+            <literal>rmax</literal> should be set to a large number to enforce
+            block-diagonalization.
+        </para>
+        <para>
+            If the optional flag <literal>cord='c'</literal> is given the elements in <literal>elts</literal>
+            are sorted according to the real part (resp. magnitude if <literal>cord='d'</literal>)
+            of the eigenvalues of A matrices.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    W=ssrand(1,1,6);
+    elts=pfss(W);
+    W1=0;for k=1:size(elts), W1=W1+ss2tf(elts(k));end
+    clean(ss2tf(W)-W1)
+    ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+    num=22801+4406.18*s+382.37*s^2+21.02*s^3+s^4;
+    den=22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4
+    h2=syslin('c',num/den);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pbig">pbig</link>
+            </member>
+            <member>
+                <link linkend="bdiag">bdiag</link>
+            </member>
+            <member>
+                <link linkend="coffg">coffg</link>
+            </member>
+            <member>
+                <link linkend="dtsi">dtsi</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

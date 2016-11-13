@@ -4,11 +4,14 @@
  * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
  * Copyright (C) 2010 - Michael Baudin
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optim_sa" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>A Simulated Annealing optimization method</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             x_best = optim_sa(x0,f,ItExt,ItInt,T0,Log,temp_law,param_temp_law,neigh_func,param_neigh_func)
             [x_best,f_best] = optim_sa(..)
@@ -198,7 +201,7 @@
             visit a given set of cities).
         </para>
         <para>
-            The current solver can find the solution of an optimization problem without constraints or 
+            The current solver can find the solution of an optimization problem without constraints or
             with bound constraints. The bound constraints can be customized with the neighbour
             function. This algorithm does not use the derivatives of the objective function.
         </para>
@@ -210,8 +213,8 @@
         <para>
             To use the SA algorithm, one should perform the following steps :
             <itemizedlist><listitem>
-                    configure the parameters with calls to <literal>init_param</literal> 
-                    and <literal>add_param</literal> especially the neighbor function, the 
+                    configure the parameters with calls to <literal>init_param</literal>
+                    and <literal>add_param</literal> especially the neighbor function, the
                     acceptance function, the temperature law,
                 </listitem>
                 <listitem>
@@ -236,16 +239,16 @@
             While the current point is used internally to explore the domain, only the best point is returned
             by the function.
             The algorithm is based on an external loop and an internal loop. In the external loop,
-            the temperature is updated according to the temperature function. In the internal loop, the 
-            point is updated according to the neighbour function. A new point is accepted depending 
-            on its associated function value or the value of the acceptance function, which value 
+            the temperature is updated according to the temperature function. In the internal loop, the
+            point is updated according to the neighbour function. A new point is accepted depending
+            on its associated function value or the value of the acceptance function, which value
             depends on the current temperature and a uniform random number.
         </para>
         <para>
             The acceptance of the new point depends on the output values produced
-            by the <literal>rand</literal> function. This implies that two consecutive 
+            by the <literal>rand</literal> function. This implies that two consecutive
             calls to the <literal>optim_sa</literal> will not produce the same result.
-            In order to always get exactly the same results, please initialize the random number 
+            In order to always get exactly the same results, please initialize the random number
             generator with a valid seed.
         </para>
         <para>
@@ -258,13 +261,13 @@
         <para>
             The objective function is expected to have the following header.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 function y = f ( x )
  ]]></programlisting>
         <para>
             In the case where the objective function needs additional parameters,
-            the objective function can be defined as a list, where the first 
-            argument is the cost function, and the second argument is the 
+            the objective function can be defined as a list, where the first
+            argument is the cost function, and the second argument is the
             additional parameter. See below for an example.
         </para>
     </refsection>
@@ -277,11 +280,11 @@ function y = f ( x )
             f(x) = -2. We use the simulated annealing algorithm with default settings
             and the default neighbour function neigh_func_default.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function y = rastrigin(x)
   y = x(1)^2+x(2)^2-cos(12*x(1))-cos(18*x(2));
 endfunction
-    
+
 x0          = [2 2];
 Proba_start = 0.7;
 It_Pre      = 100;
@@ -304,19 +307,19 @@ plot(t,sa_mean_list,"r",t,sa_var_list,"g");
             function y = rastrigin(x)
             y = x(1)^2+x(2)^2-cos(12*x(1))-cos(18*x(2));
             endfunction
-            
+
             x0          = [2 2];
             Proba_start = 0.7;
             It_Pre      = 100;
             It_extern   = 100;
             It_intern   = 1000;
             x_test = neigh_func_default(x0);
-            
+
             T0 = compute_initial_temp(x0, rastrigin, Proba_start, It_Pre);
-            
+
             Log = %f;
             [x_opt, f_opt, sa_mean_list, sa_var_list] = optim_sa(x0, rastrigin, It_extern, It_intern, T0, Log);
-            
+
             t = 1:length(sa_mean_list);
             plot(t,sa_mean_list,"r",t,sa_var_list,"g");
         </scilab:image>
@@ -333,7 +336,7 @@ plot(t,sa_mean_list,"r",t,sa_var_list,"g");
             below is the same, in spirit, as the <literal>neigh_func_default</literal>
             function.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function f = quad ( x )
   p = [4 3];
   f = (x(1) - p(1))^2 + (x(2) - p(2))^2
@@ -371,13 +374,13 @@ Log = %f;
         <title>Passing extra parameters</title>
         <para>
             In the following example, we use an objective function which requires
-            an extra parameter <literal>p</literal>. This parameter is the second 
-            input argument of the <literal>quadp</literal> function. In order to 
-            pass this parameter to the objective function, we define the objective 
+            an extra parameter <literal>p</literal>. This parameter is the second
+            input argument of the <literal>quadp</literal> function. In order to
+            pass this parameter to the objective function, we define the objective
             function as <literal>list(quadp,p)</literal>. In this case,
-            the solver makes so that the calling sequence includes a second argument.
+            the solver makes so that the syntax includes a second argument.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
   function f = quadp ( x , p )
   f = (x(1) - p(1))^2 + (x(2) - p(2))^2
   endfunction
@@ -393,11 +396,11 @@ Log = %f;
     <refsection>
         <title>Configuring an output function</title>
         <para>
-            In the following example, we define an output function, which also 
+            In the following example, we define an output function, which also
             provide a stopping rule. We define the function <literal>outfun</literal>
-            which takes as input arguments the data of the algorithm at the current 
+            which takes as input arguments the data of the algorithm at the current
             iteration and returns the boolean <literal>stop</literal>. This function
-            prints a message into the console to inform the user about the 
+            prints a message into the console to inform the user about the
             current state of the algorithm. It also computes the boolean <literal>stop</literal>,
             depending on the value of the function.
             The stop variable becomes true when the function value is near zero. In order to let <literal>optim_sa</literal>
@@ -408,7 +411,7 @@ Log = %f;
             This allows to check that the output function really allows to
             stop the algorithm.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function f = quad ( x )
   p = [4 3];
   f = (x(1) - p(1))^2 + (x(2) - p(2))^2
@@ -431,9 +434,9 @@ T0 = compute_initial_temp(x0, quad , 0.7, 100, saparams);
 [x_best, f_best, mean_list, var_list, temp_list, f_history, x_history , It ] = optim_sa(x0, quad , %inf, 100, T0, %f, saparams);
  ]]></programlisting>
         <para>
-            The previous script produces the following output. Notice that the actual 
+            The previous script produces the following output. Notice that the actual
             output of the algorithm depends on the state of the random number generator <literal>rand</literal>:
-            if we had not initialize the seed of the uniform random number generator, 
+            if we had not initialize the seed of the uniform random number generator,
             we would have produced a different result.
         </para>
         <programlisting role="no-scilab-exec">
@@ -455,7 +458,7 @@ T0 = compute_initial_temp(x0, quad , 0.7, 100, saparams);
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="compute_initial_temp">

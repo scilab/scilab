@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"  xmlns:scilab="http://www.scilab.org" xml:lang="pt" xml:id="hallchart">
+    <refnamediv>
+        <refname>hallchart</refname>
+        <refpurpose>Draws the Hall chart</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>hallchart([ modules [,args [,colors]]])</synopsis>
+
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>modules</term>
+                <listitem>
+                    <para>real vector ( modules (in dB))</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>args</term>
+                <listitem>
+                    <para>real vector (phases (in degree))</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>colors</term>
+                <listitem>
+                    <para>a scalar or a vector, the color indices for isogain and iso phase curves</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para> plot the Hall'chart: iso-module and iso-argument contours of
+            <literal>y/(1+y)</literal> in the <literal>real(y)</literal>, <literal>imag(y)</literal> plane
+        </para>
+        <para>
+            <literal>hallchart</literal> may be used in conjunction with
+            <link linkend="nyquist">nyquist</link>.
+        </para>
+        <para>
+            The default values for <literal>modules</literal> and
+            <literal>args</literal> are respectively :
+        </para>
+        <para>
+            <literal>[-20 -10 -6 -4 -2 2 4 6 10 20]</literal>
+        </para>
+        <para>
+            <literal>[-90 -60 -45 -30 -15 15 30 45 60 90]</literal>
+        </para>
+        <para>
+            This function supersedes the <link linkend="m_circle">m_circle</link> function
+        </para>
+    </refsection>
+    <refsection>
+        <title>Graphics entities organization</title>
+        <para>
+            The <literal>hallchart</literal> function create a single
+            compound object which is generally the last child of the current
+            axes. This compound object contains a set of compound objects, one
+            for each grid curve. The first ones are the iso module curves and
+            the last one the iso-argument contours. Each of these compound
+            objects contains a Polyline object (the curve) and a Text object
+            (the label). The following piece of code can be used to change the color of the ith iso module curve:
+        </para>
+        <programlisting role="customizing"><![CDATA[
+    clf();hallchart()
+    ax=gca();//handle on current axes
+    c=ax.children($).children;// the handles on the chart grid curves
+    i=4; //the index of the -4dB curve
+    ci=c(i); //the handle on the -4dB curve
+    ci.children(1).foreground=color('red'); //draw it in red
+
+    j=3; // the index of the -45° curve
+    cj=c(10+j); //the handle on the -45° curve
+    cj.children(1).thickness=3;//draw it thicker
+     ]]></programlisting>
+        <scilab:image localized="true">
+            clf();hallchart()
+            ax=gca();
+            c=ax.children($).children;
+            i=4;
+            ci=c(i);
+            ci.children(1).foreground=color('red');
+            j=3;
+            cj=c(10+j);
+            cj.children(1).thickness=3;
+        </scilab:image>
+
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    //Hall chart
+    clf();hallchart()
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                hallchart()
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+    //Hall chart as a grid for nyquist
+    s=poly(0,'s');
+    Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+    //two degree of freedom PID
+    tau=0.2;xsi=1.2;
+    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+    clf();
+    nyquist([Plant;Plant*PID],0.5,100,["Plant";"Plant and PID corrector"]);
+    hallchart(colors=color('light gray')*[1 1])
+    //move the caption in the lower right corner
+    ax=gca();Leg=ax.children(1);
+    Leg.legend_location="in_lower_right";
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s');
+                Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+                tau=0.2;xsi=1.2;
+                PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+                nyquist([Plant;Plant*PID],0.5,100,["Plant";"Plant and PID corrector"]);
+                hallchart(colors=color('light gray')*[1 1])
+                ax=gca();Leg=ax.children(1);
+                Leg.legend_location="in_lower_right";
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+            <member>
+                <link linkend="nicholschart">nicholschart</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

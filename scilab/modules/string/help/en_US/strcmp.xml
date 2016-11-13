@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strcmp" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>compare character strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>res = strcmp(string_one, string_two, ['i'])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -42,8 +45,8 @@
                 <term>'i'</term>
                 <listitem>
                     <para>
-                        an optional parameter to do <function>strcmpi</function>
-                        (case independent), default value is <literal>'s'</literal>.
+                        optional parameter to compare strings in a case-independent way.
+                        Default value is <literal>'s'</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -81,7 +84,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 TXT1 = ['scilab','SciLab';'Strcmp','STRcmp'];
 TXT2 = ['ScIlAb','sciLab';'sTrCmP','StrCMP'];
 strcmp(TXT1,TXT2)
@@ -92,13 +95,13 @@ strcmp(TXT1,TXT2,'s')
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="strcat">strcat</link>
+                <link linkend="convstr">convstr</link>
             </member>
             <member>
-                <link linkend="strcmpi">strcmpi</link>
+                <link linkend="comparison">comparison</link>
             </member>
         </simplelist>
     </refsection>

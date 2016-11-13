@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"  xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="zgrid">
+    <refnamediv>
+        <refname>zgrid</refname>
+        <refpurpose>zgrid plot</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            zgrid()
+            zgrid(zeta,wn [,colors])
+            zgrid(['new',] zeta,wn [,colors])
+            zgrid(zeta,wn [,'new'] [,colors])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>zeta</term>
+                <listitem>
+                    <para>
+                        array of damping factors. Only values in <literal>[0
+                            1]
+                        </literal>
+                        are taken into account. The default value is
+                        <literal>0:0.1:1</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wn</term>
+                <listitem>
+                    <para>array of normalized natural frequencies (factors of
+                        π/dt).  Only values in <literal>[0 1]</literal> are taken
+                        into account. The default value is
+                        <literal>0:0.1:1</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>colors</term>
+                <listitem>
+                    <para>a scalar or an 2 element array  with integer values (color index).</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            plots z-plane grid lines: lines of constant damping factor
+            (selection given by <literal>zeta</literal>) and natural frequency
+            (selection given by <literal>wn</literal>) are drawn in within the
+            unit Z-plane circle.
+        </para>
+        <para>
+            Iso-frequency curves are shown in on the interval
+            [0,%pi/dt].
+        </para>
+        <para>
+            The <literal>colors</literal> argument may be used to assign a
+            color for constant damping ratio curves
+            (<literal>colors(2)</literal>) and for frequency curves
+            (<literal>colors(1)</literal>).
+        </para>
+        <para>
+            The <literal>zgrid</literal> function is often used to draw a grid
+            for evens root locus of continuous time linear systems. In such a
+            case the <literal>zgrid</literal> function should be called after
+            the call to <link linkend="evans">evans</link>. For continuous time linear
+            systems one should use <link linkend="sgrid">sgrid</link> function instead.
+        </para>
+        <para>
+            The optional argument <literal>'new'</literal> can be used to
+            erase the graphic window before plotting the grid.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    //zgrid
+    clf();zgrid(0:0.2:1,[0.2 0.6 0.8 1])
+    ]]></programlisting>
+        <para>
+            <scilab:image>
+                zgrid(0:0.2:1,[0.2 0.6 0.8 1])
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+    //zgrid with discrete time system  root locus
+    z=poly(0,'z')
+    H=syslin(0.01,(0.54-1.8*z+2.9*z^2-2.6*z^3+z^4)/(0.8+0.78*z-0.1*z^2+0.9*z^3+z^4))
+    clf();evans(H,1000);zgrid(0:0.1:0.5)
+
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                z=poly(0,'z')
+                H=syslin(0.01,(0.54-1.8*z+2.9*z^2-2.6*z^3+z^4)/(0.8+0.78*z-0.1*z^2+0.9*z^3+z^4))
+                clf();evans(H,1000);zgrid(0:0.1:0.5)
+            </scilab:image>
+        </para>
+
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="evans">evans</link>
+            </member>
+            <member>
+                <link linkend="sgrid">sgrid</link>
+            </member>
+            <member>
+                <link linkend="freson">freson</link>
+            </member>
+            <member>
+                <link linkend="datatips">datatips</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

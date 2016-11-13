@@ -5,7 +5,7 @@
         <refpurpose>get information about Scilab to debug</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>getdebuginfo()
             dynamic_info = getdebuginfo();
             [dynamic_info, static_info] = getdebuginfo();
@@ -27,13 +27,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [a,b]=getdebuginfo()
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="getversion">getversion</link>

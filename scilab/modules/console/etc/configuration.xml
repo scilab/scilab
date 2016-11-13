@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <Setting version="0.02">
@@ -15,7 +18,7 @@
     <Profile name="scilab">
         <!-- Welcome line -->
         <WelcomeLine useCache="true" value=""/>
-        
+
         <!-- GUI Part -->
         <PromptView useCache="true" value="org.scilab.modules.console.SciPromptView"/>
         <OutputView useCache="true" value="org.scilab.modules.console.SciOutputView"/>
@@ -31,13 +34,13 @@
         <FontStyle useCache="true" value="0"/>
         <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
         <FontSize useCache="true" value="13"/>
-        
+
         <MainWindowPosition useCache="true" x="0" y="0"/>
         <MainWindowSize useCache="true" width="650" height="550"/>
-        
+
         <!-- Help part -->
         <HelpFontSize useCache="true" value="2"/>
-        
+
         <!-- Core part -->
         <OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
         <InputCommandViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
@@ -47,20 +50,20 @@
         <CompletionWindow useCache="true" value="org.scilab.modules.console.SciCompletionWindow"/>
         <HistoryManager useCache="true" value="org.scilab.modules.console.SciHistoryManager"/>
         <MaxOutputSize useCache="true" value="10000"/>
-        
+
         <!-- Key mapping -->
         <KeyMapping>
             <Key name="VK_F1" mask="" action="HELP"/>
         </KeyMapping>
-        
+
         <!-- Key mapping -->
         <!--<Action name="PASTE" className="org.scilab.modules.console.PasteClipboard"/>-->
         <ActionMapping>
             <Action name="HELP" className="org.scilab.modules.console.HelpAction"/>
         </ActionMapping>
-        
+
     </Profile>
-    
+
     <!-- Scilab configuration under MacOSX -->
     <Profile name="macosx">
         <!-- Key mapping -->
@@ -68,5 +71,5 @@
             <Key name="VK_F1" mask="" action="HELP"/>
         </KeyMapping>
     </Profile>
-    
+
 </Setting>

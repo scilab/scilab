@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scicos_link">
+    <refnamediv>
+        <refname>scicos_link</refname>
+        <refpurpose>Define a link structure</refpurpose>
+    </refnamediv>
+    <refsection id="Module_scicos_link">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsect1 id="link_scicos_link">
+        <title>link</title>
+        <para>Basic  structure that define a xcos link.</para>
+        <para>
+            Type : scilab tlist of type <code>"Link"</code> with fields :
+            <link linkend="scicos_link_xx">xx</link>,
+            <link linkend="scicos_link_yy">yy</link>,
+            <link linkend="scicos_link_id">id</link>,
+            <link linkend="scicos_link_thick">thick</link>,
+            <link linkend="scicos_link_ct">ct</link>,
+            <link linkend="scicos_link_from">from</link> and
+            <link linkend="scicos_link_to">to</link>.
+        </para>
+        <refsect2 id="scicos_link_xx">
+            <title>xx</title>
+            <para> Vector of x coordinates of the link path. A link is defined as a polyline line.</para>
+            <para>
+                Size : number of points of the link.
+            </para>
+            <para>
+                Type : column vector of real numbers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_link_yy">
+            <title>yy</title>
+            <para> Vector of y coordinates of the link path. A link is defined as a polyline line.</para>
+            <para>
+                Size : number of points of the link.
+            </para>
+            <para>
+                Type : column vector of real numbers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_link_id">
+            <title>id</title>
+            <para> Character string, the link identification.</para>
+            <para>
+                Size : 1.
+            </para>
+            <para>
+                Type : string.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_link_thick">
+            <title>thick</title>
+            <para> Vector of size two defining line thickness.</para>
+            <para>
+                Size : 2.
+            </para>
+            <para>
+                Type : row vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_link_ct">
+            <title>ct</title>
+            <para>
+                The first entry of this vector designates the color, and the second, the nature of the link. The second entry is <code>1</code> for a regular link, <code>-1</code> for an activation link, and <code>2</code> for an implicit link.
+            </para>
+            <para>
+                Size : 2.
+            </para>
+            <para>
+                Type : row vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_link_from">
+            <title>from</title>
+            <para>
+                Vector of size three including the block number, port number, and port type (<code>0</code> for output, <code>1</code> for input) at the origin of the link. Note that the third entry may be <code>1</code> if the link is implicit; otherwise it is zero.
+            </para>
+            <para>
+                Size : 3.
+            </para>
+            <para>
+                Type : row vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_link_to">
+            <title>to</title>
+            <para>
+                Vector of size three including the block number, port number, and port type (<code>0</code> for output, <code>1</code> for input) at the destination of the link. Note that the third entry may be <code>0</code> if the link is implicit; otherwise it is one.
+            </para>
+            <para>
+                Size : 3.
+            </para>
+            <para>
+                Type : row vector of integers.
+            </para>
+        </refsect2>
+    </refsect1>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+loadXcosLibs();              // load standard library
+
+lnk = scicos_link();    // new specific block
+tree_show(lnk);              // display it
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+lnk = scicos_link(),
+lnk.id = "My_label"
+ ]]></programlisting>
+    </refsection>
+</refentry>

@@ -76,7 +76,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 zeros(3)
 zeros(3,3)
 zeros(2,3,2)

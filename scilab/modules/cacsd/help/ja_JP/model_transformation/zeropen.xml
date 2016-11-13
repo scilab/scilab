@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="zeropen">
+    <refnamediv>
+        <refname>zeropen</refname>
+        <refpurpose>ゼロペンシル</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[Z,U]=zeropen(Sl)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl</term>
+                <listitem>
+                    <para>
+                        線形システム (状態空間形式<literal>[A,B,C,D]</literal>の<literal>syslin</literal>リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Z</term>
+                <listitem>
+                    <para>
+                        行列ペンシル <literal>Z=s*E-A</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>正方直交行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>Z= sE - F</literal>  は,行列
+            <literal>[A,B,C,D]</literal>からなる
+            線形システム <literal>Sl</literal> のゼロペンシルです.
+            ユーティリティ関数.
+        </para>
+        <para>
+            <literal>U</literal>により,
+            <literal>[B;D]</literal>の行圧縮,すなわち,
+            <literal>U*[B;D]=[0;*]</literal>; が得られます:
+        </para>
+        <programlisting role=""><![CDATA[
+U*[-sI+A |B;   [ Z |0;
+      C  |D] = [ * |*]
+ ]]></programlisting>
+        <para>
+            <literal>Z</literal> のゼロは <literal>Sl</literal>のゼロです.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="systmat">systmat</link>
+            </member>
+            <member>
+                <link linkend="kroneck">kroneck</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

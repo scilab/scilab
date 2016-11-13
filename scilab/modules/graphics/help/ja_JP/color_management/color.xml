@@ -6,145 +6,145 @@
 
  * Copyright (C) INRIA
 
- * 
+ *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
  *
 
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="color">
-    
+
     <refnamediv>
-        
+
         <refname>color</refname>
-        
+
         <refpurpose>色の色IDを取得</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>id=color(name)
-            
+
             id=color(r,g,b)
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>name</term>
-                
+
                 <listitem>
-                    
+
                     <para>色の名前.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>r,g,b</term>
-                
+
                 <listitem>
-                    
+
                     <para>色のRGB整数値.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>id</term>
-                
+
                 <listitem>
-                    
+
                     <para>色のid.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <literal>color</literal>は引数に対応する色IDを返します:
-            
+
         </para>
-        
+
         <itemizedlist>
-            
+
             <listitem>
-                
+
                 <para>
-                    
-                    <literal>name</literal> には既知の色の名前を指定する必要があります (<link linkend="color_list">color_list</link>参照). 
-                    
+
+                    <literal>name</literal> には既知の色の名前を指定する必要があります (<link linkend="color_list">color_list</link>参照).
+
                 </para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para>
-                    
+
                     <literal>r</literal>, <literal>g</literal> および <literal>b</literal> は
-                    
+
                     赤,緑,青の色素に対応し, 0 から 255の範囲の整数とする必要があります.
-                    
+
                     通常と同様に, 0 は彩度がないことを意味し, 255 は色の彩度の最大値を意味します.
-                    
+
                 </para>
-                
+
             </listitem>
-            
+
         </itemizedlist>
-        
+
         <para>指定した色がカレントのカラーマップに存在しない場合,
-            
+
             カラーマップに追加されます.
-            
+
         </para>
-        
+
         <para>この関数はプロットの際に前景色または背景色を指定するために使用されます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 x=linspace(-2*%pi,2*%pi,100)';
 
@@ -163,56 +163,56 @@ p1.foreground=color("purple"); p2.foreground=color("navy blue");
 p1.foreground=color(255,128,128);
 
  ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             x=linspace(-2*%pi,2*%pi,100)';
-            
+
             // using existing colors
-            
+
             plot2d(x,[sin(x),cos(x)],style=[color("red"),color("green")]);
-            
+
             // new colors: there are added to the colormap
-            
+
             e=gce(); p1=e.children(1); p2=e.children(2);
-            
+
             p1.foreground=color("purple"); p2.foreground=color("navy blue");
-            
+
             // using RGV values
-            
+
             p1.foreground=color(255,128,128);
-            
+
         </scilab:image>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="colormap">colormap</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="color_list">color_list</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="getcolor">getcolor</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

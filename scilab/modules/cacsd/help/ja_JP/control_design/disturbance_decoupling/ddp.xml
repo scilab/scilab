@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="ddp">
+    <refnamediv>
+        <refname>ddp</refname>
+        <refpurpose>外乱デカップリング</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[Closed,F,G]=ddp(Sys,zeroed,B1,D1)
+            [Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,alfa,beta)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sys</term>
+                <listitem>
+                    <para>
+                        行列 <literal>(A,B2,C,D2)</literal>を含む<literal>syslin</literal> リスト
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zeroed</term>
+                <listitem>
+                    <para>
+                        整数ベクトル, ゼロ化する<literal>Sys</literal>の出力の添え字.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B1</term>
+                <listitem>
+                    <para>real matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>D1</term>
+                <listitem>
+                    <para>
+                        実数行列. <literal>B1</literal> および <literal>D1</literal> は同数の列を有します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        文字列 <literal>'ge'</literal> または <literal>'st'</literal> (デフォルト) または <literal>'pp'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alpha</term>
+                <listitem>
+                    <para>実数または複素数のベクトル  (閉ループ極の位置)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>beta</term>
+                <listitem>
+                    <para>r実数または複素数のベクトル (閉ループ極の位置)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            完全な外乱デカップリング(出力ゼロ化アルゴリズム).
+            線形システムとゼロ化する出力の部分集合 z を指定すると,
+            wからzへの伝達関数がゼロとなるようなSysの入力wを
+            明らかにします.
+            <literal>Sys</literal> は,
+            1入力,2出力の線形システム {A,B2,C,D2}  ( すなわち  Sys: u--&gt;(z,y) ),
+            <literal>Sys</literal>
+            および<literal>B1,D1</literal>で定義される以下のシステムの一部です:
+        </para>
+        <programlisting role=""><![CDATA[
+xdot =  A x + B1  w + B2  u
+   z = C1 x + D11 w + D12 u
+   y = C2 x + D21 w + D22 u
+ ]]></programlisting>
+        <para>
+            Sysの出力は(z,y)に分割され,zはゼロ化されます.
+            すなわち, 行列 CとD2は次のようになります:
+        </para>
+        <programlisting role=""><![CDATA[
+C=[C1;C2]         D2=[D12;D22]
+C1=C(zeroed,:)    D12=D2(zeroed,:)
+ ]]></programlisting>
+        <para>
+            行列 <literal>D1</literal> は同様に
+            <literal>D11=D1(zeroed,:)</literal>として
+            <literal>D1=[D11;D21]</literal>のように分割されます.
+            制御則は u=Fx+Gw で,
+            閉ループシステム w--&gt;z は以下のように定義されます.
+        </para>
+        <programlisting role=""><![CDATA[
+xdot= (A+B2*F)  x + (B1 + B2*G) w
+  z = (C1+D12F) x + (D11+D12*G) w
+ ]]></programlisting>
+        <para>
+            この式は,ゼロ伝達関数を有します.
+        </para>
+        <para>
+            <literal>flag='ge'</literal>は安定性拘束条件を有しません.
+            <literal>flag='st'</literal> : 安定な閉ループシステムを探します (A+B2*F 安定).
+            <literal>flag='pp'</literal> : A+B2*Fの固有値を <literal>alfa</literal> および
+            <literal>beta</literal>に割付ます.
+        </para>
+        <para>
+            閉ループは閉ループしすてむ<literal>w--&gt;y</literal>の実現です.
+        </para>
+        <programlisting role=""><![CDATA[
+xdot= (A+B2*F)  x + (B1 + B2*G) w
+  y = (C2+D22*F) x + (D21+D22*G) w
+ ]]></programlisting>
+        <para>
+            安定性 (resp. 極配置) は(A,B2)が可安定(もしくは可制御性)であることを必要とします.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+rand('seed',0);nx=6;nz=3;nu=2;ny=1;
+A=diag(1:6);A(2,2)=-7;A(5,5)=-9;B2=[1,2;0,3;0,4;0,5;0,0;0,0];
+C1=[zeros(nz,nz),eye(nz,nz)];D12=[0,1;0,2;0,3];
+Sys12=syslin('c',A,B2,C1,D12);
+C=[C1;rand(ny,nx)];D2=[D12;rand(ny,size(D12,2))];
+Sys=syslin('c',A,B2,C,D2);
+[A,B2,C1,D12]=abcd(Sys12);  //Sys12の行列.
+my_alpha=-1;my_beta=-2;flag='ge';
+[X,dims,F,U,k,Z]=abinv(Sys12,my_alpha,my_beta,flag);
+clean(X'*(A+B2*F)*X)
+clean(X'*B2*U)
+clean((C1+D12*F)*X)
+clean(D12*U);
+//アドホックに B1,D1を計算
+G1=rand(size(B2,2),3);
+B1=-B2*G1;
+D11=-D12*G1;
+D1=[D11;rand(ny,size(B1,2))];
+[Closed,F,G]=ddp(Sys,1:nz,B1,D1,'st',my_alpha,my_beta);
+closed=syslin('c',A+B2*F,B1+B2*G,C1+D12*F,D11+D12*G);
+ss2tf(closed)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="abinv">abinv</link>
+            </member>
+            <member>
+                <link linkend="ui_observer">ui_observer</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

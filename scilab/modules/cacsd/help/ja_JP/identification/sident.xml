@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="sident">
+    <refnamediv>
+        <refname>sident</refname>
+        <refpurpose>離散時間状態空間実現およびカルマンゲイン</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[[A,C][,B[,D]][,K,Q,Ry,S][,rcnd]] = sident(meth,job,s,n,l,R[,tol,t,Ai,Ci,printw])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>meth</term>
+                <listitem>
+                    <para>使用する手法を定義する整数オプション:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : 過去の入力及び出力によるMOESP法;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : N4SID 法;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>3 : 組み合わせ法: A および C はMOESP,
+                                    B および D はN4SIDによる.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>job</term>
+                <listitem>
+                    <para>実行する計算を定義する整数オプション:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1 : 全てのシステム行列, A, B, C, Dを計算;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>2 : 行列 A および C のみを計算;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>3 : 行列 B のみを計算;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>4 : 行列 B および D のみを計算.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>
+                        処理された入力及び出力ブロックハンケル行列の
+                        ブロック行の数.  s &gt; 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>整数, システムの次数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>l</term>
+                <listitem>
+                    <para>整数, システム出力の次数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R</term>
+                <listitem>
+                    <para>Rの2*(m+l)*s行2*(m+l)*s列の部分には,
+                        結合されたブロックハンケル行列のQR分解による
+                        上三角因子 R が含まれます.
+                        システム行列を計算する際にはより詳細な情報が
+                        必要です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>(オプション)
+                        行列のランクを推定する際に使用される許容誤差.
+                        tol &gt; 0の場合,  tol に指定した値が
+                        条件数の逆数の下界として使用されます.
+                        推定された条件数が1/tol以下となるm行n列の行列は
+                        フルランクとみなされます.
+                        デフォルト:    m*n*epsilon_machine ただし epsilon_machine は
+                        相対機械精度です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>(オプション)
+                        共分散を計算する際に使用されるサンプルの総数です.
+                        t = 0, 	または t &gt;= 2*(m+l)*s のどちらかです.
+                        共分散行列またはカルマン予測ゲイン行列が不要である場合には,
+                        このパラメータは不要です.
+                        t = 0の場合,K, Q, Ry, および S は計算されません.
+                        デフォルト:    t = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ai</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ci</term>
+                <listitem>
+                    <para> 実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>printw</term>
+                <listitem>
+                    <para>(オプション) 警告メッセージの出力に関するスイッチ.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>1:  警告メッセージを出力します;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>=  </term>
+                            <listitem>
+                                <para>0:  警告メッセージを出力しません.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        デフォルト:    printw = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>D</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>実数行列, カルマンゲイン</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Q</term>
+                <listitem>
+                    <para>(オプション) n行n列の半正定値の状態共分散行列で,
+                        カルマンゲインを計算する際に状態量の重み行列として使用されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>RY</term>
+                <listitem>
+                    <para>(オプション) l行l列の(半)正定値の出力共分散行列で,
+                        カルマンゲインを計算する際に出力の重み行列として使用されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>(オプション) n行l列の状態-出力相互共分散行列で,
+                        カルマンゲインを計算する際にクロス重み行列として使用されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rcnd</term>
+                <listitem>
+                    <para>(オプション) 長さlrのベクトル,
+                        ランク決定,最小二乗,またはリカッチ方程式の解に使用される
+                        行列の条件数の逆数の推定値を含みます.
+                        ただし, カルマンゲイン行列が不要ｎ場合, lr = 4 ,
+                        カルマンゲインが必要な場合には lr = 12 とします.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            SIDENT 関数は, SLICOT ルーチン IB01BD を用いて,
+            離散時間状態空間実現 (A,B,C,D) および
+            カルマンゲイン K を計算します.
+        </para>
+        <programlisting role=""><![CDATA[
+              [A,C,B,D] = sident(meth,1,s,n,l,R)
+[A,C,B,D,K,Q,Ry,S,rcnd] = sident(meth,1,s,n,l,R,tol,t)
+                  [A,C] = sident(meth,2,s,n,l,R)
+                      B = sident(meth,3,s,n,l,R,tol,0,Ai,Ci)
+      [B,K,Q,Ry,S,rcnd] = sident(meth,3,s,n,l,R,tol,t,Ai,Ci)
+                  [B,D] = sident(meth,4,s,n,l,R,tol,0,Ai,Ci)
+    [B,D,K,Q,Ry,S,rcnd] = sident(meth,4,s,n,l,R,tol,t,Ai,Ci)
+ ]]></programlisting>
+        <para>
+            SIDENT は,
+            システム次数および結合されたブロックハンケル行列の
+            R因子に関連する部分を指定すると,
+            部分空間同定法(MOESP, N4SID, またはその組み合わせ)により,
+            状態空間実現 (A,B,C,D)および離散時間システムの
+            カルマン予測ゲイン K を計算します.
+        </para>
+        <para>
+            モデル構造は以下のようになります :
+        </para>
+        <programlisting role=""><![CDATA[
+x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
+y(k)   = Cx(k) + Du(k) + e(k),
+ ]]></programlisting>
+        <para>
+            ただし,
+            x(k)  は(時刻kにおける) n次元状態ベクトル,
+        </para>
+        <para>
+            u(k)はm次元入力ベクトル,
+        </para>
+        <para>
+            y(k) はl次元出力ベクトル,
+        </para>
+        <para>
+            e(k)  はl次元外乱ベクトル,
+        </para>
+        <para>
+            として  A, B, C, D, および K  は適当な次元の実数行列です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>コメント</title>
+        <para>
+            1. job &lt;= 2の時, n行n列のシステム状態行列 A, およびp行n列
+            のシステム出力行列 C が計算されます.
+        </para>
+        <para>
+            2. job &lt;&gt; 2 の時, n行m列のシステム入力行列B
+            が計算されます.
+        </para>
+        <para>
+            3. job = 1 または 4の時,l行m列のシステム行列Dが計算されます.
+        </para>
+        <para>
+            4. t &gt; 0 の時, n行l列のカルマン予測ゲイン行列 K および
+            共分散行列 Q, Ry および S が計算されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+//generate data from a given linear system
+A = [ 0.5, 0.1,-0.1, 0.2;
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
+B = [0.8;0.1;1;-1];
+C = [1 2 -1 0];
+SYS=syslin(0.1,A,B,C);
+nsmp=100;
+U=prbs_a(nsmp,nsmp/5);
+Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
+S = 15;
+N = 3;
+METH=1;
+[R,N1] = findR(S,Y',U',METH);
+[A,C,B,D,K] = sident(METH,1,S,N,1,R);
+SYS1=syslin(1,A,B,C,D);
+SYS1.X0 = inistate(SYS1,Y',U');
+Y1=flts(U,SYS1);
+clf();plot2d((1:nsmp)',[Y',Y1'])
+METH = 2;
+[R,N1,SVAL] = findR(S,Y',U',METH);
+tol = 0;
+t = size(U',1)-2*S+1;
+[A,C,B,D,K] = sident(METH,1,S,N,1,R,tol,t)
+SYS1=syslin(1,A,B,C,D)
+SYS1.X0 = inistate(SYS1,Y',U');
+Y1=flts(U,SYS1);
+clf();plot2d((1:nsmp)',[Y',Y1'])
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="findBD">findBD</link>
+            </member>
+            <member>
+                <link linkend="sorder">sorder</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

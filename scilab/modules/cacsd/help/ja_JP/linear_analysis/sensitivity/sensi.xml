@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="sensi">
+    <refnamediv>
+        <refname>sensi</refname>
+        <refpurpose>感度関数</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[Se,Re,Te]=sensi(G,K)
+            [Si,Ri,Ti]=sensi(G,K,flag)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>
+                        標準プラント (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>
+                        補償器 (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        文字列 <literal>'o'</literal> (デフォルト値) または <literal>'i'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Se</term>
+                <listitem>
+                    <para>
+                        出力感度関数 <literal>(I+G*K)^-1</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Re</term>
+                <listitem>
+                    <para>
+                        <literal>K*Se</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Te</term>
+                <listitem>
+                    <para>
+                        <literal>G*K*Se</literal> (出力相補感度関数)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>sensi</literal> は感度関数を計算します.
+            <literal>G</literal> および <literal>K</literal> が
+            状態空間形式で指定される場合,
+            システムは一般的に最小実現を返します.
+            計算は <literal>lft</literal> により行われます.
+            例えば, <literal>Se</literal> は
+            コマンド
+            <literal> P = augment(G,'S')</literal>, <literal>Se=lft(P,K)</literal>
+            により指定することができます.
+            <literal>flag</literal> = <literal>'i'</literal>の場合,
+            <literal>[Si,Ri,Ti]=sensi(G,K,'i')</literal>は
+            入力感度関数を返します.
+        </para>
+        <programlisting role=""><![CDATA[
+[Se;Re;Te]= [inv(eye()+G*K);K*inv(eye()+G*K);G*K*inv(eye()+G*K)];
+[Si;Ri;Ti]= [inv(eye()+K*G);G*inv(eye()+K*G);K*G*inv(eye()+K*G)];
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+G=ssrand(1,1,3);K=ssrand(1,1,3);
+[Se,Re,Te]=sensi(G,K);
+Se1=inv(eye()+G*K);  //Other way to compute
+ss2tf(Se)    //Se seen in transfer form
+ss2tf(Se1)
+ss2tf(Te)
+ss2tf(G*K*Se1)
+[Si,Ri,Ti]=sensi(G,K,'i');
+w1=[ss2tf(Si);ss2tf(Ri);ss2tf(Ti)]
+w2=[ss2tf(inv(eye()+K*G));ss2tf(G*inv(eye()+K*G));ss2tf(K*G*inv(eye()+K*G))];
+clean(w1-w2)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="augment">augment</link>
+            </member>
+            <member>
+                <link linkend="lft">lft</link>
+            </member>
+            <member>
+                <link linkend="h_cl">h_cl</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -6,89 +6,89 @@
 
  * Copyright (C) INRIA - Serge Steer
 
- * 
+ *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
  *
 
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="sca">
-    
+
     <refnamediv>
-        
+
         <refname>sca</refname>
-        
+
         <refpurpose>カレントの軸のエンティティを設定する</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>a=sca(a)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>a</term>
-                
+
                 <listitem>
-                    
+
                     <para>軸エンティティのハンドル (ハンドル型) </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <literal>sca(a)</literal> はカレントの<literal>Axes</literal>のエンティティ
-            
+
             (<link linkend="graphics_entities">graphics_entities</link>参照)
-            
+
             をカレントの軸エンティティハンドル<literal>a</literal>に設定する際に使用されます.
-            
+
             描画関数は通常カレント軸エンティティに適用されます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 clf()
 
-a1=newaxes(); 
+a1=newaxes();
 
 a1.axes_bounds=[0,0,1.0,0.5];
 
@@ -117,72 +117,72 @@ sca(a2); // 2番目の軸をカレントとする
 legend('sinh')
 
  ]]></programlisting>
-        
+
         <scilab:image>
-            
-            
-            
+
+
+
             clf()
-            
-            a1=newaxes(); 
-            
+
+            a1=newaxes();
+
             a1.axes_bounds=[0,0,1.0,0.5];
-            
+
             t=0:0.1:20;
-            
+
             plot(t,acosh(t),'r')
-            
+
             a2=newaxes();
-            
+
             a2.axes_bounds=[0,0.5,1.0,0.5];
-            
+
             x=0:0.1:4;
-            
+
             plot(x,sinh(x))
-            
+
             sca(a1);
-            
+
             plot(t,asinh(t),'g')
-            
+
             legend(['acosh','asinh'])
-            
-            sca(a2); 
-            
+
+            sca(a2);
+
             legend('sinh')
-            
-            
-            
+
+
+
         </scilab:image>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="subplot">subplot</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="gda">gda</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="newaxes">newaxes</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

@@ -9,8 +9,8 @@
 package org.scilab.modules.xcos;
 
 public enum UpdateStatus {
-  SUCCESS,
-  NO_CHANGES,
-  FAIL;
+    SUCCESS,
+    NO_CHANGES,
+    FAIL;
 }
 

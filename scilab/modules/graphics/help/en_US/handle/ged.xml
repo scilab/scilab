@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="ged">
@@ -16,7 +19,7 @@
         <refpurpose>Scilab Graphic Editor</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>ged(action, fignum)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -26,7 +29,7 @@
                 <term>action</term>
                 <listitem>
                     <para>
-                        Real: action to be executed on graphic window given by <literal>fignum</literal>: 
+                        Real: action to be executed on graphic window given by <literal>fignum</literal>:
                     </para>
                     <itemizedlist>
                         <listitem>
@@ -84,16 +87,30 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>ged</literal> starts Scilab Graphic Editor on figure number <literal>fignum</literal> and execute action given by <literal>action</literal>.
+            The Scilab Graphic Editor is the underlying Scilab function for the graphic <link linkend="object_editor">object editor</link>, the visual tool available from the graphics windows Edit menu. <code>ged()</code> is of limited use by itself (most the functionalities are available from other functions), and is only present to ensure that all Object Editor functionalities are also available in the Scilab language.
+        </para>
+        <para>
+            <code>ged()</code> starts Scilab Graphic Editor on figure number <varname>fignum</varname> and execute action given by <varname>action</varname>.
+        </para>
+        <para>
+            Note that, the Scilab Graphic Editor is implemented using the Tcl/Tk language; it is not available on MacOS, where Tcl/TK is not available.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Moving a curve
 scf(0);
 plot2d();
 ged(6,0) // Then click on a curve and try moving it
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="object_editor">object editor</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - 2011 - Allan CORNET
+ * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="xlabel" xml:lang="en">
@@ -24,12 +27,14 @@
         <refpurpose>sets the z-axis label</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>xlabel([axis_handle], label, [property_name, property_value,...])</synopsis>
-        <synopsis>ylabel([axis_handle], label, [property_name, property_value,...])</synopsis>
-        <synopsis>zlabel([axis_handle], label, [property_name, property_value,...])</synopsis>
+        <title>Syntax</title>
+        <synopsis>
+            xlabel([axes_handle], label, [property_name, property_value,...])
+            ylabel([axes_handle], label, [property_name, property_value,...])
+            zlabel([axes_handle], label, [property_name, property_value,...])
+        </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
@@ -39,7 +44,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>axis_handle</term>
+                <term>axes_handle</term>
                 <listitem>
                     <para>an optional handle, to specify the axes for which the label is set.</para>
                 </listitem>
@@ -59,21 +64,21 @@
                             </listitem>
                             <listitem>
                                 <para>
-                                    <literal>"fontsize"</literal>: size of font (constant)
+                                    <literal>"fontsize", "font_size"</literal>: size of font (constant)
                                 </para>
                             </listitem>
                             <listitem>
                                 <para>
-                                    <literal>"fontname"</literal>: ten font names are available 
+                                    <literal>"fontname", "font_style"</literal>: ten font names are available
                                     (case unsensitive string or related id number):
-                                    "courrier" | 0, "symbol" | 1, "times" | 2, "times italic" | 3, 
-                                    "times bold" | 4, "times bold italic" | 5, "helvetica" | 6, 
+                                    "courrier" | 0, "symbol" | 1, "times" | 2, "times italic" | 3,
+                                    "times bold" | 4, "times bold italic" | 5, "helvetica" | 6,
                                     "helvetica italic" | 7, "helvetica bold" | 8, "helvetica bold italic" | 9.
                                 </para>
                             </listitem>
                             <listitem>
                                 <para>
-                                    <literal>"rotation"</literal>: angle in degrees (constant)
+                                    <literal>"rotation", "font_angle"</literal>: angle in degrees (constant)
                                 </para>
                             </listitem>
                             <listitem>
@@ -83,17 +88,26 @@
                             </listitem>
                             <listitem>
                                 <para>
-                                    <literal>"color"</literal>: the color of font (a string value chosen among <literal>["red","green","blue","cyan","magenta","yellow","black","white"]</literal>, or a RGB matrix value)
+                                    <literal>"color", "font_foreground"</literal>:
+                                    the color of font (a string value chosen among
+                                    <literal>["red","green","blue","cyan","magenta","yellow","black","white"]</literal>,
+                                    or a RGB matrix value)
                                 </para>
                             </listitem>
                             <listitem>
                                 <para>
-                                    <literal>"edgecolor"</literal>: the color of line around the text (a string value chosen among <literal>["red","green","blue","cyan","magenta","yellow","black","white"]</literal>, or a RGB matrix value)
+                                    <literal>"edgecolor", "foreground"</literal>:
+                                    the color of line around the text (a string value chosen among
+                                    <literal>["red","green","blue","cyan","magenta","yellow","black","white"]</literal>,
+                                    or a RGB matrix value)
                                 </para>
                             </listitem>
                             <listitem>
                                 <para>
-                                    <literal>"background"</literal>: the color of background around the text (a string value chosen among <literal>["red","green","blue","cyan","magenta","yellow","black","white"]</literal>, or a RGB matrix value)
+                                    <literal>"backgroundcolor", "background"</literal>:
+                                    the color of background around the text (a string value chosen among
+                                    <literal>["red","green","blue","cyan","magenta","yellow","black","white"]</literal>,
+                                    or a RGB matrix value)
                                 </para>
                             </listitem>
                         </itemizedlist>
@@ -102,7 +116,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>xlabel, ylabel, zlabel are used to label the x-, y-, and z-axis, respectively.
         </para>
@@ -110,41 +124,47 @@
             plot and to the side or beneath the axis in a three-dimensional plot.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example">
-            t = linspace(-2*%pi, 2*%pi, 30);
-            
-            subplot(2,1,1);
-            plot(t, sin(t), "r");
-            xlabel("t", "fontsize", 2);
-            ylabel("sin(t)");
-            axis1_handle = gca();
-            
-            subplot(2,1,2);
-            plot(t, cos(t), "b");
-            xlabel("t", "fontsize", 2);
-            ylabel("cos(t)", "fontsize", 6, "color", "blue");
-            
-            ylabel(axis1_handle, "sin(t)", "fontsize", 6, "color", "red");
-        </programlisting>
+        <programlisting role="example"><![CDATA[
+t = linspace(-2*%pi, 2*%pi, 30);
+
+subplot(2,1,1);
+plot(t, sin(t), "r");
+xlabel("t", "fontsize", 2);
+ylabel("sin(t)");
+axes_handle = gca();
+
+subplot(2,1,2);
+plot(t, cos(t), "b");
+xlabel("t", "fontsize", 2);
+ylabel("cos(t)", "fontsize", 6, "color", "blue");
+
+ylabel(axes_handle, "sin(t)", "fontsize", 6, "color", "red");
+]]>     </programlisting>
         <scilab:image>
             t = linspace(-2*%pi, 2*%pi, 50);
             subplot(2,1,1);
             plot(t, sin(t), "r");
             xlabel("t", "fontsize", 2);
             ylabel("sin(t)");
-            axis1_handle = gca();
+            axes_handle = gca();
             subplot(2,1,2);
             plot(t, cos(t), "b");
             xlabel("t", "fontsize", 2);
             ylabel("cos(t)", "fontsize", 6, "color", "blue");
-            ylabel(axis1_handle, "sin(t)", "fontsize", 6, "color", "red");
+            ylabel(axes_handle, "sin(t)", "fontsize", 6, "color", "red");
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="label_properties">label_properties</link>
+            </member>
+            <member>
+                <link linkend="xtitle">xtitle</link>
+            </member>
             <member>
                 <link linkend="title">title</link>
             </member>

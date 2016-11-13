@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="armac">
+    <refnamediv>
+        <refname>armac</refname>
+        <refpurpose>armax処理の Scilab 記述</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[ar]=armac(a,b,d,ny,nu,sig)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>a=[Id,a1,..,a_r]  </term>
+                <listitem>
+                    <para>is a matrix of size (ny,r*ny)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b=[b0,.....,b_s]  </term>
+                <listitem>
+                    <para>大きさ (ny,(s+1)*nu)の行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d=[Id,d1,..,d_p]  </term>
+                <listitem>
+                    <para>大きさ (ny,p*ny)の行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ny</term>
+                <listitem>
+                    <para>出力yの次元</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nu</term>
+                <listitem>
+                    <para>出力uの次元</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sig</term>
+                <listitem>
+                    <para>大きさ (ny,ny)の行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は,ARMAXプロセスのtlistとして記述を作成します.
+        </para>
+        <para>
+            <literal>ar</literal> は以下のように作成されます:
+        </para>
+        <programlisting role=""><![CDATA[
+ar=tlist(['ar','a','b','d','ny','nu','sig'],a,b,d,ny,nu,sig);
+ ]]></programlisting>
+        <para>
+            <literal>ar</literal> の係数は,例えば以下のように取得できます:
+            <literal> ar('a') </literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+a=[1,-2.851,2.717,-0.865].*.eye(2,2)
+b=[0,1,1,1].*.[1;1];
+d=[1,0.7,0.2].*.eye(2,2);
+sig=eye(2,2);
+ar=armac(a,b,d,2,1,sig)
+// extract polynomial matrices from ar representation
+[A,B,D]=arma2p(ar);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="arma">arma</link>
+            </member>
+            <member>
+                <link linkend="armax">armax</link>
+            </member>
+            <member>
+                <link linkend="armax1">armax1</link>
+            </member>
+            <member>
+                <link linkend="arsimul">arsimul</link>
+            </member>
+            <member>
+                <link linkend="arma2p">arma2p</link>
+            </member>
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -4,110 +4,110 @@
 
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
 
- * 
+ *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
 -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="datatipGetEntities">
-    
+
     <refnamediv>
-        
+
         <refname>datatipGetEntities</refname>
-        
+
         <refpurpose>指定した軸においてdatatipsを互換性があるエンティティを全て取得する. </refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>
-            
+
             curve_handles=datatipGetEntities(ax)
-            
+
             curve_handles=datatipGetEntities()
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>ax</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         軸エンティティのハンドル.デフォルト値は
-                        
+
                         <literal>gca()</literal>
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>curve_handles</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
-                        datatipsと互換性があるエンティティのハンドルの配列. 
-                        
+
+                        datatipsと互換性があるエンティティのハンドルの配列.
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             指定した軸においてdatatipsを互換性があるエンティティを全て取得します.
-            
+
             現在のバージョンではポリラインエンティティのみが取得されます.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例s</title>
-        
+
         <programlisting role="example"><![CDATA[
 
     clf();plot2d();
@@ -123,40 +123,40 @@
     curve_handles.visible='on';
 
     ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             plot2d();
-            
+
             xarrows([3;2.72],[1.6;0.96],3,2);
-            
+
             xstring(3,1.6,'sin(t)')
-            
+
             curve_handles=datatipGetEntities()
-            
+
             curve_handles.visible='off';
-            
+
             curve_handles.visible='on';
-            
+
         </scilab:image>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="datatips">datatips</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

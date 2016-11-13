@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="rowregul">
+    <refnamediv>
+        <refname>rowregul</refname>
+        <refpurpose>removing poles and zeros at infinity</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[Stmp,Ws]=rowregul(Sl,alfa,beta)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sl,Stmp</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> lists
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alfa,beta</term>
+                <listitem>
+                    <para>real numbers (new pole and zero positions)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            computes a postfilter <literal>Ws</literal> such that <literal>Stmp=Ws*Sl</literal> is proper and
+            with full rank <literal>D</literal> matrix.
+        </para>
+        <para>
+            Poles at infinity of <literal>Sl</literal> are moved to <literal>alfa</literal>;
+        </para>
+        <para>
+            Zeros at infinity of <literal>Sl</literal> are moved to <literal>beta</literal>;
+        </para>
+        <para>
+            <literal>Sl</literal> is assumed to be a right invertible linear system (<literal>syslin</literal> list)
+            in state-space representation with possibly a polynomial <literal>D</literal> matrix.
+        </para>
+        <para>
+            This function is the dual of colregul (see function code).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=%s;
+w=[1/s,0;s/(s^3+2),2/s];
+Sl=tf2ss(w);
+[Stmp,Ws]=rowregul(Sl,-1,-2);
+Stmp('D')     // D matrix of Stmp
+clean(ss2tf(Stmp))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="invsyslin">invsyslin</link>
+            </member>
+            <member>
+                <link linkend="colregul">colregul</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

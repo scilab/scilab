@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tbx_build_gateway" xml:lang="en">
+    <refnamediv>
+        <refname>tbx_build_gateway</refname>
+        <refpurpose>Build a gateway (toolbox compilation process)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            tbx_build_gateway(libname, names, files, [gateway_path [, libs [, ldflags [, cflags [, fflags [, cc [, makename [, ismex]]]]]]]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>libname</term>
+                <listitem>
+                    <para>a character string, the generic name of the library without path and extension.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>names</term>
+                <listitem>
+                    <para>2 or 3 columns string matrix giving the table of pairs 'scilab-name', 'interface name', ['language']</para>
+                    <para>
+                        <literal>language</literal> can be :
+                        <listitem>
+                            <para>csci : C entry point for API Scilab ( default value )</para>
+                            <para>fsci : Fortran entry point for API Scilab</para>
+                            <para>cmex : C mexlib entry point for MexLib</para>
+                            <para>fmex : Fortran mexlib entry point for MexLib</para>
+                            <para>cppsci : C++ entry point for C++ API Scilab</para>
+                            <para>cppsciopt : C++ entry point for C++ API Scilab with optional arguments</para>
+                        </listitem>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>files</term>
+                <listitem>
+                    <para>string matrix giving objects files needed for shared library creation</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gateway_path</term>
+                <listitem>
+                    <para>Path to the sources of the gateway ; in a normal toolbox it should be the directory containing the builder_gateway_(lang).sce script (which should be the script calling this function). Default is current directory.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>libs</term>
+                <listitem>
+                    <para>string matrix giving extra libraries needed for shared library creation</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ldflags,cflags,fflags</term>
+                <listitem>
+                    <para>character strings to provide options for the loader, the C compiler and the Fortran compiler.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cc</term>
+                <listitem>
+                    <para>character string. The name of or path to the compiler.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>makename</term>
+                <listitem>
+                    <para>character string. The path of the Makefile file without extension.</para>
+                    <para>This parameter is useless since Scilab 5.0. Default value to use: [].</para>
+                    <para>A warning will be displayed in Scilab 5.3 if you use another value that the default.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ismex</term>
+                <listitem>
+                    <para>Internal variable to specify if we are working with mex or not.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Recommended usage
+tbx_build_gateway('mytoolbox', ['c_sum','sci_csum';'c_sub','sci_csub'], ['sci_csum.c','sci_csub.c'], ..
+                  get_absolute_file_path('builder_gateway_c.sce'), ..
+                  ['../../src/c/libcsum']);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ilib_build">ilib_build</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

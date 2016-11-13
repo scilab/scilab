@@ -2,11 +2,14 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 */
 
 #include "gatewaystruct.hxx"
@@ -48,14 +51,14 @@ scilabVar API_PROTO(createList)(scilabEnv env)
     return (scilabVar)new types::List();
 }
 
-scilabVar API_PROTO(createTList)(scilabEnv env, char* const type)
+scilabVar API_PROTO(createTList)(scilabEnv env, const char* type)
 {
     types::TList* t = new types::TList();
     t->append(new types::String(type));
     return (scilabVar)t;
 }
 
-scilabVar API_PROTO(createMList)(scilabEnv env, char* const type)
+scilabVar API_PROTO(createMList)(scilabEnv env, const char* type)
 {
     types::MList* m = new types::MList();
     m->append(new types::String(type));
@@ -84,7 +87,7 @@ scilabVar API_PROTO(getListItem)(scilabEnv env, scilabVar var, int index)
     return (scilabVar)l->get(index);
 }
 
-scilabStatus API_PROTO(setListItem)(scilabEnv env, scilabVar var, int index, const scilabVar val)
+scilabStatus API_PROTO(setListItem)(scilabEnv env, scilabVar var, int index, scilabVar val)
 {
     types::List* l = (types::List*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -94,12 +97,12 @@ scilabStatus API_PROTO(setListItem)(scilabEnv env, scilabVar var, int index, con
         return STATUS_ERROR;
     }
 #endif
- 
+
     bool ret = l->set(index, (types::InternalType*)val) != nullptr;
     return ret ? STATUS_OK : STATUS_ERROR;
 }
 
-int API_PROTO(getTListFieldNames)(scilabEnv env, scilabVar var, char const* const** fieldnames)
+int API_PROTO(getTListFieldNames)(scilabEnv env, scilabVar var, char*** fieldnames)
 {
     types::TList* l = (types::TList*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -154,7 +157,7 @@ scilabStatus API_PROTO(setTListField)(scilabEnv env, scilabVar var, const char* 
     return ret ? STATUS_OK : STATUS_ERROR;
 }
 
-int API_PROTO(getMListFieldNames)(scilabEnv env, scilabVar var, char const* const** fieldnames)
+int API_PROTO(getMListFieldNames)(scilabEnv env, scilabVar var, char*** fieldnames)
 {
     types::MList* l = (types::MList*)var;
 #ifdef __API_SCILAB_SAFE__
@@ -207,7 +210,7 @@ scilabStatus API_PROTO(setMListField)(scilabEnv env, scilabVar var, const char* 
     return ret ? STATUS_OK : STATUS_ERROR;
 }
 
-scilabStatus API_PROTO(appendToList)(scilabEnv env, scilabVar var, const scilabVar val)
+scilabStatus API_PROTO(appendToList)(scilabEnv env, scilabVar var, scilabVar val)
 {
     types::List* l = (types::List*)var;
 #ifdef __API_SCILAB_SAFE__

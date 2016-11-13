@@ -5,7 +5,7 @@
         <refpurpose>check if a variable is global</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>t = isglobal(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -34,14 +34,14 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 isglobal(1)
 global a
 isglobal(a)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="global">global</link>

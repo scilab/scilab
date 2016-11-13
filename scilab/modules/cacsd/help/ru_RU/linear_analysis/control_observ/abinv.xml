@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="abinv">
+    <refnamediv>
+        <refname>abinv</refname>
+        <refpurpose>AB invariant subspace</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[X,dims,F,U,k,Z]=abinv(Sys,alpha,beta,flag)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sys</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list containing the matrices <literal>[A,B,C,D]</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alpha</term>
+                <listitem>
+                    <para>(optional) real number or vector (possibly complex, location of closed loop poles)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>beta</term>
+                <listitem>
+                    <para>(optional) real number or vector (possibly complex, location of closed loop poles)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        (optional) character string <literal>'ge'</literal> (default) or <literal>'st'</literal> or <literal>'pp'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>orthogonal matrix of size nx (dim of state space).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    <para>
+                        integer row vector <literal>dims=[dimR,dimVg,dimV,noc,nos]</literal> with <literal>dimR&lt;=dimVg&lt;=dimV&lt;=noc&lt;=nos</literal>. If <literal>flag='st'</literal>, (resp. <literal>'pp'</literal>), <literal>dims</literal> has 4 (resp. 3) components.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>F</term>
+                <listitem>
+                    <para>real matrix (state feedback)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>
+                        integer (normal rank of <literal>Sys</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Z</term>
+                <listitem>
+                    <para>
+                        non-singular linear system (<literal>syslin</literal> list)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Output nulling subspace (maximal unobservable subspace) for
+            <literal>Sys</literal> = linear system defined by a syslin list containing
+            the matrices [A,B,C,D] of <literal>Sys</literal>.
+            The vector <literal>dims=[dimR,dimVg,dimV,noc,nos]</literal> gives the dimensions
+            of subspaces defined as columns of <literal>X</literal> according to partition given
+            below.
+            The <literal>dimV</literal> first columns of <literal>X</literal> i.e <literal>V=X(:,1:dimV)</literal>,
+            span the AB-invariant subspace of <literal>Sys</literal> i.e the unobservable subspace of
+            <literal>(A+B*F,C+D*F)</literal>. (<literal>dimV=nx</literal>  iff <literal>C^(-1)(D)=X</literal>).
+        </para>
+        <para>
+            The <literal>dimR</literal> first columns of <literal>X</literal> i.e. <literal>R=X(:,1:dimR)</literal> spans
+            the controllable part of <literal>Sys</literal> in <literal>V</literal>, <literal>(dimR&lt;=dimV)</literal>. (<literal>dimR=0</literal>
+            for a left invertible system). <literal>R</literal> is the maximal controllability
+            subspace of <literal>Sys</literal> in <literal>kernel(C)</literal>.
+        </para>
+        <para>
+            The <literal>dimVg</literal> first columns of <literal>X</literal> spans
+            <literal>Vg</literal>=maximal AB-stabilizable subspace of <literal>Sys</literal>. <literal>(dimR&lt;=dimVg&lt;=dimV)</literal>.
+        </para>
+        <para>
+            <literal>F</literal> is a decoupling feedback: for <literal>X=[V,X2] (X2=X(:,dimV+1:nx))</literal> one has
+            <literal>X2'*(A+B*F)*V=0 and (C+D*F)*V=0</literal>.
+        </para>
+        <para>
+            The zeros od <literal>Sys</literal> are given by : <literal>X0=X(:,dimR+1:dimV); spec(X0'*(A+B*F)*X0)</literal>
+            i.e. there are <literal>dimV-dimR</literal> closed-loop fixed modes.
+        </para>
+        <para>
+            If the optional parameter <literal>alpha</literal> is given as input,
+            the <literal>dimR</literal> controllable modes of <literal>(A+BF)</literal> in <literal>V</literal>
+            are set to <literal>alpha</literal> (or to <literal>[alpha(1), alpha(2), ...]</literal>.
+            (<literal>alpha</literal> can be a vector (real or complex pairs) or a (real) number).
+            Default value <literal>alpha=-1</literal>.
+        </para>
+        <para>
+            If the optional real parameter <literal>beta</literal> is given as input,
+            the <literal>noc-dimV</literal> controllable modes of <literal>(A+BF)</literal> "outside" <literal>V</literal>
+            are set to <literal>beta</literal> (or <literal>[beta(1),beta(2),...]</literal>). Default value <literal>beta=-1</literal>.
+        </para>
+        <para>
+            In the <literal>X,U</literal> bases, the matrices
+            <literal>[X'*(A+B*F)*X,X'*B*U;(C+D*F)*X,D*U]</literal>
+            are displayed as follows:
+        </para>
+        <programlisting><![CDATA[
+[A11,*,*,*,*,*]  [B11 * ]
+[0,A22,*,*,*,*]  [0   * ]
+[0,0,A33,*,*,*]  [0   * ]
+[0,0,0,A44,*,*]  [0  B42]
+[0,0,0,0,A55,*]  [0   0 ]
+[0,0,0,0,0,A66]  [0   0 ]
+
+[0,0,0,*,*,*]    [0  D2]
+ ]]></programlisting>
+        <para>
+            where the X-partitioning is defined by <literal>dims</literal> and
+            the U-partitioning is defined by <literal>k</literal>.
+        </para>
+        <para>
+            <literal>A11</literal> is <literal>(dimR x dimR)</literal> and has its eigenvalues set to <literal>alpha(i)'s</literal>.
+            The pair <literal>(A11,B11)</literal> is controllable and <literal>B11</literal> has <literal>nu-k</literal> columns.
+            <literal>A22</literal> is a stable <literal>(dimVg-dimR x dimVg-dimR)</literal> matrix.
+            <literal>A33</literal> is an unstable <literal>(dimV-dimVg x dimV-dimVg)</literal> matrix (see <literal>st_ility</literal>).
+        </para>
+        <para>
+            <literal>A44</literal> is <literal>(noc-dimV x noc-dimV)</literal> and has its eigenvalues set to <literal>beta(i)'s</literal>.
+            The pair <literal>(A44,B42)</literal> is controllable.
+            <literal>A55</literal> is a stable <literal>(nos-noc x nos-noc)</literal> matrix.
+            <literal>A66</literal> is an unstable <literal>(nx-nos x nx-nos)</literal> matrix (see <literal>st_ility</literal>).
+        </para>
+        <para>
+            <literal>Z</literal> is a column compression of <literal>Sys</literal> and <literal>k</literal> is
+            the normal rank of <literal>Sys</literal> i.e <literal>Sys*Z</literal> is a column-compressed linear
+            system. <literal>k</literal> is the column dimensions of <literal>B42,B52,B62</literal> and <literal>D2</literal>.
+            <literal>[B42;B52;B62;D2]</literal> is full column rank and has rank <literal>k</literal>.
+        </para>
+        <para>
+            If <literal>flag='st'</literal> is given, a five blocks partition of the matrices is
+            returned and <literal>dims</literal> has four components. If <literal>flag='pp'</literal> is
+            given a four blocks partition is returned. In case <literal>flag='ge'</literal> one has
+            <literal>dims=[dimR,dimVg,dimV,dimV+nc2,dimV+ns2]</literal> where <literal>nc2</literal>
+            (resp. <literal>ns2</literal>) is the dimension of the controllable (resp.
+            stabilizable) pair <literal>(A44,B42)</literal> (resp. (<literal>[A44,*;0,A55],[B42;0])</literal>).
+            In case <literal>flag='st'</literal> one has <literal>dims=[dimR,dimVg,dimVg+nc,dimVg+ns]</literal>
+            and in case <literal>flag='pp'</literal> one has <literal>dims=[dimR,dimR+nc,dimR+ns]</literal>.
+            <literal>nc</literal> (resp. <literal>ns</literal>) is here the dimension of the controllable
+            (resp. stabilizable) subspace of the blocks 3 to 6 (resp. 2 to 6).
+        </para>
+        <para>
+            This function can be used for the (exact) disturbance decoupling problem.
+        </para>
+        <programlisting role=""><![CDATA[
+DDPS:
+   Find u=Fx+Rd=[F,R]*[x;d] which rejects Q*d and stabilizes the plant:
+
+    xdot = Ax+Bu+Qd
+       y = Cx+Du+Td
+
+DDPS has a solution if Im(Q) is included in Vg + Im(B) and stabilizability
+assumption is satisfied.
+Let G=(X(:,dimVg+1:$))'= left annihilator of Vg i.e. G*Vg=0;
+B2=G*B; Q2=G*Q; DDPS solvable iff [B2;D]*R + [Q2;T] =0 has a solution.
+The pair F,R  is the solution  (with F=output of abinv).
+Im(Q2) is in Im(B2) means row-compression of B2=>row-compression of Q2
+Then C*[(sI-A-B*F)^(-1)+D]*(Q+B*R) =0   (<=>G*(Q+B*R)=0)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+nu=3;ny=4;nx=7;
+nrt=2;ngt=3;ng0=3;nvt=5;rk=2;
+flag=list('on',nrt,ngt,ng0,nvt,rk);
+Sys=ssrand(ny,nu,nx,flag);my_alpha=-1;my_beta=-2;
+[X,dims,F,U,k,Z]=abinv(Sys,my_alpha,my_beta);
+[A,B,C,D]=abcd(Sys);dimV=dims(3);dimR=dims(1);
+V=X(:,1:dimV);X2=X(:,dimV+1:nx);
+X2'*(A+B*F)*V
+(C+D*F)*V
+X0=X(:,dimR+1:dimV); spec(X0'*(A+B*F)*X0)
+trzeros(Sys)
+spec(A+B*F)   //nr=2 evals at -1 and noc-dimV=2 evals at -2.
+clean(ss2tf(Sys*Z))
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+nx=6;ny=3;nu=2;
+A=diag(1:6);A(2,2)=-7;A(5,5)=-9;B=[1,2;0,3;0,4;0,5;0,0;0,0];
+C=[zeros(ny,ny),eye(ny,ny)];D=[0,1;0,2;0,3];
+sl=syslin('c',A,B,C,D);//sl=ss2ss(sl,rand(6,6))*rand(2,2);
+[A,B,C,D]=abcd(sl);  //The matrices of sl.
+my_alpha=-1;my_beta=-2;
+[X,dims,F,U,k,Z]=abinv(sl,my_alpha,my_beta);dimVg=dims(2);
+clean(X'*(A+B*F)*X)
+clean(X'*B*U)
+clean((C+D*F)*X)
+clean(D*U)
+G=(X(:,dimVg+1:$))';
+B2=G*B;nd=3;
+R=rand(nu,nd);Q2T=-[B2;D]*R;
+p=size(G,1);Q2=Q2T(1:p,:);T=Q2T(p+1:$,:);
+Q=G\Q2;   //a valid [Q;T] since
+[G*B;D]*R + [G*Q;T]  // is zero
+closed=syslin('c',A+B*F,Q+B*R,C+D*F,T+D*R); // closed loop: d-->y
+ss2tf(closed)       // Closed loop is zero
+spec(closed('A'))   //The plant is not stabilizable!
+[ns,nc,W,sl1]=st_ility(sl);
+[A,B,C,D]=abcd(sl1);A=A(1:ns,1:ns);B=B(1:ns,:);C=C(:,1:ns);
+slnew=syslin('c',A,B,C,D);  //Now stabilizable
+//Fnew=stabil(slnew('A'),slnew('B'),-11);
+//slnew('A')=slnew('A')+slnew('B')*Fnew;
+//slnew('C')=slnew('C')+slnew('D')*Fnew;
+[X,dims,F,U,k,Z]=abinv(slnew,my_alpha,my_beta);dimVg=dims(2);
+[A,B,C,D]=abcd(slnew);
+G=(X(:,dimVg+1:$))';
+B2=G*B;nd=3;
+R=rand(nu,nd);Q2T=-[B2;D]*R;
+p=size(G,1);Q2=Q2T(1:p,:);T=Q2T(p+1:$,:);
+Q=G\Q2;   //a valid [Q;T] since
+[G*B;D]*R + [G*Q;T]  // is zero
+closed=syslin('c',A+B*F,Q+B*R,C+D*F,T+D*R); // closed loop: d-->y
+ss2tf(closed)       // Closed loop is zero
+spec(closed('A'))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cainv">cainv</link>
+            </member>
+            <member>
+                <link linkend="st_ility">st_ility</link>
+            </member>
+            <member>
+                <link linkend="ssrand">ssrand</link>
+            </member>
+            <member>
+                <link linkend="ss2ss">ss2ss</link>
+            </member>
+            <member>
+                <link linkend="ddp">ddp</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

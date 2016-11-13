@@ -2,19 +2,21 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
-
+#include <fstream>
 #include "configvariable.hxx"
 #include "context.hxx"
 #include "loadlib.hxx"
 #include "macrofile.hxx"
-
 extern "C"
 {
 #include "FileExist.h"
@@ -114,6 +116,18 @@ int parseLibFile(const std::string& _stXML, MacroInfoList& info, std::string& li
     {
         return 1;
     }
+    std::ifstream file(_stXML);
+    if (file)
+    {
+        const std::string XMLDecl("<?xml");
+        std::string readXMLDecl;
+        readXMLDecl.resize(XMLDecl.length(),' ');//reserve space
+        file.read(&*readXMLDecl.begin(),XMLDecl.length());
+        if (XMLDecl != readXMLDecl)
+        {
+          return 4;
+        }
+    }
 
     char *encoding = GetXmlFileEncoding(_stXML);
 
@@ -123,7 +137,7 @@ int parseLibFile(const std::string& _stXML, MacroInfoList& info, std::string& li
     if (os_stricmp("utf-8", encoding))
     {
         free(encoding);
-        return NULL;
+        return 3;
     }
 
     xmlDocPtr doc;
@@ -140,7 +154,7 @@ int parseLibFile(const std::string& _stXML, MacroInfoList& info, std::string& li
 
     if (doc == NULL)
     {
-        return 1;
+        return 3;
     }
 
     xpathCtxt = xmlXPathNewContext(doc);

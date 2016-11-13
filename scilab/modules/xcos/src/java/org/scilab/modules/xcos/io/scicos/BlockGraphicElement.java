@@ -3,11 +3,14 @@
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -27,7 +30,6 @@ import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.ObjectProperties;
-import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.ScilabTypeCoder;
@@ -38,6 +40,7 @@ import org.scilab.modules.xcos.utils.BlockPositioning;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.util.mxConstants;
+import org.scilab.modules.xcos.utils.XcosConstants;
 
 /**
  * Protected class which decode graphic fields of a block.
@@ -378,32 +381,29 @@ final class BlockGraphicElement extends BlockPartsElement {
      *            the target instance
      */
     private void decodeFlipAndRotation(final BasicBlock into) {
-        VectorOfDouble angle = new VectorOfDouble(2);
+        String[] interfaceFunction = new String[1];
+        controller.getObjectProperty(into.getUID(), into.getKind(), ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
+
+        StyleMap styleMap = new StyleMap(interfaceFunction[0]);
 
         /*
          * Flip management
          */
         if (!((ScilabBoolean) data.get(FLIP_INDEX)).getData()[0][0]) {
-            angle.set(0, 0x0001);
-        } else {
-            angle.set(0, 0x0000);
+            styleMap.put(XcosConstants.STYLE_FLIP, Boolean.TRUE.toString());
         }
 
         /*
          * Rotation management
          */
-        double theta = ((ScilabDouble) data.get(FLIP_INDEX + 1)).getRealPart()[0][0];
+        int theta = (int) ((ScilabDouble) data.get(FLIP_INDEX + 1)).getRealPart()[0][0];
         if (theta != 0) {
             // convert to a valid value
             theta = BlockPositioning.roundAngle(-theta);
-            angle.set(1, theta);
-
-            final StyleMap map = new StyleMap(into.getStyle());
-            map.put(mxConstants.STYLE_ROTATION, Double.toString(theta));
-            into.setStyle(map.toString());
+            styleMap.put(mxConstants.STYLE_ROTATION, Integer.toString(theta));
         }
 
-        controller.setObjectProperty(into.getUID(), into.getKind(), ObjectProperties.ANGLE, angle);
+        controller.setObjectProperty(into.getUID(), into.getKind(), ObjectProperties.STYLE, styleMap.toString());
     }
 
     /**

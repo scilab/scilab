@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getversion" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getversion" xml:lang="pt">
     <refnamediv>
         <refname>getversion</refname>
         <refpurpose>retorna o nome da versão do Scilab</refpurpose>
@@ -7,7 +7,7 @@
     <refsynopsisdiv>
         <title> Seqüência de Chamamento</title>
         <synopsis>getversion()
-            
+
             [version, opts] = getversion()
             COMPILER = opts(1)
             ARCH = opts(2)
@@ -16,7 +16,7 @@
             RELEASE_MODE = opts($-2)
             RELEASE_DATE = opts($-1)
             RELEASE_TIME = opts($)
-            
+
             version = getversion('scilab')
             versionstr = getversion('scilab','string_info')
             version = getversion('overloading')
@@ -69,7 +69,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 getversion()
 
 [version, opts] = getversion()

@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>tl_coef = cshep2d(xyz)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -59,7 +59,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // interpolation of cos(x)cos(y) with randomly chosen interpolation points
 n = 150; // nb of interpolation points
 xy = grand(n,2,"unf",0,2*%pi);
@@ -85,7 +85,7 @@ show_window()
             z = cos(xy(:,1)).*cos(xy(:,2));
             xyz = [xy z];
             tl_coef = cshep2d(xyz);
-            
+
             // evaluation on a grid
             m = 30;
             xx = linspace(0,2*%pi,m);
@@ -100,7 +100,7 @@ show_window()
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="splin2d">splin2d</link>

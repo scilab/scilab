@@ -4,281 +4,284 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="functions">
-    
+
     <refnamediv>
-        
+
         <refname>functions</refname>
-        
+
         <refpurpose>Scilab プロシージャおよび  Scilab オブジェクト</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>functions は Scilab プロシージャです
-            
+
             "macro", "function" および
-            
+
             "procedure"は同じ意味を有します).
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>関数定義</title>
-        
+
         <para>
-            
+
             通常,これらはエディタによりファイルで定義され,
-            
+
             <link linkend="exec">exec</link>関数またはライブラリ
-            
+
             (<link linkend="lib">lib</link> または
-            
+
             <link linkend="genlib">genlib</link>参照)
-            
+
             によりScilabにロードされます.
-            
+
             しかし,オンライン定義
-            
+
             (<link linkend="deff">deff</link> または
-            
+
             <link linkend="function">function</link>参照)
-            
+
             することも可能です.
-            
+
             関数は以下の2つの要素により定義されます::
-            
+
         </para>
-        
+
         <itemizedlist>
-            
+
             <listitem>
-                
+
                 <para>以下のような "構文定義" 部:</para>
-                
+
                 <programlisting role='no-scilab-exec'><![CDATA[
 function [y1,...,yn]=foo(x1,...,xm)
 function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
  ]]></programlisting>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para>一連のScilab命令.</para>
-                
+
             </listitem>
-            
+
         </itemizedlist>
-        
+
         <para>"構文定義" 行はこの関数の"完全な"呼び出し手順を指定します.
-            
+
             <literal>yi</literal> は,入力変数<literal>xi</literal>と
-            
+
             その関数が実行された際にScilabに存在する変数の関数として
-            
+
             計算される出力変数です.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>呼び出し手順</title>
-        
+
         <itemizedlist>
-            
+
             <listitem>
-                
+
                 <para>
-                    
+
                     通常,関数の呼び出し手順は
-                    
+
                     <literal>[y1,...,yn]=foo(x1,...,xm)</literal>となります.
-                    
+
                     入力または出力引数の一覧を定義より短くすることができます.
-                    
+
                     このような場合,
-                    
+
                     左辺の先頭のいくつかの変数のみが使用され設定されます.
-                    
+
                 </para>
-                
+
                 <para>
-                    
+
                     呼び出し時の引数の実際の数は,
-                    
+
                     <link linkend="argn">argn</link> により取得することができます.
-                    
+
                 </para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para>
-                    
+
                     入力または出力最大引数の数が不定の
-                    
+
                     関数を定義することができます.
-                    
+
                     これは, <link linkend="varargin">varargin</link>および
-                    
+
                     <link linkend="varargout">varargout</link>キーワードを
-                    
+
                     使用して行います.
-                    
+
                     詳細は指定したリンクを参照ください.
-                    
+
                 </para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para>
-                    
+
                     入力引数を指定する際に"名前付きの引数"を使用することも
-                    
+
                     可能です:
-                    
+
                     関数<function>fun1</function>が
-                    
+
                     <code>function y1 = fun1(x1, x2, x3)</code>と
-                    
+
                     定義されていると仮定すると,<function>fun1</function>を
-                    
+
                     <code>y = fun1(x1=33, x3=[1 2 3])</code>のような
-                    
+
                     構文でコールすることもできます.
-                    
+
                     x2 は未定義となります.
-                    
+
                 </para>
-                
+
                 <para>
-                    
+
                     <code>y = fun1(x1=33, y='foo')</code>のような構文で
-                    
+
                     コールすることも可能です.
-                    
+
                     このような場合,<varname>y</varname> 変数を
-                    
+
                     関数<function>fun1</function>のコンテキストで
-                    
+
                     利用可能となります.
-                    
+
                     <note>
-                        
+
                         引数の最大数は関数構文部で使用される
-                        
+
                         形式的な入力引数の数以下とする必要があることに注意してください.
-                        
+
                     </note>
-                    
+
                 </para>
-                
+
                 <para>
-                    
+
                     定義された変数を
-                    
+
                     <link linkend="exists">exists</link> 関数で
-                    
+
                     確認することができます.
-                    
+
                 </para>
-                
+
             </listitem>
-            
+
             <listitem>
-                
+
                 <para>
-                    
+
                     関数が左辺の引数を有さず,
-                    
+
                     文字列引数でのみコールされた場合,
-                    
+
                     呼び出し手順を以下のように簡単化できます:
-                    
+
                 </para>
-                
+
                 <programlisting role='no-scilab-exec'><![CDATA[
 fun('a','toto','a string')
  ]]></programlisting>
-                
+
                 <para>は以下と等価です: </para>
-                
+
                 <programlisting role='no-scilab-exec'><![CDATA[
 fun a toto 'a string'
  ]]></programlisting>
-                
+
             </listitem>
-            
+
         </itemizedlist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>その他</title>
-        
+
         <para>
-            
+
             関数はScilabオブジェクト(型番号は13または11)です.
-            
+
             関数は他の変数型と同様に操作
-            
+
             (構築, 保存, 読込み, 引数として指定)できます.
-            
+
         </para>
-        
+
         <para>
-            
+
             関数の集合は,ライブラリに集約できます.
-            
+
             <literal>%</literal> 記号で始まる関数
-            
+
             (例: <literal>%foo</literal>)
-            
+
             は,しばしば新しいデータ型について演算子や関数をオーバーロード
-            
+
             (<link linkend="overloading">オーバーローディング</link>参照)
-            
+
             する際に使用されます.
-            
+
         </para>
-        
+
         <para>
-            
+
             関数名はいくつかの構文規約
-            
+
             (<link linkend="names">names</link>参照)に従う必要があることに
-            
+
             注意してください.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <programlisting role="example"><![CDATA[
 //インライン定義 (function参照)
 function [x,y]=myfct(a,b)
@@ -292,72 +295,72 @@ deff('[x,y]=myfct(a,b)',['x=a+b';
 // アスキーファイルで定義 (exec参照)
 exec SCI/modules/elementary_functions/macros/asinh.sci;
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="function">function</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="deff">deff</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="exec">exec</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="lib">lib</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="getd">getd</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="genlib">genlib</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="exists">exists</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="varargin">varargin</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="varargout">varargout</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

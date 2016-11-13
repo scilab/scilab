@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="gamitg">
+    <refnamediv>
+        <refname>gamitg</refname>
+        <refpurpose>H-infinity gamma iterations for continuous time systems</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[gopt]=gamitg(G,r,prec [,options]);</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>a continuous time dynamical system (plant realization).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 row vector (dimension of <literal>G22</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prec</term>
+                <listitem>
+                    <para>desired relative accuracy on the norm</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>option</term>
+                <listitem>
+                    <para>
+                        string <literal>'t'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gopt</term>
+                <listitem>
+                    <para>real scalar, optimal H-infinity gain</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>gopt=gamitg(G,r,prec [,options])</literal>
+            returns the H-infinity optimal gain <literal>gopt</literal>.
+        </para>
+        <para>
+            <literal>G</literal> contains the state-space matrices <literal>[A,B,C,D]</literal> of
+            the plant with the usual partitions:
+        </para>
+        <programlisting role=""><![CDATA[
+B = ( B1 , B2 ) ,    C = ( C1 ) ,    D = ( D11  D12)
+                         ( C2 )          ( D21  D22)
+ ]]></programlisting>
+        <para>
+            These partitions are implicitly given in <literal>r</literal>: <literal>r(1)</literal>
+            and <literal>r(2)</literal> are the dimensions of <literal>D22</literal> (rows x columns)
+        </para>
+        <para>
+            With <literal>option='t'</literal>, <literal>gamitg</literal> traces each bisection step, i.e.,
+            displays the lower and upper bounds and the current test point.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ccontrg">ccontrg</link>
+            </member>
+            <member>
+                <link linkend="h_inf">h_inf</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Authors</title>
+        <para>P. Gahinet</para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal> is now checked for
+                    continuous time linear dynamical system.  This modification
+                    has been introduced by this <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">commit</ulink>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

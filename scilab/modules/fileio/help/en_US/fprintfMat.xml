@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fprintfMat" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>writes a matrix in a file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>fprintfMat(file, M [,format,text])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -52,7 +55,7 @@
                         <literal>precision</literal>: an optional number that
                         specifies the maximum number of characters printed for all
                         or part of the output field, or the minimum number of
-                        digits printed for integer values; 
+                        digits printed for integer values;
                     </para>
                     <para>
                         <literal>type</literal>: lf, lg, d, i, e, f, g (see <link
@@ -65,7 +68,7 @@
                 <listitem>
                     <para>
                         a row (column) vector of strings giving non numerical
-                        comments stored at the beginning of the file. 
+                        comments stored at the beginning of the file.
                     </para>
                 </listitem>
             </varlistentry>
@@ -83,7 +86,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 n = 50;
 a = rand(n, n, "u");
 fprintfMat(TMPDIR + "/Mat", a, "%5.2f");
@@ -95,7 +98,7 @@ fprintfMat(TMPDIR + "/Mat1", a, "%5.2f",some_comment);
    ]]> </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="scanf_conversion">scanf_conversion</link>

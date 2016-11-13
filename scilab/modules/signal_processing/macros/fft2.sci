@@ -2,13 +2,16 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - F.B
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
-function x=fft2(varargin)
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
+//
+function x = fft2(varargin)
     // Two-dimensional fast Fourier transform
     // Syntax : y = fft2(x) or y = fft2(x,m,n)
     // Inputs :
@@ -18,42 +21,46 @@ function x=fft2(varargin)
     // Outputs :
     // y : scalar, vector, matrix, array (real or complex), if there is one input argument x then y and x have the same size, else if there are 3 inputs arguments then the sizes of the first and second dimension of y are equal to m and n, the others dimension sizes are equal to the size of x
 
-
+    if ~or(argn(2)==[1 3])
+        msg = _("%s: Wrong number of input arguments: %d or %d expected.\n")
+        error(msprintf(msg, "fft2", 1, 3))
+    end
+    if type(varargin(1))~=1
+        msg = _("%s: Argument #%d: Decimal or complex number(s) expected.\n")
+        error(msprintf(msg, "fft2", 1))
+    end
     if size(varargin) == 1 then
         a = varargin(1);
-        if type(a) == 1 then
+        if ndims(a)<3 then
             x = fft(a);
-        elseif typeof(a) == "hypermat" then
-            dims = matrix(x.dims,-1,1);
-            v = matrix(x.entries,-1,1);
+        else
+            dims = size(a)
+            v = a(:)
             incr = 1;
-            for k=1:2
-                dk = double(dims(k));
+            for k = 1:2
+                dk = dims(k)
                 v = fft(v ,-1,dk,incr);
                 incr = incr*dk;
             end
-            x = matrix(v,double(dims));
+            x = matrix(v, dims)
         end
+
     elseif size(varargin) == 3 then
         a = varargin(1);
         m = varargin(2);
         n = varargin(3);
         asize1 = size(a,1);
         asize2 = size(a,2);
-        if type(a) == 1 then
-            x(1:min(m,asize1),1:asize2)=a(1:min(m,asize1),1:asize2);
-        elseif typeof(a) == "hypermat" then
-            dims = matrix(a.dims,-1,1);
-            dims = double(dims);
-            dims(1) = m;
-            dims(2) = n;
-            x=hypermat(dims)
-            for i=1:prod(dims(3:$))
-                x(1:min(m,asize1),1:min(n,asize2),i)=a(1:min(m,asize1),1:min(n,asize2),i);
+        if ndims(a)<3 then
+            x(1:min(m,asize1),1:asize2) = a(1:min(m,asize1),1:asize2);
+        else
+            dims = size(a)
+            dims([1 2]) = [m n]
+            x = resize_matrix(0, dims)
+            for i = 1:prod(dims(3:$))
+                x(1:min(m,asize1),1:min(n,asize2),i) = a(1:min(m,asize1),1:min(n,asize2),i);
             end
         end
-        x=fft2(x);
-    else
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"fft2",1,3));
+        x = fft2(x)
     end
 endfunction

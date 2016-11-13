@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="lattn">
+    <refnamediv>
+        <refname>lattn</refname>
+        <refpurpose>recursive solution of normal equations</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[la,lb]=lattn(n,p,cov)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>maximum order of the filter</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>
+                        fixed dimension of the MA part. If <literal>p= -1</literal>, the algorithm reduces to the classical Levinson recursions.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cov</term>
+                <listitem>
+                    <para>
+                        matrix containing the <literal>Rk</literal>'s (<literal>d*d</literal> matrices for a d-dimensional process).It must be given the following way
+                    </para>
+                    <para>
+                        <latex>
+                            \begin{eqnarray}
+                            \begin{pmatrix}
+                            R_0\\R_1\\R_2\\ \vdots \\R_{nlags}
+                            \end{pmatrix}
+                            \end{eqnarray}
+                        </latex>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>la</term>
+                <listitem>
+                    <para>list-type variable, giving the successively calculated polynomials (degree 1 to degree n),with coefficients Ak</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            solves recursively on <literal>n</literal> (<literal>p</literal> being fixed)
+            the following system (normal equations), i.e. identifies
+            the AR part (poles) of a vector ARMA(n,p) process,
+        </para>
+        <latex>
+            \begin{eqnarray}
+            \begin{pmatrix}
+            I&amp;-A_1&amp;\cdots&amp;-A_n
+            \end{pmatrix}
+            \ast
+            \begin{pmatrix}
+            R_{p+1}&amp;R_{p+2}&amp;\cdots&amp;R_{p+n} \\
+            R_p&amp;R_{p+1}&amp;\cdots&amp;R_{p+n-1} \\
+            R_{p+n-1}&amp;R_p&amp;\cdots&amp;R_{p+n-2} \\
+            \vdots&amp;\vdots&amp;\cdots&amp;\vdots \\
+            R_{p+1-n}&amp;R_{p+2-n}&amp;\cdots&amp;R_p
+            \end{pmatrix}
+            = 0
+            \end{eqnarray}
+        </latex>
+        <para>
+
+        </para>
+
+        <para>
+            where {<literal>Rk;k=1,nlag</literal>} is the sequence of empirical covariances.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="Example"><![CDATA[
+//Generate the process
+t1=0:0.1:100;
+y1=sin(2*%pi*t1)+sin(2*%pi*2*t1);
+y1=y1+rand(y1,"normal");
+
+//Covariance of y1
+nlag=128;
+c1=corr(y1,nlag);
+c1=c1';
+
+//Compute the filter with maximum order=15 and p=1
+n=15;
+[la1,sig1]=lattn(n,1,c1);
+
+//Compare result of poles with p=-1 and with levin function
+[la2,sig2]=lattn(n,-1,c1);
+for i=1:n
+  s2=roots(la2(i));
+  s2=log(s2)/2/%pi/.1; //estimated poles
+  s2=gsort(imag(s2));
+  s2=s2(1:i/2);
+end;
+[la3,sig3]=levin(n,c1);
+for i=1:n
+  s3=roots(la3(i));
+  s3=log(s3)/2/%pi/.1; //estimated poles
+  s3=gsort(imag(s3));
+  s3=s3(1:i/2);
+end;
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="levin">levin</link>
+            </member>
+            <member>
+                <link linkend="lattp">lattp</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

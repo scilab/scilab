@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -38,7 +41,6 @@ int scilab_sscanf(const char* _format, const char* _data, int _iIterrator, int _
     int dimsArray[2]            = {_iNiter, 1};
     BOOL bStar                  = FALSE;
     BOOL bUnsigned              = FALSE;
-    BOOL bNegatif               = FALSE;
     BOOL bIgnoredChars          = TRUE;
     int base                    = 0;
     char LLH                    = ' ';
@@ -288,6 +290,8 @@ int scilab_sscanf(const char* _format, const char* _data, int _iIterrator, int _
                             iPos = (int)strspn(data, toFind);
                         }
 
+                        FREE(toFind);
+
                         if (iPos == 0)
                         {
                             // The string begins with a character which is not in toFind
@@ -427,9 +431,9 @@ int scilab_sscanf(const char* _format, const char* _data, int _iIterrator, int _
                                 iSingleData = strtoul(data, &data, base);
                                 if ((iSingleData == 0) && (temp == data[0]))
                                 {
+                                    data = NULL;
                                     if (_iIterrator == 0 && !bStar && _iNiter == 1)
                                     {
-                                        data = NULL;
                                         _pITOut->push_back(types::Double::Empty());
                                         bStar = TRUE;
                                     }
@@ -573,7 +577,6 @@ int scilab_sscanf(const char* _format, const char* _data, int _iIterrator, int _
                         LLH          = ' ';
                         bIgnoredChars   = TRUE;
                         bUnsigned       = FALSE;
-                        bNegatif        = FALSE;
                         bStar           = FALSE;
                         base            = 0;
                         i++;
@@ -637,9 +640,9 @@ int scilab_sscanf(const char* _format, const char* _data, int _iIterrator, int _
                             dSingleData = strtod(data, &data);
                             if ((dSingleData == 0) && (iLenData == strlen(data)))
                             {
+                                data = NULL;
                                 if (_iIterrator == 0 && !bStar && _iNiter == 1)
                                 {
-                                    data = NULL;
                                     _pITOut->push_back(types::Double::Empty());
                                     bStar = TRUE;
                                 }

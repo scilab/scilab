@@ -5,7 +5,7 @@
         <refpurpose>получение информации о версии Scilab и модулей</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>
             version = getversion()
             [version, opts] = getversion()
@@ -43,7 +43,7 @@
             <varlistentry>
                 <term>opts</term>
                 <listitem>
-                    <para> 
+                    <para>
                         вектор строк:
                         <literal>[compiler, architecture,[tk, modelicac, atlas,] release_mode, release_date, release_time]</literal>
                     </para>
@@ -54,14 +54,14 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>[version, opts] = getversion()</literal> возвращает в <literal>version</literal> 
-            название версии Scilab'а, а в <literal>opts</literal> -- опции сборки, которые могут быть 
-            использованы для определения: собран ли  Scilab с tk или modelicac, а также предоставляет 
+            <literal>[version, opts] = getversion()</literal> возвращает в <literal>version</literal>
+            название версии Scilab'а, а в <literal>opts</literal> -- опции сборки, которые могут быть
+            использованы для определения: собран ли  Scilab с tk или modelicac, а также предоставляет
             дату и время релиза.
         </para>
         <para> [tk, modelicac, atlas,] не обязательны. </para>
-        <para> 
-            compiler: возвращает компилятор, использованный для сборки Scilab ('GCC', 'VC++', 'PGI', 
+        <para>
+            compiler: возвращает компилятор, использованный для сборки Scilab ('GCC', 'VC++', 'PGI',
             'ICC', 'SUN', 'UKN' unknown)
         </para>
         <para> archicteture: архитектура 'x86' или 'x64'.</para>
@@ -72,9 +72,9 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 getversion()
- 
+
 [version, opts] = getversion()
 COMPILER = opts(1)
 ARCH = opts(2)
@@ -83,12 +83,12 @@ or(opts == 'tk')
 RELEASE_MODE = opts($-2)
 RELEASE_DATE = opts($-1)
 RELEASE_TIME = opts($)
- 
+
 version = getversion('scilab')
 versionstr = getversion('scilab','string_info')
 version = getversion('overloading')
 versionstr = getversion('overloading','string_info')
- 
+
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

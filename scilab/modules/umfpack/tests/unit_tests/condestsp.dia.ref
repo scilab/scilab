@@ -19,7 +19,7 @@ K1e = norm(A,1)*norm(inv(full(A)),1);
 if norm(K1e,39.385965) < 1E-6 then bugmes();quit;end
 if K1e <> K1 then bugmes();quit;end
 // another example
-[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
+[A] = ReadHBSparse(SCI+"/modules/umfpack/demos/arc130.rua");
 K1 = condestsp(A);
 if round(K1) <> 10798708075 then bugmes();quit;end
 // this example is not so big so that we can do the verif

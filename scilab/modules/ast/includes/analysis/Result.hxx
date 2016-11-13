@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -43,9 +46,9 @@ private:
 
 public:
 
-    Result() : type(), tempId(-1), functionId(0) { }
-    Result(const TIType & _type, const int _tempId = -1, const uint64_t _functionId = 0) : type(_type), tempId(_tempId), functionId(_functionId) { }
-    Result(TIType && _type, const int _tempId = -1, const uint64_t _functionId = 0) : type(_type), tempId(_tempId), functionId(_functionId) { }
+    Result() : type(), tempId(-1), functionId(0), fnname(DUNNO), constant(), range(), maxIndex() { }
+    Result(const TIType & _type, const int _tempId = -1, const uint64_t _functionId = 0) : type(_type), tempId(_tempId), functionId(_functionId), fnname(DUNNO), constant(), range(), maxIndex() { }
+    Result(TIType && _type, const int _tempId = -1, const uint64_t _functionId = 0) : type(_type), tempId(_tempId), functionId(_functionId), fnname(DUNNO), constant(), range(), maxIndex() { }
 
     inline bool istemp() const
     {

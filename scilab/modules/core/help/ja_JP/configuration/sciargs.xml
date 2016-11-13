@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="sciargs">
+
+    <refnamediv>
+
+        <refname>sciargs</refname>
+
+        <refpurpose>scilab コマンドライン引数</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼出し手順</title>
+
+        <synopsis>args = sciargs()</synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            この関数は,Scilabコマンドライン引数を含む
+
+            文字列の行ベクトルを返します.
+
+            <literal>args</literal>の最初のエントリには,
+
+            実行された実行ファイルのパスが含まれます.
+
+        </para>
+
+        <para>
+
+            この関数はC言語の<literal>getarg</literal>関数と等価です.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+args=sciargs()
+ ]]></programlisting>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="getenv">getenv</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

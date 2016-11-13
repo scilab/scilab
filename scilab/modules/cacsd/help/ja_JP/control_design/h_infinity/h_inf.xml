@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="h_inf">
+    <refnamediv>
+        <refname>h_inf</refname>
+        <refpurpose>連続時間H無限大 (中心) コントローラ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[Sk,ro]=h_inf(P,r,romin,romax,nmax)
+            [Sk,rk,ro]=h_inf(P,r,romin,romax,nmax)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        連続時間線形動的システム
+                        (状態空間形式または伝達形式で指定した``拡張'' プラント)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        <literal>P22</literal>プラントの大きさ
+                        すなわち,長さ2のベクトル<literal>[#outputs,#inputs]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>romin,romax</term>
+                <listitem>
+                    <para>
+                        <literal>ro=1/gama^2</literal>に関するアプリオリ境界; (通常は<literal>romin=0</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nmax</term>
+                <listitem>
+                    <para>整数, ガンマ反復の最大回数.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>h_inf</literal> は連続時間プラント<literal>P</literal>
+            のH無限大最適コントローラを計算します.
+        </para>
+        <para>
+            <literal>P</literal>の4個のサブプラントへの分割は,
+            <literal>P</literal>の<literal>22</literal>部分の大きさである
+            2要素のベクトル <literal>r</literal> により指定されます.
+        </para>
+        <para>
+            <literal>P</literal> は状態空間表現,
+            例えば,<literal>A,B,C,D</literal> = 定数行列を用いて,
+            <literal>P=syslin('c',A,B,C,D)</literal>,
+            または,伝達関数<literal>H</literal>を用いて<literal>P=syslin('c',H)</literal>
+            により指定します.
+        </para>
+        <para>
+            <literal>[Sk,ro]=H_inf(P,r,romin,romax,nmax)</literal> は,
+            <literal>[romin,romax]</literal> の
+            <literal>ro</literal>と,
+            <literal>P</literal>と同じ形式の中心コントローラ <literal>Sk</literal>
+            を返します.
+        </para>
+        <para>
+            (全ての計算は状態空間で行われます,
+            すなわち,状態空間への変換は必要に応じて関数により自動的に
+            行われます).
+        </para>
+        <para>
+            左辺パラメータを3個指定してコールされた場合,
+        </para>
+        <para>
+            <literal>[Sk,rk,ro]=H_inf(P,r,romin,romax,nmax)</literal> は,
+            <literal>ro</literal>と安定化コントローラのパラメトリゼーション
+            を返します:
+        </para>
+        <para>
+            安定化コントローラ <literal>K</literal> は
+            <literal>K=lft(Sk,r,PHI)</literal> により得られます.
+            ただし, <literal>PHI</literal>は次元<literal>r'</literal>
+            の線形システムで,次の関係を満たします:
+        </para>
+        <para>
+            <literal>H_norm(PHI) &lt; gamma</literal>.
+            <literal>rk (=r)</literal> は,
+            <literal>nmax</literal>回反復後の
+            <literal>Sk22</literal> ブロックの大きさです.
+        </para>
+        <para>
+            アルゴリズムは, Safonov-Limebeer に基づきます.
+            <literal>P</literal> は連続時間プラントであることを前提と
+            することに注意してください.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gamitg">gamitg</link>
+            </member>
+            <member>
+                <link linkend="ccontrg">ccontrg</link>
+            </member>
+            <member>
+                <link linkend="leqr">leqr</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>著者</title>
+        <para>F.Delebecque INRIA (1990)  </para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal>が
+                    連続時間線形システムであることを確認するようになりました.
+                    この修正は,この <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">コミット</ulink>により導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

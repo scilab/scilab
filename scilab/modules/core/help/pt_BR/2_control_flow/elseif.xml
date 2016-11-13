@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="elseif" xml:lang="pt">
+    <refnamediv>
+        <refname>elseif</refname>
+        <refpurpose>palavra-chave usada na estrutura "if-then-else" (significa
+            "senão, se...")
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Ver <literal>if,then,else</literal> .
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[
+a=1;
+if a==1 then
+    disp("a equals 1")
+elseif a==2 then
+    disp("a equals 2")
+else
+    disp("Case not handle")
+end
+     ]]></programlisting>
+    </refsection>
+</refentry>

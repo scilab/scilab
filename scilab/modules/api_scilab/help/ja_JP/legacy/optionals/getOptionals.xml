@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getOptionals" xml:lang="ja">
+    <refnamediv>
+        <refname>オプション引数を取得 (Scilabゲートウェイ)</refname>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>int getOptionals(void* _pvCtx, char* fname, rhs_opts opts[])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fname</term>
+                <listitem>
+                    <para>
+                        コールする関数の名前.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>opts</term>
+                <listitem>
+                    <para>オプション引数の構造体配列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            オプション引数を使用するCゲートウェイ関数.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <para>
+            この例では, Cインターフェイス関数は
+            複数のオプション引数をとり,
+            その次元を取得します.
+        </para>
+        <programlisting role="example">
+            <![CDATA[
+#include "api_scilab.h"
+#include "sciprint.h"
+#include "sciprint.h"
+#include "sciprint.h"
+int sci_use_optional(char * fname)
+{
+    SciErr sciErr;
+    char* pstName = NULL;
+    int iAge = 0;
+    int iDL = 0;
+    static rhs_opts opts[] =
+    {
+        { -1, "age", -1, 0, 0, NULL},
+        { -1, "drivinglicense", -1, 0, 0, NULL},
+        { -1, "name", -1, 0, 0, NULL},
+        { -1, NULL, -1, 0, 0, NULL}
+    };
+    int nopt = NumOpt();
+    CheckInputArgument(pvApiCtx, 0, nopt);
+    CheckOutputArgument(pvApiCtx, 0, 1);
+    if (getOptionals(pvApiCtx, fname, opts) == 0)
+    {
+        //Error
+        return 1;
+    }
+    if (opts[0].iPos != -1)
+    {//age
+        double dblAge = 0;
+        getScalarDouble(pvApiCtx, opts[0].piAddr, &dblAge);
+        iAge = (int)dblAge;
+    }
+    else
+    {
+        iAge = 77;
+    }
+    if (opts[1].iPos != -1)
+    {//drivinglicense
+        getScalarBoolean(pvApiCtx, opts[1].piAddr, &iDL);
+    }
+    else
+    {
+        iDL = 0;
+    }
+    if (opts[2].iPos != -1)
+    {//名前
+        getAllocatedSingleString(pvApiCtx, opts[2].piAddr, &pstName);
+    }
+    else
+    {
+        pstName = strdup("John Doe");
+    }
+    sciprint("Read information: \n");
+    sciprint("\tName: \t\t\t%s\n", pstName);
+    sciprint("\tAge: \t\t\t%d\n", iAge);
+    sciprint("\tDriving licence: \t%s\n", iDL ? "Yes" : "No");
+    //戻り値なし
+    AssignOutputVariable(pvApiCtx, 0) = 1;
+    return 0;
+}
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab テストスクリプト</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
+use_optional();
+use_optional(name = "M. Puffin");
+use_optional(age = 25, name = "M. Puffin");
+use_optional(drivinglicense = %t, age = 25, name = "M. Puffin");
+ ]]>
+        </programlisting>
+    </refsection>
+    <title>履歴</title>
+    <revhistory>
+        <revision>
+            <revnumber>5.5.0</revnumber>
+            <revremark>この関数は Scilab 5.5.0で追加されました</revremark>
+        </revision>
+    </revhistory>
+</refentry>

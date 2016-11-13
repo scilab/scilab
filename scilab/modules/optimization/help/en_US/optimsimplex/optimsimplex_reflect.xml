@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_reflect" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>Returns the reflected simplex object.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             r = optimsimplex_reflect(opt, fun)
             [r, data] = optimsimplex_reflect(opt, fun, data)
@@ -36,8 +39,8 @@
                 <listitem>
                     <para>The function to compute at vertices.</para>
                     <para>
-                        The <literal>fun</literal> function is expected to have the following 
-                        input and output arguments: 
+                        The <literal>fun</literal> function is expected to have the following
+                        input and output arguments:
                     </para>
                     <programlisting role="no-scilab-exec">
                         y = myfunction (x)
@@ -50,15 +53,15 @@
                     <para>User-defined data passed to the function (optional).</para>
                     <para>
                         If <literal>data</literal> is provided, it is passed to the callback function
-                        both as an input and output argument. In that case, the function must have the 
+                        both as an input and output argument. In that case, the function must have the
                         following header :
                     </para>
                     <programlisting role="no-scilab-exec">
                         [y, data] = myfunction (x, data)
                     </programlisting>
-                    <para>The data input parameter may be used if the function uses some additional 
-                        parameters. It is returned as an output parameter because the function may 
-                        modify the data while computing the function value. This feature may be used, 
+                    <para>The data input parameter may be used if the function uses some additional
+                        parameters. It is returned as an output parameter because the function may
+                        modify the data while computing the function value. This feature may be used,
                         for example, to count the number of times that the function has been called.
                     </para>
                 </listitem>
@@ -74,15 +77,15 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimsimplex_reflect</literal> function returns a new simplex by reflexion 
-            of current simplex, by reflection with respect to the first vertex in the simplex. 
+            The <literal>optimsimplex_reflect</literal> function returns a new simplex by reflexion
+            of current simplex, by reflection with respect to the first vertex in the simplex.
             This move is used in the centered simplex gradient.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -104,7 +107,7 @@ r = optimsimplex_destroy(r);
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optimsimplex_new">optimsimplex_new</link>

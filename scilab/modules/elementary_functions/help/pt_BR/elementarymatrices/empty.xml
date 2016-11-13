@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="empty" xml:lang="pt">
+    <refnamediv>
+        <refname>empty</refname>
+        <refpurpose>([]) matriz vazia</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal> [] </literal> denota a matriz vazia. É definida de modo
+            único e possui 0 linha e 0 coluna, i.e. <literal> size([]) =[0,0]
+            </literal>
+            .As seguintes convenções convenientes foram feitas:
+        </para>
+        <para>
+            <literal> [] * A = A * [] = [] </literal>
+        </para>
+        <para>
+            <literal> [] + A = A + [] = []</literal>
+        </para>
+        <para>
+            [ [], A] = [A, []] = A <literal> inv([]) =[] </literal>
+        </para>
+        <para>
+            <literal> det([])=cond([])=rcond([])=1, rank([])=0</literal>
+        </para>
+        <para>
+            Funções de matrizes retornam <literal>[]</literal> ou produzem uma
+            mensagem de erro quando não há resposta óbvia. Sistemas lineares vazios
+            (listas<literal> syslin</literal>) podem ter várias linhas ou
+            colunas.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+A = [s, s+1];
+A+[], A*[]
+A=rand(2,2);
+AA=A([],1), size(AA)
+svd([])
+w=ssrand(2,2,2);
+wr=[]*w;
+size(wr), w1=ss2tf(wr), size(w1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="matrices">matrices</link>
+            </member>
+            <member>
+                <link linkend="poly">poly</link>
+            </member>
+            <member>
+                <link linkend="string">string</link>
+            </member>
+            <member>
+                <link linkend="boolean">boolean</link>
+            </member>
+            <member>
+                <link linkend="rational">rational</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

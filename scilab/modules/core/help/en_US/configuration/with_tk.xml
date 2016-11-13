@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>r = with_tk()</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,7 +30,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 if with_tk() == %t then
    disp("Tk is available");
 else

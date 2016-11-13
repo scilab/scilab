@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="covStop">
+    <refnamediv>
+        <refname>covStop</refname>
+        <refpurpose>Removes all instrumentation data</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>covStop()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Remove the instrumentation data and stop recording future execution. All the recording intiated by <literal>covStart</literal> will be canceled.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="covStart">covStart</link>
+            </member>
+            <member>
+                <link linkend="covWrite">covWrite</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

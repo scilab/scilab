@@ -1,31 +1,40 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2015 - 2016 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="twinkle" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="twinkle" xml:lang="pt">
     <refnamediv>
         <refname>twinkle</refname>
-        <refpurpose>Faz uma entidade gráfica piscar</refpurpose>
+        <refpurpose>Faz uma entidade grÃ¡fica piscar</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>twinkle(h,[n])</synopsis>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>twinkle
+twinkle(n)
+twinkle(h)
+twinkle(h,n)
+        </synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
+    <refsection role="arguments">
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>manipulador de uma entidade gráfica </para>
+                    <para>manipulador de uma entidade grÃ¡fica. By default, the current graphic
+                      entity handled with <literal>gce()</literal> is considered.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -36,36 +45,52 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>Descrição</title>
+    <refsection role="description">
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>twinkle</literal> faz com que a entidade gráfica dada pelo
-            seu manipulador h pisque. Pode ser usado para encontrar o objeto gráfico
-            correspondente a um manipulador gráfico em uma janela de gráficos. Por
-            padrão, a entidade gráfica pisca 5 vezes, mas você pode mudar este número
-            através do argumento opcional <literal>n</literal>.
+            <literal>twinkle</literal> faz com que a entidade grÃ¡fica dada pelo
+            seu manipulador h pisque. Pode ser usado para encontrar o objeto grÃ¡fico
+            correspondente a um manipulador grÃ¡fico em uma janela de grÃ¡ficos. Por
+            padrÃ£o, a entidade grÃ¡fica pisca 5 vezes, mas vocÃª pode mudar este nÃºmero
+            atravÃ©s do argumento opcional <literal>n</literal>.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-x=linspace(-2*%pi,2*%pi,100)';
+        <programlisting role="example"><![CDATA[
+clf
+plot()
+twinkle     // twinkles the last group of curves plotted in the plot() example
+twinkle(3)  // twinkles it only three times
+
+clf
+x = linspace(-2*%pi,2*%pi,100)';
 plot2d(x,[sin(x),cos(x)]);
-e=gce(); p1=e.children(1); p2=e.children(2);
-// fazendo piscar o esboço de cos
-twinkle(p1)
-// fazendo piscar o esboço de sin piscar
-twinkle(p2,10)
-// eixos piscando
-twinkle(gca())
+e = gce();
+p1 = e.children(1);
+p2 = e.children(2);
+twinkle(p1)     // fazendo piscar o esboÃ§o de cos
+twinkle(p2,10)  // fazendo piscar o esboÃ§o de sin piscar
+twinkle(gca())  // eixos piscando
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="graphics_entities">graphics_entities</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>twinkle() and twinkle(n) added.</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

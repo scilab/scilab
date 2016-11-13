@@ -9,7 +9,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>nb_params Rhs</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -46,7 +46,7 @@
             the number of input arguments detected in the calling Scilab
             function.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 #include <stack-c.h>
 #include <sciprint.h>
 
@@ -59,7 +59,7 @@ int sci_myrhs(char * fname)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="getNbInputArgument">getNbInputArgument</link>

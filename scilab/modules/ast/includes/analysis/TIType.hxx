@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014-2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -36,10 +39,10 @@ struct TIType
     bool scalar;
 
     TIType(const Type _type = UNKNOWN) : type(_type), scalar(true) { }
-    TIType(GVN & gvn) : type(UNKNOWN), rows(gvn, (int64_t)0), cols(gvn, (int64_t)0), scalar(false) { }
+    TIType(GVN & gvn) : type(UNKNOWN), rows(gvn, int64_t(0)), cols(gvn, int64_t(0)), scalar(false) { }
     TIType(GVN & gvn, const Type _type) : type(_type), rows(gvn, _type == EMPTY ? 0 : 1), cols(gvn, _type == EMPTY ? 0 : 1), scalar(_type != EMPTY) { }
     TIType(GVN & gvn, const Type _type, const int _rows, const int _cols) : type(_type), rows(gvn, _rows), cols(gvn, _cols), scalar(_rows == 1 && _cols == 1) { }
-    TIType(GVN & gvn, Type _type, const SymbolicDimension & _rows, const SymbolicDimension & _cols) : type(_type), rows(_rows), cols(_cols), scalar(_rows == 1 && _cols == 1) { }
+    TIType(GVN & /*gvn*/, Type _type, const SymbolicDimension & _rows, const SymbolicDimension & _cols) : type(_type), rows(_rows), cols(_cols), scalar(_rows == 1 && _cols == 1) { }
     TIType(GVN & gvn, const Type _type, const bool _scalar) : type(_type), rows(gvn, _scalar ? 1 : -1), cols(gvn, _scalar ? 1 : -1), scalar(_scalar) { }
 
     inline bool hasValidDims() const
@@ -153,8 +156,8 @@ struct TIType
         else if ((this->type != COMPLEX || type.type != DOUBLE) && this->type != type.type)
         {
             this->type = UNKNOWN;
-            rows.setValue((int64_t)0);
-            cols.setValue((int64_t)0);
+            rows.setValue(int64_t(0));
+            cols.setValue(int64_t(0));
         }
         else if ((!scalar || !type.scalar) && (rows != type.rows || cols != type.cols))
         {
@@ -808,7 +811,7 @@ namespace std
 template<>
 struct hash<analysis::TIType>
 {
-    inline size_t operator()(const analysis::TIType & t) const
+    inline size_t operator()(const analysis::TIType & /*t*/) const
     {
         return 0;//tools::hash_combine(t.type, t.rows, t.cols);
     }

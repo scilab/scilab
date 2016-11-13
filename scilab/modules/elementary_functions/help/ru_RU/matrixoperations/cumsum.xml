@@ -3,33 +3,39 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Serge Steer - INRIA
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:id="cumsum" xml:lang="ru">
+
     <refnamediv>
         <refname>cumsum</refname>
         <refpurpose>суммирование элементов массива с накоплением</refpurpose>
     </refnamediv>
+
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=cumsum(x)</synopsis>
         <synopsis>y=cumsum(x,orientation)</synopsis>
         <synopsis>y=cumsum(x,outtype)</synopsis>
         <synopsis>y=cumsum(x,orientation,outtype)</synopsis>
     </refsynopsisdiv>
-    <refsection>
+
+    <refsection role="parameters">
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
                     <para>
-                        массив вещественных, комплексных, логических значений, а также полиномов или 
+                        массив вещественных, комплексных, логических значений, а также полиномов или
                         рациональных дробей.
                     </para>
                 </listitem>
@@ -56,8 +62,8 @@
                 <term>outtype</term>
                 <listitem>
                     <para>
-                        тип на выходе: строка с возможными значениями: 
-                        <literal>"native"</literal> или <literal>"double"</literal>. 
+                        тип на выходе: строка с возможными значениями:
+                        <literal>"native"</literal> или <literal>"double"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -69,22 +75,26 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+
+    <refsection role="description">
         <title>Описание</title>
         <para>
-            Для массива <literal>x</literal>, <literal>y=cumsum(x)</literal> возвращает скаляр 
-            <literal>y</literal>, представляющий сумму всех элементов <literal>x</literal> с
+            Для массива <term>x</term>, <literal>y=cumsum(x)</literal> возвращает скаляр
+            <term>y</term>, представляющий сумму всех элементов <term>x</term> с
             накоплением.
         </para>
         <para>
-            <literal>y=cumsum(x,orientation)</literal> возвращает в <literal>y</literal>
-            сумму элементов <literal>x</literal> с накоплением по заданной размерности
-            <literal>orientation</literal>: 
+            <literal>y=cumsum(x,orientation)</literal> возвращает в <term>y</term>
+            сумму элементов <term>x</term> с накоплением по заданной размерности
+            <term>orientation</term>:
+        </para>
+        <para>
+            <latex><![CDATA[ y(i) = \sum_{k=1}^i x(k)]]></latex>
         </para>
         <itemizedlist>
             <listitem>
                 <para>
-                    если <literal>orientation</literal> равна 1 или "r", то: 
+                    если <term>orientation</term> равна 1 или "r", то:
                 </para>
                 <para>
                     <latex><![CDATA[ y(\mathbf{l},j) = \sum_{\mathbf{i}=1}^l x(\mathbf{i},j)]]></latex>
@@ -96,7 +106,7 @@
             </listitem>
             <listitem>
                 <para>
-                    если <literal>orientation</literal> равна 2 или "c", то: 
+                    если <term>orientation</term> равна 2 или "c", то:
                 </para>
                 <para>
                     <latex><![CDATA[ y(i,\mathbf{l}) = \sum_{\mathbf{j}=1}^l x(i,{\mathbf{j})]]></latex>
@@ -108,7 +118,7 @@
             </listitem>
             <listitem>
                 <para>
-                    если <literal>orientation</literal> равна n, то: 
+                    если <term>orientation</term> равна n, то:
                 </para>
                 <para>
                     <latex><![CDATA[ y(i_1,\ldots,i_{n-1},\mathbf{l},i_{n+1},\ldots) = \sum_{\mathbf{i_n}=1}^l x(i_1,\ldots,i_{n-1},\mathbf{i_n},i_{n+1},\ldots)]]></latex>
@@ -127,14 +137,14 @@
         </itemizedlist>
         <para/>
         <para>
-            Аргумент <literal>outtype</literal> управляет способом, которым производится суммирование: 
+            Аргумент <term>outtype</term> управляет способом, которым производится суммирование:
         </para>
         <itemizedlist>
             <listitem>
                 <para>
-                    Для массивов чисел с плавающей запятой, полиномов, рациональных дробей 
+                    Для массивов чисел с плавающей запятой, полиномов, рациональных дробей
                     вычисление всегда делается через вычисления с плавающей запятой.
-                    Опции <literal>"double"</literal> и <literal>"native"</literal> ("естественное") 
+                    Опции <literal>"double"</literal> и <literal>"native"</literal> ("естественное")
                     эквивалентны.
                 </para>
             </listitem>
@@ -143,8 +153,8 @@
                 <para>
                     если <literal>outtype="native"</literal> ("естественное"), то вычисление делается через целочисленные вычисления (по модулю 2^b, где b - число используемых битов);
                 </para>
-                <para> 
-                    если <literal>outtype="double"</literal>, то вычисление делается через вычисления 
+                <para>
+                    если <literal>outtype="double"</literal>, то вычисление делается через вычисления
                     с плавающей запятой.
                 </para>
                 <para>
@@ -153,11 +163,11 @@
             </listitem>
             <listitem>
                 <para>Для массивов логических значений:</para>
-                <para> 
-                    если <literal>outtype="native"</literal> ("естественное"), то вычисления делаются 
+                <para>
+                    если <literal>outtype="native"</literal> ("естественное"), то вычисления делаются
                     с помощью  булевой алгебры (+ заменяется на |),
                 </para>
-                <para> 
+                <para>
                     если <literal>outtype="double"</literal>, то вычисление  делается через вычисления
                     с плавающей запятой (значения %t заменяются на 1, а значения %f - на 0).
                 </para>
@@ -166,38 +176,34 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <note>
+            This function applies with identical rules to <link linkend="sparse">sparse matrices</link>
+        </note>
     </refsection>
-    <refsection>
-        <title>Примечание</title>
-        <para>
-            Эта функция применяется с аналогичными правилами к <link linkend="sparse">разряжённым 
-                матрицам
-            </link>
-            и <link linkend="hypermat">гиперматрицам</link>.
-        </para>
-    </refsection>
-    <refsection>
+
+    <refsection role="examples">
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 A=[1,2;3,4];
 cumsum(A)
 cumsum(A,1)
- 
+
 I=uint8([2 95 103;254 9 0])
 cumsum(I) //естественное вычисление
 cumsum(I,"double")
 cumsum(I,2,"double")
- 
+
 s=poly(0,"s");
 P=[s,%i+s;s^2,1];
 cumsum(P),
 cumsum(P,2)
- 
+
 B=[%t %t %f %f];
 cumsum(B) //вычисление с плавающей запятой
 cumsum(B,"native") //аналогично or(B)
  ]]></programlisting>
     </refsection>
+
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">

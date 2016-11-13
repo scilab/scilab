@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="arhnk">
+    <refnamediv>
+        <refname>arhnk</refname>
+        <refpurpose>Hankel norm approximant</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[slm]=arhnk(sl,ord,[tol])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ord</term>
+                <listitem>
+                    <para>integer, order of the approximant</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>
+                        threshold for rank determination in <literal>equil1</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            computes <literal>slm</literal>, the optimal Hankel norm approximant of the
+            stable continuous-time linear system <literal>sl</literal> with matrices <literal>[A,B,C,D]</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A=diag([-1,-2,-3,-4,-5]);B=rand(5,1);C=rand(1,5);
+sl=syslin('c',A,B,C);
+slapprox=arhnk(sl,2);
+[nk,W]=hankelsv(sl);nk
+[nkred,Wred]=hankelsv(slapprox);nkred
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="equil">equil</link>
+            </member>
+            <member>
+                <link linkend="equil1">equil1</link>
+            </member>
+            <member>
+                <link linkend="hankelsv">hankelsv</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

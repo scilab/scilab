@@ -5,7 +5,7 @@
         <refpurpose>Creates the layout constraints structure for a uicontrol.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             constraints = createConstraints(constraintsType, varargin)
         </synopsis>
@@ -65,7 +65,7 @@
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="uicontrol">uicontrol</link>

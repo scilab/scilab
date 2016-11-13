@@ -14,10 +14,8 @@ Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , EXPRS ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
@@ -71,6 +69,7 @@ Xcos debug: objectCreated( 4 , LINK )
 Xcos trace: propertyUpdated( 4 , LINK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , KIND ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , LINK , STYLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , CONTROL_POINTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , THICK ) : NO_CHANGES
@@ -80,6 +79,8 @@ Xcos trace: propertyUpdated( 4 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , PARENT_BLOCK ) : SUCCESS
 Xcos trace: propertyUpdated( 1 , BLOCK , CHILDREN ) : SUCCESS
+Xcos debug: objectReferenced( 4 , LINK ) : 1
+Xcos debug: objectUnreferenced( 4 , LINK ) : 0
 Xcos trace: propertyUpdated( 1 , BLOCK , CONTEXT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , OPAR ) : NO_CHANGES

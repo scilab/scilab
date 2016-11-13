@@ -2,58 +2,95 @@
 <!--
  *
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * Copyright (C) 2016 - Samuel GOUGEON
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bitxor" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+xmlns:scilab="http://www.scilab.org" xml:id="bitxor" xml:lang="en">
     <refnamediv>
         <refname>bitxor</refname>
-        <refpurpose>bitwise XOR</refpurpose>
+        <refpurpose>bitwise logical XOR between element-wise integers of 2 arrays</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
-            z = bitxor(x, y)
+            w = bitxor(u, v)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
             <varlistentry>
-                <term>x :</term>
+                <term>u, v, w</term>
                 <listitem>
                     <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
-                        Must contain positive integer values.
+                        scalars, vectors, matrices or hypermatrices of null or
+                        positive integers encoded as decimal or integer numbers
+                        of any signed or unsigned <link linkend="inttype">inttype</link>.
+                        <warning>Sparse-encoded matrices are not accepted.</warning>
                     </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y :</term>
-                <listitem>
                     <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
-                        Must contain positive integer values.
+                        If <literal>u</literal> and <literal>v</literal> have
+                        the same type and inttype, this one is the working one.
+                        Otherwise,
+                        <itemizedlist>
+                            <listitem>
+                                if <literal>u</literal> or <literal>v</literal>
+                                is decimal-encoded, the working inttype is 0
+                                (real decimal), even if the other operand
+                                is int64- or uint64-encoded.
+                            </listitem>
+                            <listitem>
+                                if <literal>u</literal> and <literal>v</literal>
+                                are both encoded integers, the working inttype
+                                is the widest of both: int8 &lt; uint8 &lt;
+                                int16 &lt; uint16 &lt; int32 &lt; uint32 &lt;
+                                int64 &lt; uint64.
+                            </listitem>
+                        </itemizedlist>
                     </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>z :</term>
-                <listitem>
                     <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers.
+                        The result <literal>w</literal> gets the type of the
+                        working encoding.
+                    </para>
+                    <para>
+                        <literal>u</literal> and <literal>v</literal> are
+                        processed element-wise:
+                        <itemizedlist>
+                            <listitem>
+                                If <literal>u</literal> is a single value (scalar)
+                                and <literal>v</literal> is a vector, matrix or
+                                hypermatrix, <literal>u</literal> is priorly
+                                expanded as <literal>u*ones(v)</literal> in order
+                                to operate <literal>u</literal> with every
+                                <literal>v</literal> component.
+                            </listitem>
+                            <listitem>
+                                Conversely, <literal>v</literal> is priorly
+                                expanded as <literal>v*ones(u)</literal> if it
+                                is a single value.
+                            </listitem>
+                            <listitem>
+                                If neither <literal>u</literal> nor <literal>v</literal>
+                                are scalars, they must have the same sizes.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        The result <literal>w</literal> gets the sizes of
+                        <literal>u</literal> or/and <literal>v</literal>
+                        arrays.
                     </para>
                 </listitem>
             </varlistentry>
@@ -61,39 +98,136 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>
-            Given <varname>x</varname> and <varname>y</varname> two positive integers, this function returns the decimal
-            number <varname>z</varname> whose the binary form is the XOR of the binary representations
-            of <varname>x</varname> and <varname>y</varname>.
-        </para>
-        <para>
-        </para>
+        For each pair of components <literal>u(i)</literal> and <literal>v(i)</literal>,
+        <literal>bitxor(u, v)</literal> computes and returns in <literal>w(i)</literal>
+        the bitwise XOR eXclusive-OR conjunction of <literal>u(i)</literal> and
+        <literal>v(i)</literal>
+        bits.
+        <note>
+            With encoded integers, <literal>bitxor(u,v)</literal> is equivalent
+            to <literal>(u | v) &amp; ~(u &amp; v)</literal>.
+            However, both <literal>|</literal> and <literal>&amp;</literal>
+            operators demand that <literal>u</literal> and <literal>v</literal>
+            have the same inttype, while <literal>bitxor(..)</literal> accepts
+            mixed operands.
+        </note>
+        <note>
+            For any decimal integer <literal>u</literal> greater than 2^52,
+            only its bits from log2(u) down to log2(u)-52 are encoded and can
+            be actually taken into account. Lower bits are not stored and are
+            then ignored.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-// Compute the bitwise XOR of two matrices of doubles.
-x = [0 1 0 1];
-y = [0 0 1 1];
-z = bitxor(x, y)
-expected = [0 1 1 0];
+bitxor(25, 33)
+dec2bin([25 33 56]')  // binary representations
+     ]]></programlisting>
+        <screen><![CDATA[--> bitxor(25, 33)
+ ans  =
+   56.
 
-// Compute the bitwise XOR of two matrices of integers.
-x = uint8([0 1 0 1]);
-y = uint8([0 0 1 1]);
-z = bitxor(x, y)
+--> dec2bin([25 33 56]'))
+ ans  =
+!011001  !
+!100001  !
+!111000  !
+]]></screen>
+        <para></para>
+        <programlisting role="example"><![CDATA[
+// Between 2 simple rows with zeros and ones
+u = [0 1 0 1];
+v = [0 0 1 1];
+bitxor(u, v)  // [0 1 1 0] expected
 
-// The types of x and y cannot be mixed (error).
-x = [0 1 0 1];
-y = uint8([0 0 1 1]);
-// z = bitxor(x, y)
+// Encoded integers such as int8 are accepted:
+u = int8([0 1 0 1]);
+v = int8([0 0 1 1]);
+bitxor(u, v)
 
-//  13 is (01101)_2
-//  27 is (11011)_2
-// XOR is (10110)_2 which is 22.
-bitxor(uint8(13), uint8(27))
-bitxor(13, 27)
+// Operands of mixed types are accepted.
+// The type of the result is decimal if a decimal operand is involved,
+// or the widest integer one otherwise:
+u = [0 1 0 1];
+v = [0 0 1 1];
+z = bitxor(u, int64(v));          type(z)       // 1 : decimal representation
+z = bitxor(uint8(u), int8(v));    typeof(z)     // uint8
+z = bitxor(uint8(u), int32(v));   typeof(z)     // int32
 
+// Usage with 2 matrices
+u = [  1    2    4   8
+      25   33   25  33 ];
+v = [  2  2+4  4+8  16
+      33   25   56  56 ];
+bitxor(u, v)      //  [ 3 4 8 24 ;  56 56 33 25 ]   expected
+
+// Usage with a distributed scalar:
+bitxor([1 2 4 8 9 10 12], 8)  // == bitxor([1 2 4 8 9 10 12], [8 8 8 8 8 8 8])
+bitxor(4, [1 2 4 8 9 10 12])  // == bitxor([4 4 4 4 4 4 4], [1 2 4 8 9 10 12])
    ]]></programlisting>
+        <para></para>
+        <programlisting role="example"><![CDATA[
+// Examples with big decimal integers:
+
+u = sum(2 .^(600+[0 3 9 20 45]))        // ~ 1.46D+194
+bitxor(u, 2^630) == u+2^630  // true: XOR sets to 1 the missing bit #630 of u, so adds it
+bitxor(u, 2^645) == u-2^645  // true: XOR sets to 0 the existing bit #645 of u, so removes it
+bitxor(u, 2^601) == u        // false: The bit #601 is 0 in u. XOR changes it.
+//
+n = fix(log2(u))           // 645 == Index of the heaviest bit of u
+bitxor(u, 2^(n-52)) == u   // false: The lightest bit of u was at 0 => This changes it
+bitxor(u, 2^(n-53)) == u   // true: Addressing bits below the lightest one doesn't change u
+   ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="or_op">|</link>
+            </member>
+            <member>
+                <link linkend="or">or</link>
+            </member>
+            <member>
+                <link linkend="bitor">bitor</link>
+            </member>
+            <member>
+                <link linkend="bitand">bitand</link>
+            </member>
+            <member>
+                <link linkend="dec2bin">dec2bin</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Extension to positive signed encoded integers
+                        </listitem>
+                        <listitem>
+                            Extension to new int64 and uint64 inttypes
+                        </listitem>
+                        <listitem>
+                            Operands of mixed types or inttypes are now accepted.
+                        </listitem>
+                        <listitem>
+                            bitxor(scalar, array) and bitxor(array, scalar) are now supported.
+                        </listitem>
+                        <listitem>
+                            Extension to decimal numbers greater than
+                            2^32 and even than 2^52,
+                            up to 1.80D+308 (== number_properties("huge")), for
+                            the 52 heaviest encoded bits of their unsigned mantissa.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

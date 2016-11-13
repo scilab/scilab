@@ -24,14 +24,14 @@
     <refsection>
         <title>説明</title>
         <para>
-            マクロのソースがインストールされている場合に 
-            <literal>%t</literal>,それ以外の場合に 
+            マクロのソースがインストールされている場合に
+            <literal>%t</literal>,それ以外の場合に
             <literal>%f</literal> を返します.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 if with_macros_source() == %t then
    disp("Scilab macro sources are installed");
 end

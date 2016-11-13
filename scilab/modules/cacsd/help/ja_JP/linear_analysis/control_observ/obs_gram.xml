@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="obs_gram">
+    <refnamediv>
+        <refname>obs_gram</refname>
+        <refpurpose>可観測性グラミアン</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>Go=obs_gram(A,C [,dom])
+            Go=obs_gram(sl)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>A,C</term>
+                <listitem>
+                    <para>(適当な次元の)実数行列 </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dom</term>
+                <listitem>
+                    <para>
+                        文字列 (<literal>"d'</literal> または <literal>"c"</literal> (デフォルト値))
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            対<literal>(A,C)</literal>または
+            線形システム<literal>sl</literal> (<literal>syslin</literal> リスト)の
+            可観測性グラミアン.
+            <literal>dom</literal> は領域で,以下の値とすることができます
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>"c"</term>
+                <listitem>
+                    <para> 連続システム (デフォルト)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"d"</term>
+                <listitem>
+                    <para> 離散システム</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A=-diag(1:3);C=rand(2,3);
+Go=obs_gram(A,C,'c');     // <=> w=syslin('c',A,[],C); Go=obs_gram(w);
+norm(Go*A+A'*Go+C'*C,1)
+norm(lyap(A,-C'*C,'c')-Go,1)
+A=A/4; Go=obs_gram(A,C,'d');    //離散時間の場合
+norm(lyap(A,-C'*C,'d')-Go,1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ctr_gram">ctr_gram</link>
+            </member>
+            <member>
+                <link linkend="obsvss">obsvss</link>
+            </member>
+            <member>
+                <link linkend="obsv_mat">obsv_mat</link>
+            </member>
+            <member>
+                <link linkend="lyap">lyap</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

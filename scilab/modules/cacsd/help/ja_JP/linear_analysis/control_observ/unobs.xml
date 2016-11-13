@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="unobs">
+    <refnamediv>
+        <refname>unobs</refname>
+        <refpurpose>不可観測な部分空間</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[n,[U]]=unobs(A,C,[tol])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>A, C</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>ランクを評価する際に使用される許容誤差 (QR 分解).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>不可観測な部分空間の次元.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>
+                        <literal>(A,B)</literal>を正準形にする直交変換です.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>[n,[U]]=unobs(A,C,[tol])</literal> は,
+            対<literal>(A,C)</literal>の不可観測形式を出力します.
+            <literal>U</literal>の最初の<literal>n</literal>列は,
+            不可観測部分空間の基底となります.
+        </para>
+        <para>
+            <literal>U'*A*U</literal>の
+            <literal>(2,1)</literal> ブロック (最後 <literal>nx-n</literal> 行および最初の <literal>n</literal> 列から作成) はゼロであり, <literal>C*U</literal>の最初の
+            <literal>n</literal> はゼロとなります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A=diag([1,2,3]);C=[1,0,0];
+unobs(A,C)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="contr">contr</link>
+            </member>
+            <member>
+                <link linkend="contrss">contrss</link>
+            </member>
+            <member>
+                <link linkend="canon">canon</link>
+            </member>
+            <member>
+                <link linkend="cont_mat">cont_mat</link>
+            </member>
+            <member>
+                <link linkend="spantwo">spantwo</link>
+            </member>
+            <member>
+                <link linkend="dt_ility">dt_ility</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

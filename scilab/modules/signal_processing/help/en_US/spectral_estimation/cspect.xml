@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [sm [,cwp]]=cspect(nlags,npoints,wtype,x [,y] [,wpar])
             [sm [,cwp]]=cspect(nlags,npoints,wtype,nx [,ny] [,wpar])
@@ -143,7 +143,7 @@
                         <literal>[0,1]</literal> of the normalized frequencies. It
                         is a row array of size <literal>npoints</literal>. The array
                         is real in case of auto-correlation and complex in case of
-                        cross-correlation. 
+                        cross-correlation.
                     </para>
                 </listitem>
             </varlistentry>
@@ -289,7 +289,7 @@
             For batch processing, the<literal> x</literal> and
             <literal>y</literal> data may be read segment by segment using the
             <literal>getx </literal>and <literal>gety</literal> user defined
-            functions. These functions have the following calling sequence:
+            functions. These functions have the following syntax:
         </para>
         <para>
             <literal>xk=getx(ns,offset)</literal> and
@@ -310,13 +310,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rand('normal');rand('seed',0);
 x=rand(1:1024-33+1);
 //make low-pass filter with eqfir
 nf=33;bedge=[0 .1;.125 .5];des=[1 0];wate=[1 1];
 h=eqfir(nf,bedge,des,wate);
-//filter white data to obtain colored data 
+//filter white data to obtain colored data
 h1=[h 0*ones(1:max(size(x))-1)];
 x1=[x 0*ones(1:max(size(h))-1)];
 hf=fft(h1,-1);   xf=fft(x1,-1);yf=hf.*xf;y=real(fft(yf,1));
@@ -326,7 +326,7 @@ plot(fr,log(sm))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="pspect">pspect</link>

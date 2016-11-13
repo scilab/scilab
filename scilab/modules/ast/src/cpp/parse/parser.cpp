@@ -3,11 +3,14 @@
  *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -32,6 +35,7 @@ extern "C"
 #ifdef __APPLE__
 #include "PATH_MAX.h"
 #endif
+#include "os_wfopen.h"
 }
 
 extern FILE*    yyin;
@@ -57,7 +61,17 @@ void Parser::parseFile(const std::string& fileName, const std::string& progName)
     {
         ParserSingleInstance::disableParseTrace();
     }
-    ParserSingleInstance::parseFile(fileName, progName);
+
+    try
+    {
+        ParserSingleInstance::parseFile(fileName, progName);
+    }
+    catch (const ast::InternalError& ie)
+    {
+        ParserSingleInstance::setTree(nullptr);
+        ParserSingleInstance::setExitStatus(Parser::Failed);
+    }
+
     this->setExitStatus(ParserSingleInstance::getExitStatus());
     this->setControlStatus(ParserSingleInstance::getControlStatus());
     if (getExitStatus() == Parser::Succeded)
@@ -150,6 +164,19 @@ void Parser::parse(const char *command)
     }
 
     // FIXME : UNLOCK
+}
+
+bool Parser::stopOnFirstError(void)
+{
+    return ParserSingleInstance::stopOnFirstError();
+}
+void Parser::enableStopOnFirstError(void)
+{
+    ParserSingleInstance::enableStopOnFirstError();
+}
+void Parser::disableStopOnFirstError(void)
+{
+    ParserSingleInstance::disableStopOnFirstError();
 }
 
 /** \brief parse the given file command */
@@ -257,6 +284,11 @@ std::string& ParserSingleInstance::getErrorMessage(void)
 
 void ParserSingleInstance::appendErrorMessage(const std::string& message)
 {
+    if (ParserSingleInstance::stopOnFirstError() && _error_message.empty() == false)
+    {
+        return;
+    }
+
     _error_message += message;
 }
 
@@ -290,7 +322,7 @@ std::string ParserSingleInstance::_file_name;
 std::string ParserSingleInstance::_prog_name;
 std::string ParserSingleInstance::_error_message;
 bool ParserSingleInstance::_strict_mode = false;
-bool ParserSingleInstance::_stop_on_first_error = false;
+bool ParserSingleInstance::_stop_on_first_error = true;
 ast::Exp* ParserSingleInstance::_the_program = nullptr;
 Parser::ParserStatus ParserSingleInstance::_exit_status = Parser::Succeded;
 std::list<Parser::ControlStatus> ParserSingleInstance::_control_status;

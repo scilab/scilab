@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -36,12 +39,6 @@ extern "C"
 
 namespace types
 {
-
-static int get_max_size(int* _piDims, int _iDims);
-
-/*    template<typename T>
-    inline bool _neg_(InternalType * in, InternalType *& out);
-*/
 
 template <typename T>
 class ArrayOf : public GenericType
@@ -245,7 +242,7 @@ public :
         return this;
     }
 
-    virtual ArrayOf<T>* set(int _iPos, T _data)
+    virtual ArrayOf<T>* set(int _iPos, const T _data)
     {
         if (m_pRealData == NULL || _iPos >= m_iSize)
         {
@@ -264,7 +261,7 @@ public :
         return this;
     }
 
-    virtual ArrayOf<T>* set(int _iRows, int _iCols, T _data)
+    virtual ArrayOf<T>* set(int _iRows, int _iCols, const T _data)
     {
         //            int piIndexes[2];
         //            piIndexes[0] = _iRows;
@@ -588,20 +585,6 @@ public :
     }
 };
 
-static int get_max_size(int* _piDims, int _iDims)
-{
-    if (_iDims == 0)
-    {
-        return 0;
-    }
-
-    int iMax = 1;
-    for (int i = 0 ; i < _iDims ; i++)
-    {
-        iMax *= _piDims[i];
-    }
-    return iMax;
-}
 }
 
 #endif /* !__ARRAYOF_HXX__ */

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uimenu_properties" xml:lang="ja">
+    <refnamediv>
+        <refname>uimenuプロパティ</refname>
+        <refpurpose>uimenuプロパティの説明.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>このページはScilab GUIのメニューで利用可能な全プロパティの
+            一覧を示します.
+        </para>
+        <para>
+            これらのプロパティは <link linkend="uimenu">uimenu</link>
+            関数により作成をする際に設定できます.
+        </para>
+        <para>
+            これらの値は <link linkend="set">set</link>  関数により変更でき,
+            <link linkend="get">get</link> 関数により読み込めます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>プロパティ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Callback</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>
+                        メニューが有効な場合にScilabインタプリタにより
+                        評価される命令.
+                        Mac OSXでは,"button menu"(子のないメニュー)の場合に
+                        コールバックは実行されないため,
+                        子を一つ以上指定する必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Enable</term>
+                <listitem>
+                    <para>{on} | off</para>
+                    <para>
+                        メニューを有効または無効にします.
+                        このプロパティに <literal>"on"</literal> (デフォルト)
+                        を指定した場合,メニューは有効となり,
+                        このプロパティに<literal>"off"</literal>を
+                        指定した場合,メニューはマウスのアクションに反応せず,
+                        グレイアウトされます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Checked</term>
+                <listitem>
+                    <para>on | {off}</para>
+                    <para>
+                        要素チェックインジケータ.
+                        このプロパティに "on"を指定すると,
+                        チェックボックスを最初に表示した際に
+                        この要素のラベルの先頭にチェックボックスが
+                        表示され,それがチェックされます.
+                        "off"を指定するとチェックボックスは表示されたままで
+                        チェックが外されます.
+                        このプロパティは特定のオプションの状態を示す
+                        要素を表示する際に使用できます.
+                    </para>
+                    <para>注意:
+                        <itemizedlist>
+                            <listitem>
+                                作成後にチェックボックスを削除する手段はありませんが,
+                                要素を削除することはできます.
+                            </listitem>
+                            <listitem>
+                                デフォルトで,対話的にチェックをしたり,チェックを外すことは
+                                できません.
+                                このような処理はCallbackプロパティにより実装できます.
+                            </listitem>
+                            <listitem>
+                                このプロパティは親メニューでは無視されます.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ForegroundColor</term>
+                <listitem>
+                    <para>[1 3] 実数ベクトルまたは文字列</para>
+                    <para>
+                        uimenuの表面色(フォントの色).
+                        色は赤,緑および青の値として指定されます.
+                        これらの色は[0,1]の範囲の実数です.
+                        色は実数ベクトル,すなわち [R,G,B]または
+                        "R|G|B"のように
+                        各値を "|" で区切った文字列で指定できます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Icon</term>
+                <listitem>
+                    <para>文字列.</para>
+                    <para>
+                        このプロパティは,メニューのアイコンとして使用される画像ファイルの
+                        (<link linkend="pwd">Scilabワーキングディレクトリ</link>に対する)
+                        相対パスまたは絶対パスを表します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Label</term>
+                <listitem>
+                    <para>文字列.</para>
+                    <para>
+                        このプロパティはメニューに表示するテキストを表します.
+                        テキストが2つの $ (ドル記号)で括られた場合,
+                        LaTeX式とみなされ,
+                        &lt; および &gt; で括られた場合, MathML式とみなされます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Tag</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>
+                        このプロパティは,
+                        一般にメニューを特定する際に使用されます.
+                        これにより"名前"を指定することができます.
+                        主に<literal>findobj()</literal>で指定する
+                        際に使用されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Visible</term>
+                <listitem>
+                    <para>{on} | off</para>
+                    <para>
+                        uimenuの可視性を設定します.
+                        このプロパティに<literal>"on"</literal>(デフォルト)が
+                        設定された場合, uimenuは可視となりますが,
+                        このプロパティに<literal>"off"</literal>が指定された場合,
+                        uimenuは親の図に表示されません.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uimenu">uicontextmenu</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="get">get</link>
+            </member>
+            <member>
+                <link linkend="math_rendering_features_in_graphic">LaTeX および MathML</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    <literal>Icon</literal> プロパティが追加されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scicos_sim">
+    <refnamediv>
+        <refname>scicos_sim</refname>
+        <refpurpose>Define a sim structure</refpurpose>
+    </refnamediv>
+    <refsection id="Module_scicos_sim">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="sim_scicos_sim">
+        <title>sim</title>
+        <para>
+            Static arrays coming from the result of the compilation. That arrays does not evolve during the simulation.
+        </para>
+        <para>
+            These information are used both by the simulator and the code generator.
+        </para>
+        <para>
+            Type : scilab tlist of type <code>"scs"</code> with fields :
+            <link linkend="scicos_cpr_sim_funs">funs</link>,
+            <link linkend="scicos_cpr_sim_xptr">xptr</link>,
+            <link linkend="scicos_cpr_sim_zptr">zptr</link>,
+            <link linkend="scicos_cpr_sim_ozptr">ozptr</link>,
+            <link linkend="scicos_cpr_sim_zcptr">zcptr</link>,
+            <link linkend="scicos_cpr_sim_inpptr">inpptr</link>,
+            <link linkend="scicos_cpr_sim_outptr">outptr</link>,
+            <link linkend="scicos_cpr_sim_inplnk">inplnk</link>,
+            <link linkend="scicos_cpr_sim_outlnk">outlnk</link>,
+            <link linkend="scicos_cpr_sim_rpar">rpar</link>,
+            <link linkend="scicos_cpr_sim_rpptr">rpptr</link>,
+            <link linkend="scicos_cpr_sim_ipar">ipar</link>,
+            <link linkend="scicos_cpr_sim_ipptr">ipptr</link>,
+            <link linkend="scicos_cpr_sim_opar">opar</link>,
+            <link linkend="scicos_cpr_sim_opptr">opptr</link>,
+            <link linkend="scicos_cpr_sim_clkptr">clkptr</link>,
+            <link linkend="scicos_cpr_sim_ordptr">ordptr</link>,
+            <link linkend="scicos_cpr_sim_execlk">execlk</link>,
+            <link linkend="scicos_cpr_sim_ordclk">ordclk</link>,
+            <link linkend="scicos_cpr_sim_cord">cord</link>,
+            <link linkend="scicos_cpr_sim_oord">oord</link>,
+            <link linkend="scicos_cpr_sim_zord">zord</link>,
+            <link linkend="scicos_cpr_sim_critev">critev</link>,
+            <link linkend="scicos_cpr_sim_nb">nb</link>,
+            <link linkend="scicos_cpr_sim_ztyp">ztyp</link>,
+            <link linkend="scicos_cpr_sim_nblk">nblk</link>,
+            <link linkend="scicos_cpr_sim_ndcblk">ndcblk</link>,
+            <link linkend="scicos_cpr_sim_subscr">subscr</link>,
+            <link linkend="scicos_cpr_sim_funtyp">funtyp</link>,
+            <link linkend="scicos_cpr_sim_iord">iord</link>,
+            <link linkend="scicos_cpr_sim_labels">labels</link>,
+            <link linkend="scicos_cpr_sim_modptr">modptr</link> and
+            <link linkend="scicos_cpr_sim_uids">uids</link>.
+        </para>
+        <refsect2 id="scicos_cpr_sim_funs">
+            <title>funs</title>
+            <para>A list containing names of the computational functions or scilab functions.</para>
+            <para>
+                Size : number of blocks.
+            </para>
+            <para>
+                Type : list of strings and/or scilab function.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_xptr">
+            <title>xptr</title>
+            <para>
+                A vector pointer to the continuous time state register <code>x</code>. The continuous-time state of block <code>i</code> is <code>state.x(sim.xptr(i):sim.xptr(i+1)-1)</code>.
+            </para>
+            <para>
+                Size : number of blocks + 1.
+            </para>
+            <para>
+                Type : column vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_zptr">
+            <title>zptr</title>
+            <para>
+                A vector pointer to the discrete time state register <code>z</code>. The discrete-time state of block <code>i</code> is <code>state.z(sim.zptr(i):sim.zptr(i+1)-1)</code>.
+            </para>
+            <para>
+                Size : number of blocks + 1.
+            </para>
+            <para>
+                Type : column vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_ozptr">
+            <title>ozptr</title>
+            <para>
+                A vector pointer to the object discrete state register oz. The object discrete state of block <code>i</code> is <code>state.oz(sim.ozptr(i):sim.ozptr(i+1)-1)</code>.
+            </para>
+            <para>
+                Size : number of blocks + 1.
+            </para>
+            <para>
+                Type : column vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_zcptr">
+            <title>zcptr</title>
+            <para>A vector pointer to the zero-crossing surfaces register. That vector gives by block the used number of the zero-crossing.</para>
+            <para>
+                Size : number of blocks + 1.
+            </para>
+            <para>
+                Type : column vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_inpptr">
+            <title>inpptr</title>
+            <para>
+                <code>(sim.inpptr(i+1)-sim.inpptr(i))</code> gives the number of regular input ports of the <code>i</code> block.
+            </para>
+            <para>
+                <code>inpptr(i)</code> points to the beginning of <code>i</code> th block inputs within the indirection table <code>inplnk</code>.
+            </para>
+            <para>
+                Size : number of blocks + 1.
+            </para>
+            <para>
+                Type : column vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_outptr">
+            <title>outptr</title>
+            <para>
+                <code>(sim.outptr(i+1)-sim.outptr(i))</code> gives the number of regular output ports of the <code>i</code> block.
+            </para>
+            <para>
+                <code>outptr(i)</code> points to the beginning of <code>i</code> th block outputs within the indirection table <code>outlnk</code>.
+            </para>
+            <para>
+                Size : number of blocks + 1.
+            </para>
+            <para>
+                Type : column vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_inplnk">
+            <title>inplnk</title>
+            <para>
+                <code>(cpr.sim.inplnk(cpr.sim.inpptr(i)-1+j))</code> is the index of the link connected to the <code>j</code> th input port of the <code>i</code> th block where <code>j</code> goes from <code>1</code> to <code>(cpr.sim.inpptr(i+1)-cpr.sim.inpptr(i))</code>.
+            </para>
+            <para>
+                Size : total number of regular input port.
+            </para>
+            <para>
+                Type : column vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_outlnk">
+            <title>outlnk</title>
+            <para>
+                <code>(cpr.sim.outlnk(cpr.sim.outptr(i)-1+j))</code> is the index of the link connected to the <code>j</code> th output port of the <code>i</code> th block where <code>j</code> goes from <code>1</code> to <code>(cpr.sim.outptr(i+1)-cpr.sim.outptr(i))</code>.
+            </para>
+            <para>
+                Size : total number of regular output port.
+            </para>
+            <para>
+                Type : column vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_rpar">
+            <title>rpar</title>
+            <para>Vector of real parameters that is obtained by concatenating the real parameters registers of all the blocks.</para>
+            <para>
+                Size : total number of real parameters.
+            </para>
+            <para>
+                Type : column vector of real numbers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_rpptr">
+            <title>rpptr</title>
+            <para>
+                A vector pointer to the real parameters register <code>rpar</code>. The real parameters of block <code>i</code> are <code>sim.rpar(sim.rpptr(i):sim.rpptr(i+1)-1)</code>.
+            </para>
+            <para>
+                Size : number of blocks + 1.
+            </para>
+            <para>
+                Type : column vector of integer.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_ipar">
+            <title>ipar</title>
+            <para>Vector of integer parameters that is obtained by concatenating the integer parameters registers of all the blocks.</para>
+            <para>
+                Size : total number of integer parameters.
+            </para>
+            <para>
+                Type : column vector of integer.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_ipptr">
+            <title>ipptr</title>
+            <para>
+                A vector pointer to the integer parameters register <code>ipar</code>. The integer parameters of block <code>i</code> are <code>sim.ipar(sim.ipptr(i):sim.ipptr(i+1)-1)</code>.
+            </para>
+            <para>
+                Size : number of blocks + 1.
+            </para>
+            <para>
+                Type : column vector of real numbers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_opar">
+            <title>opar</title>
+            <para>List of object parameters that is obtained by concatenating the list of object parameters of all the blocks.</para>
+            <para>
+                Size : total number of object parameters.
+            </para>
+            <para>
+                Type : list of scilab objects.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_opptr">
+            <title>opptr</title>
+            <para>
+                A vector pointer to the object parameters list <code>opar</code>. The object parameters of block <code>i</code> are <code>sim.opar(sim.opptr(i):sim.opptr(i+1)-1)</code>.
+            </para>
+            <para>
+                Size : number of blocks + 1.
+            </para>
+            <para>
+                Type : column vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_clkptr">
+            <title>clkptr</title>
+            <para>A vector pointer to output activation ports.</para>
+            <para>
+                <code>(cpr.sim.clkptr(i):cpr.sim.clkptr(i+1)-1)</code> gives the number of output event ports of the block <code>i</code>.
+            </para>
+            <para>
+                Size : number of blocks + 1.
+            </para>
+            <para>
+                Type : column vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_ordptr">
+            <title>ordptr</title>
+            <para>
+                A vector pointer to <varname>ordclk</varname> designating the part of ordclk corresponding to a given activation.
+            </para>
+            <para>
+                <code>(cpr.sim.ordptr(i):cpr.sim.ordptr(i+1)-1)</code> points to the region within <code>ordclk</code> indicates the number of blocks activated by the output event ports numbered <code>i</code>.
+            </para>
+            <para>
+                Size : number of sources of activation + 1.
+            </para>
+            <para>
+                Type : column vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_execlk">
+            <title>execlk</title>
+            <para>Unused.</para>
+            <para>
+                Size : -
+                Type : matrix of real.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_ordclk">
+            <title>ordclk</title>
+            <para>A matrix associated to blocks activated by output activation ports. The first column contains the block number, and the second, the event code by which the block should be called.</para>
+            <para>
+                Size : total number of blocks summed by source of activations.
+            </para>
+            <para>
+                Type : matrix of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_cord">
+            <title>cord</title>
+            <para>A matrix associated to always active blocks.</para>
+            <para>The first column contains the block number, and the second, the event code by which the block should be called.</para>
+            <para>
+                Size : <varname>ncord</varname>.
+            </para>
+            <para>
+                Type : matrix of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_oord">
+            <title>oord</title>
+            <para>
+                Subset of <varname>cord</varname>. Blocks of that matrix have outputs which affect computation of continuous state derivatives.
+            </para>
+            <para>
+                Size : <varname>noord</varname>.
+            </para>
+            <para>
+                Type : matrix of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_zord">
+            <title>zord</title>
+            <para>
+                Subset of <code>oord</code>. Blocks of that matrix have outputs which affect computation of zero-crossing surfaces.
+            </para>
+            <para>
+                Size : <varname>nzord</varname>.
+            </para>
+            <para>
+                Type : matrix of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_critev">
+            <title>critev</title>
+            <para>
+                A vector of size equal to the number of activations and containing zeros and ones. The value <code>1</code> indicates that the activation is critical in the sense that the continuous-time solver must be cold restarted.
+            </para>
+            <para>
+                Size : number of source of activation.
+            </para>
+            <para>
+                Type : column vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_nb">
+            <title>nb</title>
+            <para>Number of blocks. Note that the number of blocks may differ from the original number of blocks in the diagram because c_pass2 may duplicate some conditional blocks.</para>
+            <para>
+                Size : 1.
+            </para>
+            <para>
+                Type : integer.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_ztyp">
+            <title>ztyp</title>
+            <para>A vector of size equal to the number of blocks.</para>
+            <para>
+                A <code>1</code> entry indicates that the block may have zero-crossings, even if it does not in the context of the diagram. Usually not used by the simulator.
+            </para>
+            <para>
+                Size : number of blocks.
+            </para>
+            <para>
+                Type : column vector of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_nblk">
+            <title>nblk</title>
+            <para>
+                Not used. Set to <varname>nb</varname>.
+            </para>
+            <para>
+                Size : 1
+                Type : integer.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_ndcblk">
+            <title>ndcblk</title>
+            <para>Not used.</para>
+            <para>
+                Size : -
+                Type : integer.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_subscr">
+            <title>subscr</title>
+            <para>Not used.</para>
+            <para>
+                Size : 0
+            </para>
+            <para>
+                Type : empty real.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_funtyp">
+            <title>funtyp</title>
+            <para>
+                A vector of size equal to the number of blocks indicating the type of the computational function of the block. Block type can be <code>0</code> through <code>5</code>.
+            </para>
+            <para>
+                Currently only type <code>4</code> (C language) and type <code>5</code> (Scilab language) computational functions should be used. But older blocks can also be used.
+            </para>
+            <para>
+                Size : number of blocks.
+            </para>
+            <para>
+                Type : column vector of integer.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_iord">
+            <title>iord</title>
+            <para>A matrix associated to blocks that must be activated at the start of the simulation. This includes blocks inheriting from constant blocks and always active blocks.</para>
+            <para>
+                Size : <varname>niord</varname>.
+            </para>
+            <para>
+                Type : matrix of integers.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_labels">
+            <title>labels</title>
+            <para>A string vector of size equal to the number of blocks containing block labels.</para>
+            <para>
+                Size : numbers of blocks.
+            </para>
+            <para>
+                Type : column vector of strings.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_modptr">
+            <title>modptr</title>
+            <para>A vector pointer to the block modes.</para>
+            <para>
+                Size : number of blocks + 1.
+            </para>
+            <para>
+                Type : column vector of integer.
+            </para>
+        </refsect2>
+        <refsect2 id="scicos_cpr_sim_uids">
+            <title>uids</title>
+            <para>A string vector of size equal to the number of blocks containing block UIDs (each value is a unique block identifier).</para>
+            <para>
+                Size : numbers of blocks.
+            </para>
+            <para>
+                Type : column vector of strings.
+            </para>
+        </refsect2>
+    </refsection>
+</refentry>

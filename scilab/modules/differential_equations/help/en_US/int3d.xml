@@ -7,7 +7,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[result,err]=int3d(X,Y,Z,f [,nf[,params]])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -62,7 +62,7 @@
                 <term>params</term>
                 <listitem>
                     <para>
-                        a real vector <literal>[minpts, maxpts, epsabs, epsrel]</literal>. 
+                        a real vector <literal>[minpts, maxpts, epsabs, epsrel]</literal>.
                         The default value is <literal>[0, 1000, 0.0, 1.d-5]</literal>.
                     </para>
                     <variablelist>
@@ -114,7 +114,7 @@
         <para>The function calculates an approximation to a given vector of
             definite integrals
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 I  I  I (F ,F ,...,F )      dx(3)dx(2)dx(1),
           1  2      numfun
  ]]></programlisting>
@@ -122,7 +122,7 @@ I  I  I (F ,F ,...,F )      dx(3)dx(2)dx(1),
             where the region of integration is a collection of <literal>NUMTET</literal>
             tetrahedrons and where
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
  J   J
  ]]></programlisting>
@@ -150,7 +150,7 @@ F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
         <para>
             When <literal>int3d</literal> computes estimates to a vector of
             integrals, all components of the vector are given the same treatment. That
-            is, <literal>I(Fj)</literal> and <literal>I(Fk)</literal> for 
+            is, <literal>I(Fj)</literal> and <literal>I(Fk)</literal> for
             <literal>j</literal> not equal to <literal>k</literal>, are
             estimated with the same subdivision of the region of integration. For
             integrals with enough similarity, we may save time by applying
@@ -171,29 +171,29 @@ F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 X=[0;1;0;0];
 Y=[0;0;1;0];
 Z=[0;0;0;1];
 [RESULT,ERROR]=int3d(X,Y,Z,'int3dex')
-// computes the integrand exp(x*x+y*y+z*z) over the 
+// computes the integrand exp(x*x+y*y+z*z) over the
 //tetrahedron (0.,0.,0.),(1.,0.,0.),(0.,1.,0.),(0.,0.,1.)
 
 //integration over a cube  -1<=x<=1;-1<=y<=1;-1<=z<=1
 
-//  bottom  -top-     right    -left-   front   -rear- 
-X=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;          
-   -1,-1,   -1,-1,    1, 1,   -1,-1,   -1,-1,   -1,-1; 
-    1,-1,    1,-1,    1, 1,   -1,-1,    1,-1,    1,-1;     
-    1, 1,    1, 1,    1, 1,   -1,-1,    1, 1,    1, 1];         
-Y=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0; 
+//  bottom  -top-     right    -left-   front   -rear-
+X=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;
+   -1,-1,   -1,-1,    1, 1,   -1,-1,   -1,-1,   -1,-1;
+    1,-1,    1,-1,    1, 1,   -1,-1,    1,-1,    1,-1;
+    1, 1,    1, 1,    1, 1,   -1,-1,    1, 1,    1, 1];
+Y=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;
    -1,-1,   -1,-1,   -1, 1,   -1, 1,   -1,-1,    1, 1;
-   -1, 1,   -1, 1,    1, 1,    1, 1,   -1,-1,    1, 1;   
-    1, 1,    1, 1,   -1,-1,   -1,-1,   -1,-1,    1, 1]; 
+   -1, 1,   -1, 1,    1, 1,    1, 1,   -1,-1,    1, 1;
+    1, 1,    1, 1,   -1,-1,   -1,-1,   -1,-1,    1, 1];
 Z=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;
-   -1,-1,    1, 1,   -1, 1,   -1, 1,   -1,-1,   -1,-1; 
-   -1,-1,    1, 1,   -1,-1,   -1,-1,   -1, 1,   -1, 1;  
-   -1,-1,    1, 1,    1, 1,    1, 1,    1, 1,    1, 1];      
+   -1,-1,    1, 1,   -1, 1,   -1, 1,   -1,-1,   -1,-1;
+   -1,-1,    1, 1,   -1,-1,   -1,-1,   -1, 1,   -1, 1;
+   -1,-1,    1, 1,    1, 1,    1, 1,    1, 1,    1, 1];
 
 function v=f(xyz,numfun),v=exp(xyz'*xyz),endfunction
 [result,err]=int3d(X,Y,Z,f,1,[0,100000,1.d-5,1.d-7])
@@ -203,7 +203,7 @@ function v=f(xyz,numfun),v=1,endfunction
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="intc">intc</link>

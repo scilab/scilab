@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <stdio.h>
@@ -167,11 +170,8 @@ static BOOL AppendModules(char *xmlfilename)
             if (doc == NULL)
             {
                 printf(_("Error: Could not parse file %s.\n"), xmlfilename);
-                if (encoding)
-                {
-                    FREE(encoding);
-                    encoding = NULL;
-                }
+                FREE(encoding);
+                encoding = NULL;
                 return bOK;
             }
 
@@ -194,6 +194,10 @@ static BOOL AppendModules(char *xmlfilename)
                         {
                             /* we found the tag name */
                             const char *str = (const char*)attrib->children->content;
+                            if (name)
+                            {
+                                FREE(name);
+                            }
                             name = os_strdup(str);
                         }
                         else if (xmlStrEqual (attrib->name, (const xmlChar*) "activate"))
@@ -256,11 +260,8 @@ static BOOL AppendModules(char *xmlfilename)
         {
             printf(_("Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"), xmlfilename, "utf-8", encoding);
         }
-        if (encoding)
-        {
-            FREE(encoding);
-            encoding = NULL;
-        }
+        FREE(encoding);
+        encoding = NULL;
     }
     return bOK;
 }

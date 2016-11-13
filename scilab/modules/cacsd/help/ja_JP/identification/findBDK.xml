@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="findBDK">
+    <refnamediv>
+        <refname>findBDK</refname>
+        <refpurpose>カルマンゲインおよび離散時間システムの B, D システム行列</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[B,D,K] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)
+            [B,D,RCND] = findBDK(S,N,L,R,A,C,METH,JOB)
+            [B,D,K,Q,Ry,S,RCND] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータs</title>
+        <variablelist>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>整数, ブロックハンケル行列のブロック行の数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>N</term>
+                <listitem>
+                    <para>整数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>L</term>
+                <listitem>
+                    <para>整数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R</term>
+                <listitem>
+                    <para>行列, findR をコールすることにより計算される結合されたブロックハンケル行列の
+                        R因子に関係する部分
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>正方行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>METH</term>
+                <listitem>
+                    <para>整数, 使用する方法に関するオプション</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>= 1</term>
+                            <listitem>
+                                <para> 過去の入力と出力を指定するMOESP法;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>= 2</term>
+                            <listitem>
+                                <para> N4SID 法;</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        デフォルト:    METH = 2.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>JOB</term>
+                <listitem>
+                    <para>計算するシステム行列の種類を指定するオプション:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>= 1</term>
+                            <listitem>
+                                <para>  B行列を計算;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>= 2</term>
+                            <listitem>
+                                <para>  BおよびD行列を計算.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        デフォルト:    JOB = 2.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>NSMPL</term>
+                <listitem>
+                    <para>整数,
+                        共分散行列およびカルマン予測ゲインを計算する際に使用される
+                        サンプルの総数.
+                        このパラメータは,共分散行列とカルマン予測ゲインが必要ない
+                        場合には,不要です.NSMPL = 0の場合, K, Q, Ry, および S は計算されません.
+                        デフォルト:    NSMPL = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>TOL</term>
+                <listitem>
+                    <para>
+                        行列のランクを推定する際に使用される許容誤差.
+                        TOL &gt; 0 の場合, TOL に指定した値が, 条件数の逆数の下界として
+                        使用されます.
+                        デフォルト: prod(size(matrix))*epsilon_machine ただし,
+                        epsilon_machine は相対機械精度です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PRINTW</term>
+                <listitem>
+                    <para>整数, 警告メッセージの出力に関するスイッチ</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>PRINTW</term>
+                            <listitem>
+                                <para>= 1: 警告メッセージを出力;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>PRINTW</term>
+                            <listitem>
+                                <para>= 0: 警告メッセージを出力しない.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        デフォルト:    PRINTW = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SYS</term>
+                <listitem>
+                    <para>状態空間実現 SYS = (A,B,C,D) (syslin オブジェクト)を計算</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>カルマン予測ゲイン K (NSMPL &gt; 0の場合)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Q</term>
+                <listitem>
+                    <para>状態量共分散</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ry</term>
+                <listitem>
+                    <para>出力共分散</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>状態出力相互共分散</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>RCND</term>
+                <listitem>
+                    <para>
+                        長さ12のベクトルで,
+                        ランク決定, 最小二乗またはリカッチ方程式の解に関わる行列の条件数の逆数が含まれます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            システムの次数,行列AおよびCおよび関連する
+            結合ブロックハンケル行列のR因子を指定すると,
+            部分空間同定法 (MOESP または N4SID) により,
+            離散時間システムのシステム行列BおよびDとカルマンゲインを返します.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>[B,D,K] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)  は,
+                    システム行列 B (JOB = 1の場合),
+                    システム行列 BおよびD (JOB = 2の場合),
+                    カルマン予測ゲイン K (NSMPL &gt; 0の場合) を計算します.
+                    モデルの構造は次のようになります:
+                </para>
+                <programlisting role=""><![CDATA[
+x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
+y(k)   = Cx(k) + Du(k) + e(k),
+ ]]></programlisting>
+                <para>
+                    ただし, x(k) および y(k) はそれぞれ長さ N および Lのベクトルです.
+                </para>
+            </listitem>
+            <listitem>
+                <para>[B,D,RCND] = findBDK(S,N,L,R,A,C,METH,JOB)  は,
+                    長さ 4 のベクトル RCND も返します.
+                    このベクトルには,ランク決定に関連する条件数の逆数が含まれます.
+                </para>
+            </listitem>
+            <listitem>
+                <para>[B,D,K,Q,Ry,S,RCND] = findBDK(S,N,L,R,A,C,METH,JOB,NSMPL,TOL,PRINTW)  は,
+                    長さ 12 の RCNDベクトルと共に,
+                    状態量, 出力, 出力状態 (相互)共分散行列 Q, Ry, および S
+                    (カルマンゲイン計算で使用される)も返します.
+                    RCNDベクトルには,ランク決定, 最小二乗またはリカッチ方程式の解に関連する
+                    行列の条件数の逆数が含まれます.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            findR により計算される行列 Rは,
+            適当な引数 METH および JOBDで定義されます.
+            findR ではMETH = 1かつJOBD = 1,findBDKではMETH = 1を使用しますす.
+            FINDR では METH = 1, findBDK では METH = 2 を使用することができます.
+        </para>
+        <para>
+            出力引数の数は変換しますが,次のように入力引数に対応します,
+        </para>
+        <programlisting role=""><![CDATA[
+         B = findBDK(S,N,L,R,A,C,METH,1)  または
+     [B,D] = findBDK(S,N,L,R,A,C,METH,2)  または
+[B,D,RCND] = findBDK(S,N,L,R,A,C,METH,2)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+//指定した線形システムからデータを生成
+A = [ 0.5, 0.1,-0.1, 0.2;
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
+B = [0.8;0.1;1;-1];
+C = [1 2 -1 0];
+SYS=syslin(0.1,A,B,C);
+nsmp=100;
+U=prbs_a(nsmp,nsmp/5);
+Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
+// Rを計算
+S=15;L=1;
+[R,N,SVAL] = findR(S,Y',U');
+N=3;
+METH=3;TOL=-1;
+[A,C] = findAC(S,N,L,R,METH,TOL);
+[B,D,K] = findBDK(S,N,L,R,A,C);
+SYS1=syslin(1,A,B,C,D);
+SYS1.X0 = inistate(SYS1,Y',U');
+Y1=flts(U,SYS1);
+clf();plot2d((1:nsmp)',[Y',Y1'])
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="findABCD">findABCD</link>
+            </member>
+            <member>
+                <link linkend="findAC">findAC</link>
+            </member>
+            <member>
+                <link linkend="findBD">findBD</link>
+            </member>
+            <member>
+                <link linkend="findR">findR</link>
+            </member>
+            <member>
+                <link linkend="sorder">sorder</link>
+            </member>
+            <member>
+                <link linkend="sident">sident</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

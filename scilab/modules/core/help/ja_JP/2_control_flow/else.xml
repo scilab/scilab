@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="else">
+
+    <refnamediv>
+
+        <refname>else</refname>
+
+        <refpurpose>if-then-elseおよびselect-case-then-elseのキーワード</refpurpose>
+
+    </refnamediv>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            <literal>if</literal>および<literal>select</literal>で使用されます.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+val = %t
+
+if val==%t then
+    disp("true");
+else
+    disp("false");
+end
+
+select val
+   case %t then
+      disp("true");
+   case %f then
+      disp("false");
+   else
+      disp("a third variant");
+end
+     ]]></programlisting>
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="if">if</link>
+
+            </member>
+
+            <member>
+
+                <link linkend="select">select</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

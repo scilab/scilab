@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strcmpi" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strcmpi" xml:lang="pt">
     <refnamediv>
         <refname>strcmpi</refname>
-        <refpurpose>compara strings (caso independente)</refpurpose>
+        <refpurpose>
+            compara strings (caso independente)  <emphasis role="bold">This function is obsolete.</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>res = strcmpi(string_one,string_two)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>string_one</term>
@@ -43,20 +48,23 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>res = strcmpi(string_one,string_two)</literal> retorna um
-            valor inteiro indicando a relação entre os strings.
+            valor inteiro indicando a relaÃ§Ã£o entre os strings.
         </para>
         <para>Um valor inteiro maior que zero indica que o primeiro caractere que
-            não corresponde possui valor maior em <literal>string_one</literal> que em
+            nÃ£o corresponde possui valor maior em <literal>string_one</literal> que em
             <literal>string_two</literal>
         </para>
-        <para>Um valor negativo indica o contrário.</para>
+        <para>Um valor negativo indica o contrÃ¡rio.</para>
+        <warning>
+            This function is obsolete. Please use <link linkend="strcmp">strcmp(s1,s1,"i")</link> instead.
+        </warning>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 TXT1 = ['scilab','SciLab';'Strcmp','STRcmp'];
 TXT2 = ['ScIlAb','sciLab';'sTrCmP','StrCMP'];
 strcmpi(TXT1,TXT2)
@@ -64,7 +72,7 @@ strcmpi(TXT1,'scilab')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="strcat">strcat</link>
@@ -73,5 +81,16 @@ strcmpi(TXT1,'scilab')
                 <link linkend="strcmp">strcmp</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    Function tagged as obsolete. Will be removed from Scilab 6.1
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

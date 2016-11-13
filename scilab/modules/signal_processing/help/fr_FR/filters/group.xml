@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="group">
+    <refnamediv>
+        <refname>group</refname>
+        <refpurpose>group delay for digital filter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            [tg [,fr]] = group(npts, H) (call with a siso transfert function)
+            [tg [,fr]] = group(npts, C) (call with a vector of transfert functions, cascaded second order representation)
+
+            [tg [,fr]] = group(npts, F) (call with the vector of an FIR filter coefficients)
+            [tg [,fr]] = group(npts, a1i, a2i, b1i, b2i) (call with 4 vectors of numbers, cascaded second order Deczky representation)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>npts</term>
+                <listitem>
+                    <para>integer : number of points desired in calculation of group delay</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a1i</term>
+                <listitem>
+                    <para>in coefficient, polynomial, rational polynomial, or cascade polynomial form this variable is the transfer function of the filter. In coefficient polynomial form this is a vector of coefficients (see below).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a2i</term>
+                <listitem>
+                    <para>in coeff poly form this is a vector of coeffs</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b1i</term>
+                <listitem>
+                    <para>in coeff poly form this is a vector of coeffs</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b2i</term>
+                <listitem>
+                    <para>in coeff poly form this is a vector of coeffs</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tg</term>
+                <listitem>
+                    <para>values of group delay evaluated on the grid fr</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fr</term>
+                <listitem>
+                    <para>grid of normalized frequency values where group delay is evaluated</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Calculate the group delay of a digital filter
+            with transfer function h(z).
+        </para>
+        <para>
+            The filter specification can be in coefficient form,
+            polynomial form, rational polynomial form, cascade
+            polynomial form, or in coefficient polynomial form.
+        </para>
+        <para>
+            In the coefficient polynomial form the transfer function is
+            formulated by the following expression
+        </para>
+        <para>
+            <literal>h(z)=prod(a1i+a2i*z+z**2)/prod(b1i+b2i*z+z^2)</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+        s = poly(0, "s");
+        h_cont = syslin("c", 1/(s-10));
+        h = ss2tf(cls2dls(tf2ss(h_cont), 0.1));
+        [tg, fr] = group(100, h);
+        plot(fr, tg)
+ ]]></programlisting>
+        <scilab:image><![CDATA[
+s = poly(0, "s");
+h_cont = syslin("c", 1/(s-10));
+h = ss2tf(cls2dls(tf2ss(h_cont), 0.1));
+[tg, fr] = group(100, h);
+plot(fr, tg)
+]]>     </scilab:image>
+    </refsection>
+</refentry>

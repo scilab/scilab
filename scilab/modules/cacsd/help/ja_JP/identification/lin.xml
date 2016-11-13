@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="lin">
+    <refnamediv>
+        <refname>lin</refname>
+        <refpurpose>線形化</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[A,B,C,D]=lin(sim,x0,u0)
+            [sl]=lin(sim,x0,u0)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sim</term>
+                <listitem>
+                    <para>関数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0, u0</term>
+                <listitem>
+                    <para>互換性がある次元のベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A,B,C,D</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            非線形システム <literal>[y,xdot]=sim(x,u)</literal>の
+            <literal>x0,u0</literal>近傍での線形化.
+        </para>
+        <para>
+            <literal>sim</literal> は <literal>y</literal> および
+            <literal>xdot</literal>を計算する関数です.
+        </para>
+        <para>
+            出力は線形システム (<literal>syslin</literal> リスト) <literal>sl</literal> または
+            4つの行列 <literal>(A,B,C,D)</literal>です.
+        </para>
+        <para>
+            例えば,  <literal>ftz</literal> が ODE に指定された関数で,
+            例えば以下の場合:
+        </para>
+        <programlisting role=""><![CDATA[
+[zd]=ftz(t,z,u)
+ ]]></programlisting>
+        <para>
+            そして,  <literal>y=x</literal>と仮定すると,
+        </para>
+        <para>
+            <literal>[z]=ode(x0,t0,tf,list(ftz,u)</literal> は
+            <literal>x(tf)</literal>を計算します.
+        </para>
+        <para>
+            <literal>simula</literal> が以下の関数の場合:
+        </para>
+        <programlisting role=""><![CDATA[
+deff('[y,xd]=simula(x,u)','xd=ftz(tf,x,u); y=x;');
+ ]]></programlisting>
+        <para>
+            接する線形システム <literal>sl</literal> は以下のように得られます:
+        </para>
+        <programlisting role=""><![CDATA[
+[A,B,C,D]=lin(simula,z,u)
+sl = syslin('c',A,B,C,D,x0)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+deff('[y,xdot]=sim(x,u)','xdot=[u*sin(x);-u*x^2];y=xdot(1)+xdot(2)')
+sl=lin(sim,1,2);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="external">external</link>
+            </member>
+            <member>
+                <link linkend="derivat">derivat</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

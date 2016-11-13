@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isListType" xml:lang="ja">
+    <refnamediv>
+        <refname>isListType, isTListType, isMListType</refname>
+        <refpurpose>
+            list, mlist, tlist 変数かどうかを調べる.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>int isListType(void* _pvCtx, int* _piAddress)</synopsis>
+        <synopsis>int isNamedListType(void* _pvCtx, const char* _pstName)</synopsis>
+        <synopsis>int isTListType(void* _pvCtx, int* _piAddress)</synopsis>
+        <synopsis>int isNamedTListType(void* _pvCtx, const char* _pstName)</synopsis>
+        <synopsis>int isMListType(void* _pvCtx, int* _piAddress)</synopsis>
+        <synopsis>int isNamedMListType(void* _pvCtx, const char* _pstName)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.hで提供される"pvApiCtx"を指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        変数を保存するScilabメモリの位置.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        "名前指定" 関数の場合の変数名.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>戻り値</title>
+        <para>変数がlist型の場合に1, それ以外は 0</para>
+    </refsection>
+    <refsection>
+        <title>Scilabテストスクリプト</title>
+        <programlisting role="code_scilab"><![CDATA[
+fileData = [
+'#include <api_scilab.h>'
+'#include <Scierror.h>'
+'#include <MALLOC.h>'
+'/* ========================================================================== */'
+'int sci_getListType(char *fname)'
+'{'
+'    int* piAddr = NULL;'
+'    char pstRet[64];'
+''
+'    getVarAddressFromPosition(pvApiCtx, 1, &piAddr);'
+''
+'    if(isStringType(pvApiCtx, piAddr))'
+'    {//named check'
+'        char* pstVar = NULL;'
+'        getAllocatedSingleString(pvApiCtx, piAddr, &pstVar);'
+''
+'        if(isNamedListType(pvApiCtx, pstVar))'
+'        {'
+'            sprintf(pstRet, ""%s"", ""isNamedList"");'
+'        }'
+'        else if(isNamedTListType(pvApiCtx, pstVar))'
+'        {'
+'            sprintf(pstRet, ""%s"", ""isNamedTList"");'
+'        }'
+'        else if(isNamedMListType(pvApiCtx, pstVar))'
+'        {'
+'            sprintf(pstRet, ""%s"", ""isNamedMList"");'
+'        }'
+'        else'
+'        {'
+'            sprintf(pstRet, ""%s"", ""unmanaged named type"");'
+'        }'
+'        FREE(pstVar);'
+'    }'
+'    else'
+'    {'
+'        if(isListType(pvApiCtx, piAddr))'
+'        {'
+'            sprintf(pstRet, ""%s"", ""isList"");'
+'        }'
+'        else if(isTListType(pvApiCtx, piAddr))'
+'        {'
+'            sprintf(pstRet, ""%s"", ""isTList"");'
+'        }'
+'        else if(isMListType(pvApiCtx, piAddr))'
+'        {'
+'            sprintf(pstRet, ""%s"", ""isMList"");'
+'        }'
+'        else'
+'        {'
+'            sprintf(pstRet, ""%s"", ""unmanaged type"");'
+'        }'
+'    }'
+'    createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstRet);'
+'    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;'
+'    return 0;'
+'}'
+]
+currentPath = pwd();
+mkdir(TMPDIR + "/getListType");
+cd(TMPDIR + "/getListType");
+mputl(fileData, "getListType.c");
+ilib_verbose(0);
+files = ['getListType.c'];
+ilib_build('libgetListType', ['getListType', 'sci_getListType'], files, []);
+exec loader.sce;
+a = list();
+b = tlist("test");
+c = mlist("test");
+d = 1;
+assert_checkequal(getListType(a), "isList");
+assert_checkequal(getListType(b), "isTList");
+assert_checkequal(getListType(c), "isMList");
+assert_checkequal(getListType(d), "unmanaged type");
+assert_checkequal(getListType("a"), "isNamedList");
+assert_checkequal(getListType("b"), "isNamedTList");
+assert_checkequal(getListType("c"), "isNamedMList");
+assert_checkequal(getListType("d"), "unmanaged named type");
+//unload lib
+[bOK, ilib] = c_link('libgetListType');
+if bOK then
+  ulink(ilib);
+end
+cd(currentPath);
+]]></programlisting>
+    </refsection>
+</refentry>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="sgrid">
+    <refnamediv>
+        <refname>sgrid</refname>
+        <refpurpose>s平面のグリッド線.  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            sgrid()
+            sgrid(zeta,wn [,colors])
+            sgrid(['new',] zeta,wn [,colors])
+            sgrid(zeta,wn [,'new'] [,colors])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>zeta</term>
+                <listitem>
+                    <para>
+                        ダンピング係数の配列. <literal>[0
+                            1]
+                        </literal>
+                        の範囲の値が有効です.
+                        デフォルト値は
+                        <literal>[0 0.16 0.34 0.5 0.64 0.76 0.86 0.94 0.985
+                            1]
+                        </literal>
+                        です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wn</term>
+                <listitem>
+                    <para>固有周波数の配列(単位:Hz). 正の値のみが有効です.
+                        省略された場合,プロットの境界に適合するように
+                        プログラムにより計算されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>colors</term>
+                <listitem>
+                    <para>整数値(色添字)を有するスカラーまたは2要素の配列.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            evansと組み合わせて使用され,
+            ダンピング比(<literal>zeta</literal>),
+            固有周波数 (<literal>wn</literal>)が一定値となる
+            線をプロットします.
+        </para>
+        <para>
+            引数<literal>colors</literal> は,
+            ダンピング係数が一定の曲線(<literal>colors(2)</literal>) および
+            固有周波数が一定の曲線(<literal>colors(1)</literal>)の色を指定します.
+        </para>
+        <para>
+            <literal>sgrid</literal>関数は,連続時間線形システムの根軌跡の
+            グリッドを描画する際によく使用されます.
+            この場合,<literal>sgrid</literal>関数は
+            <link linkend="evans">evans</link>をコールした後に
+            コールする必要があります.
+            離散時間線形システムの場合,<link linkend="zgrid">zgrid</link>
+            関数を使用する必要があります.
+        </para>
+        <para>
+            オプション引数 <literal>'new'</literal> は,
+            グリッドをプロットする前にグラフィックウィンドウを消去する
+            ために使用できます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    //sgrid
+    clf();sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])
+    ]]></programlisting>
+        <para>
+            <scilab:image>
+                sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+        H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+        clf();evans(H,100);sgrid()
+        ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+                clf();evans(H,100);sgrid()
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="evans">evans</link>
+            </member>
+            <member>
+                <link linkend="zgrid">zgrid</link>
+            </member>
+            <member>
+                <link linkend="datatips">datatips</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

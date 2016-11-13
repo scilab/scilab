@@ -5,7 +5,7 @@
         <refpurpose>преобразование функции в дерево</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>t=macr2tree(function_name)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -28,15 +28,15 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Этот примитив преобразует компилированную функцию Scilab с именем 
-            <literal>function_name</literal> в дерево (перекрываемые типизированные 
-            списки), которое кодирует внутреннее представление функции. 
+            Этот примитив преобразует компилированную функцию Scilab с именем
+            <literal>function_name</literal> в дерево (перекрываемые типизированные
+            списки), которое кодирует внутреннее представление функции.
             Для использования совместно с <literal>tree2code</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 tree=macr2tree(cosh);
 txt=tree2code(tree,%T);
 write(%io(2),txt,'(a)');

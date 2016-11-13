@@ -50,7 +50,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 m=0.36;
 K=%k(m);
 P=4*K; //実周期

@@ -2,15 +2,18 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="spget" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="spget" xml:lang="pt">
     <refnamediv>
         <refname>spget</refname>
         <refpurpose>recupera entradas de matriz esparsa</refpurpose>
@@ -32,7 +35,7 @@
                 <term>ij</term>
                 <listitem>
                     <para>matriz de inteiros de duas colunas (índices das entradas
-                        não-nulas) 
+                        não-nulas)
                     </para>
                 </listitem>
             </varlistentry>
@@ -40,7 +43,7 @@
                 <term>mn</term>
                 <listitem>
                     <para>vetor de inteiros com duas entradas (dimensão de linha,
-                        dimensão de coluna) 
+                        dimensão de coluna)
                     </para>
                 </listitem>
             </varlistentry>
@@ -68,7 +71,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 sp=sparse([1,2;4,5;3,10],[1,2,3])
 [ij,v,mn]=spget(sp);
  ]]></programlisting>

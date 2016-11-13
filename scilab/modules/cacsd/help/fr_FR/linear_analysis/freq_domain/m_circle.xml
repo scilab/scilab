@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="fr" xml:id="m_circle">
+    <refnamediv>
+        <refname>m_circle</refname>
+        <refpurpose>plots the complex plane iso-gain contours of y/(1+y) (obsolete) </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>m_circle()
+            m_circle(gain)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>gain</term>
+                <listitem>
+                    <para>vector of gains (in DB). The default value is</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>gain</term>
+                            <listitem>
+                                <para>=[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>m_circle</literal> draws the iso-gain contours
+            given by then <literal>gain</literal> argument in the complex
+            plane (Re,Im).
+        </para>
+        <para>
+            The default value for <literal>gain</literal> is:
+        </para>
+        <para>
+            <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
+        </para>
+        <para>
+            <literal>m_circle</literal> is used with <literal>nyquist</literal>.
+        </para>
+        <para>
+            This function is superseded by the <link linkend="hallchart">hallchart</link> function.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+nyquist(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
+m_circle();
+]]></programlisting>
+        <scilab:image localized="true">
+            s=poly(0,'s')
+            h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+            nyquist(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
+            m_circle();
+        </scilab:image>
+
+        <programlisting role="example"><![CDATA[
+clf();
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+nyquist([h1;h],0.01,100,['h1';'h'])
+m_circle([-8 -6 -4]);
+]]></programlisting>
+        <scilab:image localized="true">
+            clf();
+            s=poly(0,'s')
+            h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+            h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+            nyquist([h1;h],0.01,100,['h1';'h'])
+            m_circle([-8 -6 -4]);
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+            <member>
+                <link linkend="nicholschart">nicholschart</link>
+            </member>
+            <member>
+                <link linkend="black">black</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - JPC
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="armax">
+    <refnamediv>
+        <refname>armax</refname>
+        <refpurpose>armax 同定</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[arc,la,lb,sig,resid]=armax(r,s,y,u,[b0f,prf])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>出力プロセス  y(ny,n); ( ny: yの次元 , n : サンプルの大きさ)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    <para>入力プロセス   u(nu,n); ( nu: uの次元 , n : サンプルの大きさ)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r and s</term>
+                <listitem>
+                    <para>自己回帰,次数は r &gt;=0 , s &gt;=-1</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b0f</term>
+                <listitem>
+                    <para>オプションのパラメータ.
+                        デフォルト値は0で,係数b0を同定する必要があることを意味します.
+                        bof=1の場合,b0は0であると仮定され,同定されません.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prf</term>
+                <listitem>
+                    <para>表示を制御するオプションのパラメータ. prf =1 (デフォルト値)の場合,
+                        Arma同定の過程が表示されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>arc</term>
+                <listitem>
+                    <para>Scilab arma オブジェクト (armac参照)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>la</term>
+                <listitem>
+                    <para>list(a,a+eta,a-eta) ( la は a の次元1) です; ただし,
+                        eta は標準偏差の推定値です.
+                        a=[Id,a1,a2,...,ar],ただし,各aiは大きさ(ny,ny)の行列です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lb</term>
+                <listitem>
+                    <para>list(b,b+etb,b-etb) (lb はbの次元1) です; ただし,
+                        etb は標準偏差の推定値です.
+                        b=[b0,.....,b_s] ただし,各biは大きさ(nu,nu)の行列です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sig</term>
+                <listitem>
+                    <para>ノイズの標準偏差の推定値で, resid=[ sig*e(t0),....] です.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            armax はn次元ARXプロセスの係数を同定するために使用されます.
+        </para>
+        <programlisting role=""><![CDATA[
+A(z^-1)y= B(z^-1)u + sig*e(t)
+ ]]></programlisting>
+        <para>
+            ただし, e(t) は分散Iのn次元白色雑音です.
+            sig は nxn の行列で， A(z) および B(z)は以下のようになります:
+        </para>
+        <programlisting role=""><![CDATA[
+A(z) = 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
+B(z) = b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
+ ]]></programlisting>
+        <para>
+            この手法については,Eykhoffの96ページ,
+            "trends and progress in system identification"を参照ください.
+            <literal>z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s)]</literal>
+            および
+            <literal>coef= [-a1,..,-ar,b0,...,b_s] </literal>とおくと,
+            <literal>y(t)= coef* z(t) + sig*e(t) </literal>を記述することができ,
+            このアルゴリズムは,
+            <literal>sum_{t=1}^N ( [y(t)- coef'z(t)]^2)</literal>
+            を最小化
+            (ただし,t0=maxi(maxi(r,s)+1,1))) )します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例s</title>
+        <programlisting role="example"><![CDATA[
+//-Ex1- Arma model : y(t) = 0.2*u(t-1)+0.01*e(t-1)
+ny=1,nu=1,sig=0.01;
+Arma=armac(1,[0,0.2],[0,1],ny,nu,sig)  //defining the above arma model
+u=rand(1,1000,'normal');     //a random input sequence u
+y=arsimul(Arma,u); //simulation of a y output sequence associated with u.
+Armaest=armax(0,1,y,u);   //Identified model given u and y.
+Acoeff=Armaest('a');    //Coefficients of the polynomial A(x)
+Bcoeff=Armaest('b')     //Coefficients of the polynomial B(x)
+Dcoeff=Armaest('d');    //Coefficients of the polynomial D(x)
+[Ax,Bx,Dx]=arma2p(Armaest)   //Results in polynomial form.
+//-Ex2- Arma1: y_t -0.8*y_{t-1} + 0.2*y_{t-2} =  sig*e(t)
+ny=1,nu=1;sig=0.001;
+// First step: simulation the Arma1 model, for that we define
+// Arma2: y_t -0.8*y_{t-1} + 0.2*y_{t-2} = sig*u(t)
+// with normal deviates for u(t).
+Arma2=armac([1,-0.8,0.2],sig,0,ny,nu,0);
+//Definition of the Arma2 arma model (a model with B=sig and without noise!)
+u=rand(1,10000,'normal');  // An input sequence for Arma2
+y=arsimul(Arma2,u); // y = output of Arma2 with input u
+//                     can be seen as output of Arma1.
+// Second step: identification. We look for an Arma model
+// y(t) + a1*y(t-1) + a2 *y(t-2) =  sig*e(t)
+Arma1est=armax(2,-1,y,[]);
+[A,B,D]=arma2p(Arma1est)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="imrep2ss">imrep2ss</link>
+            </member>
+            <member>
+                <link linkend="time_id">time_id</link>
+            </member>
+            <member>
+                <link linkend="arl2">arl2</link>
+            </member>
+            <member>
+                <link linkend="armax">armax</link>
+            </member>
+            <member>
+                <link linkend="frep2tf">frep2tf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

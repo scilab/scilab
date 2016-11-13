@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="eigs" xml:lang="en">
@@ -16,11 +19,11 @@
         <refpurpose>calculates largest eigenvalues and eigenvectors of matrices</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             d = eigs(A [,B [,k [,sigma [,opts]]]])
             [d, v] = eigs(A [,B [,k [,sigma [,opts]]]])
-            
+
             d = eigs(Af, n [,B [,k [,sigma [,opts]]]])
             [d, v] = eigs(Af, n [,B [,k [,sigma [,opts]]]])
         </synopsis>
@@ -109,7 +112,7 @@
                         the length of the vector argument, must be defined. It must have the following header :
                     </para>
                     <programlisting role="no-scilab-exec">
-                        <![CDATA[ 
+                        <![CDATA[
 function y = A ( x )
  ]]>
                     </programlisting>
@@ -205,31 +208,31 @@ function y = A ( x )
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>'BE'</literal> compute <varname>k</varname> eigenvalues, half from each end of the spectrum, only for real 
+                                <literal>'BE'</literal> compute <varname>k</varname> eigenvalues, half from each end of the spectrum, only for real
                                 symmetric problems.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>'LR'</literal> compute the <varname>k</varname> eigenvalues of Largest Real part, only for real non-symmetric or 
+                                <literal>'LR'</literal> compute the <varname>k</varname> eigenvalues of Largest Real part, only for real non-symmetric or
                                 complex problems.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>'SR'</literal> compute the <varname>k</varname> eigenvalues of Smallest Real part, only for real non-symmetric or 
+                                <literal>'SR'</literal> compute the <varname>k</varname> eigenvalues of Smallest Real part, only for real non-symmetric or
                                 complex problems.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>'LI'</literal> compute the <varname>k</varname> eigenvalues of Largest Imaginary part, only for real non-symmetric 
+                                <literal>'LI'</literal> compute the <varname>k</varname> eigenvalues of Largest Imaginary part, only for real non-symmetric
                                 or complex problems.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>'SI'</literal> compute the <varname>k</varname> eigenvalues of Smallest Imaginary part, only for real non-symmetric 
+                                <literal>'SI'</literal> compute the <varname>k</varname> eigenvalues of Smallest Imaginary part, only for real non-symmetric
                                 or complex problems.
                             </para>
                         </listitem>
@@ -327,7 +330,7 @@ function y = A ( x )
     <refsection>
         <title>Example for real symmetric problems</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 clear opts
 A            = diag(10*ones(10,1));
 A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(9,1));
@@ -388,7 +391,7 @@ d = eigs(fn, 10, [], k, 4, opts)
     <refsection>
         <title>Example for real non-symmetric problems</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 	clear opts
     A            = diag(10*ones(10,1));
     A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(9,1));
@@ -398,12 +401,12 @@ d = eigs(fn, 10, [], k, 4, opts)
     k = 8;
     sigma = 'SM';
     opts.cholB = %t;
-    
+
     d = eigs(A)
 [d, v] = eigs(A)
-    
+
     d = eigs(A, B, k, sigma)
-    [d, v] = eigs(A, B, k, sigma) 
+    [d, v] = eigs(A, B, k, sigma)
 
     d = eigs(A, B, k, sigma, opts)
     [d, v] = eigs(A, B, k, sigma, opts)
@@ -419,7 +422,7 @@ d = eigs(AS)
 
     d = eigs(AS, BS, k, sigma, opts)
     [d, v] = eigs(AS, BS, k, sigma, opts)
-    
+
     // With function
 clear opts
 function y = fn(x)
@@ -448,7 +451,7 @@ d = eigs(fn, 10, [], k, 4, opts)
     <refsection>
         <title>Example for complex problems</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 	clear opts
     A            = diag(10*ones(10,1) + %i * ones(10,1));
     A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(9,1));
@@ -458,7 +461,7 @@ d = eigs(fn, 10, [], k, 4, opts)
     k = 8;
     sigma = 'LM';
     opts.cholB = %t;
-    
+
     d = eigs(A)
 [d, v] = eigs(A)
 
@@ -466,11 +469,11 @@ d = eigs(fn, 10, [], k, 4, opts)
     [d, v] = eigs(A, B, k, sigma)
     d = eigs(A, B, k, sigma, opts)
     [d, v] = eigs(A, B, k, sigma, opts)
-    
+
     // With sparses
     AS = sparse(A);
     BS = sparse(B);
-    
+
     d = eigs(AS)
 [d, v] = eigs(AS)
 
@@ -479,7 +482,7 @@ d = eigs(fn, 10, [], k, 4, opts)
 
     d = eigs(AS, BS, k, sigma, opts)
     [d, v] = eigs(AS, BS, k, sigma, opts)
-    
+
     // With function
 clear opts
 function y = fn(x)
@@ -506,7 +509,7 @@ d = eigs(fn, 10, [], k, 4, opts)
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="spec">spec</link>

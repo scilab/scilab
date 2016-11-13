@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2015 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isreal" xml:lang="fr">
     <refnamediv>
         <refname>isreal</refname>
-        <refpurpose>vérifie si une matrice a des éléments complexes</refpurpose>
+        <refpurpose>Retourne %F si la matrice est encodée en numération complexe</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>t=isreal(x)
-            t=isreal(x,eps)
+        <title>Syntaxe</title>
+        <synopsis>t = isreal(x)
+            t = isreal(x, eps)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>vecteur ou matrice réelle ou complexe.</para>
+                    <para>matrice de nombres réels ou complexes, ou de polynômes
+                        ou fractions rationnelles à coefficients réels ou complexes.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>eps</term>
                 <listitem>
-                    <para>nombre réel positif.</para>
+                    <para>nombre réel positif (par défaut nul)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -33,7 +49,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
             <literal>isreal(x)</literal> renvoie <literal>%T</literal> (vrai) si
@@ -42,20 +58,40 @@
             partie imaginaire (même nulle).
         </para>
         <para>
-            <literal>isreal(x,eps)</literal> renvoie <literal>%T</literal>
-            (vrai) si <literal>x</literal> est stockée comme une matrice réelle ou si
-            les valeurs absolues des parties imaginaires des éléments de
-            <literal>x</literal> sont plus petites que <literal>eps</literal>.
+            <literal>isreal(x, eps)</literal> renvoie <literal>%T</literal>
+            (vrai) si <literal>x</literal> est stockée comme une matrice réelle, ou si
+            les valeurs absolues des parties imaginaires de ses éléments (ou des coefficients de
+            ses éléments) sont inférieures à <literal>eps</literal>.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
+isreal([])        // => %T
 isreal([1 2])
 isreal(1+0*%i)
 isreal(1+0*%i,0)
-isreal(1+%s)
-isreal(sprand(3,3,0.1))
- ]]></programlisting>
+
+// Matrice creuse complexe :
+isreal(sparse([1-%i -3+4*%i]))
+
+// Polynôme à coefficients complexes :
+p = (1-2*%s)^2
+isreal(p)
+
+// Fraction rationnelle à coefficients complexes :
+r = [ (%i-%s)/%s^2 %s/(2-%s)]
+isreal(r)
+]]></programlisting>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>Extension aux fractions rationnelles
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

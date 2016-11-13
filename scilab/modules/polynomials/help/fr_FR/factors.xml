@@ -71,8 +71,8 @@
             (si <literal>flag</literal> n'est pas donné). Si <literal>flag='c'</literal>, on a <literal>|pol(i omega)|</literal> = <literal>|g*prod(lnum_j(i omega)|</literal>.
             Si <literal>flag='d'</literal> alors
             on a <literal>|pol(exp(i omega))|</literal> = <literal>|g*prod(lnum_i(exp(i omega))|</literal>.
-            Si l'argument de <literal>factors</literal> est une fraction rationnelle 1x1 <literal>rat=pol1/pol2</literal>, 
-            les facteurs du numérateur <literal>pol1</literal> et le dénominateur <literal>pol2</literal> 
+            Si l'argument de <literal>factors</literal> est une fraction rationnelle 1x1 <literal>rat=pol1/pol2</literal>,
+            les facteurs du numérateur <literal>pol1</literal> et le dénominateur <literal>pol2</literal>
             sont renvoyés dans les listes <literal>lnum</literal> et <literal>lden</literal>, respectivement.
         </para>
         <para>
@@ -80,8 +80,8 @@
             rat = g multiplié par (produit des termes dans lnum) / (produit des termes dans lden).
         </para>
         <para>
-            Si <literal>flag</literal> vaut <literal>'c'</literal> (resp. <literal>'d'</literal>), les racines de <literal>pol</literal> 
-            sont réfléchies par rapport à l'axe imaginaire (resp. le cercle unité), i.e. 
+            Si <literal>flag</literal> vaut <literal>'c'</literal> (resp. <literal>'d'</literal>), les racines de <literal>pol</literal>
+            sont réfléchies par rapport à l'axe imaginaire (resp. le cercle unité), i.e.
             les facteurs dans <literal>lnum</literal> sont des polynômes stables.
             Idem si <literal>factors</literal> est appelé avec des arguments rationnels :
             les termes dans <literal>lnum</literal> et <literal>lden</literal> sont des polynômes stables si
@@ -93,7 +93,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 n=poly([0.2,2,5],'z');
 d=poly([0.1,0.3,7],'z');
 R=syslin('d',n,d);

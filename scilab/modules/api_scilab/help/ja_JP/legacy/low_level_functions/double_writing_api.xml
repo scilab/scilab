@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Double_management_writing_API" xml:lang="ja">
+    <refnamediv>
+        <refname>doubleの書き込み (Scilabゲートウェイ)</refname>
+        <refpurpose>
+            ゲートウェイでdoubleの行列を書き込む方法.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <refsection>
+            既存のデータから作成.
+        </refsection>
+        <title>呼び出し手順</title>
+        <para>入力引数プロファイル:</para>
+        <synopsis>SciErr createMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, const double* _pdblReal)</synopsis>
+        <synopsis>SciErr createComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, const double* _pdblReal, double* _pdblImg)</synopsis>
+        <para>名前指定変数プロファイル:</para>
+        <synopsis>SciErr createNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const double* _pdblReal)</synopsis>
+        <synopsis>SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        変数を保存するScilabメモリの位置.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        "名前指定" 関数の場合の変数名.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        新規変数の行数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        新規変数の列数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblReal</term>
+                <listitem>
+                    <para>
+                        実数データ配列のアドレス (大きさ: _iCols * _iRows).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblImg</term>
+                <listitem>
+                    <para>
+                        虚部データ配列のアドレス (大きさ: _iCols * _iRows).
+                        この引数は createMatrixOfDouble および createNamedMatrixOfDouble では
+                        存在しません.
+                    </para>
+                    <para>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        エラー構造体で,
+                        エラーメッセージ履歴と最初のエラー番号を
+                        格納します.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsynopsisdiv>
+        <refsection>
+            Scilabメモリに直接書き込む.
+        </refsection>
+        <title>呼び出し手順</title>
+        <para>入力引数プロファイル:</para>
+        <synopsis>SciErr allocMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal)</synopsis>
+        <synopsis>SciErr allocComplexMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)</synopsis>
+        <synopsis>SciErr allocComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, double** _pdblReal, doublecomplex** _pdblData)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        変数を保存するScilabメモリの位置.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        新規変数の行数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        新規変数の列数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblReal</term>
+                <listitem>
+                    <para>
+                        実部データ配列のアドレスを返す (大きさ: _iCols * _iRows).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblImg</term>
+                <listitem>
+                    <para>
+                        虚部データ配列のアドレスを返す (大きさ: _iCols * _iRows).
+                        この引数は allocMatrixOfDoubleには存在しません.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblData</term>
+                <listitem>
+                    <para>
+                        doublecomplexデータ配列のアドレスを返します (大きさ: _iCols * _iRows).
+                        この引数は allocComplexZMatrixOfDoubleにのみ存在します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        エラー構造体で,エラーメッセージ履歴と最初のエラー番号を格納します.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/double_writing_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/double_writing_api.tst-->
+        <!--Lib_name: double_writing-->
+        <!--Func_list: write_double-->
+        <title>ゲートウェイのソース</title>
+        <programlisting role="code_gateway"><![CDATA[
+#include "api_scilab.h"
+int write_double(char *fname,void* pvApiCtx)
+{
+	SciErr sciErr;
+	int i,j;
+	// 最初の変数の情報 : 3 x 4 doubleの実数行列
+	int iRows1			= 3;
+	int iCols1			= 4;
+	double* pdblReal1	= NULL;
+	// 2番目の変数の情報 : double 4 x 6 doubleの複素数行列
+	int iRows2			= 4;
+	int iCols2			= 6;
+	double* pdblReal2	= NULL;
+	double* pdblImg2	= NULL;
+	/************************
+	*    最初の変数    *
+	************************/
+	// OSメモリにデータ配列を確保
+	pdblReal1 = (double*)malloc(sizeof(double) * iRows1 * iCols1);
+	// 増加する値を配列に代入
+	//[ 0   1   2   3
+	//  4   5   6   7
+	//  8   9   10  11]
+	for(i = 0 ; i < iRows1 ; i++)
+	{
+		for(j = 0 ; j < iCols1 ; j++)
+		{
+			pdblReal1[i + iRows1 * j] = i * iCols1 + j;
+		}
+	}
+	// 1回のループで書くことも可能
+	//for(i = 0 ; i < iRows1 * iCols1; i++)
+	//{
+	//  pdblReal1[i] = i;
+	//}
+	// 既存のデータ配列から変数を作成
+	sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows1, iCols1, pdblReal1);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 作成後, メモリを解放できます.
+	free(pdblReal1);
+    /*************************
+	*    2番目の変数    *
+	*************************/
+	// scilabメモリの空間を予約し,代入
+	sciErr = allocComplexMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 2, iRows2, iCols2, &pdblReal2, &pdblImg2);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 増加する値を実部, 減少する値を虚部に代入
+	//[ 23i     1+22i       2+21i       3+20i       4+19i       5+18i
+	//  6+17i   7+16i       8+15i       9+14i       10+13i      11+12i
+	//  12+11i  13+10i      14+9i       15+8i       16+7i       17+6i
+	//  18+5i   19+4i       20+3i       21+2i       22+1i       23  ]
+	for(i = 0 ; i < iRows2 ; i++)
+	{
+		for(j = 0 ; j < iCols2 ; j++)
+		{
+			pdblReal2[i + iRows2 * j] = i * iCols2 + j;
+			pdblImg2 [i + iRows2 * j]	= (iRows2 * iCols2 - 1) - (i * iCols2 + j);
+		}
+	}
+	// 1回のループで書き込むことも可能
+	//for(i = 0 ; i < iRows2 * iCols2; i++)
+	//{
+	//  pdblReal2[i] = i;
+	//  pdblImg2 [i] = (iRows2 * iCols2 - 1) - i;
+	//}
+	// /!\ この場合はScilabメモリなのでメモリを解放しないこと
+	// 確保された変数を左辺に代入
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
+    return 0;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilabテストスクリプト</title>
+        <programlisting role="code_scilab"><![CDATA[
+a_ref = [   0 1 2 3; ..
+            4 5 6 7; ..
+            8 9 10 11];
+b_ref = [   23*%i,      1+22*%i,    2+21*%i,    3+20*%i,    4+19*%i,    5+18*%i; ..
+            6+17*%i,    7+16*%i,    8+15*%i,    9+14*%i,     10+13*%i,  11+12*%i; ..
+            12+11*%i,   13+10*%i,   14+9*%i,    15+8*%i,    16+7*%i,    17+6*%i; ..
+            18+5*%i,    19+4*%i,    20+3*%i,    21+2*%i,    22+1*%i,    23];
+[a,b] = write_double();
+if or(a <> a_ref) then error("failed");end
+if or(b <> b_ref) then error("failed");end
+ ]]></programlisting>
+    </refsection>
+</refentry>

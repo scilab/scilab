@@ -5,7 +5,7 @@
         <refpurpose>response of Chebyshev type 1 filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[h2]=cheb1mag(n,omegac,epsilon,sample)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -63,7 +63,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Chebyshev; ripple in the passband
 n=13;epsilon=0.2;omegac=3;samples=0:0.05:10;
 h=cheb1mag(n,omegac,epsilon,samples);
@@ -78,7 +78,7 @@ xtitle('','frequencies','magnitude')
 ]]>     </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="buttmag">buttmag</link>

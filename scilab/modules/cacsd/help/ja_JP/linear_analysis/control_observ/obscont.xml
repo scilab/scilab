@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F.D
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="obscont">
+    <refnamediv>
+        <refname>obscont</refname>
+        <refpurpose>オブザーバベース コントローラ</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出しの手順</title>
+        <synopsis>[K]=obscont(P,Kc,Kf)
+            [J,r]=obscont(P,Kc,Kf)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        状態空間形式,連続または離散時間の
+                        <literal>syslin</literal> リスト (ノミナルプラント)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Kc</term>
+                <listitem>
+                    <para>実数行列, (全状態) 制御器ゲイン</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Kf</term>
+                <listitem>
+                    <para>実数行列, フィルタゲイン</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト (制御器)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>J</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト (拡張制御器)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>1x2 行ベクトル</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>obscont</literal>  は
+            行列<literal>[A,B,C,D]</literal> (<literal>syslin</literal> リスト)
+            を有するノミナルプラント  <literal>P</literal> に関連する
+            オブザーバベース コントローラを返す.
+        </para>
+        <para>
+            全状態制御ゲインは <literal>Kc</literal> であり,
+            フィルタゲインは <literal>Kf</literal> である.
+            これらのゲインは,例えば,極配置法により計算できる.
+        </para>
+        <para>
+            <literal>A+B*Kc</literal> と <literal>A+Kf*C</literal> は
+            (通常) 安定と仮定される.
+        </para>
+        <para>
+            <literal>K</literal> は補償器
+            <literal> K: y-&gt;u</literal>の状態空間表現であり,
+            以下を含んでいる
+        </para>
+        <para>
+            <literal> xdot = A x + B u,  y=C x + D u, zdot= (A + Kf C)z -Kf y +B u, u=Kc z</literal>
+        </para>
+        <para>
+            <literal>K</literal> は線形システム (<literal>syslin</literal> リスト)
+            であり, その行列は以下のように与えられる:
+            <literal>K=[A+B*Kc+Kf*C+Kf*D*Kc,Kf,-Kc]</literal>.
+        </para>
+        <para>
+            (負の)フィードバック <literal>K</literal> を有する
+            閉ループフィードバックシステム <literal> Cl: v -&gt;y</literal>
+            (すなわち, <literal>y = P u, u = v - K y</literal>, または
+        </para>
+        <programlisting role=""><![CDATA[
+xdot = A x + B u,
+   y = C x + D u,
+zdot = (A + Kf C) z - Kf y + B u,
+   u = v -F z
+ ]]></programlisting>
+        <para>
+            ) は <literal>Cl = P/.(-K)</literal>で指定される.
+        </para>
+        <para>
+            <literal>Cl</literal> (<literal> spec(cl('A')) </literal>) の極は
+            <literal>A+B*Kc</literal>
+            および <literal>A+Kf*C</literal>の固有値に配置される.
+        </para>
+        <para>
+            引数が2つの場合、<literal>obscont</literal>は
+            LFTにより全ての安定化フィードバックをパラメータ表現する
+            (正方)線形システム<literal>K</literal>を返す.
+        </para>
+        <para>
+            <literal>Q</literal> を <literal>r(2)</literal>x<literal>r(1)</literal>次,
+            すなわち, 入力の数 x <literal>P</literal>の出力の数,
+            の任意の安定な線形システム.
+            次に,<literal>P</literal>の安定化制御器 <literal>K</literal>
+            は <literal>K=lft(J,r,Q)</literal>で表すことができる.
+            <literal>Q=0</literal>に対応する制御器は
+            <literal>K=J(1:nu,1:ny)</literal>
+            (この <literal>K</literal> は<literal>K=obscont(P,Kc,Kf)</literal>の
+            戻り値)である.
+            <literal>r</literal> は <literal>size(P)</literal>,すなわち,
+            ベクトル [出力の数, 入力の数];
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+ny=2;nu=3;nx=4;P=ssrand(ny,nu,nx);[A,B,C,D]=abcd(P);
+Kc=-ppol(A,B,[-1,-1,-1,-1]);  //コントローラゲイン
+Kf=-ppol(A',C',[-2,-2,-2,-2]);Kf=Kf';    //オブザーバゲイン
+cl=P/.(-obscont(P,Kc,Kf));spec(cl('A'))   //閉ループ系
+[J,r]=obscont(P,Kc,Kf);
+Q=ssrand(nu,ny,3);Q('A')=Q('A')-(max(real(spec(Q('A'))))+0.5)*eye(Q('A'))
+//Q is a stable parameter
+K=lft(J,r,Q);
+spec(h_cl(P,K))  // 閉ループ A 行列 (要安定);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ppol">ppol</link>
+            </member>
+            <member>
+                <link linkend="lqg">lqg</link>
+            </member>
+            <member>
+                <link linkend="lqr">lqr</link>
+            </member>
+            <member>
+                <link linkend="lqe">lqe</link>
+            </member>
+            <member>
+                <link linkend="h_inf">h_inf</link>
+            </member>
+            <member>
+                <link linkend="lft">lft</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="feedback">feedback</link>
+            </member>
+            <member>
+                <link linkend="observer">observer</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

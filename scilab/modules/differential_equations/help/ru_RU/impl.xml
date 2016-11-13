@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="impl" xml:lang="ru">
@@ -17,7 +20,7 @@
         <refpurpose>дифференциальное алгебраическое уравнение</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>y=impl([type],y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac])</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -78,25 +81,25 @@
         </para>
         <para>A(t,y) dy/dt=g(t,y), y(t0)=y0</para>
         <para>
-            <literal>t0</literal> -- начальный момент времени, <literal>y0</literal> -- 
-            вектор исходных условий. Должен быть задан вектор <literal>ydot0</literal> -- производная <literal>y</literal> по времени 
+            <literal>t0</literal> -- начальный момент времени, <literal>y0</literal> --
+            вектор исходных условий. Должен быть задан вектор <literal>ydot0</literal> -- производная <literal>y</literal> по времени
             в момент времени <literal>t0</literal>. Входное значение <literal>res</literal> является <link linkend="external">внешним</link>,
-            т.е. функцией с особым синтаксисом или именем процедуры Fortran или функцией C (символьная строка) с определённой 
+            т.е. функцией с особым синтаксисом или именем процедуры Fortran или функцией C (символьная строка) с определённой
             последовательностью вызова или списком.
         </para>
         <para>
             Если <literal>res</literal> является функцией, у неё должен быть следующий синтаксис:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 r = res(t,y,ydot)
  ]]></programlisting>
         <para>
-            где <literal>t</literal> -- вещественный скаляр (время), а  <literal>y</literal> и <literal>ydot</literal> 
+            где <literal>t</literal> -- вещественный скаляр (время), а  <literal>y</literal> и <literal>ydot</literal>
             являются вещественными векторами (состояние и производная состояния). Эта функция должна возвращать
             <literal>r=g(t,y)-A(t,y)*ydot</literal>.
         </para>
         <para>
-            Если <literal>res</literal> -- символьная строка, то она ссылается на имя процедуры Fortran или функции C. 
+            Если <literal>res</literal> -- символьная строка, то она ссылается на имя процедуры Fortran или функции C.
             В качестве примера как это сделать смотрите <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal>.
         </para>
         <para>
@@ -108,7 +111,7 @@ r = res(t,y,ydot)
         <para>
             Если <literal>adda</literal> -- функция, то у неё должен быть следующий синтаксис:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 r = adda(t,y,p)
  ]]></programlisting>
         <para>
@@ -116,7 +119,7 @@ r = adda(t,y,p)
             <literal>A(t,y)</literal>.
         </para>
         <para>
-            Если <literal>adda</literal> является символьной строкой, то она ссылается на имя процедуры Fortran или функции C. 
+            Если <literal>adda</literal> является символьной строкой, то она ссылается на имя процедуры Fortran или функции C.
             В качестве примера как это сделать смотрите <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal>.
         </para>
         <para>
@@ -128,11 +131,11 @@ r = adda(t,y,p)
         <para>
             Если <literal>jac</literal> -- функция, то у неё должен быть следующий синтаксис:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[  
+        <programlisting role="no-scilab-exec"><![CDATA[
 j = jac(t,y,ydot)
  ]]></programlisting>
         <para>
-            и она должна возвращать якобиан <literal>r=g(t,y)-A(t,y)*ydot</literal> относительно 
+            и она должна возвращать якобиан <literal>r=g(t,y)-A(t,y)*ydot</literal> относительно
             <literal>y</literal>.
         </para>
         <para>
@@ -145,7 +148,7 @@ j = jac(t,y,ydot)
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
 // Используем перезапуск налету
 //[x1,w,iw]=impl([1;0;0],[-0.04;0.04;0],0,0.2,'resid','aplusp');

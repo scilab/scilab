@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="czt">
+    <refnamediv>
+        <refname>czt</refname>
+        <refpurpose>chirp z-transform algorithm</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[czx]=czt(x,m,w,phi,a,theta)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>input data sequence</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>
+                        czt is evaluated at <literal>m</literal> points in z-plane
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w</term>
+                <listitem>
+                    <para>magnitude multiplier</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>phi</term>
+                <listitem>
+                    <para>phase increment</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>initial magnitude</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>theta</term>
+                <listitem>
+                    <para>initial phase</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>czx</term>
+                <listitem>
+                    <para>chirp z-transform output</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            chirp z-transform algorithm which calculates the z-transform on a
+            spiral in the z-plane at the points
+            <literal>[a*exp(j*theta)][w^kexp(j*k*phi)] </literal> for
+            <literal>k=0,1,...,m-1</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=.7*exp(%i*%pi/6);
+[ffr,bds]=xgetech(); //preserve current context
+rect=[-1.2,-1.2*sqrt(2),1.2,1.2*sqrt(2)];
+t=2*%pi*(0:179)/179;xsetech([0,0,0.5,1]);
+plot2d(sin(t)',cos(t)',[2],"012",' ',rect)
+plot2d([0 real(a)]',[0 imag(a)]',[3],"000")
+xsegs([-1.0,0;1.0,0],[0,-1.0;0,1.0])
+w0=.93*exp(-%i*%pi/15);w=exp(-(0:9)*log(w0));z=a*w;
+zr=real(z);zi=imag(z);
+plot2d(zr',zi',[5],"000")
+xsetech([0.5,0,0.5,1]);
+plot2d(sin(t)',cos(t)',[2],"012",' ',rect)
+plot2d([0 real(a)]',[0 imag(a)]',[-1],"000")
+xsegs([-1.0,0;1.0,0],[0,-1.0;0,1.0])
+w0=w0/(.93*.93);w=exp(-(0:9)*log(w0));z=a*w;
+zr=real(z);zi=imag(z);
+plot2d(zr',zi',[5],"000")
+xsetech(ffr,bds); //restore context
+ ]]></programlisting>
+    </refsection>
+</refentry>

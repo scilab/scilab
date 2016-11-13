@@ -1,55 +1,93 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2015 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="imag" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="imag" xml:lang="pt">
     <refnamediv>
         <refname>imag</refname>
-        <refpurpose>parte imagin�ria</refpurpose>
+        <refpurpose>parte imaginária dos números complexos</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seq��ncia de Chamamento</title>
-        <synopsis>[y]=imag(x)</synopsis>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>y = imag(x)</synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Par�metros</title>
+    <refsection role="parameters">
+        <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>matriz ou vetor de reais ou complexos</para>
+                    <para>matriz de números reais ou complexos, ou de polinômios
+                    ou de razões de
+                    polinômios com coeficientes reais ou complexos.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>matriz ou vetor de reais</para>
+                    <para>matriz de reais ou de polinômios ou de razões de polinômios com
+                    coeficientes reais. <varname>y</varname> tem o seu tamanho de
+                    <varname>y</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>Descri��o</title>
+    <refsection role="description">
+        <title>Descrição</title>
         <para>
-            <literal>imag(x)</literal> � a parte imagin�ria de
-            <literal>x</literal>. (ver <literal> %i</literal> para entrar com n�meros
-            complexos).
+            <literal>imag(x)</literal> é a parte imaginária de <literal>x</literal>
+            (ver <literal> %i</literal> para entrar com números complexos).
         </para>
     </refsection>
+    <refsection role="examples">
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+c = [ 2 %i, 1+0*%i, 2-3*%i  log(-1) (-1)^(1/3) ]
+imag(c)
+
+s = sprand(3,3,0.3) + sprand(3,3,0.3)*%i
+imag(s)
+
+// Polinômios com coeficientes complexos
+A = [1-%i*%z (%z-%i)^2]
+imag(A)
+
+// Razões de polinômios com coeficientes complexos
+A = [ %z/(1-%z)  (1-%z)/%z^2];
+B = A(1,[2 1]);
+C = A + %i*B
+B, imag(C)
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
-        <title>Ver Tamb�m</title>
+        <title>Ver Também</title>
         <simplelist type="inline">
             <member>
                 <link linkend="real">real</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>Extension to rationals
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

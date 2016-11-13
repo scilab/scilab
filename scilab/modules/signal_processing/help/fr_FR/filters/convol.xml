@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="convol" xml:lang="fr">
+    <refnamediv>
+        <refname>convol</refname>
+        <refpurpose>convolution</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            [y]=convol(h,x)
+            [y,e1]=convol(h,x,e0)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>a vector, first input sequence ("short" one) </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>a vector, second input sequence ( "long" one)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>e0</term>
+                <listitem>
+                    <para>a vector,old tail to overlap add (not used in first
+                        call)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>a vector, the convolution. </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>e1</term>
+                <listitem>
+                    <para>new tail to overlap add (not used in last call)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Calculates the convolution <literal>y= h*x</literal> of two discrete
+            sequences by using the fft. The convolution is defined as follows:
+        </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata>
+                        <mml:math>
+                            <mml:semantics>
+                                <mml:mrow>
+                                    <mml:msub>
+                                        <mml:mi>y</mml:mi>
+                                        <mml:mi>k</mml:mi>
+                                    </mml:msub>
+                                    <mml:mo mml:stretchy="false">=</mml:mo>
+                                    <mml:mrow>
+                                        <mml:mrow>
+                                            <mml:msub>
+                                                <mml:mo mml:stretchy="false">∑</mml:mo>
+                                                <mml:mi>j</mml:mi>
+                                            </mml:msub>
+                                            <mml:msub>
+                                                <mml:mi>h</mml:mi>
+                                                <mml:mi>j</mml:mi>
+                                            </mml:msub>
+                                        </mml:mrow>
+                                        <mml:mo mml:stretchy="false">∗</mml:mo>
+                                        <mml:msub>
+                                            <mml:mi>x</mml:mi>
+                                            <mml:mrow>
+                                                <mml:mrow>
+                                                    <mml:mi>k</mml:mi>
+                                                    <mml:mo mml:stretchy="false">+</mml:mo>
+                                                    <mml:mn>1</mml:mn>
+                                                </mml:mrow>
+                                                <mml:mo mml:stretchy="false">−</mml:mo>
+                                                <mml:mi>j</mml:mi>
+                                            </mml:mrow>
+                                        </mml:msub>
+                                    </mml:mrow>
+                                </mml:mrow>
+                                <mml:annotation mml:encoding="StarMath 5.0">y_k=sum_j h_j*x_{k+1-j}
+                                </mml:annotation>
+                            </mml:semantics>
+                        </mml:math>
+                    </imagedata>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>Overlap add method can be used.</para>
+        <para>USE OF OVERLAP ADD METHOD: For
+            <literal>x=[x1,x2,...,xNm1,xN]</literal> First call is
+            <literal>[y1,e1]=convol(h,x1);</literal> Subsequent calls :
+            <literal>[yk,ek]=convol(h,xk,ekm1)</literal>; Final call :
+            <literal>[yN]=convol(h,xN,eNm1);</literal> Finally
+            <literal>y=[y1,y2,...,yNm1,yN]</literal>.
+        </para>
+        <para>The algorithm based on the convolution definition is
+            implemented for polynomial
+            product: <literal>y=convol(h,x)</literal> is equivalent
+            to <literal>y=coeff(poly(h,'z','c')*poly(x,'z','c')</literal> but
+            much more efficient if <literal>x</literal> is a "long" array.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x=1:3;
+h1=[1,0,0,0,0];h2=[0,1,0,0,0];h3=[0,0,1,0,0];
+x1=convol(h1,x),x2=convol(h2,x),x3=convol(h3,x),
+convol(h1+h2+h3,x)
+p1=poly(x,'x','coeff')
+p2=poly(h1+h2+h3,'x','coeff')
+p1*p2
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="corr">corr</link>
+            </member>
+            <member>
+                <link linkend="fft">fft</link>
+            </member>
+            <member>
+                <link linkend="pspect">pspect</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

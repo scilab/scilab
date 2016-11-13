@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="lqg2stan">
+    <refnamediv>
+        <refname>lqg2stan</refname>
+        <refpurpose>LQG to standard problem</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[P_aug,r]=lqg2stan(P,Qxu,Qwv)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P22</term>
+                <listitem>
+                    <para>
+                        State space representation of the nominal plant (<literal>nu</literal> inputs, <literal>ny</literal> outputs, <literal>nx</literal> states).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Qxu</term>
+                <listitem>
+                    <para>
+                        <literal>[Q,S;S',N]</literal> symmetric <literal>nx+nu</literal> by <literal>nx+nu</literal> weighting matrix.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Qwv</term>
+                <listitem>
+                    <para>
+                        <literal>[R,T;T',V]</literal> symmetric <literal>nx+ny</literal> by <literal>nx+ny</literal> covariance matrix.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        Row vector <literal>[ny nu]</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P_aug</term>
+                <listitem>
+                    <para>
+                        Augmented plant state space representation (see: <link linkend="syslin">syslin</link>)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>lqg2stan</literal> returns the augmented plant for linear LQG (H2) controller
+            design problem defined by:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    The nominal plant <literal>P22</literal>:described by
+                </para>
+                <latex style="display"
+                   align="left">\left\{\begin{array}{l}\dot{x}=A x+B
+                    u +w \\y=C x+D u +v\end{array}\right. \text{ for continuous time or }
+                    \left\{\begin{array}{l}x^+=A x+B u+w\\y=C
+                    x+D u +v\end{array}\right. \text{ for discrete time.}
+                </latex>
+            </listitem>
+            <listitem>
+                <para>
+                    The (instantaneous) cost function
+                    <latex><![CDATA[\left[\begin{array}{ll} x'&
+              u'\end{array}\right] Q_{xu}\left[\begin{array}{l} x\\
+              u\end{array}\right]]]></latex>.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              The noises covariance matrix
+              <latex><![CDATA[\mathbb{E}(\left[\begin{array}{l}w\\v\end{array}\right]
+              \left[\begin{array}{ll}w'&v'\end{array}\right])=Q_{wv}
+              ]]></latex>
+                </para>
+            </listitem>
+        </itemizedlist>
+
+        <latex style="display"
+        align="left">\text{P_aug }=\left\{\begin{array}{l}\dot{x}=A x+B_1 W+B
+            u  \\y_1=C_1 x+D_{12}W\\y_2=-C x+D_{21} W+D u
+            \end{array}\right. \text{ for continuous time or }
+            \left\{\begin{array}{l}x^+=A x+B_1 W+B
+            u  \\y_1=C_1 x+D_{12} W \\y_2=-C x+D_{21} W+D u
+            \end{array}\right. \text{ for discrete time.}
+        </latex>
+
+        <caution>
+            <para>
+                Up to Scilab-5.5.2 lqg2stan returns wrong inverted values
+                (see <ulink url="http://bugzilla.scilab.org/show_bug.cgi?id=13751"> bug 13751</ulink>)
+                to obtain the good result one had to use <code>[P,r]=lqg2stan(-P,Qxu,Qwv)</code>.
+            </para>
+            <para>
+                This bug is fixed since Scilab-6.0.0, old codes must be modified accordingly.
+            </para>
+        </caution>
+    </refsection>
+    <refsection>
+        <title>Algorithm</title>
+        <para>
+            If <literal>[B1;D21]</literal> is a factor of
+            <literal>Qxu</literal>, <literal>[C1,D12]</literal> is a
+            factor of <literal>Qwv</literal> (see: <link
+            linkend="fullrf">fullrf</link>) then
+            <code>P_aug=syslin(P.dt,P.A,[B1,P.B],[C1;-P.C],[0,D12;D21,P.D])</code>
+        </para>
+
+    </refsection>
+
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+ny=2;nu=3;nx=4;
+P22=ssrand(ny,nu,nx);
+Qxu=rand(nx+nu,nx+nu);Qxu=Qxu*Qxu';
+Qwv=rand(nx+ny,nx+ny);Qwv=Qwv*Qwv';
+[P_aug,r]=lqg2stan(P,Qxu,Qwv);
+K=lqg(P_aug,r);  //K=LQG-controller
+spec(h_cl(P_aug,r,K))      //Closed loop should be stable
+//Same as Cl=P22/.K; spec(Cl('A'))
+
+s=poly(0,'s')
+lqg2stan(1/(s+2),eye(2,2),eye(2,2))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lqg">lqg</link>
+            </member>
+            <member>
+                <link linkend="lqr">lqr</link>
+            </member>
+            <member>
+                <link linkend="lqe">lqe</link>
+            </member>
+            <member>
+                <link linkend="obscont">obscont</link>
+            </member>
+            <member>
+                <link linkend="h_inf">h_inf</link>
+            </member>
+            <member>
+                <link linkend="augment">augment</link>
+            </member>
+            <member>
+                <link linkend="fstabst">fstabst</link>
+            </member>
+            <member>
+                <link linkend="feedback">feedback</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

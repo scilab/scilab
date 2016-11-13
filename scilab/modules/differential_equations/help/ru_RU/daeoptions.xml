@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="daeoptions" xml:lang="ru">
@@ -17,7 +20,7 @@
         <refpurpose>установка опций для dae (программа решения дифференциальных алгоритмических уравнений)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>daeoptions()</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,19 +35,19 @@
         <para>
             <caution>
                 Функция <literal>dae</literal> проверяет существует ли данная переменная и, если да, то использует её.
-                Для использования значений по умолчанию вы должны очистить эту переменную. Заметьте, что 
-                <literal>daeoptions</literal> не создаёт этой переменной. Чтобы  её создать, вы должны выполнить 
+                Для использования значений по умолчанию вы должны очистить эту переменную. Заметьте, что
+                <literal>daeoptions</literal> не создаёт этой переменной. Чтобы  её создать, вы должны выполнить
                 командную строку распечатанную с помощью <literal>daeoptions</literal>.
             </caution>
         </para>
         <para>
             Переменная <literal>%DAEOPTIONS</literal> является <link linkend="list">списком</link> со следующими элементами:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[  
+        <programlisting role="no-scilab-exec"><![CDATA[
 list(tstop,imode,band,maxstep,stepin,nonneg,isest)
  ]]></programlisting>
         <para>The default value is:</para>
-        <programlisting role="no-scilab-exec"><![CDATA[  
+        <programlisting role="no-scilab-exec"><![CDATA[
 list([],0,[],[],[],0,0)
  ]]></programlisting>
         <para>Значение этих элементов приведено ниже.</para>
@@ -52,7 +55,7 @@ list([],0,[],[],[],0,0)
             <varlistentry>
                 <term>tstop</term>
                 <listitem>
-                    <para>вещественный скаляр или пустая матрица, задаёт максимальное время, для которого 
+                    <para>вещественный скаляр или пустая матрица, задаёт максимальное время, для которого
                         рассчитывается <literal>g</literal>. Пустая матрица означает "без ограничений по времени".
                     </para>
                 </listitem>
@@ -61,7 +64,7 @@ list([],0,[],[],[],0,0)
                 <term>imode</term>
                 <listitem>
                     <para>
-                        если оно равно 0, то <literal>dae</literal> возвращает только определённые пользователем 
+                        если оно равно 0, то <literal>dae</literal> возвращает только определённые пользователем
                         моменты времени, а если оно равно 1, то <literal>dae</literal> возвращает вычисленные промежуточные значения.
                     </para>
                 </listitem>
@@ -110,7 +113,7 @@ list([],0,[],[],[],0,0)
                 <term>isest</term>
                 <listitem>
                     <para>
-                        скаляр, должен быть установлен равным 0, если заданное исходное условие 
+                        скаляр, должен быть установлен равным 0, если заданное исходное условие
                         удовлетворяет <literal>g(t0,x0,xdot0)=0</literal>, и установлен равным 1,
                         если <literal>xdot0</literal> является просто оценкой.
                     </para>

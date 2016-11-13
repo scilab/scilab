@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_size" xml:lang="en">
@@ -16,7 +19,7 @@
         <refpurpose>Computes the size.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             ssize = optimsimplex_size(opt, [method])
         </synopsis>
@@ -40,8 +43,8 @@
                             <para>
                                 "sigmaplus". This is the default.
                             </para>
-                            <para>The sigmaplus size is the maximum 2-norm length of the vector 
-                                from each vertex to the first vertex. It requires one loop over the 
+                            <para>The sigmaplus size is the maximum 2-norm length of the vector
+                                from each vertex to the first vertex. It requires one loop over the
                                 vertices.
                             </para>
                         </listitem>
@@ -49,8 +52,8 @@
                             <para>
                                 "sigmaminus".
                             </para>
-                            <para>The sigmaminus size is the minimum 2-norm length of the vector 
-                                from each vertex to the first vertex. It requires on loop over the 
+                            <para>The sigmaminus size is the minimum 2-norm length of the vector
+                                from each vertex to the first vertex. It requires on loop over the
                                 vertices.
                             </para>
                         </listitem>
@@ -58,8 +61,8 @@
                             <para>
                                 "Nash".
                             </para>
-                            <para>The Nash size is the sum of the norm of the norm-1 length 
-                                of the vector form the given vertex to the first vertex. It requires 
+                            <para>The Nash size is the sum of the norm of the norm-1 length
+                                of the vector form the given vertex to the first vertex. It requires
                                 one loop over the vertices.
                             </para>
                         </listitem>
@@ -67,7 +70,7 @@
                             <para>
                                 "diameter".
                             </para>
-                            <para>The diameter size is the maximum norm-2 length of all the 
+                            <para>The diameter size is the maximum norm-2 length of all the
                                 edges of the simplex. It requires 2 nested loops over the vertices.
                             </para>
                         </listitem>
@@ -91,15 +94,15 @@
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
 simplex = [...
-    0.    0.  
-    1.    0.  
-    0.    2.  
+    0.    0.
+    1.    0.
+    0.    2.
 ];
 s1 = optimsimplex_new();
 s1 = optimsimplex_setn ( s1 , 2 );
@@ -126,7 +129,7 @@ s1 = optimsimplex_destroy(s1);
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="optimsimplex_new">optimsimplex_new</link>

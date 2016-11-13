@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="des2tf">
+    <refnamediv>
+        <refname>des2tf</refname>
+        <refpurpose>記述子から伝達関数への変換</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[S]=des2tf(sl)
+            [Bfs,Bis,chis]=des2tf(sl)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>リスト (記述子形式の線形システム)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Bfs, Bis</term>
+                <listitem>
+                    <para>多項式行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>chis</term>
+                <listitem>
+                    <para>多項式</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>有理行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            記述子形式の線形システム<literal>Sl=list('des',A,B,C,D,E)</literal>を指定すると,
+            <literal>des2tf</literal> は <literal>sl</literal> を
+            その伝達関数表現に変換します:
+        </para>
+        <programlisting role=""><![CDATA[
+S=C*(s*E-A)^(-1)*B+D
+ ]]></programlisting>
+        <para>
+            引数3個でコールされた場合, <literal>des2tf</literal> は,
+            2つの多項式行列
+            <literal>Bfs</literal> および <literal>Bis</literal> と
+            次のような多項式<literal>chis</literal>を返します:
+        </para>
+        <programlisting role=""><![CDATA[
+S=Bfs/chis - Bis
+ ]]></programlisting>
+        <para>
+            <literal>chis</literal> は <literal>(s*E-A)</literal> の行列式
+            (xcative定数に一致)です;
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+G=[1/(s+1),s;1+s^2,3*s^3];
+Descrip=tf2des(G);Tf1=des2tf(Descrip)
+Descrip2=tf2des(G,"withD");Tf2=des2tf(Descrip2)
+[A,B,C,D,E]=Descrip2(2:6);Tf3=C*inv(s*E-A)*B+D
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="glever">glever</link>
+            </member>
+            <member>
+                <link linkend="pol2des">pol2des</link>
+            </member>
+            <member>
+                <link linkend="tf2des">tf2des</link>
+            </member>
+            <member>
+                <link linkend="ss2tf">ss2tf</link>
+            </member>
+            <member>
+                <link linkend="des2ss">des2ss</link>
+            </member>
+            <member>
+                <link linkend="rowshuff">rowshuff</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

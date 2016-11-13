@@ -4,11 +4,14 @@
 * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
 * Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -45,8 +48,6 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
         if (pS->getSize() == 1 && pS->get(0)[0] == L'f')
         {
             //[cov,mean]=corr('fft',xmacro,[ymacro],n,sect)
-            types::InternalType* pXFunction = NULL;
-            types::InternalType* pYFunction = NULL;
 
             int iErr        = 0;
             int iSect       = 0;
@@ -99,12 +100,10 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
             //get xmacro
             if (in[1]->isCallable())
             {
-                pXFunction = in[1]->getAs<types::Callable>();
                 spFunctionsManager->setDgetx(in[1]->getAs<types::Callable>());
             }
             else if (in[1]->isString())
             {
-                pXFunction = in[1]->getAs<types::String>();
                 spFunctionsManager->setDgetx(in[1]->getAs<types::String>());
             }
             else
@@ -120,12 +119,10 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
                 //get ymacro
                 if (in[2]->isCallable())
                 {
-                    pYFunction = in[2]->getAs<types::Callable>();
                     spFunctionsManager->setDgety(in[2]->getAs<types::Callable>());
                 }
                 else if (in[2]->isString())
                 {
-                    pYFunction = in[2]->getAs<types::String>();
                     spFunctionsManager->setDgety(in[2]->getAs<types::String>());
                 }
                 else
@@ -265,6 +262,8 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
                     if (pDblIn3->isComplex())
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "corr" , 4);
+                        delete[] wi;
+                        delete[] w;
                         return types::Function::Error;
                     }
 

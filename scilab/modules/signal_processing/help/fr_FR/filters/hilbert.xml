@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="hilbert">
+    <refnamediv>
+        <refname>hilbert</refname>
+        <refpurpose>Discrete-time analytic signal computation of a real signal  using Hilbert transform </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>x=hilbert(xr)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>xr</term>
+                <listitem>
+                    <para>real vector : the real signal samples</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>Complex vector: the discrete-time analytic signal.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Returns theanalytic signal, from a real data sequence.</para>
+        <para>
+            The analytic signal <literal>x= xr + i*xi</literal> has a real part, <literal>xr</literal>, which
+            is the original data, and an imaginary part, <literal>xi</literal>, which contains
+            the Hilbert transform. The imaginary part is a version of the
+            original real sequence with a 90° phase shift.
+        </para>
+    </refsection>
+    <refsection>
+        <title>References</title>
+        <para>
+            <literal>
+                <ulink url="http://ieeexplore.ieee.org/iel5/78/16975/00782222.pdf?arnumber=782222">http://ieeexplore.ieee.org/iel5/78/16975/00782222.pdf?arnumber=782222</ulink>
+            </literal>
+        </para>
+        <para>
+            Marple, S.L., "Computing the discrete-time analytic signal via FFT,"
+            IEEE Transactions on Signal Processing, Vol. 47, No.9 (September
+            1999), pp.2600-2603
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="window">window</link>
+            </member>
+            <member>
+                <link linkend="hilb">hil</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//compare the discrete-time analytic signal imaginary part of the impulse real signal
+// with the FIR approximation of the Hilbert transform filter
+m=25;
+n=2*m+1;
+y=hilbert(eye(n,1));
+h=hilb(n)';
+h=[h((m+1):$);h(1:m)];
+plot([imag(y) h])
+ ]]></programlisting>
+        <scilab:image>
+            m=25;
+            n=2*m+1;
+            y=hilbert(eye(n,1));
+            h=hilb(n)';
+            h=[h((m+1):$);h(1:m)];
+            plot([imag(y) h])
+        </scilab:image>
+    </refsection>
+</refentry>

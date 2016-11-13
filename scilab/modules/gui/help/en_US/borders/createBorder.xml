@@ -5,7 +5,7 @@
         <refpurpose>Create a border for a frame uicontrol.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             border = createBorder(borderType, varargin)
         </synopsis>
@@ -88,7 +88,7 @@
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="createBorderFont">createBorderFont</link>

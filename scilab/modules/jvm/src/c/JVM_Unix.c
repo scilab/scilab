@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -62,11 +65,8 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
     if (LoadFunctionsJVM(JVMLibFullName) == NULL)
     {
         /* 2. search in LD_LIBRARY_PATH */
-        if (JVMLibFullName)
-        {
-            FREE(JVMLibFullName);
-            JVMLibFullName = NULL;
-        };
+        FREE(JVMLibFullName);
+        JVMLibFullName = NULL;
 
         JVMLibFullName = (char *)MALLOC((strlen(LIBJAVANAME) + strlen(SHARED_LIB_EXT) + 1) * sizeof(char));
         sprintf(JVMLibFullName, "%s%s", LIBJAVANAME, SHARED_LIB_EXT);
@@ -81,11 +81,8 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
         bOK = TRUE;
     }
 
-    if (JVMLibFullName)
-    {
-        FREE(JVMLibFullName);
-        JVMLibFullName = NULL;
-    };
+    FREE(JVMLibFullName);
+    JVMLibFullName = NULL;
 
     return bOK;
 
@@ -119,16 +116,14 @@ static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH)
         if (res != JNI_OK)
         {
             fprintf(stderr, "\nJNI_GetCreatedJavaVMs failed to detect any started Java VM.\n");
+            FREE(JVMLibFullName);
             return NULL;
         }
 
         if (jvm_count == 1)
         {
-            if (JVMLibFullName)
-            {
-                FREE(JVMLibFullName);
-                JVMLibFullName = NULL;
-            }
+            FREE(JVMLibFullName);
+            JVMLibFullName = NULL;
             return jvm;
         }
         else
@@ -136,11 +131,8 @@ static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH)
             jvm = NULL;
         }
     }
-    if (JVMLibFullName)
-    {
-        FREE(JVMLibFullName);
-        JVMLibFullName = NULL;
-    }
+    FREE(JVMLibFullName);
+    JVMLibFullName = NULL;
     return jvm;
 }
 
@@ -163,15 +155,13 @@ static JavaVM *SearchCreatedJavaVMPath(void)
         if (res != JNI_OK)
         {
             fprintf(stderr, "\nJNI_GetCreatedJavaVMs failed to detect any started Java VM.\n");
+            FREE(JVMLibFullName);
             return NULL;
         }
         if (jvm_count == 1)     /* We could update this to behave differently when two (or more) JVMs are already started */
         {
-            if (JVMLibFullName)
-            {
-                FREE(JVMLibFullName);
-                JVMLibFullName = NULL;
-            };
+            FREE(JVMLibFullName);
+            JVMLibFullName = NULL;
             return jvm;
         }
         else
@@ -179,11 +169,8 @@ static JavaVM *SearchCreatedJavaVMPath(void)
             jvm = NULL;
         }
     }
-    if (JVMLibFullName)
-    {
-        FREE(JVMLibFullName);
-        JVMLibFullName = NULL;
-    };
+    FREE(JVMLibFullName);
+    JVMLibFullName = NULL;
     return jvm;
 }
 

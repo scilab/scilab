@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="fourplan">
+    <refnamediv>
+        <refname>fourplan</refname>
+        <refpurpose>拡張プラントを4つのプラントに変換する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[P11,P12,P21,P22]=fourplan(P,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト (線形システム)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 行ベクトル, <literal>P22</literal>の次元
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P11,P12,P21,P22</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> リスト.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ユーティリティ関数.
+        </para>
+        <para>
+            <literal>P</literal> は以下のように分割されます:
+        </para>
+        <programlisting role=""><![CDATA[
+P=[ P11 P12;
+    P21 P22]
+ ]]></programlisting>
+        <para>
+            <literal>size(P22)=r</literal>を指定すると,
+            この関数は4つの線形システム
+            <literal>P11,P12,P21,P22</literal>を返します.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lqg">lqg</link>
+            </member>
+            <member>
+                <link linkend="lqg2stan">lqg2stan</link>
+            </member>
+            <member>
+                <link linkend="lqr">lqr</link>
+            </member>
+            <member>
+                <link linkend="lqe">lqe</link>
+            </member>
+            <member>
+                <link linkend="lft">lft</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

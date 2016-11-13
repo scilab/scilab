@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="ui_observer">
+    <refnamediv>
+        <refname>ui_observer</refname>
+        <refpurpose>未知入力オブザーバ </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[UIobs,J,N]=ui_observer(Sys,reject,C1,D1)
+            [UIobs,J,N]=ui_observer(Sys,reject,C1,D1,flag,alfa,beta)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sys</term>
+                <listitem>
+                    <para>
+                        行列 <literal>(A,B,C2,D2)</literal>を含む<literal>syslin</literal>リスト.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>reject</term>
+                <listitem>
+                    <para>整数ベクトル,
+                        <literal>Sys</literal> の未知入力の添え字.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C1</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>D1</term>
+                <listitem>
+                    <para>
+                        実数行列. <literal>C1</literal> および <literal>D1</literal> は同じ数の行を有します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        文字列 <literal>'ge'</literal> または <literal>'st'</literal> (default) または <literal>'pp'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alfa</term>
+                <listitem>
+                    <para>実数または複素数のベクトル (閉ループ極の位置)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>beta</term>
+                <listitem>
+                    <para>r実数または複素数のベクトル (閉ループ極の位置)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            未知入力オブザーバ.
+        </para>
+        <para>
+            <literal>Sys: (w,u) --&gt; y</literal> は,
+            2つの入力 w および u を有する
+            <literal>(A,B,C2,D2)</literal> syslin 線形システムです.
+            ただし, w は未知入力です.
+            Sys の行列 B および D2 は (暗黙のうちに) 次のように分割されます:
+            <literal>B=[B1,B2]</literal> および <literal>D2=[D21,D22]</literal>
+            ただし,<literal>B1=B(:,reject)</literal>  および
+            <literal>D21=D2(:,reject)</literal> で,
+            reject = 未知入力の添え字.
+            行列 <literal>C1</literal> および<literal>D1</literal> は，
+            推定対象の出力 <literal>z = C1 x + D1 (w,u)</literal>
+            を定義します.
+        </para>
+        <para>
+            行列 <literal>D1</literal> は (暗黙のうちに)
+            <literal>D11=D(:,reject)</literal> として
+            <literal>D1=[D11,D12]</literal>
+            のように分割されます
+        </para>
+        <para>
+            データ (Sys, reject,C1, D1)   は次の2入力2出力システムを定義します:
+        </para>
+        <programlisting role=""><![CDATA[
+xdot =  A x + B1  w + B2  u
+   z = C1 x + D11 w + D12 u
+   y = C2 x + D21 w + D22 u
+ ]]></programlisting>
+        <para>
+            オブザーバ <literal>(u,y) --&gt; zhat</literal> は
+            出力 z を推定します.
+        </para>
+        <para>
+            <literal>flag='ge'</literal> 安定性拘束なし
+            <literal>flag='st'</literal> 安定なオブザーバ    (デフォルト)
+            <literal>flag='pp'</literal> 極配置を指定するオブザーバ
+            alfa,beta = 閉ループ極の指定位置  (デフォルト -1, -2)
+            J=出力yから状態xへの注入.
+            N=出力yから推定値出力zへの注入.
+        </para>
+        <para>
+            UIobs = 線形システム (u,y) --&gt; zhat ただし:
+            伝達関数: (w,u) --&gt;
+            z  は以下の複合伝達関数と等しくなります:
+            [0,I;        UIobs
+            Sys]
+            (w,u) -----&gt; (u,y) -----&gt; zhat
+            すなわち, システム {A,B,C1,D1} の伝達関数は
+            <literal>UIobs*[0,I; Sys]</literal>と等価になります
+        </para>
+        <para>
+            安定性 (または極配置) は(A,C2)の可検出性
+            (または可観測性) を要求します .
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A=diag([3,-3,7,4,-4,8]);
+B=[eye(3,3);zeros(3,3)];
+C=[0,0,1,2,3,4;0,0,0,0,0,1];
+D=[1,2,3;0,0,0];
+rand('seed',0);w=ss2ss(syslin('c',A,B,C,D),rand(6,6));
+[A,B,C,D]=abcd(w);
+B=[B,matrix(1:18,6,3)];D=[D,matrix(-(1:6),2,3)];
+reject=1:3;
+Sys=syslin('c',A,B,C,D);
+N1=[-2,-3];C1=-N1*C;D1=-N1*D;
+nw=length(reject);nu=size(Sys('B'),2)-nw;
+ny=size(Sys('C'),1);nz=size(C1,1);
+[UIobs,J,N]=ui_observer(Sys,reject,C1,D1);
+W=[zeros(nu,nw),eye(nu,nu);Sys];UIobsW=UIobs*W;
+//(w,u) --> z=UIobs*[0,I;Sys](w,u)
+clean(ss2tf(UIobsW));
+wu_to_z=syslin('c',A,B,C1,D1);clean(ss2tf(wu_to_z));
+clean(ss2tf(wu_to_z)-ss2tf(UIobsW),1.d-7)
+/////2nd example//////
+nx=2;ny=3;nwu=2;Sys=ssrand(ny,nwu,nx);
+C1=rand(1,nx);D1=[0,1];
+UIobs=ui_observer(Sys,1,C1,D1);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cainv">cainv</link>
+            </member>
+            <member>
+                <link linkend="ddp">ddp</link>
+            </member>
+            <member>
+                <link linkend="abinv">abinv</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

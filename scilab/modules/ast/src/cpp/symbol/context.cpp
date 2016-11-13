@@ -2,11 +2,14 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 */
 #include <iomanip>
@@ -353,6 +356,19 @@ bool Context::put(Variable* _var, types::InternalType* _pIT)
 bool Context::put(const Symbol& _key, types::InternalType* _pIT)
 {
     Variable* var = variables.getOrCreate(_key);
+
+    if (var->empty())
+    {
+        //box is empty, check if a macro from a library have this name.
+        //in this case, add it to context before set new value.
+        types::InternalType* pIT = get(_key);
+        if (pIT && (pIT->isMacroFile() || pIT->isMacro()))
+        {
+            put(var, pIT);
+            return put(var, _pIT);
+        }
+    }
+
     return put(var, _pIT);
 }
 
@@ -445,22 +461,40 @@ void Context::setGlobal(const Symbol& _key)
     globals->push_back(_key);
 }
 
-void Context::removeGlobal(const Symbol& _key)
+bool Context::removeGlobal(const Symbol& _key)
 {
+    // skip permanant variables : %modalWarning, %toolboxes, %toolboxes_dir
+    if (_key.getName() == "%modalWarning"  ||
+            _key.getName() == "%toolboxes"     ||
+            _key.getName() == "%toolboxes_dir")
+    {
+        return false;
+    }
+
     variables.removeGlobal(_key, m_iLevel);
     globals->remove(_key);
+    return true;
 }
 
 void Context::removeGlobalAll()
 {
     std::list<Symbol>::iterator it = globals->begin();
+
     while (it != globals->end())
     {
-        removeGlobal(*it);
+        if (removeGlobal(*it) == false)
+        {
+            globals->remove(*it);
+        }
+
         it = globals->begin();
     }
 
     globals->clear();
+
+    globals->emplace_back("%modalWarning");
+    globals->emplace_back("%toolboxes");
+    globals->emplace_back("%toolboxes_dir");
 }
 
 void Context::print(std::ostream& ostr, bool sorted) const

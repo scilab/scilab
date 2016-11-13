@@ -4,11 +4,14 @@
 * Copyright (C) 1997   - INRIA
 * Copyright (C) 2012 - Serge Steer - INRIA
 *
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook"
@@ -402,20 +405,21 @@
   ]]></programlisting>
         <para>2次元 dct</para>
         <programlisting role="example"><![CDATA[
-  //----------------------------------
-  function [z]=__milk_drop(x,y)
-      sq=x.^2+y.^2;
-      z= exp( exp(-sq).*(exp(cos(sq).^20)+8*sin(sq).^20+2*sin(2*(sq)).^8) );
+  function z = __milk_drop(x,y)
+      sq = x.^2+y.^2;
+      z = exp( exp(-sq).*(exp(cos(sq).^20)+8*sin(sq).^20+2*sin(2*(sq)).^8) );
   endfunction
-  x=-2:0.1:2;
-  A=eval3d(__milk_drop,x,x);
-  d=dct(A);
+  x = -2:0.1:2;
+  [X,Y] = ndgrid(x,x);
+  A = __milk_drop(X,Y);
+  d = dct(A);
   d(abs(d)<1)=0;
-  size(find(d1<>0),'*')
-  A1=dct(d,1);
-  clf();fig=gcf();fig.color_map=graycolormap(128);
-  subplot(121),grayplot(x,x,A)
-  subplot(122),grayplot(x,x,A1)
+  size(find(d<>0),'*')
+  A1 = dct(d,1);
+  clf
+  gcf().color_map = graycolormap(128);
+  subplot(121), grayplot(x,x,A)
+  subplot(122), grayplot(x,x,A1)
   ]]></programlisting>
     </refsection>
     <refsection role="see also">

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bernard Hugueney
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -140,16 +143,8 @@ struct EXTERN_AST Sparse : GenericType
     */
     void whoAmI() SPARSE_CONST;
     bool isExtract() const;
-    Sparse* clone(void) const;
-    Sparse* clone(void)
-    {
-        return const_cast<Sparse const*>(this)->clone();
-    }
-    bool toString(std::ostringstream& ostr) const;
-    bool toString(std::ostringstream& ostr)
-    {
-        return const_cast<Sparse const*>(this)->toString(ostr);
-    }
+    Sparse* clone(void);
+    bool toString(std::ostringstream& ostr);
 
     /* post condition: dimensions are at least _iNewRows, _iNewCols
        preserving existing data.
@@ -514,18 +509,10 @@ struct EXTERN_AST SparseBool : GenericType
     }
     void finalize();
 
-    bool toString(std::ostringstream& ostr) const;
-    bool toString(std::ostringstream& ostr)
-    {
-        return const_cast<SparseBool const*>(this)->toString(ostr);
-    }
+    bool toString(std::ostringstream& ostr);
 
     /* Config management and GenericType methods overrides */
-    SparseBool* clone(void) const;
-    SparseBool* clone(void)
-    {
-        return const_cast<SparseBool const*>(this)->clone();
-    }
+    SparseBool* clone(void);
 
     SparseBool* resize(int _iNewRows, int _iNewCols);
     SparseBool* reshape(int* _piNewDims, int _iNewDims);

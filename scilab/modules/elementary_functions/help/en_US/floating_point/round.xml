@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="round" xml:lang="en">
@@ -17,7 +20,7 @@
         <refpurpose>round to nearest integer</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>y=round(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -44,19 +47,19 @@
             <literal>x</literal> to the nearest integers.
         </para>
         <para>
-            In case of tie, this function rounds to infinities. 
-            That is, if <literal>x</literal> is positive and is halfway between two 
+            In case of tie, this function rounds to infinities.
+            That is, if <literal>x</literal> is positive and is halfway between two
             integers, then <literal>round(x)</literal> is rounded toward <literal>%inf</literal>.
-            If <literal>x</literal> is negative and is halfway between two 
+            If <literal>x</literal> is negative and is halfway between two
             integers, then <literal>round(x)</literal> is rounded toward <literal>-%inf</literal>.
             In other words, if <literal>x</literal> is positive, then <literal>round(x)</literal>
-            is equal to <literal>int(x+0.5)</literal>, and if <literal>x</literal> is negative, 
+            is equal to <literal>int(x+0.5)</literal>, and if <literal>x</literal> is negative,
             then <literal>round(x)</literal> is equal to <literal>int(x-0.5)</literal>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Notice that round(1.5)==2
 round([1.3 1.5 1.7 2.5 3.7])
 // Notice the result for x negative
@@ -66,7 +69,7 @@ round([2.2+%i*23, %pi*%i, -%i ])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="int">int</link>

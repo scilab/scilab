@@ -73,12 +73,17 @@ A = 3;
 assert_checkequal(isdef("A"), %t);
 assert_checkequal(A, 3);
 
-clear("SCI");
-assert_checktrue(isdef("SCI"));
+ierr = execstr("clear SCI", "errcatch");
+msg_err = lasterror();
+msg_ref = msprintf(gettext("Redefining permanent variable.\n"));
+assert_checkequal (msg_err, msg_ref);
 
+assert_checktrue(isdef("SCI"));
 oldSCI = SCI;
-SCI = 14;
-clear("SCI");
+ierr = execstr("SCI = 14;", "errcatch");
+msg_err = lasterror();
+assert_checkequal (msg_err, msg_ref);
+
 assert_checktrue(isdef("SCI"));
 assert_checkequal(oldSCI, SCI);
 

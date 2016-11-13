@@ -27,7 +27,7 @@
                 <term>preferredsize</term>
                 <listitem>
                     <para>
-                        <literal>[width, heigth]</literal> doubleの1行2列行列, 
+                        <literal>[width, heigth]</literal> doubleの1行2列行列,
                         デフォルトは [-1, -1].
                     </para>
                     <para>
@@ -57,7 +57,7 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-         //Creating a figure with the border layout with 50 pixel padding in width and 10 in height 
+         //Creating a figure with the border layout with 50 pixel padding in width and 10 in height
          f = figure( ...
          "dockable"        , "off",...
          "infobar_visible" , "off",...

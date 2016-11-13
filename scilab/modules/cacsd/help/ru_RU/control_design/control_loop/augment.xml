@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="augment">
+    <refnamediv>
+        <refname>augment</refname>
+        <refpurpose>augmented plant</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[P,r]=augment(G)
+            [P,r]=augment(G,flag1)
+            [P,r]=augment(G,flag1,flag2)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list), the nominal plant
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag1</term>
+                <listitem>
+                    <para>
+                        one of the following (upper case) character string: <literal> 'S' </literal>, <literal> 'R' </literal>, <literal> 'T' </literal> <literal> 'SR' </literal>, <literal> 'ST' </literal>, <literal> 'RT' </literal> <literal> 'SRT' </literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag2</term>
+                <listitem>
+                    <para>
+                        one of the following character string: <literal> 'o' </literal> (stands for 'output', this is the default value) or <literal>'i'</literal> (stands for 'input').
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        linear system (<literal>syslin</literal> list), the ``augmented'' plant
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 row vector, dimension of <literal>P22 = G</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            If <literal>flag1='SRT'</literal> (default value), returns the "full" augmented plant
+        </para>
+        <programlisting role=""><![CDATA[
+    [ I | -G]   -->'S'
+    [ 0 |  I]   -->'R'
+P = [ 0 |  G]   -->'T'
+    [-------]
+    [ I | -G]
+ ]]></programlisting>
+        <para>
+            <literal> 'S' </literal>, <literal> 'R' </literal>, <literal> 'T' </literal> refer to the first three (block) rows
+            of <literal>P</literal> respectively.
+        </para>
+        <para>
+            If one of these letters is absent in <literal>flag1</literal>, the corresponding
+            row in <literal>P</literal> is missing.
+        </para>
+        <para>
+            If <literal>G</literal> is given in state-space form, the returned <literal>P</literal> is minimal.
+            <literal>P</literal> is calculated by: <literal>[I,0,0;0,I,0;-I,0,I;I,0,0]*[I,-G;0,I;I,0]</literal>.
+        </para>
+        <para>
+            The augmented plant associated with input sensitivity functions, namely
+        </para>
+        <programlisting role=""><![CDATA[
+    [ I | -I]   -->'S'  (input sensitivity)
+    [ G | -G]   -->'R'  (G*input sensitivity)
+P = [ 0 |  I]   -->'T'  (K*G*input sensitivity)
+    [-------]
+    [ G | -G]
+    ]]></programlisting>
+        <para>
+            is obtained by the command <literal>[P,r]=augment(G,flag,'i')</literal>. For
+            state-space <literal>G</literal>, this <literal>P</literal>
+            is calculated by: <literal>[I,-I;0,0;0,I;0,0]+[0;I;0;I]*G*[I,-I]</literal>
+            and is thus generically minimal.
+        </para>
+        <para>
+            Note that weighting functions can be introduced by left-multiplying
+            <literal>P</literal> by a diagonal system of appropriate dimension, e.g.,
+            <literal> P = sysdiag(W1,W2,W3,eye(G))*P</literal>.
+        </para>
+        <para>
+            Sensitivity functions can be calculated by <literal>lft</literal>. One has:
+        </para>
+        <para>
+            For output sensitivity functions [P,r]=augment(P,'SRT'):
+            lft(P,r,K)=[inv(eye()+G*K);K*inv(eye()+G*K);G*K*inv(eye()+G*K)];
+        </para>
+        <para>
+            For input sensitivity functions [P,r]=augment(P,'SRT','i'):
+            lft(P,r,K)=[inv(eye()+K*G);G*inv(eye()+K*G);K*G*inv(eye()+G*K)];
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+G=ssrand(2,3,2); //Plant
+K=ssrand(3,2,2); //Compensator
+[P,r]=augment(G,'T');
+T=lft(P,r,K);   //Complementary sensitivity function
+Ktf=ss2tf(K);Gtf=ss2tf(G);
+Ttf=ss2tf(T);T11=Ttf(1,1);
+Oloop=Gtf*Ktf;
+Tn=Oloop*inv(eye(Oloop)+Oloop);
+clean(T11-Tn(1,1));
+//
+[Pi,r]=augment(G,'T','i');
+T1=lft(Pi,r,K);T1tf=ss2tf(T1); //Input Complementary sensitivity function
+Oloop=Ktf*Gtf;
+T1n=Oloop*inv(eye(Oloop)+Oloop);
+clean(T1tf(1,1)-T1n(1,1))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lft">lft</link>
+            </member>
+            <member>
+                <link linkend="sensi">sensi</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

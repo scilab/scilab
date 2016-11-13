@@ -2,36 +2,39 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="plot" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="plot" xml:lang="pt">
     <refnamediv>
         <refname>plot</refname>
-        <refpurpose>EsboÁo 2d</refpurpose>
+        <refpurpose>Esbo√ßo 2d</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seq¸Íncia de Chamamento</title>
+        <title>Seq√º√™ncia de Chamamento</title>
         <synopsis>plot(y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)
             plot(x,y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)
             plot(x1,y1,&lt;LineSpec1&gt;,x2,y2,&lt;LineSpec2&gt;,...xN,yN,&lt;LineSpecN&gt;,&lt;GlobalProperty1&gt;,&lt;GlobalProperty2&gt;,..&lt;GlobalPropertyM&gt;)
             plot(&lt;axes_handle&gt;,...)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Par‚metros</title>
+    <refsection role="parameters">
+        <title>Par√¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>uma matriz ou vetor de reais. Se omitido, È assumido como
-                        sendo o vetor <literal>1:n</literal> onde <literal>n</literal> È o
-                        n˙mero de pontos de curva dado pelo par‚metro
+                    <para>uma matriz ou vetor de reais. Se omitido, √© assumido como
+                        sendo o vetor <literal>1:n</literal> onde <literal>n</literal> √© o
+                        n√∫mero de pontos de curva dado pelo par√¢metro
                         <literal>y</literal>.
                     </para>
                 </listitem>
@@ -40,8 +43,8 @@
                 <term>y</term>
                 <listitem>
                     <para>
-                        uma matriz de reais ou um vetor. <literal>y</literal> tambÈm
-                        pode ser uma funÁ„o definida como um macro ou uma primitiva. 
+                        uma matriz de reais ou um vetor. <literal>y</literal> tamb√©m
+                        pode ser uma fun√ß√£o definida como um macro ou uma primitiva.
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,119 +54,119 @@
                     <para>este argumento opcional deve ser usado como um atalho para
                         especificar um modo de desenhar uma linha. Podemos ter um
                         <literal>LineSpec</literal> por<literal> y</literal> ou
-                        <literal>{x,y}</literal> previamente entrados. As opÁıes
+                        <literal>{x,y}</literal> previamente entrados. As op√ß√µes
                         <literal>LineSpec</literal> lidam com os especificadores LineStyle,
                         Marker e Color (ver <link linkend="LineSpec">LineSpec</link>). Estes
                         especificadores determinam o estilo de linha, de marcas e a cor das
-                        linhas esboÁadas. 
+                        linhas esbo√ßadas.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>&lt;GlobalProperty&gt;</term>
                 <listitem>
-                    <para>este argumento opcional representa uma seq¸Íncia de pares de
-                        declaraÁıes <literal>{PropertyName,PropertyValue}</literal> tque
+                    <para>este argumento opcional representa uma seq√º√™ncia de pares de
+                        declara√ß√µes <literal>{PropertyName,PropertyValue}</literal> tque
                         define propriedades globais de objetos a serem aplicadas a todas as
-                        curvas criadas pelo esboÁo. Para uma visualizaÁ„o completa de das
-                        propriedades disponÌveis veja <link linkend="GlobalProperty">GlobalProperty</link>.
+                        curvas criadas pelo esbo√ßo. Para uma visualiza√ß√£o completa de das
+                        propriedades dispon√≠veis veja <link linkend="GlobalProperty">GlobalProperty</link>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>&lt;axes_handle&gt;</term>
                 <listitem>
-                    <para>este argumento opcional forÁa o esboÁo a aparecer dentro dos
+                    <para>este argumento opcional for√ßa o esbo√ßo a aparecer dentro dos
                         eixos selecionados fornecidos por <literal>axes_handle</literal> ao
-                        invÈs dos eixos correntes (ver <link linkend="gca">gca</link>).
+                        inv√©s dos eixos correntes (ver <link linkend="gca">gca</link>).
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>DescriÁ„o</title>
+    <refsection role="description">
+        <title>Descri√ß√£o</title>
         <para>
-            <literal>plot</literal> esboÁa um conjunto de curvas 2d.
-            <literal>plot</literal> foi reconstruÌdo para lidar melhor com a sintaxe
-            do Matlab. Para melhorar a compatibilidade gr·fica com o Matlab, utilize
-            <literal>plot</literal> (ao invÈs de <link linkend="plot2d">plot2d</link>).
+            <literal>plot</literal> esbo√ßa um conjunto de curvas 2d.
+            <literal>plot</literal> foi reconstru√≠do para lidar melhor com a sintaxe
+            do Matlab. Para melhorar a compatibilidade gr√°fica com o Matlab, utilize
+            <literal>plot</literal> (ao inv√©s de <link linkend="plot2d">plot2d</link>).
         </para>
-        <para>EspecificaÁ„o de entrada de dados:</para>
-        <para>Neste par·grafo, para sermos mais claros, n„o mencionaremos os
+        <para>Especifica√ß√£o de entrada de dados:</para>
+        <para>Neste par√°grafo, para sermos mais claros, n√£o mencionaremos os
             argumentos opcionais <literal>LineSpec</literal> ou
-            <literal>GlobalProperty</literal> j· que eles n„o interferem na entrada de
+            <literal>GlobalProperty</literal> j√° que eles n√£o interferem na entrada de
             dados (exceto pelas propriedades <literal>"Xdata"</literal>,
-            <literal>"Ydata"</literal> e <literal>"Zdata"</literal>, ver <link linkend="GlobalProperty">GlobalProperty</link>). … assumido que todos
-            estes argumentos podem estar presentes tambÈm.
+            <literal>"Ydata"</literal> e <literal>"Zdata"</literal>, ver <link linkend="GlobalProperty">GlobalProperty</link>). √â assumido que todos
+            estes argumentos podem estar presentes tamb√©m.
         </para>
         <para>
-            Se <literal>y</literal> È um vetor, plot(y) esboÁa um vetor
+            Se <literal>y</literal> √© um vetor, plot(y) esbo√ßa um vetor
             <literal>y</literal> versus o vetor
             <literal>1:size(y,'*')</literal>.
         </para>
         <para>
-            Se <literal>y</literal> È uma matriz, plot(y) esboÁa cada coluna de
+            Se <literal>y</literal> √© uma matriz, plot(y) esbo√ßa cada coluna de
             <literal>y</literal> versus o vetor <literal>1:size(y,1)</literal>.
         </para>
         <para>
-            Se <literal>x</literal> e <literal>y</literal> s„o vetores,
-            plot(x,y) esboÁa o vetor <literal>y</literal> versus o vetor
+            Se <literal>x</literal> e <literal>y</literal> s√£o vetores,
+            plot(x,y) esbo√ßa o vetor <literal>y</literal> versus o vetor
             <literal>x</literal>. Os vetores <literal>x</literal> e
-            <literal>y</literal> devem ter o mesmo n˙mero de entradas.
+            <literal>y</literal> devem ter o mesmo n√∫mero de entradas.
         </para>
         <para>
-            Se <literal>x</literal> È um vetor e <literal>y</literal> uma matriz
-            plot(x,y) esboÁa cada coluna de <literal>y</literal> versus o vetor
-            <literal>x</literal>. Neste caso, o n˙mero de colunas de
-            <literal>y</literal> deve ser igual ao n˙mero de entradas de
+            Se <literal>x</literal> √© um vetor e <literal>y</literal> uma matriz
+            plot(x,y) esbo√ßa cada coluna de <literal>y</literal> versus o vetor
+            <literal>x</literal>. Neste caso, o n√∫mero de colunas de
+            <literal>y</literal> deve ser igual ao n√∫mero de entradas de
             <literal>x</literal>.
         </para>
         <para>
-            Se <literal>x</literal> e <literal>y</literal> s„o matrizes,
-            plot(x,y) esboÁa cada coluna de <literal>y</literal> versus a coluna
+            Se <literal>x</literal> e <literal>y</literal> s√£o matrizes,
+            plot(x,y) esbo√ßa cada coluna de <literal>y</literal> versus a coluna
             correspondente de <literal>x</literal>. Neste caso, os tamanhos
             <literal>x</literal> e <literal>y</literal> devem ser os mesmos.
         </para>
         <para>
-            Finalmente, se apenas <literal>x</literal> ou <literal>y</literal> È
-            uma matriz, o vetor È esboÁado versus cada linha ou cada coluna da matriz.
-            A escolha È feita dependendo se a dimens„o de linha ou coluna do vetor
-            coincide com a dimens„o de linha ou coluna da matriz. No caso de uma
+            Finalmente, se apenas <literal>x</literal> ou <literal>y</literal> √©
+            uma matriz, o vetor √© esbo√ßado versus cada linha ou cada coluna da matriz.
+            A escolha √© feita dependendo se a dimens√£o de linha ou coluna do vetor
+            coincide com a dimens√£o de linha ou coluna da matriz. No caso de uma
             matriz quadrada (apenas <literal>x</literal> ou penas
-            <literal>y</literal>), a prioridade È dada a colunas ao invÈs de linhas
+            <literal>y</literal>), a prioridade √© dada a colunas ao inv√©s de linhas
             (ver exemplos abaixo).
         </para>
         <para>
-            <literal>y</literal> tambÈm pode ser uma funÁ„o definida como um
+            <literal>y</literal> tamb√©m pode ser uma fun√ß√£o definida como um
             macro ou uma primitiva. Neste caso, os dados <literal>x</literal> devem
-            ser fornecidos (como um vetor ou uma matriz) e a computaÁ„o correspondente
-            de <literal>y(x)</literal> È feita implicitamente.
+            ser fornecidos (como um vetor ou uma matriz) e a computa√ß√£o correspondente
+            de <literal>y(x)</literal> √© feita implicitamente.
         </para>
         <para>
             Os argumentos <literal>LineSpec</literal> e
             <literal>GlobalProperty</literal> devem ser utilizados para customizar o
-            esboÁo. Aqui est· uma lista completa das opÁıes disponÌveis.
+            esbo√ßo. Aqui est√° uma lista completa das op√ß√µes dispon√≠veis.
         </para>
         <variablelist>
             <varlistentry>
                 <term>LineSpec</term>
                 <listitem>
-                    <para>esta opÁ„o pode ser utilizada para se especificar, de um modo
-                        curto e f·cil, como as curvas s„o desenhadas. Deve sempre ser um
-                        string contendo referÍncias aos especificadores LineStyle, Marker e
+                    <para>esta op√ß√£o pode ser utilizada para se especificar, de um modo
+                        curto e f√°cil, como as curvas s√£o desenhadas. Deve sempre ser um
+                        string contendo refer√™ncias aos especificadores LineStyle, Marker e
                         Color.
                     </para>
-                    <para>Essas referÍncias devem ser ajustadas denro do string (a ordem
-                        n„o È importante) de modo a n„o ter ambig¸idades. Por exemplo, para
-                        especificar uma linha vermelha de traÁo longo com marcas de rombos,
+                    <para>Essas refer√™ncias devem ser ajustadas denro do string (a ordem
+                        n√£o √© importante) de modo a n√£o ter ambig√ºidades. Por exemplo, para
+                        especificar uma linha vermelha de tra√ßo longo com marcas de rombos,
                         pode-se escrever : <literal>'r--d'</literal> ou
                         <literal>'--dire'</literal> ou <literal>'--reddiam'</literal> ou
-                        outra sentenÁa sem ambig¸idade... ou de modo completo
+                        outra senten√ßa sem ambig√ºidade... ou de modo completo
                         <literal>'diamondred--'</literal> (ver <link linkend="LineSpec">LineSpec</link>).
                     </para>
                     <para>Note que os estilos de linha e marcas (e tamanhos) e as cores,
-                        podem ser (re*)ajustados atravÈs das propriedades da entidade
+                        podem ser (re*)ajustados atrav√©s das propriedades da entidade
                         poligonal (ver <link linkend="polyline_properties">polyline_properties</link>).
                     </para>
                 </listitem>
@@ -171,50 +174,50 @@
             <varlistentry>
                 <term>GlobalProperty</term>
                 <listitem>
-                    <para>esta opÁ„o pode ser utilizada para especificar como as linhas
-                        ser„o desenhadas com mais opÁıes que via
-                        <literal>LineSpec</literal>. Deve sempre ser um par de declaraÁıes
+                    <para>esta op√ß√£o pode ser utilizada para especificar como as linhas
+                        ser√£o desenhadas com mais op√ß√µes que via
+                        <literal>LineSpec</literal>. Deve sempre ser um par de declara√ß√µes
                         constituidos de um string definindo <literal>PropertyName</literal>,
                         (nome da propriedade) e seu valor associado
                         <literal>PropertyValue</literal> (que pode ser um string, um inteiro
                         ou qualquer outra coisa... dependendo do tipo de
                         <literal>PropertyName</literal>). Utilizando-se
-                        <literal>GlobalProperty</literal>, pode-se ajustar v·rias
-                        propriedades : todas as propriedades disponÌveis via LineSpec e
+                        <literal>GlobalProperty</literal>, pode-se ajustar v√°rias
+                        propriedades : todas as propriedades dispon√≠veis via LineSpec e
                         mais: a cor da marca (plano de fundo e primeiro plano), a
                         visibilidade, o recorte e a espessura das curvas. (ver <link linkend="GlobalProperty">GlobalProperty</link>)
                     </para>
                     <para>Note que todas as propriedades podem ser (re-)ajustadas
-                        atravÈs das propriedades de entidades poligonais (ver <link linkend="polyline_properties">polyline_properties</link>).
+                        atrav√©s das propriedades de entidades poligonais (ver <link linkend="polyline_properties">polyline_properties</link>).
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>ObservaÁıes </title>
-        <para>Por padr„o, esboÁos sucessivos s„o superpostos. Para limpar o esboÁo
+    <refsection role="description">
+        <title>Observa√ß√µes </title>
+        <para>Por padr√£o, esbo√ßos sucessivos s√£o superpostos. Para limpar o esbo√ßo
             anterior, use <literal>clf()</literal>. Para habilitar o modo
-            <literal>auto_clear</literal> (limpeza autom·tica) como modo padr„o, edite
+            <literal>auto_clear</literal> (limpeza autom√°tica) como modo padr√£o, edite
             seus eixos fazendo o seguinte:
         </para>
         <para>da=gda();</para>
         <para>da.auto_clear = 'on'</para>
         <para>
-            Para uma melhor exibiÁ„o, a funÁ„o <literal>plot</literal> pode
-            modificar a propriedade <literal>box</literal> de seu Axes (eixos) raÌze.
-            Isto acontece quando uma entidade Axes È criada por uma chamada a
-            <literal>plot</literal> ou È vazia antes da chamada. Se um dos eixos È
-            centrado na origem, box È desabilitado. Em caso contr·rio, box È
+            Para uma melhor exibi√ß√£o, a fun√ß√£o <literal>plot</literal> pode
+            modificar a propriedade <literal>box</literal> de seu Axes (eixos) ra√≠ze.
+            Isto acontece quando uma entidade Axes √© criada por uma chamada a
+            <literal>plot</literal> ou √© vazia antes da chamada. Se um dos eixos √©
+            centrado na origem, box √© desabilitado. Em caso contr√°rio, box √©
             habilitado.
         </para>
-        <para>Para mais informaÁıes sobre a propriedade box e sobre o
+        <para>Para mais informa√ß√µes sobre a propriedade box e sobre o
             posicionamento dos eixos, veja <link linkend="axes_properties">axes_properties</link>
         </para>
-        <para>Uma tabela de cores padr„o È utilizada para colorir as curvas
-            esboÁadas quando vocÍ n„o especifica as cores. Ao desenhar linhas
-            m˙ltiplas, o comando plot automaticamente atribui as cores abaixo de modo
-            cÌclico. Aqui est„o as cores utilizadas:
+        <para>Uma tabela de cores padr√£o √© utilizada para colorir as curvas
+            esbo√ßadas quando voc√™ n√£o especifica as cores. Ao desenhar linhas
+            m√∫ltiplas, o comando plot automaticamente atribui as cores abaixo de modo
+            c√≠clico. Aqui est√£o as cores utilizadas:
         </para>
         <informaltable border="1">
             <tr>
@@ -267,44 +270,44 @@
         <para/>
         <para>
             Entre com o comando <literal>plot</literal> para visualizar uma
-            demonstraÁ„o.
+            demonstra√ß√£o.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-// inicializaÁ„o de x
+        <programlisting role="example"><![CDATA[
+// inicializa√ß√£o de x
 x=[0:0.1:2*%pi]';
-//esboÁo simples
+//esbo√ßo simples
 plot(sin(x))
 clf()
 plot(x,sin(x))
-//esboÁos m˙ltiplos
+//esbo√ßos m√∫ltiplos
 clf()
 plot(x,[sin(x) sin(2*x) sin(3*x)])
 clf()
 
-// eixo ‡ direita
-plot(x,sin(x)) 
+// eixo √† direita
+plot(x,sin(x))
 a=gca(); // manipulador da entidade Axes
-a.y_location ="right"; 
+a.y_location ="right";
 clf()
 
 // eixo centrado em (0,0)
 plot(x-4,sin(x),x+2,cos(x))
 a=gca(); // manipulador da entidade Axes
-a.x_location = "middle"; 
-a.y_location = "middle"; 
+a.x_location = "middle";
+a.y_location = "middle";
 
-// algumas operaÁıes em entidades criadas por plot...
+// algumas opera√ß√µes em entidades criadas por plot...
+isoview()
 a=gca();
-a.isoview='on'; 
-a.children // listando os galhos da entidade Axes: aqui, È um galho Compound composto por duas entidades 
+a.children // listando os galhos da entidade Axes: aqui, √© um galho Compound composto por duas entidades
 poly1= a.children.children(2); //armazenando um manipulador Polyline em poly1
 poly1.foreground = 4; // outro modo de se mudar o estilo...
 poly1.thickness = 3;  // ...e a espessura de uma curva.
 poly1.clip_state='off' // controle de recorte
-a.isoview='off'; 
+isoview("off")
 
 //exemplos com LineSpec e GlobalProperty:
 clf();
@@ -318,13 +321,13 @@ scf(4) // deveria permanecer em branco
 plot(axfig3,[t ;t],[sin(t) ;cos(t)],'zdat',[1:2],'marker','d','markerfac','green','markeredg','yel')
 xdel(winsid())
 
-//especificaÁ„o de dados
+//especifica√ß√£o de dados
 t=-%pi:0.1:%pi;
 size(t)
-plot(t) // esboÁos simples de y versus tamanho do vetor t
+plot(t) // esbo√ßos simples de y versus tamanho do vetor t
 clf(); // limpando figura
 
-plot(t,sin(t)); // esboÁa sin(t) versus t
+plot(t,sin(t)); // esbo√ßa sin(t) versus t
 clf();
 
 t=[1     1     1     1
@@ -332,11 +335,11 @@ t=[1     1     1     1
    3     4     5     6
    4     5     6     7];
 
-plot(t) // esboÁa cada coluna t column versus tamanho de linha
+plot(t) // esbo√ßa cada coluna t column versus tamanho de linha
 clf();
 
 subplot(221)
-plot(t,sin(t)); // esboÁa sin(t) versus t coluna por coluna desta vez
+plot(t,sin(t)); // esbo√ßa sin(t) versus t coluna por coluna desta vez
 xtitle("sin(t) versus t")
 subplot(222)
 plot(t,sin(t)')
@@ -356,11 +359,11 @@ clf();
 //x : vector ([5 6 7 8]) and y : matrix (t)
 x=[5 6 7 8]
 plot(x,t);
-plot(x',t); // idem, x È automaiticamente transposto para corresponder a t (aqui as colunas)
+plot(x',t); // idem, x √© automaiticamente transposto para corresponder a t (aqui as colunas)
 clf()
 
-// apenas um caso de possibilidade de correspondÍncia: como realizar quatro esboÁos idÍnticos 4 de quatro maneiras 4...
-// x È um vetor 1x4 (vector) y is uma matriz n„o-quadrada 4x5
+// apenas um caso de possibilidade de correspond√™ncia: como realizar quatro esbo√ßos id√™nticos 4 de quatro maneiras 4...
+// x √© um vetor 1x4 (vector) y is uma matriz n√£o-quadrada 4x5
 subplot(221);
 plot(x,[t [8;9;10;12]]');
 subplot(222);
@@ -372,18 +375,18 @@ plot(x',[t [8;9;10;12]]');
 clf()
 
 //caso especial 2
-// caso onde apenas x ou y È uma matriz quadrada
+// caso onde apenas x ou y √© uma matriz quadrada
 //x : matrix (t) e y  : vetor ([1 2 3 4])
 plot(t,[1 2 3 4]) // equivalente a plot(t,[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
-plot(t,[1;2;3;4]) // o mesmo esboÁo
+plot(t,[1;2;3;4]) // o mesmo esbo√ßo
 clf();
 
-// t È transposto: note a prioridade dada ao tratamento das colunas
+// t √© transposto: note a prioridade dada ao tratamento das colunas
 plot(t',[1 2 3 4]) // equivalente a plot(t',[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
-plot(t',[1 2 3 4]') // o mesmo esboÁo
+plot(t',[1 2 3 4]') // o mesmo esbo√ßo
 clf();
 
-// y È uma funÁ„o definida por...
+// y √© uma fun√ß√£o definida por...
 // ..uma primitiva
 plot(1:0.1:10,sin) // equivalente a plot(1:0.1:10,sin(1:0.1:10))
 clf();
@@ -394,7 +397,7 @@ plot(1:10,toto)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver TambÈm</title>
+        <title>Ver Tamb√©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="plot2d">plot2d</link>

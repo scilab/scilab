@@ -113,6 +113,10 @@
         <submenu label="&amp;File Browser">
             <callback instruction="filebrowser()" type="0"/>
         </submenu>
+        <separator/>
+        <submenu label="&amp;News feed">
+            <callback instruction="org.scilab.modules.ui_data.newsfeed.NewsFeedTab.displayTab" type="3"/>
+        </submenu>
     </menu>
     <!-- Help menu -->
     <menu label="&amp;?" enabled="true">

@@ -42,7 +42,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 global a b c
 a=1;b=2;c=3;
 who('global')

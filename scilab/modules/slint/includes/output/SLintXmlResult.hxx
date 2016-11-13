@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -35,7 +38,7 @@ public:
 
     virtual ~SLintXmlResult();
     virtual void handleFiles(const std::vector<SciFilePtr> & files) { }
-    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::string & msg);
+    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::string & msg);
     virtual void finalize();
 
     static std::string replaceByEntities(const std::string & seq);
@@ -44,9 +47,9 @@ public:
 private:
 
     void print(const SciFilePtr & file);
-    void print(const Location & loc, const SLintChecker & checker, const std::string & msg);
+    void print(const Location & loc, const SLintChecker & checker, const unsigned sub, const std::string & msg);
     void print(const Location & loc);
-    void print(const SLintChecker & checker);
+    void print(const SLintChecker & checker, const unsigned sub);
     void print(const std::string & msg);
 
     inline static void pushEntity(std::vector<char> & buf, const char * wstr, const unsigned char len)

@@ -2,15 +2,18 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="plot2d" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="plot2d" xml:lang="pt">
     <refnamediv>
         <refname>plot2d</refname>
         <refpurpose>esboço 2d</refpurpose>
@@ -21,7 +24,7 @@
             plot2d([x],y,&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
@@ -117,7 +120,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Descrição</title>
         <para>
             <literal>plot2d</literal> esboça um conjunto de curvas 2d. Se você
@@ -459,10 +462,10 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Mais Informações</title>
         <para>Por padrão, esboços sucessivos são superpostos. para limpar o esboço
-            anterior use 
+            anterior use
             <literal>
                 <link linkend="clf">clf()</link>
             </literal>
@@ -494,9 +497,9 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // inicialização de x
 x=[0:0.1:2*%pi]';
 //esboço simples
@@ -516,38 +519,38 @@ plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
 // isovisualização
 clf();
 plot2d(x,sin(x),1,frameflag= 4);
-// escala 
+// escala
 clf();
 plot2d(x,sin(x),1,frameflag= 6);
 // auto-escala com esboços anteriores + estilo
 clf();
 plot2d(x,sin(x),-1);
-plot2d(x,2*sin(x),12); 
+plot2d(x,2*sin(x),12);
 plot2d(2*x,cos(x),3);
 // eixo à direita
 clf();
 plot2d(x,sin(x),leg="sin(x)");
 a=gca(); // manipulador da entidade Axes
-a.y_location ="right"; 
-// eixo centrado em (0,0) 
+a.y_location ="right";
+// eixo centrado em (0,0)
 clf();
 plot2d(x-4,sin(x),1,leg="sin(x)");
 a=gca(); // manipulador da entidade Axes
-a.x_location = "middle"; 
-a.y_location = "middle"; 
+a.x_location = "middle";
+a.y_location = "middle";
 // algumas operações sobre entidades criadas por plot2d ...
+isoview()
 a=gca();
-a.isoview='on'; 
 a.children // lista dos galhos dos eixos
-// há um Compound formado por duas poligonais e uma legenda 
-poly1= a.children(1).children(1); //armazena um manipulador de poligonal em poly1 
+// há um Compound formado por duas poligonais e uma legenda
+poly1= a.children(1).children(1); //armazena um manipulador de poligonal em poly1
 poly1.foreground = 4; // outra maneira de se mudar o estilo...
 poly1.thickness = 3;  // ...e a espessura de uma curva.
 poly1.clip_state='off'; // controle de recorte
 leg = a.children(2); // armazena manipulador de legenda em leg
-leg.font_style = 9; 
+leg.font_style = 9;
 leg.line_mode = "on";
-a.isoview='off';
+isoview("off")
  ]]></programlisting>
     </refsection>
     <refsection>
@@ -555,9 +558,6 @@ a.isoview='off';
         <simplelist type="inline">
             <member>
                 <link linkend="plot">plot</link>
-            </member>
-            <member>
-                <link linkend="plot2d1">plot2d1</link>
             </member>
             <member>
                 <link linkend="plot2d2">plot2d2</link>

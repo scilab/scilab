@@ -11,7 +11,7 @@
         <refpurpose>partial variable assignation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>x(i,j)=a
             x(i)=a
             l(i)=a
@@ -422,7 +422,7 @@ dts(2)('b')(1,2)=-100
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="find">find</link>

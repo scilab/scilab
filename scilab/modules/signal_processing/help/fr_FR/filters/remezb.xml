@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="remezb">
+    <refnamediv>
+        <refname>remezb</refname>
+        <refpurpose>Minimax approximation of magnitude response</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[an]=remezb(nc,fg,ds,wt)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>nc</term>
+                <listitem>
+                    <para>Number of cosine functions</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fg</term>
+                <listitem>
+                    <para>Grid of frequency points in [0,.5)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ds</term>
+                <listitem>
+                    <para>
+                        Desired magnitude on grid <literal>fg</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>wt</term>
+                <listitem>
+                    <para>
+                        Weighting function on error on grid <literal>fg</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>an</term>
+                <listitem>
+                    <para>Cosine filter coefficients</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Minimax approximation of a frequency domain
+            magnitude response. The approximation takes
+            the form <literal>h = sum[a(n)*cos(wn)]</literal>
+            for n=0,1,...,nc. An FIR, linear-phase filter
+            can be obtained from the output of the function
+            by using the following commands
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+hn(1:nc-1)=an(nc:-1:2)/2;
+hn(nc)=an(1);
+hn(nc+1:2*nc-1)=an(2:nc)/2;
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Choose the number of cosine functions and create a dense grid
+// in [0,.24) and [.26,.5)
+nc=21;ngrid=nc*16;
+fg=.24*(0:ngrid/2-1)/(ngrid/2-1);
+fg(ngrid/2+1:ngrid)=fg(1:ngrid/2)+.26*ones(1:ngrid/2);
+
+// Specify a low pass filter magnitude for the desired response
+ds(1:ngrid/2)=ones(1:ngrid/2);
+ds(ngrid/2+1:ngrid)=zeros(1:ngrid/2);
+
+// Specify a uniform weighting function
+wt=ones(fg);
+
+// Run remezb
+an=remezb(nc,fg,ds,wt)
+
+// Make a linear phase FIR filter
+hn(1:nc-1)=an(nc:-1:2)/2;
+hn(nc)=an(1);
+hn(nc+1:2*nc-1)=an(2:nc)/2;
+
+// Plot the filter's magnitude response
+plot(.5*(0:255)/256,frmag(hn,256));
+
+// Choose the number of cosine functions and create a dense grid in [0,.5)
+nc=21; ngrid=nc*16;
+fg=.5*(0:(ngrid-1))/ngrid;
+
+// Specify a triangular shaped magnitude for the desired response
+ds(1:ngrid/2)=(0:ngrid/2-1)/(ngrid/2-1);
+ds(ngrid/2+1:ngrid)=ds(ngrid/2:-1:1);
+
+// Specify a uniform weighting function
+wt=ones(fg);
+
+// Run remezb
+an=remezb(nc,fg,ds,wt)
+
+// Make a linear phase FIR filter
+hn(1:nc-1)=an(nc:-1:2)/2;
+hn(nc)=an(1);
+hn(nc+1:2*nc-1)=an(2:nc)/2;
+
+// Plot the filter's magnitude response
+plot(.5*(0:255)/256,frmag(hn,256));
+ ]]></programlisting>
+
+        <scilab:image>
+            nc=21;ngrid=nc*16;
+            fg=.24*(0:ngrid/2-1)/(ngrid/2-1);
+            fg(ngrid/2+1:ngrid)=fg(1:ngrid/2)+.26*ones(1:ngrid/2);
+
+            ds(1:ngrid/2)=ones(1:ngrid/2);
+            ds(ngrid/2+1:ngrid)=zeros(1:ngrid/2);
+
+            wt=ones(fg);
+
+            an=remezb(nc,fg,ds,wt)
+
+            hn(1:nc-1)=an(nc:-1:2)/2;
+            hn(nc)=an(1);
+            hn(nc+1:2*nc-1)=an(2:nc)/2;
+
+            plot(.5*(0:255)/256,frmag(hn,256));
+
+            nc=21; ngrid=nc*16;
+            fg=.5*(0:(ngrid-1))/ngrid;
+
+            ds(1:ngrid/2)=(0:ngrid/2-1)/(ngrid/2-1);
+            ds(ngrid/2+1:ngrid)=ds(ngrid/2:-1:1);
+
+            wt=ones(fg);
+
+            an=remezb(nc,fg,ds,wt)
+
+            hn(1:nc-1)=an(nc:-1:2)/2;
+            hn(nc)=an(1);
+            hn(nc+1:2*nc-1)=an(2:nc)/2;
+
+            plot(.5*(0:255)/256,frmag(hn,256));
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="eqfir">eqfir</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Calixte DENIZET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -69,6 +72,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private View view;
     private List<String> saved = new Vector<String>();
     private FunctionScanner funScanner;
+    private ScilabLexer lexerBlockComment;
 
     private Set<String> functions = new HashSet<String>(INITFUNCTIONSNUMBER);
 
@@ -103,6 +107,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     public ScilabDocument(boolean paned) {
         super(new GapContent(GAPBUFFERCAPACITY));
         contentModified = false;
+        lexerBlockComment = createLexer();
 
         if (paned) {
             setAsynchronousLoadPriority(2);
@@ -474,12 +479,12 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             }
         } else {
             Set<DefaultMutableTreeNode> set = new TreeSet<DefaultMutableTreeNode>(new Comparator<DefaultMutableTreeNode>() {
-                public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
-                    ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
-                    ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
-                    int n = l1.getFunctionName().compareTo(l2.getFunctionName());
-                    if (n != 0) {
-                        return n;
+                    public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
+                        ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
+                        ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
+                        int n = l1.getFunctionName().compareTo(l2.getFunctionName());
+                        if (n != 0) {
+                            return n;
                     }
                     return l1.getStartOffset() - l2.getStartOffset();
                 }
@@ -528,13 +533,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             }
         } else {
             Set<DefaultMutableTreeNode> set = new TreeSet<DefaultMutableTreeNode>(new Comparator<DefaultMutableTreeNode>() {
-                public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
-                    ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
-                    ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
-                    int n = l1.getAnchorName().compareTo(l2.getAnchorName());
-                    if (n != 0) {
-                        return n;
-                    }
+                    public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
+                        ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
+                        ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
+                        int n = l1.getAnchorName().compareTo(l2.getAnchorName());
+                        if (n != 0) {
+                            return n;
+                        }
                     return l1.getStartOffset() - l2.getStartOffset();
                 }
 
@@ -788,8 +793,13 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             int index = root.getElementIndex(ev.getOffset());
             ScilabLeafElement line = (ScilabLeafElement) root.getElement(index);
             boolean broken = line.isBroken();
-            if (pane != null && (line.resetType() == ScilabLeafElement.FUN || broken != line.isBroken()
-                                 || (index > 0 && ((ScilabLeafElement) root.getElement(index - 1)).isBroken()))) {
+
+            boolean brokenString = line.isBrokenString();
+            boolean blockComment = line.isBlockComment();
+            if (line.resetType() == ScilabLeafElement.FUN || brokenString != line.isBrokenString()
+                || blockComment != line.isBlockComment()
+                || broken != line.isBroken()
+                || (index > 0 && ((ScilabLeafElement) root.getElement(index - 1)).isBroken())) {
                 pane.repaint();
             }
         }
@@ -870,6 +880,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
         private FunctionScanner.FunctionInfo info;
         private boolean broken;
         private boolean brokenString;
+        private boolean blockComment;
 
         private boolean anchor;
         private String anchorName;
@@ -910,6 +921,12 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
             if ((type & BROKEN) == BROKEN) {
                 broken = true;
                 type -= BROKEN;
+            } else {
+                broken = false;
+            }
+
+            if (lexerBlockComment.isLineFinishedByBlockComment(getStartOffset(), getEndOffset())) {
+                broken = true;
             } else {
                 broken = false;
             }
@@ -1021,6 +1038,23 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
          */
         public void setBrokenString(boolean b) {
             brokenString = b;
+            if (b) {
+                broken = true;
+            }
+        }
+
+        /**
+         * @return if this line is broken
+         */
+        public boolean isBlockComment() {
+            return blockComment;
+        }
+
+        /**
+         * @param b true if this line is broken in a string
+         */
+        public void setBlockComment(boolean b) {
+            blockComment = b;
             if (b) {
                 broken = true;
             }

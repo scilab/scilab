@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="riccati">
+    <refnamediv>
+        <refname>riccati</refname>
+        <refpurpose>リカッチ方程式</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>X=riccati(A,B,C,dom,[typ])
+            [X1,X2]=riccati(A,B,C,dom,[typ])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>A,B,C</term>
+                <listitem>
+                    <para>
+                        実数行列 nxn, <literal>B</literal> および対称行列  <literal>C</literal> .
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dom</term>
+                <listitem>
+                    <para>
+                        時間領域(連続または離散)に関する <literal>'c'</literal> または <literal>'d'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>typ</term>
+                <listitem>
+                    <para>
+                        文字列 : ブロック対角化の場合は<literal>'eigen'</literal>,
+                        または Schur 法の場合は<literal>schur'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X1,X2,X</term>
+                <listitem>
+                    <para>正方実数行列 (X2 は可逆), 対称行列 X </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>X=riccati(A,B,C,dom,[typ])</literal> は次のリカッチ方程式を解きます:
+        </para>
+        <programlisting role=""><![CDATA[
+A'*X+X*A-X*B*X+C=0
+ ]]></programlisting>
+        <para>
+            (連続系の場合),または
+        </para>
+        <programlisting role=""><![CDATA[
+A'*X*A-(A'*X*B1/(B2+B1'*X*B1))*(B1'*X*A)+C-X
+ ]]></programlisting>
+        <para>
+            (離散時間系の場合), ただし <literal>B=B1/B2*B1'</literal>.
+            出力引数2個でコールされた場合,
+            <literal>riccati</literal> は
+            <literal>X=X1/X2</literal>となるような<literal>X1,X2</literal>を返します.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ricc">ricc</link>
+            </member>
+            <member>
+                <link linkend="ric_desc">ric_desc</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

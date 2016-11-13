@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="part" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="part" xml:lang="pt">
     <refnamediv>
         <refname>part</refname>
         <refpurpose>extração de strings</refpurpose>
@@ -54,7 +57,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // retorna caracteres da posição 8 a 11
 part("Como usar ""part"" ?",8:11)
 
@@ -71,14 +74,14 @@ c = part(['abcdefg','hijklmn','opqrstu'],[4,1:7,4]);
 // retorna o caractere da posição 1, adiciona de novo o caractere da posição 1 e o caractere da posição 2
 c=part(['a','abc','abcd'],[1,1,2])
 
-// a a a  
+// a a a
 part(['a','abc','abcd'],[1])
 
-// aa aa aa 
-part(['a','abc','abcd'],[1,1])
+// aa aa aa
+part(['a','abc','abcd'],[1 1])
 
-// aa aab aab 
-part(['a','abc','abcd'],[1,1,2])
+// "aa " aab aab
+part(['a','abc','abcd'],[1 1 2])
  ]]></programlisting>
     </refsection>
     <refsection>
@@ -86,6 +89,9 @@ part(['a','abc','abcd'],[1,1,2])
         <simplelist type="inline">
             <member>
                 <link linkend="string">string</link>
+            </member>
+            <member>
+                <link linkend="strsplit">strsplit</link>
             </member>
             <member>
                 <link linkend="length">length</link>

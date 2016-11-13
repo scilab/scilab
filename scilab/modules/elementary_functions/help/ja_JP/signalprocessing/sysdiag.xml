@@ -3,237 +3,240 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sysdiag" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>sysdiag</refname>
-        
+
         <refpurpose>ブロック対角システム接続</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>r=sysdiag(a1,a2,...,an)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             主対角項にサブシステムを配置したブロック対角システムを返します.
-            
+
         </para>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>ai</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         サブシステム (すなわち,ゲインまたは状態空間表現または
-                        
+
                         伝達関数表現の線形システム)
-                        
+
                     </para>
-                    
+
                     <para>任意の大きさの定数, 論理値, 多項式または有理数行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>r</term>
-                
+
                 <listitem>
-                    
+
                     <para>a1, a2, a3, ... を対角項に有する行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             入力<varname>A</varname>, <varname>B</varname> および
-            
+
             <varname>C</varname>を指定すると,
-            
+
             出力はこれらの行列を以下のように対角項に配置したものになります:
-            
+
             <latex>\begin{bmatrix} A \ \ 0 \ \ 0 \\ 0 \ \ B \ \ 0 \\ 0 \ \ 0 \ \ C \end{bmatrix}</latex>.
-            
+
         </para>
-        
+
         <para>
-            
+
             <note>
-                
+
                 入力行列が全て正方の場合, 出力は
-                
+
                 <emphasis>ブロック対角行列</emphasis>として
-                
+
                 知られたものになります.
-                
+
             </note>
-            
+
         </para>
-        	
-        
+
+
         <note>特にシステムの相互接続で使用されます.</note>
-        
+
         <para>
-            
+
             この関数以外では,
-            
+
             <emphasis>ブロック対角疎行列</emphasis>.を
-            
+
             構築するために<code>sparse()</code>プリミティブも使用できます.
-            
+
         </para>
-        
+
         <para>
-            
+
             論理値行列の場合,<code>sysdiag()</code> は常に
-            
+
             対応するブロックに 0 または 1を要素とする行列
-            
+
             ("true"値は1,"false"値は0で置換されます)を返します.
-            
+
         </para>
-        
-        
-        
+
+
+
         <para>
-            
+
             <code>sysdiag()</code> は文字列からなる
-            
+
             行列を配置する際に使用できませんが,
-            
+
             オーバーロードすることが可能です
-            
+
             (参照: <link linkend="overloading">オーバーローディング</link>).
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>注意</title>
-        
+
         <para>引数の数は最大17個に制限されています.</para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s')
 sysdiag(rand(2,2),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
 sysdiag(tf2ss(1/s),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
  ]]></programlisting>
-        
-        <programlisting role="example"><![CDATA[ 
-// a matrix of doubles: 
+
+        <programlisting role="example"><![CDATA[
+// a matrix of doubles:
 A=[1 0; 0 1], B=[3 4 5; 6 7 8], C=7
 D=sysdiag(A,B,C)
-// 
+//
 sysdiag([%t %f; %f %t], eye(2,2), ones(3,3))
-// a polynomial matrix: 
-s=%s; 
+// a polynomial matrix:
+s=%s;
 sysdiag([s 4*s; 4 s^4], [1 s^2 s+2; 3*s 2 s^2-1])
-// a rational matrix: 
+// a rational matrix:
 sysdiag([1/s 2*s/(4*s+3)], [s; 4; 1/(s^2+2*s+1)])
 // a block diagonal sparse matrix:
 S=sysdiag([1 2; 3 4], [5 6; 7 8], [9 10; 11 12], [13 14; 15 16])
 S=sparse(S)
  ]]></programlisting>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="brackets">brackets</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="insertion">insertion</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="feedback">feedback</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="diag">diag</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="bdiag">bdiag</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="sparse">sparse</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="repmat">repmat</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

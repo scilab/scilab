@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="inttype">
@@ -16,7 +19,7 @@
         <refpurpose> type integers used in integer data types</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[i] = inttype(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -45,28 +48,36 @@
             of <varname>x</varname> as following:
         </para>
         <para>
-            1 
+            1
             :  one byte integer representation;
         </para>
         <para>
-            2 
+            2
             :  two bytes integer representation;
         </para>
         <para>
-            4 
+            4
             :  four bytes integer representation;
         </para>
         <para>
-            11 
+            8
+            : eight bytes integer representation;
+        </para>
+        <para>
+            11
             :  one byte unsigned integer representation;
         </para>
         <para>
-            12 
+            12
             :  two bytes unsigned integer representation;
         </para>
         <para>
-            14 
-            :  four bytes unsigned integer representation.
+            14
+            :  four bytes unsigned integer representation;
+        </para>
+        <para>
+            18
+            : eight bytes unsigned integer representation.
         </para>
         <para>
             If type of <varname>x</varname> is <literal>double</literal> then <varname>i</varname> is <literal>0</literal>.
@@ -74,13 +85,13 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=uint16(1:10);
 inttype(x)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="double">double</link>

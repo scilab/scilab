@@ -5,7 +5,7 @@
         <refpurpose>Printing an uitree in the console (text mode)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>uiDumpTree(tree[,b])
         </synopsis>
     </refsynopsisdiv>
@@ -32,8 +32,8 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// We should create nodes(subTrees) before creating trees	
+        <programlisting role="example"><![CDATA[
+// We should create nodes(subTrees) before creating trees
 leaf11 = uiCreateNode('leaf 1.1', 'iconLeaf1.1', 'callbackLeaf1.1')
 leaf12 = uiCreateNode('leaf 1.2', 'iconLeaf1.2', 'callbackLeaf1.2')
 leaf31 = uiCreateNode('leaf 3.1', 'iconLeaf3.1', 'callbackLeaf3.1')
@@ -51,7 +51,7 @@ uiDumpTree(treeRoot)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="uiCreateNode">uiCreateNode</link>

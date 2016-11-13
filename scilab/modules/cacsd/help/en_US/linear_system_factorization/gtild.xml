@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="gtild">
+    <refnamediv>
+        <refname>gtild</refname>
+        <refpurpose>tilde operation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>Gt=gtild(G)
+            Gt=gtild(G,flag)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>
+                        either a polynomial or a linear system (<literal>syslin</literal> list) or a rational matrix
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Gt</term>
+                <listitem>
+                    <para>same as G</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        character string: either <literal>'c'</literal> or <literal>'d'</literal> (optional parameter).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            If <literal>G</literal> is a polynomial matrix (or a polynomial), <literal>Gt=gtild(G,'c')</literal>
+            returns the polynomial matrix <literal>Gt(s)=G(-s)'</literal>.
+        </para>
+        <para>
+            If <literal>G</literal> is a polynomial matrix (or a polynomial),  <literal>Gt=gtild(G,'d')</literal>
+            returns the polynomial matrix <literal>Gt=G(1/z)*z^n</literal> where n is the maximum
+            degree of <literal>G</literal>.
+        </para>
+        <para>
+            For continuous-time systems represented in state-space by a <literal>syslin</literal> list,
+            <literal>Gt = gtild(G,'c')</literal> returns a state-space representation
+            of <literal>G(-s)'</literal> i.e the <literal>ABCD</literal> matrices of <literal>Gt</literal> are
+            <literal>A',-C', B', D'</literal>. If <literal>G</literal> is improper (<literal> D= D(s)</literal>)
+            the <literal>D</literal> matrix of <literal>Gt</literal> is <literal>D(-s)'</literal>.
+        </para>
+        <para>
+            For  discrete-time systems represented in state-space by a <literal>syslin</literal> list,
+            <literal>Gt = gtild(G,'d')</literal> returns a state-space representation
+            of <literal>G(-1/z)'</literal> i.e the (possibly improper) state-space
+            representation of <literal>-z*C*inv(z*A-B)*C + D(1/z) </literal>.
+        </para>
+        <para>
+            For rational matrices, <literal>Gt = gtild(G,'c')</literal> returns the rational
+            matrix <literal>Gt(s)=G(-s)</literal> and <literal>Gt = gtild(G,'d')</literal> returns the
+            rational matrix <literal>Gt(z)= G(1/z)'</literal>.
+        </para>
+        <para>
+            The parameter <literal>flag</literal> is necessary when <literal>gtild</literal> is called with
+            a polynomial argument.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//Continuous time
+s=poly(0,'s');G=[s,s^3;2+s^3,s^2-5]
+Gt=gtild(G,'c')
+Gt-horner(G,-s)'   //continuous-time interpretation
+Gt=gtild(G,'d');
+Gt-horner(G,1/s)'*s^3  //discrete-time interpretation
+G=ssrand(2,2,3);Gt=gtild(G);   //State-space (G is cont. time by default)
+clean((horner(ss2tf(G),-s))'-ss2tf(Gt))   //Check
+
+// Discrete-time
+z=poly(0,'z');
+Gss=ssrand(2,2,3);Gss('dt')='d'; //discrete-time
+Gss(5)=[1,2;0,1];   //With a constant D matrix
+G=ss2tf(Gss);Gt1=horner(G,1/z)';
+Gt=gtild(Gss);
+Gt2=clean(ss2tf(Gt)); clean(Gt1-Gt2)  //Check
+
+//Improper systems
+z=poly(0,'z');
+Gss=ssrand(2,2,3);Gss(7)='d'; //discrete-time
+Gss(5)=[z,z^2;1+z,3];    //D(z) is polynomial
+G=ss2tf(Gss);Gt1=horner(G,1/z)';  //Calculation in transfer form
+Gt=gtild(Gss);    //..in state-space
+Gt2=clean(ss2tf(Gt));clean(Gt1-Gt2)  //Check
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="horner">horner</link>
+            </member>
+            <member>
+                <link linkend="factors">factors</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

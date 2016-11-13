@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="INVBLK">
@@ -58,6 +58,11 @@
                     </listitem>
                     <listitem>
                         <para>
+                            <xref linkend="Dialogbox_INVBLK">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
                             <xref linkend="Defaultproperties_INVBLK">Default properties</xref>
                         </para>
                     </listitem>
@@ -93,9 +98,30 @@
     <refsection id="Description_INVBLK">
         <title>Description</title>
         <para>
-            This block computes the output vector y with y[i]=1/u[i] where u is the input vector.The input and output sizes are
-            determined by the context.
+            This block computes the output vector y with y[i]=1/u[i] where u is the input vector.The input and output sizes are determined by the context.
         </para>
+    </refsection>
+    <refsection id="Dialogbox_INVBLK">
+        <title>Dialog box</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/gui/INVBLK_gui.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>
+            
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Error on divide by zero (1: yes) (0:no)</emphasis>
+                </para>
+                <para> Halt the simulation on divide by zero.</para>
+                <para> Properties : Type 'vec' of size 1</para>
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection id="Defaultproperties_INVBLK">
         <title>Default properties</title>

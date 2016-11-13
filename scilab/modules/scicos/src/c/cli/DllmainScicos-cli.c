@@ -10,6 +10,9 @@
 #include <vld.h>
 #endif
 /*--------------------------------------------------------------------------*/
+#pragma comment(lib,"../../../../../bin/libxml2.lib")
+#pragma comment(lib,"../../../../../bin/libintl.lib")
+/*--------------------------------------------------------------------------*/
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {
     switch (reason)

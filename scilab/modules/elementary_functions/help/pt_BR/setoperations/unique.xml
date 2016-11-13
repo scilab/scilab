@@ -2,47 +2,49 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unique" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unique" xml:lang="pt">
     <refnamediv>
         <refname>unique</refname>
-        <refpurpose>extrai componentes únicos de um vetor ou de
-            matrizes
+        <refpurpose>remover todos os componentes duplicados de um vetor ou uma matriz
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>
-            [N [,k]]=unique(M)
-            [N [,k]]=unique(M ,orient)
+            [N ,k] = unique(M)
+            [N ,k] = unique(M ,orient)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
+    <refsection role="parameters">
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>M</term>
                 <listitem>
-                    <para>vetor ou matriz de números ou strings </para>
+                    <para>vetor ou matriz de nÃºmeros ou strings </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orient</term>
                 <listitem>
-                    <para>flag com valores possíveis : 1 ou "r", 2 ou "c"</para>
+                    <para>flag com valores possÃ­veis : 1 ou "r", 2 ou "c"</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>N</term>
                 <listitem>
-                    <para>vetor ou matriz de números ou strings </para>
+                    <para>vetor ou matriz de nÃºmeros ou strings </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -53,37 +55,37 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>Descrição</title>
+    <refsection role="description">
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>unique(M)</literal> retorna um vetor que retém as entradas
-            únicas de <literal>M</literal> em ordem ascendente.
+            <literal>unique(M)</literal> retorna um vetor que retÃ©m as entradas
+            Ãºnicas de <literal>M</literal> em ordem ascendente.
         </para>
         <para>
             <literal>unique(M,"r")</literal> ou
-            <literal>unique(M,1)</literal>retorna as linhas únicas de
-            <literal>M</literal> em ordem lexicográfica ascendente.
+            <literal>unique(M,1)</literal>retorna as linhas Ãºnicas de
+            <literal>M</literal> em ordem lexicogrÃ¡fica ascendente.
         </para>
         <para>
             <literal>unique(M,"c")</literal> ou
-            <literal>unique(M,2)</literal>retorna as linhas únicas de
-            <literal>M</literal> em ordem lexicográfica ascendente.
+            <literal>unique(M,2)</literal>retorna as linhas Ãºnicas de
+            <literal>M</literal> em ordem lexicogrÃ¡fica ascendente.
         </para>
         <para>
-            Se requerido, o argumento de saída, <literal>k</literal> contém a
-            posição das primeiras entradas únicas encontradas.
+            Se requerido, o argumento de saÃ­da, <literal>k</literal> contÃ©m a
+            posiÃ§Ã£o das primeiras entradas Ãºnicas encontradas.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-M=round(2*rand(20,1));
+        <programlisting role="example"><![CDATA[
+M = round(2*rand(20,1));
 
 unique(M)
-[N,k]=unique(M)
+[N,k] = unique(M)
 
 unique(string(M))
-[N,k]=unique(string(M))
+[N,k] = unique(string(M))
 
 A = [0,0,1,1;
      0,1,1,1;
@@ -91,32 +93,31 @@ A = [0,0,1,1;
      0,2,2,2;
      2,0,1,1;
      0,0,1,1];
-T='x'+string(A);
+T = 'x'+string(A);
 
-//linhas únicas
-
-[m,k]=unique(A,'r')
+//linhas Ãºnicas
+[m,k] = unique(A,'r')
 unique(T,'r')
 
-//colunas únicas
-[m,k]=unique(T,'c')
+//colunas Ãºnicas
+[m,k] = unique(T,'c')
 unique(A,'c')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
-                <link linkend="union">union</link>
-            </member>
-            <member>
-                <link linkend="intersect">intersect</link>
+                <link linkend="members">members</link>
             </member>
             <member>
                 <link linkend="gsort">gsort</link>
             </member>
             <member>
-                <link linkend="lex_sort">lex_sort</link>
+                <link linkend="union">union</link>
+            </member>
+            <member>
+                <link linkend="intersect">intersect</link>
             </member>
         </simplelist>
     </refsection>

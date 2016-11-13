@@ -55,7 +55,7 @@ function [zt]=BinomialT(n)
     i = 0:N;
     zt = [];
     for j=i, zt=[zt, C(N,j)*prb^j*(1-prb)^(N-j)];end
-    plot2d1("onn",i',zt',[-2,6]);
+    plot2d(i, zt', [-2,6])
     xtitle(_("Simulation of a binomial random variable"));
     current_axe = gca();
     current_axe.title.font_size = 3;

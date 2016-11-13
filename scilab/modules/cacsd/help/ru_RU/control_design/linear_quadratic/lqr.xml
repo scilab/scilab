@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="lqr">
+    <refnamediv>
+        <refname>lqr</refname>
+        <refpurpose>LQ compensator (full state)  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[K,X]=lqr(P12)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P12</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list (state-space linear system)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K,X</term>
+                <listitem>
+                    <para>two real matrices</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>lqr</literal>  computes the linear optimal LQ full-state gain
+            for the plant <literal>P12=[A,B2,C1,D12]</literal> in continuous or
+            discrete time.
+        </para>
+        <para>
+            <literal>P12</literal> is a <literal>syslin</literal> list (e.g. <literal>P12=syslin('c',A,B2,C1,D12)</literal>).
+        </para>
+        <para>
+            The cost function is l2-norm of <literal>z'*z</literal> with <literal>z=C1 x + D12 u</literal>
+            i.e. <literal>[x,u]' * BigQ * [x;u]</literal> where
+        </para>
+        <programlisting role=""><![CDATA[
+      [C1' ]               [Q  S]
+BigQ= [    ]  * [C1 D12] = [    ]
+      [D12']               [S' R]
+ ]]></programlisting>
+        <para>
+            The gain <literal>K</literal> is such that <literal>A + B2*K</literal> is stable.
+        </para>
+        <para>
+            <literal>X</literal> is the stabilizing solution of the Riccati equation.
+        </para>
+        <para>
+            For a continuous plant:
+        </para>
+        <programlisting role=""><![CDATA[
+(A-B2*inv(R)*S')'*X+X*(A-B2*inv(R)*S')-X*B2*inv(R)*B2'*X+Q-S*inv(R)*S'=0
+ ]]></programlisting>
+        <programlisting role=""><![CDATA[
+K=-inv(R)*(B2'*X+S)
+ ]]></programlisting>
+        <para>
+            For a discrete plant:
+        </para>
+        <programlisting role=""><![CDATA[
+X=A'*X*A-(A'*X*B2+C1'*D12)*pinv(B2'*X*B2+D12'*D12)*(B2'*X*A+D12'*C1)+C1'*C1;
+ ]]></programlisting>
+        <programlisting role=""><![CDATA[
+K=-pinv(B2'*X*B2+D12'*D12)*(B2'*X*A+D12'*C1)
+ ]]></programlisting>
+        <para>
+            An equivalent form for <literal>X</literal> is
+        </para>
+        <programlisting role=""><![CDATA[
+X=Abar'*inv(inv(X)+B2*inv(r)*B2')*Abar+Qbar
+ ]]></programlisting>
+        <para>
+            with <literal>Abar=A-B2*inv(R)*S'</literal> and <literal>Qbar=Q-S*inv(R)*S'</literal>
+        </para>
+        <para>
+            The 3-blocks matrix pencils associated with these Riccati equations are:
+        </para>
+        <programlisting role=""><![CDATA[
+             discrete                           continuous
+ |I   0    0|   | A    0    B2|         |I   0   0|   | A    0    B2|
+z|0   A'   0| - |-Q    I    -S|        s|0   I   0| - |-Q   -A'   -S|
+ |0   B2'  0|   | S'   0     R|         |0   0   0|   | S'  -B2'   R|
+ ]]></programlisting>
+        <para>
+            <warning>
+                Caution: It is assumed that matrix R is non singular. In particular,
+                the plant must be tall (number of outputs &gt;= number of inputs).
+            </warning>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A=rand(2,2);B=rand(2,1);   //two states, one input
+Q=diag([2,5]);R=2;     //Usual notations x'Qx + u'Ru
+Big=sysdiag(Q,R);    //Now we calculate C1 and D12
+[w,wp]=fullrf(Big);C1=wp(:,1:2);D12=wp(:,3:$);   //[C1,D12]'*[C1,D12]=Big
+P=syslin('c',A,B,C1,D12);    //The plant (continuous-time)
+[K,X]=lqr(P)
+spec(A+B*K)    //check stability
+norm(A'*X+X*A-X*B*inv(R)*B'*X+Q,1)  //Riccati check
+P=syslin('d',A,B,C1,D12);    // Discrete time plant
+[K,X]=lqr(P)
+spec(A+B*K)   //check stability
+norm(A'*X*A-(A'*X*B)*pinv(B'*X*B+R)*(B'*X*A)+Q-X,1) //Riccati check
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lqe">lqe</link>
+            </member>
+            <member>
+                <link linkend="gcare">gcare</link>
+            </member>
+            <member>
+                <link linkend="leqr">leqr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

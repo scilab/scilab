@@ -12,7 +12,7 @@
             elseif expri then
             statements
             ....
-            else 
+            else
             statements
             end
         </synopsis>
@@ -32,7 +32,7 @@
                 <term>statements</term>
                 <listitem>
                     <para>
-		      有効な命令のブロック
+                        有効な命令のブロック
                     </para>
                 </listitem>
             </varlistentry>
@@ -41,52 +41,52 @@
     <refsection>
         <title>説明</title>
         <para>
-          <literal>if</literal> 命令は論理式を評価し,その値が真の時に
-          一連の命令を実行します.
+            <literal>if</literal> 命令は論理式を評価し,その値が真の時に
+            一連の命令を実行します.
         </para>
         <para>
-          <literal>expri</literal> は数値または論理値を値とする式です.
-          <literal>expri</literal> が行列の場合,
-          全ての行列のエントリが真またはゼロでない場合にのみ
-          その条件は真となります.
+            <literal>expri</literal> は数値または論理値を値とする式です.
+            <literal>expri</literal> が行列の場合,
+            全ての行列のエントリが真またはゼロでない場合にのみ
+            その条件は真となります.
         </para>
         <para>
-          オプションの <literal>elseif</literal> および <literal>else</literal> により,
-          別の命令のグループを実行することができます.
-          <literal>if</literal>に対応する
-          <literal>end</literal> キーワードにより,最後の命令のグループが
-          終了します.
-          上記の行の構造には意味がなく,唯一の拘束条件は,
-          各<literal>then</literal>キーワードを対応する
-          <literal>if</literal> または <literal>elseif</literal>キーワードと
-          同じ行に置く必要があることのみです.
+            オプションの <literal>elseif</literal> および <literal>else</literal> により,
+            別の命令のグループを実行することができます.
+            <literal>if</literal>に対応する
+            <literal>end</literal> キーワードにより,最後の命令のグループが
+            終了します.
+            上記の行の構造には意味がなく,唯一の拘束条件は,
+            各<literal>then</literal>キーワードを対応する
+            <literal>if</literal> または <literal>elseif</literal>キーワードと
+            同じ行に置く必要があることのみです.
         </para>
         <para>
-          キーワード <literal>then</literal> は,キャリッジ・リターンまたはカンマで
-          置き換えることができます.
+            キーワード <literal>then</literal> は,キャリッジ・リターンまたはカンマで
+            置き換えることができます.
         </para>
         <para>
-	  Scilabプログラミング言語のコード規約に基づき, 以下が推奨されます:
+            Scilabプログラミング言語のコード規約に基づき, 以下が推奨されます:
         </para>
         <itemizedlist>
             <listitem>
                 <para>
-		  各命令を新しい行で開始する.
+                    各命令を新しい行で開始する.
                 </para>
             </listitem>
             <listitem>
                 <para>
-		  1行に複数の命令を記述しない.
+                    1行に複数の命令を記述しない.
                 </para>
             </listitem>
             <listitem>
                 <para>
-		  複合命令は,複数行に分割する.
+                    複合命令は,複数行に分割する.
                 </para>
             </listitem>
         </itemizedlist>
         <para>
-          例えば,以下のようにします:
+            例えば,以下のようにします:
         </para>
         <programlisting role=""><![CDATA[
       if rand(1,1) > 0.5 then
@@ -96,25 +96,25 @@
       end
 ]]></programlisting>
         <para>
-	  以下は推奨されません.
+            以下は推奨されません.
         </para>
         <programlisting role=""><![CDATA[
       if rand(1,1) > 0.5 then disp("True"); else disp("False"); end
 ]]></programlisting>
         <para>
-          警告: 条件文(if while for または select/case)の内部に記述可能な文字数は
-          16kに制限されています.
+            警告: 条件文(if while for または select/case)の内部に記述可能な文字数は
+            16kに制限されています.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 i=2
-for j = 1:3, 
+for j = 1:3,
   if i == j then
-    a(i,j) = 2; 
-  elseif abs(i-j) == 1 then 
-    a(i,j) = -1; 
+    a(i,j) = 2;
+  elseif abs(i-j) == 1 then
+    a(i,j) = -1;
   else a(i,j) = 0;
   end,
 end

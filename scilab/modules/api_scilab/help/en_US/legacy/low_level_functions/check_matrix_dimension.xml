@@ -5,7 +5,7 @@
         <refpurpose>A C gateway functions which check dimensions of a variable.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>int checkVarDimension(void* _pvCtx, int* _piAddress, int _iRows, int _iCols)</synopsis>
         <synopsis>int isRowVector(void* _pvCtx, int* _piAddress)</synopsis>
         <synopsis>int isColumnVector(void* _pvCtx, int* _piAddress)</synopsis>
@@ -60,7 +60,7 @@
             arguments and prints input dimensions and several test results.
         </para>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 #include "api_scilab.h"
 #include "sciprint.h"
 
@@ -136,7 +136,7 @@ int check_matrix_dimension(char * fname)
     <refsection>
         <title>Scilab test script</title>
         <programlisting role="code_scilab">
-            <![CDATA[ 
+            <![CDATA[
 check_matrix_dimension([1,2,3;4,5,6]);
 check_matrix_dimension([1,2,3]);
 check_matrix_dimension([1;2;3]);
@@ -147,7 +147,7 @@ check_matrix_dimension([]);
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sciprint">sciprint</link>

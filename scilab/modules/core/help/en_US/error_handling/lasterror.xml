@@ -5,7 +5,7 @@
         <refpurpose>get last recorded error message</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>str=lasterror( [opt] )
             [str,n]=lasterror([opt])
             [str,n,line,func]=lasterror([opt])
@@ -76,15 +76,15 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 ierr=execstr('a=zzzzzzz','errcatch')
-if ierr>0 then 
+if ierr>0 then
   disp(lasterror())
 end
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="execstr">execstr</link>

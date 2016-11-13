@@ -2,63 +2,90 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2015 - Samuel GOUGEON
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="real">
     <refnamediv>
         <refname>real</refname>
-        <refpurpose>real part</refpurpose>
+        <refpurpose>real part of complex numbers, polynomials, or rationals</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[y]=real(x)</synopsis>
+        <title>Syntax</title>
+        <synopsis>y = real(x)</synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>a real or complex vector or matrix</para>
+                    <para>matrix of real or complex numbers (full or sparse storage),
+                    or of polynomials or rationals with real or complex coefficients.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>a real matrix</para>
+                    <para>matrix of real numbers, polynomials or rationals, with same sizes than <varname>x</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description</title>
         <para>
-            <code>real(x)</code> is the real part of <varname>x</varname> (See <constant>%i</constant> to enter complex numbers).
+            <code>real(x)</code> components are the real part of related <varname>x</varname>
+            components (See <constant>%i</constant> to enter complex numbers).
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 real([1 %i 2])
 real(1+0*%i)
 real(2+3*%i)
 real(1+%s)
 real(sprand(3,3,0.1))
+
+// With polynomials:
+A = [1-%i*%z (%z-%i)^2]
+real(A)
+
+// With rationals:
+A = [ %z/(1-%z)  (1-%z)/%z^2];
+B = A(1,[2 1])
+C = A + %i*B
+A, real(C)
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="imag">imag</link>
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>Extension to rationals
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
+

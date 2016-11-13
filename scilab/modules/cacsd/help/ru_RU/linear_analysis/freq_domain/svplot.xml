@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F.D
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"  xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="svplot">
+    <refnamediv>
+        <refname>svplot</refname>
+        <refpurpose>singular-value sigma-plot</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[SVM]=svplot(sl,[w])</synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list (continuous, discrete or sampled system)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>w</term>
+                <listitem>
+                    <para>real vector (optional parameter)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            computes for the system <literal>sl=(A,B,C,D)</literal>
+            the singular values of its transfer function matrix:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+             G(jw) = C(jw*I-A)B^-1+D
+or
+             G(exp(jw)) = C(exp(jw)*I-A)B^-1+D
+or
+             G(exp(jwT)) = C(exp(jw*T)*I-A)B^-1+D
+ ]]></programlisting>
+        <para>
+            evaluated over the frequency range specified by <literal>w</literal>. (T is the sampling
+            period, <literal>T=sl('dt')</literal> for sampled systems).
+        </para>
+        <para>
+            <literal>sl</literal> is a <literal>syslin</literal> list representing the system
+            <literal>[A,B,C,D]</literal> in state-space form. <literal>sl</literal> can be continuous or
+            discrete time or sampled system.
+        </para>
+        <para>
+            The <literal>i</literal>-th column of the output matrix <literal>SVM</literal> contains the singular
+            values of <literal>G</literal> for the <literal>i</literal>-th frequency value <literal>w(i)</literal>.
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+SVM = svplot(sl)
+ ]]></programlisting>
+        <para>
+            is equivalent to
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+SVM = svplot(sl,logspace(-3,3))  (continuous)
+ ]]></programlisting>
+        <programlisting role="no-scilab-exec"><![CDATA[
+SVM = svplot(sl,logspace(-3,%pi)) (discrete)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="examples">
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x = logspace(-3,3);
+y = svplot(ssrand(2,2,4),x);
+clf()
+plot2d("ln", x, 20*log(y')/log(10))
+xgrid(12)
+xtitle("Singular values plot","(Rd/sec)", "Db");
+ ]]></programlisting>
+        <scilab:image>
+            x=logspace(-3,3);
+            y=svplot(ssrand(2,2,4),x);
+            clf()
+            plot2d("ln", x, 20*log(y')/log(10))
+            xgrid(12)
+            xtitle("Singular values plot","(Rd/sec)", "Db");
+        </scilab:image>
+    </refsection>
+</refentry>

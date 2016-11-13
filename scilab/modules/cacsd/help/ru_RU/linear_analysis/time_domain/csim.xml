@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="csim">
+    <refnamediv>
+        <refname>csim</refname>
+        <refpurpose>simulation (time response) of linear system</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[y [,x]]=csim(u,t,sl,[x0 [,tol]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    <para>function, list or string (control)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>
+                        real vector specifying times with,
+                        <literal>t(1)</literal> is the initial time
+                        (<literal>x0=x(t(1))</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list (SIMO linear system)
+                        in continuous time.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        a  matrix such that   <literal>y=[y(t(i)]</literal>, i=1,..,n
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        a  matrix such that   <literal>x=[x(t(i)]</literal>, i=1,..,n
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>a 2 vector [atol rtol] defining absolute and relative tolerances for ode solver (see ode)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            simulation of the controlled linear system <literal>sl</literal>.
+            <literal>sl</literal> is assumed to be a continuous-time system
+            represented by a <literal>syslin</literal> list.
+        </para>
+        <para>
+            <literal>u</literal> is the control and <literal>x0</literal> the initial state.
+        </para>
+        <para>
+            <literal>y</literal> is the output and <literal>x</literal> the state.
+        </para>
+        <para>
+            The control can be:
+        </para>
+        <para>
+            1. a function : <literal>[inputs]=u(t)</literal>
+        </para>
+        <para>
+            2. a list : <literal>list(ut,parameter1,....,parametern)</literal> such that:
+            <literal>inputs=ut(t,parameter1,....,parametern)</literal> (<literal>ut</literal> is a function)
+        </para>
+        <para>
+            3. the string <literal>"impuls"</literal> for impulse
+            response calculation (here <literal>sl</literal> must have
+            a single input and <literal>x0=0</literal>). For systems
+            with direct feedthrough, the infinite pulse at t=0 is
+            ignored.
+        </para>
+        <para>
+            4. the string <literal>"step"</literal> for step response calculation
+            (here <literal>sl</literal>  must have a single input and
+            <literal>x0=0</literal>)
+        </para>
+        <para>
+            5. a vector giving the values of u corresponding to each t value.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+//impulse(w) = step (s * w)
+plot2d([t',t'],[(csim('step',t,tf2ss(s)*w))',0*t'])
+]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            rand('seed',0);
+            w=ssrand(1,1,3);
+            w('A')=w('A')-2*eye();
+            t=0:0.05:5;
+            plot2d([t',t'],[(csim('step',t,tf2ss(s)*w))',0*t'])
+        </scilab:image>
+
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+plot2d([t',t'],[(csim('impulse',t,w))',0*t'])
+]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            rand('seed',0);
+            w=ssrand(1,1,3);
+            w('A')=w('A')-2*eye();
+            t=0:0.05:5;
+            plot2d([t',t'],[(csim('impulse',t,w))',0*t'])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+//step(w) = impulse (s^-1 * w)
+plot2d([t',t'],[(csim('step',t,w))',0*t'])
+]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            rand('seed',0);
+            w=ssrand(1,1,3);
+            w('A')=w('A')-2*eye();
+            t=0:0.05:5;
+            plot2d([t',t'],[(csim('step',t,w))',0*t'])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+plot2d([t',t'],[(csim('impulse',t,tf2ss(1/s)*w))',0*t'])
+]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            rand('seed',0);
+            w=ssrand(1,1,3);
+            w('A')=w('A')-2*eye();
+            t=0:0.05:5;
+            plot2d([t',t'],[(csim('impulse',t,tf2ss(1/s)*w))',0*t'])
+
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+//input defined by a time function
+deff('u=timefun(t)','u=abs(sin(t))')
+clf();plot2d([t',t'],[(csim(timefun,t,w))',0*t'])
+]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            rand('seed',0);
+            w=ssrand(1,1,3);
+            w('A')=w('A')-2*eye();
+            t=0:0.05:5;
+            deff('u=timefun(t)','u=abs(sin(t))')
+            clf();plot2d([t',t'],[(csim(timefun,t,w))',0*t'])
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="dsimul">dsimul</link>
+            </member>
+            <member>
+                <link linkend="flts">flts</link>
+            </member>
+            <member>
+                <link linkend="ltitr">ltitr</link>
+            </member>
+            <member>
+                <link linkend="rtitr">rtitr</link>
+            </member>
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="impl">impl</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

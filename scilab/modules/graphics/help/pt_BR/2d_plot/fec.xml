@@ -2,15 +2,18 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fec" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fec" xml:lang="pt">
     <refnamediv>
         <refname>fec</refname>
         <refpurpose>Esboço pseudo-colorido triangular de uma função definida por
@@ -56,7 +59,7 @@
                         <literal>triangle(j) = [number,node1,node2,node3,flag]</literal>.
                         <literal>node1,node2,node3</literal> são os números dos nós que
                         constituem o triângulo. number é o número do triângulo e flag é um
-                        inteiro que não é usado na função fec 
+                        inteiro que não é usado na função fec
                     </para>
                 </listitem>
             </varlistentry>
@@ -69,7 +72,7 @@
                         </literal>
                         ,... onde <literal>key1</literal>,
                         <literal>key2,...</literal> podem ser um dos seguintes: strf, leg,
-                        rect, nax, zminmax, colminmax, colout, mesh (ver <link linkend="plot2d">plot2d</link> para os quatro primeiros). 
+                        rect, nax, zminmax, colminmax, colout, mesh (ver <link linkend="plot2d">plot2d</link> para os quatro primeiros).
                     </para>
                 </listitem>
             </varlistentry>
@@ -142,7 +145,7 @@
             </emphasis>
             and <emphasis>{func &gt; zmax}</emphasis>,
             <literal>under_min_col</literal> e <literal>upper_max_col</literal> podem
-            ser iguais (independentemente) a: 
+            ser iguais (independentemente) a:
         </para>
         <variablelist>
             <varlistentry>
@@ -150,7 +153,7 @@
                 <listitem>
                     <para>neste caso a mesma cor que a zona de vizinhança é utilizada
                         (CUIDADO: você não vê que o limite correspondente é cruzado), este é
-                        o caso padrão. 
+                        o caso padrão.
                     </para>
                 </listitem>
             </varlistentry>
@@ -164,7 +167,7 @@
                 <term>k</term>
                 <listitem>
                     <para>(k sendo um índice de cor válido no mapa de cores corrente) a
-                        região de extremidade é pintada com a cor k. 
+                        região de extremidade é pintada com a cor k.
                     </para>
                 </listitem>
             </varlistentry>
@@ -173,7 +176,7 @@
             o argumento <emphasis>1 &lt;= colmin &lt; colmax &lt;= nc</emphasis> (nc
             sendo o número de cores do mapa de cores corrente) para utilizar apenas a
             sub-parte [colmin,colmax] do mapa de cores. (por padrão, todas as cores do
-            mapa de cores são utilizadas). 
+            mapa de cores são utilizadas).
         </para>
         <para>
             Ver arquivos de demonstração <literal>demos/fec</literal>:
@@ -193,7 +196,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // definindo uma mini-triangularização (4 vértices, 2 triângulos)
 x = [0 1 0 -1];
 y = [0 0 1  1];

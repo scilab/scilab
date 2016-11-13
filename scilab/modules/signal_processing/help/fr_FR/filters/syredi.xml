@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="syredi" xml:lang="fr">
+    <refnamediv>
+        <refname>syredi</refname>
+        <refpurpose>Design of iir filters, syredi code interface</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[fact,b2,b1,b0,c1,c0,zzeros,zpoles]=syredi(ityp,iapro,om,deltap,deltas)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>itype</term>
+                <listitem>
+                    <para>integer, the filter type: 1 stands for low-pass, 2 for
+                        high-pass, 3 for band-pass, 4 for stop-band.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iappro</term>
+                <listitem>
+                    <para>integer, the design approximation type: 1 stands for
+                        butterworth, 2 for elliptic, 3 for Chebytchev1, 4 for
+                        Chebytchev2.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>om</term>
+                <listitem>
+                    <para>4-vector of cutoff frequencies (in radians)
+                        <literal>om=[om1,om2,om3,om4]</literal>, <literal/>
+                    </para>
+                    <para>
+                        <literal>0&lt;= om1 &lt;= om2 &lt;= om3 &lt;= om4 &lt;=
+                            pi
+                        </literal>
+                        .
+                    </para>
+                    <para>
+                        When <literal>ftype</literal>='lp' or <literal>'hp'</literal>,
+                        <literal>om3</literal> and <literal>om4</literal> are not used and
+                        may be set to 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>deltap</term>
+                <listitem>
+                    <para>
+                        a real scalar, the ripple in the passband. <literal>0&lt;
+                            deltap &lt;1
+                        </literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>deltas</term>
+                <listitem>
+                    <para>
+                        a real scalar, the ripple in the stopband. <literal>0&lt;
+                            deltas &lt;1
+                        </literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gain</term>
+                <listitem>
+                    <para>scalar, the filter gain</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b2</term>
+                <listitem>
+                    <para>real row vector, degree 2 coefficients of numerators.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b1</term>
+                <listitem>
+                    <para>real row vector, degree 1 coefficients of numerators.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b0</term>
+                <listitem>
+                    <para>real row vector, degree 0 coefficients of numerators.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c1</term>
+                <listitem>
+                    <para>real row vector, degree 1 coefficients of denominators.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c0</term>
+                <listitem>
+                    <para>real row vector, degree 0 coefficients of denominators.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zzeros</term>
+                <listitem>
+                    <para>complex row vector, filter zeros in the z-domain</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zpoles</term>
+                <listitem>
+                    <para>complex row vector, filter poles in the z-domain</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Computes iir filter approximation. The result is given as a set of
+            second order transfer functions
+            <literal>Hi=(b0(i)+b1(i)*z+b2(i)*z^2)/(c0(i)+c1(i)*z+z^2)</literal> and
+            also as a poles, zeros, gain representation.
+        </para>
+        <para>
+            The filter obtained is <literal>h=fact*H1*...*Hn</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Remark</title>
+        <para>
+            This built-in function is mainly intended to be used by the <link linkend="eqiir">eqiir</link> function.
+        </para>
+    </refsection>
+    <refsection>
+        <title>References</title>
+        <para>The syredi code is derived from doredi package written by Guenter F.
+            Dehner, Institut fuer Nachrichtentechnik Universitaet Erlangen-Nuernberg,
+            Germany.
+        </para>
+        <para>Dehner,G.F. 1979, DOREDI: Program for Design and Optimization of
+            REcursive DIgital filters-Programs for Digital Signal Processing,
+            ed:Digital Signal Processing committee of IEEE Acoustics, Speech and
+            Signal Processing Society.
+        </para>
+        <para>For DOREDI.f source code see
+            http://michaelgellis.tripod.com/dsp/pgm25.html
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+[fact,b2,b1,b0,c1,c0,zzeros,zpoles]=syredi(1,4,[2*%pi/10,4*%pi/10,0,0],0.02,0.001);
+h=fact*(b0+b1*%z+b2*%z^2)./(c0+c1*%z+%z^2)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="eqiir">eqiir</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

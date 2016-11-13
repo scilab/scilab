@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Integer_management_reading_API" xml:lang="ja">
+    <refnamediv>
+        <refname>整数の読み込み (Scilab ゲートウェイ)</refname>
+        <refpurpose>
+            ゲートウェイ内で整数の行列を読み込む方法.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <para>入力引数プロファイル:</para>
+        <para>符号あり整数 :</para>
+        <synopsis>SciErr getMatrixOfInteger8(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, char** _pcData8)</synopsis>
+        <synopsis>SciErr getMatrixOfInteger16(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, short** _psData16)</synopsis>
+        <synopsis>SciErr getMatrixOfInteger32(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int** _piData32)</synopsis>
+        <para>符号無し整数 :</para>
+        <synopsis>SciErr getMatrixOfUnsignedInteger8(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, unsigned char** _pucData8)</synopsis>
+        <synopsis>SciErr getMatrixOfUnsignedInteger16(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, unsigned short** _pusData16)</synopsis>
+        <synopsis>SciErr getMatrixOfUnsignedInteger32(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, unsigned int** _puiData32)</synopsis>
+        <para>名前指定変数プロファイル:</para>
+        <para>符号あり整数 :</para>
+        <synopsis>SciErr readNamedMatrixOfInteger8(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, char* _pcData8)</synopsis>
+        <synopsis>SciErr readNamedMatrixOfInteger16(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, short* _psData16)</synopsis>
+        <synopsis>SciErr readNamedMatrixOfInteger32(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piData32)</synopsis>
+        <para>符号無し整数 :</para>
+        <synopsis>SciErr readNamedMatrixOfUnsignedInteger8(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, unsigned char* _pucData8)</synopsis>
+        <synopsis>SciErr readNamedMatrixOfUnsignedInteger16(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, unsigned short* _pusData16)</synopsis>
+        <synopsis>SciErr readNamedMatrixOfUnsignedInteger32(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, unsigned int* _puiData32)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Scilab変数のアドレス.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        "名前指定"関数の場合の変数名.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piRows</term>
+                <listitem>
+                    <para>
+                        返される行数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piCols</term>
+                <listitem>
+                    <para>
+                        返される列数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pcData8, _pucData8, _psData16, _pusData16, _piData32, _puiData32</term>
+                <listitem>
+                    <para>
+                        返される配列のアドレス ( 大きさ: _piRows * _piCols).
+                        "名前指定" 関数の場合, _pcData は関数コール前にメモリを確保しておく必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        エラー構造体で,エラーメッセージ履歴と最初のエラー番号を格納します.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>このヘルプはScilab APIにより整数の行列を処理する方法を示します.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/integer_reading_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/integer_reading_api.tst-->
+        <!--Lib_name: integer_reading-->
+        <!--Func_list: read_integer-->
+        <title>ゲートウェイのソース</title>
+        <programlisting role="code_gateway"><![CDATA[
+#include "api_scilab.h"
+void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn);
+int read_integer(char *fname,void* pvApiCtx)
+{
+	SciErr sciErr;
+	// 出力変数の情報
+	int iRows8					= 0;
+	int iCols8					= 0;
+	int iRows16					= 0;
+	int iCols16					= 0;
+	int iRows32					= 0;
+	int iCols32					= 0;
+	int iRowsu8					= 0;
+	int iColsu8					= 0;
+	int iRowsu16				= 0;
+	int iColsu16				= 0;
+	int iRowsu32				= 0;
+	int iColsu32				= 0;
+	int iPrec					= 0;
+	int* piAddr8				= NULL;
+	int* piAddr16				= NULL;
+	int* piAddr32				= NULL;
+	int* piAddru8				= NULL;
+	int* piAddru16				= NULL;
+	int* piAddru32				= NULL;
+	char* pcData				= NULL;
+	short* psData				= NULL;
+	int* piData					= NULL;
+	unsigned char* pucData		= NULL;
+	unsigned short* pusData		= NULL;
+	unsigned int* puiData		= NULL;
+	char* pcDataOut				= NULL;
+	short* psDataOut			= NULL;
+	int* piDataOut				= NULL;
+	unsigned char* pucDataOut	= NULL;
+	unsigned short* pusDataOut	= NULL;
+	unsigned int* puiDataOut	= NULL;
+	// 入力/出力引数の数を確認
+    CheckInputArgument(pvApiCtx, 6, 6);
+    CheckOutputArgument(pvApiCtx, 6, 6);
+	// 変数のアドレスを取得
+	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr8);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddru8);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr16);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddru16);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciErr = getVarAddressFromPosition(pvApiCtx, 5, &piAddr32);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	sciErr = getVarAddressFromPosition(pvApiCtx, 6, &piAddru32);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 変数の精度を確認
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr8, &iPrec);
+	if(sciErr.iErr || iPrec != SCI_INT8)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 変数の精度を確認
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddru8, &iPrec);
+	if(sciErr.iErr || iPrec != SCI_UINT8)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 変数の精度を確認
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr16, &iPrec);
+	if(sciErr.iErr || iPrec != SCI_INT16)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 変数の精度を確認
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddru16, &iPrec);
+	if(sciErr.iErr || iPrec != SCI_UINT16)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 変数の精度を確認
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr32, &iPrec);
+	if(sciErr.iErr || iPrec != SCI_INT32)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 変数の精度を確認
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddru32, &iPrec);
+	if(sciErr.iErr || iPrec != SCI_UINT32)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 次元とデータを取得
+	sciErr = getMatrixOfInteger8(pvApiCtx, piAddr8, &iRows8, &iCols8, &pcData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 次元とデータを取得
+	sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, piAddru8, &iRowsu8, &iColsu8, &pucData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 次元とデータを取得
+	sciErr = getMatrixOfInteger16(pvApiCtx, piAddr16, &iRows16, &iCols16, &psData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 次元とデータを取得
+	sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, piAddru16, &iRowsu16, &iColsu16, &pusData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 次元とデータを取得
+	sciErr = getMatrixOfInteger32(pvApiCtx, piAddr32, &iRows32, &iCols32, &piData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 次元とデータを取得
+	sciErr = getMatrixOfUnsignedInteger32(pvApiCtx, piAddru32, &iRowsu32, &iColsu32, &puiData);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 新規変数のメモリを確保し,代入
+	pcDataOut   = (char*)create_output(2, 1, iRows8, iCols8, (void*)pcData);
+	pucDataOut  = (unsigned char*)create_output(4, 1, iRowsu8, iColsu8, (void*)pucData);
+	psDataOut   = (short*)create_output(8, 2, iRows16, iCols16, (void*)psData);
+	pusDataOut  = (unsigned short*)create_output(16, 2, iRowsu16, iColsu16, (void*)pusData);
+	piDataOut   = (int*)create_output(32, 4, iRows32, iCols32, (void*)piData);
+	puiDataOut  = (unsigned int*)create_output(64, 4, iRowsu32, iColsu32, (void*)puiData);
+	// 新規変数を作成
+	sciErr = createMatrixOfInteger8(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows8, iCols8, pcDataOut);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 新規変数を作成
+	sciErr = createMatrixOfUnsignedInteger8(pvApiCtx, nbInputArgument(pvApiCtx) + 2, iRowsu8, iColsu8, pucDataOut);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 新規変数を作成
+	sciErr = createMatrixOfInteger16(pvApiCtx, nbInputArgument(pvApiCtx) + 3, iRows16, iCols16, psDataOut);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 新規変数を作成
+	sciErr = createMatrixOfUnsignedInteger16(pvApiCtx, nbInputArgument(pvApiCtx) + 4, iRowsu16, iColsu16, pusDataOut);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 新規変数を作成
+	sciErr = createMatrixOfInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 5, iRows32, iCols32, piDataOut);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 新規変数を作成
+	sciErr = createMatrixOfUnsignedInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 6, iRowsu32, iColsu32, puiDataOut);
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+	// 確保された変数を左辺に代入
+	AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+	AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
+	AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
+	AssignOutputVariable(pvApiCtx, 4) = nbInputArgument(pvApiCtx) + 4;
+	AssignOutputVariable(pvApiCtx, 5) = nbInputArgument(pvApiCtx) + 5;
+	AssignOutputVariable(pvApiCtx, 6) = nbInputArgument(pvApiCtx) + 6;
+	return 0;
+}
+void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn)
+{
+	int i = 0;
+	void* pvDataOut = (void*)malloc(_iSize * _iRows * _iCols);
+	for(i = 0 ; i < _iRows * _iCols ; i++)
+	{
+		int iVal = 0;
+		memcpy(&iVal, (char*)_pvDataIn + i * _iSize, _iSize);
+		iVal *= _iCoeff;
+		memcpy((char*)pvDataOut + i * _iSize, &iVal, _iSize);
+	}
+	return pvDataOut;
+}
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilabテストスクリプト</title>
+        <programlisting role="code_scilab"><![CDATA[
+a8  = int8([    1   -2  3   -4  5; ..
+                -6  7   -8  9   -10; ..
+                11  -12 13  -14 15]);
+au8 = uint8([   1   2   3   4   5; ..
+                6   7   8   9   10; ..
+                11  12  13  14  15]);
+a16  = int16([  1   -2  3   -4  5; ..
+                -6  7   -8  9   -10; ..
+                11  -12 13  -14 15]);
+au16 = uint16([ 1   2   3   4   5; ..
+                6   7   8   9   10; ..
+                11  12  13  14  15]);
+a32 = int32([   1   -2  3   -4  5; ..
+                -6  7   -8  9   -10; ..
+                11  -12 13  -14 15]);
+au32 = uint32([ 1   2   3   4   5; ..
+                6   7   8   9   10; ..
+                11  12  13  14  15]);
+[c8, cu8, c16, cu16, c32, cu32] = read_integer(a8, au8, a16, au16, a32, au32);
+if or(c8 <> a8 * 2) then error("failed"), end
+if or(cu8 <> au8 * 4) then error("failed"), end
+if or(c16 <> a16 * 8) then error("failed"), end
+if or(cu16 <> au16 * 16) then error("failed"), end
+if or(c32 <> a32 * 32) then error("failed"), end
+if or(cu32 <> au32 * 64) then error("failed"), end
+ ]]></programlisting>
+    </refsection>
+</refentry>

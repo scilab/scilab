@@ -51,16 +51,16 @@ function foo()
 endfunction
 ok = %T;
 foo();
-    1.
-    2.
-    3.
-    4.
+   1.
+   2.
+   3.
+   4.
  Replot
 exec(foo);
-    1.
-    2.
+   1.
+   2.
  needcompile  = 
-    4.
-    3.
-    4.
+   4.
+   3.
+   4.
  Replot

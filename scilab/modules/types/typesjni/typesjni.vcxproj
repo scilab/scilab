@@ -185,11 +185,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\cpp\ScilabToJava.cpp" />
+    <ClCompile Include="..\src\jni\getScilabVariable_wrap.c" />
     <ClCompile Include="..\src\jni\ScilabPolynomialToJava.cpp" />
     <ClCompile Include="..\src\jni\ScilabVariables.cpp" />
     <ClCompile Include="..\src\jni\ScilabVariablesRefresh.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\includes\GetScilabVariable.h" />
     <ClInclude Include="..\includes\ScilabToJava.hxx" />
     <ClInclude Include="..\src\jni\ScilabPolynomialToJava.hxx" />
     <ClInclude Include="..\src\jni\ScilabVariables.hxx" />

@@ -370,3 +370,91 @@ if b0 & b134 then bugmes();quit;end
 if b0 & b234 then bugmes();quit;end
 if b0 & b1234 then bugmes();quit;end
 //others case returns true and we do not want to test with '=='
+A = [0 1; 1 0];
+B = [1 1; 0 0];
+spA = sparse(A);
+spB = sparse(B);
+spbA = sparse(A<>0);
+spbB = sparse(B<>0);
+iA = int8(A);
+iB = int8(B);
+cA = A + 0*%i;
+cB = B + 0*%i;
+resAandB = [%f %t; %f %f];
+sp_resAandB = sparse(resAandB);
+assert_checkequal( A & B   , resAandB );
+assert_checkequal( A & iB  , resAandB );
+assert_checkequal( iA & B  , resAandB );
+assert_checkequal( cA & B  , resAandB );
+assert_checkequal( A & cB  , resAandB );
+assert_checkequal( cA & cB , resAandB );
+assert_checkequal( A & spB     , sp_resAandB );
+assert_checkequal( spA & B     , sp_resAandB );
+assert_checkequal( A & spbB    , sp_resAandB );
+assert_checkequal( spbA & B    , sp_resAandB );
+assert_checkequal( spA & spB   , sp_resAandB );
+assert_checkequal( spA & spbB  , sp_resAandB );
+assert_checkequal( spbA & spB  , sp_resAandB );
+assert_checkequal( spbA & spbB , sp_resAandB );
+assert_checkequal( spbA & iB   , sp_resAandB );
+assert_checkequal( iA & spbB   , sp_resAandB );
+assert_checkequal( spA & iB    , sp_resAandB );
+assert_checkequal( iA & spB    , sp_resAandB );
+assert_checkequal( cA & spB    , sp_resAandB );
+assert_checkequal( spA & cB    , sp_resAandB );
+assert_checkequal( cA & spbB   , sp_resAandB );
+assert_checkequal( spbA & cB   , sp_resAandB );
+resAorB = [%t %t; %t %f];
+sp_resAorB = sparse(resAorB);
+assert_checkequal( A | B   , resAorB );
+assert_checkequal( A | iB  , resAorB );
+assert_checkequal( iA | B  , resAorB );
+assert_checkequal( A | cB  , resAorB );
+assert_checkequal( cA | B  , resAorB );
+assert_checkequal( cA | cB , resAorB );
+assert_checkequal( A | spB     , sp_resAorB );
+assert_checkequal( spA | B     , sp_resAorB );
+assert_checkequal( A | spbB    , sp_resAorB );
+assert_checkequal( spbA | B    , sp_resAorB );
+assert_checkequal( spA | spB   , sp_resAorB );
+assert_checkequal( spA | spbB  , sp_resAorB );
+assert_checkequal( spbA | spB  , sp_resAorB );
+assert_checkequal( spbA | spbB , sp_resAorB );
+assert_checkequal( spbA | iB   , sp_resAorB );
+assert_checkequal( iA | spbB   , sp_resAorB );
+assert_checkequal( spA | iB    , sp_resAorB );
+assert_checkequal( iA | spB    , sp_resAorB );
+assert_checkequal( cA | spB    , sp_resAorB );
+assert_checkequal( spA | cB    , sp_resAorB );
+assert_checkequal( cA | spbB   , sp_resAorB );
+assert_checkequal( spbA | cB   , sp_resAorB );
+// Integer manipulation
+// Integer representation
+i8_A = int8([ -1, 1; 127, -128]);
+// Integer representation of i8_A:
+// [ 1111 1111, 0000 0001 ;
+//   0111 1111, 1000 0000 ]
+i8_B = int8([-2, 0; 126, -127]);
+// Integer representation of i8_A:
+// [ 1111 1110, 0000 0000 ;
+//   0111 1110, 1000 0001 ]
+// Bitwise AND
+resIntAandB = int8([-2, 0; 126, -128]);
+resIntAorB = int8([-1, 1; 127, -127]);
+assert_checkequal( i8_A & i8_B , resIntAandB );
+assert_checkequal( i8_A | i8_B , resIntAorB );
+// Inttype promotion
+// int8 < int16 < int32 < int64
+// uint8 < uint16 < uint32 < uint64
+assert_checkequal( int16(i8_A) & i8_B  , int16(resIntAandB) );
+assert_checkequal( int32(i8_A) & i8_B  , int32(resIntAandB) );
+assert_checkequal( int64(i8_A) & i8_B  , int64(resIntAandB) );
+assert_checkequal( uint16(i8_A) & i8_B , uint16(resIntAandB) );
+assert_checkequal( uint32(i8_A) & i8_B , uint32(resIntAandB) );
+assert_checkequal( uint64(i8_A) & i8_B , uint64(resIntAandB) );
+assert_checkequal( i8_A | int16(i8_B)  , int16(resIntAorB) );
+assert_checkequal( i8_A | int32(i8_B)  , int32(resIntAorB) );
+assert_checkequal( i8_A | int64(i8_B)  , int64(resIntAorB) );
+assert_checkequal( i8_A | uint16(i8_B) , uint16(resIntAorB) );
+assert_checkequal( i8_A | uint32(i8_B) , uint32(resIntAorB) );
+assert_checkequal( i8_A | uint64(i8_B) , uint64(resIntAorB) );

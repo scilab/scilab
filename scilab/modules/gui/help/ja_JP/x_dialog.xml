@@ -26,7 +26,7 @@
             <varlistentry>
                 <term>result</term>
                 <listitem>
-                    <para>ユーザの応答: 
+                    <para>ユーザの応答:
                         "Ok"ボタンで返した場合は文字列の列ベクトル,
                         "Cancel"ボタンで返した場合は []
                     </para>

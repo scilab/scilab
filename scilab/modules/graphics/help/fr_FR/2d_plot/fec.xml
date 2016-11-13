@@ -122,7 +122,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // define a mini triangulation (4 vertices, 2 triangles)
 x = [0 1 0 -1];
 y = [0 0 1  1];
@@ -159,7 +159,7 @@ show_window()
             xtitle("fec example (without the mesh)")
             show_window()
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // define a mini triangulation (4 vertices, 2 triangles)
 x = [0 1 0 -1];
 y = [0 0 1  1];
@@ -190,7 +190,7 @@ show_window()
             xtitle("fec example : using zminmax argument")
             show_window()
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // define a mini triangulation (4 vertices, 2 triangles)
 x = [0 1 0 -1];
 y = [0 0 1  1];
@@ -248,7 +248,7 @@ show_window()
             xtitle("fec example : using zminmax and colout =[0 -1]")
             show_window()
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // define a mini triangulation (4 vertices, 2 triangles)
 x = [0 1 0 -1];
 y = [0 0 1  1];
@@ -278,7 +278,7 @@ show_window()
             T = [1 1 2 3 1;
             2 3 4 1 1];
             z = [0 1 0 -1];  // values of the func at each vertices
-            
+
             // this example shows a feature from colminmax:
             // playing with 2 colormaps for 2 subplots. It
             // uses also the data of the first example.
@@ -294,7 +294,7 @@ show_window()
             xtitle("fec using the jet colormap")
             show_window()
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // define a mapping with one quadrangle (4 vertices, 1 quadrangle)
 x = [1 2 2 1];
 y = [1 1 2 2];
@@ -314,7 +314,7 @@ xtitle("fec using the hot colormap, composed by one quadrangle")
             y = [1 1 2 2];
             T = [1 1 2 3 4 0];
             z = [-1 -1 1 1];  // values of the func at each vertices
-            
+
             clf()
             f = gcf();
             f.color_map = jetcolormap(12);

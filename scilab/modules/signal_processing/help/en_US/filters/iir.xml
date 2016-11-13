@@ -5,7 +5,7 @@
         <refpurpose>iir digital filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             hz=iir(n,ftype,fdesign,frq,delta)
             [p,z,g]=iir(n,ftype,fdesign,frq,delta)
@@ -144,7 +144,7 @@ g*poly(z,'z')/poly(p,'z')
  ]]>    </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="eqfir">eqfir</link>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F.D
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="obscont">
+    <refnamediv>
+        <refname>obscont</refname>
+        <refpurpose>observer based controller</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[K]=obscont(P,Kc,Kf)
+            [J,r]=obscont(P,Kc,Kf)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list (nominal plant) in state-space form, continuous  or discrete time
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Kc</term>
+                <listitem>
+                    <para>real matrix, (full state) controller gain</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Kf</term>
+                <listitem>
+                    <para>real matrix, filter gain</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list (controller)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>J</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list (extended controller)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>1x2 row vector</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>obscont</literal>  returns the observer-based controller associated with a
+            nominal plant <literal>P</literal> with matrices <literal>[A,B,C,D]</literal> (<literal>syslin</literal> list).
+        </para>
+        <para>
+            The full-state control gain is <literal>Kc</literal> and the filter gain is <literal>Kf</literal>.
+            These gains can be computed, for example, by pole placement.
+        </para>
+        <para>
+            <literal>A+B*Kc</literal> and <literal>A+Kf*C</literal> are (usually) assumed stable.
+        </para>
+        <para>
+            <literal>K</literal> is a state-space representation of the
+            compensator <literal> K: y-&gt;u</literal> in:
+        </para>
+        <para>
+            <literal> xdot = A x + B u,  y=C x + D u, zdot= (A + Kf C)z -Kf y +B u, u=Kc z</literal>
+        </para>
+        <para>
+            <literal>K</literal> is a linear system (<literal>syslin</literal> list) with matrices given by:
+            <literal>K=[A+B*Kc+Kf*C+Kf*D*Kc,Kf,-Kc]</literal>.
+        </para>
+        <para>
+            The closed loop feedback system <literal> Cl: v -&gt;y</literal> with
+            (negative) feedback <literal>K</literal> (i.e. <literal>y = P u, u = v - K y</literal>, or
+        </para>
+        <programlisting role=""><![CDATA[
+xdot = A x + B u,
+   y = C x + D u,
+zdot = (A + Kf C) z - Kf y + B u,
+   u = v -F z
+ ]]></programlisting>
+        <para>
+            ) is given by <literal>Cl = P/.(-K)</literal>
+        </para>
+        <para>
+            The poles of <literal>Cl</literal> (<literal> spec(cl('A')) </literal>) are located at the eigenvalues of <literal>A+B*Kc</literal>
+            and <literal>A+Kf*C</literal>.
+        </para>
+        <para>
+            Invoked with two output arguments <literal>obscont</literal> returns a
+            (square) linear system <literal>K</literal> which parametrizes all the stabilizing
+            feedbacks via a LFT.
+        </para>
+        <para>
+            Let <literal>Q</literal> an arbitrary stable linear system of dimension <literal>r(2)</literal>x<literal>r(1)</literal>
+            i.e. number of inputs x number of outputs in <literal>P</literal>.
+            Then any stabilizing controller <literal>K</literal> for <literal>P</literal> can be expressed as
+            <literal>K=lft(J,r,Q)</literal>. The controller which corresponds to <literal>Q=0</literal> is
+            <literal>K=J(1:nu,1:ny)</literal> (this <literal>K</literal> is returned by <literal>K=obscont(P,Kc,Kf)</literal>).
+            <literal>r</literal> is <literal>size(P)</literal> i.e the vector [number of outputs, number of inputs];
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+ny=2;nu=3;nx=4;P=ssrand(ny,nu,nx);[A,B,C,D]=abcd(P);
+Kc=-ppol(A,B,[-1,-1,-1,-1]);  //Controller gain
+Kf=-ppol(A',C',[-2,-2,-2,-2]);Kf=Kf';    //Observer gain
+cl=P/.(-obscont(P,Kc,Kf));spec(cl('A'))   //closed loop system
+[J,r]=obscont(P,Kc,Kf);
+Q=ssrand(nu,ny,3);Q('A')=Q('A')-(max(real(spec(Q('A'))))+0.5)*eye(Q('A'))
+//Q is a stable parameter
+K=lft(J,r,Q);
+spec(h_cl(P,K))  // closed-loop A matrix (should be stable);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ppol">ppol</link>
+            </member>
+            <member>
+                <link linkend="lqg">lqg</link>
+            </member>
+            <member>
+                <link linkend="lqr">lqr</link>
+            </member>
+            <member>
+                <link linkend="lqe">lqe</link>
+            </member>
+            <member>
+                <link linkend="h_inf">h_inf</link>
+            </member>
+            <member>
+                <link linkend="lft">lft</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="feedback">feedback</link>
+            </member>
+            <member>
+                <link linkend="observer">observer</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"   xml:lang="fr" xml:id="wiener">
+    <refnamediv>
+        <refname>wiener</refname>
+        <refpurpose>Wiener estimate</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[xs,ps,xf,pf]=wiener(y,x0,p0,f,g,h,q,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>f, g, h</term>
+                <listitem>
+                    <para>
+                        system matrices in the interval <literal>[t0,tf]</literal>
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>f</term>
+                            <listitem>
+                                <para>
+                                    =<literal>[f0,f1,...,ff]</literal>, and <literal>fk</literal> is a nxn matrix
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>g</term>
+                            <listitem>
+                                <para>
+                                    =<literal>[g0,g1,...,gf]</literal>, and <literal>gk</literal> is a nxn matrix
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>h</term>
+                            <listitem>
+                                <para>
+                                    =<literal>[h0,h1,...,hf]</literal>, and <literal>hk</literal> is a mxn matrix
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>q, r</term>
+                <listitem>
+                    <para>covariance matrices of dynamics and observation noise</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>q</term>
+                            <listitem>
+                                <para>
+                                    =<literal>[q0,q1,...,qf]</literal>, and <literal>qk</literal> is a nxn matrix
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>r</term>
+                            <listitem>
+                                <para>
+                                    =<literal>[r0,r1,...,rf]</literal>, and <literal>gk</literal> is a mxm matrix
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x0, p0</term>
+                <listitem>
+                    <para>initial state estimate and error variance</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        observations in the interval <literal>[t0,tf]</literal>. <literal>y=[y0,y1,...,yf]</literal>, and <literal>yk</literal> is a column m-vector
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xs</term>
+                <listitem>
+                    <para>
+                        Smoothed state estimate <literal>xs= [xs0,xs1,...,xsf]</literal>, and <literal>xsk</literal> is a column n-vector
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ps</term>
+                <listitem>
+                    <para>
+                        Error covariance of smoothed estimate <literal>ps=[p0,p1,...,pf]</literal>, and <literal>pk</literal> is a nxn matrix
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xf</term>
+                <listitem>
+                    <para>
+                        Filtered state estimate <literal>xf= [xf0,xf1,...,xff]</literal>, and <literal>xfk</literal> is a column n-vector
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pf</term>
+                <listitem>
+                    <para>
+                        Error covariance of filtered estimate <literal>pf=[p0,p1,...,pf]</literal>, and <literal>pk</literal> is a nxn matrix
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            function which gives the Wiener estimate using
+            the forward-backward Kalman filter formulation
+        </para>
+    </refsection>
+    <refsection>
+        <title>Sample</title>
+        <scilab:image>
+            m0=[10 10]';
+            p0=[100 0;0 100];
+            f2=[1.1 50.1;0 0.8];
+            g=[1 0;0 1];
+            h=[1 0;0 1];
+            [hi,hj]=size(h);
+            q=[.01 0;0 0.01];
+            r=20*eye(2,2);
+            rand("seed",66);
+            rand("normal");
+            p0c=chol(p0);
+            x0=m0+p0c'*rand(ones(m0));
+            y=h*x0+chol(r)'*rand(ones(1:hi))';
+            yt=y;
+            x=x0;
+            ft=[f2];
+            gt=[g];
+            ht=[h];
+            qt=[q];
+            rt=[r];
+            n=10;
+            for k=1:n
+            [x1,y]=system(x0,f2,g,h,q,r);
+            x=[x x1];
+            yt=[yt y];
+            x0=x1;
+            ft=[ft f2];
+            gt=[gt g];
+            ht=[ht h];
+            qt=[qt q];
+            rt=[rt r];
+            end
+            [xs,ps,xf,pf]=wiener(yt,m0,p0,ft,gt,ht,qt,rt);
+            a=min([x(1,:)-2*sqrt(ps(1,1:2:2*(n+1))),xf(1,:),xs(1,:)]);
+            b=max([x(1,:)+2*sqrt(ps(1,1:2:2*(n+1))),xf(1,:),xs(1,:)]);
+            c=min([x(2,:)-2*sqrt(ps(2,2:2:2*(n+1))),xf(2,:),xs(2,:)]);
+            d=max([x(2,:)+2*sqrt(ps(2,2:2:2*(n+1))),xf(2,:),xs(2,:)]);
+            xmargin=max([abs(a),abs(b)]);
+            ymargin=max([abs(c),abs(d)]);
+            a=-0.1*xmargin+a;
+            b=.1*xmargin+b;
+            c=-0.1*ymargin+c;
+            d=.1*ymargin+d;
+            scf();
+            plot([a a b],[d c c]);
+            plot2d(x(1,:)',x(2,:)',[2],"000")
+            plot2d(xf(1,:)',xf(2,:)',[2],"000")
+            plot2d(xs(1,:)',xs(2,:)',[2],"000")
+            plot2d(xs(1,:)',xs(2,:)',[-2],"000")
+            plot2d(xf(1,:)',xf(2,:)',[-3],"000")
+            plot2d(x(1,:)',x(2,:)',[-4],"000")
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// initialize state statistics (mean and er. variance)
+m0=[10 10]';
+p0=[100 0;0 100];
+// create system
+f2=[1.1 50.1;0 0.8];
+g=[1 0;0 1];
+h=[1 0;0 1];
+[hi,hj]=size(h);
+// noise statistics
+q=[.01 0;0 0.01];
+r=20*eye(2,2);
+// initialize system process
+rand("seed",66);
+rand("normal");
+p0c=chol(p0);
+x0=m0+p0c'*rand(ones(m0));
+y=h*x0+chol(r)'*rand(ones(1:hi))';
+yt=y;
+// initialize plotted variables
+x=x0;
+// loop
+ft=[f2];
+gt=[g];
+ht=[h];
+qt=[q];
+rt=[r];
+n=10;
+for k=1:n
+    // generate the state and observation
+    // at time k (i.e. xk and yk)
+    [x1,y]=system(x0,f2,g,h,q,r);
+    x=[x x1];
+    yt=[yt y];
+    x0=x1;
+    ft=[ft f2];
+    gt=[gt g];
+    ht=[ht h];
+    qt=[qt q];
+    rt=[rt r];
+end
+// get the wiener filter estimate
+[xs,ps,xf,pf]=wiener(yt,m0,p0,ft,gt,ht,qt,rt);
+// plot result
+a=min([x(1,:)-2*sqrt(ps(1,1:2:2*(n+1))),xf(1,:),xs(1,:)]);
+b=max([x(1,:)+2*sqrt(ps(1,1:2:2*(n+1))),xf(1,:),xs(1,:)]);
+c=min([x(2,:)-2*sqrt(ps(2,2:2:2*(n+1))),xf(2,:),xs(2,:)]);
+d=max([x(2,:)+2*sqrt(ps(2,2:2:2*(n+1))),xf(2,:),xs(2,:)]);
+xmargin=max([abs(a),abs(b)]);
+ymargin=max([abs(c),abs(d)]);
+a=-0.1*xmargin+a;
+b=.1*xmargin+b;
+c=-0.1*ymargin+c;
+d=.1*ymargin+d;
+// plot frame, real state (x), and estimates (xf, and xs)
+scf();
+plot([a a b],[d c c]);
+plot2d(x(1,:)',x(2,:)',[2],"000")
+plot2d(xf(1,:)',xf(2,:)',[2],"000")
+plot2d(xs(1,:)',xs(2,:)',[2],"000")
+// mark data points (* for real data, o for estimates)
+plot2d(xs(1,:)',xs(2,:)',[-2],"000")
+plot2d(xf(1,:)',xf(2,:)',[-3],"000")
+plot2d(x(1,:)',x(2,:)',[-4],"000")
+ ]]></programlisting>
+    </refsection>
+
+</refentry>

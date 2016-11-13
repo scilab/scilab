@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="paramfplot2d">
@@ -16,7 +19,7 @@
         <refpurpose>animated plot of a 2D parametrized curve.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>paramfplot2d(f,x,theta)
             paramfplot2d(f,x,theta,flag)
             paramfplot2d(f,x,theta,flag,rect)
@@ -80,17 +83,17 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff('y=f(x,t)','y=t*sin(x)')
 x=linspace(0,2*%pi,50);
 theta=0:0.05:1;
 clf;paramfplot2d(f,x,theta);
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function V=twosoliton(x,t)
   a1=6;s1=2;v1=a1^2;
   a2=4;s2=40;v2=a2^2;
-  
+
   f1=exp(-a1*(x-s1-v1*t));
   f2=exp(-a2*(x-s2-v2*t));
   r=((a2-1)/(a2+a1))^2;
@@ -101,7 +104,7 @@ clf;paramfplot2d(twosoliton,x,0:0.05:3);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="comet">comet</link>

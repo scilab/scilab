@@ -24,7 +24,7 @@
                 <term>H  </term>
                 <listitem>
                     <para>
-                        matrice de fractions rationnelles (i.e matrice avec des termes <literal>n/d</literal>, <literal>n</literal> et <literal>d</literal> polynômes réels) 
+                        matrice de fractions rationnelles (i.e matrice avec des termes <literal>n/d</literal>, <literal>n</literal> et <literal>d</literal> polynômes réels)
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,7 +45,7 @@
         </para>
         <para>
             <warning>
-                Attention : 
+                Attention :
             </warning>
         </para>
         <para>
@@ -65,7 +65,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 [n,d]=simp((s+1)*(s+2),(s+1)*(s-2))
 

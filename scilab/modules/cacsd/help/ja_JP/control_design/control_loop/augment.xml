@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="augment">
+    <refnamediv>
+        <refname>augment</refname>
+        <refpurpose>拡張プラント</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[P,r]=augment(G)
+            [P,r]=augment(G,flag1)
+            [P,r]=augment(G,flag1,flag2)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>G</term>
+                <listitem>
+                    <para>
+                        線形システム (<literal>syslin</literal> リスト), ノミナルプラント
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag1</term>
+                <listitem>
+                    <para>
+                        以下の文字(大文字)の一つ: <literal> 'S' </literal>, <literal> 'R' </literal>, <literal> 'T' </literal> <literal> 'SR' </literal>, <literal> 'ST' </literal>, <literal> 'RT' </literal> <literal> 'SRT' </literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag2</term>
+                <listitem>
+                    <para>
+                        以下の文字の一つ: <literal> 'o' </literal> (出力'output'を意味する, これがデフォルト値) または <literal>'i'</literal> (入力'input'を意味する).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        線形システム (<literal>syslin</literal> リスト),  ``拡張''プラント
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 行ベクトル, <literal>P22 = G</literal>の次元
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>flag1='SRT'</literal> (デフォルト値)の場合,以下の"完全な" 拡張プラントを返します:
+        </para>
+        <programlisting role=""><![CDATA[
+    [ I | -G]   -->'S'
+    [ 0 |  I]   -->'R'
+P = [ 0 |  G]   -->'T'
+    [-------]
+    [ I | -G
+ ]]></programlisting>
+        <para>
+            <literal> 'S' </literal>, <literal> 'R' </literal>, <literal> 'T' </literal>
+            は,それぞれ,<literal>P</literal>の最初の3つの(ブロック)行を指します.
+        </para>
+        <para>
+            <literal>flag1</literal>の中にこれらの3文字のどれかが欠けた場合,
+            <literal>P</literal>の対応する行がなくなります.
+        </para>
+        <para>
+            <literal>G</literal> が状態空間形式で指定された場合,
+            戻り値 <literal>P</literal>は最小実現になります.
+            <literal>P</literal> は以下のように計算されます: <literal>[I,0,0;0,I,0;-I,0,I;I,0,0]*[I,-G;0,I;I,0]</literal>.
+        </para>
+        <para>
+            入力感度関数に関連した拡張プラント,つまり,
+            The augmented plant associated with input sensitivity functions, namely
+        </para>
+        <programlisting role=""><![CDATA[
+    [ I | -I]   -->'S'  (input sensitivity)
+    [ G | -G]   -->'R'  (G*input sensitivity)
+P = [ 0 |  I]   -->'T'  (K*G*input sensitivity)
+    [-------]
+    [ G | -G]
+    ]]></programlisting>
+        <para>
+            は,コマンド<literal>[P,r]=augment(G,flag,'i')</literal>により得られます.
+            状態空間を<literal>G</literal>とすると,
+            この <literal>P</literal>は以下のように計算されます:
+            <literal>[I,-I;0,0;0,I;0,0]+[0;I;0;I]*G*[I,-I]</literal>,
+            よって,一般に最小実現となります.
+        </para>
+        <para>
+            重み関数は,
+            <literal> P = sysdiag(W1,W2,W3,eye(G))*P</literal>のように
+            <literal>P</literal>に適当な次元の対角システムを
+            左から乗じることにより得られます.
+        </para>
+        <para>
+            感度関数は<literal>lft</literal>により計算することができます.
+        </para>
+        <para>
+            出力感度関数　[P,r]=augment(P,'SRT') の場合:
+            lft(P,r,K)=[inv(eye()+G*K);K*inv(eye()+G*K);G*K*inv(eye()+G*K)];
+        </para>
+        <para>
+            入力感度関数の場合 [P,r]=augment(P,'SRT','i'):
+            lft(P,r,K)=[inv(eye()+K*G);G*inv(eye()+K*G);K*G*inv(eye()+G*K)];
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+G=ssrand(2,3,2); //プラント
+K=ssrand(3,2,2); //補償器
+[P,r]=augment(G,'T');
+T=lft(P,r,K);   //相補感度関数
+Ktf=ss2tf(K);Gtf=ss2tf(G);
+Ttf=ss2tf(T);T11=Ttf(1,1);
+Oloop=Gtf*Ktf;
+Tn=Oloop*inv(eye(Oloop)+Oloop);
+clean(T11-Tn(1,1));
+//
+[Pi,r]=augment(G,'T','i');
+T1=lft(Pi,r,K);T1tf=ss2tf(T1); //入力相補感度関数
+Oloop=Ktf*Gtf;
+T1n=Oloop*inv(eye(Oloop)+Oloop);
+clean(T1tf(1,1)-T1n(1,1))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lft">lft</link>
+            </member>
+            <member>
+                <link linkend="sensi">sensi</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

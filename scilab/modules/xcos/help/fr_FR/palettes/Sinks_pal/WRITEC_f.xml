@@ -3,11 +3,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry
@@ -23,7 +26,7 @@
         <refname>WRITEC_f</refname>
         <refpurpose>Ecriture dans une fichier binaire C</refpurpose>
     </refnamediv>
-    
+
     <refsection>
         <title>Aperçu</title>
         <para>
@@ -93,7 +96,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    
+
     <refsection id="Palette_WRITEC_f">
         <title>Palette</title>
         <itemizedlist>
@@ -104,10 +107,10 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    
+
     <refsection id="Description_WRITEC_f">
         <title>Description</title>
-        
+
         <para>
             Ce  bloc permet à l'utilisateur d'écrire des données dans un fichier binaire C dont le nom est défini par la chaîne  <emphasis role="bold">Output File Name</emphasis>. Le fichier est une séquence
             d'enregistrements. Chaque enregistrement a une longueur fixée par le paramètre <emphasis role="bold">Input Size</emphasis> et la structure ci-dessous :
@@ -133,11 +136,10 @@ box "Champ #N";
             Les champs de l'enregistrement doivent contenir des données de même type défini par le paramètre <emphasis role="bold">Output Format</emphasis>.
         </para>
         <para>
-            Chaque événement sur l'entrée d'activation du bloc écrit un enregistrement dans le fichier. Notez que contrairement à <link linkend="WFILE_f">WFILE_f</link>, les dates d'événement
-            ne sont pas enregistrées.
+            Chaque événement sur l'entrée d'activation du bloc écrit un enregistrement dans le fichier.
         </para>
     </refsection>
-    
+
     <refsection id="Datatype_WRITEC_f">
         <title>Types de données</title>
         <itemizedlist>
@@ -148,7 +150,7 @@ box "Champ #N";
             </listitem>
         </itemizedlist>
     </refsection>
-    
+
     <refsection id="Dialogbox_WRITEC_f">
         <title>Boîte de dialogue</title>
         <para>
@@ -225,7 +227,7 @@ box "Champ #N";
             </listitem>
         </itemizedlist>
     </refsection>
-    
+
     <refsection id="Defaultproperties_WRITEC_f">
         <title>Propriétés par défaut</title>
         <itemizedlist>
@@ -290,7 +292,7 @@ box "Champ #N";
             </listitem>
         </itemizedlist>
     </refsection>
-    
+
     <refsection id="Example_WRITEC_f">
         <title>Exemple</title>
         <para>
@@ -309,7 +311,7 @@ box "Champ #N";
             </link>
         </para>
     </refsection>
-    
+
     <refsection id="Interfacingfunction_WRITEC_f">
         <title>Fonction d'interfaçage</title>
         <itemizedlist>
@@ -320,7 +322,7 @@ box "Champ #N";
             </listitem>
         </itemizedlist>
     </refsection>
-    
+
     <refsection id="Computationalfunction_WRITEC_f">
         <title>Fonction de calcul</title>
         <itemizedlist>
@@ -329,7 +331,7 @@ box "Champ #N";
             </listitem>
         </itemizedlist>
     </refsection>
-    
+
     <refsection role="see also" id="Seealso_WRITEC_f">
         <title>Voir aussi</title>
         <itemizedlist>
@@ -338,9 +340,6 @@ box "Champ #N";
             </listitem>
             <listitem>
                 <link linkend="RFILE_f">RFILE_f</link>
-            </listitem>
-            <listitem>
-                <link linkend="WFILE_f">WFILE_f</link>
             </listitem>
         </itemizedlist>
     </refsection>

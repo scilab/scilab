@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <stdlib.h>
@@ -126,10 +129,11 @@ int iSvdM(double* pData, int iRows, int iCols, int complexArg, int economy, doub
     double* pWork = NULL;
     double* pRWork = NULL;
     double* pVT = NULL;
+    double* _pSV = NULL;
 
     char const job = pU ? (economy ? 'S' : 'A') : 'N';
     int colsToCompute = (job == 'S') ? Min(iRows, iCols) : iCols;
-    pSV = pSV ? pSV : (double*) MALLOC(Min(iRows, iCols) * sizeof(double));
+    _pSV = pSV ? pSV : (double*) MALLOC(Min(iRows, iCols) * sizeof(double));
     if ( (allocOK = ( (pWork = (complexArg
                                 ? (double*)allocZgesvdWorkspace(job, iRows, iCols, colsToCompute, &worksize)
                                 : allocDgesvdWorkspace(job, iRows, iCols, colsToCompute, &worksize)))
@@ -140,28 +144,28 @@ int iSvdM(double* pData, int iRows, int iCols, int complexArg, int economy, doub
                                  : pData)))))
     {
         ret = complexArg
-              ? iZgesvd(job,  (doublecomplex*)pData, iRows, iCols, colsToCompute, pSV, (doublecomplex*) pU, (doublecomplex*)pVT
+              ? iZgesvd(job,  (doublecomplex*)pData, iRows, iCols, colsToCompute, _pSV, (doublecomplex*) pU, (doublecomplex*)pVT
                         , (doublecomplex*)pWork, worksize, pRWork)
-              : iDgesvd(job, pData, iRows, iCols, colsToCompute, pSV, pU, pVT, pWork, worksize);
+              : iDgesvd(job, pData, iRows, iCols, colsToCompute, _pSV, pU, pVT, pWork, worksize);
         if ( (ret == 0) && pU)
         {
             /* openmp sections */
             /* openmp section */
             {
                 int unused = complexArg
-                             ? iComputeSandVComplex(pSV, (doublecomplex*)pVT, iRows, iCols, economy, pS, (doublecomplex*)pV)
-                             : iComputeSandVReal(pSV, pVT, iRows, iCols, economy, pS, pV);
+                             ? iComputeSandVComplex(_pSV, (doublecomplex*)pVT, iRows, iCols, economy, pS, (doublecomplex*)pV)
+                             : iComputeSandVReal(_pSV, pVT, iRows, iCols, economy, pS, pV);
             }
             /* openmp section */
             {
                 if (pRk) /* compute rank */
                 {
                     int i, rk;
-                    tol = (tol == 0.) ? (Max(iRows, iCols) * nc_eps() * pSV[0]) : tol; /* original Fortran code does the strict fp compare */
+                    tol = (tol == 0.) ? (Max(iRows, iCols) * nc_eps() * _pSV[0]) : tol; /* original Fortran code does the strict fp compare */
                     rk = -1;
                     for (i = 0; i != Min(iRows, iCols); ++i)
                     {
-                        if (pSV[i] > tol)
+                        if (_pSV[i] > tol)
                         {
                             rk = i;
                         }
@@ -176,6 +180,10 @@ int iSvdM(double* pData, int iRows, int iCols, int complexArg, int economy, doub
     if (pU)
     {
         FREE(pVT);
+    }
+    if (!pSV)
+    {
+        FREE(_pSV);
     }
     return allocOK ? ret : -1;
 }

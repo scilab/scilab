@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="eqiir" xml:lang="fr">
+    <refnamediv>
+        <refname>eqiir</refname>
+        <refpurpose>Design of iir filters</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[cells,fact,zzeros,zpoles]=eqiir(ftype,approx,om,deltap,deltas)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>ftype</term>
+                <listitem>
+                    <para>
+                        filter type (<literal>'lp','hp','sb','bp'</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>approx</term>
+                <listitem>
+                    <para>design approximation
+                        (<literal>'butt','cheb1','cheb2','ellip'</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>om</term>
+                <listitem>
+                    <para>4-vector of cutoff frequencies (in radians)
+                        <literal>om=[om1,om2,om3,om4]</literal>, <literal>0 &lt;= om1 &lt;=
+                            om2 &lt;= om3 &lt;= om4 &lt;= pi
+                        </literal>
+                        .When
+                        <literal>ftype</literal>='lp' or 'hp', <literal>om3</literal> and
+                        <literal>om4</literal> are not used and may be set to 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>deltap</term>
+                <listitem>
+                    <para>
+                        ripple in the passband. <literal>0&lt;= deltap
+                            &lt;=1
+                        </literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>deltas</term>
+                <listitem>
+                    <para>
+                        ripple in the stopband. <literal>0&lt;= deltas
+                            &lt;=1
+                        </literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cells</term>
+                <listitem>
+                    <para>realization of the filter as second order cells</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fact</term>
+                <listitem>
+                    <para>normalization constant</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zzeros</term>
+                <listitem>
+                    <para>zeros in the z-domain</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zpoles</term>
+                <listitem>
+                    <para>poles in the z-domain</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Design of iir filter based on <link linkend="syredi">syredi</link>.
+        </para>
+        <para>
+            The filter obtained is <literal>h(z)=fact</literal>*product of the
+            elements of <literal>cells</literal>.
+        </para>
+        <para>That is
+            <literal>hz=fact*prod(cells.num)./prod(cells.den).</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+[cells,fact,zzeros,zpoles]=eqiir('lp','ellip',[2*%pi/10,4*%pi/10],0.02,0.001)
+h=fact*poly(zzeros,'z')/poly(zpoles,'z')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="eqfir">eqfir</link>
+            </member>
+            <member>
+                <link linkend="iir">iir</link>
+            </member>
+            <member>
+                <link linkend="syredi">syredi</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -121,7 +124,7 @@ public:
         Controller controller;
         ScicosID id = controller.cloneObject(adapter.getAdaptee()->id(), cloneChildren, true);
         m_adaptee = controller.getObject< Adaptee >(id);
-    };
+    }
     ~BaseAdapter()
     {
         if (m_adaptee != nullptr)
@@ -129,7 +132,7 @@ public:
             Controller controller;
             controller.deleteObject(m_adaptee->id());
         }
-    };
+    }
 
     /*
      * property accessors
@@ -201,6 +204,7 @@ public:
             get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s: Tlist or Mlist expected.\n"), Adaptor::getSharedTypeStr().c_str());
             return false;
         }
+
         types::TList* current = v->getAs<types::TList>();
         // The input TList cannot be empty
         if (current->getSize() < 1)
@@ -216,6 +220,7 @@ public:
             get_or_allocate_logger()->log(LOG_ERROR, _("Wrong length for header of field %s: at least %d element expected.\n"), Adaptor::getSharedTypeStr().c_str(), 1);
             return false;
         }
+
         // Make sure it is the same type as the Adapter
         if (header->get(0) != Adaptor::getSharedTypeStr())
         {
@@ -247,7 +252,7 @@ public:
      * property comparison
      */
 
-    types::Bool* equal(types::UserType*& ut)
+    types::Bool* equal(types::UserType*& ut) override final
     {
         const Adapters::adapters_index_t adapter_index = Adapters::instance().lookup_by_typename(ut->getShortTypeStr());
         // Check that 'ut' is an Adapter of the same type as *this
@@ -255,6 +260,7 @@ public:
         {
             return new types::Bool(false);
         }
+
         if (this->getTypeStr() != ut->getTypeStr())
         {
             return new types::Bool(false);
@@ -298,7 +304,7 @@ public:
     virtual std::string getShortTypeStr() = 0;
 
 private:
-    virtual UserType* clone() final
+    virtual UserType* clone() override final
     {
         return new Adaptor(*static_cast<Adaptor*>(this));
     }
@@ -307,12 +313,12 @@ private:
      * Implement a specific types::User
      */
 
-    bool isAssignable()
+    bool isAssignable() override final
     {
         return true;
     }
 
-    bool extract(const std::string & name, types::InternalType *& out)
+    bool extract(const std::string & name, types::InternalType *& out) override final
     {
         typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), name);
         if (found != property<Adaptor>::fields.end() && !(name < found->name))
@@ -338,7 +344,7 @@ private:
         return false;
     }
 
-    types::InternalType* extract(types::typed_list* _pArgs)
+    types::InternalType* extract(types::typed_list* _pArgs) override final
     {
         if (_pArgs->size() == 0)
         {
@@ -387,7 +393,7 @@ private:
         return NULL;
     }
 
-    types::UserType* insert(types::typed_list* _pArgs, types::InternalType* _pSource)
+    types::UserType* insert(types::typed_list* _pArgs, types::InternalType* _pSource) override final
     {
         for (size_t i = 0; i < _pArgs->size(); i++)
         {
@@ -415,18 +421,18 @@ private:
         return NULL;
     }
 
-    void whoAmI(void)
+    void whoAmI(void) override
     {
         std::cout << "scicos object";
     }
 
-    bool hasToString()
+    bool hasToString() override final
     {
         // Do not allow scilab to call toString of this class
         return false;
     }
 
-    bool toString(std::ostringstream& ostr) override
+    bool toString(std::ostringstream& ostr) override final
     {
         // Deprecated, use the overload instead
         typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
@@ -440,12 +446,12 @@ private:
         return true;
     }
 
-    bool isInvokable() const
+    bool isInvokable() const override final
     {
         return true;
     }
 
-    bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, const ast::Exp & e) override
+    bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, const ast::Exp & e) override final
     {
         if (in.size() == 0)
         {

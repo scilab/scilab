@@ -1,17 +1,21 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
 #include <string>
 #include <vector>
+#include <cstring> // for memcpy
 
 #include "Model.hxx"
 #include "utilities.hxx"
@@ -23,8 +27,52 @@
 #include "model/Link.hxx"
 #include "model/Port.hxx"
 
+extern "C" {
+#include "sci_types.h"
+}
+
 namespace org_scilab_modules_scicos
 {
+
+/* helper function to encode simple string EXPRS */
+static std::vector<double> encode_string_vector(const std::vector<std::string>& v)
+{
+    std::vector<double> ret;
+
+    // header
+    ret.push_back(sci_strings);
+
+    // serialize as a Scilab vector
+    ret.push_back(2); // MxN
+    ret.push_back(v.size()); // M
+    ret.push_back(1); // N
+
+    // reserve some space to store the length of each string (including the null terminating character)
+    ret.resize(ret.size() + v.size());
+
+    // store the index and the null terminated UTF-8 strings
+    size_t stringOffset = 0;
+    for (size_t i = 0; i < v.size(); ++i)
+    {
+        const std::string& str = v[i];
+        // length as a 64bit index (as we store on a double vector)
+        size_t len = ((str.size() + 1) * sizeof(char) + sizeof(double) - 1) / sizeof(double);
+
+        // insert the offset
+        auto it = ret.begin() + 4 + i;
+        stringOffset += len;
+        *it = stringOffset;
+
+        // reserve some space for the string
+        size_t size = ret.size();
+        ret.resize(size + len);
+
+        // copy the UTF-8 encoded values
+        std::memcpy(ret.data() + size, str.data(), str.size());
+    }
+
+    return ret;
+}
 
 update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double v)
 {
@@ -346,6 +394,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Link* o = static_cast<model::Link*>(baseObject);
         switch (p)
         {
+            case STYLE:
+                return o->setStyle(v);
             case LABEL:
                 return o->setLabel(v);
             case UID:
@@ -398,8 +448,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         {
             case GEOMETRY:
                 return o->setGeometry(v);
-            case ANGLE:
-                return o->setAngle(v);
             case EXPRS:
                 return o->setExprs(v);
             case STATE:
@@ -595,6 +643,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         {
             case DIAGRAM_CONTEXT:
                 return o->setContext(v);
+            case EXPRS:
+                return o->setExprs(encode_string_vector(v));
             default:
                 break;
         }

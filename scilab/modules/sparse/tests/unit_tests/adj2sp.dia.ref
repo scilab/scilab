@@ -38,7 +38,7 @@ A = [
 B=sparse(A);
 assert_checkequal ( and(B==C) , %t );
 //
-// Test the C=adj2sp(xadj,iadj,v,mn) calling sequence
+// Test the C=adj2sp(xadj,iadj,v,mn) syntax
 xadj = [1 2 3 4 5 5 6 6 7 8 9]';
 iadj = [2 5 2 3 1 2 7 6]';
 v = [3 7 5 3 6 5 2 3]';

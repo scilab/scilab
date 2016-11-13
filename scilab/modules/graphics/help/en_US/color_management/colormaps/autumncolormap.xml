@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="autumncolormap">
+    <refnamediv>
+        <refname>autumncolormap</refname>
+        <refpurpose>red through orange to yellow colormap</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>cmap=autumncolormap(n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>integer &gt;= 3, the colormap size.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cmap</term>
+                <listitem>
+                    <para>
+                        matrix with 3 columns <literal>[R,G,B]</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>autumncolormap</literal> computes a colormap with <literal>n</literal> colors
+            varying from red through orange to yellow.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+f = scf();
+plot3d1();
+f.color_map = autumncolormap(32);
+ ]]></programlisting>
+        <scilab:image>
+            f = scf();
+            plot3d1();
+            f.color_map = autumncolormap(32);
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="colormap">colormap</link>
+            </member>
+            <member>
+                <link linkend="bonecolormap">bonecolormap</link>
+            </member>
+            <member>
+                <link linkend="coolcolormap">coolcolormap</link>
+            </member>
+            <member>
+                <link linkend="coppercolormap">coppercolormap</link>
+            </member>
+            <member>
+                <link linkend="graycolormap">graycolormap</link>
+            </member>
+            <member>
+                <link linkend="hotcolormap">hotcolormap</link>
+            </member>
+            <member>
+                <link linkend="hsvcolormap">hsvcolormap</link>
+            </member>
+            <member>
+                <link linkend="jetcolormap">jetcolormap</link>
+            </member>
+            <member>
+                <link linkend="oceancolormap">oceancolormap</link>
+            </member>
+            <member>
+                <link linkend="parulacolormap">parulacolormap</link>
+            </member>
+            <member>
+                <link linkend="pinkcolormap">pinkcolormap</link>
+            </member>
+            <member>
+                <link linkend="rainbowcolormap">rainbowcolormap</link>
+            </member>
+            <member>
+                <link linkend="springcolormap">springcolormap</link>
+            </member>
+            <member>
+                <link linkend="summercolormap">summercolormap</link>
+            </member>
+            <member>
+                <link linkend="whitecolormap">whitecolormap</link>
+            </member>
+            <member>
+                <link linkend="wintercolormap">wintercolormap</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

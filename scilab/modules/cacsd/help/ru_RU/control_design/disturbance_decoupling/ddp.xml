@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="ddp">
+    <refnamediv>
+        <refname>ddp</refname>
+        <refpurpose>disturbance decoupling</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[Closed,F,G]=ddp(Sys,zeroed,B1,D1)
+            [Closed,F,G]=ddp(Sys,zeroed,B1,D1,flag,alfa,beta)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Sys</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list containing the matrices <literal>(A,B2,C,D2)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zeroed</term>
+                <listitem>
+                    <para>
+                        integer vector, indices of outputs of <literal>Sys</literal> which are zeroed.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B1</term>
+                <listitem>
+                    <para>real matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>D1</term>
+                <listitem>
+                    <para>
+                        real matrix. <literal>B1</literal> and <literal>D1</literal> have the same number of columns.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        string <literal>'ge'</literal> or <literal>'st'</literal> (default) or <literal>'pp'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>alpha</term>
+                <listitem>
+                    <para>real or complex vector (loc. of closed loop poles)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>beta</term>
+                <listitem>
+                    <para>real or complex vector (loc. of closed loop poles)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Exact disturbance decoupling (output nulling algorithm).
+            Given a linear system, and a subset of outputs, z, which are to
+            be zeroed, characterize the inputs w of Sys such that the
+            transfer function from w to z is zero.
+            <literal>Sys</literal> is a linear system {A,B2,C,D2} with one input and two outputs
+            ( i.e.  Sys: u--&gt;(z,y) ), part the following system defined from <literal>Sys</literal>
+            and <literal>B1,D1</literal>:
+        </para>
+        <programlisting role=""><![CDATA[
+xdot =  A x + B1  w + B2  u
+   z = C1 x + D11 w + D12 u
+   y = C2 x + D21 w + D22 u
+ ]]></programlisting>
+        <para>
+            outputs of Sys are partitioned into (z,y) where z is to be zeroed,
+            i.e. the matrices C and D2 are:
+        </para>
+        <programlisting role=""><![CDATA[
+C=[C1;C2]         D2=[D12;D22]
+C1=C(zeroed,:)    D12=D2(zeroed,:)
+ ]]></programlisting>
+        <para>
+            The matrix <literal>D1</literal> is partitioned similarly as <literal>D1=[D11;D21]</literal>
+            with <literal>D11=D1(zeroed,:)</literal>.
+            The control is u=Fx+Gw and one  looks for matriced <literal>F,G</literal> such that the
+            closed loop system: w--&gt;z given by
+        </para>
+        <programlisting role=""><![CDATA[
+xdot= (A+B2*F)  x + (B1 + B2*G) w
+  z = (C1+D12F) x + (D11+D12*G) w
+ ]]></programlisting>
+        <para>
+            has zero transfer transfer function.
+        </para>
+        <para>
+            <literal>flag='ge'</literal>no stability constraints.
+            <literal>flag='st'</literal> : look for stable closed loop system (A+B2*F stable).
+            <literal>flag='pp'</literal> : eigenvalues of A+B2*F are assigned to <literal>alfa</literal> and
+            <literal>beta</literal>.
+        </para>
+        <para>
+            Closed is a realization of the <literal>w--&gt;y</literal> closed loop system
+        </para>
+        <programlisting role=""><![CDATA[
+xdot= (A+B2*F)  x + (B1 + B2*G) w
+  y = (C2+D22*F) x + (D21+D22*G) w
+ ]]></programlisting>
+        <para>
+            Stability (resp. pole placement) requires stabilizability
+            (resp. controllability) of (A,B2).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+rand('seed',0);nx=6;nz=3;nu=2;ny=1;
+A=diag(1:6);A(2,2)=-7;A(5,5)=-9;B2=[1,2;0,3;0,4;0,5;0,0;0,0];
+C1=[zeros(nz,nz),eye(nz,nz)];D12=[0,1;0,2;0,3];
+Sys12=syslin('c',A,B2,C1,D12);
+C=[C1;rand(ny,nx)];D2=[D12;rand(ny,size(D12,2))];
+Sys=syslin('c',A,B2,C,D2);
+[A,B2,C1,D12]=abcd(Sys12);  //The matrices of Sys12.
+my_alpha=-1;my_beta=-2;flag='ge';
+[X,dims,F,U,k,Z]=abinv(Sys12,my_alpha,my_beta,flag);
+clean(X'*(A+B2*F)*X)
+clean(X'*B2*U)
+clean((C1+D12*F)*X)
+clean(D12*U);
+//Calculating an ad-hoc B1,D1
+G1=rand(size(B2,2),3);
+B1=-B2*G1;
+D11=-D12*G1;
+D1=[D11;rand(ny,size(B1,2))];
+
+[Closed,F,G]=ddp(Sys,1:nz,B1,D1,'st',my_alpha,my_beta);
+closed=syslin('c',A+B2*F,B1+B2*G,C1+D12*F,D11+D12*G);
+ss2tf(closed)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="abinv">abinv</link>
+            </member>
+            <member>
+                <link linkend="ui_observer">ui_observer</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

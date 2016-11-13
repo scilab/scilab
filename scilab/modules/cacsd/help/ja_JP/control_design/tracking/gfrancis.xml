@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="gfrancis">
+    <refnamediv>
+        <refname>gfrancis</refname>
+        <refpurpose>追尾用のフランシス方程式</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[L,M,T]=gfrancis(Plant,Model)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>Plant</term>
+                <listitem>
+                    <para>状態空間表現の連続時間動的システム.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Model</term>
+                <listitem>
+                    <para>状態空間表現の連続時間動的システム.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>L,M,T</term>
+                <listitem>
+                    <para>実数行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            線形プラント:
+        </para>
+        <programlisting role=""><![CDATA[
+x'= F*x + G*u
+y = H*x + J*u
+ ]]></programlisting>
+        <para>
+            および線形モデルを指定
+        </para>
+        <programlisting role=""><![CDATA[
+xm'= A*xm + B*um
+ym = C*xm + D*um
+ ]]></programlisting>
+        <para>
+            プラントの状態量 x(t) の安定性を維持しつつ,
+            プラントがモデルを追尾する,すなわち,
+            <literal>e = y - ym ---&gt; 0</literal>
+            ことが目標です.
+            <literal>u</literal> はフィードフォワードおよびフィードバックにより
+            指定されます
+        </para>
+        <programlisting role=""><![CDATA[
+u = L*xm + M*um + K*(x-T*xm) = [K , L-K*T] *(x,xm) + M*um
+ ]]></programlisting>
+        <para>
+            行列 T,L,M は一般化フランシス方程式を満たします
+        </para>
+        <programlisting role=""><![CDATA[
+F*T + G*L = T*A
+H*T + J*L = C
+      G*M = T*B
+      J*M = D
+ ]]></programlisting>
+        <para>
+            行列 <literal>K</literal> は,対 <literal>(F,G)</literal> を安定化するように
+            選択する必要があります.
+            ディレクトリ <literal>demos/tracking</literal> の使用例を参照ください.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+Plant=ssrand(1,3,5);
+[F,G,H,J]=abcd(Plant);
+nw=4;nuu=2;A=rand(nw,nw);
+st=maxi(real(spec(A)));A=A-st*eye(A);
+B=rand(nw,nuu);C=2*rand(1,nw);D=0*rand(C*B);
+Model=syslin('c',A,B,C,D);
+[L,M,T]=gfrancis(Plant,Model);
+norm(F*T+G*L-T*A,1)
+norm(H*T+J*L-C,1)
+norm(G*M-T*B,1)
+norm(J*M-D,1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lqg">lqg</link>
+            </member>
+            <member>
+                <link linkend="ppol">ppol</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal>が
+                    連続時間線形システムであることを確認するようになりました.
+                    この修正は,この <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">コミット</ulink>により導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

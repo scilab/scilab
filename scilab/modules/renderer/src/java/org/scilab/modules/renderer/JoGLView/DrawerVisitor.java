@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Pierre Lando
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  */
 
 package org.scilab.modules.renderer.JoGLView;
@@ -183,7 +186,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.legendDrawer = new LegendDrawer(this);
         this.fecDrawer = new FecDrawer(this);
         this.colorMapTextureDataProvider = new ColorMapTextureDataProvider();
-        this.datatipTextDrawer = new DatatipTextDrawer(canvas.getTextureManager());
+        this.datatipTextDrawer = new DatatipTextDrawer(canvas);
 
         visitorMap.put(figure.getIdentifier(), this);
     }
@@ -610,102 +613,101 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                             } else {
                                 auxColor = ColorFactory.createColor(colorMap, polyline.getMark().getBackground());
                             }
-                       		FloatBuffer data = positions.getData();
-                       		FloatBuffer colorData = colors.getData();
-                           	Integer[] sizes = polyline.getMarkSizes();
-                           	if ( (sizes.length > 0) && (data != null) && (colorData != null) && (positions.getSize() == sizes.length) && (colors.getSize() == sizes.length) ) {
-                            		
-                           			Integer markSizeTmp = polyline.getMarkSize();
-                           			
-                           			// markers with different sizes
-                       				data.rewind();
-                       				colorData.rewind();
-                       				
-                                    stride = stride < 1 ? 1 : stride;
-                                    offset = offset < 0 ? 0 : offset;
+                            FloatBuffer data = positions.getData();
+                            FloatBuffer colorData = colors.getData();
+                            Integer[] sizes = polyline.getMarkSizes();
+                            if ( (sizes.length > 0) && (data != null) && (colorData != null) && (positions.getSize() == sizes.length) && (colors.getSize() == sizes.length) ) {
 
-                                    int elementSize = positions.getElementsSize();
-                      				int mark = offset * elementSize;
-                       				int k = 0;
-                       				
-                                    while (data.remaining() >= stride * elementSize) {
-                          				
-                                    	// Be careful, do not use polyline.setMarkSize since this will destroy the sizes
-                      					polyline.getMark().setSize(sizes[k++]);
+                                Integer markSizeTmp = polyline.getMarkSize();
 
-                      					BuffersManager bufferManager = drawingTools.getCanvas().getBuffersManager();
-                        				ElementsBuffer singlePosition = bufferManager.createElementsBuffer();
-                        				ElementsBuffer singleColor = bufferManager.createElementsBuffer();
+                                // markers with different sizes
+                                data.rewind();
+                                colorData.rewind();
 
-                        				float[] position = {0, 0, 0, 1};
-                                        data.position(mark);
-                        				data.get(position);
-                        				
-                                        float[] color = {0, 0, 0, 0};
-                                        colorData.position(mark);
-                                        colorData.get(color);
-
-                        				mark += stride * elementSize;
-                        				
-                        				singlePosition.setData(position, elementSize);
-                        				singleColor.setData(color, elementSize);
-
-                        				Texture sprite = markManager.getMarkSprite(polyline, null, appearance);
-                        				drawingTools.draw(sprite, AnchorPosition.CENTER, singlePosition, 0, 0, 0, auxColor, singleColor);
-                            			
-                        				bufferManager.dispose(singleColor);
-                        				bufferManager.dispose(singlePosition);
-                        			}
-                        			// restore the size of the mark
-                                	// Be careful, do not use polyline.setMarkSize since this will destroy the sizes
-                  					polyline.getMark().setSize(markSizeTmp);
-                        	} else {
-                                Texture sprite = markManager.getMarkSprite(polyline, null, appearance);
-                        		drawingTools.draw(sprite, AnchorPosition.CENTER, positions, offset, stride, 0, auxColor, colors);
-                        	}
-                        } else {
-                    		FloatBuffer data = positions.getData();
-                        	Integer[] sizes = polyline.getMarkSizes();
-                        	if ( (sizes.length > 0) && (data != null) && (positions.getSize() == sizes.length) ) {
-                        		
-                        		Integer markSizeTmp = polyline.getMarkSize();
-                        		
-                        		// markers with different sizes
-                   				data.rewind();
-                    				
                                 stride = stride < 1 ? 1 : stride;
                                 offset = offset < 0 ? 0 : offset;
 
                                 int elementSize = positions.getElementsSize();
-                  				int mark = offset * elementSize;
-                   				int k = 0;
-                   				
+                                int mark = offset * elementSize;
+                                int k = 0;
+
                                 while (data.remaining() >= stride * elementSize) {
-                      				
-                                	// setting the size of the mark temporary 
-                  					polyline.getMark().setSize(sizes[k++]);
 
-                  					BuffersManager bufferManager = drawingTools.getCanvas().getBuffersManager();
-                    				ElementsBuffer singlePosition = bufferManager.createElementsBuffer();
+                                    // Be careful, do not use polyline.setMarkSize since this will destroy the sizes
+                                    polyline.getMark().setSize(sizes[k++]);
 
-                    				float[] position = {0, 0, 0, 1};
+                                    BuffersManager bufferManager = drawingTools.getCanvas().getBuffersManager();
+                                    ElementsBuffer singlePosition = bufferManager.createElementsBuffer();
+                                    ElementsBuffer singleColor = bufferManager.createElementsBuffer();
+
+                                    float[] position = {0, 0, 0, 1};
                                     data.position(mark);
-                    				data.get(position);
-                    				mark += stride * elementSize;
-                    				singlePosition.setData(position, elementSize);
+                                    data.get(position);
 
-                    				Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);
-                    				drawingTools.draw(sprite, AnchorPosition.CENTER, singlePosition, 0, 0, 0, null, null);
-                        			
-                    				bufferManager.dispose(singlePosition);
-                    			}
-                    			// restore the size of the mark
-                    			polyline.getMark().setSize(markSizeTmp);
-                        	}
-                        	else {
-                        		Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);
-                        		drawingTools.draw(sprite, AnchorPosition.CENTER, positions, offset, stride, 0, null, null);
-                        	}
+                                    float[] color = {0, 0, 0, 0};
+                                    colorData.position(mark);
+                                    colorData.get(color);
+
+                                    mark += stride * elementSize;
+
+                                    singlePosition.setData(position, elementSize);
+                                    singleColor.setData(color, elementSize);
+
+                                    Texture sprite = markManager.getMarkSprite(polyline, null, appearance);
+                                    drawingTools.draw(sprite, AnchorPosition.CENTER, singlePosition, 0, 0, 0, auxColor, singleColor);
+
+                                    bufferManager.dispose(singleColor);
+                                    bufferManager.dispose(singlePosition);
+                                }
+                                // restore the size of the mark
+                                // Be careful, do not use polyline.setMarkSize since this will destroy the sizes
+                                polyline.getMark().setSize(markSizeTmp);
+                            } else {
+                                Texture sprite = markManager.getMarkSprite(polyline, null, appearance);
+                                drawingTools.draw(sprite, AnchorPosition.CENTER, positions, offset, stride, 0, auxColor, colors);
+                            }
+                        } else {
+                            FloatBuffer data = positions.getData();
+                            Integer[] sizes = polyline.getMarkSizes();
+                            if ( (sizes.length > 0) && (data != null) && (positions.getSize() == sizes.length) ) {
+
+                                Integer markSizeTmp = polyline.getMarkSize();
+
+                                // markers with different sizes
+                                data.rewind();
+
+                                stride = stride < 1 ? 1 : stride;
+                                offset = offset < 0 ? 0 : offset;
+
+                                int elementSize = positions.getElementsSize();
+                                int mark = offset * elementSize;
+                                int k = 0;
+
+                                while (data.remaining() >= stride * elementSize) {
+
+                                    // setting the size of the mark temporary
+                                    polyline.getMark().setSize(sizes[k++]);
+
+                                    BuffersManager bufferManager = drawingTools.getCanvas().getBuffersManager();
+                                    ElementsBuffer singlePosition = bufferManager.createElementsBuffer();
+
+                                    float[] position = {0, 0, 0, 1};
+                                    data.position(mark);
+                                    data.get(position);
+                                    mark += stride * elementSize;
+                                    singlePosition.setData(position, elementSize);
+
+                                    Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);
+                                    drawingTools.draw(sprite, AnchorPosition.CENTER, singlePosition, 0, 0, 0, null, null);
+
+                                    bufferManager.dispose(singlePosition);
+                                }
+                                // restore the size of the mark
+                                polyline.getMark().setSize(markSizeTmp);
+                            } else {
+                                Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);
+                                drawingTools.draw(sprite, AnchorPosition.CENTER, positions, offset, stride, 0, null, null);
+                            }
                         }
                     }
                 } catch (ObjectRemovedException e) {
@@ -934,14 +936,22 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (datatip.isValid() && datatip.getVisible()) {
             axesDrawer.enableClipping(currentAxes, datatip.getClipProperty());
             try {
-                if (datatip.getMarkMode()) {
-                    /* TODO: appearance can be not-null */
-                    Texture texture = markManager.getMarkSprite(datatip, colorMap, null);
-                    Vector3d markPos = DatatipTextDrawer.calculateAnchorPoint(datatip);
-                    drawingTools.draw(texture, AnchorPosition.CENTER, markPos);
-                }
-                if (datatip.getTipLabelMode()) {
-                    datatipTextDrawer.draw(drawingTools, colorMap, datatip);
+                Double[] box = currentAxes.getCorrectedBounds();
+                Vector3d markPos = DatatipTextDrawer.calculateAnchorPoint(datatip);
+                Double x = markPos.getX();
+                Double y = markPos.getY();
+                Double z = markPos.getZ();
+                if (x >= box[0] && x <= box[1] &&
+                        y >= box[2] && y <= box[3] &&
+                        z >= box[4] && z <= box[5]) {
+                    if (datatip.getMarkMode()) {
+                        /* TODO: appearance can be not-null */
+                        Texture texture = markManager.getMarkSprite(datatip, colorMap, null);
+                        drawingTools.draw(texture, AnchorPosition.CENTER, markPos);
+                    }
+                    if (datatip.getTipLabelMode()) {
+                        datatipTextDrawer.draw(drawingTools, colorMap, datatip);
+                    }
                 }
             } catch (SciRendererException e) {
                 invalidate((Text)datatip, e);

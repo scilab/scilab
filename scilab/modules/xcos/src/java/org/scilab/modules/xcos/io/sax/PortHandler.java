@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -70,7 +73,7 @@ class PortHandler implements ScilabHandler {
         }
 
         String value = atts.getValue("value");
-        if (value != null) {
+        if (value != null &&  shared.validCIdentifier.matcher(value).matches()) {
             shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.LABEL, value);
         }
 
@@ -116,28 +119,35 @@ class PortHandler implements ScilabHandler {
         /*
          * Setup the properties
          */
-
         VectorOfInt datatype = new VectorOfInt();
         shared.controller.getObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
 
         v = atts.getValue("dataType");
+        int intValue = BasicPort.DataType.REAL_MATRIX.asScilabValue();  // Magic default value, used in Scilab 5.x
         if (v != null) {
-            datatype.set(0, BasicPort.DataType.valueOf(v).ordinal());
+            intValue = BasicPort.DataType.valueOf(v).asScilabValue();
         }
+        datatype.set(2, intValue);
+        intValue = -2; // Magic default value, used in Scilab 5.x
         v = atts.getValue("dataColumns");
         if (v != null) {
-            datatype.set(1, Integer.valueOf(v));
+            intValue = Integer.parseInt(v);
         }
+        datatype.set(1, intValue);
+        intValue = -1; // Magic default value, used in Scilab 5.x
         v = atts.getValue("dataLines");
         if (v != null) {
-            datatype.set(2, Integer.valueOf(v));
+            intValue = Integer.parseInt(v);
         }
+        datatype.set(0, intValue);
 
         shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
 
         v = atts.getValue("initialState");
         if (v != null) {
             shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.FIRING, Double.valueOf(v));
+        } else {
+            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.FIRING, -1.0);
         }
 
         /*
@@ -149,7 +159,7 @@ class PortHandler implements ScilabHandler {
 
         v = atts.getValue("ordering");
         if (v != null) {
-            ordering = Integer.valueOf(v) - 1;
+            ordering = Integer.parseInt(v) - 1;
         }
 
         v = atts.getValue("parent");
@@ -163,7 +173,6 @@ class PortHandler implements ScilabHandler {
 
                 associatedPorts.resize(Math.max(associatedPorts.size(), ordering + 1));
                 associatedPorts.set(ordering, uid);
-                shared.controller.referenceObject(uid);
 
                 shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.SOURCE_BLOCK, parent);
                 shared.controller.setObjectProperty(parent, Kind.BLOCK, relatedProperty, associatedPorts);

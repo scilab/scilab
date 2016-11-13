@@ -2,25 +2,30 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="axis_properties" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="axis_properties" xml:lang="pt">
     <refnamediv>
         <refname>axis_properties</refname>
-        <refpurpose>DescriÁ„o das propriedades da entidade Axis
-            (eixo)
+        <refpurpose>Descri√ß√£o das propriedades da entidade Axis (eixo)
         </refpurpose>
     </refnamediv>
-    <refsection>
-        <title>DescriÁ„o</title>
-        <para>A entidade Axis È uma folha na hierarquia de entidades gr·ficas.
-            Esta entidade define par‚metros para escala de eixos e aparÍncia.
+    <refsection role="description">
+        <title>Descri√ß√£o</title>
+        <para>A entidade Axis √© uma folha na hierarquia de entidades gr√°ficas.
+            Esta entidade define par√¢metros para escala de eixos e apar√™ncia.
         </para>
         <variablelist>
             <varlistentry>
@@ -30,7 +35,7 @@
                         <varlistentry>
                             <term>parent:</term>
                             <listitem>
-                                <para>esta propriedade contÈm o manipulador da raiz. A raiz de
+                                <para>esta propriedade cont√©m o manipulador da raiz. A raiz de
                                     uma entidade Axis deve ser do tipo <literal>"Axes"</literal>
                                     ou <literal>"Compound"</literal>.
                                 </para>
@@ -39,51 +44,51 @@
                         <varlistentry>
                             <term>visible:</term>
                             <listitem>
-                                <para>este campo contÈm o valor da propriedade
+                                <para>este campo cont√©m o valor da propriedade
                                     <literal>visible</literal> para a entidade. Pode ser
                                     <literal>"on" </literal> ou <literal>"off"</literal> . Por
-                                    padr„o, o eixo È visÌvel, a propriedade È
+                                    padr√£o, o eixo √© vis√≠vel, a propriedade √©
                                     <literal>"on"</literal>. Se <literal>"off"</literal>, o eixo
-                                    n„o È exibido na tela.
+                                    n√£o √© exibido na tela.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>tics_direction:</term>
                             <listitem>
-                                <para> especifica a direÁ„o dos tiques desenhados sob os eixos
-                                    horizontal e vertical. Os possÌveis valores para esta
-                                    propriedade s„o:
+                                <para> especifica a dire√ß√£o dos tiques desenhados sob os eixos
+                                    horizontal e vertical. Os poss√≠veis valores para esta
+                                    propriedade s√£o:
                                 </para>
                                 <itemizedlist>
                                     <listitem>
                                         <para>
-                                            <literal>"top"</literal>. Neste caso, os tiques s„o
+                                            <literal>"top"</literal>. Neste caso, os tiques s√£o
                                             desenhados na parte de cima do eixo horizontal.
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
                                             <literal>"bottom"</literal>. Neste caso, os tiques
-                                            s„o desenhados na parte de baixo do eixo
+                                            s√£o desenhados na parte de baixo do eixo
                                             horizontal.
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>"left"</literal>. Neste caso, os tiques s„o
-                                            desenhados ‡ esquerda do eixo vertical.
+                                            <literal>"left"</literal>. Neste caso, os tiques s√£o
+                                            desenhados √† esquerda do eixo vertical.
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
                                             <literal>"right"</literal>. Neste caso, os tiques
-                                            s„o desenhados ‡ direita do eixo vertical.
+                                            s√£o desenhados √† direita do eixo vertical.
                                         </para>
                                     </listitem>
                                 </itemizedlist>
                                 <para>
-                                    Os valores padrıes s„o <literal>"top"</literal> para o
+                                    Os valores padr√µes s√£o <literal>"top"</literal> para o
                                     eixo horizontal e <literal>"right"</literal> para o eixo
                                     vertical.
                                 </para>
@@ -92,73 +97,73 @@
                         <varlistentry>
                             <term>xtics_coord:</term>
                             <listitem>
-                                <para>este campo contÈm as coordenadas x do eixo. … um vetor
-                                    linha que contÈm valores crescentes da esquerda para a direita
-                                    que fornecem as posiÁıes dos tiques para um eixo horizontal.
-                                    Em outro caso, a entidade È um eixo vertical, esta propriedade
-                                    contÈm a escala que define a origem x do eixo. 
+                                <para>este campo cont√©m as coordenadas x do eixo. √â um vetor
+                                    linha que cont√©m valores crescentes da esquerda para a direita
+                                    que fornecem as posi√ß√µes dos tiques para um eixo horizontal.
+                                    Em outro caso, a entidade √© um eixo vertical, esta propriedade
+                                    cont√©m a escala que define a origem x do eixo.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>ytics_coord:</term>
                             <listitem>
-                                <para>este campo contÈm as coordenadas y do eixo. … um vetor
-                                    linha que contÈm valores crescentes do fundo para o topo que
-                                    fornecem as posiÁıes dos tiques para um eixo vertical. Em
-                                    outro caso, a entidade È um eixo horizontal, esta propriedade
-                                    contÈm a escala que define a origem y do eixo. 
+                                <para>este campo cont√©m as coordenadas y do eixo. √â um vetor
+                                    linha que cont√©m valores crescentes do fundo para o topo que
+                                    fornecem as posi√ß√µes dos tiques para um eixo vertical. Em
+                                    outro caso, a entidade √© um eixo horizontal, esta propriedade
+                                    cont√©m a escala que define a origem y do eixo.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>tics_color:</term>
                             <listitem>
-                                <para>o valor desta propriedade È o Ìndice da cor utilizada
-                                    para desenhar as linhas dos eixos e tiques. 
+                                <para>o valor desta propriedade √© o √≠ndice da cor utilizada
+                                    para desenhar as linhas dos eixos e tiques.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>tics_segment:</term>
                             <listitem>
-                                <para>este campo contÈm um flag que controla a exibiÁ„o do
-                                    segmento base do eixo. O valor padr„o È
-                                    <literal>"on"</literal>, sen„o, sem exibiÁ„o, a propriedade
-                                    toma <literal>"off"</literal> como valor. 
+                                <para>este campo cont√©m um flag que controla a exibi√ß√£o do
+                                    segmento base do eixo. O valor padr√£o √©
+                                    <literal>"on"</literal>, sen√£o, sem exibi√ß√£o, a propriedade
+                                    toma <literal>"off"</literal> como valor.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>tics_style:</term>
                             <listitem>
-                                <para> esta propriedade descreve como os tiques s„o dados. …
+                                <para> esta propriedade descreve como os tiques s√£o dados. √â
                                     um flag string que pode ter um desses valores:
                                 </para>
                                 <itemizedlist>
                                     <listitem>
                                         <para>
-                                            <literal>"v"</literal>. … o valor padr„o. Neste
-                                            caso, as posiÁıes dos tiques s„o dadas pelo vetor linha
+                                            <literal>"v"</literal>. √â o valor padr√£o. Neste
+                                            caso, as posi√ß√µes dos tiques s√£o dadas pelo vetor linha
                                             <literal>xtics_coord</literal> para o eixo horizontal
                                             (<literal>ytics_coord</literal> para o vertical).
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>"r"</literal>. INeste caso, as posiÁıes dos
-                                            tiques s„o dadas pelo vetor <literal>[min,max,n]
+                                            <literal>"r"</literal>. INeste caso, as posi√ß√µes dos
+                                            tiques s√£o dadas pelo vetor <literal>[min,max,n]
                                             </literal>
-                                            onde n È o n˙mero de intervalos.
+                                            onde n √© o n√∫mero de intervalos.
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
                                             <literal>"i"</literal>. Neste caso, o vetor
-                                            fornecendo as posiÁıes dos tiques tem tamanho 4,
+                                            fornecendo as posi√ß√µes dos tiques tem tamanho 4,
                                             <literal>[k1,k2,a,n]</literal> os valores crescem entre
                                             <literal>k1*10^a</literal> e <literal>k2*10^a</literal>, n
-                                            È o n˙mero de intervalos.
+                                            √© o n√∫mero de intervalos.
                                         </para>
                                     </listitem>
                                 </itemizedlist>
@@ -167,7 +172,7 @@
                         <varlistentry>
                             <term>sub_tics:</term>
                             <listitem>
-                                <para>este campo ajusta o n˙mero de tiques a serem desenhados
+                                <para>este campo ajusta o n√∫mero de tiques a serem desenhados
                                     entre dois tiques principais.
                                 </para>
                             </listitem>
@@ -175,8 +180,8 @@
                         <varlistentry>
                             <term>tics_labels:</term>
                             <listitem>
-                                <para>este campo È uma matriz de strings que contÈm strings a
-                                    serem impressos ao longo dos eixos nas posiÁıes dos
+                                <para>este campo √© uma matriz de strings que cont√©m strings a
+                                    serem impressos ao longo dos eixos nas posi√ß√µes dos
                                     tiques.
                                 </para>
                             </listitem>
@@ -184,7 +189,7 @@
                         <varlistentry>
                             <term>labels_font_color:</term>
                             <listitem>
-                                <para>esta propriedade determina a cor dos rÛtulos dos
+                                <para>esta propriedade determina a cor dos r√≥tulos dos
                                     tiques.
                                 </para>
                             </listitem>
@@ -193,50 +198,50 @@
                             <term>labels_font_size:</term>
                             <listitem>
                                 <para>um inteiro especificando o tamanho da fonte utilizada
-                                    para imprimir os rÛtulos dos tiques. Se a propriedade
+                                    para imprimir os r√≥tulos dos tiques. Se a propriedade
                                     <literal>fractional_font</literal> for
-                                    <literal>"off"</literal> Apenas a parte inteira do valor È
-                                    utilizada. Para mais informaÁıes, veja <link linkend="graphics_fonts">graphics_fonts</link>.
+                                    <literal>"off"</literal> Apenas a parte inteira do valor √©
+                                    utilizada. Para mais informa√ß√µes, veja <link linkend="graphics_fonts">graphics_fonts</link>.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>fractional_font:</term>
                             <listitem>
-                                <para>esta propriedade especifica se os rÛtulos dos tiques
-                                    ser„o exibidos utilizando-se um tamanho de fonte fracion·rio.
+                                <para>esta propriedade especifica se os r√≥tulos dos tiques
+                                    ser√£o exibidos utilizando-se um tamanho de fonte fracion√°rio.
                                     Seu valor deve ser <literal>"on"</literal> ou
                                     <literal>"off"</literal>. Se <literal>"on"</literal>, o valor
-                                    em ponto flutuante de <literal>font_size</literal> È utilizado
-                                    para a exibiÁ„o e retira-se o serrilhamento da fonte. Se
-                                    <literal>"off"</literal>, apenas a parte inteira È utilzada e
-                                    a fonte n„o È suavizada.
+                                    em ponto flutuante de <literal>font_size</literal> √© utilizado
+                                    para a exibi√ß√£o e retira-se o serrilhamento da fonte. Se
+                                    <literal>"off"</literal>, apenas a parte inteira √© utilzada e
+                                    a fonte n√£o √© suavizada.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>clip_state:</term>
                             <listitem>
-                                <para>este campo contÈm o valor da propriedade
+                                <para>este campo cont√©m o valor da propriedade
                                     <literal>clip_state</literal> para o eixo. O valor de
                                     clip_state pode ser:
                                 </para>
                                 <itemizedlist>
                                     <listitem>
                                         <para>
-                                            <literal>"off"</literal> significa que o eixo n„o È
+                                            <literal>"off"</literal> significa que o eixo n√£o √©
                                             recortado.
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>"clipgrf"</literal> significa que o eixo È
+                                            <literal>"clipgrf"</literal> significa que o eixo √©
                                             recortado fora da caixa dos eixos.
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>"on"</literal> significa que o eixo È
+                                            <literal>"on"</literal> significa que o eixo √©
                                             recortado fora do arco dado pela propriedade
                                             clip_box.
                                         </para>
@@ -248,12 +253,12 @@
                             <term>clip_box:</term>
                             <listitem>
                                 <para>este campo determina a propriedade
-                                    <literal>clip_box</literal>. Por padr„o seu valor È uma matriz
-                                    vazia se a propriedade clip_state È "off". Em outros casos, o
+                                    <literal>clip_box</literal>. Por padr√£o seu valor √© uma matriz
+                                    vazia se a propriedade clip_state √© "off". Em outros casos, o
                                     vetor <literal>[x,y,w,h]</literal> (ponto superior esquerdo,
-                                    largura, altura) define as porÁıes do eixo a ser exibido,
+                                    largura, altura) define as por√ß√µes do eixo a ser exibido,
                                     contudo o valor da propriedade <literal>clip_state</literal>
-                                    ser· alterado. 
+                                    ser√° alterado.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -261,8 +266,8 @@
                             <term>user_data:</term>
                             <listitem>
                                 <para>este campo pode ser utilizado para armazenar qualquer
-                                    vari·vel Scilab na estrutura de dados da entidade axis e
-                                    recuper·-la.
+                                    vari√°vel Scilab na estrutura de dados da entidade axis e
+                                    recuper√°-la.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -271,9 +276,9 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=get("current_axes");//obtendo manipulador dos novos eixos criados
 a.data_bounds=[-1,-1;10,10];
 
@@ -284,13 +289,13 @@ a1.tics_color=2;
 a1.labels_font_size=3;
 a1.tics_direction="bottom";
 a1.tics_labels= [" Fevereiro" "Maio"  "Junho" "Agosto"  "Outubro"];
-  
+
 drawaxis(x=1.2:1:10,y=5,dir='u',textcolor=13);
 a2=get("hdl")
 a2.sub_tics=0;
 a2.tics_segment="off";
 a2.ytics_coord=4;
-  
+
 drawaxis(x=-1,y=0:1:7,dir='r',fontsize=10,textcolor=5,ticscolor=6,sub_int=10)
 a3=get("hdl");
 a3.tics_labels= 'B'  +string(0:7);
@@ -298,22 +303,22 @@ a3.tics_direction="left";
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver TambÈm</title>
+        <title>Ver Tamb√©m</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="drawaxis">drawaxis</link>
+            </member>
+            <member>
+                <link linkend="axes_properties">axes_properties</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
             <member>
                 <link linkend="set">set</link>
             </member>
             <member>
                 <link linkend="get">get</link>
-            </member>
-            <member>
-                <link linkend="delete">delete</link>
-            </member>
-            <member>
-                <link linkend="drawaxis">drawaxis</link>
-            </member>
-            <member>
-                <link linkend="graphics_entities">graphics_entities</link>
             </member>
         </simplelist>
     </refsection>

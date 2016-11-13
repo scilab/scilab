@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2012 - Digiteo - Cedric Delamarre
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -27,7 +30,7 @@ purpose
 	compute the exponential of a matrix a by the pade's
 	approximants(subroutine pade).a block diagonalization
 	is performed prior call pade.
-calling sequence
+syntax
 	subroutine dexpm1(ia,n,a,ea,iea,w,iw,ierr)
 
 	integer ia,n,iw,ierr
@@ -111,6 +114,8 @@ int dexpms(int _iLeadDim, int _iSize, double *_pdblVal, double *_pdblReturn)
 
     if (iErr)
     {
+        free(piWS);
+        free(pdblWS);
         return -2;
     }
 
@@ -169,6 +174,8 @@ int dexpms(int _iLeadDim, int _iSize, double *_pdblVal, double *_pdblReturn)
                 */
                 if (iErr < 0)
                 {
+                    free(piWS);
+                    free(pdblWS);
                     return 0;
                 }
 
@@ -432,6 +439,7 @@ int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
                             //C2F(split)(_pdblVal, _pdblRightReduce, &_iSize, &iKm1, &dblE1, &dblE2, &_iLeadDim, &_iLeadDim);
                             dsplits(_pdblVal, _pdblRightReduce, _iSize, iKm1, &dblE1, &dblE2, _iLeadDim, _iLeadDim);
                         }
+                        iK--;
                     }
                 }
 
@@ -658,7 +666,7 @@ purpose
 
      this subroutine balances a real matrix and isolates
      eigenvalues whenever possible.
-calling sequence
+syntax
 
      on input:
 
@@ -925,7 +933,7 @@ void vSwitchVal(double *_pdblVal, int _iPos1, int _iPos2)
     low through igh to upper hessenberg form by
     orthogonal similarity transformations.
 
- calling sequence
+ syntax
 
      subroutine orthes(nm,n,low,igh,a,ort)
 
@@ -1063,7 +1071,7 @@ purpose
     transformations used in the reduction of a real general
     matrix to upper hessenberg form by  orthes.
 
-calling sequence
+syntax
 
      subroutine ortran(nm,n,low,igh,a,ort,z)
 
@@ -1789,11 +1797,11 @@ L640:
 
             if (dabss(dblX) > dabss(dblZZ))
             {
-                _pdblHessUp[iIndex24 + 1 + iOffset * _iSize] = (-dblR - dblX * dblW) / dblX;
+                _pdblHessUp[iIndex24 + 1 + iOffset * _iSize] = (-dblR - dblT * dblW) / dblX;
             }
             else
             {
-                _pdblHessUp[iIndex24 + 1 + iOffset * _iSize] = (-dblR - dblX * dblW) / dblX;
+                _pdblHessUp[iIndex24 + 1 + iOffset * _iSize] = (-dblS - dblT * dblY) / dblZZ;
             }
         }
         //:::::::::: end real vector ::::::::::
@@ -2129,7 +2137,7 @@ void ddmmuls(double *_pdblA, int _iLeadDimA,
 	 tion zt that exchange the blocks along with their
 	 eigenvalues.
 
-	calling sequence
+	syntax
 
 		subroutine exch(nmax,n,a,z,l,ls1,ls2)
 		integer nmax,n,l,ls1,ls2
@@ -2396,7 +2404,7 @@ int dexchs(int _iMax, int _iLeadDim, double *_pdblIn, double *_pdblOut,
 		 (algorithm 539) in order to leave the arguments sa and sb
 		 unchanged
 
-	calling sequence
+	syntax
 
 		subroutine giv(sa,sb,sc,ss)
 		double precision sa,sb,sc,ss
@@ -2444,7 +2452,7 @@ purpose
     of largest absolute value appearing first.  the
     rotation is accumulated in v. the eigenvalues (real
     or complex) are returned in e1 and e2.
-calling sequence
+syntax
 
     subroutine split(a, v, n, l, e1, e2, na, nv)
 

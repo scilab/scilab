@@ -3,11 +3,14 @@
 ##  Copyright (C) 2007-2008 - DIGITEO - Bruno JOFRET
 ##  Copyright (C) 2007-2008 - DIGITEO - Antoine ELIAS
 ##
-##  This file must be used under the terms of the CeCILL.
-##  This source file is licensed as described in the file COPYING, which
-##  you should have received as part of this distribution.  The terms
-##  are also available at
-##  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# Copyright (C) 2012 - 2016 - Scilab Enterprises
+#
+# This file is hereby licensed under the terms of the GNU GPL v2.0,
+# pursuant to article 5.3.4 of the CeCILL v.2.1.
+# This file was originally licensed under the terms of the CeCILL v2.1,
+# and continues to be available under such terms.
+# For more information, see the COPYING file which you should have received
+# along with this program.
 ##
 ##
 
@@ -19,7 +22,9 @@ libscislint_la_etcdir = $(mydatadir)/etc
 libscislint_la_etc_DATA = \
     etc/slint.quit \
     etc/slint.start \
-    etc/slint.xml
+    etc/slint.xml \
+    etc/cnes_analysis_conf.xml \
+    etc/cnes_tool_conf.xml
 
 include $(top_srcdir)/Makefile.incl.am
 
@@ -72,13 +77,31 @@ src/cpp/BracketedExpChecker.cpp \
 src/cpp/NotNotChecker.cpp \
 src/cpp/SpacesInArgsChecker.cpp \
 src/cpp/GlobalKeywordChecker.cpp \
-src/cpp/StatInCondChecker.cpp \
+src/cpp/ExpInCondChecker.cpp \
 src/cpp/CommentRatioChecker.cpp \
 src/cpp/FunctionArgsOrderChecker.cpp \
 src/cpp/FunctionTestReturnChecker.cpp \
 src/cpp/ReturnsCountChecker.cpp \
+src/cpp/NotEqualChecker.cpp \
 src/cpp/XMLtools.cpp \
-src/cpp/SLintXmlResult.cpp 
+src/cpp/SLintXmlResult.cpp \
+src/cpp/AnalysisConfiguration.cpp \
+src/cpp/AnalysisConfigurationType.cpp \
+src/cpp/AnalysisRuleParameterType.cpp \
+src/cpp/AnalysisRuleType.cpp \
+src/cpp/ExcludedProjectFileType.cpp \
+src/cpp/RuleLinkType.cpp \
+src/cpp/Standard.cpp \
+src/cpp/StandardRuleParameterType.cpp \
+src/cpp/StandardRuleParameterValueType.cpp \
+src/cpp/StandardRuleType.cpp \
+src/cpp/StandardType.cpp \
+src/cpp/ToolConfiguration.cpp \
+src/cpp/ToolConfigurationType.cpp \
+src/cpp/CNESException.cpp \
+src/cpp/CNESConfig.cpp \
+src/cpp/CNESXmlResult.cpp \
+src/cpp/CNESCsvResult.cpp
 
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_slint.cpp

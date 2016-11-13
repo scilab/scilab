@@ -5,7 +5,7 @@
         <refpurpose>Printing an uitree in GUI mode</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>uiDisplayTree(tree)
         </synopsis>
     </refsynopsisdiv>
@@ -26,8 +26,8 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// We should create nodes(subTrees) before creating trees	
+        <programlisting role="example"><![CDATA[
+// We should create nodes(subTrees) before creating trees
 leaf11 = uiCreateNode('leaf 1.1')
 leaf12 = uiCreateNode('leaf 1.2')
 leaf31 = uiCreateNode('leaf 3.1')
@@ -46,7 +46,7 @@ uiDisplayTree(treeRoot)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="uiCreateNode">uiCreateNode</link>

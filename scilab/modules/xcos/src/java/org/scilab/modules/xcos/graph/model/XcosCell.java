@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -26,16 +29,26 @@ import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxPoint;
+import java.rmi.server.UID;
+import java.util.regex.Pattern;
 
+/**
+ * An Xcos cell is a JGraphX cell that store most of its information into the
+ * Scicos MVC.
+ *
+ * The reference to the Scicos MVC object is taken at construction time and
+ * released by the destructor. There is thus no need to manage parent /
+ * children, block / port or port / link association referencing as the JVM will
+ * GC the object if needed.
+ */
 public class XcosCell extends mxCell {
     private static final long serialVersionUID = 1L;
+    private static Pattern validCIdentifier = Pattern.compile("[a-zA-Z][a-zA-Z0-9_]+");
 
     private transient ScicosObjectOwner owner;
 
     /**
      * Construct an Xcos graphical object.
-     *
-     * This Java object owns the corresponding MVC object and thus will unrefererence it on GC.
      *
      * @param controller
      *            the shared controller
@@ -98,10 +111,14 @@ public class XcosCell extends mxCell {
         }
 
         switch (getKind()) {
+            case BLOCK:
+                if (validCIdentifier.matcher(String.valueOf(value)).matches()) {
+                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.LABEL, String.valueOf(value));
+                }
+            // no break on purpose
             case ANNOTATION:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, String.valueOf(value));
                 break;
-            case BLOCK:
             case LINK:
             case PORT:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.LABEL, String.valueOf(value));
@@ -122,6 +139,10 @@ public class XcosCell extends mxCell {
     }
 
     public final void setId(JavaController controller, String id) {
+        if (id == null || id.isEmpty()) {
+            id = new UID().toString();
+        }
+
         super.setId(id);
         setMVCId(controller, id);
     }
@@ -206,8 +227,8 @@ public class XcosCell extends mxCell {
                 }
 
                 /*
-                * At that point, the sourcePoint, targetPoint and points are valid values (but may be unknown) encode them to the the CONTROL_POINTS
-                */
+                 * At that point, the sourcePoint, targetPoint and points are valid values (but may be unknown) encode them to the the CONTROL_POINTS
+                 */
 
                 // Allocate some space to contains them all
                 int nbOfPoints = 2 + points.size();
@@ -256,8 +277,9 @@ public class XcosCell extends mxCell {
         }
 
         switch (getKind()) {
-            case ANNOTATION:
             case BLOCK:
+            case LINK:
+            case ANNOTATION:
             case PORT:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.STYLE, style);
                 break;
@@ -393,14 +415,13 @@ public class XcosCell extends mxCell {
     @Override
     public mxICell setTerminal(mxICell terminal, boolean isSource) {
         mxICell cell = super.setTerminal(terminal, isSource);
-
-        final long uid;
         if (cell == null) {
-            uid = 0l;
-        } else {
-            // a terminal of an XcosCell is always another XcosCell
-            uid = ((XcosCell) cell).getUID();
+            return cell;
         }
+
+        // a terminal of an XcosCell is always another XcosCell
+        final long uid = ((XcosCell) cell).getUID();
+        final Kind kind = ((XcosCell) cell).getKind();
 
         JavaController controller = new JavaController();
         switch (getKind()) {
@@ -411,7 +432,7 @@ public class XcosCell extends mxCell {
                     controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESTINATION_PORT, uid);
                 }
                 if (uid != 0l) {
-                    controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.CONNECTED_SIGNALS, getUID());
+                    controller.setObjectProperty(uid, kind, ObjectProperties.CONNECTED_SIGNALS, getUID());
                 }
                 break;
             default:
@@ -447,9 +468,6 @@ public class XcosCell extends mxCell {
                 default:
                     break;
             }
-
-            JavaController controller = new JavaController();
-            controller.referenceObject(c.getUID());
         }
 
         return inserted;
@@ -506,9 +524,6 @@ public class XcosCell extends mxCell {
                 default:
                     break;
             }
-
-            JavaController controller = new JavaController();
-            controller.deleteObject(c.getUID());
         }
         return removed;
     }
@@ -550,7 +565,6 @@ public class XcosCell extends mxCell {
         controller.getObjectProperty(getUID(), getKind(), ObjectProperties.CHILDREN, children);
         children.remove(c.getUID());
         controller.setObjectProperty(getUID(), getKind(), ObjectProperties.CHILDREN, children);
-
     }
 
     /*
@@ -562,7 +576,7 @@ public class XcosCell extends mxCell {
         JavaController controller = new JavaController();
         XcosCell c = (XcosCell) super.clone();
 
-        c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), false, false), getKind());
+        c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), true, false), getKind());
         return c;
     }
 }

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="findABCD">
+    <refnamediv>
+        <refname>findABCD</refname>
+        <refpurpose>離散時間システムの部分空間の同定</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>[SYS,K] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)
+            SYS = findABCD(S,N,L,R,METH)
+            [SYS,K,Q,Ry,S,RCND] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)
+            [SYS,RCND] = findABCD(S,N,L,R,METH)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>整数,ブロックハンケル行列のブロック行の数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>N</term>
+                <listitem>
+                    <para>整数, システム次数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>L</term>
+                <listitem>
+                    <para>整数, 出力の数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>R</term>
+                <listitem>
+                    <para>行列,
+                        findrをコールすることにより計算される結合されたブロックハンケル行列
+                        のR因子に関連.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>METH</term>
+                <listitem>
+                    <para>整数, 使用方法に関するオプション</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>= 1</term>
+                            <listitem>
+                                <para> 過去の入出力を用いるMOESP法;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>= 2</term>
+                            <listitem>
+                                <para> N4SID 法;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>= 3</term>
+                            <listitem>
+                                <para> 複合法: A と C は MOESP, B と D は N4SIDによる.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        デフォルト:    METH = 3.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>NSMPL</term>
+                <listitem>
+                    <para>整数,
+                        共分散およびカルマン予測ゲインを計算するために使用されるサンプルの総数.
+                        共分散およびカルマン予測ゲインを必要としない場合,このパラメータは不要です.
+                        NSMPL = 0の場合, K, Q, Ry, および S は計算されません. デフォルト:    NSMPL = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>TOL</term>
+                <listitem>
+                    <para>
+                        行列のランクを推定するために使用される許容誤差.
+                        TOL &gt; 0 の場合, 指定した値 TOLが 条件数の逆数の下界として使用されます.
+                        デフォルト: prod(size(matrix))*epsilon_machine
+                        ただし, epsilon_machine は相対機械精度です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>PRINTW</term>
+                <listitem>
+                    <para>整数, 警告メッセージを印字するためのスイッチ.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>PRINTW</term>
+                            <listitem>
+                                <para>= 1: 警告メッセージを出力;</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>PRINTW</term>
+                            <listitem>
+                                <para>= 0: 警告メッセージを出力しない.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        デフォルト:    PRINTW = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SYS</term>
+                <listitem>
+                    <para>状態空間実現 SYS = (A,B,C,D) (syslin オブジェクト)を計算します</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>カルマン推定器ゲイン K (NSMPL &gt; 0の場合)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Q</term>
+                <listitem>
+                    <para> 状態共分散</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ry</term>
+                <listitem>
+                    <para>出力共分散</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>状態出力相互共分散</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>RCND</term>
+                <listitem>
+                    <para>ランク決定, 最小二乗またはリカッチ方程式の解に関わる行列の条件数の
+                        逆数のベクトル
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            システム行列および離散時間システムのカルマンゲインを見つけます.
+            この際,システム次元および
+            部分空間同定技術(MOESPまたはN4SID)を用いて
+            結合されたブロックハンケル行列のR因子の要部を指定します.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>[SYS,K] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)
+                    は,状態空間実現 SYS = (A,B,C,D) (ssオブジェクト)
+                    およびカルマン予測子ゲイン K (NSMPL &gt; 0の場合)
+                    を計算します.
+                    モデルの構造は次のようになります:
+                </para>
+                <programlisting role=""><![CDATA[
+x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
+y(k)   = Cx(k) + Du(k) + e(k),
+ ]]></programlisting>
+                <para>
+                    ただし,x(k) および y(k)はそれぞれ長さNおよびLのベクトルです.
+                </para>
+            </listitem>
+            <listitem>
+                <para>[SYS,K,Q,Ry,S,RCND] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)
+                    は, 状態量, 出力および(カルマンゲイン計算に使用される)状態出力 (相互)共分散行列 Q, Ry, S
+                    を
+                    ランク決定,最小二乗またはリカッチ方程式の解に使用される行列の条件数の逆数を含む
+                    長さ lr のベクトル RCND と共に返します.
+                    ただし,
+                </para>
+            </listitem>
+        </itemizedlist>
+        <programlisting role=""><![CDATA[
+lr = 4  (カルマンゲイン行列 K が必要ない場合),
+lr = 12 (カルマンゲイン行列 K が必要な場合).
+ ]]></programlisting>
+        <para>
+            行列RはfindRにより計算され,適当な
+            引数 METH および JOBDにより定義されます.
+            findABCD で METH = 1 を指定した場合,
+            findR で METH = 1 かつ JOBD = 1,
+            findABCD で METH = 3 を指定した場合,
+            findR で METH = 1 を使用する必要があります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+// 指定した線形システムからデータを生成
+A = [ 0.5, 0.1,-0.1, 0.2;
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
+B = [0.8;0.1;1;-1];
+C = [1 2 -1 0];
+SYS=syslin(0.1,A,B,C);
+nsmp=100;
+U=prbs_a(nsmp,nsmp/5);
+Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
+// Rを計算
+S=15;
+[R,N1,SVAL] = findR(S,Y',U');
+N=3;
+SYS1 = findABCD(S,N,1,R) ;SYS1.dt=0.1;
+SYS1.X0 = inistate(SYS1,Y',U');
+Y1=flts(U,SYS1);
+clf();plot2d((1:nsmp)',[Y',Y1'])
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="findAC">findAC</link>
+            </member>
+            <member>
+                <link linkend="findBD">findBD</link>
+            </member>
+            <member>
+                <link linkend="findBDK">findBDK</link>
+            </member>
+            <member>
+                <link linkend="findR">findR</link>
+            </member>
+            <member>
+                <link linkend="sorder">sorder</link>
+            </member>
+            <member>
+                <link linkend="sident">sident</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

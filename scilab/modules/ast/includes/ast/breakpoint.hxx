@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -24,8 +27,6 @@ struct Breakpoint
 {
     Breakpoint(const std::string& functionName, int iLine = -1, const std::string& condition = "")
         : _pFunctionName(functionName), _iMacroLine(iLine), _file(""), _iFileLine(0), _condition(condition), _conditionExp(NULL), enable(true) {}
-    //Breakpoint(std::wstring& file, int iLine = -1, ast::Exp* condition = NULL)
-    //    : _pFunctionName(NULL), _iMacroLine(iLine), _file(file), _condition(condition) {}
 
     ~Breakpoint()
     {
@@ -112,11 +113,11 @@ struct Breakpoint
 
 private:
     std::string _pFunctionName;
+    int _iMacroLine;
     std::string _file;
+    int _iFileLine;
     std::string _condition;
     ast::Exp* _conditionExp;
-    int _iFileLine;
-    int _iMacroLine;
     bool enable;
 };
 

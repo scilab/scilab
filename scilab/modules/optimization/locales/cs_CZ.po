@@ -8,13 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-30 21:34+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2016-03-09 19:20+0000\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -30,7 +31,8 @@ msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: očekáváno %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: očekáváno %d jako počet "
 "sloupců.\n"
@@ -138,8 +140,7 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a function expected.\n"
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 
 #, c-format
@@ -168,7 +169,8 @@ msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -216,7 +218,8 @@ msgid "%s: Wrong number of input argument(s): %d or more expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
 msgstr ""
 
 #, c-format
@@ -254,7 +257,8 @@ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -484,6 +488,336 @@ msgstr ""
 msgid "An error occurred while getting OptimizationFunctions object.\n"
 msgstr ""
 
+msgid "Non linear data fitting"
+msgstr ""
+
+msgid "Experimental data"
+msgstr ""
+
+msgid "Fitting function"
+msgstr ""
+
+msgid "LQV"
+msgstr ""
+
+msgid "Spaceship landing trajectory"
+msgstr ""
+
+msgid "Computation of optimal parameters"
+msgstr ""
+
+msgid "Running optimization ...\n"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "View Code?"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid "fminsearch - Rosenbrock"
+msgstr ""
+
+msgid "fminsearch - tolx"
+msgstr ""
+
+msgid "fminsearch - Output Function"
+msgstr ""
+
+msgid "fminsearch - Option Display"
+msgstr ""
+
+msgid "fminsearch - Plot Func Count"
+msgstr ""
+
+msgid "fminsearch - Plot F"
+msgstr ""
+
+msgid "fminsearch - Plot X"
+msgstr ""
+
+msgid "neldermead - Rosenbrock Variable"
+msgstr ""
+
+msgid "neldermead - Output Command"
+msgstr ""
+
+msgid "neldermead - Dimensionality"
+msgstr ""
+
+msgid "nmplot - Han #1"
+msgstr ""
+
+msgid "nmplot - Han #2"
+msgstr ""
+
+msgid "nmplot - McKinnon #1"
+msgstr ""
+
+msgid "nmplot - McKinnon #2"
+msgstr ""
+
+msgid "nmplot - Quadratic Fixed #1"
+msgstr ""
+
+msgid "nmplot - Quadratic Variable#1"
+msgstr ""
+
+msgid "nmplot - Quadratic Fixed #2"
+msgstr ""
+
+msgid "nmplot - Quadratic Variable#2"
+msgstr ""
+
+msgid "nmplot - Rosenbrock Fixed"
+msgstr ""
+
+msgid "nmplot - Rosenbrock Variable"
+msgstr ""
+
+msgid "neldermead - Box A"
+msgstr ""
+
+msgid "neldermead - Box B"
+msgstr ""
+
+msgid "neldermead - Box Bounds"
+msgstr ""
+
+msgid "neldermead - Box Post"
+msgstr ""
+
+msgid "neldermead - Polygon"
+msgstr ""
+
+msgid ""
+"Illustrates Box' algorithm on a simply bounds-constrained optimization "
+"problem.\n"
+msgstr ""
+
+msgid "Searching (please wait) ...\n"
+msgstr ""
+
+msgid "...Done\n"
+msgstr ""
+
+msgid "Plot contour (please wait)...\n"
+msgstr ""
+
+msgid "End of demo.\n"
+msgstr ""
+
+msgid "Illustrates Box' algorithm on Rosenbrock's Post Office Problem.\n"
+msgstr ""
+
+msgid "Defining Rosenbrock Post Office function...\n"
+msgstr ""
+
+msgid "Illustrates Box' algorithm on Box problem A.\n"
+msgstr ""
+
+msgid "A new method of constrained optimization \n"
+msgstr ""
+
+msgid "and a comparison with other methods.\n"
+msgstr ""
+
+msgid "Problem A\n"
+msgstr ""
+
+msgid "Searching (please wait)...\n"
+msgstr ""
+
+#, c-format
+msgid "Relative error on x = %e\n"
+msgstr ""
+
+msgid "Illustrates Box' algorithm on Box problem B.\n"
+msgstr ""
+
+msgid "Problem B\n"
+msgstr ""
+
+#, c-format
+msgid "f expected = %f\n"
+msgstr ""
+
+#, c-format
+msgid "Relative error on f = %e\n"
+msgstr ""
+
+msgid ""
+"Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
+msgstr ""
+
+msgid ""
+"Han and Neumann. Effect of dimensionality on the nelder-mead simplex method. "
+"Optimization Methods and Software, 2006.\n"
+msgstr ""
+
+#, c-format
+msgid "Maximum dimension:%d\n"
+msgstr ""
+
+msgid "Column #1: number of dimensions\n"
+msgstr ""
+
+msgid "Column #2: number of function evaluations\n"
+msgstr ""
+
+msgid "Column #3: number of iterations\n"
+msgstr ""
+
+msgid "Column #4: convergence rate (lower is better)\n"
+msgstr ""
+
+msgid "Number of parameters"
+msgstr ""
+
+msgid "Rate of convergence"
+msgstr ""
+
+msgid "Number of function evaluations"
+msgstr ""
+
+msgid "Initialization\n"
+msgstr ""
+
+msgid "End of Optimization\n"
+msgstr ""
+
+msgid "Defining Rosenbrock function ...\n"
+msgstr ""
+
+msgid "Illustrates the 1st counter example given by Han et al.\n"
+msgstr ""
+
+msgid "Defining Han function...\n"
+msgstr ""
+
+msgid "Defining initial simplex coordinates...\n"
+msgstr ""
+
+msgid "Creating nmplot object...\n"
+msgstr ""
+
+msgid "Configuring nmplot object...\n"
+msgstr ""
+
+msgid "Setup output files...\n"
+msgstr ""
+
+msgid "Plotting contour (please wait)...\n"
+msgstr ""
+
+msgid "Illustrates the 2nd counter example given by Han et al.\n"
+msgstr ""
+
+msgid "Creating nmplot object ...\n"
+msgstr ""
+
+msgid "Plotting contour (please wait) ...\n"
+msgstr ""
+
+msgid "Defining McKinnon function...\n"
+msgstr ""
+
+msgid "Error: function expects a two dimensional input\n"
+msgstr ""
+
+#, c-format
+msgid "x0 = %s\n"
+msgstr ""
+
+msgid "Creating object ...\n"
+msgstr ""
+
+msgid "Plot contour (please wait) ...\n"
+msgstr ""
+
+msgid "Function Value Average"
+msgstr ""
+
+msgid "Iterations"
+msgstr ""
+
+msgid "Minimum Function Value"
+msgstr ""
+
+msgid "Maximum Oriented length"
+msgstr ""
+
+#, c-format
+msgid "x0=%s\n"
+msgstr ""
+
+msgid "Creating object...\n"
+msgstr ""
+
+msgid ""
+"Illustrates that the fixed-shape Spendley et al. algorithm performs well on "
+"a quadratic test case.\n"
+msgstr ""
+
+msgid "Defining quadratic function ...\n"
+msgstr ""
+
+msgid ""
+"Illustrates that the fixed-shape Spendley et al. algorithm performs badly on "
+"a badly quadratic test case.\n"
+msgstr ""
+
+msgid "Defining quadratic function...\n"
+msgstr ""
+
+msgid ""
+"Illustrates that the variable-shape Nelder-Mead algorithm performs well on a "
+"quadratic test case.\n"
+msgstr ""
+
+msgid ""
+"Illustrates that the Nelder-Mead algorithm performs correctly on a badly "
+"quadratic test case.\n"
+msgstr ""
+
+msgid ""
+"Illustrates that the fixed-shape Spendley et al. algorithm does NOT perform "
+"well on Rosenbrock test case.\n"
+msgstr ""
+
+msgid "Defining Rosenbrock function...\n"
+msgstr ""
+
+msgid "Rosenbrock"
+msgstr ""
+
+msgid "Output"
+msgstr ""
+
+msgid "Plot"
+msgstr ""
+
+msgid "Derivative"
+msgstr ""
+
+msgid "Optimization and Simulation"
+msgstr ""
+
+msgid "Optimisation"
+msgstr ""
+
+msgid "fminsearch"
+msgstr ""
+
+msgid "Genetic algorithms"
+msgstr ""
+
+msgid "Simulated Annealing"
+msgstr ""
+
 #, c-format
 msgid "%s: More than 20 equations are not allowed"
 msgstr "%s: Není povoleno více než 20 rovnic."
@@ -502,7 +836,8 @@ msgstr "%s: Špatný typ vstupního argumentu #%s: Očekáváno externí.\n"
 
 #, c-format
 msgid "%s: Jacobian cannot be a list, parameters must be set in G."
-msgstr "%s: Jacobiho matice nemůže být seznam, parametry musí být zadány v G."
+msgstr ""
+"%s: Jacobiho matice nemůže být seznam, parametry musí být zadány v G."
 
 #, c-format
 msgid "%s: Wrong measurement matrix."
@@ -518,7 +853,8 @@ msgstr "%s: Váhová matice musí být čtvercová."
 
 #, c-format
 msgid "%s: With hard coded function, user must give output size of G."
-msgstr "%s: S napevno zadanou funkcí musí uživatel zadat výstup o velikosti G."
+msgstr ""
+"%s: S napevno zadanou funkcí musí uživatel zadat výstup o velikosti G."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -550,7 +886,8 @@ msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
 msgstr "%s: Špatná hodnota vstupního argumentu #%d. gam musí být v [0,1]."
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgid ""
+"%s: Wrong value for input argument #%d. maxiter must be greater than 1."
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d. maxiter musí být větší než 1."
 
@@ -580,7 +917,8 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d. x0 je nižší než dolní hranice lb."
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgid ""
+"%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d. x0 je větší než horní hranice ub."
 
@@ -633,7 +971,8 @@ msgstr "%s: řešení neomezeno."
 #, c-format
 msgid ""
 "%s: Ill-posed problem. Number of unknowns (%s) > number of constraints (%s)"
-msgstr "%s: Špatně položený problém. Počet neznámých (%s) > počet omezení (%s)"
+msgstr ""
+"%s: Špatně položený problém. Počet neznámých (%s) > počet omezení (%s)"
 
 #, c-format
 msgid "%s: rank deficient problem"
@@ -867,7 +1206,7 @@ msgid ""
 msgstr "%s: Hodnota možnosti 'PlotFcns' není ani funkce ani seznam."
 
 #, c-format
-msgid "Calling sequence %s is obsolete."
+msgid "Syntax %s is obsolete."
 msgstr "Volání sekvence %s je zastaralé."
 
 #, c-format
@@ -877,6 +1216,10 @@ msgstr "Použijte místo toho %s prosím."
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "Tato funkce bude navždy odstraněna ve Scilab %s"
+
+#, c-format
+msgid "Calling sequence %s is obsolete."
+msgstr ""
 
 #, c-format
 msgid ""
@@ -932,12 +1275,14 @@ msgstr ""
 "předáno %s."
 
 #, c-format
-msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
+msgid ""
+"%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s: Očekávána funkce ale pro proměnnou %s u vstupu #%d, míst toho předáno %s."
 
 #, c-format
-msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
+msgid ""
+"%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s: Očekáván boolean ale pro proměnnou %s u vstupu #%d, místo toho předáno "
 "%s."
@@ -1020,7 +1365,8 @@ msgid "%s: Unknown restart detection %s"
 msgstr "%s: Neznámé zjištění restartu %s"
 
 #, c-format
-msgid "%s: Randomized bounds initial simplex is not available without bounds."
+msgid ""
+"%s: Randomized bounds initial simplex is not available without bounds."
 msgstr "%s: Počáteční simplex náhodných hranic není bez hranic dostupný."
 
 #, c-format
@@ -1041,7 +1387,8 @@ msgid ""
 msgstr "%s: Nelze škálovat vrchol #%d/%d ve [%s] do omezení nerovnosti"
 
 #, c-format
-msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
+msgid ""
+"%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 "%s: Problém nemá žádná omezení, ale Boxův algoritmus je pro ně navržen."
 
@@ -1054,7 +1401,8 @@ msgstr ""
 "restartu %s"
 
 #, c-format
-msgid "%s: Randomized bounds restart simplex is not available without bounds."
+msgid ""
+"%s: Randomized bounds restart simplex is not available without bounds."
 msgstr "%s: Simplex restartu s náhodnými hranicemi není bez nich dostupný."
 
 #, c-format
@@ -1173,7 +1521,8 @@ msgid ""
 msgstr "%s: Počet proměnných %d se neshoduje s počtem min hranic: %d.\n"
 
 #, c-format
-msgid "%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
+msgid ""
+"%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
 msgstr "%s: Max hranice %s pro proměnnou #%d je nižší než min hranice %s.\n"
 
 #, c-format

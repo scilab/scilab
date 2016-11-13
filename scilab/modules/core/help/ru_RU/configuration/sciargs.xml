@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="sciargs">
+    <refnamediv>
+        <refname>sciargs</refname>
+        <refpurpose>аргументы командной строки Scilab'а</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>args = sciargs()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эта функция возвращает вектор-строку символьных строк, содержащую аргументы командной
+            строки Scilab'а. Первый элемент <literal>args</literal> содержит путь до запущенного
+            исполняемого файла.
+        </para>
+        <para>
+            Эта функция соответствует функции <literal>getarg</literal> в языке C.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getenv">getenv</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

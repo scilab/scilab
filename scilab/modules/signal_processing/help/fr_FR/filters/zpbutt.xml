@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="zpbutt">
+    <refnamediv>
+        <refname>zpbutt</refname>
+        <refpurpose>Butterworth analog filter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[pols,gain]=zpbutt(n,omegac)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>integer (filter order)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>omegac</term>
+                <listitem>
+                    <para>real (cut-off angular frequency in radians per second)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pols</term>
+                <listitem>
+                    <para>resulting poles of filter</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gain</term>
+                <listitem>
+                    <para>resulting gain of filter</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            computes the poles of a Butterworth analog
+            filter of order <literal>n</literal> and cutoff frequency omegac
+            transfer function H(s) is calculated by <literal>H(s)=gain/real(poly(pols,'s'))</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+n=7;
+omegac=3;
+[pols,gain]=zpbutt(n,omegac)
+ ]]></programlisting>
+    </refsection>
+
+</refentry>

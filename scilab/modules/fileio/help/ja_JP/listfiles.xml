@@ -4,222 +4,225 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="listfiles">
-    
+
     <refnamediv>
-        
+
         <refname>listfiles</refname>
-        
+
         <refpurpose>ファイルのリスト</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>files = listfiles(paths [, flag, flagexpand])</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>paths</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
-                        パス名の集合を指定する文字列の行列 
-                        
+
+                        パス名の集合を指定する文字列の行列
+
                         (多くの場合, 末尾が <literal>*</literal> のパターンとなります)
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>flag, flagexpand</term>
-                
+
                 <listitem>
-                    
+
                     <para>
-                        
+
                         オプションの論理値パラメータ
-                        
+
                         (デフォルト値は<constant>%t</constant>です).
-                        
+
                     </para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>files</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列の行列.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <function>listfiles</function> は,
-            
+
             パスエントリの指定したパターンのどれかに一致するファイル
-            
+
             の一覧を得るために使用されます.
-            
+
             パターンは,ファイルに関する情報を取得するために
-            
+
             Unixでは<command>ls</command>,Windowsでは
-            
+
             <command>dir</command>コマンドに指定されます.
-            
+
             このため, ポータブルなScilabスクリプトを書くためには,
-            
+
             両方のOSに有効なワイルドカードパターンを指定する必要があります.
-            
+
             パス名の変換が行われ,例えば<literal>SCI/core/macros/*.sci</literal>
-            
+
             はUnixとWindowsの両方で有効なパターンであることに注意してください.
-            
+
         </para>
-        
+
         <para>
-            
+
             <varname>flag</varname> が真の場合,<varname>paths</varname>で
-            
+
             指定したパス名は <code>getos() == 'Windows'</code> の値に基づき変換されます
-            
-            (<link linkend="pathconvert">pathconvert</link>参照). 
-            
+
+            (<link linkend="pathconvert">pathconvert</link>参照).
+
             さらに,<varname>flagexpand</varname> が真の場合,
-            
+
             <literal>HOME</literal>, <literal>SCI</literal> または <literal>~</literal> のような
-            
+
             主要な文字列は環境変数を用いて展開されます.
-            
+
         </para>
-        
+
         <para>
-            
-            入力引数 <varname>paths</varname> がディレクトリ名の場合, 
-            
+
+            入力引数 <varname>paths</varname> がディレクトリ名の場合,
+
             返される<varname>files</varname>はディレクトリのネーティブな名前です.
-            
+
         </para>
-        
+
         <para>
-            
+
             入力引数<varname>paths</varname>が複数の要素を有する場合,または
-            
-            パターン<varname>files</varname> 
-            
+
+            パターン<varname>files</varname>
+
             (例: <literal>"/*"</literal>, <literal>"*.c"</literal>)を有する場合,
-            
+
             返される<varname>files</varname>は絶対パス
-            
+
             (すなわち,ディレクトリ名の末尾にファイル名を追加したもの)です.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 files=listfiles(['SCI/modules/core/macros/*.sci';'SCI/modules/core/macros/*.bin']);
  ]]>
-            
+
         </programlisting>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>履歴</title>
-        
+
         <revhistory>
-            
+
             <revision>
-                
+
                 <revnumber>5.4.0</revnumber>
-                
+
                 <revremark>
-                    
-                    pathsが単一の文字列でない場合, 
-                    
+
+                    pathsが単一の文字列でない場合,
+
                     返されるファイルは全て絶対パス形式に統一されます.
-                    
+
                 </revremark>
-                
+
             </revision>
-            
+
         </revhistory>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="findfiles">findfiles</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="basename">basename</link>
-                
+
             </member>
-            
+
             <member>
-                
+
                 <link linkend="pathconvert">pathconvert</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

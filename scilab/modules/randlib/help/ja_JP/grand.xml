@@ -2,12 +2,15 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="grand">
@@ -17,20 +20,60 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>Y=grand(m, n, dist_type [,p1,...,pk])
-            Y=grand(X, dist_type [,p1,...,pk])
-            Y=grand(n, dist_type [,p1,...,pk])
-            S=grand(action [,q1,....,ql])
+        <synopsis>
+            Y = grand(m, n, "bet", A, B)
+            Y = grand(m, n, "bin", N, p)
+            Y = grand(m, n, "nbn", N, p)
+            Y = grand(m, n, "chi", Df)
+            Y = grand(m, n, "nch", Df, Xnon)
+            Y = grand(m, n, "exp", Av)
+            Y = grand(m, n, "f", Dfn, Dfd)
+            Y = grand(m, n, "nf", Dfn, Dfd, Xnon)
+            Y = grand(m, n, "gam", shape, rate)
+            Y = grand(m, n, "nor", Av, Sd)
+            Y = grand(m, n, "geom", p)
+            Y = grand(m, n, "poi", mu)
+            Y = grand(m, n, "def")
+            Y = grand(m, n, "unf", Low, High)
+            Y = grand(m, n, "uin", Low, High)
+            Y = grand(m, n, "lgi")
+
+            Y = grand(m, n, o,..,"..",...)
+            Y = grand(X, ...)
+        </synopsis>
+
+        <synopsis>
+            Y = grand(n, "mn", Mean, Cov)
+            Y = grand(n, "markov", P, x0)
+            Y = grand(n, "mul", nb, P)
+            Y = grand(n, "prm", vect)
+        </synopsis>
+
+        <synopsis>
+            S = grand("getgen")
+            grand("setgen", gen)
+
+            S = grand("getsd")
+            grand("setsd", S)
+
+            grand("setcgn", G)
+            S = grand("getcgn")
+
+            S = grand("phr2sd", phrase)
+
+            grand("initgn", I)
+            grand("setall", s1, s2, s3, s4)
+            grand("advnst", K)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
         <variablelist>
             <varlistentry>
-                <term>m, n</term>
+                <term>m, n, o</term>
                 <listitem>
                     <para>
-                        整数, 出力行列 <literal>Y</literal>の大きさ
+                        integers, size of the wanted matrix / hypermatrix <varname>Y</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -38,21 +81,7 @@
                 <term>X</term>
                 <listitem>
                     <para>
-                        次元(つまり<literal>mx n</literal>) のみ使用される行列 
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>dist_type</term>
-                <listitem>
-                    <para>生成する変量の分布の種類('bin', 'nor', 'poi', ...)を指定する文字列</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>p1, ..., pk</term>
-                <listitem>
-                    <para>
-                        分布<literal>dist_type</literal>を完全に定義するために必要なパラメータ (実数または整数)
+                        次元(つまり<literal>mx n</literal>) のみ使用される行列
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,26 +89,8 @@
                 <term>Y</term>
                 <listitem>
                     <para>
-                        <literal>mx n</literal> ランダム出力行列
+                        depending on the input, a matrix or hypermatrix, with random entries.
                     </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>action</term>
-                <listitem>
-                    <para>
-                        基底生成器に指定する処理を記述する文字列
-                        (カレントの基底生成器を変更するには'setgen',
-                        カレントの基底生成器の名前を取得するには 'getgen',
-                        カレントの基底生成器の状態(シード)を取得するには
-                        'getsd',など...)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>q1, ..., ql</term>
-                <listitem>
-                    <para>処理を定義するためにひるようなパラメータ (通常は1つの文字列)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -165,7 +176,7 @@
                         <literal>Y=grand(m,n,'nbn',N,p)</literal> は
                         パラメータ<literal>N</literal> (正の整数) および<literal>p</literal> (
                         (0,1)の実数)を指定した負の二項分布に基づきランダム変量を生成します
-                        : 
+                        :
                         成功確率 <literal>p</literal>の独立なベルヌーイ試行において
                         <literal>N</literal>回成功する前に発生する失敗の回数.
                         関係する関数 : <link linkend="cdfnbn">cdfnbn</link>.
@@ -225,8 +236,8 @@
                         <literal>Y=grand(m,n,'nf',Dfn,Dfd,Xnon)</literal>は,
                         分子の自由度<literal>Dfn</literal> (実数
                         &gt;= 1), および
-                        分母の自由度<literal>Dfd</literal> (実数 &gt; 0) , 
-                        および非心パラメータ 
+                        分母の自由度<literal>Dfd</literal> (実数 &gt; 0) ,
+                        および非心パラメータ
                         <literal>Xnonc</literal> (実数 &gt;= 0)を指定して
                         非心F分布に基づくランダム変量を生成します.
                         関係する関数 : <link linkend="cdffnc">cdffnc</link>.
@@ -408,7 +419,7 @@
                     <itemizedlist>
                         <listitem>
                             <para>
-                                mt, kiss および fsultra の場合は <literal>[0, 2^32 - 1]</literal>
+                                mt および kiss の場合は <literal>[0, 2^32 - 1]</literal>
                             </para>
                         </listitem>
                         <listitem>
@@ -443,7 +454,7 @@
                 <listitem>
                     <para>
                         周期<literal>2^19937</literal>の
-                        M. Matsumoto および T. NishimuraのMersenne-Twister, 
+                        M. Matsumoto および T. NishimuraのMersenne-Twister,
                         状態は
                         <literal>624</literal>個の整数の配列(およびこの配列のインデックス)により
                         指定されます; これがデフォルトの生成器です.
@@ -494,18 +505,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>fsultra</term>
-                <listitem>
-                    <para>
-                        Arif Zaman および George Marsagliaの合同生成器に基づく
-                        Subtract-with-Borrow 生成器,
-                        周期は <literal>10^356</literal>以上,
-                        状態は37個の整数の配列(およびこの配列へのインデックス,
-                        フラグ (0または1)および他の整数)により指定されます.
-                    </para>
-                </listitem>
-            </varlistentry>
         </variablelist>
         <para>全ての生成器に共通なアクションの動作を以下に示します:
         </para>
@@ -516,7 +515,7 @@
                     <para>
                         <literal>S=grand('getgen')</literal> はカレントの基底生成器を返します
                         ( <literal>S</literal> は以下の文字列のどれかです:
-                        'mt', 'kiss', 'clcg2', 'clcg4', 'urand', 'fsultra'.
+                        'mt', 'kiss', 'clcg2', 'clcg4', 'urand'.
                     </para>
                 </listitem>
             </varlistentry>
@@ -526,7 +525,7 @@
                     <para>
                         <literal>grand('setgen',gen)</literal>は
                         カレントの基底生成器を<literal>gen</literal>に設定します.
-                        この文字列には 'mt', 'kiss', 'clcg2', 'clcg4', 'urand', 'fsultra' 
+                        この文字列には 'mt', 'kiss', 'clcg2', 'clcg4', 'urand'
                         のどれかを指定します(
                         このコールは新しいカレントの生成器を返すことに注意してください).
                     </para>
@@ -537,11 +536,11 @@
                 <listitem>
                     <para>
                         <literal>S=grand('getsd')</literal> はカレントの基底生成器の
-                        カレントの状態 (カレントのシード)を返します ; 
+                        カレントの状態 (カレントのシード)を返します ;
                         <literal>S</literal> には, mt の場合は<literal>625</literal>次
                         (先頭は<literal>[1,624]</literal>の範囲のインデックスです),
                         kiss の場合は <literal>4</literal> 次, clcg2の場合は <literal>2</literal>次,
-                        fsultraの場合は <literal>40</literal> , clcg4 の場合は <literal>4</literal>次 
+                        clcg4 の場合は <literal>4</literal>次
                         (最後の1つについてはカレントの仮想生成器のカレントの状態が取得されます),
                         および urand の場合は <literal>1</literal>次
                         の(整数)列ベクトルが出力されます.
@@ -584,7 +583,7 @@
                             <term>clcg2の場合</term>
                             <listitem>
                                 <para>
-                                    <literal>2</literal> 個の整数 <literal>s1</literal> (範囲:<literal>[1,2147483562]</literal>) および <literal>s2</literal> 
+                                    <literal>2</literal> 個の整数 <literal>s1</literal> (範囲:<literal>[1,2147483562]</literal>) および <literal>s2</literal>
                                     (範囲: <literal>[1,2147483398]</literal>) を指定します ;
                                 </para>
                             </listitem>
@@ -593,8 +592,8 @@
                             <term>clcg4の場合</term>
                             <listitem>
                                 <para>
-                                    <literal>4</literal> 個の整数 <literal>s1</literal> (範囲: <literal>[1,2147483646]</literal>), <literal>s2</literal> 
-                                    (範囲: <literal>[1,2147483542]</literal>), <literal>s3</literal> (範囲:  <literal>[1,2147483422]</literal>), 
+                                    <literal>4</literal> 個の整数 <literal>s1</literal> (範囲: <literal>[1,2147483646]</literal>), <literal>s2</literal>
+                                    (範囲: <literal>[1,2147483542]</literal>), <literal>s3</literal> (範囲:  <literal>[1,2147483422]</literal>),
                                     <literal>s4</literal> (範囲:  <literal>[1,2147483322]</literal> ) を指定します ;
                                     <literal>注意</literal> : clcg4の場合,
                                     カレントの仮想生成器のシードを設定しますが,
@@ -609,22 +608,8 @@
                             <term>urandの場合</term>
                             <listitem>
                                 <para>
-                                    <literal>[0,2^31</literal>[の範囲の<literal>1</literal> 
+                                    <literal>[0,2^31</literal>[の範囲の<literal>1</literal>
                                     個の整数 <literal>s1</literal> を指定します.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>fsultraの場合</term>
-                            <listitem>
-                                <para>
-                                    <literal>S</literal> は<literal>40</literal>次の整数ベクトルで,
-                                    (最初の要素はインデックスで<literal>[0,37]</literal>の範囲とします,
-                                    2番目の要素はフラグ (0または1),3番目は[1,2^32[ の範囲の整数,
-                                    367個のその他の整数(範囲: [0,2^32[)));
-                                    <literal>[0,2^32[</literal>の範囲の
-                                    整数を2つだけ (<literal>s1</literal> および <literal>s2</literal>)
-                                    指定することでより簡単に(そして推奨される)初期化を行うことができます.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -648,7 +633,7 @@
         <title>clcg4の固有のオプション</title>
         <para>
             clcg4 生成器は他の生成器と同時に使用することができますが,
-            系列がオーバーラップしない 
+            系列がオーバーラップしない
             複数(<literal>101</literal>個)の仮想生成器に分割できるという利点があります.
             (古典的な生成器を使用する場合,異なる系列を得るために
             初期状態量(シード)を別のものに変更できますが,完全に異なる系列となることは

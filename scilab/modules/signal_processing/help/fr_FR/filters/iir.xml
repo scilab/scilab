@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="iir" xml:lang="fr">
+    <refnamediv>
+        <refname>iir</refname>
+        <refpurpose>iir digital filter</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            hz=iir(n,ftype,fdesign,frq,delta)
+            [p,z,g]=iir(n,ftype,fdesign,frq,delta)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>positive number witn integer value, the filter order.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ftype</term>
+                <listitem>
+                    <para>string specifying the filter type, the possible values are:
+                        <literal>'lp'</literal> for low-pass,<literal>'hp'</literal> for
+                        high pass,<literal>'bp'</literal> for band pass and
+                        <literal>'sb'</literal> for stop band.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fdesign</term>
+                <listitem>
+                    <para>string specifying the analog filter design, the
+                        possible values are: <literal>'butt'</literal>,
+                        <literal>'cheb1'</literal>, <literal>'cheb2'</literal> and
+                        <literal>'ellip'</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>frq</term>
+                <listitem>
+                    <para>2-vector of discrete cut-off frequencies (i.e.,
+                        <literal>0&lt;frq&lt;.5</literal>). For <literal>'lp'</literal> and
+                        <literal>'hp'</literal> filters only <literal>frq(1)</literal> is
+                        used (in this case, <varname>frq</varname> can be a scalar).
+                        For <literal>'bp'</literal> and <literal>'sb'</literal> filters
+                        <literal>frq(1)</literal> is the upper cut-off frequency and
+                        <literal>frq(2)</literal> is the lower cut-off frequency.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>delta</term>
+                <listitem>
+                    <para>
+                        2-vector of error values for <literal>cheb1</literal>,
+                        <literal>cheb2</literal>, and <literal>ellip</literal> filters where
+                        only <literal>delta(1)</literal> is used for
+                        <literal>cheb1</literal> case, only <literal>delta(2)</literal> is
+                        used for <literal>cheb2</literal> case, and
+                        <literal>delta(1)</literal> and <literal>delta(2)</literal> are both
+                        used for <literal>ellip</literal> case.
+                        <literal>0&lt;delta(1),delta(2)&lt;1</literal>
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                for <literal>cheb1</literal> filters
+                                <literal>1-delta(1)&lt;ripple&lt;1</literal> in passband
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                for <literal>cheb2</literal> filters
+                                <literal>0&lt;ripple&lt;delta(2)</literal> in stopband
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                for <literal>ellip</literal> filters
+                                <literal>1-delta(1)&lt;ripple&lt;1</literal> in passband and
+                                <literal>0&lt;ripple&lt;delta(2)</literal> in stopband
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>hz</term>
+                <listitem>
+                    <para>a single input single output discrete transfer function, the low pass filter</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>vector of transformed filter zeros.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>vector of transformed filter poles.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>g </term>
+                <listitem>
+                    <para>a scalar: transformed filter gain.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            function which designs an iir digital filter using <link linkend="analpf">analog filter</link> designs and <link linkend="bilt">bilinear transformation</link> .
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
+[hzm,fr]=frmag(hz,256);
+plot2d(fr',hzm')
+xtitle('Discrete IIR filter: band pass  0.15 < fr < 0.25 ',' ',' ');
+q=poly(0,'q');     //to express the result in terms of the delay operator q=z^-1
+hzd=horner(hz,1/q)
+]]>     </programlisting>
+        <scilab:image><![CDATA[
+hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
+[hzm,fr]=frmag(hz,256);
+plot2d(fr',hzm')
+xtitle('Discrete IIR filter: band pass  0.15 < fr < 0.25 ',' ',' ');
+]]>     </scilab:image>
+        <programlisting role="example"><![CDATA[
+//Poles Zeros Gain filter representation
+[p,z,g]=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
+g*poly(z,'z')/poly(p,'z')
+ ]]>    </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="eqfir">eqfir</link>
+            </member>
+            <member>
+                <link linkend="eqiir">eqiir</link>
+            </member>
+            <member>
+                <link linkend="analpf">analpf</link>
+            </member>
+            <member>
+                <link linkend="bilt">bilt</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

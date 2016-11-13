@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="hallchart">
+    <refnamediv>
+        <refname>hallchart</refname>
+        <refpurpose>ホール図を描画</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>hallchart([ modules [,args [,colors]]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>modules</term>
+                <listitem>
+                    <para>実数ベクトル (モジュール (単位: dB))</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>args</term>
+                <listitem>
+                    <para>実数ベクトル (位相 (単位:度))</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>colors</term>
+                <listitem>
+                    <para>スカラーまたはベクトル, 等ゲインおよび等位相曲線の色インデックス</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ホール図をプロット: <literal>real(y)</literal>, <literal>imag(y)</literal> 平面における
+            <literal>y/(1+y)</literal> の等モジュールおよび等引数等高線
+        </para>
+        <para>
+            <literal>hallchart</literal> は
+            <link linkend="nyquist">nyquist</link>と組み合わせて使用することができます.
+        </para>
+        <para>
+            <literal>modules</literal>および<literal>args</literal>のデフォルト値は
+            それぞれ次のようになります :
+        </para>
+        <para>
+            <literal>[-20 -10 -6 -4 -2 2 4 6 10 20]</literal>
+        </para>
+        <para>
+            <literal>[-90 -60 -45 -30 -15 15 30 45 60 90]</literal>
+        </para>
+        <para>
+            この関数は<link linkend="m_circle">m_circle</link> 関数の後継です
+        </para>
+    </refsection>
+    <refsection>
+        <title>グラフィックエンティティの構成</title>
+        <para>
+            <literal>hallchart</literal>関数は通常カレントの軸の最後の子である
+            Compoundオブジェクトを1つ作成します.
+            このCompoundオブジェクトには各グリッド曲線に一つずつの
+            compoundオブジェクトの集合が含まれます.
+            最初のオブジェクトは,等モジュール曲線,最後のオブジェクトは
+            等引数等高線となります.
+            これらのcompoundオブジェクトの各々には,
+            ポリラインオブジェクト(曲線)とテキストオブジェクト(ラベル)が含まれます.
+            以下のコードをi番目の等モジュール曲線の色を変更する際に使用することができます:
+        </para>
+        <programlisting role="customizing"><![CDATA[
+    clf();hallchart()
+    ax=gca();//カレントの軸のハンドル
+    c=ax.children($).children;// chartグリッド曲線のハンドル
+    i=4; //-4dB曲線のインデックス
+    ci=c(i); //-4dB曲線のハンドル
+    ci.children(1).foreground=color('red'); //赤で描く
+    j=3; // the index of the -45°曲線のインデックス
+    cj=c(10+j); // -45° 曲線のハンドル
+    cj.children(1).thickness=3;//線幅を太くする
+     ]]></programlisting>
+        <scilab:image localized="true">
+            clf();hallchart()
+            ax=gca();
+            c=ax.children($).children;
+            i=4;
+            ci=c(i);
+            ci.children(1).foreground=color('red');
+            j=3;
+            cj=c(10+j);
+            cj.children(1).thickness=3;
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    //ホール図
+    clf();hallchart()
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                hallchart()
+            </scilab:image>
+        </para>
+        <programlisting role="example"><![CDATA[
+    //ナイキストのグリッドとしてホール図を作成
+    s=poly(0,'s');
+    Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+    //二自由度PID
+    tau=0.2;xsi=1.2;
+    PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+    clf();
+    nyquist([Plant;Plant*PID],0.5,100,["Plant";"Plant and PID corrector"]);
+    hallchart(colors=color('light gray')*[1 1])
+    //右下隅のキャプションを移動
+    ax=gca();Leg=ax.children(1);
+    Leg.legend_location="in_lower_right";
+    ]]></programlisting>
+        <para>
+            <scilab:image localized="true">
+                s=poly(0,'s');
+                Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
+                tau=0.2;xsi=1.2;
+                PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+                clf();
+                nyquist([Plant;Plant*PID],0.5,100,["Plant";"Plant and PID corrector"]);
+                hallchart(colors=color('light gray')*[1 1])
+                ax=gca();Leg=ax.children(1);
+                Leg.legend_location="in_lower_right";
+            </scilab:image>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="nyquist">nyquist</link>
+            </member>
+            <member>
+                <link linkend="nicholschart">nicholschart</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

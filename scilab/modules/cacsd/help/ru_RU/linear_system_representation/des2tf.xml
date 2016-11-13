@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="des2tf">
+    <refnamediv>
+        <refname>des2tf</refname>
+        <refpurpose>descriptor to transfer function conversion</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[S]=des2tf(sl)
+            [Bfs,Bis,chis]=des2tf(sl)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>list (linear system in descriptor form)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Bfs, Bis</term>
+                <listitem>
+                    <para>two polynomial matrices</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>chis</term>
+                <listitem>
+                    <para>polynomial</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>rational matrix</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Given the linear system in descriptor form i.e.
+            <literal>Sl=list('des',A,B,C,D,E)</literal>, <literal>des2tf</literal> converts <literal>sl</literal> into
+            its transfer function representation:
+        </para>
+        <programlisting role=""><![CDATA[
+S=C*(s*E-A)^(-1)*B+D
+ ]]></programlisting>
+        <para>
+            Called with 3 outputs arguments <literal>des2tf</literal> returns
+            <literal>Bfs</literal> and <literal>Bis</literal> two polynomial matrices, and <literal>chis</literal>
+            polynomial such that:
+        </para>
+        <programlisting role=""><![CDATA[
+S=Bfs/chis - Bis
+ ]]></programlisting>
+        <para>
+            <literal>chis</literal> is the determinant of <literal>(s*E-A)</literal> (up to a xcative constant);
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+G=[1/(s+1),s;1+s^2,3*s^3];
+Descrip=tf2des(G);Tf1=des2tf(Descrip)
+Descrip2=tf2des(G,"withD");Tf2=des2tf(Descrip2)
+[A,B,C,D,E]=Descrip2(2:6);Tf3=C*inv(s*E-A)*B+D
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="glever">glever</link>
+            </member>
+            <member>
+                <link linkend="pol2des">pol2des</link>
+            </member>
+            <member>
+                <link linkend="tf2des">tf2des</link>
+            </member>
+            <member>
+                <link linkend="ss2tf">ss2tf</link>
+            </member>
+            <member>
+                <link linkend="des2ss">des2ss</link>
+            </member>
+            <member>
+                <link linkend="rowshuff">rowshuff</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

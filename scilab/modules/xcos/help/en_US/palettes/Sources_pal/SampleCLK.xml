@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SampleCLK">
@@ -93,28 +93,28 @@
     <refsection id="Description_SampleCLK">
         <title>Description</title>
         <para>
-            The difference between the SampleCLK and the CLOCK_c is that all the SampleCLK blocks in our diagram are synchronous. The synchronism is done due to two different methods of computation in the compilation phase.  
+            The difference between the SampleCLK and the CLOCK_c is that all the SampleCLK blocks in our diagram are synchronous. The synchronism is done due to two different methods of computation in the compilation phase.
         </para>
         <para>
-            The first method consists of computing a clock that is faster than all the SampleCLK connected to a counter which activate the event select block.  
+            The first method consists of computing a clock that is faster than all the SampleCLK connected to a counter which activate the event select block.
         </para>
         <para>
-            The clock is calculated due to the following rule. 
+            The clock is calculated due to the following rule.
         </para>
         <para>
-            If all the blocks have the same offset then the frequency of the clock is the gcd of the sample time, and the offset of the clock is equal to the offset.  
+            If all the blocks have the same offset then the frequency of the clock is the gcd of the sample time, and the offset of the clock is equal to the offset.
         </para>
         <para>
-            If the offsets are different, then the frequency of the clock is the gcd of the sample time and the offset, and the offset of the clock is equal to 0.  
+            If the offsets are different, then the frequency of the clock is the gcd of the sample time and the offset, and the offset of the clock is equal to 0.
         </para>
         <para>
-            The Counter counts from one to the least common multiple of the sample time (lcm).  
+            The Counter counts from one to the least common multiple of the sample time (lcm).
         </para>
         <para>
-            The number of outputs of the ESELECT_f block is equal to the lcm.  
+            The number of outputs of the ESELECT_f block is equal to the lcm.
         </para>
         <para>
-            The second method uses the Multifrequency block it generates events only for specific time. Events in this method are not periodically generated as in the first one.  
+            The second method uses the Multifrequency block it generates events only for specific time. Events in this method are not periodically generated as in the first one.
         </para>
         <para>
         </para>
@@ -129,7 +129,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>

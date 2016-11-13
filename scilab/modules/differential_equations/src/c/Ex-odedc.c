@@ -3,11 +3,14 @@
  * Copyright (C) INRIA
  * Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -67,7 +70,7 @@ void fexcd(int* jflag, int* nc, int* nd, double* t, double* y, double* ydp)
     // y=odedc([y0c;y0d],nd,[5,0],t0,t,list('fexcd',param))
     // param can be retrieved in fexcd by:
     // param(1)=y(nc+nd+1) , param(2)=y(nc+nd+2) etc
-    // with this calling sequence y is a nc+nd+np vector
+    // with this syntax y is a nc+nd+np vector
     // where np=dimension of scilab variable param
 
     if (*jflag == 0)

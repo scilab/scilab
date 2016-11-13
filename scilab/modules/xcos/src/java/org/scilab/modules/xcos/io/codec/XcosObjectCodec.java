@@ -3,11 +3,14 @@
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2014 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -29,6 +32,7 @@ import org.w3c.dom.Node;
 import com.mxgraph.io.mxCellCodec;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxICell;
+import org.scilab.modules.xcos.utils.XcosConstants;
 
 /**
  * Codec for any xcos object
@@ -50,7 +54,6 @@ public class XcosObjectCodec extends mxCellCodec {
      * Attribute name containing {@link com.mxgraph.model.mxCell} style.
      */
     protected static final String STYLE = "style";
-    private static final String ROTATION = "rotation";
     private static final String DIRECTION = "direction";
     private static final String WEST = "west";
     private static final String SOUTH = "south";
@@ -242,16 +245,16 @@ public class XcosObjectCodec extends mxCellCodec {
             } while (false);
 
             style.remove(DIRECTION);
-            style.put(ROTATION, Integer.toString(angle));
+            style.put(XcosConstants.STYLE_ROTATION, Integer.toString(angle));
 
         }
 
         if (!style.containsKey(ScilabGraphConstants.STYLE_FLIP)) {
-            style.put(ScilabGraphConstants.STYLE_FLIP, Boolean.FALSE.toString());
+            style.put(XcosConstants.STYLE_FLIP, Boolean.FALSE.toString());
         }
 
         if (!style.containsKey(ScilabGraphConstants.STYLE_MIRROR)) {
-            style.put(ScilabGraphConstants.STYLE_MIRROR, Boolean.FALSE.toString());
+            style.put(XcosConstants.STYLE_MIRROR, Boolean.FALSE.toString());
         }
     }
 

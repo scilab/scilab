@@ -85,7 +85,7 @@ load(SCI+"/modules/hdf5/tests/sample_scilab_data/mlist_v1.sod");
 
 // hypermatrices
 load(SCI+"/modules/hdf5/tests/sample_scilab_data/hypermatrix_v1.sod");
-assert_checkequal(HM,hypermat([2 3 2 2],1:24));
+assert_checkequal(HM,matrix(1:24, [2 3 2 2]));
 
 load(SCI+"/modules/hdf5/tests/sample_scilab_data/hypermatrixcomplex_v1.sod");
 HMC_reference(1,1,1,1:2)=[1+%i 2*2*%i];

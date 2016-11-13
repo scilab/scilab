@@ -8,189 +8,189 @@
 
  * Copyright (C) DIGITEO - 2008 - Allan CORNET
 
- * 
+ *
 
- * This file must be used under the terms of the CeCILL.
 
- * This source file is licensed as described in the file COPYING, which
-
- * you should have received as part of this distribution.  The terms
-
- * are also available at    
-
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
 
  *
 
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xlfont" xml:lang="ja">
-    
+
     <refnamediv>
-        
+
         <refname>xlfont</refname>
-        
+
         <refpurpose>グラフィックコンテキストにフォントをロードする
-            
+
             またはロード済みのフォントを検索する
-            
+
         </refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>xlfont(font-name)
-            
+
             xlfont(font-filename)
-            
+
             xlfont('reset')
-            
+
             xlfont(font-name,font-id)
-            
+
             xlfont(font-filename,font-id)
-            
+
             xlfont(font-name,font-id,bold)
-            
+
             xlfont(font-name,font-id,bold,italic)
-            
+
             fonts=xlfont('AVAILABLE_FONTS')
-            
+
             fonts=xlfont()
-            
+
         </synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>font-name</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列, フォントファミリの名前.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>font-filename</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列,true typeフォントのファイル名.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>font-id</term>
-                
+
                 <listitem>
-                    
+
                     <para>整数 &gt;= 0 .</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>fonts</term>
-                
+
                 <listitem>
-                    
+
                     <para>フォント名の列ベクトル.</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>bold</term>
-                
+
                 <listitem>
-                    
+
                     <para>ボールド体の場合,論理値 %t</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
             <varlistentry>
-                
+
                 <term>italic</term>
-                
+
                 <listitem>
-                    
+
                     <para>イタリック体の場合,論理値 %t</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             引数を指定しない場合, <literal>xlfont()</literal> は
-            
+
             ロード済みのフォントの一覧を返します.
-            
+
         </para>
-        
+
         <para>xlfont('AVAILABLE_FONTS') はシステムで利用可能なフォントの一覧を返します.</para>
-        
+
         <para>xlfont('reset') はフォントの一覧の初期インデックスをリセットします.</para>
-        
+
         <para>
-            
+
             引数を指定する時, <literal>xlfont</literal>は新規のフォントを異なる大きさでグラフィック
-            
+
             コンテキストにロードする際に使用されます.
-            
+
         </para>
-        
+
         <para>デフォルトのファミリのフォントは "Monospaced" (0), "Symbol" (1), "Serif"
-            
+
             (2), "Serif Italic" (3), "Serif Bold" (4), "Serif Bold Italic" (5),
-            
+
             "SansSerif" (6), "SansSerif Italic" (7), "SansSerif Bold" (8), "SansSerif
-            
+
             Bold Italic" (9) です. これらのデフォルトのフォントは必要に応じて自動的にロードされます.
-            
+
             このため,<literal>xlfont</literal> はこれらのフォントには必要ありません.
-            
+
             実際, <literal>xlfont</literal> は新しいフォントをロードする際には特に有用です.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 xlfont('reset');
 
@@ -217,8 +217,8 @@ title_entity.font_style = 10;
 xlfont('reset');
 
  ]]></programlisting>
-        
+
     </refsection>
-    
+
 </refentry>
 

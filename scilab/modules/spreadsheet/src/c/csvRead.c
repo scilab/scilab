@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 #include <string.h>
@@ -112,7 +115,10 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
 
     if (header != 0)
     {
-        mgetl(fd, header, &nblines, &errMGETL);
+        // Ignoring the header
+        pstLines = mgetl(fd, header, &nblines, &errMGETL);
+        freeArrayOfWideString(pstLines, nblines);
+        pstLines = NULL;
     }
 
     pstLines = mgetl(fd, -1, &nblines, &errMGETL);
@@ -120,12 +126,6 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
 
     if (errMGETL != MGETL_NO_ERROR)
     {
-        if (pstLines)
-        {
-            freeArrayOfString(pstLines, nblines);
-            pstLines = NULL;
-        }
-
         result = (csvResult*)(MALLOC(sizeof(csvResult)));
         if (result)
         {
@@ -161,6 +161,7 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
                 result->pstrComments = NULL;
                 result->nbComments = 0;
             }
+            freeArrayOfString(pstLines, nblines);
             return result;
         }
 
@@ -173,11 +174,7 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
             pCleanedLines = removeComments((const char**)pstLines, nblines, (const char*)regexpcomments, &nbCleanedLines, &iErr);
             if (pCleanedLines)
             {
-                if (pstLines)
-                {
-                    freeArrayOfString(pstLines, nblines);
-                    pstLines = NULL;
-                }
+                FREE(pstLines);
                 pstLines = pCleanedLines;
                 nblines = nbCleanedLines;
             }

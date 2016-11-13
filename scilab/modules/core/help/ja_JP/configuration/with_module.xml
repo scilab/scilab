@@ -20,7 +20,9 @@
             <varlistentry>
                 <term>module_name</term>
                 <listitem>
-                    <para>文字列. 例 : <literal>'core'</literal></para>
+                    <para>
+                        文字列. 例 : <literal>'core'</literal>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -30,12 +32,12 @@
         <para>
             Scilabモジュールがインストールされている場合に
             <constant>%t</constant>, そうでない場合に
-	    <constant>%f</constant> を返します.
+            <constant>%f</constant> を返します.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 withXML = with_module("xml");
 if withXML == %t then
    disp("XML module enabled");

@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -14,6 +17,7 @@
 #include <iostream>
 
 #include "parser.hxx"
+#include "prettyprintvisitor.hxx"
 #include "SLint.hxx"
 #include "threadmanagement.hxx"
 #include "UTF8.hxx"
@@ -37,6 +41,11 @@ extern "C"
 #define DEFAULT_FILESPEC "*"
 #endif
 
+//#define SLINT_PRINT_AST
+#ifdef SLINT_PRINT_AST
+#include "prettyprintvisitor.hxx"
+#endif
+
 namespace slint
 {
 
@@ -57,6 +66,13 @@ void SLint::check()
     {
         context.setSciFile(scifile);
         visitor.preCheckFile();
+
+#ifdef SLINT_PRINT_AST
+        ast::PrettyPrintVisitor ppv(std::wcerr, false, true);
+        scifile->getTree()->accept(ppv);
+#undef SLINT_PRINT_AST
+#endif
+
         scifile->getTree()->accept(visitor);
         visitor.postCheckFile();
     }
@@ -98,6 +114,7 @@ void SLint::setFiles(const std::vector<std::string> & files)
                 if (sf.get())
                 {
                     scifiles.emplace_back(sf);
+                    context.addPublicFunction(sf->getMain());
                 }
             }
         }

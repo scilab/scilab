@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:08+0000\n"
+"PO-Revision-Date: 2016-06-09 10:49+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "Language: ca\n"
 
 #, c-format
@@ -56,7 +56,8 @@ msgstr "%s: Aquesta funció no està disponible en el mode NWNI.\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
-msgstr "%s: S'ha de donar el número de figura si no s'està en el mode '%s'.\n"
+msgstr ""
+"%s: S'ha de donar el número de figura si no s'està en el mode '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
@@ -181,11 +182,13 @@ msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
-msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser '%s' o '%s'.\n"
+msgstr ""
+"%s: Els arguments d'entrada són incorrectes: Han de ser '%s' o '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
-msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser > %d.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser > %d.\n"
 
 #, c-format
 msgid ""
@@ -276,15 +279,6 @@ msgstr ""
 "real de (1 x %d).\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un booleà.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
@@ -314,7 +308,8 @@ msgstr ""
 "'%s'.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un tractament "
 "'%s' vàlid.\n"
@@ -381,15 +376,22 @@ msgid ""
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un booleà.\n"
+
+#, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string or macro name expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string or macro name expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
@@ -414,7 +416,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -575,7 +578,8 @@ msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 
 #, c-format
@@ -589,6 +593,10 @@ msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
 "cadenes de text.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -668,7 +676,8 @@ msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: A real expected.\n"
-msgstr "La propietat '%s' té una mida incorrecta: Ha de ser un nombre real.\n"
+msgstr ""
+"La propietat '%s' té una mida incorrecta: Ha de ser un nombre real.\n"
 
 #, c-format
 msgid ""
@@ -699,7 +708,8 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
-msgstr "La propietat '%s' té un valor incorrecte: Ha de ser un nombre real.\n"
+msgstr ""
+"La propietat '%s' té un valor incorrecte: Ha de ser un nombre real.\n"
 
 #, c-format
 msgid ""
@@ -780,7 +790,8 @@ msgstr ""
 "valor numèric.\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid ""
+"Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 "La propietat '%s' és d'un tipus incorrecte: Ha de ser un vector fila de "
 "nombres reals o una cadena de text.\n"
@@ -1009,6 +1020,9 @@ msgid "&Command History"
 msgstr ""
 
 msgid "&File Browser"
+msgstr ""
+
+msgid "&News feed"
 msgstr ""
 
 msgid "Scilab &Help"
@@ -1292,9 +1306,6 @@ msgstr ""
 
 msgid "Confirm"
 msgstr ""
-
-msgid "Cancel"
-msgstr "Cancel·la"
 
 msgid "Orientation"
 msgstr ""
@@ -1581,12 +1592,6 @@ msgstr ""
 msgid "Set legend text"
 msgstr ""
 
-msgid "Close"
-msgstr "Tanca"
-
-msgid "File"
-msgstr "Fitxer"
-
 msgid "Quick GED"
 msgstr ""
 
@@ -1793,9 +1798,6 @@ msgstr ""
 msgid "Style/Appearance"
 msgstr ""
 
-msgid "Background Color"
-msgstr ""
-
 msgid "Foreground Color"
 msgstr ""
 
@@ -1907,7 +1909,7 @@ msgstr ""
 msgid "Mark Style"
 msgstr ""
 
-msgid "3 Components"
+msgid "Components display"
 msgstr ""
 
 msgid "Data Properties"
@@ -1965,9 +1967,6 @@ msgid "Z Label"
 msgstr ""
 
 msgid "Scaled"
-msgstr ""
-
-msgid "Title"
 msgstr ""
 
 msgid "Start Angle"
@@ -2168,12 +2167,6 @@ msgstr ""
 msgid "Z Shift"
 msgstr ""
 
-msgid "Yes"
-msgstr "Sí"
-
-msgid "No"
-msgstr "No"
-
 msgid "Save and execute"
 msgstr "Desa i executa"
 
@@ -2245,6 +2238,9 @@ msgstr ""
 msgid "All RTF (Rich Text Format) files"
 msgstr ""
 
+msgid "All HTML files"
+msgstr ""
+
 #, c-format
 msgid "All %s files"
 msgstr "Tots els fitxers %s"
@@ -2261,7 +2257,8 @@ msgstr ""
 msgid "Restoration error"
 msgstr ""
 
-msgid "The configuration file has been corrupted and reset to the default one."
+msgid ""
+"The configuration file has been corrupted and reset to the default one."
 msgstr ""
 
 msgid "The configuration file has been corrupted. Scilab needs to restart."
@@ -2277,6 +2274,243 @@ msgstr "%s: Només està disponible en el mode 'STANDARD'.\n"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "Error. S'ha capturat una senyal.\n"
+
+msgid "Control Plot3d"
+msgstr ""
+
+msgid "Control Panel"
+msgstr ""
+
+msgid "Rotation angle"
+msgstr ""
+
+msgid "Colormap"
+msgstr ""
+
+msgid "Show / Hide"
+msgstr ""
+
+msgid "messagebox"
+msgstr ""
+
+msgid "x_choose"
+msgstr ""
+
+msgid "x_dialog"
+msgstr ""
+
+msgid "x_mdialog"
+msgstr ""
+
+msgid "Simple example of message"
+msgstr ""
+
+msgid "Button 1Button 2"
+msgstr ""
+
+msgid "Button 1 clicked."
+msgstr ""
+
+msgid "Button 2 clicked"
+msgstr ""
+
+msgid ""
+"Message: Selection (double-click on an item --> returns the item number)"
+msgstr ""
+
+msgid "Item selected: "
+msgstr ""
+
+msgid "Message: enter a value"
+msgstr ""
+
+msgid "Value entered: "
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "first row"
+msgstr ""
+
+msgid "Values entered: "
+msgstr ""
+
+msgid "row"
+msgstr ""
+
+msgid "col"
+msgstr ""
+
+msgid "Matrix to edit"
+msgstr ""
+
+msgid "Matrix entered: "
+msgstr ""
+
+msgid "GUI"
+msgstr ""
+
+msgid "Dialogs"
+msgstr ""
+
+msgid "Uicontrols 1"
+msgstr ""
+
+msgid "Uicontrols 2"
+msgstr ""
+
+msgid "Uicontrols with LaTeX/MathML"
+msgstr ""
+
+msgid "Show images with uicontrols "
+msgstr ""
+
+msgid "Listboxes and Popupmenus"
+msgstr ""
+
+msgid "Uicontrols rendering"
+msgstr ""
+
+msgid "<Enter color name here>"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Please enter a color name first."
+msgstr ""
+
+msgid "Unknown color."
+msgstr ""
+
+msgid "No color selected."
+msgstr ""
+
+msgid "Color selection"
+msgstr ""
+
+#, c-format
+msgid "Selected colors are: %s."
+msgstr ""
+
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
+
+#, c-format
+msgid "You clicked on menu '%s'."
+msgstr ""
+
+msgid "Selected menu"
+msgstr ""
+
+msgid "checked"
+msgstr ""
+
+msgid "unchecked"
+msgstr ""
+
+#, c-format
+msgid "Menu '%s' is %s."
+msgstr ""
+
+msgid "Menu status"
+msgstr ""
+
+msgid "Slider value: "
+msgstr ""
+
+#, c-format
+msgid "You selected '%s'."
+msgstr ""
+
+msgid "Popupmenu selection"
+msgstr ""
+
+msgid "Do you really want to quit Scilab?"
+msgstr ""
+
+msgid "Quit Scilab"
+msgstr ""
+
+msgid "Uicontrols demo"
+msgstr ""
+
+msgid "Application"
+msgstr ""
+
+msgid "Close figure"
+msgstr ""
+
+msgid "Scilab Graphics"
+msgstr ""
+
+msgid "Launch plot3d"
+msgstr ""
+
+msgid "Launch plot2d"
+msgstr ""
+
+msgid "Menu"
+msgstr ""
+
+msgid "Sub-menu 1"
+msgstr ""
+
+msgid "Sub-menu 2"
+msgstr ""
+
+msgid "Sub-menu 2-1"
+msgstr ""
+
+msgid "Sub-menu 2-2"
+msgstr ""
+
+msgid "item1|item2|item3|item4"
+msgstr ""
+
+msgid "Pop-up menu"
+msgstr ""
+
+msgid "Slider demo"
+msgstr ""
+
+msgid "Colors list edition"
+msgstr ""
+
+msgid "Add color in listbox"
+msgstr ""
+
+msgid "Delete color in listbox"
+msgstr ""
+
+msgid "blue"
+msgstr ""
+
+msgid "green"
+msgstr ""
+
+msgid "red"
+msgstr ""
+
+msgid "yellow"
+msgstr ""
+
+msgid "Display selection"
+msgstr ""
+
+msgid "Delete selection"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "Quit demonstration"
+msgstr ""
+
+msgid "Uicontrols demo with LaTeX"
+msgstr ""
 
 #, c-format
 msgid "%s: can not add a menu in this mode: %s.\n"
@@ -2298,7 +2532,8 @@ msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser %s o %s.\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
-msgstr "%s: Els arguments d'entrada són incorrectes: Han de ser %s, %s o %s.\n"
+msgstr ""
+"%s: Els arguments d'entrada són incorrectes: Han de ser %s, %s o %s.\n"
 
 #, c-format
 msgid "%s: Wrong value for '%s' property: %d, %d or %d expected.\n"
@@ -2344,7 +2579,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A border or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -2417,7 +2653,8 @@ msgstr ""
 "%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
 
 #, c-format
-msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 
 #, c-format

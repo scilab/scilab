@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="createSingleString" xml:lang="ja">
+    <refnamediv>
+        <refname>createSingleString</refname>
+        <refpurpose>
+            文字列変数を1つ作成.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>int createSingleString(void* _pvCtx, int _iVar, const char* _pstStrings)</synopsis>
+        <synopsis>int createNamedSingleString(void* _pvCtx, const char* _pstName, const char* _pstStrings)</synopsis>
+        <synopsis>int createSingleString(void* _pvCtx, int _iVar, const char* _pstStrings)</synopsis>
+        <synopsis>int createNamedSingleWideString(void* _pvCtx, const char* _pstName, const wchar_t* _pwstStrings)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab環境ポインタ, api_scilab.hで提供される"pvApiCtx"を指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        変数を保存するScilabメモリの位置.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        "名前指定" 関数の場合の変数名.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstStrings</term>
+                <listitem>
+                    <para>
+                        文字列のアドレス.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pwstStrings</term>
+                <listitem>
+                    <para>
+                        ワイド文字列のアドレス.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>戻り値</title>
+        <para>
+            成功した場合は 0, それ以外はScilabコンソールにエラーメッセージを表示し,
+            最初のエラー番号を返します.
+        </para>
+    </refsection>
+</refentry>

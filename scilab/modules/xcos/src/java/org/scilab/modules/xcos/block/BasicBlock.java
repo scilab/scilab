@@ -3,11 +3,14 @@
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -118,7 +121,7 @@ public class BasicBlock extends XcosCell implements Serializable {
      *            the cell
      * @return the base index
      */
-    private static final int compareByChildClass(final Object o1, final Object o2) {
+    private static int compareByChildClass(final Object o1, final Object o2) {
         int o1Index = 0;
         int o2Index = 0;
 
@@ -146,6 +149,12 @@ public class BasicBlock extends XcosCell implements Serializable {
     private boolean locked;
 
     /**
+     * Hook used to implement specifix behavior after any parameter update and before re-layouting the block
+     */
+    public void updateBlockView() {
+    }
+
+    /**
      * Represent a simulation function type compatible with Scilab/Scicos function type descriptors.
      */
     public static enum SimulationFunctionType {
@@ -168,7 +177,7 @@ public class BasicBlock extends XcosCell implements Serializable {
         MODELICA(30004), /** Magic types */
         UNKNOWN(5);
 
-        private int value;
+        private final int value;
 
         /**
          * Default constructor
@@ -207,7 +216,16 @@ public class BasicBlock extends XcosCell implements Serializable {
     };
 
     /**
-     * Default constructor.
+     * Constructor that setup some properties and pass all its arguments this its {@link XcosCell} parent.
+     *
+     *
+     * @param controller The shared controller instance
+     * @param uid the uid of the MVC object
+     * @param kind {@link Kind#BLOCK} or {@link Kind#ANNOTATION}
+     * @param value the value of the block
+     * @param geometry the geometry to apply to this JGraphX object
+     * @param style the style to apply to this JGraphX object
+     * @param id the id to apply to this JGraphX object
      */
     public BasicBlock(final JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
         super(controller, uid, kind, value, geometry, style, id);
@@ -237,10 +255,9 @@ public class BasicBlock extends XcosCell implements Serializable {
 
     /**
      * Does the block update and register on the undo manager
-     * @param controller
-     *
-     * @param modifiedBlock
-     *            the new settings
+     * @param controller the shared controller
+     * @param parent the parent diagram or superblock diagram
+     * @param modifiedBlock the new settings
      */
     public void updateBlockSettings(JavaController controller, XcosDiagram parent, BasicBlock modifiedBlock) {
         if (modifiedBlock == null) {
@@ -332,10 +349,10 @@ public class BasicBlock extends XcosCell implements Serializable {
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.DIAGRAM_CONTEXT, vStr);
         controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DIAGRAM_CONTEXT, vStr);
 
-        VectorOfScicosID children = new VectorOfScicosID();
+        VectorOfScicosID localChildren = new VectorOfScicosID();
 
-        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.CHILDREN, children);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.CHILDREN, children);
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.CHILDREN, localChildren);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.CHILDREN, localChildren);
 
         /*
          * JGraphX mapped properties
@@ -358,7 +375,7 @@ public class BasicBlock extends XcosCell implements Serializable {
         /*
          * Checked as port classes only
          */
-        Set < Class <? extends mxICell >> types = new HashSet < Class <? extends mxICell >> (Arrays.asList(InputPort.class, OutputPort.class, ControlPort.class, CommandPort.class));
+        Set < Class <? extends mxICell >> types = new HashSet < > (Arrays.asList(InputPort.class, OutputPort.class, ControlPort.class, CommandPort.class));
 
         Map < Class <? extends mxICell > , Deque<mxICell >> annotatedOlds = getTypedChildren(types);
         Map < Class <? extends mxICell > , Deque<mxICell >> annotatedNews = modifiedBlock.getTypedChildren(types);
@@ -378,10 +395,10 @@ public class BasicBlock extends XcosCell implements Serializable {
 
                     // relink
                     if (previous.getEdgeCount() != 0) {
-                        final mxICell edge = previous.getEdgeAt(0);
-                        final boolean isOutgoing = previous == edge.getTerminal(true);
-                        previous.removeEdge(edge, isOutgoing);
-                        modified.insertEdge(edge, isOutgoing);
+                        final mxICell relinked = previous.getEdgeAt(0);
+                        final boolean isOutgoing = previous == relinked.getTerminal(true);
+                        previous.removeEdge(relinked, isOutgoing);
+                        modified.insertEdge(relinked, isOutgoing);
                     }
 
                     parent.removeCells(new Object[] { previous }, false);
@@ -415,11 +432,11 @@ public class BasicBlock extends XcosCell implements Serializable {
      * @return a map which linked foreach type the corresponding cell list.
      */
     private Map < Class <? extends mxICell > , Deque<mxICell >> getTypedChildren(Set < Class <? extends mxICell >> types) {
-        Map < Class <? extends mxICell > , Deque<mxICell >> oldPorts = new HashMap < Class <? extends mxICell > , Deque<mxICell >> ();
+        Map < Class <? extends mxICell > , Deque<mxICell >> oldPorts = new HashMap < > ();
 
         // Allocate all types set
         for (Class <? extends mxICell > type : types) {
-            oldPorts.put(type, new LinkedList<mxICell>());
+            oldPorts.put(type, new LinkedList<>());
         }
 
         if (getChildCount() <= 0) {
@@ -681,7 +698,7 @@ public class BasicBlock extends XcosCell implements Serializable {
     // CSOFF: JavaNCSS
     public ContextMenu createContextMenu(ScilabGraph graph) {
         ContextMenu menu = ScilabContextMenu.createContextMenu();
-        Map<Class<? extends DefaultAction>, Menu> menuList = new HashMap<Class<? extends DefaultAction>, Menu>();
+        Map<Class<? extends DefaultAction>, Menu> menuList = new HashMap<>();
 
         MenuItem value = BlockParametersAction.createMenu(graph);
         menuList.put(BlockParametersAction.class, value);

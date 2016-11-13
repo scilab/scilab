@@ -5,7 +5,7 @@
         <refpurpose>digital sinc function or Dirichlet kernel</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>[s]=sincd(n,flag)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -41,8 +41,8 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-plot(sincd(10,1)) 
+        <programlisting role="example"><![CDATA[
+plot(sincd(10,1))
  ]]></programlisting>
     </refsection>
 </refentry>

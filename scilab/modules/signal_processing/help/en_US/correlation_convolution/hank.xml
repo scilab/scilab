@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="hank" xml:lang="en">
+    <refnamediv>
+        <refname>hank</refname>
+        <refpurpose>covariance to hankel matrix</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>hk =hank(m, n, cov)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>number of bloc-rows</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>number of bloc-columns</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cov</term>
+                <listitem>
+                    <para>sequence of covariances; it must be given as :[R0 R1
+                        R2...Rk]
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>hk</term>
+                <listitem>
+                    <para>computed hankel matrix</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This function builds the hankel matrix of size
+            <literal>(m*d,n*d)</literal> from the covariance sequence of a vector
+            process. More precisely:
+        </para>
+        <para>
+            This function builds the hankel matrix of size <literal>(m*d,n*d)</literal>
+            from the covariance sequence of a vector process. More precisely:
+        </para>
+        <para>
+            <latex><![CDATA[ \mathrm{hank}(m, n, [R_0, R_1, R_2, \ldots])=m\mbox{ blocks}\left\{\vphantom{\begin{matrix}R_0\cr R_1\cr R_2\cr\vdots\end{matrix}}\right.\left(\vphantom{\begin{matrix}R_0\cr R_1\cr R_2\cr\vdots\end{matrix}}\right.\overbrace{\begin{matrix}R_0 & R_1 & R_2 & \cdots\cr R_1 & R_2 & \cdots &\cr R_2 & \cdots &&\cr \vdots&&&\cr\end{matrix}}^{n \mbox{ blocks}}\left.\vphantom{\begin{matrix}R_0\cr R_1\cr R_2\cr\vdots\end{matrix}}\right) ]]></latex>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">//Example of how to use the hank macro for
+            //building a Hankel matrix from multidimensional
+            //data (covariance or Markov parameters e.g.)
+            //
+            //This is used e.g. in the solution of normal equations
+            //by classical identification methods (Instrumental Variables e.g.)
+            //
+            //1)let's generate the multidimensional data under the form :
+            //  C=[c_0 c_1 c_2 .... c_n]
+            //where each bloc c_k is a d-dimensional matrix (e.g. the k-th correlation
+            //of a d-dimensional stochastic process X(t) [c_k = E(X(t) X'(t+k)], '
+            //being the transposition in scilab)
+            //
+            //we take here d=2 and n=64
+
+            c = rand(2, 2 * 64)
+
+            //generate the hankel matrix H (with 4 bloc-rows and 5 bloc-columns)
+            //from the data in c
+
+            H = hank(4, 5, c);
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="toeplitz">toeplitz</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

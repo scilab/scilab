@@ -3,12 +3,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Michael Baudin
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isnan" xml:lang="ru">
@@ -17,7 +20,7 @@
         <refpurpose>проверка на нечисловые элементы ("Nan")</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Последовательность вызова</title>
+        <title>Синтаксис</title>
         <synopsis>r=isnan(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -42,14 +45,14 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>isnan(x)</literal> возвращает вектор или матрицу логических значений, которые содержат истинные элементы, соответствующие нечисловым элементам 
+            <literal>isnan(x)</literal> возвращает вектор или матрицу логических значений, которые содержат истинные элементы, соответствующие нечисловым элементам
             <literal>x</literal> и ложные элементы, соответствующие обычным элементам
             <literal>x</literal>.
         </para>
         <para>
             Здесь мы укажем причины существования этой функции.
-            Рассмотрим число с плавающей точкой <literal>x</literal> и предположим, что мы 
-            хотим узнать является ли это число нечисловым. 
+            Рассмотрим число с плавающей точкой <literal>x</literal> и предположим, что мы
+            хотим узнать является ли это число нечисловым.
             Условие <literal>(x==%nan)</literal> ложно, если  <literal>x</literal>
             равно <literal>%nan</literal>. Вот почему функция
             <literal>isnan</literal> полезна: она позволяет увидеть является ли число
@@ -59,7 +62,7 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 isnan([1 0.01 -%nan %inf-%inf])
  ]]></programlisting>
         <para>
@@ -67,7 +70,7 @@ isnan([1 0.01 -%nan %inf-%inf])
             особые свойства сравнения и сравним результаты с функцией
             <literal>isnan</literal>.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     %nan == %nan
     %nan <> %nan
     isnan(%nan)
@@ -76,7 +79,7 @@ isnan([1 0.01 -%nan %inf-%inf])
             В следующем примере мы выделим не-Nan значения <literal>y</literal> из
             массива <literal>x</literal>.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x = [1 2 %nan 3 %nan 4]
 k = find(~isnan(x))
 y = x(k)

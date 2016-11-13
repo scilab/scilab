@@ -5,7 +5,7 @@
         <refpurpose>create analog low-pass filter</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Syntax</title>
         <synopsis>
             [hs,pols,zers,gain]=analpf(n,fdesign,rp,omega)
             hs=analpf(n,fdesign,rp,omega)
@@ -191,7 +191,7 @@ title("Analog filters of order 7")
                 plot(fr,abs(hf),'r')
                 [fr, hf]=repfreq(hb,0,15);
                 plot(fr,abs(hf),'c')
-                
+
                 legend(["Chebyshev I","Chebyshev II","Elliptic","Butterworth"]);
                 xgrid()
                 xlabel("Frequency (Hz)")
@@ -201,7 +201,7 @@ title("Analog filters of order 7")
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="repfreq">repfreq</link>

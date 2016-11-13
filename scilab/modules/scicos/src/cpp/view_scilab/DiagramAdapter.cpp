@@ -2,11 +2,14 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -84,7 +87,7 @@ struct objs
         int link_i = 0;
         for (int i = 0; i < static_cast<int>(children.size()); ++i)
         {
-            if (children[i] == 0ll)
+            if (children[i] == ScicosID())
             {
                 // Deleted adapter
                 types::MList* deleted = new types::MList();
@@ -123,7 +126,35 @@ struct objs
                         property<BlockAdapter>::props_t_it found = std::lower_bound(property<BlockAdapter>::fields.begin(), property<BlockAdapter>::fields.end(), Model);
                         if (found != property<BlockAdapter>::fields.end())
                         {
-                            found->get(*block, controller);
+                            types::InternalType* subDiagram = found->get(*block, controller);
+
+                            // Now remove the references that this getter provoked, on the sub-diagram as well as in its sub-objects
+                            types::List* subList = block->getListObjects();
+                            for (int i = 0; i < subList->getSize(); ++i)
+                            {
+                                const Adapters::adapters_index_t adapter_index = Adapters::instance().lookup_by_typename(subList->get(i)->getShortTypeStr());
+                                switch (adapter_index)
+                                {
+                                    case Adapters::BLOCK_ADAPTER :
+                                    {
+                                        BlockAdapter* subBlock = subList->get(i)->getAs<BlockAdapter>();
+                                        const_cast<Controller&>(controller).deleteObject(subBlock->getAdaptee()->id());
+                                        break;
+                                    }
+                                    case Adapters::LINK_ADAPTER :
+                                    {
+                                        LinkAdapter* subLink = subList->get(i)->getAs<LinkAdapter>();
+                                        const_cast<Controller&>(controller).deleteObject(subLink->getAdaptee()->id());
+                                        break;
+                                    }
+                                    default : // TEXT_ADAPTER
+                                    {
+                                        TextAdapter* subText = subList->get(i)->getAs<TextAdapter>();
+                                        const_cast<Controller&>(controller).deleteObject(subText->getAdaptee()->id());
+                                    }
+                                }
+                            }
+                            subDiagram->killMe();
                         }
                     }
                     ret->append(block);
@@ -307,6 +338,9 @@ struct objs
 
                     diagramChildren.push_back(localAdaptee);
                     list->set(i, localAdaptor);
+
+                    // Do the linking in the next loop, in case the Link points to a Block that has not been added yet
+                    links.push_back(localAdaptor);
                 }
                 else
                 {
@@ -373,7 +407,7 @@ struct objs
             std::sort(oldDiagramChildren.begin(), oldDiagramChildren.end());
             for (const ScicosID id : diagramChildren)
             {
-                if (id != 0 && !std::binary_search(oldDiagramChildren.begin(), oldDiagramChildren.end(), id))
+                if (id != ScicosID() && !std::binary_search(oldDiagramChildren.begin(), oldDiagramChildren.end(), id))
                 {
                     auto o = controller.getObject(id);
                     controller.setObjectProperty(o->id(), o->kind(), PARENT_DIAGRAM, adaptee->id());
@@ -385,7 +419,7 @@ struct objs
             std::sort(diagramChildren.begin(), diagramChildren.end());
             for (const ScicosID id : oldDiagramChildren)
             {
-                if (id != 0 && !std::binary_search(diagramChildren.begin(), diagramChildren.end(), id))
+                if (id != ScicosID() && !std::binary_search(diagramChildren.begin(), diagramChildren.end(), id))
                 {
                     auto o = controller.getObject(id);
                     controller.setObjectProperty(o->id(), o->kind(), PARENT_DIAGRAM, ScicosID());

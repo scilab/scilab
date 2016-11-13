@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.xcos.graph.model;
@@ -22,12 +25,12 @@ import org.scilab.modules.xcos.block.io.ExplicitInBlock;
 import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
-import org.scilab.modules.xcos.block.positionning.BigSom;
-import org.scilab.modules.xcos.block.positionning.GroundBlock;
-import org.scilab.modules.xcos.block.positionning.Product;
-import org.scilab.modules.xcos.block.positionning.RoundBlock;
-import org.scilab.modules.xcos.block.positionning.Summation;
-import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
+import org.scilab.modules.xcos.block.custom.BigSom;
+import org.scilab.modules.xcos.block.custom.GroundBlock;
+import org.scilab.modules.xcos.block.custom.Product;
+import org.scilab.modules.xcos.block.custom.RoundBlock;
+import org.scilab.modules.xcos.block.custom.Summation;
+import org.scilab.modules.xcos.block.custom.VoltageSensorBlock;
 
 /**
  * List the specific block interface function name. <BR>

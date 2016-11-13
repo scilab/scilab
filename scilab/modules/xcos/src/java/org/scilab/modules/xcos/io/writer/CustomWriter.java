@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 package org.scilab.modules.xcos.io.writer;
@@ -41,17 +44,6 @@ public class CustomWriter extends ScilabWriter {
         switch (kind) {
             case DIAGRAM:
                 shared.stream.writeStartDocument();
-
-                /*
-                 * Add a version comment at startup
-                 */
-
-                final Package p = Package.getPackage("org.scilab.modules.xcos");
-                String comment = new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP)
-                .append(p.getSpecificationVersion()).append(SEP).append(p.getImplementationVersion()).toString();
-                shared.stream.writeComment(comment);
-                shared.stream.writeCharacters("\n");
-
                 shared.stream.writeStartElement(HandledElement.XcosDiagram.name());
 
                 /*
@@ -119,6 +111,16 @@ public class CustomWriter extends ScilabWriter {
         String[] str = new String[1];
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.TITLE, str);
         shared.stream.writeAttribute("title", str[0]);
+
+        /*
+         * Add a version comment at the top layer
+         */
+        if (kind == Kind.DIAGRAM) {
+            final Package p = Package.getPackage("org.scilab.modules.xcos");
+            String comment = new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP)
+            .append(p.getSpecificationVersion()).append(SEP).append(p.getImplementationVersion()).toString();
+            shared.stream.writeComment(comment);
+        }
 
         /*
          * encode some content then the children

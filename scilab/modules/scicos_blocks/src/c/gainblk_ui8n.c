@@ -44,7 +44,7 @@ SCICOS_BLOCKS_IMPEXP void gainblk_ui8n(scicos_block *block, int flag)
         opar = Getuint8OparPtrs(block, 1);
 
         k = pow(2, 8);
-        if (mo*no == 1)
+        if (mo * no == 1)
         {
             for (i = 0; i < ny * mu; ++i)
             {

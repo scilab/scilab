@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="splin" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="splin" xml:lang="pt">
     <refnamediv>
         <refname>splin</refname>
         <refpurpose>interpolação por spline cúbico</refpurpose>
@@ -15,7 +15,7 @@
                 <term>x</term>
                 <listitem>
                     <para>um vetor (linha ou coluna) estritamente crescente (x deve ter
-                        pelo menos dois componentes) 
+                        pelo menos dois componentes)
                     </para>
                 </listitem>
             </varlistentry>
@@ -31,7 +31,7 @@
                 <term>spline_type</term>
                 <listitem>
                     <para>(opcional) um string selecionando o tipo de spline a ser
-                        computado 
+                        computado
                     </para>
                 </listitem>
             </varlistentry>
@@ -39,7 +39,7 @@
                 <term>der</term>
                 <listitem>
                     <para>(optional) um vetor com dois componentes, com as derivadas nas
-                        extremidades (a ser fornecido quando spline_type="clamped") 
+                        extremidades (a ser fornecido quando spline_type="clamped")
                     </para>
                 </listitem>
             </varlistentry>
@@ -67,7 +67,7 @@
             <emphasis>Hermite ou hermitiana</emphasis> ). A avaliação do spline em
             alguns pontos deve ser feita pela função <link linkend="interp">interp</link>. Vários tipos de splines podem ser
             computados selecionando o parâmetro <literal>spline_type</literal>
-            apropriado: 
+            apropriado:
         </para>
         <variablelist>
             <varlistentry>
@@ -76,7 +76,7 @@
                     <para>este é o caso padrão, o spline cúbico é computado sob as
                         seguintes condições (considerando n pontos x1,...,xn):
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 s'''(x2-) = s'''(x2+)
 s'''(x{n-1}-) = s'''(x{n-1}+)
  ]]></programlisting>
@@ -89,7 +89,7 @@ s'''(x{n-1}-) = s'''(x{n-1}+)
                         extremidades do intervalo que devem ser fornecidas como último
                         argumento <literal>der</literal>:
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 s'(x1) = der(1)
 s'(xn) = der(2)
  ]]></programlisting>
@@ -99,7 +99,7 @@ s'(xn) = der(2)
                 <term>"natural"</term>
                 <listitem>
                     <para>o spline cúbico é computado sob as seguintes condições:</para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 s''(x1) = 0
 s''(xn) = 0
  ]]></programlisting>
@@ -113,7 +113,7 @@ s''(xn) = 0
                         deve verificar <emphasis>y1=yn</emphasis>) sob as seguintes
                         condições:
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 s'(x1) = s'(xn)
 s''(x1) = s''(xn)
  ]]></programlisting>
@@ -128,9 +128,9 @@ s''(x1) = s''(xn)
                         para os <emphasis>di</emphasis> tais que s é monótono em cada
                         intervalo:
                     </para>
-                    <programlisting role=""><![CDATA[ 
-if y(i) <= y(i+1)  s é crescente em [x(i), x(i+1)] 
-if y(i) >= y(i+1)  s é decrescente em [x(i), x(i+1)] 
+                    <programlisting role=""><![CDATA[
+if y(i) <= y(i+1)  s é crescente em [x(i), x(i+1)]
+if y(i) >= y(i+1)  s é decrescente em [x(i), x(i+1)]
  ]]></programlisting>
                 </listitem>
             </varlistentry>
@@ -142,7 +142,7 @@ if y(i) >= y(i+1)  s é decrescente em [x(i), x(i+1)]
                         x(i) da interpolação polinomial (x(i-1),y(i-1)),
                         (x(i),y(i)),(x(i+1),y(i+1)), exceto pelas extremidades (d1 sendo
                         computado a partir dos 3 pontos mais à esquerda e dn dos 3 pontos
-                        mais à direita). 
+                        mais à direita).
                     </para>
                 </listitem>
             </varlistentry>
@@ -166,7 +166,7 @@ if y(i) >= y(i+1)  s é decrescente em [x(i), x(i+1)]
             periódica, use o tipo <emphasis role="bold">periodic</emphasis> Sob boas
             suposições, estes tipos de spline têm um comportamento assintótico
             <literal>O(h^4)</literal> do erro. Não use o tipo <emphasis role="bold">natural</emphasis> a não ser que a função subjacente possua
-            zero derivadas segundas nas extremidades. 
+            zero derivadas segundas nas extremidades.
         </para>
         <para>
             Os tipos <emphasis role="bold">monotone</emphasis>, <emphasis role="bold">fast</emphasis> (ou <emphasis role="bold">fast_periodic</emphasis>) podem ser úteis e alguns caso, por
@@ -176,12 +176,12 @@ if y(i) >= y(i+1)  s é decrescente em [x(i), x(i+1)]
         <para>
             Se <emphasis>n=2</emphasis> (e <literal>spline_type</literal> não é
             <emphasis role="bold">clamped</emphasis>) é usada interpolação linear. Se
-            <emphasis>n=3</emphasis> e <literal>spline_type</literal> é <emphasis role="bold">not_a_knot</emphasis>, então, um sub-spline tipo <emphasis role="bold">fast</emphasis> é computado, na verdade. 
+            <emphasis>n=3</emphasis> e <literal>spline_type</literal> é <emphasis role="bold">not_a_knot</emphasis>, então, um sub-spline tipo <emphasis role="bold">fast</emphasis> é computado, na verdade.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // exemplo 1
 deff("y=runge(x)","y=1 ./(1 + x.^2)")
 a = -5; b = 5; n = 11; m = 400;

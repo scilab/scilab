@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="lqg_ltr">
+    <refnamediv>
+        <refname>lqg_ltr</refname>
+        <refpurpose>LQG/LTR (loop transform recovery)設計 </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[kf,kc]=lqg_ltr(sl,mu,ro)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        状態空間表現の線形システム (<literal>syslin</literal> リスト)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mu,ro</term>
+                <listitem>
+                    <para> ``十分に小さく''選択した正の実数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>kf,kc</term>
+                <listitem>
+                    <para>コントローラおよびオブザーバのカルマンゲイン.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            以下のシステムのカルマンゲインを返します:
+        </para>
+        <programlisting role=""><![CDATA[
+         x = a*x + b*u + l*w1
+(sl)
+         y = c*x + mu*I*w2
+         z = h*x
+ ]]></programlisting>
+        <para>
+            評価関数:
+        </para>
+        <programlisting role=""><![CDATA[
+         /+oo
+         |
+J    = E(| [z(t)'*z(t) + ro^2*u(t)'*u(t)]dt)
+ lqg     |
+         / 0
+  ]]></programlisting>
+        <para>
+            lqg/ltr 手法は, 以下のように設定した<literal>L,mu,H,ro</literal> に似ています:
+            J(lqg) = J(freq) ただし,
+        </para>
+        <programlisting role=""><![CDATA[
+        /+oo        *  *           *
+J    =  | tr[S  W  W  S ] + tr[T  T]dw
+ freq   |
+        /0
+ ]]></programlisting>
+        <para>
+            そして
+        </para>
+        <programlisting role=""><![CDATA[
+ S = (I + G*K)^(-1)
+ T = G*K*(I+G*K)^(-1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

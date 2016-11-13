@@ -2,11 +2,14 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 
@@ -21,6 +24,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.JavaController;
@@ -91,6 +95,7 @@ public class XcosSAXHandler extends DefaultHandler {
     protected final ScilabList dictionary;
     protected final JavaController controller;
     protected final Map<String, HandledElement> elementMap;
+    protected final Pattern validCIdentifier;
 
     private final Map<HandledElementsCategory, ScilabHandler> handlers;
 
@@ -111,6 +116,8 @@ public class XcosSAXHandler extends DefaultHandler {
 
         this.controller = new JavaController();
         this.elementMap = HandledElement.getMap();
+
+        this.validCIdentifier = Pattern.compile("[a-zA-Z][a-zA-Z0-9_]+");
 
         // add all the known handler to the map
         EnumMap<HandledElementsCategory, ScilabHandler> localHandlers = new EnumMap<>(HandledElementsCategory.class);
@@ -200,7 +207,6 @@ public class XcosSAXHandler extends DefaultHandler {
         controller.getObjectProperty(parentUID, parentKind, ObjectProperties.CHILDREN, children);
 
         children.add(cell.getUID());
-        controller.referenceObject(cell.getUID());
 
         controller.setObjectProperty(parentUID, parentKind, ObjectProperties.CHILDREN, children);
     }

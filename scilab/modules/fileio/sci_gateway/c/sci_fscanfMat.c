@@ -3,11 +3,14 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2010 - 2011 - DIGITEO - Allan CORNET
  *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -151,18 +154,25 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
 
         for (i = 0; i < NB_DEFAULT_SUPPORTED_SEPARATORS; i++)
         {
+            if (results)
+            {
+                freeFscanfMatResult(results);
+            }
             results = fscanfMat(expandedFilename, Format, supportedSeparators[i]);
             if (results && results->err == FSCANFMAT_NO_ERROR)
             {
                 break;
             }
-
-            freeFscanfMatResult(results);
         }
     }
     else
     {
         results = fscanfMat(expandedFilename, Format, separator);
+        if (results && results->err != FSCANFMAT_NO_ERROR)
+        {
+            freeFscanfMatResult(results);
+            results = NULL;
+        }
     }
 
     if (results == NULL)
@@ -267,10 +277,6 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
             return 0;
         }
     }
-
-    FREE(filename);
-    freeFscanfMatResult(results);
-    return 0;
 }
 /*--------------------------------------------------------------------------*/
 static void freeVar(char** filename, char** expandedFilename, char** Format, char** separator)

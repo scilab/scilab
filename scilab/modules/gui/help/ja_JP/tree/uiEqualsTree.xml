@@ -39,7 +39,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // ツリーを作成
 root = uiCreateNode('Root', 'path\rootImage.jpg', 'rootCallback')
 node1 = uiCreateNode('Node 1', 'default', 'node1Callback')

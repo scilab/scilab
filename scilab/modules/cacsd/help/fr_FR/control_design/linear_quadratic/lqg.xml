@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F Delebecque
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="lqg">
+    <refnamediv>
+        <refname>lqg</refname>
+        <refpurpose>LQG compensator</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[K]=lqg(P,r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list (augmented plant) in state-space form
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        1x2 row vector = (number of measurements, number of inputs)  (dimension of  the 2,2 part of <literal>P</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>
+                        <literal>syslin</literal> list (controller)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>lqg</literal>  computes the linear optimal LQG (H2) controller for the
+            "augmented" plant <literal>P=syslin('c',A,B,C,D)</literal> (continuous time) or
+            <literal>P=syslin('d',A,B,C,D)</literal> (discrete time).
+        </para>
+        <para>
+            The function <literal>lqg2stan</literal> returns <literal>P</literal> and <literal>r</literal> given the
+            nominal plant, weighting terms and variances of noises.
+        </para>
+        <para>
+            <literal>K</literal> is given by the following ABCD matrices:
+            <literal>[A+B*Kc+Kf*C+Kf*D*Kc,-Kf,Kc,0]</literal> where <literal>Kc=lqr(P12)</literal>
+            is the controller gain and <literal>Kf=lqe(P21)</literal> is the filter gain.
+            See example in <literal>lqg2stan</literal>.
+        </para>
+    </refsection>
+
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+  s=poly(0,'s');
+  Plant=syslin('c',[1/(s+1)*s/(s-1)^2]);     //Nominal Plant
+  P22=tf2ss(Plant);    //...in state-space form
+  [ny,nu,nx]=size(P22);
+  rand('seed',0);rand('normal');
+  bigQ=rand(nx+nu,nx+nu);
+  bigQ=bigQ*bigQ';
+  bigR=rand(nx+ny,nx+ny);
+  bigR=bigR*bigR';  //random weighting matrices
+  [Plqg,r]=lqg2stan(P22,bigQ,bigR);     //LQG pb as a standard problem
+  Klqg=lqg(Plqg,r);          //Controller
+  spec(h_cl(Plqg,r,Klqg))    //Check internal stability
+  [Slqg,Rlqg,Tlqg]=sensi(P22,Klqg);  //Sensitivity functions
+  frq=logspace(-3,3);     //10^-3  to 10^3
+  y=svplot(Slqg);       //Computes singular values;
+  gainplot(frq,y)   //Plot sing. values
+ ]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            Plant=syslin('c',[1/(s+1)*s/(s-1)^2]);     //Nominal Plant
+            P22=tf2ss(Plant);    //...in state-space form
+            [ny,nu,nx]=size(P22);
+            rand('seed',0);rand('normal');
+            bigQ=rand(nx+nu,nx+nu);
+            bigQ=bigQ*bigQ';
+            bigR=rand(nx+ny,nx+ny);
+            bigR=bigR*bigR';  //random weighting matrices
+            [Plqg,r]=lqg2stan(P22,bigQ,bigR);     //LQG pb as a standard problem
+            Klqg=lqg(Plqg,r);          //Controller
+            spec(h_cl(Plqg,r,Klqg))    //Check internal stability
+            [Slqg,Rlqg,Tlqg]=sensi(P22,Klqg);  //Sensitivity functions
+            frq=logspace(-3,3);     //10^-3  to 10^3
+            y=svplot(Slqg);       //Computes singular values;
+            gainplot(frq,y)   //Plot sing. values
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lqg2stan">lqg2stan</link>
+            </member>
+            <member>
+                <link linkend="lqr">lqr</link>
+            </member>
+            <member>
+                <link linkend="lqe">lqe</link>
+            </member>
+            <member>
+                <link linkend="h_inf">h_inf</link>
+            </member>
+            <member>
+                <link linkend="obscont">obscont</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
