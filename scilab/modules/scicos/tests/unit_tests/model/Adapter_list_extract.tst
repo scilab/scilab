@@ -15,7 +15,7 @@ loadXcosLibs();
 scs_m = scicos_diagram();
 
 lTf = list("props", "tf");
-assert_checkequal(scs_m(lTf), 100000);
+assert_checkequal(scs_m(lTf), 30);
 
 lObjs  = list("objs");
 assert_checkequal(scs_m(lObjs),  list());

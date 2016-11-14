@@ -16,7 +16,7 @@ Xcos trace:   objectReferenced( 1 , DIAGRAM ) : 1
 Xcos debug:   propertyUpdated( 1 , DIAGRAM , TITLE ) : SUCCESS
 Xcos debug:   propertyUpdated( 1 , DIAGRAM , PATH ) : SUCCESS
 Xcos debug:   propertyUpdated( 1 , DIAGRAM , PROPERTIES ) : SUCCESS
-Xcos trace:   propertyUpdated( 1 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+Xcos debug:   propertyUpdated( 1 , DIAGRAM , PROPERTIES ) : SUCCESS
 Xcos trace:   propertyUpdated( 1 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 1 , DIAGRAM ) : 0
 Xcos trace:   propertyUpdated( 1 , DIAGRAM , CHILDREN ) : NO_CHANGES

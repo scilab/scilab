@@ -39,8 +39,8 @@ struct SimulationConfig
     double solver;              //!< Current numerical solver.
     double delta_h;             //!< Maximum step interval.
 
-    SimulationConfig() : final_time(100000), absolute_tolerance(1e-6), relative_tolerance(1e-6),
-        time_tolerance(1e-10), delta_t(final_time + 1), realtime_scale(0), solver(1), delta_h(0) {};
+    SimulationConfig() : final_time(30), absolute_tolerance(1e-6), relative_tolerance(1e-6),
+        time_tolerance(1e-10), delta_t(100001), realtime_scale(0), solver(1), delta_h(0) {};
 
     SimulationConfig(const SimulationConfig& p) :  final_time(p.final_time), absolute_tolerance(p.absolute_tolerance),
         relative_tolerance(p.relative_tolerance), time_tolerance(p.time_tolerance), delta_t(p.delta_t),

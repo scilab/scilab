@@ -241,7 +241,7 @@ Xcos trace:   objectUnreferenced( 15 , BLOCK ) : 1
 wpar = [600,450,0,0,600,450]
 title = ["";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
-tf = 100000
+tf = 30
 context = []
 void1 = []
 options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
@@ -336,7 +336,7 @@ Xcos trace:   objectUnreferenced( 15 , BLOCK ) : 1
 wpar = [600,450,0,0,600,450]
 title = ["";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
-tf = 100000
+tf = 30
 context = []
 void1 = []
 options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
@@ -966,7 +966,7 @@ Xcos trace:   objectUnreferenced( 62 , BLOCK ) : 1
 wpar = [600,450,0,0,600,450]
 title = ["";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
-tf = 100000
+tf = 30
 context = []
 void1 = []
 options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
@@ -1113,7 +1113,7 @@ Xcos trace:   objectUnreferenced( 62 , BLOCK ) : 1
 wpar = [600,450,0,0,600,450]
 title = ["";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
-tf = 100000
+tf = 30
 context = []
 void1 = []
 options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
@@ -1343,7 +1343,7 @@ Xcos trace:   objectUnreferenced( 62 , BLOCK ) : 1
 wpar = [600,450,0,0,600,450]
 title = ["";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
-tf = 100000
+tf = 30
 context = []
 void1 = []
 options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
@@ -2068,7 +2068,7 @@ Xcos trace:   objectUnreferenced( 91 , BLOCK ) : 1
 wpar = [600,450,0,0,600,450]
 title = ["";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
-tf = 100000
+tf = 30
 context = []
 void1 = []
 options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
