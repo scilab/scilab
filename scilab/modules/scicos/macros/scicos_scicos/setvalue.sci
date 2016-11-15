@@ -243,7 +243,7 @@ function [%ok,%1,%2,%3,%4,%5,...
             else
                 str = gettext("%s: Type %s is not implemented.\n");
                 mess = msprintf(str, arg1.gui + "(''set'')", %typ(2*%kk-1));
-                if length(arg1.doc) > 0 then
+                if length(arg1.model.uid) > 0 & getscilabmode() == "STD" then
                     warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
                 else
                     error(mess);
@@ -255,7 +255,7 @@ function [%ok,%1,%2,%3,%4,%5,...
         if %noooo>0 then
             str = gettext("%s: Wrong size for block parameter ''%s'': %s expected, getting %s");
             mess = msprintf(str, arg1.gui + "(''set'')", %labels(%noooo), %ssss, %ini(%noooo));
-            if length(arg1.model.uid) > 0 then
+            if length(arg1.model.uid) > 0 & getscilabmode() == "STD" then
                 warnBlockByUID(arg1.model.uid, mess); // arg1 is from the block interface function
             else
                 disp(mess);
@@ -265,7 +265,7 @@ function [%ok,%1,%2,%3,%4,%5,...
         elseif %noooo<0 then
             str = gettext("%s: Wrong type for block parameter ''%s'': %s(%s) expected, getting %s");
             mess = msprintf(str, arg1.gui + "(''set'')", %labels(-%noooo), %typ(-2*%noooo-1), strcat(string(%typ(-2*%noooo))," by "), %ini(-%noooo));
-            if length(arg1.model.uid) > 0 then
+            if length(arg1.model.uid) > 0 & getscilabmode() == "STD" then
                 warnBlockByUID(arg1.model.uid, mess); // arg1 is from the block interface function
             else
                 disp(mess);

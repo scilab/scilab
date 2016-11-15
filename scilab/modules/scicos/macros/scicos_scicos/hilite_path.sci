@@ -61,8 +61,10 @@ function hilite_path(path,mess,with_intermediates)
         end
     end
 
-    if uid <> [] then
+    if uid <> [] & getscilabmode() == "STD" then
         warnBlockByUID(uid, strcat(mess, " "));
+    else
+        disp(mess);
     end
 endfunction
 
