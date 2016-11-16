@@ -72,4 +72,4 @@ private:
 } /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */
 
-#endif /* MODELADAPTER_HXX_ */
+#endif /* DIAGRAMADAPTER_HXX_ */
