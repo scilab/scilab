@@ -22,6 +22,8 @@
 #include "os_string.h"
 #include "messageboxoptions.h"
 
+void freeVariable(int _iRows, int _iCols, char** _pstData, char** _pstData1, int _iRows2, int _iCols2, char** _pstData2, char** _pstData3);
+
 /*--------------------------------------------------------------------------*/
 int sci_messagebox(char *fname, void* pvApiCtx)
 {
@@ -129,6 +131,7 @@ int sci_messagebox(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
+                freeVariable(nbRow, nbCol, titleAdr, iconAdr, nbRowButtons, nbColButtons, buttonsTextAdr, modalOptionAdr);
                 return 1;
             }
 
@@ -137,6 +140,7 @@ int sci_messagebox(char *fname, void* pvApiCtx)
             {
                 Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
                 freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
+                freeVariable(nbRow, nbCol, titleAdr, iconAdr, nbRowButtons, nbColButtons, buttonsTextAdr, modalOptionAdr);
                 return 1;
             }
 
@@ -154,6 +158,8 @@ int sci_messagebox(char *fname, void* pvApiCtx)
                     nbRowButtons = nbRow;
                     nbColButtons = nbCol;
                     iconAdr = NULL;
+                    nbRow = 1;
+                    nbCol = 1;
                 }
             }
             else  /* More than one string --> buttons names */
@@ -162,12 +168,15 @@ int sci_messagebox(char *fname, void* pvApiCtx)
                 nbRowButtons = nbRow;
                 nbColButtons = nbCol;
                 iconAdr = NULL;
+                nbRow = 1;
+                nbCol = 1;
             }
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: string or string vector expected.\n"), fname, 3);
             freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
+            freeVariable(nbRow, nbCol, titleAdr, iconAdr, nbRowButtons, nbColButtons, buttonsTextAdr, modalOptionAdr);
             return FALSE;
         }
     }
@@ -182,6 +191,7 @@ int sci_messagebox(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
+                freeVariable(nbRow, nbCol, titleAdr, iconAdr, nbRowButtons, nbColButtons, buttonsTextAdr, modalOptionAdr);
                 return 1;
             }
 
@@ -190,10 +200,11 @@ int sci_messagebox(char *fname, void* pvApiCtx)
             {
                 Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 4);
                 freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
+                freeVariable(nbRow, nbCol, titleAdr, iconAdr, nbRowButtons, nbColButtons, buttonsTextAdr, modalOptionAdr);
                 return 1;
             }
 
-            if (nbRow * nbCol == 1)
+            if (nbRowButtons * nbColButtons == 1)
             {
                 /* The buttons names argument can be used to give the modal option */
                 if (isModalOption(buttonsTextAdr[0]))
@@ -207,6 +218,7 @@ int sci_messagebox(char *fname, void* pvApiCtx)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: string or string vector expected.\n"), fname, 3);
             freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
+            freeVariable(nbRow, nbCol, titleAdr, iconAdr, nbRowButtons, nbColButtons, buttonsTextAdr, modalOptionAdr);
             return FALSE;
         }
     }
@@ -221,6 +233,7 @@ int sci_messagebox(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
+                freeVariable(nbRow, nbCol, titleAdr, iconAdr, nbRowButtons, nbColButtons, buttonsTextAdr, modalOptionAdr);
                 return 1;
             }
 
@@ -229,6 +242,7 @@ int sci_messagebox(char *fname, void* pvApiCtx)
             {
                 Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 5);
                 freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
+                freeVariable(nbRow, nbCol, titleAdr, iconAdr, nbRowButtons, nbColButtons, buttonsTextAdr, modalOptionAdr);
                 return 1;
             }
 
@@ -236,6 +250,7 @@ int sci_messagebox(char *fname, void* pvApiCtx)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 5);
                 freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
+                freeVariable(nbRow, nbCol, titleAdr, iconAdr, nbRowButtons, nbColButtons, buttonsTextAdr, modalOptionAdr);
                 return FALSE;
             }
         }
@@ -243,6 +258,7 @@ int sci_messagebox(char *fname, void* pvApiCtx)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 5);
             freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
+            freeVariable(nbRow, nbCol, titleAdr, iconAdr, nbRowButtons, nbColButtons, buttonsTextAdr, modalOptionAdr);
             return FALSE;
         }
     }
@@ -322,3 +338,30 @@ int sci_messagebox(char *fname, void* pvApiCtx)
     return TRUE;
 }
 /*--------------------------------------------------------------------------*/
+
+void freeVariable(int _iRows, int _iCols, char** _pstData, char** _pstData1, int _iRows2, int _iCols2, char** _pstData2, char** _pstData3)
+{
+    // tilteAdr
+    if (_pstData != NULL)
+    {
+        freeAllocatedMatrixOfString(_iRows, _iCols, _pstData);
+    }
+
+    // iconAdr
+    if (_pstData1 != NULL)
+    {
+        freeAllocatedMatrixOfString(_iRows, _iCols, _pstData1);
+    }
+
+    // buttonsTextAdr
+    if (_pstData2 != NULL)
+    {
+        freeAllocatedMatrixOfString(_iRows2, _iCols2, _pstData2);
+    }
+
+    // modalOptionAdr
+    if (_pstData3 != NULL)
+    {
+        freeAllocatedMatrixOfString(_iRows, _iCols, _pstData3);
+    }
+}
