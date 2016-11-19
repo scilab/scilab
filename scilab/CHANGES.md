@@ -344,6 +344,7 @@ Bug Fixes
 * [#13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597): `help format` claimed setting a number of digits instead of characters
 * [#13613](http://bugzilla.scilab.org/show_bug.cgi?id=13613): `isdef(name, 'l')` produced wrong output.
 * [#13620](http://bugzilla.scilab.org/show_bug.cgi?id=13620): `dos` called with a vector as input crashed.
+* [#13651](http://bugzilla.scilab.org/show_bug.cgi?id=13651): It was not possible to `copy` an axes into an uicontrol frame.
 * [#13757](http://bugzilla.scilab.org/show_bug.cgi?id=13757): The toolbox menu dit not load properly ATOMS modules not autoloaded.
 * [#13878](http://bugzilla.scilab.org/show_bug.cgi?id=13878): tokens([]) returns [].
 * [#13895](http://bugzilla.scilab.org/show_bug.cgi?id=13895): p.a.h = 1; p.b.h = 3; p(:).h  CRASH
