@@ -3,10 +3,17 @@
 /* Example detail in "API_scilab getting started" help page */
 /* This file is released under the 3-clause BSD license. See COPYING-BSD. */
 /* ==================================================================== */
-#include "api_scilab.hxx"
+#include "double.hxx"
+#include "bool.hxx"
+#include "function.hxx"
 
+extern "C" 
+{
+#include "Scierror.h"
+#include "localization.h"
+}
 /* ==================================================================== */
-api_scilab::Status sci_cppfoo(api_scilab::input &in, int _iRetCount, api_scilab::output &out)
+types::Function::ReturnValue sci_cppfoo(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     ////////// Check the number of input and output arguments //////////
     /* --> [c, d] = foo(a, b) */
@@ -14,48 +21,48 @@ api_scilab::Status sci_cppfoo(api_scilab::input &in, int _iRetCount, api_scilab:
     if (in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "cppfoo", 2);
-        return api_scilab::Error;
+        return types::Function::Error;
     }
 
     /* check that we have only 2 output argument */
     if (_iRetCount != 2)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected."), "cppfoo", 2);
-        return api_scilab::Error;
+        return types::Function::Error;
     }
 
     ////////// Manage the first input argument (double) //////////
 
     /* Check that the first input argument is a real matrix (and not complex) */
-    if (api_scilab::isDouble(in[0]) == false || api_scilab::getAsDouble(in[0])->isComplex())
+    if (in[0]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "cppfoo", 1);
-        return api_scilab::Error;
+        return types::Function::Error;
     }
 
-    api_scilab::Double* pdbl = api_scilab::getAsDouble(in[0]);
+    types::Double* pdbl = in[0]->getAs<types::Double>();
 
     ////////// Manage the second input argument (boolean) //////////
-    if (api_scilab::isBool(in[1]) == false)
+    if (in[1]->isBool() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A boolean matrix expected.\n"), "cppfoo", 2);
-        return api_scilab::Error;
+        return types::Function::Error;
     }
 
-    api_scilab::Bool* pb = api_scilab::getAsBool(in[1]);
+    types::Bool* pb = in[1]->getAs<types::Bool>();
 
 
     ////////// Application code //////////
     // Could be replaced by a call to a library
 
-    api_scilab::Double* pOut1 = new api_scilab::Double(pdbl->getDims(), pdbl->getDimsArray());
+    types::Double* pOut1 = new types::Double(pdbl->getDims(), pdbl->getDimsArray());
     for (int i = 0 ; i < pdbl->getSize() ; ++i)
     {
         /* For each element of the matrix, multiply by 2 */
         pOut1->set(i, pdbl->get(i) * 2);
     }
 
-    api_scilab::Bool* pOut2 = new api_scilab::Bool(pb->getDims(), pb->getDimsArray());
+    types::Bool* pOut2 = new types::Bool(pb->getDims(), pb->getDimsArray());
     for (int i = 0 ; i < pb->getSize() ; ++i)
     {
         /* For each element of the matrix, invert the value */
@@ -63,16 +70,11 @@ api_scilab::Status sci_cppfoo(api_scilab::input &in, int _iRetCount, api_scilab:
     }
 
     ////////// return output parameters //////////
-    out.push_back(api_scilab::getReturnVariable(pOut1));
-    out.push_back(api_scilab::getReturnVariable(pOut2));
+    out.push_back(pOut1);
+    out.push_back(pOut2);
 
-    //clear api variables
-    delete pdbl;
-    delete pb;
-    delete pOut1;
-    delete pOut2;
     //return gateway status
-    return api_scilab::OK;
+    return types::Function::OK;
 }
 /* ==================================================================== */
 

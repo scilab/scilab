@@ -2,15 +2,18 @@
 /* Template toolbox_skeleton */
 /* This file is released under the 3-clause BSD license. See COPYING-BSD. */
 /* ==================================================================== */
-#include "api_scilab.hxx"
+#include "double.hxx"
+#include "function.hxx"
 
 extern "C"
 {
+#include "Scierror.h"
+#include "localization.h"
 #include "multiplybypi.h"
 }
 
 /* ==================================================================== */
-api_scilab::Status sci_cppmultiplybypi(api_scilab::input &in, int _iRetCount, api_scilab::output &out)
+types::Function::ReturnValue sci_cppmultiplybypi(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     /* --> result = multiplybypi(8) */
     /* --> result = multiplybypi([12, 42; 42, 12]) */
@@ -19,28 +22,28 @@ api_scilab::Status sci_cppmultiplybypi(api_scilab::input &in, int _iRetCount, ap
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "cppmultiplybypi", 1);
-        return api_scilab::Error;
+        return types::Function::Error;
     }
 
     /* check that we have only 1 output argument */
     if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected."), "cppmultiplybypi", 1);
-        return api_scilab::Error;
+        return types::Function::Error;
     }
 
     /* check input type */
-    if (api_scilab::isDouble(in[0]) == false)
+    if (in[0]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "cppmultiplybypi", 1);
-        return api_scilab::Error;
+        return types::Function::Error;
     }
 
     /* get matrix */
-    api_scilab::Double* pdblIn = api_scilab::getAsDouble(in[0]);
+    types::Double* pdblIn = in[0]->getAs<types::Double>();
 
     //create output variable
-    api_scilab::Double* pdblOut = new api_scilab::Double(pdblIn->getDims(), pdblIn->getDimsArray());
+    types::Double* pdblOut = new types::Double(pdblIn->getDims(), pdblIn->getDimsArray());
 
     /* The difference with the csum & csub is that we give the argument as copy
      * and not as reference */
@@ -51,13 +54,10 @@ api_scilab::Status sci_cppmultiplybypi(api_scilab::input &in, int _iRetCount, ap
     }
 
     //set output paramter
-    out.push_back(api_scilab::getReturnVariable(pdblOut));
+    out.push_back(pdblOut);
 
-    //clear api variables
-    delete pdblIn;
-    delete pdblOut;
     //return gateway status
-    return api_scilab::OK;
+    return types::Function::OK;
 }
 /* ==================================================================== */
 
