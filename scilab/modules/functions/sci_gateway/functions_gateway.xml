@@ -26,8 +26,6 @@
     <gateway name="sci_execstr"             function="execstr"              type="1" />
     <gateway name="sci_funclist"            function="funclist"             type="1" />
     <gateway name="sci_whereis"             function="whereis"              type="1" />
-    <gateway name="sci_getCurrentThreadId"  function="getCurrentThreadId"   type="1" />
-    <gateway name="sci_getThreads"          function="getThreads"           type="1" />
     <gateway name="sci_macrovar"            function="macrovar"             type="1" />
     <gateway name="sci_libraryinfo"         function="libraryinfo"          type="1" />
     <gateway name="sci_librarieslist"       function="librarieslist"        type="1" />

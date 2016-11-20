@@ -179,8 +179,6 @@
     </ClCompile>
     <ClCompile Include="sci_execstr.cpp" />
     <ClCompile Include="sci_functionlist.cpp" />
-    <ClCompile Include="sci_getCurrentThreadId.cpp" />
-    <ClCompile Include="sci_getThreads.cpp" />
     <ClCompile Include="sci_libraryinfo.cpp" />
     <ClCompile Include="sci_librarieslist.cpp" />
     <ClCompile Include="sci_macrovar.cpp" />

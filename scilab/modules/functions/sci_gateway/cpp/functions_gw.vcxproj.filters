@@ -24,12 +24,6 @@
     <ClCompile Include="sci_functionlist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_getCurrentThreadId.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_getThreads.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_whereis.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
