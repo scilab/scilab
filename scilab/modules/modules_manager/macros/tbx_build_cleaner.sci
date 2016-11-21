@@ -113,7 +113,7 @@ function tbx_build_cleaner(name, path)
     "perform_clean();",
     "catch"
     "    [errmsg, tmp, nline, func] = lasterror()"
-    "    msg = ""%s: error on line #%d: ""%s""\n"""
+    "    msg = ""%s: error on line #%d: """"%s""""\n"""
     "    msg = msprintf(msg, func, nline, errmsg)"
     "    lines(oldlines)"
     "    mode(oldmode);"

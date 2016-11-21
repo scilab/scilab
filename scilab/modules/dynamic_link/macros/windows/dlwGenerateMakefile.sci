@@ -80,7 +80,7 @@ function Makename = dlwGenerateMakefile(name, ..
 endfunction
 //=============================================================================
 function ilib_gen_Make_win32(name, ..
-    table, ..
+    tables, ..
     files, ..
     libs, ..
     libname, ..

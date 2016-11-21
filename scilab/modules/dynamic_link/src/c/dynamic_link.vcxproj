@@ -201,6 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\addinter.h" />
+    <ClInclude Include="..\..\includes\dynamiclibrary.h" />
     <ClInclude Include="..\..\includes\dynamiclibrary_windows.h" />
     <ClInclude Include="dllinfo.h" />
     <ClInclude Include="dl_genErrorMessage.h" />

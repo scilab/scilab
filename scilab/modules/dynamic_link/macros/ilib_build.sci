@@ -98,6 +98,20 @@ function ilib_build(ilib_name, ..
         mprintf(_("   Generate a gateway file\n"));
     end
 
+    //check supported language
+    l = ilib_language();
+    if size(table, "c") > 2 then
+        lang = table(:, 3);
+    else
+        lang(1:size(table, "r")) = "csci";
+    end
+
+    for i = 1:size(lang, "*")
+        if isempty(grep(l, lang(i))) then
+            error(999, msprintf(_("%s: ""%s"" format is not supported by your compiler."), "ilib_build", lang(i)));
+        end
+    end
+
     file_gw_name = ilib_gen_gateway(ilib_name, table);
 
     // generate a loader file
