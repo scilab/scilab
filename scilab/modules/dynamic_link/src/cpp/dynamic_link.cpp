@@ -201,7 +201,7 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
     }
 
     /** entry was previously loaded **/
-    if (ConfigVariable::getEntryPoint(_pwstEntryPointName, _iLibID) != NULL)
+    if (ConfigVariable::getEntryPoint(pwstEntryPointName, _iLibID) != NULL)
     {
         sciprint(_("Entry name %ls.\n"), _pwstEntryPointName);
         FREE(pwstEntryPointName);
@@ -211,13 +211,9 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
 
     pEP->iLibIndex = _iLibID;
     hDynLib = (DynLibHandle)  ConfigVariable::getDynamicLibrary(_iLibID)->hLib;
-#ifdef _MCS_VER
-    pEP->functionPtr = (function) GetDynLibFuncPtrW(hDynLib, pwstEntryPointName);
-#else
     char* pstEntryPointName = wide_string_to_UTF8(pwstEntryPointName);
     pEP->functionPtr = (function) GetDynLibFuncPtr(hDynLib, pstEntryPointName);
     FREE(pstEntryPointName);
-#endif
     if (pEP->functionPtr == NULL)
     {
         if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
