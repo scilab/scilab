@@ -26,6 +26,8 @@
 
 #define MODULE_NAME L"string"
 
+wchar_t* StringModule::pwstToken = NULL;
+
 int StringModule::Load()
 {
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"grep", &sci_grep, MODULE_NAME));
@@ -58,4 +60,23 @@ int StringModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isnum", &sci_isnum, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"csvIsnum", &sci_isnum, MODULE_NAME));
     return 1;
+}
+
+wchar_t* StringModule::setToken(wchar_t* _base)
+{
+    deleteToken();
+
+    // clone because strtok is destructive:
+    // it writes the L'\0' characters in the elements of the origin string.
+    pwstToken = os_wcsdup(_base);
+    return pwstToken;
+}
+
+void StringModule::deleteToken()
+{
+    if (pwstToken)
+    {
+        FREE(pwstToken);
+        pwstToken = NULL;
+    }
 }

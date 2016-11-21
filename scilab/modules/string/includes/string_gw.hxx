@@ -20,6 +20,7 @@
 #include "dynlib_string_gw.h"
 
 #include "cpp_gateway_prototype.hxx"
+#include "sci_malloc.h"
 
 class StringModule
 {
@@ -30,8 +31,13 @@ public :
     EXTERN_STRING_GW static int Load();
     EXTERN_STRING_GW static int Unload()
     {
+        deleteToken();
         return 1;
     }
+
+    static wchar_t* pwstToken;
+    static wchar_t* setToken(wchar_t* _base);
+    static void deleteToken();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_grep);
