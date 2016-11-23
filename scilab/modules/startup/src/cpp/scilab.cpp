@@ -45,6 +45,7 @@ extern "C"
 #include "PATH_MAX.h"
     jmp_buf ScilabJmpEnv;
 #else
+#include "cliDisplayManagement.h"
     extern jmp_buf ScilabJmpEnv;
 #endif
 #include "isatty.hxx"
@@ -243,6 +244,12 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
         else if (!strcmp("--exec-verbose", argv[i]))
         {
             _pSEI->iExecVerbose = 1;
+        }
+        else if (!strcmp("-nocolor", argv[i]))
+        {
+#ifndef _MSC_VER
+            setCLIColor(FALSE);
+#endif
         }
         else if (!strcmp("--timeout", argv[i]))
         {

@@ -21,6 +21,7 @@
 #include <string.h>
 #include <errno.h>
 #include "sci_malloc.h"
+#include "cliDisplayManagement.h"
 #include "initConsoleMode.h"
 
 static void canonicMode(struct termios *t)
@@ -72,6 +73,11 @@ static void resetShellAttr(void)
 int setAttr(int bin)
 {
     struct termios shellAttr;
+
+    if (getCLIColor() == FALSE)
+    {
+        return 0;
+    }
 
     if (bin == ATTR_RESET)
     {
