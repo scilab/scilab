@@ -50,7 +50,7 @@ function answ = isempty(m)
             answ = size(m, "*") == 0;
         else
             answ = %t;
-            for i = 2:size(m,"*")
+            for i = 2:size(m)
                 answ = answ & (type(m(i))==0 || isempty(m(i)))
                 if ~answ
                     break

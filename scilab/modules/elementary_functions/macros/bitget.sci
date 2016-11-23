@@ -89,13 +89,7 @@ function y = bitget(x,pos)
     // Algorithm
     // =========================================================================
 
-    if size(pos,"*") == 1;
-        pos  = ones(x)  * pos;
-    end
 
-    if size(x,"*") == 1;
-        x    = ones(pos) * x;
-    end
 
     if type(x)==8 then
 
@@ -120,6 +114,14 @@ function y = bitget(x,pos)
     else
 
         // type == 1
+
+        if size(pos,"*") == 1;
+            pos  = ones(x)  * pos;
+        end
+
+        if size(x,"*") == 1;
+            x    = ones(pos) * x;
+        end
 
         a     = 2^32;
         mask  = uint32(zeros(pos));
