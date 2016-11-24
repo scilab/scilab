@@ -12,37 +12,37 @@
 a=-1/3;
 b=1;
 c=1;
-sl=syslin('c',a,b,c);
+sl=syslin("c",a,b,c);
 sld=dscr(sl,0.1);
-assert_checkalmostequal ( sld.dt , 0.1 , %eps );
+assert_checkalmostequal ( sld.dt , 0.1 , %eps , 0);
 computed = sld.A;
 expected = exp(sl.A*0.1);
-assert_checkalmostequal ( computed , expected , %eps );
+assert_checkalmostequal ( computed , expected , %eps , %eps);
 computed = sld.B;
 expected = sl.A\(sld.A-eye())*sl.B;
-assert_checkalmostequal ( computed , expected , %eps );
+assert_checkalmostequal ( computed , expected);
 
 // Case #2
 a=[0.9,0,0.6,-1.4,-4.2;
-   0.2,0.1,-0.2,0.5,0.6;
-   -4.3,0,2.2,0,2.4;
-   -3.7,-0.5,2.4,-0.6,2.7;
-   6.4,0.1,-4,-0.5,-4];
+0.2,0.1,-0.2,0.5,0.6;
+-4.3,0,2.2,0,2.4;
+-3.7,-0.5,2.4,-0.6,2.7;
+6.4,0.1,-4,-0.5,-4];
 
 b=[-0.1,-0.1,0;
-   0,0,0.1;
-   -0.1,0.2,-0.1;
-   0.2,0.2,-0.6;
-   0.2,-0.1,0.1];
- 
-c=[2,7,-2,5,1
-   0,-1,3,0,2];
-d=[1,0,0
-   0,0,0];
+0,0,0.1;
+-0.1,0.2,-0.1;
+0.2,0.2,-0.6;
+0.2,-0.1,0.1];
 
-sl=syslin('c',a,b,c,d);
+c=[2,7,-2,5,1
+0,-1,3,0,2];
+d=[1,0,0
+0,0,0];
+
+sl=syslin("c",a,b,c,d);
 sld=dscr(sl,0.1);
-assert_checkalmostequal ( sld.dt , 0.1 , %eps );
+assert_checkalmostequal ( sld.dt , 0.1 , %eps , 0 );
 computed = sld.A;
 expected = expm(sl.A*0.1);
 assert_checkalmostequal ( computed , expected , 1.e3 * %eps );
