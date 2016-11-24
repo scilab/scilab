@@ -13,39 +13,46 @@
 *
 */
 
-#include "api_scilab.hxx"
+#include "function.hxx"
+#include "bool.hxx"
 #include "newtype.hxx"
 
-api_scilab::Status sci_newtype(api_scilab::input &in, int _iRetCount, api_scilab::output &out)
+extern "C" 
+{
+#include "Scierror.h"
+#include "localization.h"
+}
+
+
+types::Function::ReturnValue sci_newtype(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() > 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "newtype", 1);
-        return api_scilab::Error;
+        return types::Function::Error;
     }
 
     if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected."), "newtype", 1);
-        return api_scilab::Error;
+        return types::Function::Error;
     }
 
     if (in.size() == 1)
     {
-        api_scilab::Bool* pIn = api_scilab::getAsBool(in[0]);
+        types::Bool* pIn = in[0]->getAs<types::Bool>();
         if (pIn == NULL || pIn->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "cppfoo", 1);
-            return api_scilab::Error;
+            return types::Function::Error;
         }
 
         out.push_back(new NewType(pIn->get(0)));
-        delete pIn;
     }
     else
     {
         out.push_back(new NewType());
     }
 
-    return api_scilab::OK;
+    return types::Function::OK;
 }
