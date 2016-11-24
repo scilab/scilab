@@ -29,7 +29,7 @@ A = [1,0,0,0,0,0,0,0;
 disp(nearfloat("succ", expm(A)));
 // now display is ok
 
-format(25);
+format(19);
 disp(nearfloat("succ", expm(A)));
 
 A =  matrix(linspace(-1E10,1E20,64), 8, 8);
@@ -59,7 +59,7 @@ A(5, 5) = 0;
 B(5, 5) = -B(5, 5);
 A(6, 6) = 0;
 B(6, 6) = 1;
-format(25);
+format(19);
 disp(A + %i * B);
 format(10);
 disp(A + %i * B);
