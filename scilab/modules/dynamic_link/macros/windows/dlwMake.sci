@@ -50,9 +50,12 @@ function filename = writeBatchFile(cmd)
 
     //update DEBUG_SCILAB_DYNAMIC_LINK to match with Scilab compilation mode
     val = getenv("DEBUG_SCILAB_DYNAMIC_LINK","");
-    debugVal = "NO";
-    if val <> "YES" & val <> "NO" & isDebug() then
-        debugVal = "YES";
+    if val <> "NO" & val <> "YES" then
+        if isDebug() then
+            val = "YES";
+        else
+            val = "NO";
+        end
     end
 
     if win64() then
@@ -65,7 +68,7 @@ function filename = writeBatchFile(cmd)
 
     scibuild = [ ...
     "@call """ + path + "\VC\vcvarsall.bat"" " + arch;
-    "set DEBUG_SCILAB_DYNAMIC_LINK=" + debugVal;
+    "set DEBUG_SCILAB_DYNAMIC_LINK=" + val;
     cmd
     ];
 
