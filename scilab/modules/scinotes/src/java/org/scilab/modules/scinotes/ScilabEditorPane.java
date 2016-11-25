@@ -130,7 +130,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private MatchingBlockManager matchLR;
     private MatchingBlockManager matchRL;
 
-    private boolean suppressCom = true;
+    private boolean suppressCom = false;
 
     private SciNotesLineNumberPanel xln;
     private ScilabEditorPane rightTextPane;
