@@ -21,7 +21,7 @@ function [f1] = %r_m_p(r1,p2)
         if isrow(r1) then
             f1 = p2.'*r1.';
         else
-            f1 = (p2.'*r1.')';
+            f1 = (p2.'*r1.').';
         end
     end
 endfunction
