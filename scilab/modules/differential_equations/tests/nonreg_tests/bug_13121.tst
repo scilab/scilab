@@ -74,6 +74,6 @@ endfunction
 
 t=0:0.01:40;
 
-refMsg = [msprintf(_("Invalid index."));
-msprintf(_("%s: An error occured in ''%s'' subroutine.\n"), "ode", "lsrgk")];
+refMsg = [msprintf(_("Invalid index.\n"));
+msprintf(_("%ls: An error occured in ''%s'' subroutine.\n"), "ode", "lsrgk")];
 assert_checkerror("res=ode(""rk"",[x0;y0;v0;teta0;],t0,t,right)", refMsg);

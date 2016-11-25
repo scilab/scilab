@@ -18,7 +18,7 @@ ieee(0);
 deff("y = f(x)", "y = sin(x) ./ x");
 // This function is going to be evaluated by intg at the midpoint of the interval [-1; 1], so it will produce a "Division by zero" error.
 refMsg = [msprintf(_("Division by zero...\n"));
-msprintf(_("%s: An error occured in ''%s'' subroutine."), "intg", "dqags")];
+msprintf(_("%ls: An error occured in ''%ls'' subroutine."), "intg", "dqags")];
 assert_checkerror("intg(-1, 1, f)", refMsg);
 
 deff("y = g(x)", "y = b");
