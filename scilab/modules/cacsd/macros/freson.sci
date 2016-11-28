@@ -62,5 +62,5 @@ function fr=freson(h)
     k=find(abs(repfreq(h,fr))-abs(repfreq(h,fr*0.999))>0)
     fr=fr(k)
     if fr==[] then return;end
-    fr=gsort(fr,"g","i");
+    fr=gsort(fr,"g","d");
 endfunction
