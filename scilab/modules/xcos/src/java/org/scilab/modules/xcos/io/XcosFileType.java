@@ -143,7 +143,16 @@ public enum XcosFileType {
 
         @Override
         public void load(String file, XcosDiagram into) throws Exception {
-            JavaXMIResource.load(file, into.getUID());
+            View xcosView = JavaController.lookup_view(Xcos.class.getName());
+            try {
+                JavaController.unregister_view(xcosView);
+
+                JavaController controller = new JavaController();
+                JavaXMIResource.load(file, into.getUID());
+                XcosCellFactory.insertChildren(controller, into);
+            } finally {
+                JavaController.register_view(Xcos.class.getName(), xcosView);
+            }
         }
 
         @Override
