@@ -201,7 +201,7 @@ int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOOL _bFortran)
     }
 
     /** entry was previously loaded **/
-    if (ConfigVariable::getEntryPoint(pwstEntryPointName, _iLibID) != NULL)
+    if (ConfigVariable::getEntryPoint(_pwstEntryPointName, _iLibID) != NULL)
     {
         sciprint(_("Entry name %ls.\n"), _pwstEntryPointName);
         FREE(pwstEntryPointName);
