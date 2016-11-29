@@ -65,9 +65,6 @@
     <ClCompile Include="..\cpp\BrowseVarManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\ui_data_gw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\jni\ui_data_wrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>

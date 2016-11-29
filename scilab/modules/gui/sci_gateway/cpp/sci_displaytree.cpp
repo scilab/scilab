@@ -20,7 +20,6 @@
 #include <vector>
 
 #include "gui_gw.hxx"
-
 #include "displaytree.hxx"
 #include "ScilabDisplayTree.hxx"
 #include "GiwsException.hxx"

@@ -18,7 +18,7 @@
 #include "api_scilab.h"
 #include "CommandHistory_Wrap.h"
 /*--------------------------------------------------------------------------*/
-int sci_browsehistory(char *fname, unsigned long fname_len)
+int sci_browsehistory(char *fname, void* pvApiCtx)
 {
     CheckRhs(0, 0);
     CheckLhs(0, 1);

@@ -204,22 +204,18 @@ am__v_lt_1 =
 @GUI_TRUE@am_libsciui_data_algo_la_rpath =
 libsciui_data_disable_la_LIBADD =
 am__objects_4 = src/noui_data/libsciui_data_disable_la-noui_data.lo
-am__objects_5 =  \
-	src/noui_data/libsciui_data_disable_la-noui_data_gw.lo
-am_libsciui_data_disable_la_OBJECTS = $(am__objects_4) \
-	$(am__objects_5)
+am_libsciui_data_disable_la_OBJECTS = $(am__objects_4)
 libsciui_data_disable_la_OBJECTS =  \
 	$(am_libsciui_data_disable_la_OBJECTS)
 am__DEPENDENCIES_1 =
 libsciui_data_la_DEPENDENCIES = libsciui_data-algo.la \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
-am__objects_6 = sci_gateway/cpp/libsciui_data_la-sci_editvar.lo \
+am__objects_5 = sci_gateway/cpp/libsciui_data_la-sci_editvar.lo \
 	sci_gateway/cpp/libsciui_data_la-sci_browsevar.lo \
 	sci_gateway/cpp/libsciui_data_la-sci_filebrowser.lo \
 	sci_gateway/cpp/libsciui_data_la-sci_updatebrowsevar.lo \
-	sci_gateway/cpp/libsciui_data_la-sci_closeEditvar.lo \
-	sci_gateway/cpp/libsciui_data_la-ui_data_gw.lo
-am_libsciui_data_la_OBJECTS = $(am__objects_6)
+	sci_gateway/cpp/libsciui_data_la-sci_closeEditvar.lo
+am_libsciui_data_la_OBJECTS = $(am__objects_5)
 libsciui_data_la_OBJECTS = $(am_libsciui_data_la_OBJECTS)
 libsciui_data_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
@@ -649,8 +645,7 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_browsevar.cpp \
     sci_gateway/cpp/sci_filebrowser.cpp \
     sci_gateway/cpp/sci_updatebrowsevar.cpp \
-    sci_gateway/cpp/sci_closeEditvar.cpp \
-    sci_gateway/cpp/ui_data_gw.cpp
+    sci_gateway/cpp/sci_closeEditvar.cpp
 
 libsciui_data_la_CPPFLAGS = \
     $(JAVA_JNI_INCLUDE) \
@@ -695,8 +690,7 @@ libsciui_data_disable_la_CPPFLAGS = \
     $(AM_CPPFLAGS)
 
 UI_DATA_DISABLE_C_SOURCES = src/noui_data/noui_data.c
-UI_DATA_DISABLE_CXX_SOURCES = src/noui_data/noui_data_gw.cpp
-libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES) $(UI_DATA_DISABLE_CXX_SOURCES)
+libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libsciui_data-disable.la $(am__append_3)
 @GUI_TRUE@noinst_LTLIBRARIES = libsciui_data-algo.la
 libsciui_data_la_LDFLAGS = $(AM_LDFLAGS)
@@ -937,12 +931,9 @@ src/noui_data/$(DEPDIR)/$(am__dirstamp):
 src/noui_data/libsciui_data_disable_la-noui_data.lo:  \
 	src/noui_data/$(am__dirstamp) \
 	src/noui_data/$(DEPDIR)/$(am__dirstamp)
-src/noui_data/libsciui_data_disable_la-noui_data_gw.lo:  \
-	src/noui_data/$(am__dirstamp) \
-	src/noui_data/$(DEPDIR)/$(am__dirstamp)
 
 libsciui_data-disable.la: $(libsciui_data_disable_la_OBJECTS) $(libsciui_data_disable_la_DEPENDENCIES) $(EXTRA_libsciui_data_disable_la_DEPENDENCIES) 
-	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libsciui_data_disable_la_OBJECTS) $(libsciui_data_disable_la_LIBADD) $(LIBS)
+	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libsciui_data_disable_la_OBJECTS) $(libsciui_data_disable_la_LIBADD) $(LIBS)
 sci_gateway/cpp/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp
 	@: > sci_gateway/cpp/$(am__dirstamp)
@@ -962,9 +953,6 @@ sci_gateway/cpp/libsciui_data_la-sci_updatebrowsevar.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libsciui_data_la-sci_closeEditvar.lo:  \
-	sci_gateway/cpp/$(am__dirstamp) \
-	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/cpp/libsciui_data_la-ui_data_gw.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
@@ -992,7 +980,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciui_data_la-sci_editvar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciui_data_la-sci_filebrowser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciui_data_la-sci_updatebrowsevar.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciui_data_la-ui_data_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciui_data_algo_la-PutScilabVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciui_data_algo_la-BrowseVarManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciui_data_algo_la-FileBrowserChDir.Plo@am__quote@
@@ -1001,7 +988,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libsciui_data_algo_la-FileBrowser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libsciui_data_algo_la-ui_data_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/noui_data/$(DEPDIR)/libsciui_data_disable_la-noui_data.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/noui_data/$(DEPDIR)/libsciui_data_disable_la-noui_data_gw.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -1107,13 +1093,6 @@ src/cpp/libsciui_data_algo_la-FileBrowserChDir.lo: src/cpp/FileBrowserChDir.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciui_data_algo_la-FileBrowserChDir.lo `test -f 'src/cpp/FileBrowserChDir.cpp' || echo '$(srcdir)/'`src/cpp/FileBrowserChDir.cpp
 
-src/noui_data/libsciui_data_disable_la-noui_data_gw.lo: src/noui_data/noui_data_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/noui_data/libsciui_data_disable_la-noui_data_gw.lo -MD -MP -MF src/noui_data/$(DEPDIR)/libsciui_data_disable_la-noui_data_gw.Tpo -c -o src/noui_data/libsciui_data_disable_la-noui_data_gw.lo `test -f 'src/noui_data/noui_data_gw.cpp' || echo '$(srcdir)/'`src/noui_data/noui_data_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/noui_data/$(DEPDIR)/libsciui_data_disable_la-noui_data_gw.Tpo src/noui_data/$(DEPDIR)/libsciui_data_disable_la-noui_data_gw.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/noui_data/noui_data_gw.cpp' object='src/noui_data/libsciui_data_disable_la-noui_data_gw.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/noui_data/libsciui_data_disable_la-noui_data_gw.lo `test -f 'src/noui_data/noui_data_gw.cpp' || echo '$(srcdir)/'`src/noui_data/noui_data_gw.cpp
-
 sci_gateway/cpp/libsciui_data_la-sci_editvar.lo: sci_gateway/cpp/sci_editvar.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciui_data_la-sci_editvar.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciui_data_la-sci_editvar.Tpo -c -o sci_gateway/cpp/libsciui_data_la-sci_editvar.lo `test -f 'sci_gateway/cpp/sci_editvar.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_editvar.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciui_data_la-sci_editvar.Tpo sci_gateway/cpp/$(DEPDIR)/libsciui_data_la-sci_editvar.Plo
@@ -1148,13 +1127,6 @@ sci_gateway/cpp/libsciui_data_la-sci_closeEditvar.lo: sci_gateway/cpp/sci_closeE
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_closeEditvar.cpp' object='sci_gateway/cpp/libsciui_data_la-sci_closeEditvar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciui_data_la-sci_closeEditvar.lo `test -f 'sci_gateway/cpp/sci_closeEditvar.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_closeEditvar.cpp
-
-sci_gateway/cpp/libsciui_data_la-ui_data_gw.lo: sci_gateway/cpp/ui_data_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciui_data_la-ui_data_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciui_data_la-ui_data_gw.Tpo -c -o sci_gateway/cpp/libsciui_data_la-ui_data_gw.lo `test -f 'sci_gateway/cpp/ui_data_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/ui_data_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciui_data_la-ui_data_gw.Tpo sci_gateway/cpp/$(DEPDIR)/libsciui_data_la-ui_data_gw.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/ui_data_gw.cpp' object='sci_gateway/cpp/libsciui_data_la-ui_data_gw.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciui_data_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciui_data_la-ui_data_gw.lo `test -f 'sci_gateway/cpp/ui_data_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/ui_data_gw.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

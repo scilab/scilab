@@ -21,6 +21,10 @@
 
  Don't touch if you do not know what you are doing
 -->
-<module name="history_browser">
-    <gateway name="sci_browsehistory"   function="browsehistory"    type="0" />
+<module name="ui_data">
+    <gateway name="sci_browsevar"       function="browsevar"        type="1" />
+    <gateway name="sci_editvar"         function="editvar"          type="0" />
+    <gateway name="sci_filebrowser"     function="filebrowser"      type="1" />
+    <gateway name="sci_updatebrowsevar" function="updatebrowsevar"  type="1" />
+    <gateway name="sci_closeEditvar"    function="closeEditvar"     type="1" />
 </module>

@@ -270,9 +270,6 @@
     <None Include="renderer.iss" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\bin\libjvm.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\tools\Dumpexts\Dumpexts.vcxproj">
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -282,7 +279,6 @@
     </ProjectReference>
     <ProjectReference Include="..\jvm\libjvm.vcxproj">
       <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\localization\src\localization.vcxproj">
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>

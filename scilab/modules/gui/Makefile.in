@@ -292,11 +292,10 @@ am__v_lt_1 =
 @GUI_TRUE@am_libscigui_algo_la_rpath =
 libscigui_disable_la_LIBADD =
 am__objects_3 = src/nogui/libscigui_disable_la-nogui.lo
-am__objects_4 = src/nogui/libscigui_disable_la-nogui_gw.lo
-am_libscigui_disable_la_OBJECTS = $(am__objects_3) $(am__objects_4)
+am_libscigui_disable_la_OBJECTS = $(am__objects_3)
 libscigui_disable_la_OBJECTS = $(am_libscigui_disable_la_OBJECTS)
 libscigui_la_DEPENDENCIES = libscigui-algo.la
-am__objects_5 = sci_gateway/c/libscigui_la-sci_x_choose.lo \
+am__objects_4 = sci_gateway/c/libscigui_la-sci_x_choose.lo \
 	sci_gateway/c/libscigui_la-sci_x_choose_modeless.lo \
 	sci_gateway/c/libscigui_la-sci_unsetmenu.lo \
 	sci_gateway/c/libscigui_la-sci_delmenu.lo \
@@ -313,7 +312,7 @@ am__objects_5 = sci_gateway/c/libscigui_la-sci_x_choose.lo \
 	sci_gateway/c/libscigui_la-sci_getcallbackobject.lo \
 	sci_gateway/c/libscigui_la-sci_exportUI.lo \
 	sci_gateway/c/libscigui_la-sci_figure.lo
-am__objects_6 = sci_gateway/cpp/libscigui_la-sci_printsetupbox.lo \
+am__objects_5 = sci_gateway/cpp/libscigui_la-sci_printsetupbox.lo \
 	sci_gateway/cpp/libscigui_la-sci_toprint.lo \
 	sci_gateway/cpp/libscigui_la-sci_printfigure.lo \
 	sci_gateway/cpp/libscigui_la-sci_setlookandfeel.lo \
@@ -328,7 +327,6 @@ am__objects_6 = sci_gateway/cpp/libscigui_la-sci_printsetupbox.lo \
 	sci_gateway/cpp/libscigui_la-sci_raise_window.lo \
 	sci_gateway/cpp/libscigui_la-sci_usecanvas.lo \
 	sci_gateway/cpp/libscigui_la-sci_helpbrowser.lo \
-	sci_gateway/cpp/libscigui_la-gui_gw.lo \
 	sci_gateway/cpp/libscigui_la-sci_fire_closing_finished.lo \
 	sci_gateway/cpp/libscigui_la-sci_useeditor.lo \
 	sci_gateway/cpp/libscigui_la-sci_openged.lo \
@@ -344,12 +342,12 @@ am__objects_6 = sci_gateway/cpp/libscigui_la-sci_printsetupbox.lo \
 	sci_gateway/cpp/libscigui_la-sci_datatip_set_orient.lo \
 	sci_gateway/cpp/libscigui_la-sci_saveGui.lo \
 	sci_gateway/cpp/libscigui_la-sci_loadGui.lo \
-    sci_gateway/cpp/libscigui_la-sci_x_choice.lo \
+	sci_gateway/cpp/libscigui_la-sci_x_choice.lo \
 	sci_gateway/cpp/libscigui_la-sci_uigetcolor.lo \
 	sci_gateway/cpp/libscigui_la-sci_ClipBoard.lo \
-    sci_gateway/cpp/libscigui_la-sci_x_mdialog.lo \
+	sci_gateway/cpp/libscigui_la-sci_x_mdialog.lo \
 	sci_gateway/cpp/libscigui_la-sci_x_dialog.lo
-am_libscigui_la_OBJECTS = $(am__objects_5) $(am__objects_6)
+am_libscigui_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
 @GUI_TRUE@am_libscigui_la_rpath = -rpath $(pkglibdir)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -905,7 +903,6 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_raise_window.cpp \
     sci_gateway/cpp/sci_usecanvas.cpp \
     sci_gateway/cpp/sci_helpbrowser.cpp \
-    sci_gateway/cpp/gui_gw.cpp \
     sci_gateway/cpp/sci_fire_closing_finished.cpp \
     sci_gateway/cpp/sci_useeditor.cpp \
     sci_gateway/cpp/sci_openged.cpp \
@@ -923,9 +920,9 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_loadGui.cpp \
     sci_gateway/cpp/sci_x_choice.cpp \
     sci_gateway/cpp/sci_uigetcolor.cpp \
+    sci_gateway/cpp/sci_ClipBoard.cpp \
     sci_gateway/cpp/sci_x_mdialog.cpp \
-    sci_gateway/cpp/sci_x_dialog.cpp \
-    sci_gateway/cpp/sci_ClipBoard.cpp
+    sci_gateway/cpp/sci_x_dialog.cpp
 
 libscigui_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
@@ -974,8 +971,7 @@ libscigui_disable_la_CPPFLAGS = \
     $(AM_CPPFLAGS)
 
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
-GUI_DISABLE_CXX_SOURCES = src/nogui/nogui_gw.cpp
-libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES) $(GUI_DISABLE_CXX_SOURCES)
+libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libscigui-disable.la $(am__append_3)
 @GUI_TRUE@noinst_LTLIBRARIES = libscigui-algo.la
 libscigui_algo_la_SOURCES = $(GUI_C_SOURCES) $(GUI_CXX_SOURCES)
@@ -1493,11 +1489,9 @@ src/nogui/$(DEPDIR)/$(am__dirstamp):
 	@: > src/nogui/$(DEPDIR)/$(am__dirstamp)
 src/nogui/libscigui_disable_la-nogui.lo: src/nogui/$(am__dirstamp) \
 	src/nogui/$(DEPDIR)/$(am__dirstamp)
-src/nogui/libscigui_disable_la-nogui_gw.lo: src/nogui/$(am__dirstamp) \
-	src/nogui/$(DEPDIR)/$(am__dirstamp)
 
 libscigui-disable.la: $(libscigui_disable_la_OBJECTS) $(libscigui_disable_la_DEPENDENCIES) $(EXTRA_libscigui_disable_la_DEPENDENCIES) 
-	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libscigui_disable_la_OBJECTS) $(libscigui_disable_la_LIBADD) $(LIBS)
+	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libscigui_disable_la_OBJECTS) $(libscigui_disable_la_LIBADD) $(LIBS)
 sci_gateway/c/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c
 	@: > sci_gateway/c/$(am__dirstamp)
@@ -1606,9 +1600,6 @@ sci_gateway/cpp/libscigui_la-sci_usecanvas.lo:  \
 sci_gateway/cpp/libscigui_la-sci_helpbrowser.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/cpp/libscigui_la-gui_gw.lo:  \
-	sci_gateway/cpp/$(am__dirstamp) \
-	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscigui_la-sci_fire_closing_finished.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1708,7 +1699,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigui_la-sci_waitbar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigui_la-sci_x_choose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigui_la-sci_x_choose_modeless.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-gui_gw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_ClipBoard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_about.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_datatip_manager_mode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_datatip_set_display.Plo@am__quote@
@@ -1733,6 +1724,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_saveGui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_setlookandfeel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_toprint.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_uigetcolor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_uigetdir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_uigetfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_uigetfont.Plo@am__quote@
@@ -1740,8 +1732,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_usecanvas.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_useeditor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_choice.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_uigetcolor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_ClipBoard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_dialog.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_mdialog.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigui_algo_la-CreateUimenu.Plo@am__quote@
@@ -1836,7 +1826,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigui_algo_la-StartPlotBrowser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigui_algo_la-SwingView.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/nogui/$(DEPDIR)/libscigui_disable_la-nogui.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/nogui/$(DEPDIR)/libscigui_disable_la-nogui_gw.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -2081,41 +2070,6 @@ sci_gateway/c/libscigui_la-sci_figure.lo: sci_gateway/c/sci_figure.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
-
-sci_gateway/cpp/libscigui_la-sci_ClipBoard.lo: sci_gateway/cpp/sci_ClipBoard.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigui_la-sci_ClipBoard.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_ClipBoard.Tpo -c -o sci_gateway/cpp/libscigui_la-sci_ClipBoard.lo `test -f 'sci_gateway/cpp/sci_ClipBoard.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_ClipBoard.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_ClipBoard.Tpo sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_ClipBoard.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_ClipBoard.cpp' object='sci_gateway/cpp/libscigui_la-sci_ClipBoard.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-sci_ClipBoard.lo `test -f 'sci_gateway/cpp/sci_ClipBoard.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_ClipBoard.cpp
-
-sci_gateway/cpp/libscigui_la-sci_x_mdialog.lo: sci_gateway/cpp/sci_x_mdialog.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigui_la-sci_x_mdialog.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_mdialog.Tpo -c -o sci_gateway/cpp/libscigui_la-sci_x_mdialog.lo `test -f 'sci_gateway/cpp/sci_x_mdialog.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_x_mdialog.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_mdialog.Tpo sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_mdialog.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_x_mdialog.cpp' object='sci_gateway/cpp/libscigui_la-sci_x_mdialog.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-sci_x_mdialog.lo `test -f 'sci_gateway/cpp/sci_x_mdialog.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_x_mdialog.cpp
-
-sci_gateway/cpp/libscigui_la-sci_x_dialog.lo: sci_gateway/cpp/sci_x_dialog.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigui_la-sci_x_dialog.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_dialog.Tpo -c -o sci_gateway/cpp/libscigui_la-sci_x_dialog.lo `test -f 'sci_gateway/cpp/sci_x_dialog.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_x_dialog.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_dialog.Tpo sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_dialog.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_x_dialog.cpp' object='sci_gateway/cpp/libscigui_la-sci_x_dialog.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-sci_x_dialog.lo `test -f 'sci_gateway/cpp/sci_x_dialog.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_x_dialog.cpp
-
-sci_gateway/cpp/libscigui_la-sci_x_choice.lo: sci_gateway/cpp/sci_x_choice.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigui_la-sci_x_choice.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_choice.Tpo -c -o sci_gateway/cpp/libscigui_la-sci_x_choice.lo `test -f 'sci_gateway/cpp/sci_x_choice.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_x_choice.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_choice.Tpo sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_choice.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_x_choice.cpp' object='sci_gateway/cpp/libscigui_la-sci_x_choice.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-sci_x_choice.lo `test -f 'sci_gateway/cpp/sci_x_choice.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_x_choice.cpp
-
-sci_gateway/cpp/libscigui_la-sci_uigetcolor.lo: sci_gateway/cpp/sci_uigetcolor.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigui_la-sci_uigetcolor.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_uigetcolor.Tpo -c -o sci_gateway/cpp/libscigui_la-sci_uigetcolor.lo `test -f 'sci_gateway/cpp/sci_uigetcolor.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uigetcolor.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_uigetcolor.Tpo sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_uigetcolor.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_uigetcolor.cpp' object='sci_gateway/cpp/libscigui_la-sci_uigetcolor.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-sci_uigetcolor.lo `test -f 'sci_gateway/cpp/sci_uigetcolor.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uigetcolor.cpp
 
 src/cpp/libscigui_algo_la-InitUIMenu.lo: src/cpp/InitUIMenu.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigui_algo_la-InitUIMenu.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigui_algo_la-InitUIMenu.Tpo -c -o src/cpp/libscigui_algo_la-InitUIMenu.lo `test -f 'src/cpp/InitUIMenu.cpp' || echo '$(srcdir)/'`src/cpp/InitUIMenu.cpp
@@ -2684,13 +2638,6 @@ src/jni/libscigui_algo_la-DatatipOrientation.lo: src/jni/DatatipOrientation.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscigui_algo_la-DatatipOrientation.lo `test -f 'src/jni/DatatipOrientation.cpp' || echo '$(srcdir)/'`src/jni/DatatipOrientation.cpp
 
-src/nogui/libscigui_disable_la-nogui_gw.lo: src/nogui/nogui_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/nogui/libscigui_disable_la-nogui_gw.lo -MD -MP -MF src/nogui/$(DEPDIR)/libscigui_disable_la-nogui_gw.Tpo -c -o src/nogui/libscigui_disable_la-nogui_gw.lo `test -f 'src/nogui/nogui_gw.cpp' || echo '$(srcdir)/'`src/nogui/nogui_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/nogui/$(DEPDIR)/libscigui_disable_la-nogui_gw.Tpo src/nogui/$(DEPDIR)/libscigui_disable_la-nogui_gw.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/nogui/nogui_gw.cpp' object='src/nogui/libscigui_disable_la-nogui_gw.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/nogui/libscigui_disable_la-nogui_gw.lo `test -f 'src/nogui/nogui_gw.cpp' || echo '$(srcdir)/'`src/nogui/nogui_gw.cpp
-
 sci_gateway/cpp/libscigui_la-sci_printsetupbox.lo: sci_gateway/cpp/sci_printsetupbox.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigui_la-sci_printsetupbox.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_printsetupbox.Tpo -c -o sci_gateway/cpp/libscigui_la-sci_printsetupbox.lo `test -f 'sci_gateway/cpp/sci_printsetupbox.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_printsetupbox.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_printsetupbox.Tpo sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_printsetupbox.Plo
@@ -2796,13 +2743,6 @@ sci_gateway/cpp/libscigui_la-sci_helpbrowser.lo: sci_gateway/cpp/sci_helpbrowser
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-sci_helpbrowser.lo `test -f 'sci_gateway/cpp/sci_helpbrowser.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_helpbrowser.cpp
 
-sci_gateway/cpp/libscigui_la-gui_gw.lo: sci_gateway/cpp/gui_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigui_la-gui_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigui_la-gui_gw.Tpo -c -o sci_gateway/cpp/libscigui_la-gui_gw.lo `test -f 'sci_gateway/cpp/gui_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/gui_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigui_la-gui_gw.Tpo sci_gateway/cpp/$(DEPDIR)/libscigui_la-gui_gw.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/gui_gw.cpp' object='sci_gateway/cpp/libscigui_la-gui_gw.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-gui_gw.lo `test -f 'sci_gateway/cpp/gui_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/gui_gw.cpp
-
 sci_gateway/cpp/libscigui_la-sci_fire_closing_finished.lo: sci_gateway/cpp/sci_fire_closing_finished.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigui_la-sci_fire_closing_finished.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_fire_closing_finished.Tpo -c -o sci_gateway/cpp/libscigui_la-sci_fire_closing_finished.lo `test -f 'sci_gateway/cpp/sci_fire_closing_finished.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fire_closing_finished.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_fire_closing_finished.Tpo sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_fire_closing_finished.Plo
@@ -2907,6 +2847,41 @@ sci_gateway/cpp/libscigui_la-sci_loadGui.lo: sci_gateway/cpp/sci_loadGui.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_loadGui.cpp' object='sci_gateway/cpp/libscigui_la-sci_loadGui.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-sci_loadGui.lo `test -f 'sci_gateway/cpp/sci_loadGui.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_loadGui.cpp
+
+sci_gateway/cpp/libscigui_la-sci_x_choice.lo: sci_gateway/cpp/sci_x_choice.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigui_la-sci_x_choice.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_choice.Tpo -c -o sci_gateway/cpp/libscigui_la-sci_x_choice.lo `test -f 'sci_gateway/cpp/sci_x_choice.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_x_choice.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_choice.Tpo sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_choice.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_x_choice.cpp' object='sci_gateway/cpp/libscigui_la-sci_x_choice.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-sci_x_choice.lo `test -f 'sci_gateway/cpp/sci_x_choice.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_x_choice.cpp
+
+sci_gateway/cpp/libscigui_la-sci_uigetcolor.lo: sci_gateway/cpp/sci_uigetcolor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigui_la-sci_uigetcolor.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_uigetcolor.Tpo -c -o sci_gateway/cpp/libscigui_la-sci_uigetcolor.lo `test -f 'sci_gateway/cpp/sci_uigetcolor.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uigetcolor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_uigetcolor.Tpo sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_uigetcolor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_uigetcolor.cpp' object='sci_gateway/cpp/libscigui_la-sci_uigetcolor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-sci_uigetcolor.lo `test -f 'sci_gateway/cpp/sci_uigetcolor.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uigetcolor.cpp
+
+sci_gateway/cpp/libscigui_la-sci_ClipBoard.lo: sci_gateway/cpp/sci_ClipBoard.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigui_la-sci_ClipBoard.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_ClipBoard.Tpo -c -o sci_gateway/cpp/libscigui_la-sci_ClipBoard.lo `test -f 'sci_gateway/cpp/sci_ClipBoard.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_ClipBoard.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_ClipBoard.Tpo sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_ClipBoard.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_ClipBoard.cpp' object='sci_gateway/cpp/libscigui_la-sci_ClipBoard.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-sci_ClipBoard.lo `test -f 'sci_gateway/cpp/sci_ClipBoard.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_ClipBoard.cpp
+
+sci_gateway/cpp/libscigui_la-sci_x_mdialog.lo: sci_gateway/cpp/sci_x_mdialog.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigui_la-sci_x_mdialog.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_mdialog.Tpo -c -o sci_gateway/cpp/libscigui_la-sci_x_mdialog.lo `test -f 'sci_gateway/cpp/sci_x_mdialog.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_x_mdialog.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_mdialog.Tpo sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_mdialog.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_x_mdialog.cpp' object='sci_gateway/cpp/libscigui_la-sci_x_mdialog.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-sci_x_mdialog.lo `test -f 'sci_gateway/cpp/sci_x_mdialog.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_x_mdialog.cpp
+
+sci_gateway/cpp/libscigui_la-sci_x_dialog.lo: sci_gateway/cpp/sci_x_dialog.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigui_la-sci_x_dialog.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_dialog.Tpo -c -o sci_gateway/cpp/libscigui_la-sci_x_dialog.lo `test -f 'sci_gateway/cpp/sci_x_dialog.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_x_dialog.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_dialog.Tpo sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_x_dialog.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_x_dialog.cpp' object='sci_gateway/cpp/libscigui_la-sci_x_dialog.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-sci_x_dialog.lo `test -f 'sci_gateway/cpp/sci_x_dialog.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_x_dialog.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

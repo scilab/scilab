@@ -19,10 +19,8 @@
 /*--------------------------------------------------------------------------*/
 #include "dynlib_history_browser.h"
 /*--------------------------------------------------------------------------*/
-HISTORY_BROWSER_IMPEXP int gw_history_browser(void);
-/*--------------------------------------------------------------------------*/
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
-HISTORY_BROWSER_IMPEXP int sci_browsehistory(char *fname, unsigned long fname_len);
+HISTORY_BROWSER_IMPEXP int sci_browsehistory(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_HISTORY_BROWSER_H__ */

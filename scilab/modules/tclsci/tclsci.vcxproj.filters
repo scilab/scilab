@@ -111,9 +111,6 @@
     <ClCompile Include="src\cpp\ScilabEval.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\cpp\tclsci_gw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\dynlib_tclsci.h">

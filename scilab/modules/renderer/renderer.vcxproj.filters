@@ -90,7 +90,4 @@
       <Filter>localization</Filter>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\libjvm.lib" />
-  </ItemGroup>
 </Project>

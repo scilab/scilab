@@ -206,6 +206,8 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_set_style.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_toggle.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_manager_mode.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_displaytree.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_helpbrowser.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_loadGui.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_plotbrowser.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_useeditor.cpp" />
@@ -418,6 +420,7 @@
     <ClInclude Include="..\..\includes\exportUserInterface.hxx" />
     <ClInclude Include="..\..\includes\GetScreenProperty.h" />
     <ClInclude Include="..\..\includes\GetUicontrol.h" />
+    <ClInclude Include="..\..\includes\gui_gw.hxx" />
     <ClInclude Include="..\..\includes\SetUicontrol.h" />
     <ClInclude Include="..\..\includes\GraphicWindow.h" />
     <ClInclude Include="..\..\includes\gw_gui.h" />

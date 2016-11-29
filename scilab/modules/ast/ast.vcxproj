@@ -110,7 +110,7 @@
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;coverage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>functions_manager.lib;string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;coverage.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -126,6 +126,7 @@ lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)coverage.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)functions_manager_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)functions_manager.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -149,7 +150,7 @@ lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;coverage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>functions_manager.lib;string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;coverage.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -165,6 +166,7 @@ lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)coverage.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)functions_manager_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)functions_manager.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -185,7 +187,7 @@ lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;coverage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>functions_manager.lib;string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;coverage.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -201,6 +203,7 @@ lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)coverage.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)functions_manager_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)functions_manager.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -224,7 +227,7 @@ lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;coverage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>functions_manager.lib;string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;coverage.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -240,6 +243,7 @@ lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)coverage.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)functions_manager_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)functions_manager.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -256,6 +260,7 @@ lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <None Include="elementary_functions_f_Import.def" />
     <None Include="elementary_functions_Import.def" />
     <None Include="fileio_Import.def" />
+    <None Include="functions_manager_import.def" />
     <None Include="io_Import.def" />
     <None Include="linear_algebra_f_Import.def" />
     <None Include="output_stream_Import.def" />

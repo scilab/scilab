@@ -96,8 +96,7 @@ GATEWAY_C_SOURCES = \
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_system_getproperty.cpp \
-    sci_gateway/cpp/sci_system_setproperty.cpp \
-    sci_gateway/cpp/jvm_gw.cpp
+    sci_gateway/cpp/sci_system_setproperty.cpp
 
 JVM_C_SOURCES = \
     src/c/InitializeJVM.c \
@@ -120,8 +119,7 @@ JVM_C_SOURCES = \
     src/c/getJvmOptions.c
 
 JVM_DISABLE_C_SOURCES = src/nojvm/nojvm.c
-JVM_DISABLE_CPP_SOURCES = src/nojvm/nojvm_gw.cpp
-libscijvm_disable_la_SOURCES = $(JVM_DISABLE_C_SOURCES) $(JVM_DISABLE_CPP_SOURCES)
+libscijvm_disable_la_SOURCES = $(JVM_DISABLE_C_SOURCES)
 
 libscijvm_disable_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \

@@ -20,6 +20,7 @@
 #include "EditVar.hxx"
 #include "GiwsException.hxx"
 //#include "ScilabToJava.hxx"
+#include "ui_data_gw.hxx"
 
 extern "C"
 {

@@ -297,7 +297,7 @@ SetPropertyHashTable *createScilabSetHashTable(void)
 /*--------------------------------------------------------------------------*/
 int callSetProperty(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol, const char *propertyName)
 {
-    setPropertyFunc accessor = searchSetHashtable(setHashTable, propertyName);
+    setPropertyFunc accessor = searchSetHashtable(setHashTable, (char*)propertyName);
 
     if (accessor == NULL)
     {

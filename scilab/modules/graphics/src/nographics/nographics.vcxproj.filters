@@ -21,9 +21,6 @@
     <ClCompile Include="nographics.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="nographics_gw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nographics.rc">
@@ -31,9 +28,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\graphics_gw.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\dynlib_graphics_gw.h">
       <Filter>Header Files</Filter>
     </ClInclude>

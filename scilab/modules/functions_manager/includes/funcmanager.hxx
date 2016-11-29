@@ -17,6 +17,7 @@
 #define __FUNCMANAGER_HH__
 
 #include <map>
+#include <set>
 #include <list>
 #include <iostream>
 #include <string>
@@ -53,6 +54,8 @@ private :
     //	map <string, FuncInfo*>	m_FuncMap;
     typedef std::map<std::wstring, std::pair<GW_MOD, GW_MOD> >  ModuleMap;
     ModuleMap  m_ModuleMap;
+    // set contains all modules non compatible nwni
+    std::set<std::wstring> m_NonNwniCompatible;
     std::map<std::wstring, GW_MOD> m_ActivModuleMap;
     std::list<std::wstring> m_ModuleName;
     std::wstring m_szXmlFile;
@@ -65,6 +68,8 @@ public:
     bool UnloadModules();
     bool EndModules();
 
+    bool isNonNwniModule(const std::wstring& _wstModule);
+
 private :
     FuncManager(void);
     ~FuncManager(void);
@@ -74,6 +79,7 @@ private :
     bool VerifyModule(wchar_t* ModuleName);
 
     bool CreateModuleList(void);
+    void CreateNonNwniModuleList(void);
 
     bool ExecuteStartFile(const std::wstring& _stModule);
     bool ExecuteQuitFile(const std::wstring& _stModule);

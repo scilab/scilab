@@ -230,7 +230,7 @@ am__libscitclsci_la_SOURCES_DIST = sci_gateway/c/sci_opentk.c \
 	sci_gateway/c/sci_TCL_EvalFile.c \
 	sci_gateway/c/sci_TCL_GetVar.c \
 	sci_gateway/c/sci_TCL_ExistArray.c \
-	sci_gateway/c/sci_TCL_UpVar.c sci_gateway/cpp/tclsci_gw.cpp
+	sci_gateway/c/sci_TCL_UpVar.c
 @TCLTK_TRUE@am__objects_4 =  \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_opentk.lo \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_SetVar.lo \
@@ -245,14 +245,12 @@ am__libscitclsci_la_SOURCES_DIST = sci_gateway/c/sci_opentk.c \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_GetVar.lo \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_ExistArray.lo \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_UpVar.lo
-@TCLTK_TRUE@am__objects_5 =  \
-@TCLTK_TRUE@	sci_gateway/cpp/libscitclsci_la-tclsci_gw.lo
-am_libscitclsci_la_OBJECTS = $(am__objects_4) $(am__objects_5)
+am_libscitclsci_la_OBJECTS = $(am__objects_4)
 libscitclsci_la_OBJECTS = $(am_libscitclsci_la_OBJECTS)
-libscitclsci_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
-	$(AM_CXXFLAGS) $(CXXFLAGS) $(libscitclsci_la_LDFLAGS) \
-	$(LDFLAGS) -o $@
+libscitclsci_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(AM_CFLAGS) $(CFLAGS) $(libscitclsci_la_LDFLAGS) $(LDFLAGS) \
+	-o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -650,10 +648,6 @@ yacc_present = @yacc_present@
 @TCLTK_TRUE@TCLSCI_CPP_SOURCES = \
 @TCLTK_TRUE@    src/cpp/ScilabEval.cpp
 
-@TCLTK_FALSE@GATEWAY_CPP_SOURCES = 
-@TCLTK_TRUE@GATEWAY_CPP_SOURCES = \
-@TCLTK_TRUE@	sci_gateway/cpp/tclsci_gw.cpp
-
 @TCLTK_FALSE@GATEWAY_C_SOURCES = 
 @TCLTK_TRUE@GATEWAY_C_SOURCES = \
 @TCLTK_TRUE@    sci_gateway/c/sci_opentk.c \
@@ -715,7 +709,7 @@ libscitclsci_disable_la_CPPFLAGS = \
     $(AM_CPPFLAGS)
 
 libscitclsci_algo_la_SOURCES = $(TCLSCI_CPP_SOURCES) $(TCLSCI_C_SOURCES)
-libscitclsci_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscitclsci_la_SOURCES = $(GATEWAY_C_SOURCES)
 libscitclsci_algo_la_CPPFLAGS = $(libscitclsci_la_CPPFLAGS)
 TCLSCI_DISABLE_CPP_SOURCES = src/notclsci/notclsci.cpp
 libscitclsci_disable_la_SOURCES = $(TCLSCI_DISABLE_CPP_SOURCES)
@@ -1047,25 +1041,14 @@ sci_gateway/c/libscitclsci_la-sci_TCL_ExistArray.lo:  \
 sci_gateway/c/libscitclsci_la-sci_TCL_UpVar.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/cpp/$(am__dirstamp):
-	@$(MKDIR_P) sci_gateway/cpp
-	@: > sci_gateway/cpp/$(am__dirstamp)
-sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
-	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/cpp/libscitclsci_la-tclsci_gw.lo:  \
-	sci_gateway/cpp/$(am__dirstamp) \
-	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscitclsci.la: $(libscitclsci_la_OBJECTS) $(libscitclsci_la_DEPENDENCIES) $(EXTRA_libscitclsci_la_DEPENDENCIES) 
-	$(AM_V_CXXLD)$(libscitclsci_la_LINK) -rpath $(pkglibdir) $(libscitclsci_la_OBJECTS) $(libscitclsci_la_LIBADD) $(LIBS)
+	$(AM_V_CCLD)$(libscitclsci_la_LINK) -rpath $(pkglibdir) $(libscitclsci_la_OBJECTS) $(libscitclsci_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f sci_gateway/c/*.$(OBJEXT)
 	-rm -f sci_gateway/c/*.lo
-	-rm -f sci_gateway/cpp/*.$(OBJEXT)
-	-rm -f sci_gateway/cpp/*.lo
 	-rm -f src/c/*.$(OBJEXT)
 	-rm -f src/c/*.lo
 	-rm -f src/cpp/*.$(OBJEXT)
@@ -1089,7 +1072,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitclsci_la-sci_TCL_UnsetVar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitclsci_la-sci_TCL_UpVar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitclsci_la-sci_opentk.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitclsci_la-tclsci_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscitclsci_algo_la-GlobalTclInterp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscitclsci_algo_la-InitTclTk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscitclsci_algo_la-InitializeTclTk.Plo@am__quote@
@@ -1366,20 +1348,12 @@ src/notclsci/libscitclsci_disable_la-notclsci.lo: src/notclsci/notclsci.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/notclsci/libscitclsci_disable_la-notclsci.lo `test -f 'src/notclsci/notclsci.cpp' || echo '$(srcdir)/'`src/notclsci/notclsci.cpp
 
-sci_gateway/cpp/libscitclsci_la-tclsci_gw.lo: sci_gateway/cpp/tclsci_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitclsci_la-tclsci_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitclsci_la-tclsci_gw.Tpo -c -o sci_gateway/cpp/libscitclsci_la-tclsci_gw.lo `test -f 'sci_gateway/cpp/tclsci_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/tclsci_gw.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitclsci_la-tclsci_gw.Tpo sci_gateway/cpp/$(DEPDIR)/libscitclsci_la-tclsci_gw.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/tclsci_gw.cpp' object='sci_gateway/cpp/libscitclsci_la-tclsci_gw.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitclsci_la-tclsci_gw.lo `test -f 'sci_gateway/cpp/tclsci_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/tclsci_gw.cpp
-
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
 	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
-	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
 	-rm -rf src/c/.libs src/c/_libs
 	-rm -rf src/cpp/.libs src/cpp/_libs
 	-rm -rf src/notclsci/.libs src/notclsci/_libs
@@ -1589,8 +1563,6 @@ distclean-generic:
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
 	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 	-rm -f sci_gateway/c/$(am__dirstamp)
-	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-	-rm -f sci_gateway/cpp/$(am__dirstamp)
 	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/c/$(am__dirstamp)
 	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1607,7 +1579,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR) src/notclsci/$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR) src/notclsci/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1656,7 +1628,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR) src/notclsci/$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR) src/notclsci/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

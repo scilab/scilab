@@ -54,6 +54,11 @@ FuncManager* FuncManager::getInstance()
     {
         me = new FuncManager();
         me->CreateModuleList();
+        if (ConfigVariable::getScilabMode() == SCILAB_NWNI)
+        {
+            me->CreateNonNwniModuleList();
+        }
+
         /*get module activation list from xml file*/
         if (me->GetModules() == true)
         {
@@ -296,6 +301,30 @@ char *GetXmlFileEncoding(const std::string& _filename)
     return encoding;
 }
 
+void FuncManager::CreateNonNwniModuleList(void)
+{
+    m_NonNwniCompatible.insert(L"xcos");
+    m_NonNwniCompatible.insert(L"scinotes");
+    m_NonNwniCompatible.insert(L"graphics");
+    m_NonNwniCompatible.insert(L"graphic_export");
+    m_NonNwniCompatible.insert(L"external_objects_java");
+    m_NonNwniCompatible.insert(L"gui");
+    m_NonNwniCompatible.insert(L"jvm");
+    m_NonNwniCompatible.insert(L"ui_data");
+    m_NonNwniCompatible.insert(L"tclsci");
+    m_NonNwniCompatible.insert(L"history_browser");
+}
+
+bool FuncManager::isNonNwniModule(const std::wstring& _wstModule)
+{
+    if (m_NonNwniCompatible.empty() == false)
+    {
+        return m_NonNwniCompatible.find(_wstModule) != m_NonNwniCompatible.end();
+    }
+
+    return false;
+}
+
 bool FuncManager::CreateModuleList(void)
 {
     m_ModuleMap[L"elementary_functions"] = std::pair<GW_MOD, GW_MOD>(&ElemFuncModule::Load, &ElemFuncModule::Unload);
@@ -318,6 +347,7 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap[L"dynamic_link"] = std::pair<GW_MOD, GW_MOD>(&DynamicLinkModule::Load, &DynamicLinkModule::Unload);
     m_ModuleMap[L"action_binding"] = std::pair<GW_MOD, GW_MOD>(&ActionBindingModule::Load, &ActionBindingModule::Unload);
     m_ModuleMap[L"history_manager"] = std::pair<GW_MOD, GW_MOD>(&HistoryManagerModule::Load, &HistoryManagerModule::Unload);
+    m_ModuleMap[L"history_browser"] = std::pair<GW_MOD, GW_MOD>(&HistoryBrowserModule::Load, &HistoryBrowserModule::Unload);
     m_ModuleMap[L"console"] = std::pair<GW_MOD, GW_MOD>(&ConsoleModule::Load, &ConsoleModule::Unload);
     m_ModuleMap[L"signal_processing"] = std::pair<GW_MOD, GW_MOD>(&SignalProcessingModule::Load, &SignalProcessingModule::Unload);
     m_ModuleMap[L"linear_algebra"] = std::pair<GW_MOD, GW_MOD>(&LinearAlgebraModule::Load, &LinearAlgebraModule::Unload);
@@ -348,13 +378,10 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap[L"preferences"] = std::pair<GW_MOD, GW_MOD>(&PreferencesModule::Load, &PreferencesModule::Unload);
     m_ModuleMap[L"slint"] = std::pair<GW_MOD, GW_MOD>(&SlintModule::Load, &SlintModule::Unload);
     m_ModuleMap[L"coverage"] = std::pair<GW_MOD, GW_MOD>(&CoverageModule::Load, &SlintModule::Unload);
+    m_ModuleMap[L"tclsci"] = std::pair<GW_MOD, GW_MOD>(&TclsciModule::Load, &TclsciModule::Unload);
+    m_ModuleMap[L"jvm"] = std::pair<GW_MOD, GW_MOD>(&JvmModule::Load, &JvmModule::Unload);
+    m_ModuleMap[L"ui_data"] = std::pair<GW_MOD, GW_MOD>(&UiDataModule::Load, &UiDataModule::Unload);
 
-    if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
-    {
-        m_ModuleMap[L"tclsci"] = std::pair<GW_MOD, GW_MOD>(&TclsciModule::Load, &TclsciModule::Unload);
-        m_ModuleMap[L"jvm"] = std::pair<GW_MOD, GW_MOD>(&JvmModule::Load, &JvmModule::Unload);
-        m_ModuleMap[L"ui_data"] = std::pair<GW_MOD, GW_MOD>(&UiDataModule::Load, &UiDataModule::Unload);
-    }
 #ifdef _MSC_VER
     m_ModuleMap[L"windows_tools"] = std::pair<GW_MOD, GW_MOD>(&WindowsToolsModule::Load, &WindowsToolsModule::Unload);
 #endif

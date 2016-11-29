@@ -203,7 +203,6 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_raise_window.cpp \
     sci_gateway/cpp/sci_usecanvas.cpp \
     sci_gateway/cpp/sci_helpbrowser.cpp \
-    sci_gateway/cpp/gui_gw.cpp \
     sci_gateway/cpp/sci_fire_closing_finished.cpp \
     sci_gateway/cpp/sci_useeditor.cpp \
     sci_gateway/cpp/sci_openged.cpp \
@@ -272,8 +271,7 @@ libscigui_disable_la_CPPFLAGS = \
 
 
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
-GUI_DISABLE_CXX_SOURCES = src/nogui/nogui_gw.cpp
-libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES) $(GUI_DISABLE_CXX_SOURCES)
+libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES)
 
 
 pkglib_LTLIBRARIES = libscigui-disable.la

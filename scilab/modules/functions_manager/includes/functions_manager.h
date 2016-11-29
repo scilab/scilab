@@ -23,4 +23,6 @@ FUNCMAN_IMEXP bool LoadModules();
 FUNCMAN_IMEXP void UnloadModules();
 FUNCMAN_IMEXP void EndModules();
 FUNCMAN_IMEXP void destroyfunctionManagerInstance(void);
+FUNCMAN_IMEXP bool isNonNwniModule(const wchar_t*);
+
 #endif /* !__FUNCMANAGER_H__ */

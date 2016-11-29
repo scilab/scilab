@@ -68,8 +68,7 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_browsevar.cpp \
     sci_gateway/cpp/sci_filebrowser.cpp \
     sci_gateway/cpp/sci_updatebrowsevar.cpp \
-    sci_gateway/cpp/sci_closeEditvar.cpp \
-    sci_gateway/cpp/ui_data_gw.cpp
+    sci_gateway/cpp/sci_closeEditvar.cpp
 
 
 libsciui_data_la_CPPFLAGS = \
@@ -114,8 +113,7 @@ libsciui_data_disable_la_CPPFLAGS = \
     $(AM_CPPFLAGS)
 
 UI_DATA_DISABLE_C_SOURCES = src/noui_data/noui_data.c
-UI_DATA_DISABLE_CXX_SOURCES = src/noui_data/noui_data_gw.cpp
-libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES) $(UI_DATA_DISABLE_CXX_SOURCES)
+libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libsciui_data-disable.la
 

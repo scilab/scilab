@@ -6,4 +6,5 @@ GetXmlFileEncoding
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc
+freeArrayOfString
 

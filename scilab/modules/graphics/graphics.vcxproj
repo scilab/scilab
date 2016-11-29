@@ -238,6 +238,12 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sci_gateway\cpp\sci_get.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_matplot.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_matplot1.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_winsid.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xget.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_xset.cpp" />
     <ClCompile Include="src\cpp\configgraphicvariable.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_contour2dm.cpp" />
     <ClCompile Include="sci_gateway\c\sci_addcolor.c" />
