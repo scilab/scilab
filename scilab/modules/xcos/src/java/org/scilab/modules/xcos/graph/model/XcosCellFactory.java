@@ -26,6 +26,8 @@ import java.util.HashMap;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import javax.swing.SwingUtilities;
+
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.xcos.JavaController;
@@ -87,7 +89,42 @@ public final class XcosCellFactory {
 
     }
 
+    /**
+     * This is a notify method mapped as a Scilab gateway used to update an UID
+     *
+     * @param uid
+     *            the loaded UID
+     * @param kind
+     *            the kind of the created object (as an int)
+     */
+    @ScilabExported(module = "xcos", filename = "XcosCellFactory.giws.xml")
+    public static synchronized void update(long uid, int kind) {
+        lastCreated = new ScicosObjectOwner(uid, Kind.values()[kind]);
+
+        try {
+            SwingUtilities.invokeAndWait(() -> {
+                if (kind == Kind.BLOCK.ordinal()) {
+                    JavaController controller = new JavaController();
+
+                    XcosDiagram graph = previousDiagram;
+                    graph.getModel().beginUpdate();
+                    try {
+                        BasicBlock block = createBlock(controller, lastCreated);
+                        previousBlock.updateBlockSettings(controller, graph, block);
+                        BlockPositioning.updateBlockView(graph, block);
+                    } finally {
+                        graph.getModel().beginUpdate();
+                    }
+                }
+            });
+        } catch (InvocationTargetException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static ScicosObjectOwner lastCreated = null;
+    private static BasicBlock previousBlock = null;
+    private static XcosDiagram previousDiagram = null;
 
     /**
      * Retrieve and clear the last created object (<pre>xcosCellCreated</pre> call)
@@ -97,6 +134,15 @@ public final class XcosCellFactory {
         ScicosObjectOwner last = lastCreated;
         lastCreated = null;
         return last;
+    }
+
+    /**
+     * Set an object available for update (<pre>xcosUpdateBlock</pre> call)
+     * @param previous the object to track for update
+     */
+    public static synchronized void setPrevious(BasicBlock block, XcosDiagram diagram) {
+        previousBlock = block;
+        previousDiagram = diagram;
     }
 
     /*

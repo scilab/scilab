@@ -2,6 +2,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) DIGITEO - 2009-2010 - Allan CORNET <allan.cornet@scilab.org>
 # Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
+# Copyright (C) 2012-2016 - Scilab Enterprises - Clément DAVID
 #
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
 #
@@ -78,6 +79,7 @@ GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
 	sci_gateway/cpp/sci_xcosCellCreated.cpp \
+	sci_gateway/cpp/sci_xcosUpdateBlock.cpp \
 	sci_gateway/cpp/sci_xcosDiagramToScilab.cpp \
 	sci_gateway/cpp/sci_xcosPalLoad.cpp \
 	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \

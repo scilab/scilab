@@ -38,7 +38,9 @@
     <!-- Scilab 6 Gateways (C++) -->
     <gateway name="sci_Xcos"                    function="xcos"                     type="1" />
     <gateway name="sci_xcosCellCreated"         function="xcosCellCreated"          type="1" />
+    <gateway name="sci_xcosUpdateBlock"         function="xcosUpdateBlock"          type="1" />
     <gateway name="sci_xcosDiagramToScilab"     function="xcosDiagramToScilab"      type="1" />
     <gateway name="sci_xcosPalGenerateIcon"     function="xcosPalGenerateIcon"      type="1" />
+    <gateway name="sci_xcosCellCreated"         function="xcosCellCreated"          type="1" />
 </module>
 

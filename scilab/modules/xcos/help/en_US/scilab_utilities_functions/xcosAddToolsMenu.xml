@@ -56,8 +56,8 @@ xcosAddToolsMenu("print diagram", "disp(scs_m)");
 
 // define a custom update function
 function myUpdateFunction(blk, scs_m)
-    execstr(''[ok, blk] = '' + blk.gui + ''(''''set'''', blk)'') ;
-    xcosUpdateBlock(blk) ;
+    execstr("[ok, blk] = " + blk.gui + "(''set'', blk);");
+    xcosUpdateBlock(blk);
 endfunction
 xcosAddToolsMenu("update block", "myUpdateFunction(blk, scs_m)");
 ]]></programlisting>
