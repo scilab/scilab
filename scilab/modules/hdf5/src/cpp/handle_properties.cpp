@@ -1679,8 +1679,11 @@ static int import_handle_figure(int dataset, int parent)
     //force visible true FOR DEBUG ONLY
     int visible = 0;
 
-    //create a new hidden figure
-    int fig = createFigure(dockable, menubar, toolbar, default_axes, visible);
+    //create a new hidden figure without default_axes.
+    int fig = createFigure(dockable, menubar, toolbar, 0, visible);
+    //set default axes properties after creation to avoid useless axes creation
+    setGraphicObjectProperty(fig, __GO_DEFAULT_AXES__, &default_axes, jni_bool, 1);
+
     int id = getValidDefaultFigureId();
     setGraphicObjectProperty(fig, __GO_ID__, &id, jni_int, 1);
 
