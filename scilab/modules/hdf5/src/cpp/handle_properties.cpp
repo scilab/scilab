@@ -1230,6 +1230,76 @@ static int import_polyline_shift(int dataset, int uid, const std::string& name, 
     return uid;
 }
 
+static void updateXYDataBounds(double rect[6], int axes = -1)
+{
+    int firstPlot = 0;
+    int * piFirstPlot = &firstPlot;
+    if (axes == -1)
+    {
+        axes = getOrCreateDefaultSubwin();
+    }
+
+    getGraphicObjectProperty(axes, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
+    if (firstPlot)
+    {
+        rect[4] = 0;
+        rect[5] = 0;
+    }
+    else
+    {
+        double * dataBounds = NULL;
+        getGraphicObjectProperty(axes, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
+
+        rect[0] = Min(rect[0], dataBounds[0]);
+        rect[1] = Max(rect[1], dataBounds[1]);
+        rect[2] = Min(rect[2], dataBounds[2]);
+        rect[3] = Max(rect[3], dataBounds[3]);
+        rect[4] = dataBounds[4];
+        rect[5] = dataBounds[5];
+    }
+
+    setGraphicObjectProperty(axes, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);
+}
+
+static int mustUpdate(int axes = -1)
+{
+    int iTmp = 0;
+    int * piTmp = &iTmp;
+    if (axes == -1)
+    {
+        axes = getOrCreateDefaultSubwin();
+    }
+
+    getGraphicObjectProperty(axes, __GO_AUTO_SCALE__, jni_bool, (void **)&piTmp);
+    return iTmp;
+}
+
+void MiniMaxi(const double vect[], int n, double * const min, double * const max)
+{
+    int i = 0;
+    double _min = DBL_MAX;
+    double _max = -DBL_MAX;
+    for (; i < n; i++)
+    {
+        /*    if ( isinf(vect[i])== 0 && isnan(vect[i])==0 && vect[i] < vmin)  */
+        if (finite(vect[i]) == 1)
+        {
+            if (vect[i] < _min)
+            {
+                _min = vect[i];
+            }
+            if (vect[i] > _max)
+            {
+                _max = vect[i];
+            }
+        }
+    }
+
+    *min = _min;
+    *max = _max;
+}
+
+
 static int import_handle_polyline(int dataset, int parent)
 {
     int polyline = createGraphicObject(__GO_POLYLINE__);
@@ -1237,7 +1307,6 @@ static int import_handle_polyline(int dataset, int parent)
 
     //import "standards" properties
     import_handle_generic(dataset, polyline, parent, PolylineHandle::getPropertyList(), true);
-
 
     //x_shift
     import_polyline_shift(dataset, polyline, "x_shift", __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__, __GO_DATA_MODEL_X_COORDINATES_SHIFT__);
@@ -1301,6 +1370,17 @@ static int import_handle_polyline(int dataset, int parent)
         }
 
         setGraphicObjectProperty(polyline, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zSet, jni_int, 1);
+
+        //update parent axes data_bounds
+        if (mustUpdate())
+        {
+            double rect[6];
+
+            MiniMaxi(dataX, size, rect, rect + 1);
+            MiniMaxi(dataY, size, rect + 2, rect + 3);
+
+            updateXYDataBounds(rect);
+        }
 
         delete[] dataX;
         delete[] dataY;
@@ -3336,15 +3416,20 @@ int add_current_entity(int dataset)
     switch (type)
     {
         case __GO_FIGURE__:
+        {
             return import_handle(dataset, -1);
-            break;
+        }
         case __GO_AXES__:
         {
             //add handle to current figure
             getOrCreateDefaultSubwin();
             int iCurrentFigure = getCurrentFigure();
             return import_handle(dataset, iCurrentFigure);
-            break;
+        }
+        case __GO_COMPOUND__:
+        {
+            int axes = getOrCreateDefaultSubwin();
+            return import_handle(dataset, axes);
         }
         default:
             //add handle as child of current axes ( take care of compound ! )
