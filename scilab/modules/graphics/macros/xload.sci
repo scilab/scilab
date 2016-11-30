@@ -20,17 +20,18 @@ function []=xload(fil,num)
     end
 
     if  argn(2)==2 then scf(num),end
-    f=gcf()
+    %__f__=gcf();
     res = execstr("load(fil)","errcatch") ;
     // Get latest figure created by load
     loadedFig = gcf();
     for kC=1:size(loadedFig.children, "*")
-        copy(loadedFig.children(kC), f); // Copy axes
+        copy(loadedFig.children(kC), %__f__); // Copy axes
     end
+    delete(%__f__.children($));
     delete(loadedFig); // Delete it, returned figure will be the one set as current by xload
     if res==0 then
-        f.visible="on"
-        f.immediate_drawing="on";
+        %__f__.visible="on"
+        %__f__.immediate_drawing="on";
     else
         error("Given file is not a graphic one") ;
     end
