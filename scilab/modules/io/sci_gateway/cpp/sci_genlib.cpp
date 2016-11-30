@@ -59,12 +59,16 @@ extern "C"
 #include "scicurdir.h"
 #include "md5.h"
 #include "pathconvert.h"
+
+#include <wchar.h> // for wcscmp
+#include <stdlib.h> // for qsort
 }
 
 
 xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLibName);
 void closeXMLFile(xmlTextWriterPtr _pWriter);
 bool AddMacroToXML(xmlTextWriterPtr _pWriter, const std::wstring& name, const std::wstring& file, const std::wstring& md5);
+static int cmp(const void* p1, const void* p2);
 
 
 /*--------------------------------------------------------------------------*/
@@ -218,6 +222,9 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
 
 
     wchar_t **pstPath = findfilesW(pstParsePath, L"*.sci", &iNbFile, FALSE);
+    // sort by name using C-style functions
+    qsort(pstPath, iNbFile, sizeof(wchar_t*), cmp);
+
 
     if (pstPath)
     {
@@ -561,3 +568,10 @@ bool AddMacroToXML(xmlTextWriterPtr _pWriter, const std::wstring& name, const st
 
     return true;
 }
+
+
+static int cmp(const void* p1, const void* p2)
+{
+    return wcscmp(* (wchar_t * const *) p1, * (wchar_t * const *) p2);
+}
+
