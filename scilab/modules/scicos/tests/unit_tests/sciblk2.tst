@@ -212,4 +212,4 @@ cpr229 = [ ...
 12.7317556249699955; ];
 
 // Check the sensitive value of the continuous state
-assert_checkalmostequal(list2vec(cpr(2)(2)(9)), cpr229);
+assert_checkalmostequal(list2vec(cpr(2)(2)(9)), cpr229, [], 1e9);
