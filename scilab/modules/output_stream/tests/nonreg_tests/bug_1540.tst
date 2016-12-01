@@ -16,30 +16,30 @@ x = %inf ;
 printf ("x = %d\nx = %f\nx = %e\nx = %g\n" ,x,x,x,x) ;
 
 x = %nan ;
-printf ("x = %d\nx = %f\nx = %e\nx = %g\n" ,x,x,x,x) ;   
+printf ("x = %d\nx = %f\nx = %e\nx = %g\n" ,x,x,x,x) ;
 
 x = %nan ;
 y = %inf ;
-printf ("x = %d\ny = %f\nx = %e\ny = %g\n" ,x,x,x,x) ;   
+printf ("x = %d\ny = %f\nx = %e\ny = %g\n" ,x,x,x,x) ;
 
 x = %inf ;
 printf ("x = %d\nx = %f\nx = %e\nx = %g\n" ,x,x,x,x) ;
 
 x = %nan ;
-printf ("x = %d\nx = %f\nx = %e\nx = %g\n" ,x,x,x,x) ;   
+printf ("x = %d\nx = %f\nx = %e\nx = %g\n" ,x,x,x,x) ;
 
 x = %nan ;
-r = sprintf ("x = %d",x) ;   
+r = sprintf ("x = %d",x) ;
 if r <> 'x = Nan' then pause,end
 
 y = %inf ;
-r = sprintf ("y = %d",y) ;   
+r = sprintf ("y = %d",y) ;
 if r <> 'y = Inf' then pause,end
 
 x = %nan ;
-r = msprintf ("x = %d",x) ;   
+r = msprintf ("x = %d",x) ;
 if r <> 'x = Nan' then pause,end
 
 y = %inf ;
-r = msprintf ("y = %d",y) ;   
+r = msprintf ("y = %d",y) ;
 if r <> 'y = Inf' then pause,end

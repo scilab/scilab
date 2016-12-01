@@ -67,4 +67,4 @@ if or(string(A)<> ["1.79D+120+%i","%i*1.2345678";"4.23D+123","-7.79D+120-%i*2.45
 
 
 P=1.2345678d-123-1.7894567d88*%s;
-if or(string(P)<>["                      ";"1.23D-123 - 1.789D+88s"] ) then pause,end
+if or(string(P)<>["";"1.23D-123 - 1.789D+88s"] ) then pause,end
