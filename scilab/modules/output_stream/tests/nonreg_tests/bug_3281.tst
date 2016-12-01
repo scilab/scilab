@@ -7,6 +7,8 @@
 // <-- CLI SHELL MODE -->
 
 // <-- Non-regression test for bug 3281 -->
+
+// <-- NOT FIXED --> 6.0.0
 //
 //
 // <-- Bugzilla URL -->
