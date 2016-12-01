@@ -5,7 +5,7 @@
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-function r=%zpk_d_zpk(a,b)
+function r=%zpk_v_zpk(a,b)
     //r=a./b for zpk systems
     [ma,na]=size(a)
     [mb,nb]=size(b)
