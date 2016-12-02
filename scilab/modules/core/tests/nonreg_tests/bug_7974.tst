@@ -8,7 +8,8 @@
 // <-- Non-regression test for bug 7974 -->
 //
 // <-- CLI SHELL MODE -->
-// 
+// <-- NOT FIXED --> 6.0.0
+//
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=7974
 //
@@ -17,18 +18,18 @@
 
 ilib_verbose(0);
 if haveacompiler() then
-  cd TMPDIR;
-  mkdir("bug_7974");
-  cd("bug_7974");
-  copyfile(SCI + "/modules/core/tests/nonreg_tests/bug_7974.c", TMPDIR + "/bug_7974/bug_7974.c");
-  if ~isfile(TMPDIR + "/bug_7974/bug_7974.c") then pause, end
-  ilib_build("build_c",["call_xerbla","sci_call_xerbla"], "bug_7974.c", []);
-  exec loader.sce;
-  
-  if execstr("call_xerbla(""FUN123"", 10)", "errcatch") <> 998 then pause, end
-  [msg, err] = lasterror();
-  if err <> 998 then pause, end
-  refline = "  if execstr(""call_xerbla(""""FUN123"""", 10)"", ""errcatch"") <> 998 then pause, end";
-  if msg <> refline then pause, end
+    cd TMPDIR;
+    mkdir("bug_7974");
+    cd("bug_7974");
+    copyfile(SCI + "/modules/core/tests/nonreg_tests/bug_7974.c", TMPDIR + "/bug_7974/bug_7974.c");
+    if ~isfile(TMPDIR + "/bug_7974/bug_7974.c") then pause, end
+    ilib_build("build_c",["call_xerbla","sci_call_xerbla"], "bug_7974.c", []);
+    exec loader.sce;
+
+    if execstr("call_xerbla(""FUN123"", 10)", "errcatch") <> 998 then pause, end
+    [msg, err] = lasterror();
+    if err <> 998 then pause, end
+    refline = "  if execstr(""call_xerbla(""""FUN123"""", 10)"", ""errcatch"") <> 998 then pause, end";
+    if msg <> refline then pause, end
 
 end

@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NOT FIXED --> 6.0.0
 //
 // <-- Non-regression test for bug 7453 -->
 //
@@ -18,9 +19,9 @@
 //
 //
 
-id = funptr('user');
+id = funptr("user");
 if id == 0 then pause, end
-if clearfun('user') <> %t then pause, end
-newfun('user', id);
+if clearfun("user") <> %t then pause, end
+newfun("user", id);
 if user(3) <> 3 then pause, end
 
