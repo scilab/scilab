@@ -1,7 +1,7 @@
 dnl
 dnl Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 dnl Copyright (C) S/E - 2012 - Sylvestre Ledru
-dnl 
+dnl
 dnl Copyright (C) 2012 - 2016 - Scilab Enterprises
 dnl
 dnl This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -14,11 +14,11 @@ dnl
 dnl CURL detection
 dnl
 
-dnl CURL is mandatory in Scilab 
+dnl CURL is mandatory in Scilab
 dnl When we check :
 dnl * if the path is provided or that we have to find it ourself
 dnl * if it is available
-dnl * what are the compilation flags 
+dnl * what are the compilation flags
 dnl * what are linking flags
 AC_DEFUN([AC_CURL], [
 
@@ -68,8 +68,15 @@ CURL_LIBS=`$CURL_CONFIG --libs`
 CURL_VERSION=`$CURL_CONFIG --version`
 
 CURL_REQUIRED_VERSION=7.6
-    PKG_CHECK_MODULES(CURL,
-                      libcurl >= $CURL_REQUIRED_VERSION)
+
+if test -n "$CURL_CONFIG" && \
+    AC_RUN_LOG([$CURL_CONFIG --checkfor $CURL_REQUIRED_VERSION]); then
+      m4_ifval([pkg_cv_[]CURL_CFLAGS=`$CURL_CONFIG --cflags 2>/dev/null`], [pkg_cv_[]CURL_CFLAGS=`$CURL_CONFIG --cflags 2>/dev/null`], [])
+      m4_ifval([pkg_cv_[]CURL_LIBS=`$CURL_CONFIG --libs 2>/dev/null`], [pkg_cv_[]CURL_LIBS=`$CURL_CONFIG --libs 2>/dev/null`], [])
+    m4_ifvaln([pkg_failed=yes], [else
+      # If CURL_CONFIG didn't work, try with PKG_CONFIG
+      PKG_CHECK_MODULES(CURL, libcurl >= $CURL_REQUIRED_VERSION)])
+fi
 
 LIBS="$CURL_LIBS $LIBS"
 CFLAGS="$CURL_CFLAGS $CFLAGS"
