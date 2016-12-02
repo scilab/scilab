@@ -13,6 +13,8 @@
 *
 */
 
+#include <cfloat>
+
 #include "handle_properties.hxx"
 #include "double.hxx"
 
