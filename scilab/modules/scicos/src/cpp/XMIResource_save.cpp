@@ -16,7 +16,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
-#include <cstdio>
+#include <cmath> // for trunc
 
 extern "C" {
 #include "sci_types.h"

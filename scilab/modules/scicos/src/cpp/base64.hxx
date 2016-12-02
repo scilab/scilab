@@ -18,10 +18,9 @@
 
 #include <array>
 #include <vector>
-#include <sstream>
 #include <string>
 #include <limits>
-#include <cmath> // for std::trunc
+#include <cstdio> // for sprintf
 
 namespace org_scilab_modules_scicos
 {
@@ -33,14 +32,17 @@ namespace org_scilab_modules_scicos
  */
 struct base64
 {
-    template<typename T> static std::string encode(const T& v);
-    template<typename T> static T decode(const std::string& content);
+    template<typename T> inline
+    static std::string encode(const T& v);
+    template<typename T> inline
+    static T decode(const std::string& content);
 };
 template<> inline std::string base64::encode(const std::string& v);
 template<> inline std::string base64::decode(const std::string& content);
 
 
-template<> std::string base64::encode<std::string>(const std::string& strValue)
+template<> inline
+std::string base64::encode<std::string>(const std::string& strValue)
 {
     const std::string Base64Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     const char Base64Pad = '=';
@@ -77,7 +79,8 @@ template<> std::string base64::encode<std::string>(const std::string& strValue)
     return content;
 }
 
-template<> std::string base64::decode<std::string>(const std::string& content)
+template<> inline
+std::string base64::decode<std::string>(const std::string& content)
 {
     const std::string Base64Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
@@ -105,7 +108,12 @@ template<> std::string base64::decode<std::string>(const std::string& content)
         val_byte += 6;
         if (val_byte >= 0)
         {
-            strValue.push_back((val >> val_byte) & 0xFF);
+            char c = (val >> val_byte) & 0xFF;
+            if (c < 0)
+            {
+                break;
+            }
+            strValue.push_back(c);
             val_byte -= 8;
         }
     }
@@ -114,47 +122,31 @@ template<> std::string base64::decode<std::string>(const std::string& content)
 }
 
 
-template<typename T>
-std::string base64::encode(const T& v)
+template<> inline
+std::string base64::encode(const std::vector<double>& v)
 {
-    // convert to string components and compress using int conversion
+    // convert to string components and compress using hexfloat conversion
     std::string strValue;
-    for (auto it = v.begin(); it != v.end(); it++)
+    char buf[std::numeric_limits<double>::digits + 2];
+    for (double const& d : v)
     {
-        typename T::value_type d = *it;
-
-        if (std::trunc(d) == d)
-        {
-            strValue.append(std::to_string((int) d));
-        }
-        else
-        {
-            strValue.append(std::to_string(d));
-        }
-
-        if (it + 1 != v.end())
-        {
-            strValue.push_back(' ');
-        }
+        sprintf(buf, "%a ", d);
+        strValue.insert(strValue.size(), buf);
     }
 
     return encode<std::string>(strValue);
 }
 
-template<typename T>
-T base64::decode(const std::string& content)
+template<> inline
+std::vector<double> base64::decode(const std::string& content)
 {
     std::string strValue = decode<std::string>(content);
+    std::vector<double> vector;
 
-    T vector;
-    std::istringstream ss(strValue);
-    while (ss)
+    for (size_t pos = 0; pos < strValue.length(); pos = strValue.find(' ', pos) + 1)
     {
-        typename T::value_type v;
-        ss >> v;
-        vector.push_back(v);
+        vector.push_back(std::stod(strValue.data() + pos));
     }
-
     return vector;
 }
 
