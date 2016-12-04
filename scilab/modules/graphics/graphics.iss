@@ -28,7 +28,6 @@ Source: thirdparty\jlatexmath-fop-1.0.3.jar;DestDir: {app}\thirdparty; Component
 ;
 Source: bin\{#GRAPHICS}.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 Source: bin\{#GRAPHICS}.lib; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
-Source: bin\{#GRAPHICS}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 ;
 Source: bin\no{#GRAPHICS}.dll; DestDir: {app}\bin; DestName: {#GRAPHICS}.dll; Components: not ({#COMPN_GRAPHICS})
 Source: bin\no{#GRAPHICS}.lib; DestDir: {app}\bin; DestName: {#GRAPHICS}.lib; Components: not ({#COMPN_GRAPHICS})
