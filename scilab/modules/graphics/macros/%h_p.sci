@@ -116,7 +116,7 @@ function %h_p(h)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box)
             "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Compound
@@ -129,7 +129,7 @@ function %h_p(h)
             "children: "+fmtchildren(h.children)
             "visible = "+sci2exp(h.visible)
             "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Axes
@@ -236,7 +236,7 @@ function %h_p(h)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
             "user_data = "+fmtuser_data(h.user_data)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Legend
@@ -265,7 +265,7 @@ function %h_p(h)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
             "user_data = "+fmtuser_data(h.user_data)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Rectangle
@@ -293,7 +293,7 @@ function %h_p(h)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
             "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Arc
@@ -316,7 +316,7 @@ function %h_p(h)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
             "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Figure
@@ -403,7 +403,7 @@ function %h_p(h)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
             "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Matplot
@@ -428,7 +428,7 @@ function %h_p(h)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
             "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Fec
@@ -463,7 +463,7 @@ function %h_p(h)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
             "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Segs
@@ -504,7 +504,7 @@ function %h_p(h)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
             "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Champ
@@ -556,7 +556,7 @@ function %h_p(h)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
             "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Text
@@ -589,7 +589,7 @@ function %h_p(h)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
             "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Datatip
@@ -621,7 +621,7 @@ function %h_p(h)
             "mark_foreground = "+string(h.mark_foreground)
             "mark_background = "+string(h.mark_background)
             "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Title
@@ -640,7 +640,7 @@ function %h_p(h)
             "font_size = "+string(h.font_size)
             "fractional_font = " + sci2exp(h.fractional_font)
             "font_angle = "+string(h.font_angle)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Label
@@ -664,7 +664,7 @@ function %h_p(h)
             "auto_position = "+sci2exp(h.auto_position)
             "position = "+sci2exp(h.position,0)
             "auto_rotation = "+sci2exp(h.auto_rotation)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Plot3d
@@ -730,7 +730,7 @@ function %h_p(h)
                 "use_color_material = "+sci2exp(h.use_color_material)
                 "material_shininess = "+sci2exp(h.material_shininess)
                 "user_data = "+fmtuser_data(u)
-                "tag = "+h.tag
+                "tag = "+sci2exp(h.tag)
                 ]
             else
                 t=[t;
@@ -760,7 +760,7 @@ function %h_p(h)
                 "use_color_material = "+sci2exp(h.use_color_material)
                 "material_shininess = "+sci2exp(h.material_shininess)
                 "user_data = "+fmtuser_data(u)
-                "tag = "+h.tag
+                "tag = "+sci2exp(h.tag)
                 ]
             end
 
@@ -829,7 +829,7 @@ function %h_p(h)
                 "use_color_material = "+sci2exp(h.use_color_material)
                 "material_shininess = "+sci2exp(h.material_shininess)
                 "user_data = "+fmtuser_data(u)
-                "tag = "+h.tag
+                "tag = "+sci2exp(h.tag)
                 ]
             else
                 t=[t;
@@ -859,7 +859,7 @@ function %h_p(h)
                 "usecolor_material = "+sci2exp(h.use_color_material)
                 "material_shininess = "+sci2exp(h.material_shininess)
                 "user_data = "+fmtuser_data(u)
-                "tag = "+h.tag
+                "tag = "+sci2exp(h.tag)
                 ]
             end
 
@@ -901,7 +901,7 @@ function %h_p(h)
             "color_mode = "+string(h.color_mode)
             "surface_color = "+c
             "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // Axis
@@ -930,7 +930,7 @@ function %h_p(h)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
             "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
+            "tag = "+sci2exp(h.tag)
             ]
 
             // waitbar
@@ -940,7 +940,7 @@ function %h_p(h)
             u=h.user_data;
             t=[t;
             "Userdata = "+fmtuser_data(u)
-            "Tag = "+h.tag
+            "Tag = "+sci2exp(h.tag)
             ]
 
             // progressionbar
@@ -950,7 +950,7 @@ function %h_p(h)
             u=h.user_data;
             t=[t;
             "Userdata = "+fmtuser_data(u)
-            "Tag = "+h.tag
+            "Tag = "+sci2exp(h.tag)
             ]
 
             // uimenu
@@ -971,7 +971,7 @@ function %h_p(h)
             "Checked =  "+sci2exp(h.checked)
             "Icon =  "+sci2exp(h.icon)
             "Userdata = "+fmtuser_data(u)
-            "Tag = "+h.tag
+            "Tag = "+sci2exp(h.tag)
             ]
 
             // uicontextmenu
@@ -1068,7 +1068,7 @@ function %h_p(h)
             if h.style <> "slider" | showHiddenProperties then
                 t($ + 1) = "String = " + fmtuser_data(h.string);
             end
-            t($ + 1) = "Tag = " + h.tag;
+            t($ + 1) = "Tag = " + sci2exp(h.tag);
             if h.style == "tab" | showHiddenProperties then
                 t($ + 1) = "Title_position = " + sci2exp(h.title_position);
                 t($ + 1) = "Title_scroll = " + sci2exp(h.title_scroll);

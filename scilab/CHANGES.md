@@ -401,10 +401,11 @@ Bug Fixes
 * [#14758](http://bugzilla.scilab.org/show_bug.cgi?id=14758): xstringb creates a figure when no exists.
 * [#14779](http://bugzilla.scilab.org/show_bug.cgi?id=14779): When used logarithmic mode using coordinates <=0, xsegs crashed Scilab.
 * [#14784](http://bugzilla.scilab.org/show_bug.cgi?id=14784): Setting field of graphics handle using children($) failed.
-* [#14796](http://bugzilla.scilab.org/show_bug.cgi?id=14796): `ind2sub(dims, [])` returns [] in version 6. Warnings due to a `[]+1` operation have been removed.
-* [#14775](http://bugzilla.scilab.org/show_bug.cgi?id=14775): load empty (0 bytes) .sod File crashes scilab
+* [#14796](http://bugzilla.scilab.org/show_bug.cgi?id=14796): `ind2sub(dims, [])` returned [] in version 6. Warnings due to a `[]+1` operation occurred
+* [#14775](http://bugzilla.scilab.org/show_bug.cgi?id=14775): Loading empty (0 bytes) .sod File crashed scilab
 * [#14808](http://bugzilla.scilab.org/show_bug.cgi?id=14808): E=[ 'A' 'B' 'C' 'D' 'E']  ,  E(0:0) Crash Scilab Console
-* [#14821](http://bugzilla.scilab.org/show_bug.cgi?id=14821): `getio`function has been added. An error on the diary file opened has been corrected.
+* [#14821](http://bugzilla.scilab.org/show_bug.cgi?id=14821): `getio` function was missing. An error on the diary file opened has been corrected
+* [#14887](http://bugzilla.scilab.org/show_bug.cgi?id=14887): For many graphic handle types, the display of the `.tag` value missed `".."` delimiters
 
 ### Bugs fixed in 6.0.0 beta-2 and earlier 6.0.0 pre-releases:
 
