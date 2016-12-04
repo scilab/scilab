@@ -207,7 +207,7 @@ Help pages:
 -----------
 
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `roots`,
-  `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `%helps`
+  `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `%helps`, `scilab|scilex`
 * rewritten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`,
 `brackets`, `setlanguage`, `sleep`, `isinf`, `bitor`, `bitxor`, `bitand`, `geomean`
 * reorganized:
