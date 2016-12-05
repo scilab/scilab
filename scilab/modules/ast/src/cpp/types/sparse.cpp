@@ -1583,15 +1583,6 @@ GenericType* Sparse::remove(typed_list* _pArgs)
         }
     }
 
-    //free allocated data
-    for (int i = 0 ; i < iDims ; i++)
-    {
-        if (pArg[i] != (*_pArgs)[i])
-        {
-            delete pArg[i];
-        }
-    }
-
     delete[] piIndexes;
     delete[] piViewDims;
 
