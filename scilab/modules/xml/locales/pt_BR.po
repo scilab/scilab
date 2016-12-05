@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -344,9 +344,6 @@ msgstr ""
 msgid "%s: Error in getting rhs argument.\n"
 msgstr "%s: Erro ao obter o argumento à direita.\n"
 
-#
-# File: modules/xml/src/cpp/XMLMlistsManagement.cpp, line: 75
-# File: modules/xml/src/cpp/XMLMlistsManagement.cpp, line: 143
 msgid "Unknown tag.\n"
 msgstr ""
 

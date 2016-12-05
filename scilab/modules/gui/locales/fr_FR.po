@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-06-30 19:41+0000\n"
-"Last-Translator: Mickael Albertus <Unknown>\n"
+"PO-Revision-Date: 2016-10-19 13:04+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -854,8 +854,6 @@ msgstr ""
 "Attention : La propriété  'Value' pour un uicontrol de type '%s' doit être "
 "un entier, la valeur sera tronquée.\n"
 
-#
-# File: modules/gui/src/cpp/SetUicontrolValue.cpp, line: 140
 msgid "(Max - Min) must be greater than 1 to allow the multiple selection.\n"
 msgstr ""
 
@@ -915,11 +913,6 @@ msgstr "&Zoomer"
 msgid "&Original View"
 msgstr "Vue &Originale"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 14
-# File: modules/gui/src/gui_fake_xml.c, line: 50
-# File: modules/gui/src/gui_fake_xml.c, line: 188
-# File: modules/gui/src/gui_fake_xml.c, line: 196
 msgid "Reframe to contents"
 msgstr ""
 
@@ -2453,13 +2446,11 @@ msgstr "Boîtes de listes et menus contextuels"
 msgid "Uicontrols rendering"
 msgstr "Rendu des interfaces graphiques de contrôle"
 
-#, fuzzy
 msgid "Uicontrols layout"
-msgstr "Interfaces graphiques de contrôles 1"
+msgstr ""
 
-#, fuzzy
 msgid "Uicontrols messagebox-like"
-msgstr "Démo des interfaces graphiques de contrôle"
+msgstr ""
 
 msgid "<Enter color name here>"
 msgstr "<Entrez le nom de la couleur ici>"
@@ -2601,8 +2592,6 @@ msgstr "Quitter la démonstration"
 msgid "Uicontrols demo with LaTeX"
 msgstr "Démonstration des interfaces graphiques de contrôle avec LaTeX"
 
-#
-# File: modules/gui/demos/uicontrol_messagebox.dem.sce, line: 13
 msgid "Please fill the table"
 msgstr ""
 

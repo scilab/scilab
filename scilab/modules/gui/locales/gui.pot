@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-12-05 09:43+0100\n"
+"Revision-Date: 2016-12-07 16:04+0100\n"
 
 # File: modules/gui/sci_gateway/c/sci_delmenu.c, line: 55
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 49
@@ -29,11 +29,11 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_delmenu.c, line: 69
 # File: modules/gui/sci_gateway/c/sci_delmenu.c, line: 116
 # File: modules/gui/sci_gateway/c/sci_figure.c, line: 555
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 69
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 95
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 138
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 191
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 230
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 71
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 97
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 141
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 201
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 243
 # File: modules/gui/sci_gateway/c/sci_progressionbar.c, line: 88
 # File: modules/gui/sci_gateway/c/sci_progressionbar.c, line: 141
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 76
@@ -308,7 +308,7 @@ msgstr ""
 #
 # File: modules/gui/sci_gateway/c/sci_getcallbackobject.c, line: 69
 # File: modules/gui/sci_gateway/c/sci_getcallbackobject.c, line: 78
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 308
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 324
 # File: modules/gui/sci_gateway/c/sci_progressionbar.c, line: 168
 # File: modules/gui/sci_gateway/c/sci_toolbar.c, line: 220
 # File: modules/gui/sci_gateway/c/sci_uicontextmenu.c, line: 54
@@ -372,8 +372,8 @@ msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 102
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 237
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 104
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 251
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 69
 # File: modules/gui/sci_gateway/c/sci_toolbar.c, line: 177
 # File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 130
@@ -386,15 +386,15 @@ msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 169
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 208
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 177
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 219
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: string or string vector expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 264
+# File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 280
 # File: modules/gui/src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 83
 # File: modules/gui/src/java/org/scilab/modules/gui/messagebox/ScilabModalDialog.java, line: 99
 msgid "Scilab Message"

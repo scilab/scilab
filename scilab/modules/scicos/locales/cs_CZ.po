@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -1041,11 +1041,10 @@ msgstr ""
 msgid "Wrong type for diagram element #%d: %s, %s or %s expected.\n"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Your model contains states defined in standard Scicos blocks.\n"
 "Current initialization interface does not support mixed models."
-msgstr "Váš model obsahuje stavy zadané ve standardních blocích Scicos.\n"
+msgstr ""
 
 #, c-format
 msgid "Initialisation problem in %s "
@@ -1121,8 +1120,6 @@ msgstr "Algebraické smyčky při událostech"
 msgid "Algebraic loop."
 msgstr "Algebraická smyčka"
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 1223
 msgid ""
 "A C or Fortran block is used but not linked.\n"
 "You can save your compiled diagram and load it.\n"
@@ -1137,14 +1134,11 @@ msgstr "Počet režimů v bloku #%d nlze zjistit.."
 msgid "Number of zero crossings in block #%d cannot be determined."
 msgstr "Počet průchodů nulou v bloku #%d nelze zjistit."
 
-#, fuzzy
 msgid ""
 "Not enough information to find port sizes.\n"
 "I try to find the problem."
-msgstr "Není dostatek informací k nalezení velikostí portu.\n"
+msgstr ""
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2049
 msgid ""
 "I cannot find a link with undetermined size.\n"
 "My guess is that you have a block with unconnected \n"
@@ -1209,20 +1203,17 @@ msgstr ""
 "s velikostmi, které nemohou být zjištěny pomocí kontextu.\n"
 "Jaká je velikost tohoto propojení?"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
 "It should be a colon vector of size %d."
-msgstr "Velikost dep_ut v bloku %s není správná.\n"
+msgstr ""
 
-#, fuzzy
 msgid ""
 "Not enough information to find port type.\n"
 "I will try to find the problem."
-msgstr "Není dostatek informací k nalezení typu portu.\n"
+msgstr ""
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2640
 msgid ""
 "I cannot find a link with undetermined size.\n"
 "My guess is that you have a block with unconnected \n"
@@ -1384,8 +1375,6 @@ msgstr "%s: Špatná velikost parametru bloku '%s': Očekáváno %s, obdrženo %
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
 msgstr "%s: Špatný typ parametru bloku '%s': Očekáváno %s(%s), obdrženo %s"
 
-#
-# File: modules/scicos/macros/scicos_scicos/translator.sci, line: 73
 msgid ""
 "There are too many Modelica files.\n"
 "It would be better to define several \n"

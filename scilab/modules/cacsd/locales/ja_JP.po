@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -1280,11 +1280,11 @@ msgstr "%s: %s （制御器）の固有値が虚軸近傍にあります。\n"
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
 msgstr "%s: リカッチ解が不正確です: 方程式の誤差 = %g.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
 "The distance to the imaginary axis is less than %g "
-msgstr "%s: %s （オブザーバ）の固有値が虚軸近傍にあります。\n"
+msgstr ""
 
 #
 # File: macros/h_inf.sci, line: 403
@@ -1440,20 +1440,17 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
 "incompatible with #%d argument.\n"
 msgstr ""
-"%s: 入力引数 #%d と #%d に互換性がありません: 行の数を同じにしてください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
 "incompatible with #%d argument.\n"
 msgstr ""
-"%s: 入力引数 #%d 及び #%d に互換性がありません : 列の数を同じにする必要があり"
-"ます.\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr "y/(1+y)の振幅と位相の等高線"
@@ -1847,7 +1844,8 @@ msgstr "%s: 入力引数 #%d の型が正しくありません: リストを指�
 msgid ""
 "%s: Wrong type for input argument  #%d: Cell elements must be numerical "
 "arrays.\n"
-msgstr "%s: 入力引数 #%d の値が正しくありません: 要素は正としてください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が正しくありません: 線形状態空間を指定してください.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
@@ -1875,17 +1873,3 @@ msgid ""
 "%s: Wrong type for input argument #%d: zero-pole-gain representation "
 "expected.\n"
 msgstr "%s: 入力引数 #%dの型が間違っています: 伝達関数を指定してください.\n"
-
-#~ msgid ""
-#~ "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
-#~ msgstr ""
-#~ "引数 #%d の型が間違っています:  有理数または状態空間行列を指定してくださ"
-#~ "い.\n"
-
-#~ msgid "%s: Incompatible input arguments #%d and #%d: "
-#~ msgstr "%s: 入力引数 #%d と #%d で互換性がありません: "
-
-#~ msgid "%s: Wrong value of input argument #%d: Proper system expected.\n"
-#~ msgstr ""
-#~ "%s: 入力引数 #%d の値が間違っています:　適当なシステムを指定してくださ"
-#~ "い.\n"

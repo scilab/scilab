@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-06-28 19:01+0000\n"
+"PO-Revision-Date: 2016-10-19 14:32+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -1294,12 +1294,13 @@ msgstr "%s: власне значення %s (керування) близьке
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
 msgstr "%s: розв’язок Рікатті є неточним: похибка рівняння = %g.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
 "The distance to the imaginary axis is less than %g "
 msgstr ""
-"%s: власне значення %s (спостереження) близьке до вісі уявних значень.\n"
+"%s: власне значення %s (спостерігач) близьке до вісі уявних значень.\n"
+"Відстань від уявної вісі є меншою за %g "
 
 msgid "Unfeasible (Hx hamiltonian)"
 msgstr "Неможливий (Гамільтоніан Hx)"
@@ -1458,21 +1459,21 @@ msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
 "incompatible with #%d argument.\n"
 msgstr ""
-"%s: несумісні вхідні параметри №%d і №%d: кількість рядків має бути "
-"однаковою.\n"
+"%s: несумісні вхідні параметри №%d і №%d: кількість рядків №%d несумісна із "
+"параметром №%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
 "incompatible with #%d argument.\n"
 msgstr ""
-"%s: несумісні вхідні параметри №%d і №%d: кількість стовпчиків у параметрах "
-"має збігатися.\n"
+"%s: несумісні вхідні параметри №%d і №%d: кількість стовпчиків №%d несумісна "
+"із параметром №%d.\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr "Амплітудна і фазова криві y/(1+y)"
@@ -1700,13 +1701,13 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
 "квадратну матрицю.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: number of elements of #%d must "
 "match the column dimension of #%d\n"
 msgstr ""
-"%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
-"кількість елементів.\n"
+"%s: несумісні вхідні параметри №%d і №%d: кількість елементів у №%d має "
+"збігатися із розмірністю за стовпчиками №%d.\n"
 
 #, c-format
 msgid ""
@@ -1740,21 +1741,21 @@ msgstr ""
 msgid "%s: Incorrect answer.\n"
 msgstr "%s: помилкова відповідь.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
 "equal to the column dimension of #%d.\n"
 msgstr ""
-"%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
-"розмірність за стовпчиками.\n"
+"%s: несумісні вхідні параметри №%d і №%d: розмірність за станами №%d має "
+"збігатися із розмірністю за стовпчиками №%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
 "equal to the column dimension of #%d.\n"
 msgstr ""
-"%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
-"розмірність за стовпчиками.\n"
+"%s: несумісні вхідні параметри №%d і №%d: вхідна розмірність №%d має "
+"збігатися із розмірністю за стовпчиками №%d.\n"
 
 #, c-format
 msgid "%s: Residual norm = %g\n"
@@ -1843,8 +1844,8 @@ msgid ""
 "%s: Wrong type for input argument  #%d: Cell elements must be numerical "
 "arrays.\n"
 msgstr ""
-"%s: помилкові значення вхідного параметра №%d: елементи мають бути "
-"додатніми.\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати лінійний "
+"простір станів.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
@@ -1876,17 +1877,3 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано функцію "
 "переходу.\n"
-
-#~ msgid ""
-#~ "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
-#~ msgstr ""
-#~ "Помилковий тип параметра №%d: мало бути використано матрицю з "
-#~ "раціональних чисел або значень простору станів.\n"
-
-#~ msgid "%s: Incompatible input arguments #%d and #%d: "
-#~ msgstr "%s: несумісні вхідні параметри №%d і №%d: "
-
-#~ msgid "%s: Wrong value of input argument #%d: Proper system expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: мало бути вказано належну "
-#~ "систему.\n"

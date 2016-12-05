@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -1192,12 +1192,11 @@ msgstr ""
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
 msgstr "%s: Solución de Riccati inexacta: error de la ecuación = %g.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
 "The distance to the imaginary axis is less than %g "
 msgstr ""
-"%s: Un valor propio de %s (observador) está cerca del eje imaginario.\n"
 
 msgid "Unfeasible (Hx hamiltonian)"
 msgstr "No factible (Hx hamiltonian)"
@@ -1347,21 +1346,17 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Número incorrecto de argumentos de salida: Se esperaban %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
 "incompatible with #%d argument.\n"
 msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: El número de columnas no "
-"es compatible con %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
 "incompatible with #%d argument.\n"
 msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: El número de columnas no "
-"es compatible con %s.\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr "Amplitud y contornos de fase de y/(1+y)"
@@ -1586,13 +1581,11 @@ msgstr ""
 "%s: Tamaño incorrecto de argumento de entrada #%d: Se esperaba un matriz "
 "cuadrada.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: number of elements of #%d must "
 "match the column dimension of #%d\n"
 msgstr ""
-"%s: Argumentos de entrada #%d y #%d incompatibles: Se esperaba el mismo "
-"número de elementos.\n"
 
 #, c-format
 msgid ""
@@ -1684,7 +1677,8 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
 msgstr ""
-"%s: Tipo incorrecto para el argumento %d: Se esperaba un vector real.\n"
+"%s: Tipo incorrecto para el parámetro de entrada #%d: Se esperaba un arreglo "
+"de polinomios.\n"
 
 #, fuzzy, c-format
 msgid ""
@@ -1723,8 +1717,8 @@ msgid ""
 "%s: Wrong type for input argument  #%d: Cell elements must be numerical "
 "arrays.\n"
 msgstr ""
-"%s: Valores incorrectos del argumento de entrada #%d: Los elementos deben "
-"ser positivos.\n"
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un espacio "
+"lineal.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
@@ -1734,8 +1728,7 @@ msgstr ""
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
-"%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba un real o "
-"un escalar no negativo.\n"
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una lista.\n"
 
 #, fuzzy, c-format
 msgid ""
@@ -1757,6 +1750,3 @@ msgid ""
 msgstr ""
 "%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba una "
 "función de transferencia.\n"
-
-#~ msgid "%s: Incompatible input arguments #%d and #%d: "
-#~ msgstr "%s: Argumentos de entrada #%d y #%d incompatibles: "

@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -1208,14 +1208,11 @@ msgstr "%s:  %s (控制器) 之一個特徵值接近虛軸.\n"
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
 msgstr ""
 
-#
-# File: macros/h_inf.sci, line: 353
-# File: macros/h_inf.sci, line: 471
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
 "The distance to the imaginary axis is less than %g "
-msgstr "%s:  %s (觀測器) 之一個特徵值接近虛軸.\n"
+msgstr ""
 
 msgid "Unfeasible (Hx hamiltonian)"
 msgstr ""
@@ -1381,21 +1378,17 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: 輸出參數之數目錯誤: 應為 %d.\n"
 
-#
-# File: macros/armac.sci, line: 34
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
 "incompatible with #%d argument.\n"
-msgstr "%s: 第 %d 輸入參數長度錯誤: 列數與 %s 不相容.\n"
+msgstr ""
 
-#
-# File: macros/armac.sci, line: 34
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
 "incompatible with #%d argument.\n"
-msgstr "%s: 第 %d 輸入參數長度錯誤: 列數與 %s 不相容.\n"
+msgstr ""
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr ""
@@ -1611,11 +1604,11 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為方陣.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: number of elements of #%d must "
 "match the column dimension of #%d\n"
-msgstr "%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 應該有相同的元素數目.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1700,7 +1693,7 @@ msgstr "%s:第 %d 輸入參數值有誤: 元素必須是正值.\n"
 #, fuzzy, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr "%s: 參數 %d 型態錯誤: 應為實數向量.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是多項式陣列.\n"
 
 #, fuzzy, c-format
 msgid ""
@@ -1737,7 +1730,7 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一串列 (list).\n"
 msgid ""
 "%s: Wrong type for input argument  #%d: Cell elements must be numerical "
 "arrays.\n"
-msgstr "%s:第 %d 輸入參數值有誤: 元素必須是正值.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是線性狀態空間.\n"
 
 #
 # File: macros/bloc2exp.sci, line: 16
@@ -1748,9 +1741,14 @@ msgstr "%s:第 %d 輸入參數值有誤: 元素必須是正值.\n"
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一串列 (list).\n"
 
+#
+# File: macros/bloc2exp.sci, line: 16
+# File: macros/bloc2exp.sci, line: 19
+# File: macros/bloc2ss.sci, line: 17
+# File: macros/bloc2ss.sci, line: 21
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
-msgstr "%s: 輸入引數 #%d 型態錯誤: 需爲實數矩陣。\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一串列 (list).\n"
 
 #, fuzzy, c-format
 msgid ""
@@ -1771,7 +1769,4 @@ msgstr "%s: 輸入參數之數目錯誤: 應為 %d 或 %d.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: zero-pole-gain representation "
 "expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串陣列.\n"
-
-#~ msgid "%s: Incompatible input arguments #%d and #%d: "
-#~ msgstr "%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): "
+msgstr "%s: 輸入引數 #%d 型態錯誤: 需爲實數矩陣。\n"

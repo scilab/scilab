@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-06-10 06:01+0000\n"
+"PO-Revision-Date: 2016-10-19 15:31+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -245,11 +245,11 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип вектора "
 "%s або %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано матрицю "
-"з рядків.\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"рядків.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -694,11 +694,9 @@ msgstr "%s: встановлено розміри вікна, менші за 2^
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Батьківським елементом має бути SUBWIN\n"
 
-#
-# File: modules/graphics/src/c/Champ.c, line: 147
 #, c-format
 msgid "%s: Could not retrive bounding box.\n"
-msgstr ""
+msgstr "%s: не вдалося отримати обмежувальну рамку.\n"
 
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
@@ -706,10 +704,8 @@ msgstr ""
 "%s призначено для обчислення даних кривих рівнів, а не для показу цих "
 "кривих.\n"
 
-#
-# File: modules/graphics/src/c/DrawObjects.c, line: 88
 msgid "Could not retrive bounds.\n"
-msgstr ""
+msgstr "Не вдалося отримати межі.\n"
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
 msgstr ""
@@ -743,9 +739,9 @@ msgstr "Помилка: для об’єктів AXIS слід використ�
 msgid "%s: Wrong type argument %s.\n"
 msgstr "%s: параметр помилкового типу %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Cannot get coordinates.\n"
-msgstr "%s: не вдалося відкрити файл "
+msgstr "%s: не вдалося отримати координати.\n"
 
 #, c-format
 msgid "Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"
@@ -1122,11 +1118,11 @@ msgstr "Помилкове значення властивості «%s»: ма�
 msgid "Wrong type for '%s' property: Matrix expected.\n"
 msgstr "Помилковий тип властивості «%s»: мало бути використано матрицю.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong size for '%s' property: Matrix with length 3 or [] expected.\n"
 msgstr ""
-"Помилкове значення властивості «%s»: мало бути використано рядок довжини 3 "
-"або меншої.\n"
+"Помилкова розмірність властивості «%s»: мало бути вказано матрицю довжини 3 "
+"або [].\n"
 
 msgid "Datatips property can not be modified directly.\n"
 msgstr "Безпосередня зміна властивості підказок до даних неможлива.\n"
@@ -1147,10 +1143,8 @@ msgstr ""
 "Помилкове значення властивості «%s»: слід використовувати ціле число у межах "
 "від %d до %d.\n"
 
-#
-# File: modules/graphics/src/c/getHandleProperty/set_format_n_property.c, line: 63
 msgid "Could not retrieve format.\n"
-msgstr ""
+msgstr "Не вдалося отримати формат.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be -1 or a valid color index.\n"
@@ -1317,6 +1311,14 @@ msgstr "%s: вектор y не є монотонним.\n"
 
 msgid "Impossible case when building axis\n"
 msgstr "Побудувати вісі не вдалося\n"
+
+#, fuzzy, c-format
+msgid ""
+"Error: Values must be strictly positive when logarithmic mode on %s axis is "
+"active.\n"
+msgstr ""
+"Помилка: data_bounds на осі %s мають бути строго додатними для переходу до "
+"логарифмічного режиму.\n"
 
 msgid "Wrong type for input argument: A tlist expected.\n"
 msgstr "Помилковий тип вхідного параметра: мало бути використано tlist.\n"
@@ -1504,9 +1506,8 @@ msgstr "підказки щодо даних на плоских кривих"
 msgid "datatips on 3D curves"
 msgstr "підказки щодо даних на просторових кривих"
 
-#, fuzzy
 msgid "Datatips detached from curve"
-msgstr "підказки щодо даних на плоских кривих"
+msgstr "Підказки щодо даних, від’єднані від кривої"
 
 msgid "2D curves"
 msgstr "Плоскі криві"
@@ -1514,10 +1515,8 @@ msgstr "Плоскі криві"
 msgid "3D curve"
 msgstr "Просторова крива"
 
-#
-# File: modules/graphics/demos/datatips/datatips.dem.gateway.sce, line: 17
 msgid "Detach"
-msgstr ""
+msgstr "Від’єднати"
 
 msgid "Graphics"
 msgstr "Графіка"
@@ -2351,28 +2350,28 @@ msgstr "%s: «%s» не можна використовувати разом з 
 #, c-format
 msgid "%s: Argument #%d is badly placed. Please check available syntaxes.\n"
 msgstr ""
+"%s: помилкове розташування параметра №%d. Будь ласка, ознайомтеся із "
+"доступними синтаксичними конструкціями.\n"
 
-#
-# File: modules/graphics/macros/replot.sci, line: 67
 #, c-format
 msgid "%s: Argument #%d: Wrong type. Please check available syntaxes.\n"
 msgstr ""
+"%s: параметр №%d: помилковий тип. Будь ласка, ознайомтеся із доступними "
+"синтаксичними конструкціями.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Matrix with 4 or 6 columns expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
-"елементів керування.\n"
+msgstr "%s: параметр №%d: мало бути вказано матрицю із 4 або 6 стовпчиками.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: tight or on or off values expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати елемент "
-"керування «Figure» або «Axes».\n"
+"%s: параметр №%d: мало бути вказано одне зі значень: tight, on або off.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Handle of unsupported type '%s' as Argument #%d\n"
-msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
+msgstr ""
+"%s: елемент керування непідтримуваного типу, «%s», на місці параметра №%d\n"
 
 #, c-format
 msgid ""

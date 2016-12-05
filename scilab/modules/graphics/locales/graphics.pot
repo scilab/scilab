@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-12-05 09:43+0100\n"
+"Revision-Date: 2016-12-07 16:04+0100\n"
 
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 83
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 221
@@ -124,9 +124,9 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_xname.c, line: 58
 # File: modules/graphics/sci_gateway/c/sci_xpoly.c, line: 121
 # File: modules/graphics/sci_gateway/c/sci_xstring.c, line: 76
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 123
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 203
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 210
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 126
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 206
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 213
 # File: modules/graphics/sci_gateway/c/sci_xtitle.c, line: 149
 # File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 154
 # File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 162
@@ -332,10 +332,10 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_xstring.c, line: 119
 # File: modules/graphics/sci_gateway/c/sci_xstring.c, line: 165
 # File: modules/graphics/sci_gateway/c/sci_xstring.c, line: 194
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 76
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 101
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 148
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 175
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 79
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 104
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 151
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 178
 # File: modules/graphics/sci_gateway/c/sci_xtitle.c, line: 100
 # File: modules/graphics/sci_gateway/c/sci_zoom_rect.c, line: 75
 # File: modules/graphics/sci_gateway/cpp/sci_contour2dm.cpp, line: 49
@@ -549,7 +549,7 @@ msgstr ""
 #
 # File: modules/graphics/sci_gateway/c/sci_delete.c, line: 215
 # File: modules/graphics/sci_gateway/c/sci_move.c, line: 77
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 222
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 225
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
@@ -599,10 +599,10 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_xrect.c, line: 141
 # File: modules/graphics/sci_gateway/c/sci_xrect.c, line: 164
 # File: modules/graphics/sci_gateway/c/sci_xrect.c, line: 187
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 83
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 108
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 156
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 183
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 86
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 111
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 159
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 186
 # File: modules/graphics/sci_gateway/c/sci_xtitle.c, line: 107
 # File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 108
 #, c-format
@@ -2635,6 +2635,16 @@ msgstr ""
 #
 # File: modules/graphics/src/c/sciCall.c, line: 911
 msgid "Impossible case when building axis\n"
+msgstr ""
+
+#
+# File: modules/graphics/src/c/sciCall.c, line: 1015
+# File: modules/graphics/src/c/sciCall.c, line: 1023
+# File: modules/graphics/src/c/sciCall.c, line: 1033
+#, c-format
+msgid ""
+"Error: Values must be strictly positive when logarithmic mode on %s axis is "
+"active.\n"
 msgstr ""
 
 #

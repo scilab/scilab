@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-06-29 09:17+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2016-11-03 15:19+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -170,13 +170,13 @@ msgstr ""
 msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
 msgstr "%s: Неверный размер аргумента: несовместимые размерности.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be non-negative "
 "integers.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: должно быть из множества "
-"{%s}.\n"
+"%s: Неверное значение входного аргумента №%d: элементы должны быть целыми "
+"неотрицательными числами.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
@@ -192,15 +192,13 @@ msgid "%s: Input and output matrices  must have the same number of elements"
 msgstr ""
 "%s: Входная и выходная матрицы должны иметь одинаковое количество элементов."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d must have compatible sizes\n"
-msgstr "%s: Входные аргументы №%d и №%d имеют несовместимые размеры.\n"
+msgstr "%s: Аргументы №%d и №%d должны иметь совместимые размеры\n"
 
-#
-# File: modules/overloading/macros/%hm_r_s.sci, line: 17
 #, c-format
 msgid "%s: not implemented for argin#1 hypermatrix and argin#2 matrix\n"
-msgstr ""
+msgstr "%s: не реализовано  для argin#1 гиперматрицы и argin#2 матрицы\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
@@ -233,6 +231,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: integer <= ndims(argument #%d) "
 "expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось целое число <= "
+"ndims(аргумента №%d).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
@@ -306,13 +306,13 @@ msgid "%s: Wrong size for input argument(s).\n"
 msgstr "%s: Неверные размеры аргументов.\n"
 
 msgid "Invalid exponent: expected real exponents."
-msgstr ""
+msgstr "Недопустимая экспонента: ожидались вещественные экспоненты."
 
 msgid "Division by zero"
 msgstr "Деление на ноль"
 
 msgid "Invalid Exponent"
-msgstr ""
+msgstr "Недопустимая Экспонента"
 
 #, c-format
 msgid ""
@@ -331,11 +331,9 @@ msgstr ""
 "%s: Присвоение нуля может иметь только одно указание индексов без "
 "двоеточия.\n"
 
-#
-# File: modules/overloading/macros/%s_l_hm.sci, line: 17
 #, c-format
 msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
-msgstr ""
+msgstr "%s: не реализовано для argin#1 матрицы и argin#2 гиперматрицы\n"
 
 #, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
@@ -344,6 +342,8 @@ msgstr "%s: Случай вставки в разрежённую матрицу
 #, c-format
 msgid "%s: Concatenated arrays must have the same number of dimensions.\n"
 msgstr ""
+"%s: Конкатенируемые массивы должны иметь одинаковое количество "
+"размерностей.\n"
 
 #, c-format
 msgid "%s: Field names mismatch.\n"
@@ -411,9 +411,8 @@ msgstr ""
 "%s: Несовместимые размеры для свойств '%s' и '%s': ожидались одинаковые "
 "размеры.\n"
 
-#, fuzzy
 msgid "Invalid index."
-msgstr "%s: Недопустимый индекс.\n"
+msgstr "Недопустимый индекс."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

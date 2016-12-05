@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -1063,11 +1063,10 @@ msgstr ""
 msgid "Wrong type for diagram element #%d: %s, %s or %s expected.\n"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Your model contains states defined in standard Scicos blocks.\n"
 "Current initialization interface does not support mixed models."
-msgstr "モデルには標準Scicosブロックで定義された状態量が含まれます.\n"
+msgstr ""
 
 #, c-format
 msgid "Initialisation problem in %s "
@@ -1149,8 +1148,6 @@ msgstr "イベントに代数ループがあります."
 msgid "Algebraic loop."
 msgstr "代数ループ"
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 1223
 msgid ""
 "A C or Fortran block is used but not linked.\n"
 "You can save your compiled diagram and load it.\n"
@@ -1165,14 +1162,11 @@ msgstr "ブロック #%d のモード番号が定義されていません."
 msgid "Number of zero crossings in block #%d cannot be determined."
 msgstr "ブロック #%d 中のゼロ交差の数を定義できませんでした."
 
-#, fuzzy
 msgid ""
 "Not enough information to find port sizes.\n"
 "I try to find the problem."
-msgstr "ポートの大きさを見つけるために十分な情報がありません.\n"
+msgstr ""
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2049
 msgid ""
 "I cannot find a link with undetermined size.\n"
 "My guess is that you have a block with unconnected \n"
@@ -1237,20 +1231,17 @@ msgstr ""
 "トを有しています.\n"
 "このリンクの大きさは何ですか?"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
 "It should be a colon vector of size %d."
-msgstr "%s ブロックの dep_ut の大きさが間違っています.\n"
+msgstr ""
 
-#, fuzzy
 msgid ""
 "Not enough information to find port type.\n"
 "I will try to find the problem."
-msgstr "ポートの型を定義するために十分な情報がありません.\n"
+msgstr ""
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2640
 msgid ""
 "I cannot find a link with undetermined size.\n"
 "My guess is that you have a block with unconnected \n"
@@ -1418,8 +1409,6 @@ msgstr ""
 "%s: ブロックパラメータ '%s' の型が間違っています:  %s(%s) を予測しましたが, "
 "%s が取得されました"
 
-#
-# File: modules/scicos/macros/scicos_scicos/translator.sci, line: 73
 msgid ""
 "There are too many Modelica files.\n"
 "It would be better to define several \n"

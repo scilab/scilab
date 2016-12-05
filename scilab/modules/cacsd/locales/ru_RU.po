@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-06-29 08:47+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2016-10-22 04:54+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -579,16 +579,16 @@ msgid "%s: ierr %d from qitz (eispack).\n"
 msgstr "%s: ierr %d из qitz (eispack).\n"
 
 msgid "Control Systems - CACSD"
-msgstr ""
+msgstr "Системы управления - CACSD"
 
 msgid "LQG"
 msgstr "LQG"
 
 msgid "Mixed-sensitivity"
-msgstr ""
+msgstr "Смешанная чувствительность"
 
 msgid "PID"
-msgstr ""
+msgstr "Идентификатор процесса"
 
 msgid "Inverted pendulum"
 msgstr "Перевёрнутый маятник"
@@ -597,7 +597,7 @@ msgid "Flat systems"
 msgstr "Плоские системы"
 
 msgid "Tracking"
-msgstr ""
+msgstr "Отслеживание"
 
 msgid "Robust control"
 msgstr "Устойчивое управление"
@@ -1236,12 +1236,13 @@ msgstr ""
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
 msgstr "%s: Решение Риккати неточно: ошибка уравнения = %g.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
 "The distance to the imaginary axis is less than %g "
 msgstr ""
 "%s: Собственное значение %s (наблюдатель) слишком близко к мнимой оси.\n"
+"Расстояние до мнимой оси менее %g "
 
 msgid "Unfeasible (Hx hamiltonian)"
 msgstr "Невозможный (Hx гамильтониан)"
@@ -1393,21 +1394,21 @@ msgstr "%s: Неверное значение входного аргумент�
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
 "incompatible with #%d argument.\n"
 msgstr ""
-"%s: Несовместимые входные параметры №%d и №%d: ожидалось одинаковое число "
-"строк.\n"
+"%s: Несовместимые входные аргументы №%d и №%d: количество  строк у аргумента "
+"№%d не совместима с количеством строк у аргумента №%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
 "incompatible with #%d argument.\n"
 msgstr ""
-"%s: Несовместимые входные аргументы №%d и №%d: ожидалось одинаковое "
-"количество столбцов.\n"
+"%s: Несовместимые входные аргументы №%d и №%d: Количество столбцов у "
+"аргумента №%d несовместимо с количеством столбцов у аргумента №%d.\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr "Амплитудная и фазовая кривые y/(1+y)"
@@ -1626,19 +1627,21 @@ msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась квадратная матрица.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: number of elements of #%d must "
 "match the column dimension of #%d\n"
 msgstr ""
-"%s: Несовместимые входные параметры №%d и №%d: ожидалось одинаковое "
-"количество элементов.\n"
+"%s: Несовместимые входные аргументы №%d и №%d: количество элементов у "
+"аргумента №%d должно совпадать с количеством столбцов у аргумента №%d\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: state space or a descriptor "
 "representation expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d:ожидалось пространство состояний или "
+"представление указателя.\n"
 
 msgid "Denominator :"
 msgstr "Знаменатель :"
@@ -1664,21 +1667,21 @@ msgstr ""
 msgid "%s: Incorrect answer.\n"
 msgstr "%s: Некорректный ответ.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
 "equal to the column dimension of #%d.\n"
 msgstr ""
-"%s: Несовместимые входные параметры №%d и №%d: ожидалось одинаковое "
-"количество столбцов.\n"
+"%s: Несовместимые входные аргументы №%d и №%d: размерность состояний "
+"аргумента №%d должна быть равна количеству столбцов у аргумента №%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
 "equal to the column dimension of #%d.\n"
 msgstr ""
-"%s: Несовместимые входные параметры №%d и №%d: ожидалось одинаковое "
-"количество столбцов.\n"
+"%s: Несовместимые входные аргументы №%d и №%d: входная размерность аргумента "
+"№%d должна быть равна количеству столбцов у аргумента №%d.\n"
 
 #, c-format
 msgid "%s: Residual norm = %g\n"
@@ -1763,8 +1766,8 @@ msgid ""
 "%s: Wrong type for input argument  #%d: Cell elements must be numerical "
 "arrays.\n"
 msgstr ""
-"%s: Неверные значения входного параметра №%d: элементы должны быть "
-"положительными.\n"
+"%s: Неверный тип входного параметра №%d: ожидалось линейное пространство "
+"состояний.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
@@ -1793,17 +1796,3 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась передаточная функция.\n"
-
-#~ msgid ""
-#~ "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
-#~ msgstr ""
-#~ "Неверный тип аргумента №%d: ожидалась матрица пространства-состояний или "
-#~ "рациональных значений.\n"
-
-#~ msgid "%s: Incompatible input arguments #%d and #%d: "
-#~ msgstr "%s: Несовместимые входные параметры №%d и №%d: "
-
-#~ msgid "%s: Wrong value of input argument #%d: Proper system expected.\n"
-#~ msgstr ""
-#~ "%s: Неверное значение входного аргумента №%d: ожидалась надлежащая "
-#~ "система.\n"

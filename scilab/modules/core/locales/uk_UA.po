@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-06-10 05:50+0000\n"
+"PO-Revision-Date: 2016-10-19 14:32+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -264,10 +264,8 @@ msgstr ""
 msgid "%s: Wrong input argument %d.\n"
 msgstr "%s: помилковий вхідний параметр %d.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_fieldnames.cpp, line: 127
 msgid "Could not retrieve sub-type.\n"
-msgstr ""
+msgstr "Не вдалося отримати підтип.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"

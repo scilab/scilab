@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -1172,11 +1172,11 @@ msgstr "%s: Un valor propi de %s (controlador) és prop de l'eix imaginari.\n"
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
 msgstr "%s: La sólució de Riccati és poc exacta: error de l'equació = %g.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
 "The distance to the imaginary axis is less than %g "
-msgstr "%s: Un valor propi de %s (observador) és prop de l'eix imaginari.\n"
+msgstr ""
 
 msgid "Unfeasible (Hx hamiltonian)"
 msgstr "No factible (Hx hamiltoniana)"
@@ -1321,21 +1321,17 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Nombre incorrecte d'arguments de sortida: Se'n necessiten %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Number of rows of #%d are "
 "incompatible with #%d argument.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: El nombre de columnes "
-"és incompatible amb %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Number of columns of #%d are "
 "incompatible with #%d argument.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: El nombre de columnes "
-"és incompatible amb %s.\n"
 
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr "amplitud i fase de y/(1+y)"
@@ -1558,13 +1554,11 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu "
 "quadrada.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: number of elements of #%d must "
 "match the column dimension of #%d\n"
 msgstr ""
-"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir el "
-"mateix nombre d'elements.\n"
 
 #, c-format
 msgid ""
@@ -1653,8 +1647,8 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
-"llista.\n"
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"de polinomis.\n"
 
 #, fuzzy, c-format
 msgid ""
@@ -1695,8 +1689,8 @@ msgid ""
 "%s: Wrong type for input argument  #%d: Cell elements must be numerical "
 "arrays.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: La dimensió de la fila "
-"ha de ser %d.\n"
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un espai "
+"d'estat lineal.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
@@ -1728,8 +1722,5 @@ msgid ""
 "%s: Wrong type for input argument #%d: zero-pole-gain representation "
 "expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
-"de cadenes de text.\n"
-
-#~ msgid "%s: Incompatible input arguments #%d and #%d: "
-#~ msgstr "%s: Els arguments d'entrada #%d i #%d són incompatibles: "
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
+"llista.\n"

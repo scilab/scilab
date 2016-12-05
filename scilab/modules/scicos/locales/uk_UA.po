@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-06-10 06:18+0000\n"
+"PO-Revision-Date: 2016-10-19 15:46+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -243,29 +243,29 @@ msgstr ""
 "%s: невизначена розмірність. outtyp(%d)=%d. Будь ласка, виправте параметри "
 "вашої моделі.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
+"%s: помилкова кількість вхідних параметрів: мало бути вказано принаймні %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути використано рядковий "
-"тип.\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Unable to load \"%s\" .\n"
-msgstr "%s: не вдалося знайти вхідні дані діаграми\n"
+msgstr "%s: не вдалося завантажити «%s» .\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Unable to save \"%s\" .\n"
-msgstr "%s: не вдалося знайти вхідні дані діаграми\n"
+msgstr "%s: не вдалося зберегти «%s» .\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -1033,15 +1033,17 @@ msgstr "Помилкова розмірність поля %s.%s: мало бу�
 msgid "Wrong type for field %s.%s: String matrix expected.\n"
 msgstr "Помилковий тип поля %s.%s: мала бути матриця з рядків.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' "
 "vector. Switching to '%s'.\n"
-msgstr "Помилкове значення поля %s.%s: мав бути вектор %s або %s.\n"
+msgstr ""
+"Помилкове значення поля %s.%s: «%s» не може бути розпізнано, можливі лише "
+"вектори «%s» або «%s». Перемикаємося на «%s».\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s.\n"
-msgstr "Помилковий тип поля %s.%s.\n"
+msgstr "Помилоквий тип поля %s.%s.\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s: Round number expected.\n"
@@ -1182,12 +1184,13 @@ msgid "Wrong type for diagram element #%d: %s, %s or %s expected.\n"
 msgstr ""
 "Помилковий тип елемента діаграми №%d: слід використовувати %s, %s або %s.\n"
 
-#, fuzzy
 msgid ""
 "Your model contains states defined in standard Scicos blocks.\n"
 "Current initialization interface does not support mixed models."
 msgstr ""
 "У вашій моделі містяться стани, визначені у стандартних блоках Scicos.\n"
+"У поточній ініціалізації інтерфейсу не передбачено підтримки змішаних "
+"моделей."
 
 #, c-format
 msgid "Initialisation problem in %s "
@@ -1271,13 +1274,14 @@ msgstr "Алгебраїчний цикл для подій."
 msgid "Algebraic loop."
 msgstr "Алгебраїчний цикл."
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 1223
 msgid ""
 "A C or Fortran block is used but not linked.\n"
 "You can save your compiled diagram and load it.\n"
 "This will automatically link the C or Fortran function."
 msgstr ""
+"Використано, але не з’єднано блок C або Fortran.\n"
+"Ви можете зберегти вашу скомпільовану діаграму і завантажити її.\n"
+"Це автоматично скомпонує функцію C або Fortran."
 
 #, c-format
 msgid "Number of modes in block #%d cannot be determined."
@@ -1287,19 +1291,21 @@ msgstr "Не вдалося визначити кількість режимі �
 msgid "Number of zero crossings in block #%d cannot be determined."
 msgstr "Не вдалося визначити кількість точок зміни знаку у блоці №%d."
 
-#, fuzzy
 msgid ""
 "Not enough information to find port sizes.\n"
 "I try to find the problem."
-msgstr "Недостатньо даних для визначення розмірностей портів.\n"
+msgstr ""
+"Недостатньо даних для визначення розмірності портів.\n"
+"Намагаємося знайти причину."
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2049
 msgid ""
 "I cannot find a link with undetermined size.\n"
 "My guess is that you have a block with unconnected \n"
 "undetermined output ports."
 msgstr ""
+"Неможливо знайти посилання із невизначеною розмірністю.\n"
+"Здається, у вас є блок із нез’єднаними портами виведення, \n"
+"які не визначено."
 
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
@@ -1360,25 +1366,29 @@ msgstr ""
 "розмірностями, які не можна визначити з контексту.\n"
 "Якою є розмірність цього зв’язку?"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
 "It should be a colon vector of size %d."
-msgstr "розмірність dep_ut блоку %s є помилковою.\n"
+msgstr ""
+"розмірність dep_ut блоку %s є некоректною.\n"
+"Це мав бути вектор-стовпчик розмірності %d."
 
-#, fuzzy
 msgid ""
 "Not enough information to find port type.\n"
 "I will try to find the problem."
-msgstr "Недостатньо даних для визначення типу порту.\n"
+msgstr ""
+"Недостатньо даних для визначення типу порту.\n"
+"Спробуємо визначити причину."
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2640
 msgid ""
 "I cannot find a link with undetermined size.\n"
 "My guess is that you have a block with unconnected \n"
 "undetermined types."
 msgstr ""
+"Неможливо знайти посилання із невизначеною розмірністю.\n"
+"Здається, у вас є блок із нез’єднаними типами виведення, \n"
+"які не визначено."
 
 msgid "Modelica compiler (flat2C)"
 msgstr "Компілятор Modelica (flat2C)"
@@ -1539,13 +1549,14 @@ msgstr "%s: помилкова розмірність параметра бло�
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
 msgstr "%s: помилковий тип параметра блоку «%s»: мало бути %s(%s), маємо %s"
 
-#
-# File: modules/scicos/macros/scicos_scicos/translator.sci, line: 73
 msgid ""
 "There are too many Modelica files.\n"
 "It would be better to define several \n"
 "Modelica programs in a single file."
 msgstr ""
+"Забагато файлів Modelica.\n"
+"Краще було б визначити декілька \n"
+"програм Modelica у одному файлі."
 
 msgid "-------Modelica translator error message:-----"
 msgstr "-------Повідомлення про помилку транслятора Modelica:-----"
@@ -1582,14 +1593,14 @@ msgstr ""
 "Відповідь, вказана для %s \n"
 " є помилковою: %s.\n"
 
+#~ msgid "Wrong value for field %s.%s: Must be in the interval [%d, %d].\n"
+#~ msgstr ""
+#~ "Помилкове значення поля %s.%s: значення має належати інтервалу [%d, %d].\n"
+
 #~ msgid "Wrong value for field %s.%s : Valid C identifier expected.\n"
 #~ msgstr ""
 #~ "Помилкове значення поля %s.%s: мало бути вказано коректний ідентифікатор "
 #~ "C.\n"
-
-#~ msgid "Wrong value for field %s.%s: Must be in the interval [%d, %d].\n"
-#~ msgstr ""
-#~ "Помилкове значення поля %s.%s: значення має належати інтервалу [%d, %d].\n"
 
 #~ msgid "A C or Fortran block is used but not linked.\n"
 #~ msgstr "Використано блок C або Fortran, але сам блок не скомпоновано.\n"

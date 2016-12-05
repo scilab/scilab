@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-06-09 10:48+0000\n"
+"PO-Revision-Date: 2016-10-19 13:06+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -559,8 +559,6 @@ msgstr ""
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr "%s 只用來計算等高線而非顯是它們.\n"
 
-#
-# File: modules/graphics/src/c/DrawObjects.c, line: 88
 msgid "Could not retrive bounds.\n"
 msgstr ""
 
@@ -892,9 +890,9 @@ msgstr ""
 msgid "Wrong type for '%s' property: Matrix expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong size for '%s' property: Matrix with length 3 or [] expected.\n"
-msgstr "'%s' 屬性之大小錯誤: 應該為一行向量(Row vector).\n"
+msgstr ""
 
 msgid "Datatips property can not be modified directly.\n"
 msgstr ""
@@ -911,8 +909,6 @@ msgstr ""
 msgid "Wrong value for '%s' property: An Integer between %d and %d expected.\n"
 msgstr "'%s' 屬性錯誤: 應該為介於 %d 和 %d 之間的整數.\n"
 
-#
-# File: modules/graphics/src/c/getHandleProperty/set_format_n_property.c, line: 63
 msgid "Could not retrieve format.\n"
 msgstr ""
 
@@ -1045,6 +1041,12 @@ msgstr ""
 
 msgid "Impossible case when building axis\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid ""
+"Error: Values must be strictly positive when logarithmic mode on %s axis is "
+"active.\n"
+msgstr "%s: x 軸之的範圍必須為非零正數以使用對數模式.\n"
 
 msgid "Wrong type for input argument: A tlist expected.\n"
 msgstr ""
@@ -1208,8 +1210,6 @@ msgstr ""
 msgid "datatips on 3D curves"
 msgstr ""
 
-#
-# File: modules/graphics/demos/datatips/datatip_detach.sce, line: 18
 msgid "Datatips detached from curve"
 msgstr ""
 
@@ -1219,8 +1219,6 @@ msgstr ""
 msgid "3D curve"
 msgstr ""
 
-#
-# File: modules/graphics/demos/datatips/datatips.dem.gateway.sce, line: 17
 msgid "Detach"
 msgstr ""
 
@@ -1926,8 +1924,6 @@ msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是代碼 (handle)所形�
 msgid "%s: Argument #%d: tight or on or off values expected.\n"
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是 Figure 或 Axes 代碼(handle).\n"
 
-#
-# File: modules/graphics/macros/replot.sci, line: 290
 #, c-format
 msgid "%s: Handle of unsupported type '%s' as Argument #%d\n"
 msgstr ""

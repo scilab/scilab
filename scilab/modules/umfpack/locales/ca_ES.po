@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -190,14 +190,11 @@ msgstr "                        pivot no positiu a la columna %d\n"
 msgid "Scilab UMFPACK module not installed.\n"
 msgstr "El mòdul UMFPACK del Scilab no està instal·lat.\n"
 
-# File: modules/umfpack/demos/condestsp.sce, line: 15
 msgid ""
 "A small test for the condestsp function: condestsp gives an estimate of\n"
 " the condition number K1 in 1-norm of a real sparse matrix A:"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/condestsp.sce, line: 18
 msgid ""
 "     without explicitly computing the inverse of A. condestsp uses a "
 "factorization given by\n"
@@ -205,8 +202,6 @@ msgid ""
 "give the pointer to the factorization."
 msgstr ""
 
-#
-# File: modules/umfpack/demos/condestsp.sce, line: 20
 msgid ""
 "The test consists in forming small sparse matrices (so as to compute K1 "
 "exactly with\n"
@@ -259,15 +254,11 @@ msgstr ""
 msgid "Test 5: Acoustic scattering"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 15
 msgid ""
 "To load a sparse matrix stored in the Harwell-Boeing format in Scilab, you "
 "may use the function ReadHBSparse."
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 16
 msgid ""
 "4 matrices will be loaded for the demo: they come from the University of "
 "Florida Sparse Matrix Collection:"
@@ -276,8 +267,6 @@ msgstr ""
 msgid "    maintained by Tim Davis, author of UMFPACK"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 28
 msgid ""
 "To see the pattern of non zeros elements, you may use the function "
 "PlotSparse."
@@ -308,10 +297,6 @@ msgstr ""
 msgid "     norm of the residual = "
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 86
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 192
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 196
 #, c-format
 msgid "     computing time       = "
 msgstr ""

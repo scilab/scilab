@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-07-03 15:32+0000\n"
-"Last-Translator: Mickael Albertus <Unknown>\n"
+"PO-Revision-Date: 2016-10-19 13:01+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -691,8 +691,6 @@ msgstr ""
 "%s a pour seul objectif de calculer les courbes de niveau, pas de les "
 "représenter.\n"
 
-#
-# File: modules/graphics/src/c/DrawObjects.c, line: 88
 msgid "Could not retrive bounds.\n"
 msgstr ""
 
@@ -1098,8 +1096,6 @@ msgid "Wrong value for '%s' property: An Integer between %d and %d expected.\n"
 msgstr ""
 "Valeur erronée de la propriété '%s' : Un entier entre %d et %d attendu.\n"
 
-#
-# File: modules/graphics/src/c/getHandleProperty/set_format_n_property.c, line: 63
 msgid "Could not retrieve format.\n"
 msgstr ""
 
@@ -1251,6 +1247,14 @@ msgstr "%s : Le vecteur y n'est pas monotone.\n"
 
 msgid "Impossible case when building axis\n"
 msgstr "Cas impossible lors de la construction des axes\n"
+
+#, fuzzy, c-format
+msgid ""
+"Error: Values must be strictly positive when logarithmic mode on %s axis is "
+"active.\n"
+msgstr ""
+"Erreur : data_bounds suivant l'axe %s doit être strictement positif pour "
+"passer au mode logarithmique.\n"
 
 msgid "Wrong type for input argument: A tlist expected.\n"
 msgstr "Type erroné de l'argument d'entrée : Une tlist attendue.\n"
@@ -1438,9 +1442,8 @@ msgstr "Astuces sur les données pour les courbes 2D"
 msgid "datatips on 3D curves"
 msgstr "Astuces sur les données pour les courbes 3D"
 
-#, fuzzy
 msgid "Datatips detached from curve"
-msgstr "Astuces sur les données pour les courbes 2D"
+msgstr ""
 
 msgid "2D curves"
 msgstr "Courbes 2D"
@@ -1448,8 +1451,6 @@ msgstr "Courbes 2D"
 msgid "3D curve"
 msgstr "Courbe 3D"
 
-#
-# File: modules/graphics/demos/datatips/datatips.dem.gateway.sce, line: 17
 msgid "Detach"
 msgstr ""
 
@@ -2268,27 +2269,21 @@ msgstr "%s : '%s' ne peut pas être utilisé avec '%s'.\n"
 msgid "%s: Argument #%d is badly placed. Please check available syntaxes.\n"
 msgstr ""
 
-#
-# File: modules/graphics/macros/replot.sci, line: 67
 #, c-format
 msgid "%s: Argument #%d: Wrong type. Please check available syntaxes.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Matrix with 4 or 6 columns expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de handle "
-"attendue.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: tight or on or off values expected.\n"
 msgstr ""
-"%s : Type erroné de  l'argument d'entrée n°%d : Un handle de type Figure ou "
-"Axes attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Handle of unsupported type '%s' as Argument #%d\n"
-msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
