@@ -29,6 +29,7 @@ extern "C"
 {
 #include "sci_malloc.h"
 #include "localization.h"
+#include "getFullFilename.h"
 #include "Scierror.h"
 }
 /*--------------------------------------------------------------------------*/
@@ -69,7 +70,9 @@ types::Function::ReturnValue sci_scicosDiagramToScilab(types::typed_list &in, in
         out.resize(_iRetCount);
         for (int i = 0; i < _iRetCount; i++)
         {
-            char* f = wide_string_to_UTF8(files->get(i));
+            wchar_t* fullName = getFullFilenameW(files->get(i));
+            char* f = wide_string_to_UTF8(fullName);
+            FREE(fullName);
             out[i] = importFile(f);
             FREE(f);
             if (out[i] == nullptr)
@@ -91,7 +94,9 @@ types::Function::ReturnValue sci_scicosDiagramToScilab(types::typed_list &in, in
         }
         for (int i = 0; i < _iRetCount; i++)
         {
-            char* f = wide_string_to_UTF8(files->get(i));
+            wchar_t* fullName = getFullFilenameW(files->get(i));
+            char* f = wide_string_to_UTF8(fullName);
+            FREE(fullName);
             bool success = exportFile(1 + i, f, in[1 + i]);
             FREE(f);
             if (!success)

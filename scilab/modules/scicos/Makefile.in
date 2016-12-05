@@ -1066,6 +1066,7 @@ libsciscicos_la_LDFLAGS = $(AM_LDFLAGS)
 @XCOS_TRUE@			-I$(srcdir)/src/scicos_sundials/include/sundials/ \
 @XCOS_TRUE@			-I$(srcdir)/src/scicos_sundials/src/ida/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes/ \
+@XCOS_TRUE@			-I$(top_srcdir)/modules/fileio/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/dynamic_link/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/string/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/localization/includes/ \
