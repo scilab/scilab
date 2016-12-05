@@ -212,7 +212,7 @@ Help pages:
 
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `plot2d`, `roots`,
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
-  `scilab|scilex`, `flipdim`
+  `scilab|scilex`, `flipdim`, `Matplot_properties`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `and`, `format`, `typeof`,
 `brackets`, `setlanguage`, `sleep`, `isinf`, `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`
 * reorganized:
@@ -223,7 +223,7 @@ Help pages:
   - Signal processing: New `Convolution - correlation` subsection. `wfir_gui`, `filt_sinc`, `hilb`, `fft2`, `fftshift`,`ifftshift`, `hilbert`, `cepstrum`, `conv`, `conv2`, `convol2d`, `xcor`, `corr`, `hank`, `mrfit`, `frfir` sorted up in existing subsections.
   - Colormaps and GUI/Menus subsections created
 * translations added:
-  - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`, `sleep`, `strtod`, `permute`
+  - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`, `sleep`, `strtod`, `permute`, `geomean`
   - (ru): homepage
 
 
@@ -446,6 +446,7 @@ Bug Fixes
 * [#14824](http://bugzilla.scilab.org/show_bug.cgi?id=14824): Incorrect error message with `mfprintf(fd, "%d", [])`.
 * [#14835](http://bugzilla.scilab.org/show_bug.cgi?id=14835): `AFFICH_m` block was not rendered correctly.
 * [#14839](http://bugzilla.scilab.org/show_bug.cgi?id=14839): `plot2d2` crashed Scilab.
+* [#14885](http://bugzilla.scilab.org/show_bug.cgi?id=14885): The tag property was not documented in Matplot_properties help page.
 * [#14887](http://bugzilla.scilab.org/show_bug.cgi?id=14887): For many graphic handle types, the display of the `.tag` value missed `".."` delimiters
 * [#14909](http://bugzilla.scilab.org/show_bug.cgi?id=14909): getlongpathname and getshortpathname return values with "\" instead of "/"
 * [#14911](http://bugzilla.scilab.org/show_bug.cgi?id=14911): Added the entry "Label => Title" in the graphic context menu in a figure

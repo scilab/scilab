@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
+ * Copyright (C) 2016 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,11 +14,14 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="Matplot_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="Matplot_properties">
     <refnamediv>
         <refname>Matplot properties</refname>
         <refpurpose>
-            description of the Matplot entities properties
+            Description of the Matplot entities properties
         </refpurpose>
     </refnamediv>
     <refsection>
@@ -29,183 +33,338 @@
         </para>
         <variablelist>
             <varlistentry>
-                <term>parent: </term>
+                <term>parent</term>
                 <listitem>
                     <para>
-                        this property contains the handle of the parent. The parent of the
-                        <literal>Matplot</literal> entity should be of the type <literal>"Axes"</literal>.
+                        Graphic handle of the Matplot's parent, that should be of the type <literal>"Axes"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>children: </term>
+                <term>children</term>
                 <listitem>
                     <para>
-                        this property contains a vector with the <literal>children</literal> of
-                        the handle. However, <literal>Matplot</literal> handles currently do not
-                        have any <literal>children</literal>.
+                        vector of <varname>children</varname> of the Matplot object.
+                        By default, a <literal>Matplot</literal> entity
+                        has no <literal>child</literal>, and <varname>.children</varname>
+                        is <literal>[]</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>visible: </term>
+                <term>visible</term>
                 <listitem>
                     <para>
-                        this field contains the <literal>visible</literal> property value for
-                        the entity. It should be <literal>"on" </literal> or <literal>"off"</literal> .
-                        By default, the plot is visible, the property's value is
-                        <literal>"on"</literal>. If <literal>"off"</literal> the plot is not drawn on the
-                        screen.
+                        <literal>"on"</literal> (default) or <literal>"off"</literal>.
+                        If <literal>"off"</literal>, the Matplot patch is not displayed.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>data: </term>
+                <term>data</term>
                 <listitem>
                     <para>
-                        this field defines a [<literal>m</literal>x<literal>n</literal>]
-                        <literal>color</literal> data matrix (double, (u)int8, (u)int16, (u)int32) or hypermatrix.
-                        The colors are interpreted according to the image_type property.
-                        The color associated to <literal>color(i,j)</literal> is used do draw a small square
-                        of length 1 with center at location <literal>(x=j,y=(m-i+1))</literal>.
+                        <literal>(m,n)</literal> matrix or <literal>(m,n,nc)</literal> hypermatrix of decimal,
+                        (u)int8, (u)int16, or (u)int32 numbers representing a matrix of (m,n) colors on
+                        <literal>nc = 1|3|4</literal> channels to be plotted.
+                        The color encoding/decoding is set by the <varname>image_type</varname> property.
+                        The color associated to <literal>data(i,j,:)</literal> is used do draw and fill
+                        a small rectangle of fixed sizes touching its neighboors and centered at the
+                        <literal>(i,j)</literal> location.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>rect: </term>
+                <term>rect</term>
                 <listitem>
                     <para>
-                        this field contains a row-vector defined by <literal>[xmin, ymin, xmax, ymax]</literal>.
-                        It specifies a rectangle in the current scale and the matrix is drawn inside this rectangle.
+                        vector <literal>[xmin, ymin, xmax, ymax]</literal> defining a rectangle
+                        in data scales of the parent axes. The full <varname>data</varname> matrix
+                        is scaled accordingly to fill the <varname>rect</varname> shape:
+                        <itemizedlist>
+                            <listitem>
+                                Its <literal>m</literal> rows cover the <literal>[ymin, ymax]</literal> interval.
+                            </listitem>
+                            <listitem>
+                                Its <literal>n</literal> columns cover the <literal>[xmin, xmax]</literal> interval.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        The <literal>data(i,j)</literal> pixel is drawn in the small rectangle bounded by
+                        <literal>X = xmin + [j-1, j]*(xmax-xmin)/n</literal> and
+                        <literal>Y = ymax - [i-1, i]*(ymax-ymin)/m</literal>
+                    </para>
+                    <para>
+                        If one <varname>rect</varname> bound goes beyond the corresponding
+                        <literal>.parent.data_bounds(i)</literal> axes bound, the overflowing side of the
+                        <varname>data</varname> matrix will be clipped, unless <varname>.clip_state</varname>
+                        is set to <literal>"off"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>image_type: </term>
+                <term>image_type</term>
                 <listitem>
                     <para>
-                        this field defines the image type. It could be one of the values: "rgb", "rgba", "gray", "index",
-                        "red", "green", "blue", "rgb332", "rgb444", "rgb555", "rgba5551", "argb".
+                        this field defines the image type. It could be one of the values:
+                        "index", "gray", "rgb", "rgba", "argb", "red", "green", "blue",
+                        "rgb332", "rgb444", "rgb555", "rgb4444", "rgb5551".
                     </para>
                     <para>
-                        Colors are determinated by the data type and by image_type:
+                        Colors are determinated by the data type and by <varname>image_type</varname>:
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>"index"</term>
+                            <listitem>
+                                  <varname>data</varname> are colors indices in the colormap.
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"gray"</term>
+                            <listitem>
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of int8 or uint8 provides Gray level color (R-G-B=GRAY-GRAY-GRAY).
+                                    </listitem>
+                                    <listitem>
+                                        Otherwise, <varname>data</varname> is considered as RGB levels and converted into gray colors (0.299*R+0.587*G+0.114*B).
+                                    </listitem>
+                                </itemizedlist>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"rgb"</term>
+                            <listitem>
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>data</varname> as an hypermat of int8 or uint8 provides the RGB components ;
+                                    </listitem>
+                                    <listitem>
+                                        <varname>data</varname> as an hypermat of doubles provides normalized RGB components (values between 0 and 1) ;
+                                    </listitem>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of int8 or uint8 with a number of rows multiple of 3 provides the RGB components ;
+                                    </listitem>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of int32 provides RGB colors ;
+                                    </listitem>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of uint32 provides RGBA colors where the alpha channel will be set to 0xFF.
+                                    </listitem>
+                                </itemizedlist>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"rgba"</term>
+                            <listitem>
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>data</varname> as an hypermat of int8 or uint8 provides the RGBA components ;
+                                    </listitem>
+                                    <listitem>
+                                        <varname>data</varname> as an hypermat of doubles provides normalized RGBA components (values between 0 and 1) ;
+                                    </listitem>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of int8 or uint8 with a number of rows multiple of 4 provides the RGBA components ;
+                                    </listitem>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of int32 or uint32 provides RGBA colors.
+                                    </listitem>
+                                </itemizedlist>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"argb"</term>
+                            <listitem>
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>data</varname> as an hypermat of int8 or uint8 provides the ARGB components ;
+                                    </listitem>
+                                    <listitem>
+                                        <varname>data</varname> as an hypermat of doubles provides normalized ARGB components (values between 0 and 1) ;
+                                    </listitem>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of int8 or uint8 with a number of rows multiple of 4 provides the ARGB components ;
+                                    </listitem>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of int32 or uint32 provides ARGB colors.
+                                    </listitem>
+                                </itemizedlist>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"red"</term>
+                            <listitem>
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of int8 or uint8 provides Red level color (R-G-B=RED-00-00).
+                                    </listitem>
+                                    <listitem>
+                                        <varname>data</varname> of another type is considered as RGB intensities. They are then converted into red levels (a mask is applied to keep the Red component).
+                                    </listitem>
+                                </itemizedlist>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"green"</term>
+                            <listitem>
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of int8 or uint8 provides Green level color (R-G-B=00-GREEN-00).
+                                    </listitem>
+                                    <listitem>
+                                        <varname>data</varname> of another type is considered as RGB intensities. They are then converted into green levels (a mask is applied to keep the Green component).
+                                    </listitem>
+                                </itemizedlist>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"blue"</term>
+                            <listitem>
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of int8 or uint8 provides Blue level color (R-G-B=00-00-BLUE) ;
+                                    </listitem>
+                                    <listitem>
+                                        <varname>data</varname> of another type is considered as RGB intensities. They are then converted into blue levels (a mask is applied to keep the Blue component).
+                                    </listitem>
+                                </itemizedlist>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"rgb332"</term>
+                            <listitem>
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of int8 or uint8 provides RGB colors where R component is wrote on 3 bits, G component on 3 bits and B component on 2 bits.
+                                    </listitem>
+                                    <listitem>
+                                        For other <varname>data</varname> types, RGB (8-8-8) data are converted into RGB (3-3-2).
+                                    </listitem>
+                                </itemizedlist>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"rgb444"</term>
+                            <listitem>
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of int16 or uint16 provides RGB colors where each components is wrote on 4 bits.
+                                    </listitem>
+                                    <listitem>
+                                        For other <varname>data</varname> types, RGB (8-8-8) data are converted into RGB (4-4-4).
+                                    </listitem>
+                                </itemizedlist>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"rgb555"</term>
+                            <listitem>
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of int16 or uint16 provides RGB colors where each components is wrote on 5 bits.
+                                    </listitem>
+                                    <listitem>
+                                        For other <varname>data</varname> types, RGB (8-8-8) data are converted into RGB (5-5-5).
+                                    </listitem>
+                                </itemizedlist>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"rgb4444"</term>
+                            <listitem>
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of int16 or uint16 provides RGBA colors where each components is wrote on 4 bits.
+                                    </listitem>
+                                    <listitem>
+                                        For other <varname>data</varname> types, RGBA (8-8-8-8) data are converted into RGBA (4-4-4-4).
+                                    </listitem>
+                                </itemizedlist>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>"rgb5551"</term>
+                            <listitem>
+                                <itemizedlist>
+                                    <listitem>
+                                        <varname>data</varname> as a matrix of int16 or uint16 provides RGBA colors where each non-alpha components is wrote on 5 bits and the alpha component on 1 bit.
+                                    </listitem>
+                                    <listitem>
+                                        For other <varname>data</varname> types, RGBA (8-8-8-8) data are converted into RGBA (5-5-5-1).
+                                    </listitem>
+                                </itemizedlist>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>clip_state</term>
+                <listitem>
+                    <para>
+                        Its value drives the clipping of the <literal>Matplot</literal> patch outside
+                        its parent <literal>Axes</literal> box. Possible values are:
                     </para>
                     <itemizedlist>
                         <listitem>
-                            <para>
-                                When image_type is equal to index, the data are just considered as an index in the colormap.
-                            </para>
+                                <literal>"off"</literal>: The Matplot patch is not clipped.
+                                Setting <literal>.clip_state = "off"</literal>
+                                automatically resets <literal>.clip_box = []</literal>.
                         </listitem>
                         <listitem>
-                            <para>
-                                When image_type is equal to rgb, hypermat of int8 or uint8 will give the RGB components, hypermat of doubles will give normalized RGB components (values between 0 and 1), matrices of int8 or uint8 where number of rows is a multiple of 3 will give the RGB components, matrices of int32 will give RGB colors, matrices of uint32 will give RGBA colors where the alpha channel will be set to 0xFF.
-                            </para>
+                                <literal>"clipgrf"</literal>: The Matplot patch is clipped outside
+                              its parent axes. Setting <literal>.clip_state = "clipgrf"</literal>
+                              automatically resets <literal>.clip_box = []</literal>.
                         </listitem>
                         <listitem>
-                            <para>
-                                When image_type is equal to rgba, hypermat of int8 or uint8 will give the RGBA components, hypermat of doubles will give normalized RGBA components (values between 0 and 1), matrices of int8 or uint8 where number of rows is a multiple of 4 will give the RGB components, matrices of int32 will give RGBA colors, matrices of uint32 will give RGBA colors.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                When image_type is equal to gray, matrices of int8 or uint8 will give Gray level color (R-G-B=GRAY-GRAY-GRAY), for other types, data will be considered as RGB ones and converted into gray colors (0.299*R+0.587*G+0.114*B).
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                When image_type is equal to red, matrices of int8 or uint8 will give Red level color (R-G-B=RED-00-00), for other types, data will be considered as RGB ones and converted into red colors (a mask is applied to keep the Red component).
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                When image_type is equal to green, matrices of int8 or uint8 will give Green level color (R-G-B=00-GREEN-00), for other types, data will be considered as RGB ones and converted into green colors (a mask is applied to keep the Green component).
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                When image_type is equal to blue, matrices of int8 or uint8 will give Blue level color (R-G-B=00-00-BLUE), for other types, data will be considered as RGB ones and converted into blue colors (a mask is applied to keep the Blue component).
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                When image_type is equal to rgb332, matrices of int8 or uint8 will give RGB colors where R component is wrote on 3 bits, G component on 3 bits and B component on 2 bits. For other data types, RGB (8-8-8) data are converted into RGB (3-3-2).
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                When image_type is equal to rgb444, matrices of int16 or uint16 will give RGB colors where each components is wrote on 4 bits. For other data types, RGB (8-8-8) data are converted into RGB (4-4-4).
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                When image_type is equal to rgb555, matrices of int16 or uint16 will give RGB colors where each components is wrote on 5 bits. For other data types, RGB (8-8-8) data are converted into RGB (5-5-5).
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                When image_type is equal to rgb4444, matrices of int16 or uint16 will give RGBA colors where each components is wrote on 4 bits. For other data types, RGBA (8-8-8-8) data are converted into RGBA (4-4-4-4).
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                When image_type is equal to rgb5551, matrices of int16 or uint16 will give RGBA colors where each non-alpha components is wrote on 5 bits and the alpha component on 1 bit. For other data types, RGBA (8-8-8-8) data are converted into RGBA (5-5-5-1).
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                When image_type is equal to argb, hypermat of int8 or uint8 will give the ARGB components, hypermat of doubles will give normalized ARGB components (values between 0 and 1), matrices of int8 or uint8 where number of rows is a multiple of 4 will give the RGB components, matrices of int32 will give ARGB colors, matrices of uint32 will give ARGB colors.
-                            </para>
+                                <literal>"on"</literal>: The Matplot patch is clipped outside the
+                                rectangle defined by the <varname>clip_box</varname> property.
                         </listitem>
                     </itemizedlist>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>clip_state: </term>
+                <term>clip_box</term>
                 <listitem>
                     <para>
-                        this field contains the <literal>clip_state</literal> property value for
-                        the <literal>Matplot</literal>. It should be :
-                    </para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                <literal>"off"</literal> this means that the <literal>Matplot</literal> is not
-                                clipped.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <literal>"clipgrf"</literal> this means that the <literal>Matplot</literal> is clipped
-                                outside the <literal>Axes</literal> box.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <literal>"on"</literal> this means that the <literal>Matplot</literal> is clipped
-                                outside the rectangle given by property <literal>clip_box</literal>.
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>clip_box: </term>
-                <listitem>
-                    <para>
-                        this field is to determinate the <literal>clip_box</literal> property.
-                        By default its value should be an empty matrix if <literal>clip_state</literal> is
-                        <literal>"off"</literal>. Other cases the vector <literal>[x,y,w,h]</literal>
-                        (upper-left point width height) defines the portions of the <literal>Matplot</literal>
-                        to display, however <literal>clip_state</literal> property value will be changed.
+                      empty matrix <literal>[]</literal> (default) or <literal>[x,y,w,h]</literal>
+                      (upper-left point width height) bounds (in data scales) of the rectangular
+                      area outside which the Matplot patch must be clipped.
+                      Setting <literal>.clip_box = [x y w h]</literal> automatically sets
+                      <literal>.clip_state = "on"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>user_data: </term>
+                <term>user_data</term>
                 <listitem>
                     <para>
                         this field can be use to store any scilab variable in the
                         <literal>Matplot</literal> data structure, and to retrieve it.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tag</term>
+                <listitem>
+                    <para>
+                      Single text that can be used as identifier/name of the Matplot object.
+                      <literal>findobj("tag", tag_value)</literal> will then return its full graphic handle.
                     </para>
                 </listitem>
             </varlistentry>
@@ -215,9 +374,9 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 Matplot((1:xget("lastpattern")))
-e=gce(); // get current entity
+e = gce(); // get current entity
 
-e.data=e.data($:-1:1) // reverse order
+e.data = e.data($:-1:1) // reverse order
  ]]></programlisting>
         <scilab:image>
             Matplot((1:xget("lastpattern")));
@@ -229,28 +388,22 @@ e.data=e.data($:-1:1) // reverse order
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="set">set</link>
-            </member>
-            <member>
-                <link linkend="get">get</link>
-            </member>
-            <member>
-                <link linkend="delete">delete</link>
-            </member>
-            <member>
-                <link linkend="grayplot">grayplot</link>
-            </member>
-            <member>
                 <link linkend="Matplot">Matplot</link>
             </member>
             <member>
                 <link linkend="Matplot1">Matplot1</link>
             </member>
             <member>
-                <link linkend="graphics_entities">graphics_entities</link>
+                <link linkend="grayplot">grayplot</link>
             </member>
             <member>
                 <link linkend="grayplot_properties">grayplot_properties</link>
+            </member>
+            <member>
+                <link linkend="xrects">xrects</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
             </member>
         </simplelist>
     </refsection>
