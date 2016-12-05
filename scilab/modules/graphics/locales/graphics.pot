@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-10-19 10:08+0100\n"
+"Revision-Date: 2016-12-05 09:43+0100\n"
 
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 83
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 221
@@ -56,7 +56,7 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_xclick.c, line: 130
 # File: modules/graphics/sci_gateway/c/sci_xclick.c, line: 146
 # File: modules/graphics/sci_gateway/c/sci_xclick.c, line: 162
-# File: modules/graphics/sci_gateway/c/sci_xclick.c, line: 179
+# File: modules/graphics/sci_gateway/c/sci_xclick.c, line: 175
 # File: modules/graphics/sci_gateway/c/sci_xfarcs.c, line: 119
 # File: modules/graphics/sci_gateway/c/sci_xfpolys.c, line: 191
 # File: modules/graphics/sci_gateway/c/sci_xgetmouse.c, line: 130
@@ -571,7 +571,7 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 223
 # File: modules/graphics/sci_gateway/c/sci_xarrows.c, line: 198
 # File: modules/graphics/sci_gateway/c/sci_xrect.c, line: 86
-# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 231
+# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 229
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
@@ -1166,9 +1166,9 @@ msgstr ""
 # File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 124
 # File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 159
 # File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 219
-# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 80
-# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 116
-# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 152
+# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 78
+# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 114
+# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 150
 # File: modules/graphics/src/cpp/set_data_property.cpp, line: 165
 # File: modules/graphics/src/cpp/set_data_property.cpp, line: 179
 # File: modules/graphics/src/cpp/set_data_property.cpp, line: 239
@@ -1193,7 +1193,7 @@ msgid "%s: Wrong type for input argument #%ls: A matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 220
+# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 218
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
@@ -1506,13 +1506,14 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/get_data_property.c, line: 411
 # File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 39
 # File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 57
-# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 78
-# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 97
-# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 123
-# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 149
-# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 175
-# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 200
-# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 215
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 79
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 113
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 132
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 158
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 184
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 210
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 235
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 250
 # File: modules/graphics/src/c/getHandleProperty/get_default_axes_property.c, line: 49
 # File: modules/graphics/src/c/getHandleProperty/get_default_figure_property.c, line: 40
 # File: modules/graphics/src/c/getHandleProperty/get_diffuse_color_property.c, line: 36
@@ -1723,13 +1724,14 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_data_mapping_property.c, line: 75
 # File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 53
 # File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 69
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 163
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 188
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 213
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 237
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 261
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 284
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 318
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 119
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 209
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 234
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 259
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 283
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 307
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 330
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 364
 # File: modules/graphics/src/c/getHandleProperty/set_default_axes_property.c, line: 41
 # File: modules/graphics/src/c/getHandleProperty/set_default_values_property.c, line: 66
 # File: modules/graphics/src/c/getHandleProperty/set_diffuse_color_property.c, line: 63
@@ -1893,8 +1895,8 @@ msgid "%s should be a string vector.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/GetHashTable.c, line: 304
-# File: modules/graphics/src/c/getHandleProperty/SetHashTable.c, line: 303
+# File: modules/graphics/src/c/getHandleProperty/GetHashTable.c, line: 305
+# File: modules/graphics/src/c/getHandleProperty/SetHashTable.c, line: 304
 #, c-format
 msgid "Unknown property: %s.\n"
 msgstr ""
@@ -1923,8 +1925,8 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_cdata_mapping_property.c, line: 47
 # File: modules/graphics/src/c/getHandleProperty/set_clip_state_property.c, line: 46
 # File: modules/graphics/src/c/getHandleProperty/set_data_mapping_property.c, line: 49
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 95
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 272
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 141
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 318
 # File: modules/graphics/src/c/getHandleProperty/set_event_handler_property.c, line: 45
 # File: modules/graphics/src/c/getHandleProperty/set_figure_closerequestfcn_property.c, line: 33
 # File: modules/graphics/src/c/getHandleProperty/set_figure_name_property.c, line: 44
@@ -2321,19 +2323,26 @@ msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 105
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 115
+#, c-format
+msgid ""
+"Inavlid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
+msgstr ""
+
+#
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 151
 #, c-format
 msgid "Wrong value for '%s' property: Non-empty string expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 117
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 163
 #, c-format
 msgid "Wrong value for '%s' property: String with length 3 or less expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 126
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 172
 #, c-format
 msgid ""
 "Wrong value for '%s' property: String contains 'x' component more than "
@@ -2341,7 +2350,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 135
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 181
 #, c-format
 msgid ""
 "Wrong value for '%s' property: String contains 'y' component more than "
@@ -2349,7 +2358,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 144
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 190
 #, c-format
 msgid ""
 "Wrong value for '%s' property: String contains 'z' component more than "
@@ -2357,20 +2366,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 150
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 196
 #, c-format
 msgid "Wrong value for '%s' property: String with 'x|y|z' expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 296
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 342
 # File: modules/graphics/src/c/getHandleProperty/set_mark_size_property.c, line: 40
 #, c-format
 msgid "Wrong type for '%s' property: Matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 303
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 349
 #, c-format
 msgid "Wrong size for '%s' property: Matrix with length 3 or [] expected.\n"
 msgstr ""
@@ -3692,25 +3701,25 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 53
-# File: modules/graphics/macros/getcolor.sci, line: 77
+# File: modules/graphics/macros/getcolor.sci, line: 82
 msgid "&File"
 msgstr ""
 
 #
 # File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 54
-# File: modules/graphics/macros/getcolor.sci, line: 78
+# File: modules/graphics/macros/getcolor.sci, line: 83
 msgid "&Tools"
 msgstr ""
 
 #
 # File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 55
-# File: modules/graphics/macros/getcolor.sci, line: 79
+# File: modules/graphics/macros/getcolor.sci, line: 84
 msgid "&Edit"
 msgstr ""
 
 #
 # File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 56
-# File: modules/graphics/macros/getcolor.sci, line: 80
+# File: modules/graphics/macros/getcolor.sci, line: 85
 msgid "&?"
 msgstr ""
 
@@ -3931,24 +3940,24 @@ msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/getcolor.sci, line: 131
-# File: modules/graphics/macros/getcolor.sci, line: 134
+# File: modules/graphics/macros/getcolor.sci, line: 136
+# File: modules/graphics/macros/getcolor.sci, line: 139
 msgid "Ok"
 msgstr ""
 
 #
-# File: modules/graphics/macros/getcolor.sci, line: 132
-# File: modules/graphics/macros/getcolor.sci, line: 135
+# File: modules/graphics/macros/getcolor.sci, line: 137
+# File: modules/graphics/macros/getcolor.sci, line: 140
 msgid "Cancel"
 msgstr ""
 
 #
-# File: modules/graphics/macros/getcolor.sci, line: 164
+# File: modules/graphics/macros/getcolor.sci, line: 169
 msgid "Color number"
 msgstr ""
 
 #
-# File: modules/graphics/macros/getcolor.sci, line: 164
+# File: modules/graphics/macros/getcolor.sci, line: 169
 msgid "Name"
 msgstr ""
 

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2016-06-09 10:47+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18232)\n"
-"Language: \n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -106,8 +106,7 @@ msgid "%s: variable size exceeded : less than %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : Singularity of the function.\n"
+msgid "%s: Wrong value for input argument #%d : Singularity of the function.\n"
 msgstr ""
 
 #, c-format
@@ -218,8 +217,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Input and output matrices must have the same number of elements.\n"
+msgid "%s: Input and output matrices must have the same number of elements.\n"
 msgstr ""
 
 #, c-format
@@ -368,13 +366,19 @@ msgstr "%s：矩阵不是对角阵。\n"
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s：第%d个输入参数的类型错误，应该为字符串矩阵。\n"
 
+#
+# File: modules/elementary_functions/macros/bit_op.sci, line: 20
 #, c-format
-msgid "%s: Wrong type for input arguments: Same types expected.\n"
-msgstr "%s：输入参数的类型错误，应该为同一类型。\n"
+msgid "%s: unknown bitwise function %s.\n"
+msgstr ""
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr "%s：输入参数的大小错误：应该为相同的大小。\n"
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s：第%d和第%d个输入参数不兼容：应该为相同尺寸。\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers >=0 expected.\n"
+msgstr "%s：第%d个参数错误：应该为正整数。\n"
 
 #, c-format
 msgid ""
@@ -388,6 +392,10 @@ msgstr "%s：第%d个输入参数错误：应该为无符号整数。\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr "%s：第%d个输入参数的值错误：必须介于%d与%d之间。\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s：输入参数的大小错误：应该为相同的大小。\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -404,14 +412,12 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-"expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为无符号整数标量或矩阵。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为正实数。\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr "%s：输入参数的类型错误，应该为同一类型。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
@@ -444,8 +450,7 @@ msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该为方阵。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr "%s：第%d个输入参数的值错误：矩阵不是对角阵。\n"
 
 #, c-format
@@ -612,8 +617,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
@@ -639,8 +643,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument "
-"#%d expected.\n"
+"%s: Wrong size for input argument #%d: At least the size of input argument #"
+"%d expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该至少第%d个输入参数的大小。\n"
 
 #, c-format
@@ -758,8 +762,7 @@ msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 
 #, c-format
@@ -773,3 +776,8 @@ msgstr "%s：第%d和第%d个输入参数不兼容：应该为相同类型。\n"
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s：输入参数的大小错误：大小不兼容。\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+#~ "expected.\n"
+#~ msgstr "%s：第%d个输入参数的类型错误：应该为无符号整数标量或矩阵。\n"

@@ -11,12 +11,12 @@ msgstr ""
 "PO-Revision-Date: 2014-09-15 05:22+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18232)\n"
 "X-Poedit-Country: Japan\n"
-"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -54,7 +54,9 @@ msgstr "%s : 最初の引数は、scicosブロック 型リストでなくては
 
 #, c-format
 msgid "%s : First argument must be a valid scicos_block typed list.\n"
-msgstr "%s: 最初の引数は有効な scicos_block 型付きリスト(tlist) とする必要があります.\n"
+msgstr ""
+"%s: 最初の引数は有効な scicos_block 型付きリスト(tlist) とする必要がありま"
+"す.\n"
 
 #, c-format
 msgid "%s : Second argument must be scalar.\n"
@@ -176,7 +178,8 @@ msgstr "%s : 関数型は定義されていません\n"
 
 #, c-format
 msgid "%s : Undetermined Size. in(%d)=%d. Please adjust your model.\n"
-msgstr "%s:　大きさが定義されていません. in(%d)=%d. モデルを調整してください.\n"
+msgstr ""
+"%s:　大きさが定義されていません. in(%d)=%d. モデルを調整してください.\n"
 
 #, c-format
 msgid "%s : Allocation error.\n"
@@ -184,7 +187,8 @@ msgstr "%s: 領域確保エラー.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. in2(%d)=%d. Please adjust your model.\n"
-msgstr "%s: 大きさが定義されていません. in2(%d)=%d. モデルを調整してください.\n"
+msgstr ""
+"%s: 大きさが定義されていません. in2(%d)=%d. モデルを調整してください.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. intyp(%d)=%d. Please adjust your model.\n"
@@ -196,15 +200,37 @@ msgstr ""
 
 #, c-format
 msgid "%s : Undetermined Size. out(%d)=%d. Please adjust your model.\n"
-msgstr "%s: 大きさが定義されていません. out(%d)=%d. モデルを調整してください.\n"
+msgstr ""
+"%s: 大きさが定義されていません. out(%d)=%d. モデルを調整してください.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. out2(%d)=%d. Please adjust your model.\n"
-msgstr "%s: 大きさが定義されていません. out2(%d)=%d. モデルを調整してください.\n"
+msgstr ""
+"%s: 大きさが定義されていません. out2(%d)=%d. モデルを調整してください.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. outtyp(%d)=%d. Please adjust your model.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s: 入力引数 #%d の型が正しくありません: 文字配列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: リストを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Unable to load \"%s\" .\n"
+msgstr "%s: ダイアグラムの入力がありません\n"
+
+#, fuzzy, c-format
+msgid "%s: Unable to save \"%s\" .\n"
+msgstr "%s: ダイアグラムの入力がありません\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -243,8 +269,7 @@ msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
+msgid "%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
 msgstr ""
 
 #, c-format
@@ -305,8 +330,7 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
+msgid "%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -374,7 +398,9 @@ msgid "sliding mode condition, cannot integrate"
 msgstr "スライド・モード状態、統合できません"
 
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
-msgstr "初期モードをみつけることができませんでした. おそらく, スライディングモード条件が存在します."
+msgstr ""
+"初期モードをみつけることができませんでした. おそらく, スライディングモード条"
+"件が存在します."
 
 msgid ""
 "You have changed a parameter in your model, but the model has been compiled "
@@ -382,8 +408,10 @@ msgid ""
 "either recompile your Scicos diagram or [re]launch the initialization "
 "interface to regenerate the XML file  with new parameters."
 msgstr ""
-"あなたはモデルでパラメーターを変えました、しかし、そのモデルは最初の値とパラメーターを含んでいるXMLファイルを使うために編集されました。そのとおりであれ"
-"ば、Scicos図形を再編集するか、あるいは再度、初期化インターフェースで新しいパラメーターを持つXMLファイルを復活させて下さい。"
+"あなたはモデルでパラメーターを変えました、しかし、そのモデルは最初の値とパラ"
+"メーターを含んでいるXMLファイルを使うために編集されました。そのとおりであれ"
+"ば、Scicos図形を再編集するか、あるいは再度、初期化インターフェースで新しいパ"
+"ラメーターを持つXMLファイルを復活させて下さい。"
 
 msgid "Undefined data type."
 msgstr "データ型は定義されていません。"
@@ -394,9 +422,10 @@ msgid ""
 "relaxed a parameter using FIXED property (i.e., fixed=false) in a Modelica "
 "model. This will be corrected in the next version"
 msgstr ""
-"Modelicaコンパイラによって生成したコードが想定したものはScicosブロックによって提供されたパラメーターの数が異なります。あなたは、プロパティを"
-"利用したパラメーターを緩めることができたかもしれません。(すなわち、fixed=false)Modelicaモデルで。これは、次のバージョンで正されるでし"
-"ょう。"
+"Modelicaコンパイラによって生成したコードが想定したものはScicosブロックによっ"
+"て提供されたパラメーターの数が異なります。あなたは、プロパティを利用したパラ"
+"メーターを緩めることができたかもしれません。(すなわち、fixed=false)Modelicaモ"
+"デルで。これは、次のバージョンで正されるでしょう。"
 
 msgid "unknown or erroneous block"
 msgstr "未知、または誤りのあるブロック"
@@ -425,8 +454,7 @@ msgid "%s: Wrong size for input argument #%d : A single struct expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
+msgid "%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
 msgstr ""
 
 #, c-format
@@ -497,8 +525,8 @@ msgid ""
 "****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
 "ATOL)\n"
 msgstr ""
-"****SUNDIALS.Cvode: time=%g における処理が過大です (スティッフな領域です,  RTOL "
-"およびATOLを変更してください)\n"
+"****SUNDIALS.Cvode: time=%g における処理が過大です (スティッフな領域です,  "
+"RTOL およびATOLを変更してください)\n"
 
 #, c-format
 msgid "root found at t=: %f\n"
@@ -536,7 +564,8 @@ msgstr "****SUNDIALS.Ida 達しました: %f\n"
 msgid ""
 "**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and "
 "ATOL)\n"
-msgstr "**** SUNDIALS.Ida: 動作のための十分な時間=%g (硬領域, RTOLとATOLの変更)\n"
+msgstr ""
+"**** SUNDIALS.Ida: 動作のための十分な時間=%g (硬領域, RTOLとATOLの変更)\n"
 
 #, c-format
 msgid "block %d [%s] is called "
@@ -714,8 +743,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
+msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
 msgstr ""
 
 #, c-format
@@ -748,6 +776,12 @@ msgstr ""
 
 #, c-format
 msgid "Wrong size for field %s: at least %d-by-%d expected.\n"
+msgstr ""
+
+#
+# File: modules/scicos/src/cpp/view_scilab/DiagramAdapter.cpp, line: 452
+#, c-format
+msgid "\"%s\" is a read-only field.\n"
 msgstr ""
 
 #, c-format
@@ -847,10 +881,6 @@ msgid "Wrong type for field %s.%s : Boolean matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for field %s.%s : Valid C identifier expected.\n"
-msgstr ""
-
-#, c-format
 msgid "Wrong type for field %s.%s: String expected.\n"
 msgstr ""
 
@@ -894,12 +924,18 @@ msgstr ""
 msgid "Wrong type for field %s.%s: String matrix expected.\n"
 msgstr ""
 
+#
+# File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 348
 #, c-format
-msgid "Wrong value for field %s.%s: %s or %s vector expected.\n"
+msgid ""
+"Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' "
+"vector. Switching to '%s'.\n"
 msgstr ""
 
+#
+# File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 362
 #, c-format
-msgid "Wrong type for field %s.%s .\n"
+msgid "Wrong type for field %s.%s.\n"
 msgstr ""
 
 #, c-format
@@ -907,7 +943,7 @@ msgid "Wrong value for field %s.%s: Round number expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for field %s.%s: Must be in the interval [%d, %d].\n"
+msgid "Wrong type for field %s.%s .\n"
 msgstr ""
 
 #, c-format
@@ -920,7 +956,8 @@ msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: ダイアグラムを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: ダイアグラムを指定してください.\n"
 
 #, c-format
 msgid "%s: Error during block parameters evaluation.\n"
@@ -952,7 +989,9 @@ msgstr "%s:入力引数 #%dの大きさが間違っています: 空の行列を
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してくださ"
+"い.\n"
 
 #
 # File: macros/scicos_auto/scicos_simulate.sci, line: 181
@@ -962,7 +1001,8 @@ msgstr "%s: 入力引数の数が不正です: %d と %d の間である必要�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-msgstr "%s: 入力引数 #%d の型が正しくありません: %s データ構造を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が正しくありません: %s データ構造を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
@@ -1023,7 +1063,10 @@ msgstr ""
 msgid "Wrong type for diagram element #%d: %s, %s or %s expected.\n"
 msgstr ""
 
-msgid "Your model contains states defined in standard Scicos blocks.\n"
+#, fuzzy
+msgid ""
+"Your model contains states defined in standard Scicos blocks.\n"
+"Current initialization interface does not support mixed models."
 msgstr "モデルには標準Scicosブロックで定義された状態量が含まれます.\n"
 
 #, c-format
@@ -1094,8 +1137,8 @@ msgid ""
 msgstr ""
 "連続時間状態量がありません. 閾値が無視されました; \n"
 "これにより外部イベントを生成しない場合には問題はないでしょう.\n"
-"閾値を再度有効にする場合, ダイアグラムに連続時間状態量を有するブロックを含める必要があります. 例にDUMMY CLSS ブロック "
-"(線形パレット)を含めることができる."
+"閾値を再度有効にする場合, ダイアグラムに連続時間状態量を有するブロックを含め"
+"る必要があります. 例にDUMMY CLSS ブロック (線形パレット)を含めることができる."
 
 msgid "Diagram contains implicit blocks, compiling for implicit Solver."
 msgstr "ダイアグラムには陰的ブロックが含まれています. 陰解法でコンパイル中."
@@ -1106,8 +1149,13 @@ msgstr "イベントに代数ループがあります."
 msgid "Algebraic loop."
 msgstr "代数ループ"
 
-msgid "A C or Fortran block is used but not linked.\n"
-msgstr "CまたはFortranブロックが使用されていますが, リンクされていません.\n"
+#
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 1223
+msgid ""
+"A C or Fortran block is used but not linked.\n"
+"You can save your compiled diagram and load it.\n"
+"This will automatically link the C or Fortran function."
+msgstr ""
 
 #, c-format
 msgid "Number of modes in block #%d cannot be determined."
@@ -1117,14 +1165,23 @@ msgstr "ブロック #%d のモード番号が定義されていません."
 msgid "Number of zero crossings in block #%d cannot be determined."
 msgstr "ブロック #%d 中のゼロ交差の数を定義できませんでした."
 
-msgid "Not enough information to find port sizes.\n"
+#, fuzzy
+msgid ""
+"Not enough information to find port sizes.\n"
+"I try to find the problem."
 msgstr "ポートの大きさを見つけるために十分な情報がありません.\n"
 
-msgid "I cannot find a link with undetermined size.\n"
-msgstr "大きさが未定義のリンクが見つかりません.\n"
+#
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2049
+msgid ""
+"I cannot find a link with undetermined size.\n"
+"My guess is that you have a block with unconnected \n"
+"undetermined output ports."
+msgstr ""
 
 msgid "One of this block output has negative size.<br />Please check."
-msgstr "このｂロックの出力の一つの大きさが負になっています.<br />確認してください."
+msgstr ""
+"このｂロックの出力の一つの大きさが負になっています.<br />確認してください."
 
 msgid "Block input has negative size:"
 msgstr "ブロック入力に負の大きさが指定されています:"
@@ -1138,12 +1195,16 @@ msgstr "SuperBlockにエラーを出力することはできません."
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined size:"
-msgstr "<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック出力ポートの大きさが一部定義されていません:"
+msgstr ""
+"<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック出"
+"力ポートの大きさが一部定義されていません:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined type:"
-msgstr "<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック出力ポートの型が一部定義されていません:"
+msgstr ""
+"<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック出"
+"力ポートの型が一部定義されていません:"
 
 #, c-format
 msgid "Output port %s type."
@@ -1156,27 +1217,45 @@ msgstr "入力ポート %s 型."
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined size:"
-msgstr "<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック入力ポートの大きさが一部定義されていません:"
+msgstr ""
+"<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック入"
+"力ポートの大きさが一部定義されていません:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined type:"
-msgstr "<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック入力ポートの型が一部定義されていません:"
+msgstr ""
+"<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック入"
+"力ポートの型が一部定義されていません:"
 
 msgid ""
 "Highlighted block(s) have connected ports \n"
 "with  sizes that cannot be determined by the context.\n"
 "What is the size of this link?"
 msgstr ""
-"ハイライト表示されたブロックは,大きさがコンテキストにより定義できない接続ポートを有しています.\n"
+"ハイライト表示されたブロックは,大きさがコンテキストにより定義できない接続ポー"
+"トを有しています.\n"
 "このリンクの大きさは何ですか?"
 
-#, c-format
-msgid "the dep_ut size of the %s block is not correct.\n"
+#, fuzzy, c-format
+msgid ""
+"the dep_ut size of the %s block is not correct.\n"
+"It should be a colon vector of size %d."
 msgstr "%s ブロックの dep_ut の大きさが間違っています.\n"
 
-msgid "Not enough information to find port type.\n"
+#, fuzzy
+msgid ""
+"Not enough information to find port type.\n"
+"I will try to find the problem."
 msgstr "ポートの型を定義するために十分な情報がありません.\n"
+
+#
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2640
+msgid ""
+"I cannot find a link with undetermined size.\n"
+"My guess is that you have a block with unconnected \n"
+"undetermined types."
+msgstr ""
 
 msgid "Modelica compiler (flat2C)"
 msgstr "Modelicaコンパイラ (flat2C)"
@@ -1269,8 +1348,8 @@ msgid ""
 "%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, "
 "%%scicos_prob=%%%s).\n"
 msgstr ""
-"%s: ブロック %s [uid='%s'] をコールした際にエラーが発生しました : パラメータが無効です (ier=%f, "
-"%%scicos_prob=%%%s).\n"
+"%s: ブロック %s [uid='%s'] をコールした際にエラーが発生しました : パラメータ"
+"が無効です (ier=%f, %%scicos_prob=%%%s).\n"
 
 msgid "Cannot load dynamic library: "
 msgstr "動的ライブラリを読み込めませんでした: "
@@ -1329,14 +1408,23 @@ msgstr "%s: %s 型は実装されていません.\n"
 
 #, c-format
 msgid "%s: Wrong size for block parameter '%s': %s expected, getting %s"
-msgstr "%s: ブロックパラメータ '%s' の大きさが間違っています: %s を予測しましたが, %s が取得されました"
+msgstr ""
+"%s: ブロックパラメータ '%s' の大きさが間違っています: %s を予測しましたが, "
+"%s が取得されました"
 
 #, c-format
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
-msgstr "%s: ブロックパラメータ '%s' の型が間違っています:  %s(%s) を予測しましたが, %s が取得されました"
+msgstr ""
+"%s: ブロックパラメータ '%s' の型が間違っています:  %s(%s) を予測しましたが, "
+"%s が取得されました"
 
-msgid "There are too many Modelica files.\n"
-msgstr "Modelicaファイルが多すぎます.\n"
+#
+# File: modules/scicos/macros/scicos_scicos/translator.sci, line: 73
+msgid ""
+"There are too many Modelica files.\n"
+"It would be better to define several \n"
+"Modelica programs in a single file."
+msgstr ""
 
 msgid "-------Modelica translator error message:-----"
 msgstr "-------Modelica トランスレータのエラーメッセージ :-----"
@@ -1369,3 +1457,12 @@ msgid ""
 msgstr ""
 "%s に指定された回答は\n"
 "間違っています: %s.\n"
+
+#~ msgid "A C or Fortran block is used but not linked.\n"
+#~ msgstr "CまたはFortranブロックが使用されていますが, リンクされていません.\n"
+
+#~ msgid "I cannot find a link with undetermined size.\n"
+#~ msgstr "大きさが未定義のリンクが見つかりません.\n"
+
+#~ msgid "There are too many Modelica files.\n"
+#~ msgstr "Modelicaファイルが多すぎます.\n"

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2016-06-29 09:17+0000\n"
 "Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18232)\n"
-"Language: ru\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -51,8 +51,7 @@ msgstr ""
 "скаляр.\n"
 
 #, c-format
-msgid ""
-"%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr "%s: Вставка строкового значения в матрицу чисел не реализовано.\n"
 
 #, c-format
@@ -72,8 +71,7 @@ msgid "%s: Invalid field name.\n"
 msgstr "%s: Недопустимое имя поля.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось допустимое имя "
 "поля.\n"
@@ -87,8 +85,7 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s: Неверное количество выходных аргументов.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: нельзя определить "
 "транспонирование.\n"
@@ -164,18 +161,6 @@ msgid "%s: Wrong type for input argument #%d: Hypermatrix expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидалась гиперматрица.\n"
 
 #, c-format
-msgid "%s: Operand is not a boolean hypermatrix.\n"
-msgstr "%s: Операнд не является гиперматрицей логических значений.\n"
-
-#, c-format
-msgid "%s: Incompatible operand dimensions.\n"
-msgstr "%s: Несовместимые размерности операндов.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
-msgstr "%s: Неверный тип входных аргументов: ожидалась гиперматрица.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидалось максимум три "
@@ -184,6 +169,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
 msgstr "%s: Неверный размер аргумента: несовместимые размерности.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be non-negative "
+"integers.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: должно быть из множества "
+"{%s}.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
@@ -199,9 +192,18 @@ msgid "%s: Input and output matrices  must have the same number of elements"
 msgstr ""
 "%s: Входная и выходная матрицы должны иметь одинаковое количество элементов."
 
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d must have compatible sizes\n"
+msgstr "%s: Входные аргументы №%d и №%d имеют несовместимые размеры.\n"
+
+#
+# File: modules/overloading/macros/%hm_r_s.sci, line: 17
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: not implemented for argin#1 hypermatrix and argin#2 matrix\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось «%s», «%s» или "
 "«%s».\n"
@@ -236,6 +238,45 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидались целочисленные значения.\n"
+
+#
+# File: modules/overloading/macros/%lss_c_zpk.sci, line: 10
+# File: modules/overloading/macros/%lss_f_zpk.sci, line: 13
+# File: modules/overloading/macros/%r_c_zpk.sci, line: 10
+# File: modules/overloading/macros/%r_f_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_a_zpk.sci, line: 11
+# File: modules/overloading/macros/%zpk_c_lss.sci, line: 12
+# File: modules/overloading/macros/%zpk_c_r.sci, line: 13
+# File: modules/overloading/macros/%zpk_c_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_d_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_f_lss.sci, line: 12
+# File: modules/overloading/macros/%zpk_f_r.sci, line: 12
+# File: modules/overloading/macros/%zpk_f_zpk.sci, line: 12
+# File: modules/overloading/macros/%zpk_i_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_l_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_m_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_q_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_r_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_v_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_x_zpk.sci, line: 13
+#, c-format
+msgid "%s: time domains are not compatible.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
+"%s: Неверный тип входных аргументов №%d и №%d: ожидались целочисленные "
+"значения.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of columns "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входных аргументов №%d и №%d: ожидались целочисленные "
+"значения.\n"
 
 #, c-format
 msgid "%s: Invalid syntax for a MIMO system.\n"
@@ -290,6 +331,12 @@ msgstr ""
 "%s: Присвоение нуля может иметь только одно указание индексов без "
 "двоеточия.\n"
 
+#
+# File: modules/overloading/macros/%s_l_hm.sci, line: 17
+#, c-format
+msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr "%s: Случай вставки в разрежённую матрицу не реализован.\n"
@@ -304,8 +351,7 @@ msgstr "%s: Имена полей не совпадают.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: not a valid field name.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: неправильное имя поля.\n"
+msgstr "%s: Неверное значение входного аргумента №%d: неправильное имя поля.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
@@ -316,8 +362,7 @@ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидался вещественный скаляр.\n"
 
 #, c-format
-msgid ""
-"%s: input and output matrices  must have the same number of elements.\n"
+msgid "%s: input and output matrices  must have the same number of elements.\n"
 msgstr ""
 "%s: входная и выходная матрицы должны иметь одинаковое число элементов.\n"
 
@@ -328,6 +373,25 @@ msgstr "%s: Неверный размер или значение входног
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Неверное значение входного аргумента №%d.\n"
+
+#, fuzzy
+msgid "Inconsistent row/column dimensions.\n"
+msgstr "%s: Несовместимые размеры.\n"
+
+#, fuzzy
+msgid "Inconsistent multiplication.\n"
+msgstr "%s: Несовместимая поэлементная операция.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+"%s: Неверный тип входных аргументов №%d и №%d: ожидались целочисленные "
+"значения.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Not implemented.\n"
@@ -347,6 +411,19 @@ msgstr ""
 "%s: Несовместимые размеры для свойств '%s' и '%s': ожидались одинаковые "
 "размеры.\n"
 
+#, fuzzy
+msgid "Invalid index."
+msgstr "%s: Недопустимый индекс.\n"
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#~ msgid "%s: Operand is not a boolean hypermatrix.\n"
+#~ msgstr "%s: Операнд не является гиперматрицей логических значений.\n"
+
+#~ msgid "%s: Incompatible operand dimensions.\n"
+#~ msgstr "%s: Несовместимые размерности операндов.\n"
+
+#~ msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
+#~ msgstr "%s: Неверный тип входных аргументов: ожидалась гиперматрица.\n"

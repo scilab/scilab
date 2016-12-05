@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2013-07-15 21:43+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18232)\n"
-"Language: cs\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -204,6 +204,26 @@ msgstr "%s : Neurčená Velikost. in2(%d)=%d. Prosím upravte Váš model.\n"
 msgid "%s : Undetermined Size. outtyp(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řetězců.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván seznam.\n"
+
+#, fuzzy, c-format
+msgid "%s: Unable to load \"%s\" .\n"
+msgstr "%s: Nelze nalézt vstupy grafu\n"
+
+#, fuzzy, c-format
+msgid "%s: Unable to save \"%s\" .\n"
+msgstr "%s: Nelze nalézt vstupy grafu\n"
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
@@ -241,8 +261,7 @@ msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
+msgid "%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
 msgstr ""
 
 #, c-format
@@ -303,8 +322,7 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
+msgid "%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -426,8 +444,7 @@ msgid "%s: Wrong size for input argument #%d : A single struct expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
+msgid "%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
 msgstr ""
 
 #, c-format
@@ -705,8 +722,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
+msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
 msgstr ""
 
 #, c-format
@@ -739,6 +755,12 @@ msgstr ""
 
 #, c-format
 msgid "Wrong size for field %s: at least %d-by-%d expected.\n"
+msgstr ""
+
+#
+# File: modules/scicos/src/cpp/view_scilab/DiagramAdapter.cpp, line: 452
+#, c-format
+msgid "\"%s\" is a read-only field.\n"
 msgstr ""
 
 #, c-format
@@ -838,10 +860,6 @@ msgid "Wrong type for field %s.%s : Boolean matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for field %s.%s : Valid C identifier expected.\n"
-msgstr ""
-
-#, c-format
 msgid "Wrong type for field %s.%s: String expected.\n"
 msgstr ""
 
@@ -885,12 +903,18 @@ msgstr ""
 msgid "Wrong type for field %s.%s: String matrix expected.\n"
 msgstr ""
 
+#
+# File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 348
 #, c-format
-msgid "Wrong value for field %s.%s: %s or %s vector expected.\n"
+msgid ""
+"Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' "
+"vector. Switching to '%s'.\n"
 msgstr ""
 
+#
+# File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 362
 #, c-format
-msgid "Wrong type for field %s.%s .\n"
+msgid "Wrong type for field %s.%s.\n"
 msgstr ""
 
 #, c-format
@@ -898,7 +922,7 @@ msgid "Wrong value for field %s.%s: Round number expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for field %s.%s: Must be in the interval [%d, %d].\n"
+msgid "Wrong type for field %s.%s .\n"
 msgstr ""
 
 #, c-format
@@ -1017,7 +1041,10 @@ msgstr ""
 msgid "Wrong type for diagram element #%d: %s, %s or %s expected.\n"
 msgstr ""
 
-msgid "Your model contains states defined in standard Scicos blocks.\n"
+#, fuzzy
+msgid ""
+"Your model contains states defined in standard Scicos blocks.\n"
+"Current initialization interface does not support mixed models."
 msgstr "Váš model obsahuje stavy zadané ve standardních blocích Scicos.\n"
 
 #, c-format
@@ -1086,8 +1113,7 @@ msgid ""
 msgstr ""
 
 msgid "Diagram contains implicit blocks, compiling for implicit Solver."
-msgstr ""
-"Graf obsahuje implicitní bloky, sestavování na implicitního řešitele."
+msgstr "Graf obsahuje implicitní bloky, sestavování na implicitního řešitele."
 
 msgid "Algebraic loop on events."
 msgstr "Algebraické smyčky při událostech"
@@ -1095,8 +1121,13 @@ msgstr "Algebraické smyčky při událostech"
 msgid "Algebraic loop."
 msgstr "Algebraická smyčka"
 
-msgid "A C or Fortran block is used but not linked.\n"
-msgstr "Je použit blok C nebo Fortran ale není propojen.\n"
+#
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 1223
+msgid ""
+"A C or Fortran block is used but not linked.\n"
+"You can save your compiled diagram and load it.\n"
+"This will automatically link the C or Fortran function."
+msgstr ""
 
 #, c-format
 msgid "Number of modes in block #%d cannot be determined."
@@ -1106,11 +1137,19 @@ msgstr "Počet režimů v bloku #%d nlze zjistit.."
 msgid "Number of zero crossings in block #%d cannot be determined."
 msgstr "Počet průchodů nulou v bloku #%d nelze zjistit."
 
-msgid "Not enough information to find port sizes.\n"
+#, fuzzy
+msgid ""
+"Not enough information to find port sizes.\n"
+"I try to find the problem."
 msgstr "Není dostatek informací k nalezení velikostí portu.\n"
 
-msgid "I cannot find a link with undetermined size.\n"
-msgstr "Nelze najít propojení s neurčenou velikostí.\n"
+#
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2049
+msgid ""
+"I cannot find a link with undetermined size.\n"
+"My guess is that you have a block with unconnected \n"
+"undetermined output ports."
+msgstr ""
 
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
@@ -1129,15 +1168,15 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined size:"
 msgstr ""
-"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto "
-"varování.</em><br />Výstupní port bloku má neurčenou velikost:"
+"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto varování.</"
+"em><br />Výstupní port bloku má neurčenou velikost:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined type:"
 msgstr ""
-"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto "
-"varování.</em><br />Výstupní port bloku má neurčený typ:"
+"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto varování.</"
+"em><br />Výstupní port bloku má neurčený typ:"
 
 #, c-format
 msgid "Output port %s type."
@@ -1151,15 +1190,15 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined size:"
 msgstr ""
-"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto "
-"varování.</em><br />Vstupní port bloku má neurčenou velikost:"
+"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto varování.</"
+"em><br />Vstupní port bloku má neurčenou velikost:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined type:"
 msgstr ""
-"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto "
-"varování.</em><br />Vstupní port bloku má neurčený typ:"
+"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto varování.</"
+"em><br />Vstupní port bloku má neurčený typ:"
 
 msgid ""
 "Highlighted block(s) have connected ports \n"
@@ -1170,12 +1209,25 @@ msgstr ""
 "s velikostmi, které nemohou být zjištěny pomocí kontextu.\n"
 "Jaká je velikost tohoto propojení?"
 
-#, c-format
-msgid "the dep_ut size of the %s block is not correct.\n"
+#, fuzzy, c-format
+msgid ""
+"the dep_ut size of the %s block is not correct.\n"
+"It should be a colon vector of size %d."
 msgstr "Velikost dep_ut v bloku %s není správná.\n"
 
-msgid "Not enough information to find port type.\n"
+#, fuzzy
+msgid ""
+"Not enough information to find port type.\n"
+"I will try to find the problem."
 msgstr "Není dostatek informací k nalezení typu portu.\n"
+
+#
+# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2640
+msgid ""
+"I cannot find a link with undetermined size.\n"
+"My guess is that you have a block with unconnected \n"
+"undetermined types."
+msgstr ""
 
 msgid "Modelica compiler (flat2C)"
 msgstr ""
@@ -1332,8 +1384,13 @@ msgstr "%s: Špatná velikost parametru bloku '%s': Očekáváno %s, obdrženo %
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
 msgstr "%s: Špatný typ parametru bloku '%s': Očekáváno %s(%s), obdrženo %s"
 
-msgid "There are too many Modelica files.\n"
-msgstr "Příliš mnoho souborů Modelica.\n"
+#
+# File: modules/scicos/macros/scicos_scicos/translator.sci, line: 73
+msgid ""
+"There are too many Modelica files.\n"
+"It would be better to define several \n"
+"Modelica programs in a single file."
+msgstr ""
 
 msgid "-------Modelica translator error message:-----"
 msgstr "-------Chybová zpráva překladatele Modelica:-----"
@@ -1369,3 +1426,12 @@ msgid ""
 msgstr ""
 "Předaná odpověď pro %s \n"
 " je nesprávná: %s.\n"
+
+#~ msgid "A C or Fortran block is used but not linked.\n"
+#~ msgstr "Je použit blok C nebo Fortran ale není propojen.\n"
+
+#~ msgid "I cannot find a link with undetermined size.\n"
+#~ msgstr "Nelze najít propojení s neurčenou velikostí.\n"
+
+#~ msgid "There are too many Modelica files.\n"
+#~ msgstr "Příliš mnoho souborů Modelica.\n"

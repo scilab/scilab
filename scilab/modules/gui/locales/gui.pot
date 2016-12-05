@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-10-19 10:08+0100\n"
+"Revision-Date: 2016-12-05 09:43+0100\n"
 
 # File: modules/gui/sci_gateway/c/sci_delmenu.c, line: 55
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 49
@@ -802,35 +802,35 @@ msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 57
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 56
 # File: modules/gui/sci_gateway/cpp/sci_helpbrowser.cpp, line: 42
 #, c-format
 msgid "%s:  Wrong number of output argument(s): %d to %d expected."
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 63
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 62
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A list expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 71
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 70
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : At least %d elements expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 78
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 77
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of input argument #%d : string expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 85
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 107
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 84
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 106
 #, c-format
 msgid ""
 "%s: Wrong size for element #%d of input argument #%d : At least %d element "
@@ -838,20 +838,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 92
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 91
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Tree expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 99
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 98
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of input argument #%d : A struct expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 113
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 112
 #, c-format
 msgid ""
 "%s: Wrong fields for element #%d of input argument #%d : \"%s\" and \"%s\" "
@@ -859,9 +859,9 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 130
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 149
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 168
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 129
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 148
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 167
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of element #%d of input argument #%d : string "
@@ -869,9 +869,9 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 137
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 156
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 175
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 136
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 155
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 174
 #, c-format
 msgid ""
 "%s: Wrong size for element #%d of element #%d of input argument #%d : A "
@@ -879,13 +879,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 185
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 184
 #, c-format
 msgid "%s: Error in the tree parsing.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 205
+# File: modules/gui/sci_gateway/cpp/sci_displaytree.cpp, line: 204
 #, c-format
 msgid ""
 "%s: A Java exception has arisen:\n"

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2013-05-17 22:17+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18232)\n"
-"Language: de\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -188,13 +188,27 @@ msgstr "                        nicht positive Pivot in Spalte %d\n"
 msgid "Scilab UMFPACK module not installed.\n"
 msgstr "Scilab UMFPACK Modul nicht installiert.\n"
 
-msgid "A small test for the condestsp"
+# File: modules/umfpack/demos/condestsp.sce, line: 15
+msgid ""
+"A small test for the condestsp function: condestsp gives an estimate of\n"
+" the condition number K1 in 1-norm of a real sparse matrix A:"
 msgstr ""
 
-msgid "     without explicitly computing the"
+#
+# File: modules/umfpack/demos/condestsp.sce, line: 18
+msgid ""
+"     without explicitly computing the inverse of A. condestsp uses a "
+"factorization given by\n"
+" umf_lufact but if you have already computed this one it is recommended to "
+"give the pointer to the factorization."
 msgstr ""
 
-msgid "The test consists in forming small"
+#
+# File: modules/umfpack/demos/condestsp.sce, line: 20
+msgid ""
+"The test consists in forming small sparse matrices (so as to compute K1 "
+"exactly with\n"
+"norm(inv(full(A)),1)) whose values are chosen from the normal distribution."
 msgstr ""
 
 msgid ""
@@ -243,16 +257,28 @@ msgstr ""
 msgid "Test 5: Acoustic scattering"
 msgstr ""
 
-msgid "To load a sparse matrix stored in the Harwell-"
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 15
+msgid ""
+"To load a sparse matrix stored in the Harwell-Boeing format in Scilab, you "
+"may use the function ReadHBSparse."
 msgstr ""
 
-msgid "4 matrices will be loaded for the demo: they come"
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 16
+msgid ""
+"4 matrices will be loaded for the demo: they come from the University of "
+"Florida Sparse Matrix Collection:"
 msgstr ""
 
 msgid "    maintained by Tim Davis, author of UMFPACK"
 msgstr ""
 
-msgid "To see the pattern of non zeros elements, "
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 28
+msgid ""
+"To see the pattern of non zeros elements, you may use the function "
+"PlotSparse."
 msgstr ""
 
 msgid "Here we will display the 4 matrices"
@@ -280,6 +306,14 @@ msgstr ""
 msgid "     norm of the residual = "
 msgstr ""
 
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 86
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 192
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 196
+#, c-format
+msgid "     computing time       = "
+msgstr ""
+
 msgid "A2 ("
 msgstr ""
 
@@ -295,29 +329,48 @@ msgstr ""
 msgid "  1/ lu factors of a sparse matrix A are obtained through:"
 msgstr ""
 
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 97
 #, c-format
-msgid "     lup = umf_lufact(A)\n"
+msgid ""
+"     lup = umf_lufact(A)\n"
+"     lup is a pointer to the lu factors (the memory is outside scilab "
+"space)\n"
 msgstr ""
 
 msgid "  2/ for solving a linear system A*x = b, use:"
 msgstr ""
 
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 99
 #, c-format
-msgid "     x = umf_lusolve(lup,b)\n"
+msgid ""
+"     x = umf_lusolve(lup,b)\n"
+"     or  x = umf_lusolve(lup,b,Ax=b,A)  to add an iterative refinement step\n"
 msgstr ""
 
 msgid "  3/ to solve A'*x=b you may use:"
 msgstr ""
 
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 101
 #, c-format
-msgid "     x = umf_lusolve(lup,b,Ax''=b)\n"
+msgid ""
+"     x = umf_lusolve(lup,b,Ax''=b)\n"
+"     or  x = umf_lusolve(lup,b,Ax''=b,A)  to add an iterative refinement "
+"step\n"
 msgstr ""
 
 msgid "  4/ you may also compute the 1-norm condition number quicky with:"
 msgstr ""
 
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 103
 #, c-format
-msgid "     K1 = condestsp(A,lup)\n"
+msgid ""
+"     K1 = condestsp(A,lup)\n"
+"     K1 = condestsp(A) also works but in this case the lu factors are re-"
+"computed inside\n"
 msgstr ""
 
 msgid ""
@@ -325,24 +378,43 @@ msgid ""
 "them with:"
 msgstr ""
 
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 105
 #, c-format
-msgid "     umf_ludel(lup)\n"
+msgid ""
+"     umf_ludel(lup)\n"
+"     if you have lost your pointer you may use umf_ludel() which frees all "
+"the current umf lu factors\n"
 msgstr ""
 
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 144
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 148
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 152
 #, c-format
-msgid "     K1 = "
+msgid "     norm of the residual    = "
 msgstr ""
 
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 145
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 149
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 153
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 191
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 195
 #, c-format
-msgid "     K2 = "
+msgid "     same but with refinment = "
 msgstr ""
 
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 156
 #, c-format
-msgid "     K3 = "
+msgid "     norm of the residual     = "
 msgstr ""
 
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 157
 #, c-format
-msgid "     K4 = "
+msgid "     same but with refinement = "
 msgstr ""
 
 msgid "Now we will see how to use the taucs snmf stuff on the matrix A2."
@@ -353,12 +425,15 @@ msgid ""
 "definite (s.p.d.)."
 msgstr ""
 
-msgid ""
-"  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
+msgid "  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
 msgstr ""
 
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 165
 #, c-format
-msgid "     Cp = taucs_chfact(A)\n"
+msgid ""
+"     Cp is a pointer to the Cholesky fact. (the memory is outside scilab "
+"space)\n"
 msgstr ""
 
 msgid "  2/ for solving a linear system A*x = b then use:"
@@ -393,15 +468,7 @@ msgid ""
 "memory for all the current Cholesky factorizations.\n"
 msgstr ""
 
-#, c-format
-msgid "     K2 (1-norm) = "
-msgstr ""
-
 msgid " with umfpack:"
-msgstr ""
-
-#, c-format
-msgid "     norm of the residual      = "
 msgstr ""
 
 msgid " with the taucs snmf Cholesky solver:"
@@ -500,14 +567,12 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Falsche Anzahl an Eingangsargumenten: %d zu %d erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: quadratische Matrix erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: quadratische Matrix erwartet.\n"
 

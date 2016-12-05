@@ -11,19 +11,18 @@ msgstr ""
 "PO-Revision-Date: 2016-06-09 10:53+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18232)\n"
-"Language: it\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 "%s: Gli argomenti in ingresso #%d e #%d hanno una dimensione sbagliata: la "
 "lunghezza non è compatibile.\n"
@@ -93,8 +92,7 @@ msgid "%s: The handle is not valid.\n"
 msgstr "%s Il gestore non è più valido.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
 "stringhe 2D.\n"
@@ -108,8 +106,7 @@ msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 
 #, c-format
@@ -124,6 +121,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
 
 #, c-format
@@ -221,6 +222,12 @@ msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
 "%s o %s.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
+"stringhe 2D.\n"
+
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
@@ -241,8 +248,7 @@ msgstr ""
 "lista di dimensione %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong number of mandatory input arguments. At least %d expected.\n"
+msgid "%s: Wrong number of mandatory input arguments. At least %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso obbligatori è sbagliato. Ne erano "
 "attesi almeno %d.\n"
@@ -320,8 +326,7 @@ msgstr ""
 "dimensione non è compatibile.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 "%s: Gli argomenti in  ingresso #%d e #%d hanno un valore sbagliato: la "
 "dimensione non è compatibile.\n"
@@ -406,8 +411,7 @@ msgid "%s: Wrong number of input argument(s) : an odd number is expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A handle or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A handle or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -628,16 +632,11 @@ msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Unrecognized input argument: '%s'.\n"
 msgstr "%s: Il seguente argomento in ingresso è sconosciuto: '%s'.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -651,10 +650,21 @@ msgstr ""
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Il padre deve essere una SUBWIN\n"
 
+#
+# File: modules/graphics/src/c/Champ.c, line: 147
+#, c-format
+msgid "%s: Could not retrive bounding box.\n"
+msgstr ""
+
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr ""
 "%s è creato solo per calcolare le curve di livello e non per mostrarle.\n"
+
+#
+# File: modules/graphics/src/c/DrawObjects.c, line: 88
+msgid "Could not retrive bounds.\n"
+msgstr ""
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
 msgstr ""
@@ -683,6 +693,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type argument %s.\n"
 msgstr "%s: L'argomento %s è di tipo sbagliato.\n"
+
+#
+# File: modules/graphics/src/c/Format.c, line: 1089
+#, c-format
+msgid "%s: Cannot get coordinates.\n"
+msgstr ""
 
 #, c-format
 msgid "Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"
@@ -758,8 +774,7 @@ msgstr "Il numero di colonne deve essere %d (%d con %s coordinate).\n"
 
 #, c-format
 msgid "Number of elements must be %d (%d if %s coordinate).\n"
-msgstr ""
-"Il numero degli elementi deve essere %d (%d se è la %s coordinata).\n"
+msgstr "Il numero degli elementi deve essere %d (%d se è la %s coordinata).\n"
 
 #, c-format
 msgid "Number of elements must be %d (%d if z coordinate)\n"
@@ -826,8 +841,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: Real matrix expected.\n"
-msgstr ""
-"La proprietà '%s' è di tipo sbagliato: era attesa una matrice reale.\n"
+msgstr "La proprietà '%s' è di tipo sbagliato: era attesa una matrice reale.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: %d elements expected.\n"
@@ -968,13 +982,19 @@ msgstr ""
 "La proprietà '%s' ha una dimensione sbagliata: deve essere nell'insieme "
 "{%s}.\n"
 
+#
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 115
+#, c-format
+msgid ""
+"Inavlid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
+msgstr ""
+
 #, c-format
 msgid "Wrong value for '%s' property: Non-empty string expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: String with length 3 or less expected.\n"
+msgid "Wrong value for '%s' property: String with length 3 or less expected.\n"
 msgstr ""
 
 #, c-format
@@ -999,6 +1019,15 @@ msgstr ""
 msgid "Wrong value for '%s' property: String with 'x|y|z' expected.\n"
 msgstr ""
 
+#, c-format
+msgid "Wrong type for '%s' property: Matrix expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Wrong size for '%s' property: Matrix with length 3 or [] expected.\n"
+msgstr ""
+"La proprietà '%s' ha una dimensione sbagliata: era atteso un vettore riga.\n"
+
 msgid "Datatips property can not be modified directly.\n"
 msgstr ""
 
@@ -1013,11 +1042,15 @@ msgstr ""
 "pagina di aiuto per la configurazione.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: An Integer between %d and %d expected.\n"
+msgid "Wrong value for '%s' property: An Integer between %d and %d expected.\n"
 msgstr ""
 "La proprietà '%s' ha un valore sbagliato: era atteso un intero compreso tra "
 "%d e %d.\n"
+
+#
+# File: modules/graphics/src/c/getHandleProperty/set_format_n_property.c, line: 63
+msgid "Could not retrieve format.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be -1 or a valid color index.\n"
@@ -1089,8 +1122,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: Must be %s or %s.\n"
-msgstr ""
-"La proprietà '%s' ha una dimensione sbagliata: deve essere %s o %s.\n"
+msgstr "La proprietà '%s' ha una dimensione sbagliata: deve essere %s o %s.\n"
 
 #, c-format
 msgid "%s: Wrong value for argument: '%s' or '%s' expected.\n"
@@ -1109,10 +1141,6 @@ msgstr ""
 msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr ""
 "La proprietà '%s' ha una dimensione sbagliata: era atteso un vettore riga.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: Matrix expected.\n"
-msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
@@ -1200,8 +1228,7 @@ msgid "%s: Wrong type for input argument #%d: Columns vectors expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
 msgstr ""
 
 #, c-format
@@ -1337,10 +1364,20 @@ msgstr ""
 msgid "datatips on 3D curves"
 msgstr ""
 
+#
+# File: modules/graphics/demos/datatips/datatip_detach.sce, line: 18
+msgid "Datatips detached from curve"
+msgstr ""
+
 msgid "2D curves"
 msgstr ""
 
 msgid "3D curve"
+msgstr ""
+
+#
+# File: modules/graphics/demos/datatips/datatips.dem.gateway.sce, line: 17
+msgid "Detach"
 msgstr ""
 
 msgid "Graphics"
@@ -1509,8 +1546,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -1722,8 +1758,7 @@ msgid ""
 "Datatip manager cannot be enabled, user data figure field is already used"
 msgstr ""
 
-msgid ""
-"Left click on a curve to create a datatip, right opens contextual menu"
+msgid "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 "Un clic col sinistro su una curva per creare un datatip, col destro per "
 "aprire il menù contestuale"
@@ -1875,8 +1910,7 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "numero reale.\n"
 
-msgid ""
-"Entity picker cannot be enabled, user data figure field is already used"
+msgid "Entity picker cannot be enabled, user data figure field is already used"
 msgstr ""
 
 msgid "Left click on a graphic entity to open its property editor"
@@ -2069,8 +2103,34 @@ msgstr ""
 msgid "%s: '%s' cannot be used with '%s'.\n"
 msgstr ""
 
+#
+# File: modules/graphics/macros/replot.sci, line: 48
 #, c-format
-msgid "%s: Input argument #%d must be a handle on an axis.\n"
+msgid "%s: Argument #%d is badly placed. Please check available syntaxes.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/replot.sci, line: 67
+#, c-format
+msgid "%s: Argument #%d: Wrong type. Please check available syntaxes.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Matrix with 4 or 6 columns expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"di gestori.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: tight or on or off values expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un gestore "
+"Figura o Assi.\n"
+
+#
+# File: modules/graphics/macros/replot.sci, line: 290
+#, c-format
+msgid "%s: Handle of unsupported type '%s' as Argument #%d\n"
 msgstr ""
 
 #, c-format
@@ -2089,8 +2149,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
+msgid "%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -2208,8 +2267,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
+msgid "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
 msgstr ""
 
 #, c-format

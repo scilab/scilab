@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2016-07-30 02:01+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18232)\n"
-"Language: ru\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -24,12 +24,6 @@ msgstr "%s: Неверное количество выходных аргуме�
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидалась строка.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong number of input argument(s) for method %s: %d or %d expected.\n"
-msgstr ""
-"%s: Неверное количество входных аргументов метода %s: ожидалось %d или %d.\n"
 
 #, c-format
 msgid "%s: Wrong method for input argument #%d: %s unknown.\n"
@@ -135,8 +129,7 @@ msgid "%s: setgmn return with state %d.\n"
 msgstr "%s: setgmn возвратила состояние %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
+msgid "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d : должно быть между %lf и %d.\n"
 
@@ -182,8 +175,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
-msgstr ""
-"%s: Неверный размер входного аргумента №%d: ожидался вектор-столбец.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор-столбец.\n"
 
 #, c-format
 msgid ""
@@ -206,8 +198,7 @@ msgstr ""
 "строковых или полиномиальных значений.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
 msgstr ""
 "%s: Неверные значения входных аргументов №%d и №%d: ожидалось, что Low < "
 "High.\n"
@@ -235,13 +226,6 @@ msgid ""
 msgstr ""
 "%s: Неверный размер входного аргумента №%d : ожидался скаляр или вектор "
 "размером %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d : A vector of size %d x %d expected.\n"
-msgstr ""
-"%s: Неверный размер входного аргумента №%d : ожидался вектор размером %d x "
-"%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for the last %d input argument(s).\n"
@@ -320,42 +304,10 @@ msgstr ""
 "    Используйте grand(\"setall\", s1, s2, s3, s4), если хотите восстановить "
 "её."
 
-msgid ""
-"\n"
-"Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
-msgstr ""
-"\n"
-"Неверное начальное число для fsultra, должно быть целым в диапазоне [0, 2^32-"
-"1]\n"
-
-#, c-format
-msgid ""
-"\n"
-"The first component of the fsultra state, must be an int in [0, %d]\n"
-msgstr ""
-"\n"
-"Первый элемент вектора fsultra, должен быть целым числом в диапазоне [0, "
-"%d]\n"
-
-msgid ""
-"\n"
-"The second component of the fsultra state, must be 0 or 1\n"
-msgstr ""
-"\n"
-"Второй элемент вектора fsultra, должен быть 0 или 1\n"
-
-msgid ""
-"\n"
-"The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
-msgstr ""
-"\n"
-"Третий элемент вектора fsultra, должен быть целым числом в диапазоне [1, "
-"2^32-1]\n"
-
 msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
 msgstr ""
-"Неверное начальное число для kiss, должно быть целым в диапазоне [0, 2^32-"
-"1]\n"
+"Неверное начальное число для kiss, должно быть целым в диапазоне [0, "
+"2^32-1]\n"
 
 msgid "Bad seed for mt, must be an int in [0, 2^32-1]\n"
 msgstr ""
@@ -444,3 +396,47 @@ msgstr ""
 
 msgid "Simulation of a Weibull random variable"
 msgstr ""
+
+#~ msgid ""
+#~ "%s: Wrong number of input argument(s) for method %s: %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное количество входных аргументов метода %s: ожидалось %d или "
+#~ "%d.\n"
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d : A vector of size %d x %d "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный размер входного аргумента №%d : ожидался вектор размером %d "
+#~ "x %d.\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Неверное начальное число для fsultra, должно быть целым в диапазоне [0, "
+#~ "2^32-1]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "The first component of the fsultra state, must be an int in [0, %d]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Первый элемент вектора fsultra, должен быть целым числом в диапазоне [0, "
+#~ "%d]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "The second component of the fsultra state, must be 0 or 1\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Второй элемент вектора fsultra, должен быть 0 или 1\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Третий элемент вектора fsultra, должен быть целым числом в диапазоне [1, "
+#~ "2^32-1]\n"

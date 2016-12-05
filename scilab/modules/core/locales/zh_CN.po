@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2016-10-10 13:15+0000\n"
 "Last-Translator: Webish <Unknown>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18232)\n"
-"Language: zh_CN\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -227,6 +227,11 @@ msgstr "%s：第%d个输入参数的类型错误：应该为单字符串（即�
 msgid "%s: Wrong input argument %d.\n"
 msgstr "%s：输入参数%d错误。\n"
 
+#
+# File: modules/core/sci_gateway/cpp/sci_fieldnames.cpp, line: 127
+msgid "Could not retrieve sub-type.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s：第%d个输入参数的值错误。\n"
@@ -244,8 +249,7 @@ msgid "%s: Wrong type for input argument #%d: An integer expected."
 msgstr "%s：第%d个输入参数的类型错误：应该为整数。"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串或整数。\n"
 
 #, c-format
@@ -341,8 +345,7 @@ msgid "Pause mode: enter empty lines to continue.\n"
 msgstr "暂停模式：回车继续。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
 msgstr "%s：第%d个输入参数的值错误：应该为有效函数名。\n"
 
 #, c-format
@@ -366,8 +369,7 @@ msgid "%s: Wrong size for input argument #%d: string expected."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr "%s：第%d个输入参数的值出错：应该为‘%s’、‘%s’或‘%s’。\n"
 
 #, c-format
@@ -459,8 +461,8 @@ msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"错误：不是有效的版本文件%s（应该以<MODULE_VERSION>开头，并包含<VERSION major='' minor='' "
-"maintenance='' revision='' string=''>）\n"
+"错误：不是有效的版本文件%s（应该以<MODULE_VERSION>开头，并包含<VERSION "
+"major='' minor='' maintenance='' revision='' string=''>）\n"
 
 #, c-format
 msgid ""
@@ -507,8 +509,7 @@ msgstr "Scilab版本信息。"
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
-msgid ""
-"(c)ontinue or (a)bort current execution before execute a new command\n"
+msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
 msgid ""

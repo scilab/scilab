@@ -12,11 +12,11 @@ msgstr ""
 "PO-Revision-Date: 2016-06-10 06:15+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18232)\n"
-"Language: uk\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -54,8 +54,7 @@ msgstr ""
 "або скаляр.\n"
 
 #, c-format
-msgid ""
-"%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr "%s: прив’язку рядка у числовій матриці не реалізовано.\n"
 
 #, c-format
@@ -77,8 +76,7 @@ msgid "%s: Invalid field name.\n"
 msgstr "%s: некоректна назва поля.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано коректну "
 "назву поля.\n"
@@ -92,8 +90,7 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s: помилкова кількість вихідних параметрів.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: транспонування не може "
 "бути визначено.\n"
@@ -185,19 +182,6 @@ msgstr ""
 "гіперматрицю.\n"
 
 #, c-format
-msgid "%s: Operand is not a boolean hypermatrix.\n"
-msgstr "%s: операнд не є булевою гіперматрицею.\n"
-
-#, c-format
-msgid "%s: Incompatible operand dimensions.\n"
-msgstr "%s: несумісні розмірності операндів.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
-msgstr ""
-"%s: помилковий тип вхідних параметрів: мало бути вказано гіперматрицю.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: розмірність не повинна "
@@ -206,6 +190,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
 msgstr "%s: помилкова розмірність параметра: несумісні розмірності.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be non-negative "
+"integers.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"з набору {%s}.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
@@ -222,9 +214,18 @@ msgstr ""
 "%s: матриці вхідних і вихідних даних повинні складатися з однакової "
 "кількості елементів"
 
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d must have compatible sizes\n"
+msgstr "%s: розмірності вхідних параметрів №%d і №%d несумісні.\n"
+
+#
+# File: modules/overloading/macros/%hm_r_s.sci, line: 17
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: not implemented for argin#1 hypermatrix and argin#2 matrix\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
 "«%s» або «%s».\n"
@@ -263,6 +264,45 @@ msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано цілі числа.\n"
 
+#
+# File: modules/overloading/macros/%lss_c_zpk.sci, line: 10
+# File: modules/overloading/macros/%lss_f_zpk.sci, line: 13
+# File: modules/overloading/macros/%r_c_zpk.sci, line: 10
+# File: modules/overloading/macros/%r_f_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_a_zpk.sci, line: 11
+# File: modules/overloading/macros/%zpk_c_lss.sci, line: 12
+# File: modules/overloading/macros/%zpk_c_r.sci, line: 13
+# File: modules/overloading/macros/%zpk_c_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_d_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_f_lss.sci, line: 12
+# File: modules/overloading/macros/%zpk_f_r.sci, line: 12
+# File: modules/overloading/macros/%zpk_f_zpk.sci, line: 12
+# File: modules/overloading/macros/%zpk_i_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_l_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_m_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_q_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_r_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_v_zpk.sci, line: 13
+# File: modules/overloading/macros/%zpk_x_zpk.sci, line: 13
+#, c-format
+msgid "%s: time domains are not compatible.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
+"%s: помилковий тип вхідних параметрів №%d і №%d: мало бути використано цілі "
+"величини.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of columns "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип вхідних параметрів №%d і №%d: мало бути використано цілі "
+"величини.\n"
+
 #, c-format
 msgid "%s: Invalid syntax for a MIMO system.\n"
 msgstr "%s: некоректна синтаксична конструкція для системи MIMO.\n"
@@ -275,8 +315,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
-msgstr ""
-"%s: вставлення розрідженої матриці до числової матриці не визначено.\n"
+msgstr "%s: вставлення розрідженої матриці до числової матриці не визначено.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
@@ -318,6 +357,12 @@ msgstr ""
 "%s: призначення порожнього значення можливе лише для одного індексу без "
 "двокрапки.\n"
 
+#
+# File: modules/overloading/macros/%s_l_hm.sci, line: 17
+#, c-format
+msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr "%s: випадок вставлення розрідженої матриці не реалізовано.\n"
@@ -347,8 +392,7 @@ msgstr ""
 "%s: помилковий тип параметра %d: мало бути вказано дійсне числове значення.\n"
 
 #, c-format
-msgid ""
-"%s: input and output matrices  must have the same number of elements.\n"
+msgid "%s: input and output matrices  must have the same number of elements.\n"
 msgstr ""
 "%s: у матрицях вхідних і вихідних даних має бути однакова кількість "
 "елементів.\n"
@@ -360,6 +404,25 @@ msgstr "%s: помилкова розмірність ао значення вх
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: помилкове значення вхідного параметра №%d.\n"
+
+#, fuzzy
+msgid "Inconsistent row/column dimensions.\n"
+msgstr "%s: несумісні розмірності.\n"
+
+#, fuzzy
+msgid "Inconsistent multiplication.\n"
+msgstr "%s: несумісна поелементна операція.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+"%s: помилковий тип вхідних параметрів №%d і №%d: мало бути використано цілі "
+"величини.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Not implemented.\n"
@@ -379,7 +442,20 @@ msgstr ""
 "%s: несумісні розмірності властивостей «%s» і «%s»: розмірності мають "
 "збігатися.\n"
 
+#, fuzzy
+msgid "Invalid index."
+msgstr "%s: некоректний індекс.\n"
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#~ msgid "%s: Operand is not a boolean hypermatrix.\n"
+#~ msgstr "%s: операнд не є булевою гіперматрицею.\n"
+
+#~ msgid "%s: Incompatible operand dimensions.\n"
+#~ msgstr "%s: несумісні розмірності операндів.\n"
+
+#~ msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідних параметрів: мало бути вказано гіперматрицю.\n"

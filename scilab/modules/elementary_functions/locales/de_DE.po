@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2016-06-09 10:48+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18232)\n"
-"Language: de\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -106,8 +106,7 @@ msgid "%s: variable size exceeded : less than %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : Singularity of the function.\n"
+msgid "%s: Wrong value for input argument #%d : Singularity of the function.\n"
 msgstr ""
 
 #, c-format
@@ -220,8 +219,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Input and output matrices must have the same number of elements.\n"
+msgid "%s: Input and output matrices must have the same number of elements.\n"
 msgstr ""
 
 #, c-format
@@ -285,8 +283,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
@@ -294,8 +291,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: sparse vectors expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: Lückenvektoren erwartet.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d: Lückenvektoren erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size of input argument: %d expected.\n"
@@ -380,13 +376,20 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: Matrix von Variablen erwartet.\n"
 
+#
+# File: modules/elementary_functions/macros/bit_op.sci, line: 20
 #, c-format
-msgid "%s: Wrong type for input arguments: Same types expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument: gleiche Typen erwartet.\n"
+msgid "%s: unknown bitwise function %s.\n"
+msgstr ""
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument: gleiche Größe erwartet.\n"
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Inkompatible Eingangsargumente #%d und #%d: gleiche Größe erwartet.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers >=0 expected.\n"
+msgstr "%s: falsches Argument #%d: positive Integerzahl erwartet.\n"
 
 #, c-format
 msgid ""
@@ -406,6 +409,10 @@ msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: muß zwischen %d und %d liegen.\n"
 
 #, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: falsche Größe für Eingangsargument: gleiche Größe erwartet.\n"
+
+#, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument: gleiche Größe erwartet.\n"
 
@@ -420,18 +427,14 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-"expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: Skalar/Matrix aus vorzeichenlosen "
-"Integern erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: eine positive reelle Zahl "
 "erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument: gleiche Typen erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
@@ -469,8 +472,7 @@ msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d: N x N Martix erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument '%d: Matrix ist nicht "
 "diagonalisierbar.\n"
@@ -652,8 +654,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
@@ -679,8 +680,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument "
-"#%d expected.\n"
+"%s: Wrong size for input argument #%d: At least the size of input argument #"
+"%d expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: mindestens die Größe des "
 "Eingangsargument %d erwartet.\n"
@@ -691,8 +692,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: eine Realzahl erwartet.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d: eine Realzahl erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
@@ -804,8 +804,7 @@ msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 
 #, c-format
@@ -820,3 +819,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: falsche Größe für Eingangsargument: inkompatible Größen.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: Skalar/Matrix aus "
+#~ "vorzeichenlosen Integern erwartet.\n"
