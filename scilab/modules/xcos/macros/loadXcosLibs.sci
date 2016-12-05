@@ -30,7 +30,7 @@ function loadXcosLibs()
 
     if isfile("SCI/modules/scicos/macros/scicos_scicos/lib") then
         load("SCI/modules/scicos/macros/scicos_scicos/lib");
-        listlibsname = [listlibsname, "scicos_scicos"];
+        listlibsname = [listlibsname, "scicos_scicos", "scicos_utils", "scicos_auto"];
     end
 
     // name and libname
