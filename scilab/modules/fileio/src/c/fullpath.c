@@ -27,6 +27,7 @@
 #include "PATH_MAX.h"
 #include "strsubst.h"
 #include "scicurdir.h"
+#include "expandPathVariable.h"
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static unsigned int isDirSeparator(const char c);
@@ -158,7 +159,9 @@ wchar_t *get_full_pathW(wchar_t * _wcFullPath, const wchar_t * _wcPath, size_t _
 #if defined(_MSC_VER)
     if (_wcPath)
     {
-        _wfullpath(_wcFullPath, _wcPath, _SizeInBytes);
+        wchar_t* pwstExpand = expandPathVariableW(_wcPath);
+        _wfullpath(_wcFullPath, pwstExpand, _SizeInBytes);
+        FREE(pwstExpand);
         return _wcFullPath;
     }
     return NULL;
