@@ -260,7 +260,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     }
 
     // Make sure the default locale is applied at startup
-    std::setlocale(LC_NUMERIC, "C");
+    setlocale(LC_NUMERIC, "C");
 
     /* Standard mode -> init Java Console */
     if (_pSEI->iConsoleMode == 0)
