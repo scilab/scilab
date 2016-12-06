@@ -22,14 +22,20 @@
  Don't touch if you do not know what you are doing
 -->
 <module name="graphics">
+    <!-- gateway CPP -->
     <gateway name="sci_get"             function="get"              type="1" />
     <gateway name="sci_xget"            function="xget"             type="1" />
     <gateway name="sci_xset"            function="xset"             type="1" />
     <gateway name="sci_winsid"          function="winsid"           type="1" />
     <gateway name="sci_matplot1"        function="Matplot1"         type="1" />
 
+    <!-- gateway CPP OPT-->
     <gateway name="sci_matplot"         function="Matplot"          type="3" />
 
+    <!-- Gateway C-->
+    <gateway name="sci_light"           function="light"            type="4" />
+
+    <!-- Old gateway C-->
     <gateway name="sci_champ"           function="champ"            type="0" />
     <gateway name="sci_champ1"          function="champ1"           type="0" />
     <gateway name="sci_fec"             function="fec"              type="0" />
@@ -87,7 +93,6 @@
     <gateway name="sci_rotate_axes"     function="rotate_axes"      type="0" />
     <gateway name="sci_is_handle_valid" function="is_handle_valid"  type="0" />
     <gateway name="sci_Legend"          function="captions"         type="0" />
-    <gateway name="sci_light"           function="light"            type="0" />
     <gateway name="sci_addcolor"        function="addcolor"         type="0" />
     <gateway name="sci_name2rgb"        function="name2rgb"         type="0" />
     <gateway name="sci_color"           function="color"            type="0" />
