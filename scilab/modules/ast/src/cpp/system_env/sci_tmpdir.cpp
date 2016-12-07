@@ -25,7 +25,7 @@ extern "C"
 #include <process.h>
 #else
 #include <sys/types.h> /* getpid */
-#include <unistd.h> /* getpid */
+#include <unistd.h> /* getpid, readlink & mkdtemp */
 #endif
 #include "sci_tmpdir.h"
 #include "os_string.h"
@@ -204,7 +204,33 @@ char* computeTMPDIR()
     }
     else
     {
-        strcpy(env_dir, "/tmp");
+        char tmp[] = "/tmp";
+        struct stat st;
+
+        if (!lstat(tmp, &st)) // Able to find tmp?
+        {
+            if (S_ISLNK(st.st_mode)) // Is it a symbolink link?
+            {
+                ssize_t end = readlink(tmp, env_dir, sizeof(char) * (PATH_MAX + 16));
+                if (end == -1)
+                {
+                    fprintf(stderr, _("Error: Could not resolve symbolic link %s\n"), tmp);
+                    FREE(env_dir);
+                    exit(1);
+                }
+                env_dir[end] = '\0';
+            }
+            else // No, then hard code tmp
+            {
+                strcpy(env_dir, tmp);
+            }
+        }
+        else
+        {
+            fprintf(stderr, _("Error: Could not find %s\n"), tmp);
+            FREE(env_dir);
+            exit(1);
+        }
     }
 
     /* XXXXXX will be randomized by mkdtemp */
