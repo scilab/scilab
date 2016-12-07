@@ -104,6 +104,7 @@ int set_datatip_display_mode_property(void* _pvCtx, int iObj, void* _pvData, int
         {
             return SET_PROPERTY_SUCCEED;
         }
+        return SET_PROPERTY_ERROR;
     }
     else
     {
