@@ -1362,11 +1362,11 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
 
                 if (bCatch)
                 {
-                    char sError[bsiz];
-                    os_sprintf(sError, "%ls: An error occured in '%s' subroutine.\n", L"ode", strMeth.c_str());
-                    wchar_t* szError = to_wide_string(sError);
+                    wchar_t szError[bsiz];
+                    wchar_t* tmp = to_wide_string(strMeth.c_str());
+                    os_swprintf(szError, bsiz, _W("%ls: An error occured in '%ls' subroutine.\n").c_str(), L"ode", tmp);
                     os << szError;
-                    FREE(szError);
+                    FREE(tmp);
                     throw ast::InternalError(os.str());
                 }
 
