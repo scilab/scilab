@@ -209,7 +209,7 @@ Help pages:
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `roots`,
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `%helps`
 * rewritten: `consolebox`, `double`, `isoview`, `householder`, `or`, `and`, `format`, `typeof`,
-`brackets`, `setlanguage`, `sleep`, `isinf`, `bitor`, `bitxor`, `bitand`
+`brackets`, `setlanguage`, `sleep`, `isinf`, `bitor`, `bitxor`, `bitand`, `geomean`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
   - CACSD and Signal Processing help pages have been sorted up.
@@ -365,6 +365,7 @@ Bug Fixes
 * [#14437](http://bugzilla.scilab.org/show_bug.cgi?id=14437): Problem with the affectation cmde "=" applied to a "list of struct"
 * [#14448](http://bugzilla.scilab.org/show_bug.cgi?id=14448): removed havewindow() was still documented
 * [#14461](http://bugzilla.scilab.org/show_bug.cgi?id=14461): Calling `grand(n, "markov", P, x0)` did not return all outputs.
+* [#14470](http://bugzilla.scilab.org/show_bug.cgi?id=14470): `geomean` often overflowed for easily computable entries, and did not check input arguments.
 * [#14513](http://bugzilla.scilab.org/show_bug.cgi?id=14513): `isqual` comparing two built-in functions yielded an error.
 * [#14527](http://bugzilla.scilab.org/show_bug.cgi?id=14527): Calling pathconvert function without parameters crashed Scilab.
 * [#14553](http://bugzilla.scilab.org/show_bug.cgi?id=14553): find(a=b) crashed Scilab.
