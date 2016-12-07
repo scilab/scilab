@@ -734,7 +734,7 @@ SWIG_WRAPPERS =
 
 #### history_browser : gateway declaration ####
 libscihistory_browser_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscihistory_browser_la_sci_gateway_DATA = 
+libscihistory_browser_la_sci_gateway_DATA = sci_gateway/history_browser_gateway.xml
 @GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am

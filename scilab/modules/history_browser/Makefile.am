@@ -111,7 +111,7 @@ endif
 
 #### history_browser : gateway declaration ####
 libscihistory_browser_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscihistory_browser_la_sci_gateway_DATA =
+libscihistory_browser_la_sci_gateway_DATA = sci_gateway/history_browser_gateway.xml
 
 if GUI
 USEANT=1
