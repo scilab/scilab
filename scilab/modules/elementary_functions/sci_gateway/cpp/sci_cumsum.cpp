@@ -54,6 +54,12 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
+    {
+        out.push_back(types::Double::Empty());
+        return types::Function::OK;
+    }
+
     bool isCloned = true;
     /***** get data *****/
     switch (in[0]->getType())

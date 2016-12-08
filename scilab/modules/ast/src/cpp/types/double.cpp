@@ -933,7 +933,15 @@ double Double::copyValue(double _dblData)
 
 void Double::deleteAll()
 {
-    delete[] m_pRealData;
+    if (isViewAsZComplex())
+    {
+        vFreeDoubleComplexFromPointer((doublecomplex*)m_pRealData);
+    }
+    else
+    {
+        delete[] m_pRealData;
+    }
+
     m_pRealData = NULL;
     deleteImg();
 }
