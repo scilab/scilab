@@ -18,6 +18,7 @@
 #define __ISASCII_H__
 
 #include <wchar.h>
+#include <ctype.h>
 #include "BOOL.h"
 
 #ifndef _MSC_VER

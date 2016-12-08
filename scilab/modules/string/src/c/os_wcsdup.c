@@ -13,7 +13,10 @@
  *
  */
 
+#include <stdlib.h>
+
 #include "os_string.h"
+
 
 wchar_t *_sciwcsdup(const wchar_t *_pwcsSource)
 {
