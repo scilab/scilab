@@ -1131,7 +1131,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
         if (iSaveD)
         {
-            if (C2F(nird).ndzs == 0)
+            if (pdblDzs == NULL || C2F(nird).ndzs == 0)
             {
                 out.push_back(types::Double::Empty());
             }
