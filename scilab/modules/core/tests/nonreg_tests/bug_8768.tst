@@ -8,14 +8,14 @@
 // <-- Non-regression test for bug 8768 -->
 //
 // <-- CLI SHELL MODE -->
-// 
+//
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=8768
 //
 // <-- Short Description -->
 // GetRhsVar(..., STRING_DATATYPE did not check size of input argument
 
-msgerr = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "with_module", 1);
+msgerr = msprintf(_("%s: Wrong size for input argument #%d: String expected.\n"), "with_module", 1);
 assert_checkerror("with_module([""ffa"", ""ff""])", msgerr);
 
 msgerr = msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "clearfun", 1);
