@@ -1013,7 +1013,7 @@ static void updateXYDataBounds(int iSubwinUID, double rect[6])
     if ((rect[0] <= 0. || rect[1] <= 0.) && iLogFlag)
     {
         Scierror(999, _("Error: Values must be strictly positive when logarithmic mode on %s axis is active.\n"), "x");
-        return 0;
+        return;
     }
 
     getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, (void **)&piLogFlag);
@@ -1021,7 +1021,7 @@ static void updateXYDataBounds(int iSubwinUID, double rect[6])
     if ((rect[2] <= 0. || rect[3] <= 0.) && iLogFlag)
     {
         Scierror(999, _("Error: Values must be strictly positive when logarithmic mode on %s axis is active.\n"), "y");
-        return 0;
+        return;
     }
 
     if (!firstPlot)
@@ -1031,7 +1031,7 @@ static void updateXYDataBounds(int iSubwinUID, double rect[6])
         if ((rect[4] <= 0. || rect[5] <= 0.) && iLogFlag)
         {
             Scierror(999, _("Error: Values must be strictly positive when logarithmic mode on %s axis is active.\n"), "z");
-            return 0;
+            return;
         }
     }
 
