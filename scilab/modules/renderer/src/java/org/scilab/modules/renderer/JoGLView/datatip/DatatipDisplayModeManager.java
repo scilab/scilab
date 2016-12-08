@@ -41,7 +41,7 @@ public class DatatipDisplayModeManager {
     List<Integer> clicked_datatips = new LinkedList<Integer>();
 
 
-    class Position {
+    static class Position {
         public double x;
         public double y;
         public Position(double x, double y) {
@@ -102,7 +102,7 @@ public class DatatipDisplayModeManager {
             case MOUSECLICK:
                 return clicked_datatips.contains(uid);
             case MOUSEOVER:
-                return (uid == hover);
+                return hover.equals(uid);
             default:
                 return true;
         }
@@ -125,7 +125,7 @@ public class DatatipDisplayModeManager {
     public void onMouseMove(int x, int y) {
         Integer datatip = get(x, y);
         if (datatip > 0) {
-            if (datatip != hover) {
+            if (!hover.equals(datatip)) {
                 hover = datatip;
                 //triger redreaw
                 GraphicController.getController().setProperty(datatip, __GO_DATA_MODEL__, 0);
