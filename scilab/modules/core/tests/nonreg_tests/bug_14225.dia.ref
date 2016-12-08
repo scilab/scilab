@@ -14,10 +14,16 @@
 //
 // <-- Short Description -->
 // command-line option "-quit" should set the processs Exit status
-if getos() == "Windows" then
-    scilabBin = SCI + "/bin/scilex ";
+//scilab path
+if (getos() <> "Windows") & ~isfile(SCI+"/bin/scilab") then
+    SCI_BIN = strsubst(SCI,"share/scilab","");
 else
-    scilabBin = SCI + "/bin/scilab-cli ";
+    SCI_BIN = SCI;
+end
+if getos() == "Windows" then
+    scilabBin = SCI_BIN + "/bin/scilex ";
+else
+    scilabBin = SCI_BIN + "/bin/scilab-cli ";
 end
 //With -quit argument
 err = unix(scilabBin + "-e ""exit()"" -quit");
