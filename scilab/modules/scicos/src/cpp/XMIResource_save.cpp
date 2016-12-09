@@ -165,11 +165,46 @@ static int writeBase64(xmlTextWriterPtr writer, const char* name, const std::vec
     return status;
 }
 
+int XMIResource::writeDatatype(xmlTextWriterPtr writer, const std::vector<int>& datatype)
+{
+    int status;
+
+    status = xmlTextWriterStartElement(writer, BAD_CAST("datatype"));
+    if (status == -1)
+    {
+        return status;
+    }
+
+    status = xmlTextWriterWriteAttribute(writer, BAD_CAST("type"), BAD_CAST(to_string(datatype[2]).c_str()));
+    if (status == -1)
+    {
+        return status;
+    }
+
+    status = xmlTextWriterWriteAttribute(writer, BAD_CAST("rows"), BAD_CAST(to_string(datatype[0]).c_str()));
+    if (status == -1)
+    {
+        return status;
+    }
+
+    status = xmlTextWriterWriteAttribute(writer, BAD_CAST("columns"), BAD_CAST(to_string(datatype[1]).c_str()));
+    if (status == -1)
+    {
+        return status;
+    }
+
+    status = xmlTextWriterEndElement(writer);
+    if (status == -1)
+    {
+        return status;
+    }
+
+    return status;
+}
 
 int XMIResource::writePoint(xmlTextWriterPtr writer, double x, double y)
 {
     int status;
-
 
     status = xmlTextWriterStartElement(writer, BAD_CAST("controlPoint"));
     if (status == -1)
@@ -359,7 +394,7 @@ int XMIResource::writeDiagram(xmlTextWriterPtr writer)
     {
         return status;
     }
-    status = xmlTextWriterWriteAttributeNS(writer, BAD_CAST("xsi"), BAD_CAST("schemaLocation"), BAD_CAST("http://www.w3.org/2001/XMLSchema-instance"), BAD_CAST("org.scilab.modules.xcos Xcos.xcore#/EPackage"));
+    status = xmlTextWriterWriteAttributeNS(writer, BAD_CAST("xsi"), BAD_CAST("schemaLocation"), BAD_CAST("http://www.w3.org/2001/XMLSchema-instance"), BAD_CAST("org.scilab.modules.xcos xcos.ecore"));
     if (status == -1)
     {
         return status;
@@ -917,16 +952,9 @@ int XMIResource::writePort(xmlTextWriterPtr writer, enum object_properties_t con
         return status;
     }
 
-    std::vector<double> doubleArrayValue;
-    controller.getObjectProperty(id, BLOCK, DATATYPE, doubleArrayValue);
-    for (double d : doubleArrayValue)
-    {
-        status = xmlTextWriterWriteElement(writer, BAD_CAST("datatype"), BAD_CAST(to_string(d).c_str()));
-        if (status == -1)
-        {
-            return status;
-        }
-    }
+    std::vector<int> intArrayValue;
+    controller.getObjectProperty(id, PORT, DATATYPE, intArrayValue);
+    status = writeDatatype(writer, intArrayValue);
 
     status = xmlTextWriterEndElement(writer);
     if (status == -1)

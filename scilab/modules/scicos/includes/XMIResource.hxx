@@ -43,7 +43,7 @@ private:
     /*
      * Save helpers
      */
-
+    int writeDatatype(xmlTextWriterPtr writer, const std::vector<int>& datatype);
     int writePoint(xmlTextWriterPtr writer, double x, double y);
     int writeGeometry(xmlTextWriterPtr writer, ScicosID id, kind_t kind);
     int writeAbstractLayer(xmlTextWriterPtr writer, ScicosID id, kind_t kind);
@@ -63,6 +63,7 @@ private:
     int loadStringArray(xmlTextReaderPtr reader, enum object_properties_t property, const model::BaseObject& o);
     int loadEncodedStringArray(xmlTextReaderPtr reader, enum object_properties_t property, const model::BaseObject& o);
     int loadBase64(xmlTextReaderPtr reader, enum object_properties_t property, const model::BaseObject& o);
+    int loadDatatype(xmlTextReaderPtr reader, const model::BaseObject& o);
     int loadPoint(xmlTextReaderPtr reader, const model::BaseObject& o);
     int loadGeometry(xmlTextReaderPtr reader, const model::BaseObject& o);
     int loadAbstractBaseObject(xmlTextReaderPtr reader, const model::BaseObject& o);
@@ -108,6 +109,7 @@ private:
         e_blocktype,
         e_child,
         e_color,
+        e_columns,
         e_connectedSignal,
         e_context,
         e_controlPoint,
@@ -152,6 +154,7 @@ private:
         e_properties,
         e_realtimeScale,
         e_relativeTolerance,
+        e_rows,
         e_rpar,
         e_solver,
         e_sourceBlock,

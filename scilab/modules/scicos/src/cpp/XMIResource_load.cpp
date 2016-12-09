@@ -99,6 +99,7 @@ int XMIResource::load(const char* uri)
     constXcosNames[e_blocktype] = xmlTextReaderConstString(reader, BAD_CAST ("blocktype"));
     constXcosNames[e_child] = xmlTextReaderConstString(reader, BAD_CAST ("child"));
     constXcosNames[e_color] = xmlTextReaderConstString(reader, BAD_CAST ("color"));
+    constXcosNames[e_columns] = xmlTextReaderConstString(reader, BAD_CAST ("columns"));
     constXcosNames[e_connectedSignal] = xmlTextReaderConstString(reader, BAD_CAST ("connectedSignal"));
     constXcosNames[e_context] = xmlTextReaderConstString(reader, BAD_CAST ("context"));
     constXcosNames[e_controlPoint] = xmlTextReaderConstString(reader, BAD_CAST ("controlPoint"));
@@ -143,6 +144,7 @@ int XMIResource::load(const char* uri)
     constXcosNames[e_properties] = xmlTextReaderConstString(reader, BAD_CAST ("properties"));
     constXcosNames[e_realtimeScale] = xmlTextReaderConstString(reader, BAD_CAST ("realtimeScale"));
     constXcosNames[e_relativeTolerance] = xmlTextReaderConstString(reader, BAD_CAST ("relativeTolerance"));
+    constXcosNames[e_rows] = xmlTextReaderConstString(reader, BAD_CAST ("rows"));
     constXcosNames[e_rpar] = xmlTextReaderConstString(reader, BAD_CAST ("rpar"));
     constXcosNames[e_solver] = xmlTextReaderConstString(reader, BAD_CAST ("solver"));
     constXcosNames[e_sourceBlock] = xmlTextReaderConstString(reader, BAD_CAST ("sourceBlock"));
@@ -455,6 +457,40 @@ int XMIResource::loadBase64(xmlTextReaderPtr reader, enum object_properties_t pr
     return 1;
 }
 
+int XMIResource::loadDatatype(xmlTextReaderPtr reader, const model::BaseObject& o)
+{
+    assert(o.kind() == PORT);
+
+    std::vector<int> datatype;
+    controller.getObjectProperty(o.id(), o.kind(), DATATYPE, datatype);
+
+    // iterate on attributes
+    for (int rc = xmlTextReaderMoveToFirstAttribute(reader); rc > 0; rc = xmlTextReaderMoveToNextAttribute(reader))
+    {
+        auto found = std::find(constXcosNames.begin(), constXcosNames.end(), xmlTextReaderConstName(reader));
+        enum xcosNames current = static_cast<enum xcosNames>(std::distance(constXcosNames.begin(), found));
+        switch (current)
+        {
+            case e_type:
+                datatype[2]  = to_double(xmlTextReaderConstValue(reader));
+                break;
+            case e_rows:
+                datatype[0]  = to_double(xmlTextReaderConstValue(reader));
+                break;
+            case e_columns:
+                datatype[1]  = to_double(xmlTextReaderConstValue(reader));
+                break;
+            default:
+                // ignore other parameters
+                // TODO: Does other metamodels might be managed there ?
+                break;
+        }
+    }
+
+    controller.setObjectProperty(o.id(), o.kind(), DATATYPE, datatype);
+    return 1;
+}
+
 int XMIResource::loadPoint(xmlTextReaderPtr reader, const model::BaseObject& o)
 {
     assert(o.kind() == LINK);
@@ -757,8 +793,6 @@ int XMIResource::loadPort(xmlTextReaderPtr reader, const model::BaseObject& o)
             case e_sourceBlock:
             {
                 // not lookup needed thanks to the XML hierarchy
-                const model::BaseObject& parent = processed.back();
-                controller.setObjectProperty(o.id(), o.kind(), SOURCE_BLOCK, parent.id());
                 break;
             }
             case e_kind:
@@ -1161,6 +1195,7 @@ int XMIResource::processElement(xmlTextReaderPtr reader)
 
             // decode content
             model::BaseObject child(o, PORT);
+            processed.push_back(child);
             return loadPort(reader, child);
         }
         case e_geometry:
@@ -1242,11 +1277,7 @@ int XMIResource::processElement(xmlTextReaderPtr reader)
             return loadSimulationConfig(reader, processed.back());
         case e_datatype:
             // datatype is a Port property
-            if (!xmlTextReaderIsEmptyElement(reader))
-            {
-                parent = current;
-            }
-            return 1;
+            return loadDatatype(reader, processed.back());
         default:
             sciprint("Unknown \"%s\" element name at line %d\n", name, xmlTextReaderGetParserLineNumber(reader) - 1);
             return -1;
