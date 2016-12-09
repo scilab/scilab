@@ -222,12 +222,12 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
 
 
     wchar_t **pstPath = findfilesW(pstParsePath, L"*.sci", &iNbFile, FALSE);
-    // sort by name using C-style functions
-    qsort(pstPath, iNbFile, sizeof(wchar_t*), cmp);
-
 
     if (pstPath)
     {
+        // sort by name using C-style functions
+        qsort(pstPath, iNbFile, sizeof(wchar_t*), cmp);
+
         types::Library* pLib = new types::Library(pstParsePath);
         for (int k = 0 ; k < iNbFile ; k++)
         {
