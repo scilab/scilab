@@ -211,14 +211,24 @@ char* computeTMPDIR()
         {
             if (S_ISLNK(st.st_mode)) // Is it a symbolink link?
             {
-                ssize_t end = readlink(tmp, env_dir, sizeof(char) * (PATH_MAX + 16));
+                char env_dir2[PATH_MAX + 16];
+                ssize_t end = readlink(tmp, env_dir2, sizeof(char) * (PATH_MAX + 16)); // Use env_dir2 in case we need to add a '/' at the start
                 if (end == -1)
                 {
                     fprintf(stderr, _("Error: Could not resolve symbolic link %s\n"), tmp);
                     FREE(env_dir);
                     exit(1);
                 }
-                env_dir[end] = '\0';
+                env_dir2[end] = '\0';
+                if (env_dir2[0] != '/') // No '/' found, add it at the beginning
+                {
+                    env_dir[0] = '/';
+                    strcpy(env_dir + 1, env_dir2);
+                }
+                else
+                {
+                    strcpy(env_dir, env_dir2);
+                }
             }
             else // No, then hard code tmp
             {
