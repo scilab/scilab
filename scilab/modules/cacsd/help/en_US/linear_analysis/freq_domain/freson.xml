@@ -61,7 +61,7 @@ fig=gcf();sca(fig.children(2));
 [phi,db]=phasemag(repfreq(h,fr));
 plot(fr,db(:),'+r')
 ]]></programlisting>
-        <scilab:image>
+        <scilab:image localized="true">
             h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2));
             fr=freson(h)
             clf;bode(h);
@@ -79,7 +79,7 @@ fig=gcf();sca(fig.children(2));
 plot(fr,db(:),'+r');
 
  ]]></programlisting>
-        <scilab:image>
+        <scilab:image localized="true">
             h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2));
             hd=dscr(h,0.05);
             fr=freson(hd);

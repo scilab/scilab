@@ -69,7 +69,7 @@
             segue:
         </para>
         <programlisting role="xml"><![CDATA[
-<BR><A HREF="item.html">item</A> - rápida descrição
+<BR><A HREF="item.html">item</A> - rapida descricao
  ]]></programlisting>
         <para>
             <literal>item</literal> Ã© o item da ajuda, i.e. o comando
@@ -87,7 +87,7 @@
         </para>
     </refsection>
     <refsection role="examples">
-       <title>Exemplos</title>
+        <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 global %helps  // This instruction creates a local %helps variable connected to the global one
 %helps
