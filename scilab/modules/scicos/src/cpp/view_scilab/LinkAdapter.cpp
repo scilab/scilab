@@ -668,9 +668,13 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     controller.getObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, oldLink);
     if (oldLink != ScicosID())
     {
-        // Disconnect the old link
-        controller.setObjectProperty(oldLink, LINK, end, ScicosID());
-        controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, ScicosID());
+        // Disconnect the old link if it was indeed connected to the concerned port
+        ScicosID oldPort;
+        controller.getObjectProperty(oldLink, LINK, end, oldPort);
+        if (concernedPort == oldPort)
+        {
+            controller.setObjectProperty(oldLink, LINK, end, ScicosID());
+        }
     }
 
     // Connect the new source and destination ports together
@@ -938,7 +942,7 @@ void LinkAdapter::add_partial_links_information(Controller& controller, model::B
 {
     switch (original->kind())
     {
-        // add the from / to information if applicable
+            // add the from / to information if applicable
         case LINK:
         {
             auto it = partial_links.find(original->id());
