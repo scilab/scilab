@@ -62,6 +62,8 @@ To build Scilab from sources, or to build extensions code (Toolboxes):
 * ecj minimal version switched to 4.4.0 (for Java 8 compatibility).
 * `--without-xcos` now only disable Xcos compilation. Xcos graphical interface is disabled using `--without-gui`.
 
+Building the OCaml Scilab files in parallel is supported.
+
 
 Dependencies
 ------------
