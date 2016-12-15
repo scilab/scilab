@@ -42,7 +42,7 @@ endfunction
 global _OUTPUCMDFLAG_
 _OUTPUCMDFLAG_ = 0
  _OUTPUCMDFLAG_  = 
-    0.
+   0.
 //
 // myoutputcmd2 --
 //  This command is called back by the Optimization
@@ -72,7 +72,7 @@ endfunction
 global _OUTPUCMDFLAG_
 _OUTPUCMDFLAG_ = 0
  _OUTPUCMDFLAG_  = 
-    0.
+   0.
 myobj = tlist(["T_MYSTUFF","myarg"]);
 myobj.myarg = 12;
 //
@@ -330,7 +330,7 @@ string(opt)
 !                                                              !
 !Store History : F                                             !
 opt
-opt  = 
+ opt  = (1)
 Optim Base Object:
 ==================
 Number of variables : 0

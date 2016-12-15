@@ -14,6 +14,10 @@
 
 function neldermead_summary(nm)
     function str = _strvec ( x )
+        if isempty(x) then
+            str = "";
+            return
+        end
         str = strcat(string(x)," ")
     endfunction
 
