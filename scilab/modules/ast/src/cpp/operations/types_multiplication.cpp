@@ -235,6 +235,12 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
         return 0;
     }
 
+    if (_pDouble1->getDims() == 2 && _pDouble1->getDims() == _pDouble2->getDims() && _pDouble1->getCols() != _pDouble2->getRows())
+    {
+        // Both matrices but with wrong dimensions: error out
+        return 1;
+    }
+
     if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || _pDouble1->getCols() != _pDouble2->getRows())
     {
         //call overload
