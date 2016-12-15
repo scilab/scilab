@@ -289,6 +289,21 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     //variables are needed by loadModules but must be in SCOPE_CONSOLE under protection
     //remove (W)SCI/SCIHOME/HOME/TMPDIR
+    types::InternalType* sci = symbol::Context::getInstance()->get(symbol::Symbol(L"SCI"));
+    types::InternalType* wsci = symbol::Context::getInstance()->get(symbol::Symbol(L"WSCI"));
+    types::InternalType* scihome = symbol::Context::getInstance()->get(symbol::Symbol(L"SCIHOME"));
+    types::InternalType* home = symbol::Context::getInstance()->get(symbol::Symbol(L"home"));
+    types::InternalType* tmpdir = symbol::Context::getInstance()->get(symbol::Symbol(L"TMPDIR"));
+
+    sci->IncreaseRef();
+    if (wsci)
+    {
+        wsci->IncreaseRef();
+    }
+    scihome->IncreaseRef();
+    home->IncreaseRef();
+    tmpdir->IncreaseRef();
+
     symbol::Context::getInstance()->remove(symbol::Symbol(L"SCI"));
     symbol::Context::getInstance()->remove(symbol::Symbol(L"WSCI"));
     symbol::Context::getInstance()->remove(symbol::Symbol(L"SCIHOME"));
@@ -298,8 +313,27 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     //open a scope for macros
     symbol::Context::getInstance()->scope_begin();
 
+    //put var in good scope
     Add_All_Variables();
-    SetScilabVariables();
+    symbol::Context::getInstance()->put(symbol::Symbol(L"SCI"), sci);
+    if (wsci)
+    {
+        symbol::Context::getInstance()->put(symbol::Symbol(L"WSCI"), wsci);
+    }
+
+    symbol::Context::getInstance()->put(symbol::Symbol(L"SCIHOME"), scihome);
+    symbol::Context::getInstance()->put(symbol::Symbol(L"home"), home);
+    symbol::Context::getInstance()->put(symbol::Symbol(L"TMPDIR"), tmpdir);
+
+    sci->DecreaseRef();
+    if (wsci)
+    {
+        wsci->DecreaseRef();
+    }
+    scihome->DecreaseRef();
+    home->DecreaseRef();
+    tmpdir->DecreaseRef();
+
 
     symbol::Context::getInstance()->protect();
     //execute scilab.start

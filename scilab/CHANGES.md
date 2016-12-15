@@ -376,6 +376,7 @@ Bug Fixes
 * [#13620](http://bugzilla.scilab.org/show_bug.cgi?id=13620): `dos` called with a vector as input crashed.
 * [#13651](http://bugzilla.scilab.org/show_bug.cgi?id=13651): It was not possible to `copy` an axes into an uicontrol frame.
 * [#13757](http://bugzilla.scilab.org/show_bug.cgi?id=13757): The toolbox menu dit not load properly ATOMS modules not autoloaded.
+* [#13759](http://bugzilla.scilab.org/show_bug.cgi?id=13759): Atoms modules do not start, randomly.
 * [#13856](http://bugzilla.scilab.org/show_bug.cgi?id=13856): `messagebox` crashed under Windows in 5.5 Scilab version and updated in version 6.
 * [#13877](http://bugzilla.scilab.org/show_bug.cgi?id=13877): `<` characters included in `<screen>` areas were not rendered in the help browser.
 * [#13878](http://bugzilla.scilab.org/show_bug.cgi?id=13878): tokens([]) returns [].

@@ -13,6 +13,17 @@
 *
 */
 
+#include <errno.h>
+#include <stdlib.h>
+#include <time.h>
+#ifdef _MSC_VER
+#include <process.h>
+#else
+#include <sys/types.h> /* getpid */
+#include <unistd.h> /* getpid, readlink & mkdtemp */
+#endif
+
+
 #include "configvariable.hxx"
 #include "string.hxx"
 #include "context.hxx"
@@ -21,12 +32,6 @@
 extern "C"
 {
 #include "sci_malloc.h"
-#ifdef _MSC_VER
-#include <process.h>
-#else
-#include <sys/types.h> /* getpid */
-#include <unistd.h> /* getpid, readlink & mkdtemp */
-#endif
 #include "sci_tmpdir.h"
 #include "os_string.h"
 #include "charEncoding.h"
@@ -34,7 +39,6 @@ extern "C"
 #include "setenvc.h"
 #include "getenvc.h"
 #include "localization.h"
-#include <errno.h>
 #include "removedir.h"
 #include "setenvvar.h"
 #include "getshortpathname.h"
@@ -151,31 +155,19 @@ char* computeTMPDIR()
         wchar_t wctmp_dir[PATH_MAX + FILENAME_MAX + 1];
         static wchar_t bufenv[PATH_MAX + 16];
         char *TmpDir = NULL;
-        os_swprintf(wctmp_dir, PATH_MAX + FILENAME_MAX + 1, L"%lsSCI_TMP_%d_", wcTmpDirDefault, _getpid());
+        srand((unsigned)time(NULL));
+        DWORD attribs;
+        do {
+            os_swprintf(wctmp_dir, PATH_MAX + FILENAME_MAX + 1, L"%lsSCI_TMP_%d_%d", wcTmpDirDefault, _getpid(), rand());
+            attribs = GetFileAttributesW(wctmp_dir);
+        } while ((attribs != INVALID_FILE_ATTRIBUTES) && (attribs & FILE_ATTRIBUTE_DIRECTORY));
+
         if (CreateDirectoryW(wctmp_dir, NULL) == FALSE)
         {
-            DWORD attribs = GetFileAttributesW(wctmp_dir);
-            if (attribs & FILE_ATTRIBUTE_DIRECTORY)
-            {
-                /* Repertoire existant */
-            }
-            else
-            {
-#ifdef _DEBUG
-                {
-                    char MsgErr[1024];
-                    wsprintfA(MsgErr, _("Impossible to create : %s"), wctmp_dir);
-                    MessageBoxA(NULL, MsgErr, _("Error"), MB_ICONERROR);
-                    exit(1);
-                }
-#else
-                {
-                    GetTempPathW(PATH_MAX, wcTmpDirDefault);
-                    wcscpy(wctmp_dir, wcTmpDirDefault);
-                    wctmp_dir[wcslen(wctmp_dir) - 1] = '\0'; /* Remove last \ */
-                }
-#endif
-            }
+            char MsgErr[1024];
+            wsprintfA(MsgErr, _("Impossible to create : %s"), wctmp_dir);
+            MessageBoxA(NULL, MsgErr, _("Error"), MB_ICONERROR);
+            exit(1);
         }
 
         os_swprintf(bufenv, PATH_MAX + 16, L"TMPDIR=%ls", wctmp_dir);
