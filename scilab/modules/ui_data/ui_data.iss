@@ -21,6 +21,8 @@ Source: bin\sci{#UI_DATA}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB} a
 Source: bin\no{#UI_DATA}.dll; DestDir: {app}\bin; DestName: sci{#UI_DATA}.dll; Components: {#COMPN_SCILAB} and not ({#COMPN_JVM_MODULE})
 Source: modules\{#UI_DATA}\jar\org.scilab.modules.{#UI_DATA}.jar;DestDir: {app}\modules\{#UI_DATA}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
+Source: modules\{#UI_DATA}\sci_gateway\{#UI_DATA}_gateway.xml; DestDir: {app}\modules\{#UI_DATA}\sci_gateway; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+;
 Source: modules\{#UI_DATA}\etc\{#UI_DATA}.start;DestDir: {app}\modules\{#UI_DATA}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#UI_DATA}\etc\{#UI_DATA}.quit;DestDir: {app}\modules\{#UI_DATA}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#UI_DATA}\etc\*.xml;DestDir: {app}\modules\{#UI_DATA}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
