@@ -90,26 +90,6 @@
 
                         <varlistentry>
 
-                            <term>figure_style: </term>
-
-                            <listitem>
-
-                                <para>
-
-                                    このフィールドの値は図(figure)の様式を定義します.
-
-                                    Scilab 5.0以降, 古いグラフィックモードは無効にされています.
-
-                                    このプロパティは互換性のために残されており,変更することはできません.
-
-                                </para>
-
-                            </listitem>
-
-                        </varlistentry>
-
-                        <varlistentry>
-
                             <term>figure_position: </term>
 
                             <listitem>
@@ -275,18 +255,6 @@
                                     これは図の生成時に設定される整数で,後で変更することはできません.
 
                                 </para>
-
-                            </listitem>
-
-                        </varlistentry>
-
-                        <varlistentry>
-
-                            <term>info_message: </term>
-
-                            <listitem>
-
-                                <para>この文字列はグラフィックウインドウの情報バーに表示されるテキストを指定します.</para>
 
                             </listitem>
 
@@ -550,8 +518,8 @@
 
                                     <literal>"on"</literal> (デフォルト値) または <literal>"off"</literal>
 
-                                    (図は,マウスイベントによりリサイズできません)とします.
-
+                                    (図は,マウスイベントによりリサイズできません)とします. Resizing the figure
+                                    is always possible with <literal>.figure_size</literal>.
                                 </para>
 
                             </listitem>
@@ -607,6 +575,18 @@
                                     <literal>"on"</literal> (デフォルト値) または <literal>"off"</literal>とします.
 
                                 </para>
+
+                            </listitem>
+
+                        </varlistentry>
+
+                        <varlistentry>
+
+                            <term>info_message: </term>
+
+                            <listitem>
+
+                                <para>この文字列はグラフィックウインドウの情報バーに表示されるテキストを指定します.</para>
 
                             </listitem>
 
@@ -711,39 +691,43 @@
                             </listitem>
 
                         </varlistentry>
-
                         <varlistentry>
-
                             <term>default_axes: </term>
-
                             <listitem>
-
                                 <para>
-
-                                    このプロパティは図における軸の作成を管理します.
-
-                                    この値は
-
-                                    <literal>"on"</literal> (デフォルト値) または <literal>"off"</literal>とします.
-
+                                    <literal>"on"</literal> (default value) means that the figure has always
+                                    a default axes: it is automatically set at the figure creation,
+                                    or automatically reset when the last axes of the figure is
+                                    intentionally deleted.
                                 </para>
-
                                 <para>
-
-                                    この値が<literal>"on"</literal>の場合,
-
-                                    図の作成時および図の最後の軸が削除される度に軸が作成されます.
-
-                                    この値が<literal>"off"</literal>の場合,
-
-                                    軸の作成時に軸は初期化されませんが,
-
-                                    <link linkend="newaxes">newaxes</link>関数により軸を追加できます.
-
+                                    <literal>"off"</literal> means that
+                                    <itemizedlist>
+                                      <listitem>
+                                          the newly created figure has no default axes.
+                                      </listitem>
+                                      <listitem>
+                                          for an existing figure, it is possible to actually delete
+                                          all its existing axes.
+                                      </listitem>
+                                    </itemizedlist>
+                                    In both cases,
+                                    <itemizedlist>
+                                       <listitem>
+                                         without any axes, the figure can't be the default
+                                         target of any plotting instruction. This feature
+                                         can be used to protect an interactive interface built in a
+                                         figure (like the demos and the ATOMS ones) from being the default
+                                         plotting target when there is no other proper opened
+                                         graphical figures.
+                                       </listitem>
+                                       <listitem>
+                                          It is still possible to force creating an axes using the
+                                          <link linkend="newaxes">newaxes</link> function.
+                                       </listitem>
+                                    </itemizedlist>
                                 </para>
-
                             </listitem>
-
                         </varlistentry>
 
                     </variablelist>
@@ -1031,75 +1015,42 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
         <title>参考</title>
 
         <simplelist type="inline">
-
             <member>
-
-                <link linkend="lines">lines</link>
-
+                <link linkend="eventhandlerfunctions">event handler functions</link>
             </member>
-
             <member>
-
-                <link linkend="set">set</link>
-
+                <link linkend="pixel_drawing_mode">pixel_drawing_mode</link>
             </member>
-
             <member>
-
-                <link linkend="get">get</link>
-
+                <link linkend="colormap">colormap</link>
             </member>
-
             <member>
-
+                <link linkend="xname">xname</link>
+            </member>
+            <member>
+                <link linkend="xinfo">xinfo</link>
+            </member>
+            <member>
                 <link linkend="scf">scf</link>
-
             </member>
-
             <member>
-
                 <link linkend="gcf">gcf</link>
-
             </member>
-
             <member>
-
                 <link linkend="gdf">gdf</link>
-
             </member>
-
             <member>
-
-                <link linkend="gca">gca</link>
-
+                <link linkend="findobj">findobj</link>
             </member>
-
             <member>
-
-                <link linkend="gda">gda</link>
-
-            </member>
-
-            <member>
-
                 <link linkend="axes_properties">axes_properties</link>
-
             </member>
-
-            <member/>
-
             <member>
-
-                <link linkend="hotcolormap">hotcolormap</link>
-
+                <link linkend="set">set</link>
             </member>
-
             <member>
-
-                <link linkend="eventhandlerfunctions">イベントハンドラ関数</link>
-
+                <link linkend="get">get</link>
             </member>
-
         </simplelist>
 
     </refsection>
