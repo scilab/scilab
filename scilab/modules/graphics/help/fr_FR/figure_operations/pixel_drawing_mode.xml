@@ -2,9 +2,9 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Pierre Lando <pierre.lando@scilab.org>
- * Copyright (C) 2016 - Samuel GOUGEON
+ * Copyright (C) 2017 - Samuel GOUGEON
  *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2012 - 2017 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,51 +17,51 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
     xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-    xml:lang="en" xml:id="pixel_drawing_mode">
+    xml:lang="fr" xml:id="pixel_drawing_mode">
     <refnamediv>
         <refname>pixel_drawing_mode</refname>
-        <refpurpose>Figure's property setting the RGBwise pixels update mode when drawing</refpurpose>
+        <refpurpose>mode d'actualisation des couleurs RVB des pixels lors des tracés graphiques</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            Pixels colors are RGB encoded. Each R, G or B channel has an uint(8) value on [0, 255].
+            Les couleurs des pixels sont encodées selon les 3 canaux RVB (Rouge Vert Bleu). Pour chaque pixel, chaque canal a une valeur entière sur [0, 255] (uint8).
         </para>
         <para>
-            The <literal>pixel_drawing_mode</literal> is a <link linkend="figure_properties">figure property</link> that specifies a RGBwise operation applied on every pixel of the incoming object, between RGB values of the input pixel color and RGB values the already existing pixel color of the figure. The result of this operation sets the new pixel color.
+            <literal>.pixel_drawing_mode</literal> est une des propriétés des  <link linkend="figure_properties">fenêtres graphiques</link>. Elle indique l'opération binaire à effectuer pour chaque canal RVB de chaque pixel entre la couleur préexistante du pixel de la fenêtre avant le tracé, et la couleur du même pixel de l'objet à tracer. Scilab n'actualise pas nécessairement la couleur du pixel en imposant la couleur de l'objet à tracer comme nouvelle couleur "opaque". La couleur du fond peut par exemple être prise en compte, autorisant certains effets de transparence.
         </para>
         <para>
             <itemizedlist>
                 <listitem>
-                    <literal>src</literal> is the incoming color of the pixel.
+                    <literal>src</literal> est la couleur du pixel considéré dans l'objet à tracer / dessiner.
                 </listitem>
                 <listitem>
-                    <literal>cur</literal> is the current color of the pixel (which is already drawn).
+                    <literal>cur</literal> est la couleur courante préxistante du même pixel, avant le tracé.
                 </listitem>
             </itemizedlist>
-            Possible case-sensitive values for <literal>pixel_drawing_mode</literal> are listed herebelow.
+            Les valeurs possibles (de type texte) de l'attribut <literal>pixel_drawing_mode</literal> sont listées ci-après, suivies de l'opération binaire correspondante. Dans ces expressions logiques,
             <itemizedlist>
                 <listitem>
-                    <literal>NOT v</literal> means <literal>255 - v</literal>
+                    <literal>NOT v</literal> signifie <literal>255 - v</literal>
                 </listitem>
                 <listitem>
-                    <literal>a AND b</literal> means <literal>a &amp; b</literal>
+                    <literal>a AND b</literal> signifie <literal>a &amp; b</literal>
                 </listitem>
                 <listitem>
-                    <literal>a OR b</literal> means <literal>a | b</literal>
+                    <literal>a OR b</literal> signifie <literal>a | b</literal>
                 </listitem>
                 <listitem>
-                    <literal>a XOR b</literal> means <literal>(a OR b) AND NOT (a AND b)</literal>
+                    <literal>a XOR b</literal> signifie <literal>(a OR b) AND NOT (a AND b)</literal>
                 </listitem>
             </itemizedlist>
         </para>
         <informaltable border="1" cellpadding="3px">
             <tr>
-                <th>Value</th>
-                <th>result</th>
+                <th>Valeur</th>
+                <th>opération effectuée / résultat</th>
             </tr>
             <tr>
-                <td>"copy" (default)</td>
+                <td>"copy" (par défaut)</td>
                 <td>src</td>
             </tr>
             <tr>
@@ -127,14 +127,14 @@
         </informaltable>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[
 pxmodes = ["copy", "copyInverted", "equiv", "xor", ..
-            "and", "nand", "andReverse", "andInverted", ..
-            "or", "nor", "orReverse", "orInverted", ..
-            "noop", "set", "clear", "invert" ..
+           "and",  "nand", "andReverse", "andInverted", ..
+           "or",   "nor",  "orReverse",  "orInverted", ..
+           "noop", "set",  "clear",      "invert" ..
            ];
-// sizes, and overlaying margins of figures
+// Dimensions et recouvrement marginal des fenêtres en damier
 s = 300;
 hm = 8;
 vm = 52;
@@ -142,11 +142,11 @@ vm = 52;
 for k = 16:-1:1
     m = pxmodes(k);
 
-    // Position of the figure
+    // Position de la fenêtre
     i = fix((k-1)/4);
     j = modulo(k-1,4);
 
-    // Creating the figure
+    // Création et paramétrage de la fenêtre
     f = figure("toolbar_visible","off", ..
                "menubar_visible","off", ..
                "infobar_visible","off", ..
@@ -157,7 +157,7 @@ for k = 16:-1:1
                );
     drawlater
 
-    // Setting the axes
+    // Configuration du tracé
     b = 0.82;
     plot2d([],[],0,"051"," ",[-1 -1 1 1]*b)
     plot2d([-1 1]*b,[0 0])
@@ -166,7 +166,7 @@ for k = 16:-1:1
     a.tight_limits = "on";
     title(m,"fontsize",4)
 
-    // Drawing 3 overlaying colored disks
+    // Affichage de 3 disques rouge, vert et bleu se recouvrant partiellement
     xfarc(-0.7, 0.8, 1, 1, 0, 360*64)
     e = gce();
     e.background = color("red");
@@ -184,8 +184,8 @@ for k = 16:-1:1
 
     drawnow
 end
-// Removing all figures
-b = messagebox(_("Press OK to close all figures"),_("End of demo"), "question", "modal");
+// Ménage : on supprime les 16 fenêtres
+b = messagebox(_("Presser OK pour fermer les fenêtres"),"Clore la démonstration", "question", "modal");
 w = winsid();
 xdel(w($-15:$));
     ]]></programlisting>
@@ -198,10 +198,10 @@ xdel(w($-15:$));
         </para>
     </refsection>
     <refsection role="see also">
-        <title>See also</title>
+        <title>Voir ausi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="figure_properties">Figure properties</link>
+                <link linkend="figure_properties">figure_properties</link>
             </member>
             <member>
                 <link linkend="colordef">colordef</link>
