@@ -67,7 +67,7 @@ printf("%s\n", deftxt);
 --> printf("%s\n", deftxt);
 function [f,e] = log2(x)
   [lhs,rhs] = argn(0)
-  if rhs<>1 then
+  if rhs&lt;>1 then
     msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
     error(msprintf(msg, "log2", 1))
   end

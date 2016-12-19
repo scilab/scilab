@@ -156,39 +156,41 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example">if (getscilabmode() == "STD") then
-            addmenu('foo');
-            foo = 'disp(''hello'')';
-            addmenu('Hello',['Franck';'Peter'])
-            Hello = ['disp(''hello Franck'')';'disp(''hello Peter'')'];
-            addmenu('Bye',list(0,'French_Bye'));
-            French_Bye = 'disp(''Au revoir'')';
-            else
-            mprintf('This example requires to use scilab with GUI mode.\n');
-            end
-            addmenu(0,'Hello',['Franck';'Peter']);
-            Hello_0 = ['disp(''hello Franck'')';'disp(''hello Peter'')'];
-            //Cで定義したコールバック
-            // コールバックコードを作成
-            code=[ '#include ""machine.h""'
-            '#include ""sciprint.h""'
-            'void foo(char *name, int *win, int *entry)'
-            '{'
-            '  if (*win==-1) '
-            '    sciprint(""menu %s(%i) in Scilab window selected.\n"", name, *entry+1);'
-            '  else'
-            '    sciprint(""menu %s(%i) in window %i selected.\n"", name, *entry+1, *win);'
-            '}'];
-            // foo.cファイルを作成
-            current_dir = pwd();
-            chdir(TMPDIR);
-            mputl(code, TMPDIR+'/foo.c');
-            // Makefileを作成
-            ilib_for_link('foo','foo.c',[],'c');
-            exec('loader.sce');
-            chdir(current_dir);
-            // メニューを追加
-            addmenu(0,'foo',['a','b','c'],list(1,'foo'));
+        <programlisting role="example">
+if (getscilabmode() == "STD") then
+    addmenu('foo');
+    foo = 'disp(''hello'')';
+    addmenu('Hello',['Franck';'Peter'])
+    Hello = ['disp(''hello Franck'')';'disp(''hello Peter'')'];
+    addmenu('Bye',list(0,'French_Bye'));
+    French_Bye = 'disp(''Au revoir'')';
+    else
+    mprintf('This example requires to use scilab with GUI mode.\n');
+    end
+    addmenu(0,'Hello',['Franck';'Peter']);
+    Hello_0 = ['disp(''hello Franck'')';'disp(''hello Peter'')'];
+    //Cで定義したコールバック
+    // コールバックコードを作成
+    code=[ '#include ""machine.h""'
+    '#include ""sciprint.h""'
+    'void foo(char *name, int *win, int *entry)'
+    '{'
+    '  if (*win==-1) '
+    '    sciprint(""menu %s(%i) in Scilab window selected.\n"", name, *entry+1);'
+    '  else'
+    '    sciprint(""menu %s(%i) in window %i selected.\n"", name, *entry+1, *win);'
+    '}'];
+    // foo.cファイルを作成
+    current_dir = pwd();
+    chdir(TMPDIR);
+    mputl(code, TMPDIR+'/foo.c');
+    // Makefileを作成
+    ilib_for_link('foo','foo.c',[],'c');
+    exec('loader.sce');
+    chdir(current_dir);
+    // メニューを追加
+    addmenu(0,'foo',['a','b','c'],list(1,'foo'));
+end
         </programlisting>
     </refsection>
     <refsection role="see also">

@@ -50,7 +50,7 @@ scilex      &lt;Options&gt;      |  scilab-cli     &lt;Options&gt;
                      </para>
                      <para>
                       Пример:
-                        <screen><![CDATA[C:\Users\Me> scilex -nb -args "Привет, \"%USERNAME%\"" 1.2345 \"%cd%\"]]></screen>
+                        <screen><![CDATA[C:\Users\Me> scilex -nb -noatomsautoload -args "Привет, \"%USERNAME%\"" 1.2345 \"%cd%\"]]></screen>
                         <programlisting><![CDATA[
 // Внутри открытой сессии:
 a = sciargs()
@@ -235,22 +235,24 @@ evstr(a(i+2))*2
                     <para>
                         Если есть эта опция,то Scilab запускается как командная строка с улучшенными возможностями (графические окна, экспорт, xcos, scinotes, справочная система, ...).
                     </para>
-                    <para>Начиная с Scilab 5.2:</para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                конвейеры доступны во всех операционных системах (см. примеры для дополнительной
-                                информации).
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                Дистрибутив Scilab также предоставляет специальный бинарный файл, который
-                                делает то же, что и <literal>-nw</literal>: <literal>scilab-adv-cli</literal>
-                                (Интерпретатор Scilab с улучшенной командной строкой).
-                            </para>
-                        </listitem>
-                    </itemizedlist>
+                    <para>
+                        Начиная с Scilab 5.2:
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    конвейеры доступны во всех операционных системах (см. примеры для дополнительной
+                                    информации).
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    Дистрибутив Scilab также предоставляет специальный бинарный файл, который
+                                    делает то же, что и <literal>-nw</literal>: <literal>scilab-adv-cli</literal>
+                                    (Интерпретатор Scilab с улучшенной командной строкой).
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -259,25 +261,27 @@ evstr(a(i+2))*2
                     <important>
                         Этот режим не загружает виртуальную машину Java (быстрее загружается и использует меньше памяти).
                     </important>
-                    <para>
+                    <warning>
                         Если есть эта опция, то Scilab запускается как командная строка без улучшенных возможностей (графических окон, экспорта, xcos, scinotes, справочной системы, ...).
+                    </warning>
+                    <para>
+                        Начиная с Scilab 5.2:
+                        <itemizedlist>
+                          <listitem>
+                            <para>
+                              конвейеры доступны во всех операционных системах (см. примеры для дополнительной
+                              информации).
+                            </para>
+                          </listitem>
+                          <listitem>
+                            <para>
+                              Дистрибутив Scilab также предоставляет специальный бинарный файл, который
+                              делает то же, что и <literal>-nwni</literal>: <literal>scilab-cli</literal>
+                              (Интерпретатор Scilab с улучшенной командной строкой).
+                            </para>
+                          </listitem>
+                        </itemizedlist>
                     </para>
-                    <para>Начиная с Scilab 5.2:</para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                конвейеры доступны во всех операционных системах (см. примеры для дополнительной
-                                информации).
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                Дистрибутив Scilab также предоставляет специальный бинарный файл, который
-                                делает то же, что и <literal>-nwni</literal>: <literal>scilab-cli</literal>
-                                (Интерпретатор Scilab с улучшенной командной строкой).
-                            </para>
-                        </listitem>
-                    </itemizedlist>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -466,7 +470,7 @@ scilab -profiling
 
 # Запустим Scilab в режиме отладки без остановки после каждого SIGSEGV
 # Сначала запишем небольшой файл команд
-echo "handle SIGSEGV nostop" &> debug.txt
+echo "handle SIGSEGV nostop" > debug.txt
 # Теперь установим пользовательские опции
 # Мы находимся в оболочке Bash
 export SCILAB_GDB_OPT="--command=debug.txt"
@@ -486,7 +490,7 @@ $ scilab -nw -e "help()"
 
 
 # Scilab может быть использован написания сценариев:
-echo "if 1<>2 then exit(99) end"|scilab-cli
+echo "if 1&lt;>2 then exit(99) end"|scilab-cli
 echo $? ]]></screen>
     </refsection>
     <refsection role="see also">

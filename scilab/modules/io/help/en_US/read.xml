@@ -43,9 +43,10 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>format : character string, specifies a "Fortran" format. This</term>
+                <term>format</term>
                 <listitem>
-                    <para>character string must begin with a right parenthesis and end with a left parenthesis.  Formats cannot mix floating point or character edition modes.</para>
+                    <para>character string specifying a "Fortran" format. It must begin with a right parenthesis and end with a left parenthesis.Formats cannot mix floating point or character edition modes.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

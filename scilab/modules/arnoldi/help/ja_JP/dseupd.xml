@@ -13,8 +13,8 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            [D, Z, RESID, V, IPARAM, IPNTR, WORKD, WORKL, INFO] = dseupd(RVEC, HOWMANY, SELECT, D, Z, SIGMA, BMAT, N, WHICH,
-            NEV, TOL, RESID, NCV, V, IPARAM, IPNTR, WORKD, WORKL, INFO)
+            [D, Z, RESID, V, IPARAM, IPNTR, WORKD, WORKL, INFO] = dseupd(RVEC, HOWMANY, SELECT, D, Z, ...
+                    .. SIGMA, BMAT, N, WHICH, NEV, TOL, RESID, NCV, V, IPARAM, IPNTR, WORKD, WORKL, INFO)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -116,6 +116,10 @@
             </para>
         </para>
         <note><literal>host("cls")</literal> efface le contenu de la consolebox.</note>
+        <note>
+            Lorsque la console a le focus, la touche <literal>F12</literal> permet de faire
+            apparaitre ou disparaitre la consolebox.
+        </note>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -126,7 +130,7 @@ mprintf("\nLe bouton de la consolebox apparaît dans la barre des tâches.\n"+..
 sleep(10,"s")
 consolebox('toggle')
 sleep(5,"s")
-consolebox('toggle')
+// Maintenant : tester la touche F12 pour faire apparaitre/disparaitre la consolebox
 consolebox on
 consolebox()
 
@@ -149,6 +153,9 @@ unix_x("set");       // Une messagebox s'ouvre et affiche les résultats.
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="console">console</link>
+            </member>
             <member>
                 <link linkend="host">host</link>
             </member>

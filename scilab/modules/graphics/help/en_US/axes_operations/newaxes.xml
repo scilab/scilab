@@ -20,8 +20,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>a=newaxes()</synopsis>
-        <synopsis>a=newaxes(h)</synopsis>
+        <synopsis>
+            a = newaxes()
+            a = newaxes(h)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -29,13 +31,18 @@
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>a handle, the handle of the parent of the newly created Axes entity (optional).</para>
+                  <para>
+                    Optional handle of the graphic parent of the new axes,
+                    of type <literal>Figure</literal> or
+                    <literal>Uicontrol</literal> of style <literal>Frame</literal>.
+                    By default, the current figure is used.
+                  </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>a</term>
                 <listitem>
-                    <para>a handle, the handle on the newly created Axes entity</para>
+                    <para>Handle on the newly created Axes entity</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -44,30 +51,34 @@
         <title>Description</title>
         <para>
             <literal>newaxes()</literal> is used to create a new <literal>Axes</literal> entity (see
-            <link linkend="graphics_entities">graphics_entities</link>) in the current figure by default. The properties of
-            this entity are inherited from the <literal>default_axes</literal> entity (see
-            <link linkend="gda">gda</link>)
+            <link linkend="graphics_entities">graphics_entities</link>) in the current figure or in
+            the given figure or uicontrol frame.
         </para>
         <para>
-            <literal>newaxes(h)</literal> creates the axes in the frame <link linkend="uicontrol">uicontrol</link> or figure whose handle is <literal>h</literal>.
+            The properties of this entity are inherited from the <literal>default_axes</literal>
+            entity (see <link linkend="gda">gda</link>)
+        </para>
+        <para>
+            <literal>newaxes(h)</literal> creates the axes in the frame
+            <link linkend="uicontrol">uicontrol</link> or figure whose handle is <literal>h</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 clf()
-a1=newaxes();
-a1.axes_bounds=[0,0,1.0,0.5];
-t=0:0.1:20;
+a1 = newaxes();
+a1.axes_bounds = [0,0,1.0,0.5];
+t = 0:0.1:20;
 plot(t,acosh(t),'r')
-a2=newaxes();
-a2.axes_bounds=[0,0.5,1.0,0.5];
-x=0:0.1:4;
+a2 = newaxes();
+a2.axes_bounds = [0,0.5,1.0,0.5];
+x = 0:0.1:4;
 plot(x,sinh(x))
 legend('sinh')
 
 sca(a1); //make first axes current
-plot(t,asinh(t),'g')
+plot(t, asinh(t), 'g')
 legend(['acosh','asinh'])
  ]]></programlisting>
         <para>
@@ -113,11 +124,24 @@ title(a_bt, "the exponential");
                 <link linkend="subplot">subplot</link>
             </member>
             <member>
+                <link linkend="xsetech">xsetech</link>
+            </member>
+            <member>
                 <link linkend="gda">gda</link>
             </member>
             <member>
                 <link linkend="sca">sca</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>newaxes(h) can target a uicontrol frame or a given figure.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

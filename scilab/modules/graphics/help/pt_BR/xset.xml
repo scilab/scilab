@@ -16,18 +16,18 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xset" xml:lang="pt">
     <refnamediv>
         <refname>xset</refname>
-        <refpurpose>ajusta valores para o contexto gr·fico. FunÁ„o
+        <refpurpose>ajusta valores para o contexto gr√°fico. Fun√ß√£o
             obsoleta
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seq¸Íncia de Chamamento</title>
+        <title>Seq√º√™ncia de Chamamento</title>
         <synopsis>xset(choice-name,x1,x2,x3,x4,x5)
             xset()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Par‚metros</title>
+        <title>Par√¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>choice-name</term>
@@ -46,17 +46,17 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>DescriÁ„o</title>
-        <para>Aviso: est· funÁ„o est· obsoleta. Utilize a representaÁ„o de objetos
-            do Scilab ao invÈs (ver as documentaÁıes das funÁıes <link linkend="set">set</link> e <link linkend="get">get</link> bem como a
-            p·gina <link linkend="graphics_entities">graphics_entities</link>).
+        <title>Descri√ß√£o</title>
+        <para>Aviso: est√° fun√ß√£o est√° obsoleta. Utilize a representa√ß√£o de objetos
+            do Scilab ao inv√©s (ver as documenta√ß√µes das fun√ß√µes <link linkend="set">set</link> e <link linkend="get">get</link> bem como a
+            p√°gina <link linkend="graphics_entities">graphics_entities</link>).
         </para>
         <para>
-            <literal>xset</literal> È utilizado para ajustar valores padrıes do
-            contexto da janela de gr·ficos corrente.
+            <literal>xset</literal> √© utilizado para ajustar valores padr√µes do
+            contexto da janela de gr√°ficos corrente.
         </para>
-        <para>Quando chamado sem argumento, um menu de escolha È criado exibindo
-            os valores correntes e mudanÁas podem ser realizadas atravÈs e botıes de
+        <para>Quando chamado sem argumento, um menu de escolha √© criado exibindo
+            os valores correntes e mudan√ßas podem ser realizadas atrav√©s e bot√µes de
             escolha.
         </para>
         <para>
@@ -68,9 +68,9 @@
             <varlistentry>
                 <term>xset("alufunction",number)</term>
                 <listitem>
-                    <para>usado para ajustar a funÁ„o lÛgica para desenho. A funÁ„o
-                        lÛgica utilizada È ajustada por <literal>x1</literal>. Os valores
-                        usuais s„o: 3 para cÛpia (padr„o), 6 para animaÁ„o e 0 para limpeza.
+                    <para>usado para ajustar a fun√ß√£o l√≥gica para desenho. A fun√ß√£o
+                        l√≥gica utilizada √© ajustada por <literal>x1</literal>. Os valores
+                        usuais s√£o: 3 para c√≥pia (padr√£o), 6 para anima√ß√£o e 0 para limpeza.
                         Ver alufunctions para mais detalhes.
                     </para>
                 </listitem>
@@ -78,12 +78,12 @@
             <varlistentry>
                 <term>xset("auto clear","on"|"off")</term>
                 <listitem>
-                    <para>alterna o modo de limpeza autom·tica para gr·ficos entre "on"
-                        e "off" . Quando o modo de limpeza autom·tica È "on", esboÁos
-                        sucessivos n„o s„o superpostos, ie, uma operaÁ„o
-                        <literal>clf()</literal> (a janela de gr·ficos È limpa e os
-                        gr·ficos gravados associados s„o apagados) È realizada antes de cada
-                        funÁ„o gr·fica de alto-nÌvel. O valor padr„o È "off".
+                    <para>alterna o modo de limpeza autom√°tica para gr√°ficos entre "on"
+                        e "off" . Quando o modo de limpeza autom√°tica √© "on", esbo√ßos
+                        sucessivos n√£o s√£o superpostos, ie, uma opera√ß√£o
+                        <literal>clf()</literal> (a janela de gr√°ficos √© limpa e os
+                        gr√°ficos gravados associados s√£o apagados) √© realizada antes de cada
+                        fun√ß√£o gr√°fica de alto-n√≠vel. O valor padr√£o √© "off".
                     </para>
                 </listitem>
             </varlistentry>
@@ -91,7 +91,7 @@
                 <term>xset("background",color)</term>
                 <listitem>
                     <para>ajusta a cor de plano de fundo do objeto Axes corrente. O
-                        argumento <literal>color</literal> È um Ìndice no mapa de cores da
+                        argumento <literal>color</literal> √© um √≠ndice no mapa de cores da
                         cor a ser utilizada.
                     </para>
                 </listitem>
@@ -99,21 +99,21 @@
             <varlistentry>
                 <term>xset("clipping",x,y,w,h)</term>
                 <listitem>
-                    <para>ajusta a zona de recorte (a zona da janela de gr·ficos onde os
-                        esboÁos podem ser desenhados) como sendo o ret‚ngulo (x,y,w,h)
-                        (ponto superior esquerdo, largura, altura). Esta funÁ„o utiliza a
-                        utiliza as coordenadas correntes do esboÁo.
+                    <para>ajusta a zona de recorte (a zona da janela de gr√°ficos onde os
+                        esbo√ßos podem ser desenhados) como sendo o ret√¢ngulo (x,y,w,h)
+                        (ponto superior esquerdo, largura, altura). Esta fun√ß√£o utiliza a
+                        utiliza as coordenadas correntes do esbo√ßo.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>xset("color",value)</term>
                 <listitem>
-                    <para>ajusta a cor padr„o para funÁıes de preechimento, linha ou
-                        impress„o de textos. <literal>value</literal> È um inteiro projetado
-                        no intervalo [0,whiteid]. 0 È usado para preenchimento com preto e
+                    <para>ajusta a cor padr√£o para fun√ß√µes de preechimento, linha ou
+                        impress√£o de textos. <literal>value</literal> √© um inteiro projetado
+                        no intervalo [0,whiteid]. 0 √© usado para preenchimento com preto e
                         whiteid para preenchimento com branco. O valor do identificador do
-                        branco pode ser obtido atravÈs de
+                        branco pode ser obtido atrav√©s de
                         <literal>xget("white")</literal>.
                     </para>
                 </listitem>
@@ -121,9 +121,9 @@
             <varlistentry>
                 <term>xset("colormap",cmap)</term>
                 <listitem>
-                    <para>ajusta o mapa de cores como sendo uma matriz m x 3. m È o
-                        n˙mero de cores. A cor de n˙mero i È dada como sendo a tripla
-                        cmap(i,1), cmap(i,2), cmap(i,3) correspondentes respectivamente ‡s
+                    <para>ajusta o mapa de cores como sendo uma matriz m x 3. m √© o
+                        n√∫mero de cores. A cor de n√∫mero i √© dada como sendo a tripla
+                        cmap(i,1), cmap(i,2), cmap(i,3) correspondentes respectivamente √†s
                         intensidades de vermelho, verde e azul entre 0 e 1.
                     </para>
                 </listitem>
@@ -136,29 +136,29 @@
                             color",0)
                         </literal>
                         ), ajusta o estilo de tracejado como o estilo i
-                        (0 para linha sÛlida). No modo colorido (<literal>xset("use color",1
+                        (0 para linha s√≥lida). No modo colorido (<literal>xset("use color",1
                             )
                         </literal>
-                        )È utilizado para ajustar a cor da linha, da marca e do
-                        texto. Esta palavra-chave est· obsoleta, utilize
+                        )√© utilizado para ajustar a cor da linha, da marca e do
+                        texto. Esta palavra-chave est√° obsoleta, utilize
                         <literal>xset('color',i)</literal> ou <literal>xset('line
                             style',i)
                         </literal>
-                        ao invÈs.
+                        ao inv√©s.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>xset("default")</term>
                 <listitem>
-                    <para>reajusta o contexto gr·fico para valores padrıes.</para>
+                    <para>reajusta o contexto gr√°fico para valores padr√µes.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>xset("font",fontid,fontsize) :</term>
+                <term>xset("font",fontid,fontsize)</term>
                 <listitem>
                     <para>ajusta a fonte corrente e seu tamanho. Note que
-                        <literal>fontsize</literal> se aplica a todas as fontes, n„o sÛ a
+                        <literal>fontsize</literal> se aplica a todas as fontes, n√£o s√≥ a
                         <literal>fontid</literal> .
                     </para>
                 </listitem>
@@ -173,7 +173,7 @@
                 <term>xset("foreground",color)</term>
                 <listitem>
                     <para>ajusta a cor de primeiro plano do objeto Axes corrente. O
-                        argumento <literal>color</literal> È um Ìndice no mapa de cores da
+                        argumento <literal>color</literal> √© um √≠ndice no mapa de cores da
                         cor a ser utilizada.
                     </para>
                 </listitem>
@@ -181,29 +181,29 @@
             <varlistentry>
                 <term>xset("fpf",string)</term>
                 <listitem>
-                    <para>ajusta o formato de exibiÁ„o de ponto flutuante para funÁıes
-                        de contorno. <literal>string</literal> È um string fornecendo o
+                    <para>ajusta o formato de exibi√ß√£o de ponto flutuante para fun√ß√µes
+                        de contorno. <literal>string</literal> √© um string fornecendo o
                         formato em sintaxe C (por exemplo <literal>string="%.3f"</literal>).
                         Use <literal>string=""</literal> para retornar ao formato
-                        padr„o.
+                        padr√£o.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>xset("hidden3d",colorid) :</term>
+                <term>xset("hidden3d",colorid)</term>
                 <listitem>
-                    <para>ajusta o n˙mero de cor para as faces escondidas em um
+                    <para>ajusta o n√∫mero de cor para as faces escondidas em um
                         <literal>plot3d. colorid=0</literal> suprime o desenho de faces
-                        escondidas de objetos 3d. Isto È tecnicamente chamdo 'culling' e
-                        acelera a renderizaÁ„o de superfÌcies fechadas.
+                        escondidas de objetos 3d. Isto √© tecnicamente chamdo 'culling' e
+                        acelera a renderiza√ß√£o de superf√≠cies fechadas.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>xset("line mode",type)</term>
                 <listitem>
-                    <para>esta funÁ„o È utilizada para se ajustar o modo de desenho da
-                        linha. O modo absoluto È ajustado com type= 1 e o modo relativo com
+                    <para>esta fun√ß√£o √© utilizada para se ajustar o modo de desenho da
+                        linha. O modo absoluto √© ajustado com type= 1 e o modo relativo com
                         type=0. (aviso: o modo type= 0 possui defeitos)
                     </para>
                 </listitem>
@@ -211,7 +211,7 @@
             <varlistentry>
                 <term>xset("line style",value)</term>
                 <listitem>
-                    <para>ajusta o estilo de linha corrente (1: sÛlida, &gt;1 estilos
+                    <para>ajusta o estilo de linha corrente (1: s√≥lida, &gt;1 estilos
                         tracejados).
                     </para>
                 </listitem>
@@ -221,7 +221,7 @@
                 <listitem>
                     <para>ajusta a marca corrente e seu tamanho. Use
                         <literal>xset()</literal> para visualizar as marcas. Note que
-                        <literal>marksize</literal> se aplica a todas as marcas, n„o apenas
+                        <literal>marksize</literal> se aplica a todas as marcas, n√£o apenas
                         a <literal>markid</literal> .
                     </para>
                 </listitem>
@@ -235,19 +235,19 @@
             <varlistentry>
                 <term>xset("pattern",value)</term>
                 <listitem>
-                    <para>ajusta o padr„o (pattern, n„o confundir com padr„o = default)
-                        corrente para funÁıes de preenchimento. O valor È um inteiro
-                        projetado no intervalo [0,whiteid]. 0 È utilizado para preenchimento
+                    <para>ajusta o padr√£o (pattern, n√£o confundir com padr√£o = default)
+                        corrente para fun√ß√µes de preenchimento. O valor √© um inteiro
+                        projetado no intervalo [0,whiteid]. 0 √© utilizado para preenchimento
                         com preto e whiteid para preenchimento com branco. O valor de
                         whiteid pode ser obtido com <literal>xget("white")</literal>.
-                        "pattern" È equivalente a "color".
+                        "pattern" √© equivalente a "color".
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>xset("thickness",value)</term>
                 <listitem>
-                    <para>ajusta o valor de espessura das linhas em pixel (0 e 1 tÍm o
+                    <para>ajusta o valor de espessura das linhas em pixel (0 e 1 t√™m o
                         mesmo significado: 1 pixel de espessura).
                     </para>
                 </listitem>
@@ -256,10 +256,10 @@
                 <term>xset("use color",flag)</term>
                 <listitem>
                     <para>
-                        se flag=1, ent„o <literal>xset("pattern",.)</literal> ou
-                        <literal>xset("dashes",.)</literal> ser· utilizado de modo a
-                        modificar a cor padr„o para desenho ou para padrıes de
-                        preenchimento. Se flag=0 ent„o retorna-se ao modo de escalas de
+                        se flag=1, ent√£o <literal>xset("pattern",.)</literal> ou
+                        <literal>xset("dashes",.)</literal> ser√° utilizado de modo a
+                        modificar a cor padr√£o para desenho ou para padr√µes de
+                        preenchimento. Se flag=0 ent√£o retorna-se ao modo de escalas de
                         cinza e tracejados.
                     </para>
                 </listitem>
@@ -267,23 +267,23 @@
             <varlistentry>
                 <term>xset("viewport",x,y)</term>
                 <listitem>
-                    <para>ajusta a posiÁ„o do cursor.</para>
+                    <para>ajusta a posi√ß√£o do cursor.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>xset("wdim",width,height)</term>
                 <listitem>
-                    <para>ajusta a largura e altura da janela de gr·ficos corrente. Esta
-                        opÁ„o n„o È utilizada pelo driver Postscript.
+                    <para>ajusta a largura e altura da janela de gr√°ficos corrente. Esta
+                        op√ß√£o n√£o √© utilizada pelo driver Postscript.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>xset("wpdim",width,height)</term>
                 <listitem>
-                    <para>ajusta a largura e altura da janela de gr·ficos fÌsica
+                    <para>ajusta a largura e altura da janela de gr√°ficos f√≠sica
                         corrente (que pode ser diferente do tamanho atual no modo wresize
-                        1). Esta opÁ„o n„o È utilizada pelo driver Postscript.
+                        1). Esta op√ß√£o n√£o √© utilizada pelo driver Postscript.
                     </para>
                 </listitem>
             </varlistentry>
@@ -292,23 +292,23 @@
                 <listitem>
                     <para>
                         ajusta a janela <literal>window-number</literal> como sendo a
-                        janela corrente e cria a janela se esta n„o existir.
+                        janela corrente e cria a janela se esta n√£o existir.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>xset("wpos",[x,y])</term>
                 <listitem>
-                    <para>ajusta a posiÁ„o do ponto superior esquerdo da janela de
-                        gr·ficos.
+                    <para>ajusta a posi√ß√£o do ponto superior esquerdo da janela de
+                        gr√°ficos.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>xset("wresize",flag)</term>
                 <listitem>
-                    <para>se flag= 1ent„o o gr·fico È automaticamente redimensionado
-                        para preencher a janela de gr·ficos.
+                    <para>se flag= 1ent√£o o gr√°fico √© automaticamente redimensionado
+                        para preencher a janela de gr√°ficos.
                     </para>
                     <programlisting role=""><![CDATA[
 xdel();
@@ -316,9 +316,9 @@ xset("wresize",1);
 plot2d();
 xset("wdim",1000,500)
  ]]></programlisting>
-                    <para>Se flag=0 a escala do gr·fico È inalterada quando a janela de
-                        gr·fico È redimensionada. O cursor no canto superior esquerdo ou as
-                        setas do teclado podem ser utilizadas para rolar o gr·fico .
+                    <para>Se flag=0 a escala do gr√°fico √© inalterada quando a janela de
+                        gr√°fico √© redimensionada. O cursor no canto superior esquerdo ou as
+                        setas do teclado podem ser utilizadas para rolar o gr√°fico .
                     </para>
                     <programlisting role=""><![CDATA[
 xdel();
@@ -331,7 +331,7 @@ xset("wdim",1000,500)
         </variablelist>
     </refsection>
     <refsection role="see also">
-        <title>Ver TambÈm</title>
+        <title>Ver Tamb√©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xget">xget</link>

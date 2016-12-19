@@ -22,7 +22,10 @@
 
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="newaxes">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="newaxes">
 
     <refnamediv>
 
@@ -36,7 +39,10 @@
 
         <title>呼び出し手順</title>
 
-        <synopsis>a=newaxes()</synopsis>
+        <synopsis>
+            a = newaxes()
+            a = newaxes(h)
+        </synopsis>
 
     </refsynopsisdiv>
 
@@ -45,6 +51,17 @@
         <title>引数</title>
 
         <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                  <para>
+                    Optional handle of the graphic parent of the new axes,
+                    of type <literal>Figure</literal> or
+                    <literal>Uicontrol</literal> of style <literal>Frame</literal>.
+                    By default, the current figure is used.
+                  </para>
+                </listitem>
+            </varlistentry>
 
             <varlistentry>
 
@@ -91,65 +108,85 @@
         <title>例</title>
 
         <programlisting role="example"><![CDATA[
-
 clf()
-
-a1=newaxes();
-
-a1.axes_bounds=[0,0,1.0,0.5];
-
-t=0:0.1:20;
-
+a1 = newaxes();
+a1.axes_bounds = [0,0,1.0,0.5];
+t = 0:0.1:20;
 plot(t,acosh(t),'r')
-
-a2=newaxes();
-
-a2.axes_bounds=[0,0.5,1.0,0.5];
-
-x=0:0.1:4;
-
+a2 = newaxes();
+a2.axes_bounds = [0,0.5,1.0,0.5];
+x = 0:0.1:4;
 plot(x,sinh(x))
-
 legend('sinh')
 
-
-
 sca(a1); //最初の軸をカレントとする
-
 plot(t,asinh(t),'g')
-
 legend(['acosh','asinh'])
-
  ]]></programlisting>
+        <para>
+            The following example uses <literal>newaxes(h)</literal>
+        </para>
+        <programlisting role="example"><![CDATA[
+// Create a new figure
+f = figure("layout", "gridbag", ...
+    "toolbar", "none", ...
+    "menubar", "none", ...
+    "backgroundcolor", [1 1 1]);
 
+// Create the frames where each graph is put
+c = createConstraints("gridbag", [1 1 1 1], [1 1], "both");
+top_left = uicontrol(f, "style", "frame","constraints", c);
+
+c.grid = [2 1 1 1];
+top_right = uicontrol(f, "style", "frame", "constraints", c);
+
+c.grid = [1 2 2 2];
+bottom = uicontrol(f, "style", "frame", "constraints", c);
+
+// Create the axes in each frame
+a_tl = newaxes(top_left);
+a_tr = newaxes(top_right);
+a_bt = newaxes(bottom);
+
+// Plot in the frames
+X = (1:100) ./ 50;
+plot(a_tl, X, X, "r");
+plot(a_tr, X, cos(2 * %pi * 3 * X), "g");
+plot(a_bt, X, exp(X), "b");
+
+title(a_tl, "a line");
+title(a_tr, "a cosine");
+title(a_bt, "the exponential");
+    ]]></programlisting>
     </refsection>
 
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
                 <link linkend="subplot">subplot</link>
-
             </member>
-
             <member>
-
+                <link linkend="xsetech">xsetech</link>
+            </member>
+            <member>
                 <link linkend="gda">gda</link>
-
             </member>
-
             <member>
-
                 <link linkend="sca">sca</link>
-
             </member>
-
         </simplelist>
-
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    newaxes(h) can target a uicontrol frame or a given figure.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 
 </refentry>

@@ -20,8 +20,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>load(filename [,x1,...,xn])</synopsis>
-        <synopsis>load(fd [,x1,...,xn])</synopsis>
+        <synopsis>
+            load(filename [,x1,...,xn])
+            load(fd [,x1,...,xn])
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>

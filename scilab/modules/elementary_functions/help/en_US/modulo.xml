@@ -26,6 +26,7 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>i = modulo(n,m)</synopsis>
+      <para></para>
         <synopsis>i = pmodulo(n,m)</synopsis>
     </refsynopsisdiv>
     <refsection>

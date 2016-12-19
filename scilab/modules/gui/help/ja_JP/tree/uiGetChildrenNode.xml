@@ -6,8 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>children = uiGetChildrenNode(tree, node)</synopsis>
-        <synopsis>children = uiGetChildrenNode(tree, position)</synopsis>
+        <synopsis>
+            children = uiGetChildrenNode(tree, node)
+            children = uiGetChildrenNode(tree, position)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>入力パラメータ</title>

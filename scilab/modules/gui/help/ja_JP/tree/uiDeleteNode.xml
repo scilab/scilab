@@ -6,8 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>delTree = uiDeleteNode(tree, node)</synopsis>
-        <synopsis>delTree = uiDeleteNode(tree, position)</synopsis>
+        <synopsis>
+            delTree = uiDeleteNode(tree, node)
+            delTree = uiDeleteNode(tree, position)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>入力パラメータ</title>

@@ -29,7 +29,7 @@
                 <term>nsub</term>
                 <listitem>
                     <para>
-                        integer. The number of submenu to de-activate (if any). If button has no sub-menu, <literal>nsub</literal> is ignored
+                        integer. The number of submenu to activate (if any). If button has no sub-menu, <literal>nsub</literal> is ignored
                     </para>
                 </listitem>
             </varlistentry>

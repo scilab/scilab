@@ -21,7 +21,6 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>nicholschart([modules] [,args] [,colors])</synopsis>
-        <synopsis/>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>

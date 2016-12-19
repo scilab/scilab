@@ -28,10 +28,11 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,fsub,dfsub,gsub,dgsub,guess)
+            zu = bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,fsub,dfsub,gsub,dgsub,guess)
         </synopsis>
+      <para></para>
         <synopsis>
-            zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
+            zu = bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

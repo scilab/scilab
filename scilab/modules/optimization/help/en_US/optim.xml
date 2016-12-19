@@ -127,8 +127,7 @@
 "ar",nap,iter
 "ar",nap,iter,epsg
 "ar",nap,iter,epsg,epsf
-"ar",nap,iter,epsg,epsf,epsx]]>
-                        </screen>
+"ar",nap,iter,epsg,epsf,epsx]]></screen>
                     </para>
                     <para>where:</para>
                     <variablelist>
@@ -558,7 +557,7 @@
         </para>
         <screen><![CDATA[
 min f(x)
-binf <= x <= bsup]]>
+binf &lt;= x &lt;= bsup]]>
         </screen>
         <para>
             where <literal>binf</literal> is the lower bound and
@@ -822,15 +821,13 @@ f(x) = 0, |g(x)|=0
 Norm of projected gradient lower than   0.0000000D+00.
 
  xopt  =
-
     1.
     2.
     3.
- fopt  =
 
+ fopt  =
     0.
-]]>
-        </screen>
+]]></screen>
         <para>In the following example, we solve the Rosenbrock test case. For
             each iteration of the algorithm, we plot the current value of x into a 2D
             graph containing the contours of Rosenbrock's function. This allows to see
@@ -1155,8 +1152,7 @@ mprintf("Numerical derivative:[%s]\n", strcat (string(gnd), " "));
         <screen><![CDATA[
 Exact derivative:[-638 -88]
 Numerical derivative:[-215.6 -88]
-]]>
-        </screen>
+]]></screen>
     </refsection>
     <refsection>
         <title>Example: C function</title>
@@ -1373,7 +1369,7 @@ fortransource = ['subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 'cDEC$ ENDIF'
 'C     -------------------------------------------'
 'c     Example of cost function given by a subroutine'
-'c     if n<=2 returns ind=0'
+'c     if n&lt;=2 returns ind=0'
 'c     f.bonnans, oct 86'
 '      implicit double precision (a-h,o-z)'
 [etc...]

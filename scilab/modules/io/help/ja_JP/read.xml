@@ -45,9 +45,9 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>format : 文字列,"Fortran" 形式で指定します. </term>
+                <term>format</term>
                 <listitem>
-                    <para>この文字列は右括弧で始まり,
+                    <para>文字列,"Fortran" 形式で指定します. この文字列は右括弧で始まり,
                         左括弧で終わる必要があります. format では
                         浮動小数点数または文字列編集モードを混用することができません.
                     </para>

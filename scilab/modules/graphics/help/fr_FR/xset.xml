@@ -146,12 +146,11 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>xset("font",fontid,fontsize) : choisit la police courante et sa
-                    taille.
-                </term>
+                <term>xset("font",fontid,fontsize)</term>
                 <listitem>
                     <para>
-                        Noter que <literal>fontsize</literal> s'applique aussi à  
+                        Choisit la police courante et sa taille.
+                        Noter que <literal>fontsize</literal> s'applique aussi à
                         toutes les polices autres que <literal>fontid</literal> .
                     </para>
                 </listitem>
@@ -182,11 +181,10 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>xset("hidden3d",colorid) : Choisit la couleur des parties
-                    arrières dans la fonction plot3d.
-                </term>
+                <term>xset("hidden3d",colorid)</term>
                 <listitem>
                     <para>
+                        Choisit la couleur des parties arrières dans la fonction plot3d.
                         <literal>colorid=0</literal> supprime l'affichage des parties
                         arrières des objets 3D. Il s'agit d'une technique dénommée 'culling'
                         et permet d'accélérer le rendu des surfaces fermées.

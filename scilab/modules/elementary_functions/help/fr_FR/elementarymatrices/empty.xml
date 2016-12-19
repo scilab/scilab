@@ -8,7 +8,7 @@
         <title>Description</title>
         <para>
             <literal> [] </literal> désigne une matrice vide. Elle est définie de façon unique et possède
-            0 lignes et 0 colonnes, soit <literal> size([]) =[0,0] </literal>.
+            0 ligne et 0 colonne, soit <literal> size([]) = [0,0] </literal>.
             Les convention suivantes sont adoptées :
         </para>
         <para>
@@ -19,10 +19,15 @@
         </para>
         <para>
             <literal> [ [], A] = [A, []] = A </literal>
-            <literal> inv([]) =[] </literal>
         </para>
         <para>
-            <literal> det([])=cond([])=rcond([])=1, rank([])=0 </literal>
+            <literal> inv([]) = [] </literal>
+        </para>
+        <para>
+            <literal> det([]) = cond([]) = rcond([]) = 1</literal>
+        </para>
+        <para>
+            <literal> rank([]) = 0 </literal>
         </para>
         <para>
             Les fonctions matricielles renvoient <literal>[]</literal> ou un message d'erreur

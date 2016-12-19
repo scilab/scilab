@@ -20,8 +20,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>load(filename [,x1,...,xn])</synopsis>
-        <synopsis>load(fd [,x1,...,xn])</synopsis>
+        <synopsis>
+            load(filename [,x1,...,xn])
+            load(fd [,x1,...,xn])
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

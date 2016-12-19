@@ -77,7 +77,7 @@ printf("%s\n", txt);
 function [f,e] = log2(x)
   // x may be positive, negative, or complex
   [lhs,rhs] = argn(0)
-  if rhs<>1 then
+  if rhs&lt;>1 then
     msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
     error(msprintf(msg, "log2", 1))
   end;

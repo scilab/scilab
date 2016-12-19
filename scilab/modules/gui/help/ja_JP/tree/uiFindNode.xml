@@ -6,9 +6,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>nodeList = uiFindNode(tree, node)</synopsis>
-        <synopsis>nodeList = uiFindNode(tree, position)</synopsis>
-        <synopsis>nodeList = uiFindNode(tree, property, value)</synopsis>
+        <synopsis>
+            nodeList = uiFindNode(tree, node)
+            nodeList = uiFindNode(tree, position)
+            nodeList = uiFindNode(tree, property, value)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>入力パラメータ</title>

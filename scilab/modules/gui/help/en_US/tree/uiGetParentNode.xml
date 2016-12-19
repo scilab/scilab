@@ -6,8 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>parent = uiGetParentNode(tree, node)</synopsis>
-        <synopsis>parent = uiGetParentNode(tree, position)</synopsis>
+        <synopsis>
+            parent = uiGetParentNode(tree, node)
+            parent = uiGetParentNode(tree, position)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Input parameters</title>

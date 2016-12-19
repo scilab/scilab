@@ -15,7 +15,10 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ismatrix" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="ismatrix" xml:lang="ja">
 
     <refnamediv>
 
@@ -29,7 +32,7 @@
 
         <title>呼び出し手順</title>
 
-        <synopsis>t=ismatrix(x)</synopsis>
+        <synopsis>tf = ismatrix(x)</synopsis>
 
     </refsynopsisdiv>
 
@@ -53,7 +56,7 @@
 
             <varlistentry>
 
-                <term>t</term>
+                <term>tf</term>
 
                 <listitem>
 
@@ -78,19 +81,25 @@
                 ismatrix(<varname>x</varname>)
 
             </literal>
-
             は,
-
             <varname>x</varname>が行列の場合にtrueを返します.
-
-            スカラーとベクトルは行列とみなされます,
-
-            これは3次元の1つが1の場合のみハイパー行列の場合も同じです.
-
-            <literal>matrix([])</literal>はfalseを返します.
-
+            スカラーとベクトルは行列とみなされます.
         </para>
-
+        <note>
+          <itemizedlist>
+            <listitem>
+               An hypermatrix H that would be a matrix after reordering its dimensions is
+               considered as a matrix, and <literal>ismatrix(H)</literal> returns <constant>%T</constant>.
+            </listitem>
+            <listitem>
+              To test that <varname>x</varname> is not an hypermatrix or an hyperarray -- whatever
+              are the sizes of its dimensions --, use simply <literal>ndims(x)&lt;3</literal>.
+            </listitem>
+            <listitem>
+              <literal>matrix([])</literal>はfalseを返します.
+            </listitem>
+          </itemizedlist>
+        </note>
     </refsection>
 
     <refsection>
@@ -164,9 +173,10 @@ ismatrix(s) // 構造体の3次元 (立法)配列
             </member>
 
             <member>
-
                 <link linkend="isempty">isempty</link>
-
+            </member>
+            <member>
+                <link linkend="ndims">ndims</link>
             </member>
 
         </simplelist>

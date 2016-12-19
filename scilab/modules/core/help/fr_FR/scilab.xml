@@ -45,7 +45,7 @@ scilex      &lt;Options&gt;      |  scilab-cli     &lt;Options&gt;
                      </para>
                      <para>
                       Exemple :
-                        <screen><![CDATA[C:\Users\Me> scilex -nb -args "Hello \"%USERNAME%\"" 1.2345 \"%cd%\" ]]></screen>
+                        <screen><![CDATA[C:\Users\Me> scilex -nb -noatomsautoload -args "Hello \"%USERNAME%\"" 1.2345 \"%cd%\" ]]></screen>
                         <programlisting><![CDATA[
 // Dans la session ouverte :
 a = sciargs()
@@ -232,22 +232,24 @@ evstr(a(i+2))*2
                         (graphiques, export, xcos, scinotes, navigateur d'aide,
                         module JIMS, etc).
                     </para>
-                    <para>A partir de la version 5.2 de Scilab:</para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>La distribution de Scilab fournit aussi un binaire dédié
-                                faisant la même chose que l'option <emphasis>-nw</emphasis>:
-                                <emphasis>scilab-adv-cli</emphasis> (Scilab Advanced Command
-                                Line Interpreter).
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>Les fonctionnalités de pipe sont accessibles pour tous les
-                                systèmes d'exploitations (voir les examples pour plus de
-                                détails)
-                            </para>
-                        </listitem>
-                    </itemizedlist>
+                    <para>
+                        A partir de la version 5.2 de Scilab:
+                        <itemizedlist>
+                            <listitem>
+                                <para>La distribution de Scilab fournit aussi un binaire dédié
+                                    faisant la même chose que l'option <emphasis>-nw</emphasis>:
+                                    <emphasis>scilab-adv-cli</emphasis> (Scilab Advanced Command
+                                    Line Interpreter).
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>Les fonctionnalités de pipe sont accessibles pour tous les
+                                    systèmes d'exploitations (voir les examples pour plus de
+                                    détails)
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -255,28 +257,33 @@ evstr(a(i+2))*2
                 <listitem>
                     <important>
                         Cette option supprime le chargement de la Machine Virtuelle Java en mémoire.
-                        Elle accélère le démarrage de Scilab et réduit la mémoire consommée.
+                        Elle accélère le démarrage de Scilab et réduit la mémoire consommée. Mais alors...
                     </important>
-                    <para>si cette option est présente, Scilab est lancé en tant
-                        qu'interprêteur de commandes (sans graphiques ni interfaces
-                        ni fonctionnalité de construction de l'aide, etc).
+                    <warning>
+                        Scilab est lancé en tant que simple interprêteur de commandes, sans aucune
+                        fonctionalité avancée requérant la JVM : les fonctionalités graphiques,
+                        les interfaces graphiques dont les navigateurs d'aide, de démos, de modules
+                        externes, de variables, l'éditeur Scinotes, le module "Java depuis Scilab"...
+                        ne sont pas disponibles dans ce mode.
+                    </warning>
+                    <para>
+                        A partir de la version 5.2 de Scilab:
+                        <itemizedlist>
+                            <listitem>
+                                <para>Les fonctionnalités de pipe sont accessibles pour tous les
+                                    systèmes d'exploitations (voir les exemples pour plus de
+                                    détails)
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>La distribution de Scilab fournit aussi un binaire dédié
+                                    faisant la même chose que l'option <emphasis>-nw</emphasis>:
+                                    <emphasis>scilab-cli</emphasis> (Scilab Command Line
+                                    Interpreter).
+                                </para>
+                            </listitem>
+                        </itemizedlist>
                     </para>
-                    <para>A partir de la version 5.2 de Scilab:</para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>Les fonctionnalités de pipe sont accessibles pour tous les
-                                systèmes d'exploitations (voir les exemples pour plus de
-                                détails)
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>La distribution de Scilab fournit aussi un binaire dédié
-                                faisant la même chose que l'option <emphasis>-nw</emphasis>:
-                                <emphasis>scilab-cli</emphasis> (Scilab Command Line
-                                Interpreter).
-                            </para>
-                        </listitem>
-                    </itemizedlist>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -450,7 +457,7 @@ scilab -profiling
 
 # Lançons Scilab en mode debug sans s'arrêter à chaque SIGSEGV
 # D'abord écrivons un petit fichier de commandes
-echo "handle SIGSEGV nostop" &amp;gt; debug.txt
+echo "handle SIGSEGV nostop" > debug.txt
 # On règle l'option de gdb
 # On est sous Bash
 export SCILAB_GDB_OPT="--command=debug.txt"
@@ -469,7 +476,7 @@ or
 $ scilab -nw -e "help()"
 
 # Scilab utilisé en tant que moteur de scripting
-echo "if 1&lt;&gt;2 then exit(99) end"|scilab-cli
+echo "if 1&lt;>2 then exit(99) end"|scilab-cli
 echo $? ]]></screen>
     </refsection>
     <refsection role="see also">

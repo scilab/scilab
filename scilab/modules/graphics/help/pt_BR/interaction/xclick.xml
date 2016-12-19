@@ -163,7 +163,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ibutton &lt;=-32</term>
+                <term>ibutton &lt;= -32</term>
                 <listitem>
                     <para>
                         uma tecla com código ASCII <literal>-ibutton</literal> foi

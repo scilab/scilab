@@ -21,7 +21,6 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>nicholschart([modules] [,args] [,colors])</synopsis>
-        <synopsis/>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

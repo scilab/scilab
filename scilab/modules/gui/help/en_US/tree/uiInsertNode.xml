@@ -6,8 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>insertTree = uiInsertNode(tree, position, node)</synopsis>
-        <synopsis>insertTree = uiInsertNode(tree, parentNode, node)</synopsis>
+        <synopsis>
+            insertTree = uiInsertNode(tree, position, node)
+            insertTree = uiInsertNode(tree, parentNode, node)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Input parameters</title>

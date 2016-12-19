@@ -21,9 +21,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>nb = historysize()</synopsis>
-        <synopsis>nbMax = historysize("max")</synopsis>
-        <synopsis>nbMax = historysize(newMax)</synopsis>
+        <synopsis>
+            nb = historysize()
+            nbMax = historysize("max")
+            nbMax = historysize(newMax)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>

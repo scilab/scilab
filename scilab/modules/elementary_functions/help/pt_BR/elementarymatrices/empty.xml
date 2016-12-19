@@ -5,29 +5,35 @@
         <refpurpose>([]) matriz vazia</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal> [] </literal> denota a matriz vazia. É definida de modo
-            único e possui 0 linha e 0 coluna, i.e. <literal> size([]) =[0,0]
+            <literal> [] </literal> denota a matriz vazia. Ã‰ definida de modo
+            Ãºnico e possui 0 linha e 0 coluna, i.e. <literal> size([]) =[0,0]
             </literal>
-            .As seguintes convenções convenientes foram feitas:
+            .As seguintes convenÃ§Ãµes convenientes foram feitas:
         </para>
         <para>
             <literal> [] * A = A * [] = [] </literal>
         </para>
         <para>
-            <literal> [] + A = A + [] = []</literal>
+            <literal> [] + A = A + [] = [] </literal>
         </para>
         <para>
-            [ [], A] = [A, []] = A <literal> inv([]) =[] </literal>
+            <literal> [ [], A] = [A, []] = A </literal>
         </para>
         <para>
-            <literal> det([])=cond([])=rcond([])=1, rank([])=0</literal>
+            <literal> inv([]) = [] </literal>
         </para>
         <para>
-            Funções de matrizes retornam <literal>[]</literal> ou produzem uma
-            mensagem de erro quando não há resposta óbvia. Sistemas lineares vazios
-            (listas<literal> syslin</literal>) podem ter várias linhas ou
+            <literal> det([]) = cond([]) = rcond([]) = 1</literal>
+        </para>
+        <para>
+            <literal> rank([]) = 0 </literal>
+        </para>
+        <para>
+            FunÃ§Ãµes de matrizes retornam <literal>[]</literal> ou produzem uma
+            mensagem de erro quando nÃ£o hÃ¡ resposta Ã³bvia. Sistemas lineares vazios
+            (listas<literal> syslin</literal>) podem ter vÃ¡rias linhas ou
             colunas.
         </para>
     </refsection>
@@ -46,7 +52,7 @@ size(wr), w1=ss2tf(wr), size(w1)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="matrices">matrices</link>

@@ -14,8 +14,8 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            [Dr, Di, Z, RESID, V, IPARAM, IPNTR, WORKD, WORKL, INFO] = dneupd(RVEC, HOWMANY, SELECT, Dr, Di, Z, SIGMAr, SIGMAi, WORKev,
-            BMAT, N, WHICH, NEV, TOL, RESID, NCV, V, IPARAM, IPNTR, WORKD, WORKL, INFO)
+            [Dr, Di, Z, RESID, V, IPARAM, IPNTR, WORKD, WORKL, INFO] = dneupd(RVEC, HOWMANY, SELECT, Dr, Di, Z, ...
+              .. SIGMAr, SIGMAi, WORKev, BMAT, N, WHICH, NEV, TOL, RESID, NCV, V, IPARAM, IPNTR, WORKD, WORKL, INFO)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

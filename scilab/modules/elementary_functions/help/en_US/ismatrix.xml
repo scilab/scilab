@@ -13,14 +13,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ismatrix" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="ismatrix" xml:lang="en">
     <refnamediv>
         <refname>ismatrix</refname>
-        <refpurpose>check if a variable is a matrix</refpurpose>
+        <refpurpose>checks if an object is a non-empty 1D or 2D matrix or array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>t=ismatrix(x)</synopsis>
+        <synopsis>tf = ismatrix(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,11 +31,11 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>scalar,vector, matrix, hypermatrix, list, array of structures or cells</para>
+                    <para>scalar,vector, matrix, hypermatrix, list, array of structures or of cells</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>t</term>
+                <term>tf</term>
                 <listitem>
                     <para>a boolean</para>
                 </listitem>
@@ -45,15 +48,24 @@
             <literal>
                 ismatrix(<varname>x</varname>)
             </literal>
-            returns true if <varname>x</varname>
-            is a matrix. Scalars and vectors are considered as matrix, and it is the same for
-            hypermatrix only if one of its three dimensions equals to 1.
+            returns <literal>%T</literal> (true) if <varname>x</varname>
+            is a scalar (single component), or a vector or a matrix or array with one or 2 dimensions.
         </para>
-        <para>
-            <note>
-                Note that <literal>matrix([])</literal> returns false.
-            </note>
-        </para>
+        <note>
+          <itemizedlist>
+            <listitem>
+               An hypermatrix that would be a matrix after reordering its dimensions is
+               considered as a matrix.
+            </listitem>
+            <listitem>
+              To test that <varname>x</varname> is not an hypermatrix or an hyperarray -- whatever
+              are the sizes of its dimensions --, use simply <literal>ndims(x)&lt;3</literal>.
+            </listitem>
+            <listitem>
+              <literal>matrix([])</literal> returns false.
+            </listitem>
+          </itemizedlist>
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -108,6 +120,9 @@ ismatrix(s) // 3D (cubic) array of structures
             </member>
             <member>
                 <link linkend="isempty">isempty</link>
+            </member>
+            <member>
+                <link linkend="ndims">ndims</link>
             </member>
         </simplelist>
     </refsection>

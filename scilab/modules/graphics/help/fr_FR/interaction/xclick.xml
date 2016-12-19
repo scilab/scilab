@@ -172,7 +172,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ibutton &lt;=32</term>
+                <term>ibutton &lt;= -32</term>
                 <listitem>
                     <para>
                         La touche de code ASCII <literal>-ibutton</literal> a été

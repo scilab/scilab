@@ -113,6 +113,10 @@
             </para>
         </para>
         <note><literal>host("cls")</literal> clears the consolebox screen</note>
+        <note>
+            When the console has the focus, pressing the <literal>F12</literal> key toggles
+            the consolebox on|off
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -123,7 +127,7 @@ mprintf("See the consolebox button appearing in the task bar.\n"+..
 sleep(10,"s")
 consolebox('toggle')
 sleep(5,"s")
-consolebox('toggle')
+// Now: press the F12 key to toggle the consolebox
 consolebox on
 consolebox()
 
@@ -146,6 +150,9 @@ unix_x("set");       // Results are displayed in a messagebox. Nothing in consol
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="console">console</link>
+            </member>
             <member>
                 <link linkend="host">host</link>
             </member>

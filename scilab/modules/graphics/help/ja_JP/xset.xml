@@ -304,16 +304,12 @@
 
             <varlistentry>
 
-                <term>xset("font",fontid,fontsize) : Set the current font and its current</term>
-
+                <term>xset("font",fontid,fontsize)</term>
                 <listitem>
-
                     <para>
-
-                        size. Note that <literal>fontsize</literal> applies to all fonts not
-
+                        Set the current font and its current size.
+                        Note that <literal>fontsize</literal> applies to all fonts not
                         only <literal>fontid</literal> .
-
                     </para>
 
                 </listitem>
@@ -370,20 +366,14 @@
 
             <varlistentry>
 
-                <term>xset("hidden3d",colorid) : Set the color number for backward facing faces in</term>
-
+                <term>xset("hidden3d",colorid)</term>
                 <listitem>
-
                     <para>
-
+                        Set the color number for backward facing faces in
                         <literal>plot3d</literal>. <literal>colorid=0</literal> zero suppress the
-
                         drawing of backward facing faces of 3d objects. This is technically
-
                         called 'culling' and speeds up the rendering of closed surfaces.
-
                     </para>
-
                 </listitem>
 
             </varlistentry>
@@ -605,15 +595,10 @@
                     </para>
 
                     <programlisting role=""><![CDATA[
-
 xdel();
-
 xset("wresize",1);
-
 plot2d();
-
 xset("wdim",1000,500)
-
  ]]></programlisting>
 
                     <para>If flag=0 the scale of the graphic is left unchanged when the
@@ -625,15 +610,10 @@ xset("wdim",1000,500)
                     </para>
 
                     <programlisting role=""><![CDATA[
-
 xdel();
-
 plot2d();
-
 xset("wresize",0);
-
 xset("wdim",1000,500)
-
  ]]></programlisting>
 
                 </listitem>

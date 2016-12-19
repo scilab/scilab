@@ -17,7 +17,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="fr">
     <refnamediv>
         <refname>modulo</refname>
-        <refpurpose>reste symétrique modulo m ayant le signe du dividande</refpurpose>
+        <refpurpose>reste symétrique modulo m ayant le signe du dividende</refpurpose>
     </refnamediv>
     <refnamediv xml:id="pmodulo">
         <refname>pmodulo</refname>
@@ -26,6 +26,7 @@
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>i = modulo(n,m)</synopsis>
+        <para></para>
         <synopsis>i = pmodulo(n,m)</synopsis>
     </refsynopsisdiv>
     <refsection>

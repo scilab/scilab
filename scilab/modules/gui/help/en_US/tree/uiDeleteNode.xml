@@ -6,8 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>delTree = uiDeleteNode(tree, node)</synopsis>
-        <synopsis>delTree = uiDeleteNode(tree, position)</synopsis>
+        <synopsis>
+            delTree = uiDeleteNode(tree, node)
+            delTree = uiDeleteNode(tree, position)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Input parameters</title>

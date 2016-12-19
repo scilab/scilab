@@ -17,19 +17,20 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="pt">
     <refnamediv>
         <refname>modulo</refname>
-        <refpurpose>Resto aritmÈtico simÈtrico da divis„o de n por m</refpurpose>
+        <refpurpose>Resto aritm√©tico sim√©trico da divis√£o de n por m</refpurpose>
     </refnamediv>
     <refnamediv xml:id="pmodulo">
         <refname>pmodulo</refname>
-        <refpurpose>Resto aritmÈtico positivo da divis„o de n por m</refpurpose>
+        <refpurpose>Resto aritm√©tico positivo da divis√£o de n por m</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seq¸Íncia de Chamamento</title>
-        <synopsis>i=modulo(n,m)</synopsis>
-        <synopsis>i=pmodulo(n,m)</synopsis>
+        <title>Seq√º√™ncia de Chamamento</title>
+        <synopsis>i = modulo(n,m)</synopsis>
+        <para></para>
+        <synopsis>i = pmodulo(n,m)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Par‚metros</title>
+        <title>Par√¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>n,m</term>
@@ -42,20 +43,20 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>DescriÁ„o</title>
+        <title>Descri√ß√£o</title>
         <para>
             <literal>modulo</literal> computa <literal>i= n (modulo m)</literal>
-            i.e. resto da divis„o de <literal>m</literal> (<literal>n</literal> e
+            i.e. resto da divis√£o de <literal>m</literal> (<literal>n</literal> e
             <literal>m</literal> inteiros).
         </para>
         <para>i = n - m .* int (n ./ m). Aqui, a resposta pode ser negativa se
-            <literal>n</literal> ou <literal>m</literal> s„o negativos.
+            <literal>n</literal> ou <literal>m</literal> s√£o negativos.
         </para>
         <para>
             <literal>pmodulo</literal> computa <literal>i = n - |m| .* floor (n ./
                 |m|)
             </literal>
-            ,a resposta È positiva ou zero.
+            ,a resposta √© positiva ou zero.
         </para>
     </refsection>
     <refsection>

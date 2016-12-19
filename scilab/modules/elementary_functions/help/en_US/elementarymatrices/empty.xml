@@ -15,14 +15,19 @@
             <literal> [] * A = A * [] = [] </literal>
         </para>
         <para>
-            <literal> [] + A = A + [] = []</literal>
+            <literal> [] + A = A + [] = [] </literal>
         </para>
         <para>
-            <literal>[ [], A] = [A, []] = A </literal>
-            <literal> inv([]) =[] </literal>
+            <literal> [ [], A] = [A, []] = A </literal>
         </para>
         <para>
-            <literal> det([])=cond([])=rcond([])=1, rank([])=0</literal>
+            <literal> inv([]) = [] </literal>
+        </para>
+        <para>
+            <literal> det([]) = cond([]) = rcond([]) = 1</literal>
+        </para>
+        <para>
+            <literal> rank([]) = 0 </literal>
         </para>
         <para>
             Matrix functions return <literal>[]</literal> or an error message
