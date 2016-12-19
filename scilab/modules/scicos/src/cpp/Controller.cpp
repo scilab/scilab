@@ -496,7 +496,7 @@ void Controller::deepCloneVector(std::map<model::BaseObject*, model::BaseObject*
             }
             else
             {
-                cloned.push_back(getObject(id));
+                cloned.push_back(nullptr);
             }
         }
     }
@@ -504,7 +504,7 @@ void Controller::deepCloneVector(std::map<model::BaseObject*, model::BaseObject*
     // update the ScicosID related properties after cloning all the objects
     if (p == CHILDREN)
     {
-        for (auto const& it : mapped)
+        for (auto const & it : mapped)
         {
             model::BaseObject* initial = it.first;
             model::BaseObject* cloned = it.second;
