@@ -277,6 +277,19 @@ int to_int(const xmlChar* xmlStr)
 }
 
 /*
+ * Convert an XML UTF-8 string to a model boolean
+ */
+bool to_boolean(const xmlChar* xmlStr)
+{
+    if (xmlStr == nullptr)
+    {
+        return 0;
+    }
+
+    return std::strcmp((const char*) xmlStr, "true") == 0;
+}
+
+/*
  * Convert an XML UTF-8 string to a model double
  */
 double to_double(const xmlChar* xmlStr)
@@ -823,7 +836,7 @@ int XMIResource::loadPort(xmlTextReaderPtr reader, const model::BaseObject& o)
                 break;
             }
             case e_implicit:
-                controller.setObjectProperty(o.id(), o.kind(), IMPLICIT, to_int(xmlTextReaderConstValue(reader)));
+                controller.setObjectProperty(o.id(), o.kind(), IMPLICIT, to_boolean(xmlTextReaderConstValue(reader)));
                 break;
             case e_connectedSignal:
                 // will be resolved later
@@ -1310,11 +1323,11 @@ int XMIResource::processText(xmlTextReaderPtr reader)
             break;
         case e_state:
             // state is a Block property
-            ret = loadDoubleArray(reader, RPAR, processed.back());
+            ret = loadDoubleArray(reader, STATE, processed.back());
             break;
         case e_dstate:
             // dstate is a Block property
-            ret = loadDoubleArray(reader, RPAR, processed.back());
+            ret = loadDoubleArray(reader, DSTATE, processed.back());
             break;
         case e_expression:
             // expression is a Block property

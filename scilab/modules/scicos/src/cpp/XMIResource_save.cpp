@@ -85,6 +85,18 @@ static std::string to_string(int v)
     return std::to_string(v);
 }
 
+static std::string to_string(bool v)
+{
+    if (v)
+    {
+        return "true";
+    }
+    else
+    {
+        return "false";
+    }
+}
+
 static std::string to_string(double v)
 {
     if (std::trunc(v) == v)
@@ -481,7 +493,7 @@ int XMIResource::writeSimulationConfig(xmlTextWriterPtr writer, ScicosID id)
     {
         return -1;
     }
-    status = xmlTextWriterWriteAttribute(writer, BAD_CAST("absoluteTime"), BAD_CAST(to_string(doubleArrayValue[i]).c_str()));
+    status = xmlTextWriterWriteAttribute(writer, BAD_CAST("absoluteTolerance"), BAD_CAST(to_string(doubleArrayValue[i]).c_str()));
     if (status == -1)
     {
         return status;
@@ -503,7 +515,7 @@ int XMIResource::writeSimulationConfig(xmlTextWriterPtr writer, ScicosID id)
     {
         return -1;
     }
-    status = xmlTextWriterWriteAttribute(writer, BAD_CAST("absoluteTolerance"), BAD_CAST(to_string(doubleArrayValue[i]).c_str()));
+    status = xmlTextWriterWriteAttribute(writer, BAD_CAST("timeTolerance"), BAD_CAST(to_string(doubleArrayValue[i]).c_str()));
     if (status == -1)
     {
         return status;
@@ -918,6 +930,14 @@ int XMIResource::writePort(xmlTextWriterPtr writer, enum object_properties_t con
         return -1;
     }
     status = xmlTextWriterWriteAttribute(writer, BAD_CAST("kind"), BAD_CAST(elementName[portKind].c_str()));
+    if (status == -1)
+    {
+        return status;
+    }
+
+    bool implicit;
+    controller.getObjectProperty(id, PORT, IMPLICIT, implicit);
+    status = xmlTextWriterWriteAttribute(writer, BAD_CAST("implicit"), BAD_CAST(to_string(implicit).c_str()));
     if (status == -1)
     {
         return status;
