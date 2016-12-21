@@ -148,25 +148,32 @@ SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 
 .mly.ml:
 	$(OCAMLYACC) $<
+	@rm $*.mli
 
 # Build the binaries, disabling parallel building
 
-modelicac: $(modelicac_SOURCES) $(MLIS_modelicac) $(MLS_modelicac:.ml=.cmx)
+modelicac: $(modelicac_SOURCES)
+	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicac:.ml=.cmx)
 	$(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicac:.ml=.cmx)
 
-modelicac.ocamlc: $(modelicac_SOURCES) $(MLIS_modelicac) $(MLS_modelicac:.ml=.cmo)
+modelicac.ocamlc: $(modelicac_SOURCES)
+	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicac:.ml=.cmo)
 	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $(MLS_modelicac:.ml=.cmo)
 
-XML2Modelica: $(XML2Modelica_SOURCES) $(MLIS_XML2Modelica) $(MLS_XML2Modelica:.ml=.cmx)
+XML2Modelica: $(XML2Modelica_SOURCES)
+	$(MAKE) MAKEFLAGS=-j1 $(MLS_XML2Modelica:.ml=.cmx)
 	$(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLCFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx)
 
-XML2Modelica.ocamlc: $(XML2Modelica_SOURCES) $(MLIS_XML2Modelica) $(MLS_XML2Modelica:.ml=.cmo)
+XML2Modelica.ocamlc: $(XML2Modelica_SOURCES)
+	$(MAKE) MAKEFLAGS=-j1 $(MLS_XML2Modelica:.ml=.cmo)
 	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLCFLAGS) $(OCAMLLIBS) $(MLS_XML2Modelica:.ml=.cmo)
 
-modelicat: $(modelicat_SOURCES) $(MLIS_modelicat) $(MLS_modelicat:.ml=.cmx)
+modelicat: $(modelicat_SOURCES)
+	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicat:.ml=.cmx)
 	$(OCAMLOPT) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicat:.ml=.cmx)
 
-modelicat.ocamlc: $(modelicat_SOURCES) $(MLIS_modelicat) $(MLS_modelicat:.ml=.cmo)
+modelicat.ocamlc: $(modelicat_SOURCES)
+	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicat:.ml=.cmo)
 	$(OCAMLC) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $(MLS_modelicat:.ml=.cmo)
 
 CLEANFILES = $(BASE_PATH)/*/*.cmi \

@@ -2,7 +2,6 @@
 
 modelicac
 modelicac.ocamlc
-*.mli
 *.cmi
 *.cma
 *.cmo

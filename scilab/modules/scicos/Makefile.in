@@ -3796,25 +3796,32 @@ distclean-local:
 
 @OCAML_TRUE@@XCOS_TRUE@.mly.ml:
 @OCAML_TRUE@@XCOS_TRUE@	$(OCAMLYACC) $<
+@OCAML_TRUE@@XCOS_TRUE@	@rm $*.mli
 
 # Build the binaries, disabling parallel building
 
-@OCAML_TRUE@@XCOS_TRUE@modelicac: $(modelicac_SOURCES) $(MLIS_modelicac) $(MLS_modelicac:.ml=.cmx)
+@OCAML_TRUE@@XCOS_TRUE@modelicac: $(modelicac_SOURCES)
+@OCAML_TRUE@@XCOS_TRUE@	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicac:.ml=.cmx)
 @OCAML_TRUE@@XCOS_TRUE@	$(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicac:.ml=.cmx)
 
-@OCAML_TRUE@@XCOS_TRUE@modelicac.ocamlc: $(modelicac_SOURCES) $(MLIS_modelicac) $(MLS_modelicac:.ml=.cmo)
+@OCAML_TRUE@@XCOS_TRUE@modelicac.ocamlc: $(modelicac_SOURCES)
+@OCAML_TRUE@@XCOS_TRUE@	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicac:.ml=.cmo)
 @OCAML_TRUE@@XCOS_TRUE@	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $(MLS_modelicac:.ml=.cmo)
 
-@OCAML_TRUE@@XCOS_TRUE@XML2Modelica: $(XML2Modelica_SOURCES) $(MLIS_XML2Modelica) $(MLS_XML2Modelica:.ml=.cmx)
+@OCAML_TRUE@@XCOS_TRUE@XML2Modelica: $(XML2Modelica_SOURCES)
+@OCAML_TRUE@@XCOS_TRUE@	$(MAKE) MAKEFLAGS=-j1 $(MLS_XML2Modelica:.ml=.cmx)
 @OCAML_TRUE@@XCOS_TRUE@	$(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLCFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx)
 
-@OCAML_TRUE@@XCOS_TRUE@XML2Modelica.ocamlc: $(XML2Modelica_SOURCES) $(MLIS_XML2Modelica) $(MLS_XML2Modelica:.ml=.cmo)
+@OCAML_TRUE@@XCOS_TRUE@XML2Modelica.ocamlc: $(XML2Modelica_SOURCES)
+@OCAML_TRUE@@XCOS_TRUE@	$(MAKE) MAKEFLAGS=-j1 $(MLS_XML2Modelica:.ml=.cmo)
 @OCAML_TRUE@@XCOS_TRUE@	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLCFLAGS) $(OCAMLLIBS) $(MLS_XML2Modelica:.ml=.cmo)
 
-@OCAML_TRUE@@XCOS_TRUE@modelicat: $(modelicat_SOURCES) $(MLIS_modelicat) $(MLS_modelicat:.ml=.cmx)
+@OCAML_TRUE@@XCOS_TRUE@modelicat: $(modelicat_SOURCES)
+@OCAML_TRUE@@XCOS_TRUE@	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicat:.ml=.cmx)
 @OCAML_TRUE@@XCOS_TRUE@	$(OCAMLOPT) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicat:.ml=.cmx)
 
-@OCAML_TRUE@@XCOS_TRUE@modelicat.ocamlc: $(modelicat_SOURCES) $(MLIS_modelicat) $(MLS_modelicat:.ml=.cmo)
+@OCAML_TRUE@@XCOS_TRUE@modelicat.ocamlc: $(modelicat_SOURCES)
+@OCAML_TRUE@@XCOS_TRUE@	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicat:.ml=.cmo)
 @OCAML_TRUE@@XCOS_TRUE@	$(OCAMLC) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $(MLS_modelicat:.ml=.cmo)
 
 #BUILT_SOURCES = depend
