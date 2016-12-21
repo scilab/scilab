@@ -202,7 +202,7 @@ struct objs
             controller(controller),
             childrenToUpdate(childrenToUpdate)
         {
-            std::for_each(childrenToUpdate.begin(), childrenToUpdate.end(), [&controller] (const update_t& u)
+            std::for_each(childrenToUpdate.begin(), childrenToUpdate.end(), [&controller] (const update_t & u)
             {
                 if (u.adaptee != nullptr)
                 {
@@ -213,7 +213,7 @@ struct objs
 
         ~ChildrenToUpdateOwner()
         {
-            std::for_each(childrenToUpdate.begin(), childrenToUpdate.end(), [this] (const update_t& u)
+            std::for_each(childrenToUpdate.begin(), childrenToUpdate.end(), [this] (const update_t & u)
             {
                 if (u.adaptee != nullptr)
                 {
@@ -242,12 +242,17 @@ struct objs
         std::vector<ScicosID> children;
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, children);
 
+        // A boolean to know if we are removing an object
+        bool deletion = children.size() > static_cast<size_t>(argumentList->getSize());
+        // There is going to be as many children as the input list suggests, but don't lose information on old children just yet
+        if (!deletion)
+        {
+            children.resize(argumentList->getSize());
+        }
+
         /*
          * Fill a buffer of things to update
          */
-
-        int maxLen = std::max(static_cast<int>(children.size()), argumentList->getSize());
-        children.resize(maxLen);
 
         // work buffer :
         std::vector<update_t> childrenToUpdate;
@@ -320,7 +325,8 @@ struct objs
         // Process the children / parent relationship
         ScicosID parentDiagram;
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), PARENT_DIAGRAM, parentDiagram);
-        for (const auto& update : childrenToUpdate)
+        int offset = 0;
+        for (const auto & update : childrenToUpdate)
         {
             // reference / derefence the content
             if (update.adapter == nullptr)
@@ -330,7 +336,16 @@ struct objs
             else
             {
                 controller.referenceObject(update.adaptee->id());
-                controller.deleteObject(children[update.index]);
+                if (deletion && (children[update.index] == ScicosID() && update.adaptee != nullptr))
+                {
+                    // This object is the one being deleted in the diagram:
+                    //  - we are in effective delete mode
+                    //  - the old object is a "Deleted" mlist (deletion in two steps)
+                    //  - the new object is not a "Deleted" mlist (just replacing the old one)
+                    // Then 'offset' will skip the mlist so all the old children are deleted
+                    ++offset;
+                }
+                controller.deleteObject(children[update.index + offset]);
             }
 
             // manage insertion and field update
@@ -355,17 +370,23 @@ struct objs
             }
         }
 
+        // We don't need old children information anymore: reduce children size
+        if (deletion)
+        {
+            children.resize(argumentList->getSize());
+        }
+
         /*
          * Update partial linking information (links then ports)
          */
-        for (const auto& update : childrenToUpdate)
+        for (const auto & update : childrenToUpdate)
         {
             if (update.adaptee != nullptr && update.adaptee->kind() == LINK)
             {
                 LinkAdapter::relink(controller, update.adaptee, children);
             }
         }
-        for (const auto& update : childrenToUpdate)
+        for (const auto & update : childrenToUpdate)
         {
             if (update.adaptee != nullptr && update.adaptee->kind() == BLOCK)
             {
@@ -374,7 +395,7 @@ struct objs
         }
 
         // unref the Adapters as the ownership has been transfered to the Model
-        for (const auto& update : childrenToUpdate)
+        for (const auto & update : childrenToUpdate)
         {
             if (update.adapter != nullptr)
             {
