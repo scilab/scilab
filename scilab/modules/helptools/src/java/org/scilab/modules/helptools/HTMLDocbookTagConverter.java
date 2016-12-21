@@ -1177,7 +1177,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      */
     public String handleScreen(final Map<String, String> attributes, final String contents) throws SAXException {
         String id = attributes.get("id");
-        String str = encloseContents("div", "screen", encloseContents("pre", contents));
+        String str = encloseContents("div", "screen", encloseContents("pre", contents.replace("<", "&lt;")));
         if (id != null) {
             return "<a name=\"" + id + "\"></a>" + str;
         } else {
