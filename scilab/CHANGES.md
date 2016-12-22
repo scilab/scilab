@@ -216,6 +216,7 @@ Help pages:
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
   - `pixel_drawing_mode`, `show_window`, `twinkle`, `uigetcolor`, `winsid`, `xdel`, `xgrid`, `xname`, `xnumb`
+  - `repmat`, `sign`, `nthroot`, `lstsize`, `cell2mat`, `cellstr`, `ind2sub`, `sub2ind`, `and`, `or`, `unwrap`
   - CACSD and Signal Processing help pages have been sorted up.
   - Signal processing: New `Convolution - correlation` subsection. `wfir_gui`, `filt_sinc`, `hilb`, `fft2`, `fftshift`,`ifftshift`, `hilbert`, `cepstrum`, `conv`, `conv2`, `convol2d`, `xcor`, `corr`, `hank`, `mrfit`, `frfir` sorted up in existing subsections.
   - Colormaps and GUI/Menus subsections created
