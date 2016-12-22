@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- * Copyright (C) 2013 - Samuel GOUGEON: restriction to decimal numbers removed. Examples added for booleans, integer-encoded numbers, text, polynomials, rationals
+ * Copyright (C) 2013, 2016 - Samuel GOUGEON : 5.5.0 extensions, page overhauled
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="flipdim" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="flipdim" xml:lang="fr">
     <refnamediv>
         <refname>flipdim</refname>
         <refpurpose>
@@ -23,7 +26,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>y = flipdim(x, dim [,sb])</synopsis>
+        <synopsis>
+            y = flipdim(x, dim)
+            y = flipdim(x, dim, blockSize)
+        </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
         <title>Paramètres</title>
@@ -31,21 +37,28 @@
             <varlistentry>
                 <term>x, y</term>
                 <listitem>
-                    <para>scalaires, vecteurs, matrices, ou hypermatrices de n'importe quel type, de même taille</para>
+                    <para>
+                      scalaires, vecteurs, matrices, ou hypermatrices de n'importe quel type de données régulier.
+                      <varname>y</varname> prend la taille de <varname>x</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>dim</term>
                 <listitem>
                     <para>
-                        entier positif, la dimension de <literal>x</literal> selon laquelle les éléments seront retournés
+                        entier positif : n° de la dimension / direction de <literal>x</literal>
+                        selon laquelle l'ordre des éléments de <varname>x</varname> doit être inversé.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>sb</term>
+                <term>blockSize</term>
                 <listitem>
-                    <para>entier positif, la taille des blocs à permuter</para>
+                    <para>
+                      entier positif, sous-multiple de <literal>size(x,dim)</literal> :
+                      taille des blocs dont l'ordre doit être inversé. Vaut 1 par défaut.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -53,15 +66,26 @@
     <refsection role="description">
         <title>Description</title>
         <para>
-            A partir de <literal>x</literal>, un scalaire/vecteur/matrice/hypermatrice de n'importe quel type et
-            deux entiers positifs <literal>dim</literal> et <literal>sb</literal>, cette fonction retourne les éléments de
-            <literal>x</literal> par blocs de taille <literal>sb</literal> selon le nombre dimension <literal>dim</literal> de
-            <literal>x</literal> (<literal>x</literal> et <literal>y</literal> ont la même taille)
+            <literal>flipdim(x, 1)</literal> inverse l'ordre des
+            <emphasis role="italic">lignes</emphasis> de la matrice ou hypermatrice
+            <varname>x</varname>.
         </para>
         <para>
-            Le paramètre optionnel <literal>sb</literal> (pour Size Block) permet de retounerles éléments de <literal>x</literal>
-            par blocs de taille <literal>sb*size(x,2)</literal> (<literal>dim=1</literal>)
-            ou <literal>size(x,1)*sb</literal> (<literal>dim=2</literal>).
+            <literal>flipdim(x, 2)</literal> inverse l'ordre des
+            <emphasis role="italic">colonnes</emphasis> de <varname>x</varname>.
+        </para>
+        <para>
+            <literal>flipdim(x, 3)</literal> inverse l'ordre des
+            <emphasis role="italic">pages</emphasis> de l'hypermatrice
+            <varname>x</varname>. etc.
+        </para>
+        <para>
+            Le paramètre optionnel <literal>blockSize</literal> permet d'inverser l'ordre des
+            <literal>size(x,1)/blockSize</literal> blocs de <varname>blockSize</varname>
+            lignes de <varname>x</varname> (<literal>dim=1</literal>), ou des
+            <literal>size(x,2)/blockSize</literal> blocs de <varname>blockSize</varname>
+            colonnes (<literal>dim=2</literal>), etc (<literal>dim>2</literal>).
+            À l'intérieur de chaque bloc, l'ordre des éléments (lignes, colonnes, etc) n'est pas modifié.
         </para>
     </refsection>
     <refsection role="examples">
@@ -110,7 +134,7 @@ r = n./d
 flipdim(r, 2)
  ]]></programlisting>
         <para>
-            Exemples utilisant <literal>sb</literal> :
+            Exemples utilisant <literal>blockSize</literal> :
         </para>
         <programlisting role="example"><![CDATA[
 X = [0 1 2 3 4 5 6 7 8 9 10 11];
@@ -119,9 +143,85 @@ flipdim(X, 2, 3) // => [9 10 11   6 7 8   3 4 5   0 1 2]
 flipdim(X, 2, 4) // => [8 9 10 11   4 5 6 7   0 1 2 3]
 flipdim(X, 2, 6) // => [6 7 8 9 10 11   0 1 2 3 4 5]
 
-// Erreur si sb ne divise pas la dimension ciblée de x.
-y = flipdim(x, 2, 5); // size(X) = [1 12] et sb=5 ne divise pas 12.
+// Erreur si la valeur de blockSize n'est pas sous-multiple de la dimension ciblée de x.
+y = flipdim(x, 2, 5); // size(X) = [1 12] et blockSize=5 ne divise pas 12.
  ]]></programlisting>
+    <para>Exemple de résultats :</para>
+    <screen><![CDATA[
+--> x
+ x  =
+ -5 -2  0  9
+  0 -7 -6  9
+ -1 -8 -7  8
+
+--> flipdim(x, 1)
+ ans  =
+ -1 -8 -7  8
+  0 -7 -6  9
+ -5 -2  0  9
+
+--> flipdim(x, 2)
+ ans  =
+  9  0 -2 -5
+  9 -6 -7  0
+  8 -7 -8 -1
+]]></screen>
+    <para></para>
+    <screen><![CDATA[
+--> x
+ x  =
+(:,:,1)
+  9  4 -3
+ -4 -8 -3
+
+(:,:,2)
+  5  8  9
+  4  4  9
+
+--> flipdim(x, 3)
+ ans  =
+(:,:,1)
+  5  8  9
+  4  4  9
+
+(:,:,2)
+  9  4 -3
+ -4 -8 -3
+]]></screen>
+    <para></para>
+    <screen><![CDATA[
+--> x
+ x  =
+ -2  3 -5  9 -4 -8
+  2  8  4 -9  6 -6
+ -9  8  3  4 -3  4
+
+--> flipdim(x, 2, 2)
+ ans  =
+ -4 -8 -5  9 -2  3
+  6 -6  4 -9  2  8
+ -3  4  3  4 -9  8
+
+--> flipdim(x, 2, 3)
+ ans  =
+  9 -4 -8 -2  3 -5
+ -9  6 -6  2  8  4
+  4 -3  4 -9  8  3
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fftshift">fftshift</link>
+            </member>
+            <member>
+                <link linkend="ifftshift">ifftshift</link>
+            </member>
+            <member>
+                <link linkend="colon">colon</link>
+            </member>
+        </simplelist>
     </refsection>
     <refsection role="history">
         <title>History</title>
@@ -129,8 +229,16 @@ y = flipdim(x, 2, 5); // size(X) = [1 12] et sb=5 ne divise pas 12.
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
-                    Extension de décimaux à tout type : booléens, entiers, chaines de caractères, polynômes et fractions rationnelles.
-                    Nouveau paramètre optionnel <literal>sb</literal> pour retourner <literal>x</literal> par blocs.
+                  <itemizedlist>
+                    <listitem>
+                        Extension aux matrices et hypermatrices de booléens, entiers encodés, textes,
+                        polynômes, fractions rationnelles, identifiants graphiques, etc.
+                    </listitem>
+                    <listitem>
+                        Nouveau paramètre optionnel <literal>blockSize</literal> pour réordonner
+                        <literal>x</literal> par blocs.
+                    </listitem>
+                  </itemizedlist>
                 </revremark>
             </revision>
         </revhistory>
