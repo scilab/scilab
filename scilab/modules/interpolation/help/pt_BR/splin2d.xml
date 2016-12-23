@@ -61,8 +61,8 @@
             ,<emphasis>s</emphasis> é definido por
             :
         </para>
-        <programlisting role=""><![CDATA[ 
-             _4_   _4_                       
+        <programlisting role=""><![CDATA[
+             _4_   _4_
              \     \                   k-1       l-1
     s(x,y) = /     /    C (k,l) (x - xi)  (y - yj)
              ---   ---   ij
@@ -116,7 +116,7 @@
             casos, por exemplo para limitar oscilações (<emphasis role="bold">monotone</emphasis> é o mais poderoso para isso).
         </para>
         <para>Para obter coeficientes dos remendos bicúbicos de um modo mais
-            amigável você pode usar <literal>c = hypermat([4,4,nx-1,ny-1],C)</literal>
+            amigável você pode usar <literal>c = matrix(C, [4,4,nx-1,ny-1])</literal>
             então o coeficiente <emphasis>(k,l)</emphasis> do remendo
             <emphasis>(i,j)</emphasis> (ver equação aqui antes) é armazenado em
             <literal>c(k,l,i,j)</literal>. Não obstante, a função <link linkend="interp2d">interp2d</link> espera pelo vetor grande
@@ -127,7 +127,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // exemplo 1 : interpolação de cos(x)cos(y)
 n = 7;  // um grid regular com n x n pontos de interpolação
         // será usado
@@ -143,7 +143,7 @@ clf()
 plot3d(xx, yy, zz, flag=[2 4 4])
 [X,Y] = ndgrid(x,y);
 param3d1(X,Y,list(z,-9*ones(1,n)), flag=[0 0])
-str = msprintf(" com %d x %d pontos de interpolação. ermax = %g",n,n,emax) 
+str = msprintf(" com %d x %d pontos de interpolação. ermax = %g",n,n,emax)
 xtitle("Interpolação por spline de cos(x)cos(y)"+str)
 
 // exemplo 2 : diferentes funções de interpolação em dados aleatórios
@@ -179,7 +179,7 @@ a = 0; b = 1; c = 0.25; d = 0.75;
 // criando grid de interpolação
 n = 11;
 x = linspace(a,b,n);
-ind = find(c &lt;= x &amp; x &lt;= d); 
+ind = find(c &lt;= x &amp; x &lt;= d);
 z = zeros(n,n); z(ind,ind) = 1;  // um degrau dentro de um quadrado
 // criando grid de avaliação
 np = 220;

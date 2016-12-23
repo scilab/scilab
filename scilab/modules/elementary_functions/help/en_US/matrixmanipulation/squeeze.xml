@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -49,12 +49,12 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 	M1 = zeros(2,1,5)
 	squeeze(M1)
 	squeeze(M1(:,:,1))
-	
-	M2 = hypermat([2 1 2 1],1:4)
+
+	M2 = matrix(1:4, [2 1 2 1])
 	squeeze(M2)
 	]]></programlisting>
     </refsection>
@@ -62,7 +62,7 @@
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="hypermat">hypermat</link>
+                <link linkend="matrix">matrix</link>
             </member>
             <member>
                 <link linkend="hypermatrices">hypermatrices</link>

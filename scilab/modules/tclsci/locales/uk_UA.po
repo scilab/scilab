@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-13 19:17+0000\n"
+"PO-Revision-Date: 2016-02-12 11:15+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Error main TCL interpreter not initialized.\n"
@@ -194,29 +194,20 @@ msgstr "%s: помилкова кількість вхідних парамет�
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Модуль TCL/TK Scilab не встановлено.\n"
 
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 10
 msgid "Tcl/Tk"
-msgstr ""
+msgstr "Tcl/Tk"
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 12
 msgid "Color"
-msgstr ""
+msgstr "Колір"
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 13
 msgid "Puzzle"
-msgstr ""
+msgstr "Складанка"
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 14
 msgid "Scroll"
-msgstr ""
+msgstr "Гортання"
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 15
 msgid "Scale"
-msgstr ""
+msgstr "Масштаб"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"

@@ -112,8 +112,9 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
     }
 
     pos = mtell(*fd);
-    if (*err > 0)
+    if (pos < 0)
     {
+        *err = 2;
         goto ErrL;
     }
 
@@ -444,7 +445,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
     }
 
     cur_pos = mtell(*fd);
-    if (*err > 0)
+    if (cur_pos < 0)
     {
         goto Err2;
     }

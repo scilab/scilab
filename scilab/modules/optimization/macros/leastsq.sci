@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [f,x,g]=leastsq(imp,fun,varargin)
+function [f,x,g]=leastsq(iprint,fun,varargin)
 
     //                                                        n     p
     //   min sum (fun(x).^2)    where fun is a function from R  to R
@@ -18,10 +18,10 @@ function [f,x,g]=leastsq(imp,fun,varargin)
     //
     // [f]=fun(x) computes the value f of the function at the point x
     // and the gradient g of f at x g(i,j)=Dfi/dxj
-    if type(imp)<>1 then
+    if type(iprint)<>1 then
         varargin(0)=fun
-        fun=imp
-        imp=0
+        fun=iprint
+        iprint=0
     end
 
     if type(fun)==15 then
@@ -101,6 +101,6 @@ function [f,x,g]=leastsq(imp,fun,varargin)
         "g=2*(gf''*ff(:))"])
     end
 
-    [f,x,g]=optim(%opt,varargin(:),imp=imp)
+    [f,x,g]=optim(%opt,varargin(:),iprint=iprint)
 endfunction
 

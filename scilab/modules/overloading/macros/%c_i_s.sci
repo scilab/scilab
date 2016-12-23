@@ -46,9 +46,6 @@ function M=%c_i_s(varargin)
         end
 
     elseif rhs>4 then //more than 2 indices: insertion of a string in an empty matrix
-        M=varargin($)
-        M=mlist(["hm","dims","entries"],int32(size(M)),M(:))
-        varargin($)=M;
         M=generic_i_hm("",varargin(:))
     else //should not occur (hard coded case)
         M=var

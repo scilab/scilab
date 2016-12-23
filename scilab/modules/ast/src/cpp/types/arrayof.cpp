@@ -1001,13 +1001,15 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 
         //std::cout << start << ":" << step << ":" << end << std::endl;
         int size = static_cast<int>((end - start) / step + 1);
+
         if (size <= 0 || m_iSize == 0)
         {
             return createEmpty();
         }
 
-        if (step > 0 && (size - 1) * step + start > m_iSize ||
-                step < 0 && start > m_iSize)
+        //check bounds
+        if (step > 0 && ((size - 1) * step + start > m_iSize || start < 1) ||
+                (step < 0 && (start > m_iSize || end < 1)))
         {
             return NULL;
         }
@@ -1675,7 +1677,7 @@ bool ArrayOf<T>::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCou
         if (!_out)
         {
             std::wostringstream os;
-            os << _W("Invalid index.") << std::endl;
+            os << _W("Invalid index.\n");
             throw ast::InternalError(os.str(), 999, e.getLocation());
         }
         out.push_back(_out);

@@ -2,7 +2,7 @@
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002 - INRIA
-    * 
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -106,7 +106,7 @@
                 <revnumber>5.4.0</revnumber>
                 <revdescription>
                     <itemizedlist>
-                        <listitem>lines はデフォルトで 0に設定されます. 
+                        <listitem>lines はデフォルトで 0に設定されます.
                             引数 -1 が追加されます.
                             詳細については, SEP #67 を参照ください.
                         </listitem>

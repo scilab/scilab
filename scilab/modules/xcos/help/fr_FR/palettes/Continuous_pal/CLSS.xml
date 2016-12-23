@@ -95,7 +95,7 @@
         <para>
             <latex>
                 \begin{matrix}
-                \dot{x} = A \cdot x + B \cdot u \\ 
+                \dot{x} = A \cdot x + B \cdot u \\
                 y = C \cdot x + D \cdot u
                 \end{matrix}
             </latex>
@@ -259,7 +259,7 @@
         <para>
             <latex><![CDATA[
 \begin{matrix}
-i = i_L = i_C = C \frac{\mathrm{d} v_C }{\mathrm{d} t} \\ 
+i = i_L = i_C = C \frac{\mathrm{d} v_C }{\mathrm{d} t} \\
 Ri_L + L \frac{\mathrm{d} i_L }{\mathrm{d} t} + v_C = u_0(t)
 \end{matrix}
       ]]></latex>
@@ -304,7 +304,7 @@ then
 \begin{bmatrix}\dot{x_1}\\\dot{x_2}\end{bmatrix}
 =
 \begin{bmatrix}
--\frac{R}{L} & -\frac{1}{L}\\ 
+-\frac{R}{L} & -\frac{1}{L}\\
 -\frac{1}{C} & 0
 \end{bmatrix}
 \begin{bmatrix}x_1\\x_2\end{bmatrix}

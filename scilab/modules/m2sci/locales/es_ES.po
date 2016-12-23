@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 msgid "Input file"
 msgstr "Archivo de entrada"
@@ -32,18 +32,12 @@ msgstr "Seleccione el archivo a convertir"
 msgid "Select the directory for generated files"
 msgstr "Seleccione el directorio para los archivos generados"
 
-#
-# File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 138
 msgid "Please specify an existing output directory."
 msgstr ""
 
-#
-# File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 165
 msgid "Please specify an existing input file."
 msgstr ""
 
-#
-# File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 174
 msgid "Please specify an existing input directory."
 msgstr ""
 

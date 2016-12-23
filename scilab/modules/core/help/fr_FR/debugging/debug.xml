@@ -13,13 +13,13 @@
     <refsection>
         <title>Description</title>
         <para>
-        Cet environnement sert a débogger un cript Scilab.
-        Après l'appel a <literal>debug()</literal>, vous entrez en mode debug.
-        Ce mode vous permet de manipuler des points d'arrêts,
-        de lancer des exécutions avec arrêt sur erreur,
-        d'exécuter des scripts en mode pas à pas ...
+            Cet environnement sert a débogger un cript Scilab.
+            Après l'appel a <literal>debug()</literal>, vous entrez en mode debug.
+            Ce mode vous permet de manipuler des points d'arrêts,
+            de lancer des exécutions avec arrêt sur erreur,
+            d'exécuter des scripts en mode pas à pas ...
 
-        Une fois que ce mode est actif, l'invite devient <literal>debug> </literal>.
+            Une fois que ce mode est actif, l'invite devient <literal>debug> </literal>.
         </para>
         <term>Commandes: </term>
         <listitem>
@@ -48,7 +48,9 @@
                 <varlistentry>
                     <term>(d)isp var: </term>
                     <term>(p)rint var: </term>
-                    <para>Affiche la variable <literal>var</literal>.</para>
+                    <para>
+                        Affiche la variable <literal>var</literal>.
+                    </para>
                 </varlistentry>
                 <varlistentry>
                     <term>(c)ontinue: </term>
@@ -73,8 +75,12 @@
                 <varlistentry>
                     <term>(b)reakpoint or break: </term>
                     <synopsis>breakpoint function [line [condition]]</synopsis>
-                    <para>Ajoute un point d'arrêt dans une fonction a une ligne <literal>line</literal></para>
-                    <para>Si une condition est spécifiée, le point d'arrêt ne devient active que si la condition est <literal>%t</literal></para>
+                    <para>
+                        Ajoute un point d'arrêt dans une fonction a une ligne <literal>line</literal>
+                    </para>
+                    <para>
+                        Si une condition est spécifiée, le point d'arrêt ne devient active que si la condition est <literal>%t</literal>
+                    </para>
                 </varlistentry>
                 <varlistentry>
                     <term>(del)ete [n]: </term>
@@ -141,7 +147,7 @@ continue
 quit
  ]]></programlisting>
     </refsection>
-    
+
     <refsection>
         <title>History</title>
         <revhistory>

@@ -36,7 +36,6 @@ POLYNOMIALS_FORTRAN_SOURCES = \
     src/fortran/fxshfr.f \
     src/fortran/mpdiag.f \
     src/fortran/dmpcle.f \
-    src/fortran/rpoly.f \
     src/fortran/wpodiv.f \
     src/fortran/wdmpmu.f \
     src/fortran/wmptra.f \
@@ -60,6 +59,12 @@ POLYNOMIALS_FORTRAN_SOURCES = \
     src/fortran/calcsc.f \
     src/fortran/writebufsfact.f \
     src/fortran/chkvar.f
+
+POLYNOMIALS_CXX_SOURCES = \
+    src/cpp/rpoly.cpp \
+    src/cpp/find_polynomial_roots_jenkins_traub.cc \
+    src/cpp/polynomial.cc
+
 
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/polynomials_gw.cpp \
@@ -93,6 +98,7 @@ libscipolynomials_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/string/includes \
     -I$(top_srcdir)/modules/console/includes \
     -I$(top_srcdir)/modules/elementary_functions/includes/ \
+    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
@@ -104,7 +110,7 @@ endif
 
 
 
-libscipolynomials_algo_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES)
+libscipolynomials_algo_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(POLYNOMIALS_CXX_SOURCES)
 libscipolynomials_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscipolynomials_algo_la_CPPFLAGS = $(libscipolynomials_la_CPPFLAGS)
 

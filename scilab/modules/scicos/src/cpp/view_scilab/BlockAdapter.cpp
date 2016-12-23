@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -52,8 +52,7 @@ struct graphics
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         GraphicsAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()));
-        types::InternalType* v = localAdaptor.getAsTList(new types::MList(), controller);
-        return v;
+        return localAdaptor.getAsTList(new types::MList(), controller);
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
@@ -67,116 +66,14 @@ struct model
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        // If we are in a Superblock (has children) then reconstruct a DiagramAdapter, referencing the children
-        DiagramAdapter* subDiagram = nullptr;
-        std::vector<ScicosID> children;
-        controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, children);
-        if (!children.empty())
-        {
-            if (adaptor.getListObjects()->getSize() > 0)
-            {
-                Controller neededController = const_cast<Controller&>(controller);
-                ScicosID newDiag = neededController.createObject(DIAGRAM);
-                subDiagram = new DiagramAdapter(controller, static_cast<org_scilab_modules_scicos::model::Diagram*>(controller.getObject(newDiag)));
-                neededController.setObjectProperty(newDiag, DIAGRAM, CHILDREN, children);
-
-                for (const ScicosID id : children)
-                {
-                    if (id == ScicosID())
-                    {
-                        // Deleted object
-                    }
-                    else
-                    {
-                        auto o = controller.getObject(id);
-                        neededController.setObjectProperty(o->id(), o->kind(), PARENT_DIAGRAM, newDiag);
-                        neededController.referenceObject(o->id());
-                    }
-                }
-                subDiagram->setFrom(adaptor.getFrom());
-                subDiagram->setTo(adaptor.getTo());
-                subDiagram->setListObjects(adaptor.getListObjects());
-                subDiagram->setContribContent(adaptor.getContribContent());
-
-                std::vector<std::string> context;
-                controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, DIAGRAM_CONTEXT, context);
-                neededController.setObjectProperty(newDiag, DIAGRAM, DIAGRAM_CONTEXT, context);
-            }
-            else
-            {
-                // The children adapters list has not been set yet. Create it, update the adapter and return.
-                types::List* listObjects = new types::List();
-                std::vector<link_t> from;
-                std::vector<link_t> to;
-                for (const ScicosID id : children)
-                {
-                    if (id == ScicosID())
-                    {
-                        // Deleted object
-                    }
-                    else
-                    {
-                        auto o = controller.getObject(id);
-                        controller.referenceObject(o);
-
-                        switch (o->kind())
-                        {
-                            case ANNOTATION :
-                                listObjects->append(new TextAdapter(controller, static_cast<org_scilab_modules_scicos::model::Annotation*>(o)));
-                                break;
-                            case BLOCK :
-                            {
-                                BlockAdapter* block = new BlockAdapter(controller, static_cast<org_scilab_modules_scicos::model::Block*>(o));
-                                listObjects->append(block);
-                                break;
-                            }
-                            default : // LINK
-                                LinkAdapter* link = new LinkAdapter(controller, static_cast<org_scilab_modules_scicos::model::Link*>(o));
-                                from.push_back(link->getFrom());
-                                to.push_back(link->getTo());
-                                listObjects->append(link);
-                                break;
-                        }
-                    }
-                }
-                const_cast<BlockAdapter&>(adaptor).setFrom(from);
-                const_cast<BlockAdapter&>(adaptor).setTo(to);
-                const_cast<BlockAdapter&>(adaptor).setListObjects(listObjects);
-                return nullptr;
-            }
-        }
-
-        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()), subDiagram);
-        types::InternalType* mlist = localAdaptor.getAsTList(new types::MList(), controller)->getAs<types::MList>();
-
-        if (localAdaptor.getDiagram() != nullptr)
-        {
-            // To handle the copy constructor case calling model::set
-            const_cast<BlockAdapter&>(adaptor).setFrom(localAdaptor.getDiagram()->getFrom());
-            const_cast<BlockAdapter&>(adaptor).setTo(localAdaptor.getDiagram()->getTo());
-            const_cast<BlockAdapter&>(adaptor).setListObjects(localAdaptor.getDiagram()->getListObjects());
-            const_cast<BlockAdapter&>(adaptor).setContribContent(localAdaptor.getDiagram()->getContribContent());
-        }
-
-        return mlist;
+        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()));
+        return localAdaptor.getAsTList(new types::MList(), controller);
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()), nullptr);
-        if (!localAdaptor.setAsTList(v, controller))
-        {
-            return false;
-        }
-
-        if (localAdaptor.getDiagram() != nullptr)
-        {
-            adaptor.setFrom(localAdaptor.getDiagram()->getFrom());
-            adaptor.setTo(localAdaptor.getDiagram()->getTo());
-            adaptor.setListObjects(localAdaptor.getDiagram()->getListObjects());
-            adaptor.setContribContent(localAdaptor.getDiagram()->getContribContent());
-        }
-        return true;
+        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()));
+        return localAdaptor.setAsTList(v, controller);
     }
 };
 
@@ -229,17 +126,56 @@ struct doc
     }
 };
 
+link_indices_t getPortEnd(const Controller& controller, org_scilab_modules_scicos::model::Block* adaptee, portKind port)
+{
+    ScicosID parent;
+    kind_t parentKind = BLOCK;
+    controller.getObjectProperty(adaptee->id(), adaptee->kind(), PARENT_BLOCK, parent);
+    if (parent == ScicosID())
+    {
+        parentKind = DIAGRAM;
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), PARENT_DIAGRAM, parent);
+    }
+
+    // early return if this block is out of a hierarchy
+    if (parent == ScicosID())
+    {
+        return link_indices_t();
+    }
+
+    std::vector<ScicosID> children;
+    controller.getObjectProperty(parent, parentKind, CHILDREN, children);
+
+    std::vector<ScicosID> ports;
+    controller.getObjectProperty(parent, parentKind, property_from_port(port), children);
+
+    // store the index of the connected signal, 0 if absent
+    link_indices_t portIndices(ports.size());
+    for (size_t i = 0; i < ports.size(); ++i)
+    {
+        ScicosID signal;
+        controller.getObjectProperty(ports[i], PORT, CONNECTED_SIGNALS, signal);
+
+        if (signal != ScicosID())
+        {
+            auto it = std::find(children.begin(), children.end(), signal);
+            if (it != children.end())
+            {
+                portIndices[i] = (int)std::distance(children.begin(), it);
+            }
+        }
+    }
+
+    return portIndices;
+};
+
 } /* namespace */
 
 template<> property<BlockAdapter>::props_t property<BlockAdapter>::fields = property<BlockAdapter>::props_t();
 
 BlockAdapter::BlockAdapter(const Controller& c, org_scilab_modules_scicos::model::Block* adaptee) :
     BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(c, adaptee),
-    doc_content(nullptr),
-    from_vec(),
-    to_vec(),
-    list_objects(nullptr),
-    contrib_content(nullptr)
+    doc_content(default_value<types::List>())
 {
     if (property<BlockAdapter>::properties_have_not_been_set())
     {
@@ -249,60 +185,22 @@ BlockAdapter::BlockAdapter(const Controller& c, org_scilab_modules_scicos::model
         property<BlockAdapter>::add_property(L"gui", &gui::get, &gui::set);
         property<BlockAdapter>::add_property(L"doc", &doc::get, &doc::set);
     }
-
-    setListObjects(new types::List());
-    setContribContent(new types::List());
-    setDocContent(new types::List());
-
-    // model::get will set the adapter's content (listObjects, from_vec & to_vec) if needed
-    Controller controller;
-    model::get(*this, controller);
-
 }
 
 BlockAdapter::BlockAdapter(const BlockAdapter& adapter) :
-    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(adapter, false),
-    doc_content(nullptr),
-    from_vec(),
-    to_vec(),
-    list_objects(nullptr),
-    contrib_content(nullptr)
+    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(adapter),
+    doc_content(reference_value(adapter.doc_content))
 {
     Controller controller;
-
-    if (adapter.getListObjects()->getSize() > 0)
-    {
-        types::InternalType* model = model::get(adapter, controller);
-        model::set(*this, model, controller);
-        model->killMe();
-    }
-    else
-    {
-        setListObjects(new types::List());
-        setContribContent(new types::List());
-    }
-
-    setDocContent(adapter.getDocContent());
+    GraphicsAdapter::add_partial_links_information(controller, adapter.getAdaptee(), getAdaptee());
 }
 
 BlockAdapter::~BlockAdapter()
 {
-    // CHILDREN will be unreferenced on Controller::deleteObject
-
-    if (list_objects != nullptr)
-    {
-        list_objects->DecreaseRef();
-        list_objects->killMe();
-    }
-
-    if (contrib_content != nullptr)
-    {
-        contrib_content->DecreaseRef();
-        contrib_content->killMe();
-    }
-
     doc_content->DecreaseRef();
     doc_content->killMe();
+
+    GraphicsAdapter::remove_partial_links_information(getAdaptee());
 }
 
 std::wstring BlockAdapter::getTypeStr()
@@ -324,74 +222,12 @@ void BlockAdapter::setDocContent(types::InternalType* v)
 {
     types::InternalType* temp = doc_content;
 
+    // Do not check if v is nullptr on purpose ; it *should* not
     v->IncreaseRef();
     doc_content = v;
 
-    if (temp != nullptr)
-    {
-        temp->DecreaseRef();
-        temp->killMe();
-    }
-}
-
-std::vector<link_t> BlockAdapter::getFrom() const
-{
-    return from_vec;
-}
-
-void BlockAdapter::setFrom(const std::vector<link_t>& from)
-{
-    from_vec = from;
-}
-
-std::vector<link_t> BlockAdapter::getTo() const
-{
-    return to_vec;
-}
-
-void BlockAdapter::setTo(const std::vector<link_t>& to)
-{
-    to_vec = to;
-}
-
-types::List* BlockAdapter::getListObjects() const
-{
-    return list_objects;
-}
-
-void BlockAdapter::setListObjects(types::List* v)
-{
-    types::InternalType* temp = list_objects;
-
-    // Do not check if v is nullptr on purpose ; it *should* not
-    v->IncreaseRef();
-    list_objects = v;
-
-    if (temp != nullptr)
-    {
-        temp->DecreaseRef();
-        temp->killMe();
-    }
-}
-
-types::InternalType* BlockAdapter::getContribContent() const
-{
-    return contrib_content;
-}
-
-void BlockAdapter::setContribContent(types::InternalType* v)
-{
-    types::InternalType* temp = contrib_content;
-
-    // do not check if v is nullptr on purpose ; it *should* not
-    v->IncreaseRef();
-    contrib_content = v;
-
-    if (temp != nullptr)
-    {
-        temp->DecreaseRef();
-        temp->killMe();
-    }
+    temp->DecreaseRef();
+    temp->killMe();
 }
 
 } /* namespace view_scilab */

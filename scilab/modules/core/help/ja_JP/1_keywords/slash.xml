@@ -14,7 +14,7 @@
             <code>B/A=(A'\B')'</code>.
         </para>
         <para>
-            <literal>A</literal>が正方の場合, 
+            <literal>A</literal>が正方の場合,
             <literal>X</literal> の解はLU分解または線形最小二乗ソルバにより求められます.
             <literal>A</literal>の条件数が <code>1/(10*%eps)</code>以下の場合(すなわち<literal>A</literal>
             の条件が良い場合), ピボット選択付きLU分解が使用されます.
@@ -27,12 +27,12 @@
             <code>A./B</code> は要素毎の右除算, すなわち,
             エントリ<literal>A(i,j)/B(i,j)</literal>を有する行列となります.
             <literal>B</literal> がスカラー (1x1 行列)の場合,この演算は
-            <code>A./B*ones(A)</code>と同じになります. 
+            <code>A./B*ones(A)</code>と同じになります.
             <literal>A</literal>がスカラーの場合も同様です.
         </para>
         <para>
             <note>
-                <code>123./B</code> は <code>(123.)/B</code>と解釈されることに注意してください. 
+                <code>123./B</code> は <code>(123.)/B</code>と解釈されることに注意してください.
                 この場合,ドットは演算子ではなく数値の一部となります.
             </note>
         </para>

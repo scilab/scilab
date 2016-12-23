@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -26,16 +26,21 @@
 #include "model/Link.hxx"
 #include "model/Port.hxx"
 
+extern "C" {
+#include "sci_types.h"
+}
+
 namespace org_scilab_modules_scicos
 {
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v)  const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, double& v)  const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -84,13 +89,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, dou
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, int& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -154,13 +160,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, bool& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -209,13 +216,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, boo
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, std::string& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -328,13 +336,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, ScicosID& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -415,13 +424,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<double>& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, std::vector<double>& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -506,13 +516,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<int>& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, std::vector<int>& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -581,13 +592,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<bool>& /*v*/) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, std::vector<bool>& /*v*/) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -632,13 +644,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<std::string>& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, std::vector<std::string>& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {
@@ -691,13 +704,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<ScicosID>& v) const
+bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, std::vector<ScicosID>& v) const
 {
-    model::BaseObject* baseObject = getObject(uid);
+    model::BaseObject* baseObject = object;
     if (baseObject == nullptr)
     {
         return false;
     }
+    kind_t k = object->kind();
 
     if (k == ANNOTATION)
     {

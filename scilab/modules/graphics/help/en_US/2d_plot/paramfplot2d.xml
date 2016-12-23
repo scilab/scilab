@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -83,17 +83,17 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff('y=f(x,t)','y=t*sin(x)')
 x=linspace(0,2*%pi,50);
 theta=0:0.05:1;
 clf;paramfplot2d(f,x,theta);
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function V=twosoliton(x,t)
   a1=6;s1=2;v1=a1^2;
   a2=4;s2=40;v2=a2^2;
-  
+
   f1=exp(-a1*(x-s1-v1*t));
   f2=exp(-a2*(x-s2-v2*t));
   r=((a2-1)/(a2+a1))^2;

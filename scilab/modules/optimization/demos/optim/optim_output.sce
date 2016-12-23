@@ -38,7 +38,7 @@ function demo_optim_output()
 
     endfunction
 
-    [f, xopt] = optim(cost, x0, imp=-1)
+    [f, xopt] = optim(cost, x0, iprint=-1)
     //
     // Load this script into the editor
     //

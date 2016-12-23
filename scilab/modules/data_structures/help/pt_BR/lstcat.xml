@@ -50,7 +50,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 lstcat(list(1,2,3),33,list('foo',%s))
 lstcat(1,2,3)
  ]]></programlisting>

@@ -736,7 +736,11 @@ function status = test_single(_module, _testPath, _testName)
     "       bugmes()" ;
     "   end" ;
     "   quit;" ;
-    "endfunction" ;
+    "endfunction"];
+    if ~interactive then
+        head($+1) = "function []=messagebox(msg, msg_title, info), disp(''messagebox: '' + msg);endfunction";
+    end
+    head = [ head ;
     "predef(''all'');";
     "tmpdirToPrint = msprintf(''TMPDIR1=''''%s'''';//\n'',TMPDIR);"
     ];
@@ -880,6 +884,15 @@ function status = test_single(_module, _testPath, _testName)
     if (returnStatus <> 0)
         status.id = 5;
         status.message = "failed: Slave Scilab exited with error code " + string(returnStatus);
+        if params.show_error then
+            tmp = mgetl(tmp_res)
+            tmp(tmp=="") = []
+            status.details = "   " + strsubst(..
+                [""
+                 "----- " + tmp_res + ": 10 last lines: -----"
+                 tmp(max(1,size(tmp,1)-9):$)
+                 ], TMPDIR, "TMPDIR")
+        end
         return;
     end
 
@@ -917,17 +930,13 @@ function status = test_single(_module, _testPath, _testName)
                 // libraries
 
                 if ~isempty(txt) then
-                    toRemove = grep(txt, "libEGL warning: failed to find any driver");
+                    // MESA / EGL display some warning on stderr
+                    toRemove = grep(txt, "libEGL warning:");
                     txt(toRemove) = [];
                 end
 
                 if ~isempty(txt) then
                     toRemove = grep(txt, "extension ""RANDR"" missing on display");
-                    txt(toRemove) = [];
-                end
-
-                if ~isempty(txt) then
-                    toRemove = grep(txt, "libEGL warning: DRI2: failed to authenticate");
                     txt(toRemove) = [];
                 end
 
@@ -1005,7 +1014,6 @@ function status = test_single(_module, _testPath, _testName)
         if params.show_error == %t then
             status.details = [ status.details; dia($-10:$) ]
         end
-
         return;
     end
 
@@ -1075,7 +1083,8 @@ function status = test_single(_module, _testPath, _testName)
 
     // Comparaison ref <--> dia
 
-    if ( (reference=="check") & (_module.reference=="check") ) | (_module.reference=="create") then
+    if   (reference=="check" & _module.reference=="check") | ..
+         (reference ~= "skip" & _module.reference=="create") then
         //  Do some modification in  dia file
 
         dia(grep(dia, "printf(''%s\n'',tmpdirToPrint);")) = [];

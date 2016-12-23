@@ -211,13 +211,20 @@ int sci_zoom_rect(char *fname, void *pvApiCtx)
 
                 getGraphicObjectProperty(iFigureUID, __GO_CHILDREN__, jni_int_vector, (void **)&piChildrenUID);
 
-                for (i = 0; i < childrencount[0]; ++i)
+                if (childrencount && piChildrenUID)
                 {
-                    getGraphicObjectProperty(piChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
-                    if (iHidden == 0)
+                    for (i = 0; i < childrencount[0]; ++i)
                     {
-                        status = sciZoom2D(piChildrenUID[i], rect);
+                        getGraphicObjectProperty(piChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
+                        if (iHidden == 0)
+                        {
+                            status = sciZoom2D(piChildrenUID[i], rect);
+                        }
                     }
+                }
+                else
+                {
+                    status = SET_PROPERTY_ERROR;
                 }
                 if (status == SET_PROPERTY_ERROR)
                 {

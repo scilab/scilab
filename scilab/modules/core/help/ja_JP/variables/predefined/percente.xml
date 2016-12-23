@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -28,7 +28,7 @@
             <literal>%e</literal> はオイラー数, つまり, 方程式 <latex>\[ln(x) = 1\]</latex>の解です.
         </para>
         <para>
-            この数は以下の式により得られます 
+            この数は以下の式により得られます
             <latex>
                 \sum_{n=0}^{\infty} \frac1{n!} = e
             </latex>
@@ -38,7 +38,7 @@
     <refsection>
         <title>例</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
         %e
         log(%e)
         ]]>

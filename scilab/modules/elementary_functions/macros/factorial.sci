@@ -22,7 +22,7 @@ function y=factorial(n)
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"factorial",1));
     end
 
-    if (type(n) <> 1 & (typeof(n)<>"hypermat" | type(n.entries)<>1)) | (~isempty(n) & (or((n-floor(n)<>0)) | or(n<0))) then
+    if (type(n) <> 1) | (~isempty(n) & (or((n-floor(n)<>0)) | or(n<0))) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of positive integers expected.\n"),"factorial",1));
     elseif isempty(n)
         y=n

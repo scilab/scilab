@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -42,11 +42,11 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xfarc</literal> fills a part of an ellipse contained in the rectangle 
+            <literal>xfarc</literal> fills a part of an ellipse contained in the rectangle
             <literal>(x,y,w,h)</literal>
-            (upper-left point, width, height), and in the sector defined by 
-            the angle <literal>alpha1</literal> and the angle <literal>alpha1+alpha2</literal>. 
-            <literal>alpha1</literal> and <literal>alpha2</literal> are 
+            (upper-left point, width, height), and in the sector defined by
+            the angle <literal>alpha1</literal> and the angle <literal>alpha1+alpha2</literal>.
+            <literal>alpha1</literal> and <literal>alpha2</literal> are
             given respectively by <literal>a1/64</literal> degrees and <literal>a2/64</literal> degrees.
             This function uses the current color and user coordinates.
         </para>
@@ -54,15 +54,15 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// isoview scaling 
+        <programlisting role="example"><![CDATA[
+// isoview scaling
 plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
 xfarc(-0.5,0.5,1,1,0,90*64)
 xset("color",2)
 xfarc(0.5,0.5,1,1,0,360*64)
  ]]></programlisting>
         <scilab:image>
-            // isoview scaling 
+            // isoview scaling
             plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
             xfarc(-0.5,0.5,1,1,0,90*64)
             xset("color",2)

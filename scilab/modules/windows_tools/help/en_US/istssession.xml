@@ -25,13 +25,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            tf =istssession() returns boolean (%t) if scilab is launched from a ms 
+            tf =istssession() returns boolean (%t) if scilab is launched from a ms
             terminal service session and boolean (%f) otherwise.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 if getos() == 'Windows' then
   if istssession() then
     disp('Scilab from a ms terminal service session.');

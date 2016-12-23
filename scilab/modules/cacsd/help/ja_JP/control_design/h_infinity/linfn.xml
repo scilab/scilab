@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - P. Gahinet
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -76,7 +76,7 @@
         </para>
         <para>
             <literal>freq</literal> は,
-            <literal>||G||</literal>,すなわち, <literal>||G (j om)|| = ||G||</literal> 
+            <literal>||G||</literal>,すなわち, <literal>||G (j om)|| = ||G||</literal>
             が到達した周波数のリストです.
         </para>
         <para>
@@ -105,11 +105,11 @@
             悪条件の場合に警告を出力します.
         </para>
         <para>
-            一般的な場合 (<literal>A</literal> が安定でも非安定でもない場合), 
+            一般的な場合 (<literal>A</literal> が安定でも非安定でもない場合),
             上界は事前に指定されません.
         </para>
         <para>
-            逆に <literal>A</literal> が安定または非安定の場合, 
+            逆に <literal>A</literal> が安定または非安定の場合,
             下界および上界は対応するリアプノフ解により計算されます.
         </para>
     </refsection>

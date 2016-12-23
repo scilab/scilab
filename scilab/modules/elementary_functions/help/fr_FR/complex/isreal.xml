@@ -31,7 +31,8 @@
                 <term>x</term>
                 <listitem>
                     <para>matrice de nombres réels ou complexes, ou de polynômes
-                    ou fractions rationnelles à coefficients réels ou complexes.</para>
+                        ou fractions rationnelles à coefficients réels ou complexes.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -80,7 +81,7 @@ isreal(p)
 
 // Fraction rationnelle à coefficients complexes :
 r = [ (%i-%s)/%s^2 %s/(2-%s)]
-isreal(r) 
+isreal(r)
 ]]></programlisting>
     </refsection>
     <refsection role="history">

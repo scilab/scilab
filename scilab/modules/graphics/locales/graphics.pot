@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-06-08 22:21+0100\n"
+"Revision-Date: 2016-12-07 16:04+0100\n"
 
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 83
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 221
@@ -30,16 +30,16 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_glue.c, line: 95
 # File: modules/graphics/sci_gateway/c/sci_glue.c, line: 170
 # File: modules/graphics/sci_gateway/c/sci_light.c, line: 155
-# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 69
-# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 124
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 154
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 256
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 283
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 305
-# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 137
-# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 237
-# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 264
-# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 286
+# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 68
+# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 123
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 158
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 260
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 287
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 309
+# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 142
+# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 242
+# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 269
+# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 291
 # File: modules/graphics/sci_gateway/c/sci_rubberbox.c, line: 154
 # File: modules/graphics/sci_gateway/c/sci_rubberbox.c, line: 165
 # File: modules/graphics/sci_gateway/c/sci_rubberbox.c, line: 180
@@ -56,7 +56,7 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_xclick.c, line: 130
 # File: modules/graphics/sci_gateway/c/sci_xclick.c, line: 146
 # File: modules/graphics/sci_gateway/c/sci_xclick.c, line: 162
-# File: modules/graphics/sci_gateway/c/sci_xclick.c, line: 179
+# File: modules/graphics/sci_gateway/c/sci_xclick.c, line: 175
 # File: modules/graphics/sci_gateway/c/sci_xfarcs.c, line: 119
 # File: modules/graphics/sci_gateway/c/sci_xfpolys.c, line: 191
 # File: modules/graphics/sci_gateway/c/sci_xgetmouse.c, line: 130
@@ -92,7 +92,7 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_get.c, line: 153
 # File: modules/graphics/sci_gateway/c/sci_glue.c, line: 78
 # File: modules/graphics/sci_gateway/c/sci_move.c, line: 97
-# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 103
+# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 102
 # File: modules/graphics/sci_gateway/c/sci_rotate_axes.c, line: 80
 # File: modules/graphics/sci_gateway/c/sci_show_window.c, line: 83
 # File: modules/graphics/sci_gateway/c/sci_swap_handles.c, line: 80
@@ -124,9 +124,9 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_xname.c, line: 58
 # File: modules/graphics/sci_gateway/c/sci_xpoly.c, line: 121
 # File: modules/graphics/sci_gateway/c/sci_xstring.c, line: 76
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 123
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 203
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 210
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 126
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 206
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 213
 # File: modules/graphics/sci_gateway/c/sci_xtitle.c, line: 149
 # File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 154
 # File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 162
@@ -146,8 +146,8 @@ msgstr ""
 
 #
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 153
-# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 78
-# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 133
+# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 77
+# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 132
 # File: modules/graphics/sci_gateway/c/sci_unzoom.c, line: 89
 # File: modules/graphics/sci_gateway/cpp/sci_winsid.cpp, line: 51
 # File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 297
@@ -158,10 +158,10 @@ msgstr ""
 # File: modules/graphics/src/c/FeC.c, line: 235
 # File: modules/graphics/src/c/Format.c, line: 868
 # File: modules/graphics/src/c/Format.c, line: 874
-# File: modules/graphics/src/c/Format.c, line: 1093
-# File: modules/graphics/src/c/Format.c, line: 1125
-# File: modules/graphics/src/c/Format.c, line: 1162
-# File: modules/graphics/src/c/Format.c, line: 1240
+# File: modules/graphics/src/c/Format.c, line: 1099
+# File: modules/graphics/src/c/Format.c, line: 1131
+# File: modules/graphics/src/c/Format.c, line: 1168
+# File: modules/graphics/src/c/Format.c, line: 1245
 # File: modules/graphics/src/c/Gray.c, line: 209
 # File: modules/graphics/src/c/Gray.c, line: 360
 # File: modules/graphics/src/c/Gray.c, line: 513
@@ -233,49 +233,49 @@ msgstr ""
 
 #
 # File: modules/graphics/sci_gateway/c/sci_StringBox.c, line: 70
-# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 109
-# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 126
-# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 143
-# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 160
+# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 110
+# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 127
+# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 144
+# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 161
 # File: modules/graphics/sci_gateway/c/sci_contour2di.c, line: 66
 # File: modules/graphics/sci_gateway/c/sci_contour2di.c, line: 90
 # File: modules/graphics/sci_gateway/c/sci_contour2di.c, line: 114
 # File: modules/graphics/sci_gateway/c/sci_contour2di.c, line: 158
-# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 104
-# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 121
-# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 146
-# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 171
+# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 106
+# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 123
+# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 148
+# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 173
 # File: modules/graphics/sci_gateway/c/sci_geom3d.c, line: 81
 # File: modules/graphics/sci_gateway/c/sci_geom3d.c, line: 98
 # File: modules/graphics/sci_gateway/c/sci_geom3d.c, line: 115
 # File: modules/graphics/sci_gateway/c/sci_get.c, line: 89
 # File: modules/graphics/sci_gateway/c/sci_get.c, line: 96
 # File: modules/graphics/sci_gateway/c/sci_get.c, line: 212
-# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 98
-# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 122
-# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 146
+# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 99
+# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 123
+# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 147
 # File: modules/graphics/sci_gateway/c/sci_move.c, line: 122
-# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 94
-# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 117
-# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 134
-# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 99
-# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 122
-# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 164
-# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 176
-# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 198
-# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 213
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 131
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 193
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 228
-# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 129
-# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 183
-# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 209
-# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 116
-# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 173
-# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 208
-# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 221
-# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 243
-# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 258
+# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 96
+# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 119
+# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 136
+# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 101
+# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 124
+# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 166
+# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 178
+# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 200
+# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 215
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 135
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 197
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 232
+# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 134
+# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 188
+# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 214
+# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 118
+# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 175
+# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 210
+# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 223
+# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 245
+# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 260
 # File: modules/graphics/sci_gateway/c/sci_rubberbox.c, line: 63
 # File: modules/graphics/sci_gateway/c/sci_show_window.c, line: 119
 # File: modules/graphics/sci_gateway/c/sci_xarc.c, line: 75
@@ -332,10 +332,10 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_xstring.c, line: 119
 # File: modules/graphics/sci_gateway/c/sci_xstring.c, line: 165
 # File: modules/graphics/sci_gateway/c/sci_xstring.c, line: 194
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 76
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 101
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 148
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 175
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 79
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 104
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 151
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 178
 # File: modules/graphics/sci_gateway/c/sci_xtitle.c, line: 100
 # File: modules/graphics/sci_gateway/c/sci_zoom_rect.c, line: 75
 # File: modules/graphics/sci_gateway/cpp/sci_contour2dm.cpp, line: 49
@@ -382,7 +382,7 @@ msgstr ""
 
 #
 # File: modules/graphics/sci_gateway/c/sci_StringBox.c, line: 148
-# File: modules/graphics/sci_gateway/c/sci_delete.c, line: 241
+# File: modules/graphics/sci_gateway/c/sci_delete.c, line: 244
 #, c-format
 msgid "%s: The handle is not valid.\n"
 msgstr ""
@@ -412,29 +412,29 @@ msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 93
-# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 88
-# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 82
-# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 78
-# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 83
-# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 113
-# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 164
-# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 100
+# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 94
+# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 90
+# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 83
+# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 80
+# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 85
+# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 118
+# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 169
+# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 102
 #, c-format
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 168
-# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 353
-# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 386
-# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 129
+# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 169
+# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 361
+# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 394
+# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 131
 # File: modules/graphics/sci_gateway/c/sci_geom3d.c, line: 123
 # File: modules/graphics/sci_gateway/c/sci_geom3d.c, line: 130
-# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 142
-# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 149
-# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 142
-# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 238
+# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 144
+# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 151
+# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 144
+# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 240
 # File: modules/graphics/sci_gateway/c/sci_xarrows.c, line: 90
 # File: modules/graphics/sci_gateway/c/sci_xchange.c, line: 115
 # File: modules/graphics/sci_gateway/c/sci_xchange.c, line: 195
@@ -452,14 +452,14 @@ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 175
-# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 182
+# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 176
+# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 183
 # File: modules/graphics/sci_gateway/c/sci_contour2di.c, line: 134
 # File: modules/graphics/sci_gateway/c/sci_contour2di.c, line: 141
-# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 161
-# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 168
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 245
-# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 225
+# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 162
+# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 169
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 249
+# File: modules/graphics/sci_gateway/c/sci_plot2d1.c, line: 230
 # File: modules/graphics/sci_gateway/c/sci_xfpolys.c, line: 176
 # File: modules/graphics/sci_gateway/c/sci_xpolys.c, line: 151
 #, c-format
@@ -467,20 +467,35 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_color.c, line: 65
+# File: modules/graphics/sci_gateway/c/sci_color.c, line: 62
+# File: modules/graphics/sci_gateway/c/sci_name2rgb.c, line: 56
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 73
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 81
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 80
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 88
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 129
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 136
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 153
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 160
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/sci_gateway/c/sci_color.c, line: 69
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A known color expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_color.c, line: 91
+# File: modules/graphics/sci_gateway/c/sci_color.c, line: 95
 # File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 363
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_color.c, line: 98
+# File: modules/graphics/sci_gateway/c/sci_color.c, line: 102
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
@@ -489,8 +504,8 @@ msgstr ""
 #
 # File: modules/graphics/sci_gateway/c/sci_contour2di.c, line: 74
 # File: modules/graphics/sci_gateway/c/sci_contour2di.c, line: 98
-# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 106
-# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 130
+# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 107
+# File: modules/graphics/sci_gateway/c/sci_grayplot.c, line: 131
 # File: modules/graphics/sci_gateway/c/sci_xarcs.c, line: 115
 # File: modules/graphics/sci_gateway/c/sci_xarrows.c, line: 188
 # File: modules/graphics/sci_gateway/c/sci_xfarcs.c, line: 101
@@ -520,7 +535,7 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_set.c, line: 303
 # File: modules/graphics/sci_gateway/c/sci_unglue.c, line: 84
 # File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 240
-# File: modules/graphics/src/c/BuildObjects.c, line: 825
+# File: modules/graphics/src/c/BuildObjects.c, line: 832
 #, c-format
 msgid "%s: The handle is not or no more valid.\n"
 msgstr ""
@@ -532,31 +547,31 @@ msgid "%s: Parent entity for destination should be an axes.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_delete.c, line: 212
+# File: modules/graphics/sci_gateway/c/sci_delete.c, line: 215
 # File: modules/graphics/sci_gateway/c/sci_move.c, line: 77
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 222
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 225
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_delete.c, line: 247
+# File: modules/graphics/sci_gateway/c/sci_delete.c, line: 250
 msgid "This object cannot be deleted.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_delete.c, line: 263
+# File: modules/graphics/sci_gateway/c/sci_delete.c, line: 266
 msgid "A Label object cannot be deleted.\n"
 msgstr ""
 
 #
 # File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 93
 # File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 178
-# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 307
-# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 221
+# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 315
+# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 223
 # File: modules/graphics/sci_gateway/c/sci_xarrows.c, line: 198
 # File: modules/graphics/sci_gateway/c/sci_xrect.c, line: 86
-# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 231
+# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 229
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
@@ -566,9 +581,9 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 132
 # File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 148
 # File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 163
-# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 197
-# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 344
-# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 377
+# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 198
+# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 352
+# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 385
 # File: modules/graphics/sci_gateway/c/sci_xarc.c, line: 82
 # File: modules/graphics/sci_gateway/c/sci_xarc.c, line: 105
 # File: modules/graphics/sci_gateway/c/sci_xarc.c, line: 128
@@ -584,10 +599,10 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_xrect.c, line: 141
 # File: modules/graphics/sci_gateway/c/sci_xrect.c, line: 164
 # File: modules/graphics/sci_gateway/c/sci_xrect.c, line: 187
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 83
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 108
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 156
-# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 183
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 86
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 111
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 159
+# File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 186
 # File: modules/graphics/sci_gateway/c/sci_xtitle.c, line: 107
 # File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 108
 #, c-format
@@ -595,12 +610,12 @@ msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 296
+# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 304
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 153
+# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 155
 # File: modules/graphics/sci_gateway/cpp/sci_contour2dm.cpp, line: 119
 #, c-format
 msgid ""
@@ -654,7 +669,13 @@ msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 91
+# File: modules/graphics/sci_gateway/c/sci_name2rgb.c, line: 75
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 90
 # File: modules/graphics/sci_gateway/c/sci_set.c, line: 67
 # File: modules/graphics/sci_gateway/c/sci_set.c, line: 134
 # File: modules/graphics/sci_gateway/c/sci_set.c, line: 142
@@ -669,79 +690,79 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 97
+# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 96
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 114
-# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 139
+# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 113
+# File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 138
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 183
-# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 228
+# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 185
+# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 230
 #, c-format
 msgid "%s: Wrong size for input argument #%d: List of size %d expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 332
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 336
 #, c-format
 msgid "%s: Wrong number of mandatory input arguments. At least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 338
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 342
 # File: modules/graphics/sci_gateway/c/sci_xfarcs.c, line: 107
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 358
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 413
 #, c-format
 msgid "%s: Wrong value for strf option: %s.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 389
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 457
 #, c-format
 msgid "%s: Wrong value for frameflag option.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 407
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 484
 #, c-format
 msgid "%s: Wrong value for axesflag option.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 440
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 514
 #, c-format
 msgid "%s: Impossible status min > max in x or y rect data.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 450
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 529
 #, c-format
 msgid ""
 "%s: Bounds on x axis must be strictly positive to use logarithmic mode.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 460
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 544
 #, c-format
 msgid ""
 "%s: Bounds on y axis must be strictly positive to use logarithmic mode.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 502
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 591
 #, c-format
 msgid ""
 "%s: At least one x data must be strictly positive to compute the bounds and "
@@ -749,7 +770,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 517
+# File: modules/graphics/sci_gateway/c/sci_plot2d.c, line: 611
 #, c-format
 msgid ""
 "%s: At least one y data must be strictly positive to compute the bounds and "
@@ -757,40 +778,40 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 86
+# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 88
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 134
+# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 136
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 266
+# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 268
 # File: modules/graphics/sci_gateway/c/sci_xsegs.c, line: 219
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 291
+# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 293
 #, c-format
 msgid ""
 "%s: Wrong value for input arguments #%d, #%d and #%d: Incompatible length.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 299
-# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 305
+# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 301
+# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 307
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 311
+# File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 313
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: %s expected.\n"
 msgstr ""
@@ -1094,28 +1115,28 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_zoom_rect.c, line: 225
+# File: modules/graphics/sci_gateway/c/sci_zoom_rect.c, line: 232
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Specified bounds are not correct.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_zoom_rect.c, line: 237
+# File: modules/graphics/sci_gateway/c/sci_zoom_rect.c, line: 244
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Handle or vector of double expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_zoom_rect.c, line: 250
+# File: modules/graphics/sci_gateway/c/sci_zoom_rect.c, line: 257
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments: Handle or vector of double expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_zoom_rect.c, line: 263
+# File: modules/graphics/sci_gateway/c/sci_zoom_rect.c, line: 270
 #, c-format
 msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
 msgstr ""
@@ -1145,9 +1166,9 @@ msgstr ""
 # File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 124
 # File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 159
 # File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 219
-# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 80
-# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 116
-# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 152
+# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 78
+# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 114
+# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 150
 # File: modules/graphics/src/cpp/set_data_property.cpp, line: 165
 # File: modules/graphics/src/cpp/set_data_property.cpp, line: 179
 # File: modules/graphics/src/cpp/set_data_property.cpp, line: 239
@@ -1172,22 +1193,9 @@ msgid "%s: Wrong type for input argument #%ls: A matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 220
+# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 218
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 73
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 81
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 80
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 88
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 129
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 136
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 153
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 160
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
 
 #
@@ -1223,8 +1231,14 @@ msgstr ""
 # File: modules/graphics/src/c/BuildObjects.c, line: 440
 # File: modules/graphics/src/c/BuildObjects.c, line: 548
 # File: modules/graphics/src/c/BuildObjects.c, line: 654
-# File: modules/graphics/src/c/BuildObjects.c, line: 835
+# File: modules/graphics/src/c/BuildObjects.c, line: 842
 msgid "The parent has to be a SUBWIN\n"
+msgstr ""
+
+#
+# File: modules/graphics/src/c/Champ.c, line: 147
+#, c-format
+msgid "%s: Could not retrive bounding box.\n"
 msgstr ""
 
 #
@@ -1234,17 +1248,22 @@ msgid "%s is only made to compute level curves and not display them.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/DrawObjects.c, line: 101
+# File: modules/graphics/src/c/DrawObjects.c, line: 88
+msgid "Could not retrive bounds.\n"
+msgstr ""
+
+#
+# File: modules/graphics/src/c/DrawObjects.c, line: 108
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/DrawObjects.c, line: 114
+# File: modules/graphics/src/c/DrawObjects.c, line: 121
 msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/DrawObjects.c, line: 127
+# File: modules/graphics/src/c/DrawObjects.c, line: 134
 msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
 msgstr ""
 
@@ -1279,21 +1298,27 @@ msgid "%s: Wrong type argument %s.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 1112
-# File: modules/graphics/src/c/Format.c, line: 1149
+# File: modules/graphics/src/c/Format.c, line: 1089
+#, c-format
+msgid "%s: Cannot get coordinates.\n"
+msgstr ""
+
+#
+# File: modules/graphics/src/c/Format.c, line: 1118
+# File: modules/graphics/src/c/Format.c, line: 1155
 #, c-format
 msgid "Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 1117
-# File: modules/graphics/src/c/Format.c, line: 1154
+# File: modules/graphics/src/c/Format.c, line: 1123
+# File: modules/graphics/src/c/Format.c, line: 1160
 #, c-format
 msgid "%s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 1231
+# File: modules/graphics/src/c/Format.c, line: 1237
 #, c-format
 msgid "Bad size in %s: you must first increase the size of the %s.\n"
 msgstr ""
@@ -1417,7 +1442,7 @@ msgid "Number of columns must be %d.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/axesScale.c, line: 97
+# File: modules/graphics/src/c/axesScale.c, line: 103
 # File: modules/graphics/src/c/getHandleProperty/get_alignment_property.c, line: 45
 # File: modules/graphics/src/c/getHandleProperty/get_ambient_color_property.c, line: 36
 # File: modules/graphics/src/c/getHandleProperty/get_anti_aliasing_property.c, line: 42
@@ -1476,17 +1501,19 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/get_data_bounds_property.c, line: 45
 # File: modules/graphics/src/c/getHandleProperty/get_data_bounds_property.c, line: 52
 # File: modules/graphics/src/c/getHandleProperty/get_data_mapping_property.c, line: 45
-# File: modules/graphics/src/c/getHandleProperty/get_data_property.c, line: 355
-# File: modules/graphics/src/c/getHandleProperty/get_data_property.c, line: 370
-# File: modules/graphics/src/c/getHandleProperty/get_data_property.c, line: 409
+# File: modules/graphics/src/c/getHandleProperty/get_data_property.c, line: 357
+# File: modules/graphics/src/c/getHandleProperty/get_data_property.c, line: 372
+# File: modules/graphics/src/c/getHandleProperty/get_data_property.c, line: 411
 # File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 39
 # File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 57
-# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 78
-# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 97
-# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 123
-# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 149
-# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 175
-# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 200
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 79
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 113
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 132
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 158
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 184
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 210
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 235
+# File: modules/graphics/src/c/getHandleProperty/get_datatip_property.c, line: 250
 # File: modules/graphics/src/c/getHandleProperty/get_default_axes_property.c, line: 49
 # File: modules/graphics/src/c/getHandleProperty/get_default_figure_property.c, line: 40
 # File: modules/graphics/src/c/getHandleProperty/get_diffuse_color_property.c, line: 36
@@ -1682,12 +1709,12 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_colors_property.c, line: 55
 # File: modules/graphics/src/c/getHandleProperty/set_colors_property.c, line: 65
 # File: modules/graphics/src/c/getHandleProperty/set_colors_property.c, line: 89
-# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 395
-# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 402
-# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 409
-# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 416
-# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 423
-# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 430
+# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 391
+# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 398
+# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 405
+# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 412
+# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 419
+# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 426
 # File: modules/graphics/src/c/getHandleProperty/set_cube_scaling_property.c, line: 57
 # File: modules/graphics/src/c/getHandleProperty/set_current_axes_property.c, line: 55
 # File: modules/graphics/src/c/getHandleProperty/set_current_entity_property.c, line: 44
@@ -1697,12 +1724,14 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_data_mapping_property.c, line: 75
 # File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 53
 # File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 69
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 163
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 188
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 213
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 237
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 261
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 284
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 119
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 209
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 234
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 259
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 283
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 307
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 330
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 364
 # File: modules/graphics/src/c/getHandleProperty/set_default_axes_property.c, line: 41
 # File: modules/graphics/src/c/getHandleProperty/set_default_values_property.c, line: 66
 # File: modules/graphics/src/c/getHandleProperty/set_diffuse_color_property.c, line: 63
@@ -1725,7 +1754,7 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_font_size_property.c, line: 57
 # File: modules/graphics/src/c/getHandleProperty/set_font_style_property.c, line: 68
 # File: modules/graphics/src/c/getHandleProperty/set_foreground_property.c, line: 57
-# File: modules/graphics/src/c/getHandleProperty/set_format_n_property.c, line: 81
+# File: modules/graphics/src/c/getHandleProperty/set_format_n_property.c, line: 87
 # File: modules/graphics/src/c/getHandleProperty/set_fractional_font_property.c, line: 55
 # File: modules/graphics/src/c/getHandleProperty/set_grid_position_property.c, line: 69
 # File: modules/graphics/src/c/getHandleProperty/set_grid_property.c, line: 65
@@ -1749,9 +1778,9 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_label_font_style_property.c, line: 63
 # File: modules/graphics/src/c/getHandleProperty/set_labels_font_color_property.c, line: 63
 # File: modules/graphics/src/c/getHandleProperty/set_labels_font_size_property.c, line: 63
-# File: modules/graphics/src/c/getHandleProperty/set_layout_options_property.c, line: 184
-# File: modules/graphics/src/c/getHandleProperty/set_layout_options_property.c, line: 191
-# File: modules/graphics/src/c/getHandleProperty/set_layout_options_property.c, line: 198
+# File: modules/graphics/src/c/getHandleProperty/set_layout_options_property.c, line: 185
+# File: modules/graphics/src/c/getHandleProperty/set_layout_options_property.c, line: 192
+# File: modules/graphics/src/c/getHandleProperty/set_layout_options_property.c, line: 199
 # File: modules/graphics/src/c/getHandleProperty/set_layout_property.c, line: 50
 # File: modules/graphics/src/c/getHandleProperty/set_layout_property.c, line: 84
 # File: modules/graphics/src/c/getHandleProperty/set_legend_location_property.c, line: 82
@@ -1866,8 +1895,8 @@ msgid "%s should be a string vector.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/GetHashTable.c, line: 303
-# File: modules/graphics/src/c/getHandleProperty/SetHashTable.c, line: 302
+# File: modules/graphics/src/c/getHandleProperty/GetHashTable.c, line: 305
+# File: modules/graphics/src/c/getHandleProperty/SetHashTable.c, line: 304
 #, c-format
 msgid "Unknown property: %s.\n"
 msgstr ""
@@ -1896,8 +1925,8 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_cdata_mapping_property.c, line: 47
 # File: modules/graphics/src/c/getHandleProperty/set_clip_state_property.c, line: 46
 # File: modules/graphics/src/c/getHandleProperty/set_data_mapping_property.c, line: 49
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 95
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 272
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 141
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 318
 # File: modules/graphics/src/c/getHandleProperty/set_event_handler_property.c, line: 45
 # File: modules/graphics/src/c/getHandleProperty/set_figure_closerequestfcn_property.c, line: 33
 # File: modules/graphics/src/c/getHandleProperty/set_figure_name_property.c, line: 44
@@ -1952,7 +1981,7 @@ msgid "Wrong value for '%s' property.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/get_data_property.c, line: 404
+# File: modules/graphics/src/c/getHandleProperty/get_data_property.c, line: 406
 #, c-format
 msgid "%s: No more memory."
 msgstr ""
@@ -1970,9 +1999,9 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_box_property.c, line: 89
 # File: modules/graphics/src/c/getHandleProperty/set_clip_state_property.c, line: 64
 # File: modules/graphics/src/c/getHandleProperty/set_color_flag_property.c, line: 79
-# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 136
-# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 265
-# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 322
+# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 135
+# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 261
+# File: modules/graphics/src/c/getHandleProperty/set_constraints_property.c, line: 318
 # File: modules/graphics/src/c/getHandleProperty/set_image_type_property.c, line: 111
 # File: modules/graphics/src/c/getHandleProperty/set_legend_location_property.c, line: 70
 # File: modules/graphics/src/c/getHandleProperty/set_pixel_drawing_mode_property.c, line: 53
@@ -2294,19 +2323,26 @@ msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 105
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 115
+#, c-format
+msgid ""
+"Inavlid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
+msgstr ""
+
+#
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 151
 #, c-format
 msgid "Wrong value for '%s' property: Non-empty string expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 117
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 163
 #, c-format
 msgid "Wrong value for '%s' property: String with length 3 or less expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 126
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 172
 #, c-format
 msgid ""
 "Wrong value for '%s' property: String contains 'x' component more than "
@@ -2314,7 +2350,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 135
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 181
 #, c-format
 msgid ""
 "Wrong value for '%s' property: String contains 'y' component more than "
@@ -2322,7 +2358,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 144
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 190
 #, c-format
 msgid ""
 "Wrong value for '%s' property: String contains 'z' component more than "
@@ -2330,9 +2366,22 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 150
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 196
 #, c-format
 msgid "Wrong value for '%s' property: String with 'x|y|z' expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 342
+# File: modules/graphics/src/c/getHandleProperty/set_mark_size_property.c, line: 40
+#, c-format
+msgid "Wrong type for '%s' property: Matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 349
+#, c-format
+msgid "Wrong size for '%s' property: Matrix with length 3 or [] expected.\n"
 msgstr ""
 
 #
@@ -2357,6 +2406,11 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_font_style_property.c, line: 56
 #, c-format
 msgid "Wrong value for '%s' property: An Integer between %d and %d expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/src/c/getHandleProperty/set_format_n_property.c, line: 63
+msgid "Could not retrieve format.\n"
 msgstr ""
 
 #
@@ -2492,12 +2546,6 @@ msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_mark_size_property.c, line: 40
-#, c-format
-msgid "Wrong type for '%s' property: Matrix expected.\n"
-msgstr ""
-
-#
 # File: modules/graphics/src/c/getHandleProperty/set_parent_property.c, line: 65
 # File: modules/graphics/src/c/getHandleProperty/set_parent_property.c, line: 97
 # File: modules/graphics/src/c/getHandleProperty/set_parent_property.c, line: 118
@@ -2587,6 +2635,16 @@ msgstr ""
 #
 # File: modules/graphics/src/c/sciCall.c, line: 911
 msgid "Impossible case when building axis\n"
+msgstr ""
+
+#
+# File: modules/graphics/src/c/sciCall.c, line: 1015
+# File: modules/graphics/src/c/sciCall.c, line: 1023
+# File: modules/graphics/src/c/sciCall.c, line: 1033
+#, c-format
+msgid ""
+"Error: Values must be strictly positive when logarithmic mode on %s axis is "
+"active.\n"
 msgstr ""
 
 #
@@ -2855,6 +2913,11 @@ msgid "datatips on 3D curves"
 msgstr ""
 
 #
+# File: modules/graphics/demos/datatips/datatip_detach.sce, line: 18
+msgid "Datatips detached from curve"
+msgstr ""
+
+#
 # File: modules/graphics/demos/datatips/datatips.dem.gateway.sce, line: 15
 msgid "2D curves"
 msgstr ""
@@ -2862,6 +2925,11 @@ msgstr ""
 #
 # File: modules/graphics/demos/datatips/datatips.dem.gateway.sce, line: 16
 msgid "3D curve"
+msgstr ""
+
+#
+# File: modules/graphics/demos/datatips/datatips.dem.gateway.sce, line: 17
+msgid "Detach"
 msgstr ""
 
 #
@@ -2943,7 +3011,7 @@ msgstr ""
 #
 # File: modules/graphics/demos/matplot/classical.dem.sce, line: 13
 # File: modules/graphics/demos/matplot/matplot.dem.gateway.sce, line: 9
-# File: modules/graphics/macros/%_Matplot.sci, line: 24
+# File: modules/graphics/macros/%_Matplot.sci, line: 25
 msgid "Classical Matplot"
 msgstr ""
 
@@ -3047,7 +3115,7 @@ msgstr ""
 # File: modules/graphics/macros/fac3d.sci, line: 44
 # File: modules/graphics/macros/fac3d1.sci, line: 46
 # File: modules/graphics/macros/getcolor.sci, line: 41
-# File: modules/graphics/macros/zoom_auto.sci, line: 36
+# File: modules/graphics/macros/replot.sci, line: 37
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -3403,7 +3471,7 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/contour.sci, line: 46
+# File: modules/graphics/macros/contour.sci, line: 47
 # File: modules/graphics/macros/contour2d.sci, line: 24
 # File: modules/graphics/macros/datatips/datatipMove.sci, line: 17
 # File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 20
@@ -3433,8 +3501,8 @@ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/contour.sci, line: 50
-# File: modules/graphics/macros/contour.sci, line: 54
+# File: modules/graphics/macros/contour.sci, line: 51
+# File: modules/graphics/macros/contour.sci, line: 55
 # File: modules/graphics/macros/contour2d.sci, line: 28
 # File: modules/graphics/macros/contour2d.sci, line: 32
 # File: modules/graphics/macros/contourf.sci, line: 58
@@ -3444,7 +3512,7 @@ msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/contour.sci, line: 58
+# File: modules/graphics/macros/contour.sci, line: 59
 # File: modules/graphics/macros/contour2d.sci, line: 36
 #, c-format
 msgid ""
@@ -3453,7 +3521,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/contour.sci, line: 62
+# File: modules/graphics/macros/contour.sci, line: 63
 # File: modules/graphics/macros/contour2d.sci, line: 40
 # File: modules/graphics/macros/contourf.sci, line: 66
 # File: modules/graphics/macros/contourf.sci, line: 70
@@ -3464,8 +3532,8 @@ msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/contour.sci, line: 66
-# File: modules/graphics/macros/contour.sci, line: 70
+# File: modules/graphics/macros/contour.sci, line: 67
+# File: modules/graphics/macros/contour.sci, line: 71
 # File: modules/graphics/macros/contour2d.sci, line: 44
 # File: modules/graphics/macros/contour2d.sci, line: 48
 # File: modules/graphics/macros/contourf.sci, line: 111
@@ -3548,7 +3616,6 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/datatips/datatipGetStruct.sci, line: 18
-# File: modules/graphics/macros/replot.sci, line: 36
 # File: modules/graphics/macros/twinkle.sci, line: 39
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
@@ -3644,25 +3711,25 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 53
-# File: modules/graphics/macros/getcolor.sci, line: 77
+# File: modules/graphics/macros/getcolor.sci, line: 82
 msgid "&File"
 msgstr ""
 
 #
 # File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 54
-# File: modules/graphics/macros/getcolor.sci, line: 78
+# File: modules/graphics/macros/getcolor.sci, line: 83
 msgid "&Tools"
 msgstr ""
 
 #
 # File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 55
-# File: modules/graphics/macros/getcolor.sci, line: 79
+# File: modules/graphics/macros/getcolor.sci, line: 84
 msgid "&Edit"
 msgstr ""
 
 #
 # File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 56
-# File: modules/graphics/macros/getcolor.sci, line: 80
+# File: modules/graphics/macros/getcolor.sci, line: 85
 msgid "&?"
 msgstr ""
 
@@ -3736,48 +3803,48 @@ msgid "Edit label generator"
 msgstr ""
 
 #
-# File: modules/graphics/macros/edit_curv.sci, line: 117
+# File: modules/graphics/macros/edit_curv.sci, line: 116
 msgid "File"
 msgstr ""
 
 #
-# File: modules/graphics/macros/edit_curv.sci, line: 118
+# File: modules/graphics/macros/edit_curv.sci, line: 117
 msgid "Tools"
 msgstr ""
 
 #
-# File: modules/graphics/macros/edit_curv.sci, line: 119
+# File: modules/graphics/macros/edit_curv.sci, line: 118
 msgid "Edit"
 msgstr ""
 
 #
-# File: modules/graphics/macros/edit_curv.sci, line: 388
+# File: modules/graphics/macros/edit_curv.sci, line: 387
 msgid "Select a file to load"
 msgstr ""
 
 #
-# File: modules/graphics/macros/edit_curv.sci, line: 404
-# File: modules/graphics/macros/edit_curv.sci, line: 464
-# File: modules/graphics/macros/edit_curv.sci, line: 475
+# File: modules/graphics/macros/edit_curv.sci, line: 403
+# File: modules/graphics/macros/edit_curv.sci, line: 463
+# File: modules/graphics/macros/edit_curv.sci, line: 474
 #, c-format
 msgid "%s: The file "
 msgstr ""
 
 #
-# File: modules/graphics/macros/edit_curv.sci, line: 409
-# File: modules/graphics/macros/edit_curv.sci, line: 417
-# File: modules/graphics/macros/edit_curv.sci, line: 425
+# File: modules/graphics/macros/edit_curv.sci, line: 408
+# File: modules/graphics/macros/edit_curv.sci, line: 416
+# File: modules/graphics/macros/edit_curv.sci, line: 424
 #, c-format
 msgid "%s: Cannot open file "
 msgstr ""
 
 #
-# File: modules/graphics/macros/edit_curv.sci, line: 430
+# File: modules/graphics/macros/edit_curv.sci, line: 429
 msgid "Error in file format."
 msgstr ""
 
 #
-# File: modules/graphics/macros/edit_curv.sci, line: 441
+# File: modules/graphics/macros/edit_curv.sci, line: 440
 msgid "Select a file to write"
 msgstr ""
 
@@ -3883,24 +3950,24 @@ msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/getcolor.sci, line: 131
-# File: modules/graphics/macros/getcolor.sci, line: 134
+# File: modules/graphics/macros/getcolor.sci, line: 136
+# File: modules/graphics/macros/getcolor.sci, line: 139
 msgid "Ok"
 msgstr ""
 
 #
-# File: modules/graphics/macros/getcolor.sci, line: 132
-# File: modules/graphics/macros/getcolor.sci, line: 135
+# File: modules/graphics/macros/getcolor.sci, line: 137
+# File: modules/graphics/macros/getcolor.sci, line: 140
 msgid "Cancel"
 msgstr ""
 
 #
-# File: modules/graphics/macros/getcolor.sci, line: 164
+# File: modules/graphics/macros/getcolor.sci, line: 169
 msgid "Color number"
 msgstr ""
 
 #
-# File: modules/graphics/macros/getcolor.sci, line: 164
+# File: modules/graphics/macros/getcolor.sci, line: 169
 msgid "Name"
 msgstr ""
 
@@ -3997,21 +4064,21 @@ msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/isoview.sci, line: 25
+# File: modules/graphics/macros/isoview.sci, line: 24
 #, c-format
 msgid ""
 "%s: Wrong number of input argument(s): 0, 1, 2, or 4 arguments expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/isoview.sci, line: 47
+# File: modules/graphics/macros/isoview.sci, line: 46
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Graphic handle or string expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/isoview.sci, line: 76
+# File: modules/graphics/macros/isoview.sci, line: 75
 msgid ""
 "isoview: The syntax isoview(xmin, xmax, ymin, ymax) will be removed from "
 "Scilab 6.1\n"
@@ -4070,14 +4137,14 @@ msgstr ""
 # File: modules/graphics/macros/pie.sci, line: 48
 # File: modules/graphics/macros/pie.sci, line: 60
 # File: modules/graphics/macros/pie.sci, line: 65
-# File: modules/graphics/macros/pie.sci, line: 81
+# File: modules/graphics/macros/pie.sci, line: 82
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/pie.sci, line: 74
+# File: modules/graphics/macros/pie.sci, line: 75
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
@@ -4117,9 +4184,33 @@ msgid "%s: '%s' cannot be used with '%s'.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/replot.sci, line: 32
+# File: modules/graphics/macros/replot.sci, line: 48
 #, c-format
-msgid "%s: Input argument #%d must be a handle on an axis.\n"
+msgid "%s: Argument #%d is badly placed. Please check available syntaxes.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/replot.sci, line: 67
+#, c-format
+msgid "%s: Argument #%d: Wrong type. Please check available syntaxes.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/replot.sci, line: 120
+#, c-format
+msgid "%s: Argument #%d: Matrix with 4 or 6 columns expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/replot.sci, line: 138
+#, c-format
+msgid "%s: Argument #%d: tight or on or off values expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/replot.sci, line: 290
+#, c-format
+msgid "%s: Handle of unsupported type '%s' as Argument #%d\n"
 msgstr ""
 
 #
@@ -4377,16 +4468,4 @@ msgstr ""
 # File: modules/graphics/macros/xsetech.sci, line: 54
 #, c-format
 msgid "%s: Wrong value given for %s."
-msgstr ""
-
-#
-# File: modules/graphics/macros/zoom_auto.sci, line: 43
-#, c-format
-msgid "%s: Wrong type for argument %d: a handle expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/zoom_auto.sci, line: 46
-#, c-format
-msgid "%s: Wrong size for input argument #%d: a handle expected.\n"
 msgstr ""

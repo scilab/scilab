@@ -83,7 +83,7 @@
             <literal>lines(0)</literal> отключает разбивку на страницы по вертикали.
         </para>
         <para>
-            <literal>lines(nl,nc)</literal> и <literal>lines([nc,nl])</literal> 
+            <literal>lines(nl,nc)</literal> и <literal>lines([nc,nl])</literal>
             меняет также размер вывода до <literal>nc</literal> столбцов.
         </para>
         <para>
@@ -112,7 +112,7 @@
                 <revdescription>
                     <itemizedlist>
                         <listitem>
-                            lines по умолчанию установлена в 0. Добавлен Аргумент -1. 
+                            lines по умолчанию установлена в 0. Добавлен Аргумент -1.
                             За более подробной информацией обращайтесь к SEP #67.
                         </listitem>
                         <listitem>

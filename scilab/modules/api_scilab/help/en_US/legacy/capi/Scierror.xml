@@ -62,7 +62,7 @@
         <para>In this example, the C gateway function prints an error message and
             returns the error level 133.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 #include <stack-c.h>
 #include <Scierror.h>
 

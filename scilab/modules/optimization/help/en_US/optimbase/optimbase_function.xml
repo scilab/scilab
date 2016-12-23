@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -152,22 +152,22 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimbase_function</literal> function calls the cost function and return 
-            the required results. If a cost function additional argument is defined in current 
+            The <literal>optimbase_function</literal> function calls the cost function and return
+            the required results. If a cost function additional argument is defined in current
             object, it is passed it to the function as the last argument.
         </para>
         <para>
-            The <literal>-function()</literal> option allows to configure the cost function. 
+            The <literal>-function()</literal> option allows to configure the cost function.
             The cost function is used, depending on the context, to compute the cost, the
-            non-linear inequality positive constraints, the gradient of the function and 
+            non-linear inequality positive constraints, the gradient of the function and
             the gradient of the non-linear inequality constraints.
         </para>
         <para>
-            The cost function can also be used to produce outputs and to terminate an 
+            The cost function can also be used to produce outputs and to terminate an
             optimization algorithm.
         </para>
         <para>
-            Each syntax of the <literal>optimbase_function</literal> function corresponds 
+            Each syntax of the <literal>optimbase_function</literal> function corresponds
             to a specific syntax of the user-provided cost function.
         </para>
         <itemizedlist>
@@ -177,70 +177,70 @@
                     constraint, the syntax is
                 </para>
                 <programlisting role="no-scilab-exec">
-                    <![CDATA[ 
+                    <![CDATA[
                     [ this , f , index ] = optimbase_function ( this , x , index )
                 ]]>
                 </programlisting>
                 <para>which corresponds to the cost functions: </para>
                 <programlisting role="no-scilab-exec">
-                    <![CDATA[ 
+                    <![CDATA[
                     [f , index ] = costf( x , index )
                 ]]>
                 </programlisting>
             </listitem>
             <listitem>
                 <para>
-                    If the <literal>-withderivatives</literal> is false and there are non-linear constraints, 
+                    If the <literal>-withderivatives</literal> is false and there are non-linear constraints,
                     the syntax is
                 </para>
                 <programlisting role="no-scilab-exec">
-                    <![CDATA[ 
+                    <![CDATA[
                     [ this , f , c , index ] = optimbase_function ( this , x , index )
                 ]]>
                 </programlisting>
                 <para>
-                    which corresponds to the cost functions: 
+                    which corresponds to the cost functions:
                 </para>
                 <programlisting role="no-scilab-exec">
-                    <![CDATA[ 
+                    <![CDATA[
                     [f , c , index ] = costf( x , index )
                 ]]>
                 </programlisting>
             </listitem>
             <listitem>
                 <para>
-                    If the <literal>-withderivatives</literal> is true and there is no non-linear constraint, 
+                    If the <literal>-withderivatives</literal> is true and there is no non-linear constraint,
                     the syntax is
                 </para>
                 <programlisting role="no-scilab-exec">
-                    <![CDATA[ 
+                    <![CDATA[
                     [ this , f , g , index ] = optimbase_function ( this , x , index )
                 ]]>
                 </programlisting>
                 <para>
-                    which corresponds to the cost functions: 
+                    which corresponds to the cost functions:
                 </para>
                 <programlisting role="no-scilab-exec">
-                    <![CDATA[ 
+                    <![CDATA[
                     [f , g , index ] = costf( x , index )
                 ]]>
                 </programlisting>
             </listitem>
             <listitem>
                 <para>
-                    If the <literal>-withderivatives</literal> is true and there are non-linear constraints, 
+                    If the <literal>-withderivatives</literal> is true and there are non-linear constraints,
                     the syntax is
                 </para>
                 <programlisting role="no-scilab-exec">
-                    <![CDATA[ 
+                    <![CDATA[
                     [ this , f , g , c , gc , index ] = optimbase_function ( this , x , index )
                 ]]>
                 </programlisting>
                 <para>
-                    which corresponds to the cost functions: 
+                    which corresponds to the cost functions:
                 </para>
                 <programlisting role="no-scilab-exec">
-                    <![CDATA[ 
+                    <![CDATA[
                     [f , g , c , gc , index ] = costf( x , index )
                 ]]>
                 </programlisting>
@@ -277,14 +277,14 @@
             </listitem>
         </itemizedlist>
         <para>
-            It might happen that the function requires additional arguments to be evaluated. 
-            In this case, we can use the following feature. The argument <literal>fun</literal> 
-            can also be the list <literal>(f, a1, a2, ...)</literal>. 
-            In this case <literal>f</literal>, the first element in the list, must bea function and 
+            It might happen that the function requires additional arguments to be evaluated.
+            In this case, we can use the following feature. The argument <literal>fun</literal>
+            can also be the list <literal>(f, a1, a2, ...)</literal>.
+            In this case <literal>f</literal>, the first element in the list, must bea function and
             must have the header:
         </para>
         <programlisting role="no-scilab-exec">
-            <![CDATA[ 
+            <![CDATA[
                     [ f , index ] = f ( x , index , a1 , a2 , ... )
                 [ f , c , index ] = f ( x , index , a1 , a2 , ... )
                 [ f , g , index ] = f ( x , index , a1 , a2 , ... )
@@ -308,11 +308,11 @@
             retrieved with query features.
         </para>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
             function [ f , index ] = rosenbrock ( x , index )
             f = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
             endfunction
-            
+
             opt = optimbase_new();
             opt = optimbase_configure(opt,"-numberofvariables",2);
             nbvar = optimbase_cget(opt,"-numberofvariables");
@@ -333,11 +333,11 @@
             the end of the list.
         </para>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
             function [ f , index ] = rosenbrock2 ( x , index , a , b )
             f = a*(x(2)-x(1)^2)^2 + (b-x(1))^2;
             endfunction
-            
+
             opt = optimbase_new();
             opt = optimbase_configure(opt,"-numberofvariables",2);
             nbvar = optimbase_cget(opt,"-numberofvariables");

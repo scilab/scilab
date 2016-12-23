@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Farid Belahcene
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="pie" xml:lang="pt">
+    <refnamediv>
+        <refname>pie</refname>
+        <refpurpose>Desenha um gráfico de torta</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>pie(x)
+            pie(x[,sp[,txt]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>um escalar real ou vetor de reais positivos. </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sp</term>
+                <listitem>
+                    <para>um escalar real ou vetor de reais.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>txt</term>
+                <listitem>
+                    <para>uma célula ou vetor de strings.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>pie(x):</literal> se o tamanho de x é N então a função
+            desenha um gráfico de torta de N partes, a área da i-ésima parte é igual a
+            (x(i)/sum(x))*( superfície do círculo unitário).
+        </para>
+        <para>
+            <literal>pie(x,sp):</literal> o vetor sp permite cortar um ou vários
+            pedaços da torta, (o tamanho de sp deve ser igual a N). Se o valor do
+            i-ésimo índice de sp é diferente de 0, então a i-ésima parte é separada
+            das outras por um espaço, senão, se for igual a zero, então é anexada às
+            outras.
+        </para>
+        <para>
+            <literal>pie(x,txt):</literal> o vetor txt permite escrever um texto
+            para cada parte da torta, o i-ésimo componente de txt corresponde à
+            i-ésima parte da torta (padrão: são escritas as porcentagens que
+            correspondem às partes da superfície). O tamanho de txt deve ser igual a
+            N.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+// primeiro exemplo: um argumento de entrada x=[1 2 5]
+scf(0);
+pie([1 2 5]);
+
+// segundo exemplo: dois argumentos de entrada x=[5 9  4 6 3], sp=[0 1 0 1 0], o segundo e o quarto são separados dos demais
+scf(1);
+pie([5 9 4 6 3],[0 1 0 1 0]);
+
+// terceiro exemplo: três argumentos de entrada, x=[3 4 6 2], sp=[0 1 0 0], txt=["parte 1","parte 2","parte 3","parte 4"]
+scf(2);
+pie([3 4 6 2],[0 1 0 0],["parte 1","parte 2","parte 3","parte 4"]);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xfpolys">xfpolys</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

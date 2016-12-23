@@ -30,7 +30,7 @@
             <varlistentry>
                 <term>elems</term>
                 <listitem>
-                    <para>elems, XMLElem または XMLSet (XPathクエリの結果) 
+                    <para>elems, XMLElem または XMLSet (XPathクエリの結果)
                         またはXMLlist (子のリスト)
                     </para>
                 </listitem>

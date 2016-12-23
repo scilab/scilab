@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -50,7 +50,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimbase_isinnonlincons</literal> function returns <literal>isfeasible</literal> 
+            The <literal>optimbase_isinnonlincons</literal> function returns <literal>isfeasible</literal>
         </para>
         <itemizedlist>
             <listitem>
@@ -68,7 +68,7 @@
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     opt = optimbase_new ();
     opt = optimbase_configure(opt,"-numberofvariables",2);
     opt = optimbase_configure(opt,"-verbose",1);

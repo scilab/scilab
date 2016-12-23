@@ -22,4 +22,4 @@
 */
 wchar_t *getLocaleUserInfo(void);
 
-#endif __GETLOCALEINFO_APPLE_H__
+#endif /* __GETLOCALEINFO_APPLE_H__ */

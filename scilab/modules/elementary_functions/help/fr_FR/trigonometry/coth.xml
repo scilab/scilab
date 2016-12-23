@@ -34,7 +34,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[1,2*%i]
 t=exp(x);
 (t-ones(x)./t).\(t+ones(x)./t)

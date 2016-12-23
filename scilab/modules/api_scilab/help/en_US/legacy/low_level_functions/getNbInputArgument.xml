@@ -48,7 +48,7 @@
             function.
         </para>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 #include "api_scilab.h"
 #include "sciprint.h"
 

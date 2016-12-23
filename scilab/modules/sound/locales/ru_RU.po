@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: sound-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 21:57+0000\n"
-"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"PO-Revision-Date: 2016-07-16 21:49+0000\n"
+"Last-Translator: Dmitriy Nogay <imcatwhocode@protonmail.ch>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -37,28 +37,20 @@ msgstr "%s: Неверный входной параметр №%d: ожидал
 msgid "Scilab sound module not installed.\n"
 msgstr "Модуль «Sound» не установлен.\n"
 
-# File: modules/sound/demos/sound.dem.gateway.sce, line: 9
 msgid "Sound file handling"
-msgstr ""
+msgstr "Обработка звукового файла"
 
-#, fuzzy
 msgid "FFT on a wav file"
-msgstr "Ошибка чтения wav файла."
+msgstr "БПФ wav-файла"
 
-#
-# File: modules/sound/demos/sound.dem.sce, line: 21
 msgid "Fourier analysis of 0.5 seconds of sound parameters."
-msgstr ""
+msgstr "Анализ Фурье для полусекунды звуковых параметров."
 
-#
-# File: modules/sound/demos/sound.dem.sce, line: 36
 msgid "A complete picture of the sound."
-msgstr ""
+msgstr "Полное изображение звука"
 
-#
-# File: modules/sound/demos/sound.dem.sce, line: 36
 msgid "see 'mapsound' function"
-msgstr ""
+msgstr "см. функцию 'mapsound'"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -92,7 +84,7 @@ msgid "Unrecognized data format."
 msgstr "Неизвестный формат данных."
 
 msgid "Truncated data file."
-msgstr ""
+msgstr "Обрезанный файл данных."
 
 #, c-format
 msgid "%s: Wrong values for input argument: Filename must be a string.\n"

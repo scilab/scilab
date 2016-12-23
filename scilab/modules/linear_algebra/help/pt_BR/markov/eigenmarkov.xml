@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -31,7 +31,7 @@
                 <term>P</term>
                 <listitem>
                     <para>matriz de Markov N x N de reais. A soma das entradas de cada
-                        linha deve ser acrescida de uma unidade 
+                        linha deve ser acrescida de uma unidade
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,9 +64,9 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //P tem duas classes recorrentes (com 2 e 1 estados) e 2 estados transientes
-P=genmarkov([2,1],2) 
+P=genmarkov([2,1],2)
 [M,Q]=eigenmarkov(P);
 P*Q-Q
 Q*M-P^20

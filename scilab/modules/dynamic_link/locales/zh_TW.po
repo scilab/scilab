@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:09+0000\n"
+"PO-Revision-Date: 2016-10-19 13:03+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -40,42 +40,39 @@ msgstr ""
 msgid "%s : second argument must be a unique id of a shared library.\n"
 msgstr "%s : 第二參數必須為共用程式庫之唯一 id.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: unable to find entry point %ls.\n"
-msgstr "%s: 其中一個進入點 (entry point) 出問題.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"
-msgstr "%s: 第 #%d個參數型別有誤:  matrix of strings 才對.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
+msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr "%s: 第 #%d個參數型別有誤:  matrix of strings 才對.\n"
-
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 int 整數.\n"
+msgstr ""
 
-#
-# File: macros/ilib_gen_Make.sci, line: 33
-# File: macros/ilib_gen_loader.sci, line: 24
-#, fuzzy, c-format
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
@@ -199,68 +196,42 @@ msgstr ""
 msgid "Linking %ls.\n"
 msgstr ""
 
-# File: modules/dynamic_link/demos/call_c.sce, line: 83
 msgid "Calling a C function from Scilab.\n"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_c.sce, line: 96
 msgid "Calling ilib_for_link to build C function.\n"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_c.sce, line: 109
 msgid "Calling C function. Z = X+Y"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_c.sce, line: 111
-# File: modules/dynamic_link/demos/call_fortran.sce, line: 111
 #, c-format
 msgid "with X = %d"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_c.sce, line: 113
-# File: modules/dynamic_link/demos/call_fortran.sce, line: 113
 #, c-format
 msgid "with Y = %d"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_c.sce, line: 118
-# File: modules/dynamic_link/demos/call_fortran.sce, line: 118
 #, c-format
 msgid "Result Z = %d"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_fortran.sce, line: 82
 msgid "Calling a Fortran subroutine from Scilab.\n"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_fortran.sce, line: 95
 msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_fortran.sce, line: 109
 msgid "Calling Fortran subroutine. Z = X+Y"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/dynamic_link.dem.gateway.sce, line: 9
 msgid "Dynamic link"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/dynamic_link.dem.gateway.sce, line: 11
 msgid "Call a C function"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/dynamic_link.dem.gateway.sce, line: 12
 msgid "Call a Fortran subroutine"
 msgstr ""
 
@@ -339,6 +310,12 @@ msgstr ""
 
 msgid "   Generate a gateway file\n"
 msgstr "   生成一個 gateway 檔\n"
+
+#
+# File: modules/dynamic_link/macros/ilib_build.sci, line: 111
+#, c-format
+msgid "%s: %s format is not supported by your compiler."
+msgstr ""
 
 msgid "   Generate a loader file\n"
 msgstr "   生成一個 loader 檔\n"
@@ -609,6 +586,3 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected."
 msgstr ""
-
-#~ msgid "%s: Wrong number of input argument(s).\n"
-#~ msgstr "%s: 輸入參數之數目錯誤(s).\n"

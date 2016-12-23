@@ -95,7 +95,7 @@
             オプション'readonly'を指定すると, ファイルは読込モードで開かれ,修正できません.
         </para>
         <para>
-            オプション 'indent', 'quote' または 'trailing'を指定すると, 
+            オプション 'indent', 'quote' または 'trailing'を指定すると,
             エディタはオープンせずに,ファイルが指定した処理を行います.
             以下の処理が定義されています:
             <itemizedlist>
@@ -534,7 +534,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // パラメータなしでエディタを起動
 scinotes();
 // ファイル名を指定してエディタを起動

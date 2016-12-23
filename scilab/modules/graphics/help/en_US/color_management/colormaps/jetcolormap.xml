@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -48,15 +48,15 @@
             varying from blue, lightblue, green, yellow, orange then red
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 f = scf();
 plot3d1();
 f.color_map = jetcolormap(32);
  ]]></programlisting>
-        <scilab:image> 
+        <scilab:image>
             f = scf();
             plot3d1();
             f.color_map = jetcolormap(32);

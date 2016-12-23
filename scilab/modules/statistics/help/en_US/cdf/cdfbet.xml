@@ -98,10 +98,10 @@ plot2d2("gnn",[0:10]',p,5,"111","Repartition",[0,0,10,1])
         <scilab:image>
             x  = 0:0.1:1;
             y  = 1-x;
-            
+
             A = 2*ones(x);
             B = 3*ones(x);
-            
+
             [p,q]=cdfbet('PQ',x,y,A,B);
             plot2d2("gnn",[0:10]',p,5,"111","Repartition",[0,0,10,1])
         </scilab:image>

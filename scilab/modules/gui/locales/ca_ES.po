@@ -8,26 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:08+0000\n"
+"PO-Revision-Date: 2016-10-19 13:03+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
+
+#, c-format
+msgid "%s: Figure number must be given when not in '%s' mode.\n"
+msgstr "%s: S'ha de donar el número de figura si no s'està en el mode '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: No hi ha més memòria.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -38,25 +34,6 @@ msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
 "real.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser >= %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
-"de text o un nombre real.\n"
-
-#, c-format
-msgid "%s: Function not available in NWNI mode.\n"
-msgstr "%s: Aquesta funció no està disponible en el mode NWNI.\n"
-
-#, c-format
-msgid "%s: Figure number must be given when not in '%s' mode.\n"
-msgstr "%s: S'ha de donar el número de figura si no s'està en el mode '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
@@ -92,6 +69,10 @@ msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: No hi ha més memòria.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr ""
 
@@ -116,6 +97,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #, c-format
@@ -251,31 +236,6 @@ msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr "%s: No s'ha pogut crear el tractament 'Uicontrol'.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr ""
-"%s: El nombre d'arguments de sortida és incorrecte: Han de ser %d o %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector "
-"real de (1 x %d).\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nombre "
-"real o una cadena de text.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
-"real de (1 x %d).\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
@@ -299,6 +259,12 @@ msgstr ""
 "tractament '%s'.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un nombre "
+"real o una cadena de text.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un tractament "
@@ -316,54 +282,28 @@ msgstr ""
 "%s: Els arguments d'entrada són incorrectes: Han de ser '%s', '%s' o '%s'.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
-"de nombres reals o complexos.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
 "de cadenes de text.\n"
 
-msgid "Scilab Choices Request"
-msgstr "Petició d'opcions d'Scilab"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector de "
-"cadenes de text.\n"
-
 msgid "Scilab Choose Message"
 msgstr "Missatge d'elecció d'Scilab"
 
-msgid "Scilab Input Value Request"
-msgstr "Petició d'entrada de valors d'Scilab"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Petició de valors múltiples d'Scilab"
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser >= %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: It must have same dimensions as "
-"argument #%d.\n"
+msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
 msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de text o un nombre real.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
-"cadenes de text de (%d x %d).\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
-"de cadenes de text.\n"
+msgid "%s: Function not available in NWNI mode.\n"
+msgstr "%s: Aquesta funció no està disponible en el mode NWNI.\n"
 
 #, c-format
 msgid ""
@@ -420,6 +360,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Invalid value for datatip index %d.\n"
+msgstr "%s: Node superior invàlid.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -575,6 +519,25 @@ msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments de sortida és incorrecte: Han de ser %d o %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector "
+"real de (1 x %d).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"real de (1 x %d).\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
@@ -589,6 +552,47 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"de nombres reals o complexos.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Petició d'opcions d'Scilab"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector de "
+"cadenes de text.\n"
+
+msgid "Scilab Input Value Request"
+msgstr "Petició d'entrada de valors d'Scilab"
+
+msgid "Scilab Multiple Values Request"
+msgstr "Petició de valors múltiples d'Scilab"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: It must have same dimensions as "
+"argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu de "
+"cadenes de text de (%d x %d).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"de cadenes de text.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -791,6 +795,9 @@ msgid ""
 "truncated.\n"
 msgstr ""
 
+msgid "(Max - Min) must be greater than 1 to allow the multiple selection.\n"
+msgstr ""
+
 #, c-format
 msgid "'%s' value must be between 0 and %d.\n"
 msgstr ""
@@ -849,7 +856,7 @@ msgstr "A&mplia"
 msgid "&Original View"
 msgstr ""
 
-msgid "Fit zoom to data"
+msgid "Reframe to contents"
 msgstr ""
 
 msgid "2D/3D &Rotation"
@@ -1011,9 +1018,6 @@ msgstr ""
 msgid "&File Browser"
 msgstr ""
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 121
-# File: modules/gui/src/gui_fake_xml.c, line: 169
 msgid "&News feed"
 msgstr ""
 
@@ -1392,9 +1396,6 @@ msgstr ""
 
 msgid "Preview"
 msgstr "Previsualitza"
-
-msgid "Ok"
-msgstr "Accepta"
 
 msgid "Loading help browser..."
 msgstr "S'està carregant el navegador de l'ajuda..."
@@ -1901,8 +1902,6 @@ msgstr ""
 msgid "Mark Style"
 msgstr ""
 
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 154
 msgid "Components display"
 msgstr ""
 
@@ -2232,9 +2231,8 @@ msgstr ""
 msgid "All RTF (Rich Text Format) files"
 msgstr ""
 
-#, fuzzy
 msgid "All HTML files"
-msgstr "Tots els fitxers"
+msgstr ""
 
 #, c-format
 msgid "All %s files"
@@ -2269,385 +2267,250 @@ msgstr "%s: Només està disponible en el mode 'STANDARD'.\n"
 msgid "Error. A signal has been caught.\n"
 msgstr "Error. S'ha capturat una senyal.\n"
 
-#, fuzzy
 msgid "Control Plot3d"
-msgstr "&Control"
+msgstr ""
 
-#, fuzzy
 msgid "Control Panel"
-msgstr "&Control"
+msgstr ""
 
-#, fuzzy
 msgid "Rotation angle"
-msgstr "Rota"
+msgstr ""
 
-#
-# File: modules/gui/demos/cb_uicontrol_plot3d.dem.sci, line: 75
 msgid "Colormap"
 msgstr ""
 
-#, fuzzy
 msgid "Show / Hide"
-msgstr "Mostra/Amaga la &barra d'eines"
+msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 6
 msgid "messagebox"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 7
 msgid "x_choose"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 8
 msgid "x_dialog"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 9
 msgid "x_mdialog"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 8
 msgid "Simple example of message"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 11
 msgid "Button 1Button 2"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 14
 msgid "Button 1 clicked."
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 16
 msgid "Button 2 clicked"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_choose.sce, line: 10
 msgid ""
 "Message: Selection (double-click on an item --> returns the item number)"
 msgstr ""
 
-#, fuzzy
 msgid "Item selected: "
-msgstr "No heu seleccionat cap text"
+msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_dialog.sce, line: 8
 msgid "Message: enter a value"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_dialog.sce, line: 10
 msgid "Value entered: "
 msgstr ""
 
-#, fuzzy
 msgid "Message"
-msgstr "Missatge del Scilab"
+msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 10
 msgid "first row"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 13
 msgid "Values entered: "
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 18
 msgid "row"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 20
 msgid "col"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 22
 msgid "Matrix to edit"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 24
 msgid "Matrix entered: "
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 12
 msgid "GUI"
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 14
 msgid "Dialogs"
 msgstr ""
 
-#, fuzzy
 msgid "Uicontrols 1"
-msgstr "&Control"
+msgstr ""
 
-#, fuzzy
 msgid "Uicontrols 2"
-msgstr "&Control"
+msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 21
 msgid "Uicontrols with LaTeX/MathML"
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 24
 msgid "Show images with uicontrols "
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 27
-# File: modules/gui/demos/uicontrol_listbox_popupmenu.dem.sce, line: 18
 msgid "Listboxes and Popupmenus"
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 30
 msgid "Uicontrols rendering"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 13
-# File: modules/gui/demos/uicontrol.dem.sce, line: 93
-# File: modules/gui/demos/uicontrol.dem.sce, line: 193
+msgid "Uicontrols layout"
+msgstr ""
+
+msgid "Uicontrols messagebox-like"
+msgstr ""
+
 msgid "<Enter color name here>"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 14
-# File: modules/gui/demos/uicontrol.dem.sce, line: 23
 msgid "Error"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 14
 msgid "Please enter a color name first."
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 23
 msgid "Unknown color."
 msgstr ""
 
-#, fuzzy
 msgid "No color selected."
-msgstr "No heu seleccionat cap text"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 38
-# File: modules/gui/demos/uicontrol.dem.sce, line: 49
 msgid "Color selection"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 42
 #, c-format
 msgid "Selected colors are: %s."
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 44
 #, c-format
 msgid "Deleted colors are: %s."
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 53
 #, c-format
 msgid "You clicked on menu '%s'."
 msgstr ""
 
-#, fuzzy
 msgid "Selected menu"
-msgstr "Selecciona-ho tot"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 59
 msgid "checked"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 61
 msgid "unchecked"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 63
 #, c-format
 msgid "Menu '%s' is %s."
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 64
 msgid "Menu status"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 70
 msgid "Slider value: "
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 78
 #, c-format
 msgid "You selected '%s'."
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 79
 msgid "Popupmenu selection"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 100
 msgid "Do you really want to quit Scilab?"
 msgstr ""
 
-#, fuzzy
 msgid "Quit Scilab"
-msgstr "Quant al Scilab..."
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 108
 msgid "Uicontrols demo"
 msgstr ""
 
-#, fuzzy
 msgid "Application"
-msgstr "&Aplicacions"
+msgstr ""
 
-#, fuzzy
 msgid "Close figure"
-msgstr "&Neteja la figura"
+msgstr ""
 
-#, fuzzy
 msgid "Scilab Graphics"
-msgstr "Demostracions d'Scilab"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 125
 msgid "Launch plot3d"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 126
 msgid "Launch plot2d"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 128
 msgid "Menu"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 129
 msgid "Sub-menu 1"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 130
-# File: modules/gui/demos/uicontrol.dem.sce, line: 133
 msgid "Sub-menu 2"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 131
 msgid "Sub-menu 2-1"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 132
 msgid "Sub-menu 2-2"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 140
 msgid "item1|item2|item3|item4"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 146
 msgid "Pop-up menu"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 157
 msgid "Slider demo"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 187
 msgid "Colors list edition"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 200
 msgid "Add color in listbox"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 206
 msgid "Delete color in listbox"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "blue"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "green"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "red"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "yellow"
 msgstr ""
 
-#, fuzzy
 msgid "Display selection"
-msgstr "Mostra el &directori actual"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 231
 msgid "Delete selection"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 237
 msgid "Default"
 msgstr ""
 
-#, fuzzy
 msgid "Quit demonstration"
-msgstr "Demostracions d'Scilab"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol_LaTeX.dem.sce, line: 16
 msgid "Uicontrols demo with LaTeX"
+msgstr ""
+
+msgid "Please fill the table"
 msgstr ""
 
 #, c-format
@@ -2880,17 +2743,5 @@ msgstr "%s: El tipus de %s és incorrecte: Ha de ser un nombre real.\n"
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: La mida de %s és incorrecta: Ha de ser un nombre real.\n"
 
-#~ msgid "Cancel"
-#~ msgstr "Cancel·la"
-
-#~ msgid "Close"
-#~ msgstr "Tanca"
-
-#~ msgid "File"
-#~ msgstr "Fitxer"
-
-#~ msgid "Yes"
-#~ msgstr "Sí"
-
-#~ msgid "No"
-#~ msgstr "No"
+#~ msgid "Ok"
+#~ msgstr "Accepta"

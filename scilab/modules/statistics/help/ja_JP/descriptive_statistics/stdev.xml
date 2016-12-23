@@ -97,7 +97,7 @@
             標準偏差を返します.
         </para>
         <note>
-            <varname>m</varname> がスカラーの場合, 
+            <varname>m</varname> がスカラーの場合,
             <literal>n</literal>番目の次元方向が
             <code>mean(x)</code> の大きさに一致するように拡張されます.
         </note>

@@ -29,7 +29,7 @@ endfunction
 
 function [y, a] = foo(a, b, c) // not necessarily an error but could be one
    ...
-endfunction   
+endfunction
     ]]></programlisting>
     </refsection>
     <refsection role="see also">

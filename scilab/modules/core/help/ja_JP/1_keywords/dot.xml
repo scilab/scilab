@@ -8,13 +8,13 @@
         <title>呼び出し手順</title>
         <synopsis>
             123.33
-            
+
             a.*b
             a .*. b
-            
+
             %pi * (%e + ..
             %i)
-            
+
             cd ..
             dir ..
         </synopsis>

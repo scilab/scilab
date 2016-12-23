@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -52,13 +52,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            computes <literal>slm</literal>, the optimal Hankel norm approximant of the 
+            computes <literal>slm</literal>, the optimal Hankel norm approximant of the
             stable continuous-time linear system <literal>sl</literal> with matrices <literal>[A,B,C,D]</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=diag([-1,-2,-3,-4,-5]);B=rand(5,1);C=rand(1,5);
 sl=syslin('c',A,B,C);
 slapprox=arhnk(sl,2);

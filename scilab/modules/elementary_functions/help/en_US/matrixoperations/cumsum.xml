@@ -26,7 +26,7 @@
             y=cumsum(x,orientation,outtype)
         </synopsis>
     </refsynopsisdiv>
-    
+
     <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
@@ -68,7 +68,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection role="description">
         <title>Description</title>
         <para>
@@ -161,15 +161,11 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <note>
+            This function applies, with identical rules to <link linkend="sparse">sparse matrices</link>.
+        </note>
     </refsection>
-    
-    <refsection role="remark">
-        <title>Remark</title>
-        <para>
-            This function applies, with identical rules to <link linkend="sparse">sparse matrices</link> and <link linkend="hypermat">hypermatrices</link>.
-        </para>
-    </refsection>
-    
+
     <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
@@ -192,7 +188,7 @@ cumsum(B) //evaluation in float
 cumsum(B,"native") //similar to or(B)
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

@@ -62,12 +62,12 @@ function this = neldermead_configure (this,key,value)
     case "-gamma" then
         nelmead_typereal ( value , "value" , 3 );
         nelmead_checkscalar ( "neldermead_configure" , value , "value" , 3 )
-        nelmead_checkrange ( "neldermead_configure" , var , "value" , 3 , UN , 1-%eps )
+        nelmead_checkrange ( "neldermead_configure" , value , "value" , 3 , UN , 1-%eps )
         this.gamma = value;
     case "-sigma" then
         nelmead_typereal ( value , "value" , 3 );
         nelmead_checkscalar ( "neldermead_configure" , value , "value" , 3 )
-        nelmead_checkrange ( "neldermead_configure" , var , "value" , 3 , UN , 1-%eps )
+        nelmead_checkrange ( "neldermead_configure" , value , "value" , 3 , UN , 1-%eps )
         this.sigma = value;
     case "-tolsimplexizeabsolute" then
         nelmead_typereal ( value , "value" , 3 );

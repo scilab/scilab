@@ -34,7 +34,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 currentlnf = getlookandfeel();
 
 // Look and feel Windows Classic

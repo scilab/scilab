@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 function x=ifft(a,varargin)
-    if type(a)==1|(typeof(a)=="hypermat"&type(a.entries)==1) then
+    if type(a)==1 then
         x=fft(a,1,varargin(:))
     else
         error(msprintf(_("%s: Wrong type for input argument #%d: Array of double expected.\n"),"ifft", 1));

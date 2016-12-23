@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2016 - Serge Steer - INRIA
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="zpk">
+    <refnamediv>
+        <refname>zpk</refname>
+        <refpurpose>Zero pole gain system representation</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>S=zpk(Z,P,K,dt)</synopsis>
+        <synopsis> S=zpk(z,p,k,dt))</synopsis>
+        <synopsis>S=zpk(sys))</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Z</term>
+                <listitem>
+                    <para>
+                        a m by n cell of real or complex vectors, Z{i,j} is
+                        the transmission zeros of the transfer from the the
+                        jth intput to the ith output.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        a m by n cell of real or complex vectors, P{i,j} is
+                        the poles of the transfer from the the jth intput to
+                        the ith output.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>
+                        a m by n matrix of real numbers, K(i,j) is the gain of the
+                        transfer from the the jth intput to the ith output.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    <para>
+                        a real or complex vector, the transmission zeros of
+                        the siso transfer function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>
+                        a real or complex vector, the poles of the siso
+                        transfer function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>
+                        a real scalar, the gain of the siso transfer function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dt</term>
+                <listitem>
+                    <para>
+                        a character string with possible values "c" or "d", []
+                        or a real positive scalar, the system time domain (see
+                        <link linkend="syslin">syslin</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+
+            <varlistentry>
+                <term>sys</term>
+                <listitem>
+                    <para>
+                        A linear dynamical system in transfer function or
+                        state spece representation (see <link linkend="syslin">syslin</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>
+                        a mlist with the fields Z , P, K and  dt.
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>Z</term>
+                            <listitem>
+                                <para>
+                                    a m by n cell array of real or complex vectors,
+                                    S.Z{i,j} contains the zeros  of the transfer from the
+                                    the jth intput to the ith output
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>P</term>
+                            <listitem>
+                                <para>
+                                    a m by n cell array of real or complex vectors,
+                                    S.P{i,j} contains the poles of the transfer from the
+                                    the jth intput to the ith output
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>K</term>
+                            <listitem>
+                                <para>
+                                    a m by n matrix of real numbers, S.K(i,j) is
+                                    the gain of the transfer from the the jth
+                                    intput to the ith output.  output.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>dt</term>
+                            <listitem>
+                                <para>
+                                    a positive scalar or "c" or "d" the time domain
+                                </para>
+                            </listitem>
+                        </varlistentry>
+
+                    </variablelist>
+
+                </listitem>
+            </varlistentry>
+
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>S=zpk(Z,P,K,dt)</literal> forms the multi-input,
+            multi-output zero pole gain system representation given the
+            cell arrays of the transmission zeros,poles and gain.
+        </para>
+        <para>
+            <literal>S=zpk(z,p,k,dt)</literal> forms the single-input,
+            single output zero pole gain system representation given the
+            vecteors of the transmission zeros and poles and the scalar
+            gain.
+        </para>
+        <para>
+            <literal>S=zpk(sys)</literal> converts the system
+            representation into a zero-pole-gain representation.
+        </para>
+        <para>
+            The poles and zeros of each transfer function are sorted in decreasing order of the real part.
+        </para>
+        <para>
+            Most functions and operations than can act on state-space or
+            rational transfer function representations can be also
+            applied to zero-pole-gain representations.
+        </para>
+
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//Form system from zeros, poles and gain
+//SISO case
+z11=[1 -0.5];p11=[-3+2*%i -3-2*%i  -2];k11=1;
+S11=zpk(z11,p11,k11,"c")
+
+//MIMO case
+z21=0.3;p21=[-3+2*%i -3-2*%i];k21=1.5;
+S21=zpk(z21,p21,k21,"c")
+S=zpk({z11 [];z21 1},{p11,0;p21 -3},[k11 1;k21 1],"c")
+
+//system representation conversion
+h=syslin("c",5*(%s^2+2*%s+1)/(%s^2-4))
+sh=zpk(h)
+
+//operations with zpk representations
+S(1,:)
+
+S'
+
+S(1,1)=sh
+
+sh*S11
+
+sh./S11
+ ]]></programlisting>
+    </refsection>
+
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tf2zp">tf2zp</link>
+            </member>
+            <member>
+                <link linkend="zpk2tf">zpk2tf</link>
+            </member>
+            <member>
+                <link linkend="zpk2ss">zpk2ss</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>Function added.</para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

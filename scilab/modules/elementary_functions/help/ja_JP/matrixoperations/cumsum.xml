@@ -16,12 +16,12 @@
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cumsum" xml:lang="ja">
-    
+
     <refnamediv>
         <refname>cumsum</refname>
         <refpurpose>配列要素の累積和</refpurpose>
     </refnamediv>
-    
+
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
@@ -31,7 +31,7 @@
             y=cumsum(x,orientation,outtype)
         </synopsis>
     </refsynopsisdiv>
-    
+
     <refsection role="parameters">
         <title>引数</title>
         <variablelist>
@@ -81,7 +81,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection role="description">
         <title>説明</title>
         <para>
@@ -188,18 +188,11 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <note>
+            This function applies with identical rules to <link linkend="sparse">sparse matrices</link>
+        </note>
     </refsection>
-    
-    <refsection role="remark">
-        <title>注意</title>
-        <para>
-            この関数には,
-            <link linkend="sparse">疎行列</link> および
-            <link linkend="hypermat">ハイパー行列</link>と
-            同じ規則が適用されます.
-        </para>
-    </refsection>
-    
+
     <refsection role="examples">
         <title>例</title>
         <programlisting role="example"><![CDATA[
@@ -219,7 +212,7 @@ cumsum(B) //evaluation in float
 cumsum(B,"native") //similar to or(B)
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
@@ -231,5 +224,5 @@ cumsum(B,"native") //similar to or(B)
             </member>
         </simplelist>
     </refsection>
-    
+
 </refentry>

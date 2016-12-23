@@ -44,7 +44,7 @@ p=1+s+2*s^42;
 degree(p) // Devrait retourner 42
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">

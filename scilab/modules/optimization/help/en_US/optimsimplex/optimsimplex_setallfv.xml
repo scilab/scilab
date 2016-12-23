@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -44,20 +44,20 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimsimplex_setallfv</literal> function sets all the function values of 
+            The <literal>optimsimplex_setallfv</literal> function sets all the function values of
             all the vertices. The vertex #k is expected to be stored in fv(k) with k = 1 to nbve.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
             simplex = [
             3. 0. 0.
             4. 1. 0.
             5. 0. 2.
             ];
-            
+
     s1 = optimsimplex_new ();
     s1 = optimsimplex_setall(s1, simplex);
     res = optimsimplex_getallfv(s1);
@@ -65,7 +65,7 @@
     s1 = optimsimplex_setallfv ( s1 , [1. 2. 3.]' );
     res = optimsimplex_getallfv(s1);
     disp(res)
-    
+
     s1 = optimsimplex_destroy(s1);
  ]]>
         </programlisting>

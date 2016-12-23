@@ -357,25 +357,20 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         ostr << L"eye *" << std::endl << std::endl;
         if (isComplex() == false)
         {
-            DoubleFormat df;
-            getDoubleFormat((m_pRealData[0]), &df);
-            addDoubleValue(&ostr, (m_pRealData[0]), &df);
+            printDoubleValue(ostr, m_pRealData[0]);
             ostr << std::endl;
         }
         else
         {
             //complex value
-            DoubleFormat dfR, dfI;
-            getDoubleFormat(ZeroIsZero(m_pRealData[0]), &dfR);
-            getDoubleFormat(ZeroIsZero(m_pImgData[0]), &dfI);
-            addDoubleComplexValue(&ostr, ZeroIsZero(m_pRealData[0]), ZeroIsZero(m_pImgData[0]), dfR.iWidth + dfI.iWidth, &dfR, &dfI);
+            printComplexValue(ostr, m_pRealData[0], m_pImgData[0]);
             ostr << std::endl;
         }
         ostr << std::endl;
     }
     else if (isEmpty())
     {
-        ostr << L"    []";
+        printEmptyString(ostr);
         ostr << std::endl;
     }
     else if (isScalar())
@@ -387,27 +382,19 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
         if (isComplex() == false)
         {
-            DoubleFormat df;
-            getDoubleFormat((m_pRealData[iPos]), &df);
-            ostr << SPACE_BETWEEN_TWO_VALUES;
-            addDoubleValue(&ostr, (m_pRealData[iPos]), &df);
+            printDoubleValue(ostr, m_pRealData[iPos]);
             ostr << std::endl;
         }
         else
         {
             //complex value
-            DoubleFormat dfR, dfI;
-            getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &dfR);
-            getDoubleFormat(ZeroIsZero(m_pImgData[iPos]), &dfI);
-            ostr << SPACE_BETWEEN_TWO_VALUES;
-            addDoubleComplexValue(&ostr, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), dfR.iWidth + dfI.iWidth, &dfR, &dfI);
+            printComplexValue(ostr, m_pRealData[iPos], m_pImgData[iPos]);
             ostr << std::endl;
         }
     }
     else if (getCols() == 1)
     {
         //column vector
-
         if (isComplex() == false)
         {
             for (int i = m_iRows1PrintState ; i < getRows() ; i++)
@@ -415,6 +402,8 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 iCurrentLine++;
                 if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
                 {
+                    // Number of lines to print exceeds the max lines allowed
+                    // Record what line we were at
                     m_iRows1PrintState = i;
                     return false;
                 }
@@ -423,10 +412,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 _piDims[0] = i;
                 int iPos = getIndex(_piDims);
 
-                DoubleFormat df;
-                getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
-                ostr << SPACE_BETWEEN_TWO_VALUES;
-                addDoubleValue(&ostr, ZeroIsZero(m_pRealData[iPos]), &df);
+                printDoubleValue(ostr, m_pRealData[iPos]);
                 ostr << std::endl;
             }
         }
@@ -446,12 +432,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 _piDims[0] = i;
                 int iPos = getIndex(_piDims);
 
-                DoubleFormat dfR, dfI;
-                getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &dfR);
-                getDoubleFormat(ZeroIsZero(m_pImgData[iPos]), &dfI);
-
-                ostr << SPACE_BETWEEN_TWO_VALUES;
-                addDoubleComplexValue(&ostr, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), dfR.iWidth + dfI.iWidth, &dfR, &dfI);
+                printComplexValue(ostr, m_pRealData[iPos], m_pImgData[iPos]);
                 ostr << std::endl;
             }
         }
@@ -472,6 +453,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                 int iPos = getIndex(_piDims);
 
                 DoubleFormat df;
+                // Get the size of the column to print
                 getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
                 iLen = static_cast<int>(ostemp.str().size()) + SIZE_BETWEEN_TWO_VALUES + df.iSignLen + df.iWidth;
                 if (iLen >= iLineLen - 1 && iLastVal != i)
@@ -480,6 +462,8 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
                     if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
                     {
+                        // Number of lines to print exceeds the max lines allowed
+                        // Record what column we were at
                         m_iCols1PrintState = iLastVal;
                         return false;
                     }
@@ -521,6 +505,8 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
                     if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
                     {
+                        // Number of lines to print exceeds the max lines allowed
+                        // Record what column we were at
                         m_iCols1PrintState = iLastVal;
                         return false;
                     }
@@ -555,8 +541,8 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
         if (isComplex() == false)
         {
-            //compute the row size for padding for each printed bloc.
-            for (int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
+            //compute the row size for padding for the full matrix
+            for (int iCols1 = 0 ; iCols1 < getCols() ; iCols1++)
             {
                 for (int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
                 {
@@ -568,7 +554,10 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
                     piSize[iCols1] = std::max(piSize[iCols1], df.iWidth);
                 }
+            }
 
+            for (int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
+            {
                 if (iLen + piSize[iCols1] > iLineLen && iCols1 != iLastCol)
                 {
                     //find the limit, print this part
@@ -668,8 +657,8 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         }
         else //Complex case
         {
-            //compute the row size for padding for each printed bloc.
-            for (int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
+            //compute the row size for padding for the full matrix.
+            for (int iCols1 = 0; iCols1 < getCols() ; iCols1++)
             {
                 for (int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
                 {
@@ -688,7 +677,10 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     }
 
                 }
+            }
 
+            for (int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
+            {
                 if (iLen + piSize[iCols1] > iLineLen && iCols1 != iLastCol)
                 {
                     //find the limit, print this part
@@ -941,7 +933,15 @@ double Double::copyValue(double _dblData)
 
 void Double::deleteAll()
 {
-    delete[] m_pRealData;
+    if (isViewAsZComplex())
+    {
+        vFreeDoubleComplexFromPointer((doublecomplex*)m_pRealData);
+    }
+    else
+    {
+        delete[] m_pRealData;
+    }
+
     m_pRealData = NULL;
     deleteImg();
 }

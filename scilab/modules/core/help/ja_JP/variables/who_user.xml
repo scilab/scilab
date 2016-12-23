@@ -42,7 +42,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+        <programlisting role="code_scilab"><![CDATA[
 clear;
 who_user()
 who_user(%t)

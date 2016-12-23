@@ -97,6 +97,12 @@ assert_checkequal(typeof(l1),"uitree");
 tree = uiCreateTree(l1);
 assert_checkequal(typeof(tree),"uitree");
 
+// hypermat
+assert_checkequal(typeof(matrix(1:24, [2 3 2 2])),"constant");
+A=[1,2,3;4,5,6];
+A(:,:,2)=[1,2,3;4,5,6];
+assert_checkequal(typeof(string(A)),"string");
+
 // fptr
 assert_checkequal(typeof(abs),"fptr");
 

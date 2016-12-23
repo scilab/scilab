@@ -15,6 +15,9 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{458d897a-4c4b-4f72-902a-42abfbfd394e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{3f2606a1-687c-40e7-b336-a7cb076dc4eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\jni\BuildDocObject.cpp">
@@ -53,6 +56,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\helptools.pot">
       <Filter>localization</Filter>
+    </None>
+    <None Include="core_Import.def">
+      <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

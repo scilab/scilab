@@ -31,7 +31,7 @@
         <title>Description</title>
         <para>
             The function allows the user to delete  buttons or menus create by
-            <literal>addmenu</literal> in the main or graphics windows command panels. 
+            <literal>addmenu</literal> in the main or graphics windows command panels.
             Predefined buttons on Scilab graphic windows can also be deleted.
         </para>
         <para>
@@ -41,7 +41,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 addmenu('foo')
 delmenu('foo')
  ]]></programlisting>

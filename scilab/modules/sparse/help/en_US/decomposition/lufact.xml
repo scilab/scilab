@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -62,7 +62,7 @@
             <literal>hand</literal> should be cleared by the command: <literal>ludel(hand)</literal>;
         </para>
         <para>
-            The A matrix needs not be full rank but must be square 
+            The A matrix needs not be full rank but must be square
             (since A is assumed sparse one may add zeros if necessary to squaring
             down A).
         </para>
@@ -85,7 +85,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=rand(5,5);b=rand(5,1);A=sparse(a);
 [h,rk]=lufact(A);
 x=lusolve(h,b);a*x-b

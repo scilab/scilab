@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-09 07:29+0000\n"
+"PO-Revision-Date: 2015-12-20 13:50+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -145,12 +145,13 @@ msgstr "  (продовжено) %s\n"
 msgid "     (end) %s\n"
 msgstr "     (кінець) %s\n"
 
-#
-# File: modules/output_stream/src/cpp/Sciwarning.cpp, line: 42
 msgid ""
 "*** Execution stopped after a warning. ***\n"
 "Set warning(\"on\") to continue execution after a warning.\n"
 msgstr ""
+"*** Виконання зупинено через отримання попередження. ***\n"
+"Встановіть значення warning(\"on\"), щоб продовжувати виконання після "
+"отримання попереджень.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"

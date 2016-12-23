@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -55,7 +55,7 @@
                                     fornece o número de níveis igualmente espaçados de zmin a zmax
                                     como segue:
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
  ]]></programlisting>
                                 <para>
@@ -64,7 +64,7 @@ z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
                                     são reduzidos a pontos) mas podem ser adicionados através
                                     de
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
 [im,jm] = find(z == zmin); // ou zmax
 plot2d(x(im)',y(jm)',-9,"000") ]]></programlisting>
                             </listitem>
@@ -139,19 +139,19 @@ plot2d(x(im)',y(jm)',-9,"000") ]]></programlisting>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
 // mudando o formato de impressão dos níveis
 xset("fpf","%.2f")
 clf()
 contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
- 
+
 // agora, um exemplo com números de níveis desenhados em uma legenda
 // Cuidado, há alguns truques aqui...
 x = linspace(0,4*%pi,80);
 z = cos(x')*cos(x);
 clf(); f=gcf();
-xset("fpf"," ")  // truque 1: isto faz com que alguns números de níveis não sejam 
+xset("fpf"," ")  // truque 1: isto faz com que alguns números de níveis não sejam
                  //          impressos sobre as curvas de nível
 f.color_map=jetcolormap(7);
 // truque 2: para fazer com que se possa colocar a legenda à direita sem
@@ -159,7 +159,7 @@ f.color_map=jetcolormap(7);
 //          grande o suficiente
 contour2d(x,x,z,-0.75:0.25:0.75,frameflag=3,rect=[0,0,5*%pi,4*%pi])
 // truque 3: use legends (note que a função mais prática legend
-//          não funcionará quando um dos níveis for formado por duas curvas)  
+//          não funcionará quando um dos níveis for formado por duas curvas)
 legends(string(-0.75:0.25:0.75),1:7,"lr");
 xtitle("Algumas curvas de nível da função cos(x)cos(y)")
  ]]></programlisting>

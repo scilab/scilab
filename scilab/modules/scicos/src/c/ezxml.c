@@ -1047,7 +1047,10 @@ ezxml_t ezxml_parse_fd(int fd)
     {
         return NULL;
     }
-    fstat(fd, &st);
+    if (fstat(fd, &st) < 0)
+    {
+        return NULL;
+    }
 
 #ifndef EZXML_NOMMAP
     l = (st.st_size + sysconf(_SC_PAGESIZE) - 1) & ~(sysconf(_SC_PAGESIZE) - 1);

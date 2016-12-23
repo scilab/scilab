@@ -114,9 +114,6 @@ import com.mxgraph.view.mxMultiplicity;
 import java.lang.reflect.Constructor;
 import java.rmi.server.UID;
 import java.util.Hashtable;
-import org.scilab.modules.types.ScilabList;
-import org.scilab.modules.types.ScilabString;
-import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.io.ScilabTypeCoder;
 
 /**
@@ -406,8 +403,8 @@ public class XcosDiagram extends ScilabGraph {
         // get the user index
         JavaController controller = new JavaController();
         VectorOfInt ipar = new VectorOfInt();
-        controller.getObjectProperty(realIndex, Kind.BLOCK, ObjectProperties.IPAR, ipar);
-        if (ipar.size() > 1) {
+        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.IPAR, ipar);
+        if (ipar.size() < 1) {
             return err;
         }
         final int userIndex = ipar.get(0);
@@ -2263,5 +2260,15 @@ public class XcosDiagram extends ScilabGraph {
                 super.setCell(current);
             }
         };
+    }
+
+   /**
+    * Counts the number of children in the diagram
+    *
+    * @return the number of children in the diagram
+    */
+    public int countChildren()
+    {
+        return getModel().getChildCount(this.getDefaultParent());
     }
 }

@@ -2,7 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aime AGNEL
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -16,31 +17,63 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tbx_builder_help" xml:lang="en">
     <refnamediv>
         <refname>tbx_builder_help</refname>
-        <refpurpose>Run builder_help.sce script if it exists (toolbox compilation process)</refpurpose>
+        <refpurpose>
+            Build help pages of a toolbox, with possible subsections (toolbox compilation process)
+        </refpurpose>
     </refnamediv>
+
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
             tbx_builder_help(toolbox_path)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>toolbox_path</term>
                 <listitem>
-                    <para>Root directory of toolbox sources ; builder_help.sce script will be searched in the help subdirectory of this directory.</para>
+                    <para>
+                      Root directory of toolbox sources ; builder_help.sce script will be
+                      searched in the help subdirectory of this directory.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            <literal>tbx_builder_help</literal> is used for generating the help of a toolbox.
+        </para>
+        <para>
+            This macro is usually called from <literal>builder.sce</literal> scripts when creating a toolbox.
+        </para>
+        <para>
+            Scans the <literal>toolbox_path</literal> directory for a <literal>help</literal> subdirectory.
+            If <literal>help</literal> is found, looks for a script whose name starts by <literal>builder</literal> and executes it.
+            If no such script is found, generates the help from all <literal>la_LA</literal> subdirectories where <literal>la_LA</literal> is the
+            language and country from ISO 15897.
+        </para>
+        <para>
+            Exits silently if the <literal>help</literal> subdirectory is absent.
+        </para>
+        <warning>
+          The toolbox name is retrieved as the basename of the file
+          <literal>toolbox_path/etc/*.start</literal>. This file must exists, even if it is empty.
+        </warning>
+    </refsection>
+
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// Recommended usage
+        <programlisting role="no-scilab-exec"><![CDATA[
+// Recommended usage, from a builder.sce script:
 tbx_builder_help(get_absolute_file_path('builder.sce'))
  ]]></programlisting>
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -55,5 +88,26 @@ tbx_builder_help(get_absolute_file_path('builder.sce'))
                 <link linkend="tbx_build_help">tbx_build_help</link>
             </member>
         </simplelist>
+    </refsection>
+
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <para>
+                        No longer restricts the build scripts to <literal>builder_help.sce</literal>.
+                        Now any scripts called builder*.sce or builder*.sce is valid
+                        for help generation.
+                    </para>
+                    <para>
+                        No longer requires a builder script, the default behaviour generates the help
+                        from all <literal>la_LA</literal> subdirectory inside the <literal>help</literal>
+                        directory.
+                    </para>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

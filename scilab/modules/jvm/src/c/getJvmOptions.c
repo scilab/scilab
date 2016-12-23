@@ -98,6 +98,11 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
                         {
                             /* we found the tag name */
                             const char *str = (const char*)attrib->children->content;
+                            if (jvm_option_string)
+                            {
+                                FREE(jvm_option_string);
+                                jvm_option_string = NULL;
+                            }
                             if (strstr(str, "-Xmx") == str && heapSize)
                             {
                                 jvm_option_string = os_strdup(heapSize);

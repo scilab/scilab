@@ -10,5 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Gestion de l''aide en ligne",SCI+"/modules/helptools/help/fr_FR",%T);
+add_help_chapter("Documentation : gestion",SCI+"/modules/helptools/help/fr_FR",%T);
 

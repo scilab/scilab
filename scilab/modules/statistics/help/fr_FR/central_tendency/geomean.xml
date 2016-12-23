@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * Copyright (C) 2016 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+    xml:lang="fr" xml:id="geomean">
+    <refnamediv>
+        <refname>geomean</refname>
+        <refpurpose>moyenne géométrique</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntaxe</title>
+        <synopsis>
+            gm = geomean(X)
+            GM = geomean(X, orien)   // orien : 'r'|1|'c'|2..ndims(X)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>X</term>
+                <listitem>
+                    <para>
+                        Vecteur, matrice ou hypermatrice de réels ou de complexes.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orien</term>
+                <listitem>
+                    <para>
+                        Dimension selon laquelle la moyenne géométrique est calculée. Sa valeur doit être parmi <literal>'r', 1, 'c', 2, .. ndims(X)</literal>. Les valeurs <literal>'r'</literal> (lignes) et <literal>1</literal> sont équivalentes, comme <literal>'c'</literal> (colonnes) et <literal>2</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gm</term>
+                <listitem>
+                    <para>
+                        Réel scalaire : la moyenne géométrique <literal>gm = prod(X)^(1/N)</literal>, où <literal>N = length(X)</literal> est le nombre d'éléments de <literal>X</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>GM</term>
+                <listitem>
+                    <para>
+                        Vecteur, matrice ou hypermatrice de nombres. <literal>s = size(GM)</literal> est égal à <literal>size(X)</literal>, sauf que <literal>s(orien)</literal> vaut 1 (dû à l'application projetée de geomean() selon la dimension orien).
+                    </para>
+                    <para>
+                        Si <varname>X</varname> est une matrice, on a :
+                        <itemizedlist>
+                            <listitem>
+                                <literal>GM = geomean(X,1)  =>  GM(1,j) = geomean(X(:,j))</literal>
+                            </listitem>
+                            <listitem>
+                                <literal>GM = geomean(X,2)  =>  GM(i,1) = geomean(X(i,:))</literal>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>geomean(X,..)</function> calcule la moyenne géométrique des valeurs de <literal>X</literal>.
+        </para>
+        <para>
+            Si <varname>X</varname> ne contient que des valeurs positives ou nulles, <varname>gm</varname> ou <varname>GM</varname> sont réels. Sinon ils sont souvent complexes.
+        </para>
+        <note>
+            Si <varname>X</varname> est une matrice creuse (sparse), alors
+            <itemizedlist>
+                <listitem>elle est convertie en matrice pleine avant d'être traitée.</listitem>
+                <listitem>
+                    <varname>gm</varname> est toujours pleine.
+                </listitem>
+                <listitem>
+                    <varname>GM</varname> est creuse.
+                </listitem>
+            </itemizedlist>
+        </note>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+geomean(1:10) // Retourne factorial(10)^(1/10) = 4.5287286881167648
+
+// Moyenne géométrique selon une direction choisie :
+// -----------------------------------------------
+m = grand(4,5, "uin", 1, 100);
+m(3,2) = 0; m(2,4) = %inf; m(4,5) =  %nan
+geomean(m, "r")
+geomean(m, 2)
+h = grand(3,5,2, "uin",1,100)
+geomean(h,3)
+    ]]></programlisting>
+        <screen><![CDATA[
+--> m = grand(4,5, "uin", 1, 100);
+--> m(3,2) = 0; m(2,4) = %inf; m(4,5) =  %nan
+ m  =
+   13.   5.    99.   41.   20.
+   3.    92.   4.    Inf   5.
+   35.   0.    36.   40.   98.
+   86.   86.   66.   21.   Nan
+
+--> geomean(m, "r")
+ ans  =
+   18.510058   0.   31.14479   Inf   Nan
+
+--> geomean(m, 2)
+ ans  =
+   22.104082
+   Inf
+   0.
+   Nan
+
+--> h = grand(3,5,2, "uin",1,100)
+ h  =
+(:,:,1)
+   10.   40.   37.   72.   30.
+   10.   47.   54.   13.   19.
+   44.   27.   61.   10.   27.
+(:,:,2)
+   96.   88.   7.    98.   35.
+   54.   29.   96.   77.   8.
+   94.   45.   21.   46.   3.
+
+--> geomean(h,3)
+ ans  =
+   30.983867   59.329588   16.093477   84.         32.403703
+   23.2379     36.91883    72.         31.638584   12.328828
+   64.311741   34.85685    35.79106    21.447611   9.
+]]></screen>
+        <para></para>
+        <programlisting role="example"><![CDATA[
+// APPLICATION : Taux de croissance moyen
+// --------------------------------------
+// Pendant 8 ans, on mesure le diamètre D(i=1:8) du tronc d'un arbre.
+D = [10 14 18 26 33 42 51 70];          // en mm
+
+// Le taux de croissance gr(i) pour l'année #i+1 par rapport à l'année #i est, en % :
+gr = (D(2:$)./D(1:$-1) - 1)*100
+
+// Le taux de croissance moyen est donc, en % :
+mgr = (geomean(1+gr/100)-1)*100
+
+// Si ce tronc avait un taux de croissance constant, son diamètre aurait été :
+D(1)*(1+mgr/100)^(0:7)
+ ]]></programlisting>
+        <screen><![CDATA[
+--> gr = (D(2:$)./D(1:$-1) - 1)*100
+ gr  =
+   40.   28.57   44.44   26.92   27.27   21.43   37.25
+
+--> mgr = (geomean(1+gr/100)-1)*100
+ mgr  =
+   32.05
+
+--> D(1)*(1+mgr/100)^(0:7)
+ ans  =
+   10.   13.2   17.44   23.02   30.4   40.15   53.01   70.
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="prod">prod</link>
+            </member>
+            <member>
+                <link linkend="harmean">harmean</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliographie</title>
+        <para>
+            Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
+        </para>
+    </refsection>
+</refentry>

@@ -50,7 +50,7 @@
                 <term>Character string transpose:</term>
                 <listitem>
                     <para>
-                        In Scilab, the result of a character string transpose is the string itself; but in Matlab, transpose of a character string gives a column vector of characters. To have the same result in Scilab, use: <emphasis role="bold">mtlb_t</emphasis>. 
+                        In Scilab, the result of a character string transpose is the string itself; but in Matlab, transpose of a character string gives a column vector of characters. To have the same result in Scilab, use: <emphasis role="bold">mtlb_t</emphasis>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -71,7 +71,7 @@
                 <td>
                     <programlisting role="example"><![CDATA[
 s = ('str1')'
-s = ['s';'t';'r';'1'] 
+s = ['s';'t';'r';'1']
 ]]></programlisting>
                 </td>
                 <td>
@@ -79,7 +79,7 @@ s = ['s';'t';'r';'1']
 s = ('str1')'
 s = 'str1'
 s = mtlb_t('str1')
-s = ['s';'t';'r';'1'] 
+s = ['s';'t';'r';'1']
 ]]></programlisting>
                 </td>
             </tr>

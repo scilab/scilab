@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -220,10 +220,10 @@
             Enter the command <literal>param3d()</literal> to see a demo.
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t=0:0.1:5*%pi;
 param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
 
@@ -237,11 +237,11 @@ a.rotation_angles=[10 70];
         <scilab:image>
             t=0:0.1:5*%pi;
             param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
-            
+
             e=gce() //the handle on the 3D polyline
-            
+
             e.foreground=color('red');
-            
+
             a=gca(); //the handle on the axes
             a.rotation_angles=[10 70];
         </scilab:image>

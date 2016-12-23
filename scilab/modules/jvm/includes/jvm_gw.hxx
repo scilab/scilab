@@ -20,23 +20,10 @@
 
 extern "C"
 {
-#include "dynlib_jvm_gw.h"
+#include "dynlib_jvm.h"
 }
 
-class JvmModule
-{
-private :
-    JvmModule() {};
-    ~JvmModule() {};
-
-public :
-    JVM_GW_IMPEXP static int Load();
-    JVM_GW_IMPEXP static int Unload()
-    {
-        return 1;
-    }
-};
-CPP_GATEWAY_PROTOTYPE(sci_system_getproperty);
-CPP_GATEWAY_PROTOTYPE(sci_system_setproperty);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_system_getproperty, JVM_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_system_setproperty, JVM_IMPEXP);
 
 #endif /* !__JVM_GW_HXX__ */

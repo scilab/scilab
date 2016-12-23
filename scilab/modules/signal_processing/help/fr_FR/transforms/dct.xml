@@ -71,7 +71,7 @@
                     dimensions.  See the Description part for details.
                 </listitem>
             </varlistentry>
-            
+
             <varlistentry>
                 <term>dims</term>
                 <listitem>
@@ -165,8 +165,8 @@
                         </latex>
                     </para>
                 </listitem>
-                
-                
+
+
                 <listitem>
                     <para>
                         For <literal>"dct4"</literal>  the function computes the unnormalized DCT-IV transform:
@@ -192,7 +192,7 @@
                         </latex>
                     </para>
                 </listitem>
-                
+
                 <listitem>
                     <para>
                         For <literal>"idct"</literal> the function computes the normalized DCT-III transform:
@@ -250,7 +250,7 @@
                     \omega_j(k)=\sqrt{\frac{2}{n_j}} , k>1 \end{array}$
                 </latex>
             </para>
-            
+
         </refsection>
         <refsection>
             <title>Syntax description</title>
@@ -299,7 +299,7 @@
                         </variablelist>
                     </listitem>
                 </varlistentry>
-                
+
                 <varlistentry>
                     <term>Long syntax for DCT along specified dimensions</term>
                     <listitem>
@@ -393,7 +393,7 @@
   clf;plot(s,'b'),plot(dct(d,1),'r')
 
   ]]></programlisting>
-        
+
         <para>2-D dct</para>
         <programlisting role="example"><![CDATA[
   function z = __milk_drop(x,y)
@@ -412,8 +412,8 @@
   subplot(121), grayplot(x,x,A)
   subplot(122), grayplot(x,x,A1)
   ]]></programlisting>
-        
-        
+
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>

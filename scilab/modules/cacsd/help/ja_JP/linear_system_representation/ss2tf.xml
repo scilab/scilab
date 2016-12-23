@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -51,12 +51,12 @@
         <title>説明</title>
         <para>
             出力を3個としてコール <literal>[Ds,NUM,chi]=ss2tf(sl)</literal> すると、
-            分子多項式行列 <literal>NUM</literal>, 
+            分子多項式行列 <literal>NUM</literal>,
             特性方程式 <literal>chi</literal>および
             多項式部分 <literal>Ds</literal> が別々に得られる.
-            すなわち: 
+            すなわち:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 h = NUM/chi + Ds
  ]]></programlisting>
         <para>
@@ -76,7 +76,7 @@ h = NUM/chi + Ds
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 h=[1,1/s;1/(s^2+1),s/(s^2-2)]
 sl=tf2ss(h);

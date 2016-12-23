@@ -78,7 +78,7 @@
             e=gce();e=e.children;
             d21=datatipCreate(e(2),600);
             d1=datatipCreate(e(1),700);
-            
+
             function str=mydisplay(h)
             pt = h.data;
             str=msprintf('sinc(%-0.2g)=%-0.2g', 20*pt(1),pt(2))

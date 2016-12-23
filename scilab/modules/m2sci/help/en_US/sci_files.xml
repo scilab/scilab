@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -20,13 +20,13 @@
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>  
+        <para>
             To convert calls to Matlab functions, <literal>mfile2sci</literal> uses a function called
             <literal>sci_&lt;Matlab_function_name&gt;</literal>. All these functions are defined in <literal>sci_files</literal>
             in directory SCI/modules/m2sci/macros/sci_files/. The set of <literal>sci_files</literal> given in Scilab
             distribution does not allow to convert calls to all Matlab functions yet.
             However, a Scilab user can add <literal>sci_files</literal> (for Matlab functions or for user defined functions)
-            to Scilab using the following tips. 
+            to Scilab using the following tips.
         </para>
         <para>
             In M2SCI, a function call is considered as a "tree" (it is also the case for the instructions
@@ -67,7 +67,7 @@
             A <literal>sci_function</literal> has to convert this incoming "tree" so that it is compatible with Scilab
             by changing name, lhsnb, lhs and/or rhs. The other task that has to be done by this function
             is inference. Incoming tree contains inference data in its lhs that have to be updated with what
-            can be infered for the outputs of this function. 
+            can be infered for the outputs of this function.
         </para>
         <para>
             Some useful functions have been written to help to create M2SCI tlists while writing this conversion function:

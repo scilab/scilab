@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -41,9 +41,9 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[0:0.1:2*%pi]';
-f=get("default_figure"); // obtendo o manipulador da figura modelo 
+f=get("default_figure"); // obtendo o manipulador da figura modelo
 a=get("default_axes");   // obtendo o manipulador dos eixos modelos
                          // ajustando suas propriedades
 f.background=4;

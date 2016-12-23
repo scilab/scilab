@@ -95,8 +95,8 @@
                 <term>"C0"</term>
                 <listitem>
                     <para>the extrapolation is defined as follows :</para>
-                    <programlisting role=""><![CDATA[ 
- s(x,y) = s(proj(x,y)) where proj(x,y) is nearest point 
+                    <programlisting role=""><![CDATA[
+ s(x,y) = s(proj(x,y)) where proj(x,y) is nearest point
                        of [x(1),x(nx)]x[y(1),y(ny)] from (x,y)
  ]]></programlisting>
                 </listitem>
@@ -113,7 +113,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // see the examples of the splin3d help page
  ]]></programlisting>
     </refsection>

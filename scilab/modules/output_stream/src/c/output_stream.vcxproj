@@ -256,6 +256,8 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="..\..\includes\basout.h" />
     <ClInclude Include="..\..\includes\cerro.h" />
     <ClInclude Include="..\..\includes\diary.h" />
+    <ClInclude Include="..\..\includes\DiaryModesEnum.hxx" />
+    <ClInclude Include="..\..\includes\diary_manager.hxx" />
     <ClInclude Include="..\..\includes\do_error_number.h" />
     <ClInclude Include="..\..\includes\dynlib_output_stream.h" />
     <ClInclude Include="..\..\includes\erro.h" />
@@ -269,8 +271,6 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="..\..\includes\Sciwarning.h" />
     <ClInclude Include="..\cpp\Diary.hxx" />
     <ClInclude Include="..\cpp\DiaryList.hxx" />
-    <ClInclude Include="..\cpp\DiaryModesEnum.hxx" />
-    <ClInclude Include="..\cpp\diary_manager.hxx" />
     <ClInclude Include="..\cpp\getDiaryDate.hxx" />
     <ClInclude Include="..\cpp\getUniqueFilename.hxx" />
     <ClInclude Include="errorTable.h" />

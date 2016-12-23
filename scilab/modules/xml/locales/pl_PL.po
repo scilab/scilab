@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -268,6 +268,10 @@ msgstr ""
 "Plik %s jest nieprawidłowy:\n"
 "%s\n"
 
+#, fuzzy, c-format
+msgid "%s: Cannot write the file.\n"
+msgstr "%s: Brak możliwości zapisu do pliku: %s\n"
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"
@@ -299,6 +303,9 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error in getting rhs argument.\n"
+msgstr ""
+
+msgid "Unknown tag.\n"
 msgstr ""
 
 msgid " at line "
@@ -357,11 +364,8 @@ msgstr ""
 msgid "%s: Field %s is not modifiable: %s\n"
 msgstr ""
 
-# File: modules/xml/demos/xml.dem.gateway.sce, line: 10
 msgid "XML"
 msgstr ""
 
-#
-# File: modules/xml/demos/xml.dem.gateway.sce, line: 12
 msgid "CML read"
 msgstr ""

@@ -58,7 +58,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot2d(0,0,-1,"012"," ",[0,0,1,1])
 rand("uniform")
 xset("color",3)

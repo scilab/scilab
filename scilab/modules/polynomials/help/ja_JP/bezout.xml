@@ -39,7 +39,7 @@
             <literal>[thegcd,U]=bezout(p1,p2)</literal> は GCD,
             <literal>p1</literal> および <literal>p2</literal>の
             <literal>thegcd</literal>および
-            以下のような(2x2) ユニモジュラ行列<literal>U</literal> 
+            以下のような(2x2) ユニモジュラ行列<literal>U</literal>
             を計算します:
         </para>
         <para>
@@ -55,7 +55,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 多項式の場合
 x=poly(0,'x');
 p1=(x+1)*(x-3)^5;p2=(x-2)*(x-3)^3;

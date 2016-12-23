@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -118,7 +118,7 @@
         <!--Lib_name: poly_reading-->
         <!--Func_list: read_poly-->
         <title>ゲートウェイのソース</title>
-        <programlisting role="code_gateway"><![CDATA[ 
+        <programlisting role="code_gateway"><![CDATA[
 #include "api_scilab.h"
 int read_poly(char *fname,void* pvApiCtx)
 {
@@ -251,7 +251,7 @@ int read_poly(char *fname,void* pvApiCtx)
     </refsection>
     <refsection>
         <title>Scilabテストスクリプト</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+        <programlisting role="code_scilab"><![CDATA[
 coeff1 = [ ..
 29*%i,22*%i,16*%i,11*%i,7*%i,30,23,17,12,8,-31*%i,-24*%i,-18*%i,-13*%i,-9*%i,32,25,19,14,10,-33*%i,-26*%i,-20*%i,-15*%i,0,34,27,21,0,0,0,-28*%i,0,0,0,36-35*%i,0,0,0,0; ..
 4*%i,2*%i,%i,22,16,5,-3,0,-23*%i,-17*%i,-6*%i,0,0,24,18,0,0,0,-25*%i,-19*%i,0,0,0,26,20,0,0,0,-27*%i,-21*%i,0,0,0,28,0,0,0,0,0,0; ..

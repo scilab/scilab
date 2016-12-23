@@ -104,7 +104,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 以下のような x ( R^6)を探す:
 // x'*C1 = b1 (3 個の等式拘束 すなわち me=3)
 C1= [ 1,-1, 2;
@@ -150,11 +150,11 @@ me=3;
     <refsection>
         <title>所要メモリ</title>
         <para>rを以下とすると</para>
-        <programlisting> 
+        <programlisting>
             r=min(m,n)
         </programlisting>
         <para>計算時にqp_solveに必要とされるメモリは,以下となります</para>
-        <programlisting> 
+        <programlisting>
             2*n+r*(r+5)/2 + 2*m +1
         </programlisting>
     </refsection>

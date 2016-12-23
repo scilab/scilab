@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:08+0000\n"
+"PO-Revision-Date: 2016-10-19 13:07+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -67,43 +67,47 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
-msgstr ""
+msgstr "%s : Les arguments %d et %d doivent avoir des dimensions égales.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Square matrix expected.\n"
-msgstr ""
+msgstr "%s : Type erroné pour l'argument %d : Une matrice carrée attendue.\n"
 
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
-msgstr ""
+msgstr "%s : Impossible d'allouer plus de mémoire.\n"
 
 #, c-format
 msgid "%s: LAPACK error n%d.\n"
-msgstr ""
+msgstr "%s : Erreur LAPACK n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
 msgstr ""
+"%s : Type erroné pour l'argument n°%d : Une matrice réelle ou complexe "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A scalar expected.\n"
-msgstr ""
+msgstr "%s : Type erroné pour l'argument %d : Un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument %d : Il ne doit pas contenir NaN ou "
+"Inf.\n"
 
 #, c-format
 msgid "%s: Allocation failed.\n"
-msgstr ""
+msgstr "%s : Échec d'allocation.\n"
 
 #, c-format
 msgid "%s: Non convergence in QR steps.\n"
@@ -111,34 +115,39 @@ msgstr "%s : Non convergence des itérations QR.\n"
 
 #, c-format
 msgid "%s: Matrix is not positive definite.\n"
-msgstr ""
+msgstr "%s : La matrice n'est pas définie positive.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice carrée attendue.\n"
 
 #, c-format
 msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
 msgstr ""
+"%s:  Un argument de dimension variable de a*eye(), (argument %d) non "
+"autorisé ici.\n"
 
 msgid "Warning :\n"
-msgstr ""
+msgstr "Attention :\n"
 
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
 msgstr ""
+"la matrice est proche d'être singulière ou mal mise à l'échelle. rcond = "
+"%1.4E\n"
 
 #, c-format
 msgid "%s: Problem is singular.\n"
-msgstr ""
+msgstr "%s : Le problème est singulier.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
-msgstr ""
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel attendu.\n"
 
 #, c-format
 msgid "%s: %s and %s must have equal number of rows.\n"
-msgstr ""
+msgstr "%s : %s et %s doivent avoir un nombre égal de lignes.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
@@ -148,14 +157,16 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un réel ou une chaîne de "
+"caractères attendu.\n"
 
 #, c-format
 msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
-msgstr ""
+msgstr "%s : Les arguments %d et %d doivent avoir des dimensions égales.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -164,33 +175,41 @@ msgstr ""
 
 #, c-format
 msgid "%s: Subroutine not found: %s\n"
-msgstr ""
+msgstr "%s : Sous-programme non trouvé : %s\n"
 
 #, c-format
 msgid "%s: Schur exit with state %d\n"
-msgstr ""
+msgstr "%s : Sortie de Schur avec l'état %d\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument %d: Must not contain NaN or Inf.\n"
 msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Il ne doit pas contenir "
+"NaN ou Inf.\n"
 
 #, c-format
 msgid ""
 "%s: On entry to ZGEEV parameter number  3 had an illegal value (lapack "
 "library problem).\n"
 msgstr ""
+"%s : À l'entrée de ZGEEV le paramètre n°3 a une valeur incorrecte (problème "
+"de librairie lapack).\n"
 
 #, c-format
 msgid ""
 "%s: Convergence problem, %d off-diagonal elements of an intermediate "
 "tridiagonal form did not converge to zero.\n"
 msgstr ""
+"%s : Problème de convergence, %d éléments hors diagonale d'une forme "
+"tridiagonale intermédiaire ne convergent pas vers zéro.\n"
 
 #, c-format
 msgid ""
 "%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack "
 "library problem).\n"
 msgstr ""
+"%s : À l'entrée de ZHEEV le paramètre n°3 a une valeur incorrecte (problème "
+"de librairie lapack).\n"
 
 #, c-format
 msgid ""
@@ -198,6 +217,9 @@ msgid ""
 "eigenvectors have been computed. Elements and %d+1:N of W contain "
 "eigenvalues which have converged.\n"
 msgstr ""
+"%s : L'algorithme QR n'a pas réussi à calculer toutes les valeurs propres, "
+"et aucun vecteur propre n'a été calculé. Les éléments et %d + 1 : N de W "
+"contiennent des valeurs propres qui ont convergé.\n"
 
 #, c-format
 msgid ""
@@ -205,78 +227,92 @@ msgid ""
 "eigenvectors have been computed. Elements and %d+1:N of WR and WI contain "
 "eigenvalues which have converged.\n"
 msgstr ""
+"%s : L'algorithme QR n'a pas réussi à calculer toutes les valeurs propres, "
+"et aucun vecteur propre n'a été calculé. Les éléments et %d + 1 : N de WR "
+"contiennent des valeurs propres qui ont convergé.\n"
 
 msgid "Non convergence in the QZ algorithm.\n"
-msgstr ""
+msgstr "La non convergence dans l'algorithme QZ.\n"
 
 #, c-format
 msgid "The top %d  x %d blocks may not be in generalized Schur form.\n"
 msgstr ""
+"Les blocs %d x %d du haut ne doivent pas être dans la forme généralisée de "
+"Schur.\n"
 
 #, c-format
 msgid "%s: The QZ iteration failed in DGGEV.\n"
-msgstr ""
+msgstr "%s : L'itération QZ a échoué dans DGGEV.\n"
 
 #, c-format
 msgid "%s: Other than QZ iteration failed in DHGEQZ.\n"
-msgstr ""
+msgstr "%s : Les itérations autres que QZ ont échoué dans DHGEQZ.\n"
 
 #, c-format
 msgid "%s: Error return from DTGEVC.\n"
-msgstr ""
+msgstr "%s : Erreur retournée par DTGEVC.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
 msgstr ""
+"%s : Nombre erroné de(s) argument(s) de sortie : Au moins %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Convergence problem...\n"
-msgstr ""
+msgstr "%s : Problème de convergence...\n"
 
 #, c-format
 msgid "Argument %d in dgees had an illegal value.\n"
-msgstr ""
+msgstr "L'argument %d dans dgees a une valeur incorrecte.\n"
 
 msgid "The QR algorithm failed to compute all the eigenvalues.\n"
 msgstr ""
+"L'algorithme QR n'a pas réussi à calculer toutes les valeurs propres.\n"
 
 msgid ""
 "The eigenvalues could not be reordered because some eigenvalues were too "
 "close to separate (the problem is very ill-conditioned).\n"
 msgstr ""
+"Les valeurs propres ne peuvent pas être réordonnées car certaines d'entre "
+"elles étaient trop proches pour être distinguées (le problème vient d'un "
+"mauvais conditionnement).\n"
 
 msgid ""
 "After reordering, roundoff changed values of some complex eigenvalues so "
 "that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. "
 "This could also be caused by underflow due to scaling.\n"
 msgstr ""
+"Après la réorganisation, l'arrondi a changé la valeur de certaines valeurs "
+"propres complexes ce qui a conduit les valeurs propres dans la forme de "
+"Schur à ne plus respecter SELECT=.TRUE. Cela peut aussi être causé par un "
+"soupassement en raison d'une mise à l'échelle.\n"
 
 #, c-format
 msgid "Argument %d in zgees had an illegal value.\n"
-msgstr ""
+msgstr "L'argument %d dans zgees a une valeur incorrecte.\n"
 
 #, c-format
 msgid "Argument %d in dgges had an illegal value.\n"
-msgstr ""
+msgstr "L'argument %d dans dgees a une valeur incorrecte.\n"
 
 msgid "The QZ iteration failed. (A,E) are not in Schur form.\n"
-msgstr ""
+msgstr "L'itération QZ a échoué. (A,E) n'est pas de la forme de Schur.\n"
 
 msgid "Other than QZ iteration failed in DHGEQZ.\n"
-msgstr ""
+msgstr "Les itérations autres que QZ ont échoué dans DHGEQZ.\n"
 
 msgid "Reordering failed in DTGSEN.\n"
-msgstr ""
+msgstr "La réorganisation a échoué dans DTGSEN.\n"
 
 #, c-format
 msgid "Argument %d in zgges had an illegal value.\n"
-msgstr ""
+msgstr "L'argument %d dans zgees a une valeur incorrecte.\n"
 
 msgid "Other than QZ iteration failed in ZHGEQZ.\n"
-msgstr ""
+msgstr "Les itérations autres que QZ ont échoués dans ZHGEQZ.\n"
 
 msgid "Reordering failed in ZTGSEN.\n"
-msgstr ""
+msgstr "La réorganisation a échoué dans ZTGSEN.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial expected."
@@ -332,27 +368,12 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid "%s: Obsolete function. Please replace '%s' by '%s'."
-msgstr "%s : Fonction obsolète. Veuillez remplacer '%s' par '%s'."
-
-#, c-format
-msgid ""
-"%s: Obsolete function. Former external functions cannot be used anymore."
-msgstr ""
-"%s : Fonction obsolète. Les anciennes fonctions externes ne peuvent plus "
-"être utilisées dorénavant."
-
-#, fuzzy, c-format
 msgid "%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument n°%d : Une matrice réelle ou complexe "
-"attendue.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur colonne "
-"attendu.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -441,3 +462,6 @@ msgid ""
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Le rang demandé est plus "
 "grand que la dimension de la matrice."
+
+#~ msgid "%s: Obsolete function. Please replace '%s' by '%s'."
+#~ msgstr "%s : Fonction obsolète. Veuillez remplacer '%s' par '%s'."

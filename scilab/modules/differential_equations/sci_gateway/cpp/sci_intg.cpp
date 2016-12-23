@@ -254,7 +254,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
     if (bCatch)
     {
         wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "intg", "dqags");
+        os_swprintf(szError, bsiz, _W("%ls: An error occured in '%ls' subroutine.\n").c_str(), L"intg", L"dqags");
         os << szError;
         throw ast::InternalError(os.str());
     }

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -59,8 +59,8 @@
             If the entity has children, they will be also translated.
         </para>
         <para>
-            Given the keyword <literal>"alone"</literal>, only the specified entity needs to be redrawn. 
-            It must specially be used with the <literal>pixel_drawing_mode</literal> 
+            Given the keyword <literal>"alone"</literal>, only the specified entity needs to be redrawn.
+            It must specially be used with the <literal>pixel_drawing_mode</literal>
             property of the figure entity (see draw objects under
             <literal>"xor"</literal> drawing mode).
         </para>
@@ -79,9 +79,9 @@ move(p,t);
             a=gca();
             p=a.children(1);
             t=[1,0,-1.25];
-            move(p,t);      
+            move(p,t);
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>

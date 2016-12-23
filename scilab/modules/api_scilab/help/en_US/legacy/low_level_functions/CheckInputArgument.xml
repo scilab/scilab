@@ -73,7 +73,7 @@
             In this example, the C gateway function checks for a number of
             input arguments which must be between 2 and 3.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 #include <api_scilab.h>
 
 int sci_mycheckrhs(char * fname)
@@ -90,7 +90,7 @@ int sci_mycheckrhs(char * fname)
 }
  ]]></programlisting>
         <para>Now, some functions testing this interface:</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 mycheckrhs(A,B); // OK, 2 input arguments
 mycheckrhs(A,B,C); // OK, 3 input arguments
 mycheckrhs(A); // ERROR, 1 input argument

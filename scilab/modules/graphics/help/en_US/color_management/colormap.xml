@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -22,7 +22,7 @@
         <title>Description</title>
         <para>
             A colormap <literal>cmap</literal> is defined by a m x 3 matrix. m is the number of colors.
-            Color number i is given as a 3-uple <literal>cmap(i,1)</literal>, <literal>cmap(i,2)</literal> 
+            Color number i is given as a 3-uple <literal>cmap(i,1)</literal>, <literal>cmap(i,2)</literal>
             <literal>cmap(i,3)</literal>
             corresponding respectively to red, green and blue intensity between
             0 and 1.
@@ -37,7 +37,7 @@
             in most plot functions. To see the ids, use function <link linkend="getcolor">getcolor</link>.
         </para>
         <para>
-            The functions <link linkend="hotcolormap">hotcolormap</link>, <link linkend="jetcolormap">jetcolormap</link> and  <link linkend="graycolormap">graycolormap</link> 
+            The functions <link linkend="hotcolormap">hotcolormap</link>, <link linkend="jetcolormap">jetcolormap</link> and  <link linkend="graycolormap">graycolormap</link>
             provide colormaps with continuous variation of the colors.
         </para>
         <para>
@@ -46,7 +46,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 n=64;
 r=linspace(0,1,n)';
 g=linspace(1,0,n)';
@@ -56,7 +56,7 @@ f=gcf(); f.color_map=cmap;
 plot3d1()
 f.color_map=get(sdf(),"color_map");
  ]]></programlisting>
-        <scilab:image> 
+        <scilab:image>
             n=64;
             r=linspace(0,1,n)';
             g=linspace(1,0,n)';
@@ -66,7 +66,7 @@ f.color_map=get(sdf(),"color_map");
             plot3d1()
             f.color_map=get(sdf(),"color_map");
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>

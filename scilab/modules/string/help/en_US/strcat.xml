@@ -87,10 +87,10 @@
         <para>
             If <varname>strings</varname> is a matrix of strings,
             <code>txt = strcat(strings, "", "r")</code> returns a row vector of strings.
-            Each entry of <varname>txt</varname> results from the concatenation of rows along 
+            Each entry of <varname>txt</varname> results from the concatenation of rows along
             the related column.
             <code>txt = strcat(strings, "", "c")</code> returns a column vector of strings.
-            Each entry of <varname>txt</varname> results from the concatenation of columns along 
+            Each entry of <varname>txt</varname> results from the concatenation of columns along
             the related row.
         </para>
     </refsection>

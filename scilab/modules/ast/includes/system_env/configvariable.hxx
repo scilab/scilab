@@ -32,7 +32,6 @@
 
 extern "C"
 {
-#include "Thread_Wrapper.h"
 #include "dynamiclibrary.h"
 #include "dynlib_ast.h"
 }
@@ -275,20 +274,6 @@ public :
     static bool isPrintCompact(void);
     static bool togglePrintCompact(void);
 
-
-    //Thread List
-private :
-    static std::list<types::ThreadId*> m_threadList;
-public :
-
-    static types::ThreadId* getThread(__threadKey _key);
-    static types::ThreadId* getLastRunningThread();
-    static types::ThreadId* getLastPausedThread();
-    static types::ThreadId* getLastThread();
-
-    static types::Cell* getAllThreads(void);
-    static void addThread(types::ThreadId* _thread);
-    static void deleteThread(__threadKey _key);
 
     // Pause level
 private :

@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -33,6 +33,7 @@ public:
     virtual void objectReferenced(const ScicosID& uid, kind_t kind, unsigned refCount) = 0;
     virtual void objectUnreferenced(const ScicosID& uid, kind_t kind, unsigned refCount) = 0;
     virtual void objectDeleted(const ScicosID& uid, kind_t kind) = 0;
+    virtual void objectCloned(const ScicosID& uid, const ScicosID& cloned, kind_t kind) = 0;
     virtual void propertyUpdated(const ScicosID& uid, kind_t kind, object_properties_t property, update_status_t status) = 0;
 };
 

@@ -34,7 +34,7 @@ function r=%h_e(i,h)
             end
         end
         r=h
-    elseif type(i)==1 then
+    elseif or(type(i)==[1,2]) then
         r=h(i)
     else
         error("Invalid path")

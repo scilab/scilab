@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -45,13 +45,13 @@
             <literal>erfcx</literal> computa a função de erro complementar
             escalada:
         </para>
-        <programlisting role=""><![CDATA[ 
-              2                
+        <programlisting role=""><![CDATA[
+              2
      y = exp(x ) * erfc(x)
 
                 1
      y  -->  ---------    quando x --> +oo
-             x sqrt(pi) 
+             x sqrt(pi)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

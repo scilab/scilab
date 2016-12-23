@@ -60,7 +60,7 @@
         <para>
             <emphasis>Xcos</emphasis> est un éditeur visuel de construction de modèles de systèmes dynamiques hybrides.
             Les modèles peuvent être assemblés, chargés, sauvés, compilés, simulés, en utilisant l'interface graphique de
-            <emphasis>Xcos</emphasis>. <emphasis>Xcos</emphasis> sert d'interface à divers compilateurs de schémas-blocs 
+            <emphasis>Xcos</emphasis>. <emphasis>Xcos</emphasis> sert d'interface à divers compilateurs de schémas-blocs
             et au simulateur hybride scicosim.
         </para>
         <para>
@@ -92,9 +92,9 @@
                     <emphasis role="bold">Compilateur/Simulateur</emphasis>
                 </para>
                 <para>
-                    L'environnement <emphasis>Xcos</emphasis> permet, à partir du modèle défini, la simulation de systèmes 
+                    L'environnement <emphasis>Xcos</emphasis> permet, à partir du modèle défini, la simulation de systèmes
                     complexes - discrets, continus, définis par des équations symboliques (Modelica), etc. et des systèmes hybrides
-                    combinant les capacités énoncées ci-dessus. Les données résultant de la simulation peuvent ensuite être observées 
+                    combinant les capacités énoncées ci-dessus. Les données résultant de la simulation peuvent ensuite être observées
                     graphiquement en temps réel, utilisées dans Scilab pour être traitées ultérieurement, etc.
                 </para>
             </listitem>
@@ -107,7 +107,7 @@
                     <imagedata fileref="../../../gui/images/icons/16x16/apps/utilities-system-monitor.png"/>
                 </imageobject>
             </inlinemediaobject>
-            , avec l'item <emphasis>Xcos</emphasis> du menu <emphasis>Applications</emphasis> de la fenêtre principale de 
+            , avec l'item <emphasis>Xcos</emphasis> du menu <emphasis>Applications</emphasis> de la fenêtre principale de
             Scilab, ou comme dans l'exemple suivant, ouvre la fenêtre <emphasis>Xcos</emphasis> d'édition montrée ci-dessous.
         </para>
         <para/>

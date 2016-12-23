@@ -5,21 +5,21 @@
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
  * Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  *
  -->
@@ -276,8 +276,8 @@
         <refsection id="Example_1_LOGIC">
             <title>Example 1</title>
             <para>
-                The easiest example to consider is the OR example.In this case we have two inputs and only one output. The truth table for 
-                this example is : 
+                The easiest example to consider is the OR example.In this case we have two inputs and only one output. The truth table for
+                this example is :
             </para>
             <para/>
             <informaltable border="1" cellpadding="3">
@@ -409,22 +409,22 @@
         ]]></programlisting>
             <para/>
             <para>
-                The following figure shows the resulting outputs 
+                The following figure shows the resulting outputs
                 <emphasis><literal>
                         Q<subscript>0</subscript>
                     </literal>
                 </emphasis>
-                à 
+                à
                 <emphasis><literal>
                         Q<subscript>3</subscript>
                     </literal>
                 </emphasis>
                 during the simulation when the selection
-                inputs 
+                inputs
                 <emphasis>
                     <literal>a</literal>
                 </emphasis>
-                and 
+                and
                 <emphasis>
                     <literal>b</literal>
                 </emphasis>

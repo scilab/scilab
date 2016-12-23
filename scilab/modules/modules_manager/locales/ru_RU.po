@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:01+0000\n"
+"PO-Revision-Date: 2016-11-03 15:23+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -52,6 +52,10 @@ msgstr "%s: Невозможно экспортировать %s в %s .\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Text(s) expected.\n"
+msgstr "%s: Аргумент №%d: ожидался текст.\n"
 
 msgid "Generating cleaner.sce...\n"
 msgstr "Формирование cleaner.sce...\n"
@@ -115,12 +119,12 @@ msgstr "Формирование loader.sce...\n"
 msgid "Generating unloader.sce...\n"
 msgstr "Формирование unloader.sce...\n"
 
+msgid "Generating localization\n"
+msgstr "Формирование локализации\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался массив строк.\n"
-
-msgid "Generating localization\n"
-msgstr "Формирование локализации\n"
 
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
@@ -136,6 +140,14 @@ msgstr "%s: Компилятор C требуется для данного мо
 
 msgid "Building gateway...\n"
 msgstr "Сборка файлов-шлюзов...\n"
+
+#, c-format
+msgid "Could not use the default compilation of gateways in %s."
+msgstr ""
+
+#, c-format
+msgid "No builder script found in %s."
+msgstr "В %s не найден сборочный скрипт."
 
 msgid "Building help...\n"
 msgstr "Сборка справки...\n"
@@ -153,6 +165,18 @@ msgstr ""
 msgid "Building sources...\n"
 msgstr "Сборка исходных текстов...\n"
 
+msgid "No builder file found, nothing to be done"
+msgstr "Сборочный файл не найден, нечего делать"
+
+msgid "No builder file found, nothing to be done."
+msgstr "Сборочный файл не найден, нечего делать."
+
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
+
+#, c-format
+msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
+msgstr ""
+"%s: Мда! %d является хорошим количеством аргументов, но, простите, я "
+"предпочту рухнуть.\n"

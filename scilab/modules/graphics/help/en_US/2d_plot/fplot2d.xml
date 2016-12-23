@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -80,7 +80,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff("[y]=f(x)","y=sin(x)+cos(x)")
 x=[0:0.1:10]*%pi/10;
 fplot2d(x,f)
@@ -90,8 +90,8 @@ fplot2d(x,f)
             x=[0:0.1:10]*%pi/10;
             fplot2d(x,f)
         </scilab:image>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 clf();
 deff("[y]=f(x)","y=sin(x)+cos(x)")
 x=[0:0.1:10]*%pi/10;

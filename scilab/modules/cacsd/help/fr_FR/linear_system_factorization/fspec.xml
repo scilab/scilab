@@ -50,7 +50,7 @@ g = gtild(gm)*gm
         <para>
             gtild(gm) returns a state-space representation of gm(-s)'.
         </para>
-        
+
         <para>
             <literal>g</literal> is inversible.
         </para>

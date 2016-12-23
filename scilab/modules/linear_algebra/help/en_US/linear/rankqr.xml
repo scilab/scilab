@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -51,7 +51,7 @@
                         of <literal>AP</literal>, otherwise column <literal>i</literal> is a free
                         column. On exit, if <literal>JPVT(i) = k</literal>, then the
                         <literal>i</literal>-th column of <literal>A*P</literal> was the
-                        <literal>k</literal>-th column of <literal>A</literal>. 
+                        <literal>k</literal>-th column of <literal>A</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -82,7 +82,7 @@
                     </para>
                     <para>
                         <literal>SVAL(3)</literal> is the smallest singular value of
-                        <literal>R(1:RANK+1,1:RANK+1)</literal>, if <literal>RANK</literal> &lt; <literal>MIN(M,N)</literal>, 
+                        <literal>R(1:RANK+1,1:RANK+1)</literal>, if <literal>RANK</literal> &lt; <literal>MIN(M,N)</literal>,
                         or of <literal>R(1:RANK,1:RANK)</literal>, otherwise.
                     </para>
                 </listitem>
@@ -100,7 +100,7 @@
         <para>
             The routine uses a QR factorization with column pivoting:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 A * P = Q * R,  where  R = [ R11 R12 ],
                            [  0  R22 ]
  ]]></programlisting>
@@ -128,7 +128,7 @@ A * P = Q * R,  where  R = [ R11 R12 ],
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=rand(5,3)*rand(3,7);
 [Q,R,JPVT,RANK,SVAL]=rankqr(A,%eps)
  ]]></programlisting>

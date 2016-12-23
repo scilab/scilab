@@ -18,7 +18,8 @@
 #include <cmath>
 
 #include "elem_func_gw.hxx"
-#include "api_scilab.hxx"
+#include "double.hxx"
+#include "int.hxx"
 #include "function.hxx"
 #include "overload.hxx"
 #include "polynom.hxx"
@@ -68,8 +69,8 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
     {
         case types::InternalType::ScilabDouble:
         {
-            api_scilab::Double* pDblIn = api_scilab::getAsDouble(in[0]);
-            api_scilab::Double* pDblOut = new api_scilab::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+            types::Double* pDblIn = in[0]->getAs<types::Double>();
+            types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
 
             double* pdblInR = pDblIn->get();
             double* pdblInI = pDblIn->getImg();
@@ -108,9 +109,7 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
                 }
             }
 
-            out.push_back(api_scilab::getReturnVariable(pDblOut));
-            delete pDblOut;
-            delete pDblIn;
+            out.push_back(pDblOut);
             break;
         }
         case types::InternalType::ScilabPolynom:

@@ -35,8 +35,43 @@ extern "C"
 #include "os_string.h"
 #include "lasterror.h"
 #include "dynamic_module.h"
+#include "functions_manager.h"
 }
 
+// dummy function definition for non nwni compatible modules
+static void dummy()
+{
+    char* fname = wide_string_to_UTF8(ConfigVariable::getWhere().back().m_name.c_str());
+    Scierror(999, _("Scilab '%s' function disabled in -nogui or -nwni mode.\n"), fname);
+    FREE(fname);
+}
+static types::Function::ReturnValue sci_dummy_in_NWNI(types::typed_list &/*in*/, int /*_iRetCount*/, types::typed_list &/*out*/)
+{
+    dummy();
+    return types::Function::Error;
+}
+static types::Function::ReturnValue sci_dummy_in_NWNI_OPT(types::typed_list &/*in*/, types::optional_list &/*opt*/, int /*_iRetCount*/, types::typed_list &/*out*/)
+{
+    dummy();
+    return types::Function::Error;
+}
+static int sci_dummy_in_NWNI_OLDC(char * /*fname*/, void* /*pvApiCtx*/)
+{
+    dummy();
+    return 1;
+}
+static int sci_dummy_in_NWNI_MEX(int /*nlhs*/, int** /*plhs*/, int /*nrhs*/, int** /*prhs*/)
+{
+    dummy();
+    return 1;
+}
+static int sci_dummy_in_NWNI_C(scilabEnv /*env*/, int /*nin*/, scilabVar* /*in*/, int /*nopt*/, scilabOpt /*opt*/, int /*nout*/, scilabVar* /*out*/)
+{
+    dummy();
+    return 1;
+}
+
+// Function Class definition
 namespace types
 {
 Function* Function::createFunction(const std::wstring& _wstName, GW_FUNC _pFunc, const std::wstring& _wstModule)
@@ -79,14 +114,58 @@ Function* Function::createFunction(const std::wstring& _wstName, MEXGW_FUNC _pFu
     return new WrapMexFunction(_wstName, _pFunc, _pLoadDeps, _wstModule);
 }
 
-Function* Function::createFunction(const std::wstring& _wstFunctionName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule, bool _bCloseLibAfterCall)
+Function* Function::createFunction(const std::wstring& _wstName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule, bool _bCloseLibAfterCall)
 {
-    return new DynamicFunction(_wstFunctionName, _wstEntryPointName, _wstLibName, _iType, _pLoadDeps, _wstModule, _bCloseLibAfterCall);
+    if (isNonNwniModule(_wstModule.data()))
+    {
+        switch (_iType)
+        {
+            case FunctionType::EntryPointOldC:
+                return new WrapFunction(_wstName, &sci_dummy_in_NWNI_OLDC, NULL, _wstModule);
+            case FunctionType::EntryPointCPP:
+                return new Function(_wstName, &sci_dummy_in_NWNI, NULL, _wstModule);
+            case FunctionType::EntryPointMex:
+                return new WrapMexFunction(_wstName, &sci_dummy_in_NWNI_MEX, NULL, _wstModule);
+            case FunctionType::EntryPointCPPOpt:
+                return new OptFunction(_wstName, &sci_dummy_in_NWNI_OPT, NULL, _wstModule);
+            case FunctionType::EntryPointC:
+                return new WrapCFunction(_wstName, &sci_dummy_in_NWNI_C, NULL, _wstModule);
+        }
+    }
+    else
+    {
+        return new DynamicFunction(_wstName, _wstEntryPointName, _wstLibName, _iType, _pLoadDeps, _wstModule, _bCloseLibAfterCall);
+    }
+    
+    // must never append
+    return NULL;
 }
 
-Function* Function::createFunction(const std::wstring& _wstFunctionName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, const std::wstring& _wstLoadDepsName, const std::wstring& _wstModule, bool _bCloseLibAfterCall)
+Function* Function::createFunction(const std::wstring& _wstName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, const std::wstring& _wstLoadDepsName, const std::wstring& _wstModule, bool _bCloseLibAfterCall)
 {
-    return new DynamicFunction(_wstFunctionName, _wstEntryPointName, _wstLibName, _iType, _wstLoadDepsName, _wstModule, _bCloseLibAfterCall);
+    if (isNonNwniModule(_wstModule.data()))
+    {
+        switch (_iType)
+        {
+            case FunctionType::EntryPointOldC:
+                return new WrapFunction(_wstName, &sci_dummy_in_NWNI_OLDC, NULL, _wstModule);
+            case FunctionType::EntryPointCPP:
+                return new Function(_wstName, &sci_dummy_in_NWNI, NULL, _wstModule);
+            case FunctionType::EntryPointMex:
+                return new WrapMexFunction(_wstName, &sci_dummy_in_NWNI_MEX, NULL, _wstModule);
+            case FunctionType::EntryPointCPPOpt:
+                return new OptFunction(_wstName, &sci_dummy_in_NWNI_OPT, NULL, _wstModule);
+            case FunctionType::EntryPointC:
+                return new WrapCFunction(_wstName, &sci_dummy_in_NWNI_C, NULL, _wstModule);
+        }
+    }
+    else
+    {
+        return new DynamicFunction(_wstName, _wstEntryPointName, _wstLibName, _iType, _wstLoadDepsName, _wstModule, _bCloseLibAfterCall);
+    }
+
+    // must never append
+    return NULL;
 }
 
 Function* Function::createFunction(const std::wstring& _wstName, GW_C_FUNC _pFunc, const std::wstring& _wstModule)
@@ -137,7 +216,7 @@ void Function::whoAmI()
     std::cout << "types::Function";
 }
 
-bool Function::toString(std::wostringstream& ostr)
+bool Function::toString(std::wostringstream& /*ostr*/)
 {
     // display nothing. ie : c = cos
     return true;
@@ -147,6 +226,15 @@ Function* Function::clone()
 {
     IncreaseRef();
     return this;
+}
+
+bool Function::operator==(const InternalType& it)
+{
+    if (!const_cast<InternalType &>(it).isFunction())
+    {
+        return false;
+    }
+    return this->getFunc() == const_cast<InternalType &>(it).getAs<Function>()->getFunc();
 }
 
 OptFunction::OptFunction(const std::wstring& _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule)
@@ -224,7 +312,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     int ret = 1;
     int inSize = (int)in.size();
     int optSize = (int)opt.size();
-    bool isRef = checkReferenceModule(m_wstModule.c_str());
+    int isRef = checkReferenceModule(m_wstModule.c_str());
 
     if (m_pLoadDeps != NULL)
     {
@@ -245,7 +333,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     //copy input parameter to prevent calling gateway modifies input data
     typed_list inCopy;
 
-    if (isRef == false)
+    if (isRef == 0)
     {
         for (int i = 0; i < inSize; i++)
         {
@@ -330,7 +418,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     }
 
     //clean input copy
-    if (isRef == false)
+    if (isRef == 0)
     {
         //protect outputs
         int size = (int)out.size();

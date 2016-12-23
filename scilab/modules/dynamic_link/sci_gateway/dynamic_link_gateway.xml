@@ -18,11 +18,11 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-    
+
     <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -33,8 +33,8 @@
  * along with this program.
  *
  -->
-    
-    
+
+
     <!-- =================== -->
     <PRIMITIVE gatewayId="46" primitiveId="1" primitiveName="getdynlibext" />
     <PRIMITIVE gatewayId="46" primitiveId="2" primitiveName="addinter" />

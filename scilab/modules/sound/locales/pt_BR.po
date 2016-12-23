@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -35,26 +35,18 @@ msgstr "%s: Erro no argumento de entrada #%d: esperava-se '%s' ou '%s'.\n"
 msgid "Scilab sound module not installed.\n"
 msgstr "O módulo de som do Scilab não está instalado.\n"
 
-# File: modules/sound/demos/sound.dem.gateway.sce, line: 9
 msgid "Sound file handling"
 msgstr ""
 
-#, fuzzy
 msgid "FFT on a wav file"
-msgstr "Erro ao carregar o arquivo wav."
+msgstr ""
 
-#
-# File: modules/sound/demos/sound.dem.sce, line: 21
 msgid "Fourier analysis of 0.5 seconds of sound parameters."
 msgstr ""
 
-#
-# File: modules/sound/demos/sound.dem.sce, line: 36
 msgid "A complete picture of the sound."
 msgstr ""
 
-#
-# File: modules/sound/demos/sound.dem.sce, line: 36
 msgid "see 'mapsound' function"
 msgstr ""
 

@@ -50,6 +50,11 @@
                     </listitem>
                     <listitem>
                         <para>
+                            <xref linkend="Dialogbox_INVBLK">Boîte de dialogue</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
                             <xref linkend="Defaultproperties_INVBLK">Propriétés par défaut</xref>
                         </para>
                     </listitem>
@@ -88,6 +93,27 @@
             Ce bloc calcule le vecteur de sortie y avec y[i]=1/u[i] où u est le vecteur d'entrée. Les dimensions des entrées
             et sorties est déterminée par le contexte.
         </para>
+    </refsection>
+    <refsection id="Dialogbox_INVBLK">
+        <title>Dialog box</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/gui/INVBLK_gui.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Error on divide by zero (1: yes) (0:no)</emphasis>
+                </para>
+                <para>Arrête la simulation en cas de division par zéro.</para>
+                <para>Propriétés : Type 'vec' de taille 1</para>
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection id="Defaultproperties_INVBLK">
         <title>Propriétés par défaut</title>

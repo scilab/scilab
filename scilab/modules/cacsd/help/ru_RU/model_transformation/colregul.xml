@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -44,7 +44,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            computes a prefilter <literal>Ws</literal> such that <literal>Stmp=Sl*Ws</literal> is proper and 
+            computes a prefilter <literal>Ws</literal> such that <literal>Stmp=Sl*Ws</literal> is proper and
             with full rank <literal>D</literal> matrix.
         </para>
         <para>

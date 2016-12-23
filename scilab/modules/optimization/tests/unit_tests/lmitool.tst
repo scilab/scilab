@@ -18,13 +18,6 @@ Xs = diag(1:n);
 Q1 = -(A1'*Xs+Xs*A1+0.1*eye());
 Q2 = -(A2'*Xs+Xs*A2+0.2*eye());
 
-// Redefining messagebox() to avoid popup
-prot = funcprot();
-funcprot(0);
-function messagebox(msg, msg_title, info)
-endfunction
-funcprot(prot);
-
 lmitool("prob", "X", "A1, A2"); // Create prob.sci
 deletefile "prob.sci";
 copyfile("SCI/modules/optimization/demos/prob_bak.sci", "prob.sci"); // Replace prob.sci by prob_bak.sci

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected."
@@ -196,25 +196,23 @@ msgstr ""
 "%s: Esperada %d colunas no argumento de entrada #%d, mas %d colunas foram "
 "encontradas."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: %s is not an installed module"
-msgstr "%s não é um módulo instalado"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: test %s not found in the list of "
 "modules"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve estar no conjunto "
-"{%s}.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Cannot create file %s, created file %s instead.\n"
-msgstr "%s: Impossível fechar arquivo %s.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -319,6 +317,3 @@ msgstr ""
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "Nenhuma variável %s_ref no arquivo de referência"
-
-#~ msgid "error : Input argument sizes are not valid"
-#~ msgstr "erro: As dimensões do argumento de entrada não são válidas"

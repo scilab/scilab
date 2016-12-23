@@ -8,50 +8,50 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:01+0000\n"
+"PO-Revision-Date: 2016-11-07 14:45+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or %s expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался тип string или %s.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер входного аргумента №%d: ожидалась строка.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось не менее %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: %s expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+msgstr "%s: Параметр №%d: ожидался %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr "%s: Неверный тип аргумента %d: ожидалась строка."
+msgstr "%s: Аргумент №%d: ожидался скаляр (1 элемент).\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -358,10 +358,8 @@ msgstr "Нормальный размер"
 msgid "Palette browser"
 msgstr "Палитры блоков"
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 84
 msgid "tree_show(scs_m)"
-msgstr ""
+msgstr "tree_show(scs_m)"
 
 msgid "Diagram browser"
 msgstr "Информация о диаграмме"
@@ -460,7 +458,7 @@ msgid "Xcos Demonstrations"
 msgstr "Демонстрации Xcos"
 
 msgid "About Scilab"
-msgstr ""
+msgstr "О Scilab''е"
 
 msgid "Palettes"
 msgstr "Палитры"
@@ -745,9 +743,8 @@ msgstr "Суперблок должен быть выделен, чтобы сф
 msgid "Simulation in progress"
 msgstr "Выполняется моделирование"
 
-#, fuzzy
 msgid "Compilation in progress, results will be stored in the 'cpr' variable"
-msgstr "Идёт компиляция, результаты будут сохранены в переменной 'scicos_cpr'"
+msgstr "Идёт компиляция, результаты будут сохранены в переменной 'cpr'."
 
 msgid "Generate SuperBlock, please wait"
 msgstr "Генерация СуперБлока, пожалуйста, подождите"
@@ -780,6 +777,9 @@ msgstr "Файл Xcos"
 
 msgid "Xcos (zip) file"
 msgstr "Xcos (zip) файл"
+
+msgid "XMI (Eclipse EMF) file"
+msgstr ""
 
 msgid "Scilab Open Data file"
 msgstr "Файл формата открытых данных Scilab"
@@ -866,62 +866,39 @@ msgstr ""
 "<html><body>Ошибка компиляции: ссылка проигнорированна, поскольку она не "
 "подсоединена. <br/>Пожалуйста, подсоедините её.</body></html>"
 
-#, fuzzy
 msgid "Block name: "
-msgstr "Параметры блока"
+msgstr "Название блока: "
 
-#, fuzzy
 msgid "Simulation: "
-msgstr "Моделирование"
+msgstr "Моделирование: "
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 300
 msgid "UID: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 301
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 307
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 311
 msgid "Style: "
-msgstr ""
+msgstr "Стиль: "
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 302
 msgid "Rpar: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 303
 msgid "Ipar: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 304
 msgid "Opar: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 305
 msgid "Datatype: "
 msgstr ""
 
-#, fuzzy
 msgid "Implicit: "
-msgstr "Блоки неявных данных"
+msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 308
 msgid "Source datatype: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 309
 msgid "Target datatype: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 310
 msgid "Label: "
 msgstr ""
 
@@ -945,242 +922,150 @@ msgstr "Настройки моделирования по умолчанию"
 msgid "Default trace settings"
 msgstr "Настройки соединений по умолчанию"
 
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 7
 msgid "Basic controller"
-msgstr ""
+msgstr "Основной контроллер"
 
-#
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 8
 msgid "Water tank"
-msgstr ""
+msgstr "Резервуар для воды"
 
-#
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 9
 msgid "Discrete Controller"
 msgstr ""
 
-#
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 10
 msgid "Kalman Filter"
-msgstr ""
+msgstr "Калмановский фильтр"
 
-#, fuzzy
 msgid "Discrete Kalman Filter"
-msgstr "Системы с дискретным временем"
+msgstr "Дискретный калмановский фильтр"
 
-#
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 12
 msgid "Cont.Plant-Hybrid Observer"
 msgstr ""
 
-#
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 13
 msgid "Temperature Controller"
-msgstr ""
+msgstr "Контроллер температуры"
 
-#
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 14
 msgid "Inverted pendulum"
-msgstr ""
+msgstr "Перевёрнутый маятник"
 
-#
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 15
 msgid "Lorenz butterfly"
-msgstr ""
+msgstr "Бабочка Лоренца"
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 7
 msgid "RLC Circuit"
-msgstr ""
+msgstr "RLC-цепочка"
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 8
 msgid "Bridge Rectifer"
-msgstr ""
+msgstr "Мостовой выпрямитель"
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 9
 msgid "Transformer"
-msgstr ""
+msgstr "Трансформатор"
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 10
 msgid "Differential amplifier"
-msgstr ""
+msgstr "Дифференциальный усилитель"
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 11
 msgid "OpAmp amplifier"
-msgstr ""
+msgstr "Операционный усилитель"
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 12
 msgid "Switched capacitor integrator"
 msgstr ""
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 13
 msgid "DC/DC Buck Converter"
 msgstr ""
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 14
 msgid "DC/DC Boost Converter"
 msgstr ""
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 15
 msgid "Colpitts oscillator"
-msgstr ""
+msgstr "емкостной трёхточечный генератор"
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 16
 msgid "Logic AND gate"
-msgstr ""
+msgstr "Логический элемент И"
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 17
 msgid "Logic NOR gate"
-msgstr ""
+msgstr "Логический элемент НЕ"
 
-#
-# File: modules/xcos/demos/event.dem.gateway.sce, line: 7
 msgid "If Then Else"
-msgstr ""
+msgstr "If Then Else"
 
-#
-# File: modules/xcos/demos/event.dem.gateway.sce, line: 8
 msgid "And"
-msgstr ""
+msgstr "И"
 
-#
-# File: modules/xcos/demos/mechanical_systems.dem.gateway.sce, line: 7
 msgid "Automotive Suspension"
 msgstr ""
 
-#
-# File: modules/xcos/demos/modelica_demos.dem.gateway.sce, line: 9
 msgid "Ball on a Platform"
-msgstr ""
+msgstr "Шар на платформе"
 
-#
-# File: modules/xcos/demos/modelica_demos.dem.gateway.sce, line: 10
 msgid "Bouncing Ball"
 msgstr ""
 
-#
-# File: modules/xcos/demos/modelica_demos.dem.gateway.sce, line: 11
 msgid "Chaos Modelica"
 msgstr ""
 
-#
-# File: modules/xcos/demos/modelica_demos.dem.gateway.sce, line: 12
 msgid "Hydraulics blocks"
 msgstr ""
 
-#
-# File: modules/xcos/demos/modelica_demos.dem.gateway.sce, line: 13
 msgid "RLC circuit"
-msgstr ""
+msgstr "RLC-цепочка"
 
-#
-# File: modules/xcos/demos/modelica_demos.dem.gateway.sce, line: 14
 msgid "Heat conduction in a rod"
-msgstr ""
+msgstr "Теплопроводность в стержне"
 
-#
-# File: modules/xcos/demos/modelica_demos.dem.gateway.sce, line: 15
 msgid "Second order rotational system"
 msgstr ""
 
-#, fuzzy
 msgid "Old Gain Block"
-msgstr "Выровнять блоки"
+msgstr ""
 
-#
-# File: modules/xcos/demos/scicos.dem.gateway.sce, line: 7
-# File: modules/xcos/demos/xcos.dem.gateway.sce, line: 13
 msgid "Standard demos"
 msgstr ""
 
-#, fuzzy
 msgid "Control Systems"
-msgstr "Системы с непрерывным временем"
+msgstr "Система управления"
 
-#, fuzzy
 msgid "Electrical Systems"
-msgstr "Электрические блоки"
+msgstr "Электрические системы"
 
-#
-# File: modules/xcos/demos/scicos.dem.gateway.sce, line: 10
-# File: modules/xcos/demos/xcos.dem.gateway.sce, line: 16
 msgid "Mechanical Systems"
+msgstr "Механические системы"
+
+msgid "Modelica demos"
 msgstr ""
 
-#, fuzzy
-msgid "Modelica demos"
-msgstr "Настройки Modelica"
-
-#
-# File: modules/xcos/demos/scicos.dem.gateway.sce, line: 12
-# File: modules/xcos/demos/xcos.dem.gateway.sce, line: 25
 msgid "Old demos"
 msgstr ""
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 7
 msgid "Simple Demo"
 msgstr ""
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 8
 msgid "Bouncing Balls"
 msgstr ""
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 9
 msgid "Simple Thermostat"
 msgstr ""
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 10
 msgid "Table Lookup"
-msgstr ""
+msgstr "Поиск в таблице"
 
-#, fuzzy
 msgid "Signal Builder"
-msgstr "Маршрутизация сигналов"
+msgstr "Построитель сигнала"
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 12
 msgid "Fibonacci Numbers"
-msgstr ""
+msgstr "Числа Фибоначчи"
 
-#, fuzzy
 msgid "Scilab block"
-msgstr "Сохранить как блок GUI"
+msgstr "блок Scilab"
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 14
 msgid "Xcos data types"
-msgstr ""
+msgstr "типы данных Xcos"
 
-#, fuzzy
 msgid "Zero Crossing"
-msgstr "Обнаружение перехода через нуль"
+msgstr "Пересечение нуля"
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 16
 msgid "_IF_ Xcos block"
-msgstr ""
+msgstr "блок Xcos _IF_"
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 17
 msgid "Goto/From blocks"
-msgstr ""
+msgstr "Goto/From-блоки"
 
-#
-# File: modules/xcos/demos/xcos.dem.gateway.sce, line: 24
 msgid "Event demos"
 msgstr ""
 
@@ -1257,7 +1142,7 @@ msgstr "%s: Неверное число входных аргуметов: ож�
 
 #, c-format
 msgid "%s: Not supported format %s.\n"
-msgstr ""
+msgstr "%s: Неподдерживаемый формат %s.\n"
 
 #, c-format
 msgid ""
@@ -1403,10 +1288,10 @@ msgid "Field %s has different values."
 msgstr "Поле %s имеет разные значения."
 
 msgid "Stopped before block:"
-msgstr ""
+msgstr "Остановлено  перед блоком:"
 
 msgid "Stopped after block:"
-msgstr ""
+msgstr "Остановлено после блока:"
 
 msgid "State derivative computation"
 msgstr ""
@@ -1429,8 +1314,6 @@ msgstr ""
 msgid "ReInitialization"
 msgstr ""
 
-#
-# File: modules/xcos/macros/xcos_debug_gui.sci, line: 81
 msgid "Continuous states properties update"
 msgstr ""
 
@@ -1453,19 +1336,19 @@ msgid "&?"
 msgstr "&?"
 
 msgid "Xcos debug"
-msgstr ""
+msgstr "Xcos-отладка"
 
 msgid "Break point conditions"
-msgstr ""
+msgstr "Условия точки останова"
 
 msgid "Break on selected flags"
 msgstr ""
 
 msgid "After call"
-msgstr ""
+msgstr "После вызова"
 
 msgid "Before call"
-msgstr ""
+msgstr "Перед вызовом"
 
 msgid "After date"
 msgstr ""
@@ -1480,7 +1363,7 @@ msgid "scs_m block path:"
 msgstr ""
 
 msgid "Time:"
-msgstr ""
+msgstr "Время:"
 
 msgid "Flag:"
 msgstr ""
@@ -1489,17 +1372,14 @@ msgid "Next"
 msgstr ""
 
 msgid "End debug"
-msgstr ""
+msgstr "Конец отладки"
 
 msgid "Pause"
-msgstr ""
+msgstr "Пауза"
 
 #, c-format
 msgid "Use the %s button to end the debugging"
 msgstr "Используйте клавишу %s для завершения отладки"
-
-msgid "The Scicos libraries are not loaded"
-msgstr "Библиотеки Scicos не загружены"
 
 #, c-format
 msgid "Unable to simulate %s"
@@ -1528,35 +1408,17 @@ msgstr "Задача моделирования"
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr "В post_xcos_simulate ошибка: моделирование завершается."
 
-#
-# File: modules/xcos/tests/nonreg_tests/utils/getcontext.sci, line: 64
 #, c-format
 msgid "%s: Cannot open file '%s' for reading.\n"
-msgstr ""
+msgstr "%s: Не могу открыть файл '%s' на чтение.\n"
 
-#
-# File: modules/xcos/tests/nonreg_tests/utils/getcontext.sci, line: 78
 #, c-format
 msgid "%s: Error while trying to read file contents from '%s'.\n"
-msgstr ""
+msgstr "%s: Ошибка при попытке прочитать содержание файла из '%s'.\n"
 
-#
-# File: modules/xcos/tests/nonreg_tests/utils/getcontext.sci, line: 91
 #, c-format
 msgid "%s: Syntax error while trying to set up context from"
-msgstr ""
+msgstr "%s: Синтаксическая ошибка при попытке установить контекст из"
 
-#~ msgid "Xcos"
-#~ msgstr "Xcos"
-
-#~ msgid "Export in progress"
-#~ msgstr "Идёт экспорт"
-
-#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
-#~ msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
-
-#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
-#~ msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
-
-#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
-#~ msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+#~ msgid "The Scicos libraries are not loaded"
+#~ msgstr "Библиотеки Scicos не загружены"

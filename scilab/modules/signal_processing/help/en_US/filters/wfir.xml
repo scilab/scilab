@@ -82,7 +82,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [h,hm,fr]=wfir("lp",33,[.2 0],"hm",[0 0])
  ]]></programlisting>
     </refsection>

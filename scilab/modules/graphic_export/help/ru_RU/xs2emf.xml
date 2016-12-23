@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre Koumar
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -34,7 +34,7 @@
                 <term>win_num</term>
                 <listitem>
                     <para>
-                        целое число, идентификатор графического 
+                        целое число, идентификатор графического
                         окна для экспорта.
                     </para>
                 </listitem>
@@ -60,8 +60,8 @@
                 <listitem>
                     <para>
                         необязательная строка, ориентация; возможные
-                        значения <literal>'portrait'</literal> 
-                        ("портрет") и <literal>'landscape'</literal> 
+                        значения <literal>'portrait'</literal>
+                        ("портрет") и <literal>'landscape'</literal>
                         ("альбом"). Значение по умолчанию -
                         <literal>'portrait'</literal>.
                     </para>
@@ -72,7 +72,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>xs2emf</function> экспортирует 
+            Функция <function>xs2emf</function> экспортирует
             отображение графического окна в EMF-файл.
         </para>
         <para>

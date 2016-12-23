@@ -220,11 +220,13 @@ static setHashTableCouple propertySetTable[] =
     {"orientation", set_tip_orientation_property},
     {"z_component", set_tip_z_component_property},
     {"display_components", set_tip_display_components_property},
+    {"datatip_display_mode", set_datatip_display_mode_property},
     {"auto_orientation", set_tip_auto_orientation_property},
     {"interp_mode", set_tip_interp_mode_property},
     {"box_mode", set_tip_box_mode_property},
     {"label_mode", set_tip_label_mode_property},
     {"display_function", set_tip_disp_function_property},
+    {"detached_position", set_tip_detached_property},
     {"ambient_color", set_ambient_color_property},
     {"diffuse_color", set_diffuse_color_property},
     {"specular_color", set_specular_color_property},
@@ -295,7 +297,7 @@ SetPropertyHashTable *createScilabSetHashTable(void)
 /*--------------------------------------------------------------------------*/
 int callSetProperty(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol, const char *propertyName)
 {
-    setPropertyFunc accessor = searchSetHashtable(setHashTable, propertyName);
+    setPropertyFunc accessor = searchSetHashtable(setHashTable, (char*)propertyName);
 
     if (accessor == NULL)
     {

@@ -46,7 +46,7 @@
             the number of output arguments detected in the calling Scilab
             function.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 #include <stack-c.h>
 #include <sciprint.h>
 

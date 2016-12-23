@@ -54,3 +54,8 @@ void destroyfunctionManagerInstance(void)
 {
     FuncManager::destroyInstance();
 }
+
+bool isNonNwniModule(const wchar_t* module)
+{
+    return FuncManager::getInstance()->isNonNwniModule(module);
+}

@@ -27,7 +27,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function concat=maFonction(nom,option)
   [lhs,rhs]=argn(0);
   disp(lhs);

@@ -14,8 +14,8 @@ d=1;
 c_d=1+2*%i;
 A=[1+2*%i, 3+2*%i; 0, 0];
 spA=sparse(A);
-s = poly(0,"s");
-M = hypermat([1 2 2],1:4);
+s=poly(0,"s");
+M = matrix(1:4, [1 2 2]);
 M(:,1,1)=%i;
 
 assert_checkequal(conj(%nan), %nan);

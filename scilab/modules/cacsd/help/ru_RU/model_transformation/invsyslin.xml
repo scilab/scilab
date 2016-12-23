@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -38,18 +38,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            Utility function. Computes the state form of the inverse <literal>sl2</literal> of 
+            Utility function. Computes the state form of the inverse <literal>sl2</literal> of
             the linear system <literal>sl1</literal> (which is also given in state form).
         </para>
         <para>
-            The <literal>D</literal>-matrix is supposed to be full rank. Old stuff used by 
+            The <literal>D</literal>-matrix is supposed to be full rank. Old stuff used by
             <literal>inv(S)</literal> when <literal>S</literal> is a <literal>syslin</literal> list.
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=0.5;
 b=1;
 c=2;

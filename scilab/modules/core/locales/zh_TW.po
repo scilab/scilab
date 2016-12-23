@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:09+0000\n"
+"PO-Revision-Date: 2016-10-19 13:07+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -178,8 +178,6 @@ msgstr ""
 msgid "show this help"
 msgstr ""
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 520
 msgid "open debug documentation page"
 msgstr ""
 
@@ -192,9 +190,6 @@ msgstr ""
 msgid "execute cmd"
 msgstr ""
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 528
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 529
 msgid "display variable"
 msgstr ""
 
@@ -213,8 +208,6 @@ msgstr ""
 msgid "step outside function"
 msgstr ""
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 537
 msgid "add a breakpoint"
 msgstr ""
 
@@ -242,8 +235,6 @@ msgstr ""
 msgid "show a specific breakpoint"
 msgstr ""
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 547
 msgid "  for more details, show help page.\n"
 msgstr ""
 
@@ -274,6 +265,9 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
+msgstr ""
+
+msgid "Could not retrieve sub-type.\n"
 msgstr ""
 
 #, c-format
@@ -356,11 +350,11 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: struct array or tlist or mlist "
 "expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應該是純量．\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
@@ -370,29 +364,24 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: macro expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input arguments: more than %d expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for output arguments: %d expected.\n"
-msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
+msgstr ""
 
-#
-# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 136
-# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 154
 #, c-format
 msgid ""
 "%s: Wrong input arguments: Dimensions given as first argument do not match "
 "specified cell contents.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
+msgstr ""
 
-#
-# File: modules/core/sci_gateway/cpp/sci_mode.cpp, line: 79
 msgid "Pause mode: enter empty lines to continue.\n"
 msgstr ""
 
@@ -406,13 +395,13 @@ msgstr ""
 msgid "%s: function-name is incorrect.\n"
 msgstr "%s: 函數名稱不正確.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
-msgstr "%s: 第 %d 輸入參數值錯誤: 應該是在 [%d, %d] 範圍區間.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: function is disabled in debug mode.\n"
@@ -438,30 +427,25 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): An even number is expected.\n"
-msgstr "%s: 輸入參數之數目錯誤(s): 最少應為 %d.\n"
+msgstr ""
 
-#
-# File: modules/core/sci_gateway/cpp/sci_struct.cpp, line: 54
 #, c-format
 msgid "%s: Field names must be strings.\n"
 msgstr ""
 
-#
-# File: modules/core/sci_gateway/cpp/sci_struct.cpp, line: 79
-# File: modules/core/sci_gateway/cpp/sci_struct.cpp, line: 86
 #, c-format
 msgid "%s: Arguments must be scalar or must have same dimensions.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Can not create a %s with input argument #%d.\n"
-msgstr "%s: 無法讀取第 #%d 個參數.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong values for input argument #%d: '%s' expected .\n"
-msgstr "%s: 輸入參數的值有誤 #%d: \"%s\"才對.\n"
+msgstr ""
 
 #, c-format
 msgid "WARNING: %ls\n"
@@ -533,8 +517,6 @@ msgid ""
 "found\n"
 msgstr "錯誤:  版本檔 %s 不正確(不是以 'utf-8' 編碼), 所用之編碼為 '%s'\n"
 
-#
-# File: modules/core/src/c/signal_mgmt.c, line: 416
 #, c-format
 msgid ""
 "A fatal error has been detected by Scilab.\n"
@@ -604,8 +586,6 @@ msgstr ""
 msgid "Scilab Enterprises\n"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/banner.cpp, line: 41
 msgid "Copyright (c) 2011-2016 (Scilab Enterprises)\n"
 msgstr ""
 
@@ -669,43 +649,27 @@ msgstr "&?"
 msgid "&Toolboxes"
 msgstr "工具箱(&)"
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 9
 msgid "Introduction: Getting started with Scilab"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 12
 msgid "Scilab objects"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 13
 msgid "Operations and numerical primitives"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 14
 msgid "Online definition of function"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 15
 msgid "Optimization and simulation"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 16
 msgid "Systems: definition and analysis"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 17
 msgid "Linear algebra"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 18
 msgid "Call an external routine"
 msgstr ""
 
@@ -737,9 +701,9 @@ msgstr "%s: 輸入參數 #%d 的型態錯誤: 應該是雙精度.\n"
 msgid "%s: %s is an uneditable hard coded function.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument.\n"
-msgstr "%s: 輸入參數數目錯誤: 應為 %d.\n"
+msgstr ""
 
 # File: macros/perl.sci, line: 12
 #, c-format
@@ -833,8 +797,3 @@ msgstr "大小"
 
 msgid "Bytes"
 msgstr "位元組"
-
-#
-# File: macros/perl.sci, line: 65
-#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-#~ msgstr "%s: 輸入參數數目錯誤: 預期最少為 %d 個.\n"

@@ -12,12 +12,12 @@
 // along with this program.
 
 function [y,xf]=flts(u,sl,x0)
-
+    fname="flts";
     [lhs,rhs]=argn(0)
     if type(u)<>1 then error(53,1),end
     if rhs<=1 then error(39),end
     [nu,mu]=size(u)
-
+    if typeof(sl)=="zpk" then sl=zpk2tf(sl);end
     select typeof(sl)
     case "state-space" then
         if rhs==2 then x0=sl.X0,end
@@ -73,6 +73,10 @@ function [y,xf]=flts(u,sl,x0)
         l=size(y,2);
         y=y(:,1:min(mu,l));
     else
-        error(97,2)
+        args=["u","sl","x0"]
+        ierr=execstr("[y,xf]=%"+overloadname(sl)+"_flts("+strcat(args(1:rhs),",")+")","errcatch")
+        if ierr<>0 then
+            error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),fname,2))
+        end
     end;
 endfunction

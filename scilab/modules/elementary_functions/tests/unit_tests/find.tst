@@ -18,7 +18,7 @@ A=[0.3873779    0.9222899    0.9488184    0.3435337    0.3760119];
 if find(A<0.4) <> [1 4 5] then pause, end
 if find(A>0.4) <> [2 3] then pause, end
 
-A=[];A(2,3,2) = 0;A(:)=1:12;
+A=matrix(1:12, [2,3,2]);
 [i,j,k]=find(A>5);
 if A(i(1),j(1),k(1)) <> 6 then pause, end
 

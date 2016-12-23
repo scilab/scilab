@@ -77,16 +77,16 @@ public class SumPortLabeler {
          * Set the ports labels
          */
         JavaController controller = new JavaController();
-        VectorOfDouble rpar = new VectorOfDouble(ports.size());
+        VectorOfDouble rpar = new VectorOfDouble();
         controller.getObjectProperty(source.getUID(), Kind.BLOCK, ObjectProperties.RPAR, rpar);
 
         for (int i = 0; i < ports.size(); i++) {
             final double gain;
 
-            if (rpar.size() < i) {
-                gain = 1;
-            } else {
+            if (i < rpar.size()) {
                 gain = rpar.get(i);
+            } else {
+                gain = 1;
             }
 
             ports.get(i).setValue(getLabel(gain));

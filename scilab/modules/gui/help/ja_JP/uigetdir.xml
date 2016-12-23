@@ -49,7 +49,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 uigetdir()
 uigetdir("SCI/modules/")
 uigetdir("SCI/modules/", "Choose a directory")

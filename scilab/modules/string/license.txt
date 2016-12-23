@@ -17,6 +17,7 @@ PCRE:
 
 Files:
 src/c/pcre_tables.c
+src/c/pcre_internal.h
 
 Copyright:
 1997-2007 - University of Cambridge - Philip Hazel 

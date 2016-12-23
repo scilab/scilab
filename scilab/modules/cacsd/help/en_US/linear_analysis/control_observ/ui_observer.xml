@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F. Delebecque
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -85,10 +85,10 @@
             Unknown input observer.
         </para>
         <para>
-            <literal>Sys: (w,u) --&gt; y</literal> is a <literal>(A,B,C2,D2)</literal> syslin linear system with 
+            <literal>Sys: (w,u) --&gt; y</literal> is a <literal>(A,B,C2,D2)</literal> syslin linear system with
             two inputs w and u, w being the unknown input.
             The  matrices B and D2 of Sys are (implicitly) partitioned as:
-            <literal>B=[B1,B2]</literal> and <literal>D2=[D21,D22]</literal>  with <literal>B1=B(:,reject)</literal>  and 
+            <literal>B=[B1,B2]</literal> and <literal>D2=[D21,D22]</literal>  with <literal>B1=B(:,reject)</literal>  and
             <literal>D21=D2(:,reject)</literal> where reject = indices of unknown inputs.
             The matrices <literal>C1</literal> and <literal>D1</literal> define <literal>z = C1 x + D1 (w,u)</literal>,
             the to-be-estimated output.
@@ -100,7 +100,7 @@
         <para>
             The data (Sys, reject,C1, D1)   define a 2-input 2-output system:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 xdot =  A x + B1  w + B2  u
    z = C1 x + D11 w + D12 u
    y = C2 x + D21 w + D22 u
@@ -110,7 +110,7 @@ xdot =  A x + B1  w + B2  u
         </para>
         <para>
             <literal>flag='ge'</literal> no stability constraints
-            <literal>flag='st'</literal> stable observer    (default) 
+            <literal>flag='st'</literal> stable observer    (default)
             <literal>flag='pp'</literal> observer with pole placement
             alfa,beta = desired location of closed loop poles  (default -1, -2)
             J=y-output to x-state injection.
@@ -122,7 +122,7 @@ xdot =  A x + B1  w + B2  u
             [0,I;        UIobs
             Sys]
             (w,u) -----&gt; (u,y) -----&gt; zhat
-            i.e. transfer function of system {A,B,C1,D1} equals transfer function 
+            i.e. transfer function of system {A,B,C1,D1} equals transfer function
             <literal>UIobs*[0,I; Sys]</literal>
         </para>
         <para>
@@ -132,7 +132,7 @@ xdot =  A x + B1  w + B2  u
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=diag([3,-3,7,4,-4,8]);
 B=[eye(3,3);zeros(3,3)];
 C=[0,0,1,2,3,4;0,0,0,0,0,1];
@@ -147,7 +147,7 @@ nw=length(reject);nu=size(Sys('B'),2)-nw;
 ny=size(Sys('C'),1);nz=size(C1,1);
 [UIobs,J,N]=ui_observer(Sys,reject,C1,D1);
 
-W=[zeros(nu,nw),eye(nu,nu);Sys];UIobsW=UIobs*W;   
+W=[zeros(nu,nw),eye(nu,nu);Sys];UIobsW=UIobs*W;
 //(w,u) --> z=UIobs*[0,I;Sys](w,u)
 clean(ss2tf(UIobsW));
 wu_to_z=syslin('c',A,B,C1,D1);clean(ss2tf(wu_to_z));

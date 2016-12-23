@@ -1,5 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
+// Copyright (C) 2016 - Samuel GOUGEON
+//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -9,7 +11,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function []=fchamp(macr_f,fch_t,fch_xr,fch_yr,arfact,rect,strf)
+function [] = fchamp(macr_f,fch_t,fch_xr,fch_yr,arfact,rect,strf)
     //   Draw vector field in R^2,
     //   Vector field defined by:
     //   y=f(x,t,[u]), for compatibility with ode function
@@ -25,11 +27,26 @@ function []=fchamp(macr_f,fch_t,fch_xr,fch_yr,arfact,rect,strf)
     //!
 
     [lhs,rhs]=argn(0)
-    if rhs <= 0 then   // demo
-        deff("[xdot] = derpol(t,x)",["xd1 = x(2)"; ..
-        "xd2 = -x(1) + (1 - x(1)**2)*x(2)"; ..
-        "xdot = [ xd1 ; xd2 ]"]);
-        fchamp(derpol,0,-1:0.1:1,-1:0.1:1,1);
+    if rhs == 0 then   // demo
+        // Setting the figure
+        fh = gcf()
+        isDocked = (fh.dockable=="on" & ((fh.figure_size(1,1)-fh.axes_size(1,1)) > 20))
+        if ~isDocked
+            fh.visible = "off"
+            fh.figure_size = [700,700]
+        end
+        // Preparing the ODE
+        deff(" xdot = derpol(t,x)",..
+                      "xdot = [ x(2) ; -x(1) + (1 - x(1)**2)*x(2) ]")
+       // Plotting is (x, dx/dt) graph
+        rect = [-1.1 -1.1 1.1 1.1]
+        fchamp(derpol,0,-1:0.1:1,-1:0.1:1,0.7,rect,"011")
+
+        // Graphical post-processing
+        title(["fchamp(): Van der Pol oscillator" ; "$x - (1-x^2)\frac{dx}{dt} + \frac{d^2x}{dt^2}=0$"], "fontsize",4)
+        xlabel("$x$","fontsize",4)
+        ylabel("$dx/dt$","fontsize",4)
+        fh.visible = "on"
         return
     end
 

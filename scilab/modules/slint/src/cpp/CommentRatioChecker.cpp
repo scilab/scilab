@@ -48,7 +48,15 @@ void CommentRatioChecker::preCheckFile(SLintContext & context, SLintResult & res
 void CommentRatioChecker::postCheckFile(SLintContext & context, SLintResult & result)
 {
     const uint64_t lines = context.getSciFile()->countLines();
-    const double ratio = ((double)count) / ((double)lines);
+    double ratio;
+    if (lines)
+    {
+        ratio = ((double)count) / ((double)lines);
+    }
+    else
+    {
+        ratio = 0;
+    }
     if (ratio < ratioMin)
     {
         result.report(context, Location(), *this, _("The minimal ratio between commented lines and total lines is not reached: %d < %d."), ratio, ratioMin);

@@ -295,15 +295,23 @@ static void freeScoData(scicos_block * block)
 static void appendData(scicos_block * block, double *x, double *y, double *z)
 {
     int i;
+    int maxNumberOfPoints;
+    int numberOfPoints;
+    int setLen;
+
 
     sco_data *sco = (sco_data *) * (block->work);
-    int maxNumberOfPoints = sco->internal.maxNumberOfPoints;
-    int numberOfPoints = sco->internal.numberOfPoints;
+    if (sco == NULL)
+    {
+        return;
+    }
+    maxNumberOfPoints = sco->internal.maxNumberOfPoints;
+    numberOfPoints = sco->internal.numberOfPoints;
 
     /*
      * Handle the case where the scope has more points than maxNumberOfPoints
      */
-    if (sco != NULL && numberOfPoints >= maxNumberOfPoints)
+    if (numberOfPoints >= maxNumberOfPoints)
     {
         int setLen = maxNumberOfPoints - 1;
 
@@ -327,30 +335,25 @@ static void appendData(scicos_block * block, double *x, double *y, double *z)
     /*
      * Update data
      */
-    if (sco != NULL)
+    for (i = 0; i < block->insz[0]; i++)
     {
-        int setLen;
-
-        for (i = 0; i < block->insz[0]; i++)
+        for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
         {
-            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
-            {
-                sco->internal.coordinates[i][numberOfPoints + setLen] = x[i];
-            }
-
-            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
-            {
-                sco->internal.coordinates[i][maxNumberOfPoints + numberOfPoints + setLen] = y[i];
-            }
-
-            for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
-            {
-                sco->internal.coordinates[i][2 * maxNumberOfPoints + numberOfPoints + setLen] = z[i];
-            }
+            sco->internal.coordinates[i][numberOfPoints + setLen] = x[i];
         }
 
-        sco->internal.numberOfPoints++;
+        for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
+        {
+            sco->internal.coordinates[i][maxNumberOfPoints + numberOfPoints + setLen] = y[i];
+        }
+
+        for (setLen = maxNumberOfPoints - numberOfPoints - 1; setLen >= 0; setLen--)
+        {
+            sco->internal.coordinates[i][2 * maxNumberOfPoints + numberOfPoints + setLen] = z[i];
+        }
     }
+
+    sco->internal.numberOfPoints++;
 }
 
 static BOOL pushData(scicos_block * block, int row)

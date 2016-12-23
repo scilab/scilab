@@ -14,7 +14,7 @@ function M=%b_i_b(varargin)
 
     rhs=argn(2)
     M=varargin(rhs)
-    M=mlist(["hm","dims","entries"],int32(size(M)),M(:))
+    M=matrix(M(:), size(M))
     varargin(rhs)=M;
     M=generic_i_hm(%f,varargin(:))
 endfunction

@@ -95,7 +95,7 @@
                     <para>
                         vector, indicator of active constraints.
                         The non zero entries give the index of the active constraints.
-                        The entries of the iact vector are ordered this way: equality constraints come first, 
+                        The entries of the iact vector are ordered this way: equality constraints come first,
                         then come the inequality constraints.
                     </para>
                 </listitem>
@@ -136,7 +136,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Find x in R^6 such that:
 // x'*C1 = b1 (3 equality constraints i.e me=3)
 C1= [ 1,-1, 2;
@@ -161,7 +161,7 @@ p=[-1;-2;-3;-4;-5;-6]; Q=eye(6,6);
 
 me=3;
 [x,iact,iter,f]=qp_solve(Q,p,[C1 C2],[b1;b2],me)
-// Only linear constraints (1 to 4) are active 
+// Only linear constraints (1 to 4) are active
  ]]></programlisting>
     </refsection>
     <refsection>
@@ -184,13 +184,13 @@ me=3;
     <refsection>
         <title>Memory requirements</title>
         <para>Let r be</para>
-        <programlisting> 
+        <programlisting>
             r=min(m,n)
         </programlisting>
         <para>Then the memory required by qp_solve during the computations
             is
         </para>
-        <programlisting> 
+        <programlisting>
             2*n+r*(r+5)/2 + 2*m +1
         </programlisting>
     </refsection>

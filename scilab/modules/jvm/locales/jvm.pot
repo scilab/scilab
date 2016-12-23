@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-06-08 22:22+0100\n"
+"Revision-Date: 2016-12-07 16:04+0100\n"
 
 # File: modules/jvm/sci_gateway/c/sci_javaclasspath.c, line: 55
 # File: modules/jvm/sci_gateway/c/sci_javaclasspath.c, line: 63
@@ -47,28 +47,28 @@ msgid "%s: Could not add path to java.library.path: %s.\n"
 msgstr ""
 
 #
-# File: modules/jvm/sci_gateway/cpp/sci_system_getproperty.cpp, line: 35
+# File: modules/jvm/sci_gateway/cpp/sci_system_getproperty.cpp, line: 34
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/jvm/sci_gateway/cpp/sci_system_getproperty.cpp, line: 41
-# File: modules/jvm/sci_gateway/cpp/sci_system_setproperty.cpp, line: 44
+# File: modules/jvm/sci_gateway/cpp/sci_system_getproperty.cpp, line: 40
+# File: modules/jvm/sci_gateway/cpp/sci_system_setproperty.cpp, line: 43
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/jvm/sci_gateway/cpp/sci_system_getproperty.cpp, line: 47
-# File: modules/jvm/sci_gateway/cpp/sci_system_setproperty.cpp, line: 50
-# File: modules/jvm/sci_gateway/cpp/sci_system_setproperty.cpp, line: 56
+# File: modules/jvm/sci_gateway/cpp/sci_system_getproperty.cpp, line: 46
+# File: modules/jvm/sci_gateway/cpp/sci_system_setproperty.cpp, line: 49
+# File: modules/jvm/sci_gateway/cpp/sci_system_setproperty.cpp, line: 55
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 
 #
-# File: modules/jvm/sci_gateway/cpp/sci_system_setproperty.cpp, line: 38
+# File: modules/jvm/sci_gateway/cpp/sci_system_setproperty.cpp, line: 37
 #, c-format
 msgid "%s: Wrong number of input arguments: at %d expected.\n"
 msgstr ""
@@ -85,11 +85,11 @@ msgstr ""
 #
 # File: modules/jvm/src/c/InitializeJVM.c, line: 51
 # File: modules/jvm/src/c/InitializeJVM.c, line: 78
-# File: modules/jvm/src/c/JVM.c, line: 104
-# File: modules/jvm/src/c/JVM.c, line: 123
-# File: modules/jvm/src/c/JVM.c, line: 195
-# File: modules/jvm/src/c/JVM.c, line: 229
-# File: modules/jvm/src/c/JVM.c, line: 268
+# File: modules/jvm/src/c/JVM.c, line: 108
+# File: modules/jvm/src/c/JVM.c, line: 127
+# File: modules/jvm/src/c/JVM.c, line: 199
+# File: modules/jvm/src/c/JVM.c, line: 227
+# File: modules/jvm/src/c/JVM.c, line: 266
 msgid "Error"
 msgstr ""
 
@@ -110,7 +110,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/jvm/src/c/InitializeJVM.c, line: 142
+# File: modules/jvm/src/c/InitializeJVM.c, line: 133
 # File: modules/jvm/src/c/createMainScilabObject.c, line: 37
 # File: modules/jvm/src/c/createMainScilabObject.c, line: 83
 # File: modules/jvm/src/c/createMainScilabObject.c, line: 121
@@ -119,13 +119,13 @@ msgid "Could not access to the Main Scilab Class:\n"
 msgstr ""
 
 #
-# File: modules/jvm/src/c/InitializeJVM.c, line: 151
+# File: modules/jvm/src/c/InitializeJVM.c, line: 142
 msgid "Cannot execute initial hooks. Error:\n"
 msgstr ""
 
 #
-# File: modules/jvm/src/c/JVM.c, line: 104
-# File: modules/jvm/src/c/JVM.c, line: 107
+# File: modules/jvm/src/c/JVM.c, line: 108
+# File: modules/jvm/src/c/JVM.c, line: 111
 #, c-format
 msgid ""
 "\n"
@@ -133,8 +133,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/jvm/src/c/JVM.c, line: 122
-# File: modules/jvm/src/c/JVM.c, line: 127
+# File: modules/jvm/src/c/JVM.c, line: 126
+# File: modules/jvm/src/c/JVM.c, line: 131
 #, c-format
 msgid ""
 "\n"
@@ -143,7 +143,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/jvm/src/c/JVM.c, line: 151
+# File: modules/jvm/src/c/JVM.c, line: 155
 #, c-format
 msgid ""
 "\n"
@@ -152,7 +152,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/jvm/src/c/JVM.c, line: 160
+# File: modules/jvm/src/c/JVM.c, line: 164
 #, c-format
 msgid ""
 "\n"
@@ -160,13 +160,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/jvm/src/c/JVM.c, line: 161
+# File: modules/jvm/src/c/JVM.c, line: 165
 #, c-format
 msgid "Error: %s\n"
 msgstr ""
 
 #
-# File: modules/jvm/src/c/JVM.c, line: 162
+# File: modules/jvm/src/c/JVM.c, line: 166
 #, c-format
 msgid ""
 "If you are using a binary version of Scilab, please report a bug http://"
@@ -174,7 +174,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/jvm/src/c/JVM.c, line: 163
+# File: modules/jvm/src/c/JVM.c, line: 167
 #, c-format
 msgid ""
 "If you are using a self-built version of Scilab, update the script bin/"
@@ -182,13 +182,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/jvm/src/c/JVM.c, line: 165
+# File: modules/jvm/src/c/JVM.c, line: 169
 #, c-format
 msgid "The problem might be related to SELinux. Try to deactivate it.\n"
 msgstr ""
 
 #
-# File: modules/jvm/src/c/JVM.c, line: 166
+# File: modules/jvm/src/c/JVM.c, line: 170
 #, c-format
 msgid ""
 "Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
@@ -196,7 +196,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/jvm/src/c/JVM.c, line: 201
+# File: modules/jvm/src/c/JVM.c, line: 205
 #, c-format
 msgid ""
 "\n"
@@ -204,8 +204,8 @@ msgid ""
 msgstr ""
 
 #
+# File: modules/jvm/src/c/JVM.c, line: 227
 # File: modules/jvm/src/c/JVM.c, line: 229
-# File: modules/jvm/src/c/JVM.c, line: 231
 #, c-format
 msgid ""
 "\n"
@@ -213,20 +213,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/jvm/src/c/JVM.c, line: 243
+# File: modules/jvm/src/c/JVM.c, line: 241
 #, c-format
 msgid "Error in the creation of the Java VM: %s\n"
 msgstr ""
 
 #
-# File: modules/jvm/src/c/JVM.c, line: 249
+# File: modules/jvm/src/c/JVM.c, line: 247
 #, c-format
 msgid "Options:\n"
 msgstr ""
 
 #
-# File: modules/jvm/src/c/JVM.c, line: 268
-# File: modules/jvm/src/c/JVM.c, line: 271
+# File: modules/jvm/src/c/JVM.c, line: 266
+# File: modules/jvm/src/c/JVM.c, line: 269
 #, c-format
 msgid ""
 "\n"
@@ -307,7 +307,7 @@ msgid "Error: Could not parse file %s.\n"
 msgstr ""
 
 #
-# File: modules/jvm/src/c/getJvmOptions.c, line: 189
+# File: modules/jvm/src/c/getJvmOptions.c, line: 181
 #, c-format
 msgid ""
 "Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
@@ -323,15 +323,15 @@ msgid "Error: could not parse file %s\n"
 msgstr ""
 
 #
-# File: modules/jvm/src/c/loadClasspath.c, line: 185
-# File: modules/jvm/src/c/loadLibrarypath.c, line: 132
-# File: modules/jvm/src/c/loadOnUseClassPath.c, line: 124
+# File: modules/jvm/src/c/loadClasspath.c, line: 183
+# File: modules/jvm/src/c/loadLibrarypath.c, line: 129
+# File: modules/jvm/src/c/loadOnUseClassPath.c, line: 118
 #, c-format
 msgid "Wrong format for %s.\n"
 msgstr ""
 
 #
-# File: modules/jvm/src/c/loadClasspath.c, line: 204
+# File: modules/jvm/src/c/loadClasspath.c, line: 199
 #, c-format
 msgid ""
 "Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
@@ -339,14 +339,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/jvm/src/c/loadClasspath.c, line: 214
-# File: modules/jvm/src/c/loadOnUseClassPath.c, line: 143
+# File: modules/jvm/src/c/loadClasspath.c, line: 206
+# File: modules/jvm/src/c/loadOnUseClassPath.c, line: 134
 #, c-format
 msgid "Warning: could not find classpath declaration file %s.\n"
 msgstr ""
 
 #
-# File: modules/jvm/src/c/loadClasspath.c, line: 218
+# File: modules/jvm/src/c/loadClasspath.c, line: 210
 #, c-format
 msgid ""
 "Some problems during the loading of the Java libraries occurred.\n"
@@ -355,7 +355,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/jvm/src/c/loadLibrarypath.c, line: 147
+# File: modules/jvm/src/c/loadLibrarypath.c, line: 144
 #, c-format
 msgid ""
 "Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"

@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -38,7 +38,6 @@ public:
     }
     Port(const Port& o) : BaseObject(PORT), m_uid(o.m_uid), m_dataType(o.m_dataType), m_sourceBlock(o.m_sourceBlock), m_kind(o.m_kind), m_implicit(o.m_implicit),
         m_style(o.m_style), m_label(o.m_label), m_firing(0), m_connectedSignals(o.m_connectedSignals) {};
-    ~Port() = default;
 
 private:
     friend class ::org_scilab_modules_scicos::Model;

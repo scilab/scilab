@@ -282,7 +282,7 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
             AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
         }
 
-        returnArguments(pvApiCtx);
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
@@ -298,7 +298,7 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
         }
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
-        returnArguments(pvApiCtx);
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
@@ -330,7 +330,7 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
         AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
     }
 
-    returnArguments(pvApiCtx);
+    ReturnArguments(pvApiCtx);
     return 0;
 
 }

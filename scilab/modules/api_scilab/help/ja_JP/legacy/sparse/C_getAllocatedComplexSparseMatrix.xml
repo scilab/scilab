@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -112,7 +112,7 @@
     </refsection>
     <refsection>
         <title>戻り値</title>
-        <para>成功した場合に 0, それ以外の場合, Scilabコンソールにエラーメッセージを出力し, 
+        <para>成功した場合に 0, それ以外の場合, Scilabコンソールにエラーメッセージを出力し,
             最初のエラー番号を返します.
         </para>
     </refsection>

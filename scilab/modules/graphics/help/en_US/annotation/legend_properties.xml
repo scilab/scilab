@@ -217,17 +217,17 @@
                         coordinates ((<literal>x_user</literal>,
                         <literal>y_user</literal>) or conversely.
                     </para>
-                    <programlisting role="user coordinates"><![CDATA[ 
+                    <programlisting role="user coordinates"><![CDATA[
 as=get(gcf(),"axes_size");//size of the canvas in pixels
 bnds=get(gca(),"axes_bounds");//bounds of the current axes rectangle in figure size ratio.
 //from legend coordinates to user coordinates
 [x_user,y_user]=xchange(position(1)*as(1)*bnds(3)+as(1)*bnds(1),...
-               position(2)*as(2)*bnds(4)+as(2)*bnds(2),"i2f") 
+               position(2)*as(2)*bnds(4)+as(2)*bnds(2),"i2f")
 //from   user coordinates to legend coordinates
 [x1,y1]=xchange(x_user,y_user,'f2i')
 position=[(x1-as(1)*bnds(1))/(as(1)*bnds(3)),...
           (y1-as(2)*bnds(2))/(as(2)*bnds(4))];
- 
+
  ]]></programlisting>
                 </listitem>
             </varlistentry>
@@ -348,8 +348,8 @@ position=[(x1-as(1)*bnds(1))/(as(1)*bnds(3)),...
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// x initialisation 
+        <programlisting role="example"><![CDATA[
+// x initialisation
 x=[0:0.1:2*%pi]';
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
   [1,2,3],leg="L1@L2@L3")

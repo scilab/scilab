@@ -16,6 +16,8 @@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) 2016 - Scilab Enterprises - Clement DAVID
+#
 #
 # This file is distributed under the same license as the Scilab package.
 
@@ -176,8 +178,7 @@ LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscirandlib_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/cpp/libscirandlib_algo_la-grand.lo
-am__objects_2 = src/c/libscirandlib_algo_la-fsultra.lo \
-	src/c/libscirandlib_algo_la-mt.lo \
+am__objects_2 = src/c/libscirandlib_algo_la-mt.lo \
 	src/c/libscirandlib_algo_la-igngeom.lo \
 	src/c/libscirandlib_algo_la-kiss.lo \
 	src/c/libscirandlib_algo_la-urand.lo \
@@ -596,7 +597,6 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 RANDLIB_C_SOURCES = \
-    src/c/fsultra.c \
     src/c/mt.c \
     src/c/igngeom.c \
     src/c/kiss.c \
@@ -844,8 +844,6 @@ src/c/$(am__dirstamp):
 src/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/c/$(DEPDIR)
 	@: > src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscirandlib_algo_la-fsultra.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscirandlib_algo_la-mt.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscirandlib_algo_la-igngeom.lo: src/c/$(am__dirstamp) \
@@ -937,7 +935,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscirandlib_la-sci_grand.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-clcg2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-clcg4.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-fsultra.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-genbet.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-ignbin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscirandlib_algo_la-igngeom.Plo@am__quote@
@@ -972,13 +969,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
-
-src/c/libscirandlib_algo_la-fsultra.lo: src/c/fsultra.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscirandlib_algo_la-fsultra.lo -MD -MP -MF src/c/$(DEPDIR)/libscirandlib_algo_la-fsultra.Tpo -c -o src/c/libscirandlib_algo_la-fsultra.lo `test -f 'src/c/fsultra.c' || echo '$(srcdir)/'`src/c/fsultra.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscirandlib_algo_la-fsultra.Tpo src/c/$(DEPDIR)/libscirandlib_algo_la-fsultra.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fsultra.c' object='src/c/libscirandlib_algo_la-fsultra.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscirandlib_algo_la-fsultra.lo `test -f 'src/c/fsultra.c' || echo '$(srcdir)/'`src/c/fsultra.c
 
 src/c/libscirandlib_algo_la-mt.lo: src/c/mt.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirandlib_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscirandlib_algo_la-mt.lo -MD -MP -MF src/c/$(DEPDIR)/libscirandlib_algo_la-mt.Tpo -c -o src/c/libscirandlib_algo_la-mt.lo `test -f 'src/c/mt.c' || echo '$(srcdir)/'`src/c/mt.c

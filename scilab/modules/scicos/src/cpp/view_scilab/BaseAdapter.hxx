@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -114,17 +114,24 @@ public:
 template<typename Adaptor, typename Adaptee>
 class BaseAdapter : public types::UserType
 {
+    using BaseObject = org_scilab_modules_scicos::model::BaseObject;
 
 public:
-    BaseAdapter() : m_adaptee(nullptr) {};
+    explicit BaseAdapter() : m_adaptee(nullptr) {}
     BaseAdapter(const Controller& /*c*/, Adaptee* adaptee) : m_adaptee(adaptee) {}
     BaseAdapter(const BaseAdapter& adapter) : BaseAdapter(adapter, true) {}
     BaseAdapter(const BaseAdapter& adapter, bool cloneChildren) : m_adaptee(nullptr)
     {
-        Controller controller;
-        ScicosID id = controller.cloneObject(adapter.getAdaptee()->id(), cloneChildren, true);
-        m_adaptee = controller.getObject< Adaptee >(id);
+        if (adapter.getAdaptee() != nullptr)
+        {
+            Controller controller;
+
+            std::map<BaseObject*, BaseObject*> mapped;
+            BaseObject* clone = controller.cloneObject(mapped, adapter.getAdaptee(), cloneChildren, true);
+            m_adaptee = static_cast<Adaptee*>(clone);
+        }
     };
+    BaseAdapter(const BaseAdapter&& adapter) : BaseAdapter(Controller(), adapter.m_adaptee) {}
     ~BaseAdapter()
     {
         if (m_adaptee != nullptr)
@@ -149,7 +156,7 @@ public:
         typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), _sKey);
         if (found != property<Adaptor>::fields.end() && !(_sKey < found->name))
         {
-            return found->get(static_cast<Adaptor*>(this), controller);
+            return found->get(*static_cast<Adaptor*>(this), controller);
         }
         return 0;
     }
@@ -162,6 +169,16 @@ public:
             return found->set(*static_cast<Adaptor*>(this), v, controller);
         }
         return false;
+    }
+
+    void copyProperties(const Adaptor& adaptor, Controller controller = Controller())
+    {
+        for (const auto& p : property<Adaptor>::fields)
+        {
+            types::InternalType* pIT = p.get(adaptor, controller);
+            p.set(*static_cast<Adaptor*>(this), pIT, controller);
+            pIT->killMe();
+        }
     }
 
     /**
@@ -266,7 +283,7 @@ public:
         typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
         std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 
-        types::Bool* ret = new types::Bool(1, 1 + properties.size());
+        types::Bool* ret = new types::Bool(1, 1 + (int)properties.size());
         ret->set(0, true); // First field is just the Adapter's name, which has been checked by the above conditions
 
         Controller controller;
@@ -284,6 +301,28 @@ public:
 
         return ret;
     }
+
+    /**
+     * Return a default constructed Scilab value
+     */
+    template<typename T>
+    static types::InternalType* default_value()
+    {
+        T* o = new T();
+        o->IncreaseRef();
+        return o;
+    }
+
+    /**
+     * Increase reference count to store a Scilab value
+     */
+    template<typename T>
+    static T* reference_value(T* o)
+    {
+        o->IncreaseRef();
+        return o;
+    }
+
 
     /**
      * @return the Adaptee
@@ -311,6 +350,12 @@ private:
      */
 
     bool isAssignable() override final
+    {
+        return true;
+    }
+
+    // sb.model.rpar.contrib will return a reference to contrib
+    bool isContainer() override final
     {
         return true;
     }
@@ -396,17 +441,29 @@ private:
         {
             if ((*_pArgs)[i]->isString())
             {
+                Controller controller;
+
                 types::String* pStr = (*_pArgs)[i]->getAs<types::String>();
                 std::wstring name = pStr->get(0);
 
-                Controller controller;
+                Adaptor* work;
+                if (getAdaptee()->refCount() > 0)
+                {
+                    // clone()
+                    work = new Adaptor(*static_cast<Adaptor*>(this));
+                }
+                else
+                {
+                    work = static_cast<Adaptor*>(this);
+                }
+
                 typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), name);
                 if (found != property<Adaptor>::fields.end() && !(name < found->name))
                 {
-                    found->set(*static_cast<Adaptor*>(this), _pSource, controller);
+                    found->set(*work, _pSource, controller);
                 }
 
-                return this;
+                return work;
             }
             else
             {
@@ -435,10 +492,10 @@ private:
         typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
         std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 
-        ostr << L"scicos_" <<  getTypeStr() << L" type :" << std::endl;
+        ostr << L"scicos_" <<  getTypeStr() << L" type :" << '\n';
         for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it)
         {
-            ostr << L"  " << it->name << std::endl;
+            ostr << L"  " << it->name << '\n';
         }
         return true;
     }

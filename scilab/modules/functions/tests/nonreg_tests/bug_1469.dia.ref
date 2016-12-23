@@ -233,7 +233,7 @@ function foo()
 endfunction
 t=macr2tree(foo);
 t=tree2code(t);
-if size(t,1)<>6 then bugmes();quit;end
+if size(t,1)<>5 then bugmes();quit;end
 clear foo
 function foo()
     function bar()

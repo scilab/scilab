@@ -50,6 +50,7 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "Sciwarning.h"
+#include "Scierror.h"
 
 //#include "../../../tclsci/includes/GedManagement.h"
 
@@ -80,6 +81,12 @@ void sciGetDisplayedBounds(int iSubWinUID,
     else
     {
         getGraphicObjectProperty(iSubWinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&bounds);
+    }
+
+    if (!bounds)
+    {
+        Scierror(999, _("Could not retrive bounds.\n"));
+        return;
     }
 
     *xmin = bounds[0];

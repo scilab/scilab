@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -20,8 +20,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>str = dec2base(d, base)</synopsis>
-        <synopsis>str = dec2base(d, base, n)</synopsis>
+        <synopsis>
+            str = dec2base(d, base)
+            str = dec2base(d, base, n)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -66,10 +68,10 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 for b = 2:36
  disp( dec2base(666, b) )
-end 
+end
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -91,7 +91,7 @@
         <!--Func_list: common_function-->
         <title>Gateway Source</title>
         <programlisting role="code_gateway">
-            <![CDATA[ 
+            <![CDATA[
 #include "api_scilab.h"
 SciErr printf_info(int _iVar);
 
@@ -240,7 +240,7 @@ SciErr printf_info(int _iVar)
     </refsection>
     <refsection>
         <title>Scilab test script</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+        <programlisting role="code_scilab"><![CDATA[
 l1 = [1,2*%i,3;%i,2,3*%i];
 l2 = ["may","the";"puffin","be";"with","you"];
 l3 = int8([1,2,3]);

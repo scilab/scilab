@@ -17,9 +17,12 @@
 #include "context.hxx"
 #include "configvariable.hxx"
 
+
 extern "C"
 {
 #include "loadOnUseClassPath.h"
+#include "Scierror.h"
+
     //XML API
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
@@ -103,9 +106,8 @@ vectGateway loadGatewaysName(const std::wstring& _wstModuleName)
 }
 
 //Scinotes module
-
 bool ScinotesModule::loadedDep = false;
-int ScinotesModule::LoadDeps(const std::wstring& _functionName)
+int ScinotesModule::LoadDeps(const std::wstring& /*_functionName*/)
 {
     if (loadedDep == false)
     {
@@ -199,7 +201,7 @@ int SignalProcessingModule::Load()
     return 1;
 }
 
-int HelptoolsModule::LoadDeps(const std::wstring& _functionName)
+int HelptoolsModule::LoadDeps(const std::wstring& /*_functionName*/)
 {
     if (loadedDep == false)
     {
@@ -562,13 +564,15 @@ int XcosModule::LoadDeps(const std::wstring& _functionName)
 
 int XcosModule::Load()
 {
-    std::wstring wstModuleName = L"xcos";
+    const std::wstring wstModuleName = L"xcos";
+    const wchar_t*  wstLibName = wstModuleName.c_str();
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstLibName, DYNLIB_NAME_FORMAT_2);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstLibName, DYNLIB_NAME_FORMAT_3);
 #endif
     vectGateway vect = loadGatewaysName(wstModuleName);
+
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
@@ -654,3 +658,153 @@ int SlintModule::Load()
     FREE(pwstLibName);
     return 1;
 }
+
+bool GraphicsModule::loadedDep = false;
+int GraphicsModule::LoadDeps(const std::wstring& /*_functionName*/)
+{
+    if (loadedDep == false)
+    {
+        loadOnUseClassPath("graphics");
+        loadedDep = true;
+    }
+
+    return 1;
+}
+
+int GraphicsModule::Load()
+{
+    std::wstring wstModuleName = L"graphics";
+#ifdef _MSC_VER
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+#else
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+#endif
+
+    vectGateway vect = loadGatewaysName(wstModuleName);
+
+    for (int i = 0 ; i < (int)vect.size() ; i++)
+    {
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &GraphicsModule::LoadDeps, wstModuleName));
+    }
+
+    FREE(pwstLibName);
+    return 1;
+}
+
+
+bool GuiModule::loadedDep = false;
+int GuiModule::LoadDeps(const std::wstring& _functionName)
+{
+    if (loadedDep == false &&
+            (_functionName == L"uicontrol" ||
+             _functionName == L"uimenu" ||
+             _functionName == L"usecanvas" ||
+             _functionName == L"loadGui" ||
+             _functionName == L"figure"))
+    {
+        loadOnUseClassPath("graphics");
+        loadedDep = true;
+    }
+
+    return 1;
+}
+int GuiModule::Load()
+{
+    std::wstring wstModuleName = L"gui";
+#ifdef _MSC_VER
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
+#else
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+#endif
+
+    vectGateway vect = loadGatewaysName(wstModuleName);
+
+    for (int i = 0 ; i < (int)vect.size() ; i++)
+    {
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &GuiModule::LoadDeps, wstModuleName));
+    }
+
+    FREE(pwstLibName);
+    return 1;
+}
+
+int JvmModule::Load()
+{
+    std::wstring wstModuleName = L"jvm";
+#ifdef _MSC_VER
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(L"libjvm", DYNLIB_NAME_FORMAT_1);
+#else
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+#endif
+
+    vectGateway vect = loadGatewaysName(wstModuleName);
+
+    for (int i = 0 ; i < (int)vect.size() ; i++)
+    {
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+    }
+
+    FREE(pwstLibName);
+    return 1;
+}
+
+int UiDataModule::Load()
+{
+    std::wstring wstModuleName = L"ui_data";
+#ifdef _MSC_VER
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
+#else
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+#endif
+
+    vectGateway vect = loadGatewaysName(wstModuleName);
+
+    for (int i = 0 ; i < (int)vect.size() ; i++)
+    {
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+    }
+
+    FREE(pwstLibName);
+    return 1;
+}
+
+int TclsciModule::Load()
+{
+    std::wstring wstModuleName = L"tclsci";
+#ifdef _MSC_VER
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+#else
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+#endif
+
+    vectGateway vect = loadGatewaysName(wstModuleName);
+
+    for (int i = 0 ; i < (int)vect.size() ; i++)
+    {
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+    }
+
+    FREE(pwstLibName);
+    return 1;
+}
+
+int HistoryBrowserModule ::Load()
+{
+    std::wstring wstModuleName = L"history_browser";
+#ifdef _MSC_VER
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+#else
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+#endif
+
+    vectGateway vect = loadGatewaysName(wstModuleName);
+
+    for (int i = 0 ; i < (int)vect.size() ; i++)
+    {
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+    }
+
+    FREE(pwstLibName);
+    return 1;
+}
+

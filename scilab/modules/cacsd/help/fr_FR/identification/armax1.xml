@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - JPC
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -95,10 +95,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            armax1 is used to identify the coefficients of a 1-dimensional 
+            armax1 is used to identify the coefficients of a 1-dimensional
             ARX process:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)
 e(t) is a 1-dimensional white noise with variance 1.
 A(z)= 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
@@ -109,27 +109,27 @@ D(z)= 1+d1*z+...+d_q*z^q  ( q=0 => D(z)=1)
             for the method, see Eykhoff in trends and progress in system
             identification) page 96.  with
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 z(t)=[y(t-1),..,y(t-r),u(t),...,
-      u(t-s),e(t-1),...,e(t-q)] 
+      u(t-s),e(t-1),...,e(t-q)]
  ]]></programlisting>
         <para>
             and
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 coef= [-a1,..,-ar,b0,...,b_s,d1,...,d_q]'
 y(t)= coef'* z(t) + sig*e(t).
  ]]></programlisting>
         <para>
-            a sequential version of the AR estimation where e(t-i) is replaced 
+            a sequential version of the AR estimation where e(t-i) is replaced
             by an estimated value is used (RLLS). With q=0 this method is exactly
             a sequential version of armax
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 
 a = [1, -2.851, 2.717, -0.865];
 b = [0, 1, 1, 1];
@@ -149,15 +149,15 @@ disp(arc1);
 
  ]]></programlisting>
     </refsection>
-    
-    
+
+
     <refsection>
         <title>Important notice</title>
         <para>In Scilab versions up to 4.1.2 the returned value in
             <literal>arc.sig</literal> is the square of <literal>sig</literal>
             square. To be conform with the help, the display of arma models
             and the armax function, starting from Scilab-5.0 version the
-            returned <literal>arc.sig</literal> is <literal>sig</literal>. 
+            returned <literal>arc.sig</literal> is <literal>sig</literal>.
         </para>
     </refsection>
 </refentry>

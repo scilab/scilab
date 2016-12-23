@@ -1,0 +1,8 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;
+;core
+;
+MyHeapFree

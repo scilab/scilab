@@ -23,7 +23,7 @@
         <title>Syntax</title>
         <synopsis>
             lmitool(filename)
-            
+
             txt=lmitool(probname,varlist,datalist)
         </synopsis>
     </refsynopsisdiv>

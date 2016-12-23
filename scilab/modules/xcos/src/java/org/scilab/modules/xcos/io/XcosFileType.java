@@ -37,6 +37,7 @@ import javax.xml.transform.TransformerException;
 
 import org.scilab.modules.commons.xml.ScilabXMLOutputFactory;
 import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.JavaXMIResource;
 import org.scilab.modules.xcos.View;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -133,6 +134,30 @@ public enum XcosFileType {
             } finally {
                 writer.close();
             }
+        }
+    },
+    /**
+     * Represent an XMI (compatible with Eclipse EMF) serialization of the model
+     */
+    XMI("xmi", XcosMessages.FILE_XMI) {
+
+        @Override
+        public void load(String file, XcosDiagram into) throws Exception {
+            View xcosView = JavaController.lookup_view(Xcos.class.getName());
+            try {
+                JavaController.unregister_view(xcosView);
+
+                JavaController controller = new JavaController();
+                JavaXMIResource.load(file, into.getUID());
+                XcosCellFactory.insertChildren(controller, into);
+            } finally {
+                JavaController.register_view(Xcos.class.getName(), xcosView);
+            }
+        }
+
+        @Override
+        public void save(String file, XcosDiagram from) throws Exception {
+            JavaXMIResource.save(file, from.getUID());
         }
     },
     /**
@@ -425,6 +450,7 @@ public enum XcosFileType {
         final Set<XcosFileType> values = EnumSet.noneOf(XcosFileType.class);
         values.add(XcosFileType.XCOS);
         values.add(XcosFileType.ZCOS);
+        values.add(XcosFileType.XMI);
         return values;
     }
 }

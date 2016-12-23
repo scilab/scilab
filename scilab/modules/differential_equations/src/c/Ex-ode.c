@@ -32,7 +32,7 @@
 //       fexab    : a more complex example with matpr
 //-----------------------------------------------------------------
 
-extern C2F(dmmul)(double*, int*, double*, int*, double*, int*, int*, int*, int*);
+extern void C2F(dmmul)(double*, int*, double*, int*, double*, int*, int*, int*, int*);
 
 void fex(int* neq, double* t, double* y, double* ydot)
 {

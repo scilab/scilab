@@ -81,7 +81,7 @@ kron(A,A)
 
 // With hypermatrices
 // ------------------
-b = hypermat([4 3 2], 1:24);
+b = matrix(1:24, [4 3 2]);
 
 // row .*. hypermat
 a = 1:2, b
@@ -100,7 +100,7 @@ a = [-1 -2; 2 1], b
 a.*.b
 
 // hypermat .*. hypermat
-a = hypermat([1 2 2],[-1,-2, 1 2]), b
+a = matrix([-1,-2, 1 2], [1 2 2]), b
 a.*.b
  ]]></programlisting>
     </refsection>
@@ -115,5 +115,5 @@ a.*.b
             </revision>
         </revhistory>
     </refsection>
-    
+
 </refentry>

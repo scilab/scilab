@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -57,9 +57,9 @@
         <para>
             <literal>P</literal> is partitioned as follows:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 P=[ P11 P12;
-    P21 P22]  
+    P21 P22]
  ]]></programlisting>
         <para>
             (in state-space or transfer form: automatic conversion in state-space is
@@ -68,12 +68,12 @@ P=[ P11 P12;
         <para>
             <literal>r</literal> = size of  <literal>P22</literal> subsystem, (2,2) block of <literal>P</literal>
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 J =[J11 J12;
     J21 J22]
  ]]></programlisting>
         <para>
-            <literal>K</literal> is a stabilizing controller for <literal>P</literal> (i.e. <literal>P22</literal>) iff 
+            <literal>K</literal> is a stabilizing controller for <literal>P</literal> (i.e. <literal>P22</literal>) iff
             <literal>K=lft(J,r,Q)</literal> with <literal>Q</literal> stable.
         </para>
         <para>
@@ -87,7 +87,7 @@ J =[J11 J12;
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 ny=2;nu=3;nx=4;
 P22=ssrand(ny,nu,nx);
 bigQ=rand(nx+nu,nx+nu);bigQ=bigQ*bigQ';

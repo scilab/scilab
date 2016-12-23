@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="setfield" xml:lang="pt">
     <refnamediv>
         <refname>setfield</refname>
-        <refpurpose>inserção de campos de listas</refpurpose>
+        <refpurpose>inserÃ§Ã£o de campos de listas</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>setfield(i,x,l)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -40,33 +40,30 @@
             <varlistentry>
                 <term>i</term>
                 <listitem>
-                    <para>índice de campo, ver "insertion" para mais detalhes.</para>
+                    <para>Ã­ndice de campo, ver "insertion" para mais detalhes.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Esta função é equivalente à sintaxe <literal>l(i)=x</literal> spara
-            inserção de campos, com a única diferença de que também se aplica a
+            Esta funÃ§Ã£o Ã© equivalente Ã  sintaxe <literal>l(i)=x</literal> spara
+            inserÃ§Ã£o de campos, com a Ãºnica diferenÃ§a de que tambÃ©m se aplica a
             objetos <literal>mlist</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 l=list(1,'qwerw',%s)
 l(1)='Modificado'
 l(0)='Adicionado'
 l(6)=['mais um';'adicionado']
-
-a=hypermat([2,2,2],rand(1:2^3));// hipermatrizes são codificadas usando-se mlists
-setfield(3,1:8,a);a // ajusta o valor de campo para 1:8
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="insertion">insertion</link>

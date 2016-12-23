@@ -15,11 +15,11 @@
 // <-- Short Description -->
 //
 // Java apps shew a library load error in CLI
-assert_checkerror("xcos", msprintf(_("Scilab ''%s'' module disabled in -nogui or -nwni mode.\n"), "xcos"));
-assert_checkerror("scinotes", msprintf(_("Scilab ''%s'' module disabled in -nogui or -nwni mode.\n"), "scinotes"));
-assert_checkerror("browsehistory", msprintf(_("Scilab ''%s'' module disabled in -nogui or -nwni mode.\n"), "history_browser"));
-assert_checkerror("browsevar", msprintf(_("Scilab ''%s'' module disabled in -nogui or -nwni mode.\n"), "ui_data"));
-assert_checkerror("filebrowser", msprintf(_("Scilab ''%s'' module disabled in -nogui or -nwni mode.\n"), "ui_data"));
-assert_checkerror("editvar(''a'')", msprintf(_("Scilab ''%s'' module disabled in -nogui or -nwni mode.\n"), "ui_data"));
-assert_checkerror("driver(''png'')", msprintf(_("Scilab ''%s'' module disabled in -nogui or -nwni mode.\n"), "graphic_export"));
-assert_checkerror("plot2d()", msprintf(_("Scilab ''%s'' module disabled in -nogui or -nwni mode.\n"), "graphics"));
+assert_checkerror("xcos", msprintf(_("Scilab ''%s'' function disabled in -nogui or -nwni mode.\n"), "xcos"));
+assert_checkerror("scinotes", msprintf(_("Scilab ''%s'' function disabled in -nogui or -nwni mode.\n"), "scinotes"));
+assert_checkerror("browsehistory", msprintf(_("Scilab ''%s'' function disabled in -nogui or -nwni mode.\n"), "browsehistory"));
+assert_checkerror("browsevar", msprintf(_("Scilab ''%s'' function disabled in -nogui or -nwni mode.\n"), "browsevar"));
+assert_checkerror("filebrowser", msprintf(_("Scilab ''%s'' function disabled in -nogui or -nwni mode.\n"), "filebrowser"));
+assert_checkerror("editvar(''a'')", msprintf(_("Scilab ''%s'' function disabled in -nogui or -nwni mode.\n"), "editvar"));
+assert_checkerror("driver(''png'')", msprintf(_("Scilab ''%s'' function disabled in -nogui or -nwni mode.\n"), "driver"));
+assert_checkerror("plot2d()", msprintf(_("Scilab ''%s'' function disabled in -nogui or -nwni mode.\n"), "plot2d"));

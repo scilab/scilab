@@ -79,10 +79,10 @@
         </para>
         <programlisting role="example">// Display some additional information
             atomsSetConfig("Verbose","True");
-            
+
             // Get the list of loaded modules:
             atomsGetLoaded();
-            
+
             //Supposing that toolbox_1 is installed, test :
             atomsTest("toolbox_1");
         </programlisting>
@@ -94,7 +94,7 @@
             </para>
             <programlisting role="example">   atomsTest("apifun")
                 TMPDIR = /var/folders/z+/z+tSde0-FIufFmhuoUJtjE+++TI/-Tmp-//SCI_TMP_17720_kcOsmV
-                
+
                 001/019 - [SCI/contrib/apifun/0.2-2] argindefault...............passed
                 002/019 - [SCI/contrib/apifun/0.2-2] checkcallable..............passed
                 003/019 - [SCI/contrib/apifun/0.2-2] checkdims..................passed
@@ -114,10 +114,10 @@
                 017/019 - [SCI/contrib/apifun/0.2-2] complete...................passed
                 018/019 - [SCI/contrib/apifun/0.2-2] complete2..................passed
                 019/019 - [SCI/contrib/apifun/0.2-2] expandvar..................passed
-                
+
                 --------------------------------------------------------------------------
                 Summary
-                
+
                 tests                       19 - 100 %
                 passed                      17 -  89 %
                 failed                       2 -  10 %
@@ -125,24 +125,24 @@
                 length                          26.34 sec
                 --------------------------------------------------------------------------
                 Details
-                
-                
+
+
                 TEST : [SCI/contrib/apifun/0.2-2] checkveccol
                 failed  : dia and ref are not equal
                 Compare the following files :
                 - /var/folders/z+/z+tSde0-FIufFmhuoUJtjE+++TI/-Tmp-//SCI_TMP_17720_kcOsmV/checkveccol.dia
                 - /Users/scilab/Desktop/scilab-5.3.3.app/Contents/MacOS/share/scilab/contrib/apifun/0.2-2/tests/unit_tests/checkveccol.dia.ref
-                
+
                 TEST : [SCI/contrib/apifun/0.2-2] checkvector
                 failed  : dia and ref are not equal
                 Compare the following files :
                 - /var/folders/z+/z+tSde0-FIufFmhuoUJtjE+++TI/-Tmp-//SCI_TMP_17720_kcOsmV/checkvector.dia
                 - /Users/scilab/Desktop/scilab-5.3.3.app/Contents/MacOS/share/scilab/contrib/apifun/0.2-2/tests/unit_tests/checkvector.dia.ref
-                
-                
+
+
                 --------------------------------------------------------------------------
                 ans  =
-                
+
                 %f
             </programlisting>
             <para>TMPDIR is the general folder where all the temporary files of the

@@ -68,8 +68,8 @@ int sci_xclick(char *fname, void *pvApiCtx)
 
     // Get return values
     mouseButtonNumber = getJxclickMouseButtonNumber();
-    pixelCoords[0] = (int) getJxclickXCoordinate();
-    pixelCoords[1] = (int) getJxclickYCoordinate();
+    pixelCoords[0] = (int)getJxclickXCoordinate();
+    pixelCoords[1] = (int)getJxclickYCoordinate();
     iWindowUID = getJxclickWindowID();
     menuCallback = getJxclickMenuCallback();
 
@@ -99,7 +99,7 @@ int sci_xclick(char *fname, void *pvApiCtx)
             return 1;
         }
 
-        rep[0] = (double) mouseButtonNumber;
+        rep[0] = (double)mouseButtonNumber;
         rep[1] = userCoords2D[0];
         rep[2] = userCoords2D[1];
     }
@@ -116,7 +116,7 @@ int sci_xclick(char *fname, void *pvApiCtx)
             return 1;
         }
 
-        rep[0] = (double) mouseButtonNumber;
+        rep[0] = (double)mouseButtonNumber;
     }
 
     if (nbOutputArgument(pvApiCtx) >= 2)
@@ -165,23 +165,19 @@ int sci_xclick(char *fname, void *pvApiCtx)
         }
 
         getGraphicObjectProperty(iWindowUID, __GO_ID__, jni_int, (void**)&piFigureId);
-        rep[0] = (double) iFigureId;
+        rep[0] = (double)iFigureId;
     }
 
     if (nbOutputArgument(pvApiCtx) >= 5)
     {
-        char *strRep  = NULL;
-        AssignOutputVariable(pvApiCtx, 5) = nbInputArgument(pvApiCtx) + 5;
-        istr = (int)strlen(menuCallback);
-
-        if (allocSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 5, istr * one, &strRep))
+        if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 5, menuCallback))
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             deleteJxclickString(menuCallback);
             return 1;
         }
-        freeAllocatedSingleString(strRep);
-        strncpy(strRep, menuCallback, istr);
+
+        AssignOutputVariable(pvApiCtx, 5) = nbInputArgument(pvApiCtx) + 5;
     }
 
     deleteJxclickString(menuCallback);

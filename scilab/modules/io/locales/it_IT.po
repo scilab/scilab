@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -123,11 +123,9 @@ msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno "
 "scalare.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar boolean expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno "
-"scalare.\n"
 
 #, c-format
 msgid "-- Creation of [%ls] (Macros) --\n"
@@ -137,8 +135,6 @@ msgstr ""
 msgid "%ls: Cannot open file ''%ls''.\n"
 msgstr ""
 
-#
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 240
 #, c-format
 msgid "%s: Cannot open file ''%s''.\n"
 msgstr ""
@@ -163,13 +159,9 @@ msgstr ""
 msgid "%s: %s is not a valid lib path.\n"
 msgstr ""
 
-#
-# File: modules/io/sci_gateway/cpp/sci_lib.cpp, line: 80
 msgid "Cannot read lib file: Not in proper XML format.\n"
 msgstr ""
 
-#
-# File: modules/io/sci_gateway/cpp/sci_lib.cpp, line: 85
 msgid "Old binary lib detected. Please recompile it for Scilab 6.\n"
 msgstr ""
 
@@ -290,6 +282,3 @@ msgid ""
 msgstr ""
 "%s: Il comando è fallito con il codice di errore %s e il seguente "
 "messaggio:\n"
-
-#~ msgid "%s: Wrong number of input argument.\n"
-#~ msgstr "%s: Il numero degli argomenti in ingresso è sbagliato.\n"

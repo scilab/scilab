@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -27,13 +27,13 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    Avec deux paramètres d'entrée, le second donnant une précision : Il n'y a pas de fonction Scilab équivalente 
+                    Avec deux paramètres d'entrée, le second donnant une précision : Il n'y a pas de fonction Scilab équivalente
                     mais <literal>msprintf</literal> peut être utilisée pour émuler ce cas.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    Avec deux paramètres d'entrée, le second donnant un format : l'équivalent Scilab pour l'expression Matlab 
+                    Avec deux paramètres d'entrée, le second donnant un format : l'équivalent Scilab pour l'expression Matlab
                     <literal>num2string(a,format)</literal> est <literal>msprintf(format,a)</literal>.
                 </para>
             </listitem>

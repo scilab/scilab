@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -29,7 +29,7 @@
                 <term>action</term>
                 <listitem>
                     <para>
-                        Real: action to be executed on graphic window given by <literal>fignum</literal>: 
+                        Real: action to be executed on graphic window given by <literal>fignum</literal>:
                     </para>
                     <itemizedlist>
                         <listitem>
@@ -98,7 +98,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Moving a curve
 scf(0);
 plot2d();

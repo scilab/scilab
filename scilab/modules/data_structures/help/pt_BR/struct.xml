@@ -51,7 +51,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // criando um dado struct
 date_st=struct('dia',25,'mes' ,'DEZ','ano',2006)
 

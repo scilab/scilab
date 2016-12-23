@@ -34,15 +34,15 @@
         </para>
         <para>
             <note>
-                Note that <code>clearglobal()</code> only clears 
-                the global variables, the local copies of these global 
+                Note that <code>clearglobal()</code> only clears
+                the global variables, the local copies of these global
                 variables are not destroyed.
             </note>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 global a b c
 a=1;b=2;c=3;
 who('global')

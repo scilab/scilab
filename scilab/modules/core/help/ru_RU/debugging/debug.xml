@@ -26,7 +26,7 @@
         <title>Описание</title>
         <para>
             Для значений <varname>level_int</varname> 0, 1, 2, 3, 4  <code>debug</code>
-            определяет различные уровни отладки. Это предназначено для анализатора синтаксиса, не для 
+            определяет различные уровни отладки. Это предназначено для анализатора синтаксиса, не для
             файлов-сценариев Scilab'а, и только для экспертов Scilab'а.
         </para>
         <para>
@@ -46,7 +46,7 @@ debug(3);
 // eol
  ]]></programlisting>
     </refsection>
-    
+
     <refsection>
         <title>History</title>
         <revhistory>

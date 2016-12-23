@@ -37,7 +37,7 @@ endfunction
 function y = oof(x) // call oof(2) doesn't return 2 !
     foo = rand(x, 1);
     y = bar(x)
-endfunction    
+endfunction
     ]]></programlisting>
     </refsection>
     <refsection role="see also">

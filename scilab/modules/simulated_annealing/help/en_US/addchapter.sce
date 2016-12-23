@@ -10,5 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Simulated Annealing",SCI+"/modules/simulated_annealing/help/en_US",%T);
+add_help_chapter("Optimization: Annealing",SCI+"/modules/simulated_annealing/help/en_US",%T);
 

@@ -10,5 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Gestion de l''historique",SCI+"/modules/history_manager/help/fr_FR",%T);
+add_help_chapter("Historique des commandes",SCI+"/modules/history_manager/help/fr_FR",%T);
 

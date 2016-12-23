@@ -49,7 +49,7 @@
             <literal>syslin</literal>) em forma de espaço de estados (função
             utilitária).
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 Sm = [-sI + A   B;
      [    C     D]
  ]]></programlisting>
@@ -57,7 +57,7 @@ Sm = [-sI + A   B;
             (<literal>Sl=list('des',A,B,C,D,E)</literal>), <literal>systmat</literal>
             retorna:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 Sm = [-sE + A   B;
      [    C     D]
  ]]></programlisting>

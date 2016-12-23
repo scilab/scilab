@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) 2000 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -29,7 +29,7 @@
                 <term>h</term>
                 <listitem>
                     <para>
-                        <literal>syslin</literal> list
+                        A siso linear dynamical system, in state space, transfer function or zpk representations.
                     </para>
                 </listitem>
             </varlistentry>
@@ -44,23 +44,49 @@
     <refsection>
         <title>Description</title>
         <para>
-            returns the vector of peak frequencies in Hz for the SISO plant
-            <literal>h</literal>
+            returns the vector frequencies at which the response
+            amplitude of a siso dynamical system is a relative maximum
+            also called resonance frequencies.
+
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2))
+        <para>Continuous time system</para>
+        <programlisting role="example"><![CDATA[
+h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2));
 fr=freson(h)
-bode(h)
-g=20*log(abs(repfreq(h,fr)))/log(10)
- ]]></programlisting>
-        <scilab:image>
-            h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2))
+clf;bode(h);
+fig=gcf();sca(fig.children(2));
+[phi,db]=phasemag(repfreq(h,fr));
+plot(fr,db(:),'+r')
+]]></programlisting>
+        <scilab:image localized="true">
+            h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2));
             fr=freson(h)
-            bode(h)
-            g=20*log(abs(repfreq(h,fr)))/log(10)
+            clf;bode(h);
+            fig=gcf();sca(fig.children(2));
+            [phi,db]=phasemag(repfreq(h,fr));
+            plot(fr,db(:),'+r');
+        </scilab:image>
+        <para>Discrete time system</para>
+        <programlisting role="example"><![CDATA[
+hd=dscr(h,0.01)
+fr=freson(hd)
+clf;bode(hd);
+fig=gcf();sca(fig.children(2));
+[phi,db]=phasemag(repfreq(hd,fr));
+plot(fr,db(:),'+r');
+
+ ]]></programlisting>
+        <scilab:image localized="true">
+            h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2));
+            hd=dscr(h,0.05);
+            fr=freson(hd);
+            clf;bode(hd);
+            fig=gcf();sca(fig.children(2));
+            [phi,db]=phasemag(repfreq(hd,fr));
+            plot(fr,db(:),'+r');
         </scilab:image>
     </refsection>
     <refsection role="see also">
@@ -76,5 +102,18 @@ g=20*log(abs(repfreq(h,fr)))/log(10)
                 <link linkend="h_norm">h_norm</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>handling discrete systems and zpk
+                        representation, peak detection improved.
+                    </para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

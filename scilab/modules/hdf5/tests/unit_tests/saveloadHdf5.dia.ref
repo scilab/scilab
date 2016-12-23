@@ -181,7 +181,7 @@ checkValue(lstRef);
 lstRef = tlist(["hmInTlist";
 "Name";
 "Example_1"
-"Example_2"], "List", ones(1, 2, 3), hypermat([2 2 1 2], (1:8) == 0));
+"Example_2"], "List", ones(1, 2, 3), matrix((1:8) == 0, [2 2 1 2]));
 checkValue(lstRef);
 // tlist in tlist
 lstRef = tlist(["tlistInTlist";
@@ -206,7 +206,7 @@ checkValue(lstRef);
 lstRef = mlist(["hmInMlist";
 "Name";
 "Example_1"
-"Example_2"], "List", ones(1, 2, 3), hypermat([2 2 1 2], (1:8) == 0));
+"Example_2"], "List", ones(1, 2, 3), matrix((1:8) == 0, [2 2 1 2]));
 checkValue(lstRef);
 //// Hypermatrix
 // double
@@ -218,7 +218,7 @@ for i = flag
     checkValue(createIntValues(ones(1, 2, 3, 4), i));
 end
 // boolean
-checkValue(hypermat([2 2 1 2],(1:8) == 0));
+checkValue(matrix((1:8) == 0, [2 2 1 2]));
 //// Undefined
 valueRef = list(1, "two", "three");
 valueRef(5) = "five";

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Clément DAVID
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -56,8 +56,8 @@ xcosAddToolsMenu("print diagram", "disp(scs_m)");
 
 // define a custom update function
 function myUpdateFunction(blk, scs_m)
-    execstr(''[ok, blk] = '' + blk.gui + ''(''''set'''', blk)'') ;
-    xcosUpdateBlock(blk) ;
+    execstr("[ok, blk] = " + blk.gui + "(''set'', blk);");
+    xcosUpdateBlock(blk);
 endfunction
 xcosAddToolsMenu("update block", "myUpdateFunction(blk, scs_m)");
 ]]></programlisting>

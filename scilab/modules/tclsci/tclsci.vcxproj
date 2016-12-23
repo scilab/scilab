@@ -228,7 +228,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="sci_gateway\cpp\tclsci_gw.cpp" />
     <ClCompile Include="src\cpp\ScilabEval.cpp" />
     <ClCompile Include="src\c\EnvTclTk.c" />
     <ClCompile Include="src\c\GlobalTclInterp.c" />

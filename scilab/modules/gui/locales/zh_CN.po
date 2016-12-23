@@ -8,26 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:10+0000\n"
+"PO-Revision-Date: 2016-10-19 13:07+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
+
+#, c-format
+msgid "%s: Figure number must be given when not in '%s' mode.\n"
+msgstr "%s：当在'%s'模式下时必须指定Figure编号。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s：第%d个参数的类型错误：应该为字符串。\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s：内存分配错误。\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 内存不足。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -36,22 +32,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个实数。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
-msgstr "%s：输入参数#%d的值错误：必须 >=%d。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串或实数。\n"
-
-#, c-format
-msgid "%s: Function not available in NWNI mode.\n"
-msgstr "%s：函数在无窗口非交互模式（NWNI）下不可用。\n"
-
-#, c-format
-msgid "%s: Figure number must be given when not in '%s' mode.\n"
-msgstr "%s：当在'%s'模式下时必须指定Figure编号。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
@@ -83,6 +63,10 @@ msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为整数。\n"
 
 #, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 内存不足。\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr ""
 
@@ -106,6 +90,10 @@ msgstr "属性'%s'的值错误：应该为一个字符串或者 1x%d 的实数�
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr "%s：第%d个参数的类型错误：应该为实数。\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s：内存分配错误。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
@@ -220,24 +208,6 @@ msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr "%s：无法创建'Uicontrol'句柄。\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s：输出参数的数目错误：应该为%d或%d个。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个 1x%d 的实数行向量。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个实数或者一个字符串。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个 1x%d 的实数行向量。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个图形句柄。\n"
 
@@ -255,6 +225,10 @@ msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为'%s'句柄。\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个实数或者一个字符串。\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为'%s'句柄。\n"
 
@@ -267,44 +241,23 @@ msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
 msgstr "%s：输入参数错误：应该为'%s'、'%s'或'%s'。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数或复数向量。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串向量。\n"
-
-msgid "Scilab Choices Request"
-msgstr "Scilab需要选择"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为字符串向量。\n"
 
 msgid "Scilab Choose Message"
 msgstr "Scilab选择消息"
 
-msgid "Scilab Input Value Request"
-msgstr "Scilab需要输入"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Scilab需要多个值"
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
+msgstr "%s：输入参数#%d的值错误：必须 >=%d。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: It must have same dimensions as "
-"argument #%d.\n"
-msgstr ""
+msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个字符串或实数。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为 %dx%d 字符串矩阵。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
+msgid "%s: Function not available in NWNI mode.\n"
+msgstr "%s：函数在无窗口非交互模式（NWNI）下不可用。\n"
 
 #, c-format
 msgid ""
@@ -362,6 +315,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Invalid value for datatip index %d.\n"
+msgstr "%s：不正确的父节点。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -515,6 +472,20 @@ msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr "%s：输出参数的数目错误：应该为%d或%d个。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为一个 1x%d 的实数行向量。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个 1x%d 的实数行向量。\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串矩阵。\n"
 
@@ -525,6 +496,39 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个字符串矩阵。\
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr "%s：参数 %d 的类型出错：应该为布尔型矩阵。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为实数或复数向量。\n"
+
+msgid "Scilab Choices Request"
+msgstr "Scilab需要选择"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为字符串向量。\n"
+
+msgid "Scilab Input Value Request"
+msgstr "Scilab需要输入"
+
+msgid "Scilab Multiple Values Request"
+msgstr "Scilab需要多个值"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: It must have same dimensions as "
+"argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为 %dx%d 字符串矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -689,6 +693,9 @@ msgid ""
 "truncated.\n"
 msgstr ""
 
+msgid "(Max - Min) must be greater than 1 to allow the multiple selection.\n"
+msgstr ""
+
 #, c-format
 msgid "'%s' value must be between 0 and %d.\n"
 msgstr ""
@@ -744,7 +751,7 @@ msgstr "缩放(&Z)"
 msgid "&Original View"
 msgstr "原始视图(&O)"
 
-msgid "Fit zoom to data"
+msgid "Reframe to contents"
 msgstr ""
 
 msgid "2D/3D &Rotation"
@@ -906,9 +913,6 @@ msgstr "命令历史(&C)"
 msgid "&File Browser"
 msgstr "文件浏览器(&F)"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 121
-# File: modules/gui/src/gui_fake_xml.c, line: 169
 msgid "&News feed"
 msgstr ""
 
@@ -1289,9 +1293,6 @@ msgstr ""
 
 msgid "Preview"
 msgstr "预览"
-
-msgid "Ok"
-msgstr "确定"
 
 msgid "Loading help browser..."
 msgstr "加载帮助浏览器..."
@@ -1798,8 +1799,6 @@ msgstr ""
 msgid "Mark Style"
 msgstr ""
 
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 154
 msgid "Components display"
 msgstr ""
 
@@ -2129,9 +2128,8 @@ msgstr "所有PNG图像文件"
 msgid "All RTF (Rich Text Format) files"
 msgstr "所有RTF (Rich Text Format) 文件"
 
-#, fuzzy
 msgid "All HTML files"
-msgstr "全部文件"
+msgstr ""
 
 #, c-format
 msgid "All %s files"
@@ -2166,382 +2164,250 @@ msgstr "%s：只有在'STANDARD'模式下可用。\n"
 msgid "Error. A signal has been caught.\n"
 msgstr "错误。已产生一个信号。\n"
 
-#, fuzzy
 msgid "Control Plot3d"
-msgstr "控制(&C)"
+msgstr ""
 
-#, fuzzy
 msgid "Control Panel"
-msgstr "控制(&C)"
+msgstr ""
 
-#, fuzzy
 msgid "Rotation angle"
-msgstr "旋转"
+msgstr ""
 
-#, fuzzy
 msgid "Colormap"
-msgstr "颜色"
+msgstr ""
 
-#, fuzzy
 msgid "Show / Hide"
-msgstr "显示/隐藏工具栏(&T)"
+msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 6
 msgid "messagebox"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 7
 msgid "x_choose"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 8
 msgid "x_dialog"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 9
 msgid "x_mdialog"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 8
 msgid "Simple example of message"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 11
 msgid "Button 1Button 2"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 14
 msgid "Button 1 clicked."
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 16
 msgid "Button 2 clicked"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_choose.sce, line: 10
 msgid ""
 "Message: Selection (double-click on an item --> returns the item number)"
 msgstr ""
 
-#, fuzzy
 msgid "Item selected: "
-msgstr "没有选择文字"
+msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_dialog.sce, line: 8
 msgid "Message: enter a value"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_dialog.sce, line: 10
 msgid "Value entered: "
 msgstr ""
 
-#, fuzzy
 msgid "Message"
-msgstr "Scilab消息"
+msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 10
 msgid "first row"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 13
 msgid "Values entered: "
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 18
 msgid "row"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 20
 msgid "col"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 22
 msgid "Matrix to edit"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 24
 msgid "Matrix entered: "
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 12
 msgid "GUI"
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 14
 msgid "Dialogs"
 msgstr ""
 
-#, fuzzy
 msgid "Uicontrols 1"
-msgstr "控制(&C)"
+msgstr ""
 
-#, fuzzy
 msgid "Uicontrols 2"
-msgstr "控制(&C)"
+msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 21
 msgid "Uicontrols with LaTeX/MathML"
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 24
 msgid "Show images with uicontrols "
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 27
-# File: modules/gui/demos/uicontrol_listbox_popupmenu.dem.sce, line: 18
 msgid "Listboxes and Popupmenus"
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 30
 msgid "Uicontrols rendering"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 13
-# File: modules/gui/demos/uicontrol.dem.sce, line: 93
-# File: modules/gui/demos/uicontrol.dem.sce, line: 193
+msgid "Uicontrols layout"
+msgstr ""
+
+msgid "Uicontrols messagebox-like"
+msgstr ""
+
 msgid "<Enter color name here>"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 14
-# File: modules/gui/demos/uicontrol.dem.sce, line: 23
 msgid "Error"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 14
 msgid "Please enter a color name first."
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 23
 msgid "Unknown color."
 msgstr ""
 
-#, fuzzy
 msgid "No color selected."
-msgstr "没有选择文字"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 38
-# File: modules/gui/demos/uicontrol.dem.sce, line: 49
 msgid "Color selection"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 42
 #, c-format
 msgid "Selected colors are: %s."
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 44
 #, c-format
 msgid "Deleted colors are: %s."
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 53
 #, c-format
 msgid "You clicked on menu '%s'."
 msgstr ""
 
-#, fuzzy
 msgid "Selected menu"
-msgstr "全选"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 59
 msgid "checked"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 61
 msgid "unchecked"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 63
 #, c-format
 msgid "Menu '%s' is %s."
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 64
 msgid "Menu status"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 70
 msgid "Slider value: "
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 78
 #, c-format
 msgid "You selected '%s'."
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 79
 msgid "Popupmenu selection"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 100
 msgid "Do you really want to quit Scilab?"
 msgstr ""
 
-#, fuzzy
 msgid "Quit Scilab"
-msgstr "关于Scilab..."
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 108
 msgid "Uicontrols demo"
 msgstr ""
 
-#, fuzzy
 msgid "Application"
-msgstr "应用程序(&A)"
+msgstr ""
 
-#, fuzzy
 msgid "Close figure"
-msgstr "清除Figure(&C)"
+msgstr ""
 
-#, fuzzy
 msgid "Scilab Graphics"
-msgstr "&Scilab Enterprises"
+msgstr ""
 
-#, fuzzy
 msgid "Launch plot3d"
-msgstr "启动SciNotes"
+msgstr ""
 
-#, fuzzy
 msgid "Launch plot2d"
-msgstr "启动SciNotes"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 128
 msgid "Menu"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 129
 msgid "Sub-menu 1"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 130
-# File: modules/gui/demos/uicontrol.dem.sce, line: 133
 msgid "Sub-menu 2"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 131
 msgid "Sub-menu 2-1"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 132
 msgid "Sub-menu 2-2"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 140
 msgid "item1|item2|item3|item4"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 146
 msgid "Pop-up menu"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 157
 msgid "Slider demo"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 187
 msgid "Colors list edition"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 200
 msgid "Add color in listbox"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 206
 msgid "Delete color in listbox"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "blue"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "green"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "red"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "yellow"
 msgstr ""
 
-#, fuzzy
 msgid "Display selection"
-msgstr "显示当前目录(&D)"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 231
 msgid "Delete selection"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 237
 msgid "Default"
 msgstr ""
 
-#, fuzzy
 msgid "Quit demonstration"
-msgstr "Scilab示例"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol_LaTeX.dem.sce, line: 16
 msgid "Uicontrols demo with LaTeX"
+msgstr ""
+
+msgid "Please fill the table"
 msgstr ""
 
 #, c-format
@@ -2756,17 +2622,5 @@ msgstr "%s：%s的类型错误：应该为一个实数。\n"
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s：%s的大小错误：应该为一个实数。\n"
 
-#~ msgid "Cancel"
-#~ msgstr "取消"
-
-#~ msgid "Close"
-#~ msgstr "关闭"
-
-#~ msgid "File"
-#~ msgstr "文件"
-
-#~ msgid "Yes"
-#~ msgstr "是"
-
-#~ msgid "No"
-#~ msgstr "否"
+#~ msgid "Ok"
+#~ msgstr "确定"

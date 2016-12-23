@@ -10,6 +10,6 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function b=%hm_isnan(M)
-    b=hypermat(M.dims,isnan(M.entries))
+function b = %hm_isnan(M)
+    b = matrix(isnan(M(:)), size(M))
 endfunction

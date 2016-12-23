@@ -100,7 +100,7 @@
                         être strictement inférieur au nombre total d'éléments de
                         <literal>A</literal>.
                     </para>
-                    
+
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -158,7 +158,7 @@
                                                     $x(k) = \sum_{m=1}^n {a(m)*e^{-\frac{2i*\pi}{n}(m-1) (k-1)}$
                                                 </latex>
                                             </para>
-                                            
+
                                             <para>
                                                 A noter: (l'argument <literal>-1</literal>
                                                 argument de la fonction
@@ -167,7 +167,7 @@
                                             </para>
                                         </listitem>
                                     </varlistentry>
-                                    
+
                                     <varlistentry>
                                         <term>multivariable</term>
                                         <listitem>
@@ -182,7 +182,7 @@
                                         </listitem>
                                     </varlistentry>
                                 </variablelist>
-                                
+
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -197,7 +197,7 @@
                                 <variablelist>
                                     <varlistentry>
                                         <term>mono-variable</term>
-                                        
+
                                         <listitem>
                                             <para>
                                                 Si <literal>A</literal> est un vecteur
@@ -231,7 +231,7 @@
                     </variablelist>
                 </listitem>
             </varlistentry>
-            
+
             <varlistentry>
                 <term>Syntaxe longue pour la FFT mutidimensionnelle</term>
                 <listitem>
@@ -264,7 +264,7 @@
               end
               ]]></programlisting>
                         </listitem>
-                        
+
                         <listitem>
                             <para>
                                 <literal>X=fft(A,sign,dims,incr [,option])</literal>
@@ -325,7 +325,7 @@
                             <literal>option</literal> est omis l'algorithme va
                             réaliser automatiquement un test de symmétrie exacte.
                         </listitem>
-                        
+
                     </itemizedlist>
                 </listitem>
             </varlistentry>
@@ -357,9 +357,9 @@
             Cette fonction est basée sur la bibliothèque <ulink
         url="http://www.fftw.org/">fftw3</ulink>.
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
         <para>1-D fft</para>
@@ -380,7 +380,7 @@ n=size(f,'*')
 clf()
 plot(f,abs(y(1:n)))
     ]]></programlisting>
-        
+
         <para>2-D fft</para>
         <programlisting role="example"><![CDATA[
 //----------------------------------
@@ -420,7 +420,7 @@ for i1=1:Dims(1)
   end
 end
    ]]></programlisting>
-        
+
         <programlisting role="example"><![CDATA[
 //Définition directe de la transformée de Fourier discrete
 //--------------------------------------------------------

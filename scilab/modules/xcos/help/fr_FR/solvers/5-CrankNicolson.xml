@@ -16,7 +16,7 @@
             <emphasis>Crank-Nicolson</emphasis> est un solveur numérique basé sur le schéma <emphasis>Runge-Kutta</emphasis> fournissant une méthode implicite efficace et stable pour résoudre des Problèmes à Valeur Initiale d'Equations Différentielles Ordinaires (EDOs). Appelé par <link linkend="xcos">xcos</link>.
         </refpurpose>
     </refnamediv>
-    
+
     <refsection role="description">
         <title>Description</title>
         <para>
@@ -188,7 +188,7 @@
             correctement et l'on obtient des résultats imprévisibles.
         </para>
     </refsection>
-    
+
     <refsection role="examples">
         <title>Examples</title>
         <para>
@@ -267,7 +267,7 @@ Temps pour Crank-Nicolson :
             Ces résultats montrent que pour un problème non-raide, pour à peu près la même précision demandée et en forçant la même taille de pas, <emphasis>Crank-Nicolson</emphasis> est plus rapide.
         </para>
     </refsection>
-    
+
     <refsection role="see also">
         <title>Voir Aussi</title>
         <simplelist type="inline">
@@ -309,7 +309,7 @@ Temps pour Crank-Nicolson :
             </member>
         </simplelist>
     </refsection>
-    
+
     <refsection role="bibliography">
         <title>Bibliographie</title>
         <para>
@@ -330,7 +330,7 @@ Temps pour Crank-Nicolson :
             <ulink url="https://computation.llnl.gov/casc/sundials/documentation/documentation.html">Documentation Sundials</ulink>
         </para>
     </refsection>
-    
+
     <refsection role="history">
         <title>Historique</title>
         <revhistory>
@@ -340,5 +340,5 @@ Temps pour Crank-Nicolson :
             </revision>
         </revhistory>
     </refsection>
-    
+
 </refentry>

@@ -25,17 +25,11 @@
         </para>
         <para>
             They can be defined by extension of 2D matrices as follows
-            <code>a=[1 2;3 4];a(:,:,2)=rand(2,2)</code> or directly using <function>hypermat</function> function.
+            <code>a=[1 2;3 4];a(:,:,2)=rand(2,2)</code> or directly using <function>matrix</function> function.
         </para>
         <para>
-            Entries can be real or complex numbers, polynomials,
-            rationals, strings, booleans.
-        </para>
-        <para>
-            Hypermatrices are <literal>mlists</literal>:
-            <code>mlist(['hm','dims','entries'],sz,v)</code> where <literal>sz</literal> is the row
-            vector of dimensions and <literal>v</literal> the column vector of entries (first
-            dimension are stored first).
+            Entries can be booleans, encoded integers of any inttype, real or complex numbers,
+            polynomials, rationals, strings, booleans.
         </para>
         <para>
             <note>
@@ -51,21 +45,18 @@
 a(1,1,1,1:2)=[1 2]
 a=[1 2;3 4];a(:,:,2)=rand(2,2)
 a(1,1,:)
- 
+
 size(a)
- 
+
 a(:,:,1) //dimensionality reduction
 type(a(:,:,1))
- 
+
 [a a]
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="hypermat">hypermat</link>
-            </member>
             <member>
                 <link linkend="zeros">zeros</link>
             </member>

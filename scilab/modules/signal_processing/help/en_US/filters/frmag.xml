@@ -77,7 +77,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 hz=iir(3,'bp','cheb1',[.15 .25],[.08 .03]);
 [hzm,fr]=frmag(hz,256);
 plot(fr,hzm)

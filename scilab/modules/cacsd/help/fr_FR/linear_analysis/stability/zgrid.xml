@@ -115,7 +115,7 @@
                 clf();evans(H,1000);zgrid(0:0.1:0.5)
             </scilab:image>
         </para>
-        
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>

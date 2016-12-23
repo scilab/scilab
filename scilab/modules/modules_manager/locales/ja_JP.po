@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -53,6 +53,10 @@ msgstr "%s: %s は %s にエクスポートできません.\n"
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text(s) expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 msgid "Generating cleaner.sce...\n"
 msgstr "cleaner.sceを生成中...\n"
@@ -115,13 +119,13 @@ msgstr "loader.sceを生成中...\n"
 msgid "Generating unloader.sce...\n"
 msgstr "unloader.sce を生成中 ...\n"
 
+msgid "Generating localization\n"
+msgstr "ローカル化を生成中\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が正しくありません: 文字列の配列を指定してください.\n"
-
-msgid "Generating localization\n"
-msgstr "ローカル化を生成中\n"
 
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
@@ -139,6 +143,14 @@ msgstr ""
 msgid "Building gateway...\n"
 msgstr "ゲートウェイを構築中...\n"
 
+#, c-format
+msgid "Could not use the default compilation of gateways in %s."
+msgstr ""
+
+#, c-format
+msgid "No builder script found in %s."
+msgstr ""
+
 msgid "Building help...\n"
 msgstr "ヘルプを構築中...\n"
 
@@ -155,7 +167,16 @@ msgstr ""
 msgid "Building sources...\n"
 msgstr "ソースを構築中...\n"
 
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgid "No builder file found, nothing to be done"
 msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+
+msgid "No builder file found, nothing to be done."
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
+msgstr ""

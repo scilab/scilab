@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -140,14 +140,14 @@ plot2d([], ldiv(n(1),d(1),100), 10, '000')
         <scilab:image>
             v = ones(1,20);
             plot2d([], [v';zeros(80,1)], 2, '051',' ',[1,-0.5,100,1.5])
-            
+
             [d,n,e] = arl2(v, poly(1,'z','c'),1)
             plot2d([], ldiv(n,d,100), 2, '000')
             [d,n,e] = arl2(v,d,3)
             plot2d([], ldiv(n,d,100), 3, '000')
             [d,n,e] = arl2(v,d,8)
             plot2d([], ldiv(n,d,100), 5, '000')
-            
+
             [d,n,e] = arl2(v,poly(1,'z','c'),4,'all')
             plot2d([], ldiv(n(1),d(1),100), 10, '000')
         </scilab:image>

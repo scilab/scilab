@@ -28,7 +28,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 librarieslist()
  ]]></programlisting>
     </refsection>

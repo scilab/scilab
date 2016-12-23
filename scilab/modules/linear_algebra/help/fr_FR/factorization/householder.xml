@@ -16,13 +16,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="householder">
     <refnamediv>
         <refname>householder</refname>
-        <refpurpose>Matrice de Householder  </refpurpose>
+        <refpurpose>Matrice de Householder. Symétrique par rapport à un plan</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>
             householder         // demo
-            u     = householder(v [,w])
+            u = householder(v [,w])
             [u, H] = householder(v [,w])
         </synopsis>
     </refsynopsisdiv>
@@ -104,11 +104,12 @@
             </itemizedlist>
         </para>
 
-        <para>
+        <note>
             Si la matrice de réflexion <varname>H</varname> correspondante est calculée,
             pour tout point A de coordonnées <literal>a</literal> en colonne, <literal>H*a</literal>
-            sont les coordonnées de l'image réfléchie de A (exemple ci-dessous).
-        </para>
+            sont les coordonnées du symétrique de A par rapport au plan <literal>(v,w)</literal>
+            (exemple ci-dessous).
+        </note>
         <note>
             Si <varname>v</varname> ou/et <varname>w</varname> sont des vecteurs ligne,
             ils sont préalablement transposés en colonnes.
@@ -132,30 +133,30 @@ b = rand(3,1);
 norm(rb)
 
 [rb2b, hm] = householder(b, 2*b);
-[b rb2b clean(hm*b ./ b) ]  // last column must be uniform
-norm(rb2b)                  // must be 1
+[b rb2b clean(hm*b ./ b) ]  // la dernière colonne doit être uniforme
+norm(rb2b)                  // doit valoir 1
 
 c = rand(3,1);
 [rbc, hm] = householder(b,c);
-norm(rbc)          // must be 1
-hm*b ./c           // must be uniform
+norm(rbc)          // doit valoir 1
+hm*b ./c           // doit être uniforme
 
 d = b + %i*c;
 e = rand(3,1) + %i*rand(3,1);
 [rde, hm] = householder(d,e);
-norm(rbc)               // must be 1
-clean(inv(hm) - hm)     // must be zeros(3,3)
-clean(hm' - hm)         // must be zeros(3,3)
-clean(det(hm))          // must be -1
+norm(rbc)               // doit valoir 1
+clean(inv(hm) - hm)     // doit valoir zeros(3,3)
+clean(hm' - hm)         // doit valoir zeros(3,3)
+clean(det(hm))          // doit valoir -1
  ]]></programlisting>
 
         <para>
-            <emphasis role="bold">Application :</emphasis> Image réfléchie d'un objet par rapport à un plan donné.
+            <emphasis role="bold">Application :</emphasis> Symétrique d'un objet par rapport à un plan donné.
         </para>
         <programlisting role="example"><![CDATA[
 // (OA) = [0 0 1] se réfléchit en O en (OB) = [ 1 1 0.3 ]:
 [n, H] = householder([0 0 1]', [ 1 1 0.3 ]');
-// "n" est la normale au plan réflecteur
+// "n" est la normale au plan "réflecteur"
 
 // Objet source :
 u = linspace(0,2*%pi,40);
@@ -164,14 +165,14 @@ Xe = (cos(u).*u)'*(1+cos(v)/2)+10;
 Ye = (u/2)'*sin(v);
 Ze = (sin(u).*u)'*(1+cos(v)/2);
 
-// Image réfléchie de l'object :
+// Image symétrique de l'objet :
 P = [ Xe(:)' ; Ye(:)' ; Ze(:)'];
 Pr = H*P;
 Xr = matrix(Pr(1,:),40,-1);
 Yr = matrix(Pr(2,:),40,-1);
 Zr = matrix(Pr(3,:),40,-1);
 
-// Plan réflecteur contnant O : n(1).x + n(2).y + n(3).z = 0:
+// Plan réflecteur contenant O : n(1).x + n(2).y + n(3).z = 0:
 //  Grille d'espace :
 x = linspace(min([Xe(:);Xr(:)]), max([Xe(:);Xr(:)]),20);
 y = linspace(min([Ye(:);Yr(:)]), max([Ye(:);Yr(:)]),20);
@@ -199,12 +200,61 @@ a.children(3).foreground = color("green");
 drawnow()
  ]]></programlisting>
         <scilab:image>
-            householder();
+            // (OA) = [0 0 1] is reflected in O into (OB) = [ 1 1 0.3 ]:
+            [n, H] = householder([0 0 1]', [ 1 1 0.3 ]');
+            // "n" is the unit vector orthogonal to the reflecting plane
+
+            // Emitting object (feature from shell demo):
+            u = linspace(0,2*%pi,40);
+            v = linspace(0,2*%pi,20);
+            Xe = (cos(u).*u)'*(1+cos(v)/2)+10;
+            Ye = (u/2)'*sin(v);
+            Ze = (sin(u).*u)'*(1+cos(v)/2);
+
+            // Symetrical object:
+            Pe = [ Xe(:)' ; Ye(:)' ; Ze(:)'];
+            Pr = H*Pe;
+            Xr = matrix(Pr(1,:),40,-1);
+            Yr = matrix(Pr(2,:),40,-1);
+            Zr = matrix(Pr(3,:),40,-1);
+
+            // Reflecting plane containing O: n(1).x + n(2).y + n(3).z = 0
+            //   Sampling space:
+            x = linspace(min([Xe(:);Xr(:)]), max([Xe(:);Xr(:)]),20);
+            y = linspace(min([Ye(:);Yr(:)]), max([Ye(:);Yr(:)]),20);
+            [X, Y] = meshgrid(x,y);
+            //   Generating the mirror:
+            deff("z = mirror(x,y,n)","z = -n(1)/n(3)*x - n(2)/n(3)*y")
+            Zm = mirror(X,Y,n);
+
+            // Plotting:
+            clf
+            drawlater
+            f = gcf();
+            f.color_map = [ 0.8 0.8 0.8 ; jetcolormap(100)];
+            surf(Xe,Ye,Ze)
+            surf(X,Y,Zm)
+            surf(Xr,Yr,Zr)
+            a = gca();
+            a.isoview = "on";
+            a.rotation_angles = [74 123];
+            a.children.color_flag = 0;
+            a.children.color_mode = 0;
+            a.children(1).foreground = color("red");
+            a.children(2).foreground = 1;
+            a.children(3).foreground = color("green");
+            drawnow
         </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="proj">proj</link>
+            </member>
+            <member>
+                <link linkend="scaling">scaling</link>
+            </member>
             <member>
                 <link linkend="qr">qr</link>
             </member>

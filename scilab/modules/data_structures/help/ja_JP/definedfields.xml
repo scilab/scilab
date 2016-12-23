@@ -51,7 +51,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 l=list(1);l(3)=5
 k=definedfields(l)
 t=tlist('x');t(5)=4

@@ -53,7 +53,7 @@
             <literal>try-catch</literal> は以下に
             多少なりとも似ていることにも注意してください:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 if execstr("<try instructions>","errcatch")<>0 then
   <catch instructions>
 end
@@ -71,13 +71,13 @@ end
             他の誤差と同様に捕捉,保持されます).
         </para>
         <para>
-            しかし, <literal>try</literal>-<literal>catch</literal> 
+            しかし, <literal>try</literal>-<literal>catch</literal>
             制御構造はネスト可能です (以下の例2を参照ください).
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // 例 1
 file_path=TMPDIR+'/wrong'
 try
@@ -87,7 +87,7 @@ catch
   disp(['file '+file_path+ 'cannot be read',
         'using default values for x'])
   x=1:10
-end 
+end
  [error_message,error_number]=lasterror(%t)
 
 // 例 2 (ネストしたtry/catch構造)

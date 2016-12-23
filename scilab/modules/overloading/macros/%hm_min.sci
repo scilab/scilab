@@ -10,6 +10,9 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
+// THIS OVERLOAD SEEMS NO LONGER CALLED  => NOT UPDATED : TO BE DELETED
+
 function [x,k] = %hm_min(varargin)
     n = size(varargin)
     // One input argument
@@ -49,8 +52,8 @@ function [x,k] = %hm_min(varargin)
             // min between hypermatrix and hypermatrix
             [x,k]=min(x,varargin(kk)(:))
         end
-        x=hypermat(dims,x)
-        k=hypermat(dims,k)
+        x=matrix(x, dims)
+        k=matrix(k, dims)
     end
 endfunction
 
@@ -93,8 +96,8 @@ function [x,k]=%hm_oriented_min(m,d)
         k=matrix(k,dims(1),dims(2))
     else
         if flag==1 then dims=int32(dims);end
-        x=hypermat(dims,x)
-        k=hypermat(dims,matrix(k,-1,1))
+        x=matrix(x, dims)
+        k=matrix(matrix(k,-1,1), dims)
     end
 endfunction
 

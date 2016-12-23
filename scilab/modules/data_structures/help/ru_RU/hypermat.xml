@@ -68,7 +68,7 @@
 M = hypermat([2 3 2 2],1:24)
 disp(size(M('dims')))
 disp(size(M('entries')))
- 
+
 M_own            = mlist(['hm','dims','entries']);
 M_own('dims')    = [2 3 2 2];
 M_own('entries') = [1:24]';

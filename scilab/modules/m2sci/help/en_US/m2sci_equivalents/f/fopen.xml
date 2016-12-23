@@ -50,7 +50,7 @@ mopen
                 <term>Access permission:</term>
                 <listitem>
                     <para>
-                        Matlab offers two permissions options not supported by Scilab: <emphasis role="bold">W</emphasis> and <emphasis role="bold">A</emphasis> (for tape drives) 
+                        Matlab offers two permissions options not supported by Scilab: <emphasis role="bold">W</emphasis> and <emphasis role="bold">A</emphasis> (for tape drives)
                     </para>
                 </listitem>
             </varlistentry>

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -181,6 +181,10 @@ msgstr ""
 #, c-format
 msgid "The file %s does not exist.\n"
 msgstr "文件%s不存在。\n"
+
+#, fuzzy, c-format
+msgid "%s: Cannot read file name.\n"
+msgstr "%s：无法打开文件%s。\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -401,11 +405,8 @@ msgstr "ripOLE：解码%s时出现错误%d。\n"
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Scilab spreadsheet 模块没有安装。\n"
 
-# File: modules/spreadsheet/demos/spreadsheet.dem.gateway.sce, line: 9
 msgid "Spreadsheet"
 msgstr ""
 
-#
-# File: modules/spreadsheet/demos/spreadsheet.dem.gateway.sce, line: 11
 msgid "Read a xls file"
 msgstr ""

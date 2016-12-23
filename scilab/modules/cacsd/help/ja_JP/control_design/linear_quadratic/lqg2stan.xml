@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F Delebecque
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -29,7 +29,7 @@
                 <term>P22</term>
                 <listitem>
                     <para>
-                        状態空間表現の<literal>syslin</literal> リスト (ノミナルプラント) 
+                        状態空間表現の<literal>syslin</literal> リスト (ノミナルプラント)
                     </para>
                 </listitem>
             </varlistentry>
@@ -78,15 +78,15 @@
             連続時間系 (<literal>dom='c'</literal>)または離散時間系 (<literal>dom='d'</literal>)
             のどちらかとすることができます.
         </para>
-        <programlisting role=""><![CDATA[ 
-. 
+        <programlisting role=""><![CDATA[
+.
 x = Ax + w1 + B2u
 y = C2x + w2
  ]]></programlisting>
         <para>
             (連続時間プラントの場合).
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 x[n+1]= Ax[n] + w1 + B2u
     y = C2x + w2
  ]]></programlisting>
@@ -112,7 +112,7 @@ x[n+1]= Ax[n] + w1 + B2u
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 ny=2;nu=3;nx=4;
 P22=ssrand(ny,nu,nx);
 bigQ=rand(nx+nu,nx+nu);bigQ=bigQ*bigQ';

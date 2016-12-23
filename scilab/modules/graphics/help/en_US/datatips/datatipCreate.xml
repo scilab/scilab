@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -91,7 +91,7 @@
             e=gce();p=e.children(1);//get the handle on the polyline
             p.mark_mode="on";p.mark_style=2;p.mark_size=12;
             t=datatipCreate(p,5);
-            
+
             datatipCreate(p,[0.65,0.3]);
         </scilab:image>
     </refsection>

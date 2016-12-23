@@ -28,7 +28,7 @@
             <varlistentry>
                 <term>sizes</term>
                 <listitem>
-                    <para>vector of integers</para>
+                    <para>vector of non-negative integers</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -55,14 +55,14 @@
             For a hypermatrix such as
             <literal>prod(size(v))==prod(sizes)</literal>, the command <literal>y=matrix(v,sizes)</literal> (or
             equivalently <literal>y=matrix(v,n1,n2,...nm)</literal>) transforms
-            <literal>v</literal>  into an  matrix or hypermatrix by 
+            <literal>v</literal>  into an  matrix or hypermatrix by
             stacking "columnwise" (first dimension is varying first) the entries of <literal>v</literal>. <literal>y=matrix(v,sizes)</literal>
             results in a regular matrix if sizes is a scalar or a 2-vector.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=[1 2 3;4 5 6]
 matrix(a,1,6)
 matrix(a,1,-1)
@@ -83,6 +83,9 @@ matrix(a,3,2)
             </member>
             <member>
                 <link linkend="zeros">zeros</link>
+            </member>
+            <member>
+                <link linkend="emptystr">emptystr</link>
             </member>
             <member>
                 <link linkend="rand">rand</link>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ *  Copyright (C) 1996 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -37,7 +37,9 @@
                 <term>sl</term>
                 <listitem>
                     <para>
-                        list (linear system <literal>syslin</literal>)
+                        A linear dynamical system, in state space,
+                        transfer function or zpk representations, in
+                        discrete time.
                     </para>
                 </listitem>
             </varlistentry>
@@ -79,7 +81,7 @@
         <para>
             <literal>sl=syslin('d',A,B,C,D)</literal> :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 x[t+1] = A x[t] + B u[t]
 y[t] = C x[t] + D u[t]
  ]]></programlisting>
@@ -87,7 +89,7 @@ y[t] = C x[t] + D u[t]
             or, more generally, if <literal>D</literal> is a polynomial matrix
             (<literal>p = degree(D(z))</literal>) :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 D(z) = D_0 + z D_1 + z^2 D_2 +..+ z^p D_p
 y[t] = C x[t] + D_0 u[t] + D_1 u[t+1] +..+ D_[p] u[t+p]
  ]]></programlisting>
@@ -107,7 +109,7 @@ y[t] = C x[t] + D_0 u[t] + D_1 u[t+1] +..+ D_[p] u[t+p]
             </literal>
             ).
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 past = [u     ,...,  u   ]
        [ -nd           -1]
        [y     ,...,  y   ]
@@ -118,7 +120,7 @@ past = [u     ,...,  u   ]
             <literal>nd</literal> is the maximum of degrees of lcm's of each row
             of the denominator matrix of <literal>sl</literal>.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 u=[u0 u1 ... un]  (input)
 y=[y0 y1 ... yn]  (output)
  ]]></programlisting>
@@ -128,9 +130,9 @@ y=[y0 y1 ... yn]  (output)
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 sl=syslin('d',1,1,1);u=1:10;
-y=flts(u,sl); 
+y=flts(u,sl);
 plot2d(y)
 [y1,x1]=flts(u(1:5),sl);y2=flts(u(6:10),sl,x1);
 y-[y1,y2]
@@ -160,14 +162,14 @@ plot(stprep,'g')
             plot2d(y)
             [y1,x1]=flts(u(1:5),sl);y2=flts(u(6:10),sl,x1);
             y-[y1,y2]
-            
+
             z=poly(0,'z');
             D=1+z+z^2; p =degree(D);
             sl=syslin('d',1,1,1,D);
             y=flts(u,sl);[y1,x1]=flts(u(1:5),sl);
             y2=flts(u(5-p+1:10),sl,x1);
             y-[y1,y2]
-            
+
             z=poly(0,'z');
             h=syslin(0.1,(1-2*z)/(z^2+0.3*z+1))
             imprep=flts(eye(1,20),tf2ss(h));
@@ -177,7 +179,7 @@ plot(stprep,'g')
             stprep=flts(ones(1,20),tf2ss(h));
             plot(stprep,'g')
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Other examples
 A=[1 2 3;0 2 4;0 0 1];
 B=[1 0;0 0;0 1];
@@ -221,4 +223,16 @@ norm([yh1,yh2]-rh)
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>handling zpk representation</para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+
 </refentry>

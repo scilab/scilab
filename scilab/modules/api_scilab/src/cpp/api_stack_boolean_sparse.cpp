@@ -61,21 +61,16 @@ SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
     types::SparseBool* pSpBool = ((types::InternalType*)_piAddress)->getAs<types::SparseBool>();
     *_piNbItem = (int)pSpBool->nbTrue();
 
-    if (_piNbItemRow == NULL)
+    if (!sciErr.iErr && _piNbItemRow != NULL)
     {
-        return sciErr;
+        int* piNbItemRows = (int*)MALLOC(sizeof(int) **_piRows);
+        *_piNbItemRow = pSpBool->getNbItemByRow(piNbItemRows);
     }
-
-    int* piNbItemRows = (int*)MALLOC(sizeof(int) **_piRows);
-    *_piNbItemRow = pSpBool->getNbItemByRow(piNbItemRows);
-
-    if (_piColPos == NULL)
+    if (!sciErr.iErr && _piColPos != NULL)
     {
-        return sciErr;
+        int* piColPos = (int*)MALLOC(sizeof(int) **_piNbItem);
+        *_piColPos = pSpBool->getColPos(piColPos);
     }
-
-    int* piColPos = (int*)MALLOC(sizeof(int) **_piNbItem);
-    *_piColPos = pSpBool->getColPos(piColPos);
 
     return sciErr;
 }
@@ -205,20 +200,26 @@ SciErr readNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int* _pi
     SciErr sciErr       = sciErrInit();
     struct Attr
     {
-        public:
-            int *piAddr;
-            int *piNbItemRow;
-            int *piColPos;
-            Attr() : piAddr(NULL), piNbItemRow(NULL), piColPos(NULL) {}
-            ~Attr()
+    public:
+        int *piAddr;
+        int *piNbItemRow;
+        int *piColPos;
+        Attr() : piAddr(NULL), piNbItemRow(NULL), piColPos(NULL) {}
+        ~Attr()
+        {
+            if (piNbItemRow)
             {
-                if(piNbItemRow)
-                    FREE(piNbItemRow);
-                if(piColPos)
-                    FREE(piColPos);
-                if(piAddr)
-                    FREE(piAddr);
+                FREE(piNbItemRow);
             }
+            if (piColPos)
+            {
+                FREE(piColPos);
+            }
+            if (piAddr)
+            {
+                FREE(piAddr);
+            }
+        }
     };
     struct Attr attr;
     sciErr = getVarAddressFromName(_pvCtx, _pstName, &attr.piAddr);

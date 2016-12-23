@@ -95,7 +95,6 @@
 		<File RelativePath=".\realit.f"/>
 		<File RelativePath=".\recbez.f"/>
 		<File RelativePath=".\residu.f"/>
-		<File RelativePath=".\rpoly.f"/>
 		<File RelativePath=".\sfact1.f"/>
 		<File RelativePath=".\sfact2.f"/>
 		<File RelativePath=".\wdmpad.f"/>

@@ -19,7 +19,7 @@
     <refnamediv>
         <refname>test_run</refname>
         <refpurpose>
-            Lance les tests unitaires et de non régression présents dans un module ou dans un répertoire. La passe de test vérifie d'abord que le test s'exécute sans erreur, puis que la sortie console (fichier <literal>dia</literal>) est conforme à un fichier de référence préalablement généré (fichier <literal>dia.ref</literal>).
+            Lance les tests unitaires et de non régression présents dans un module ou dans un répertoire
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -89,7 +89,9 @@
                         <varlistentry>
                             <term>"create_ref"</term>
                             <listitem>
-                                <para>génère un fichier .dia.ref (ignore la comparaison avec tout précédent fichier .dia.ref)</para>
+                                <para>génère un fichier .dia.ref (pour les tests sans l'indicateur
+                                  <literal>&lt;-- NO CHECK REF --></literal>), et ignore la comparaison
+                                  avec tout précédent fichier .dia.ref</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -448,12 +450,12 @@ test_run([],[],['no_check_ref','mode_nw']);
 // Console mode
 test_run time [] no_check_ref //tests time module with no_check_ref option
  ]]></programlisting>
-        
+
         <programlisting role="example"><![CDATA[
 // lance les tests d'un module externe
 test_run('SCI/contrib/toolbox_skeleton')
  ]]></programlisting>
-        
+
         <programlisting role="example"><![CDATA[
 // Export XML Xunit
 test_run('boolean',[],[],TMPDIR+"/boolean_test_run.xml");

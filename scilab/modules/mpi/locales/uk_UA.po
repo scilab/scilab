@@ -8,14 +8,20 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-10-01 10:20+0000\n"
+"PO-Revision-Date: 2016-10-19 14:56+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: An MPI communicator expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%s: мало бути вказано комунікатор "
+"MPI.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -48,16 +54,16 @@ msgid "%s: Unable to create variable.\n"
 msgstr "%s: не вдалося створити змінну.\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: помилка під час спроби виділення пам’яті.\n"
-
-#, c-format
 msgid "%s: Could not finalize the MPI instance: %s\n"
 msgstr "%s: не вдалося завершити роботу екземпляра MPI: %s\n"
 
 #, c-format
 msgid "%s: Could not get processor name: %s\n"
 msgstr "%s: не вдалося визначити назву процесора: %s\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Positive value expected.\n"
@@ -95,3 +101,16 @@ msgstr "%s: не вдалося перетворити дані з послід�
 #, c-format
 msgid "%s: MPI_Wait failed while waiting %d: %s\n"
 msgstr "%s: помилка MPI_Wait під час очікування %d: %s\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано матрицю.\n"

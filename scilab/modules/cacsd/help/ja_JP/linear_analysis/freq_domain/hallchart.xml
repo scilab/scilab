@@ -53,7 +53,7 @@
         </para>
         <para>
             <literal>hallchart</literal> は
-            <link linkend="nyquist">nyquist</link>と組み合わせて使用することができます. 
+            <link linkend="nyquist">nyquist</link>と組み合わせて使用することができます.
         </para>
         <para>
             <literal>modules</literal>および<literal>args</literal>のデフォルト値は

@@ -9,6 +9,8 @@
 computed=logspace(0,10,11);
 expected=10.0.^(0:10)  ;
 assert_checkalmostequal(computed,expected);
+assert_checkequal(logspace(1,2,-1),[]);
+assert_checkequal(logspace(1,2,0),[]);
 // Vector input
 assert_checkequal(size(logspace([0;2],[2;5],5)),[2,5]);
 assert_checkequal(size(logspace([0;2],[2;5],2)),[2,2]);

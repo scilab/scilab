@@ -3,7 +3,7 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 1997   - INRIA
 * Copyright (C) 2012 - Serge Steer - INRIA
-* 
+*
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -14,11 +14,11 @@
  * along with this program.
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" 
-          xmlns:xlink="http://www.w3.org/1999/xlink" 
-          xmlns:svg="http://www.w3.org/2000/svg" 
-          xmlns:mml="http://www.w3.org/1998/Math/MathML" 
-          xmlns:db="http://docbook.org/ns/docbook" 
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
           xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="dst">
     <refnamediv>
         <refname>dst</refname>
@@ -117,7 +117,7 @@
                     <literal>"dst4"</literal> または <literal>"dst"</literal>,
                     逆変換の場合は <literal>"dst1"</literal>,
                     <literal>"dst3"</literal>, <literal>"dst4"</literal> または
-                    <literal>"idst"</literal> です.  
+                    <literal>"idst"</literal> です.
                     デフォルト値は,順方向変換の場合に<literal>"dct"</literal>,
                     逆変換の場合に<literal>"idct"</literal>です.
                     詳細は説明を参照ください.
@@ -126,9 +126,9 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>説明</title> 
+        <title>説明</title>
         <refsection>
-            <title>変換の説明</title> 
+            <title>変換の説明</title>
             <para>
                 この関数は,
                 パラメータ値<literal>option</literal>で指定したシフト量を用いて
@@ -283,7 +283,7 @@
                                     例えば, <literal>A</literal> が3次元配列の場合,
                                     <literal>X=dst(A,-1,2)</literal> は以下と等価になります:
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
             for i1=1:size(A,1),
               for i3=1:size(A,3),
                 X(i1,:,i3)=dst(A(i1,:,i3),-1);
@@ -294,7 +294,7 @@
                                     そして <literal>X=dst(A,-1,[1 3])</literal> は
                                     以下と等価になります:
                                 </para>
-                                <programlisting role=""><![CDATA[ 
+                                <programlisting role=""><![CDATA[
             for i2=1:size(A,2),
               X(:,i2,:)=dst(A(:,i2,:),-1);
             end
@@ -327,13 +327,13 @@
         <refsection>
             <title>dstを最適化</title>
             <para>
-                注意: 
+                注意:
                 この関数は直近のパラメータをメモリに保持し,2回目に再利用します.
                 これにより(同じパラメータで)連続的にコールした場合の
                 計算時間が著しく改善されます.
             </para>
-            <para> 
-                <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>, 
+            <para>
+                <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>,
                 <link linkend="set_fftw_wisdom">set_fftw_wisdom</link> 関数により
                 dstを更に最適化することができます.
             </para>

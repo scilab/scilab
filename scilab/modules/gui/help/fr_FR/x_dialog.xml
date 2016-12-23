@@ -21,7 +21,7 @@
             <varlistentry>
                 <term>valueini  </term>
                 <listitem>
-                    <para>vecteur de n chaînes de caractères. Valeurs suggérées 
+                    <para>vecteur de n chaînes de caractères. Valeurs suggérées
                     </para>
                 </listitem>
             </varlistentry>
@@ -37,12 +37,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            Crée une boîte de dialogue à plusieurs lignes. 
+            Crée une boîte de dialogue à plusieurs lignes.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 gain=evstr(x_dialog('Valeur du gain ?','0.235'))
 x_dialog(['Methode';'Saisir la periode d''echantillonnage'],'1')
 m=evstr(x_dialog('Saisir une matrice 3x3',['[0 0 0';'0 0 0';'0 0 0]']))

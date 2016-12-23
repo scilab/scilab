@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -73,7 +73,7 @@
         <title>Description</title>
         <para>
             Detectability test for <literal>sl</literal>, a linear system in state-space
-            representation. 
+            representation.
             <literal>U</literal> is a basis whose <literal>k</literal> first columns span the
             unstable, unobservable subspace of <literal>Sl</literal> (intersection
             of unobservable subspace of <literal>(A,C)</literal> and unstable subspace
@@ -83,21 +83,21 @@
             <literal>Sld = (U'*A*U,U'*B,C*U,D)</literal> displays the "detectable part"
             of <literal>Sl=(A,B,C,D)</literal>, i.e.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
          [*,*,*]
 U'*A*U = [0,*,*]
          [0,0,*]
- 
+
 C*U = [0,0,*]
  ]]></programlisting>
         <para>
-            with <literal>(A33,C3)</literal> observable (dimension <literal>nx-n</literal>), <literal>A22</literal> stable 
+            with <literal>(A33,C3)</literal> observable (dimension <literal>nx-n</literal>), <literal>A22</literal> stable
             (dimension <literal>n-k</literal>) and <literal>A11</literal> unstable (dimension <literal>k</literal>).
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[2,1,1;0,-2,1;0,0,3];
 C=[0,0,1];
 X=rand(3,3);A=inv(X)*A*X;C=C*X;

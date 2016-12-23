@@ -6,7 +6,7 @@
 
  * Copyright (C) INRIA
 
- * 
+ *
 
 
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
@@ -23,67 +23,67 @@
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="xinfo">
-    
+
     <refnamediv>
-        
+
         <refname>xinfo</refname>
-        
+
         <refpurpose>
-            
+
             カレントのウィンドウステータスバーに表示するテキストを設定する
-            
+
         </refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>xinfo(text)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>text</term>
-                
+
                 <listitem>
-                    
+
                     <para>ステータスバーに表示される文字列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <literal>xinfo</literal> は文字列 <literal>text</literal> をカレントの
-            
+
             グラフィックウインドウのメッセージサブウインドウに描画します.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
+
         <programlisting role="example"><![CDATA[
 
 f = scf(100001);
@@ -91,8 +91,8 @@ f = scf(100001);
 xinfo("ID figure : " + string(f.figure_id));
 
      ]]></programlisting>
-        
+
     </refsection>
-    
+
 </refentry>
 

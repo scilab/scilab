@@ -55,26 +55,56 @@
                 <listitem>
                     <para>Scalar</para>
                     <para>The type of callback transmitted to the uicontrol (see example below).</para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                <literal>-1</literal> none (callback deactivated)
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <literal>0</literal> (by default) or <literal>2</literal> a non prioritary, interruptible Scilab instruction
-                            </para>
-                            <para>
-                                <literal>10</literal> or <literal>12</literal> a prioritary, non-interruptible Scilab instruction
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <literal>1</literal> a C or a Fortran function
-                            </para>
-                        </listitem>
-                    </itemizedlist>
+                    <variablelist>
+                        <varlistentry>
+                            <term>
+                                <literal>-1</literal>
+                            </term>
+                            <listitem>
+                                <para>none (callback deactivated)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>
+                                <literal>0</literal> (by default)
+                            </term>
+                            <listitem>
+                                <para>non prioritary (or interruptible) Scilab instructions</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>
+                                <literal>1</literal>
+                            </term>
+                            <listitem>
+                                <para>Cor a Fortran function</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>
+                                <literal>2</literal>
+                            </term>
+                            <listitem>
+                                <para>non prioritary (or interruptible) Scilab function</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>
+                                <literal>10</literal>
+                            </term>
+                            <listitem>
+                                <para>prioritary (or non-interruptible) Scilab instructions</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>
+                                <literal>12</literal>
+                            </term>
+                            <listitem>
+                                <para>prioritary (or non-interruptible) Scilab function</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -328,7 +358,7 @@
                             </para>
                         </listitem>
                         <listitem>
-                            <para>Other uicontrols: the default value for "Relief" property is "flat".</para>
+                            <para>Other uicontrols: the default value for "Relief" property is relief by default provided by java language.</para>
                         </listitem>
                     </itemizedlist>
                 </listitem>

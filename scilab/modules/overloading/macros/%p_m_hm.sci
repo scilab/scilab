@@ -10,11 +10,13 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function M2=%p_m_hm(M1,M2)
+// NOW LOOKS USELESS => TO BE DELETED ?
+
+function M2 = %p_m_hm(M1,M2)
     //author Serge Steer INRIA
     if size(M1,"*")<>1 then
-        M2=hypermat(size(M1),M1)*M2
+        M2 = M1 * M2    // endless recursive call?!
     else
-        M2.entries=M1*M2.entries
+        M2 = matrix(M1*M2(:), size(M2))
     end
 endfunction

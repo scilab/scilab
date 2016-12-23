@@ -71,7 +71,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 mylist = init_param();
 mylist = add_param(mylist,'minbound',[0 0 0]);
 disp(is_param(mylist,'minbound'));

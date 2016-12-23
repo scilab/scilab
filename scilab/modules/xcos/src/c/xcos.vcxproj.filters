@@ -41,6 +41,9 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosCellCreated.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosUpdateBlock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosConfigureXmlFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -87,6 +90,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\jni\JavaController_wrap.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\JavaXMIResource_wrap.cxx">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\jni\XcosCellFactory.cpp">

@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:08+0000\n"
+"PO-Revision-Date: 2016-02-24 15:03+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
@@ -90,30 +90,20 @@ msgstr "Значение типа int"
 msgid "Feature not available in this mode..."
 msgstr "В этом режиме такой возможности нет..."
 
-#
-# File: modules/ui_data/src/java/org/scilab/modules/ui_data/newsfeed/NewsFeedUIMessages.java, line: 24
 msgid "News feed"
-msgstr ""
+msgstr "Подача новостей"
 
-#
-# File: modules/ui_data/src/java/org/scilab/modules/ui_data/newsfeed/NewsFeedUIMessages.java, line: 26
 msgid "News feed unavailable."
-msgstr ""
+msgstr "Подача новостей недоступна."
 
-#
-# File: modules/ui_data/src/java/org/scilab/modules/ui_data/newsfeed/NewsFeedUIMessages.java, line: 27
 msgid "News feed configuration error."
-msgstr ""
+msgstr "Ошибка конфигурации подачи новостей."
 
-#
-# File: modules/ui_data/src/java/org/scilab/modules/ui_data/newsfeed/NewsFeedUIMessages.java, line: 29
 msgid "Help"
-msgstr ""
+msgstr "Справка"
 
-#
-# File: modules/ui_data/src/java/org/scilab/modules/ui_data/newsfeed/NewsFeedUIMessages.java, line: 30
 msgid "Update feed"
-msgstr ""
+msgstr "Обновить подачу новостей"
 
 msgid "File"
 msgstr "Файл"

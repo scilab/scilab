@@ -50,6 +50,7 @@ types::Function::ReturnValue sci_removelinehistory(types::typed_list &in, int _i
             do
             {
                 HistoryManager::getInstance()->deleteNthLine(pDbl->get(0));
+                FREE(pcLigne);
                 pcLigne = HistoryManager::getInstance()->getNthLine(pDbl->get(0));
                 size = HistoryManager::getInstance()->getNumberOfLines();
             }
@@ -59,6 +60,7 @@ types::Function::ReturnValue sci_removelinehistory(types::typed_list &in, int _i
         {
             HistoryManager::getInstance()->deleteNthLine(pDbl->get(0));
         }
+        FREE(pcLigne);
     }
     else
     {

@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -52,12 +52,12 @@ static std::wstring levelTable[] =
 
 static std::string displayTable[] =
 {
-    "Xcos trace: ",
-    "Xcos debug: ",
-    "Xcos info: ",
+    "Xcos trace:   ",
+    "Xcos debug:   ",
+    "Xcos info:    ",
     "Xcos warning: ",
-    "Xcos error: ",
-    "Xcos fatal: ",
+    "Xcos error:   ",
+    "Xcos fatal:   ",
 };
 
 enum LogLevel LoggerView::indexOf(const wchar_t* name)
@@ -338,12 +338,6 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case KIND:
             os << "KIND";
             break;
-        case FROM:
-            os << "FROM";
-            break;
-        case TO:
-            os << "TO";
-            break;
         case DATATYPE:
             os << "DATATYPE";
             break;
@@ -401,36 +395,50 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
 void LoggerView::objectCreated(const ScicosID& uid, kind_t k)
 {
     std::stringstream ss;
-    ss << "objectCreated" << "( " << uid << " , " << k << " )" << std::endl;
-    log(LOG_DEBUG, ss);
+    ss << "objectCreated" << "( " << uid << " , " << k << " )" << '\n';
+    log(LOG_INFO, ss);
 }
 
 void LoggerView::objectReferenced(const ScicosID& uid, kind_t k, unsigned refCount)
 {
     std::stringstream ss;
-    ss << "objectReferenced" << "( " << uid << " , " << k << " ) : " << refCount << std::endl;
-    log(LOG_DEBUG, ss);
+    ss << "objectReferenced" << "( " << uid << " , " << k << " ) : " << refCount << '\n';
+    log(LOG_TRACE, ss);
 }
 
 void LoggerView::objectUnreferenced(const ScicosID& uid, kind_t k, unsigned refCount)
 {
     std::stringstream ss;
-    ss << "objectUnreferenced" << "( " << uid << " , " << k << " ) : " << refCount << std::endl;
-    log(LOG_DEBUG, ss);
+    ss << "objectUnreferenced" << "( " << uid << " , " << k << " ) : " << refCount << '\n';
+    log(LOG_TRACE, ss);
 }
 
 void LoggerView::objectDeleted(const ScicosID& uid, kind_t k)
 {
     std::stringstream ss;
-    ss << "objectDeleted" << "( " << uid << " , " << k << " )" << std::endl;
-    log(LOG_DEBUG, ss);
+    ss << "objectDeleted" << "( " << uid << " , " << k << " )" << '\n';
+    log(LOG_INFO, ss);
+}
+
+void LoggerView::objectCloned(const ScicosID& uid, const ScicosID& cloned, kind_t k)
+{
+    std::stringstream ss;
+    ss << "objectCloned" << "( " << uid << " , " << cloned << " , " << k << " )" << '\n';
+    log(LOG_INFO, ss);
 }
 
 void LoggerView::propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p, update_status_t u)
 {
     std::stringstream ss;
-    ss << "propertyUpdated" << "( " << uid << " , " << k << " , " << p << " ) : " << u << std::endl;
-    log(LOG_TRACE, ss);
+    ss << "propertyUpdated" << "( " << uid << " , " << k << " , " << p << " ) : " << u << '\n';
+    if (u == NO_CHANGES)
+    {
+        log(LOG_TRACE, ss);
+    }
+    else
+    {
+        log(LOG_DEBUG, ss);
+    }
 }
 
 } /* namespace org_scilab_modules_scicos */

@@ -22,7 +22,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Возвращает <literal>%t</literal>, если исходники макросов установлены, и     
+            Возвращает <literal>%t</literal>, если исходники макросов установлены, и
             <literal>%f</literal>, если нет.
         </para>
     </refsection>

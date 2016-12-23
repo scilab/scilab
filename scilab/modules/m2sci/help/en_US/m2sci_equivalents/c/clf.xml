@@ -50,7 +50,7 @@ clf
                 <term>clf</term>
                 <listitem>
                     <para>
-                        In this case, all current figure children will be deleted because there is no HandleVisibility property in Scilab graphics. 
+                        In this case, all current figure children will be deleted because there is no HandleVisibility property in Scilab graphics.
                     </para>
                 </listitem>
             </varlistentry>

@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../core/includes;../output_stream/includes;../localization/includes;../elementary_functions/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types;../ast/includes/system_env</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../dynamic_link/includes;../elementary_functions/includes;../core/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types;../ast/includes/system_env;../ast/includes/exps;../ast/includes/parse;../ast/includes/analysis;../ast/includes/symbol</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;MPI_EXPORTS;_CRT_SECURE_NO_DEPRECATE;OMPI_IMPORTS;OPAL_IMPORTS;ORTE_IMPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -107,7 +107,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../core/includes;../output_stream/includes;../localization/includes;../elementary_functions/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types;../ast/includes/system_env</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../dynamic_link/includes;../elementary_functions/includes;../core/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types;../ast/includes/system_env;../ast/includes/exps;../ast/includes/parse;../ast/includes/analysis;../ast/includes/symbol</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;MPI_EXPORTS;_CRT_SECURE_NO_DEPRECATE;OMPI_IMPORTS;OPAL_IMPORTS;ORTE_IMPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -130,7 +130,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../core/includes;../output_stream/includes;../localization/includes;../elementary_functions/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types;../ast/includes/system_env</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../dynamic_link/includes;../elementary_functions/includes;../core/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types;../ast/includes/system_env;../ast/includes/exps;../ast/includes/parse;../ast/includes/analysis;../ast/includes/symbol</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;MPI_EXPORTS;_CRT_SECURE_NO_DEPRECATE;OMPI_IMPORTS;OPAL_IMPORTS;ORTE_IMPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -161,7 +161,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../core/includes;../output_stream/includes;../localization/includes;../elementary_functions/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types;../ast/includes/system_env</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../dynamic_link/includes;../elementary_functions/includes;../core/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types;../ast/includes/system_env;../ast/includes/exps;../ast/includes/parse;../ast/includes/analysis;../ast/includes/symbol</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;MPI_EXPORTS;_CRT_SECURE_NO_DEPRECATE;OMPI_IMPORTS;OPAL_IMPORTS;ORTE_IMPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -187,12 +187,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="includes\dynlib_mpi.h" />
+    <ClInclude Include="includes\getOptionalComm.h" />
     <ClInclude Include="includes\gw_mpi.h" />
+    <ClInclude Include="includes\mpi_gw.hxx" />
+    <ClInclude Include="includes\sciMpiComm.hxx" />
     <ClInclude Include="src\c\deserialization.h" />
     <ClInclude Include="src\c\sci_mpi.h" />
     <ClInclude Include="src\c\serialization.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="sci_gateway\cpp\sci_mpi_createComm.cpp" />
     <ClCompile Include="sci_gateway\c\sci_mpi_bcast.c" />
     <ClCompile Include="sci_gateway\c\sci_mpi_comm_rank.c" />
     <ClCompile Include="sci_gateway\c\sci_mpi_comm_size.c" />
@@ -204,6 +208,7 @@
     <ClCompile Include="sci_gateway\c\sci_mpi_recv.c" />
     <ClCompile Include="sci_gateway\c\sci_mpi_send.c" />
     <ClCompile Include="sci_gateway\c\sci_mpi_wait.c" />
+    <ClCompile Include="src\cpp\getOptionalComm.cpp" />
     <ClCompile Include="src\c\deserialization.c" />
     <ClCompile Include="src\c\DllmainMpi.c" />
     <ClCompile Include="src\c\serialization.c" />
@@ -214,6 +219,9 @@
   <ItemGroup>
     <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\core\src\c\core.vcxproj">
       <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>

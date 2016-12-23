@@ -191,18 +191,21 @@ static void encode(types::String* input, std::vector<double> &ret)
         ret.push_back(offsets[i]);
     }
 
-    size_t size = ret.size();
-    ret.resize(size + offsets[iElements - 1]);
-    double* data = ret.data() + size;
-
-    size_t len = pLengths[0];
-    memcpy(data, utf8[0], len * sizeof(char));
-    data += offsets[0];
-    for (int i = 1; i < iElements; ++i)
+    if (iElements > 0)
     {
-        size_t len = pLengths[i];
-        memcpy(data, utf8[i], len * sizeof(char));
-        data += offsets[i] - offsets[i - 1];
+        size_t size = ret.size();
+        ret.resize(size + offsets[iElements - 1]);
+        double* data = ret.data() + size;
+
+        size_t len = pLengths[0];
+        memcpy(data, utf8[0], len * sizeof(char));
+        data += offsets[0];
+        for (int i = 1; i < iElements; ++i)
+        {
+            size_t len = pLengths[i];
+            memcpy(data, utf8[i], len * sizeof(char));
+            data += offsets[i] - offsets[i - 1];
+        }
     }
 
     // Free all the strings, after being copied
@@ -276,7 +279,7 @@ bool var2vec(types::InternalType* in, std::vector<double> &out)
     getVarType(nullptr, (int*) in, &iType);
     switch (iType)
     {
-            // Reuse scicos model encoding for 'model.opar' and 'model.odstate' fields
+        // Reuse scicos model encoding for 'model.opar' and 'model.odstate' fields
         case sci_matrix  :
             encode(in->getAs<types::Double>(), out);
             break;

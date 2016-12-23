@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-06-08 22:21+0100\n"
+"Revision-Date: 2016-12-07 16:04+0100\n"
 
 # File: modules/history_manager/sci_gateway/c/sci_historysize.c, line: 40
 #, c-format
@@ -74,7 +74,7 @@ msgstr ""
 # File: modules/history_manager/sci_gateway/cpp/sci_addhistory.cpp, line: 64
 # File: modules/history_manager/sci_gateway/cpp/sci_displayhistory.cpp, line: 37
 # File: modules/history_manager/sci_gateway/cpp/sci_gethistoryfile.cpp, line: 34
-# File: modules/history_manager/sci_gateway/cpp/sci_removelinehistory.cpp, line: 65
+# File: modules/history_manager/sci_gateway/cpp/sci_removelinehistory.cpp, line: 67
 # File: modules/history_manager/sci_gateway/cpp/sci_resethistory.cpp, line: 41
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -182,102 +182,102 @@ msgid "Begin Session : "
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 123
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 125
 msgid "Sun"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 124
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 126
 msgid "Mon"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 125
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 127
 msgid "Tue"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 126
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 128
 msgid "Wed"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 127
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 129
 msgid "Thu"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 128
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 130
 msgid "Fri"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 129
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 131
 msgid "Sat"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 143
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 145
 msgid "Jan"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 144
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 146
 msgid "Feb"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 145
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 147
 msgid "Mar"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 146
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 148
 msgid "Apr"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 147
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 149
 msgid "May"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 148
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 150
 msgid "Jun"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 149
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 151
 msgid "Jul"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 150
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 152
 msgid "Aug"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 151
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 153
 msgid "Sep"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 152
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 154
 msgid "Oct"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 153
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 155
 msgid "Nov"
 msgstr ""
 
 #
-# File: modules/history_manager/src/c/getCommentDateSession.c, line: 154
+# File: modules/history_manager/src/c/getCommentDateSession.c, line: 156
 msgid "Dec"
 msgstr ""
 
 #
-# File: modules/history_manager/src/cpp/HistoryManager.cpp, line: 385
+# File: modules/history_manager/src/cpp/HistoryManager.cpp, line: 382
 #, c-format
 msgid "%d : %s\n"
 msgstr ""

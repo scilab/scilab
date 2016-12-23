@@ -53,10 +53,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            Get the values of the attributes in preferences file (<literal>SCIHOME+'/XConfiguration.xml'</literal>). 
+            Get the values of the attributes in preferences file (<literal>SCIHOME+'/XConfiguration.xml'</literal>).
         </para>
         <para>
-            When doc is specified, the values are searched in this document. It is useful when several requests need to be done to avoid to parse again and again the same configuration file. 
+            When doc is specified, the values are searched in this document. It is useful when several requests need to be done to avoid to parse again and again the same configuration file.
         </para>
         <para>
             All valid XPath requests are possible. For example to write the XPath request to get proxy settings:
@@ -83,7 +83,7 @@
 </interface>
 	      ]]></programlisting>
                 <para>
-                    The path will be <literal>"/interface/web/body/proxy"</literal> (or to simplify <literal>"//web/body/proxy"</literal>). 
+                    The path will be <literal>"/interface/web/body/proxy"</literal> (or to simplify <literal>"//web/body/proxy"</literal>).
                 </para>
             </member>
         </simplelist>

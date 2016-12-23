@@ -24,8 +24,8 @@ assert_checkequal(iscolumn(["s"; "t"; "u"]), %t);
 assert_checkequal(iscolumn(["s"; "t"; "u"]'), %f);
 assert_checkequal(iscolumn(["s" "t" "u";"s" "t" "u"]), %f);
 assert_checkequal(iscolumn("s"), %t);
-assert_checkequal(iscolumn(hypermat([3,1,1],["s";"s";"s"])), %t);
-assert_checkequal(iscolumn(hypermat([1,1,3],["s";"s";"s"])), %f);
+assert_checkequal(iscolumn(matrix(["s";"s";"s"], [3,1,1])), %t);
+assert_checkequal(iscolumn(matrix(["s";"s";"s"], [1,1,3])), %f);
 
 // Polynomials
 s=poly(0,"s");
@@ -33,16 +33,16 @@ assert_checkequal(iscolumn([1+s; 2+s]), %t);
 assert_checkequal(iscolumn([1+s; 2+s]'), %f);
 assert_checkequal(iscolumn([1+s 2+s; 3+s 4+s]), %f);
 assert_checkequal(iscolumn(1+s), %t);
-assert_checkequal(iscolumn(hypermat([3,1,1],[s;s;s])), %t);
-assert_checkequal(iscolumn(hypermat([1,1,3],[s;s;s])), %f);
+assert_checkequal(iscolumn(matrix([s;s;s], [3,1,1])), %t);
+assert_checkequal(iscolumn(matrix([s;s;s], [1,1,3])), %f);
 
 // Booleans
 assert_checkequal(iscolumn([%t; %f]), %t);
 assert_checkequal(iscolumn([%t; %f]'), %f);
 assert_checkequal(iscolumn([%t %f; %f %t]), %f);
 assert_checkequal(iscolumn(%t), %t);
-assert_checkequal(iscolumn(hypermat([3,1,1],[%t;%t;%t])), %t);
-assert_checkequal(iscolumn(hypermat([1,1,3],[%t;%t;%t])), %f);
+assert_checkequal(iscolumn(matrix([%t;%t;%t], [3,1,1])), %t);
+assert_checkequal(iscolumn(matrix([%t;%t;%t], [1,1,3])), %f);
 
 // Sparses
 assert_checkequal(iscolumn(sparse([1; 0; 2])), %t);

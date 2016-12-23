@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from baz.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="baz" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+    
+    <refnamediv>
+        <refname>baz</refname>
+        <refpurpose>Displays "Hello txt!"</refpurpose>
+    </refnamediv>
+    
+    
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            baz(txt)
+        </synopsis>
+    </refsynopsisdiv>
+    
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>txt:</term>
+                <listitem>
+                    <para> a single string. Text to display</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    
+    <refsection>
+        <title>Description</title>
+        <para>
+            Used to test the build function simply
+        </para>
+    </refsection>
+</refentry>

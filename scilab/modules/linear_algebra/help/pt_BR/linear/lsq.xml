@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -71,19 +71,19 @@
         <title>Referências</title>
         <para>
             <literal>lsq</literal> é baseado nas funções Lapack DGELSY para
-            matrizes de reais e ZGELSY para matrizes de complexos. 
+            matrizes de reais e ZGELSY para matrizes de complexos.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Construindo os dados
 x=(1:10)';
 
 y1=3*x+4.5+3*rand(x,'normal');
 y2=1.8*x+0.5+2*rand(x,'normal');
 plot2d(x,[y1,y2],[-2,-3])
-//Achando a regressão linear 
+//Achando a regressão linear
 A=[x,ones(x)];B=[y1,y2];
 X=lsq(A,B);
 

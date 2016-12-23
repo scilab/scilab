@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-11-30 15:59+0000\n"
+"PO-Revision-Date: 2016-10-22 04:58+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -448,12 +448,16 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Same types expected.\n"
-msgstr "%s: Неверный тип входных параметров: ожидался одинаковый тип.\n"
+msgid "%s: unknown bitwise function %s.\n"
+msgstr "%s: неизвестная побитовая функция %s.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s: Аргументы №%d и №%d: ожидались одинаковые размеры.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Integers >=0 expected.\n"
+msgstr "%s: Аргумент №%d: ожидалось целое число >=0.\n"
 
 #, c-format
 msgid ""
@@ -472,6 +476,10 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: должно быть между %d и %d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+
+#, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
 
@@ -488,18 +496,14 @@ msgstr ""
 "гиперматрица беззнаковых целочисленных значений.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-"expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался скаляр или матрица целых "
-"чисел без знака.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось положительное "
 "вещественное число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr "%s: Неверный тип входных параметров: ожидался одинаковый тип.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
@@ -733,14 +737,13 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 "%s: Несовместимые входные аргументы №%d и №%d: ожидался одинаковый тип.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Booleans, Integers, Decimals, Complexes, "
 "Polynomials, Rationals or Texts expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась матрица целых, "
-"вещественных, комплексных, логических значений, полиномов или строковых "
-"значений.\n"
+"%s: Неверный тип аргумента №%d: ожидался логический, целочисленный, "
+"десятичный, комплексный, полиномиальный, рациональный или текстовый.\n"
 
 #, c-format
 msgid ""
@@ -831,7 +834,7 @@ msgid "%s: Wrong size for input argument #%d: a vector expected.\n"
 msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор.\n"
 
 msgid "RESIZING a matrix of DECIMALS:"
-msgstr ""
+msgstr "Изменение размеров матрицы десятичных чисел:"
 
 msgid "Type <Enter> to see an example with polynomials:"
 msgstr "Нажмите <Enter>, чтобы посмотерть пример с полиномами:"
@@ -941,12 +944,9 @@ msgstr ""
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: Неверный размер входных параметров: ожидался совместимый размер.\n"
 
-#~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+#~ "expected.\n"
 #~ msgstr ""
-#~ "%s: Неверное количество входных параметров: ожидалось не более %d.\n"
-
-#~ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-#~ msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
-
-#~ msgid "%s: Wrong type for argument #%d: Real expected.\n"
-#~ msgstr "%s: Неверный тип параметра №%d: ожидалось вещественное число.\n"
+#~ "%s: Неверный тип входного параметра №%d: ожидался скаляр или матрица "
+#~ "целых чисел без знака.\n"

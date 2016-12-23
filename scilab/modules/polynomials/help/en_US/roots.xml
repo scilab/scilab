@@ -170,12 +170,4 @@ max(abs(r1-r2))
             ACM TOMS 1, 1 (March 1975), pp. 26-34
         </para>
     </refsection>
-    <refsection>
-        <title>Used Functions</title>
-        <para>The rpoly.f source codes can be found in the directory
-            SCI/modules/polynomials/src/fortran of a Scilab source distribution. In the case where the
-            companion matrix is used, the eigenvalue computation is perfomed using
-            DGEEV and ZGEEV LAPACK codes.
-        </para>
-    </refsection>
 </refentry>

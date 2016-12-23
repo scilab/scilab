@@ -67,7 +67,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 Hlp=iir(3,'lp','ellip',[0.1 0],[.08 .03]);
 pl=roots(Hlp.den);
 zr=roots(Hlp.num);

@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * Copyright (C) 2010 - DIGITEO - Allan CORNET 
- * 
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -87,9 +87,9 @@
         <para>
             Exemplos para <literal>format</literal>:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 (1x,e10.3,5x,3(f3.0))
-(10x,a20) 
+(10x,a20)
  ]]></programlisting>
         <para>Quando format é o omitido, os dados são lidos utilizando-se o
             formato numérico livre: espaços em branco, vírgulas e barras podem ser
@@ -113,7 +113,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 mdelete(TMPDIR + '/foo');
 A = rand(3,5);
 write(TMPDIR + '/foo', A);

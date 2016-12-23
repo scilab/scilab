@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -134,7 +134,7 @@
         <!--Lib_name: sparse_reading-->
         <!--Func_list: read_sparse-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway"><![CDATA[ 
+        <programlisting role="code_gateway"><![CDATA[
 #include "api_scilab.h"
 int read_sparse(char *fname,void* pvApiCtx)
 {
@@ -199,7 +199,7 @@ int read_sparse(char *fname,void* pvApiCtx)
     </refsection>
     <refsection>
         <title>Scilab test script</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+        <programlisting role="code_scilab"><![CDATA[
 sp=sparse([1,2;4,5;3,10],[1 + 2*%i,2 - 3*%i,-3 + 4*%i]);
 read_sparse(sp);
  ]]></programlisting>

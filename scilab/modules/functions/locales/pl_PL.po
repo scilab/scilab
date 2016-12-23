@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:02+0000\n"
+"PO-Revision-Date: 2016-06-09 10:52+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -62,10 +62,6 @@ msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
@@ -80,6 +76,10 @@ msgstr ""
 #, c-format
 msgid "%s: Invalid library %s.\n"
 msgstr "%s: Nieprawidłowa biblioteka %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input arguments: macro expected.\n"
@@ -159,61 +159,3 @@ msgstr "Proszę w zamian użyć %s."
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "Ta funkcja zostanie na stałe usunięta w Scilab %s"
-
-#~ msgid "%s: Wrong type for input argument #%d.\n"
-#~ msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d.\n"
-
-#~ msgid "%s: obsolete op-code %d.\n"
-#~ msgstr "%s: zdezaktualizowany op-code %d.\n"
-
-#~ msgid ""
-#~ "%s: Wrong values for input argument: No profile data in the function\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowe wartości dla argumentu wejściowego: Brak danych profilu "
-#~ "w funkcji\n"
-
-#~ msgid "Complexity"
-#~ msgstr "Złożoność"
-
-#~ msgid "Tools"
-#~ msgstr "Narzędzia"
-
-#~ msgid "Edit"
-#~ msgstr "Edycja"
-
-#~ msgid "?"
-#~ msgstr "?"
-
-#~ msgid "Exit"
-#~ msgstr "Wyjście"
-
-#~ msgid "Click to get corresponding line, move with a-z."
-#~ msgstr "Kliknij aby otrzymać odpowiadającą linię, poruszanie za pomocą a-z."
-
-#~ msgid "line %s [%s call, %s sec] :: "
-#~ msgstr "linia %s [%s wywołanie, %s sekunda] :: "
-
-#~ msgid "line %s [%s calls, %s sec] :: "
-#~ msgstr "linia %s [wywołana przez %s, %s sekunda] :: "
-
-#~ msgid "%s: The function has not been built for profiling"
-#~ msgstr "%s: Funkcja nie została zbudowana do profilowania"
-
-#~ msgid "No variable named: %s.\n"
-#~ msgstr "Brak zmiennej o nazwie: %s.\n"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: A Scilab function name is "
-#~ "expected.\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: oczekiwana "
-#~ "nazwa funkcji Scilab.\n"
-
-#~ msgid "%s is already noncompiled.\n"
-#~ msgstr "%s jest już nieskompilowany.\n"
-
-#~ msgid "%s is already compiled.\n"
-#~ msgstr "%s jest już skompilowany.\n"
-
-#~ msgid "%s is already compiled for profiling.\n"
-#~ msgstr "%s jest już skompilowany dla profilowania.\n"

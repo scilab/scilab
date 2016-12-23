@@ -2,8 +2,8 @@
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2007 - INRIA - Allan CORNET
-    * Copyright (C) 2011 - DIGITEO - Allan CORNET    
-    * 
+    * Copyright (C) 2011 - DIGITEO - Allan CORNET
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -29,7 +29,7 @@
  in the file modules/<module>/sci_gateway/c/gw_<module>.c
 
  primitiveName is the name of the Scilab function
- 
+
  Don't touch if you do not know what you are doing
 -->
     <!-- =================== -->

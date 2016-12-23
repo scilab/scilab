@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -28,12 +28,10 @@
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>Linear system in state space or transfer representation
-                        (
-                        <literal>
-                            see <link linkend="syslin">syslin</link>
-                        </literal>
-                        )
+                    <para>
+                        A siso or simo linear dynamical system, in state
+                        space, transfer function or zpk representations,
+                        in continuous or discrete time.
                     </para>
                 </listitem>
             </varlistentry>
@@ -83,7 +81,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
@@ -122,5 +120,16 @@ plot2d(real(rf)',imag(rf)')
                 <link linkend="logspace">logspace</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>handling zpk representation</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

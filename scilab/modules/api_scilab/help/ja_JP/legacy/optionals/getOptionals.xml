@@ -14,7 +14,7 @@
                 <term>_pvCtx</term>
                 <listitem>
                     <para>
-                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.                        
+                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
                     </para>
                 </listitem>
             </varlistentry>
@@ -48,7 +48,7 @@
             その次元を取得します.
         </para>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 #include "api_scilab.h"
 #include "sciprint.h"
 #include "sciprint.h"
@@ -114,7 +114,7 @@ int sci_use_optional(char * fname)
     <refsection>
         <title>Scilab テストスクリプト</title>
         <programlisting role="code_scilab">
-            <![CDATA[ 
+            <![CDATA[
 use_optional();
 use_optional(name = "M. Puffin");
 use_optional(age = 25, name = "M. Puffin");

@@ -24,9 +24,6 @@ TCLSCI_C_SOURCES = \
 TCLSCI_CPP_SOURCES = \
     src/cpp/ScilabEval.cpp
 
-GATEWAY_CPP_SOURCES = \
-	sci_gateway/cpp/tclsci_gw.cpp
-
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_opentk.c \
     sci_gateway/c/sci_TCL_SetVar.c \
@@ -46,7 +43,6 @@ else
 
 TCLSCI_C_SOURCES =
 TCLSCI_CPP_SOURCES = src/notclsci/notclsci.cpp
-GATEWAY_CPP_SOURCES =
 GATEWAY_C_SOURCES =
 
 endif
@@ -96,7 +92,7 @@ libscitclsci_disable_la_CPPFLAGS = \
     $(AM_CPPFLAGS)
 
 libscitclsci_algo_la_SOURCES = $(TCLSCI_CPP_SOURCES) $(TCLSCI_C_SOURCES)
-libscitclsci_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscitclsci_la_SOURCES = $(GATEWAY_C_SOURCES)
 libscitclsci_algo_la_CPPFLAGS = $(libscitclsci_la_CPPFLAGS)
 
 TCLSCI_DISABLE_CPP_SOURCES = src/notclsci/notclsci.cpp

@@ -48,37 +48,32 @@ int createXMLObjectAtPos(int type, int pos, int id, void* pvApiCtx)
     switch (type)
     {
         case XMLDOCUMENT:
-            ;
             fields = _XMLDoc;
             break;
         case XMLELEMENT:
-            ;
             fields = _XMLElem;
             break;
         case XMLATTRIBUTE:
-            ;
             fields = _XMLAttr;
             break;
         case XMLNAMESPACE:
-            ;
             fields = _XMLNs;
             break;
         case XMLLIST:
-            ;
             fields = _XMLList;
             break;
         case XMLNOTHANDLED:
-            ;
             fields = _XMLNotHandled;
             break;
         case XMLSET:
-            ;
             fields = _XMLSet;
             break;
         case XMLVALID:
-            ;
             fields = _XMLValid;
             break;
+        default:
+            Scierror(999, _("Unknown tag.\n"));
+            return 0;
     }
 
     err = createMList(pvApiCtx, pos, 2, &mlistaddr);
@@ -121,37 +116,32 @@ int createXMLObjectAtPosInList(int *list, int stackPos, int type, int pos, int i
     switch (type)
     {
         case XMLDOCUMENT:
-            ;
             fields = _XMLDoc;
             break;
         case XMLELEMENT:
-            ;
             fields = _XMLElem;
             break;
         case XMLATTRIBUTE:
-            ;
             fields = _XMLAttr;
             break;
         case XMLNAMESPACE:
-            ;
             fields = _XMLNs;
             break;
         case XMLLIST:
-            ;
             fields = _XMLList;
             break;
         case XMLNOTHANDLED:
-            ;
             fields = _XMLNotHandled;
             break;
         case XMLSET:
-            ;
             fields = _XMLSet;
             break;
         case XMLVALID:
-            ;
             fields = _XMLValid;
             break;
+        default:
+            Scierror(999, _("Unknown tag.\n"));
+            return 0;
     }
 
     err = createMatrixOfStringInList(pvApiCtx, stackPos, mlistaddr, 1, 1, 2, fields);

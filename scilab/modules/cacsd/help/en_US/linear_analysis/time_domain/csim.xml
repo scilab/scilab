@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ *  Copyright (C) 1996 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -45,8 +45,9 @@
                 <term>sl</term>
                 <listitem>
                     <para>
-                        <literal>syslin</literal> list (SIMO linear system)
-                        in continuous time.
+                        A SISO or SIMO linear dynamical system, in state
+                        space, transfer function or zpk representations,
+                        in continuous  time.
                     </para>
                 </listitem>
             </varlistentry>
@@ -78,7 +79,7 @@
         <title>Description</title>
         <para>
             simulation of the controlled linear system <literal>sl</literal>.
-            <literal>sl</literal> is assumed to be a continuous-time system 
+            <literal>sl</literal> is assumed to be a continuous-time system
             represented by a <literal>syslin</literal> list.
         </para>
         <para>
@@ -105,7 +106,7 @@
             ignored.
         </para>
         <para>
-            4. the string <literal>"step"</literal> for step response calculation 
+            4. the string <literal>"step"</literal> for step response calculation
             (here <literal>sl</literal>  must have a single input and
             <literal>x0=0</literal>)
         </para>
@@ -132,7 +133,7 @@ plot2d([t',t'],[(csim('step',t,tf2ss(s)*w))',0*t'])
             t=0:0.05:5;
             plot2d([t',t'],[(csim('step',t,tf2ss(s)*w))',0*t'])
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 rand('seed',0);
@@ -181,7 +182,7 @@ plot2d([t',t'],[(csim('impulse',t,tf2ss(1/s)*w))',0*t'])
             w('A')=w('A')-2*eye();
             t=0:0.05:5;
             plot2d([t',t'],[(csim('impulse',t,tf2ss(1/s)*w))',0*t'])
-            
+
         </scilab:image>
         <programlisting role="example"><![CDATA[
 s=poly(0,'s');
@@ -229,4 +230,16 @@ clf();plot2d([t',t'],[(csim(timefun,t,w))',0*t'])
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>handling zpk representation</para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+
 </refentry>

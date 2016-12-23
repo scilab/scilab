@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F. Delebecque
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -60,7 +60,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>h_inf</literal> computes H-infinity optimal controller for the 
+            <literal>h_inf</literal> computes H-infinity optimal controller for the
             continuous-time plant <literal>P</literal>.
         </para>
         <para>
@@ -68,7 +68,7 @@
             the 2-vector <literal>r</literal> which is the size of the <literal>22</literal> part of <literal>P</literal>.
         </para>
         <para>
-            <literal>P</literal> is given in state-space 
+            <literal>P</literal> is given in state-space
             e.g. <literal>P=syslin('c',A,B,C,D)</literal> with <literal>A,B,C,D</literal> = constant matrices
             or <literal>P=syslin('c',H)</literal> with <literal>H</literal> a transfer matrix.
         </para>
@@ -101,7 +101,7 @@
             after <literal>nmax</literal> iterations.
         </para>
         <para>
-            Algorithm is adapted from Safonov-Limebeer. Note that <literal>P</literal> is assumed to be 
+            Algorithm is adapted from Safonov-Limebeer. Note that <literal>P</literal> is assumed to be
             a continuous-time plant.
         </para>
     </refsection>

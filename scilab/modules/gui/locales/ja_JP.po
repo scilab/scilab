@@ -8,28 +8,24 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:09+0000\n"
+"PO-Revision-Date: 2016-10-19 13:02+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 "X-Poedit-Country: JAPAN\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
+msgid "%s: Figure number must be given when not in '%s' mode.\n"
+msgstr "%s: '%s'モードでない場合, 図番号を指定する必要があります.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: 引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: メモリ確保エラー.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: メモリ不足です.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -38,24 +34,6 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定し�
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 実数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %d 以上の値を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列または実数を指定してください.\n"
-
-#, c-format
-msgid "%s: Function not available in NWNI mode.\n"
-msgstr "%s: NWNIモードでは機能が利用できません.\n"
-
-#, c-format
-msgid "%s: Figure number must be given when not in '%s' mode.\n"
-msgstr "%s: '%s'モードでない場合, 図番号を指定する必要があります.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
@@ -92,6 +70,10 @@ msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数値を指定してください.\n"
 
 #, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: メモリ不足です.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさに誤りがあります: 文字列を指定してください.\n"
 
@@ -120,6 +102,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
@@ -257,30 +243,6 @@ msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr "%s: 'Uicontrol'ハンドルを作成できませんでした.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 出力引数の数が間違っています: %d 個または%d 個の引数を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%dの大きさが間違っています:  1 x %d 実数行ベクトルを指定してく"
-"ださい.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実数または文字列を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 1 x %d 実数行ベクトルを指定してくださ"
-"い.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルを指定してくださ"
@@ -303,6 +265,11 @@ msgstr ""
 "%s: 入力引数 #%d の型が間違っています: '%s'ハンドルを指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数または文字列を指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 "%s: 入力引数 #%dの大きさが間違っています: '%s'ハンドルを指定してください.\n"
@@ -316,25 +283,9 @@ msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
 msgstr "%s: 入力引数が間違っています: '%s','%s'または'%s'を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実数または複素ベクトルを指定してくださ"
-"い.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 文字列のベクトルを指定してください.\n"
-
-msgid "Scilab Choices Request"
-msgstr "Scilab選択リクエスト"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 文字列のベクトルを指定してくださ"
-"い.\n"
 
 #
 # File: sci_gateway/c/sci_x_choose.c, line: 63
@@ -342,31 +293,19 @@ msgstr ""
 msgid "Scilab Choose Message"
 msgstr "Scilabメッセージ選択"
 
-msgid "Scilab Input Value Request"
-msgstr "Scilab値入力リクエスト"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Scilab複数値リクエスト"
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d 以上の値を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: It must have same dimensions as "
-"argument #%d.\n"
+msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 引数 #%d と同じ次元で指定してくだ"
-"さい.\n"
+"%s: 入力引数 #%d の型が間違っています: 文字列または実数を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%dの大きさが間違っています: 文字列の %d x %d 行列を指定してくだ"
-"さい.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgid "%s: Function not available in NWNI mode.\n"
+msgstr "%s: NWNIモードでは機能が利用できません.\n"
 
 #, c-format
 msgid ""
@@ -433,6 +372,10 @@ msgstr "%s: 出力引数 #%d を作成できませんでした.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: ハンドルを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Invalid value for datatip index %d.\n"
+msgstr "%s: 親ノードが無効です.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -601,6 +544,25 @@ msgstr ""
 "ください.\n"
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d 個または%d 個の引数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s: 入力引数 #%dの大きさが間違っています:  1 x %d 実数行ベクトルを指定してく"
+"ださい.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 1 x %d 実数行ベクトルを指定してくださ"
+"い.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
@@ -613,6 +575,48 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr "%s: 引数 #%d の型が間違っています: 論理値行列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数または複素ベクトルを指定してくださ"
+"い.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Scilab選択リクエスト"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 文字列のベクトルを指定してくださ"
+"い.\n"
+
+msgid "Scilab Input Value Request"
+msgstr "Scilab値入力リクエスト"
+
+msgid "Scilab Multiple Values Request"
+msgstr "Scilab複数値リクエスト"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: It must have same dimensions as "
+"argument #%d.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 引数 #%d と同じ次元で指定してくだ"
+"さい.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
+msgstr ""
+"%s: 入力引数 #%dの大きさが間違っています: 文字列の %d x %d 行列を指定してくだ"
+"さい.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -821,6 +825,11 @@ msgid ""
 msgstr ""
 "警告: '%s' 'Value' プロパティは整数である必要があり, 値は丸められます.\n"
 
+#
+# File: modules/gui/src/cpp/SetUicontrolValue.cpp, line: 140
+msgid "(Max - Min) must be greater than 1 to allow the multiple selection.\n"
+msgstr ""
+
 #, c-format
 msgid "'%s' value must be between 0 and %d.\n"
 msgstr "'%s'の値を 0 および %d の間で指定してください.\n"
@@ -905,8 +914,8 @@ msgstr "ズーム(&Z)"
 msgid "&Original View"
 msgstr "オリジナルビュー (&O)"
 
-msgid "Fit zoom to data"
-msgstr "データに合わせてズーム"
+msgid "Reframe to contents"
+msgstr ""
 
 msgid "2D/3D &Rotation"
 msgstr "2D/3D回転(&R)"
@@ -1110,9 +1119,6 @@ msgstr "コマンドヒストリ (&C)"
 msgid "&File Browser"
 msgstr "ファイルブラウザ (&F)"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 121
-# File: modules/gui/src/gui_fake_xml.c, line: 169
 msgid "&News feed"
 msgstr ""
 
@@ -1523,11 +1529,6 @@ msgstr "SciNotes互換"
 
 msgid "Preview"
 msgstr "プレビュー"
-
-#
-# File: macros/about.sci, line: 20
-msgid "Ok"
-msgstr "OK"
 
 msgid "Loading help browser..."
 msgstr "ヘルプブラウザをロード中..."
@@ -2037,9 +2038,8 @@ msgstr "マークの大きさ"
 msgid "Mark Style"
 msgstr "マークのスタイル"
 
-#, fuzzy
 msgid "Components display"
-msgstr "3要素"
+msgstr ""
 
 msgid "Data Properties"
 msgstr "データプロパティ"
@@ -2371,9 +2371,8 @@ msgstr "PNG画像ファイル"
 msgid "All RTF (Rich Text Format) files"
 msgstr "RTF (Rich Text Format)ファイル"
 
-#, fuzzy
 msgid "All HTML files"
-msgstr "全てのファイル"
+msgstr ""
 
 #, c-format
 msgid "All %s files"
@@ -2410,385 +2409,250 @@ msgstr "%s: 'STANDARD'モードでのみ利用可能です.\n"
 msgid "Error. A signal has been caught.\n"
 msgstr "エラー. シグナルを検知しました.\n"
 
-#, fuzzy
 msgid "Control Plot3d"
-msgstr "操作"
+msgstr ""
 
-#, fuzzy
 msgid "Control Panel"
-msgstr "操作"
+msgstr ""
 
-#, fuzzy
 msgid "Rotation angle"
-msgstr "回転角"
+msgstr ""
 
-#, fuzzy
 msgid "Colormap"
-msgstr "色"
+msgstr ""
 
-#, fuzzy
 msgid "Show / Hide"
-msgstr "ツールバーの表示/非表示(&T)"
+msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 6
 msgid "messagebox"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 7
 msgid "x_choose"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 8
 msgid "x_dialog"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 9
 msgid "x_mdialog"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 8
 msgid "Simple example of message"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 11
 msgid "Button 1Button 2"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 14
 msgid "Button 1 clicked."
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 16
 msgid "Button 2 clicked"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_choose.sce, line: 10
 msgid ""
 "Message: Selection (double-click on an item --> returns the item number)"
 msgstr ""
 
-#, fuzzy
 msgid "Item selected: "
-msgstr "テキストが選択されていません"
+msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_dialog.sce, line: 8
 msgid "Message: enter a value"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_dialog.sce, line: 10
 msgid "Value entered: "
 msgstr ""
 
-#, fuzzy
 msgid "Message"
-msgstr "情報メッセージ"
+msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 10
 msgid "first row"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 13
 msgid "Values entered: "
 msgstr ""
 
-#, fuzzy
 msgid "row"
-msgstr "矢印"
+msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 20
 msgid "col"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 22
 msgid "Matrix to edit"
 msgstr ""
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 24
 msgid "Matrix entered: "
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 12
 msgid "GUI"
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 14
 msgid "Dialogs"
 msgstr ""
 
-#, fuzzy
 msgid "Uicontrols 1"
-msgstr "操作"
+msgstr ""
 
-#, fuzzy
 msgid "Uicontrols 2"
-msgstr "操作"
+msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 21
 msgid "Uicontrols with LaTeX/MathML"
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 24
 msgid "Show images with uicontrols "
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 27
-# File: modules/gui/demos/uicontrol_listbox_popupmenu.dem.sce, line: 18
 msgid "Listboxes and Popupmenus"
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 30
 msgid "Uicontrols rendering"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 13
-# File: modules/gui/demos/uicontrol.dem.sce, line: 93
-# File: modules/gui/demos/uicontrol.dem.sce, line: 193
+msgid "Uicontrols layout"
+msgstr ""
+
+msgid "Uicontrols messagebox-like"
+msgstr ""
+
 msgid "<Enter color name here>"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 14
-# File: modules/gui/demos/uicontrol.dem.sce, line: 23
 msgid "Error"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 14
 msgid "Please enter a color name first."
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 23
 msgid "Unknown color."
 msgstr ""
 
-#, fuzzy
 msgid "No color selected."
-msgstr "テキストが選択されていません"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 38
-# File: modules/gui/demos/uicontrol.dem.sce, line: 49
 msgid "Color selection"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 42
 #, c-format
 msgid "Selected colors are: %s."
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 44
 #, c-format
 msgid "Deleted colors are: %s."
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 53
 #, c-format
 msgid "You clicked on menu '%s'."
 msgstr ""
 
-#
-# File: scilab_fake_localization_file.c, line: 56
-#, fuzzy
 msgid "Selected menu"
-msgstr "全て選択"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 59
 msgid "checked"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 61
 msgid "unchecked"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 63
 #, c-format
 msgid "Menu '%s' is %s."
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 64
 msgid "Menu status"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 70
 msgid "Slider value: "
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 78
 #, c-format
 msgid "You selected '%s'."
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 79
 msgid "Popupmenu selection"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 100
 msgid "Do you really want to quit Scilab?"
 msgstr ""
 
-#, fuzzy
 msgid "Quit Scilab"
-msgstr "Scilabについて..."
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 108
 msgid "Uicontrols demo"
 msgstr ""
 
-#
-# File: scilab_fake_localization_file.c, line: 69
-#, fuzzy
 msgid "Application"
-msgstr "アプリケーション(&A)"
+msgstr ""
 
-#, fuzzy
 msgid "Close figure"
-msgstr "図をクリア(&C)"
+msgstr ""
 
-#, fuzzy
 msgid "Scilab Graphics"
-msgstr "Scilabグラフィックエディタ - GED"
+msgstr ""
 
-#, fuzzy
 msgid "Launch plot3d"
-msgstr "SciNotesを起動"
+msgstr ""
 
-#, fuzzy
 msgid "Launch plot2d"
-msgstr "SciNotesを起動"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 128
 msgid "Menu"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 129
 msgid "Sub-menu 1"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 130
-# File: modules/gui/demos/uicontrol.dem.sce, line: 133
 msgid "Sub-menu 2"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 131
 msgid "Sub-menu 2-1"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 132
 msgid "Sub-menu 2-2"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 140
 msgid "item1|item2|item3|item4"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 146
 msgid "Pop-up menu"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 157
 msgid "Slider demo"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 187
 msgid "Colors list edition"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 200
 msgid "Add color in listbox"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 206
 msgid "Delete color in listbox"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "blue"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "green"
 msgstr ""
 
-#, fuzzy
 msgid "red"
-msgstr "色付き"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "yellow"
 msgstr ""
 
-#, fuzzy
 msgid "Display selection"
-msgstr "関数名を表示"
+msgstr ""
 
-#, fuzzy
 msgid "Delete selection"
-msgstr "選択したオブジェクトを削除"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 237
 msgid "Default"
 msgstr ""
 
-#
-# File: scilab_fake_localization_file.c, line: 75
-#, fuzzy
 msgid "Quit demonstration"
-msgstr "Scilab デモ(&D)"
+msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol_LaTeX.dem.sce, line: 16
 msgid "Uicontrols demo with LaTeX"
+msgstr ""
+
+msgid "Please fill the table"
 msgstr ""
 
 #, c-format
@@ -3026,27 +2890,10 @@ msgstr "%s: %s の型が間違っています: 実数を指定してください
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: %sの大きさが間違っています: 実数を指定してください.\n"
 
-#~ msgid "Cancel"
-#~ msgstr "キャンセル"
+#~ msgid "Fit zoom to data"
+#~ msgstr "データに合わせてズーム"
 
 #
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 76
-#~ msgid "Close"
-#~ msgstr "閉じる"
-
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 73
-#~ msgid "File"
-#~ msgstr "ファイル"
-
-#~ msgid "Background Color"
-#~ msgstr "背景色"
-
-#~ msgid "Title"
-#~ msgstr "タイトル"
-
-#~ msgid "Yes"
-#~ msgstr "はい"
-
-#~ msgid "No"
-#~ msgstr "いいえ"
+# File: macros/about.sci, line: 20
+#~ msgid "Ok"
+#~ msgstr "OK"

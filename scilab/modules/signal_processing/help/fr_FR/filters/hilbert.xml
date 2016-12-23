@@ -61,8 +61,8 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-//compare the discrete-time analytic signal imaginary part of the impulse real signal 
+        <programlisting role="example"><![CDATA[
+//compare the discrete-time analytic signal imaginary part of the impulse real signal
 // with the FIR approximation of the Hilbert transform filter
 m=25;
 n=2*m+1;

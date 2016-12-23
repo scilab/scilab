@@ -4,7 +4,7 @@
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - INRIA - Serge STEER
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -80,15 +80,15 @@
                     </para>
                     <itemizedlist>
                         <listitem>
-                            <literal>sz = size(x)</literal> returns a <literal>1</literal>-by-<literal>ndims(x)</literal> vector. Each entry gives the corresponding dimension value. 
+                            <literal>sz = size(x)</literal> returns a <literal>1</literal>-by-<literal>ndims(x)</literal> vector. Each entry gives the corresponding dimension value.
                         </listitem>
                         <listitem>
-                            <literal>[n1, n2, ...] = size(x)</literal>, the function returns in each argument the corresponding dimension value. 
+                            <literal>[n1, n2, ...] = size(x)</literal>, the function returns in each argument the corresponding dimension value.
                         </listitem>
                         <listitem>
-                            The syntax <literal>n = size(x, sel)</literal> 
-                            may be used to specify what dimension to get: 
-                            
+                            The syntax <literal>n = size(x, sel)</literal>
+                            may be used to specify what dimension to get:
+
                             <itemizedlist mark="dash"><listitem>
                                     Set <literal>sel</literal> to 1 or <literal>'r'</literal> to get the
                                     number of rows.
@@ -108,8 +108,8 @@
                                     the dimensions.
                                 </listitem>
                             </itemizedlist>
-                            
-                            
+
+
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -131,10 +131,10 @@
                         inputs] i.e. the dimension of the corresponding transfer matrix. The
                         syntax <literal>[nr, nc] = size(x)</literal> is also valid (with
                         <literal>(nr, nc) = (y(1), y(2))</literal>). If <literal>x</literal>
-                        is a linear system in state-space form, then <literal>[nr, nc, nx] = 
+                        is a linear system in state-space form, then <literal>[nr, nc, nx] =
                             size(x)
                         </literal>
-                        returns in addition the dimension <literal>nx</literal> of matrix 
+                        returns in addition the dimension <literal>nx</literal> of matrix
                         <literal>x</literal>.
                     </para>
                 </listitem>
@@ -146,12 +146,12 @@
         <programlisting role="example">
             [n, m] = size(rand(3, 2))
             [n, m] = size(['a', 'b'; 'c', 'd'])
-            
+
             x = ssrand(3, 2, 4);
             [ny, nu] = size(x)
             [ny, nu] = size(ss2tf(x))
             [ny, nu, nx] = size(x)
-            
+
             // Returns the number of rows
             n = size(rand(3, 2), "r")
             // Returns the number of columns

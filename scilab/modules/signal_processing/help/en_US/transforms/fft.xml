@@ -152,7 +152,7 @@
                                             </para>
                                         </listitem>
                                     </varlistentry>
-                                    
+
                                     <varlistentry>
                                         <term>multivariate</term>
                                         <listitem>
@@ -287,7 +287,7 @@ end
                             <term>unspecified</term> If the option is omitted the
                             fft algorithm automatically checks for exact symmetry.
                         </listitem>
-                        
+
                     </itemizedlist>
                 </listitem>
             </varlistentry>

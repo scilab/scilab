@@ -5,6 +5,10 @@
             <parameter name="uid" type="long"/>
             <parameter name="kind" type="int"/>
         </method>
+        <method name="update" returnType="void" modifier="static">
+            <parameter name="uid" type="long"/>
+            <parameter name="kind" type="int"/>
+        </method>
     </object>
 </package>
 

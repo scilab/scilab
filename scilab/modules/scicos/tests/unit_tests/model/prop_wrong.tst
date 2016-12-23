@@ -7,6 +7,7 @@
 //
 // <-- CLI SHELL MODE -->
 
+loadXcosLibs();
 scicos_log("TRACE");
 
 b = scicos_block();

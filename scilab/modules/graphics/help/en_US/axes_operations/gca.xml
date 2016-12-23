@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -41,7 +41,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 subplot(211)
 a=gca() //get the current axes
 a.box="off";
@@ -52,8 +52,8 @@ a=gca() //get the current axes
 a.box="off";
 a.x_location="middle";
 a.parent.background=4;
-delete(gca()) // delete the current axes    
-xdel(0) //delete a graphics window 
+delete(gca()) // delete the current axes
+xdel(0) //delete a graphics window
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

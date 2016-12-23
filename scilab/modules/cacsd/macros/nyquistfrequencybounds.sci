@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2011 - INRIA - Serge Steer
+// Copyright (C) 2011 - 2016 - INRIA - Serge Steer
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -21,15 +21,22 @@ function [fmin,fmax]=nyquistfrequencybounds(H,bounds)
     if or(bounds(2,:)<bounds(1,:)) then
         error(msprintf(_("%s: Wrong value for input argument #%d: second row must be greater than first one.\n"),fname,2))
     end
-    if and(typeof(H)<>["state-space" "rational"]) then
-        error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),fname,1))
+    if and(typeof(H)<>["state-space" "rational" "zpk"]) then
+        ierr=execstr("[fmin,fmax]=%"+overloadname(H)+"_nyquistfrequencybounds(H,bounds)","errcatch")
+        if ierr<>0 then
+            error(msprintf(gettext("%s: Wrong type for input argument: Linear dynamical system expected.\n"),"nyquistfrequencybounds",1))
+        end
+        return
     end
+
     if size(H,"*")<>1 then
         error(msprintf(_("Wrong type for argument #%d: SISO expected.\n"),fname,1))
     end
 
     if typeof(H)=="state-space" then
         H=ss2tf(H)
+    elseif typeof(H)=="zpk" then
+        H=zpk2tf(H)
     end
 
     dom=H.dt

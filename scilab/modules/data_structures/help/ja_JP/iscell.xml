@@ -48,7 +48,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 iscell(1)
 iscell(cell())
 c = cell(1,2);

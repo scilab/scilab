@@ -1,5 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ???? - 2016 - Serge Steer - INRIA 
+// Copyright (C) ???? - 2016 - INRIA - Serge Steer
+//
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -7,8 +9,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-
-
 function [y,x]=csim(u,dt,sl,x0,tol)
     //Syntax:
     //  [y [,x]]=csim(u,dt,sl,[x0])
@@ -45,10 +45,19 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     //
     if rhs<3 then error(39),end
     sltyp=typeof(sl)
-    if and(sltyp<>["state-space" "rational"]) then
-        error(msprintf(_("%s: Wrong type for input argument #%d: %s data structure expected.\n"),"csim",3,"syslin"))
+    if and(sltyp<>["state-space" "rational" "zpk"]) then
+        args=["u","dt","sl","x0","tol"];
+        ierr=execstr("[y,x]=%"+overloadname(sl)+"_csim("+strcat(args(1:rhs),",")+")","errcatch")
+        if ierr<>0 then
+            error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"csim",3))
+        end
+        return
     end
-    if sltyp=="rational" then sl=tf2ss(sl),end
+    if sltyp=="rational" then
+        sl=tf2ss(sl)
+    elseif sltyp=="zpk" then
+        sl=zpk2ss(sl),
+    end
     if sl.dt<>"c" then
         warning(msprintf(gettext("%s: Input argument #%d is assumed continuous time.\n"),"csim",1));
     end
@@ -57,6 +66,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     if degree(d)>0 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A proper system expected\n"),"csim",1));
     end
+    //[ma,mb]=size(b) replaced by  ma=size(a,1);mb=size(d,2);in case of no-state system
     ma=size(a,1);
     mb=size(d,2);
     //
@@ -66,7 +76,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     select type(u)
     case 10 then //input given by its type (step or impuls)
         if mb<>1 then
-          error(msprintf(gettext("%s: Wrong type for input argument #%d: A SIMO expected.\n"),"csim",1));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: A SIMO expected.\n"),"csim",1));
         end;
         if part(u,1)=="i" then
             //impulse response

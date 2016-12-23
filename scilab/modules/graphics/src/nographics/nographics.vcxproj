@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -171,7 +171,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="nographics.c" />
-    <ClCompile Include="nographics_gw.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nographics.rc" />
@@ -196,7 +195,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_graphics.h" />
     <ClInclude Include="..\..\includes\dynlib_graphics_gw.h" />
-    <ClInclude Include="..\..\includes\graphics_gw.hxx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

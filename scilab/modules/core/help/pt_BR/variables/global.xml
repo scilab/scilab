@@ -38,7 +38,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //primeiro: o ambiente de chamamento e uma função compartilham uma variável
 global a
 a=1

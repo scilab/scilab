@@ -55,7 +55,7 @@
                 <listitem>
                     <para>width of numbers = number of output characters used, all included: sign of
                       the mantissa, its digits, decimal separator, exponent symbol, sign and digits
-                      of the exponent. (default width = 10)</para>
+                      of the exponent. Default width = 10. Minimal width in "e" mode = 8.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

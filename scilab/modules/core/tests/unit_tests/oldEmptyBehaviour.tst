@@ -7,7 +7,7 @@
 
 // <-- CLI SHELL MODE -->
 //
-// <-- ENGLISH ONLY -->
+// <-- ENGLISH IMPOSED -->
 
 // Testing oldEmptyBehaviour default mode
 behaviour = oldEmptyBehaviour("query");

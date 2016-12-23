@@ -143,7 +143,7 @@
                     niveau supérieur. Il peut être nécéssaire d'imposer
                     les valeurs effectives des dimensions pour la
                     compilation séparée du super bloc (Génération de code,
-                    ...). 
+                    ...).
                 </para>
                 <para> Properties : Type 'vec' of size -1.</para>
             </listitem>
@@ -157,7 +157,7 @@
                     niveau supérieur. Il peut être nécéssaire d'imposer
                     une valeur effective du type pour la
                     compilation séparée du super bloc (Génération de code,
-                    ...). 
+                    ...).
                     ).
                 </para>
                 <para> Properties : Type 'vec' of size 1.</para>
@@ -231,8 +231,8 @@
     <refsection id="Example_IN_f">
         <title>Exemple</title>
         <para>
-            Dans l'exemple suivant le Super bloc créé est un modulateur d'amplitude. 
-            Le bloc IN_f est utilisé comme entrée de signal de modulation. 
+            Dans l'exemple suivant le Super bloc créé est un modulateur d'amplitude.
+            Le bloc IN_f est utilisé comme entrée de signal de modulation.
             Son type de données est défini par le type d'entrée du bloc de gain qui est un scalaire de type double.
         </para>
         <para>

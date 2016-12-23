@@ -40,7 +40,7 @@
                 <listitem>
                     <para>um argumento opcional do tipo real que fornece um fator de
                         escala para a exibição das cabeças das setas no esboço (o valor
-                        padrão é 1.0). 
+                        padrão é 1.0).
                     </para>
                 </listitem>
             </varlistentry>
@@ -49,7 +49,7 @@
                 <listitem>
                     <para>
                         um vetor <literal>rect=[xmin,ymin,xmax,ymax]</literal> que
-                        fornece as fronteiras da moldura gráfica a ser utilizada. 
+                        fornece as fronteiras da moldura gráfica a ser utilizada.
                     </para>
                 </listitem>
             </varlistentry>
@@ -58,7 +58,7 @@
                 <listitem>
                     <para>ccontrola a computação dos intervalos de coordenadas
                         verdadeiros a partir dos valores mínimos requeridos. O valor
-                        associado deve ser um inteiro no intervalo de 0 a 8. 
+                        associado deve ser um inteiro no intervalo de 0 a 8.
                     </para>
                 </listitem>
             </varlistentry>
@@ -98,7 +98,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 champ1(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
  ]]></programlisting>
     </refsection>

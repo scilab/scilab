@@ -797,21 +797,23 @@ int allocSingleString(void* _pvCtx, int _iVar, int _iLen, const char** _pstStrin
     types::InternalType** out = pGstr->m_pOut;
     types::String *pStr = NULL;
 
+    char* pstStrings;
 
-    char* pstStrings = new char[_iLen];
-
-    memset(pstStrings, ' ', _iLen);
     if (_pstStrings == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), "allocSingleString");
         return sciErr.iErr;
     }
+
+    pstStrings = new char[_iLen];
+    memset(pstStrings, ' ', _iLen);
     _pstStrings[0] = pstStrings;
 
     pStr = new types::String(pstStrings);
 
     if (pStr == NULL)
     {
+        delete[] pstStrings;
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), "allocSingleString");
         return sciErr.iErr;
     }

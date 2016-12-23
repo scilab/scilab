@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -162,294 +162,165 @@ msgstr ""
 msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
 msgstr ""
 
-# File: modules/signal_processing/demos/arma/arma1.dem.sce, line: 29
 msgid "Simulation of an ARMAX process:"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/arma/arma1.dem.sce, line: 45
 msgid "Identification ARX (least square):"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/arma/arma2.dem.sce, line: 20
 msgid "Simulation of an ARMAX process: "
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/arma/arma2.dem.sce, line: 26
 msgid "Identification ARX (least square): "
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/arma/arma3.dem.sce, line: 10
 msgid "Arma Spectral power estimation:"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/arma/arma3.dem.sce, line: 50
 msgid "Arma identification"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/arma/arma3.dem.sce, line: 50
 msgid "Theoretical value"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/arma/arma3.dem.sce, line: 50
 msgid "Using macro mese"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/arma/arma3.dem.sce, line: 51
 msgid "Spectral power"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/arma/arma3.dem.sce, line: 51
-# File: modules/signal_processing/demos/remezfilt.dem.sce, line: 49
-# File: modules/signal_processing/demos/remezfilt.dem.sce, line: 58
-# File: modules/signal_processing/demos/spect.dem.sce, line: 45
-# File: modules/signal_processing/demos/spect.dem.sce, line: 58
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 21
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 36
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 52
 msgid "frequency"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/arma/arma3.dem.sce, line: 51
 msgid "spectral estimate"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/bode.dem.sce, line: 30
-# File: modules/signal_processing/demos/bode.dem.sce, line: 40
-# File: modules/signal_processing/demos/bode.dem.sce, line: 47
-# File: modules/signal_processing/demos/iirfilt.dem.sce, line: 22
-# File: modules/signal_processing/demos/remezfilt.dem.sce, line: 30
-# File: modules/signal_processing/demos/remezfilt.dem.sce, line: 51
-# File: modules/signal_processing/demos/spect.dem.sce, line: 46
-# File: modules/signal_processing/demos/spect.dem.sce, line: 59
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 26
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 41
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 57
 msgid "Press Return to continue ... \n"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/conv.dem.sce, line: 30
 msgid "filtered signal"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/conv.dem.sce, line: 30
 msgid "given noisy signal"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/conv.dem.sce, line: 31
 msgid "Signal"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/conv.dem.sce, line: 38
 msgid "2 points convolution"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/conv.dem.sce, line: 38
 msgid "3 points convolution"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/conv.dem.sce, line: 39
 msgid "Signal derivative estimate"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/iir.dem.sce, line: 15
 msgid "Choose filter type and parameters"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/iir.dem.sce, line: 25
 msgid "Discrete IIR filter "
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/iirfilt.dem.sce, line: 21
 msgid "Discrete IIR filter: low pass  fr < 0.2"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/iirfilt.dem.sce, line: 32
 msgid "Discrete IIR filter: band pass 0.15 < fr < 0.25"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/remezfilt.dem.sce, line: 23
 msgid "Minimax FIR filter"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/remezfilt.dem.sce, line: 24
 msgid "low pass  cut-off in [.23,.27]"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/remezfilt.dem.sce, line: 25
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 24
 msgid "length 33"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/remezfilt.dem.sce, line: 49
 msgid "Remez Triangular filter"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/remezfilt.dem.sce, line: 58
 msgid "magnitude error"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 10
 msgid "Signal Processing"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 12
 msgid "Spectral Estimation"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 13
 msgid "IIR filter design"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 14
 msgid "Minimax FIR filter design"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 15
 msgid "Discrete IIR filter"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 16
 msgid "Wiener filter"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 17
 msgid "Bode plots"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 18
 msgid "Window FIR filters"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 19
 msgid "1-D convolution"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 20
 msgid "2-D convolution"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 21
 msgid "Arma simulation and identification"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 22
 msgid "Arma, bidimensional version"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/signal_processing.dem.gateway.sce, line: 23
 msgid "Arma, Spectral power estimation"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/spect.dem.sce, line: 45
 msgid "Data spectrum"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/spect.dem.sce, line: 45
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 21
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 36
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 52
 msgid "magnitude"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/spect.dem.sce, line: 58
 msgid "Spectral estimation"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/spect.dem.sce, line: 58
 msgid "spectral power"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/wiener.dem.sce, line: 94
 msgid "estimates xf"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/wiener.dem.sce, line: 94
 msgid "estimates xs"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/wiener.dem.sce, line: 94
 msgid "real state"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 22
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 37
 msgid "Windowed FIR Low pass Filter"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 23
 msgid "Kaiser window, cut-off: 0.2"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 38
 msgid "Hamming window, cut-off: 0.2, 0.3"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 39
 msgid "length 127"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 53
 msgid "Windowed FIR Band pass Filter"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 54
 msgid "Chebyshev window, cut-off: 0.15, 0.35"
 msgstr ""
 
-#
-# File: modules/signal_processing/demos/winfilt.dem.sce, line: 55
 msgid "length 55"
 msgstr ""
 
@@ -533,6 +404,12 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d lub %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwana tablica liczb "
+"zmiennoprzecinkowych.\n"
 
 #, c-format
 msgid ""
@@ -638,6 +515,18 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Column expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano "
+"wielomiany.\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
+msgstr ""
+"%s: Niekompatybilny argument wejściowy nr %d oraz nr %d: Oczekiwana at sama "
+"liczba elementów.\n"
 
 #, c-format
 msgid ""

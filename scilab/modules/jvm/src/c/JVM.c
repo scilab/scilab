@@ -70,6 +70,7 @@ JavaVM *getScilabJavaVM(void)
             /* We load symbols of the current jvm already used */
             if (!LoadFunctionsJVM(NULL))
             {
+                FREE(vmBuf);
                 return NULL;
             }
         }

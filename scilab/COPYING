@@ -1,13 +1,22 @@
-
 Scilab is a free software, and starting with version 6.0.0 beta 1, is 
 released under the terms of the GNU General Public License (GPL) v2.0,
 which you can find below.
 
 Prior to this version, Scilab was licensed under the terms of the CeCILL v2.1,
-and continues to be available under such terms, which you also can find below.
+and continues to be available under such terms, which you also can find below. 
+Pursuant to article 5.3.4 of the CeCILL v2.1, Scilab's entire code is now 
+distributed under the terms of the GNU GPL 2.0.
 
-Pursuant to article 3.5.4 of the CeCILL v2.1, Scilab's entire code is 
-now distributed under the terms of the GNU GPL 2.0.
+If during the software installation steps, you opt to select the Intel MKL 
+library and/or the FFTW3 library provided in the Intel MKL library, the 
+installation and use of the Intel MKL library is subject to the Intel EULA [1]
+to which you then agree to be bound.The installation of Scilab also installs the
+Java SE Runtime Environment (JRE) which is bound to the license agreement [2].
+By installing Scilab, you agree to be bound by this Java SE license agreement 
+for the installation and use of the JRE on your computer.
+
+[1]: https://software.intel.com/en-us/articles/intel-software-development-products-license-agreement
+[2]: http://www.oracle.com/technetwork/java/javase/terms/license/index.html
 
 Some files in Scilab are licensed under a BSD License, which you can find
 in the COPYING-BSD file.
@@ -385,7 +394,7 @@ the two main principles guiding its drafting:
 The authors of the CeCILL (for Ce[a] C[nrs] I[nria] L[ogiciel] L[ibre]) 
 license are: 
 
-Commissariat à l'énergie atomique et aux énergies alternatives - CEA, a
+Commissariat a l'energie atomique et aux energies alternatives - CEA, a
 public scientific, technical and industrial research establishment,
 having its principal place of business at 25 rue Leblanc, immeuble Le
 Ponant D, 75015 Paris, France.
@@ -706,7 +715,7 @@ The Licensee expressly undertakes:
 
 The Licensee undertakes not to directly or indirectly infringe the
 intellectual property rights on the Software of the Holder and/or
-Contributors, and to take, where applicable, vis-à-vis its staff, any
+Contributors, and to take, where applicable, vis-a-vis its staff, any
 and all measures required to ensure respect of said intellectual
 property rights of the Holder and/or Contributors.
 

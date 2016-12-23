@@ -52,7 +52,7 @@
         <para>
             <literal>error(message,n)</literal> imprime o string contido em
             <literal>message</literal>. O número associado à mensagem de erro é dado
-            por n . Este número deve ser maior que 10000. 
+            por n . Este número deve ser maior que 10000.
         </para>
         <para>
             <literal>error(n)</literal> imprime a mensagem de erro predefinda

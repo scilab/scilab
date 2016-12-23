@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -38,29 +38,29 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimsimplex_destroy</literal> function destroys the <literal>x</literal> 
-            and <literal>fv</literal> fields of a simplex object, i.e. the coordinates of the 
-            vertices and the function values. 
+            The <literal>optimsimplex_destroy</literal> function destroys the <literal>x</literal>
+            and <literal>fv</literal> fields of a simplex object, i.e. the coordinates of the
+            vertices and the function values.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     function y = rosenbrock(x)
         y = 100 * (x(2) - x(1)^2)^2 + (1 - x(1))^2;
      endfunction
-     
+
      coords = [
         0.  0.
         1.  0.
         0.  1.
      ];
-     
+
      s1 = optimsimplex_new ( coords , rosenbrock );
     res = optimsimplex_getall ( s1 );
     disp(res)
-    
+
     s1 = optimsimplex_destroy(s1);
     disp(s1)
  ]]>

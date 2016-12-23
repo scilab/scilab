@@ -50,7 +50,7 @@
             In the first and default way, the arguments are passed by value.
             With the following syntax:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 foo(A,1+2)
  ]]></programlisting>
         <para>
@@ -62,7 +62,7 @@ foo(A,1+2)
             In the second way arguments may be passed be reference if there are "named arguments"
             (no copy of the variable value is done). With the following syntax:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 foo(A,1+2)
  ]]></programlisting>
         <para>

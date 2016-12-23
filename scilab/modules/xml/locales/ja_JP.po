@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -283,6 +283,10 @@ msgstr ""
 "ファイル %s は有効ではありません:\n"
 "%s\n"
 
+#, fuzzy, c-format
+msgid "%s: Cannot write the file.\n"
+msgstr "%s: ファイルに書き込めません: %s\n"
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"
@@ -319,6 +323,9 @@ msgstr "%s: 入力引数 #%i の型が間違っています: double を指定し
 #, c-format
 msgid "%s: Error in getting rhs argument.\n"
 msgstr "%s: 右辺引数を取得する際にエラーが発生しました.\n"
+
+msgid "Unknown tag.\n"
+msgstr ""
 
 msgid " at line "
 msgstr " 行 "
@@ -378,11 +385,8 @@ msgstr "%s: ルートのxmlが有効ではありません.\n"
 msgid "%s: Field %s is not modifiable: %s\n"
 msgstr "%s: フィールド %s の変更権限がありません: %s\n"
 
-# File: modules/xml/demos/xml.dem.gateway.sce, line: 10
 msgid "XML"
 msgstr ""
 
-#
-# File: modules/xml/demos/xml.dem.gateway.sce, line: 12
 msgid "CML read"
 msgstr ""

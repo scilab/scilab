@@ -16,19 +16,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getfield" xml:lang="pt">
     <refnamediv>
         <refname>getfield</refname>
-        <refpurpose>extração de campos de listas</refpurpose>
+        <refpurpose>extraÃ§Ã£o de campos de listas</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>[x,...]=getfield(i,l)</synopsis>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>[x,...] = getfield(i,l)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>matriz de qualquer tipo possível </para>
+                    <para>matriz de qualquer tipo possÃ­vel </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -40,32 +40,42 @@
             <varlistentry>
                 <term>i</term>
                 <listitem>
-                    <para>índice de campo, ver "extraction" para mais detalhes.</para>
+                    <para>Ã­ndice de campo, ver "extraction" para mais detalhes.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Esta função é equivalente à sintaxe <literal>[x,...]=l(i)</literal>
-            para extração de campos com a única diferença de que também se aplica a
+            Esta funÃ§Ã£o Ã© equivalente Ã  sintaxe <literal>[x,...]=l(i)</literal>
+            para extraÃ§Ã£o de campos com a Ãºnica diferenÃ§a de que tambÃ©m se aplica a
             objetos <literal>mlist</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 l=list(1,'qwerw',%s)
 [a,b]=getfield([3 2],l)
 
-a=hypermat([2,2,2],rand(1:2^3));// hipermatrizes são codificadas usando-se mlists
-a(1) // a entrada a(1,1,1)
-getfield(1,a) // o primeiro campo do mlist
+// Rationals are encoded as t-lists:
+r = [%z/(1-%z) %z^2/(1+%z)]
+type(r)
+[num, den] = getfield([2 3],r)
+
+// Structures arrays are encoded as M-lists:
+s.r = %pi
+s.b = %t
+s.t = "Scilab"
+s(2).t = "Basile"
+getfield(2,s)==size(s)
+getfield(1,s)(3:5)==fieldnames(s)'
+[r,b,t] = getfield([3 4 5],s)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="extraction">extraction</link>

@@ -18,7 +18,7 @@
     </refsection>
     <refsection>
         <title>Example</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Create a context menu
 hMenu = uicontextmenu();
 // Create sub menus

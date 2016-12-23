@@ -77,8 +77,9 @@ AC_MSG_CHECKING([use of the sharpsign in CPP])
 AC_COMPILE_IFELSE(
 	[ 
 		AC_LANG_PROGRAM(
-			[[#define C2F(name) name##_]], 
-			[[C2F(toto)()]]
+			[[#define C2F(name) name##_
+extern int C2F(toto)(void);]],
+			[[C2F(toto)();]]
 		)
 	],
 	[AC_MSG_RESULT(yes)

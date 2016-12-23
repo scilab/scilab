@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -76,7 +76,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 y1=[1;2;3]; deff("yp=a_function(k,y)","yp=A*y+B*u(k)")
 A=diag([0.2,0.5,0.9]); B=[1;1;1];u=1:10;n=5;
 y=ode("discrete",y1,1,1:n,a_function);

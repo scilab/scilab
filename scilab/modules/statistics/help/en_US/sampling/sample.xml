@@ -66,14 +66,14 @@
             extracted with replacement, from <literal>X</literal>.
         </para>
         <para>
-            
+
             <literal>s = sample(n, X, 'r')</literal>   (or,   equivalently,  <literal>s = sample(n, X, 1)</literal>)
             returns  a matrix  of size  <literal>size(X,'r') * n</literal>.  It  contains a
             random sample of <literal>n</literal>  rows, extracted with replacement, from
             the rows of <literal>X</literal>.
         </para>
         <para>
-            
+
             <literal>s = sample(n, X, 'c')</literal>   (or,   equivalently,  <literal>s = sample(n, X, 2)</literal>)
             returns  a matrix  of size  <literal>n * size(X, 'c')</literal>.  It  contains a
             random  sample of <literal>n</literal> columns,  extracted  with replacement
@@ -83,7 +83,7 @@
     <refsection>
         <title> Random number generator </title>
         <para>
-             <literal>sample</literal> is based on <link linkend="grand">grand</link> for generating the random samples. Use <literal>grand("setsd", seed)</literal> to change the seed for <literal>samplef</literal>.
+            <literal>sample</literal> is based on <link linkend="grand">grand</link> for generating the random samples. Use <literal>grand("setsd", seed)</literal> to change the seed for <literal>samplef</literal>.
         </para>
         <programlisting role="example"><![CDATA[
             seed = getdate("s");

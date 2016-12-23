@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -54,13 +54,13 @@
         <para>
             calculates the time response of the discrete time system
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 x[t+1] = Ax[t] + Bu[t].
  ]]></programlisting>
         <para>
             The inputs <literal>ui</literal>'s are the columns of the <literal>U</literal> matrix
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 U=[u0,u1,...,un];
  ]]></programlisting>
         <para>
@@ -69,8 +69,8 @@ U=[u0,u1,...,un];
         <para>
             <literal>X</literal> is the matrix of outputs (same number of columns as <literal>U</literal>).
         </para>
-        <programlisting role=""><![CDATA[ 
-X=[x0,x1,x2,...,xn] 
+        <programlisting role=""><![CDATA[
+X=[x0,x1,x2,...,xn]
  ]]></programlisting>
         <para>
             <literal>xf</literal> is the vector of final state <literal>xf=X[n+1]</literal>
@@ -78,7 +78,7 @@ X=[x0,x1,x2,...,xn]
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=eye(2,2);B=[1;1];
 x0=[-1;-2];
 u=[1,2,3,4,5];

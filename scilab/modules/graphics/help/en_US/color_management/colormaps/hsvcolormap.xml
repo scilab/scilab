@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -49,18 +49,18 @@
             <literal>n</literal>colors. This colormap  varies the hue component of the
             hsv color model.  The colors begin with red, pass through yellow, green,
             cyan, blue, magenta, and return to red.  The map is particularly
-            useful for displaying periodic functions. 
+            useful for displaying periodic functions.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-t=[0:0.1:2*%pi]'; z=sin(t)*cos(t'); 
+        <programlisting role="example"><![CDATA[
+t=[0:0.1:2*%pi]'; z=sin(t)*cos(t');
 f=gcf();f.color_map=hsvcolormap(64);
 plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
  ]]></programlisting>
-        <scilab:image> 
-            t=[0:0.1:2*%pi]'; z=sin(t)*cos(t'); 
+        <scilab:image>
+            t=[0:0.1:2*%pi]'; z=sin(t)*cos(t');
             f=gcf();f.color_map=hsvcolormap(64);
             plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
         </scilab:image>

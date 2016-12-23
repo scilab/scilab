@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F. Delebecque
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -92,15 +92,15 @@
             (td は<literal>Sys</literal>の時間領域).
             より一般的に,<literal>observer</literal>は,
             線形システム<literal>Sys</literal>,つまり,
-            <literal>syslin</literal>リストにより表された 
+            <literal>syslin</literal>リストにより表された
             <literal>dotx=A x + Bu, y=Cx + Du</literal>,
             の可観測な部分に関するオブザーバ
             <literal>Obs</literal> を返します.
-            <literal>Sys</literal> は <literal>nx</literal> 個の状態変数, 
+            <literal>Sys</literal> は <literal>nx</literal> 個の状態変数,
             <literal>nu</literal> 個の入力および <literal>ny</literal> 個の出力を有します.
             <literal>Obs</literal> は,
             行列 <literal>[Ao,Bo,Identity]</literal>を有する線形システムです.
-            ただし, 
+            ただし,
             <literal>Ao</literal> は <literal>no x no</literal>, <literal>Bo</literal> は
             <literal>no x (nu+ny)</literal>, <literal> Co</literal> は
             <literal>no x no</literal> および <literal>no=nx-m</literal>です.
@@ -132,7 +132,7 @@
         </para>
         <para>
             H が以下の拘束条件を満たす場合: <literal>H*U(:,1:m)=0</literal>  (ker(H) は
-            Sysの不可観測な部分空間を含みます) 
+            Sysの不可観測な部分空間を含みます)
             H*U=[0,H2]となり, z=H*x のオブザーバはH2*Obs (ただし,H2=H*U(:,m+1:nx)) となります.
             すなわち,
             H*x のオブザーバの C行列である Co は Co=H2となります.
@@ -141,21 +141,21 @@
             <literal>Sys</literal>の対<literal>(A,C)</literal>が可観測となる
             場合,<literal>m=0</literal>となり,
             線形システム <literal>U*Obs</literal> (または<literal>H*U*Obs</literal>)
-            は<literal>x</literal>(または <literal>Hx</literal>)のオブザーバとなります. 
+            は<literal>x</literal>(または <literal>Hx</literal>)のオブザーバとなります.
             誤差スペクトルは,
             <literal>alpha(1),alpha(2),...,alpha(nx)</literal>です.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 nx=5;nu=1;ny=1;un=3;us=2;Sys=ssrand(ny,nu,nx,list('dt',us,us,un));
-//nx=5 states, nu=1 input, ny=1 output, 
+//nx=5 states, nu=1 input, ny=1 output,
 //un=3 unobservable states, us=2 of them unstable.
 [Obs,U,m]=observer(Sys);  //Stable observer (default)
 W=U';H=W(m+1:nx,:);[A,B,C,D]=abcd(Sys);  //H*U=[0,eye(no,no)];
 Sys2=ss2tf(syslin('c',A,B,H))  //Transfer u-->z
-Idu=eye(nu,nu);Sys3=ss2tf(H*U(:,m+1:$)*Obs*[Idu;Sys])  
+Idu=eye(nu,nu);Sys3=ss2tf(H*U(:,m+1:$)*Obs*[Idu;Sys])
 //Transfer u-->[u;y=Sys*u]-->Obs-->xhat-->HUxhat=zhat  i.e. u-->output of Obs
 //this transfer must equal Sys2, the u-->z transfer  (H2=eye).
 //Assume a Kalman model
@@ -166,7 +166,7 @@ Idu=eye(nu,nu);Sys3=ss2tf(H*U(:,m+1:$)*Obs*[Idu;Sys])
 //1-Form BigR = [G*QN*G'         G*QN*H'+G*NN;
 //               H*QN*G'+NN*G'   H*QN*H'+RN];
 //the covariance matrix of the noise vector [Gw;Hw+v]
-//2-Build the plant P21 : dotx = A x + B1 e ; y = C2 x + D21 e 
+//2-Build the plant P21 : dotx = A x + B1 e ; y = C2 x + D21 e
 //with e a unit white noise.
 // [W,Wt]=fullrf(BigR);
 //B1=W(1:size(G,1),:);D21=W(($+1-size(C,1)):$,:);

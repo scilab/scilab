@@ -11,7 +11,8 @@ function subdemolist = demo_gateway()
 
     subdemolist = [_("Non linear data fitting"), "datafit/datafit.dem.gateway.sce"; ..
     _("Optimisation"),            "optim/optim.dem.gateway.sce"; ..
-    _("fminsearch"),              "neldermead/neldermead.dem.gateway.sce"];
+    _("fminsearch"),              "neldermead/neldermead.dem.gateway.sce"; ..
+    _("ICSE"),              "icse/icse.dem.gateway.sce"];
 
     if with_module("genetic_algorithms") then
         subdemolist = [subdemolist; ..

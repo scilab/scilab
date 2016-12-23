@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-11-27 16:35+0000\n"
+"PO-Revision-Date: 2016-06-09 10:48+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -65,10 +65,6 @@ msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидался вектор строк.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
@@ -83,6 +79,10 @@ msgstr "%s: Неверный размер входного аргумента �
 #, c-format
 msgid "%s: Invalid library %s.\n"
 msgstr "%s: Некорректная библиотека %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: macro expected.\n"
@@ -157,67 +157,3 @@ msgstr "Используйте %s."
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "Эта функция будет окончательно удалена в Scilab %s"
-
-#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
-#~ msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
-
-#~ msgid "%s: Wrong type for input argument #%d.\n"
-#~ msgstr "%s: Неверный тип входного параметра №%d.\n"
-
-#~ msgid "%s: obsolete op-code %d.\n"
-#~ msgstr "%s: устаревший код операции %d.\n"
-
-#~ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-#~ msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
-
-#~ msgid ""
-#~ "%s: Wrong values for input argument: No profile data in the function\n"
-#~ msgstr ""
-#~ "%s: Неверные значения входного аргумента: функция не подготовлена к "
-#~ "профилированию\n"
-
-#~ msgid "Complexity"
-#~ msgstr "Сложность"
-
-#~ msgid "Tools"
-#~ msgstr "Инструменты"
-
-#~ msgid "Edit"
-#~ msgstr "Правка"
-
-#~ msgid "?"
-#~ msgstr "Справка"
-
-#~ msgid "Exit"
-#~ msgstr "Выход"
-
-#~ msgid "Click to get corresponding line, move with a-z."
-#~ msgstr "Нажатие - получить соответствующую строку, a-z - перемещение."
-
-#~ msgid "line %s [%s call, %s sec] :: "
-#~ msgstr "строка %s [%s вызов, %s с] :: "
-
-#~ msgid "line %s [%s calls, %s sec] :: "
-#~ msgstr "строка %s [%s вызовов, %s с] :: "
-
-#~ msgid "%s: The function has not been built for profiling"
-#~ msgstr "%s: Функция не подготовлена к профилированию"
-
-#~ msgid "No variable named: %s.\n"
-#~ msgstr "Нет переменной с именем: %s.\n"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: A Scilab function name is "
-#~ "expected.\n"
-#~ msgstr ""
-#~ "%s: Неверное значение входного параметра №%d: ожидалось имя функции "
-#~ "Scilab.\n"
-
-#~ msgid "%s is already noncompiled.\n"
-#~ msgstr "%s уже не скомпилирован.\n"
-
-#~ msgid "%s is already compiled.\n"
-#~ msgstr "%s уже скомпилирован.\n"
-
-#~ msgid "%s is already compiled for profiling.\n"
-#~ msgstr "%s уже скомпилирован для профилирования.\n"

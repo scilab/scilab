@@ -80,7 +80,7 @@ function Makename = dlwGenerateMakefile(name, ..
 endfunction
 //=============================================================================
 function ilib_gen_Make_win32(name, ..
-    table, ..
+    tables, ..
     files, ..
     libs, ..
     libname, ..
@@ -185,12 +185,21 @@ function ilib_gen_Make_win32(name, ..
     end
 
     //update DEBUG_SCILAB_DYNAMIC_LINK to map with Scilab compilation mode
-    val = getenv("DEBUG_SCILAB_DYNAMIC_LINK","");
-    if val <> "YES" & val <> "NO" & isDebug() then
+    debugVal = getenv("DEBUG_SCILAB_DYNAMIC_LINK","");
+    val = debugVal;
+    if val <> "NO" & val <> "YES" then
+        if isDebug() then
+            val = "YES";
+        else
+            val = "NO";
+        end
+    end
+
+    if val == "YES" then
         setenv("DEBUG_SCILAB_DYNAMIC_LINK","YES");
         CFLAGS = CFLAGS + " -D_DEBUG";
     else
-        setenv("DEBUG_SCILAB_DYNAMIC_LINK","");
+        setenv("DEBUG_SCILAB_DYNAMIC_LINK","NO");
         CFLAGS = CFLAGS + " -DNDEBUG";
     end
 
@@ -280,7 +289,7 @@ function ilib_gen_Make_win32(name, ..
     end
 
     //restore DEBUG_SCILAB_DYNAMIC_LINK
-    setenv("DEBUG_SCILAB_DYNAMIC_LINK", val);
+    setenv("DEBUG_SCILAB_DYNAMIC_LINK", debugVal);
 
 endfunction
 //=============================================================================

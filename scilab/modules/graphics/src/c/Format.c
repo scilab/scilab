@@ -1084,6 +1084,12 @@ int ComputeXIntervals(int iObjUID, char xy_type, double ** vector, int * N, int 
         nval = ny;
     }
 
+    if (!val)
+    {
+        Scierror(999, _("%s: Cannot get coordinates.\n"), "ComputeXIntervals");
+        return -1;
+    }
+
     if (xy_type == 'v')
     {
         *N = n = nval;
@@ -1204,7 +1210,7 @@ StringMatrix * computeDefaultTicsLabels(int iObjUID)
      * If different from the empty string, the format is already specified,
      * if equal, it needs to be computed.
      */
-    if (strcmp(c_format, "") == 0)
+    if (c_format && strcmp(c_format, "") == 0)
     {
         ComputeC_format(iObjUID, tempFormat);
         c_format = tempFormat;

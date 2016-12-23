@@ -47,7 +47,7 @@
             状態空間形式の線形システムのシステム行列 <literal>Sl</literal> (<literal>syslin</literal> リスト)
             (ユーティリティ関数).
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 Sm = [-sI + A   B;
      [    C     D]
  ]]></programlisting>
@@ -55,7 +55,7 @@ Sm = [-sI + A   B;
             離散系の場合(<literal>Sl=list('des',A,B,C,D,E)</literal>), <literal>systmat</literal> は
             以下を返します:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 Sm = [-sE + A   B;
      [    C     D]
  ]]></programlisting>

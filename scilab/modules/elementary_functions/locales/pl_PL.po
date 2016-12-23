@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:03+0000\n"
+"PO-Revision-Date: 2016-10-19 13:05+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -385,17 +385,19 @@ msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana macierz ciągów "
 "znaków.\n"
 
+#
+# File: modules/elementary_functions/macros/bit_op.sci, line: 20
 #, c-format
-msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgid "%s: unknown bitwise function %s.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego: Oczekiwano tego samego "
-"typu.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wielkość wprowadzanych argumentów.  Oczekiwana jest taka "
-"sama wielkość.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Integers >=0 expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -417,6 +419,12 @@ msgstr ""
 "i %d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wielkość wprowadzanych argumentów.  Oczekiwana jest taka "
+"sama wielkość.\n"
+
+#, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentów wejściowych: Oczekiwano tego samego "
@@ -433,18 +441,16 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-"expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ dla parametru wejściowego nr %d: Oczekiwany skalar/"
-"macierz z liczbami całkowitymi bez znaku.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: Oczekiwana liczb "
 "rzeczywista dodatnia\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ dla argumentu wejściowego: Oczekiwano tego samego "
+"typu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
@@ -663,13 +669,11 @@ msgstr ""
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Booleans, Integers, Decimals, Complexes, "
 "Polynomials, Rationals or Texts expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwana macierz  liczb "
-"rzeczywistych lub zespolonych.\n"
 
 #, c-format
 msgid ""
@@ -852,15 +856,9 @@ msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego: Niekompatybilny "
 "rozmiar.\n"
 
-#~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+#~ "expected.\n"
 #~ msgstr ""
-#~ "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano najwyżej %d.\n"
-
-#~ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwana '%s'.\n"
-
-#~ msgid "%s: Wrong type for argument #%d: Real expected.\n"
-#~ msgstr ""
-#~ "%s: Nieprawidłowy typ dla argumentu nr %d: oczekiwano wartości typu "
-#~ "real.\n"
+#~ "%s: Nieprawidłowy typ dla parametru wejściowego nr %d: Oczekiwany skalar/"
+#~ "macierz z liczbami całkowitymi bez znaku.\n"

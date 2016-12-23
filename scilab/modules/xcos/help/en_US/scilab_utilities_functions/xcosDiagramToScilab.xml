@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2016-2016 - Scilab Enterprises - Clement DAVID
+ *
+ * Copyright (C) 2016 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcosDiagramToScilab">
+    <refnamediv>
+        <refname>xcosDiagramToScilab</refname>
+        <refpurpose>Load or Save an Xcos diagram</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>scs_m = xcosDiagramToScilab(filename)</synopsis>
+        <synopsis>[scs_m1, scs_m2, ...] = xcosDiagramToScilab([filename1, filename2, ...])</synopsis>
+        <synopsis/>
+        <synopsis>xcosDiagramToScilab(filename, scs_m)</synopsis>
+        <synopsis>xcosDiagramToScilab([filename1, filename2, ...], scs_m1, scs_m2)</synopsis>
+    </refsynopsisdiv>
+    <refsection id="Module_xcosDiagramToScilab">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Parameters_xcosDiagramToScilab">
+        <title>Arguments</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">scs_m</emphasis>: The <link linkend="scicos_diagram">scicos_diagram</link> data structure.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">filename</emphasis>: The Xcos file to
+                    load.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_xcosDiagramToScilab">
+        <title>Description</title>
+        <para>Used to load and save a diagram in scripts.</para>
+        <para>
+            To load some files into Scilab as an <link linkend="scicos_diagram">scicos_diagram</link> data structure, use one or multiple output variables. The variable can then be manipulated in Scilab to launch a simulation, update context, settings or blocks.
+        </para>
+        <para>
+            To save a file from Scilab, pass some <link linkend="scicos_diagram">scicos_diagram</link> data structures as input parameters. The output file format is selected accordingly to the files extension.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            filename=SCI+"/modules/xcos/demos/demo_Datatype.zcos";
+            scs_m=xcosDiagramToScilab(filename),
+        </programlisting>
+    </refsection>
+    <refsection id="SeeAlso_xcosDiagramToScilab">
+        <title role="see also">See also</title>
+        <itemizedlist>
+            <listitem>
+                <link linkend="scicos_diagram">scicos_diagram</link>
+            </listitem>
+            <listitem>
+                <link linkend="xcos">xcos</link>
+            </listitem>
+            <listitem>
+                <link linkend="importXcosDiagram">importXcosDiagram</link>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

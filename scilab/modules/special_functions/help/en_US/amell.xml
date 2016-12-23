@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -49,7 +49,7 @@
         <title>Description</title>
         <para>
             Computes Jacobi's elliptic function <literal>am(u,k)</literal>
-            where <literal>k</literal> is the parameter and <literal>u</literal> is the argument. If <literal>u</literal> 
+            where <literal>k</literal> is the parameter and <literal>u</literal> is the argument. If <literal>u</literal>
             is a vector <literal>sn</literal> is the vector of the (element wise) computed values.
             Used in function <literal>%sn</literal>.
         </para>

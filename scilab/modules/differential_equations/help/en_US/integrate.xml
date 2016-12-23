@@ -76,7 +76,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>x=integrate(expr,v,x0,x1 [,atol [,rtol]])</literal> computes : 
+            <literal>x=integrate(expr,v,x0,x1 [,atol [,rtol]])</literal> computes :
             <subscript>
                 <inlinemediaobject>
                     <imageobject>
@@ -117,9 +117,9 @@
                     </imageobject>
                 </inlinemediaobject>
             </subscript>
-            for 
+            for
             <literal>i=1:size(x1,'*')</literal>
-            where 
+            where
             <inlinemediaobject>
                 <imageobject>
                     <imagedata>
@@ -145,7 +145,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x0=0;x1=0:0.1:2*%pi;
 X=integrate('sin(x)','x',x0,x1);
 norm(cos(x1)-(1-X))

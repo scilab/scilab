@@ -44,7 +44,7 @@ typedef enum __SCILAB_STATUS__
         <refname>scilabOpt</refname>
         <refpurpose>It is a list of optional arguments given in the call.</refpurpose>
         <para>
-            You may use 
+            You may use
             <link linkend="api_optional_scilab_getOptional">
                 <varname>scilab_getOptional</varname>
             </link>

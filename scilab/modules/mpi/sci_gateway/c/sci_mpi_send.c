@@ -12,14 +12,14 @@
  * along with this program.
  *
  */
-#include <stdio.h>
-#include <mpi.h>
+#include "sci_mpi.h"
 #include "api_scilab.h"
 #include "gw_mpi.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sci_malloc.h"
 #include "serialization.h"
+#include "getOptionalComm.h"
 
 #define TAG 0
 
@@ -34,8 +34,30 @@ int sci_mpi_send(char *fname, void* pvApiCtx)
     int iBufferSize = 0;
     double NodeID = 0;
 
-    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckInputArgument(pvApiCtx, 2, 3);
     CheckOutputArgument(pvApiCtx, 1, 1);
+
+    // return the communicator from optional argument "comm"
+    // if no optional "comm" is given, return MPI_COMM_WORLD
+    MPI_Comm comm = getOptionalComm(pvApiCtx);
+    if (comm == NULL)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%s: An MPI communicator expected.\n"), fname, "comm");
+        return 0;
+    }
+
+    if (comm == MPI_COMM_NULL)
+    {
+        if (createScalarBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 0))
+        {
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 0;
+        }
+
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+        ReturnArguments(pvApiCtx);
+        return 0;
+    }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
     if (sciErr.iErr)
@@ -68,7 +90,7 @@ int sci_mpi_send(char *fname, void* pvApiCtx)
     }
 
     //send data
-    iRet = MPI_Send(piBuffer, iBufferSize, MPI_INT, (int)NodeID, TAG, MPI_COMM_WORLD);
+    iRet = MPI_Send(piBuffer, iBufferSize, MPI_INT, (int)NodeID, TAG, comm);
     FREE(piBuffer);
     if (iRet != MPI_SUCCESS)
     {

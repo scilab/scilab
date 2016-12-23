@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * 
+ *
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -40,8 +40,8 @@
             <varlistentry>
                 <term>expectederrnb :</term>
                 <listitem>
-                    <para> 
-                        1行1列のdouble行列,整数値,エラー番号 
+                    <para>
+                        1行1列のdouble行列,整数値,エラー番号
                         (デフォルト: expectederrnb=[]).
                     </para>
                 </listitem>

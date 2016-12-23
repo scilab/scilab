@@ -14,12 +14,12 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cumsum" xml:lang="pt">
-    
+
     <refnamediv>
         <refname>cumsum</refname>
         <refpurpose>soma cumulativa</refpurpose>
     </refnamediv>
-    
+
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
         <synopsis>y=cumsum(x)
@@ -27,7 +27,7 @@
             y=cumsum(x,'c') or y=cumsum(x,2)
         </synopsis>
     </refsynopsisdiv>
-    
+
     <refsection role="parameters">
         <title>Parâmetros</title>
         <variablelist>
@@ -45,7 +45,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection role="description">
         <title>Descrição</title>
         <para>
@@ -133,15 +133,11 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <note>
+            This function applies, with identical rules to <link linkend="sparse">sparse matrices</link>.
+        </note>
     </refsection>
-    
-    <refsection role="remark">
-        <title>Remark</title>
-        <para>
-            This function applies, with identical rules to <link linkend="sparse">sparse matrices</link> and <link linkend="hypermat">hypermatrices</link>.
-        </para>
-    </refsection>
-    
+
     <refsection role="examples">
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
@@ -156,7 +152,7 @@ w(1,:)=a(1,:);
 for k=2:m;w(k,:)=w(k-1,:)+a(k,:);end;w-cumsum(a,'r')
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>Ver Também</title>
         <simplelist type="inline">
@@ -168,5 +164,5 @@ for k=2:m;w(k,:)=w(k-1,:)+a(k,:);end;w-cumsum(a,'r')
             </member>
         </simplelist>
     </refsection>
-    
+
 </refentry>

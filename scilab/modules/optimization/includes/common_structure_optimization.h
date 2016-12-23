@@ -34,19 +34,30 @@ typedef struct
     char nomsub[80];
 } STR_OPTIM;
 
+typedef struct {
+    double t0, tf, dti, dtf, ermx;
+    int iu[5], nuc, nuv, ilin, nti, ntf, ny, nea, itmx, nex,
+        nob, ntob, ntobi, nitu, ndtu;
+} STR_ICSEZ;
+
+
 #ifdef _MSC_VER
 OPTIMIZATION_IMPEXP STR_NIRD    C2F(nird);
 OPTIMIZATION_IMPEXP STR_FPRF2C  C2F(fprf2c);
 OPTIMIZATION_IMPEXP STR_OPTIM   C2F(optim);
+OPTIMIZATION_IMPEXP STR_ICSEZ   C2F(icsez);
+
 #else
 #ifndef __OPTIMIZATION_GW_HXX__
 extern STR_NIRD     C2F(nird);
 extern STR_FPRF2C   C2F(fprf2c);
 extern STR_OPTIM    C2F(optim);
+extern STR_ICSEZ    C2F(icsez);
 #else
 STR_NIRD    C2F(nird);
 STR_FPRF2C  C2F(fprf2c);
 STR_OPTIM   C2F(optim);
+STR_ICSEZ    C2F(icsez);
 #endif
 #endif
 #endif /* !__COMMOM_STRUCTURE_OPTIMIZATION_H__ */

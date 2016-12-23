@@ -206,7 +206,7 @@ ga_params = add_param(ga_params,'maxbound',ones(2,1));
 
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

@@ -59,7 +59,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 M = hypermat([2 3 2 2],1:24)
 disp(size(M('dims')))
 disp(size(M('entries')))

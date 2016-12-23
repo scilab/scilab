@@ -52,7 +52,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 TCL_CreateSlave("TCLinterp")
 TCL_SetVar("a","r","TCLinterp")
 TCL_ExistVar("a","TCLinterp")

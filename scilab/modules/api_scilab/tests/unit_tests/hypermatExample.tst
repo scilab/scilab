@@ -13,8 +13,8 @@ copyfile(SCI+"/modules/api_scilab/tests/unit_tests/hypermatExample.c",pathconver
 ilib_build("gw_hypermatExample",["hypermatExample","hypermatExample"],"hypermatExample.c",[],"","","");
 exec("loader.sce");
 
-a = hypermat([1 2 3], ones(1,6));
-b = a + %i*hypermat([1 2 3], 1:6);
+a = matrix(ones(1,6), [1 2 3]);
+b = a + %i*matrix(1:6, [1 2 3]);
 
 assert_checkequal(hypermatExample(a), a);
 assert_checkequal(hypermatExample(b), b);

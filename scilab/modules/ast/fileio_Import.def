@@ -6,3 +6,4 @@ removedir
 getshortpathname
 FileExistW
 getfile_filename
+get_full_pathW

@@ -90,7 +90,7 @@ void SemicolonAtEOLChecker::check(const ast::Exp * e, SLintContext & context, SL
         {
             const wchar_t * line = context.getCode() + out.first;
             const unsigned len = out.second - out.first;
-            for (unsigned i = len - 1; i >= 0; --i)
+            for (unsigned i = len - 1; i != -1; --i)
             {
                 const wchar_t c = line[i];
                 if (c == L' ' || c == L'\t')

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -50,8 +50,8 @@
         <para>
             Given the linear plant:
         </para>
-        <programlisting role=""><![CDATA[ 
-x'= F*x + G*u 
+        <programlisting role=""><![CDATA[
+x'= F*x + G*u
 y = H*x + J*u
  ]]></programlisting>
         <para>
@@ -63,16 +63,16 @@ ym = C*xm + D*um
  ]]></programlisting>
         <para>
             the goal is for the plant to track the model i.e. <literal>e = y - ym ---&gt; 0</literal>
-            while keeping stable the state x(t) of the plant. 
+            while keeping stable the state x(t) of the plant.
             <literal>u</literal> is given by feedforward and feedback
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 u = L*xm + M*um + K*(x-T*xm) = [K , L-K*T] *(x,xm) + M*um
  ]]></programlisting>
         <para>
             The matrices T,L,M satisfy generalized Francis equations
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 F*T + G*L = T*A
 H*T + J*L = C
       G*M = T*B
@@ -85,7 +85,7 @@ H*T + J*L = C
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 Plant=ssrand(1,3,5);
 [F,G,H,J]=abcd(Plant);
 nw=4;nuu=2;A=rand(nw,nw);

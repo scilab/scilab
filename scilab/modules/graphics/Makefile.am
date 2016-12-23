@@ -468,7 +468,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_addcolor.c
 
 GATEWAY_CXX_SOURCES = \
-    sci_gateway/cpp/graphics_gw.cpp \
     sci_gateway/cpp/sci_get.cpp \
     sci_gateway/cpp/sci_xget.cpp \
     sci_gateway/cpp/sci_xset.cpp \
@@ -565,8 +564,7 @@ tcl/ged/images/segs.gif \
 tcl/ged/images/text.gif
 
 libscigraphics_disable_la_SOURCES = \
-	src/nographics/nographics.c \
-	src/nographics/nographics_gw.cpp
+	src/nographics/nographics.c
 
 libscigraphics_disable_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \

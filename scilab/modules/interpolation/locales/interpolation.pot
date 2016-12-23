@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-06-08 22:22+0100\n"
+"Revision-Date: 2016-12-07 16:04+0100\n"
 
 # File: modules/interpolation/sci_gateway/cpp/sci_bsplin3val.cpp, line: 49
 # File: modules/interpolation/sci_gateway/cpp/sci_cshep2d.cpp, line: 45
@@ -410,58 +410,56 @@ msgstr ""
 
 #
 # File: modules/interpolation/macros/interp1.sci, line: 53
-# File: modules/interpolation/macros/interp1.sci, line: 121
-# File: modules/interpolation/macros/interp1.sci, line: 138
-# File: modules/interpolation/macros/interp1.sci, line: 263
-# File: modules/interpolation/macros/interp1.sci, line: 315
-# File: modules/interpolation/macros/interp1.sci, line: 444
+# File: modules/interpolation/macros/interp1.sci, line: 109
+# File: modules/interpolation/macros/interp1.sci, line: 126
+# File: modules/interpolation/macros/interp1.sci, line: 251
+# File: modules/interpolation/macros/interp1.sci, line: 303
+# File: modules/interpolation/macros/interp1.sci, line: 432
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/interpolation/macros/interp1.sci, line: 69
-# File: modules/interpolation/macros/interp1.sci, line: 72
-# File: modules/interpolation/macros/interp1.sci, line: 95
-# File: modules/interpolation/macros/interp1.sci, line: 101
-# File: modules/interpolation/macros/interp1.sci, line: 104
+# File: modules/interpolation/macros/interp1.sci, line: 67
+# File: modules/interpolation/macros/interp1.sci, line: 89
+# File: modules/interpolation/macros/interp1.sci, line: 93
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
 msgstr ""
 
 #
-# File: modules/interpolation/macros/interp1.sci, line: 110
+# File: modules/interpolation/macros/interp1.sci, line: 98
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
 msgstr ""
 
 #
-# File: modules/interpolation/macros/interp1.sci, line: 124
+# File: modules/interpolation/macros/interp1.sci, line: 112
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
 
 #
-# File: modules/interpolation/macros/interp1.sci, line: 186
+# File: modules/interpolation/macros/interp1.sci, line: 174
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: modules/interpolation/macros/interp1.sci, line: 210
-# File: modules/interpolation/macros/interp1.sci, line: 236
-# File: modules/interpolation/macros/interp1.sci, line: 275
-# File: modules/interpolation/macros/interp1.sci, line: 285
-# File: modules/interpolation/macros/interp1.sci, line: 307
-# File: modules/interpolation/macros/interp1.sci, line: 328
-# File: modules/interpolation/macros/interp1.sci, line: 336
-# File: modules/interpolation/macros/interp1.sci, line: 369
-# File: modules/interpolation/macros/interp1.sci, line: 375
-# File: modules/interpolation/macros/interp1.sci, line: 422
-# File: modules/interpolation/macros/interp1.sci, line: 430
-# File: modules/interpolation/macros/interp1.sci, line: 447
+# File: modules/interpolation/macros/interp1.sci, line: 198
+# File: modules/interpolation/macros/interp1.sci, line: 224
+# File: modules/interpolation/macros/interp1.sci, line: 263
+# File: modules/interpolation/macros/interp1.sci, line: 273
+# File: modules/interpolation/macros/interp1.sci, line: 295
+# File: modules/interpolation/macros/interp1.sci, line: 316
+# File: modules/interpolation/macros/interp1.sci, line: 324
+# File: modules/interpolation/macros/interp1.sci, line: 357
+# File: modules/interpolation/macros/interp1.sci, line: 363
+# File: modules/interpolation/macros/interp1.sci, line: 410
+# File: modules/interpolation/macros/interp1.sci, line: 418
+# File: modules/interpolation/macros/interp1.sci, line: 435
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or real expected.\n"
 msgstr ""

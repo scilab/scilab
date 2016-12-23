@@ -16,7 +16,8 @@ along with this program.
 BWidget:
 ========
 
-Files: tcl/BWidget-*/
+Files:
+tcl/BWidget-*/
 
 Copyright:
 1998-1999 UNIFIX. 
@@ -28,10 +29,26 @@ X11
 sciGUI:
 =======
 
-Files: tcl/sciGUI/*
+Files:
+tcl/sciGUI/*
 
 Copyright:
 2004 Jaime Urzua Grez
 
 License:
 GPL
+
+
+TCL widgets:
+============
+
+Files:
+tcl/utils/*
+
+Copyright:
+1996-1997 Stewart Allen
+1998-2003, Bryan Oakley
+1996,1997,1998 D. Richard Hipp
+
+License:
+GPLv2+

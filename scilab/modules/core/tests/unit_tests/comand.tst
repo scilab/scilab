@@ -7,6 +7,7 @@
 // =============================================================================
 
 // <!-- ENGLISH IMPOSED -->
+// <-- NOT FIXED --> 6.0.0
 
 funcprot(0);
 
@@ -14,30 +15,30 @@ clear //sdfdgd
 clear//sdfdgd
 a=1;
 clear a//sdfdgd
-deff('y=foo(a,b,c)','y=a+b+c')
+deff("y=foo(a,b,c)","y=a+b+c")
 foo aaa bbb   cc
-if ans<>'aaabbbcc' then pause,end
+if ans<>"aaabbbcc" then pause,end
 foo aaa bbb   cc;
-if ans<>'aaabbbcc' then pause,end
+if ans<>"aaabbbcc" then pause,end
 foo 'aaa' bbb 'cc'
-if ans<>'aaabbbcc' then pause,end
+if ans<>"aaabbbcc" then pause,end
 foo aaa 'bbb' cc
-if ans<>'aaabbbcc' then pause,end
+if ans<>"aaabbbcc" then pause,end
 foo aaa bbb cc //qdsddfd
-if ans<>'aaabbbcc' then pause,end
+if ans<>"aaabbbcc" then pause,end
 foo aaa bbb cc//qdsddfd
-if ans<>'aaabbbcc' then pause,end
-deff('y=foo(a,b,c)','y=a+b+c')
+if ans<>"aaabbbcc" then pause,end
+deff("y=foo(a,b,c)","y=a+b+c")
 foo aaa bbb   cc
-if ans<>'aaabbbcc' then pause,end
+if ans<>"aaabbbcc" then pause,end
 foo 'aaa' bbb 'cc'
-if ans<>'aaabbbcc' then pause,end
+if ans<>"aaabbbcc" then pause,end
 foo aaa 'bbb' cc
-if ans<>'aaabbbcc' then pause,end
+if ans<>"aaabbbcc" then pause,end
 foo aaa bbb cc //qdsddfd
-if ans<>'aaabbbcc' then pause,end
+if ans<>"aaabbbcc" then pause,end
 foo aaa bbb cc//qdsddfd
-if ans<>'aaabbbcc' then pause,end
+if ans<>"aaabbbcc" then pause,end
 
 ascii foo;
 if ans<>[102,111,111] then pause,end

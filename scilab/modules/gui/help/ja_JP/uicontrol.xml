@@ -16,7 +16,7 @@
     <refsection>
         <title>説明</title>
         <para>このルーチンは図にオブジェクトを作成します.</para>
-        <para>図のオブジェクトが(最初のパラメータとして)指定された場合, 
+        <para>図のオブジェクトが(最初のパラメータとして)指定された場合,
             この図にuicontrolが作成されます.ハンドルが指定されない場合,
             uicontrolが(<literal>gcf()</literal>のコールにより得られる)
             カレントの図に作成されます.
@@ -71,7 +71,7 @@
     <refsection>
         <title>利用可能なスタイル</title>
         <para>
-            利用可能なスタイルを以下に示します. 
+            利用可能なスタイルを以下に示します.
             <literal>uicontrol</literal>の<literal>style</literal>は
             作成時に<literal>"Style"</literal>プロパティにより設定する
             必要があり, <literal>uicontrol</literal> の作成後は変更できません.
@@ -93,9 +93,9 @@
             </listitem>
             <listitem>
                 <para>
-                    Layer: 
+                    Layer:
                     <literal>frame</literal>スタイルのuicontrol用コンテナで,
-                    <literal>value</literal> プロパティを用いてプログラムにより 
+                    <literal>value</literal> プロパティを用いてプログラムにより
                     切替できます.
                 </para>
             </listitem>
@@ -109,12 +109,12 @@
                 </para>
             </listitem>
             <listitem>
-                <para>Pushbutton: (デフォルトのスタイル) 
+                <para>Pushbutton: (デフォルトのスタイル)
                     矩形のボタンで,通常コールバックを実行する際に使用されます.
                 </para>
             </listitem>
             <listitem>
-                <para>Radiobutton: 2つの状態を有するボタン. 
+                <para>Radiobutton: 2つの状態を有するボタン.
                     RadioButtons は相互に排他であることを意図しています.
                 </para>
                 <para>
@@ -129,13 +129,13 @@
                 </para>
             </listitem>
             <listitem>
-                <para>Spinner: 
+                <para>Spinner:
                     ユーザが固定刻みで範囲内の値を選択/編集することを可能とするコンポーネント.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    Tab: 
+                    Tab:
                     <literal>frame</literal> スタイルの uicontrols のコンテナで,
                     指定したタイトルやアイコンをクリックすることにより切替できるようにします.
                 </para>

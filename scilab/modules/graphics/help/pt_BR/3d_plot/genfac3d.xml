@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -32,7 +32,7 @@
                         matrizes de tamanho (4,n-1xm-1). <literal>xx(:,i)</literal>
                         ,<literal>yy(:,i)</literal> e <literal>zz(:,i)</literal> são
                         respectivamente as coordenadas nos eixos x, y e z dos 4 pontos da
-                        i-ésima faceta de quatro lados 
+                        i-ésima faceta de quatro lados
                     </para>
                 </listitem>
             </varlistentry>
@@ -53,7 +53,7 @@
                 <listitem>
                     <para>
                         matriz de tamanho (m,n). <literal>z(i,j)</literal> é o valor
-                        da superfície no ponto (x(i),y(j)). 
+                        da superfície no ponto (x(i),y(j)).
                     </para>
                 </listitem>
             </varlistentry>
@@ -78,7 +78,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z);
 plot3d(xx,yy,zz)

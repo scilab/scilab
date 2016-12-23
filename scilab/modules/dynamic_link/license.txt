@@ -16,8 +16,9 @@ along with this program.
 Examples:
 =========
 
-Files: examples/
- 
+Files:
+examples/
+
 Copyright: 
 Copyright (c) 2008 - DIGITEO
 Copyright (c) 1989-2008 - INRIA

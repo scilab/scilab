@@ -8,28 +8,25 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-09 18:43+0000\n"
+"PO-Revision-Date: 2016-10-19 14:49+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
+
+#, c-format
+msgid "%s: Figure number must be given when not in '%s' mode.\n"
+msgstr ""
+"%s: Якщо програма працює не у режимі «%s», слід вказувати номер рисунка.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати рядок з одного "
 "символу.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: помилка під час спроби виділення пам’яті.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -41,26 +38,6 @@ msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати дійсне "
 "число.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати >= %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
-"або дійсних значень.\n"
-
-#, c-format
-msgid "%s: Function not available in NWNI mode.\n"
-msgstr "%s: У режимі NWNI функція недоступна.\n"
-
-#, c-format
-msgid "%s: Figure number must be given when not in '%s' mode.\n"
-msgstr ""
-"%s: Якщо програма працює не у режимі «%s», слід вказувати номер рисунка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
@@ -102,6 +79,10 @@ msgstr ""
 "цілого типу.\n"
 
 #, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: доступну пам’ять вичерпано.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати одинарний "
@@ -135,6 +116,10 @@ msgstr ""
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати дійсні значення.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
@@ -277,32 +262,6 @@ msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr "%s: Не вдалося створити елемент керування «Uicontrol».\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати %d або "
-"%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор-"
-"рядок 1 x %d дійсних чисел.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
-"значень або «string».\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор-рядок "
-"1 x %d дійсних чисел.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати елемент "
@@ -328,6 +287,12 @@ msgstr ""
 "керування «%s».\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
+"значень або «string».\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати елемент "
@@ -346,56 +311,28 @@ msgstr ""
 "або «%s».\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
-"дійсних або комплексних значень.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
 "рядків.\n"
 
-msgid "Scilab Choices Request"
-msgstr "Запит щодо вибору Scilab"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор з "
-"рядків.\n"
-
 msgid "Scilab Choose Message"
 msgstr "Повідомлення про вибір Scilab"
 
-msgid "Scilab Input Value Request"
-msgstr "Запит Scilab на вхідне значення"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Запит Scilab на декілька значень"
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати >= %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: It must have same dimensions as "
-"argument #%d.\n"
+msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: розмірність має збігатися "
-"з розмірністю параметра №%d.\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
+"або дійсних значень.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю "
-"рядків %d x %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
-"рядків.\n"
+msgid "%s: Function not available in NWNI mode.\n"
+msgstr "%s: У режимі NWNI функція недоступна.\n"
 
 #, c-format
 msgid ""
@@ -471,6 +408,10 @@ msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано тип "
 "елемента керування.\n"
+
+#, c-format
+msgid "%s: Invalid value for datatip index %d.\n"
+msgstr "%s: некоректне значення індекса підказки до даних %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -658,6 +599,26 @@ msgstr ""
 "«pos» або «gdi».\n"
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: слід використовувати %d або "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор-"
+"рядок 1 x %d дійсних чисел.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор-рядок "
+"1 x %d дійсних чисел.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
@@ -674,6 +635,49 @@ msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: слід використовувати матрицю булівських "
 "значень.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
+"дійсних або комплексних значень.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Запит щодо вибору Scilab"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор з "
+"рядків.\n"
+
+msgid "Scilab Input Value Request"
+msgstr "Запит Scilab на вхідне значення"
+
+msgid "Scilab Multiple Values Request"
+msgstr "Запит Scilab на декілька значень"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: It must have same dimensions as "
+"argument #%d.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: розмірність має збігатися "
+"з розмірністю параметра №%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю "
+"рядків %d x %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"рядків.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -892,6 +896,10 @@ msgstr ""
 "Попередження: значенням властивості «Value» «%s» має бути ціле число. Формат "
 "значення буде обрізано до цілого.\n"
 
+msgid "(Max - Min) must be greater than 1 to allow the multiple selection.\n"
+msgstr ""
+"(Макс. - Мін.) має перевищувати 1, щоб можна булол вибирати декілька.\n"
+
 #, c-format
 msgid "'%s' value must be between 0 and %d.\n"
 msgstr "Значенням «%s» має бути число від 0 до %d.\n"
@@ -953,8 +961,8 @@ msgstr "З&більшити"
 msgid "&Original View"
 msgstr "&Початковий масштаб"
 
-msgid "Fit zoom to data"
-msgstr "Підібрати масштаб за даними"
+msgid "Reframe to contents"
+msgstr "Підібрати за вмістом"
 
 msgid "2D/3D &Rotation"
 msgstr "&Обертання на площині/у просторі"
@@ -1115,11 +1123,8 @@ msgstr "Журнал ко&манд"
 msgid "&File Browser"
 msgstr "Перегляд &файлів"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 121
-# File: modules/gui/src/gui_fake_xml.c, line: 169
 msgid "&News feed"
-msgstr ""
+msgstr "&Подача новин"
 
 msgid "Scilab &Help"
 msgstr "&Довідка Scilab"
@@ -1507,9 +1512,6 @@ msgstr "Сумісний зі SciNotes"
 
 msgid "Preview"
 msgstr "Перегляд"
-
-msgid "Ok"
-msgstr "Гаразд"
 
 msgid "Loading help browser..."
 msgstr "Завантаження засобу перегляду довідки…"
@@ -2020,9 +2022,8 @@ msgstr "Розмір позначки"
 msgid "Mark Style"
 msgstr "Стиль позначки"
 
-#, fuzzy
 msgid "Components display"
-msgstr "3 компоненти"
+msgstr "Показ компонентів"
 
 msgid "Data Properties"
 msgstr "Властивості даних"
@@ -2353,9 +2354,8 @@ msgstr "Всі файли зображень PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Всі файли RTF (Rich Text Format)"
 
-#, fuzzy
 msgid "All HTML files"
-msgstr "Всі файли"
+msgstr "Усі файли HTML"
 
 #, c-format
 msgid "All %s files"
@@ -2391,380 +2391,253 @@ msgstr "%s: можна використовувати лише у режимі �
 msgid "Error. A signal has been caught.\n"
 msgstr "Помилка. A signal has been caught.\n"
 
-#, fuzzy
 msgid "Control Plot3d"
-msgstr "Керування"
+msgstr "Керування Plot3d"
 
-#, fuzzy
 msgid "Control Panel"
-msgstr "Керування"
+msgstr "Панель керування"
 
-#, fuzzy
 msgid "Rotation angle"
-msgstr "Кути повороту"
+msgstr "Кут обертання"
 
-#, fuzzy
 msgid "Colormap"
-msgstr "Кольори"
+msgstr "Карта кольорів"
 
-#, fuzzy
 msgid "Show / Hide"
-msgstr "Показати/Сховати п&анель інструментів"
+msgstr "Показати/Сховати"
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 6
 msgid "messagebox"
-msgstr ""
+msgstr "панель_повідомлення"
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 7
 msgid "x_choose"
-msgstr ""
+msgstr "вибір_x"
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 8
 msgid "x_dialog"
-msgstr ""
+msgstr "вікно_x"
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 9
 msgid "x_mdialog"
-msgstr ""
+msgstr "модвікно_x"
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 8
 msgid "Simple example of message"
-msgstr ""
+msgstr "Простий приклад повідомлення"
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 11
 msgid "Button 1Button 2"
-msgstr ""
+msgstr "Кнопка 1Кнопка 2"
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 14
 msgid "Button 1 clicked."
-msgstr ""
+msgstr "Натиснуто кнопку 1."
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 16
 msgid "Button 2 clicked"
-msgstr ""
+msgstr "Натиснуто кнопку 2"
 
-#
-# File: modules/gui/demos/dialogs/x_choose.sce, line: 10
 msgid ""
 "Message: Selection (double-click on an item --> returns the item number)"
 msgstr ""
+"Повідомлення: позначення (подвійне клацання на пункті --> повертає номер "
+"пункту)"
 
-#, fuzzy
 msgid "Item selected: "
-msgstr "Не позначено жодного фрагмента тексту"
+msgstr "Позначено пункт: "
 
-#
-# File: modules/gui/demos/dialogs/x_dialog.sce, line: 8
 msgid "Message: enter a value"
-msgstr ""
+msgstr "Повідомлення: введіть значення"
 
-#
-# File: modules/gui/demos/dialogs/x_dialog.sce, line: 10
 msgid "Value entered: "
-msgstr ""
+msgstr "Введене значення: "
 
-#, fuzzy
 msgid "Message"
-msgstr "Інформаційне повідомлення"
+msgstr "Повідомлення"
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 10
 msgid "first row"
-msgstr ""
+msgstr "Перший рядок"
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 13
 msgid "Values entered: "
-msgstr ""
+msgstr "Введені значення: "
 
-#, fuzzy
 msgid "row"
-msgstr "зі стрілками"
+msgstr "ряд"
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 20
 msgid "col"
-msgstr ""
+msgstr "стов"
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 22
 msgid "Matrix to edit"
-msgstr ""
+msgstr "Матриця для редагування"
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 24
 msgid "Matrix entered: "
-msgstr ""
+msgstr "Введено матрицю: "
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 12
 msgid "GUI"
-msgstr ""
+msgstr "Графічний інтерфейс"
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 14
 msgid "Dialogs"
-msgstr ""
+msgstr "Діалогові вікна"
 
-#, fuzzy
 msgid "Uicontrols 1"
-msgstr "Керування"
+msgstr "Ел_керування 1"
 
-#, fuzzy
 msgid "Uicontrols 2"
-msgstr "Керування"
+msgstr "Ел_керування 2"
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 21
 msgid "Uicontrols with LaTeX/MathML"
-msgstr ""
+msgstr "Елементи з LaTeX/MathML"
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 24
 msgid "Show images with uicontrols "
-msgstr ""
+msgstr "Показ зображень із елементами керування "
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 27
-# File: modules/gui/demos/uicontrol_listbox_popupmenu.dem.sce, line: 18
 msgid "Listboxes and Popupmenus"
-msgstr ""
+msgstr "Панелі списків та спадні меню"
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 30
 msgid "Uicontrols rendering"
-msgstr ""
+msgstr "Показ елементів керування"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 13
-# File: modules/gui/demos/uicontrol.dem.sce, line: 93
-# File: modules/gui/demos/uicontrol.dem.sce, line: 193
+msgid "Uicontrols layout"
+msgstr "Компонування керування інтерфейсом"
+
+msgid "Uicontrols messagebox-like"
+msgstr "Подібні до повідомлення засоби керування інтерфейсом"
+
 msgid "<Enter color name here>"
-msgstr ""
+msgstr "<Тут вкажіть назву кольору>"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 14
-# File: modules/gui/demos/uicontrol.dem.sce, line: 23
 msgid "Error"
-msgstr ""
+msgstr "Помилка"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 14
 msgid "Please enter a color name first."
-msgstr ""
+msgstr "Будь ласка, спочатку вкажіть назву кольору."
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 23
 msgid "Unknown color."
-msgstr ""
+msgstr "Невідомий колір."
 
-#, fuzzy
 msgid "No color selected."
-msgstr "Не позначено жодного фрагмента тексту"
+msgstr "Колір не вибрано."
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 38
-# File: modules/gui/demos/uicontrol.dem.sce, line: 49
 msgid "Color selection"
-msgstr ""
+msgstr "Вибір кольору"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 42
 #, c-format
 msgid "Selected colors are: %s."
-msgstr ""
+msgstr "Вибрані кольори: %s."
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 44
 #, c-format
 msgid "Deleted colors are: %s."
-msgstr ""
+msgstr "Вилучені кольори: %s."
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 53
 #, c-format
 msgid "You clicked on menu '%s'."
-msgstr ""
+msgstr "Натиснуто меню «%s»."
 
-#, fuzzy
 msgid "Selected menu"
-msgstr "Позначити все"
+msgstr "Вибране меню"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 59
 msgid "checked"
-msgstr ""
+msgstr "позначено"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 61
 msgid "unchecked"
-msgstr ""
+msgstr "не позначено"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 63
 #, c-format
 msgid "Menu '%s' is %s."
-msgstr ""
+msgstr "Меню «%s» — %s."
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 64
 msgid "Menu status"
-msgstr ""
+msgstr "Стан меню"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 70
 msgid "Slider value: "
-msgstr ""
+msgstr "Значення повзунка: "
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 78
 #, c-format
 msgid "You selected '%s'."
-msgstr ""
+msgstr "Вами вибрано «%s»."
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 79
 msgid "Popupmenu selection"
-msgstr ""
+msgstr "Вибір з контекстного меню"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 100
 msgid "Do you really want to quit Scilab?"
-msgstr ""
+msgstr "Справді хочете вийти з Scilab?"
 
-#, fuzzy
 msgid "Quit Scilab"
-msgstr "Про Scilab..."
+msgstr "Вийти зі Scilab"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 108
 msgid "Uicontrols demo"
-msgstr ""
+msgstr "Демонстрація елементів керування"
 
-#, fuzzy
 msgid "Application"
-msgstr "П&рограми"
+msgstr "Програма"
 
-#, fuzzy
 msgid "Close figure"
-msgstr "С&порожнити рисунок"
+msgstr "Закрити рисунок"
 
-#, fuzzy
 msgid "Scilab Graphics"
-msgstr "Редактор графіки Scilab — GED"
+msgstr "Графіка Scilab"
 
-#, fuzzy
 msgid "Launch plot3d"
-msgstr "Запустити SciNotes"
+msgstr "Запустити plot3d"
 
-#, fuzzy
 msgid "Launch plot2d"
-msgstr "Запустити SciNotes"
+msgstr "Запустити plot2d"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 128
 msgid "Menu"
-msgstr ""
+msgstr "Меню"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 129
 msgid "Sub-menu 1"
-msgstr ""
+msgstr "Підменю 1"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 130
-# File: modules/gui/demos/uicontrol.dem.sce, line: 133
 msgid "Sub-menu 2"
-msgstr ""
+msgstr "Підменю 2"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 131
 msgid "Sub-menu 2-1"
-msgstr ""
+msgstr "Підменю 2-1"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 132
 msgid "Sub-menu 2-2"
-msgstr ""
+msgstr "Підменю 2-2"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 140
 msgid "item1|item2|item3|item4"
-msgstr ""
+msgstr "пункт1|пункт2|пункт3|пункт4"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 146
 msgid "Pop-up menu"
-msgstr ""
+msgstr "Контекстне меню"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 157
 msgid "Slider demo"
-msgstr ""
+msgstr "Демонстрація повзунка"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 187
 msgid "Colors list edition"
-msgstr ""
+msgstr "Редагування списку кольорів"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 200
 msgid "Add color in listbox"
-msgstr ""
+msgstr "Додати колір на панель списку"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 206
 msgid "Delete color in listbox"
-msgstr ""
+msgstr "Вилучити колір із панелі списку"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "blue"
-msgstr ""
+msgstr "синій"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "green"
-msgstr ""
+msgstr "зелений"
 
-#, fuzzy
 msgid "red"
-msgstr "Кольорові"
+msgstr "червоний"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "yellow"
-msgstr ""
+msgstr "жовтий"
 
-#, fuzzy
 msgid "Display selection"
-msgstr "Показати назву функції"
+msgstr "Показати позначене"
 
-#, fuzzy
 msgid "Delete selection"
-msgstr "Вилучити вибраний об'єкт"
+msgstr "Вилучити позначене"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 237
 msgid "Default"
-msgstr ""
+msgstr "Типовий"
 
-#, fuzzy
 msgid "Quit demonstration"
-msgstr "Демонстрації Scilab"
+msgstr "Припинити демонстрацію"
 
-#
-# File: modules/gui/demos/uicontrol_LaTeX.dem.sce, line: 16
 msgid "Uicontrols demo with LaTeX"
-msgstr ""
+msgstr "Демонстрація елементів керування з LaTeX"
+
+msgid "Please fill the table"
+msgstr "Будь ласка, заповніть таблицю"
 
 #, c-format
 msgid "%s: can not add a menu in this mode: %s.\n"
@@ -3024,23 +2897,8 @@ msgstr "%s: помилковий тип для %s: слід використов
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: помилковий розмір для %s: слід використовувати дійсне число.\n"
 
-#~ msgid "Cancel"
-#~ msgstr "Скасувати"
+#~ msgid "Fit zoom to data"
+#~ msgstr "Підібрати масштаб за даними"
 
-#~ msgid "Close"
-#~ msgstr "Закрити"
-
-#~ msgid "File"
-#~ msgstr "Файл"
-
-#~ msgid "Background Color"
-#~ msgstr "Колір тла"
-
-#~ msgid "Title"
-#~ msgstr "Заголовок"
-
-#~ msgid "Yes"
-#~ msgstr "Так"
-
-#~ msgid "No"
-#~ msgstr "Ні"
+#~ msgid "Ok"
+#~ msgstr "Гаразд"

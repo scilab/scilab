@@ -39,7 +39,7 @@
             <varlistentry>
                 <term>nameValue</term>
                 <listitem>
-                    <para>nameValue, 
+                    <para>nameValue,
                         [name value] または [prefix name value]を各行に含む
                         文字列の n x 2 または n x 3 行列
                     </para>
@@ -65,7 +65,7 @@
     xmlDump(doc)
     // 属性 bar="foo" をルートの全ての子に追加します
     xmlSetAttributes(doc.root.children, ["bar" "foo"]);
-    // 属性 truc="machin" を2番目の子<b>の属性のリストに追加します 
+    // 属性 truc="machin" を2番目の子<b>の属性のリストに追加します
     xmlSetAttributes(doc.root.children(2).attributes, ["truc" "machin"]);
     xmlDump(doc)
     xmlDelete(doc);

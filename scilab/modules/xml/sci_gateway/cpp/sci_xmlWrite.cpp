@@ -165,6 +165,12 @@ int sci_xmlWrite(char *fname, void* pvApiCtx)
         expandedPath = os_strdup((const char *)document->URL);
     }
 
+    if (expandedPath == NULL)
+    {
+        Scierror(999, gettext("%s: Cannot write the file.\n"), fname);
+        return 0;
+    }
+
     if (!doc->saveToFile(expandedPath, indent == 1))
     {
         Scierror(999, gettext("%s: Cannot write the file: %s\n"), fname, expandedPath);

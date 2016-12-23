@@ -23,7 +23,7 @@ void NaNChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLintR
     const ast::OpExp & oe = static_cast<const ast::OpExp &>(e);
     const ast::OpExp::Oper oper = oe.getOper();
 
-    if (oper == ast::OpExp::lt || ast::OpExp::le || ast::OpExp::gt || ast::OpExp::ge || ast::OpExp::ne || ast::OpExp::eq)
+    if (oper == ast::OpExp::lt || oper == ast::OpExp::le || oper == ast::OpExp::gt || oper == ast::OpExp::ge || oper == ast::OpExp::ne || oper == ast::OpExp::eq)
     {
         bool hasNaN = false;
 

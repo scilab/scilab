@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2011 - INRIA - Serge Steer
+// Copyright (C) 2011 - 2016 - INRIA - Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -20,7 +20,7 @@ function []=phaseplot(varargin)
     fname="phaseplot";//for error messages
 
     fmax=[];
-    if or(typeof(varargin(1))==["state-space" "rational"]) then
+    if or(typeof(varargin(1))==["state-space" "rational" "zpk"]) then
         //sys,fmin,fmax [,pas] or sys,frq
         refdim=1 //for error message
         if rhs==1 then
@@ -63,7 +63,11 @@ function []=phaseplot(varargin)
             error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),fname,2,4))
         end
     else
-        error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),fname,1))
+        ierr=execstr("%"+overloadname(varargin(1))+"_phaseplot(varargin(:))","errcatch")
+        if ierr<>0 then
+            error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),fname,1))
+        end
+        return
     end;
 
     frq=frq';

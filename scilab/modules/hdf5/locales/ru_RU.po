@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:05+0000\n"
-"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"PO-Revision-Date: 2016-06-30 06:27+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -196,7 +196,7 @@ msgstr "%s: Неверное количество входных аргумен�
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: ожидалось не менее %d.\n"
 
 #, c-format
 msgid "%s: Unable to open file: %s\n"
@@ -214,26 +214,26 @@ msgstr "%s: Неверный формат HDF5 Scilab.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Unable to open file: '%s'.\n"
-msgstr ""
+msgstr "%s: Невозможно открыть файл: '%s'.\n"
+
+msgid "Redefining permanent variable.\n"
+msgstr "Переопределение неизменной переменной.\n"
 
 #, c-format
 msgid "%s: %s is not a valid lib file.\n"
-msgstr ""
-
-msgid "Redefining permanent variable.\n"
-msgstr ""
+msgstr "%s: %s не корректный lib-файл.\n"
 
 #, c-format
 msgid "%s: Unable to load '%s'\n"
-msgstr ""
+msgstr "%s: Невозможно загрузить '%s'\n"
 
 #, c-format
 msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
@@ -241,11 +241,11 @@ msgstr "%s: Неверная версия формата SOD-файла. Ожи�
 
 #, c-format
 msgid "%s: Unable to load '%s'.\n"
-msgstr ""
+msgstr "%s: Невозможно загрузить '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
@@ -263,17 +263,19 @@ msgstr "%s: Не удалось открыть файл %s.\n"
 
 #, c-format
 msgid "%s: Unable to delete existing variable \"%s\".\n"
-msgstr ""
+msgstr "%s: Невозможно удалить существующую переменную \"%s\".\n"
 
 #, c-format
 msgid ""
 "%s: Variable '%s' already exists in file '%s'\n"
 "Use -append option to replace existing variable.\n"
 msgstr ""
+"%s: Переменная '%s' уже существует в файле '%s'\n"
+"Используйте опцию -append для замены существующей переменной.\n"
 
 #, c-format
 msgid "%s: Unable to export variable '%s' in file '%s'.\n"
-msgstr ""
+msgstr "%s: Невозможно экспортировать переменную '%s' в файл '%s'.\n"
 
 #, c-format
 msgid "%s: Unable to update Scilab version in \"%s\"."
@@ -391,7 +393,7 @@ msgid "Unknown floating-point datatype."
 msgstr "Неизвестный тип данных числа с плавающей запятой"
 
 msgid "Bitfield is too big"
-msgstr ""
+msgstr "Поле бита слишком велико"
 
 msgid "Cannot get data from an unknown data type."
 msgstr "Немогу получить данных из неизвестного типа данных."
@@ -443,7 +445,7 @@ msgstr "Не могу изменить размерность %d."
 
 #, c-format
 msgid "Cannot set the chunk dimensions: %s"
-msgstr ""
+msgstr "Нельзя установить размеры фрагмента: %s"
 
 #, c-format
 msgid "Cannot create the dataset: %s"
@@ -763,7 +765,7 @@ msgstr "Не могу примонтировать файл: %s"
 
 #, c-format
 msgid "Cannot unmount the file at location: %s"
-msgstr ""
+msgstr "Не могу отмонтировать файл в: %s"
 
 #, c-format
 msgid "Can not read input argument #%d."
@@ -799,36 +801,23 @@ msgstr "Ссылки должны быть указаны в виде строк
 msgid "Invalid path: %s."
 msgstr "Недопустимый путь: %s."
 
-# File: modules/hdf5/demos/hdf5.dem.gateway.sce, line: 10
 msgid "HDF5"
-msgstr ""
+msgstr "HDF5"
 
-#
-# File: modules/hdf5/demos/hdf5.dem.gateway.sce, line: 12
 msgid "Ring resonator (HDF5 data source)"
 msgstr ""
 
-#
-# File: modules/hdf5/demos/resonator.dem.sce, line: 12
 msgid "Ring Resonator from a HDF5 file"
-msgstr ""
+msgstr "Кольцевой резонатор из HDF5 файла"
 
-#
-# File: modules/hdf5/demos/resonator.dem.sce, line: 26
 msgid "X position [a]"
 msgstr ""
 
-#
-# File: modules/hdf5/demos/resonator.dem.sce, line: 27
 msgid "Y position [a]"
 msgstr ""
 
-#
-# File: modules/hdf5/demos/resonator.dem.sce, line: 28
 msgid "Permittivity"
 msgstr ""
 
-#
-# File: modules/hdf5/demos/resonator.dem.sce, line: 32
 msgid "Ring Resonator"
-msgstr ""
+msgstr "Кольцевой резонатор"

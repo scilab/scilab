@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="xnumb">
+    <refnamediv>
+        <refname>xnumb</refname>
+        <refpurpose>dessine des nombres  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>xnumb(x,y,nums,[box,angle])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x,y,nums  </term>
+                <listitem>
+                    <para>vecteurs de même taille.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>box  </term>
+                <listitem>
+                    <para>entier.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>angle  </term>
+                <listitem>
+                    <para>
+                        vecteur optionnel de même taille que <literal>x</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>xnumb</literal> dessine les nombres <literal>nums(i)</literal>
+            aux positions <literal>x(i),y(i)</literal> dans l'échelle courante.
+            Si <literal>box</literal> vaut 1, une boîte est dessinée autour des nombres.
+            Si <literal>angle</literal> est donné, il donne la direction pour le dessin de la chaîne de caractères.
+            Notez qu'un maximum de 4 chiffres significatifs des éléments de <varname>nums</varname> sera affiché.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+plot2d([-100,500],[-100,600],[-1,-1],"022")
+x=0:100:200;
+xnumb(x,500*ones(x),[10,20,35],1)
+ ]]></programlisting>
+        <scilab:image>
+            plot2d([-100,500],[-100,600],[-1,-1],"022")
+            x=0:100:200;
+            xnumb(x,500*ones(x),[10,20,35],1)
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xstring">xstring</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

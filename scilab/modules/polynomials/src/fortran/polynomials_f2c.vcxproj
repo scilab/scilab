@@ -304,7 +304,6 @@ cd ..
     <ClCompile Include="realit.c" />
     <ClCompile Include="recbez.c" />
     <ClCompile Include="residu.c" />
-    <ClCompile Include="rpoly.c" />
     <ClCompile Include="sfact1.c" />
     <ClCompile Include="sfact2.c" />
     <ClCompile Include="wdmpad.c" />
@@ -362,7 +361,6 @@ cd ..
     <f2c_rule Include="realit.f" />
     <f2c_rule Include="recbez.f" />
     <f2c_rule Include="residu.f" />
-    <f2c_rule Include="rpoly.f" />
     <f2c_rule Include="sfact1.f" />
     <f2c_rule Include="sfact2.f" />
     <f2c_rule Include="wdmpad.f" />

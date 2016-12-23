@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -43,7 +43,7 @@
         <title>Descrição</title>
         <para>
             Se <literal>f</literal> é uma função com valores complexos,<literal>
-                intc(a,b,f) 
+                intc(a,b,f)
             </literal>
             computa o valor da integral de <literal>a</literal>
             a <literal>b</literal> de <literal>f(z)dz</literal> ao longo da reta

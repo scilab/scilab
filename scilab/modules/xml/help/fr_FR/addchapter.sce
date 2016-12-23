@@ -10,4 +10,4 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Gestion des fichiers XML",SCI+"/modules/xml/help/fr_FR",%T);
+add_help_chapter("Traitement XML",SCI+"/modules/xml/help/fr_FR",%T);

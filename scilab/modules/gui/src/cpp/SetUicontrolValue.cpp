@@ -132,6 +132,17 @@ int SetUicontrolValue(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
             return SET_PROPERTY_ERROR;
         }
 
+        getGraphicObjectProperty(iObjUID, __GO_UI_MIN__, jni_double, (void**)&pdblMinValue);
+        getGraphicObjectProperty(iObjUID, __GO_UI_MAX__, jni_double, (void**)&pdblMaxValue);
+
+        if (valueSize > maxValue - minValue)
+        {
+            Scierror(999, const_cast<char*>(_("(Max - Min) must be greater than 1 to allow the multiple selection.\n")));
+            return SET_PROPERTY_ERROR;
+        }
+
+
+
         for (int i = 0 ; i < valueSize ; i++)
         {
             if (truncatedValue[i] < 0 || truncatedValue[i] > iDataSize)

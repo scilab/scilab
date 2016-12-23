@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-09 16:25+0000\n"
+"PO-Revision-Date: 2016-06-10 06:22+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Answer appears to be lower than lowest search bound %g\n"
@@ -417,11 +417,9 @@ msgstr "Кореляційне коло"
 msgid "Eigenvalues"
 msgstr "Власні значення"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: значення має перебувати у "
-"інтервалі %s.\n"
+msgstr "%s: параметр №%d: має належати до множини {%s}.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -501,10 +499,3 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати > %d.\n"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or a positive "
-#~ "integer expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: мало бути вказано «%s», "
-#~ "«%s», «%s» або додатне ціле число.\n"

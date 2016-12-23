@@ -150,7 +150,6 @@ function [ f , c , index ] = largesmallpolygon ( x , index )
     end
 endfunction
 Warning : redefining function: largesmallpolygon       . Use funcprot(0) to avoid this message
-
 nv = 6;
 rand("seed" , 0);
 [A,r,t] = findlargestpolygon (nv);

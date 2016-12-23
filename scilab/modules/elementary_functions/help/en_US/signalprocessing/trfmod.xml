@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -25,7 +25,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            To visualize the pole-zero structure of a SISO transfer 
+            To visualize the pole-zero structure of a SISO transfer
             function <literal>h</literal> .
         </para>
         <variablelist>
@@ -50,7 +50,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-// with a transfer function 
+// with a transfer function
 s=poly(0,'s');
 gs=syslin('c',1/(s+1));
 trfmod(gs)
@@ -63,7 +63,7 @@ sys=syslin('c',A,B,C);
 trfmod(sys)
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

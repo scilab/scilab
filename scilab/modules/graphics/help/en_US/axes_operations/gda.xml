@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -57,8 +57,8 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-a=gda() // get the handle of the model axes 
+        <programlisting role="example"><![CDATA[
+a=gda() // get the handle of the model axes
 // set its' properties
 a.box="off";
 a.foreground=2;
@@ -69,15 +69,15 @@ a.x_location="top";
 
 //now used the model axes for drawing
 subplot(211) //create an axes entity
-plot2d() 
+plot2d()
 
 // set other model's properties
 a.background=color('gray')
 a.grid=[5 5 5];
 subplot(212)
-t=0:0.1:5*%pi; 
-plot2d(sin(t),cos(t)) 
- 
+t=0:0.1:5*%pi;
+plot2d(sin(t),cos(t))
+
 set(a,"default_values",1); // return to the  default values of the model
                            // see sda() function
 clf()

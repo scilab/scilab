@@ -39,30 +39,32 @@
             Y = grand(m, n, "unf", Low, High)
             Y = grand(m, n, "uin", Low, High)
             Y = grand(m, n, "lgi")
-            
+
             Y = grand(m, n, o,..,"..",...)
             Y = grand(X, ...)
-            
+        </synopsis>
+
+        <synopsis>
             Y = grand(n, "mn", Mean, Cov)
             Y = grand(n, "markov", P, x0)
             Y = grand(n, "mul", nb, P)
             Y = grand(n, "prm", vect)
-            
+        </synopsis>
+
+        <synopsis>
             S = grand("getgen")
             grand("setgen", gen)
-            
+
             S = grand("getsd")
             grand("setsd", S)
-            
-            S = grand("phr2sd", phrase)
-            
+
             grand("setcgn", G)
             S = grand("getcgn")
-            
+
+            S = grand("phr2sd", phrase)
+
             grand("initgn", I)
-            
             grand("setall", s1, s2, s3, s4)
-            
             grand("advnst", K)
         </synopsis>
     </refsynopsisdiv>
@@ -133,7 +135,7 @@
         </para>
         <para>
             produce a <varname>m</varname>-by-<varname>n</varname> matrix with random entries.
-            
+
             All these syntaxes can be extended to create a random hypermatrix with more than
             2 dimensions specified as integers listed before the type of statistical distribution:
         </para>
@@ -476,7 +478,7 @@
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>[0, 2^32 - 1]</literal> for mt, kiss and fsultra;
+                                <literal>[0, 2^32 - 1]</literal> for mt and kiss;
                             </para>
                         </listitem>
                         <listitem>
@@ -548,17 +550,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>fsultra</term>
-                <listitem>
-                    <para>
-                        A Subtract-with-Borrow generator mixing with a congruential
-                        generator of Arif Zaman and George Marsaglia, period more than <literal>10^356</literal>,
-                        state given by an array of <literal>37</literal> integers (plus an index onto this array, a flag (<literal>0</literal> or <literal>1</literal>)
-                        and another integer).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>urand</term>
                 <listitem>
                     <para>
@@ -583,7 +574,7 @@
                     <para>
                         <code>S = grand("getgen")</code> returns the current base generator.
                         In this case <varname>S</varname> is
-                        a string among <literal>"mt"</literal>, <literal>"kiss"</literal>, <literal>"clcg2"</literal>, <literal>"clcg4"</literal>, <literal>"urand"</literal>, <literal>"fsultra"</literal>.
+                        a string among <literal>"mt"</literal>, <literal>"kiss"</literal>, <literal>"clcg2"</literal>, <literal>"clcg4"</literal>, <literal>"urand"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -592,7 +583,7 @@
                 <listitem>
                     <para>
                         <code>grand("setgen",gen)</code> sets the current base generator to be <varname>gen</varname>
-                        a string among <literal>"mt"</literal>, <literal>"kiss"</literal>, <literal>"clcg2"</literal>, <literal>"clcg4"</literal>, <literal>"urand"</literal>, <literal>"fsultra"</literal>.
+                        a string among <literal>"mt"</literal>, <literal>"kiss"</literal>, <literal>"clcg2"</literal>, <literal>"clcg4"</literal>, <literal>"urand"</literal>.
                         Notice that this call returns the new current generator, i.e. <varname>gen</varname>.
                     </para>
                 </listitem>
@@ -604,7 +595,7 @@
                         <code>S = grand("getsd")</code> gets the current state (the current seeds) of the current base
                         generator ; <varname>S</varname> is given as a column vector (of integers) of dimension <literal>625</literal>
                         for mt (the first being an index in <literal>[1,624]</literal>), <literal>4</literal> for kiss, <literal>2</literal>
-                        for clcg2,  <literal>40</literal> for fsultra, <literal>4</literal> for clcg4
+                        for clcg2,  <literal>4</literal> for clcg4
                         (for this last one you get the current state of the current virtual generator) and <literal>1</literal>
                         for urand.
                     </para>
@@ -670,18 +661,6 @@
                             <listitem>
                                 <para>
                                     <literal>1</literal> integer <varname>s1</varname> in  <literal>[0,2^31[</literal> must be given.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>for fsultra</term>
-                            <listitem>
-                                <para>
-                                    <varname>S</varname> is a vector of integers of dim <literal>40</literal> (the first component
-                                    is an index and must be in <literal>[0,37]</literal>, the 2nd component is a flag (0 or 1), the 3rd component is
-                                    an integer in <literal>[1,2^32[</literal> and the 37 others integers are in <literal>[0,2^32[</literal>) ; a simpler (and recommended)
-                                    initialization may be done with two integers <varname>s1</varname> and <varname>s2</varname> in
-                                    <literal>[0,2^32[</literal>.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -808,7 +787,7 @@ xtitle("Normal random numbers from grand","X","Frequency");
             histplot(10,R);
             xtitle("Normal random numbers from grand","X","Frequency");
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // Returns a 400-by-800 matrix of random doubles,
 // uniform in [0,1).
@@ -822,7 +801,7 @@ xtitle("Uniform random numbers from grand","X","Frequency");
             histplot(10,R);
             xtitle("Uniform random numbers from grand","X","Frequency");
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // Returns a 400-by-800 matrix of random doubles,
 // with Poisson distribution and average equal to 5.
@@ -836,7 +815,7 @@ xtitle("Poisson random numbers from grand","X","Frequency");
             histplot(10,R);
             xtitle("Poisson random numbers from grand","X","Frequency");
         </scilab:image>
-        
+
         <para>
             In the following example, we generate random numbers from the exponential distribution and
             then compare the empirical with the theoretical distribution.

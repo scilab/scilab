@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -36,7 +36,7 @@
                     Pour les appels avec une entrée et pas de sortie,
                     <literal>mtlb_eval(str1)</literal> peut être remplacé par <literal>evstr(str1)</literal>
                     si <literal>str1</literal> est une expression Scilab valid
-                    ou par <literal>execstr(str1)</literal> 
+                    ou par <literal>execstr(str1)</literal>
                     si <literal>str1</literal> est une instruction Scilab valid.
                 </para>
             </listitem>
@@ -54,7 +54,7 @@
                     <literal>
                         if execstr(str1,"errcatch")&lt;&gt;0 then
                         execstr(str2);
-                        end	  
+                        end
                     </literal>
                     si <literal>str1</literal> et <literal>str2</literal> sont des instructions Scilab valides.
                 </para>
@@ -74,7 +74,7 @@
                     <literal>
                         if execstr("[val1,val2,...]"+str1,"errcatch")&lt;&gt;0 then
                         execstr("[val1,val2,...]"+str2);
-                        end	  
+                        end
                     </literal>
                     si <literal>str1</literal> et <literal>str2</literal> sont des instructions Scilab valides.
                 </para>

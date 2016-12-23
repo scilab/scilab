@@ -121,6 +121,9 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         throw ie;
     }
 
+    // reset expected size for recursive call
+    // ie [a, b] = l(1)(1), where l is a list containing a function with two output argument
+    setExpectedSize(-1);
     // get function/variable
     try
     {
@@ -131,6 +134,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         CoverageInstance::stopChrono((void*)&e);
         throw;
     }
+    setExpectedSize(iSaveExpectedSize);
+
     types::InternalType* pIT = getResult();
 
     // pIT can be NULL if one of call return nothing. foo()(1) with foo return nothing.

@@ -209,4 +209,45 @@ public :
     static int Load();
 };
 
+class GraphicsModule : public GenericModule
+{
+    static bool loadedDep;
+    static int LoadDeps(const std::wstring& _functionName);
+public :
+    static int Load();
+};
+
+class GuiModule : public GenericModule
+{
+    static bool loadedDep;
+    static int LoadDeps(const std::wstring& _functionName);
+
+public :
+    static int Load();
+};
+
+class JvmModule : public GenericModule
+{
+public :
+    static int Load();
+};
+
+class UiDataModule : public GenericModule
+{
+public:
+    static int Load();
+};
+
+class TclsciModule : public GenericModule
+{
+public :
+    static int Load();
+};
+
+class HistoryBrowserModule : public GenericModule
+{
+public :
+    static int Load();
+};
+
 #endif /* !__DYNAMIC_MODULES_HXX_ */

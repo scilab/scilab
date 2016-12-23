@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Farid Belahcene
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="pie">
+    <refnamediv>
+        <refname>pie</refname>
+        <refpurpose>draw a pie</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>pie(x)
+            pie(x[,sp[,txt]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>a scalar or a vector of positive reals.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sp</term>
+                <listitem>
+                    <para>a real scalar or a vector of reals.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>txt</term>
+                <listitem>
+                    <para>a cell or a vector of strings.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>pie(x):</literal> if size of x is N then pie function draws a pie
+            with N parts, the area of the ith part is equal to (x(i)/sum(x))*( surface
+            of the unit circle).
+        </para>
+        <para>
+            <literal>pie(x,sp):</literal>the sp vector allows to cut one or several
+            parts of the pie, (the size of sp must be equal to N). if the value of the
+            ith index of sp is different of zero then the ith part is separated from
+            the others by a space, else if it' s equal to zero then it is attached to
+            the others.
+        </para>
+        <para>
+            <literal>pie(x,txt):</literal> the txt vector allows to write a text for
+            each part of the pie, the ith component of txt corresponds to the ith part
+            (default : it's written the percentages which corresponds to the parts
+            surface). The size of txt must be equal to N.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// First example : one input argument  x=[1 2 5]
+scf(0);
+pie([1 2 5]);
+ ]]></programlisting>
+
+        <scilab:image>
+            pie([1 2 5]);
+        </scilab:image>
+
+        <programlisting role="example"><![CDATA[
+// Second example : two input arguments x=[5 9  4 6 3], sp=[0 1 0 1 0], the second and the fourth are separated of the others
+scf(1);
+pie([5 9 4 6 3],[0 1 0 1 0]);
+ ]]></programlisting>
+
+        <scilab:image>
+            pie([5 9 4 6 3],[0 1 0 1 0]);
+        </scilab:image>
+
+        <programlisting role="example"><![CDATA[
+// Third example : three input arguments, x=[3 4 6 2], sp=[0 1 0 0], txt=["part1","part2","part3","part4"]
+scf(2);
+pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
+ ]]></programlisting>
+        <scilab:image>
+            pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xfpolys">xfpolys</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

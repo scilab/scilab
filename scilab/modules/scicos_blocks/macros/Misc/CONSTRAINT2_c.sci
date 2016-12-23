@@ -45,12 +45,12 @@ function [x,y,typ]=CONSTRAINT2_c(job,arg1,arg2)
             Nid=size(id,"*");
 
             if (N~=Nxd)|(N~=Nid) then
-                message("incompatible sizes, states, their derivatives, and ID should be the same size ")
+                messagebox("Incompatible sizes, states, their derivatives, and ID should be the same size")
                 ask_again=%t
             end
 
             if (N<=0 & ~ask_again) then
-                x_message("number of states (constraints) must be > 0 ")
+                messagebox("Number of states (constraints) must be > 0")
                 ask_again=%t
             end
 
@@ -58,7 +58,7 @@ function [x,y,typ]=CONSTRAINT2_c(job,arg1,arg2)
                 for i=1:N,
                     if ~((id(i)==0) | (id(i)==1)) then
                         ask_again=%t
-                        x_message(["Id(i) must be either";"0 when x''(i) is not present in the feedback";"1: when x''(i) is present in the feedback"])
+                        messagebox(["Id(i) must be either:";"0 when x''(i) is not present in the feedback";"1: when x''(i) is present in the feedback"])
                         break
                     end
                     if (id(i)==0) then

@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) INRIA - Fabrice Leray
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -190,7 +190,7 @@
                         a real color vector or matrix is specified. If none,
                         <literal>data.color</literal> is not listed. The surface is painted
                         according to <literal>color_mode </literal>and <literal>color_flag</literal>
-                        properties. 
+                        properties.
                     </para>
                 </listitem>
             </varlistentry>
@@ -448,7 +448,7 @@
                 <listitem>
                     <para>This field defines the shininess level of the surface. This parameter
                         controls the shinines color spreading in the surface. Any positive value can
-                        be used. Good values to use are in the [0 10] range, where low values generates 
+                        be used. Good values to use are in the [0 10] range, where low values generates
                         strong highlight and high values generates barely perceptible highlights.
                         The default value is <literal>"2"</literal>.
                     </para>
@@ -497,32 +497,32 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-//create a figure 
+        <programlisting role="example"><![CDATA[
+//create a figure
 t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
-[xx,yy,zz]=genfac3d(t,t,z); 
-plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)])) 
-h=get("hdl") //get handle on current entity (here the surface) 
+[xx,yy,zz]=genfac3d(t,t,z);
+plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
+h=get("hdl") //get handle on current entity (here the surface)
 a=gca(); //get current axes
-a.rotation_angles=[40,70]; 
-a.grid=[1 1 1]; 
-//make grids 
+a.rotation_angles=[40,70];
+a.grid=[1 1 1];
+//make grids
 a.data_bounds=[-6,0,-1;6,6,5];
-a.axes_visible="off"; 
-//axes are hidden a.axes_bounds=[.2 0 1 1]; 
+a.axes_visible="off";
+//axes are hidden a.axes_bounds=[.2 0 1 1];
 f=get("current_figure");
-//get the handle of the parent figure 
-f.color_map=hotcolormap(64); 
-//change the figure colormap 
-h.color_flag=1; 
-//color according to z 
-h.color_mode=-2; 
-//remove the facets boundary 
-h.color_flag=2; 
-//color according to given colors 
+//get the handle of the parent figure
+f.color_map=hotcolormap(64);
+//change the figure colormap
+h.color_flag=1;
+//color according to z
+h.color_mode=-2;
+//remove the facets boundary
+h.color_flag=2;
+//color according to given colors
 h.data.color=[1+modulo(1:400,64),1+modulo(1:400,64)];
 //shaded
-h.color_flag=3; 
+h.color_flag=3;
 
 scf(2); // creates second window and use surf command
 subplot(211)

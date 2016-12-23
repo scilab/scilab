@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -53,14 +53,14 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // example 1 :
-// '1010110' : is the binary representation of 86 
+// '1010110' : is the binary representation of 86
 str='1010110';
 y=bin2dec(str)
 
 // example 2 :
-// '1011011' : is the binary representation of 91 
+// '1011011' : is the binary representation of 91
 // '1010010' : is the binary representation of 82
 str=['1011011'; '1010010']
 y=bin2dec(str)

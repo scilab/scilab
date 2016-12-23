@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -32,7 +32,7 @@
                 <term>P</term>
                 <listitem>
                     <para>
-                        線形システム (<literal>syslin</literal> リスト),  ``拡張'' プラント, 
+                        線形システム (<literal>syslin</literal> リスト),  ``拡張'' プラント,
                         暗黙のうちに4つの区画(2つの入力ポートと2つの出力ポート)に分割されます.
                     </para>
                 </listitem>
@@ -41,7 +41,7 @@
                 <term>K</term>
                 <listitem>
                     <para>
-                        線形システム (<literal>syslin</literal> リスト), コントローラ 
+                        線形システム (<literal>syslin</literal> リスト), コントローラ
                         (通常のゲインの場合もあります).
                     </para>
                 </listitem>
@@ -58,7 +58,7 @@
                 <term>Ps  </term>
                 <listitem>
                     <para>
-                        線形システム (<literal>syslin</literal> リスト), 
+                        線形システム (<literal>syslin</literal> リスト),
                         暗黙のうちに4つの区画(2つの入力ポートと2つの出力ポート)に分割されます.
                     </para>
                 </listitem>
@@ -118,7 +118,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 P=[1/s, 1/(s+1); 1/(s+2),2/s]; K= 1/(s-1);
 lft(P,K)

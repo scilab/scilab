@@ -27,7 +27,7 @@ namespace org_modules_hdf5
 
 void H5File::init(const hid_t fapl)
 {
-    bool opened;
+    bool opened = false;
 
 #if !defined(__HDF5ERROR_PRINT__)
     H5Eset_auto(H5E_DEFAULT, 0, 0);

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 21:58+0000\n"
+"PO-Revision-Date: 2016-10-19 12:59+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -395,13 +395,19 @@ msgstr "%s: Matice není diagonizovatelná.\n"
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
 
+#
+# File: modules/elementary_functions/macros/bit_op.sci, line: 20
 #, c-format
-msgid "%s: Wrong type for input arguments: Same types expected.\n"
-msgstr "%s: Špatný typ vstupních argumentů: Očekávány stejné velikosti.\n"
+msgid "%s: unknown bitwise function %s.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr "%s: Špatná velikost vstupních argumentů: Očekávána stejná velikost.\n"
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Integers >=0 expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -419,6 +425,10 @@ msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být mezi %d a %d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: Špatná velikost vstupních argumentů: Očekávána stejná velikost.\n"
+
+#, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr "%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
 
@@ -433,17 +443,13 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-"expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván skalár/matice celých čísel "
-"bez znaménka.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáváno kladné reálné číslo.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr "%s: Špatný typ vstupních argumentů: Očekávány stejné velikosti.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
@@ -658,13 +664,11 @@ msgstr ""
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Booleans, Integers, Decimals, Complexes, "
 "Polynomials, Rationals or Texts expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána reálná, komplexní, "
-"booleovská nebo polynomická matice.\n"
 
 #, c-format
 msgid ""
@@ -843,11 +847,9 @@ msgstr "%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekáván stejný ty
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: Špatná velikost vstupních argumentů: Nekompatibilní velikosti.\n"
 
-#~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-#~ msgstr "%s: Špatný počet vstupních argumentů: Očekáváno nejvíce %d.\n"
-
-#~ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-#~ msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s'.\n"
-
-#~ msgid "%s: Wrong type for argument #%d: Real expected.\n"
-#~ msgstr "%s: Špatný typ argumentu #%d: Očekáváno reálné číslo.\n"
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár/matice celých "
+#~ "čísel bez znaménka.\n"

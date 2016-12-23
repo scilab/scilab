@@ -214,12 +214,12 @@ public class BasicPortCodec extends XcosObjectCodec {
      */
     private void updateRotationFromOrientation(StyleMap map, BasicPort obj) {
         final Orientation orientation = obj.getOrientation();
-        double rotation = 0;
+        int rotation = 0;
         boolean flipped = false;
         boolean mirrored = false;
 
         if (map.get(mxConstants.STYLE_ROTATION) != null) {
-            rotation = Double.parseDouble(map.get(mxConstants.STYLE_ROTATION));
+            rotation = Double.valueOf(map.get(mxConstants.STYLE_ROTATION)).intValue();
         } else {
             rotation = 0;
         }
@@ -238,7 +238,7 @@ public class BasicPortCodec extends XcosObjectCodec {
         // Calculate the rotation for this kind of port.
         rotation = orientation.getAbsoluteAngle(obj.getClass(), flipped, mirrored);
 
-        map.put(mxConstants.STYLE_ROTATION, Double.toString(rotation));
+        map.put(mxConstants.STYLE_ROTATION, Integer.toString(rotation));
     }
 }
 // CSON: ClassDataAbstractionCoupling

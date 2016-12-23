@@ -20,13 +20,13 @@
             volée uniquement quand nécessaire), le moteur MathML est plus lent à
             charger que celui LaTeX.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Example with LaTeX / MathML ticks:
 plot2d();
 a=gca();
 
-mathml="<mrow><mfrac><mrow><mi>d</mi><mi>y</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mo>=</mo><mfrac>..
-<mn>1</mn><msup><mi>y</mi><mn>2</mn></msup></mfrac></mrow>";
+mathml="<mrow><mfrac><mrow><mi>d</mi><mi>y</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mo>=</mo><mfrac>" + ..
+"<mn>1</mn><msup><mi>y</mi><mn>2</mn></msup></mfrac></mrow>";
 // LaTeX and MathML mixed expression
 a.x_ticks = tlist(["ticks", "locations", "labels"], (0:6)', [mathml;"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6"]);
  ]]></programlisting>
@@ -41,11 +41,11 @@ a.x_ticks = tlist(["ticks", "locations", "labels"], (0:6)', [mathml;"1";"$\sin(x
             xtitle('$\big\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}{6}$')
         </scilab:image>
         <programlisting role="example"><![CDATA[
-      xtitle('$\textstyle\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}{6}$')
-      xtitle('$\big(\bigg)$')
-      xtitle('$\mbox{Vector field for }\ddot{\theta}=\sin\theta$')
-      xtitle('$\JLaTeXMath\ \mathfrak{and}\ \mathtt{Scilab}$')
-      xstring(0.5,0.5,"$\overbrace{привет\ мир} \underbrace{γειά\ κόσμο}$")
+xtitle('$\textstyle\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}{6}$')
+xtitle('$\big(\bigg)$')
+xtitle('$\mbox{Vector field for }\ddot{\theta}=\sin\theta$')
+xtitle('$\JLaTeXMath\ \mathfrak{and}\ \mathtt{Scilab}$')
+xstring(0.5,0.5,"$\overbrace{привет\ мир} \underbrace{γειά\ κόσμο}$")
      ]]></programlisting>
         <para>
             JLaTeXMath fournit plusieurs polices utilisables avec les commandes <literal>\mathbb</literal>, <literal>\mathscr</literal>, <literal>\mathcal</literal>, <literal>\mathbf</literal>, <literal>\mathit</literal>, <literal>\mathsf</literal>, <literal>\mathtt</literal>, <literal>\mathfrak</literal>, <literal>\mathds</literal>, <literal>\mathrm</literal>, ainsi que leurs versions grasses quand elles existent activables avec la commande <literal>\boldsymbol</literal> :
@@ -69,10 +69,10 @@ xtitle('$\scalebox{0.6}{\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}6}$')
 xtitle('$\fcolorbox{black}{Tan}{\JLaTeXMath}$')
 xtitle('$\textcolor{Magenta}{\mathfrak{Scilab}}\mbox{ and }\textcolor{Green}{\mathcal{SCILAB}}$')
 ]]></programlisting>
-        
+
         <para>Il y a la possibilité de définir de nouvelles commandes ou de nouveaux environnements :</para>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 xtitle('$\newcommand{\op}{\left(}\newcommand{\cp}{\right)} \op\frac12\cp$')
 xtitle('$\newcommand{\myfrac}[2]{\frac{\mathfrak{#1}}{\mathcal{#2}}}\myfrac{A}{B}$')
  ]]></programlisting>
@@ -87,19 +87,19 @@ xtitle('$\newcommand{\myfrac}[2]{\frac{\mathfrak{#1}}{\mathcal{#2}}}\myfrac{A}{B
             utilisation, le moteur peut prendre jusqu'à quelques secondes à se
             charger. Toutefois, les utilisations suivantes seront très rapides.
         </para>
-        <scilab:image><![CDATA[ 
-str="<mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo></mo><mfenced open=""{"" close=""}""> ..
-<mrow><mfrac><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac></mrow><mrow><mfrac><mrow> ..
-<mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac></mrow></mfrac></mrow></mfenced></mrow>"
+        <scilab:image><![CDATA[
+str="<mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo></mo><mfenced open=""{"" close=""}"">" + ..
+"<mrow><mfrac><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac></mrow><mrow><mfrac><mrow>" +  ..
+"<mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac></mrow></mfrac></mrow></mfenced></mrow>"
 xtitle(str)
 ]]></scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot3d();
 a=get("current_axes");
 a.x_label.font_size= 5;
-a.x_label.text="<mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo></mo><mfenced open=""{"" close=""}""> ..
-<mrow><mfrac><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac></mrow><mrow><mfrac><mrow> ..
-<mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac></mrow></mfrac></mrow></mfenced></mrow>"
+a.x_label.text="<mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo></mo><mfenced open=""{"" close=""}"">" + ..
+"<mrow><mfrac><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac></mrow><mrow><mfrac><mrow>" + ..
+"<mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac></mrow></mfrac></mrow></mfenced></mrow>"
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

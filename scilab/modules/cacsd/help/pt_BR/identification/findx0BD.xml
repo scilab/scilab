@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -167,11 +167,11 @@
         </para>
         <para>
             [X0,B,D] = findx0BD(A,C,Y,U,WITHX0,WITHD,TOL,PRINTW)  estimates the
-            initial state X0 and the matrices B and D of a discrete-time 
-            system using the system matrices A, C, output data Y and the input 
+            initial state X0 and the matrices B and D of a discrete-time
+            system using the system matrices A, C, output data Y and the input
             data U. The model structure is :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 x(k+1) = Ax(k) + Bu(k),   k >= 1,
 y(k)   = Cx(k) + Du(k),
  ]]></programlisting>
@@ -185,19 +185,19 @@ y(k)   = Cx(k) + Du(k),
             form, as well as some estimates of the reciprocal condition numbers
             of the matrices involved in rank decisions.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
     B = findx0BD(A,C,Y,U,0,0)  returns B only, and
-[B,D] = findx0BD(A,C,Y,U,0)    returns B and D only. 
+[B,D] = findx0BD(A,C,Y,U,0)    returns B and D only.
  ]]></programlisting>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
-      0.1, 0,  -0.1,-0.1;      
-     -0.4,-0.6,-0.7,-0.1;  
-      0.8, 0,  -0.6,-0.6];      
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
 B = [0.8;0.1;1;-1];
 C = [1 2 -1 0];
 SYS=syslin(0.1,A,B,C);

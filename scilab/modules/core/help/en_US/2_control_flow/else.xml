@@ -12,7 +12,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 val = %t
 
 if val==%t then
@@ -28,7 +28,7 @@ select val
       disp("false");
    else
       disp("a third variant");
-end 
+end
      ]]></programlisting>
     </refsection>
     <refsection role="see also">

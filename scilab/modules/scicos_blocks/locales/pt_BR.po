@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 msgid "overflow error"
 msgstr "erro de overflow"
@@ -846,8 +846,6 @@ msgstr "'Valor inicial' e 'Valor final': tamanhos incompatíveis: %d e %d."
 msgid "Same sizes expected."
 msgstr "Esperava-se o mesmo tamanho."
 
-#
-# File: modules/scicos_blocks/tests/unit_tests/scicos_unitary.sci, line: 96
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""

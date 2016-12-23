@@ -17,26 +17,17 @@
 #define __UI_DATA_GW_HXX__
 
 #include "cpp_gateway_prototype.hxx"
-#include "c_gateway_prototype.h"
+
+extern "C" {
 #include "dynlib_ui_data.h"
+#include "c_gateway_prototype.h"
 
-class UiDataModule
-{
-private:
-    UiDataModule() {};
-    ~UiDataModule() {};
-public:
-    UI_DATA_IMPEXP static int Load();
-    UI_DATA_IMPEXP static int Unload()
-    {
-        return 1;
-    }
-};
+    UI_DATA_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_editvar);
+}
 
-CPP_GATEWAY_PROTOTYPE(sci_browsevar);
-STACK_GATEWAY_PROTOTYPE(sci_editvar);
-CPP_GATEWAY_PROTOTYPE(sci_filebrowser);
-CPP_GATEWAY_PROTOTYPE(sci_updatebrowsevar);
-CPP_GATEWAY_PROTOTYPE(sci_closeEditvar);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_browsevar, UI_DATA_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_filebrowser, UI_DATA_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_updatebrowsevar, UI_DATA_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_closeEditvar, UI_DATA_IMPEXP);
 
 #endif /* __UI_DATA_GW_HXX__ */

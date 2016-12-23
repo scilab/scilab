@@ -13,5 +13,15 @@
 function [f1] = %r_m_p(r1,p2)
     // r = %r_m_p(r1, p2)  <=> r = r1*p2
     // r1 = rational p2 = polynomial
-    f1 = p2*r1;
+    if size(p2, "*") == 1 then
+        num=r1.num*p2;
+        den = r1.den;
+        f1=rlist(num,den,r1("dt"))
+    else
+        if isrow(r1) then
+            f1 = p2.'*r1.';
+        else
+            f1 = (p2.'*r1.').';
+        end
+    end
 endfunction

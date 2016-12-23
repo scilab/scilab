@@ -13,7 +13,7 @@ function [co,u,g,itv,dtv]=icse(u,simu,nap,imp)
     // u(nu)     : initial parameters
     // simu      : string containing the name of the sub program which
     //             describes the problem
-    // nap       : maximum number of call to the simulator
+    // nap       : maximum number of calls to the simulator
     // imp       : debug value during optimization
     // output variables :
     // co        : final cost

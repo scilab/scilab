@@ -11,9 +11,4 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-//Load functions libraries
-// =============================================================================
-load('SCI/modules/scicos/macros/scicos_scicos/lib');
 load('SCI/modules/scicos/macros/scicos_utils/lib');
-load('SCI/modules/scicos/macros/scicos_auto/lib')
-

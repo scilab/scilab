@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -71,7 +71,7 @@
             <literal>load(filename,'x','y')</literal> は,変数 <literal>x,y</literal>のみを読み込ます.
         </para>
         <para>
-            <literal>load(fd,'x','y')</literal> は,変数 <literal>x,y</literal>のみを読み込みます. 
+            <literal>load(fd,'x','y')</literal> は,変数 <literal>x,y</literal>のみを読み込みます.
             <emphasis role="bold">このプロトタイプは廃止予定であり,Scilab 6では削除されます.</emphasis>.
         </para>
         <para>
@@ -87,7 +87,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Scilab 5 ファミリーまでで可読なバイナリ形式
 a=eye(2,2);b=ones(a);
 save('vals.dat',a,b);

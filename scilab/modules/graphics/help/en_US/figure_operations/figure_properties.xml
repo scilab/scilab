@@ -45,15 +45,6 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>figure_style: </term>
-                            <listitem>
-                                <para>The value of this field defines the figure style.
-                                    Since Scilab 5.0, old graphic mode has been disable.
-                                    This property will be removed in Scilab 5.4 family.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
                             <term>figure_position: </term>
                             <listitem>
                                 <para>This field contains the position in pixel of the graphic
@@ -126,14 +117,6 @@
                                 <para>This field contains the identifier of the figure. This is an
                                     integer number which is set at figure creation and cannot be
                                     changed after.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>info_message: </term>
-                            <listitem>
-                                <para>This character string set the text displayed in the info bar of the
-                                    graphic window.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -240,7 +223,8 @@
                             <term>resize: </term>
                             <listitem>
                                 <para>
-                                    This property locks the figure size. Its value can be <literal>"on"</literal> (default value) or <literal>"off"</literal> (the figure can not be resized by mouse events).
+                                    <literal>"on"</literal> (default value) allows the user to interactively resize the figure with the mouse.
+                                    <literal>"off"</literal> forbids to do it, but still allows using efficiently the <literal>.figure_size</literal> property.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -265,6 +249,14 @@
                             <listitem>
                                 <para>
                                     This property controls the figure status bar visibility. Its value can be <literal>"on"</literal> (default value) or <literal>"off"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info_message: </term>
+                            <listitem>
+                                <para>This character string set the text displayed in the info bar of the
+                                    graphic window.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -308,10 +300,37 @@
                             <term>default_axes: </term>
                             <listitem>
                                 <para>
-                                    This property enables to manage axes creation in figures. Its value can be <literal>"on"</literal> (default value) or <literal>"off"</literal>.
+                                    <literal>"on"</literal> (default value) means that the figure has always
+                                    a default axes: it is automatically set at the figure creation,
+                                    or automatically reset when the last axes of the figure is
+                                    intentionally deleted.
                                 </para>
                                 <para>
-                                    If its value is <literal>"on"</literal>, an axes will be created at figure creation and each time the latest axes of the figure is deleted, a new one will be created. If its value is <literal>"off"</literal>, no axes will be initialized at figure creation but an axes can be added in the figure using <link linkend="newaxes">newaxes</link> function.
+                                    <literal>"off"</literal> means that
+                                    <itemizedlist>
+                                      <listitem>
+                                          the newly created figure has no default axes.
+                                      </listitem>
+                                      <listitem>
+                                          for an existing figure, it is possible to actually delete
+                                          all its existing axes.
+                                      </listitem>
+                                    </itemizedlist>
+                                    In both cases,
+                                    <itemizedlist>
+                                       <listitem>
+                                         without any axes, the figure can't be the default
+                                         target of any plotting instruction. This feature
+                                         can be used to protect an interactive interface built in
+                                         a figure (like the demos and the ATOMS ones) from being the default
+                                         plotting target when there is no other proper opened
+                                         graphical figures.
+                                       </listitem>
+                                       <listitem>
+                                          It is still possible to force creating an axes using the
+                                          <link linkend="newaxes">newaxes</link> function.
+                                       </listitem>
+                                    </itemizedlist>
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -444,13 +463,19 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="lines">lines</link>
+                <link linkend="eventhandlerfunctions">event handler functions</link>
             </member>
             <member>
-                <link linkend="set">set</link>
+                <link linkend="pixel_drawing_mode">pixel_drawing_mode</link>
             </member>
             <member>
-                <link linkend="get">get</link>
+                <link linkend="colormap">colormap</link>
+            </member>
+            <member>
+                <link linkend="xname">xname</link>
+            </member>
+            <member>
+                <link linkend="xinfo">xinfo</link>
             </member>
             <member>
                 <link linkend="scf">scf</link>
@@ -462,19 +487,16 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
                 <link linkend="gdf">gdf</link>
             </member>
             <member>
-                <link linkend="gca">gca</link>
-            </member>
-            <member>
-                <link linkend="gda">gda</link>
+                <link linkend="findobj">findobj</link>
             </member>
             <member>
                 <link linkend="axes_properties">axes_properties</link>
             </member>
             <member>
-                <link linkend="hotcolormap">hotcolormap</link>
+                <link linkend="set">set</link>
             </member>
             <member>
-                <link linkend="eventhandlerfunctions">event handler functions</link>
+                <link linkend="get">get</link>
             </member>
         </simplelist>
     </refsection>

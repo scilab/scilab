@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -76,7 +76,7 @@
         <para>
             <literal>G</literal> は以下のアウタ-インナ分解を許容します:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
  G = [ Inn ] | Gbar |
              |  0   |
  ]]></programlisting>
@@ -91,17 +91,17 @@
         <para>
             注意:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
       [ Gbar ]
 X*G = [  -   ]
       [  0   ]
  ]]></programlisting>
         <para>
             は <literal>G</literal> の行圧縮です.
-            ただし, <literal>X</literal> = <literal>Inn</literal> 
+            ただし, <literal>X</literal> = <literal>Inn</literal>
             の逆行列は全通過特性を有します.すなわち:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
  T
 X (-s) X(s) = Identity
  ]]></programlisting>

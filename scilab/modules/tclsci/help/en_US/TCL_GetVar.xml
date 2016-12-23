@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -67,10 +67,10 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 TCL_EvalStr("toplevel .tst1");
 
-// creates a toplevel TK window. 
+// creates a toplevel TK window.
 TCL_EvalStr("entry .tst1.e -textvariable tvar");
 
 // create an editable entry

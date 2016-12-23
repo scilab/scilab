@@ -237,7 +237,9 @@
                 <td>
                     <literal>hypermat</literal>
                 </td>
-                <td/>
+                <td>Obsolete. Will be removed from Scilab 6.
+                    The code of the hypermat contents must be targeted instead.
+                </td>
             </tr>
             <tr>
                 <td>pointer</td>
@@ -563,35 +565,35 @@
     <refsection>
         <programlisting role="example">//DISPLAY
             var = tlist('tab', ['a', 'b'], ['x'; 'y'], rand(2, 2)) // the type of var is 'tab'
-            
+
             typeof(var)
-            
+
             function [] = %tab_p(l)
             disp([[' '; l(3)] [l(2); string(l(4))]])
             endfunction
-            
+
             var // after overloading
         </programlisting>
     </refsection>
     <refsection>
         <programlisting role="example">//OPERATOR
             's' + 1 // it is impossible to add a number to a string
-            
+
             function x = %c_a_s(a, b)
             x = a + string(b);
             endfunction
-            
+
             's' + 1 // after overloading
         </programlisting>
     </refsection>
     <refsection>
         <programlisting role="example">//FUNCTION
             sin('2 * x') // the sin function does not work with a string
-            
+
             function x = %c_sin(a)
             x = 'sin(' + a + ')'
             endfunction
-            
+
             sin('2 * x') // after overloading
         </programlisting>
     </refsection>

@@ -15,7 +15,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: An MPI communicator expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -48,16 +52,16 @@ msgid "%s: Unable to create variable.\n"
 msgstr "%s : Impossible de créer la variable.\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s : Erreur d'allocation mémoire.\n"
-
-#, c-format
 msgid "%s: Could not finalize the MPI instance: %s\n"
 msgstr "%s : Impossible de finaliser l'instance MPI : %s\n"
 
 #, c-format
 msgid "%s: Could not get processor name: %s\n"
 msgstr "%s : Impossible d'obtenir le nom du processeur : %s\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Positive value expected.\n"
@@ -96,3 +100,15 @@ msgstr "%s : Impossible de désérialiser les données.\n"
 #, c-format
 msgid "%s: MPI_Wait failed while waiting %d: %s\n"
 msgstr "%s : Échec de MPI_wait en attendant %d : %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Matrix expected.\n"
+msgstr ""

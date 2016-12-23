@@ -138,9 +138,6 @@
     <ClCompile Include="residu.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rpoly.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sfact1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -306,9 +303,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="residu.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="rpoly.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="sfact1.f">

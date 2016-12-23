@@ -99,8 +99,8 @@
                 <term>A(:)=w</term>
                 <listitem>
                     <para>
-                        fills the matrix <literal>A</literal> with entries of <literal>w</literal> 
-                        (taken column by column if <literal>w</literal> is a matrix). The amount of 
+                        fills the matrix <literal>A</literal> with entries of <literal>w</literal>
+                        (taken column by column if <literal>w</literal> is a matrix). The amount of
                         entries of <literal>A</literal> must be equal to the amount of
                         entries of <literal>w</literal>.
                     </para>
@@ -108,14 +108,14 @@
             </varlistentry>
         </variablelist>
         <para>
-            Please note that even if <literal>i</literal>, <literal>j</literal>, 
+            Please note that even if <literal>i</literal>, <literal>j</literal>,
             <literal>k</literal> or <literal>d</literal> have a decimal part, only
             the integer part will be used.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting><![CDATA[ 
+        <programlisting><![CDATA[
 a = 1:5
 b = 1:3:12
 A = matrix(1:42,7,6);

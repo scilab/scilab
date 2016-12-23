@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:03+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2016-07-03 15:44+0000\n"
+"Last-Translator: Mickael Albertus <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -109,11 +109,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -122,22 +122,28 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar boolean expected.\n"
 msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un scalaire booléen "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%ls: Warning: Directory '%ls' already exists.\n"
-msgstr ""
+msgstr "%ls : Attention : Le répertoire '%ls' existe déjà.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -146,10 +152,12 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments de sortie : %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -157,7 +165,7 @@ msgstr "%s : Nombre erroné d'arguments de sortie : %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments de sortie : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -175,7 +183,7 @@ msgstr "%s : Le fichier %s n'est pas ouvert dans Scilab.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
@@ -197,21 +205,23 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Cannot check the end of file whose descriptor is %d: File is not "
 "active.\n"
 msgstr ""
+"%s : Impossible de vérifier la fin du fichier dont le descripteur est %d : "
+"Le fichier n'est pas actif.\n"
 
 #, c-format
 msgid "%s: File not found: '%s'.\n"
-msgstr ""
+msgstr "%s : Impossible de trouver le fichier : '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong input arguments: '%s' expected.\n"
-msgstr ""
+msgstr "%s : Arguments d'entrée erronées : '%s' attendu.\n"
 
 #, c-format
 msgid "%s: Wrong file descriptor: %d.\n"
@@ -220,16 +230,20 @@ msgstr "%s : Descripteur de fichier erroné : %d.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un entier ou une chaîne de "
+"caractères attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendu(s).\n"
 
 #, c-format
 msgid ""
 "%ls: Cannot check the end of file whose descriptor is %d: File is not "
 "active.\n"
 msgstr ""
+"%ls : Impossible de vérifier la fin du fichier dont le descripteur est %d : "
+"Le fichier n'est pas actif.\n"
 
 #, c-format
 msgid "%s: Cannot read file whose descriptor is %d: File is not active.\n"
@@ -239,7 +253,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
-msgstr ""
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel attendu.\n"
 
 #, c-format
 msgid "%s: Wrong file mode: READ only.\n"
@@ -248,10 +262,12 @@ msgstr "%s : Mode pour le fichier erroné : LECTURE seule.\n"
 #, c-format
 msgid "%s: Error while writing in file: disk full or deleted file.\n"
 msgstr ""
+"%s:  Erreur lors de l'écriture dans le fichier : disque complet ou fichier "
+"supprimé.\n"
 
 #, c-format
 msgid "%s: Cannot read file %d.\n"
-msgstr ""
+msgstr "%s : Impossible de lire le fichier %d.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -273,11 +289,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-msgstr ""
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -319,7 +335,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Unable to read file %d.\n"
-msgstr ""
+msgstr "%s : Impossible de lire le fichier %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
@@ -341,6 +357,8 @@ msgstr "%s : Donnée non correspondante.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un réel ou une chaîne de "
+"caractères attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
@@ -351,6 +369,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Strings expected.\n"
 msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : des chaînes de caractères "
+"attendus.\n"
 
 #, c-format
 msgid "%s: Error while opening, reading or writing.\n"
@@ -359,14 +379,17 @@ msgstr "%s : Erreur pendant l'ouverture, la lecture ou l'écriture.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String(s) expected.\n"
 msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : une(des) chaîne(s) de "
+"caractères attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid "%s: Warning: Directory '%ls' does not exist.\n"
-msgstr ""
+msgstr "%s : Attention : La répertoire '%ls' n'existe pas.\n"
 
 msgid "Could not parse the URL.\n"
 msgstr "Impossible d'analyser l'URL.\n"

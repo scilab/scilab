@@ -33,4 +33,5 @@
     <gateway name="sci_mpi_irecv"               function="MPI_Irecv"                type="0" />
     <gateway name="sci_mpi_isend"               function="MPI_Isend"                type="0" />
     <gateway name="sci_mpi_wait"                function="MPI_Wait"                 type="0" />
+    <gateway name="sci_mpi_createComm"          function="MPI_Create_comm"          type="1" />
 </module>

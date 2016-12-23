@@ -22,7 +22,7 @@
             <varlistentry>
                 <term>fun  </term>
                 <listitem>
-                    <para>une fonction Scilab. 
+                    <para>une fonction Scilab.
                     </para>
                 </listitem>
             </varlistentry>
@@ -47,15 +47,15 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>eval3dp</literal> calcule la représentation sous forme de facettes à 4 points de la surface 
-            définie par la fonction <literal>fun</literal>. <literal>fun(p1,p2)</literal> calcule les coordonnées 
+            <literal>eval3dp</literal> calcule la représentation sous forme de facettes à 4 points de la surface
+            définie par la fonction <literal>fun</literal>. <literal>fun(p1,p2)</literal> calcule les coordonnées
             x,y et z des points correspondant sur la surface paramétrique définie par
-            [x(i),y(i),z(i)]=fun(p1(i),p2(i)). 
+            [x(i),y(i),z(i)]=fun(p1(i),p2(i)).
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 p1=linspace(0,2*%pi,10);
 p2=linspace(0,2*%pi,10);
 deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..

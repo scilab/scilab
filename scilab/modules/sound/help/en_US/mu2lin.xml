@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) ????-2006 - INRIA - Scilab 
-    * 
+    * Copyright (C) ????-2006 - INRIA - Scilab
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -43,10 +43,10 @@
         <title>Description</title>
         <para>
             Utility fct: <literal>y=mu2lin(mu)</literal> converts mu-law encoded 8-bit audio signals,
-            stored in the range 0 &lt;= mu &lt;= 255, to linear signal amplitude in 
-            the range -s &lt; y &lt; s where s = 32124/32768 ~= .9803.  
-            The input mu is often obtained using mget(...,'uc') to read 
-            byte-encoded audio files.   Translation of C program by Craig Reese: 
+            stored in the range 0 &lt;= mu &lt;= 255, to linear signal amplitude in
+            the range -s &lt; y &lt; s where s = 32124/32768 ~= .9803.
+            The input mu is often obtained using mget(...,'uc') to read
+            byte-encoded audio files.   Translation of C program by Craig Reese:
             IDA/Supercomputing Research Center Joe Campbell: Department of Defense
         </para>
     </refsection>

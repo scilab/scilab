@@ -252,10 +252,7 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
             }
         }
 
-        if (selectedFontName)
-        {
-            freeAllocatedSingleString(selectedFontName);
-        }
+        delete[] selectedFontName;
 
         if (nbOutputArgument(pvApiCtx) >= 2)
         {
@@ -298,10 +295,7 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
     }
     else /* The user canceled */
     {
-        if (selectedFontName)
-        {
-            freeAllocatedSingleString(selectedFontName);
-        }
+        delete[] selectedFontName;
         nbRow = 0;
         nbCol = 0;
         if (nbOutputArgument(pvApiCtx) >= 1)

@@ -98,7 +98,7 @@
             Ce bloc représente une port d'entrée implicite. Il doit être utilisé uniquement à l'intérieur d'un Super bloc Xcos et être connecté une entrée implicite dans le sous-système.
         </para>
         <para>
-            Ce bloc est une liaison de signal d'un système dans un sous-système. Dans un Super bloc, les ports d'entrée implicites 
+            Ce bloc est une liaison de signal d'un système dans un sous-système. Dans un Super bloc, les ports d'entrée implicites
             doivent être numérotés de 1 au nombre total d'entrées implicites du Super bloc. Chaque numéro d'entrée implicite doit être
             unique et défini avec le paramètre <emphasis role="bold">Port number</emphasis>.
         </para>

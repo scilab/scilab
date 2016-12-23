@@ -55,12 +55,23 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 l=list(1,'qwerw',%s)
 [a,b]=getfield([3 2],l)
-a=hypermat([2,2,2],rand(1:2^3));// hypermatrices are coded using mlists
-a(1) // the a(1,1,1) entry
-getfield(1,a) // the mlist first field
+
+// Rationals are encoded as t-lists:
+r = [%z/(1-%z) %z^2/(1+%z)]
+type(r)
+[num, den] = getfield([2 3],r)
+
+// Structures arrays are encoded as M-lists:
+s.r = %pi
+s.b = %t
+s.t = "Scilab"
+s(2).t = "Basile"
+getfield(2,s)==size(s)
+getfield(1,s)(3:5)==fieldnames(s)'
+[r,b,t] = getfield([3 4 5],s)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

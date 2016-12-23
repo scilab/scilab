@@ -21,8 +21,8 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            h5dataset(obj, name, sourceInfo [, sourceType], data, targetInfo [, targetType])  
-            h5dataset(filename, name, sourceInfo [, sourceType], data, targetInfo [, targetType])  
+            h5dataset(obj, name, sourceInfo [, sourceType], data, targetInfo [, targetType])
+            h5dataset(filename, name, sourceInfo [, sourceType], data, targetInfo [, targetType])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -87,7 +87,7 @@
         <para>
             ターゲットのHDF5型は,
             <ulink url="http://www.hdfgroup.org/HDF5/doc/RM/PredefDTypes.html">HDF5マニュアル</ulink>で利用可能なリストの中から選択できます.
-            このHDF5型の例は"H5T_MIPS_U32" または "H5T_STD_B64BE"ですが, 
+            このHDF5型の例は"H5T_MIPS_U32" または "H5T_STD_B64BE"ですが,
             "MIPS_U32" または "STD_B64BE" のような短縮形も使用可能です.
         </para>
         <para>
@@ -97,10 +97,10 @@
         </para>
         <simplelist type="inline">
             <member>
-                1行目: データの次元. 
+                1行目: データの次元.
             </member>
             <member>
-                2行目: hyperslabのstart. 
+                2行目: hyperslabのstart.
             </member>
             <member>
                 3行目: hyperslabのカウント.
@@ -113,7 +113,7 @@
             </member>
         </simplelist>
         <para>
-            hyperslab選択に関する詳細については, 
+            hyperslab選択に関する詳細については,
             <link linkend="h5write">h5write</link>を参照ください.
         </para>
         <para>targetInfo行列は 6xn の double 行列です. 最初の行は

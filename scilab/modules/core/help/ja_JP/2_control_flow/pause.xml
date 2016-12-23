@@ -7,30 +7,30 @@
     <refsection>
         <title>説明</title>
         <para>
-          <code>pause</code>モードに切り替えます;
-          関数のコードに挿入すると,<code>pause</code>は関数の実行を中断し,
-          <code>pause</code>のレベル (例: <literal>-1-&gt;</literal>)を
-          示すプロンプト記号が表示がされます.
-          この時,ユーザは新しいワークスペースにおり，
-          より低いレベルの変数(特にその関数内の全ての変数)が全て利用可能となっています.
-          コールしたワークスペースに戻るには<code>return</code>を入力します.
+            <code>pause</code>モードに切り替えます;
+            関数のコードに挿入すると,<code>pause</code>は関数の実行を中断し,
+            <code>pause</code>のレベル (例: <literal>-1-&gt;</literal>)を
+            示すプロンプト記号が表示がされます.
+            この時,ユーザは新しいワークスペースにおり，
+            より低いレベルの変数(特にその関数内の全ての変数)が全て利用可能となっています.
+            コールしたワークスペースに戻るには<code>return</code>を入力します.
         </para>
         <para>
-          このモードでは, <literal>[...]=return(...) </literal>は
-          引数の変数 <literal>(...)</literal> をコールしたワークスペースに
-          <literal> [...]</literal>という名前の出力として返します. 
-          一方, より低いレベルの変数は保護され, 修正することはできません.
+            このモードでは, <literal>[...]=return(...) </literal>は
+            引数の変数 <literal>(...)</literal> をコールしたワークスペースに
+            <literal> [...]</literal>という名前の出力として返します.
+            一方, より低いレベルの変数は保護され, 修正することはできません.
         </para>
         <para>
-          <literal>pause</literal> はデバッグの際に非常に有用です.
+            <literal>pause</literal> はデバッグの際に非常に有用です.
         </para>
         <para>
-          このモードはコマンド <literal>"abort"</literal>により破棄することができます.
+            このモードはコマンド <literal>"abort"</literal>により破棄することができます.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     function c=foo(b)
     a=42+b
     disp("Thanks to the pause, you can investigate if ''a'' has the right value");
@@ -38,7 +38,7 @@
     pause
     c=a+2
     endfunction
-    
+
     foo(2)
  ]]></programlisting>
     </refsection>

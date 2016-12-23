@@ -12,24 +12,15 @@
  * along with this program.
  *
  */
-#include "tclsci_gw.hxx"
 extern "C"
 {
 #include "BOOL.h"
 #include "localization.h"
 #include "Scierror.h"
-    /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
     int XTKsocket = 0;
 #endif
 }
-
-/*--------------------------------------------------------------------------*/
-int TclsciModule::Load()
-{
-    return 0;
-}
-/*--------------------------------------------------------------------------*/
 
 extern "C"
 {

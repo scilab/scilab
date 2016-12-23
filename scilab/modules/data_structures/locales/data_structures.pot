@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-06-08 22:21+0100\n"
+"Revision-Date: 2016-12-07 16:04+0100\n"
 
 # File: modules/data_structures/sci_gateway/cpp/sci_definedfields.cpp, line: 37
 # File: modules/data_structures/sci_gateway/cpp/sci_getfield.cpp, line: 45
@@ -116,7 +116,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/data_structures/macros/hypermat.sci, line: 49
+# File: modules/data_structures/macros/hypermat.sci, line: 45
 #, c-format
 msgid "%s: Number of entries does not match product of dimensions"
 msgstr ""

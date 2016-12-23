@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -61,28 +61,28 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection>
         <title>Description</title>
         <para>
-            <code>movefile(source, destination)</code> moves the file or directory 
-            <varname>source</varname> (and subdirectories) to the file or directory 
+            <code>movefile(source, destination)</code> moves the file or directory
+            <varname>source</varname> (and subdirectories) to the file or directory
             <varname>destination</varname>.
         </para>
         <para>
             If <varname>source</varname> is a directory, <varname>destination</varname> cannot be a file.
             <warning>
-                <function>movefile</function> replaces existing files without 
+                <function>movefile</function> replaces existing files without
                 warning.
             </warning>
         </para>
         <para>
-            <code>[status, message] = movefile(source, destination)</code> moves <varname>source</varname> to <varname>destination</varname>, returning the <varname>status</varname> and a <varname>message</varname>. 
+            <code>[status, message] = movefile(source, destination)</code> moves <varname>source</varname> to <varname>destination</varname>, returning the <varname>status</varname> and a <varname>message</varname>.
         </para>
         <para>
-            Whatever the operating system, if the move succeeds, the 
-            <varname>status</varname> is 1 and the <varname>message</varname> is 
-            empty; if the move fails, the <varname>status</varname> is 0 and the 
+            Whatever the operating system, if the move succeeds, the
+            <varname>status</varname> is 1 and the <varname>message</varname> is
+            empty; if the move fails, the <varname>status</varname> is 0 and the
             <varname>message</varname> is not empty.
         </para>
     </refsection>

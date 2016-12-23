@@ -12,13 +12,15 @@
 // along with this program.
 
 function [f, e] = log2(x)
-    [lhs, rhs] = argn(0);
+    // x may be positive, negative, or complex
+    [lhs, rhs] = argn(0)
     if rhs <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"log2", 1));
+        msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
+        error(msprintf(msg, "log2", 1))
     end
     if argn(1) == 1 then
-        f = log(x) / log(2);
+        f = log(x) / log(2)
     else
-        [f, e] = frexp(x);
+        [f, e] = frexp(x)
     end
 endfunction

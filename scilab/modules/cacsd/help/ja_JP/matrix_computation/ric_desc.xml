@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -58,13 +58,13 @@
         <para>
             リカッチ方程式は次のようになります:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 (Ec)   A'*X + X*A + X*R*X -Q = 0.
  ]]></programlisting>
         <para>
             ハミルトン行列 <literal>H</literal> は次のように定義できます:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 H = [A  R;
      Q -A']
  ]]></programlisting>
@@ -85,7 +85,7 @@ H = [A  R;
         <para>
             リカッチ解は以下のようになります:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 (Ed)  A'*X*A-(A'*X*B*(R+B'*X*B)^-1)*(B'*X*A)+C-X = 0.
  ]]></programlisting>
         <para>
@@ -93,19 +93,19 @@ H = [A  R;
             ハミルトン行列のペンシル<literal>(E,H)</literal>は
             以下のようになります:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 E=[eye(n,n),G;               H=[A, 0*ones(n,n);
    0*ones(n,n),A']             -C, eye(n,n)];
  ]]></programlisting>
         <para>
-            呼び出し手順  <literal>[X1,X2,err]=ric_descr(H,E)</literal>の場合, 
+            呼び出し手順  <literal>[X1,X2,err]=ric_descr(H,E)</literal>の場合,
             <literal>X</literal>の解は<literal>X=X1/X2</literal>で得られます.
         </para>
         <para>
             <literal>zero</literal>= (<literal>Ed</literal>)の右辺のL1ノルム
         </para>
         <para>
-            解 <literal>X</literal> <literal>X=riccati(A,G,C,'d')</literal>  
+            解 <literal>X</literal> <literal>X=riccati(A,G,C,'d')</literal>
             'ただし,<literal>G=B/R*B'</literal>) によっても得られます.
         </para>
     </refsection>

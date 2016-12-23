@@ -32,17 +32,16 @@ A(1,1,8) = -1;
 [m,k] = min(A(1,1,:));
 assert_checkequal(k, 8);
 
-M = hypermat([2 3 2 2],1:24);
+M = matrix(1:24, [2 3 2 2]);
 [m k] = max(M(1,1,:));
 assert_checkequal(k, 4);
 
 [m k] = max(M(1,1,1,:));
 assert_checkequal(k, 2);
 
-M = hypermat([2 3 2 2],1:24);
+M = matrix(1:24, [2 3 2 2]);
 [m k] = min(M(1,1,:));
 assert_checkequal(k, 1);
 
 [m k] = min(M(1,1,1,:));
 assert_checkequal(k, 1);
-

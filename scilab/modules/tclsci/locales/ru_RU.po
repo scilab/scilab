@@ -8,96 +8,101 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-19 14:12+0000\n"
+"PO-Revision-Date: 2016-03-07 16:23+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Error main TCL interpreter not initialized.\n"
-msgstr ""
+msgstr "%s: Ошибка. Главный TCL-интерпретатор не инициализирован.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: No such slave interpreter.\n"
-msgstr ""
+msgstr "%s: Не тот ведомый интерпретатор.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: File %s not found.\n"
-msgstr ""
+msgstr "%s: Файл %s не найден.\n"
 
 #, c-format
 msgid ""
 "%s, at line %i of file %s\n"
 "\t%s.\n"
 msgstr ""
+"%s, а строке %i файла %s\n"
+"\t%s.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
 msgstr ""
+"%s: Неверное значение аргумента №%d: ожидалась матрица строковых значений.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s: Ошибка распределения памяти.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: String or vector of strings "
 "expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась строковое значение или "
+"вектор строковых значений.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr ""
+msgstr "%s: Недостаточно памяти.\n"
 
 #, c-format
 msgid "%s: Could not read Tcl Variable.\n"
-msgstr ""
+msgstr "%s: Не могу прочитать Tcl-переменную.\n"
 
 msgid "Alpha Release"
-msgstr ""
+msgstr "Альфа-релиз"
 
 msgid "Beta Release"
-msgstr ""
+msgstr "Бета-релиз"
 
 msgid "Final Release"
-msgstr ""
+msgstr "Конечный релиз"
 
 msgid "Unknown Release"
-msgstr ""
+msgstr "Неизвестный релиз"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
+msgstr "%s: Неверное значение входного аргумента №%d: ожидалось «%s».\n"
 
 msgid "This function doesn't work with Complex.\n"
-msgstr ""
+msgstr "Эта функция не работает с комплексными числами.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: A real expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип аргумента %d: ожидался тип real.\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
-msgstr ""
+msgstr "[] не работает с Tcl/Tk.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась матрица.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d или №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -176,34 +181,25 @@ msgstr "%s: Ошибка: интерпретатор TCL не инициализ
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least one expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: ожидался хотя бы один.\n"
 
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Модуль TCL/TK не установлен.\n"
 
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 10
 msgid "Tcl/Tk"
-msgstr ""
+msgstr "Tcl/Tk"
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 12
 msgid "Color"
-msgstr ""
+msgstr "Цвет"
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 13
 msgid "Puzzle"
-msgstr ""
+msgstr "Головоломка"
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 14
 msgid "Scroll"
-msgstr ""
+msgstr "Прокрутка"
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 15
 msgid "Scale"
-msgstr ""
+msgstr "Масштаб"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"

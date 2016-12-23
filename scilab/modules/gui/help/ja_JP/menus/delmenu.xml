@@ -16,7 +16,7 @@
             <varlistentry>
                 <term>button</term>
                 <listitem>
-                    <para>文字列. ボタンの名前. 
+                    <para>文字列. ボタンの名前.
                         (X Windowではなく) Windowsの場合,
                         キーボードショートカットで使用される名前の文字の
                         前に&amp;を指定します;
@@ -38,7 +38,7 @@
         <title>説明</title>
         <para>
             この関数により,
-            メインまたはグラフィックウインドウコマンドパネルに	
+            メインまたはグラフィックウインドウコマンドパネルに
             <literal>addmenu</literal>で作成された
             ボタンまたはメニューをユーザが削除できます.
             Scilabグラフィックウインドウに定義済みのボタンも削除できます.
@@ -52,7 +52,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 addmenu('foo')
 delmenu('foo')
  ]]></programlisting>

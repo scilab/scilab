@@ -35,7 +35,7 @@
             Вычисляет поэлементно арккосеканс аргумента. Для вещественного аргумента с абсолютным значением больше 1 результат вещественный.
         </para>
         <para>
-            Используются следующие равенства: 
+            Используются следующие равенства:
             <code>acsc(z) == -acsc(-z) == asin(1/z) == %pi/2-asec(z) == %i*acsch(%i*z)</code>.
         </para>
     </refsection>
@@ -49,7 +49,7 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=linspace(1,20,200);
 x=[-x($:-1:1) %nan x];
 plot(x,acsc(x))

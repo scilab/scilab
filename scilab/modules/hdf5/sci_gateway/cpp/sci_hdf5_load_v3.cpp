@@ -304,7 +304,7 @@ static types::InternalType* import_double(int dataset)
     int size = getDatasetInfo(dataset, &complex, &dims, d.data());
 
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(dataset);
         return types::Double::Empty();
@@ -342,7 +342,7 @@ static types::InternalType* import_string(int dataset)
     int size = getDatasetInfo(dataset, &complex, &dims, d.data());
 
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(dataset);
         return types::Double::Empty();
@@ -379,7 +379,7 @@ static types::InternalType* import_boolean(int dataset)
     int size = getDatasetInfo(dataset, &complex, &dims, d.data());
 
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(dataset);
         return types::Double::Empty();
@@ -408,7 +408,7 @@ static types::InternalType* import_int(int dataset)
     int size = getDatasetInfo(dataset, &complex, &dims, d.data());
 
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(dataset);
         return types::Double::Empty();
@@ -551,6 +551,10 @@ static int getDimsNode(int dataset, int* complex, std::vector<int>& dims)
     //get dims dimension
     std::vector<int> d(dim);
     int size = getDatasetInfo(id, complex, &dim, d.data());
+    if (size < 0)
+    {
+        return 0;
+    }
 
     //get dims value
     dims.resize(size);
@@ -597,6 +601,12 @@ static types::InternalType* import_struct(int dataset)
     getDatasetInfo(dfield, &complex, &dim, NULL);
     std::vector<int> d(dim);
     size = getDatasetInfo(dfield, &complex, &dim, d.data());
+    if (size < 0)
+    {
+        closeList6(dataset);
+        delete str;
+        return nullptr;
+    }
 
     //get dims value
     std::vector<char*> fields(size);
@@ -715,7 +725,7 @@ static types::InternalType* import_poly(int dataset)
         types::SinglePoly* ss = NULL;
 
         //get coef
-        if (dims == 0 || datasize == 0)
+        if (dims == 0 || datasize <= 0)
         {
             ss = new types::SinglePoly();
         }
@@ -767,6 +777,11 @@ static types::InternalType* import_sparse(int dataset)
     int sizein = getDatasetInfo(datain, &complex, &dimin, NULL);
     std::vector<int> dimsin(dimin);
     sizein = getDatasetInfo(datain, &complex, &dimin, dimsin.data());
+    if (sizein < 0)
+    {
+        closeList6(dataset);
+        return nullptr;
+    }
 
     std::vector<int> in(sizein);
     int ret = readInteger32Matrix(datain, in.data());
@@ -782,6 +797,11 @@ static types::InternalType* import_sparse(int dataset)
     int sizeout = getDatasetInfo(dataout, &complex, &dimout, NULL);
     std::vector<int> dimsout(dimout);
     sizeout = getDatasetInfo(dataout, &complex, &dimout, dimsout.data());
+    if (sizeout < 0)
+    {
+        closeList6(dataset);
+        return nullptr;
+    }
 
     std::vector<int> out(sizeout);
     ret = readInteger32Matrix(dataout, out.data());
@@ -797,6 +817,11 @@ static types::InternalType* import_sparse(int dataset)
     int sizedata = getDatasetInfo(ddata, &complex, &dimdata, NULL);
     std::vector<int> dimsdata(dimdata);
     sizedata = getDatasetInfo(ddata, &complex, &dimdata, dimsdata.data());
+    if (sizedata < 0)
+    {
+        closeList6(dataset);
+        return nullptr;
+    }
 
     std::vector<double> real(sizedata);
 
@@ -852,6 +877,11 @@ static types::InternalType* import_boolean_sparse(int dataset)
     int sizein = getDatasetInfo(datain, &complex, &dimin, NULL);
     std::vector<int> dimsin(dimin);
     sizein = getDatasetInfo(datain, &complex, &dimin, dimsin.data());
+    if (sizein < 0)
+    {
+        closeList6(dataset);
+        return nullptr;
+    }
 
     std::vector<int> in(sizein);
     int ret = readInteger32Matrix(datain, in.data());
@@ -867,6 +897,11 @@ static types::InternalType* import_boolean_sparse(int dataset)
     int sizeout = getDatasetInfo(dataout, &complex, &dimout, NULL);
     std::vector<int> dimsout(dimout);
     sizeout = getDatasetInfo(dataout, &complex, &dimout, dimsout.data());
+    if (sizeout < 0)
+    {
+        closeList6(dataset);
+        return nullptr;
+    }
 
     std::vector<int> out(sizeout);
     ret = readInteger32Matrix(dataout, out.data());
@@ -994,6 +1029,13 @@ static types::InternalType* import_macro(int dataset)
     //inputs
     int inputNode = getDataSetIdFromName(dataset, "inputs");
     size = getDatasetInfo(inputNode, &complex, &dims, d.data());
+    if (size < 0)
+    {
+        delete inputList;
+        delete outputList;
+        closeList6(dataset);
+        return nullptr;
+    }
     std::vector<char*> inputNames(size);
 
     if (size != 0)
@@ -1018,6 +1060,13 @@ static types::InternalType* import_macro(int dataset)
     //outputs
     int outputNode = getDataSetIdFromName(dataset, "outputs");
     size = getDatasetInfo(outputNode, &complex, &dims, d.data());
+    if (size < 0)
+    {
+        delete inputList;
+        delete outputList;
+        closeList6(dataset);
+        return nullptr;
+    }
     std::vector<char*> outputNames(size);
 
     if (size != 0)
@@ -1042,6 +1091,13 @@ static types::InternalType* import_macro(int dataset)
     //body
     int bodyNode = getDataSetIdFromName(dataset, "body");
     size = getDatasetInfo(bodyNode, &complex, &dims, d.data());
+    if (size < 0)
+    {
+        delete inputList;
+        delete outputList;
+        closeList6(dataset);
+        return nullptr;
+    }
     std::vector<unsigned char> bodybin(size);
     readUnsignedInteger8Matrix(bodyNode, bodybin.data());
 

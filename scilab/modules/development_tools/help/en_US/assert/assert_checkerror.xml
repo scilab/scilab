@@ -103,7 +103,7 @@
             expression can be used.
         </para>
         <para>If the error message is not expected or the error number is not
-            expected, 
+            expected,
             <itemizedlist>
                 <listitem>
                     <para>if the errmsg output variable is not used, an error is
@@ -119,7 +119,7 @@
         </para>
         <para>The goal of this function is to enable the tester to check the error
             cases in a simplified framework. Checking the error messages of a function
-            has the following advantages: 
+            has the following advantages:
             <itemizedlist>
                 <listitem>
                     <para>it checks that the correct error is generated when

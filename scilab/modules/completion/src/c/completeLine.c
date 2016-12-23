@@ -127,11 +127,8 @@ char *completeLine(char *currentline, char *stringToAdd, char *filePattern,
             strcat(new_line, stringToAddAtTheEnd);
         }
 
-        if (stringToAddAtTheEnd)
-        {
-            FREE(stringToAddAtTheEnd);
-            stringToAddAtTheEnd = NULL;
-        }
+        FREE(stringToAddAtTheEnd);
+        stringToAddAtTheEnd = NULL;
 
         return new_line;
     }
@@ -171,26 +168,14 @@ char *completeLine(char *currentline, char *stringToAdd, char *filePattern,
                 /* bug 4365 */
                 /*cd SCI/modules/arnoldi/nonreg_tes */
 
-                if (drv)
-                {
-                    FREE(drv);
-                    drv = NULL;
-                }
-                if (dir)
-                {
-                    FREE(dir);
-                    dir = NULL;
-                }
-                if (name)
-                {
-                    FREE(name);
-                    name = NULL;
-                }
-                if (ext)
-                {
-                    FREE(ext);
-                    ext = NULL;
-                }
+                FREE(drv);
+                drv = NULL;
+                FREE(dir);
+                dir = NULL;
+                FREE(name);
+                name = NULL;
+                FREE(ext);
+                ext = NULL;
 
                 lengthNewLine = lencurrentline + lenstringToAddAtTheEnd;
                 new_line = (char*)MALLOC(sizeof(char) * (lengthNewLine + 1));
@@ -200,35 +185,20 @@ char *completeLine(char *currentline, char *stringToAdd, char *filePattern,
                     strcat(new_line, stringToAddAtTheEnd);
                 }
 
-                if (stringToAddAtTheEnd)
-                {
-                    FREE(stringToAddAtTheEnd);
-                    stringToAddAtTheEnd = NULL;
-                }
+                FREE(stringToAddAtTheEnd);
+                stringToAddAtTheEnd = NULL;
 
                 return new_line;
             }
 
-            if (drv)
-            {
-                FREE(drv);
-                drv = NULL;
-            }
-            if (dir)
-            {
-                FREE(dir);
-                dir = NULL;
-            }
-            if (name)
-            {
-                FREE(name);
-                name = NULL;
-            }
-            if (ext)
-            {
-                FREE(ext);
-                ext = NULL;
-            }
+            FREE(drv);
+            drv = NULL;
+            FREE(dir);
+            dir = NULL;
+            FREE(name);
+            name = NULL;
+            FREE(ext);
+            ext = NULL;
         }
     }
 
@@ -271,11 +241,8 @@ char *completeLine(char *currentline, char *stringToAdd, char *filePattern,
         strcat(new_line, stringToAddAtTheEnd);
     }
 
-    if (stringToAddAtTheEnd)
-    {
-        FREE(stringToAddAtTheEnd);
-        stringToAddAtTheEnd = NULL;
-    }
+    FREE(stringToAddAtTheEnd);
+    stringToAddAtTheEnd = NULL;
 
     return new_line;
 }

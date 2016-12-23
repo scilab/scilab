@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:07+0000\n"
+"PO-Revision-Date: 2016-10-19 12:59+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -161,8 +161,6 @@ msgstr ""
 msgid "show this help"
 msgstr ""
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 520
 msgid "open debug documentation page"
 msgstr ""
 
@@ -175,9 +173,6 @@ msgstr ""
 msgid "execute cmd"
 msgstr ""
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 528
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 529
 msgid "display variable"
 msgstr ""
 
@@ -196,8 +191,6 @@ msgstr ""
 msgid "step outside function"
 msgstr ""
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 537
 msgid "add a breakpoint"
 msgstr ""
 
@@ -225,8 +218,6 @@ msgstr ""
 msgid "show a specific breakpoint"
 msgstr ""
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 547
 msgid "  for more details, show help page.\n"
 msgstr ""
 
@@ -263,6 +254,9 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
+msgstr ""
+
+msgid "Could not retrieve sub-type.\n"
 msgstr ""
 
 #, c-format
@@ -349,13 +343,11 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: struct array or tlist or mlist "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
-"di stringhe.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
@@ -365,34 +357,24 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: macro expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input arguments: more than %d expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"stringa.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for output arguments: %d expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 136
-# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 154
 #, c-format
 msgid ""
 "%s: Wrong input arguments: Dimensions given as first argument do not match "
 "specified cell contents.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
-"scalare.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_mode.cpp, line: 79
 msgid "Pause mode: enter empty lines to continue.\n"
 msgstr ""
 
@@ -404,17 +386,13 @@ msgstr ""
 msgid "%s: function-name is incorrect.\n"
 msgstr "%s: Il nome della funzione non è corretto.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"stringa.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
-"nell'intervallo [%d, %d].\n"
 
 #, c-format
 msgid "%s: function is disabled in debug mode.\n"
@@ -440,33 +418,25 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): An even number is expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
-"almeno %d.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_struct.cpp, line: 54
 #, c-format
 msgid "%s: Field names must be strings.\n"
 msgstr ""
 
-#
-# File: modules/core/sci_gateway/cpp/sci_struct.cpp, line: 79
-# File: modules/core/sci_gateway/cpp/sci_struct.cpp, line: 86
 #, c-format
 msgid "%s: Arguments must be scalar or must have same dimensions.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Can not create a %s with input argument #%d.\n"
-msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong values for input argument #%d: '%s' expected .\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\".\n"
 
 #, c-format
 msgid "WARNING: %ls\n"
@@ -539,7 +509,7 @@ msgstr ""
 "Errore: %s non è un file di versione valido (la codifica non è 'utf-8'), "
 "trovata la codifica '%s'\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "A fatal error has been detected by Scilab.\n"
 "Please check your user-defined functions (or external module ones) should "
@@ -550,16 +520,6 @@ msgid ""
 " * the following information:\n"
 "%s %s\n"
 msgstr ""
-"Scilab ha riscontrato un errore fatale.\n"
-"L'istanza dell'utente si potrebbe chiudersi a breve inaspettatamente.\n"
-"Se è stata usata una funzionalità grafica, il problema potrebbe dipendere "
-"dai driver grafici.\n"
-"Cercare di aggiornarli ed eseguire di nuovo la funzionalità.\n"
-"Si può segnalare un bug su %s con:\n"
-"* un codice di esempio che riproduce il problema\n"
-"* il risultato di [a, b] = getdebuginfo()\n"
-"* la seguente informazione:\n"
-"%s %s\n"
 
 #, c-format
 msgid ""
@@ -610,8 +570,6 @@ msgstr ""
 msgid "Scilab Enterprises\n"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/banner.cpp, line: 41
 msgid "Copyright (c) 2011-2016 (Scilab Enterprises)\n"
 msgstr ""
 
@@ -671,42 +629,27 @@ msgstr "&?"
 msgid "&Toolboxes"
 msgstr "&Toolbox"
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 9
 msgid "Introduction: Getting started with Scilab"
 msgstr ""
 
-#, fuzzy
 msgid "Scilab objects"
-msgstr "Versione di Scilab: "
+msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 13
 msgid "Operations and numerical primitives"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 14
 msgid "Online definition of function"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 15
 msgid "Optimization and simulation"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 16
 msgid "Systems: definition and analysis"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 17
 msgid "Linear algebra"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 18
 msgid "Call an external routine"
 msgstr ""
 
@@ -743,10 +686,9 @@ msgstr ""
 msgid "%s: %s is an uneditable hard coded function.\n"
 msgstr "%s: %s è una funzione precodificata non modificabile.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
 
 #, c-format
 msgid "%s: Unable to find Perl file: %s"
@@ -829,8 +771,3 @@ msgstr "Dimensione"
 
 msgid "Bytes"
 msgstr "Byte"
-
-#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-#~ msgstr ""
-#~ "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
-#~ "almeno %d.\n"

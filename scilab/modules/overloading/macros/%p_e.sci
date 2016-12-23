@@ -32,6 +32,6 @@ function f=%p_e(varargin)
     if k<>[] then
         dims(k($)+1:$)=[]
         N=prod(dims)
-        f=mlist(["hm","dims","entries"],int32([size(f) dims]),ones(N,1).*.f(:))
+        f=matrix(ones(N,1).*.f(:), [size(f) dims])
     end
 endfunction

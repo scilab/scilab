@@ -22,14 +22,14 @@
     <refsection>
         <title>説明</title>
         <para>
-          ScilabがTCL/TKインターフェイスと共に構築されている場合に
-          <constant>%t</constant>, そうでない場合に <constant>%f</constant>
+            ScilabがTCL/TKインターフェイスと共に構築されている場合に
+            <constant>%t</constant>, そうでない場合に <constant>%f</constant>
             を返します.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 if with_tk() == %t then
    disp("Tk is available");
 else

@@ -21,7 +21,7 @@
                 <term>x1 ,x2, ..., xn</term>
                 <listitem>
                     <para> vetores linhas estritamente crescentes (com pelo menos 2
-                        elementos) definindo o grid de interpolação n-dimensional 
+                        elementos) definindo o grid de interpolação n-dimensional
                     </para>
                 </listitem>
             </varlistentry>
@@ -30,7 +30,7 @@
                 <listitem>
                     <para>vetor (caso n=1), matriz (caso n=2) ou hipermatriz (caso n
                         &gt; 2) com valores da função subjacente interpolada nos pontos do
-                        grid. 
+                        grid.
                     </para>
                 </listitem>
             </varlistentry>
@@ -61,9 +61,9 @@
                 ..., xn
             </literal>
             eos valores <literal>v</literal> de uma função (aqui
-            nomeada <emphasis>f</emphasis>) nos pontos do grid : 
+            nomeada <emphasis>f</emphasis>) nos pontos do grid :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 v(i1,i2,...,in) = f(x1(i1),x2(i2), ..., xn(in))
  ]]></programlisting>
         <para>
@@ -74,7 +74,7 @@ v(i1,i2,...,in) = f(x1(i1),x2(i2), ..., xn(in))
             </literal>
             :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 vp(i) = s(xp1(i),xp2(i), ..., xpn(i))
 
 or vp(i,j) = s(xp1(i,j),xp2(i,j), ..., xpn(i,j)) caso xpk sejam matrizes
@@ -83,9 +83,9 @@ or vp(i,j) = s(xp1(i,j),xp2(i,j), ..., xpn(i,j)) caso xpk sejam matrizes
             O parâmetro <literal>out_mode</literal> ajusta a regra para
             extrapolação: se notarmos
             <emphasis>Pi=(xp1(i),xp2(i),...,xpn(i))</emphasis> , então
-            <literal>out_mode</literal> define a regra de avaliação quando: 
+            <literal>out_mode</literal> define a regra de avaliação quando:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 P(i) está fora de  [x1(1) x1($)] x [x2(1) x2($)] x ... x [xn(1) xn($)]
  ]]></programlisting>
         <para>As escolhas são: </para>
@@ -106,8 +106,8 @@ P(i) está fora de  [x1(1) x1($)] x [x2(1) x2($)] x ... x [xn(1) xn($)]
                 <term>"C0"</term>
                 <listitem>
                     <para>a extrapolação é definida como segue: </para>
-                    <programlisting role=""><![CDATA[ 
-s(P) = s(proj(P)) onde  proj(P) é o ponto mais próximo de P 
+                    <programlisting role=""><![CDATA[
+s(P) = s(proj(P)) onde  proj(P) é o ponto mais próximo de P
                   localizado na fronteira do grid.
  ]]></programlisting>
                 </listitem>
@@ -132,7 +132,7 @@ s(P) = s(proj(P)) onde  proj(P) é o ponto mais próximo de P
     </refsection>
     <refsection>
         <title>Exemplos </title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // exemplo 1 : interpolação linear 1d
 x = linspace(0,2*%pi,11);
 y = sin(x);
@@ -201,7 +201,7 @@ show_window()
 exec("SCI/modules/interpolation/demos/interp_demo.sci")
 func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
 deff("v=f(x,y,z)",func);
-n = 5; 
+n = 5;
 x = linspace(0,1,n); y=x; z=x;
 [X,Y,Z] = ndgrid(x,y,z);
 V = f(X,Y,Z);
@@ -216,10 +216,10 @@ for i = 1:length(val)
    [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
    Vm = linear_interpn(Xm,Ym,Zm, x, y, z, V);
    [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
-   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
    Vp =  linear_interpn(Xp,Yp,Zp, x, y, z, V);
    [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
-   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf];
 end
 nb_col = 128;
 vmin = min(VF); vmax = max(VF);

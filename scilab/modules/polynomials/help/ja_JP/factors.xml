@@ -95,7 +95,7 @@
             rat= g times (lnumのエントリの積) / (ldenのエントリの積).
         </para>
         <para>
-            <literal>flag</literal> が<literal>'c'</literal> (または<literal>'d'</literal>)の場合, 
+            <literal>flag</literal> が<literal>'c'</literal> (または<literal>'d'</literal>)の場合,
             <literal>pol</literal>の根は虚軸(または単位円)に関して折り返されます.
             すなわち,<literal>lnum</literal>の因数は安定な多項式となります.
         </para>
@@ -114,7 +114,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 n=poly([0.2,2,5],'z');
 d=poly([0.1,0.3,7],'z');
 R=syslin('d',n,d);

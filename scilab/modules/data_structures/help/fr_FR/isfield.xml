@@ -56,18 +56,18 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s = struct("field_1",123,"field_2",456,"field_4",789)
- 
+
 // Test pour un nom de champ unique :
 isfield( s , "field_1"  )
- 
+
 // Test simultané pour plusieurs noms de champs :
 isfield( s , [ "field_1" "field_2" ; "field_3" "field_4" ] )
 
 // Test sur une liste typée tlist:
 s = tlist(["test" "t" "n","","p"], "Hello", %pi, "anonymous", (1-%z)^3)
-isfield( s, ["b" "t" ""])  
+isfield( s, ["b" "t" ""])
    // =>  F  T  T  (la présence de champs anonymes peut être détectée)
 
  ]]></programlisting>

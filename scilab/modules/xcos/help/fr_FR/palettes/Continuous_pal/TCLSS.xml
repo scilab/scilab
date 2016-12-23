@@ -98,7 +98,7 @@
             Ce qui signifie que l'état du système saute à la valeur présente sur la seconde entrée
             (de taille égale à celle de l'état). Le système est défini par les matrices <literal>(A,B,C,D)</literal> et l'état initial <literal>x_0</literal>.
             Les dimensions doivent être compatibles. Les tailles des entrées et sorties sont ajustées automatiquement.
-            
+
         </para>
     </refsection>
     <refsection id="Dialogbox_TCLSS">
@@ -111,7 +111,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>

@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:08+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2016-07-17 12:22+0000\n"
+"Last-Translator: Mickael Albertus <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
 #, c-format
 msgid ""
@@ -31,7 +31,7 @@ msgstr ""
 
 #, c-format
 msgid "%s : wrong UTF-8 sequence.\n"
-msgstr ""
+msgstr "%s : Séquence UTF-8 erronée.\n"
 
 msgid "WARNING : \n"
 msgstr "ATTENTION : \n"
@@ -43,11 +43,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
@@ -65,11 +65,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendu(s).\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments de sortie : %d attendus.\n"
+msgstr "%s : Nombre erroné d'arguments de sortie : %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -94,14 +94,20 @@ msgstr "%s : Nombre erroné d'arguments de sortie : %d attendus.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar String expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : une chaîne de caractères "
+"scalaire attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or matrix expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : une chaîne de caractères ou "
+"une matrice attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -114,14 +120,20 @@ msgstr "%s : Type erroné du ou des argument(s) d'entrée.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur attendu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments de sortie : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : \"%s\" ou \"%s\" attendu.\n"
 
 #, c-format
 msgid ""
@@ -134,14 +146,16 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Char(s) expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : un(des) caractère(s) "
+"attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Char expected.\n"
-msgstr ""
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : un caractère attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
@@ -153,12 +167,14 @@ msgstr "%s : Pas assez de mémoire disponible.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 's' or 'r' expected.\n"
-msgstr ""
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : 's' ou 'r' attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: string or string vector expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
+"un vecteur de chaîne de caractères attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -185,10 +201,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of Strings expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
@@ -198,11 +216,13 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double expected.\n"
-msgstr ""
+msgstr "%s : Type erroné de l'argument d'entrée n°%d :  Un double attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar double expected.\n"
 msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un scalaire double "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
@@ -213,10 +233,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A positive value expected.\n"
 msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une valeur positive "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A Scalar or vector expected.\n"
 msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un scalaire ou un "
+"vecteur attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -246,18 +270,24 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double or string expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un double ou une chaîne de "
+"caractères attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une seule chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '.' or ',' expected.\n"

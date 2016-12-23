@@ -248,7 +248,9 @@
                 <td>
                     <literal>hypermat</literal>
                 </td>
-                <td/>
+                <td>Устарело. Будет удалено из Scilab 6.
+                    Код содержимого гиперматрицы должен быть специализированным.
+                </td>
             </tr>
             <tr>
                 <td>указатель</td>
@@ -576,13 +578,13 @@
         <programlisting role="example">
             //ВЫВОД НА ЭКРАН
             var = tlist('tab', ['a', 'b'], ['x'; 'y'], rand(2, 2)) // у переменной var тип 'tab'
-            
+
             typeof(var)
-            
+
             function [] = %tab_p(l)
             disp([[' '; l(3)] [l(2); string(l(4))]])
             endfunction
-            
+
             var // после перегрузки
         </programlisting>
     </refsection>
@@ -590,11 +592,11 @@
         <programlisting role="example">
             //ОПЕРАТОР
             's' + 1 // нельзя прибавить число к строке
-            
+
             function x = %c_a_s(a, b)
             x = a + string(b);
             endfunction
-            
+
             's' + 1 // после перегрузки
         </programlisting>
     </refsection>
@@ -602,11 +604,11 @@
         <programlisting role="example">
             //ФУНКЦИЯ
             sin('2 * x') // sin не работает со строкой
-            
+
             function x = %c_sin(a)
             x = 'sin(' + a + ')'
             endfunction
-            
+
             sin('2 * x') // после перегрузки
         </programlisting>
     </refsection>

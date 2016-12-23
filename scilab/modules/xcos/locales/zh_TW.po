@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:00+0000\n"
+"PO-Revision-Date: 2016-10-19 13:00+0000\n"
 "Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -38,21 +38,21 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr "%s: 輸入參數個數錯誤: 應該有 %d 至 %d 個.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 輸入參數 的資料型態錯誤: 應該是字串型態.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: %s expected.\n"
-msgstr "%s: 第 %d 輸入參數 的資料型態錯誤: 應該是字串型態.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr "%s: 輸入參數的個數錯誤: 應該有  %d 個.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -350,8 +350,6 @@ msgstr "正常 100%"
 msgid "Palette browser"
 msgstr "調色盤瀏覽器"
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 84
 msgid "tree_show(scs_m)"
 msgstr ""
 
@@ -721,8 +719,6 @@ msgstr "SuperBlock 必須選定來產生代碼"
 msgid "Simulation in progress"
 msgstr "模擬處理中"
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 242
 msgid "Compilation in progress, results will be stored in the 'cpr' variable"
 msgstr ""
 
@@ -754,6 +750,9 @@ msgid "Xcos file"
 msgstr "Xcos 檔"
 
 msgid "Xcos (zip) file"
+msgstr ""
+
+msgid "XMI (Eclipse EMF) file"
 msgstr ""
 
 msgid "Scilab Open Data file"
@@ -835,62 +834,39 @@ msgid ""
 ">Please reconnect it.</body></html>"
 msgstr ""
 
-#, fuzzy
 msgid "Block name: "
-msgstr "區塊參數"
+msgstr ""
 
-#, fuzzy
 msgid "Simulation: "
-msgstr "模擬"
+msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 300
 msgid "UID: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 301
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 307
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 311
 msgid "Style: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 302
 msgid "Rpar: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 303
 msgid "Ipar: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 304
 msgid "Opar: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 305
 msgid "Datatype: "
 msgstr ""
 
-#, fuzzy
 msgid "Implicit: "
-msgstr "默認（Implicit）"
+msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 308
 msgid "Source datatype: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 309
 msgid "Target datatype: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 310
 msgid "Label: "
 msgstr ""
 
@@ -914,244 +890,150 @@ msgstr ""
 msgid "Default trace settings"
 msgstr ""
 
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 7
 msgid "Basic controller"
 msgstr ""
 
-#
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 8
 msgid "Water tank"
 msgstr ""
 
-#
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 9
 msgid "Discrete Controller"
 msgstr ""
 
-#
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 10
 msgid "Kalman Filter"
 msgstr ""
 
-#, fuzzy
 msgid "Discrete Kalman Filter"
-msgstr "離散時間系統"
+msgstr ""
 
-#
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 12
 msgid "Cont.Plant-Hybrid Observer"
 msgstr ""
 
-#
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 13
 msgid "Temperature Controller"
 msgstr ""
 
-#
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 14
 msgid "Inverted pendulum"
 msgstr ""
 
-#
-# File: modules/xcos/demos/control_systems.dem.gateway.sce, line: 15
 msgid "Lorenz butterfly"
 msgstr ""
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 7
 msgid "RLC Circuit"
 msgstr ""
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 8
 msgid "Bridge Rectifer"
 msgstr ""
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 9
 msgid "Transformer"
 msgstr ""
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 10
 msgid "Differential amplifier"
 msgstr ""
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 11
 msgid "OpAmp amplifier"
 msgstr ""
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 12
 msgid "Switched capacitor integrator"
 msgstr ""
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 13
 msgid "DC/DC Buck Converter"
 msgstr ""
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 14
 msgid "DC/DC Boost Converter"
 msgstr ""
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 15
 msgid "Colpitts oscillator"
 msgstr ""
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 16
 msgid "Logic AND gate"
 msgstr ""
 
-#
-# File: modules/xcos/demos/electrical_systems.dem.gateway.sce, line: 17
 msgid "Logic NOR gate"
 msgstr ""
 
-#
-# File: modules/xcos/demos/event.dem.gateway.sce, line: 7
 msgid "If Then Else"
 msgstr ""
 
-#
-# File: modules/xcos/demos/event.dem.gateway.sce, line: 8
 msgid "And"
 msgstr ""
 
-#
-# File: modules/xcos/demos/mechanical_systems.dem.gateway.sce, line: 7
 msgid "Automotive Suspension"
 msgstr ""
 
-#
-# File: modules/xcos/demos/modelica_demos.dem.gateway.sce, line: 9
 msgid "Ball on a Platform"
 msgstr ""
 
-#
-# File: modules/xcos/demos/modelica_demos.dem.gateway.sce, line: 10
 msgid "Bouncing Ball"
 msgstr ""
 
-#
-# File: modules/xcos/demos/modelica_demos.dem.gateway.sce, line: 11
 msgid "Chaos Modelica"
 msgstr ""
 
-#
-# File: modules/xcos/demos/modelica_demos.dem.gateway.sce, line: 12
 msgid "Hydraulics blocks"
 msgstr ""
 
-#
-# File: modules/xcos/demos/modelica_demos.dem.gateway.sce, line: 13
 msgid "RLC circuit"
 msgstr ""
 
-#
-# File: modules/xcos/demos/modelica_demos.dem.gateway.sce, line: 14
 msgid "Heat conduction in a rod"
 msgstr ""
 
-#
-# File: modules/xcos/demos/modelica_demos.dem.gateway.sce, line: 15
 msgid "Second order rotational system"
 msgstr ""
 
-#, fuzzy
 msgid "Old Gain Block"
-msgstr "對齊區塊"
+msgstr ""
 
-#
-# File: modules/xcos/demos/scicos.dem.gateway.sce, line: 7
-# File: modules/xcos/demos/xcos.dem.gateway.sce, line: 13
 msgid "Standard demos"
 msgstr ""
 
-#, fuzzy
 msgid "Control Systems"
-msgstr "連續的 time systems"
+msgstr ""
 
-#, fuzzy
 msgid "Electrical Systems"
-msgstr "電力"
+msgstr ""
 
-#
-# File: modules/xcos/demos/scicos.dem.gateway.sce, line: 10
-# File: modules/xcos/demos/xcos.dem.gateway.sce, line: 16
 msgid "Mechanical Systems"
 msgstr ""
 
-#
-# File: modules/xcos/demos/scicos.dem.gateway.sce, line: 11
-# File: modules/xcos/demos/xcos.dem.gateway.sce, line: 20
 msgid "Modelica demos"
 msgstr ""
 
-#
-# File: modules/xcos/demos/scicos.dem.gateway.sce, line: 12
-# File: modules/xcos/demos/xcos.dem.gateway.sce, line: 25
 msgid "Old demos"
 msgstr ""
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 7
 msgid "Simple Demo"
 msgstr ""
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 8
 msgid "Bouncing Balls"
 msgstr ""
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 9
 msgid "Simple Thermostat"
 msgstr ""
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 10
 msgid "Table Lookup"
 msgstr ""
 
-#, fuzzy
 msgid "Signal Builder"
-msgstr "訊回迴路"
+msgstr ""
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 12
 msgid "Fibonacci Numbers"
 msgstr ""
 
-#, fuzzy
 msgid "Scilab block"
-msgstr "儲存區塊的使用者介面"
+msgstr ""
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 14
 msgid "Xcos data types"
 msgstr ""
 
-#, fuzzy
 msgid "Zero Crossing"
-msgstr "Zero crossing 偵測"
+msgstr ""
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 16
 msgid "_IF_ Xcos block"
 msgstr ""
 
-#
-# File: modules/xcos/demos/standard.dem.gateway.sce, line: 17
 msgid "Goto/From blocks"
 msgstr ""
 
-#
-# File: modules/xcos/demos/xcos.dem.gateway.sce, line: 24
 msgid "Event demos"
 msgstr ""
 
@@ -1388,8 +1270,6 @@ msgstr ""
 msgid "ReInitialization"
 msgstr ""
 
-#
-# File: modules/xcos/macros/xcos_debug_gui.sci, line: 81
 msgid "Continuous states properties update"
 msgstr ""
 
@@ -1457,9 +1337,6 @@ msgstr ""
 msgid "Use the %s button to end the debugging"
 msgstr ""
 
-msgid "The Scicos libraries are not loaded"
-msgstr "Scicos 函式庫沒載入"
-
 #, c-format
 msgid "Unable to simulate %s"
 msgstr "無法模擬 %s"
@@ -1487,29 +1364,17 @@ msgstr ""
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr ""
 
-#
-# File: modules/xcos/tests/nonreg_tests/utils/getcontext.sci, line: 64
 #, c-format
 msgid "%s: Cannot open file '%s' for reading.\n"
 msgstr ""
 
-#
-# File: modules/xcos/tests/nonreg_tests/utils/getcontext.sci, line: 78
 #, c-format
 msgid "%s: Error while trying to read file contents from '%s'.\n"
 msgstr ""
 
-#
-# File: modules/xcos/tests/nonreg_tests/utils/getcontext.sci, line: 91
 #, c-format
 msgid "%s: Syntax error while trying to set up context from"
 msgstr ""
 
-#~ msgid "Xcos"
-#~ msgstr "Xcos"
-
-#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
-#~ msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
-
-#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
-#~ msgstr "%s: 輸入參數個數錯誤: 應該有 %d 個.\n"
+#~ msgid "The Scicos libraries are not loaded"
+#~ msgstr "Scicos 函式庫沒載入"

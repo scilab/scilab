@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -30,8 +30,8 @@
                 <term>fd</term>
                 <listitem>
                     <para>
-                        скаляр: параметр <varname>fd</varname>, возвращённый функцией 
-                        <function>mopen</function>, используется в качестве файлового 
+                        скаляр: параметр <varname>fd</varname>, возвращённый функцией
+                        <function>mopen</function>, используется в качестве файлового
                         дескриптора.
                     </para>
                 </listitem>
@@ -47,9 +47,9 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>meof</function> вернёт ненулевое значение, если конец 
-            файла был достигнут в предыдущем вызове <function>mget</function> или 
-            <function>mgetstr</function>. Функция <function>mclearerr</function> 
+            Функция <function>meof</function> вернёт ненулевое значение, если конец
+            файла был достигнут в предыдущем вызове <function>mget</function> или
+            <function>mgetstr</function>. Функция <function>mclearerr</function>
             используется для сброса флага ошибки и флага конца файла в ноль.
         </para>
     </refsection>

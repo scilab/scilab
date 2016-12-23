@@ -22,7 +22,9 @@ function %dir_p(L)
 
     // If it is a directory, add a trailing "/"
     tmp = find(L.isdir);
-    name(tmp) = name(tmp) + filesep();
+    if tmp~=[] then
+        name(tmp) = name(tmp) + filesep();
+    end
 
     nc = 6;
     l1 = length(name);
@@ -51,4 +53,3 @@ function %dir_p(L)
     txt(txt == "") = [];
     mprintf("%s \n",txt);
 endfunction
-

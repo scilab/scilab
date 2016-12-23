@@ -561,8 +561,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             }
 
             int viewport[4] = {0, 0, 0, 0};
-            viewport[0] = in[1]->getAs<types::Double>()->get(0);
-            viewport[1] = in[2]->getAs<types::Double>()->get(0);
+            viewport[0] = (int)in[1]->getAs<types::Double>()->get(0);
+            viewport[1] = (int)in[2]->getAs<types::Double>()->get(0);
 
             getOrCreateDefaultSubwin();
             setGraphicObjectProperty(getCurrentFigure(), __GO_VIEWPORT__, viewport, jni_int_vector, 2);

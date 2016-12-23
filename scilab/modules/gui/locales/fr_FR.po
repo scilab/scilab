@@ -8,27 +8,23 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:04+0000\n"
+"PO-Revision-Date: 2016-10-19 13:04+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
+
+#, c-format
+msgid "%s: Figure number must be given when not in '%s' mode.\n"
+msgstr "%s : Le numéro de figure doit être donné hors du mode '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument n°%d : Une chaîne de caractères attendue.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s : Erreur d'allocation mémoire.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -38,25 +34,6 @@ msgstr "%s : Type erroné de l'argument n°%d : Un réel attendu.\n"
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un réel attendu.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être >= %d attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
-"un réel attendu.\n"
-
-#, c-format
-msgid "%s: Function not available in NWNI mode.\n"
-msgstr "%s : Fonction indisponible en mode NWNI.\n"
-
-#, c-format
-msgid "%s: Figure number must be given when not in '%s' mode.\n"
-msgstr "%s : Le numéro de figure doit être donné hors du mode '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
@@ -96,6 +73,10 @@ msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
@@ -125,6 +106,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr "%s : Type erroné de l'argument n°%d : Un réel attendu.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
@@ -264,30 +249,6 @@ msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr "%s : Impossible de créer un handle de type 'Uicontrol'.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments de sortie : %d ou %d attendus.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un 1 x %d vecteur ligne "
-"réel attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un réel ou une chaîne de "
-"caractères attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un 1 x %d vecteur ligne réel "
-"attendu.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un handle graphique attendu.\n"
@@ -310,6 +271,12 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un réel ou une chaîne de "
+"caractères attendu.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un handle de type '%s' "
@@ -326,56 +293,28 @@ msgid "%s: Wrong input arguments: '%s', '%s' or '%s' expected.\n"
 msgstr "%s : Arguments d'entrée faux : '%s', '%s' ou '%s' attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un vecteur réel ou complexe "
-"attendu.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un vecteur de chaîne de "
 "caractères attendu.\n"
 
-msgid "Scilab Choices Request"
-msgstr "Demande de choix Scilab"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur de chaîne de "
-"caractères attendu.\n"
-
 msgid "Scilab Choose Message"
 msgstr "Message de choix Scilab"
 
-msgid "Scilab Input Value Request"
-msgstr "Requête de valeur d'entrée Scilab"
-
-msgid "Scilab Multiple Values Request"
-msgstr "Demande de plusieurs valeurs Scilab"
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être >= %d attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: It must have same dimensions as "
-"argument #%d.\n"
+msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Doit avoir les mêmes "
-"dimensions que l'argument n°%d.\n"
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
+"un réel attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice de chaîne "
-"de caractères de taille %d x %d attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
-"caractères attendue.\n"
+msgid "%s: Function not available in NWNI mode.\n"
+msgstr "%s : Fonction indisponible en mode NWNI.\n"
 
 #, c-format
 msgid ""
@@ -445,6 +384,10 @@ msgstr "%s : Impossible de créer l'argument de sortie n°%d.\n"
 msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un handle attendu.\n"
 
+#, fuzzy, c-format
+msgid "%s: Invalid value for datatip index %d.\n"
+msgstr "%s : Nœud parent invalide.\n"
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
@@ -452,27 +395,33 @@ msgstr ""
 
 #, c-format
 msgid "%s:  Wrong number of output argument(s): %d to %d expected."
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s)."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A list expected.\n"
-msgstr ""
+msgstr "%s : Type erroné pour l'argument d'entrée n°%d : Une liste attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : At least %d elements expected.\n"
 msgstr ""
+"%s : Dimension erronée pour l'argument d'entrée n°%d : Au moins %d "
+"élément(s) attendu(s).\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of input argument #%d : string expected.\n"
 msgstr ""
+"%s : Type erroné pour l'élément n°%d de l'argument d'entrée n°%d : Une "
+"chaîne de caractères attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for element #%d of input argument #%d : At least %d element "
 "expected.\n"
 msgstr ""
+"%s : Dimension erronée pour l'élément n°%d de l'argument d'entrée n°%d : Au "
+"moins %d élément(s) attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Tree expected.\n"
@@ -484,24 +433,32 @@ msgstr ""
 msgid ""
 "%s: Wrong type for element #%d of input argument #%d : A struct expected.\n"
 msgstr ""
+"%s : Type erroné pour l'élément n°%d de l'argument d'entrée n°%d : Une "
+"structure attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong fields for element #%d of input argument #%d : \"%s\" and \"%s\" "
 "expected.\n"
 msgstr ""
+"%s : Champs erronés pour l'élément n°%d de l'argument d'entrée n°%d : \"%s\" "
+"et \"%s\" attendus.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of element #%d of input argument #%d : string "
 "expected.\n"
 msgstr ""
+"%s : Type erroné pour l'élément n°%d de l'élément n°%d de l'argument "
+"d'entrée n°%d : Une chaîne de caractères attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for element #%d of element #%d of input argument #%d : A "
 "single string expected.\n"
 msgstr ""
+"%s : Dimension erronée pour l'élément n°%d de l'élément n°%d de l'argument "
+"d'entrée n°%d : Une seule chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Error in the tree parsing.\n"
@@ -512,6 +469,8 @@ msgid ""
 "%s: A Java exception has arisen:\n"
 "%s"
 msgstr ""
+"%s : Une exception Java est survenue :\n"
+"%s"
 
 #, c-format
 msgid "%s: An error occurred: %s.\n"
@@ -522,15 +481,17 @@ msgstr "Impossible de lire le thème courant"
 
 #, c-format
 msgid "%s:  Wrong type for input argument #%d: A boolean expected."
-msgstr ""
+msgstr "%s : Type erroné pour l'argument d'entrée n°%d : Un booléen attendu."
 
 #, c-format
 msgid "%s:  Wrong type for input argument #%d: string expected."
 msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue."
 
 #, c-format
 msgid "%s:  Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s)."
 
 #, c-format
 msgid "%s: This file %s does not exist.\n"
@@ -615,6 +576,24 @@ msgstr ""
 "'gdi' attendue.\n"
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments de sortie : %d ou %d attendus.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un 1 x %d vecteur ligne "
+"réel attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A 1 x %d real row vector expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un 1 x %d vecteur ligne réel "
+"attendu.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
@@ -629,6 +608,49 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr "%s : Type erroné de l'argument %d : Une matrice booléenne attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un vecteur réel ou complexe "
+"attendu.\n"
+
+msgid "Scilab Choices Request"
+msgstr "Demande de choix Scilab"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur de chaîne de "
+"caractères attendu.\n"
+
+msgid "Scilab Input Value Request"
+msgstr "Requête de valeur d'entrée Scilab"
+
+msgid "Scilab Multiple Values Request"
+msgstr "Demande de plusieurs valeurs Scilab"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: It must have same dimensions as "
+"argument #%d.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Doit avoir les mêmes "
+"dimensions que l'argument n°%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %d x %d matrix of strings expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice de chaîne "
+"de caractères de taille %d x %d attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -832,6 +854,9 @@ msgstr ""
 "Attention : La propriété  'Value' pour un uicontrol de type '%s' doit être "
 "un entier, la valeur sera tronquée.\n"
 
+msgid "(Max - Min) must be greater than 1 to allow the multiple selection.\n"
+msgstr ""
+
 #, c-format
 msgid "'%s' value must be between 0 and %d.\n"
 msgstr "La valeur de '%s' doit être entre 0 et %d.\n"
@@ -888,7 +913,7 @@ msgstr "&Zoomer"
 msgid "&Original View"
 msgstr "Vue &Originale"
 
-msgid "Fit zoom to data"
+msgid "Reframe to contents"
 msgstr ""
 
 msgid "2D/3D &Rotation"
@@ -1050,11 +1075,8 @@ msgstr "Historique des &Commandes"
 msgid "&File Browser"
 msgstr "Navigateur de &Fichiers"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 121
-# File: modules/gui/src/gui_fake_xml.c, line: 169
 msgid "&News feed"
-msgstr ""
+msgstr "&Nouvelles RSS"
 
 msgid "Scilab &Help"
 msgstr "Aide de &Scilab"
@@ -1444,9 +1466,6 @@ msgstr "Compatible SciNotes"
 
 msgid "Preview"
 msgstr "Aperçu"
-
-msgid "Ok"
-msgstr "Ok"
 
 msgid "Loading help browser..."
 msgstr "Chargement du navigateur d'aide..."
@@ -1957,9 +1976,8 @@ msgstr "Dimension de marques"
 msgid "Mark Style"
 msgstr "Style des marques"
 
-#, fuzzy
 msgid "Components display"
-msgstr "3 composents"
+msgstr "Affichage des composants"
 
 msgid "Data Properties"
 msgstr "Propriétés des données"
@@ -2290,9 +2308,8 @@ msgstr "Tous les fichiers PNG"
 msgid "All RTF (Rich Text Format) files"
 msgstr "Tous les fichiers RTF (Rich Text Format)"
 
-#, fuzzy
 msgid "All HTML files"
-msgstr "Tous les fichiers"
+msgstr "Tous les fichiers HTML"
 
 #, c-format
 msgid "All %s files"
@@ -2330,379 +2347,252 @@ msgstr "%s : Disponible seulement en mode 'STANDARD'.\n"
 msgid "Error. A signal has been caught.\n"
 msgstr "Erreur. Un signal a été intercepté.\n"
 
-#, fuzzy
 msgid "Control Plot3d"
-msgstr "Contrôle"
+msgstr "Contrôle de Plot3d"
 
-#, fuzzy
 msgid "Control Panel"
-msgstr "Contrôle"
+msgstr "Panneau de contrôle"
 
-#, fuzzy
 msgid "Rotation angle"
-msgstr "Angles de rotation"
+msgstr "Angle de rotation"
 
-#, fuzzy
 msgid "Colormap"
-msgstr "Couleurs"
+msgstr "Palette de couleurs"
 
-#, fuzzy
 msgid "Show / Hide"
-msgstr "Afficher/Masquer la barre d'ou&tils"
+msgstr "Afficher / cacher"
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 6
 msgid "messagebox"
-msgstr ""
+msgstr "boîte de message"
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 7
 msgid "x_choose"
-msgstr ""
+msgstr "x_choose"
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 8
 msgid "x_dialog"
-msgstr ""
+msgstr "x_dialog"
 
-#
-# File: modules/gui/demos/dialogs/dialogs.dem.gateway.sce, line: 9
 msgid "x_mdialog"
-msgstr ""
+msgstr "x_mdialog"
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 8
 msgid "Simple example of message"
-msgstr ""
+msgstr "Simple exemple de message"
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 11
 msgid "Button 1Button 2"
-msgstr ""
+msgstr "Bouton 1Bouton 2"
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 14
 msgid "Button 1 clicked."
-msgstr ""
+msgstr "Bouton 1 cliqué"
 
-#
-# File: modules/gui/demos/dialogs/messagebox.sce, line: 16
 msgid "Button 2 clicked"
-msgstr ""
+msgstr "Bouton 2 cliqué"
 
-#
-# File: modules/gui/demos/dialogs/x_choose.sce, line: 10
 msgid ""
 "Message: Selection (double-click on an item --> returns the item number)"
 msgstr ""
+"Message : Sélection (double-cliquez sur un item --> retourne le numéro de "
+"l'item)"
 
-#, fuzzy
 msgid "Item selected: "
-msgstr "Aucun texte sélectionné"
+msgstr "Item sélectionné : "
 
-#
-# File: modules/gui/demos/dialogs/x_dialog.sce, line: 8
 msgid "Message: enter a value"
-msgstr ""
+msgstr "Message : entrez une valeur"
 
-#
-# File: modules/gui/demos/dialogs/x_dialog.sce, line: 10
 msgid "Value entered: "
-msgstr ""
+msgstr "Valeur entrée : "
 
-#, fuzzy
 msgid "Message"
-msgstr "Message d'information"
+msgstr "Message"
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 10
 msgid "first row"
-msgstr ""
+msgstr "première ligne"
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 13
 msgid "Values entered: "
-msgstr ""
+msgstr "Valeurs entrées : "
 
-#, fuzzy
 msgid "row"
-msgstr "Flêché"
+msgstr "ligne"
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 20
 msgid "col"
-msgstr ""
+msgstr "colonne"
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 22
 msgid "Matrix to edit"
-msgstr ""
+msgstr "Matrice à éditer"
 
-#
-# File: modules/gui/demos/dialogs/x_mdialog.sce, line: 24
 msgid "Matrix entered: "
-msgstr ""
+msgstr "Matrice entrée : "
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 12
 msgid "GUI"
-msgstr ""
+msgstr "Interface graphique"
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 14
 msgid "Dialogs"
-msgstr ""
+msgstr "Boîtes de dialogue"
 
-#, fuzzy
 msgid "Uicontrols 1"
-msgstr "Contrôle"
+msgstr "Interfaces graphiques de contrôles 1"
 
-#, fuzzy
 msgid "Uicontrols 2"
-msgstr "Contrôle"
+msgstr "Interfaces graphiques de contrôles 2"
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 21
 msgid "Uicontrols with LaTeX/MathML"
-msgstr ""
+msgstr "Interfaces graphiques de contrôles avec LaTeX/MathML"
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 24
 msgid "Show images with uicontrols "
-msgstr ""
+msgstr "Montrer les images avec les interfaces graphiques de contrôles "
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 27
-# File: modules/gui/demos/uicontrol_listbox_popupmenu.dem.sce, line: 18
 msgid "Listboxes and Popupmenus"
-msgstr ""
+msgstr "Boîtes de listes et menus contextuels"
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 30
 msgid "Uicontrols rendering"
+msgstr "Rendu des interfaces graphiques de contrôle"
+
+msgid "Uicontrols layout"
 msgstr ""
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 13
-# File: modules/gui/demos/uicontrol.dem.sce, line: 93
-# File: modules/gui/demos/uicontrol.dem.sce, line: 193
+msgid "Uicontrols messagebox-like"
+msgstr ""
+
 msgid "<Enter color name here>"
-msgstr ""
+msgstr "<Entrez le nom de la couleur ici>"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 14
-# File: modules/gui/demos/uicontrol.dem.sce, line: 23
 msgid "Error"
-msgstr ""
+msgstr "Erreur"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 14
 msgid "Please enter a color name first."
-msgstr ""
+msgstr "Veuillez entrer un nom de couleur en premier."
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 23
 msgid "Unknown color."
-msgstr ""
+msgstr "Couleur inconnue."
 
-#, fuzzy
 msgid "No color selected."
-msgstr "Aucun texte sélectionné"
+msgstr "Aucune couleur sélectionnée."
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 38
-# File: modules/gui/demos/uicontrol.dem.sce, line: 49
 msgid "Color selection"
-msgstr ""
+msgstr "Sélection des couleurs"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 42
 #, c-format
 msgid "Selected colors are: %s."
-msgstr ""
+msgstr "Les couleurs sélectionnées sont : %s."
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 44
 #, c-format
 msgid "Deleted colors are: %s."
-msgstr ""
+msgstr "Les couleurs détectées sont : %s."
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 53
 #, c-format
 msgid "You clicked on menu '%s'."
-msgstr ""
+msgstr "Vous avez cliqué sur le menu \"%s\"."
 
-#, fuzzy
 msgid "Selected menu"
-msgstr "Sélectionner tout"
+msgstr "Menu sélectionné"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 59
 msgid "checked"
-msgstr ""
+msgstr "coché"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 61
 msgid "unchecked"
-msgstr ""
+msgstr "non coché"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 63
 #, c-format
 msgid "Menu '%s' is %s."
-msgstr ""
+msgstr "Le menu \"%s\" est %s."
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 64
 msgid "Menu status"
-msgstr ""
+msgstr "Statut du menu"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 70
 msgid "Slider value: "
-msgstr ""
+msgstr "Valeur du curseur : "
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 78
 #, c-format
 msgid "You selected '%s'."
-msgstr ""
+msgstr "Vous avez sélectionné \"%s\"."
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 79
 msgid "Popupmenu selection"
-msgstr ""
+msgstr "Séléction du menu contextuel"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 100
 msgid "Do you really want to quit Scilab?"
-msgstr ""
+msgstr "Voulez-vous vraiment quitter Scilab ?"
 
-#, fuzzy
 msgid "Quit Scilab"
-msgstr "À propos de Scilab..."
+msgstr "Quitter Scilab"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 108
 msgid "Uicontrols demo"
-msgstr ""
+msgstr "Démo des interfaces graphiques de contrôle"
 
-#, fuzzy
 msgid "Application"
-msgstr "&Applications"
+msgstr "Application"
 
-#, fuzzy
 msgid "Close figure"
-msgstr "&Effacer la figure"
+msgstr "Fermer la figure"
 
-#, fuzzy
 msgid "Scilab Graphics"
-msgstr "Éditeur graphique de Scilab - GED"
+msgstr "Graphiques de Scilab"
 
-#, fuzzy
 msgid "Launch plot3d"
-msgstr "Démarrer SciNotes"
+msgstr "Lancer plot3d"
 
-#, fuzzy
 msgid "Launch plot2d"
-msgstr "Démarrer SciNotes"
+msgstr "Lancer plot2d"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 128
 msgid "Menu"
-msgstr ""
+msgstr "Menu"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 129
 msgid "Sub-menu 1"
-msgstr ""
+msgstr "Sous-menu 1"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 130
-# File: modules/gui/demos/uicontrol.dem.sce, line: 133
 msgid "Sub-menu 2"
-msgstr ""
+msgstr "Sous-menu 2"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 131
 msgid "Sub-menu 2-1"
-msgstr ""
+msgstr "Sous-menu 2-1"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 132
 msgid "Sub-menu 2-2"
-msgstr ""
+msgstr "Sous-menu 2-2"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 140
 msgid "item1|item2|item3|item4"
-msgstr ""
+msgstr "item1|item2|item3|item4"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 146
 msgid "Pop-up menu"
-msgstr ""
+msgstr "Menu contextuel"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 157
 msgid "Slider demo"
-msgstr ""
+msgstr "Démo du curseur"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 187
 msgid "Colors list edition"
-msgstr ""
+msgstr "Édition de la liste des couleurs"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 200
 msgid "Add color in listbox"
-msgstr ""
+msgstr "Ajouter une couleur dans la liste déroulante"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 206
 msgid "Delete color in listbox"
-msgstr ""
+msgstr "Supprimer une couleur de la liste déroulante"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "blue"
-msgstr ""
+msgstr "bleu"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "green"
-msgstr ""
+msgstr "vert"
 
-#, fuzzy
 msgid "red"
-msgstr "Coloré"
+msgstr "rouge"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 210
 msgid "yellow"
-msgstr ""
+msgstr "jaune"
 
-#, fuzzy
 msgid "Display selection"
-msgstr "Nom de la fonction d'affichage"
+msgstr "Sélection de l'affichage"
 
-#, fuzzy
 msgid "Delete selection"
-msgstr "Supprimer l'objet sélectionné"
+msgstr "Supprimer la sélection"
 
-#
-# File: modules/gui/demos/uicontrol.dem.sce, line: 237
 msgid "Default"
-msgstr ""
+msgstr "Défaut"
 
-#, fuzzy
 msgid "Quit demonstration"
-msgstr "Démonstrations"
+msgstr "Quitter la démonstration"
 
-#
-# File: modules/gui/demos/uicontrol_LaTeX.dem.sce, line: 16
 msgid "Uicontrols demo with LaTeX"
+msgstr "Démonstration des interfaces graphiques de contrôle avec LaTeX"
+
+msgid "Please fill the table"
 msgstr ""
 
 #, c-format
@@ -2944,23 +2834,8 @@ msgstr "%s : Type erroné de %s : Un réel attendu.\n"
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s : Dimension erronée de %s : Un réel attendu.\n"
 
-#~ msgid "Cancel"
-#~ msgstr "Annuler"
+#~ msgid "Fit zoom to data"
+#~ msgstr "Ajuster le zoom aux données"
 
-#~ msgid "Close"
-#~ msgstr "Fermer"
-
-#~ msgid "File"
-#~ msgstr "Fichier"
-
-#~ msgid "Background Color"
-#~ msgstr "Couleur d’arrière-plan"
-
-#~ msgid "Title"
-#~ msgstr "Titre"
-
-#~ msgid "Yes"
-#~ msgstr "Oui"
-
-#~ msgid "No"
-#~ msgstr "Non"
+#~ msgid "Ok"
+#~ msgstr "Ok"

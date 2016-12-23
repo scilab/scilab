@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -45,7 +45,6 @@ public:
         m_label(), m_style(), m_thick(2), m_color(1), m_linkKind(regular) {};
     Link(const Link& o) : BaseObject(LINK), m_parentDiagram(o.m_parentDiagram), m_parentBlock(o.m_parentBlock), m_sourcePort(o.m_sourcePort), m_destinationPort(o.m_destinationPort),  m_uid(o.m_uid),
         m_controlPoints(o.m_controlPoints), m_label(o.m_label), m_style(o.m_style), m_thick(o.m_thick), m_color(o.m_color), m_linkKind(o.m_linkKind) {};
-    ~Link() = default;
 
 private:
     friend class ::org_scilab_modules_scicos::Model;

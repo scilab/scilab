@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -27,12 +27,12 @@
         <para>
             Given a spectral density matrix <literal>phi(s)</literal>:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
             -1                   -1
 R + C*(s*I-A) * B  +  B'*(-s*I-A') * C'  with R=D+D' > 0
  ]]></programlisting>
         <para>
-            <literal>specfact</literal> computes  <literal>W0</literal> and <literal>L</literal> such 
+            <literal>specfact</literal> computes  <literal>W0</literal> and <literal>L</literal> such
             that  <literal>W(s)=W0+L*(s*I-A)^-1*B</literal>  is a
             spectral factor of of <literal>PHI(s)</literal>, i.e.
         </para>
@@ -42,7 +42,7 @@ R + C*(s*I-A) * B  +  B'*(-s*I-A') * C'  with R=D+D' > 0
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=diag([-1,-2]);B=[1;1];C=[1,1];D=1;s=poly(0,'s');
 W1=syslin('c',A,B,C,D);
 phi=gtild(W1,'c')+W1;

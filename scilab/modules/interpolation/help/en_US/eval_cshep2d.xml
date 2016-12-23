@@ -86,7 +86,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // see example section of cshep2d
 
 // this example shows the behavior far from the interpolation points ...

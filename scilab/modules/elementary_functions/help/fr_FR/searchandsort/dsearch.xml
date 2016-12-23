@@ -106,7 +106,7 @@
             Le mode pm="c" par défaut peut être utilisé pour calculer l'histogramme empirique d'une fonction appliquée à un ensemble de points donnés.
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
@@ -134,7 +134,7 @@ T
 [i_bin, counts, outside] = dsearch(T, bins)
     ]]>
         </programlisting>
-        
+
         <para>
             Dans l'exemple suivant, considérons 3 intervalles <literal>I1 = [5,11]</literal>,
             <literal>I2 = (11,15]</literal> and <literal>I3 = (15,20]</literal>.
@@ -372,7 +372,7 @@ legend(["Tirage","Théorie"]);
       // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
       ]]></programlisting>
         <scilab:image localized="true">
-            
+
             function y=Ll(t,k,x)
             y=(t-x(k+1))./(x(k)-x(k+1))
             endfunction
@@ -391,13 +391,13 @@ legend(["Tirage","Théorie"]);
             function y=Kr(t,k,x)
             y=(t-x(k+1)).*Lr(t,k,x).^2
             endfunction
-            
+
             x = [0 ; 0.2 ; 0.35 ; 0.5 ; 0.65 ; 0.8 ;  1];
             y = [0 ; 0.1 ;-0.1  ; 0   ; 0.4  ;-0.1 ;  0];
             d = [1 ; 0   ; 0    ; 1   ; 0    ; 0   ; -1];
             X = linspace(0, 1, 200)';
             i_bin = dsearch(X, x);
-            
+
             Y = y(i_bin).*Hl(X,i_bin) + y(i_bin+1).*Hr(X,i_bin) + d(i_bin).*Kl(X,i_bin) + d(i_bin+1).*Kr(X,i_bin);
             scf();
             plot(X,Y,"k-");
@@ -406,7 +406,7 @@ legend(["Tirage","Théorie"]);
             legend(["Polynôme d''interpolation","Données à interpoler"]);
         </scilab:image>
     </refsection>
-    
+
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">

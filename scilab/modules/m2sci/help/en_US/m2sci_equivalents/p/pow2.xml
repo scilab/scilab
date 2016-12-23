@@ -50,7 +50,7 @@ No equivalent
                 <term>X=pow2(Y)</term>
                 <listitem>
                     <para>
-                        There is not equivalent function for <emphasis role="bold">pow2</emphasis> in Scilab but, when called with one input argument it can be emulated by: <emphasis role="bold">2^Y</emphasis>    
+                        There is not equivalent function for <emphasis role="bold">pow2</emphasis> in Scilab but, when called with one input argument it can be emulated by: <emphasis role="bold">2^Y</emphasis>
                     </para>
                 </listitem>
             </varlistentry>

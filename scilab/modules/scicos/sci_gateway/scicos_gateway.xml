@@ -58,4 +58,7 @@
     <gateway type="1" name="sci_vec2var" function="vec2var"/>
     <gateway type="1" name="sci_model2blk" function="model2blk"/>
     <gateway type="1" name="sci_callblk" function="callblk"/>
+    <!-- provide a simple native implementation (without Java) ; the xcosDiagramToScilab gateway superseed it -->
+    <gateway type="1" name="sci_scicosDiagramToScilab" function="scicosDiagramToScilab" />
 </module>
+

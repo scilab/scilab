@@ -223,11 +223,8 @@ int sci_toolbar(char *fname, void* pvApiCtx)
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
 
-    if (Output)
-    {
-        FREE(Output);
-        Output = NULL;
-    }
+    FREE(Output);
+    Output = NULL;
 
     ReturnArguments(pvApiCtx);
     return TRUE;

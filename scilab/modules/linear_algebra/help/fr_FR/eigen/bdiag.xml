@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -64,15 +64,15 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <programlisting role=""><![CDATA[ 
-[Ab [,X [,bs]]]=bdiag(A [,rmax]) 
+        <programlisting role=""><![CDATA[
+[Ab [,X [,bs]]]=bdiag(A [,rmax])
  ]]></programlisting>
         <para>
             <literal>[Ab [,X [,bs]]]=bdiag(A [,rmax])</literal> calcule la forme
             bloc-diagonale de <literal>A</literal>.  bs précise la structure des
             blocs (tailles respectives des blocs).  <literal>X</literal> est la
             matrice de changement de base, c'est à dire que <literal>Ab =
-                inv(X)*A*X 
+                inv(X)*A*X
             </literal>
             est bloc-diagonale.
         </para>
@@ -90,7 +90,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Cas réel: blocs 1x1 et 2x2
 a=rand(5,5);[ab,x,bs]=bdiag(a);ab
 // Cas complexe : blocs complexes 1x1

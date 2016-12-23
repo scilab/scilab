@@ -819,9 +819,6 @@ isoview("off")
                 <link linkend="plot">plot</link>
             </member>
             <member>
-                <link linkend="plot2d1">plot2d1</link>
-            </member>
-            <member>
                 <link linkend="plot2d2">plot2d2</link>
             </member>
             <member>

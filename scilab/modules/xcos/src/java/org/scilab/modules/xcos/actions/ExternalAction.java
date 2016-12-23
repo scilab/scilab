@@ -14,14 +14,23 @@
  */
 package org.scilab.modules.xcos.actions;
 
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 
 import javax.swing.Action;
 
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 
 /**
  * External action
@@ -36,8 +45,6 @@ public final class ExternalAction extends DefaultAction {
     public static final int MNEMONIC_KEY = 0;
     /** Accelerator key for the action */
     public static final int ACCELERATOR_KEY = 0;
-
-    private static final Logger LOG = Logger.getLogger(ExternalAction.class.getName());
 
     final String localCommand;
 
@@ -68,69 +75,89 @@ public final class ExternalAction extends DefaultAction {
         localCommand = action.localCommand;
     }
 
+    static private void reset_view(final XcosDiagram graph, final BasicBlock block, boolean start) {
+        if (block != null) {
+            block.setLocked(start);
+        }
+
+        int cursor;
+        if (start) {
+            cursor = Cursor.WAIT_CURSOR;
+        } else {
+            cursor = Cursor.DEFAULT_CURSOR;
+        }
+
+        graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(cursor));
+        graph.setCellsLocked(start);
+
+        graph.getView().clear(graph.getCurrentRoot(), true, true);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+        final StringBuilder command = new StringBuilder();
 
-        // FIXME: implement the external action
-        //        final XcosDiagram graph = (XcosDiagram) getGraph(e);
-        //        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        //        if (handler == null) {
-        //            return;
-        //        }
-        //
-        //        final BasicBlock block;
-        //        final ActionListener callback;
-        //        try {
-        //            /*
-        //             * Export the whole diagram, to update all the sub-diagrams on demand.
-        //             */
-        //            handler.writeDiagram(graph.getRootDiagram());
-        //
-        //            /*
-        //             * Then export the selected block
-        //             */
-        //            Object cell = graph.getSelectionCell();
-        //            if (cell instanceof BasicBlock) {
-        //                block = (BasicBlock) cell;
-        //                handler.writeBlock(block);
-        //            } else {
-        //                block = null;
-        //            }
-        //
-        //            /*
-        //             * Import the updated block
-        //             */
-        //            if (block != null) {
-        //                callback = new ActionListener() {
-        //                    @Override
-        //                    public void actionPerformed(ActionEvent e) {
-        //                        try {
-        //
-        //                            final BasicBlock modifiedBlock = handler.readBlock();
-        //                            block.updateBlockSettings(modifiedBlock);
-        //
-        //                            graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, block));
-        //                        } catch (ScicosFormatException e1) {
-        //                            LOG.severe(e1.getMessage());
-        //                        } finally {
-        //                            handler.release();
-        //                        }
-        //                    }
-        //                };
-        //            } else {
-        //                callback = new ActionListener() {
-        //                    @Override
-        //                    public void actionPerformed(ActionEvent e) {
-        //                        handler.release();
-        //                    }
-        //                };
-        //            }
-        //
-        //            ScilabInterpreterManagement.asynchronousScilabExec(callback, localCommand);
-        //        } catch (InterpreterException e2) {
-        //            LOG.warning(e2.toString());
-        //
-        //            handler.release();
-        //        }
+        final BasicBlock block;
+        final ActionListener callback;
+
+        /*
+         * Export the whole graph, to update all the sub-graphs on demand.
+         */
+        command.append("scs_m = scicos_new(\"0x").append(Long.toHexString(graph.getUID())).append("\"); \n");
+
+        /*
+         * Then export the selected block
+         */
+        Object cell = graph.getSelectionCell();
+        if (cell instanceof BasicBlock) {
+            block = (BasicBlock) cell;
+            command.append("blk = scicos_new(\"0x").append(Long.toHexString(block.getUID())).append("\"); \n");
+            command.append(localCommand).append('\n');
+            command.append("if exists('blk') then xcosCellCreated(blk); end\n");
+        } else {
+            block = null;
+        }
+
+
+
+        /*
+         * Import the updated block
+         */
+        if (block != null) {
+            callback = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Now update the Block
+                    graph.getModel().beginUpdate();
+                    try {
+                        ScicosObjectOwner last = XcosCellFactory.getLastCreated();
+                        if (last != null && last.getUID() != 0l) {
+                            JavaController controller = new JavaController();
+
+                            BasicBlock modified = XcosCellFactory.createBlock(controller, last);
+                            if (modified != null) {
+                                block.updateBlockSettings(controller, graph, modified);
+                            }
+                        }
+                        BlockPositioning.updateBlockView(graph, block);
+                    } finally {
+                        graph.getModel().endUpdate();
+                        reset_view(graph, block, false);
+                    }
+                }
+            };
+        } else {
+            callback = (ActionEvent ev) -> {
+                reset_view(graph, block, false);
+            };
+        }
+
+        try {
+            reset_view(graph, block, true);
+            ScilabInterpreterManagement.asynchronousScilabExec(callback, command.toString());
+        } catch (InterpreterException e1) {
+            reset_view(graph, block, false);
+        }
     }
 }

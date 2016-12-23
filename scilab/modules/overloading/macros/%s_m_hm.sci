@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function M2=%s_m_hm(M1,M2)
+function M2 = %s_m_hm(M1,M2)
 
     siz1 = size(M1);
     siz2 = size(M2);
@@ -22,10 +22,10 @@ function M2=%s_m_hm(M1,M2)
         if siz1(2)<>siz2(1) then
             error(msprintf(_("%s: Wrong size for argument: Incompatible dimensions.\n"),"s_m_hm"));
         end
-        M2 = hypermat([siz2(1) siz2(2)*siz2(3)], M2);
-        M2 = hypermat([siz1(1) siz2(2) siz2(3)], M1*M2);
+        M2 = matrix(M2, [siz2(1) siz2(2)*siz2(3)]);
+        M2 = matrix(M1*M2, [siz1(1) siz2(2) siz2(3)]);
     else
-        M2.entries = M1*M2.entries
+        M2 = matrix(M1*M2(:), size(M2))
     end
 
 endfunction

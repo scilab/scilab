@@ -191,19 +191,23 @@ am__objects_1 = src/fortran/residu.lo src/fortran/imptra.lo \
 	src/fortran/mptri.lo src/fortran/horner.lo \
 	src/fortran/idegre.lo src/fortran/fxshfr.lo \
 	src/fortran/mpdiag.lo src/fortran/dmpcle.lo \
-	src/fortran/rpoly.lo src/fortran/wpodiv.lo \
-	src/fortran/wdmpmu.lo src/fortran/wmptra.lo \
-	src/fortran/wmpins.lo src/fortran/mpdegr.lo \
-	src/fortran/ddmpev.lo src/fortran/realit.lo \
-	src/fortran/dpmul.lo src/fortran/sfact2.lo \
-	src/fortran/dmpad.lo src/fortran/nextk.lo \
-	src/fortran/blktit.lo src/fortran/dimin.lo \
-	src/fortran/newest.lo src/fortran/dwmpmu.lo \
-	src/fortran/impcnc.lo src/fortran/wdmpad.lo \
-	src/fortran/wmpcle.lo src/fortran/quadit.lo \
-	src/fortran/quad.lo src/fortran/calcsc.lo \
-	src/fortran/writebufsfact.lo src/fortran/chkvar.lo
-am_libscipolynomials_algo_la_OBJECTS = $(am__objects_1)
+	src/fortran/wpodiv.lo src/fortran/wdmpmu.lo \
+	src/fortran/wmptra.lo src/fortran/wmpins.lo \
+	src/fortran/mpdegr.lo src/fortran/ddmpev.lo \
+	src/fortran/realit.lo src/fortran/dpmul.lo \
+	src/fortran/sfact2.lo src/fortran/dmpad.lo \
+	src/fortran/nextk.lo src/fortran/blktit.lo \
+	src/fortran/dimin.lo src/fortran/newest.lo \
+	src/fortran/dwmpmu.lo src/fortran/impcnc.lo \
+	src/fortran/wdmpad.lo src/fortran/wmpcle.lo \
+	src/fortran/quadit.lo src/fortran/quad.lo \
+	src/fortran/calcsc.lo src/fortran/writebufsfact.lo \
+	src/fortran/chkvar.lo
+am__objects_2 = src/cpp/libscipolynomials_algo_la-rpoly.lo \
+	src/cpp/libscipolynomials_algo_la-find_polynomial_roots_jenkins_traub.lo \
+	src/cpp/libscipolynomials_algo_la-polynomial.lo
+am_libscipolynomials_algo_la_OBJECTS = $(am__objects_1) \
+	$(am__objects_2)
 libscipolynomials_algo_la_OBJECTS =  \
 	$(am_libscipolynomials_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -213,7 +217,7 @@ am__v_lt_1 =
 @MAINTAINER_MODE_FALSE@am_libscipolynomials_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscipolynomials_algo_la_rpath =
 libscipolynomials_la_DEPENDENCIES = libscipolynomials-algo.la
-am__objects_2 =  \
+am__objects_3 =  \
 	sci_gateway/cpp/libscipolynomials_la-polynomials_gw.lo \
 	sci_gateway/cpp/libscipolynomials_la-sci_poly.lo \
 	sci_gateway/cpp/libscipolynomials_la-sci_varn.lo \
@@ -225,7 +229,7 @@ am__objects_2 =  \
 	sci_gateway/cpp/libscipolynomials_la-sci_simp.lo \
 	sci_gateway/cpp/libscipolynomials_la-sci_sfact.lo \
 	sci_gateway/cpp/libscipolynomials_la-sci_bezout.lo
-am_libscipolynomials_la_OBJECTS = $(am__objects_2)
+am_libscipolynomials_la_OBJECTS = $(am__objects_3)
 libscipolynomials_la_OBJECTS = $(am_libscipolynomials_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscipolynomials_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscipolynomials_la_rpath = -rpath \
@@ -653,7 +657,6 @@ POLYNOMIALS_FORTRAN_SOURCES = \
     src/fortran/fxshfr.f \
     src/fortran/mpdiag.f \
     src/fortran/dmpcle.f \
-    src/fortran/rpoly.f \
     src/fortran/wpodiv.f \
     src/fortran/wdmpmu.f \
     src/fortran/wmptra.f \
@@ -677,6 +680,11 @@ POLYNOMIALS_FORTRAN_SOURCES = \
     src/fortran/calcsc.f \
     src/fortran/writebufsfact.f \
     src/fortran/chkvar.f
+
+POLYNOMIALS_CXX_SOURCES = \
+    src/cpp/rpoly.cpp \
+    src/cpp/find_polynomial_roots_jenkins_traub.cc \
+    src/cpp/polynomial.cc
 
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/polynomials_gw.cpp \
@@ -709,12 +717,13 @@ libscipolynomials_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/string/includes \
     -I$(top_srcdir)/modules/console/includes \
     -I$(top_srcdir)/modules/elementary_functions/includes/ \
+    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscipolynomials.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscipolynomials-algo.la libscipolynomials.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscipolynomials-algo.la
-libscipolynomials_algo_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES)
+libscipolynomials_algo_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(POLYNOMIALS_CXX_SOURCES)
 libscipolynomials_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscipolynomials_algo_la_CPPFLAGS = $(libscipolynomials_la_CPPFLAGS)
 
@@ -813,7 +822,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .cpp .f .lo .o .obj
+.SUFFIXES: .sci .bin .cc .cpp .f .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -960,8 +969,6 @@ src/fortran/mpdiag.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dmpcle.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/rpoly.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wpodiv.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wdmpmu.lo: src/fortran/$(am__dirstamp) \
@@ -1008,9 +1015,21 @@ src/fortran/writebufsfact.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/chkvar.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/cpp/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp
+	@: > src/cpp/$(am__dirstamp)
+src/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/$(DEPDIR)
+	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscipolynomials_algo_la-rpoly.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscipolynomials_algo_la-find_polynomial_roots_jenkins_traub.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscipolynomials_algo_la-polynomial.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscipolynomials-algo.la: $(libscipolynomials_algo_la_OBJECTS) $(libscipolynomials_algo_la_DEPENDENCIES) $(EXTRA_libscipolynomials_algo_la_DEPENDENCIES) 
-	$(AM_V_F77LD)$(F77LINK) $(am_libscipolynomials_algo_la_rpath) $(libscipolynomials_algo_la_OBJECTS) $(libscipolynomials_algo_la_LIBADD) $(LIBS)
+	$(AM_V_CXXLD)$(CXXLINK) $(am_libscipolynomials_algo_la_rpath) $(libscipolynomials_algo_la_OBJECTS) $(libscipolynomials_algo_la_LIBADD) $(LIBS)
 sci_gateway/cpp/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp
 	@: > sci_gateway/cpp/$(am__dirstamp)
@@ -1058,6 +1077,8 @@ mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f sci_gateway/cpp/*.$(OBJEXT)
 	-rm -f sci_gateway/cpp/*.lo
+	-rm -f src/cpp/*.$(OBJEXT)
+	-rm -f src/cpp/*.lo
 	-rm -f src/fortran/*.$(OBJEXT)
 	-rm -f src/fortran/*.lo
 
@@ -1075,8 +1096,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_simp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_simpMode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-sci_varn.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscipolynomials_algo_la-find_polynomial_roots_jenkins_traub.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscipolynomials_algo_la-polynomial.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscipolynomials_algo_la-rpoly.Plo@am__quote@
 
-.cpp.o:
+.cc.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
 @am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
@@ -1084,7 +1108,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
 
-.cpp.obj:
+.cc.obj:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
 @am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
@@ -1092,13 +1116,34 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
-.cpp.lo:
+.cc.lo:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
 @am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
 @am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
+
+src/cpp/libscipolynomials_algo_la-rpoly.lo: src/cpp/rpoly.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscipolynomials_algo_la-rpoly.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscipolynomials_algo_la-rpoly.Tpo -c -o src/cpp/libscipolynomials_algo_la-rpoly.lo `test -f 'src/cpp/rpoly.cpp' || echo '$(srcdir)/'`src/cpp/rpoly.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscipolynomials_algo_la-rpoly.Tpo src/cpp/$(DEPDIR)/libscipolynomials_algo_la-rpoly.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/rpoly.cpp' object='src/cpp/libscipolynomials_algo_la-rpoly.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscipolynomials_algo_la-rpoly.lo `test -f 'src/cpp/rpoly.cpp' || echo '$(srcdir)/'`src/cpp/rpoly.cpp
+
+src/cpp/libscipolynomials_algo_la-find_polynomial_roots_jenkins_traub.lo: src/cpp/find_polynomial_roots_jenkins_traub.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscipolynomials_algo_la-find_polynomial_roots_jenkins_traub.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscipolynomials_algo_la-find_polynomial_roots_jenkins_traub.Tpo -c -o src/cpp/libscipolynomials_algo_la-find_polynomial_roots_jenkins_traub.lo `test -f 'src/cpp/find_polynomial_roots_jenkins_traub.cc' || echo '$(srcdir)/'`src/cpp/find_polynomial_roots_jenkins_traub.cc
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscipolynomials_algo_la-find_polynomial_roots_jenkins_traub.Tpo src/cpp/$(DEPDIR)/libscipolynomials_algo_la-find_polynomial_roots_jenkins_traub.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/find_polynomial_roots_jenkins_traub.cc' object='src/cpp/libscipolynomials_algo_la-find_polynomial_roots_jenkins_traub.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscipolynomials_algo_la-find_polynomial_roots_jenkins_traub.lo `test -f 'src/cpp/find_polynomial_roots_jenkins_traub.cc' || echo '$(srcdir)/'`src/cpp/find_polynomial_roots_jenkins_traub.cc
+
+src/cpp/libscipolynomials_algo_la-polynomial.lo: src/cpp/polynomial.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscipolynomials_algo_la-polynomial.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscipolynomials_algo_la-polynomial.Tpo -c -o src/cpp/libscipolynomials_algo_la-polynomial.lo `test -f 'src/cpp/polynomial.cc' || echo '$(srcdir)/'`src/cpp/polynomial.cc
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscipolynomials_algo_la-polynomial.Tpo src/cpp/$(DEPDIR)/libscipolynomials_algo_la-polynomial.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/polynomial.cc' object='src/cpp/libscipolynomials_algo_la-polynomial.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscipolynomials_algo_la-polynomial.lo `test -f 'src/cpp/polynomial.cc' || echo '$(srcdir)/'`src/cpp/polynomial.cc
 
 sci_gateway/cpp/libscipolynomials_la-polynomials_gw.lo: sci_gateway/cpp/polynomials_gw.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscipolynomials_la-polynomials_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscipolynomials_la-polynomials_gw.Tpo -c -o sci_gateway/cpp/libscipolynomials_la-polynomials_gw.lo `test -f 'sci_gateway/cpp/polynomials_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/polynomials_gw.cpp
@@ -1177,6 +1222,30 @@ sci_gateway/cpp/libscipolynomials_la-sci_bezout.lo: sci_gateway/cpp/sci_bezout.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipolynomials_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscipolynomials_la-sci_bezout.lo `test -f 'sci_gateway/cpp/sci_bezout.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_bezout.cpp
 
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
+
+.cpp.obj:
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.cpp.lo:
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
+
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
 
@@ -1192,6 +1261,7 @@ mostlyclean-libtool:
 clean-libtool:
 	-rm -rf .libs _libs
 	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
+	-rm -rf src/cpp/.libs src/cpp/_libs
 	-rm -rf src/fortran/.libs src/fortran/_libs
 install-libscipolynomials_la_etcDATA: $(libscipolynomials_la_etc_DATA)
 	@$(NORMAL_INSTALL)
@@ -1375,6 +1445,8 @@ distclean-generic:
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
 	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(am__dirstamp)
+	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/cpp/$(am__dirstamp)
 	-rm -f src/fortran/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/fortran/$(am__dirstamp)
 
@@ -1387,7 +1459,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf sci_gateway/cpp/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1436,7 +1508,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf sci_gateway/cpp/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

@@ -37,7 +37,7 @@
                 <term>H</term>
                 <listitem>
                     <para>有理行列 (すなわち,
-                        エントリ <literal>n/d</literal>を有する行列 ,実数多項式	
+                        エントリ <literal>n/d</literal>を有する行列 ,実数多項式
                         <literal>n</literal>および <literal>d</literal>)
                     </para>
                 </listitem>
@@ -82,7 +82,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 [n,d]=simp((s+1)*(s+2),(s+1)*(s-2))
 simp_mode(%F);hns=s/s

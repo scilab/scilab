@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -70,7 +70,7 @@
         <title>説明</title>
         <para>これらの関数は古い関数であり,
             <link linkend="besseli">besseli</link>, <link linkend="besselj">besselj</link>,
-            <link linkend="besselk">besselk</link>, <link linkend="bessely">bessely</link> を代わりに使用してください. 
+            <link linkend="besselk">besselk</link>, <link linkend="bessely">bessely</link> を代わりに使用してください.
             しかし,これらの2組の関数の構文は異なっていることに注意してください.
         </para>
         <para>
@@ -134,7 +134,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // example #1: display some I Bessel functions
 x = linspace(0.01,10,5000)';
 y = oldbesseli(0:4,x);
@@ -154,7 +154,7 @@ plot2d(x,y, style=2:6, leg="J0@J1@J2@J3@J4")
 xtitle("Some Bessel functions of the first kind")
 // example #3 : use the fact that J_(1/2)(x) = sqrt(2/(x pi)) sin(x)
 //              to compare the algorithm of besselj(0.5,x) with
-//              a more direct formula 
+//              a more direct formula
 x = linspace(0.1,40,5000)';
 y1 = besselj(0.5, x);
 y2 = sqrt(2 ./(%pi*x)).*sin(x);
@@ -166,7 +166,7 @@ plot2d(x,y1,style=2)
 xtitle("besselj(0.5,x)")
 subplot(2,1,2)
 plot2d(x(ind), er(ind), style=2, logflag="nl")
-xtitle("relative error between 2 formulae for besselj(0.5,x)") 
+xtitle("relative error between 2 formulae for besselj(0.5,x)")
 // example #4: display some K Bessel functions
 x = linspace(0.01,10,5000)';
 y = besselk(0:4,x);

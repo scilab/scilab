@@ -23,7 +23,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>[n,d]=cmndred(num,den)</literal> calcule une matrice de polynômes <literal>n</literal> et 
+            <literal>[n,d]=cmndred(num,den)</literal> calcule une matrice de polynômes <literal>n</literal> et
             un dénominateur commun <literal>d</literal> tels que :
         </para>
         <para>

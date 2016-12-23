@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -74,13 +74,13 @@
         </para>
         <para>
             Si <literal>A</literal> est singulière, la matrice <literal>L</literal> est à colonnes compressées (avec
-            <literal>rk</literal> colonnes indépendantes non nulles) :  la matrice creuse régulière 
+            <literal>rk</literal> colonnes indépendantes non nulles) :  la matrice creuse régulière
             <literal>Q'*inv(U)</literal> compresse les colonnes de <literal>A</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=rand(5,2)*rand(2,5);A=sparse(a);
 [hand,rk]=lufact(A);[P,L,U,Q]=luget(hand);
 full(L), P*L*U*Q-A

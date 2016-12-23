@@ -27,6 +27,7 @@
 /*------------------------------------------------------------------------*/
 #define STRING_BEGIN_SESSION _("Begin Session : ")
 #define FORMAT_SESSION "%s%s%s"
+#define LONG_FORMAT_SESSION "%s%s%s%s"
 #define MAX_wday 7              /* number days in a week */
 #define MAX_mon 12              /* number of month in a year */
 /*------------------------------------------------------------------------*/
@@ -66,7 +67,7 @@ char *getCommentDateSession(BOOL longFormat)
         {
             if (longFormat)
             {
-                sprintf(line, FORMAT_SESSION, SESSION_PRAGMA_BEGIN, STRING_BEGIN_SESSION, time_str, SESSION_PRAGMA_END);
+                sprintf(line, LONG_FORMAT_SESSION, SESSION_PRAGMA_BEGIN, STRING_BEGIN_SESSION, time_str, SESSION_PRAGMA_END);
             }
             else
             {
@@ -102,6 +103,7 @@ static char *ASCIItime(const struct tm *timeptr)
     }
     else
     {
+        result = (char *)MALLOC(sizeof(char));
         strcpy(result, "");
     }
 

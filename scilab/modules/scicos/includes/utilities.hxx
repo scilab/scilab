@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -92,8 +92,6 @@ enum object_properties_t
     THICK,              //!< model::Link::thick value
     COLOR,              //!< model::Link & Block & Diagram::color value
     KIND,               //!< model::Link::kind value
-    FROM,               //!< model::Link::from value
-    TO,                 //!< model::Link::to value
     DATATYPE,           //!< model::Port::dataType value
     DATATYPE_ROWS,      //!< model::Port::dataType adapter helper
     DATATYPE_COLS,      //!< model::Port::dataType adapter helper
@@ -124,6 +122,47 @@ enum portKind
     PORT_EIN,
     PORT_EOUT
 };
+
+/**
+ * Helper to convert a Property to a Port kind.
+ */
+inline int port_from_property(object_properties_t p)
+{
+    switch (p)
+    {
+        case INPUTS:
+            return PORT_IN;
+        case OUTPUTS:
+            return PORT_OUT;
+        case EVENT_INPUTS:
+            return PORT_EIN;
+        case EVENT_OUTPUTS:
+            return PORT_EOUT;
+        default:
+            return PORT_UNDEF;
+    }
+}
+
+
+/**
+ * Helper to convert a Port kind to a Property.
+ */
+inline object_properties_t property_from_port(int p)
+{
+    switch (p)
+    {
+        case PORT_IN:
+            return INPUTS;
+        case PORT_OUT:
+            return OUTPUTS;
+        case PORT_EIN:
+            return EVENT_INPUTS;
+        case PORT_EOUT:
+            return EVENT_OUTPUTS;
+        default:
+            return MAX_OBJECT_PROPERTIES;
+    }
+}
 
 
 #endif /* UTILITIES_HXX_ */

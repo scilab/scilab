@@ -160,9 +160,9 @@ x = 2;
 // Std = - 1.5606083
 Std = cdfnor("Std",p,q,x,Mean)
    ]]></programlisting>
-        
-        
-        
+
+
+
         <programlisting role="example"><![CDATA[
 // Plot the function
 h = scf();
@@ -202,7 +202,7 @@ legend(lgd);
             end
             legend(lgd);
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // Plot the Inverse Cumulated Standard function
 Mean = 0;
@@ -213,8 +213,8 @@ x = cdfnor("X",Mean*ones(p),Std*ones(p),p,q);
 plot(p,x)
 xtitle("Inverse Cumulated Distribution Normal Standard Function","p","x");
    ]]></programlisting>
-        
-        
+
+
         <scilab:image localized="true">
             Mean = 0;
             Std = 1;
@@ -224,7 +224,7 @@ xtitle("Inverse Cumulated Distribution Normal Standard Function","p","x");
             plot(p,x)
             xtitle("Inverse Cumulated Distribution Normal Standard Function","p","x");
         </scilab:image>
-        
+
         <programlisting role="example"><![CDATA[
 // The Inverse Normal CDF is ill-conditioned when
 // p is close to p=0.5.

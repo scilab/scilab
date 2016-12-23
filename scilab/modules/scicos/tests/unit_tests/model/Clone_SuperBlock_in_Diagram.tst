@@ -13,8 +13,13 @@ scicos_log("TRACE");
 o = CLOCK_c("define");
 d = scicos_diagram();
 d.objs(1) = o;
+
+assert_checkequal(d.objs(1).model.rpar.objs(3).from, [2 1 0]);
+assert_checkequal(d.objs(1).model.rpar.objs(3).to,   [4 1 1]);
+
 dClone = d;
-dClone.props.tol(6) = 2; // COW: effectively cloning d into d2
+dClone.props.tol(6) = d.props.tol(6); // COW: effectively cloning
+
 assert_checkequal(dClone.objs(1).model.rpar.objs(3).from, [2 1 0]);
 assert_checkequal(dClone.objs(1).model.rpar.objs(3).to,   [4 1 1]);
 

@@ -12,9 +12,9 @@
     </refsection>
     <refsection>
         <title>Пример</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 val = %t
- 
+
 if val==%t then
     disp("true");
 else
@@ -28,7 +28,7 @@ select val
       disp("Ложь");
    else
       disp("Третий вариант");
-end 
+end
      ]]></programlisting>
     </refsection>
     <refsection role="see also">

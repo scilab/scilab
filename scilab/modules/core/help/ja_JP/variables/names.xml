@@ -8,7 +8,7 @@
         <title>説明</title>
         <para>
             変数および関数の名前は文字または以下の特殊文字のとれかから始まる必要があります:
-            '<literal>%</literal>', '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>', 
+            '<literal>%</literal>', '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>',
             '<literal>$</literal>', '<literal>?</literal>'.
         </para>
         <para>
@@ -28,7 +28,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //有効な名前
 %eps
 A1=123

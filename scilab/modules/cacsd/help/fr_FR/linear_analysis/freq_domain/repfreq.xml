@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge STEER
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -73,8 +73,8 @@
         <title>Description</title>
         <para>
             <literal>repfreq</literal> returns the frequency response calculation of a linear
-            system. If <literal>sys(s)</literal> is the transfer function of <literal>Sys</literal>, <literal>repf(k)</literal> 
-            equals <literal>sys(s)</literal> evaluated at <literal>s= %i*frq(k)*2*%pi</literal> for continuous time systems and 
+            system. If <literal>sys(s)</literal> is the transfer function of <literal>Sys</literal>, <literal>repf(k)</literal>
+            equals <literal>sys(s)</literal> evaluated at <literal>s= %i*frq(k)*2*%pi</literal> for continuous time systems and
             at <literal>exp(2*%i*%pi*dt*frq(k))</literal> for discrete time systems (<literal>dt</literal> is the sampling period).
         </para>
         <para>
@@ -92,14 +92,14 @@
         </para>
         <para>
             Vector <literal>frq</literal> is split into regular parts with the <literal>split</literal> vector.
-            <literal>frq(splitf(k):splitf(k+1)-1)</literal> has no critical frequency. 
-            <literal>sys</literal> has a pole in the range <literal>[frq(splitf(k)),frq(splitf(k)+1)]</literal> and 
+            <literal>frq(splitf(k):splitf(k+1)-1)</literal> has no critical frequency.
+            <literal>sys</literal> has a pole in the range <literal>[frq(splitf(k)),frq(splitf(k)+1)]</literal> and
             no poles outside.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=diag([-1,-2]);B=[1;1];C=[1,1];
 Sys=syslin('c',A,B,C);
 frq=0:0.02:5;w=frq*2*%pi; //frq=frequencies in Hz ;w=frequencies in rad/sec;

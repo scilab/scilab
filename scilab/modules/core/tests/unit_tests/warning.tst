@@ -6,7 +6,7 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 //
-// <-- ENGLISH ONLY -->
+// <-- ENGLISH IMPOSED -->
 
 // Testing warning modes
 warning("on");

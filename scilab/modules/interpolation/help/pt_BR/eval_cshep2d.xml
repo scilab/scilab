@@ -24,7 +24,7 @@
                 <listitem>
                     <para>uma estrutura Scilab tlist (de tipo cshep2d) definindo uma
                         função de interpolação cúbica de Shepard (chamada
-                        <literal>S</literal> a partir daqui) 
+                        <literal>S</literal> a partir daqui)
                     </para>
                 </listitem>
             </varlistentry>
@@ -34,7 +34,7 @@
                     <para>
                         vetor (ou matrizes) de mesmo tamanho que <literal>xp</literal>
                         e <literal>yp</literal>, avaliação do interpolante
-                        <literal>S</literal> nesses pontos 
+                        <literal>S</literal> nesses pontos
                     </para>
                 </listitem>
             </varlistentry>
@@ -52,7 +52,7 @@
                 <listitem>
                     <para>vetores (ou matrizes) de mesmo tamanho que
                         <literal>xp</literal> e <literal>yp</literal>, avaliação das
-                        derivadas segundas de <literal>S</literal> nestes pontos 
+                        derivadas segundas de <literal>S</literal> nestes pontos
                     </para>
                 </listitem>
             </varlistentry>
@@ -63,12 +63,12 @@
         <para>Esta é a rotina de avaliação para a função de interpolação cúbica de
             Shepard obtida com <link linkend="cshep2d">cshep2d</link>, isto é :
         </para>
-        <programlisting role=""><![CDATA[ 
-zp(i) = S(xp(i),yp(i))   
+        <programlisting role=""><![CDATA[
+zp(i) = S(xp(i),yp(i))
 dzpdx(i) = dS/dx(xp(i),yp(i))
-dzpdy(i) = dS/dy(xp(i),yp(i))  
+dzpdy(i) = dS/dy(xp(i),yp(i))
 d2zpdxx(i) = d2S/dx2(xp(i),yp(i))
-d2zpdxy(i) = d2S/dxdy(xp(i),yp(i))  
+d2zpdxy(i) = d2S/dxdy(xp(i),yp(i))
 d2zpdyy(i) = d2S/dy2(xp(i),yp(i))
  ]]></programlisting>
     </refsection>
@@ -85,7 +85,7 @@ d2zpdyy(i) = d2S/dy2(xp(i),yp(i))
     </refsection>
     <refsection>
         <title>Exemplos </title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // ver seção de exemplos em cshep2d
 
 // este exemplo mostra o comportamento longe dos pontos de interpolação...

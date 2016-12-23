@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2011 - INRIA - Serge Steer <serge.steer@inria.fr>
+*  Copyright (C) 1996 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
 *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="phaseplot">
@@ -34,7 +34,9 @@
                 <term>sl</term>
                 <listitem>
                     <para>
-                        a single input multiple output (SIMO) linear dynamical system (see <link linkend="syslin">syslin</link>).
+                        A siso or simo linear dynamical system, in state
+                        space, transfer function or zpk representations,
+                        in continuous or discrete time.
                     </para>
                 </listitem>
             </varlistentry>
@@ -113,32 +115,44 @@
                     <literal>phaseplot(sl,...)</literal> case
                 </para>
                 <para>
-                    <literal>sl</literal> can be a continuous-time or discrete-time SIMO
-                    system (see <link linkend="syslin">syslin</link>). In case of multi-output the
-                    outputs are plotted with different symbols.
+                    <literal>sl</literal> can be a continuous-time or
+                    discrete-time SIMO system given by its state space,
+                    rational transfer function (see <link
+                  linkend="syslin">syslin</link>) or <link
+                  linkend="zpk">zpk</link> representation. In case of
+                    multi-output the outputs are plotted with different
+                    colors.
                 </para>
                 <para>In this case the frequencies can be  given by:</para>
                 <itemizedlist mark="point">
                     <listitem>
-                        <para>the lower and upper bounds in Hz
-                            <literal>fmin</literal>, <literal>fmax</literal> and an
-                            optional frequency step <literal>step</literal>. The
+                        <para>
+                            the lower and upper bounds in Hz
+                            <literal>fmin</literal>,
+                            <literal>fmax</literal> and an optional
+                            frequency step <literal>step</literal>. The
                             default values for <literal>fmin</literal> and
-                            <literal>fmax</literal>are <literal>1.e-3</literal>,
-                            <literal>1.e3</literal> if <literal>sl</literal> is
-                            continuous-time or <literal>1.e-3</literal>,
-                            <literal>0.5/sl.dt</literal> (nyquist frequency) if
-                            <literal>sl</literal> is discrete-time. If the
-                            <literal>step</literal> argument is omitted the function
-                            use an adaptative frequency step (see <link linkend="calfrq">calfrq</link>).
+                            <literal>fmax</literal>are
+                            <literal>1.e-3</literal>,
+                            <literal>1.e3</literal> if
+                            <literal>sl</literal> is continuous-time or
+                            <literal>1.e-3</literal>,
+                            <literal>0.5/sl.dt</literal> (nyquist
+                            frequency) if <literal>sl</literal> is
+                            discrete-time. If the <literal>step</literal>
+                            argument is omitted the function use an
+                            adaptative frequency step (see <link
+                        linkend="calfrq">calfrq</link>).
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            a row vector or a 2D array <literal>frq</literal> which
-                            gives the frequency values in Hz. 2D array can be used for
-                            multi-output systems if one wants to have different frequency
-                            discretization for each input/output couple.
+                            a row vector or a 2D array
+                            <literal>frq</literal> which gives the
+                            frequency values in Hz. 2D array can be used
+                            for multi-output systems if one wants to
+                            have different frequency discretization for
+                            each input/output couple.
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -163,7 +177,8 @@
             </listitem>
         </itemizedlist>
         <para>
-            The <link linkend="datatips">datatips</link> tool may be used to display data along the phase curves.
+            The <link linkend="datatips">datatips</link> tool may be
+            used to display data along the phase curves.
         </para>
     </refsection>
     <refsection>
@@ -216,6 +231,10 @@
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>Function phaseplot introduced.</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revremark>handling zpk representation.</revremark>
             </revision>
         </revhistory>
     </refsection>

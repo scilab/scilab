@@ -48,7 +48,7 @@
         <!--Lib_name: calloverloadfunction-->
         <!--Func_list: callOverload-->
         <title>ゲートウェイのソース</title>
-        <programlisting role="code_gateway"><![CDATA[ 
+        <programlisting role="code_gateway"><![CDATA[
 int callOverload(char *fname,void* pvApiCtx)
 {
     CheckRhs(1, 1);
@@ -60,7 +60,7 @@ int callOverload(char *fname,void* pvApiCtx)
     </refsection>
     <refsection>
         <title>Scilabテストスクリプト</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+        <programlisting role="code_scilab"><![CDATA[
 function x = %c_getSize(a)
     x = length(a);
 endfunction

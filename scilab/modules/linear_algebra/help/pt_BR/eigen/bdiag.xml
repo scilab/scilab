@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -61,14 +61,14 @@
     </refsection>
     <refsection>
         <title>Descrição</title>
-        <programlisting role=""><![CDATA[ 
-[Ab [,X [,bs]]]=bdiag(A [,rmax]) 
+        <programlisting role=""><![CDATA[
+[Ab [,X [,bs]]]=bdiag(A [,rmax])
  ]]></programlisting>
         <para>
             realiza a diagonalização em blocos da matriz <literal>A</literal>.
             bs fornece a estrutura dos blocos (respectivos tamanhos dos blocos).
             <literal>X</literal> é a matriz mudança de base i.e <literal>Ab =
-                inv(X)*A*X 
+                inv(X)*A*X
             </literal>
             édiagonal em blocos.
         </para>
@@ -86,7 +86,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //No caso de reais: blocos 1x1 e 2x2
 a=rand(5,5);[ab,x,bs]=bdiag(a);ab
 

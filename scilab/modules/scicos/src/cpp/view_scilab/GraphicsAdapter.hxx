@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -21,6 +21,7 @@
 #include "internal.hxx"
 
 #include "BaseAdapter.hxx"
+#include "adapters_utilities.hxx"
 #include "model/Block.hxx"
 
 namespace org_scilab_modules_scicos
@@ -45,6 +46,13 @@ public:
 
     types::InternalType* getGrIContent() const;
     void setGrIContent(types::InternalType* v);
+
+    // move (if possible) the partial information to the model
+    static void relink(Controller& controller, model::BaseObject* adaptee, const std::vector<ScicosID>& children);
+    // manage partial information after a model clone
+    static void add_partial_links_information(Controller& controller, model::BaseObject* original, model::BaseObject* cloned);
+    // remove partial links information (on delete)
+    static void remove_partial_links_information(model::BaseObject* o);
 
 private:
     types::InternalType* gr_i_content;

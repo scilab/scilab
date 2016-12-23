@@ -18,7 +18,6 @@ IO_CPP_SOURCES = \
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_read4b.c \
-    sci_gateway/c/sci_getio.c \
     sci_gateway/c/sci_readb.c \
     sci_gateway/c/sci_getenv.c \
     sci_gateway/c/sci_writeb.c \
@@ -33,7 +32,8 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_unix.cpp \
     sci_gateway/cpp/sci_read.cpp \
     sci_gateway/cpp/sci_write.cpp \
-    sci_gateway/cpp/sci_lib.cpp
+    sci_gateway/cpp/sci_lib.cpp \
+    sci_gateway/cpp/sci_getio.cpp
 
 
 libsciio_la_CPPFLAGS = \

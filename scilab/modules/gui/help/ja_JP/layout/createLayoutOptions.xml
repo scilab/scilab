@@ -23,7 +23,7 @@
                         作成する配置オプションの型.
                         利用可能なオプションの型の一覧を以下に示します,
                         個々のプロパティについては個々のヘルプページを
-                        参照ください:		      
+                        参照ください:
                     </para>
                     <itemizedlist>
                         <listitem>
@@ -34,7 +34,7 @@
                         </listitem>
                         <listitem>
                             <para>
-                                "grid": 
+                                "grid":
                                 <link linkend="grid_layout_options_properties">グリッドオプション</link>型.
                             </para>
                         </listitem>
@@ -73,7 +73,7 @@
             この関数は,
             <literal>frame</literal> uicontrol または figureの
             <literal>layout_options</literal>属性を設定する際に使用される
-            配置オプション構造体を作成します. 
+            配置オプション構造体を作成します.
             詳細については,
             <link linkend="uicontrol_properties">uicontrolプロパティ</link>
             を参照ください.

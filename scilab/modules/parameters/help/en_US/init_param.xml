@@ -46,7 +46,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Creation of an empty plist
 mylist = init_param();
 mylist = add_param(mylist,'minbound',[0 0 0]);

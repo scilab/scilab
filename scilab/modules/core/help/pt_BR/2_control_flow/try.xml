@@ -9,7 +9,7 @@
     <refnamediv xml:id="catch">
         <refname>catch</refname>
         <refpurpose>início de um bloco catch numa instrução de controle try-catch
-            (significa "prender...") 
+            (significa "prender...")
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -54,7 +54,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 
 file_path=TMPDIR+'/wrong
 try
@@ -64,7 +64,7 @@ catch
   disp(['o arquivo '+file_path+ ' não pode ser lido',
         'usando valores padrões para x'])
   x=1:10
-end 
+end
 [error_message,error_number]=lasterror(%t)
  ]]></programlisting>
     </refsection>

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-06-08 22:21+0100\n"
+"Revision-Date: 2016-12-07 16:04+0100\n"
 
 # File: modules/console/sci_gateway/c/sci_tohome.c, line: 32
 # File: modules/console/sci_gateway/cpp/sci_clc.cpp, line: 62
@@ -98,55 +98,55 @@ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 235
+# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 232
 # File: modules/console/src/c/windows/TermCompletion.c, line: 68
 # File: modules/console/src/java/org/scilab/modules/console/SciCompletionManager.java, line: 72
 msgid "File"
 msgstr ""
 
 #
-# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 236
+# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 233
 # File: modules/console/src/c/windows/TermCompletion.c, line: 69
 # File: modules/console/src/java/org/scilab/modules/console/SciCompletionManager.java, line: 73
 msgid "Directory"
 msgstr ""
 
 #
-# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 534
+# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 529
 # File: modules/console/src/c/windows/TermCompletion.c, line: 234
 msgid "Scilab Fields"
 msgstr ""
 
 #
-# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 567
+# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 562
 # File: modules/console/src/c/windows/TermCompletion.c, line: 262
 # File: modules/console/src/java/org/scilab/modules/console/SciCompletionManager.java, line: 86
 msgid "Scilab Function"
 msgstr ""
 
 #
-# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 568
+# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 563
 # File: modules/console/src/c/windows/TermCompletion.c, line: 263
 # File: modules/console/src/java/org/scilab/modules/console/SciCompletionManager.java, line: 83
 msgid "Scilab Command"
 msgstr ""
 
 #
-# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 569
+# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 564
 # File: modules/console/src/c/windows/TermCompletion.c, line: 264
 # File: modules/console/src/java/org/scilab/modules/console/SciCompletionManager.java, line: 92
 msgid "Scilab Macro"
 msgstr ""
 
 #
-# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 570
+# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 565
 # File: modules/console/src/c/windows/TermCompletion.c, line: 265
 # File: modules/console/src/java/org/scilab/modules/console/SciCompletionManager.java, line: 95
 msgid "Scilab Variable"
 msgstr ""
 
 #
-# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 572
+# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 567
 # File: modules/console/src/c/windows/TermCompletion.c, line: 266
 # File: modules/console/src/java/org/scilab/modules/console/SciCompletionManager.java, line: 89
 msgid "Graphics handle field"

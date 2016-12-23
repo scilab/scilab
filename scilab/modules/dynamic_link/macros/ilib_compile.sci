@@ -98,6 +98,10 @@ function libn = ilib_compile(lib_name, ..
             defaultModulesFHeader=[ "core" ];
             ScilabTreeFound=%t
 
+            if isdef("MPI_Init") then
+                defaultModulesCHeader = [defaultModulesCHeader, "mpi"]
+            end
+
             for x = defaultModulesCHeader;
                 cflags = cflags + " -I" + SCI + "/modules/" + x + "/includes/ ";
             end
@@ -115,6 +119,9 @@ function libn = ilib_compile(lib_name, ..
         if isdir(SCI+"/../../include/scilab/") & ~ScilabTreeFound then
             cflags="-I"+SCI+"/../../include/scilab/ -I"+SCI+"/../../include/ " + cflags
             fflags="-I"+SCI+"/../../include/scilab/ " + fflags
+            if isdef("MPI_Init") then
+                cflags = "-I"+SCI+"/../../include/scilab/mpi/ " + cflags
+            end
             ScilabTreeFound=%t
         end
 
@@ -122,6 +129,9 @@ function libn = ilib_compile(lib_name, ..
         if isdir("/usr/include/scilab/") & ~ScilabTreeFound then
             cflags="-I/usr/include/scilab/ "+cflags
             fflags="-I/usr/include/scilab/ "+fflags
+            if isdef("MPI_Init") then
+                cflags="-I/usr/include/scilab/mpi/ "+cflags
+            end
             ScilabTreeFound=%t
         end
 

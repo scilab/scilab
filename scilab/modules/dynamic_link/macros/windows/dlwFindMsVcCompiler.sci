@@ -39,16 +39,6 @@ function MSCompiler = dlwFindMsVcCompiler()
         end
     end
 
-    if dlwIsVc14Express() then
-        MSCompiler = "msvc140express";     // Microsoft Visual 2015 Express
-        return;
-    end
-
-    if dlwIsVc14Pro() then
-        MSCompiler = "msvc140pro";       // Microsoft Visual 2015 Professional / Community (or more)
-        return;
-    end
-
     if dlwIsVc12Express() then
         MSCompiler = "msvc120express";     // Microsoft Visual 2013 Express
         return;
@@ -56,6 +46,16 @@ function MSCompiler = dlwFindMsVcCompiler()
 
     if dlwIsVc12Pro() then
         MSCompiler = "msvc120pro";       // Microsoft Visual 2013 Professional (or more)
+        return;
+    end
+
+    if dlwIsVc14Express() then
+        MSCompiler = "msvc140express";     // Microsoft Visual 2015 Express
+        return;
+    end
+
+    if dlwIsVc14Pro() then
+        MSCompiler = "msvc140pro";       // Microsoft Visual 2015 Professional / Community (or more)
         return;
     end
 

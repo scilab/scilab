@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -51,6 +51,10 @@ msgstr "%s: Nelze exportovat %s do %s.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Text(s) expected.\n"
+msgstr ""
 
 msgid "Generating cleaner.sce...\n"
 msgstr "Vytvářím cleaner.ace...\n"
@@ -112,12 +116,12 @@ msgstr "Vytvářím loader.sce...\n"
 msgid "Generating unloader.sce...\n"
 msgstr "Vytváření unloader.sce...\n"
 
+msgid "Generating localization\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řetězců.\n"
-
-msgid "Generating localization\n"
-msgstr ""
 
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
@@ -134,6 +138,14 @@ msgstr "%s: Tento modul vyžaduje kompilátor C a ten nebyl nalezen.\n"
 msgid "Building gateway...\n"
 msgstr "Sestavuji bránu...\n"
 
+#, c-format
+msgid "Could not use the default compilation of gateways in %s."
+msgstr ""
+
+#, c-format
+msgid "No builder script found in %s."
+msgstr ""
+
 msgid "Building help...\n"
 msgstr "Sestavuji nápovědu...\n"
 
@@ -149,6 +161,16 @@ msgstr ""
 msgid "Building sources...\n"
 msgstr "Sestavuji zdroje...\n"
 
+msgid "No builder file found, nothing to be done"
+msgstr ""
+
+msgid "No builder file found, nothing to be done."
+msgstr ""
+
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
 msgstr ""

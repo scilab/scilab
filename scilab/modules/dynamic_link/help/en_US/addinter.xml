@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
+ * Copyright (C) INRIA -
  * Copyright (C) DIGITEO - 2009 - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -93,7 +93,7 @@ src = ['#include <math.h>'
 '#include <localization.h>'
 ''
 'static double fun2(double x);'
-''  
+''
 'void fun1(double *x,double *y) '
 '{'
 '  *y=fun2(*x)/(*x); '
@@ -104,7 +104,7 @@ src = ['#include <math.h>'
 '  return( sin(x+1));'
 '}'
 ''
-'int sci_fun1(char *fname)' 
+'int sci_fun1(char *fname)'
 '{'
 '  int iType1 = 0;'
 '  SciErr sciErr;'
@@ -120,7 +120,7 @@ src = ['#include <math.h>'
 '  {'
 ' printError(&sciErr, 0);'
 ' return 0;'
-'  }' 
+'  }'
 ''
 '  sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);'
 '  if(sciErr.iErr)'

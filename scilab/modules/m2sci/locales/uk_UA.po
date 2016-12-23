@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-04-01 19:08+0000\n"
+"PO-Revision-Date: 2016-06-10 06:07+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 msgid "Input file"
 msgstr "Вхідний файл"
@@ -32,20 +32,14 @@ msgstr "Вкажіть файл для перетворення"
 msgid "Select the directory for generated files"
 msgstr "Вкажіть каталог для створених файлів"
 
-#
-# File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 138
 msgid "Please specify an existing output directory."
-msgstr ""
+msgstr "Будь ласка, вкажіть наявний каталог виведення даних."
 
-#
-# File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 165
 msgid "Please specify an existing input file."
-msgstr ""
+msgstr "Будь ласка, вкажіть наявний файл вхідних даних."
 
-#
-# File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 174
 msgid "Please specify an existing input directory."
-msgstr ""
+msgstr "Будь ласка, вкажіть наявний каталог вхідних даних."
 
 msgid "About_M2SCI_tools"
 msgstr "Про_інструменти_M2SCI"

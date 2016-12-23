@@ -44,19 +44,19 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Если <varname>lst</varname> является списком <literal>list</literal>, типизированным списком 
+            Если <varname>lst</varname> является списком <literal>list</literal>, типизированным списком
             <literal>tlist</literal>, матричноориентированным списком <literal>mlist</literal>, то <code>k = definedfields(lst)</code> возвращает в <varname>k</varname> индексы определённых полей списка. Эта функция полезна, поскольку индексация неопределённых полей формирует ошибку.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 lst=list(1);lst(3)=5
 k=definedfields(lst)
- 
+
 t=tlist('x');t(5)=4
 definedfields(t)
- 
+
 m=mlist(['m','a','b']);m.b='sdfgfgd'
 definedfields(m)
  ]]></programlisting>

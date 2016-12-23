@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -55,18 +55,18 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // verificando se os objetos correntes são válidos
 is_handle_valid([gcf(), gca(), gce()])
 
 // criando 11 poligonais
 plot([0:10; 0:10; 0:10], [0:10; 0:0.5:5; 0:2:20]);
-    
+
 // verificando a validade das poligonais
 axes = gca();
 polylines = axes.children(1).children
 is_handle_valid(polylines)
-    
+
 // deletando algumas poligonais
 delete(polylines(3:7));
 // imprimindo a validade

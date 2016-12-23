@@ -686,7 +686,7 @@ public class CallScilabBridge {
      * Open a Browser on S/E
      */
     public static void openSE() {
-        WebBrowser.openUrl("http://www.scilab-enterprises.com/");
+        WebBrowser.openUrl("http://www.scilab.io");
     }
 
     /***************************/

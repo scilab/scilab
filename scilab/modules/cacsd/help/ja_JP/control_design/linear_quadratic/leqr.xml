@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F. Delebecque
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -63,7 +63,7 @@
         <para>
             <literal>P12</literal> は <literal>syslin</literal> リストです (例: <literal>P12=syslin('c',A,B2,C1,D12)</literal>).
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 [C1' ]               [Q  S]
 [    ]  * [C1 D12] = [    ]
 [D12']               [S' R]
@@ -83,19 +83,19 @@
         <para>
             連続プラントの場合:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 (A-B2*inv(R)*S')'*X+X*(A-B2*inv(R)*S')-X*(B2*inv(R)*B2'-Vx)*X+Q-S*inv(R)*S'=0
  ]]></programlisting>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 K=-inv(R)*(B2'*X+S)
  ]]></programlisting>
         <para>
             離散時間プラントの場合:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 X-(Abar'*inv((inv(X)+B2*inv(R)*B2'-Vx))*Abar+Qbar=0
  ]]></programlisting>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 K=-inv(R)*(B2'*inv(inv(X)+B2*inv(R)*B2'-Vx)*Abar+S')
  ]]></programlisting>
         <para>
@@ -105,7 +105,7 @@ K=-inv(R)*(B2'*inv(inv(X)+B2*inv(R)*B2'-Vx)*Abar+S')
             これらのリカッチ方程式に関連する3ブロック行列ペンシルは次のように
             なります:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
              離散系                        連続系
  |I  -Vx  0|   | A    0    B2|       |I   0   0|   | A    Vx    B2|
 z|0   A'  0| - |-Q    I    -S|      s|0   I   0| - |-Q   -A'   -S |

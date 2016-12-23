@@ -29,7 +29,7 @@
                 <term>v</term>
                 <listitem>
                     <para>vetor linha de polinômios, i.e. matriz de polinômios
-                        <literal>1</literal>x<literal>k</literal> 
+                        <literal>1</literal>x<literal>k</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,7 +60,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=poly(0,'x');
 v=[x*(x+1),x^2*(x+1),(x-2)*(x+1),(3*x^2+2)*(x+1)];
 [pg,U]=hrmt(v);U=clean(U)

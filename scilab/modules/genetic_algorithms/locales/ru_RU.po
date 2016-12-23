@@ -8,47 +8,31 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-04-09 16:06+0000\n"
-"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"PO-Revision-Date: 2016-10-22 05:16+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
-# File: modules/genetic_algorithms/demos/GAIsing2ddemo.sce, line: 63
-# File: modules/genetic_algorithms/demos/GAdemo.sce, line: 86
-# File: modules/genetic_algorithms/demos/GAdemo.sce, line: 132
-# File: modules/genetic_algorithms/demos/MOGAdemo.sce, line: 83
-# File: modules/genetic_algorithms/demos/NSGA2demo.sce, line: 83
-# File: modules/genetic_algorithms/demos/NSGAdemo.sce, line: 85
 #, c-format
 msgid "%s: optimization starting, please wait ...\n"
-msgstr ""
+msgstr "%s: началась оптимизация, пожалуйста, подождите...\n"
 
-#
-# File: modules/genetic_algorithms/demos/genetic_algorithms.dem.gateway.sce, line: 12
 msgid "Genetic algorithms"
-msgstr ""
+msgstr "Генетические алгоритмы"
 
-#
-# File: modules/genetic_algorithms/demos/genetic_algorithms.dem.gateway.sce, line: 13
 msgid "Genetic algorithms and Ising problem"
-msgstr ""
+msgstr "Генетические алгоритмы и проблема Изинга"
 
-#
-# File: modules/genetic_algorithms/demos/genetic_algorithms.dem.gateway.sce, line: 14
 msgid "MultiObjective Genetic Algorithm"
-msgstr ""
+msgstr "Многокритериальный генетический алгоритм"
 
-#
-# File: modules/genetic_algorithms/demos/genetic_algorithms.dem.gateway.sce, line: 15
 msgid "Niched Sharing Genetic Algorithm"
 msgstr ""
 
-#
-# File: modules/genetic_algorithms/demos/genetic_algorithms.dem.gateway.sce, line: 16
 msgid "Niched Sharing Genetic Algorithm II"
 msgstr ""
 

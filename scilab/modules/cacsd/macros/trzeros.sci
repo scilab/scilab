@@ -34,14 +34,26 @@ function [nt,dt,rk]=trzeros(Sl)
 
     if sltyp == "rational" then
         if size(Sl)==1 then
-            nt=roots(Sl("num"));dt=[];rk=1;
+            nt=roots(Sl.num);dt=[];rk=1;
             return;
         end
         Sl=tf2ss(Sl);
     end
 
+    if sltyp == "zpk" then
+        if size(Sl)==1 then
+            nt=Sl.Z{1};dt=[];rk=1;
+            return;
+        end
+        Sl=zpk2ss(Sl);
+    end
+
     if typeof(Sl)<>"state-space" then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A linear dynamical system or a polynomial expected.\n"),"trzeros",1))
+        ierr=execstr("[nt,dt,rk]=%"+overloadname(Sl)+"_trzeros(Sl)","errcatch")
+        if ierr<>0 then
+            error(msprintf(gettext("%s: Wrong type for input argument: Linear dynamical system expected.\n"),"trzeros",1))
+        end
+        return
     end
 
     //Sl=minss(Sl);

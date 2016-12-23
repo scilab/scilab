@@ -32,6 +32,7 @@ import javax.swing.SwingUtilities;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.Drawer;
 import org.scilab.forge.scirenderer.DrawingTools;
+import org.scilab.forge.scirenderer.implementation.jogl.JoGLDrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.buffers.BuffersManager;
@@ -80,6 +81,7 @@ import org.scilab.modules.renderer.JoGLView.arrowDrawing.ArrowDrawer;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.contouredObject.ContouredObjectDrawer;
 import org.scilab.modules.renderer.JoGLView.datatip.DatatipTextDrawer;
+import org.scilab.modules.renderer.JoGLView.datatip.DatatipDisplayModeManager;
 import org.scilab.modules.renderer.JoGLView.interaction.InteractionManager;
 import org.scilab.modules.renderer.JoGLView.label.LabelManager;
 import org.scilab.modules.renderer.JoGLView.legend.LegendDrawer;
@@ -89,6 +91,7 @@ import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.JoGLView.util.LightingUtils;
 import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
+import org.scilab.modules.renderer.JoGLView.util.PixelDrawingModeUtils;
 
 /**
  * @author Pierre Lando
@@ -145,6 +148,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private final ArrowDrawer arrowDrawer;
     private final FecDrawer fecDrawer;
     private final DatatipTextDrawer datatipTextDrawer;
+    private DatatipDisplayModeManager datatipDisplayModeManager;
 
     private DrawingTools drawingTools;
     private Texture colorMapTexture;
@@ -186,7 +190,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.legendDrawer = new LegendDrawer(this);
         this.fecDrawer = new FecDrawer(this);
         this.colorMapTextureDataProvider = new ColorMapTextureDataProvider();
-        this.datatipTextDrawer = new DatatipTextDrawer(canvas.getTextureManager());
+        this.datatipTextDrawer = new DatatipTextDrawer(canvas);
+        this.datatipDisplayModeManager = new DatatipDisplayModeManager(component);
 
         visitorMap.put(figure.getIdentifier(), this);
     }
@@ -405,6 +410,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 colorMap = figure.getColorMap();
                 drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
                 drawingTools.clearDepthBuffer();
+                if (drawingTools instanceof JoGLDrawingTools) {
+                    ((JoGLDrawingTools)drawingTools).setPixelDrawingMode(PixelDrawingModeUtils.figureToJoGLmode(figure.getPixelDrawingModeAsEnum()));
+                }
                 if (figure.isValid() && figure.getVisible() && figure.getImmediateDrawing() && dims.width > 1 && dims.height > 1) {
                     askAcceptVisitor(figure.getChildren());
                 }
@@ -949,7 +957,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         Texture texture = markManager.getMarkSprite(datatip, colorMap, null);
                         drawingTools.draw(texture, AnchorPosition.CENTER, markPos);
                     }
-                    if (datatip.getTipLabelMode()) {
+                    if (datatip.getTipLabelMode() &&
+                            datatipDisplayModeManager.needDraw(datatip.getIdentifier())) {
                         datatipTextDrawer.draw(drawingTools, colorMap, datatip);
                     }
                 }
@@ -1290,6 +1299,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     @Override
     public void deleteObject(Integer id) {
         Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        if (type == GraphicObjectProperties.__GO_DATATIP__) {
+            datatipDisplayModeManager.remove(id);
+        }
         if (!figure.getIdentifier().equals(id) && type == GraphicObjectProperties.__GO_UICONTROL__ || type == GraphicObjectProperties.__GO_UIMENU__) {
             return; // Not of my managed openGL children
         }

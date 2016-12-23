@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -15,6 +15,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include <iterator>
 #include <algorithm>
 
@@ -48,6 +49,9 @@ namespace
 const std::string split ("split");
 const std::string lsplit ("lsplit");
 const std::string limpsplit ("limpsplit");
+
+// shared information for relinking across adapters hierarchy
+std::map<ScicosID, partial_link_t> partial_links;
 
 struct xx
 {
@@ -307,15 +311,17 @@ struct ct
     }
 };
 
-link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, const object_properties_t end)
+link_t getLinkEnd(ScicosID adaptee, const Controller& controller, const object_properties_t end)
 {
-    ScicosID adaptee = adaptor.getAdaptee()->id();
-
     link_t ret {0, 0, Start};
+    if (end == DESTINATION_PORT)
+    {
+        ret.kind = End;
+    }
 
     ScicosID endID;
     controller.getObjectProperty(adaptee, LINK, end, endID);
-    if (endID != 0)
+    if (endID != ScicosID())
     {
         ScicosID sourceBlock;
         controller.getObjectProperty(endID, PORT, SOURCE_BLOCK, sourceBlock);
@@ -326,12 +332,12 @@ link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, cons
         controller.getObjectProperty(adaptee, LINK, PARENT_BLOCK, parent);
         std::vector<ScicosID> children;
         // Added to a superblock
-        if (parent == 0)
+        if (parent == ScicosID())
         {
             // Added to a diagram
             controller.getObjectProperty(adaptee, LINK, PARENT_DIAGRAM, parent);
             parentKind = DIAGRAM;
-            if (parent == 0)
+            if (parent == ScicosID())
             {
                 return ret;
             }
@@ -375,6 +381,10 @@ link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, cons
         {
             ret.kind = End;
         }
+        else
+        {
+            ret.kind = Start;
+        }
     }
     // Default case, the property was initialized at [].
     return ret;
@@ -409,9 +419,8 @@ bool checkConnectivity(const int neededType, const ScicosID port, const ScicosID
     return true;
 }
 
-void setLinkEnd(const ScicosID id, Controller& controller, const object_properties_t end, const link_t& v)
+void setLinkEnd(const ScicosID id, Controller& controller, const object_properties_t end, const link_t& v, const std::vector<ScicosID>& children)
 {
-
     ScicosID from;
     controller.getObjectProperty(id, LINK, SOURCE_PORT, from);
     ScicosID to;
@@ -431,12 +440,11 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
         default:
             return;
     }
-    ScicosID unconnected = 0;
 
     if (v.block == 0 || v.port == 0)
     {
         // We want to set an empty link
-        if (concernedPort == 0)
+        if (concernedPort == ScicosID())
         {
             // In this case, the link was already empty, do a dummy call to display the console status.
             controller.setObjectProperty(id, LINK, end, concernedPort);
@@ -444,29 +452,10 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
         else
         {
             // Untie the old link on the concerned end and set its port as unconnected
-            controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
-            controller.setObjectProperty(id, LINK, end, unconnected);
+            controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, ScicosID());
+            controller.setObjectProperty(id, LINK, end, ScicosID());
         }
         return;
-    }
-
-    ScicosID parentDiagram;
-    controller.getObjectProperty(id, LINK, PARENT_DIAGRAM, parentDiagram);
-    std::vector<ScicosID> children;
-    if (parentDiagram != 0)
-    {
-        // Adding to a diagram
-        controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
-    }
-    else
-    {
-        ScicosID parentBlock;
-        controller.getObjectProperty(id, LINK, PARENT_BLOCK, parentBlock);
-        if (parentBlock != 0)
-        {
-            // Adding to a superblock
-            controller.getObjectProperty(parentBlock, BLOCK, CHILDREN, children);
-        }
     }
 
     // Connect the new one
@@ -484,7 +473,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     }
     ScicosID blkID = children[v.block - 1];
 
-    if (blkID == 0)
+    if (blkID == ScicosID())
     {
         // Deleted Block
         return;
@@ -513,7 +502,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
 
         if (v.kind == Start)
         {
-            if (otherPort != 0)
+            if (otherPort != ScicosID())
             {
                 if (!checkConnectivity(PORT_EIN, otherPort, blkID, controller))
                 {
@@ -525,7 +514,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
         }
         else
         {
-            if (otherPort != 0)
+            if (otherPort != ScicosID())
             {
                 if (!checkConnectivity(PORT_EOUT, otherPort, blkID, controller))
                 {
@@ -548,7 +537,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
         {
             if (v.kind == Start)
             {
-                if (otherPort != 0)
+                if (otherPort != ScicosID())
                 {
                     if (!checkConnectivity(PORT_IN, otherPort, blkID, controller))
                     {
@@ -560,7 +549,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
             }
             else
             {
-                if (otherPort != 0)
+                if (otherPort != ScicosID())
                 {
                     if (!checkConnectivity(PORT_OUT, otherPort, blkID, controller))
                     {
@@ -616,9 +605,9 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     }
 
     // Disconnect the old port if it was connected. After that, concernedPort will be reused to designate the new port
-    if (concernedPort != 0)
+    if (concernedPort != ScicosID())
     {
-        controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
+        controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, ScicosID());
     }
 
     int nBlockPorts = static_cast<int>(sourceBlockPorts.size());
@@ -634,7 +623,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
             controller.setObjectProperty(concernedPort, PORT, IMPLICIT, newPortIsImplicit);
             controller.setObjectProperty(concernedPort, PORT, PORT_KIND, static_cast<int>(newPortKind));
             controller.setObjectProperty(concernedPort, PORT, SOURCE_BLOCK, blkID);
-            controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
+            controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, ScicosID());
             // Set the default dataType so it is saved in the model
             std::vector<int> dataType;
             controller.getObjectProperty(concernedPort, PORT, DATATYPE, dataType);
@@ -677,11 +666,15 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     }
     ScicosID oldLink;
     controller.getObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, oldLink);
-    if (oldLink != 0)
+    if (oldLink != ScicosID())
     {
-        // Disconnect the old link
-        controller.setObjectProperty(oldLink, LINK, end, unconnected);
-        controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
+        // Disconnect the old link if it was indeed connected to the concerned port
+        ScicosID oldPort;
+        controller.getObjectProperty(oldLink, LINK, end, oldPort);
+        if (concernedPort == oldPort)
+        {
+            controller.setObjectProperty(oldLink, LINK, end, ScicosID());
+        }
     }
 
     // Connect the new source and destination ports together
@@ -730,9 +723,20 @@ bool is_valid(types::Double* o)
 struct from
 {
 
-    static types::InternalType* get(const LinkAdapter& adaptor, const Controller& /*controller*/)
+    static types::InternalType* get(const LinkAdapter& adaptor, const Controller& controller)
     {
-        link_t from_content = adaptor.getFrom();
+        link_t from_content;
+        auto it = partial_links.find(adaptor.getAdaptee()->id());
+        if (it == partial_links.end())
+        {
+            // if not found use the connected value
+            from_content = getLinkEnd(adaptor.getAdaptee()->id(), controller, SOURCE_PORT);
+        }
+        else
+        {
+            // if found, use the partial value
+            from_content = it->second.from;
+        }
 
         double* data;
         types::Double* o = new types::Double(1, 3, &data);
@@ -770,7 +774,19 @@ struct from
             }
         }
 
-        adaptor.setFromInModel(from_content, controller);
+        // store the new data on the adapter, the linking will be performed later on the diagram update
+        auto it = partial_links.find(adaptor.getAdaptee()->id());
+        if (it == partial_links.end())
+        {
+            partial_link_t l;
+            l.from = from_content;
+            l.to = getLinkEnd(adaptor.getAdaptee()->id(), controller, DESTINATION_PORT);
+            partial_links.insert({adaptor.getAdaptee()->id(), l});
+        }
+        else
+        {
+            it->second.from = from_content;
+        }
         return true;
     }
 };
@@ -778,9 +794,21 @@ struct from
 struct to
 {
 
-    static types::InternalType* get(const LinkAdapter& adaptor, const Controller& /*controller*/)
+    static types::InternalType* get(const LinkAdapter& adaptor, const Controller& controller)
     {
-        link_t to_content = adaptor.getTo();
+        link_t to_content;
+        auto it = partial_links.find(adaptor.getAdaptee()->id());
+
+        if (it == partial_links.end())
+        {
+            // if not found use the connected value
+            to_content = getLinkEnd(adaptor.getAdaptee()->id(), controller, DESTINATION_PORT);
+        }
+        else
+        {
+            // if found, use the partial value
+            to_content = it->second.to;
+        }
 
         double* data;
         types::Double* o = new types::Double(1, 3, &data);
@@ -823,7 +851,19 @@ struct to
             }
         }
 
-        adaptor.setToInModel(to_content, controller);
+        // store the new data on the adapter, the linking will be performed later on the diagram update
+        auto it = partial_links.find(adaptor.getAdaptee()->id());
+        if (it == partial_links.end())
+        {
+            partial_link_t l;
+            l.from = getLinkEnd(adaptor.getAdaptee()->id(), controller, SOURCE_PORT);
+            l.to = to_content;
+            partial_links.insert({adaptor.getAdaptee()->id(), l});
+        }
+        else
+        {
+            it->second.to = to_content;
+        }
         return true;
     }
 };
@@ -833,9 +873,7 @@ struct to
 template<> property<LinkAdapter>::props_t property<LinkAdapter>::fields = property<LinkAdapter>::props_t();
 
 LinkAdapter::LinkAdapter(const Controller& c, org_scilab_modules_scicos::model::Link* adaptee) :
-    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(c, adaptee),
-    m_from(),
-    m_to()
+    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(c, adaptee)
 {
     if (property<LinkAdapter>::properties_have_not_been_set())
     {
@@ -848,22 +886,21 @@ LinkAdapter::LinkAdapter(const Controller& c, org_scilab_modules_scicos::model::
         property<LinkAdapter>::add_property(L"from", &from::get, &from::set);
         property<LinkAdapter>::add_property(L"to", &to::get, &to::set);
     }
-
-    // If the Link has been added to a diagram, the following lines will dig up its information at model-level
-    Controller controller;
-    m_from = getLinkEnd(*this, controller, SOURCE_PORT);
-    m_to   = getLinkEnd(*this, controller, DESTINATION_PORT);
 }
 
 LinkAdapter::LinkAdapter(const LinkAdapter& adapter) :
-    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(adapter),
-    m_from(adapter.getFrom()),
-    m_to(adapter.getTo())
+    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(adapter)
 {
+    Controller controller;
+    add_partial_links_information(controller, adapter.getAdaptee(), getAdaptee());
 }
 
 LinkAdapter::~LinkAdapter()
 {
+    if (getAdaptee()->refCount() == 0)
+    {
+        partial_links.erase(getAdaptee()->id());
+    }
 }
 
 std::wstring LinkAdapter::getTypeStr()
@@ -875,58 +912,74 @@ std::wstring LinkAdapter::getShortTypeStr()
     return getSharedTypeStr();
 }
 
-link_t LinkAdapter::getFrom() const
+void LinkAdapter::relink(Controller& controller, model::BaseObject* adaptee, const std::vector<ScicosID>& children)
 {
-    return m_from;
-}
-
-void LinkAdapter::setFrom(const link_t& v)
-{
-    m_from = v;
-}
-
-void LinkAdapter::setFromInModel(const link_t& v, Controller& controller)
-{
-    m_from = v;
-
-    ScicosID parentDiagram;
-    controller.getObjectProperty(getAdaptee()->id(), LINK, PARENT_DIAGRAM, parentDiagram);
-    ScicosID parentBlock;
-    controller.getObjectProperty(getAdaptee()->id(), LINK, PARENT_BLOCK, parentBlock);
-
-    if (parentDiagram != 0 || parentBlock != 0)
+    auto it = partial_links.find(adaptee->id());
+    if (it == partial_links.end())
     {
-        // If the Link has been added to a diagram, do the linking at model-level
-        // If the provided values are wrong, the model is not updated but the info is stored in the Adapter for future attempts
-        setLinkEnd(getAdaptee()->id(), controller, SOURCE_PORT, v);
+        // unable to relink as there is no information to do so
+        return;
+    }
+    partial_link_t l = it->second;
+
+    setLinkEnd(adaptee->id(), controller, SOURCE_PORT, l.from, children);
+    setLinkEnd(adaptee->id(), controller, DESTINATION_PORT, l.to, children);
+
+    // refresh the shared values
+    ScicosID from;
+    controller.getObjectProperty(adaptee->id(), LINK, SOURCE_PORT, from);
+    ScicosID to;
+    controller.getObjectProperty(adaptee->id(), LINK, DESTINATION_PORT, to);
+
+    bool isConnected = from != ScicosID() && to != ScicosID();
+    if (isConnected)
+    {
+        partial_links.erase(it);
     }
 }
 
-link_t LinkAdapter::getTo() const
+void LinkAdapter::add_partial_links_information(Controller& controller, model::BaseObject* original, model::BaseObject* cloned)
 {
-    return m_to;
-}
-
-void LinkAdapter::setTo(const link_t& v)
-{
-    m_to = v;
-}
-
-void LinkAdapter::setToInModel(const link_t& v, Controller& controller)
-{
-    m_to = v;
-
-    ScicosID parentDiagram;
-    controller.getObjectProperty(getAdaptee()->id(), LINK, PARENT_DIAGRAM, parentDiagram);
-    ScicosID parentBlock;
-    controller.getObjectProperty(getAdaptee()->id(), LINK, PARENT_BLOCK, parentBlock);
-
-    if (parentDiagram != 0 || parentBlock != 0)
+    switch (original->kind())
     {
-        // If the Link has been added to a diagram, do the linking at model-level
-        // If the provided values are wrong, the model is not updated but the info is stored in the Adapter for future attempts
-        setLinkEnd(getAdaptee()->id(), controller, DESTINATION_PORT, v);
+            // add the from / to information if applicable
+        case LINK:
+        {
+            auto it = partial_links.find(original->id());
+            if (it != partial_links.end())
+            {
+                partial_links.insert({cloned->id(), it->second});
+            }
+            else
+            {
+                partial_link_t l;
+                l.from = getLinkEnd(original->id(), controller, SOURCE_PORT);
+                l.to = getLinkEnd(original->id(), controller, DESTINATION_PORT);
+                partial_links.insert({cloned->id(), l});
+            }
+            break;
+        }
+
+        // handle recursion
+        case DIAGRAM:
+        case BLOCK:
+        {
+            std::vector<ScicosID> originalChildren;
+            controller.getObjectProperty(original->id(), original->kind(), CHILDREN, originalChildren);
+            std::vector<ScicosID> clonedChildren;
+            controller.getObjectProperty(cloned->id(), cloned->kind(), CHILDREN, clonedChildren);
+
+            for (size_t i = 0; i < originalChildren.size(); ++i)
+            {
+                add_partial_links_information(controller, controller.getObject(originalChildren[i]), controller.getObject(clonedChildren[i]));
+            }
+            break;
+        }
+
+        default:
+            break;
     }
+
 }
 
 } /* namespace view_scilab */

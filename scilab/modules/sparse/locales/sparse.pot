@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-06-08 22:22+0100\n"
+"Revision-Date: 2016-12-07 16:05+0100\n"
 
 # File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 34
 # File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 51
@@ -185,9 +185,9 @@ msgstr ""
 #
 # File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 59
 # File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 89
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 152
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 158
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 170
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 151
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 157
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 169
 #, c-format
 msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
 msgstr ""
@@ -212,13 +212,13 @@ msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 121
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 120
 #, c-format
 msgid "%s not yet implemented for full input parameter.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 134
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 133
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Incompatible dimensions.\n"
 msgstr ""

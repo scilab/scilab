@@ -27,15 +27,15 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Simple example
 a=list(1,2,3);
 tree_show(a);
 
 // Another example with mlist
 str=['a','b','c','d','e','f','g','h'];
-n=hypermat([2,2,2],str);
-v=hypermat([2,2,2],1:8);
+n=matrix(str, [2,2,2]);
+v=matrix(1:8, [2,2,2]);
 Mm=mlist(['V','name','value'],n,v);
 tree_show(Mm);
 

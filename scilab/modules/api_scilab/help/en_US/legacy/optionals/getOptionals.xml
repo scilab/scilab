@@ -47,7 +47,7 @@
             arguments and prints theirs dimensions if exists.
         </para>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 #include "api_scilab.h"
 #include "sciprint.h"
 #include "sciprint.h"
@@ -126,7 +126,7 @@ int sci_use_optional(char * fname)
     <refsection>
         <title>Scilab test script</title>
         <programlisting role="code_scilab">
-            <![CDATA[ 
+            <![CDATA[
 use_optional();
 use_optional(name = "M. Puffin");
 use_optional(age = 25, name = "M. Puffin");

@@ -75,7 +75,7 @@
                jremove Date System t s str;
                jautoUnwrap(%t)
       ]]></programlisting>
-        
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>

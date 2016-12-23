@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -66,7 +66,7 @@
                     <literal>b</literal> devem ser inteiros entre 0 e 255 correspondentes
                     aos componentes de cor vermelho, verde e azul. Como de uso, 0
                     significa nenhuma intensidade e 255 significa total idensidade para a
-                    cor. 
+                    cor.
                 </para>
             </listitem>
         </itemizedlist>
@@ -74,12 +74,12 @@
             é adicionada ao mapa de cores.
         </para>
         <para>Esta função pode ser utilizada para se especificar as cores de plano
-            de fundo e de primeiro plano em esboços. 
+            de fundo e de primeiro plano em esboços.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=linspace(-2*%pi,2*%pi,100)';
 // utilizando cores existentes
 plot2d(x,[sin(x),cos(x)],style=[color("red"),color("green")]);

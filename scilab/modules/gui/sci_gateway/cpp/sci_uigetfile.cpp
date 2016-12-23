@@ -364,7 +364,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         }
 
         freePointersUigetfile();
-        returnArguments(pvApiCtx);
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
@@ -381,7 +381,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         freePointersUigetfile();
-        returnArguments(pvApiCtx);
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
@@ -414,7 +414,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
     }
 
     freePointersUigetfile();
-    returnArguments(pvApiCtx);
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -65,7 +65,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 xsetech([0,0,1,1],[-1,-1,1,1])
 xy=[(0:0.1:10);sin(0:0.1:10)]/10;
 for i=2*%pi*(0:10)/10,
@@ -81,6 +81,6 @@ end
             xpoly(xy1(1,:),xy1(2,:),"lines")
             end
         </scilab:image>
-        
+
     </refsection>
 </refentry>

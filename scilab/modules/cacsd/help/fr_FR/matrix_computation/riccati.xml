@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -64,13 +64,13 @@
         <para>
             <literal>X=riccati(A,B,C,dom,[typ])</literal> solves the Riccati equation:
         </para>
-        <programlisting role=""><![CDATA[ 
-A'*X+X*A-X*B*X+C=0 
+        <programlisting role=""><![CDATA[
+A'*X+X*A-X*B*X+C=0
  ]]></programlisting>
         <para>
             in continuous time case, or:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 A'*X*A-(A'*X*B1/(B2+B1'*X*B1))*(B1'*X*A)+C-X
  ]]></programlisting>
         <para>
@@ -110,7 +110,7 @@ H = H*H';
 [X1,X2]= riccati(F,G,H,'d','schur')
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

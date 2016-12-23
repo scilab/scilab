@@ -20,7 +20,7 @@
             to translate this representation into a <link linkend="syslin">syslin</link> one.
         </para>
         <para>And then, the filter can be represented in bode plot.</para>
-        <programlisting role=""><![CDATA[  
+        <programlisting role=""><![CDATA[
 // analog elliptic (Bessel), order 2, cutoff 1 Hz
 Epsilon = 3;  // ripple of filter in pass band (0<epsilon<1)
 A       = 60; // attenuation of filter in stop band (A<1)
@@ -107,7 +107,7 @@ title('Analog Elliptic filter');
         <para>
             For our demonstration, we will use the <link linkend="iir">iir</link> function.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 Order   = 2; // The order of the filter
 Fs      = 1000; // The sampling frequency
 Fcutoff = 40;   // The cutoff frequency
@@ -145,7 +145,7 @@ xtitle('Obtained Frequency Response (Phase in degree)');
             used to transform a signal. To get rid of some noise for example.
         </para>
         <para>In the following examples, we will filter a gaussian noise.</para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 rand('normal');
 Input = rand(1,1000); // Produce a random gaussian noise
 t     = 1:1000;
@@ -194,7 +194,7 @@ xtitle('The filtered gaussian noise','t','y');
         <para>
             First, we try using the <link linkend="dscr">dscr</link> + <link linkend="flts">flts</link> functions.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 rand('normal');
 Input = rand(1,1000); // Produce a random gaussian noise
 n     = 1:1000; // The sample index
@@ -220,7 +220,7 @@ xtitle('The filtered gaussian noise','n','y');
         <para>
             Next, we use the <link linkend="csim">csim</link> function.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 rand('normal');
 Input = rand(1,1000); // Produce a random gaussian noise
 t     = 1:1000;

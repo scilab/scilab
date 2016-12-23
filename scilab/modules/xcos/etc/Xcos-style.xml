@@ -149,6 +149,7 @@
         <add as="rounded" value="1"/>
         <add as="fillColor" value="white"/>
         <add as="strokeColor" value="red"/>
+        <add as="displayedLabel" value="%s"/>
     </add>
     <add as="CURV_f" extend="blockWithLabel">
         <add as="displayedLabel" value="Curve"/>
@@ -157,6 +158,7 @@
         <add as="shape" value="hexagon"/>
         <add as="rounded" value="1"/>
         <add as="fillColor" value="white"/>
+        <add as="displayedLabel" value="%s"/>
     </add>
     <add as="READAU_f" extend="blockWithLabel">
         <add as="displayedLabel" value="Read from .au&lt;BR&gt;         sound file"/>
@@ -183,6 +185,7 @@
         <add as="shape" value="hexagon"/>
         <add as="rounded" value="1"/>
         <add as="fillColor" value="white"/>
+        <add as="displayedLabel" value="%s"/>
     </add>
     <add as="READC_f" extend="blockWithLabel">
         <add as="displayedLabel" value="Read from&lt;BR&gt;         C binary file"/>
@@ -435,6 +438,7 @@
     <add as="OUTIMPL_f" extend="blockWithLabel">
         <add as="shape" value="hexagon"/>
         <add as="fillColor" value="white"/>
+        <add as="displayedLabel" value="%s"/>
     </add>
     <!-- INTEGER -->
     <add as="BITCLEAR" extend="blockWithLabel">
@@ -626,6 +630,7 @@
         <add as="shape" value="hexagon"/>
         <add as="fillColor" value="white"/>
         <add as="strokeColor" value="red"/>
+        <add as="displayedLabel" value="%s"/>
     </add>
     <add as="CLKOUT_f" extend="CLKOUTV_f"/>
     <add as="CLKSOMV_f" extend="blockWithLabel">
@@ -646,7 +651,7 @@
     </add>
     <add as="M_freq" extend="blockWithLabel">
         <add as="displayedLabel" value="Multiple&lt;BR&gt;         frequency"/>
-        
+
     </add>
     <add as="ANDBLK" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/ANDBLK.svg"/>
@@ -758,10 +763,11 @@
         <add as="shape" value="hexagon"/>
         <add as="rounded" value="1"/>
         <add as="fillColor" value="white"/>
+        <add as="displayedLabel" value="%s"/>
     </add>
     <add as="RELATIONALOP" extend="blockWithLabel">
         <add as="displayedLabel" value="Relational&lt;BR&gt;         op : &amp;&lt;"/>
-        <!-- new value for the label defined in the interface function of block -->  
+        <!-- new value for the label defined in the interface function of block -->
     </add>
     <add as="TEXT_f" extend="Label">
         <!-- <add as="displayedLabel" value="Text"/>  -->

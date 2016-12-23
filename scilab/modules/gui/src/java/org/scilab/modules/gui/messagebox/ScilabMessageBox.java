@@ -23,7 +23,7 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UIElementMapper;
 
 /**
- * Interface for Message Boxes used by Scilab functions such as x_message
+ * Interface for Message Boxes used by Scilab functions such as messagebox, message, ...
  * @author Vincent COUVERT
  */
 public class ScilabMessageBox extends ScilabUIElement implements MessageBox {

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tbx_builder_gateway_lang" xml:lang="en">
+    <refnamediv>
+        <refname>tbx_builder_gateway_lang</refname>
+        <refpurpose>Run builder_gateway_(language).sce script if it exists (toolbox compilation process)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            tbx_builder_gateway_lang(lang)
+            tbx_builder_gateway_lang(lang, gw_path)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>lang</term>
+                <listitem>
+                    <para>Language of sources files ; the builder_gateway_(lang).sce script will be searched in the subdirectory lang (e.g. fortran) of the gw_path directory.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gw_path</term>
+                <listitem>
+                    <para>Path to the sources of the gateway ; in a normal toolbox it should be the directory containing the builder_gateway.sce script (which should be the script calling this function). Default is current directory.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Recommended usage
+tbx_builder_gateway_lang("fortran", get_absolute_file_path('builder_gateway.sce'))
+ ]]></programlisting>
+    </refsection>
+</refentry>

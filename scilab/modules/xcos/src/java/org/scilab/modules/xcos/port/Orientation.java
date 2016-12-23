@@ -51,9 +51,9 @@ public enum Orientation {
      *            The block mirror state
      * @return The value of the angle.
      */
-    public double getRelativeAngle(double blockAngle, Class <? extends BasicPort > klass, boolean flipped, boolean mirrored) {
-        final double orientation = getOrientationAngle();
-        final double base = getBaseAngle(klass, orientation);
+    public int getRelativeAngle(int blockAngle, Class <? extends BasicPort > klass, boolean flipped, boolean mirrored) {
+        final int orientation = getOrientationAngle();
+        final int base = getBaseAngle(klass, orientation);
 
         return getFlippedAndMirroredAngle(base + blockAngle, flipped, mirrored);
     }
@@ -67,10 +67,10 @@ public enum Orientation {
      *            the mirror status
      * @return the real angle
      */
-    public double getAbsoluteAngle(Class <? extends BasicPort > klass,
+    public int getAbsoluteAngle(Class <? extends BasicPort > klass,
     boolean flipped, boolean mirrored) {
-        final double orientation = getOrientationAngle();
-        final double base = getBaseAngle(klass, orientation);
+        final int orientation = getOrientationAngle();
+        final int base = getBaseAngle(klass, orientation);
 
         return getFlippedAndMirroredAngle(base, flipped, mirrored);
     }
@@ -86,8 +86,8 @@ public enum Orientation {
      *            the mirror status
      * @return the updated angle.
      */
-    private double getFlippedAndMirroredAngle(double base, boolean flipped, boolean mirrored) {
-        double angle = base;
+    private int getFlippedAndMirroredAngle(int base, boolean flipped, boolean mirrored) {
+        int angle = base;
 
         switch (this) {
             case NORTH:
@@ -129,7 +129,7 @@ public enum Orientation {
      *            calculated orientation angle
      * @return updated angle
      */
-    private double getBaseAngle(Class <? extends BasicPort > klass, double orientationAngle) {
+    private int getBaseAngle(Class <? extends BasicPort > klass, int orientationAngle) {
         final boolean isOutput = OutputPort.class.isAssignableFrom(klass)
                                  || CommandPort.class.isAssignableFrom(klass);
 

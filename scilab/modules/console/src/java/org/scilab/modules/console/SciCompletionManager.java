@@ -34,7 +34,7 @@ import com.artenum.rosetta.interfaces.core.InputParsingManager;
 
 public class SciCompletionManager implements CompletionManager {
 
-    protected List<CompletionItem> dictionnary;
+    protected List<CompletionItem> dictionary;
     private InputParsingManager inputParsingManager;
 
     /**
@@ -52,50 +52,50 @@ public class SciCompletionManager implements CompletionManager {
     public List<CompletionItem> getCompletionItems() {
         int compLevel = inputParsingManager.getCompletionLevel();
 
-        // Build dictionnary
-        dictionnary     = new ArrayList<CompletionItem>();
+        // Build dictionary
+        dictionary     = new ArrayList<CompletionItem>();
 
         // Get the completion part used to filter the paths/files dictionary
 
         String fileSearchedPattern = ((SciInputParsingManager) inputParsingManager).getFilePartLevel(compLevel);
 
-        String[] scilabFilesDictionnary = Completion.searchFilesDictionary(fileSearchedPattern);
-        //addItemsToDictionnary(Messages.gettext("File or Directory"), scilabFilesDictionnary);
+        String[] scilabFilesDictionary = Completion.searchFilesDictionary(fileSearchedPattern);
+        //addItemsToDictionary(Messages.gettext("File or Directory"), scilabFilesDictionary);
 
-        if (scilabFilesDictionnary != null) {
+        if (scilabFilesDictionary != null) {
             ArrayList<String> files = new ArrayList<String>();
             ArrayList<String> directories = new ArrayList<String>();
-            separateFilesDirectories(scilabFilesDictionnary, files, directories);
-            String[] filesDictionnary = files.toArray(new String[files.size()]);
-            String[] directoriesDictionnary = directories.toArray(new String[directories.size()]);
+            separateFilesDirectories(scilabFilesDictionary, files, directories);
+            String[] filesDictionary = files.toArray(new String[files.size()]);
+            String[] directoriesDictionary = directories.toArray(new String[directories.size()]);
 
-            addItemsToDictionnary(Messages.gettext("File"), filesDictionnary);
-            addItemsToDictionnary(Messages.gettext("Directory"), directoriesDictionnary);
+            addItemsToDictionary(Messages.gettext("File"), filesDictionary);
+            addItemsToDictionary(Messages.gettext("Directory"), directoriesDictionary);
         } else {
             // Get the completion part used to filter the dictionary
             String searchedPattern = inputParsingManager.getPartLevel(compLevel);
             String commandLine = inputParsingManager.getCommandLine();
-            String[] scilabFieldsDictionnary = Completion.searchFieldsDictionary(commandLine, searchedPattern);
-            if (scilabFieldsDictionnary != null) {
-                addItemsToDictionnary(Messages.gettext("Field"), scilabFieldsDictionnary);
+            String[] scilabFieldsDictionary = Completion.searchFieldsDictionary(commandLine, searchedPattern);
+            if (scilabFieldsDictionary != null) {
+                addItemsToDictionary(Messages.gettext("Field"), scilabFieldsDictionary);
             } else {
-                String[] scilabCommandsDictionnary = Completion.searchCommandsDictionary(searchedPattern);
-                addItemsToDictionnary(Messages.gettext("Scilab Command"), scilabCommandsDictionnary);
+                String[] scilabCommandsDictionary = Completion.searchCommandsDictionary(searchedPattern);
+                addItemsToDictionary(Messages.gettext("Scilab Command"), scilabCommandsDictionary);
 
-                String[] scilabFunctionsDictionnary = Completion.searchFunctionsDictionary(searchedPattern);
-                addItemsToDictionnary(Messages.gettext("Scilab Function"), scilabFunctionsDictionnary);
+                String[] scilabFunctionsDictionary = Completion.searchFunctionsDictionary(searchedPattern);
+                addItemsToDictionary(Messages.gettext("Scilab Function"), scilabFunctionsDictionary);
 
-                String[] scilabHandlesDictionnary = Completion.searchHandleGraphicsPropertiesDictionary(searchedPattern);
-                addItemsToDictionnary(Messages.gettext("Graphics handle field"), scilabHandlesDictionnary);
+                String[] scilabHandlesDictionary = Completion.searchHandleGraphicsPropertiesDictionary(searchedPattern);
+                addItemsToDictionary(Messages.gettext("Graphics handle field"), scilabHandlesDictionary);
 
-                String[] scilabMacrosDictionnary = Completion.searchMacrosDictionary(searchedPattern);
-                addItemsToDictionnary(Messages.gettext("Scilab Macro"), scilabMacrosDictionnary);
+                String[] scilabMacrosDictionary = Completion.searchMacrosDictionary(searchedPattern);
+                addItemsToDictionary(Messages.gettext("Scilab Macro"), scilabMacrosDictionary);
 
-                String[] scilabVariablesDictionnary = Completion.searchVariablesDictionary(searchedPattern);
-                addItemsToDictionnary(Messages.gettext("Scilab Variable"), scilabVariablesDictionnary);
+                String[] scilabVariablesDictionary = Completion.searchVariablesDictionary(searchedPattern);
+                addItemsToDictionary(Messages.gettext("Scilab Variable"), scilabVariablesDictionary);
             }
         }
-        return dictionnary;
+        return dictionary;
     }
 
     /**
@@ -110,40 +110,40 @@ public class SciCompletionManager implements CompletionManager {
 
     /**
      * Associate an interpreting tool to this completion manager
-     * @param  interpretor an interpreting tool
+     * @param  interpreter an interpreting tool
      * @see com.artenum.rosetta.interfaces.core.CompletionManager#setInputParsingManager(com.artenum.rosetta.interfaces.core.InputParsingManager)
      */
     @Override
-    public void setInterpretor(GenericInterpreter interpretor) {
+    public void setInterpretor(GenericInterpreter interpreter) {
         // No need for Scilab implementation
     }
 
     /**
-     * Add items to current completion dictionnary
+     * Add items to current completion dictionary
      * @param type type of the items to add
      * @param items all items to add
      */
-    public void addItemsToDictionnary(String type, String[] items) {
+    public void addItemsToDictionary(String type, String[] items) {
         if (items != null) {
             for (int i = 0; i < items.length; i++) {
-                dictionnary.add(new CompletionItemImpl(type, items[i] + " (" + type + ")", items[i], Messages.gettext("No help")));
+                dictionary.add(new CompletionItemImpl(type, items[i] + " (" + type + ")", items[i], Messages.gettext("No help")));
             }
         }
     }
 
     /**
      * Separate files from directories
-     * @param scilabFilesDictionnary the input containing both
-     * @param filesDictionnary output: only the files
-     * @param directoriesDictionnary output: only the directories
+     * @param scilabFilesDictionary the input containing both
+     * @param filesDictionary output: only the files
+     * @param directoriesDictionary output: only the directories
      */
-    public void separateFilesDirectories(String[] scilabFilesDictionnary, ArrayList<String> filesDictionnary, ArrayList<String> directoriesDictionnary) {
+    public void separateFilesDirectories(String[] scilabFilesDictionary, ArrayList<String> filesDictionary, ArrayList<String> directoriesDictionary) {
         String fileSep = System.getProperty("file.separator");
-        for (String word : scilabFilesDictionnary) {
+        for (String word : scilabFilesDictionary) {
             if (word.endsWith(fileSep)) {
-                directoriesDictionnary.add(new String(word));
+                directoriesDictionary.add(new String(word));
             } else {
-                filesDictionnary.add(new String(word));
+                filesDictionary.add(new String(word));
             }
         }
     }

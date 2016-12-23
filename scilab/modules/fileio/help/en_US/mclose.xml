@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -48,17 +48,17 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>mclose</function> must be used to close a file opened by 
-            <function>mopen</function>. If <varname>fd</varname> is omitted 
+            <function>mclose</function> must be used to close a file opened by
+            <function>mopen</function>. If <varname>fd</varname> is omitted
             <function>mclose</function> closes the last opend file.
         </para>
         <para>
-            <code>mclose('all')</code> closes all files opened by 
-            <code>file('open',..)</code> or <function>mopen</function>. 
+            <code>mclose('all')</code> closes all files opened by
+            <code>file('open',..)</code> or <function>mopen</function>.
             <caution>
-                Be careful with this use of <function>mclose</function> because when 
-                it is used inside a Scilab script file, it also closes the script and 
-                Scilab will not execute commands written after 
+                Be careful with this use of <function>mclose</function> because when
+                it is used inside a Scilab script file, it also closes the script and
+                Scilab will not execute commands written after
                 <code>mclose('all')</code>.
             </caution>
         </para>
@@ -74,7 +74,7 @@ mgetl(fd,10)
 mclose(fd)
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

@@ -67,7 +67,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //GENERATE SIGNAL
 x=%pi/10:%pi/10:102.4*%pi;
 rand('seed',0);rand('normal');

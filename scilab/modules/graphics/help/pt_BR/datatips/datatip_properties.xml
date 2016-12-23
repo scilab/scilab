@@ -61,7 +61,7 @@
                 <listitem>
                     <para>
                         Esse campo contêm o valor padrão para a propriedade <literal>box_mode</literal>
-                        das datatips. Quando este valor é <literal>"on"</literal> a caixa envoltória é desenhada, 
+                        das datatips. Quando este valor é <literal>"on"</literal> a caixa envoltória é desenhada,
                         quando o valor é <literal>"off"</literal> nenhuma caixa é desenhada.
                     </para>
                 </listitem>
@@ -71,7 +71,7 @@
                 <listitem>
                     <para>
                         Esse campo contêm o valor padrão para a propriedade <literal>label_mode</literal>
-                        das datatips. Quando este valor é <literal>"on"</literal> os rótulos são desenhados, 
+                        das datatips. Quando este valor é <literal>"on"</literal> os rótulos são desenhados,
                         quando o valor é <literal>"off"</literal> nenhuma  rótulo é desenhado.
                     </para>
                 </listitem>
@@ -90,9 +90,9 @@
                 <term>display_components: </term>
                 <listitem>
                     <para>
-                        Esse campo controla quais componentes são desenhadas. Quando em 2D, seu valor padrão é 
+                        Esse campo controla quais componentes são desenhadas. Quando em 2D, seu valor padrão é
                         <literal>"xy"</literal>, para 3D seu valor padrão é <literal>"xyz"</literal>.
-                        Possíveis valores para este campo incluem qualquer combinação de <literal>"x"</literal>, 
+                        Possíveis valores para este campo incluem qualquer combinação de <literal>"x"</literal>,
                         <literal>"y"</literal> e <literal>"z"</literal>.
                         Alguns exemplos para este campo são <literal>"zy"</literal>, <literal>"xzy"</literal>, <literal>"xz"</literal>, <literal>"y"</literal> e assim por diante.
                         Nota: As componentes sao desenhadas na mesma ordem em que são encontradas na string.
@@ -104,7 +104,7 @@
                 <listitem>
                     <para>
                         Esse campo contêm o valor padrão para a propriedade <literal>auto_orientation</literal>
-                        das datatips.  Quando este valor é <literal>"on"</literal> a orientação é automatica, 
+                        das datatips.  Quando este valor é <literal>"on"</literal> a orientação é automatica,
                         quando o valor é <literal>"off"</literal> a orientação é dada pelo campo <literal>orientation</literal>.
                         Veja a propriedade <literal>orientation</literal>.
                     </para>
@@ -114,9 +114,9 @@
                 <term>interp_mode: </term>
                 <listitem>
                     <para>
-                        Esse campo controla a interpolação utilizada para posicionar a datatip. Quando este valor é 
+                        Esse campo controla a interpolação utilizada para posicionar a datatip. Quando este valor é
                         <literal>"on"</literal> é aplicada uma interpolação linear entre a malha de pontos no posicionamento
-                        das datatips, quando seu valor é <literal>"off"</literal> as datatips so podem ser posicionadas sobre 
+                        das datatips, quando seu valor é <literal>"off"</literal> as datatips so podem ser posicionadas sobre
                         os pontos contidos na malha.
                     </para>
                 </listitem>

@@ -76,7 +76,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>x=integrate(expr,v,x0,x1 [,atol [,rtol]])</literal> computes : 
+            <literal>x=integrate(expr,v,x0,x1 [,atol [,rtol]])</literal> computes :
             <subscript>
                 <inlinemediaobject>
                     <imageobject>
@@ -118,8 +118,8 @@
                 </inlinemediaobject>
             </subscript>
             для
-            <literal>i=1:size(x1,'*')</literal>, 
-            где 
+            <literal>i=1:size(x1,'*')</literal>,
+            где
             <inlinemediaobject>
                 <imageobject>
                     <imagedata>
@@ -147,11 +147,11 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x0=0;x1=0:0.1:2*%pi;
 X=integrate('sin(x)','x',x0,x1);
 norm(cos(x1)-(1-X))
- 
+
  x1=-10:0.1:10;
 X=integrate(['if x==0 then 1,';
              'else sin(x)/x,end'],'x',0,x1)

@@ -17,19 +17,31 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "api_scilab.h"
+#include "getOptionalComm.h"
 
 /**
- * This function returns the rank of a process within
- * the specified communicator.
+ * This function returns the rank of a process within the specified communicator.
  */
 int sci_mpi_comm_rank(char *fname, void* pvApiCtx)
 {
-    int comm_rank = 0;
+    int comm_rank = -1;
 
-    CheckInputArgument(pvApiCtx, 0, 0); // Check the parameters of the function ... Here 0
+    CheckInputArgument(pvApiCtx, 0, 1); // Check the parameters of the function ... Here 0 or 1
     CheckOutputArgument(pvApiCtx, 1, 1); // The output of the function (1 parameter)
 
-    MPI_Comm_rank(MPI_COMM_WORLD, &comm_rank);
+    // return the communicator from optional argument "comm"
+    // if no optional "comm" is given, return MPI_COMM_WORLD
+    MPI_Comm comm = getOptionalComm(pvApiCtx);
+    if (comm == NULL)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%s: An MPI communicator expected.\n"), fname, "comm");
+        return 0;
+    }
+
+    if (comm != MPI_COMM_NULL)
+    {
+        MPI_Comm_rank(comm, &comm_rank);
+    }
 
     if (createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, (double)comm_rank))
     {

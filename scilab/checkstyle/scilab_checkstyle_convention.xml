@@ -124,7 +124,7 @@ Description:
         </module>
         <module name="NewlineAtEndOfFile"/>
         <module name="Translation"/>
-        <!--    
+        <!--
 Commented because we do need it (copy and paste for create bridges)
 <module name="StrictDuplicateCode">
         <property name="severity" value="info"/>

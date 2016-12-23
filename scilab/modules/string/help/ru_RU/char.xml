@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -63,7 +63,7 @@
             Для заданного массива ASCII-кодов <varname>x</varname> данная функция
             возвращает массив строковых значений <varname>y</varname>, соответствующих
             ASCII-кодам. Если размеры <varname>x</varname> равны <literal>[n1, n2, n3, n4,...]</literal>,
-            то возвращаемое значение имеет те же размеры, что и входное значение за 
+            то возвращаемое значение имеет те же размеры, что и входное значение за
             исключением второго размера, т. е. размеры <varname>y</varname> равны
             <literal>[n1, n3, n4,...]</literal>.
         </para>
@@ -72,7 +72,7 @@
         </para>
         <para>
             Для заданных массивов строковых значений <literal>st1, st2, st3,...</literal> эта функция
-            возвращает вектор строковых значений в котором строки являются конкатенированными 
+            возвращает вектор строковых значений в котором строки являются конкатенированными
             элементами соответствующих строк <literal>st1, st2, st3,...</literal>. В векторе
             <varname>y</varname> всех строковые значения <literal>sti</literal> дополняются
             пробелами чтобы получить ту же длину, что и максимальная длина <literal>sti</literal>.
@@ -80,20 +80,20 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Пример с гиперматрицей ASCII-кодов:
-x=hypermat([4,2,3],61:84);
+x=matrix(61:84, [4,2,3]);
 y=char(x)
 size(x)
 size(y)
- 
+
 // Пример со множеством входных аргументов:
 st1="zeros";
 st2=["one","two"];
 st3=["three"];
 y=char(st1,st2,st3)
 size(y)
- 
+
 //все строки строковых значений дополняются "пробелами" так, чтобы
 //иметь одинаковую длину: 6
 length(y)

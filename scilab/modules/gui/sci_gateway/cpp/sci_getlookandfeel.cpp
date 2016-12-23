@@ -67,7 +67,7 @@ int sci_getlookandfeel(char *fname, void* pvApiCtx)
             delete lnf;
 
             AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
-            returnArguments(pvApiCtx);
+            ReturnArguments(pvApiCtx);
         }
         else
         {

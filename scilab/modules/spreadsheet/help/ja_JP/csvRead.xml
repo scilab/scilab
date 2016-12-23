@@ -47,7 +47,7 @@
             <varlistentry>
                 <term>separator</term>
                 <listitem>
-                    <para>1行1列の文字列行列で, 
+                    <para>1行1列の文字列行列で,
                         使用されるフィールドセパレータ.
                     </para>
                 </listitem>
@@ -59,8 +59,8 @@
                         1行1列の文字列行列で,使用される小数点.
                     </para>
                     <para>
-                        <literal>decimal</literal> が <literal>[]</literal> 
-                        と異なり 
+                        <literal>decimal</literal> が <literal>[]</literal>
+                        と異なり
                         <literal>conversion</literal> が <literal>string</literal>に
                         設定された場合,小数点変換が行われます.
                     </para>
@@ -100,7 +100,7 @@
             <varlistentry>
                 <term>rexgepcomments</term>
                 <listitem>
-                    <para>文字列: 一致する行を削除するための正規表現. 
+                    <para>文字列: 一致する行を削除するための正規表現.
                         (デフォルト:
                         [])
                     </para>
@@ -154,7 +154,7 @@
             この関数は対応する文字列またはdoubleのScilab行列を返します.
         </para>
         <para>
-            例えば,.csvデータファイルは 
+            例えば,.csvデータファイルは
             表計算ソフトウェアにより"テキスト及びカンマ"形式で
             作成されたものとすることができます.
         </para>
@@ -171,7 +171,7 @@
             オプションの入力引数に空の行列<literal>[]</literal>を指定すると,
             デフォルト値が設定されます.
         </para>
-        
+
         <para>
             入力引数 "conversion" が "double" の時,
             .csvの中の数値以外のフィールド(例:文字列)は NaNに変換されます.
@@ -397,7 +397,7 @@ header = 2;
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revremark>関数が導入されました. 
+                <revremark>関数が導入されました.
                     'csv_readwrite'モジュールに基づきます.
                     <link linkend="read_csv">read_csv</link> と比べた場合の
                     動作の唯一の差異は,
@@ -409,7 +409,7 @@ header = 2;
                 <revnumber>5.4.1</revnumber>
                 <revremark>
                     <literal>decimal</literal> が <literal>[]</literal> 以外で,
-                    <literal>conversion</literal> が <literal>string</literal>に設定された場合, 
+                    <literal>conversion</literal> が <literal>string</literal>に設定された場合,
                     小数点変換が行われます.
                 </revremark>
             </revision>

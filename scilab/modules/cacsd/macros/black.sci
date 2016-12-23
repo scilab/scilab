@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 1998-2010 - INRIA - Serge Steer
+// Copyright (C) 1998-2016 - INRIA - Serge Steer
 // Copyright (C) 2010 - DIGITEO - Yann COLLETTE
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -55,7 +55,7 @@ function black(varargin)
     end
     fname="black";//for error messages
     fmax=[]
-    if or(typeof(varargin(1))==["state-space" "rational"]) then
+    if or(typeof(varargin(1))==["state-space" "rational", "zpk"]) then
         //sys,fmin,fmax [,pas] or sys,frq
         refdim=1 //for error message
         if rhs==1 then
@@ -99,10 +99,15 @@ function black(varargin)
                 fname,1,3))
             end
         else
+
             error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),fname,2,4))
         end
     else
-        error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),fname,1))
+        ierr=execstr("%"+overloadname(varargin(1))+"_black(varargin(:))","errcatch")
+        if ierr<>0 then
+            error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),fname,1))
+        end
+        return
     end;
 
     if size(frq,1)==1 then

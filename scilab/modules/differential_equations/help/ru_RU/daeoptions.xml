@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -35,19 +35,19 @@
         <para>
             <caution>
                 Функция <literal>dae</literal> проверяет существует ли данная переменная и, если да, то использует её.
-                Для использования значений по умолчанию вы должны очистить эту переменную. Заметьте, что 
-                <literal>daeoptions</literal> не создаёт этой переменной. Чтобы  её создать, вы должны выполнить 
+                Для использования значений по умолчанию вы должны очистить эту переменную. Заметьте, что
+                <literal>daeoptions</literal> не создаёт этой переменной. Чтобы  её создать, вы должны выполнить
                 командную строку распечатанную с помощью <literal>daeoptions</literal>.
             </caution>
         </para>
         <para>
             Переменная <literal>%DAEOPTIONS</literal> является <link linkend="list">списком</link> со следующими элементами:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[  
+        <programlisting role="no-scilab-exec"><![CDATA[
 list(tstop,imode,band,maxstep,stepin,nonneg,isest)
  ]]></programlisting>
         <para>The default value is:</para>
-        <programlisting role="no-scilab-exec"><![CDATA[  
+        <programlisting role="no-scilab-exec"><![CDATA[
 list([],0,[],[],[],0,0)
  ]]></programlisting>
         <para>Значение этих элементов приведено ниже.</para>
@@ -55,7 +55,7 @@ list([],0,[],[],[],0,0)
             <varlistentry>
                 <term>tstop</term>
                 <listitem>
-                    <para>вещественный скаляр или пустая матрица, задаёт максимальное время, для которого 
+                    <para>вещественный скаляр или пустая матрица, задаёт максимальное время, для которого
                         рассчитывается <literal>g</literal>. Пустая матрица означает "без ограничений по времени".
                     </para>
                 </listitem>
@@ -64,7 +64,7 @@ list([],0,[],[],[],0,0)
                 <term>imode</term>
                 <listitem>
                     <para>
-                        если оно равно 0, то <literal>dae</literal> возвращает только определённые пользователем 
+                        если оно равно 0, то <literal>dae</literal> возвращает только определённые пользователем
                         моменты времени, а если оно равно 1, то <literal>dae</literal> возвращает вычисленные промежуточные значения.
                     </para>
                 </listitem>
@@ -113,7 +113,7 @@ list([],0,[],[],[],0,0)
                 <term>isest</term>
                 <listitem>
                     <para>
-                        скаляр, должен быть установлен равным 0, если заданное исходное условие 
+                        скаляр, должен быть установлен равным 0, если заданное исходное условие
                         удовлетворяет <literal>g(t0,x0,xdot0)=0</literal>, и установлен равным 1,
                         если <literal>xdot0</literal> является просто оценкой.
                     </para>

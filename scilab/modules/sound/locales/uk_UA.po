@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:02+0000\n"
+"PO-Revision-Date: 2016-02-12 11:11+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -37,28 +37,20 @@ msgstr ""
 msgid "Scilab sound module not installed.\n"
 msgstr "Модуль роботи зі звуком (sound) Scilab не встановлено.\n"
 
-# File: modules/sound/demos/sound.dem.gateway.sce, line: 9
 msgid "Sound file handling"
-msgstr ""
+msgstr "Обробка звукового файла"
 
-#, fuzzy
 msgid "FFT on a wav file"
-msgstr "Помилка читання файла wav."
+msgstr "ШПФ для файла wav"
 
-#
-# File: modules/sound/demos/sound.dem.sce, line: 21
 msgid "Fourier analysis of 0.5 seconds of sound parameters."
-msgstr ""
+msgstr "Аналіз Фур’є 0,5 секунд звукових параметрів."
 
-#
-# File: modules/sound/demos/sound.dem.sce, line: 36
 msgid "A complete picture of the sound."
-msgstr ""
+msgstr "Повна картина звукових даних."
 
-#
-# File: modules/sound/demos/sound.dem.sce, line: 36
 msgid "see 'mapsound' function"
-msgstr ""
+msgstr "див. функцію «mapsound»"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"

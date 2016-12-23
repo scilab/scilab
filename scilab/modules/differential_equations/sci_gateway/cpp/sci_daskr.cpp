@@ -1109,7 +1109,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             if (bCatch)
             {
                 wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "daskr", "ddaskr");
+                os_swprintf(szError, bsiz, _W("%ls: An error occured in '%ls' subroutine.\n").c_str(), L"daskr", L"ddaskr");
                 os << szError;
                 throw ast::InternalError(os.str());
             }

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -53,18 +53,18 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Vérification de la validité des objets courants
 is_handle_valid([gcf(), gca(), gce()])
 
 // création de 11 polylines
 plot([0:10; 0:10; 0:10], [0:10; 0:0.5:5; 0:2:20]);
-    
+
 // Vérification de la validité des polylines
 axes = gca();
 polylines = axes.children(1).children
 is_handle_valid(polylines)
-    
+
 // destruction de quelques polylines
 delete(polylines(3:7));
 // Affichage de la validité

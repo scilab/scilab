@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: helptools-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:05+0000\n"
+"PO-Revision-Date: 2016-06-19 14:38+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -97,7 +97,7 @@ msgstr "%s: Справочная  система отключена в режи�
 
 #, c-format
 msgid "%s: help file(.jar) is not installed.\n"
-msgstr "%s: файл помощи (.jar) не установлен.\n"
+msgstr "%s: файл справки (.jar) не установлен.\n"
 
 #, c-format
 msgid ""

@@ -46,7 +46,7 @@
                 <listitem>
                     <para>
                         実数: ナイキスト軌跡が指定した矩形から出る最大の周波数 (Hz)
-                        または %inf (周波数に %inf (Hz)となる点が含まれる場合, 
+                        または %inf (周波数に %inf (Hz)となる点が含まれる場合,
                         または軌跡が完全に矩形の外側にある場合).
                     </para>
                 </listitem>
@@ -70,7 +70,7 @@
     s=%s
     num=2+9*s-9*s^2-11*s^3+0.01*s^4;
     den=43*s^2+65*s^3+34*s^4+8*s^5+s^6+0.1*s^7
-    H=syslin('c',num,den)-1  
+    H=syslin('c',num,den)-1
     clf;set(gcf(),'axes_size',[805,549])
     subplot(221)
     nyquist(H)
@@ -95,7 +95,7 @@
                 s=%s
                 num=2+9*s-9*s^2-11*s^3+0.01*s^4;
                 den=43*s^2+65*s^3+34*s^4+8*s^5+s^6+0.1*s^7
-                H=syslin('c',num,den)-1  
+                H=syslin('c',num,den)-1
                 clf;set(gcf(),'axes_size',[805,549])
                 subplot(221)
                 nyquist(H)

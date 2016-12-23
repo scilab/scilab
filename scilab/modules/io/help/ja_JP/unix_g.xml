@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -60,7 +60,7 @@
             shシェルで実行する文字列 <literal>cmd</literal> をUnixに送信します.
             標準出力はScilab変数<literal>rep</literal>にリダイレクトされます.
             標準エラーはScilab変数 err にリダイレクトされるか,出力引数が2つのみの場合に表示されます.
-            Unixの実行エラーはトラップされます; *注意* 
+            Unixの実行エラーはトラップされます; *注意*
             コマンドのリストを ";" で区切った場合,
             最後のシェルコマンドエラーのみが
             リポートされます.これは推奨されません.
@@ -68,7 +68,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function d=DIR(path)
   path=pathconvert(path,%t,%t)
   if getos() == 'Windows' then

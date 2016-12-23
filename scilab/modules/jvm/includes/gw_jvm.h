@@ -18,13 +18,13 @@
 #ifndef __GW_JVM_H__
 #define __GW_JVM_H__
 /*--------------------------------------------------------------------------*/
-#include "dynlib_jvm_gw.h"
+#include "dynlib_jvm.h"
 /*--------------------------------------------------------------------------*/
 int gw_jvm(void);
 /*--------------------------------------------------------------------------*/
 /* Declaration of all the profile function declared and used in sci_gateway */
-JVM_GW_IMPEXP int sci_javaclasspath(char *fname, void* pvApiCtx);
-JVM_GW_IMPEXP int sci_javalibrarypath(char *fname, void* pvApiCtx);
+JVM_IMPEXP int sci_javaclasspath(char *fname, void* pvApiCtx);
+JVM_IMPEXP int sci_javalibrarypath(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_JVM_H__ */
 

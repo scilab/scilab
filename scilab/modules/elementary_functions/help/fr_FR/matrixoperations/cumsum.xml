@@ -26,7 +26,7 @@
             y=cumsum(x,orientation,outtype)
         </synopsis>
     </refsynopsisdiv>
-    
+
     <refsection role="parameters">
         <title>Paramètres</title>
         <variablelist>
@@ -180,10 +180,9 @@
                 </para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    <refsection>
-        <title>Remarque</title>
-        <para>Cette fonction s'applique avec les mêmes règles aux matrices creuses et aux hypermatrices.</para>
+        <note>
+            Cette fonction s'applique avec les mêmes règles aux <link linkend="sparse">matrices creuses</link> et aux hypermatrices.
+        </note>
     </refsection>
     <refsection>
         <title>Exemples</title>

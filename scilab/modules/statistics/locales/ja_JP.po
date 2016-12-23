@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -381,9 +381,9 @@ msgstr "相関円"
 msgid "Eigenvalues"
 msgstr "固有値"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 範囲 %s とする必要があります.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -464,10 +464,3 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or a positive "
-#~ "integer expected.\n"
-#~ msgstr ""
-#~ "%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s' または正の整数を指"
-#~ "定してください.\n"

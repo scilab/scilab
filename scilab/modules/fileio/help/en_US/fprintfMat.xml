@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -55,7 +55,7 @@
                         <literal>precision</literal>: an optional number that
                         specifies the maximum number of characters printed for all
                         or part of the output field, or the minimum number of
-                        digits printed for integer values; 
+                        digits printed for integer values;
                     </para>
                     <para>
                         <literal>type</literal>: lf, lg, d, i, e, f, g (see <link
@@ -68,7 +68,7 @@
                 <listitem>
                     <para>
                         a row (column) vector of strings giving non numerical
-                        comments stored at the beginning of the file. 
+                        comments stored at the beginning of the file.
                     </para>
                 </listitem>
             </varlistentry>
@@ -86,7 +86,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 n = 50;
 a = rand(n, n, "u");
 fprintfMat(TMPDIR + "/Mat", a, "%5.2f");

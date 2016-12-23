@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA 
- * 
+ * Copyright (C) INRIA
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -75,7 +75,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 beers=["Desperados", "Leffe", "Kronenbourg", "Heineken"];
 find(beers=="Leffe") // OK
 find(beers=="1664") // KO
@@ -86,13 +86,13 @@ find(beers=="Foster") // OK
 A=rand(1,20);
 w=find(A<0.4)
 A(w)
-w=find(A>100) 
+w=find(A>100)
 
 B=rand(1,20);
 w=find(B<0.4,2) //at most 2 returned values
 
 H=rand(4,3,5); //an hypermatrix
-[i,j,k]=find(H>0.9)  
+[i,j,k]=find(H>0.9)
 
 H(i(1),j(1),k(1))
  ]]></programlisting>

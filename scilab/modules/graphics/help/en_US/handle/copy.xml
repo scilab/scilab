@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -58,13 +58,13 @@
             This routine can be used to make a copy of a graphics entity with
             all its properties' values, it returns the handle on this new
             entity. If
-            <literal>h_axes</literal> omitted, graphics entity is cloned and it's 
+            <literal>h_axes</literal> omitted, graphics entity is cloned and it's
             copied in the  same parent axes entity.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 subplot(211);a1=gca();
 plot2d()
 e=gce();

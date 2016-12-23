@@ -70,7 +70,7 @@
                f = File.new(SCI);
                jfiles = f.list(), // a java object due to a disabled autoUnwrap
                files = junwrap(jfiles); // the corresponding scilab vector
-               
+
                jremove File f jfiles
       ]]></programlisting>
     </refsection>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
-    * 
+    * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -49,13 +49,13 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    Si <literal>dim</literal> est inférieure ou égale au nombre de dimensiopns de A 
+                    Si <literal>dim</literal> est inférieure ou égale au nombre de dimensiopns de A
                     <literal>R = mtlb_cumprod(A,dim)</literal> peut être remplacé par <literal>R = cumprod(A,dim)</literal>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    Si <literal>dim</literal> est supérieure au nombre de dimensiopns de A 
+                    Si <literal>dim</literal> est supérieure au nombre de dimensiopns de A
                     <literal>R = mtlb_cumprod(A,dim)</literal> peut être remplacé par <literal>R = A</literal>
                 </para>
             </listitem>

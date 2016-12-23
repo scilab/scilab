@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -48,12 +48,12 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>tempname</function> создаёт файл с уникальным 
+            Функция <function>tempname</function> создаёт файл с уникальным
             именем в директории <literal>TMPDIR</literal>.
         </para>
         <para>
-            <code>tmp_name = tempname()</code> возвращает уникальную строку,  
-            <varname>tmp_name</varname>, подходящую для использования в 
+            <code>tmp_name = tempname()</code> возвращает уникальную строку,
+            <varname>tmp_name</varname>, подходящую для использования в
             качестве временного файла.
         </para>
     </refsection>

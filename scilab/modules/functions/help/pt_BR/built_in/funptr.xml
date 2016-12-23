@@ -43,7 +43,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Suponha que você queira carregar alguns códigos através
 // das facilidades de carregamento dinâmico oferecidas por addinter. Por padrão
 // os argumentos são passados por valores, mas se você quiser
@@ -57,7 +57,7 @@
 //
 // Note que se você digitar o seguinte
 //
-// intppty()                
+// intppty()
 //
 // você verá todas as interfaces funcionando por referência
  ]]></programlisting>

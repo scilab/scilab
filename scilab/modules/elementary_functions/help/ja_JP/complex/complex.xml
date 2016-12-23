@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -78,25 +78,25 @@
         <para>
             以下の例では,実部と虚部から複素数を生成します.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 complex(1,2)
 complex([1 2],[3 4])
  ]]></programlisting>
         <para>
             <literal>a</literal> のみが指定された場合, 虚部は0に設定されます.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 complex([1 2 3])
  ]]></programlisting>
         <para>
             <literal>a</literal> がスカラーで <literal>b</literal> が
             行列の場合, 結果 <literal>c</literal> は,
             <literal>b</literal>と同じ大きさとなります.
-            同様に, <literal>b</literal> がスカラーで <literal>a</literal> 
+            同様に, <literal>b</literal> がスカラーで <literal>a</literal>
             が行列の場合, 結果 <literal>c</literal> は
             <literal>a</literal>と同じ大きさになります.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 c = complex([1 2 3], 4)
 c = complex(1, [2 3 4])
  ]]></programlisting>
@@ -105,11 +105,11 @@ c = complex(1, [2 3 4])
             異なる大きさの行列の場合,以下のセッションのような
             エラーが発生します.
         </para>
-        <screen><![CDATA[ 
+        <screen><![CDATA[
 -->complex(ones(2,3),ones(4,5))
- !--error 10000 
+ !--error 10000
 complex: Incompatible input arguments #1 and #2: Same sizes expected.
-at line      33 of function complex called by :  
+at line      33 of function complex called by :
 complex(ones(2,3),ones(4,5))
  ]]></screen>
         <para>
@@ -123,18 +123,18 @@ complex(ones(2,3),ones(4,5))
             この結果は,中間式<literal>0*%inf</literal>,つまり,
             <literal>%nan</literal>となります.
         </para>
-        <screen><![CDATA[ 
+        <screen><![CDATA[
 -->%inf+%i*%inf
  ans  =
-    Nan + Inf 
+    Nan + Inf
  ]]></screen>
         <para>
             この問題の解決策は <literal>complex</literal>関数を使用することです.
         </para>
-        <screen><![CDATA[ 
+        <screen><![CDATA[
 -->complex(%inf,%inf)
  ans  =
-    Inf + Inf 
+    Inf + Inf
  ]]></screen>
     </refsection>
     <refsection role="see also">

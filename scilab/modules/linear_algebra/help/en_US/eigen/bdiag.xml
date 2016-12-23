@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -59,13 +59,13 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <programlisting role=""><![CDATA[ 
-[Ab [,X [,bs]]]=bdiag(A [,rmax]) 
+        <programlisting role=""><![CDATA[
+[Ab [,X [,bs]]]=bdiag(A [,rmax])
  ]]></programlisting>
         <para>
             performs the block-diagonalization of matrix <literal>A</literal>.  bs
             gives the structure of the blocks (respective sizes of the
-            blocks).  <literal>X</literal> is the change of basis i.e 
+            blocks).  <literal>X</literal> is the change of basis i.e
             <literal>Ab = inv(X)*A*X</literal>is block diagonal.
         </para>
         <para>
@@ -81,7 +81,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Real case: 1x1 and 2x2 blocks
 a=rand(5,5);[ab,x,bs]=bdiag(a);ab
 

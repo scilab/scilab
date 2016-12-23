@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
  * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -40,7 +40,7 @@
         <title>Description</title>
         <para>
             <literal>unzoom()</literal> is used to remove the zoom effect for all the axes of the
-            current graphic figure: 
+            current graphic figure:
         </para>
         <para>
             <literal>unzoom(H)</literal> is used to remove the zoom effect for all the
@@ -51,7 +51,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf()
 x=0:0.01:6*%pi;
 plot2d(x,sin(x.^2))
@@ -68,7 +68,7 @@ subplot(212)
 plot2d(x,cos(2*x))
 a2=gca();
 rect=[3 -2 7 10]; // a rectangle specified in the current axes (last one) coordinates
-zoom_rect(rect) 
+zoom_rect(rect)
 unzoom(a1) // unzoom first plot only
 unzoom(a2) // unzoom second plot only
 zoom_rect(rect) // zoom again

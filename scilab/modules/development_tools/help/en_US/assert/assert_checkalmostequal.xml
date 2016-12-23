@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * 
+ *
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -27,7 +27,7 @@
             flag = assert_checkalmostequal ( computed , expected , reltol , abstol )
             flag = assert_checkalmostequal ( computed , expected , reltol , abstol , comptype )
             [flag,errmsg] = assert_checkalmostequal ( ... )
-            
+
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -104,11 +104,11 @@
             The default value comptype="matrix" option performs the comparison for the matrices as a whole,
             the norm of the difference of the matrices is used.
             The comptype="element" option performs the comparison elementwise, i.e.
-            all the elements of the matrices must be almost equal. 
-            Choosing between these two comparison types must be done with care. 
-            For example, if we are checking the elementwise output of an elementary function, 
-            we should choose the "element" comparison type, since we must compare the 
-            matrix elements one after the other. 
+            all the elements of the matrices must be almost equal.
+            Choosing between these two comparison types must be done with care.
+            For example, if we are checking the elementwise output of an elementary function,
+            we should choose the "element" comparison type, since we must compare the
+            matrix elements one after the other.
         </para>
         <para>
             If the IEEE values %inf, -%inf or %nan values are in the matrices,

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -31,7 +31,7 @@
                 <term>x</term>
                 <listitem>
                     <para>vetor ou matriz (de reais, complexos, esparso(a) ou de
-                        polinômios) 
+                        polinômios)
                     </para>
                 </listitem>
             </varlistentry>
@@ -82,7 +82,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 v=(1:8)^3;
 diff(v)
 diff(v,3)

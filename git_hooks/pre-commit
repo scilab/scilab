@@ -134,6 +134,9 @@ __indent_xml() {
 
     echo "Formatting" "$FILES"
     "$XMLINDENT" -w -i 4 $FILES || return 2;
+    # xmlindent does not remove trailing whitespaces
+    # and might add some on empty lines
+    sed -i -e 's/[ \t]*$//' $FILES || return 2;
     git add $FILES || return 3;
 }
 

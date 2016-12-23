@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isinf" xml:lang="fr">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2016 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="isinf" xml:lang="fr">
     <refnamediv>
         <refname>isinf</refname>
-        <refpurpose>vérifie si des composantes "Inf" (infinies) sont
-            présentes.
-        </refpurpose>
+        <refpurpose>teste la présence de valeurs infinies</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>r=isinf(x)</synopsis>
+        <title>Syntaxe</title>
+        <synopsis>r = isinf(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -16,8 +32,14 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>vecteur ou matrice complexe ou réelle. r : vecteur ou matrice
-                        de booléens.
+                    <para>matrice de nombres décimaux ou complexes.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                  <para>matrice de booléens, de même taille que <varname>x</varname>
                     </para>
                 </listitem>
             </varlistentry>
@@ -26,16 +48,21 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>isinf(x)</literal> renvoie un vecteur ou une matrice de
-            booléens contenant des composantes égales à %T (vrai) correspondant aux
-            composantes "Inf" (infinies) de <literal>x</literal> et %F (faux) pour les
-            autres.
+            <literal>isinf(x)</literal> renvoie une matrice <literal>r</literal> dont chaque
+            élément <literal>r(i)</literal> vaut <literal>%T</literal> (vrai) si et seulement si
+            <literal>x(i)</literal> est infini.
+       </para>
+       <para>Pour <literal>x</literal> complexe, <literal>x(i)</literal> est considéré infini
+         dés que sa partie réelle ou complexe ou les deux sont infinies.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
-isinf([1 0.01 -%inf %inf])
+        <programlisting role="example"><![CDATA[
+[i, inf, nan] = (%i, %inf, %nan);
+isinf([-1  0.01 -inf  inf  nan])
+isinf([2+i, -10-inf, inf+i])
+isinf([nan-i, inf-nan*i, nan+i*inf])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -43,6 +70,15 @@ isinf([1 0.01 -%inf %inf])
         <simplelist type="inline">
             <member>
                 <link linkend="isnan">isnan</link>
+            </member>
+            <member>
+                <link linkend="isreal">isreal</link>
+            </member>
+            <member>
+                <link linkend="isnum">isnum</link>
+            </member>
+            <member>
+                <link linkend="type">type</link>
             </member>
         </simplelist>
     </refsection>

@@ -53,7 +53,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 p=poly([0,10,1+%i,1-%i],'x');
 roots(p)
 A=rand(3,3);roots(poly(A,'x'))    // Evals by characteristic polynomial
@@ -80,19 +80,11 @@ spec(A)
             "Algorithm 493: Zeros of a Real
             Polynomial", ACM TOMS Volume 1, Issue 2 (June 1975), pp. 178-189
         </para>
-        <para>Jenkins, M. A. and Traub, J. F. (1970), A Three-Stage Algorithm for 
+        <para>Jenkins, M. A. and Traub, J. F. (1970), A Three-Stage Algorithm for
             Real Polynomials Using Quadratic Iteration, SIAM J. Numer. Anal., 7(1970), 545-566.
         </para>
         <para>Jenkins, M. A. and Traub, J. F. (1970), Principles for Testing Polynomial Zerofinding Programs.
             ACM TOMS 1, 1 (March 1975), pp. 26-34
-        </para>
-    </refsection>
-    <refsection>
-        <title>使用される関数</title>
-        <para>ソースコードrpoly.f はScilabの配布ソースのディレクトリ
-            SCI/modules/polynomials/src/fortran にある.
-            コンパニオン行列が使用される場合,固有値計算は
-            LapackコードであるDGEEVおよびZGEEVにより行われる.
         </para>
     </refsection>
 </refentry>

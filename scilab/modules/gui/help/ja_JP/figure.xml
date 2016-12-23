@@ -8,7 +8,7 @@
         <title>呼び出し手順</title>
         <synopsis>
             f = figure(num);
-            f = figure("PropertyName1", Propertyvalue1, ..., ..., "PropertyNameN", PropertyvalueN); 
+            f = figure("PropertyName1", Propertyvalue1, ..., ..., "PropertyNameN", PropertyvalueN);
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -27,7 +27,7 @@
             <varlistentry>
                 <term>num</term>
                 <listitem>
-                    <para>作成するウインドウのID. 
+                    <para>作成するウインドウのID.
                         指定されない場合, 最初のフリーなIDが使用されます.
                     </para>
                 </listitem>
@@ -64,7 +64,7 @@
                 <term>BackgroundColor</term>
                 <listitem>
                     <para>
-                        図の背景色を表す実数ベクトル [1,3] または文字列. 
+                        図の背景色を表す実数ベクトル [1,3] または文字列.
                         色は赤, 緑および青の値で指定します.
                         これらの値は[0,1]の範囲の実数です.
                         色は実数ベクトル,すなわち[R,G,B]または
@@ -84,7 +84,7 @@
                 <term>ForegroundColor</term>
                 <listitem>
                     <para>
-                        図の表面色を表す実数ベクトル [1,3] または文字列. 
+                        図の表面色を表す実数ベクトル [1,3] または文字列.
                         色は赤, 緑および青の値で指定します.
                         これらの値は[0,1]の範囲の実数です.
                         色は実数ベクトル,すなわち[R,G,B]または
@@ -98,7 +98,7 @@
                 <listitem>
                     <para>
                         これにより図の外観を制御できます.
-                        [1,4]の実数ベクトルで, [x y width height] 
+                        [1,4]の実数ベクトルで, [x y width height]
                         各文字は左上隅の位置x,左上隅の位置y,
                         仮想グラフィックウインドウの幅と高さ
                         (uicontrolsおよびグラフィックを有する図の部分)
@@ -135,7 +135,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // figure_id==3の図を作成します
 h=figure(3);
 // 図3にテキストuicontrolを追加します

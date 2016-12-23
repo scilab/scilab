@@ -38,7 +38,7 @@
                     <itemizedlist>
                         <listitem>
                             <para> 'delta': a random perturbation will be sampled via an
-                                uniform distribution between -delta and + delta. 
+                                uniform distribution between -delta and + delta.
                             </para>
                         </listitem>
                         <listitem>

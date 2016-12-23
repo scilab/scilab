@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -50,7 +50,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimbase_get</literal> function returns the value for the given key. 
+            The <literal>optimbase_get</literal> function returns the value for the given key.
             If the key is unknown, this function generates an error.
         </para>
         <para>
@@ -61,7 +61,7 @@
                 <term>-funevals </term>
                 <listitem>
                     <para>
-                        The number of function evaluations is a 1-by-1 matrix of doubles, 
+                        The number of function evaluations is a 1-by-1 matrix of doubles,
                         positive, integer value.
                     </para>
                 </listitem>
@@ -70,7 +70,7 @@
                 <term>-iterations </term>
                 <listitem>
                     <para>
-                        The number of iterations is a 1-by-1 matrix of doubles, positive, 
+                        The number of iterations is a 1-by-1 matrix of doubles, positive,
                         integer value.
                     </para>
                 </listitem>
@@ -98,7 +98,7 @@
                         An array, with nbiter values, containing the history of x during the iterations.
                     </para>
                     <para>
-                        This array is available after optimization if the history storing was enabled with 
+                        This array is available after optimization if the history storing was enabled with
                         the <literal>-storehistory</literal> option.
                     </para>
                 </listitem>
@@ -107,11 +107,11 @@
                 <term>-historyfopt </term>
                 <listitem>
                     <para>
-                        An array, with nbiter values, containing the history of the function value during 
+                        An array, with nbiter values, containing the history of the function value during
                         the iterations.
                     </para>
                     <para>
-                        This array is available after optimization if the history storing was enabled with 
+                        This array is available after optimization if the history storing was enabled with
                         the <literal>-storehistory</literal> option.
                     </para>
                 </listitem>
@@ -136,7 +136,7 @@
                 <term>-logstartup </term>
                 <listitem>
                     <para>
-                        A 1-by-1 matrix of booleans. Set to %t when the logging is started up 
+                        A 1-by-1 matrix of booleans. Set to %t when the logging is started up
                         (default <literal>-logstartup</literal> = %f).
                     </para>
                 </listitem>
@@ -146,9 +146,9 @@
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     opt = optimbase_new();
-    
+
     // Set optimum
     opt = optimbase_set(opt,"-xopt",[1.0 1.0]) ;
     // Get optimum

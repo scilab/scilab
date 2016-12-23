@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) INRIA
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 1996 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -32,7 +32,9 @@
                 <term>sl</term>
                 <listitem>
                     <para>
-                        list (<literal>syslin</literal> SIMO linear system).
+                        A siso or simo linear dynamical system, in state
+                        space, transfer function or zpk representations,
+                        in continuous or discrete time.
                     </para>
                 </listitem>
             </varlistentry>
@@ -103,7 +105,7 @@
                 ["$\frac{s^2+18 s+100}{s^2+6.06 s+102.1}$";
                 "$\frac{s^2+3.02 s+228.01}{s^2+27 s+225}$"])
                 title('Gainplot')
-                
+
             </scilab:image>
         </para>
     </refsection>
@@ -130,4 +132,16 @@
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>handling zpk representation</para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+
 </refentry>

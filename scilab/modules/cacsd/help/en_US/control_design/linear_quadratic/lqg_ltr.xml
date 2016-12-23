@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -52,8 +52,8 @@
         <para>
             returns the Kalman gains for:
         </para>
-        <programlisting role=""><![CDATA[ 
-         x = a*x + b*u + l*w1   
+        <programlisting role=""><![CDATA[
+         x = a*x + b*u + l*w1
 (sl)
          y = c*x + mu*I*w2
 
@@ -62,7 +62,7 @@
         <para>
             Cost function:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
          /+oo
          |
 J    = E(| [z(t)'*z(t) + ro^2*u(t)'*u(t)]dt)
@@ -73,7 +73,7 @@ J    = E(| [z(t)'*z(t) + ro^2*u(t)'*u(t)]dt)
             The lqg/ltr approach looks for <literal>L,mu,H,ro</literal> such that:
             J(lqg) = J(freq) where
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
         /+oo        *  *           *
 J    =  | tr[S  W  W  S ] + tr[T  T]dw
  freq   |
@@ -82,8 +82,8 @@ J    =  | tr[S  W  W  S ] + tr[T  T]dw
         <para>
             and
         </para>
-        <programlisting role=""><![CDATA[ 
- S = (I + G*K)^(-1)  
+        <programlisting role=""><![CDATA[
+ S = (I + G*K)^(-1)
  T = G*K*(I+G*K)^(-1)
  ]]></programlisting>
     </refsection>

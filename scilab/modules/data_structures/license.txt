@@ -17,7 +17,8 @@ along with this program.
 Misc:
 =====
 
-Files: src/c/hmops.c
+Files:
+src/c/hmops.c
 
 Copyright: Bruno Pincon
 

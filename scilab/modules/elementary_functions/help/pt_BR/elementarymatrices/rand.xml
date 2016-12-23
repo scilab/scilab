@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -23,7 +23,7 @@
         <synopsis>rand(m1,m2,.. [,key])
             rand(x [, key])
             rand()
-            
+
             rand(key)
             rand("seed" [,n])
             rand("info")
@@ -59,7 +59,7 @@
         <title>Descrição</title>
         <para>Gerador de matriz randômico. </para>
         <para>Sem argumento "key", as sintaxes abaixo produzem matrizes randômicas
-            com o gerador randômico corrente (o padrão é "uniform") 
+            com o gerador randômico corrente (o padrão é "uniform")
         </para>
         <variablelist>
             <varlistentry>
@@ -85,7 +85,7 @@
                 <listitem>
                     <para>é uma matriz randômica com mesmo tamanho que a.
                         <literal>rand(a)</literal>é de complexos se <literal>a</literal> é
-                        uma matriz de complexos. 
+                        uma matriz de complexos.
                     </para>
                 </listitem>
             </varlistentry>
@@ -99,7 +99,7 @@
             </varlistentry>
         </variablelist>
         <para>Se presente, o argumento "key" permite especificar uma outra
-            distribuição randômica. 
+            distribuição randômica.
         </para>
         <variablelist>
             <varlistentry>
@@ -115,7 +115,7 @@
                 <term>rand('normal')</term>
                 <listitem>
                     <para>o gerador corrente é acertado como gerador de números
-                        randômico gaussiano (com média 0 e variância 1) . 
+                        randômico gaussiano (com média 0 e variância 1) .
                     </para>
                 </listitem>
             </varlistentry>
@@ -151,12 +151,12 @@
         <title>Observação</title>
         <para>
             Use a função mais poderosa <link linkend="grand">grand</link> ao
-            invés. 
+            invés.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=rand(10,10,'uniform')
 rand('normal')
 rand('info')

@@ -16,6 +16,7 @@
 function loadXcosLibs()
     // Extracted from initial_scicos_tables
     scicos_pal_libs = ["Branching","Events","Misc","Sinks","Threshold","Linear","MatrixOp","NonLinear","Sources","Electrical","Hydraulics","PDE","IntegerOp"];
+    scicos_libs = ["scicos_scicos","scicos_auto"];
 
     // list of scicos libraries that we need at xcos launch
     listlibsname = [];
@@ -26,11 +27,12 @@ function loadXcosLibs()
             listlibsname = [listlibsname, theLib];
         end
     end
-    clear theLib;
 
-    if isfile("SCI/modules/scicos/macros/scicos_scicos/lib") then
-        load("SCI/modules/scicos/macros/scicos_scicos/lib");
-        listlibsname = [listlibsname, "scicos_scicos"];
+    for theLib = scicos_libs
+        if isfile("SCI/modules/scicos/macros/" + theLib + "/lib") then
+            load("SCI/modules/scicos/macros/" + theLib + "/lib");
+            listlibsname = [listlibsname, theLib];
+        end
     end
 
     // name and libname

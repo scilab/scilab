@@ -16,6 +16,12 @@
 
 package org.scilab.modules.renderer.JoGLView.datatip;
 
+import org.scilab.forge.scirenderer.Canvas;
+import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
+import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
+import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
+import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
+import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.texture.AnchorPosition;
@@ -36,6 +42,8 @@ import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 import java.awt.Dimension;
 import org.scilab.modules.renderer.JoGLView.text.TextManager;
 
+import java.nio.FloatBuffer;
+
 /**
  * Datatip text drawer
  *
@@ -44,8 +52,18 @@ import org.scilab.modules.renderer.JoGLView.text.TextManager;
 
 public class DatatipTextDrawer extends TextManager {
 
-    public DatatipTextDrawer(TextureManager textureManager) {
-        super(textureManager);
+    ElementsBuffer lineBuffer;
+    Canvas canvas;
+    public DatatipTextDrawer(Canvas canvas) {
+        super(canvas.getTextureManager());
+        this.canvas = canvas;
+        lineBuffer = canvas.getBuffersManager().createElementsBuffer();
+    }
+
+    @Override
+    public void disposeAll() {
+        super.disposeAll();
+        canvas.getBuffersManager().dispose(lineBuffer);
     }
 
     /**
@@ -91,92 +109,103 @@ public class DatatipTextDrawer extends TextManager {
         double r = datatip.getMarkStyle() == 11 ? 1.0 : 2.0;
         finalSize -= (finalSize >= 2.0) ? r : 0.0;
 
-        Vector3d delta = new Vector3d(finalSize, finalSize, 0);
-        /* set up the text position according to the datatip orientation*/
-        if (datatip.isAutoOrientationEnabled()) {
-            int autopos = getAutoOrientation(datatip);
-            if (autopos != -1) {
-                Vector3d cp = cornerPositions[0], d = delta, p;
-                if (autopos == 2 || autopos == 3) {
-                    cp = cp.minus(textBoxVectors[1]);
-                    d = d.setY(-finalSize);
-                }
-                if (autopos == 0 || autopos == 2) {
-                    cp = cp.minus(textBoxVectors[0]);
-                    d = d.setX(-finalSize);
-                }
+        if (!datatip.getDetachedMode()) {
+            Vector3d delta = new Vector3d(finalSize, finalSize, 0);
+            /* set up the text position according to the datatip orientation*/
+            if (datatip.isAutoOrientationEnabled()) {
+                int autopos = getAutoOrientation(datatip);
+                if (autopos != -1) {
+                    Vector3d cp = cornerPositions[0], d = delta, p;
+                    if (autopos == 2 || autopos == 3) {
+                        cp = cp.minus(textBoxVectors[1]);
+                        d = d.setY(-finalSize);
+                    }
+                    if (autopos == 0 || autopos == 2) {
+                        cp = cp.minus(textBoxVectors[0]);
+                        d = d.setX(-finalSize);
+                    }
 
-                p = projection.unproject(cp.plus(textBoxVectors[0]).plus(textBoxVectors[1]));
-                Vector3d ucp = projection.unproject(cp);
-                if (p.getX() < -1 || p.getX() > 1 || p.getY() < -1 || p.getY() > 1 || ucp.getX() < -1 || ucp.getX() > 1 || ucp.getY() < -1 || ucp.getY() > 1) {
-                    autopos = -1;
-                } else {
-                    cornerPositions[0] = cp;
-                    delta = d;
-                }
-            }
-
-            if (autopos == -1) {
-                Vector3d position = projection.unproject(cornerPositions[0].minus(textBoxVectors[0]).plus(textBoxVectors[1]));
-                if (position.getX() >= -1 && position.getX() <= 1 && position.getY() >= -1 && position.getY() <= 1) {
-                    cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
-                    delta = delta.setX(-finalSize);
-                } else {
-                    position = projection.unproject(cornerPositions[0].plus(textBoxVectors[0]).minus(textBoxVectors[1]));
-                    if (position.getX() >= -1 && position.getX() <= 1 && position.getY() >= -1 && position.getY() <= 1) {
-                        cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
-                        delta = delta.setY(-finalSize);
+                    p = projection.unproject(cp.plus(textBoxVectors[0]).plus(textBoxVectors[1]));
+                    Vector3d ucp = projection.unproject(cp);
+                    if (p.getX() < -1 || p.getX() > 1 || p.getY() < -1 || p.getY() > 1 || ucp.getX() < -1 || ucp.getX() > 1 || ucp.getY() < -1 || ucp.getY() > 1) {
+                        autopos = -1;
                     } else {
-                        position = projection.unproject(cornerPositions[0].minus(textBoxVectors[0]).minus(textBoxVectors[1]));
+                        cornerPositions[0] = cp;
+                        delta = d;
+                    }
+                }
+
+                if (autopos == -1) {
+                    Vector3d position = projection.unproject(cornerPositions[0].minus(textBoxVectors[0]).plus(textBoxVectors[1]));
+                    if (position.getX() >= -1 && position.getX() <= 1 && position.getY() >= -1 && position.getY() <= 1) {
+                        cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
+                        delta = delta.setX(-finalSize);
+                    } else {
+                        position = projection.unproject(cornerPositions[0].plus(textBoxVectors[0]).minus(textBoxVectors[1]));
                         if (position.getX() >= -1 && position.getX() <= 1 && position.getY() >= -1 && position.getY() <= 1) {
                             cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
-                            cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
-                            delta = delta.setX(-finalSize);
                             delta = delta.setY(-finalSize);
+                        } else {
+                            position = projection.unproject(cornerPositions[0].minus(textBoxVectors[0]).minus(textBoxVectors[1]));
+                            if (position.getX() >= -1 && position.getX() <= 1 && position.getY() >= -1 && position.getY() <= 1) {
+                                cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
+                                cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
+                                delta = delta.setX(-finalSize);
+                                delta = delta.setY(-finalSize);
+                            }
                         }
                     }
                 }
+            } else {
+                if (datatip.getOrientation() == 2 || datatip.getOrientation() == 3) {
+                    cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
+                    delta = delta.setY(-finalSize);
+                }
+                if (datatip.getOrientation() == 0 || datatip.getOrientation() == 2) {
+                    cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
+                    delta = delta.setX(-finalSize);
+                }
+                if (datatip.getOrientation() == 4) {
+                    cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
+                    cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1].times(0.5));
+                    delta = delta.setY(0);
+                    delta = delta.setX(Math.sqrt(2) * (-finalSize));
+                }
+                if (datatip.getOrientation() == 5) {
+                    cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1].times(0.5));
+                    delta = delta.setY(0);
+                    delta = delta.setX(Math.sqrt(2) * finalSize);
+                }
+                if (datatip.getOrientation() == 6) {
+                    cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0].times(0.5));
+                    delta = delta.setX(0);
+                    delta = delta.setY(Math.sqrt(2) * finalSize);
+                }
+                if (datatip.getOrientation() == 7) {
+                    cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0].times(0.5));
+                    cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
+                    delta = delta.setX(0);
+                    delta = delta.setY(Math.sqrt(2) * (-finalSize));
+                }
             }
-        } else {
-            if (datatip.getOrientation() == 2 || datatip.getOrientation() == 3) {
-                cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
-                delta = delta.setY(-finalSize);
-            }
-            if (datatip.getOrientation() == 0 || datatip.getOrientation() == 2) {
-                cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
-                delta = delta.setX(-finalSize);
-            }
-            if (datatip.getOrientation() == 4) {
-                cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0]);
-                cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1].times(0.5));
-                delta = delta.setY(0);
-                delta = delta.setX(Math.sqrt(2) * (-finalSize));
-            }
-            if (datatip.getOrientation() == 5) {
-                cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1].times(0.5));
-                delta = delta.setY(0);
-                delta = delta.setX(Math.sqrt(2) * finalSize);
-            }
-            if (datatip.getOrientation() == 6) {
-                cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0].times(0.5));
-                delta = delta.setX(0);
-                delta = delta.setY(Math.sqrt(2) * finalSize);
-            }
-            if (datatip.getOrientation() == 7) {
-                cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[0].times(0.5));
-                cornerPositions[0] = cornerPositions[0].minus(textBoxVectors[1]);
-                delta = delta.setX(0);
-                delta = delta.setY(Math.sqrt(2) * (-finalSize));
-            }
+
+            cornerPositions[0] = cornerPositions[0].plus(delta);
+            cornerPositions[1] = cornerPositions[1].plus(delta);
         }
+        Vector3d p = cornerPositions[0];
 
-        cornerPositions[0] = cornerPositions[0].plus(delta);
-        cornerPositions[1] = cornerPositions[1].plus(delta);
-
+        if (datatip.getDetachedMode()) {
+            p = projection.project(calculateDetachedPoint(datatip));
+            drawDetachedLine(drawingTools, colorMap, datatip, calculateDetachedLine(p, cornerPositions, textBoxVectors, finalSize));
+            Vector3d diff = cornerPositions[1].minus(cornerPositions[0]);
+            cornerPositions[0] = p;
+            cornerPositions[1] = p.plus(diff);
+        }
         /* The Text object's rotation direction convention is opposite to the standard one, its angle is expressed in radians. */
-        drawingTools.draw(texture, AnchorPosition.LOWER_LEFT, cornerPositions[0], -180.0 * datatip.getFontAngle() / Math.PI);
-
+        drawingTools.draw(texture, AnchorPosition.LOWER_LEFT, p, -180.0 * datatip.getFontAngle() / Math.PI);
         drawingTools.getTransformationManager().useSceneCoordinate();
+
+
 
         /* Compute the corners of the text's bounding box in window coordinates */
         Vector3d[] projCorners;
@@ -191,6 +220,52 @@ public class DatatipTextDrawer extends TextManager {
 
         /* Set the computed coordinates */
         datatip.setCorners(coordinates);
+    }
+
+    public void drawDetachedLine(final DrawingTools drawingTools, final ColorMap colorMap, final Datatip datatip, Vector3d[] pos) throws SciRendererException {
+        DefaultGeometry geom = new DefaultGeometry();
+
+        geom.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
+        geom.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
+        geom.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
+        Appearance appearance = new Appearance();
+        appearance.setLineColor(ColorFactory.createColor(colorMap, datatip.getLine().getColor()));
+
+        appearance.setLinePattern(datatip.getLineStyleAsEnum().asPattern());
+
+        FloatBuffer vertices = FloatBuffer.allocate(6);
+        vertices.put(0, (float)pos[0].getX());
+        vertices.put(1, (float)pos[0].getY());
+        vertices.put(2, (float)pos[0].getZ());
+
+        vertices.put(3, (float)pos[1].getX());
+        vertices.put(4, (float)pos[1].getY());
+        vertices.put(5, (float)pos[1].getZ());
+        lineBuffer.setData(vertices, 3);
+        geom.setVertices(lineBuffer);
+
+        /* Draws in window coordinates */
+        //visitor.getDrawingTools().getTransformationManager().useWindowCoordinate();
+        drawingTools.draw(geom, appearance);
+        //visitor.getDrawingTools().getTransformationManager().useSceneCoordinate();
+    }
+
+    private Vector3d[] calculateDetachedLine(Vector3d pos, Vector3d[] corners, Vector3d[] textBox, double halfMarkSize) {
+        Vector3d p1 = pos;
+        Vector3d p0 = corners[0];
+        double dx = halfMarkSize;
+        double dy = halfMarkSize;
+
+        if (p1.getX() < corners[0].getX()) {
+            p1 = p1.plus(textBox[0]);
+            dx = -halfMarkSize;
+        }
+        if (p1.getY() < corners[0].getY()) {
+            p1 = p1.plus(textBox[1]);
+            dy = -halfMarkSize;
+        }
+        p0 = p0.plus(new Vector3d(new double[] {dx, dy, 0.0}));
+        return new Vector3d[] {p0, p1};
     }
 
     /**
@@ -281,6 +356,16 @@ public class DatatipTextDrawer extends TextManager {
         double[][] factors = axes.getScaleTranslateFactors();
         boolean[] logFlags = new boolean[] {axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
         Vector3d v = ScaleUtils.applyLogScale(new Vector3d(datatip.getTipData()), logFlags);
+
+        return new Vector3d(v.getX() * factors[0][0] + factors[1][0], v.getY() * factors[0][1] + factors[1][1], v.getZ() * factors[0][2] + factors[1][2]);
+    }
+
+    public static Vector3d calculateDetachedPoint(Datatip datatip) {
+        Axes axes = (Axes) GraphicController.getController().getObjectFromId(datatip.getParentAxes());
+        double[][] factors = axes.getScaleTranslateFactors();
+        boolean[] logFlags = new boolean[] {axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
+        Double[] dp = datatip.getDetachedPosition();
+        Vector3d v = ScaleUtils.applyLogScale(new Vector3d(dp[0], dp[1], dp[2]), logFlags);
 
         return new Vector3d(v.getX() * factors[0][0] + factors[1][0], v.getY() * factors[0][1] + factors[1][1], v.getZ() * factors[0][2] + factors[1][2]);
     }

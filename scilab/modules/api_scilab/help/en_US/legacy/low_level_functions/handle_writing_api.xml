@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -150,7 +150,7 @@
         <!--Func_list: read_write_handle-->
         <title>Gateway Source</title>
         <programlisting role="code_gateway">
-            <![CDATA[ 
+            <![CDATA[
 #include "api_scilab.h"
 int read_write_handle(char *fname,void* pvApiCtx)
 {
@@ -198,7 +198,7 @@ int read_write_handle(char *fname,void* pvApiCtx)
     <refsection>
         <title>Scilab test script</title>
         <programlisting role="code_scilab">
-            <![CDATA[ 
+            <![CDATA[
 f1 = scf(1);
 f2 = scf(2);
 a_ref = [f1, f2];

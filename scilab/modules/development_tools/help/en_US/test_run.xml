@@ -91,7 +91,10 @@
                         <varlistentry>
                             <term>"create_ref"</term>
                             <listitem>
-                                <para>create the .dia.ref file and does not check if the .dia and .dia.ref are equal</para>
+                                <para>creates the .dia.ref file (for tests not having the
+                                  <literal>&lt;-- NO CHECK REF --></literal> flag)
+                                  and does not check if the .dia and .dia.ref are equal.
+                                  </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -465,12 +468,12 @@ test_run([],[],['no_check_ref','mode_nw']);
 // Console mode
 test_run time [] no_check_ref //tests time module with no_check_ref option
  ]]></programlisting>
-        
+
         <programlisting role="example"><![CDATA[
 // Run unitary tests of an external module (with his path)
 test_run('SCI/contrib/toolbox_skeleton')
  ]]></programlisting>
-        
+
         <programlisting role="example"><![CDATA[
 // Export to a XML Xunit file
 test_run('boolean',[],[],TMPDIR+"/boolean_test_run.xml");

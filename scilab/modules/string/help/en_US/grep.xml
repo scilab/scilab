@@ -98,7 +98,7 @@
             In the following example, we search one or two strings in a text,
             which is stored in the <varname>txt</varname> variable.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 txt=['find matches of a string in a vector of strings'
      'search position of a character string in an other string'
      'Compare Strings'];
@@ -112,7 +112,7 @@ grep(txt,['strings' 'Strings'])
     <refsection>
         <title>Example #2</title>
         <para>In the following example, we perform regexp searches.</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 str = ["hat";"cat";"hhat";"chat";"hcat";"ccchat";"at";"dog"]
 
 grep(str,'/[hc]+at/','r')

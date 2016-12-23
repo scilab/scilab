@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -75,7 +75,7 @@
         <para>
             <literal>flag1='SRT'</literal> (デフォルト値)の場合,以下の"完全な" 拡張プラントを返します:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
     [ I | -G]   -->'S'
     [ 0 |  I]   -->'R'
 P = [ 0 |  G]   -->'T'
@@ -83,7 +83,7 @@ P = [ 0 |  G]   -->'T'
     [ I | -G
  ]]></programlisting>
         <para>
-            <literal> 'S' </literal>, <literal> 'R' </literal>, <literal> 'T' </literal> 
+            <literal> 'S' </literal>, <literal> 'R' </literal>, <literal> 'T' </literal>
             は,それぞれ,<literal>P</literal>の最初の3つの(ブロック)行を指します.
         </para>
         <para>
@@ -99,7 +99,7 @@ P = [ 0 |  G]   -->'T'
             入力感度関数に関連した拡張プラント,つまり,
             The augmented plant associated with input sensitivity functions, namely
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
     [ I | -I]   -->'S'  (input sensitivity)
     [ G | -G]   -->'R'  (G*input sensitivity)
 P = [ 0 |  I]   -->'T'  (K*G*input sensitivity)
@@ -133,7 +133,7 @@ P = [ 0 |  I]   -->'T'  (K*G*input sensitivity)
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 G=ssrand(2,3,2); //プラント
 K=ssrand(3,2,2); //補償器
 [P,r]=augment(G,'T');

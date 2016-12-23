@@ -40,7 +40,7 @@
 
 typedef struct __DOUBLE_FORMAT__
 {
-    __DOUBLE_FORMAT__() : iWidth(0), iPrec(0), bExp(false), bPrintPoint(true), bPrintPlusSign(false), bPrintOne(true), bPaddSign(true), iSignLen(SIGN_LENGTH), bPrintBlank(true) {}
+    __DOUBLE_FORMAT__() : iWidth(0), iPrec(0), bExp(false), bPrintPoint(true), bPrintPlusSign(false), bPrintOne(true), bPaddSign(true), iSignLen(SIGN_LENGTH), bPrintBlank(true), bPrintComplexPlusSpace(false) {}
     int iWidth;
     int iPrec;
     bool bExp;
@@ -50,6 +50,7 @@ typedef struct __DOUBLE_FORMAT__
     bool bPaddSign;
     int iSignLen;
     bool bPrintBlank;
+    bool bPrintComplexPlusSpace;
 } DoubleFormat;
 
 /*double*/
@@ -66,6 +67,9 @@ EXTERN_AST void addDoubleComplexValue(std::wostringstream *_postr, double _dblR,
 EXTERN_AST void configureStream(std::wostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
 EXTERN_AST void addSpaces(std::wostringstream *_postr, int _iSpace);
 void addColumnString(std::wostringstream& ostr, int _iFrom, int _iTo);
+EXTERN_AST void printEmptyString(std::wostringstream& ostr);
+EXTERN_AST void printDoubleValue(std::wostringstream& ostr, double val);
+EXTERN_AST void printComplexValue(std::wostringstream& ostr, double val_r, double val_i);
 
 /*int*/
 /*

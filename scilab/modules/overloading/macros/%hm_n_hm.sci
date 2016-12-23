@@ -9,10 +9,14 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
+// NO LONGER CALLED (hm of booleans, integers, decimal or complex number, polynomials, strings)
+// => TO BE DELETED
+
 function r=%hm_n_hm(a,b)
     r=and(a.dims==b.dims)
     if r then
-        r=hypermat(a.dims,a.entries<>b.entries)
+        r=matrix(a.entries<>b.entries, a.dims)
     else
         r=%t
     end

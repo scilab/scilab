@@ -30,8 +30,8 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-warning('on') 
+        <programlisting role="example"><![CDATA[
+warning('on')
 warning('este é um aviso')
 warning('off')
 warning('este é um aviso')

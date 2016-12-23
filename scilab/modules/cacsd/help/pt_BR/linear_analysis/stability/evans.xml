@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -78,7 +78,7 @@
                 clf();evans(H,100);sgrid()
                 [Ki,s]=kpure(H)
                 plot([real(s) real(s)],[imag(s) -imag(s)],'*r')
-                
+
                 [Kr,s]=krac2(H)
             </scilab:image>
         </para>

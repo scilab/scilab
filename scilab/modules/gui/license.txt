@@ -16,7 +16,8 @@ along with this program.
 MAC OS X specific menu:
 =======================
 
-Files: src/java/org/scilab/modules/gui/bridge/window/OSXAdapter.java
+Files:
+src/java/org/scilab/modules/gui/bridge/window/OSXAdapter.java
 
 Copyright: 2003-2007 Apple, Inc., All Rights Reserved
 
@@ -63,7 +64,8 @@ POSSIBILITY OF SUCH DAMAGE.
 FileMask:
 =========
 
-File: src/java/org/scilab/modules/gui/bridge/filechooser/FileMask.java
+Files:
+src/java/org/scilab/modules/gui/bridge/filechooser/FileMask.java
 
 Copyright: 2002 Sun Microsystems, Inc. All  Rights Reserved.
 
@@ -99,3 +101,16 @@ License:
  You acknowledge that Software is not designed, licensed or intended for
  use in the design, construction, operation or maintenance of any nuclear
  facility.
+
+ImagePreview:
+=============
+
+Files:
+src/java/org/scilab/modules/gui/bridge/filechooser/ImagePreview.java
+
+Copyright:
+Copyright (c) 1995 - 2008 Sun Microsystems, Inc.
+
+License:
+BSD
+

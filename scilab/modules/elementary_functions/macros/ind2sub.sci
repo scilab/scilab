@@ -27,6 +27,10 @@ function varargout = ind2sub(dims, I)
     end
 
     varargout = list();
+    if isempty(I) then
+        varargout(1) = [];
+        return;
+    end
     d = cumprod(double(dims));
     k1 = I;
     k = [];

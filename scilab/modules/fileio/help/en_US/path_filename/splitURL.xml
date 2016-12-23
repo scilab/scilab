@@ -21,20 +21,20 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:scilab="http://www.scilab.org"
           xmlns:db="http://docbook.org/ns/docbook">
-    
+
     <refnamediv>
         <refname>splitURL</refname>
-        
+
         <refpurpose>Split an URL (HTTP, HTTPS, FTP...) </refpurpose>
     </refnamediv>
-    
+
     <refsynopsisdiv>
         <title>Syntax</title>
-        
+
         <synopsis>[proto, server, path, query, username, port, fragment] = splitURL(URL);
         </synopsis>
     </refsynopsisdiv>
-    
+
     <refsection>
         <title>Arguments</title>
         <variablelist>
@@ -108,30 +108,30 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection>
         <title>Description</title>
-        
+
         <para>Split an URL by component </para>
-        
+
         <para>
             This function is based on the <ulink url="http://xmlsoft.org/html/libxml-uri.html#xmlParseURI">libxml2 library (in particular, the function xmlParseURI)</ulink>.
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        
+
         <programlisting role="example">
             [proto, server, path, query, username, port, fragment] = splitURL("http://xmlsoft.org/html/libxml-uri.html#xmlParseURI")
-            
+
             [proto, server, path] = splitURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README")
-            
+
             [a,b,c,d]=splitURL("http://www.scilab.org/content/search?SearchText=plot")
-            
+
         </programlisting>
-        <!-- 
+        <!--
 // This example fails for now (probably a bug on evstr)
 // Retrieve the content and execute it
 [f,content]=getURL("http://fileexchange.scilab.org/toolboxes/161000/1.0/files/cshift.sci")
@@ -139,9 +139,9 @@ evstr(content);
 M = grand(3,4,"uin",0,9);
 cshift(M,1);
 -->
-        
+
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
@@ -150,7 +150,7 @@ cshift(M,1);
             </member>
         </simplelist>
     </refsection>
-    
+
     <refsection>
         <title>History</title>
         <revhistory>
@@ -162,5 +162,5 @@ cshift(M,1);
             </revision>
         </revhistory>
     </refsection>
-    
+
 </refentry>

@@ -169,15 +169,11 @@ BUILT_SOURCES+=swig
 endif
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/sci_x_choice.c \
-    sci_gateway/c/sci_x_mdialog.c \
-    sci_gateway/c/sci_x_dialog.c \
     sci_gateway/c/sci_x_choose.c \
     sci_gateway/c/sci_x_choose_modeless.c \
     sci_gateway/c/sci_unsetmenu.c \
     sci_gateway/c/sci_delmenu.c \
     sci_gateway/c/sci_setmenu.c \
-    sci_gateway/c/sci_ClipBoard.c \
     sci_gateway/c/sci_toolbar.c \
     sci_gateway/c/sci_uicontextmenu.c \
     sci_gateway/c/sci_uicontrol.c \
@@ -187,7 +183,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_messagebox.c \
     sci_gateway/c/sci_waitbar.c \
     sci_gateway/c/sci_progressionbar.c \
-    sci_gateway/c/sci_uigetcolor.c \
     sci_gateway/c/sci_getcallbackobject.c \
     sci_gateway/c/sci_exportUI.c \
     sci_gateway/c/sci_figure.c
@@ -208,7 +203,6 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_raise_window.cpp \
     sci_gateway/cpp/sci_usecanvas.cpp \
     sci_gateway/cpp/sci_helpbrowser.cpp \
-    sci_gateway/cpp/gui_gw.cpp \
     sci_gateway/cpp/sci_fire_closing_finished.cpp \
     sci_gateway/cpp/sci_useeditor.cpp \
     sci_gateway/cpp/sci_openged.cpp \
@@ -223,7 +217,12 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_datatip_set_interp.cpp \
     sci_gateway/cpp/sci_datatip_set_orient.cpp \
     sci_gateway/cpp/sci_saveGui.cpp \
-    sci_gateway/cpp/sci_loadGui.cpp
+    sci_gateway/cpp/sci_loadGui.cpp \
+    sci_gateway/cpp/sci_x_choice.cpp \
+    sci_gateway/cpp/sci_uigetcolor.cpp \
+    sci_gateway/cpp/sci_ClipBoard.cpp \
+    sci_gateway/cpp/sci_x_mdialog.cpp \
+    sci_gateway/cpp/sci_x_dialog.cpp
 
 libscigui_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
@@ -272,8 +271,7 @@ libscigui_disable_la_CPPFLAGS = \
 
 
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
-GUI_DISABLE_CXX_SOURCES = src/nogui/nogui_gw.cpp
-libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES) $(GUI_DISABLE_CXX_SOURCES)
+libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES)
 
 
 pkglib_LTLIBRARIES = libscigui-disable.la

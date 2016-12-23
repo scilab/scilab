@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -141,7 +141,7 @@
                                     条件数の逆数の下界として使用されます.
                                 </para>
                                 <para>
-                                    デフォルト:    TOL(1) = prod(size(matrix))*epsilon_machine 
+                                    デフォルト:    TOL(1) = prod(size(matrix))*epsilon_machine
                                     ただし, epsilon_machine は相対機械精度です.
                                 </para>
                             </listitem>
@@ -149,7 +149,7 @@
                         <varlistentry>
                             <term>TOL</term>
                             <listitem>
-                                <para>(2) はシステム次数を推定する際の許容誤差です. TOL(2) &gt;= 0の場合,  
+                                <para>(2) はシステム次数を推定する際の許容誤差です. TOL(2) &gt;= 0の場合,
                                     推定値の添え字はTOL(2)以上となる最後の特異値を指します.
                                     (TOL(2)より小さい特異値はゼロとみなされます.)
                                 </para>
@@ -232,7 +232,7 @@
             上三角分解 R を返します.
             モデルの構造は次のようになります:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 x(k+1) = Ax(k) + Bu(k) + w(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k).
  ]]></programlisting>
@@ -254,16 +254,16 @@ y(k)   = Cx(k) + Du(k) + e(k).
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //指定した線形システムからデータを生成
 A = [ 0.5, 0.1,-0.1, 0.2;
-      0.1, 0,  -0.1,-0.1;      
-     -0.4,-0.6,-0.7,-0.1;  
-      0.8, 0,  -0.6,-0.6];      
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
 B = [0.8;0.1;1;-1];
 C = [1 2 -1 0];
 SYS=syslin(0.1,A,B,C);
-U=(ones(1,1000)+rand(1,1000,'normal')); 
+U=(ones(1,1000)+rand(1,1000,'normal'));
 Y=(flts(U,SYS)+0.5*rand(1,1000,'normal'));
 // Rを計算
 [R,N,SVAL] = findR(15,Y',U');

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -39,9 +39,9 @@
                     <para>The simplex to set.</para>
                     <para>
                         The given matrix is expected to be a <literal>nbve</literal>-by-
-                        <literal>n</literal>, where <literal>n</literal> is the dimension of the space, 
-                        <literal>nbve</literal> is the number of vertices and with the following content 
-                        (where the data is organized by row with function value first, and 
+                        <literal>n</literal>, where <literal>n</literal> is the dimension of the space,
+                        <literal>nbve</literal> is the number of vertices and with the following content
+                        (where the data is organized by row with function value first, and
                         <literal>x</literal> coordinates)
                     </para>
                     <itemizedlist>
@@ -65,14 +65,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimsimplex_setall</literal> function sets all the coordinates and the 
+            The <literal>optimsimplex_setall</literal> function sets all the coordinates and the
             function values of all the vertices.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
      simplex = [
         3.  0.  0.
         4. 1.  0.
@@ -84,7 +84,7 @@
     s1 = optimsimplex_setall ( s1 , simplex );
     all = optimsimplex_getall(s1);
     disp(all)
-    
+
     s1 = optimsimplex_destroy(s1);
  ]]>
         </programlisting>

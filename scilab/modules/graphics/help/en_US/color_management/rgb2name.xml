@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -53,7 +53,7 @@
             <literal>rgb2name</literal> returns the color name corresponding to the RGB values
             given by its argument. A vector of color names can also be returned if the color has more than 1 name.
             <literal>r</literal>, <literal>g</literal> and <literal>b</literal> must be integers between 0 and 255
-            corresponding to colors components red, green and blue. As usual 0 means no intensity and 
+            corresponding to colors components red, green and blue. As usual 0 means no intensity and
             255 means all the intensity of the color. RGB values can also be given by a vector <literal>[r,g,b]</literal>.
         </para>
         <para>
@@ -65,7 +65,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rgb2name(255,128,128)
 rgb2name([255 215 0])
 // get color #10 of the current colormap and find its name

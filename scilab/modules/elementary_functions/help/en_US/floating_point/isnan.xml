@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Michael Baudin
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -47,24 +47,24 @@
         </para>
         <para>
             In this paragraph, we give the reason of the existence of this function.
-            Consider the floating point number <literal>x</literal> and assume that 
-            we want to know if this number is a Not A Number. 
+            Consider the floating point number <literal>x</literal> and assume that
+            we want to know if this number is a Not A Number.
             The condition <literal>(x==%nan)</literal> is false if <literal>x</literal> is equal
-            to <literal>%nan</literal>. This is why the function <literal>isnan</literal> is helpful: it allows to 
-            see if a floating point number is a NaN, without actually comparing its value 
+            to <literal>%nan</literal>. This is why the function <literal>isnan</literal> is helpful: it allows to
+            see if a floating point number is a NaN, without actually comparing its value
             against <literal>%nan</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 isnan([1 0.01 -%nan %inf-%inf])
  ]]></programlisting>
         <para>
             In the following example, we see that <literal>%nan</literal> has very particular
             comparison properties and compare the result with the <literal>isnan</literal> function.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     %nan == %nan
     %nan <> %nan
     isnan(%nan)
@@ -72,7 +72,7 @@ isnan([1 0.01 -%nan %inf-%inf])
         <para>
             In the following example, we extract the non-NaNs values <literal>y</literal> from the array <literal>x</literal>.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x = [1 2 %nan 3 %nan 4]
 k = find(~isnan(x))
 y = x(k)

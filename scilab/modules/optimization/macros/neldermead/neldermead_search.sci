@@ -1367,6 +1367,10 @@ endfunction
 //  Returns a string for the given vector.
 //
 function str = _strvec ( x )
+    if isempty(x) then
+        str = "";
+        return
+    end
     str = strcat(string(x)," ")
 endfunction
 //

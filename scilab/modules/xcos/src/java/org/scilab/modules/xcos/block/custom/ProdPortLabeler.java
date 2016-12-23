@@ -76,16 +76,16 @@ public class ProdPortLabeler {
          * Set the ports labels
          */
         JavaController controller = new JavaController();
-        VectorOfInt ipar = new VectorOfInt(ports.size());
+        VectorOfInt ipar = new VectorOfInt();
         controller.getObjectProperty(source.getUID(), Kind.BLOCK, ObjectProperties.IPAR, ipar);
 
         for (int i = 0; i < ports.size(); i++) {
             final int gain;
 
-            if (ipar.size() < i) {
-                gain = 1;
-            } else {
+            if (i < ipar.size()) {
                 gain = ipar.get(i);
+            } else {
+                gain = 1;
             }
 
             ports.get(i).setValue(getLabel(gain));

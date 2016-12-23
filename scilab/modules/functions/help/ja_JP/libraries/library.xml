@@ -67,7 +67,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // elemlib は定義済みのライブラリです
 elementary_functionlib //ライブラリの中身を表示
 A=rand(3,3);

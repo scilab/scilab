@@ -49,14 +49,12 @@ nm = neldermead_configure(nm,"-tolxmethod",%f);
 nm = neldermead_configure(nm,"-tolsimplexizemethod",%f);
 nm = neldermead_configure(nm,"-myterminateflag",%t);
 WARNING: Option -myterminateflag is obsolete.
-         Please use -outputcommand instead.
-         This feature will be permanently removed in Scilab 5.4.1
-
+WARNING: Please use -outputcommand instead.
+WARNING: This feature will be permanently removed in Scilab 5.4.1
 nm = neldermead_configure(nm,"-myterminate",mystoppingrule2);
 WARNING: Option -myterminate is obsolete.
-         Please use -outputcommand instead.
-         This feature will be permanently removed in Scilab 5.4.1
-
+WARNING: Please use -outputcommand instead.
+WARNING: This feature will be permanently removed in Scilab 5.4.1
 //
 // Check cget
 value = neldermead_cget(nm,"-myterminateflag");

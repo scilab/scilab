@@ -17,31 +17,12 @@
 #define __GRAPHICS_GW_HXX__
 
 #include "cpp_gateway_prototype.hxx"
-#include "dynlib_graphics_gw.h"
+#include "dynlib_graphics.h"
 
-class GraphicsModule
-{
-private :
-    GraphicsModule() {};
-    ~GraphicsModule() {};
-
-
-public :
-    GRAPHICS_GW_IMPEXP static int LoadDeps(const std::wstring& _functionName);
-    GRAPHICS_GW_IMPEXP static int Load();
-    GRAPHICS_GW_IMPEXP static int Unload()
-    {
-        return 1;
-    }
-
-    static bool loadedDep;
-};
-
-
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_get, GRAPHICS_GW_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xget, GRAPHICS_GW_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xset, GRAPHICS_GW_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_winsid, GRAPHICS_GW_IMPEXP);
-CPP_OPT_GATEWAY_PROTOTYPE_EXPORT(sci_matplot, GRAPHICS_GW_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matplot1, GRAPHICS_GW_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_get, GRAPHICS_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xget, GRAPHICS_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xset, GRAPHICS_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_winsid, GRAPHICS_IMPEXP);
+CPP_OPT_GATEWAY_PROTOTYPE_EXPORT(sci_matplot, GRAPHICS_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_matplot1, GRAPHICS_IMPEXP);
 #endif /* !__GUI_GW_HXX__ */

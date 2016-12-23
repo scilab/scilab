@@ -15,15 +15,22 @@ For more information, see the COPYING file which you should have received
 along with this program.
 
 
-DDaskr:
-=======
+ODEPACK:
+========
 
-Files: scr/fortran/ddaskr.f scr/fortran/daux.f
+Files:
+src/fortran/ddaskr.f src/fortran/daux.f
+src/fortran/lsoda.f
+src/fortran/lsodi.f
 
+Copyright:
 Produced at the Lawrence Livermore National Laboratory
 Written by A.C. Hindmarsh, P. N. Brown, and L. R. Petzold.
 DASKR: UCRL-CODE-2002-058
 All rights reserved.
+
+License:
+BSD
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
@@ -81,8 +88,47 @@ advertising or product endorsement purposes.
 TWODQ:
 ======
 
-File: src/fortran/twodq.f
+Files:
+src/fortran/twodq.f
 
 Copyright:  BARNHILL,ROBERT,UNIV. OF UTAH
 
 License: Public domain (like cmlib)
+
+QUADPACK:
+=========
+
+Files:
+src/fortran/dqags.f
+src/fortran/dqagse.f
+src/fortran/dqelg.f
+src/fortran/dqk21.f
+src/fortran/dqpsrt.f
+
+License: Public domain
+
+COLNEW:
+=======
+
+Files:
+src/fortran/colnew.f
+
+Copyright:
+u. ascher, university of british columbia
+g. bader, university of heidelberg
+
+License: Public domain
+
+DCUTET:
+=======
+
+Files:
+src/fortran/dcutet.f
+
+Copyright:
+Jarle Berntsen, University of Bergen
+Ronald Cools, Katholieke Universiteit Leuven
+Terje O. Espelid, University of Bergen
+
+License: Public domain
+

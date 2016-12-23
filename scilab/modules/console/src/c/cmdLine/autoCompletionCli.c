@@ -52,7 +52,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
                                   char *lineBeforeCaret, char *lineAfterCaret, char *filePattern, char *defaultPattern,
                                   char **wk_buf, unsigned int *cursor, unsigned int *cursor_max);
 static int CopyLineAtPrompt(char **wk_buf, char *line, unsigned int *cursor, unsigned int *cursor_max);
-static void separateFilesDirectories(char** dictionnary, int size, char*** files, int* sizeFiles, char*** directories, int* sizeDirectories);
+static void separateFilesDirectories(char** dictionary, int size, char*** files, int* sizeFiles, char*** directories, int* sizeDirectories);
 
 static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, char *defaultPattern, char **wk_buf, unsigned int *cursor,
                                 unsigned int *cursor_max);
@@ -107,11 +107,8 @@ static void doCompletion(char **wk_buf, unsigned int *cursor, unsigned int *curs
         TermCompletionOnAll(LineBeforeCaret, LineAfterCaret, SearchedPattern, wk_buf, cursor, cursor_max);
     }
 
-    if (LineBeforeCaret)
-    {
-        FREE(LineBeforeCaret);
-        LineBeforeCaret = NULL;
-    }
+    FREE(LineBeforeCaret);
+    LineBeforeCaret = NULL;
     if (LineAfterCaret)
     {
         FREE(LineAfterCaret);
@@ -317,7 +314,7 @@ static int CopyLineAtPrompt(char **wk_buf, char *line, unsigned int *cursor, uns
         FREE(wtmp);
 
         /* erase extra characters left over if any */
-        erase_nchar(GET_MAX(0, (*cursor_max - *cursor)));
+        erase_nchar(GET_MAX(0, (int)(*cursor_max - *cursor)));
         *cursor_max = *cursor;
         return 1;
     }

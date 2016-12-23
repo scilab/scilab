@@ -119,31 +119,18 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
 
     if (header != 0)
     {
-        mgetl(fd, header, &nblines, &errMGETL);
+        // Ignoring the header
+        pstLines = mgetl(fd, header, &nblines, &errMGETL);
+        freeArrayOfWideString(pstLines, nblines);
+        pstLines = NULL;
     }
 
     pwstLines = mgetl(fd, -1, &nblines, &errMGETL);
-    pstLines = (char**)MALLOC(sizeof(char*) * nblines);
-
-    {
-        int i = 0;
-        for (i = 0 ; i < nblines ; i++)
-        {
-            pstLines[i] = wide_string_to_UTF8(pwstLines[i]);
-        }
-
-    }
 
     mclose(fd);
 
     if (errMGETL != MGETL_NO_ERROR)
     {
-        if (pwstLines)
-        {
-            freeArrayOfWideString(pwstLines, nblines);
-            pwstLines = NULL;
-        }
-
         result = (csvResult*)(MALLOC(sizeof(csvResult)));
         if (result)
         {
@@ -156,6 +143,19 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
         }
         return result;
     }
+
+    pstLines = (char**)MALLOC(sizeof(char*) * nblines);
+
+    {
+        int i = 0;
+        for (i = 0 ; i < nblines ; i++)
+        {
+            pstLines[i] = wide_string_to_UTF8(pwstLines[i]);
+        }
+
+    }
+    freeArrayOfWideString(pwstLines, nblines);
+    pwstLines = NULL;
 
     if (regexpcomments)
     {
@@ -179,6 +179,7 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
                 result->pstrComments = NULL;
                 result->nbComments = 0;
             }
+            freeArrayOfString(pstLines, nblines);
             return result;
         }
 
@@ -191,11 +192,6 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
             pCleanedLines = removeComments((const char**)pstLines, nblines, (const char*)regexpcomments, &nbCleanedLines, &iErr);
             if (pCleanedLines)
             {
-                if (pwstLines)
-                {
-                    freeArrayOfWideString(pwstLines, nblines);
-                    pwstLines = NULL;
-                }
                 FREE(pstLines);
                 pstLines = pCleanedLines;
                 nblines = nbCleanedLines;
@@ -216,7 +212,6 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
 
     result = csvTextScan((const char**)pstLines, nblines, (const char*)separator, (const char*)decimal);
     freeArrayOfString(pstLines, nblines);
-    freeArrayOfWideString(pwstLines, nblines);
 
     if (result)
     {

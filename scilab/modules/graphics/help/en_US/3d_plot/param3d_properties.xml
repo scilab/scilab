@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -240,12 +240,12 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-   
+
    a=get("current_axes");//get the handle of the newly created axes
    t=[0:0.1:5*%pi]';
    param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
-  
-   a.rotation_angles=[65,75]; 
+
+   a.rotation_angles=[65,75];
    a.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
    a.thickness = 2;
    h=a.children //get the handle of the param3d entity: an Compound composed of 2 curves
@@ -254,7 +254,7 @@
    curve2.foreground = 6;
    curve2.mark_style = 2;
 
- 
+
   ]]></programlisting>
     </refsection>
     <refsection>

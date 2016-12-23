@@ -131,10 +131,30 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 
                 if (pIT->isGenericType() == false)
                 {
-                    pIT->killMe();
-                    std::wostringstream os;
-                    os << _W("unable to concatenate\n");
-                    throw ast::InternalError(os.str(), 999, (*col)->getLocation());
+                    if (poRow == NULL)
+                    {
+                        //first loop
+                        poRow = pIT;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            poRow = callOverloadMatrixExp(L"c", poRow, pIT);
+                        }
+                        catch (const InternalError& error)
+                        {
+                            if (poResult)
+                            {
+                                poResult->killMe();
+                            }
+
+                            pIT->killMe();
+                            throw error;
+                        }
+                    }
+
+                    continue;
                 }
 
                 types::GenericType* pGT = pIT->getAs<types::GenericType>();

@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -79,7 +79,6 @@ Adapters::adapters_index_t Adapters::lookup_by_typename(const std::wstring& name
     return INVALID_ADAPTER;
 }
 
-
 std::wstring Adapters::get_typename(Adapters::adapters_index_t kind)
 {
     for (auto it : adapters)
@@ -93,41 +92,44 @@ std::wstring Adapters::get_typename(Adapters::adapters_index_t kind)
     return L"";
 }
 
-
-const model::BaseObject* Adapters::descriptor(types::InternalType* v)
+model::BaseObject* Adapters::descriptor(types::InternalType* v)
 {
     const std::wstring& name = v->getShortTypeStr();
     adapters_t::iterator it = std::lower_bound(adapters.begin(), adapters.end(), name);
     if (v->isUserType() && it != adapters.end() && !(name < it->name))
     {
-        switch (it->kind)
-        {
-            case BLOCK_ADAPTER:
-                return v->getAs<view_scilab::BlockAdapter>()->getAdaptee();
-            case CPR_ADAPTER:
-                return v->getAs<view_scilab::CprAdapter>()->getAdaptee();
-            case DIAGRAM_ADAPTER:
-                return v->getAs<view_scilab::DiagramAdapter>()->getAdaptee();
-            case GRAPHIC_ADAPTER:
-                return v->getAs<view_scilab::GraphicsAdapter>()->getAdaptee();
-            case LINK_ADAPTER:
-                return v->getAs<view_scilab::LinkAdapter>()->getAdaptee();
-            case MODEL_ADAPTER:
-                return v->getAs<view_scilab::ModelAdapter>()->getAdaptee();
-            case PARAMS_ADAPTER:
-                return v->getAs<view_scilab::ParamsAdapter>()->getAdaptee();
-            case SCS_ADAPTER:
-                return v->getAs<view_scilab::ScsAdapter>()->getAdaptee();
-            case STATE_ADAPTER:
-                return v->getAs<view_scilab::StateAdapter>()->getAdaptee();
-            case TEXT_ADAPTER:
-                return v->getAs<view_scilab::TextAdapter>()->getAdaptee();
-            default:
-                return nullptr;
-        }
+        return descriptor(it->kind, v);
     }
-
     return nullptr;
+}
+
+model::BaseObject* Adapters::descriptor(adapters_index_t index, types::InternalType* v)
+{
+    switch (index)
+    {
+        case BLOCK_ADAPTER:
+            return v->getAs<view_scilab::BlockAdapter>()->getAdaptee();
+        case CPR_ADAPTER:
+            return v->getAs<view_scilab::CprAdapter>()->getAdaptee();
+        case DIAGRAM_ADAPTER:
+            return v->getAs<view_scilab::DiagramAdapter>()->getAdaptee();
+        case GRAPHIC_ADAPTER:
+            return v->getAs<view_scilab::GraphicsAdapter>()->getAdaptee();
+        case LINK_ADAPTER:
+            return v->getAs<view_scilab::LinkAdapter>()->getAdaptee();
+        case MODEL_ADAPTER:
+            return v->getAs<view_scilab::ModelAdapter>()->getAdaptee();
+        case PARAMS_ADAPTER:
+            return v->getAs<view_scilab::ParamsAdapter>()->getAdaptee();
+        case SCS_ADAPTER:
+            return v->getAs<view_scilab::ScsAdapter>()->getAdaptee();
+        case STATE_ADAPTER:
+            return v->getAs<view_scilab::StateAdapter>()->getAdaptee();
+        case TEXT_ADAPTER:
+            return v->getAs<view_scilab::TextAdapter>()->getAdaptee();
+        default:
+            return nullptr;
+    }
 }
 
 types::InternalType* Adapters::allocate_view(ScicosID id, kind_t kind)

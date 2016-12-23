@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+
+ * Copyright (C) 2010 - DIGITEO - Pierre Lando <pierre.lando@scilab.org>
+
+ *
+
+
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+
+ *
+
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="pixel_drawing_mode">
+
+    <refnamediv>
+
+        <refname>pixel_drawing_mode</refname>
+
+        <refpurpose>ビット単位のピクセルレンダリング関数.</refpurpose>
+
+    </refnamediv>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            ここで,カラーエンコーディングはRGBです.
+
+            ピクセル描画モードは,
+
+            図の上の描画される色と既存の色の間で図のピクセル上で適用されるビット単位の処理
+
+            を指定する<link linkend="figure_properties">図のプロパティ</link>です.
+
+            この処理の結果は新しいピクセル色となります.
+
+
+
+            <literal>src</literal> はピクセルに指定される色です.
+
+            <literal>prv</literal> は(描画済みの)ピクセルの前の色です.
+
+            <literal>res</literal> は(描画される)ピクセルの結果の色です.
+
+
+
+            <literal>pixel_drawing_mode</literal>には以下の値を指定できます:
+
+        </para>
+
+        <informaltable border="1">
+
+            <tr>
+
+                <td>値</td>
+
+                <td>ビット単位の操作</td>
+
+                <td>コメント</td>
+
+            </tr>
+
+            <tr>
+
+                <td>0</td>
+
+                <td>CLEAR</td>
+
+                <td>結果の色は黒です</td>
+
+            </tr>
+
+            <tr>
+
+                <td>1</td>
+
+                <td>AND</td>
+
+                <td>res = src AND prv</td>
+
+            </tr>
+
+            <tr>
+
+                <td>2</td>
+
+                <td>AND REVERSE</td>
+
+                <td>res = src AND (NOT prv)</td>
+
+            </tr>
+
+            <tr>
+
+                <td>3</td>
+
+                <td>COPY</td>
+
+                <td>res = src, デフォルト値</td>
+
+            </tr>
+
+            <tr>
+
+                <td>4</td>
+
+                <td>AND INVERTED</td>
+
+                <td>res = (NOT src) AND prv</td>
+
+            </tr>
+
+            <tr>
+
+                <td>5</td>
+
+                <td>NOOP</td>
+
+                <td>res = prv</td>
+
+            </tr>
+
+            <tr>
+
+                <td>6</td>
+
+                <td>XOR</td>
+
+                <td>res = src XOR prv</td>
+
+            </tr>
+
+            <tr>
+
+                <td>7</td>
+
+                <td>OR</td>
+
+                <td>res = src OR prv</td>
+
+            </tr>
+
+            <tr>
+
+                <td>8</td>
+
+                <td>NOR</td>
+
+                <td>res = NOT (src OR prv)</td>
+
+            </tr>
+
+            <tr>
+
+                <td>9</td>
+
+                <td>EQUIV</td>
+
+                <td>res = (NOT src) XOR prv</td>
+
+            </tr>
+
+            <tr>
+
+                <td>10</td>
+
+                <td>INVERT</td>
+
+                <td>res = NOT prv</td>
+
+            </tr>
+
+            <tr>
+
+                <td>11</td>
+
+                <td>OR REVERSE</td>
+
+                <td>res = src OR (NOT prv)</td>
+
+            </tr>
+
+            <tr>
+
+                <td>12</td>
+
+                <td>COPY INVERTED</td>
+
+                <td>res = NOT src</td>
+
+            </tr>
+
+            <tr>
+
+                <td>13</td>
+
+                <td>OR INVERTED</td>
+
+                <td>res = (NOT src) OR prv</td>
+
+            </tr>
+
+            <tr>
+
+                <td>14</td>
+
+                <td>NAND</td>
+
+                <td>res = NOT (src AND prv)</td>
+
+            </tr>
+
+            <tr>
+
+                <td>15</td>
+
+                <td>SET</td>
+
+                <td>結果の色は白です</td>
+
+            </tr>
+
+        </informaltable>
+
+    </refsection>
+
+</refentry>
+

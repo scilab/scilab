@@ -64,6 +64,41 @@ void* get_tip_z_component_property(void* _pvCtx, int iObjUID)
     return NULL;
 }
 
+/**
+ * Get display mode for datatips
+ */
+void* get_datatip_display_mode_property(void* _pvCtx, int iObjUID)
+{
+    int datatip_display_mode = -1;
+    int * p_datatip_display_mode = &datatip_display_mode;
+    const char * name = NULL;
+    getGraphicObjectProperty(iObjUID, __GO_DATATIP_DISPLAY_MODE__, jni_int, (void **)&p_datatip_display_mode);
+
+    if (datatip_display_mode == -1)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "datatip_display_mode");
+        return NULL;
+    }
+
+    switch (datatip_display_mode)
+    {
+        case 0:
+            name = "always";
+            break;
+        case 1:
+            name = "mouseclick";
+            break;
+        case 2:
+            name = "mouseover";
+            break;
+        default:
+            name = "always";
+            break;
+    }
+
+    return sciReturnString(name);
+}
+
 
 /**
  * Get the datatip components that should be displayed
@@ -202,4 +237,28 @@ void* get_tip_disp_function_property(void* _pvCtx, int iObjUID)
     }
 
     return sciReturnString(tip_disp_function);
+}
+
+void* get_tip_detached_property(void* _pvCtx, int iObjUID)
+{
+    int isDetached = 0;
+    int *piDetached = &isDetached;
+    getGraphicObjectProperty(iObjUID, __GO_DATATIP_DETACHED_MODE__, jni_bool, (void **)&piDetached);
+
+    if (piDetached == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "detached_position");
+        return NULL;
+    }
+
+    if (!isDetached)
+    {
+        return sciReturnEmptyMatrix();
+    }
+    else
+    {
+        double *detached_pos = NULL;
+        getGraphicObjectProperty(iObjUID, __GO_DATATIP_DETACHED_POSITION__, jni_double_vector, (void **)&detached_pos);
+        return sciReturnRowVector(detached_pos, 3);
+    }
 }

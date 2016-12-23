@@ -50,7 +50,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 f = scf();
 plot3d1();
 f.color_map = summercolormap(32);

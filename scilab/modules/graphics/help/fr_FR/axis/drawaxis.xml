@@ -104,52 +104,52 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>drawaxis</literal> est utilisée pour dessiner un axe vertical ou horizontal. Cette fonction renvoie le handle de l'axe créé. 
-            La direction de l'axe est donnée par dir <literal>dir = 'u'</literal> ou <literal>'d'</literal> donne un axe horizontal avec des graduations 
-            dirigées vers le haut (<literal>'u'</literal>) ou le bas (<literal>'d'</literal>). 
-            <literal>dir = 'r'</literal> ou <literal>'l'</literal> donne un axe vertical avec des graduations allant vers la droite (<literal>'r'</literal>) ou vers la gauche (<literal>'l'</literal>). 
+            <literal>drawaxis</literal> est utilisée pour dessiner un axe vertical ou horizontal. Cette fonction renvoie le handle de l'axe créé.
+            La direction de l'axe est donnée par dir <literal>dir = 'u'</literal> ou <literal>'d'</literal> donne un axe horizontal avec des graduations
+            dirigées vers le haut (<literal>'u'</literal>) ou le bas (<literal>'d'</literal>).
+            <literal>dir = 'r'</literal> ou <literal>'l'</literal> donne un axe vertical avec des graduations allant vers la droite (<literal>'r'</literal>) ou vers la gauche (<literal>'l'</literal>).
         </para>
         <para>
-            <literal>x</literal> et <literal>y</literal> donnent les positions des graduations. 
-            Si l'axe est horizontal alors <literal>y</literal> 
-            doit être un scalaire ou peut être omis et <literal>x</literal> 
-            est un vecteur. La signification de <literal>x</literal> 
-            est contrôlée par <literal>tics</literal>. 
+            <literal>x</literal> et <literal>y</literal> donnent les positions des graduations.
+            Si l'axe est horizontal alors <literal>y</literal>
+            doit être un scalaire ou peut être omis et <literal>x</literal>
+            est un vecteur. La signification de <literal>x</literal>
+            est contrôlée par <literal>tics</literal>.
         </para>
         <para>
-            Si <literal>tics='v'</literal> alors <literal>x</literal> donne les positions des graduations sur l'axe des x. 
+            Si <literal>tics='v'</literal> alors <literal>x</literal> donne les positions des graduations sur l'axe des x.
         </para>
         <para>
-            Si <literal>tics='r'</literal> alors <literal>x</literal> doit être de taille 3. <literal>x=[xmin,xmax,n]</literal> et 
+            Si <literal>tics='r'</literal> alors <literal>x</literal> doit être de taille 3. <literal>x=[xmin,xmax,n]</literal> et
             <literal>n</literal> donne le nombre d'intervalles.
         </para>
         <para>
-            Si <literal>tics='i'</literal> alors <literal>x</literal> doit être de taille 4, <literal>x=[k1,k2,a,n]</literal>. 
+            Si <literal>tics='i'</literal> alors <literal>x</literal> doit être de taille 4, <literal>x=[k1,k2,a,n]</literal>.
             Dans ce cas <literal>xmin=k1*10^a</literal>, <literal>xmax=k2*10^a</literal> et <literal>n</literal> donne le nombre d'intervalles.
         </para>
         <para>
             Si <literal>y</literal> est omis alors l'axe est positionné en haut du cadre si <literal>dir='u'</literal> ou en bas si <literal>dir='d'</literal>
         </para>
         <para>
-            Par défaut, les nombres sont dessinés sur l'axe. Ils sont dessinés en utilisant un format par défaut qui peut être changé avec <literal>format_n</literal>. 
-            Il est aussi possible d'afficher des chaînes de caractères données au lieu des nombres, 
+            Par défaut, les nombres sont dessinés sur l'axe. Ils sont dessinés en utilisant un format par défaut qui peut être changé avec <literal>format_n</literal>.
+            Il est aussi possible d'afficher des chaînes de caractères données au lieu des nombres,
             si <literal>val</literal> est fourni en argument. La taille de <literal>val</literal> doit alors
-            être égale au nombre de graduations. 
+            être égale au nombre de graduations.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot2d(1:10,1:10,1,"020")
 // axe horizontal
 e = drawaxis(x=2:7,y=4,dir='u',tics='v')
 // axe horizontal en haut du cadre
-drawaxis(x=2:7,dir='u',tics='v') 
+drawaxis(x=2:7,dir='u',tics='v')
 // axe horizontal en bas du cadre
-e = drawaxis(x=2:7,dir='d',tics='v') 
+e = drawaxis(x=2:7,dir='d',tics='v')
 
-// axe horizontal donné par une plage de variation 
-drawaxis(x=[2,7,3],y=4,dir='d',tics='r') 
+// axe horizontal donné par une plage de variation
+drawaxis(x=[2,7,3],y=4,dir='d',tics='r')
 
 // axe vertical
 e = drawaxis(x=4,y=2:7,dir='r',tics='v')
@@ -162,32 +162,32 @@ drawaxis(x=2:7,y=8,dir='u',tics='v',val='A'+string(1:6));
 // axe vertical avec chaînes de caractères au dessus des graduations
 drawaxis(x=8,y=2:7,dir='r',tics='v',val='B'+string(1:6));
 
-// axe horizontal avec 'i' 
+// axe horizontal avec 'i'
 e = drawaxis(x=[2,5,0,3],y=9,dir='u',tics='i');
 e = drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
 
 // encore un axe horizontal
-drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20) 
+drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20)
  ]]></programlisting>
         <scilab:image>
             plot2d(1:10,1:10,1,"020")
             drawaxis(x=2:7,y=4,dir='u',tics='v')
-            drawaxis(x=2:7,dir='u',tics='v') 
-            drawaxis(x=2:7,dir='d',tics='v') 
-            
-            drawaxis(x=[2,7,3],y=4,dir='d',tics='r') 
-            
+            drawaxis(x=2:7,dir='u',tics='v')
+            drawaxis(x=2:7,dir='d',tics='v')
+
+            drawaxis(x=[2,7,3],y=4,dir='d',tics='r')
+
             drawaxis(x=4,y=2:7,dir='r',tics='v')
             drawaxis(x=2,y=[2,7,3],dir='l',tics='r')
             drawaxis(y=2:7,dir='r',tics='v')
             drawaxis(y=2:7,dir='l',tics='v')
-            
+
             drawaxis(x=2:7,y=8,dir='u',tics='v',val='A'+string(1:6));
             drawaxis(x=8,y=2:7,dir='r',tics='v',val='B'+string(1:6));
-            
+
             drawaxis(x=[2,5,0,3],y=9,dir='u',tics='i');
             drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
-            
+
             drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20)
         </scilab:image>
     </refsection>

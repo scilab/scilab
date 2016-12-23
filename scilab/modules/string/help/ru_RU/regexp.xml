@@ -66,7 +66,7 @@ xml:id="regexp" xml:lang="ru">
                 <term>end</term>
                 <listitem>
                     <para>
-                        конечный индекс каждой подстроки 
+                        конечный индекс каждой подстроки
                         <varname>input</varname>, которая соответствует строке
                         регулярного выражения <varname>pattern</varname>.
                     </para>

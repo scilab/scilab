@@ -168,16 +168,16 @@
             </tr>
         </informaltable>
         <para>
-            où 
+            où
             <emphasis>
                 <literal>X</literal>
             </emphasis>
-            signifie "indifférent" et 
+            signifie "indifférent" et
             <emphasis><literal>
                     Q<subscript>n-1</subscript>
                 </literal>
             </emphasis>
-            l'état antérieur de 
+            l'état antérieur de
             <emphasis><literal>
                     Q<subscript>n</subscript>
                 </literal>

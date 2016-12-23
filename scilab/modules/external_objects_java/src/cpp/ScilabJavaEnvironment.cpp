@@ -35,6 +35,7 @@
 extern "C" {
 #include "getScilabJavaVM.h"
 #include "sci_tmpdir.h"
+#include "configvariable_interface.h"
 }
 
 namespace org_scilab_modules_external_objects_java
@@ -63,6 +64,10 @@ ScilabJavaEnvironment::~ScilabJavaEnvironment()
 
 int ScilabJavaEnvironment::start()
 {
+    if (getScilabMode() == SCILAB_NWNI)
+    {
+        throw ScilabJavaException(__LINE__, __FILE__, "'Java from Scilab' module is disabled in -nwni mode");
+    }
     if (envId == -1)
     {
         instance = new ScilabJavaEnvironment();

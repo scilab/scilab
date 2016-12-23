@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -77,22 +77,22 @@
         <para>
             <literal>flagtrail</literal> はオプションの論理値パラメータです.
             その値をTRUE (デフォルト値)にした時,
-            末尾セパレータ 
-            (<literal>'\'</literal> または <literal>'/'</literal>) 
+            末尾セパレータ
+            (<literal>'\'</literal> または <literal>'/'</literal>)
             が抜けている場合にパスの最後に追加されます.
             <literal>flagtrail</literal> が FALSE に設定されている場合,
             末尾セパレータは削除されます.
         </para>
         <para>
             <literal>flagexpand</literal> はオプションの論理値パラメータです.
-            この値が TRUEの場合, 
+            この値が TRUEの場合,
             <literal>HOME</literal>, <literal>SCI</literal> または <literal>~</literal>
             のような先頭文字列は環境変数により展開されます.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"u")
 pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"w")
 pathconvert("SCI/modules/fileio/macros/foo.sci",%f,%t,"w")

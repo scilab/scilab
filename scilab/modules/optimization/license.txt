@@ -16,7 +16,8 @@ along with this program.
 SP:
 ===
 
-File: src/c/sp.c
+Files:
+src/c/sp.c
 
 Copyright:
 1994 by Lieven Vandenberghe and Stephen Boyd.
@@ -35,7 +36,8 @@ of this software or its fitness for any particular purpose.
 Minpack:
 ========
 
-Files: src/fortran/minpack/*
+Files:
+src/fortran/minpack/*
 
 Copyright:
 Jorge More' <more@mcs.anl.gov>, Burt Garbow, and Ken Hillstrom at
@@ -68,10 +70,38 @@ acknowledgment:
 qpgen2:
 =======
 
-Files: src/fortran/{qpgen2.f, qpgen1sci.f}
+Files:
+src/fortran/{qpgen2.f,qpgen1sci.f}
 
 Copyright:
 1995 Berwin A. Turlach <berwin@alphasun.anu.edu.au>
 
 License:
 GPL
+
+HOPDM:
+======
+
+Files:
+src/fortran/rdmps1.f
+
+Copyright:
+1996 Jacek Gondzio, Systems Research Institute
+
+License:
+Public Domain
+
+QLD:
+====
+
+Files:
+src/fortran/ql0001.f
+
+Copyright:
+Prof. K.Schittkowski, University of Bayreuth
+Prof. MJD Powell, University of Cambridge
+A.L. Tits and J.L. Zhou, University of Maryland
+
+License:
+Public Domain
+

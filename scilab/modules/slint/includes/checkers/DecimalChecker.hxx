@@ -35,7 +35,7 @@ class DecimalChecker : public SLintChecker
 public:
 
     DecimalChecker(const std::wstring & checkerId, const std::wstring & _character) : SLintChecker(checkerId), character(_character), checkDot(false) { }
-    DecimalChecker(const std::wstring & checkerId, const bool _checkDot) : SLintChecker(checkerId), character(L'\0'), checkDot(_checkDot) { }
+    DecimalChecker(const std::wstring & checkerId, const bool _checkDot) : SLintChecker(checkerId), character(), checkDot(_checkDot) { }
     DecimalChecker(const std::wstring & checkerId, const std::wstring & _character, const bool _checkDot) : SLintChecker(checkerId), character(_character), checkDot(_checkDot) { }
 
     ~DecimalChecker() { }

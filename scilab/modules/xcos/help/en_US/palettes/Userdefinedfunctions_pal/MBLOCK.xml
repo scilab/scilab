@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MBLOCK">
@@ -88,7 +88,7 @@
     <refsection id="Description_MBLOCK">
         <title>Description</title>
         <para>
-            The block "MBlock" provides an easy way to build a xcos block whose behavior is specified by a Modelica program.  Using this block, the user will be able to write and compile Modelica programs in xcos without creating any interfacing function.  The associated Modelica program of this block can be either given in a file or written in the window opened by the block. In order to link this block to other xcos blocks that may be other Modelica blocks, the types of block ports' as well as their associated variables should be specified.  
+            The block "MBlock" provides an easy way to build a xcos block whose behavior is specified by a Modelica program.  Using this block, the user will be able to write and compile Modelica programs in xcos without creating any interfacing function.  The associated Modelica program of this block can be either given in a file or written in the window opened by the block. In order to link this block to other xcos blocks that may be other Modelica blocks, the types of block ports' as well as their associated variables should be specified.
         </para>
         <para>
         </para>
@@ -103,7 +103,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>
@@ -141,29 +141,29 @@
                     <emphasis role="bold">Parameters properties</emphasis>
                 </para>
                 <para> The type of the Modelica parameters. For that time being, one can parametrize three types of Modelica variable :
-                    
+
                 </para>
                 <itemizedlist>
                     <listitem>
                         <para>
                             <emphasis role="bold">0:</emphasis> the parameter is set to be a <emphasis role="bold">Modelica parameter</emphasis> variable (scalar or vector).
-                            
-                            
+
+
                         </para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis role="bold">1:</emphasis> the parameter is set to be an <emphasis role="bold">initial condition of Modelica state</emphasis> variable
                             (scalar or vector).
-                            
-                            
+
+
                         </para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis role="bold">2:</emphasis> the parameter is set to be an <emphasis role="bold">initial condition of Modelica state</emphasis> variable
                             with the property <emphasis role="bold">fixed=true</emphasis> (scalar or vector).
-                            
+
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -179,21 +179,21 @@
                     <emphasis role="bold">Parameter values</emphasis>
                 </para>
                 <para> The value of Modelica parameters are given in the "Set parameters values" dialog box.
-                    
-                    
-                    
+
+
+
                     These values that can be scalar or vector, can also be defined in the
                     xcos context. In order to access the xcos context, click on the
                     "Diagram" menu then click on the "Context" submenu.
                     For instance, here is an example of overloading of parameters in a Modelica program.
-                    
-                    
-                    
+
+
+
                     Parameters vector  = ['Speed';'Position';"Length"]
                 </para>
                 <para>
                     Parameters properties vector  = [0;2;1]
-                    
+
                     Speed value        =  [12.0]
                 </para>
                 <para>

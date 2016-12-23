@@ -45,9 +45,9 @@ function [x,y,typ]=AUTOMAT(job,arg1,arg2)
                 VEC=VEC+","+"''mat'',[-1,1]";
             end
             //===========================================
-            GTV="[ok,NMode,Minitial,NX,X0,XP,"+CX+",exprs]=scicos_getvalue(''Set Finite state machine model'',..
-            [''Number (finite-state) Modes'';''Initial Mode'';''Number of continuous-time states'';''Continuous-time states initial values'';''Xproperties of continuous-time states in each Mode'';"+MSG+"],..
-            list(''vec'',1,''vec'',1,''vec'',1,''mat'',[-1,-1],''mat'',[-1,-1],"+VEC+"),exprs)"
+            GTV="[ok,NMode,Minitial,NX,X0,XP,"+CX+",exprs]=scicos_getvalue(''Set Finite state machine model'',"+..
+            "[''Number (finite-state) Modes'';''Initial Mode'';''Number of continuous-time states'';''Continuous-time states initial values'';''Xproperties of continuous-time states in each Mode'';"+MSG+"],"+..
+            "list(''vec'',1,''vec'',1,''vec'',1,''mat'',[-1,-1],''mat'',[-1,-1],"+VEC+"),exprs)"
             execstr(GTV);
             if ~ok then
                 break,

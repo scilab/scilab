@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -37,7 +37,7 @@
                 <term>ij</term>
                 <listitem>
                     <para>matriz de inteiros de duas colunas (índices das entradas não
-                        nulas) 
+                        nulas)
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,7 +51,7 @@
                 <term>mn</term>
                 <listitem>
                     <para>vetor de inteiros com duas entradas (dimensão de linha,
-                        dimensão de coluna) 
+                        dimensão de coluna)
                     </para>
                 </listitem>
             </varlistentry>
@@ -96,7 +96,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 sp=sparse([1,2;4,5;3,10],[1,2,3])
 size(sp)
 x=rand(2,2);abs(x)-full(abs(sparse(x)))

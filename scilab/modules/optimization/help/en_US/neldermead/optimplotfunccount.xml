@@ -8,7 +8,7 @@
         <refpurpose>Plot the number of function evaluations of an optimization algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>SYNOPSIS</title>
+        <title>Syntax</title>
         <synopsis>
             optimplotfunccount ( x , optimValues , state )
         </synopsis>
@@ -16,8 +16,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function creates and updates a plot of the number of function evaluations, depending on the 
-            number of iterations. It is a pre-defined plot function which should be used as 
+            This function creates and updates a plot of the number of function evaluations, depending on the
+            number of iterations. It is a pre-defined plot function which should be used as
             an option of the "PlotFcns" option.
         </para>
     </refsection>
@@ -27,7 +27,7 @@
             In the following example, we use the <literal>optimplotfunccount</literal> function
             for use with the <literal>fminsearch</literal> function.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction

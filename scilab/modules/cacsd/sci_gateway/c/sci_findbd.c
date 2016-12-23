@@ -197,7 +197,7 @@ int sci_findbd(char *fname, void* pvApiCtx)
 
     if (iTASK == 1)
     {
-        cJOBX0 = 'Q';
+        cJOBX0 = 'X';
     }
 
     // comuse
@@ -366,7 +366,7 @@ int sci_findbd(char *fname, void* pvApiCtx)
     }
 
     // D(1,m)
-    if (iTASK == 1 && iCUSE == 2 && iIJOB == 2 && iRhs <= iIP)
+    if (iTASK == 1 && iCUSE == 2 && iIJOB == 2 && iRhs >= iIP)
     {
         int* piAddr = NULL;
         int iRows = 0;
@@ -425,6 +425,8 @@ int sci_findbd(char *fname, void* pvApiCtx)
             Scierror(999, _("%s: Wrong size for input argument #%d: A matrix with %d columns expected.\n"), fname, iL);
             return 0;
         }
+
+        iIP++;
     }
 
     // U(txm)
@@ -442,7 +444,7 @@ int sci_findbd(char *fname, void* pvApiCtx)
             return 0;
         }
 
-        getMatrixOfDouble(pvApiCtx, piAddr, &iNSMP, &iCols, &pdblU);
+        getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblU);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);

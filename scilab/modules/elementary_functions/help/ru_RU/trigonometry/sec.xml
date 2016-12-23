@@ -43,7 +43,7 @@
         <title>Описание</title>
         <para>
             Функция <function>sec</function> поэлементно вычисляет секанс аргумента. Секанс - это периодическая функция, определяемая как <latex>1/\cos(x)</latex>.
-            Для вещественных данных результаты вещественные и лежат на интервале 
+            Для вещественных данных результаты вещественные и лежат на интервале
             <latex>]-\infty -1] \cup [1 \infty[</latex>.
         </para>
     </refsection>
@@ -56,7 +56,7 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[0 %pi/3 2*%pi/3 %pi/4 3*%pi/4 %pi/6 5*%pi/6 %pi];
 sec(x)
 x=linspace(-%pi,%pi,100)

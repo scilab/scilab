@@ -46,28 +46,28 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <literal>error</literal> позволяет выдавать сообщение об ошибке и обрабатывать 
-            ошибку. По умолчанию <literal>error</literal> прекращает текущее выполнение и возвращается 
+            Функция <literal>error</literal> позволяет выдавать сообщение об ошибке и обрабатывать
+            ошибку. По умолчанию <literal>error</literal> прекращает текущее выполнение и возвращается
             на уровень командной строки. Это поведение по умолчанию можно изменить с
             помощью функций <literal>execstr(...,'errcatch')</literal>.
         </para>
         <para>
-            <literal>error(message)</literal> выводит на экран символьную строку, содержащуюся в 
-            <literal>message</literal>. Номер, связанный с сообщением об ошибке, 10000. 
+            <literal>error(message)</literal> выводит на экран символьную строку, содержащуюся в
+            <literal>message</literal>. Номер, связанный с сообщением об ошибке, 10000.
         </para>
         <para>
             <literal>error(message,n)</literal> выводит на экран символьную строку, содержащуюся в
             <literal>message</literal>. Номер, связанный с сообщением об ошибке указывается с помощью
-            <literal>n</literal>. Этот номер должен быть больше 10000. 
+            <literal>n</literal>. Этот номер должен быть больше 10000.
         </para>
         <para>
-            <literal>error(n)</literal> выводит на экран предопределённое сообщение об ошибке, связанное с номером ошибки <literal>n</literal>. 
+            <literal>error(n)</literal> выводит на экран предопределённое сообщение об ошибке, связанное с номером ошибки <literal>n</literal>.
         </para>
         <para>
-            Некоторые сообщения об ошибке требуют параметр (см. 
-            <link linkend="error_table">таблица ошибок</link>). В этом случае должен быть использован 
-            аргумент <literal>pos</literal> для указания величины параметра 
-            (<literal>error(n,pos)</literal>). В других случаях аргумент <literal>pos</literal> 
+            Некоторые сообщения об ошибке требуют параметр (см.
+            <link linkend="error_table">таблица ошибок</link>). В этом случае должен быть использован
+            аргумент <literal>pos</literal> для указания величины параметра
+            (<literal>error(n,pos)</literal>). В других случаях аргумент <literal>pos</literal>
             игнорируется.
         </para>
         <para>

@@ -45,9 +45,9 @@ public final class BlockPositioning {
      */
     public static final double DEFAULT_GRIDSIZE = Double.MIN_NORMAL;
     /** The rotation step of the clockwise and anticlockwise rotation */
-    public static final double ROTATION_STEP = 90;
+    public static final int ROTATION_STEP = 90;
     /** The max valid rotation value (always 360 degres) */
-    public static final double MAX_ROTATION = 360;
+    public static final int MAX_ROTATION = 360;
 
     /** This class is a static singleton, thus it must not be instantiated */
     private BlockPositioning() {
@@ -264,8 +264,8 @@ public final class BlockPositioning {
 
         final boolean mirrored = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_MIRROR));
         final boolean flipped = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_FLIP));
-        final double doubleRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0"));
-        final int angle = (((int) Math.round(doubleRotation)) % 360 + 360) % 360;
+        final int intRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0")).intValue();
+        final int angle = ((Math.round(intRotation)) % 360 + 360) % 360;
 
         List<BasicPort> working = ports;
 
@@ -377,8 +377,8 @@ public final class BlockPositioning {
 
         final boolean mirrored = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_MIRROR));
         final boolean flipped = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_FLIP));
-        final double doubleRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0"));
-        final int angle = (((int) Math.round(doubleRotation)) % 360 + 360) % 360;
+        final int intRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0")).intValue();
+        final int angle = ((Math.round(intRotation)) % 360 + 360) % 360;
 
         final int childrenCount = block.getChildCount();
         for (int i = 0; i < childrenCount; ++i) {
@@ -390,7 +390,7 @@ public final class BlockPositioning {
 
                 /* Apply angle */
                 final mxIGraphModel model = diag.getModel();
-                final String rot = Double.toString(orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored));
+                final String rot = Integer.toString(orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored));
                 mxStyleUtils.setCellStyles(model, new Object[] { port }, XcosConstants.STYLE_ROTATION, rot);
 
                 diag.getModel().endUpdate();
@@ -476,7 +476,7 @@ public final class BlockPositioning {
         controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, style);
 
         StyleMap styleMap = new StyleMap(style[0]);
-        styleMap.put(XcosConstants.STYLE_ROTATION, Double.toString(getNextAntiClockwiseAngle(styleMap)));
+        styleMap.put(XcosConstants.STYLE_ROTATION, Integer.toString(getNextAntiClockwiseAngle(styleMap)));
 
         controller.setObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, styleMap.toString());
         updateBlockView(diag, block);
@@ -489,10 +489,10 @@ public final class BlockPositioning {
      *            the data to parse
      * @return The angle value
      */
-    public static double getNextAntiClockwiseAngle(StyleMap styleMap) {
-        final double doubleRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0"));
+    public static int getNextAntiClockwiseAngle(StyleMap styleMap) {
+        final int intRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0")).intValue();
 
-        double angle = (doubleRotation - ROTATION_STEP + MAX_ROTATION) % MAX_ROTATION;
+        int angle = (intRotation - ROTATION_STEP + MAX_ROTATION) % MAX_ROTATION;
         return angle;
     }
 
@@ -503,9 +503,9 @@ public final class BlockPositioning {
      *            the data to parse
      * @return The angle value
      */
-    public static double getNextClockwiseAngle(StyleMap styleMap) {
-        final double doubleRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0"));
-        double angle = (doubleRotation + ROTATION_STEP) % MAX_ROTATION;
+    public static int getNextClockwiseAngle(StyleMap styleMap) {
+        final int intRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0")).intValue();
+        int angle = (intRotation + ROTATION_STEP) % MAX_ROTATION;
         return angle;
     }
 
@@ -516,15 +516,15 @@ public final class BlockPositioning {
      *            the non valid value
      * @return the nearest graph valid value
      */
-    public static double roundAngle(double angle) {
-        double ret = angle;
+    public static int roundAngle(int angle) {
+        int ret = angle;
         if (angle < 0 || angle > MAX_ROTATION) {
             ret = (angle + MAX_ROTATION) % MAX_ROTATION;
         }
 
         for (int i = 0; i < (MAX_ROTATION / ROTATION_STEP); i++) {
-            double min = i * ROTATION_STEP;
-            double max = (i + 1) * ROTATION_STEP;
+            int min = i * ROTATION_STEP;
+            int max = (i + 1) * ROTATION_STEP;
 
             if (ret < (min + max) / 2) {
                 ret = min;

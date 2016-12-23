@@ -84,9 +84,6 @@ function mat = resize_matrix(mat, varargin)
     padding = []
     // Default type of the result:
     resType = typeof(mat)
-    if resType=="hypermat" then
-        resType = typeof(mat(1))
-    end
 
     // ARGUMENTS ANALYSIS & CHECKING
     // -----------------------------
@@ -95,11 +92,10 @@ function mat = resize_matrix(mat, varargin)
         error(msprintf(msg, "resize_matrix", 2, 5))
     end
 
-    if ~((typeof(mat)=="hypermat" | or(type(mat)~=[15 16 17])) ..
+    if ~(or(type(mat)~=[15 16 17]) ..
         & or(type(mat(:))==[1 2 4 5 6 8 10]))
         msg = _("%s: Wrong type of input argument #%d: ""%s"" not supported.\n")
         error(msprintf(msg, "resize_matrix", 1, typeof(mat(:))))
-        // typeof(hypermat(rational)): "rational" overrides "hypermat"...
     end
 
     arg = varargin(1)

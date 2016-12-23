@@ -70,7 +70,7 @@ public class AxisDrawer {
         Double[] yTicksValues;
         double[] xMinAndMax;
         double[] yMinAndMax;
-        double[][] factors = axes.getScaleTranslateFactors();
+        double[][] factors = calcCorrectedFactors(axes, axis);
 
         if (axis.getXTicksCoords().length == 1) {
             xTicksValues = axis.getXTicksCoords();
@@ -116,6 +116,67 @@ public class AxisDrawer {
 
         axis.getFormatn();
         rulerDrawer.disposeResources();
+    }
+
+    /**
+     * Calculates corrected axes factors when zoom is enabled
+     * @param axes the given axes
+     * @param axis the given axis
+     * @return corrected factors
+     */
+    private double[][] calcCorrectedFactors(Axes axes, Axis axis) {
+        Double [] bounds = axes.getDisplayedBounds();
+
+        double[][] zoomFactors = new double[2][];
+        zoomFactors[0] = new double[] { 2 / (bounds[1] - bounds[0]),
+                                        2 / (bounds[3] - bounds[2]),
+                                        2 / (bounds[5] - bounds[4])
+                                      };
+        zoomFactors[1] = new double[] { -(bounds[1] + bounds[0]) / (bounds[1] - bounds[0]),
+                                        -(bounds[3] + bounds[2]) / (bounds[3] - bounds[2]),
+                                        -(bounds[5] + bounds[4]) / (bounds[5] - bounds[4])
+                                      };
+        double[][] factors = axes.getScaleTranslateFactors();
+        //Z coordinate
+        double scale = factors[0][2] / (zoomFactors[0][2] == 0.0 ? 1.0 : zoomFactors[0][2]);
+        double invScale = zoomFactors[0][2] / (factors[0][2] == 0.0 ? 1.0 : factors[0][2]);
+        factors[0][2] *= scale;
+        factors[1][2] = scale * (factors[1][2] + (invScale * factors[1][2] - zoomFactors[1][2]));
+
+
+
+        if (axis.getYNumberTicks() == 1 || isConst(axis.getYTicksCoords())) {
+            scale = factors[0][1] / (zoomFactors[0][1] == 0.0 ? 1.0 : zoomFactors[0][1]);
+            invScale = zoomFactors[0][1] / (factors[0][1] == 0.0 ? 1.0 : factors[0][1]);
+            factors[0][1] *= scale;
+            factors[1][1] = scale * (factors[1][1] + (invScale * factors[1][1] - zoomFactors[1][1]));
+        }
+
+        if (axis.getXNumberTicks() == 1 || isConst(axis.getXTicksCoords())) {
+            scale = factors[0][0] / (zoomFactors[0][0] == 0.0 ? 1.0 : zoomFactors[0][0]);
+            invScale = zoomFactors[0][0] / (factors[0][0] == 0.0 ? 1.0 : factors[0][0]);
+            factors[0][0] *= scale;
+            factors[1][0] = scale * (factors[1][0] + (invScale * factors[1][0] - zoomFactors[1][0]));
+        }
+
+        return factors;
+    }
+
+    /**
+     * Checks if the given array have all its values equal(constant)
+     * @param data the given array
+     * @return true if it is constant, false otherwise
+     */
+    private boolean isConst(Double[] data) {
+        if (data.length > 0) {
+            double d = data[0];
+            for (int i = 0; i < data.length; i++) {
+                if (data[i] != d) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**

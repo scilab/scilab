@@ -183,9 +183,6 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     fpsetmask(0);
 #endif
 
-    // Make sure the default locale is applied at startup
-    setlocale(LC_NUMERIC, "C");
-
     ThreadManagement::initialize();
     NumericConstants::Initialize();
     checkForLinkerErrors();
@@ -261,6 +258,9 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         //update %gui to true
         Add_Boolean_Constant(L"%gui", true);
     }
+
+    // Make sure the default locale is applied at startup
+    setlocale(LC_NUMERIC, "C");
 
     /* Standard mode -> init Java Console */
     if (_pSEI->iConsoleMode == 0)
@@ -1026,7 +1026,7 @@ static void checkForLinkerErrors(void)
 {
 #ifndef _MSC_VER
     /*
-       Depending on the linking order, sometime, libs are not loaded the right way.
+       Depending on the linking order, sometimes, libs are not loaded the right way.
        This can cause painful debugging tasks for packager or developer, we are
        doing the check to help them.
     */

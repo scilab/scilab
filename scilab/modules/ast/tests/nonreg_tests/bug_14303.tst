@@ -26,14 +26,43 @@ A = [1,0,0,0,0,0,0,0;
 0,-7,0,56,0,-112,0,64]
 //display is ok
 
-disp(expm(A));
+disp(nearfloat("succ", expm(A)));
 // now display is ok
 
-format(25);
-disp(expm(A));
+format(19);
+disp(nearfloat("succ", expm(A)));
 
 A =  matrix(linspace(-1E10,1E20,64), 8, 8);
 disp(A);
 format(10);
 disp(A);
+
+s = ["-0.034" "- 0.034"  "+1234.5678" "1234 5678"
+"1e43"   "-3.5d-12" "-1.2+i"     "i+1.2"
+""       "%inf"     "Inf"        "-Inf"
+"%i"     "%pi"      "%e"         "%eps"
+];
+format(10);
+disp(strtod(s));
+
+// display with complex numbers
+A =  matrix(linspace(-1E10,1E20,64), 8, 8);
+B =  matrix(linspace(1E20,-1E10,64), 8, 8);
+B(7, 7) = %nan;
+B(2, 1) = %inf;
+A(2, 1) = %nan;
+A(3, 3) = %nan;
+B(4, 4) = 0;
+B(4, 3) = -B(4, 3);
+A(4, 3) = -A(4, 3);
+A(5, 5) = 0;
+B(5, 5) = -B(5, 5);
+A(6, 6) = 0;
+B(6, 6) = 1;
+format(19);
+disp(A + %i * B);
+format(10);
+disp(A + %i * B);
+format("e");
+disp(A + %i * B);
 

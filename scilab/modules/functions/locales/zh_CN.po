@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:10+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2016-10-10 13:13+0000\n"
+"Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -60,10 +60,6 @@ msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
@@ -78,6 +74,10 @@ msgstr ""
 #, c-format
 msgid "%s: Invalid library %s.\n"
 msgstr "%s：不正确的库%s。\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input arguments: macro expected.\n"
@@ -117,7 +117,7 @@ msgstr "%s：文件 %s 中存在不正确的函数。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s：输入参数的数目出错：应该为%d到%d个。\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
@@ -150,57 +150,3 @@ msgstr "请使用 %s 替代。"
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "该函数将被永久地从 Scilab %s 中移除。"
-
-#~ msgid "%s: Wrong type for input argument #%d.\n"
-#~ msgstr "%s：输入参数#%d的类型错误。\n"
-
-#~ msgid "%s: obsolete op-code %d.\n"
-#~ msgstr "%s：弃用的操作码 %d。\n"
-
-#~ msgid ""
-#~ "%s: Wrong values for input argument: No profile data in the function\n"
-#~ msgstr "%s：输入参数的值错误：函数中无 profile 数据。\n"
-
-#~ msgid "Complexity"
-#~ msgstr "复杂度"
-
-#~ msgid "Tools"
-#~ msgstr "工具"
-
-#~ msgid "Edit"
-#~ msgstr "编辑"
-
-#~ msgid "?"
-#~ msgstr "?"
-
-#~ msgid "Exit"
-#~ msgstr "退出"
-
-#~ msgid "Click to get corresponding line, move with a-z."
-#~ msgstr "点击以得到相关行，使用 a-z 来移动。"
-
-#~ msgid "line %s [%s call, %s sec] :: "
-#~ msgstr "行 %s [从 %s 调用, %s sec] :: "
-
-#~ msgid "line %s [%s calls, %s sec] :: "
-#~ msgstr "行 %s [从 %s 调用, %s sec] :: "
-
-#~ msgid "%s: The function has not been built for profiling"
-#~ msgstr "%s：该函数没有被为 profiling 生成。"
-
-#~ msgid "No variable named: %s.\n"
-#~ msgstr "没有变量命名为：%s。\n"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: A Scilab function name is "
-#~ "expected.\n"
-#~ msgstr "%s：输入参数#%d的值错误：应该为一个Scilab函数名。\n"
-
-#~ msgid "%s is already noncompiled.\n"
-#~ msgstr "%s已经未编译。\n"
-
-#~ msgid "%s is already compiled.\n"
-#~ msgstr "%s已编译。\n"
-
-#~ msgid "%s is already compiled for profiling.\n"
-#~ msgstr "%s已经为提取轮廓而编译。\n"

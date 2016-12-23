@@ -2,7 +2,9 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aime AGNEL
+ * Copyright (C) 2016 - Samuel GOUGEON
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -16,30 +18,102 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tbx_builder_macros" xml:lang="en">
     <refnamediv>
         <refname>tbx_builder_macros</refname>
-        <refpurpose>Run buildmacros.sce script if it exists (toolbox compilation process)</refpurpose>
+        <refpurpose>Create library(es) of a toolbox for its functions in Scilab language</refpurpose>
     </refnamediv>
+
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
             tbx_builder_macros(toolbox_path)
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
+
+    <refsection role="parameters">
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>toolbox_path</term>
                 <listitem>
-                    <para>Root directory of toolbox sources ; buildmacros.sce script will be searched in the macros subdirectory of this directory.</para>
+                    <para>
+                      Root directory of the toolbox. build script will be searched in
+                      the <varname>toolbox_path</varname><literal>/macros</literal> subdirectory.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            This function is usually called from <literal>builder.sce</literal> scripts when
+            creating or updating a toolbox.
+        </para>
+        <warning>
+          The short name (id) <literal>tbx_name</literal> of the toolbox is retrieved as the basename
+          of the file <literal>toolbox_path/etc/*.start</literal>. This file must exists,
+          even if it is empty.
+       </warning>
+        <para>
+            <function>tbx_builder_macros</function> scans the <literal>toolbox_path</literal>
+            directory for a <literal>macros</literal> subdirectory.
+            <itemizedlist>
+              <listitem>
+                If <literal>macros</literal> is found, <function>tbx_builder_macros</function>
+                looks for a script <literal>*.sce</literal> whose name starts with <literal>build</literal>:
+                <itemizedlist>
+                  <listitem>
+                     If a <literal>toolbox/macros/build*.sce</literal> file is found,
+                     <function>tbx_builder_macros</function> executes it, and that's it.
+                  </listitem>
+                  <listitem>
+                    Otherwise,
+                    <function>tbx_builder_macros</function> compiles each <literal>thisfile.sci</literal>
+                    file found in the <literal>toolbox_path/macros/</literal> subdirectory, and yields
+                    every related <literal>thisfile.bin</literal> binary files.
+                    All these <literal>*.bin</literal> are then bundled into a library of macros recorded
+                    in the file <literal>toolbox_path/macros/lib</literal>.
+                  </listitem>
+              </itemizedlist>
+              </listitem>
+              <listitem>
+                 Otherwise, <function>tbx_builder_macros</function> exists silently.
+              </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+           When a library is actually built, its default name is set to <literal>tbx_namelib</literal>,
+          in the <literal>toolbox_path/macros/lib</literal> file.
+        </para>
+    </refsection>
+
+    <refsection role="examples">
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// Recommended usage
+        <programlisting role="no-scilab-exec"><![CDATA[
+// Recommended usage, from a builder.sce script
 tbx_builder_macros(get_absolute_file_path('builder.sce'))
  ]]></programlisting>
     </refsection>
+
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <para>
+                        A default behaviour generating a lib from all macros inside the
+                        <literal>macros</literal> directory is now implemented.
+                        An explicit builder script is no longer mandatory.
+                    </para>
+                    <para>
+                        No longer restricts the build scripts to buildmacros.sce.
+                        Now any scripts called buildmacros*.sce or builder*.sce are valid
+                        for macros generation.
+                    </para>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+
 </refentry>

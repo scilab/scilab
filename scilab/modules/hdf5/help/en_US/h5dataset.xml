@@ -21,8 +21,8 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            h5dataset(obj, name, sourceInfo [, sourceType], data, targetInfo [, targetType])  
-            h5dataset(filename, name, sourceInfo [, sourceType], data, targetInfo [, targetType])  
+            h5dataset(obj, name, sourceInfo [, sourceType], data, targetInfo [, targetType])
+            h5dataset(filename, name, sourceInfo [, sourceType], data, targetInfo [, targetType])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -88,10 +88,10 @@
         <para>The source info gives information on how to get the data. It is a matrix 5xn where n is the number of dimensions of the data. The rows give the following information:</para>
         <simplelist type="inline">
             <member>
-                1st row: the data dimensions. 
+                1st row: the data dimensions.
             </member>
             <member>
-                2nd row: the start point of the hyperslab. 
+                2nd row: the start point of the hyperslab.
             </member>
             <member>
                 3rd row: the hyperslab's count.
@@ -106,7 +106,7 @@
         <para>
             For more explanation about hyperslab selection, see <link linkend="h5write">h5write</link>.
         </para>
-        <para>The targetInfo matrix is 6xn double matrix. The first row gives the dimensions of the target dataset and the second one gives the maximal possible dimensions. When the first and the second row are not equal, the dataset will be chunked. The rows 3 to 6 give the hyperslab's start, count, stride and block.</para> 
+        <para>The targetInfo matrix is 6xn double matrix. The first row gives the dimensions of the target dataset and the second one gives the maximal possible dimensions. When the first and the second row are not equal, the dataset will be chunked. The rows 3 to 6 give the hyperslab's start, count, stride and block.</para>
     </refsection>
     <refsection>
         <title>Examples</title>

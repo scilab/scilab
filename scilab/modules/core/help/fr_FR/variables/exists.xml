@@ -70,7 +70,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff('foo(x)',..
 ['disp([exists(''a12''),exists(''a12'',''l'')])'
  'disp([exists(''x''),exists(''x'',''l'')])'])

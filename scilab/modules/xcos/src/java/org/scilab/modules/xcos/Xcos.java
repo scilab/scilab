@@ -74,9 +74,6 @@ import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.view.mxStylesheet;
-import javax.swing.SwingWorker;
-import org.scilab.modules.graph.ScilabCanvas;
-import org.scilab.modules.xcos.graph.swing.GraphComponent;
 
 /**
  * Xcos entry point class
@@ -121,22 +118,6 @@ public final class Xcos {
         });
 
         XConfiguration.addXConfigurationListener(new XcosConfiguration());
-
-        /*
-         * Load some classes in the background to avoid any lag on the first drag'n drop.
-         *
-         * This will setup the whole rendering stack by dummy rendering a block' style
-         */
-        (new SwingWorker<Void, Void>() {
-            @Override
-            protected Void doInBackground() throws Exception {
-                Map<String, Object> style = Xcos.getInstance().getStyleSheet().getCellStyle("CLOCK_c", new HashMap<>());
-                ScilabCanvas canvas = new GraphComponent(null).createCanvas();
-                canvas.paintSvgForegroundImage(1, 1, canvas.getImageForStyle(style));
-                return null;
-            }
-
-        }).execute();
     }
 
     /*
@@ -462,6 +443,26 @@ public final class Xcos {
         // if unsaved and empty, reuse it. Allocate otherwise.
         if (f == null && diag != null && diag.getModel().getChildCount(diag.getDefaultParent()) > 0) {
             diag = null;
+        }
+
+	// looking for an empty, unsaved diagram to use if opening a new file
+        // if not found an already open instance of the file
+        if(diag == null)
+        {
+	// traverse through the key set of all the opened diagrams
+        for(long key : diagrams.keySet())
+	{
+	List<XcosDiagram> diagramsWithKey = diagrams.get(key);
+	XcosDiagram diagramWithKey = diagramsWithKey.get(0); // get the diagram that maps to that key
+	int childCount = diagramWithKey.countChildren(); //count the number of children in the diagram
+	// if empty, unsaved and unused
+	        if(childCount == 0 && diagramWithKey.getSavedFile() == null && !diagramWithKey.isModified())
+	        {
+		// use that open diagram
+		diag = diagramWithKey;
+		diag.transformAndLoadFile(controller, file);
+	        }
+        }
         }
         // if reuse then request focus
         if (diag != null) {
@@ -899,17 +900,14 @@ public final class Xcos {
             throw new IllegalArgumentException("not handled filetype");
         }
 
-        switch (filetype) {
-            case XCOS:
-            case ZCOS:
-                if (export) {
-                    filetype.save(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
-                } else {
-                    filetype.load(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
-                }
-                break;
-            case COSF:
-                throw new IllegalArgumentException("not handled filetype");
+        if (XcosFileType.getAvailableSaveFormats().contains(filetype)) {
+            if (export) {
+                filetype.save(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
+            } else {
+                filetype.load(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
+            }
+        } else {
+            throw new IllegalArgumentException("not handled filetype");
         }
     }
 

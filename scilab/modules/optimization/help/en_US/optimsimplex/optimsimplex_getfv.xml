@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -50,14 +50,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimsimplex_getfv</literal> function returns the function value at given 
+            The <literal>optimsimplex_getfv</literal> function returns the function value at given
             index.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     simplex = [
 3.  0.  0.
 4. 1.  0.
@@ -67,7 +67,7 @@ s1 = optimsimplex_new ();
 s1 = optimsimplex_setall ( s1 , simplex );
     fv = optimsimplex_getfv(s1, 1);
     disp(fv)
-    
+
     s1 = optimsimplex_destroy(s1);
  ]]>
         </programlisting>

@@ -71,13 +71,13 @@
                 <td>
                     <programlisting role="example"><![CDATA[
 A = 1 - []
-A = []    
+A = []
 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
 A = 1 - []
-A = []    
+A = []
 ]]></programlisting>
                 </td>
             </tr>

@@ -53,7 +53,7 @@
         </para>
         <para>
             <literal>nicholschart</literal> may be used in conjunction with
-            <link linkend="black">black</link>. 
+            <link linkend="black">black</link>.
         </para>
         <para>
             The default values for <literal>modules</literal> and
@@ -69,7 +69,7 @@
     <refsection>
         <title>Remark</title>
         <para>
-            Traditionally, the syntax for <code>nicholschart</code> is: nicholschart(modules=gains, args=phases, colors=colors), 
+            Traditionally, the syntax for <code>nicholschart</code> is: nicholschart(modules=gains, args=phases, colors=colors),
             but the following syntax is also allowed: nicholschart(gains, phases, colors).
         </para>
     </refsection>

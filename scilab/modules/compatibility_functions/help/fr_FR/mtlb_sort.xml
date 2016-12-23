@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE 
-    * 
+    * Copyright (C) 2004-2006 - INRIA - Farid BELAHCENE
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -49,7 +49,7 @@
                 <listitem>
                     <para>
                         une chaine de caracteres (<literal>"ascend"</literal> or
-                        <literal>"descend"</literal>) 
+                        <literal>"descend"</literal>)
                     </para>
                 </listitem>
             </varlistentry>
@@ -67,7 +67,7 @@
                 <para>
                     Si <literal>X</literal> est un vecteur alors l'appel de la fonction
                     <literal>sort(X) </literal>de Matlab est équivalent à l'appel de la
-                    fonction <literal>sort(X,'g','i')</literal> de Scilab. 
+                    fonction <literal>sort(X,'g','i')</literal> de Scilab.
                 </para>
             </listitem>
             <listitem>

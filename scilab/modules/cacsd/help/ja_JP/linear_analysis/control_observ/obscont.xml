@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F.D
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -30,7 +30,7 @@
             <varlistentry>
                 <term>P</term>
                 <listitem>
-                    <para> 
+                    <para>
                         状態空間形式,連続または離散時間の
                         <literal>syslin</literal> リスト (ノミナルプラント)
                     </para>
@@ -98,19 +98,19 @@
             <literal> xdot = A x + B u,  y=C x + D u, zdot= (A + Kf C)z -Kf y +B u, u=Kc z</literal>
         </para>
         <para>
-            <literal>K</literal> は線形システム (<literal>syslin</literal> リスト) 
-            であり, その行列は以下のように与えられる: 
+            <literal>K</literal> は線形システム (<literal>syslin</literal> リスト)
+            であり, その行列は以下のように与えられる:
             <literal>K=[A+B*Kc+Kf*C+Kf*D*Kc,Kf,-Kc]</literal>.
         </para>
         <para>
             (負の)フィードバック <literal>K</literal> を有する
-            閉ループフィードバックシステム <literal> Cl: v -&gt;y</literal> 
-            (すなわち, <literal>y = P u, u = v - K y</literal>, または  
+            閉ループフィードバックシステム <literal> Cl: v -&gt;y</literal>
+            (すなわち, <literal>y = P u, u = v - K y</literal>, または
         </para>
-        <programlisting role=""><![CDATA[ 
-xdot = A x + B u, 
-   y = C x + D u, 
-zdot = (A + Kf C) z - Kf y + B u, 
+        <programlisting role=""><![CDATA[
+xdot = A x + B u,
+   y = C x + D u,
+zdot = (A + Kf C) z - Kf y + B u,
    u = v -F z
  ]]></programlisting>
         <para>
@@ -142,13 +142,13 @@ zdot = (A + Kf C) z - Kf y + B u,
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 ny=2;nu=3;nx=4;P=ssrand(ny,nu,nx);[A,B,C,D]=abcd(P);
 Kc=-ppol(A,B,[-1,-1,-1,-1]);  //コントローラゲイン
 Kf=-ppol(A',C',[-2,-2,-2,-2]);Kf=Kf';    //オブザーバゲイン
 cl=P/.(-obscont(P,Kc,Kf));spec(cl('A'))   //閉ループ系
 [J,r]=obscont(P,Kc,Kf);
-Q=ssrand(nu,ny,3);Q('A')=Q('A')-(max(real(spec(Q('A'))))+0.5)*eye(Q('A')) 
+Q=ssrand(nu,ny,3);Q('A')=Q('A')-(max(real(spec(Q('A'))))+0.5)*eye(Q('A'))
 //Q is a stable parameter
 K=lft(J,r,Q);
 spec(h_cl(P,K))  // 閉ループ A 行列 (要安定);

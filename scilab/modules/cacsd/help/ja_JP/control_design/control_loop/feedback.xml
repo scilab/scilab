@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -51,7 +51,7 @@
             フィードバック演算は, <literal> /. </literal> (スラッシュドット)
             と記述されます.
             このコマンドは,<literal>Sl1</literal> および <literal>Sl2</literal>の
-            <literal>Sl=Sl1*(I+Sl2*Sl1)^-1</literal>, すなわち, (負の) 
+            <literal>Sl=Sl1*(I+Sl2*Sl1)^-1</literal>, すなわち, (負の)
             フィードバックを返します.
             <literal>Sl</literal> は,
             <literal> y = Sl1 u</literal>, <literal>u = v - Sl2 y</literal>の時の
@@ -66,7 +66,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 S1=ssrand(2,2,3);S2=ssrand(2,2,2);
 W=S1/.S2;
 ss2tf(S1/.S2)

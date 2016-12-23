@@ -46,7 +46,7 @@ loadmatfile
     <refsection>
         <title>Particular cases</title>
         <para>
-            Scilab <emphasis role="bold">loadmatfile</emphasis> does not handle option <emphasis role="bold">-regexp</emphasis> yet. 
+            Scilab <emphasis role="bold">loadmatfile</emphasis> does not handle option <emphasis role="bold">-regexp</emphasis> yet.
         </para>
     </refsection>
 </refentry>

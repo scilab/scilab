@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F. Delebecque
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -53,28 +53,28 @@
         <para>
             The input to <literal>P21</literal> is a white noise with variance:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
      [B1 ]               [Q  S]
 BigV=[   ] [ B1' D21'] = [    ]
      [D21]               [S' R]
  ]]></programlisting>
         <para>
-            <literal>X</literal> is the solution of the stabilizing Riccati 
+            <literal>X</literal> is the solution of the stabilizing Riccati
             equation and <literal>A+K*C2</literal> is stable.
         </para>
         <para>
             In continuous time:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 (A-S*inv(R)*C2)*X+X*(A-S*inv(R)*C2)'-X*C2'*inv(R)*C2*X+Q-S*inv(R)*S'=0
  ]]></programlisting>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 K=-(X*C2'+S)*inv(R)
  ]]></programlisting>
         <para>
             In discrete time:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 X=A*X*A'-(A*X*C2'+B1*D21')*pinv(C2*X*C2'+D21*D21')*(C2*X*A'+D21*B1')+B1*B1'
  ]]></programlisting>
         <para>
@@ -84,29 +84,29 @@ X=A*X*A'-(A*X*C2'+B1*D21')*pinv(C2*X*C2'+D21*D21')*(C2*X*A'+D21*B1')+B1*B1'
             <literal>xhat(t+1)= E(x(t+1)| y(0),...,y(t))</literal> (one-step predicted <literal>x</literal>)
             satisfies the recursion:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 xhat(t+1)=(A+K*C2)*xhat(t) - K*y(t).
  ]]></programlisting>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Assume the equations
 //.
 //x = Ax + Ge
 //y = Cx + v
 //with
-//E ee' = Q_e,    Evv' = R,    Eev' = N 
+//E ee' = Q_e,    Evv' = R,    Eev' = N
 //
 //This is equivalent to
 //.
 //x = Ax  + B1 w
 //y = C2x + D21 w
 //with E { [Ge ]  [Ge v]' } = E { [B1w ] [B1w D21w]' } = bigR =
-//         [ v ]                  [D21w]    
+//         [ v ]                  [D21w]
 //
 //[B1*B1'  B1*D21';
-// D21*B1'  D21*D21']  
+// D21*B1'  D21*D21']
 //=
 //[G*Q_e*G' G*N;
 // N*G' R]

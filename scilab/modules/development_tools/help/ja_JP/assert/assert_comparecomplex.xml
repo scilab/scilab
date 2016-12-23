@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * 
+ *
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -65,7 +65,7 @@
             <varlistentry>
                 <term>order :</term>
                 <listitem>
-                    <para> 
+                    <para>
                         1行1列のdouble行列,整数値,順番.
                         aがbにほぼ等しい場合にorder=0,
                         a &lt; bの場合に order=-1,

@@ -33,7 +33,7 @@
             <varlistentry>
                 <term>sl</term>
                 <listitem>
-                    <para> 
+                    <para>
                         連続または離散時間 SIMO 線形システム
                         ( 参照: <link linkend="syslin">syslin</link>).
                     </para>
@@ -131,7 +131,7 @@
             行列です (各行が各応答に対応します).
         </para>
         <para>
-            <literal>repf</literal> は複素行列です. 
+            <literal>repf</literal> は複素行列です.
             各行が各応答に対応します.
         </para>
         <para>
@@ -165,7 +165,7 @@
     hi=ax.children($+i-1)// i番目のシステムの複合オブジェクトのハンドル
     ]]></programlisting>
         <para>
-            この複合オブジェクトは2つの子を有します: 
+            この複合オブジェクトは2つの子を有します:
             小さな矢印(小さな線分群の集合)と曲線ラベル(テキストの複合要素)
             を定義する複合オブジェクトおよび曲線自体の線分群.
             以下のコードは,特定のナイキスト線図の表示をカスタマイズする方法を

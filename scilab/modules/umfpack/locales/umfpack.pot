@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-06-08 22:22+0100\n"
+"Revision-Date: 2016-12-07 16:05+0100\n"
 
 # File: modules/umfpack/sci_gateway/c/sci_res_with_prec.c, line: 154
 #, c-format
@@ -294,30 +294,39 @@ msgid "Scilab UMFPACK module not installed.\n"
 msgstr ""
 
 # File: modules/umfpack/demos/condestsp.sce, line: 15
-msgid "A small test for the condestsp"
+msgid ""
+"A small test for the condestsp function: condestsp gives an estimate of\n"
+" the condition number K1 in 1-norm of a real sparse matrix A:"
+msgstr ""
+
+#
+# File: modules/umfpack/demos/condestsp.sce, line: 18
+msgid ""
+"     without explicitly computing the inverse of A. condestsp uses a "
+"factorization given by\n"
+" umf_lufact but if you have already computed this one it is recommended to "
+"give the pointer to the factorization."
 msgstr ""
 
 #
 # File: modules/umfpack/demos/condestsp.sce, line: 20
-msgid "     without explicitly computing the"
+msgid ""
+"The test consists in forming small sparse matrices (so as to compute K1 "
+"exactly with\n"
+"norm(inv(full(A)),1)) whose values are chosen from the normal distribution."
 msgstr ""
 
 #
-# File: modules/umfpack/demos/condestsp.sce, line: 26
-msgid "The test consists in forming small"
-msgstr ""
-
-#
-# File: modules/umfpack/demos/condestsp.sce, line: 31
+# File: modules/umfpack/demos/condestsp.sce, line: 22
 # File: modules/umfpack/demos/harwell-boeing.sce, line: 17
 # File: modules/umfpack/demos/harwell-boeing.sce, line: 48
 # File: modules/umfpack/demos/harwell-boeing.sce, line: 79
 # File: modules/umfpack/demos/harwell-boeing.sce, line: 110
 # File: modules/umfpack/demos/harwell-boeing.sce, line: 142
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 33
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 63
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 116
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 184
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 30
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 60
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 106
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 174
 msgid ""
 "\n"
 "Press Return to continue...\n"
@@ -402,239 +411,270 @@ msgstr ""
 
 #
 # File: modules/umfpack/demos/sparse_matrices.sce, line: 15
-msgid "To load a sparse matrix stored in the Harwell-"
+msgid ""
+"To load a sparse matrix stored in the Harwell-Boeing format in Scilab, you "
+"may use the function ReadHBSparse."
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 17
-msgid "4 matrices will be loaded for the demo: they come"
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 16
+msgid ""
+"4 matrices will be loaded for the demo: they come from the University of "
+"Florida Sparse Matrix Collection:"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 21
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 19
 msgid "    maintained by Tim Davis, author of UMFPACK"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 30
-msgid "To see the pattern of non zeros elements, "
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 28
+msgid ""
+"To see the pattern of non zeros elements, you may use the function "
+"PlotSparse."
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 32
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 29
 msgid "Here we will display the 4 matrices"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 58
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 55
 msgid "Now, using umfpack to solve some linear systems:"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 59
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 56
 msgid "-> to create a rhs"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 60
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 57
 msgid "-> to solve A1*x1 = b1"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 61
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 58
 msgid "-> norm of the residual"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 62
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 59
 msgid "this is done for the 4 matrices A1, A2, A3 and A4."
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 87
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 152
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 84
 msgid "A1 ("
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 88
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 91
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 94
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 97
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 85
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 190
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 194
 #, c-format
 msgid "     norm of the residual = "
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 90
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 156
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 198
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 86
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 192
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 196
+#, c-format
+msgid "     computing time       = "
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 88
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 186
 msgid "A2 ("
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 93
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 160
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 90
 msgid "A3 ("
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 96
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 164
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 92
 msgid "A4 ("
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 100
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 95
 msgid "Now we will see how to use the lu factors:"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 101
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 96
 msgid "  1/ lu factors of a sparse matrix A are obtained through:"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 102
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 97
 #, c-format
-msgid "     lup = umf_lufact(A)\n"
+msgid ""
+"     lup = umf_lufact(A)\n"
+"     lup is a pointer to the lu factors (the memory is outside scilab "
+"space)\n"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 104
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 98
 msgid "  2/ for solving a linear system A*x = b, use:"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 105
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 99
 #, c-format
-msgid "     x = umf_lusolve(lup,b)\n"
+msgid ""
+"     x = umf_lusolve(lup,b)\n"
+"     or  x = umf_lusolve(lup,b,Ax=b,A)  to add an iterative refinement step\n"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 107
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 100
 msgid "  3/ to solve A'*x=b you may use:"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 108
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 101
 #, c-format
-msgid "     x = umf_lusolve(lup,b,Ax''=b)\n"
+msgid ""
+"     x = umf_lusolve(lup,b,Ax''=b)\n"
+"     or  x = umf_lusolve(lup,b,Ax''=b,A)  to add an iterative refinement "
+"step\n"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 110
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 102
 msgid "  4/ you may also compute the 1-norm condition number quicky with:"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 111
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 103
 #, c-format
-msgid "     K1 = condestsp(A,lup)\n"
+msgid ""
+"     K1 = condestsp(A,lup)\n"
+"     K1 = condestsp(A) also works but in this case the lu factors are re-"
+"computed inside\n"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 113
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 104
 msgid ""
 "  5/ if you don't need the lu factors anymore, it is recommended to free "
 "them with:"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 114
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 105
 #, c-format
-msgid "     umf_ludel(lup)\n"
+msgid ""
+"     umf_ludel(lup)\n"
+"     if you have lost your pointer you may use umf_ludel() which frees all "
+"the current umf lu factors\n"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 153
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 144
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 148
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 152
 #, c-format
-msgid "     K1 = "
+msgid "     norm of the residual    = "
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 145
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 149
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 153
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 191
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 195
+#, c-format
+msgid "     same but with refinment = "
+msgstr ""
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 156
+#, c-format
+msgid "     norm of the residual     = "
 msgstr ""
 
 #
 # File: modules/umfpack/demos/sparse_matrices.sce, line: 157
 #, c-format
-msgid "     K2 = "
+msgid "     same but with refinement = "
 msgstr ""
 
 #
 # File: modules/umfpack/demos/sparse_matrices.sce, line: 161
-#, c-format
-msgid "     K3 = "
-msgstr ""
-
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 165
-#, c-format
-msgid "     K4 = "
-msgstr ""
-
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 171
 msgid "Now we will see how to use the taucs snmf stuff on the matrix A2."
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 172
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 162
 msgid ""
 "This is useful and recommended when your matrix is symmetric positive "
 "definite (s.p.d.)."
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 173
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 163
 msgid "  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 174
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 165
 #, c-format
-msgid "     Cp = taucs_chfact(A)\n"
+msgid ""
+"     Cp is a pointer to the Cholesky fact. (the memory is outside scilab "
+"space)\n"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 176
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 166
 msgid "  2/ for solving a linear system A*x = b then use:"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 177
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 167
 #, c-format
 msgid "     x = taucs_chsolve(Cp,b)\n"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 178
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 168
 msgid "  3/ for the same thing with one refinement step, use:"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 179
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 169
 #, c-format
 msgid "     xr = taucs_chsolve(Cp,b,A)\n"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 180
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 170
 msgid "  4/ you may also compute the 2-norm condition number with:"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 181
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 171
 #, c-format
 msgid "     [K2, lm, vm, lM, vM] = cond2sp(A, Cp [, itermax, eps, verb])\n"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 182
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 172
 msgid ""
 "  5/ if you don't need the Cholesky factorization anymore, it is recommended "
 "to free it with taucs_chdel(Cp)"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 183
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 173
 #, c-format
 msgid ""
 "     if you have lost your pointer you may use taucs_chdel() which frees "
@@ -642,25 +682,12 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 199
-#, c-format
-msgid "     K2 (1-norm) = "
-msgstr ""
-
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 201
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 189
 msgid " with umfpack:"
 msgstr ""
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 202
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 206
-#, c-format
-msgid "     norm of the residual      = "
-msgstr ""
-
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 205
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 193
 msgid " with the taucs snmf Cholesky solver:"
 msgstr ""
 

@@ -22,15 +22,6 @@ API_SCILAB_CXX_SOURCES = \
     src/cpp/api_stack_optional.cpp \
     src/cpp/returnProperty.cpp \
     src/cpp/returnPropertyList.cpp \
-    src/cpp/api_boolean_cpp.cpp \
-    src/cpp/api_common_cpp.cpp \
-    src/cpp/api_double_cpp.cpp \
-    src/cpp/api_int_cpp.cpp \
-    src/cpp/api_list_cpp.cpp \
-    src/cpp/api_sparse_cpp.cpp \
-    src/cpp/api_string_cpp.cpp \
-    src/cpp/api_pointer_cpp.cpp \
-    src/cpp/api_handle_cpp.cpp \
     src/cpp/api_template_safe.cpp \
     src/cpp/api_template_unsafe.cpp \
     src/cpp/api_error.cpp
@@ -110,17 +101,6 @@ includes/api_stack_handle.h \
 includes/api_stack_optional.h \
 includes/api_scilab.h \
 includes/dynlib_api_scilab.h \
-includes/api_boolean.hxx \
-includes/api_common.hxx \
-includes/api_double.hxx \
-includes/api_handle.hxx \
-includes/api_int.hxx \
-includes/api_list.hxx \
-includes/api_pointer.hxx \
-includes/api_scilab.hxx \
-includes/api_sparse.hxx \
-includes/api_string.hxx \
-includes/api_variable.hxx \
 includes/api_boolean.h \
 includes/api_cell.h \
 includes/api_common.h \

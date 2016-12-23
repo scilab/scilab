@@ -628,11 +628,17 @@ BOOL update_specification_bounds(int iSubwinUID, double rect[6], int flag)
     if (flag != 3)
     {
         getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
-
-        rect[4] = dataBounds[4];
-        rect[5] = dataBounds[5];
-
-        releaseGraphicObjectProperty(__GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+        
+        if (dataBounds)
+        {
+            rect[4] = dataBounds[4];
+            rect[5] = dataBounds[5];
+            releaseGraphicObjectProperty(__GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+        }
+        else
+        {
+            return FALSE;
+        }
     }
 
     setGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);

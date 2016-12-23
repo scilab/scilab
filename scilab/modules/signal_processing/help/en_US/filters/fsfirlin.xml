@@ -40,14 +40,14 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //
-//Example of how to use the fsfirlin macro for the design 
+//Example of how to use the fsfirlin macro for the design
 //of an FIR filter by a frequency sampling technique.
 //
-//Two filters are designed : the first (response hst1) with 
-//abrupt transitions from 0 to 1 between passbands and stop 
-//bands; the second (response hst2) with one sample in each 
+//Two filters are designed : the first (response hst1) with
+//abrupt transitions from 0 to 1 between passbands and stop
+//bands; the second (response hst2) with one sample in each
 //transition band (amplitude 0.5) for smoothing.
 //
 hd=[zeros(1,15) ones(1,10) zeros(1,39)];//desired samples

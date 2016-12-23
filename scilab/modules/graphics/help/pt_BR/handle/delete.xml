@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -62,7 +62,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 subplot(211);
 t=1:10;plot2d(t,t.^2),
 subplot(223);
@@ -70,7 +70,7 @@ plot3d();
 subplot(224);
 plot2d();
 xfrect(1,0,3,1);
-a=get("current_axes") 
+a=get("current_axes")
 delete(); //deletando o novo objeto gráfico criado
 delete(a.children); //deletando todos os galhos dos eixos corentes
 delete(a); //deletando os eixos

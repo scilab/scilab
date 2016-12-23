@@ -180,22 +180,22 @@
             '   for ( i =0 ; i &lt; (*m)*(*n) ; i++) '
             '     c[i] = sin(a[i]) + *b; '
             '}'];
-            
+
             mputl(f1,'fooc.c')
-            
+
             //creating the shared library (a gateway, a Makefile and a loader are
             //generated.
-            
+
             ilib_for_link('fooc','fooc.c',[],"c")
-            
+
             // load the shared library
-            
+
             exec loader.sce
-            
+
             //using the new primitive
             a=[1,2,3;4,5,6];b= %pi;
             [m,n]=size(a);
-            
+
             // Inputs:
             // a is in position 2 and double
             // b                3     double
@@ -204,7 +204,7 @@
             // Outputs:
             // c is in position 1 and double with size [m,n]
             c=call("fooc",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
-            
+
             //Example 2 with  a simple Fortran code
             f1=['      subroutine foof(c,a,b,n,m)'
             '      integer n,m'
@@ -214,16 +214,16 @@
             '   10 continue'
             '      end'];
             mputl(f1,'foof.f')
-            
+
             //creating the shared library (a gateway, a Makefile and a loader are
             //generated.
-            
+
             ilib_for_link('foof','foof.f',[],"f")
-            
+
             // load the shared library
-            
+
             exec loader.sce
-            
+
             //using the new primitive
             a=[1,2,3;4,5,6];b= %pi;
             [m,n]=size(a);

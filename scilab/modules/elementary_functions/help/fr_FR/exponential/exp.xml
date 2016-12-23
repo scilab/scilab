@@ -28,7 +28,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[1,2,3+%i];
 log(exp(x))  // élément par élément
 2^x

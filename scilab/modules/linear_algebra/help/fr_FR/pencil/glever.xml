@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -59,7 +59,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Calcul de 
+            Calcul de
         </para>
         <para>
             (s*E-A)^-1
@@ -67,7 +67,7 @@
         <para>
             par l'algorithme généralisé de Leverrier pour un faisceau de matrices.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 (s*E-A)^-1 = (Bfs/chis) - Bis.
  ]]></programlisting>
         <para>
@@ -94,7 +94,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
 [Bfs,Bis,chis]=glever(F)
 inv(F)-((Bfs/chis) - Bis)

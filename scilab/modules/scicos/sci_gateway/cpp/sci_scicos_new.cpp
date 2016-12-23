@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -61,9 +61,9 @@ types::InternalType * alloc_and_set(kind_t k, types::String* type_name, types::t
 {
     Controller controller;
 
-    // create the associated object
-    ScicosID o = controller.createObject(k);
-    Adaptor* adaptor = new Adaptor(controller, controller.getObject<Adaptee>(o));
+    // create the associated object and own it
+    ScicosID uid = controller.createObject(k);
+    Adaptor* adaptor = new Adaptor(controller, controller.getObject<Adaptee>(uid));
 
     // the first header entry is the type
     for (int i = 1; i < (int)in.size(); i++)
@@ -72,7 +72,7 @@ types::InternalType * alloc_and_set(kind_t k, types::String* type_name, types::t
         if (!adaptor->setProperty(name, in[i], controller))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"), funame.data(), i, name.data());
-            delete adaptor;
+            adaptor->killMe();
             return 0;
         }
     }
@@ -80,11 +80,12 @@ types::InternalType * alloc_and_set(kind_t k, types::String* type_name, types::t
     return adaptor;
 }
 
-template<class Adaptor, class Adaptee>
-types::InternalType * alloc_and_set_as_tlist(types::String* type_name, types::typed_list &in)
+template<class Adaptor, class Adaptee, class T>
+types::InternalType * set_tlist(T* as, types::String* type_name, types::typed_list &in)
 {
-    // check header
-    // The default constructor should be implemented for this Adapter
+    Controller controller;
+
+    // check header by using a null object
     Adaptor adaptor;
     for (int i = 1; i < (int)in.size(); i++)
     {
@@ -97,41 +98,13 @@ types::InternalType * alloc_and_set_as_tlist(types::String* type_name, types::ty
     }
 
     // copy the data
-    types::TList* tlist = new types::TList();
-    tlist->set(0, type_name->clone());
+    as->set(0, type_name->clone());
     for (int i = 1; i < (int)in.size(); i++)
     {
-        tlist->set(i, in[i]);
+        as->set(i, in[i]);
     }
 
-    return tlist;
-}
-
-template<class Adaptor, class Adaptee>
-types::InternalType * alloc_and_set_as_mlist(types::String* type_name, types::typed_list &in)
-{
-    // check header
-    // The default constructor should be implemented for this Adapter
-    Adaptor adaptor;
-    for (int i = 1; i < (int)in.size(); i++)
-    {
-        std::wstring name(type_name->get(i));
-        if (!adaptor.hasProperty(name))
-        {
-            Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"), funame.data(), i, name.data());
-            return 0;
-        }
-    }
-
-    // copy the data
-    types::MList* mlist = new types::MList();
-    mlist->set(0, type_name->clone());
-    for (int i = 1; i < (int)in.size(); i++)
-    {
-        mlist->set(i, in[i]);
-    }
-
-    return mlist;
+    return as;
 }
 
 static types::Function::ReturnValue allocate(types::typed_list &in, int /*_iRetCount*/, types::typed_list &out)
@@ -167,7 +140,7 @@ static types::Function::ReturnValue allocate(types::typed_list &in, int /*_iRetC
             }
             break;
         case view_scilab::Adapters::CPR_ADAPTER:
-            returnType = alloc_and_set_as_tlist<view_scilab::CprAdapter, model::Diagram>(type_name, in);
+            returnType = set_tlist<view_scilab::CprAdapter, model::Diagram>(new types::TList(), type_name, in);
             if (returnType == nullptr)
             {
                 return types::Function::Error;
@@ -181,7 +154,7 @@ static types::Function::ReturnValue allocate(types::typed_list &in, int /*_iRetC
             }
             break;
         case view_scilab::Adapters::GRAPHIC_ADAPTER:
-            returnType = alloc_and_set_as_mlist<view_scilab::GraphicsAdapter, model::Block>(type_name, in);
+            returnType = set_tlist<view_scilab::GraphicsAdapter, model::Block>(new types::MList(), type_name, in);
             if (returnType == nullptr)
             {
                 return types::Function::Error;
@@ -195,14 +168,14 @@ static types::Function::ReturnValue allocate(types::typed_list &in, int /*_iRetC
             }
             break;
         case view_scilab::Adapters::MODEL_ADAPTER:
-            returnType = alloc_and_set_as_mlist<view_scilab::ModelAdapter, model::Block>(type_name, in);
+            returnType = set_tlist<view_scilab::ModelAdapter, model::Block>(new types::MList(), type_name, in);
             if (returnType == nullptr)
             {
                 return types::Function::Error;
             }
             break;
         case view_scilab::Adapters::PARAMS_ADAPTER:
-            returnType = alloc_and_set_as_tlist<view_scilab::ParamsAdapter, model::Diagram>(type_name, in);
+            returnType = set_tlist<view_scilab::ParamsAdapter, model::Diagram>(new types::TList(), type_name, in);
             if (returnType == nullptr)
             {
                 return types::Function::Error;
@@ -216,7 +189,7 @@ static types::Function::ReturnValue allocate(types::typed_list &in, int /*_iRetC
             }
             break;
         case view_scilab::Adapters::STATE_ADAPTER:
-            returnType = alloc_and_set_as_tlist<view_scilab::StateAdapter, model::Diagram>(type_name, in);
+            returnType = set_tlist<view_scilab::StateAdapter, model::Diagram>(new types::TList(), type_name, in);
             if (returnType == nullptr)
             {
                 return types::Function::Error;

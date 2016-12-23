@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-03-04 09:51+0000\n"
+"PO-Revision-Date: 2016-10-10 13:14+0000\n"
 "Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Error main TCL interpreter not initialized.\n"
@@ -177,33 +177,24 @@ msgstr ""
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Scilab Tcl/Tk 模块没有安装。\n"
 
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 10
 msgid "Tcl/Tk"
 msgstr ""
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 12
 msgid "Color"
 msgstr ""
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 13
 msgid "Puzzle"
 msgstr ""
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 14
 msgid "Scroll"
 msgstr ""
 
-#
-# File: modules/tclsci/demos/tclsci.dem.gateway.sce, line: 15
 msgid "Scale"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s：输入参数的个数错误：应该为%d到%d个。\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"

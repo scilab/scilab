@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -56,6 +56,10 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Text(s) expected.\n"
+msgstr ""
 
 msgid "Generating cleaner.sce...\n"
 msgstr "Tworzenie cleaner.sce...\n"
@@ -115,11 +119,11 @@ msgstr "Tworzenie loader.sce...\n"
 msgid "Generating unloader.sce...\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgid "Generating localization\n"
 msgstr ""
 
-msgid "Generating localization\n"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr ""
 
 #, c-format
@@ -137,6 +141,14 @@ msgstr ""
 msgid "Building gateway...\n"
 msgstr ""
 
+#, c-format
+msgid "Could not use the default compilation of gateways in %s."
+msgstr ""
+
+#, c-format
+msgid "No builder script found in %s."
+msgstr ""
+
 msgid "Building help...\n"
 msgstr ""
 
@@ -151,6 +163,16 @@ msgstr ""
 msgid "Building sources...\n"
 msgstr ""
 
+msgid "No builder file found, nothing to be done"
+msgstr ""
+
+msgid "No builder file found, nothing to be done."
+msgstr ""
+
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
 msgstr ""

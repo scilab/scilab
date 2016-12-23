@@ -59,7 +59,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=linspace(0.01,4,200);
 x=[-x($:-1:1) %nan x];
 clf();

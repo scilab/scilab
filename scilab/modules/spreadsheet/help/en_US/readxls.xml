@@ -51,13 +51,13 @@
             <literal>sheets</literal> field itself contains a list of sheet data structure.
         </para>
         <para>
-            <literal>sheet=mlist(['xlssheet','name','text','value'],sheetname,Text,Value)</literal> where 
+            <literal>sheet=mlist(['xlssheet','name','text','value'],sheetname,Text,Value)</literal> where
             <literal>sheetname</literal> is a character string containing the name of the sheet,
             <literal>Text</literal> is a matrix of string which contains the cell's
             strings and  <literal>Value</literal> is a matrix of numbers which contains the cell's
-            values. 
+            values.
         </para>
-        <para> 
+        <para>
             <warning>
                 Only BIFF8 Excel files (last Excel file version (2003)) are handled.
             </warning>
@@ -65,7 +65,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 Sheets = readxls('SCI/modules/spreadsheet/demos/xls/t1.xls')
 // some basic operations on Sheets
 typeof(Sheets)

@@ -98,33 +98,39 @@ loadContrib();
 clear loadContrib;
 
 // calling user initialization =========================================
-if sciargs()<>"-nouserstartup" then
+if ~or(sciargs()=="-nouserstartup") then
 
   startupfiles = [ SCIHOME + filesep() + ".scilab"     ; .. // Home directory startup
                    SCIHOME + filesep() + "scilab.ini" ];    //  ""      ""    startup
-  for i = 1:size(startupfiles, "*")
-    if isfile(startupfiles(i)) then
-      exec(startupfiles(i),-1);
+  for f = startupfiles'
+    if isfile(f) then
+      exec(f, -1)
     end
   end
 
   // execute .scilab and scilab.start only
   // if last exec does not change current directory to SCIHOME
   // See bug #4150
-  workingDirectory = pwd();
+  usedwd = getPreferencesValue("//general/body/startup", "use");
+  if usedwd=="previous"
+      workingDirectory =  getPreferencesValue("//general/body/startup", "previous");
+  elseif usedwd=="default"
+      workingDirectory =  getPreferencesValue("//general/body/startup", "default");
+  else
+      workingDirectory = pwd();
+  end
   if SCIHOME <> workingDirectory then
-
-      workingfiles = [ workingDirectory + filesep() + ".scilab"     ; .. // Working directory startup
+      startupfiles = [ workingDirectory + filesep() + ".scilab"     ; .. // Working directory startup
                        workingDirectory + filesep() + "scilab.ini" ];    //  ""      ""    startup
 
-      for i = 1:size(startupfiles, "*")
-        if isfile(startupfiles(i)) then
-          exec(startupfiles(i),-1);
+      for f = startupfiles'
+        if isfile(f) then
+          exec(f, -1)
         end
       end
   end
 
-  clear i startupfiles workingfiles workingDirectory;
+  clear usedwd f startupfiles workingDirectory
 end
 
 // Menus/toolbar can now be enabled ====================================

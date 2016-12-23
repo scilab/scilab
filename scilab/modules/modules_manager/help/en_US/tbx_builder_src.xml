@@ -2,7 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aime AGNEL
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -16,30 +17,120 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tbx_builder_src" xml:lang="en">
     <refnamediv>
         <refname>tbx_builder_src</refname>
-        <refpurpose>Run builder_src.sce script if it exists (toolbox compilation process)</refpurpose>
+        <refpurpose>
+            Builds the user source code (non-gateway) in <literal>src/</literal> subdirectory.
+        </refpurpose>
     </refnamediv>
+
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
             tbx_builder_src(toolbox_path)
         </synopsis>
     </refsynopsisdiv>
+
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>toolbox_path</term>
                 <listitem>
-                    <para>Root directory of toolbox sources ; builder_src.sce script will be searched in the src subdirectory of this directory.</para>
+                    <para>Root directory of toolbox sources; builder scripts will be searched in the src subdirectory of this directory.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
+
+    <refsection role="description">
+        <title>Description</title>
+        <para>
+            <literal>tbx_builder_src</literal> is used for compiling the non-gateway code of a toolbox.
+        </para>
+        <para>
+            The compilation of sources in <literal>src/</literal> directory follows this convention and priority order:
+        </para>
+        <itemizedlist>
+            <listitem>
+                looks for a <varname>toolbox_path</varname><literal>/src/builder*.sce</literal> script, if found, executes it;
+            </listitem>
+            <listitem>
+                otherwize, looks for a <literal>builder</literal> script in each subdirectory of <literal>src/</literal> and executes them;
+            </listitem>
+            <listitem>
+                for <literal>c, cpp, java, fortran</literal> subdirectories, if no <literal>builder</literal> script is found, a default compilation process is done:
+                <para>
+                    <informaltable border="1">
+                        <tr>
+                            <th align="left">
+                                <literal>c</literal>
+                            </th>
+                            <td>
+                                compilation is done for all <literal>*.c</literal> files, headers must be present in the <literal>c/</literal> directory, function names must have the name of the file (without the <literal>.c</literal> extension)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th align="left">
+                                <literal>cpp</literal>
+                            </th>
+                            <td>
+                                compilation is done for all <literal>*.cpp or *.cxx</literal> files, headers must be present in the <literal>cpp</literal> directory, function names must have the name of the file (without the <literal>.cpp or .cxx</literal> extension)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th align="left">
+                                <literal>java</literal>
+                            </th>
+                            <td>
+                                compilation is done for all <literal>*.java</literal> files under <literal>org/scilab/contrib/package_name</literal> directories where <literal>package_name</literal> is given by the user
+                            </td>
+                        </tr>
+                        <tr>
+                            <th align="left">
+                                <literal>fortran</literal>
+                            </th>
+                            <td>
+                                compilation is done for all <literal>*.f</literal> files
+                            </td>
+                        </tr>
+                    </informaltable>
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            The function exits silently if the <literal>src</literal> directory is absent.
+        </para>
+        <warning>
+            Little automation is done for <literal>tbx_builder_src</literal> and is only specified for <literal>c, cpp, java, fortran</literal> because source compiling is a very specific process. Toolbox developers willing to have a more specific compilation process still need to define what the build scripts must perform for compilation.
+        </warning>
+    </refsection>
+
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Recommended usage
 tbx_builder_src(get_absolute_file_path('builder.sce'))
  ]]></programlisting>
     </refsection>
+
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <para>
+                        No longer restricts the build scripts to <literal>builder_src.sce</literal>. Now any scripts called <literal>builder*.sce</literal> is valid
+                        for source compilation.
+                    </para>
+                    <para>
+                        Automatically scans for builder scripts in subdirectories if no builder script is found in <literal>src</literal>
+                    </para>
+                    <para>
+                        A default compilation process is introduced for <literal>c/, cpp/, fortran/, java/</literal>
+                    </para>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+
 </refentry>

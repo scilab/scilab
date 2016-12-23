@@ -53,7 +53,7 @@
         <title>説明</title>
         <para>
             この関数により図にメニューを作成できます.
-            <literal>parent</literal>が図の場合, 
+            <literal>parent</literal>が図の場合,
             メニュー要素が図のメニューバーに追加されます.
             <literal>parent</literal>がメニュー要素の場合,
             新規要素が親の要素に追加され,
@@ -62,7 +62,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 f=figure('position', [10 10 300 200]);
 // 図を作成
 m=uimenu(f,'label', 'windows');
@@ -80,7 +80,7 @@ close(f);
             メニューまたはサブメニューはLaTeXまたはMathMLラベルを
             持つことができます
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 f=figure();
 //LaTeX
 mlatex=uimenu(f,'label', '$\LaTeX$');

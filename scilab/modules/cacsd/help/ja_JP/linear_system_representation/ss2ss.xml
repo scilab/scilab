@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -129,21 +129,21 @@
                     <literal>right</literal> および <literal>left</literal> は
                     以下の特徴を有します:
                 </para>
-                <programlisting role=""><![CDATA[ 
-Sl1 = left*sysdiag(sys,eye(p,p))*right 
+                <programlisting role=""><![CDATA[
+Sl1 = left*sysdiag(sys,eye(p,p))*right
  ]]></programlisting>
             </listitem>
             <listitem>
                 <para>
                     <literal>flag</literal> を使用し, <literal>flag=2</literal> とした場合,
-                    フィードバック 
+                    フィードバック
                     (<literal>F</literal> の大きさは
                     <literal>(m,n)</literal>である必要があります)が行われ,その後,
                     上記の出力注入が適用されます.
                     <literal>right</literal> および
                     <literal>left</literal>は以下の特徴を有します:
                 </para>
-                <programlisting role=""><![CDATA[ 
+                <programlisting role=""><![CDATA[
  Sl1 = left*sysdiag(sys*right,eye(p,p)))
  ]]></programlisting>
             </listitem>
@@ -151,9 +151,9 @@ Sl1 = left*sysdiag(sys,eye(p,p))*right
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 Sl=ssrand(2,2,5); trzeros(Sl)       // zeros are invariant:
-Sl1=ss2ss(Sl,rand(5,5),rand(2,5),rand(5,2)); 
+Sl1=ss2ss(Sl,rand(5,5),rand(2,5),rand(5,2));
 trzeros(Sl1), trzeros(rand(2,2)*Sl1*rand(2,2))
 // output injection [ A + GC, (B+GD,-G)]
 //                  [   C   , (D   , 0)]
@@ -164,12 +164,12 @@ G=rand(n,p);
 [sys1,right,left]=ss2ss(sys,rand(n,n),F1,G,2);
 // Sl1 equiv left*sysdiag(sys*right,eye(p,p)))
 res=clean(ss2tf(sys1) - ss2tf(left*sysdiag(sys*right,eye(p,p))))
-// output injection then feedback (m+p,n) 
+// output injection then feedback (m+p,n)
 F2=rand(p,n); F=[F1;F2];
 [sys2,right,left]=ss2ss(sys,rand(n,n),F,G,1);
-// Sl1 equiv left*sysdiag(sys,eye(p,p))*right 
+// Sl1 equiv left*sysdiag(sys,eye(p,p))*right
 res=clean(ss2tf(sys2)-ss2tf(left*sysdiag(sys,eye(p,p))*right))
-// when F2= 0; sys1 and sys2 are the same 
+// when F2= 0; sys1 and sys2 are the same
 F2=0*rand(p,n);F=[F1;F2];
 [sys2,right,left]=ss2ss(sys,rand(n,n),F,G,1);
 res=clean(ss2tf(sys2)-ss2tf(sys1))

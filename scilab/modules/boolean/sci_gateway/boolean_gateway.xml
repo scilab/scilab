@@ -19,7 +19,7 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-    
+
     <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET , Sylvestre LEDRU
@@ -34,10 +34,10 @@
  * along with this program.
  *
  -->
-    
-    
+
+
     <!-- =================== -->
-    
+
     <PRIMITIVE gatewayId="23" primitiveId="1" primitiveName="bool2s" />
     <PRIMITIVE gatewayId="23" primitiveId="2" primitiveName="or" />
     <PRIMITIVE gatewayId="23" primitiveId="3" primitiveName="and" />

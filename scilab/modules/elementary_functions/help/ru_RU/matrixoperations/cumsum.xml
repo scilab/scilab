@@ -14,12 +14,12 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:id="cumsum" xml:lang="ru">
-    
+
     <refnamediv>
         <refname>cumsum</refname>
         <refpurpose>суммирование элементов массива с накоплением</refpurpose>
     </refnamediv>
-    
+
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>y=cumsum(x)</synopsis>
@@ -27,7 +27,7 @@
         <synopsis>y=cumsum(x,outtype)</synopsis>
         <synopsis>y=cumsum(x,orientation,outtype)</synopsis>
     </refsynopsisdiv>
-    
+
     <refsection role="parameters">
         <title>Аргументы</title>
         <variablelist>
@@ -75,7 +75,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
+
     <refsection role="description">
         <title>Описание</title>
         <para>
@@ -176,18 +176,11 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <note>
+            This function applies with identical rules to <link linkend="sparse">sparse matrices</link>
+        </note>
     </refsection>
-    
-    <refsection role="remark">
-        <title>Примечание</title>
-        <para>
-            Эта функция применяется с аналогичными правилами к <link linkend="sparse">разряжённым
-                матрицам
-            </link>
-            и <link linkend="hypermat">гиперматрицам</link>.
-        </para>
-    </refsection>
-    
+
     <refsection role="examples">
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
@@ -210,7 +203,7 @@ cumsum(B) //вычисление с плавающей запятой
 cumsum(B,"native") //аналогично or(B)
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">

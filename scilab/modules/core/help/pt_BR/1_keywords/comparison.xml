@@ -55,7 +55,7 @@
                     <para>
                         <literal>a==b</literal>, <literal>a~=b</literal> (ou de modo
                         equivalente <literal>a&lt;&gt;b</literal>). Estes operadores se
-                        aplicam a quaisquer tipos de operandos. 
+                        aplicam a quaisquer tipos de operandos.
                     </para>
                 </listitem>
             </varlistentry>
@@ -88,7 +88,7 @@
                                 Se <literal> a</literal> e <literal> b</literal> são
                                 avaliados como arrays do mesmo tipo e dimensões idênticas, a
                                 comparação é realizada elemento a elemento e o resultado é um
-                                array de booleanos da comparação. 
+                                array de booleanos da comparação.
                             </para>
                         </listitem>
                         <listitem>
@@ -133,10 +133,10 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //comparações elemento a elemento
 (1:5)==3
-(1:5)<=4 
+(1:5)<=4
 (1:5)<=[1 4 2 3 0]
 1<[]
 list(1,2,3)~=list(1,3,3)

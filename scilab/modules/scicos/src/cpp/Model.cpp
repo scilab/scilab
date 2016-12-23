@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -71,6 +71,8 @@ ScicosID Model::createObject(kind_t k)
         case PORT:
             o = new model::Port();
             break;
+        default:
+            return ScicosID();
     }
 
     /*
@@ -127,8 +129,8 @@ unsigned Model::referenceObject(const ScicosID uid)
         return 0;
     }
 
-    ModelObject& modelObject = iter->second;
-    return ++(modelObject.m_refCounter);
+    model::BaseObject* modelObject = iter->second;
+    return ++modelObject->refCount();
 }
 
 unsigned& Model::referenceCount(ScicosID uid)
@@ -139,8 +141,8 @@ unsigned& Model::referenceCount(ScicosID uid)
         throw std::string("key has not been found");
     }
 
-    ModelObject& modelObject = iter->second;
-    return modelObject.m_refCounter;
+    model::BaseObject* modelObject = iter->second;
+    return modelObject->refCount();
 
 }
 
@@ -152,16 +154,15 @@ void Model::deleteObject(ScicosID uid)
         throw std::string("key has not been found");
     }
 
-    ModelObject& modelObject = iter->second;
-    if (modelObject.m_refCounter == 0)
+    model::BaseObject* modelObject = iter->second;
+    if (modelObject->refCount() == 0)
     {
-        model::BaseObject* o = modelObject.m_o;
         allObjects.erase(iter);
-        delete o;
+        delete modelObject;
     }
     else
     {
-        --(modelObject.m_refCounter);
+        --modelObject->refCount();
     }
 }
 
@@ -185,9 +186,9 @@ std::vector<ScicosID> Model::getAll(kind_t k) const
 
     for (objects_map_t::const_iterator it = allObjects.begin(); it != allObjects.end(); ++it)
     {
-        if (it->second.m_o->kind() == k)
+        if (it->second->kind() == k)
         {
-            all.push_back(it->second.m_o->id());
+            all.push_back(it->second->id());
         }
     }
 
@@ -202,7 +203,7 @@ model::BaseObject* Model::getObject(ScicosID uid) const
         return nullptr;
     }
 
-    return iter->second.m_o;
+    return iter->second;
 }
 
 // datatypes being a vector of Datatype pointers, we need a dereferencing comparison operator to use std::lower_bound()

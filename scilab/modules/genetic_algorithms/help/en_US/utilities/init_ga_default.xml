@@ -42,7 +42,7 @@
                         </listitem>
                         <listitem>
                             <para> "minbound": a vector of minimum bounds for the variable
-                                X. Default minbound = -2*ones(1,dimension). 
+                                X. Default minbound = -2*ones(1,dimension).
                             </para>
                         </listitem>
                         <listitem>
@@ -70,19 +70,19 @@
             individuals.
             It uses the rand function to generate the points uniformly distributed in the
             bounds.
-            As a side effect, it modifies the state of the random generator of the rand 
+            As a side effect, it modifies the state of the random generator of the rand
             function.
-            Other initial populations might be generated from the grand 
+            Other initial populations might be generated from the grand
             function, or any other uniform random generator (including low discrepancy sequences).
-            In the case were we want to compute another initial population, we 
-            might define our own init function: in this case, we may use the init_ga_default 
+            In the case were we want to compute another initial population, we
+            might define our own init function: in this case, we may use the init_ga_default
             function as a template and plug our customized population generator.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// Generate 10 points in 2 dimensions, in the 
+        <programlisting role="example"><![CDATA[
+// Generate 10 points in 2 dimensions, in the
 // interval [-2,2]^2.
 popsize = 10;
 ga_params = init_param();

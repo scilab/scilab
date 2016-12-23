@@ -79,7 +79,7 @@ h5close(a);
 
 // We can remove attributes too
 x = %pi;
-save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones 	
+save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones
 
 // Open the created file
 a = h5open(TMPDIR + "/x.sod");

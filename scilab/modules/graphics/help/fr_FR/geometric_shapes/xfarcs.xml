@@ -30,8 +30,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xarcs</literal> remplit des secteurs angulaires d'un ensemble d'ellipses décrites par <literal>arcs</literal> : 
-            <literal>arcs=[x y w h a1 a2;x y w h a1 a2;...]'</literal> où chaque ellipse est définie 
+            <literal>xarcs</literal> remplit des secteurs angulaires d'un ensemble d'ellipses décrites par <literal>arcs</literal> :
+            <literal>arcs=[x y w h a1 a2;x y w h a1 a2;...]'</literal> où chaque ellipse est définie
             par les 6 paramètres <literal>(x,y,w,h,a1,a2)</literal> (voir <literal>xarc</literal>).
         </para>
         <para>
@@ -44,7 +44,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
 arcs=[-1.0 0.0 0.5; // abscisse du coin superieur gauche
        1.0 0.0 0.5; // ordonnée du coin superieur gauche
@@ -56,12 +56,12 @@ xfarcs(arcs,[1,2,3])
  ]]></programlisting>
         <scilab:image>
             plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
-            arcs=[-1.0 0.0 0.5; 
-            1.0 0.0 0.5; 
-            0.5 1.0 0.5; 
-            0.5 0.5 1.0; 
-            0.0 0.0 0.0; 
-            180*64 360*64 90*64]; 
+            arcs=[-1.0 0.0 0.5;
+            1.0 0.0 0.5;
+            0.5 1.0 0.5;
+            0.5 0.5 1.0;
+            0.0 0.0 0.0;
+            180*64 360*64 90*64];
             xfarcs(arcs,[1,2,3])
         </scilab:image>
     </refsection>

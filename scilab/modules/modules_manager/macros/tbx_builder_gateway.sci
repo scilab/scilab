@@ -43,8 +43,22 @@ function tbx_builder_gateway(module)
         error(msprintf(gettext("%s: This module required a C compiler and it has not been found.\n"),"tbx_builder_gateway"));
     end
 
-
-    mprintf(gettext("Building gateway...\n"));
-    tbx_builder(pathconvert(module+"/sci_gateway/builder_gateway.sce",%F));
+    builder_gateway_dir = pathconvert(module+"/sci_gateway",%F);
+    if isdir(builder_gateway_dir)
+        mprintf(gettext("Building gateway...\n"));
+        if ~isempty(findfiles(builder_gateway_dir, "builder*.sce"))
+            builder_gateway_file = pathconvert(builder_gateway_dir + "/" + findfiles(builder_gateway_dir, "builder*.sce"), %F);
+            tbx_builder(builder_gateway_file);
+        else
+            // Default mode try to build the gateways in language folders inside sci_gateway/
+            d = dir(builder_gateway_dir);
+            languages = d.name(d.isdir);
+            tbx_builder_gateway_lang(languages, builder_gateway_dir); // executes the builder_gateway
+            tbx_build_gateway_loader(languages, builder_gateway_dir);
+            // TODO: not sure the cleaner is necessary here because it must be manually created for each language...
+            // A user defined cleaner seems more appropriate
+            tbx_build_gateway_clean(languages, builder_gateway_dir);
+        end
+    end
 
 endfunction

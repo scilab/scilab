@@ -234,10 +234,10 @@
         <title>Description</title>
         <para>
             linmeq  function for solving Sylvester and Lyapunov equations
-            using SLICOT routines SB04MD, SB04ND, SB04PD, SB04QD, 
+            using SLICOT routines SB04MD, SB04ND, SB04PD, SB04QD,
             SB04RD, SB03MD, and SB03OD.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
     [X] = linmeq(1,A,B,C,flag,trans,schur)
 [X,sep] = linmeq(2,A,C,flag,trans)
     [X] = linmeq(2,A,C,flag,trans)
@@ -309,7 +309,7 @@ op(A)'*(op(X)'*op(X))*op(A) - op(X)'*op(X) =
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //(1a)
 n=40;m=30;
 A=rand(n,n);C=rand(n,m);B=rand(m,m);
@@ -334,11 +334,11 @@ X=linmeq(3,A,C);
 norm(A'*X'*X+X'*X*A +C'*C,1)
 //(3b)
 A = [-0.02, 0.02,-0.10, 0.02,-0.03, 0.12;
-      0.02, 0.14, 0.12,-0.10,-0.02,-0.14;     
-     -0.10, 0.12, 0.05, 0.03,-0.04,-0.04;     
-      0.02,-0.10, 0.03,-0.06, 0.08, 0.11;      
-     -0.03,-0.02,-0.04, 0.08, 0.14,-0.07;   
-      0.12,-0.14,-0.04, 0.11,-0.07, 0.04]    
+      0.02, 0.14, 0.12,-0.10,-0.02,-0.14;
+     -0.10, 0.12, 0.05, 0.03,-0.04,-0.04;
+      0.02,-0.10, 0.03,-0.06, 0.08, 0.11;
+     -0.03,-0.02,-0.04, 0.08, 0.14,-0.07;
+      0.12,-0.14,-0.04, 0.11,-0.07, 0.04]
 
 C=rand(A);
 X=linmeq(3,A,C,[1 0]);

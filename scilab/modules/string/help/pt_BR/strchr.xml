@@ -59,7 +59,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 strchr('Este é um string de amostra','s')
 strchr(['Este é um string de amostra','no scilab'],'s')
 strchr(['Este é um string de amostra','no scilab'],['s','a'])

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:03+0000\n"
+"PO-Revision-Date: 2016-10-19 16:03+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -205,396 +205,336 @@ msgstr "                        недодатний опорний елемен
 msgid "Scilab UMFPACK module not installed.\n"
 msgstr "Модуль UMFPACK Scilab не встановлено.\n"
 
-#, fuzzy
-msgid "A small test for the condestsp"
-msgstr "невеличкі тести condestsp"
-
-#
-# File: modules/umfpack/demos/condestsp.sce, line: 20
-msgid "     without explicitly computing the"
+msgid ""
+"A small test for the condestsp function: condestsp gives an estimate of\n"
+" the condition number K1 in 1-norm of a real sparse matrix A:"
 msgstr ""
+"Невеличкий тест із функцією condestsp: condestsp дає оцінку\n"
+" рівня обумовленості K1 у нормі 1 дійсної розрідженої матриці A:"
 
-#
-# File: modules/umfpack/demos/condestsp.sce, line: 26
-msgid "The test consists in forming small"
+msgid ""
+"     without explicitly computing the inverse of A. condestsp uses a "
+"factorization given by\n"
+" umf_lufact but if you have already computed this one it is recommended to "
+"give the pointer to the factorization."
 msgstr ""
+"     без явного обчислення оберненої до A матриці. condestsp використовує "
+"факторизацію, що надається\n"
+" umf_lufact, але якщо вами вже обчислено таку факторизацію, варто надати "
+"вказівник на цю факторизацію."
 
-#
-# File: modules/umfpack/demos/condestsp.sce, line: 31
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 17
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 48
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 79
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 110
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 142
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 33
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 63
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 116
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 184
+msgid ""
+"The test consists in forming small sparse matrices (so as to compute K1 "
+"exactly with\n"
+"norm(inv(full(A)),1)) whose values are chosen from the normal distribution."
+msgstr ""
+"Тест полягає у створенні невеликих розріджених матриць (для обчислення "
+"точного значення K1\n"
+"за допомогою norm(inv(full(A)),1)), елементи яких визначаються випадковою "
+"величиною із нормальним розподілом."
+
 msgid ""
 "\n"
 "Press Return to continue...\n"
 msgstr ""
+"\n"
+"Натисніть Enter, щоб продовжити...\n"
 
-#
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 12
 msgid ""
 "This test compares umfpack v3 and sparse v1.3 via their Scilab interface."
 msgstr ""
+"Протягом перевірки виконуватиметься порівняння umfpack v3 та sparse v1.3 за "
+"допомогою їхнього інтерфейсу для Scilab."
 
-#
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 13
 msgid ""
 "The test consists in loading Harwell-Boeing sparse matrices and solve linear "
 "system with a random rhs."
 msgstr ""
+"Перевірка полягає у завантаженні розріджених матриць Гарвелла-Боїнга і "
+"розв’язуванні лінійної системи із випадковим вектором правих частин."
 
-#
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 14
 msgid "The matrices presented here come from the NIST server Matrix server:"
-msgstr ""
+msgstr "Представлені тут матриці запозичено з сервера Matrix NIST:"
 
-#
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 16
 msgid "Warning: tests 2 and 3 take much more time than the others."
 msgstr ""
+"Попередження: виконання перевірок 2 і 3 триватиме набагато довше за "
+"виконання інших."
 
-#
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 41
 msgid ""
 "Test 1: Jacobian of a nonlinear system of ordinary differential equations "
 "(ODEs) modeling a laser"
 msgstr ""
+"Перевірка 1: якобіан нелінійної системи звичайних диференціальних рівнянь "
+"(ЗДР), що моделює лазер"
 
-#
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 42
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 73
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 104
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 136
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 167
 msgid "  Mean time and accuracy for umfpack (t1 and ||A*x-b||):"
-msgstr ""
+msgstr "  Середній час і точність для umfpack (t1 та ||A*x-b||):"
 
-#
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 44
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 75
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 106
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 138
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 169
 msgid "  Time and accuracy for sparse module (t2 and ||A*x-b||):"
-msgstr ""
+msgstr "  Час і точність для модуля sparse (t2 і ||A*x-b||):"
 
-#
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 46
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 77
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 108
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 140
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 171
 msgid "  Time comparison (t2/t1):"
-msgstr ""
+msgstr "  Порівняння часу (t2/t1):"
 
-#
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 72
 msgid "Test 2: Generalized eigenvalue problem Kx = (lambda)Mx"
 msgstr ""
+"Перевірка 2: узагальнена задача знаходження власного значення Kx = (lambda)Mx"
 
-#
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 103
 msgid "Test 3: Matrices generated by the FIDAP Package"
-msgstr ""
+msgstr "Перевірка 3: матриці, створені за допомогою пакунка FIDAP"
 
-#
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 135
 msgid "Test 4: Tokamak Matrices"
-msgstr ""
+msgstr "Перевірка 4: матриці Tokamak"
 
-#
-# File: modules/umfpack/demos/harwell-boeing.sce, line: 166
 msgid "Test 5: Acoustic scattering"
-msgstr ""
+msgstr "Перевірка 5: акустичне розсіювання"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 15
-msgid "To load a sparse matrix stored in the Harwell-"
+msgid ""
+"To load a sparse matrix stored in the Harwell-Boeing format in Scilab, you "
+"may use the function ReadHBSparse."
 msgstr ""
+"Для завантаження розрідженої матриці у форматі Гарвела-Боїнґа у Scilab ви "
+"можете скористатися функцією ReadHBSparse."
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 17
-msgid "4 matrices will be loaded for the demo: they come"
+msgid ""
+"4 matrices will be loaded for the demo: they come from the University of "
+"Florida Sparse Matrix Collection:"
 msgstr ""
+"Для демонстрації буде завантажено 4 матриці: їх запозичено зі збірки матриць "
+"Університету Флориди:"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 21
 msgid "    maintained by Tim Davis, author of UMFPACK"
 msgstr ""
+"    супровід якого здійснюється Тімом Девісом (Tim Davis), автором UMFPACK"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 30
-msgid "To see the pattern of non zeros elements, "
+msgid ""
+"To see the pattern of non zeros elements, you may use the function "
+"PlotSparse."
 msgstr ""
+"Щоб побачити розташування ненульових елементів, ви можете скористатися "
+"функцією PlotSparse."
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 32
 msgid "Here we will display the 4 matrices"
-msgstr ""
+msgstr "Тут ми показуємо 4 матриці"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 58
 msgid "Now, using umfpack to solve some linear systems:"
-msgstr ""
+msgstr "Тепер, використовуємо umfpack для розв’язування лінійних систем:"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 59
 msgid "-> to create a rhs"
-msgstr ""
+msgstr "-> для створення правих частин"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 60
 msgid "-> to solve A1*x1 = b1"
-msgstr ""
+msgstr "-> для розв’язування A1*x1 = b1"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 61
 msgid "-> norm of the residual"
-msgstr ""
+msgstr "-> норма нев’язки"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 62
 msgid "this is done for the 4 matrices A1, A2, A3 and A4."
-msgstr ""
+msgstr "виконується для 4 матриць: A1, A2, A3 та A4."
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 87
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 152
 msgid "A1 ("
-msgstr ""
+msgstr "A1 ("
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 88
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 91
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 94
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 97
 #, c-format
 msgid "     norm of the residual = "
-msgstr ""
+msgstr "     норма нев’язки = "
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 90
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 156
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 198
+#, c-format
+msgid "     computing time       = "
+msgstr "     обчислювальний час       = "
+
 msgid "A2 ("
-msgstr ""
+msgstr "A2 ("
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 93
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 160
 msgid "A3 ("
-msgstr ""
+msgstr "A3 ("
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 96
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 164
 msgid "A4 ("
-msgstr ""
+msgstr "A4 ("
+
+msgid "Now we will see how to use the lu factors:"
+msgstr "Тепер, побачимо, як скористатися множниками LU:"
+
+msgid "  1/ lu factors of a sparse matrix A are obtained through:"
+msgstr "  1) Множники LU розрідженої матриці A отримано такою командою:"
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 100
-msgid "Now we will see how to use the lu factors:"
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 97
+#, c-format
+msgid ""
+"     lup = umf_lufact(A)\n"
+"     lup is a pointer to the lu factors (the memory is outside scilab "
+"space)\n"
 msgstr ""
+"     lup = umf_lufact(A)\n"
+"     lup є вказівником на множники lu (пам’ять поза простором scilab)\n"
+
+msgid "  2/ for solving a linear system A*x = b, use:"
+msgstr ""
+"  2) Для розв’язування лінійної системи A*x = b використовуємо таку команду:"
+
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 99
+#, c-format
+msgid ""
+"     x = umf_lusolve(lup,b)\n"
+"     or  x = umf_lusolve(lup,b,Ax=b,A)  to add an iterative refinement step\n"
+msgstr ""
+"     x = umf_lusolve(lup,b)\n"
+"     або  x = umf_lusolve(lup,b,Ax=b,A), щоб додати крок ітеративного "
+"уточнення\n"
+
+msgid "  3/ to solve A'*x=b you may use:"
+msgstr "  3) Для розв’язування A'*x=b можна скористатися такою командою:"
 
 #
 # File: modules/umfpack/demos/sparse_matrices.sce, line: 101
-msgid "  1/ lu factors of a sparse matrix A are obtained through:"
-msgstr ""
-
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 102
 #, c-format
-msgid "     lup = umf_lufact(A)\n"
+msgid ""
+"     x = umf_lusolve(lup,b,Ax''=b)\n"
+"     or  x = umf_lusolve(lup,b,Ax''=b,A)  to add an iterative refinement "
+"step\n"
 msgstr ""
+"     x = umf_lusolve(lup,b,Ax''=b)\n"
+"     або  x = umf_lusolve(lup,b,Ax''=b,A), щоб додати крок ітеративного "
+"уточнення\n"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 104
-msgid "  2/ for solving a linear system A*x = b, use:"
-msgstr ""
-
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 105
-#, c-format
-msgid "     x = umf_lusolve(lup,b)\n"
-msgstr ""
-
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 107
-msgid "  3/ to solve A'*x=b you may use:"
-msgstr ""
-
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 108
-#, c-format
-msgid "     x = umf_lusolve(lup,b,Ax''=b)\n"
-msgstr ""
-
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 110
 msgid "  4/ you may also compute the 1-norm condition number quicky with:"
 msgstr ""
+"  4) Також можна швидко обчислити обумовленість 1-норма за допомогою такої "
+"команди:"
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 111
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 103
 #, c-format
-msgid "     K1 = condestsp(A,lup)\n"
+msgid ""
+"     K1 = condestsp(A,lup)\n"
+"     K1 = condestsp(A) also works but in this case the lu factors are re-"
+"computed inside\n"
 msgstr ""
+"     K1 = condestsp(A,lup)\n"
+"     K1 = condestsp(A) також працюватиме, але у цьому випадку множники LU "
+"буде повторно обчислено у\n"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 113
 msgid ""
 "  5/ if you don't need the lu factors anymore, it is recommended to free "
 "them with:"
 msgstr ""
+"  5) Якщо множники LU вже непотрібні, рекомендуємо позбутися від них за "
+"допомогою такої команди:"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 114
 #, c-format
-msgid "     umf_ludel(lup)\n"
+msgid ""
+"     umf_ludel(lup)\n"
+"     if you have lost your pointer you may use umf_ludel() which frees all "
+"the current umf lu factors\n"
 msgstr ""
+"     umf_ludel(lup)\n"
+"     якщо ви не можете згадати, що саме слід вилучити, ви можете "
+"скористатися функцією umf_ludel(), яка вивільняє усі поточні множники LU "
+"umf\n"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 153
 #, c-format
-msgid "     K1 = "
-msgstr ""
+msgid "     norm of the residual    = "
+msgstr "     норма нев’язки    = "
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 157
 #, c-format
-msgid "     K2 = "
-msgstr ""
+msgid "     same but with refinment = "
+msgstr "     те саме, але з уточненням = "
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 161
 #, c-format
-msgid "     K3 = "
-msgstr ""
+msgid "     norm of the residual     = "
+msgstr "     норма нев’язки     = "
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 165
 #, c-format
-msgid "     K4 = "
-msgstr ""
+msgid "     same but with refinement = "
+msgstr "     те саме, але з уточненням = "
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 171
 msgid "Now we will see how to use the taucs snmf stuff on the matrix A2."
 msgstr ""
+"Тепер, ознайомимося з тим, як використовувати snmf з taucs для матриці A2."
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 172
 msgid ""
 "This is useful and recommended when your matrix is symmetric positive "
 "definite (s.p.d.)."
 msgstr ""
+"Цим способом рекомендовано користуватися, якщо матриця є симетричною додатно "
+"визначеною (СДВ)."
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 173
 msgid "  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
 msgstr ""
+"  1) Факторизацію Холецького СДВ-матриці A можна отримати такою командою:"
 
 #
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 174
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 165
 #, c-format
-msgid "     Cp = taucs_chfact(A)\n"
+msgid ""
+"     Cp is a pointer to the Cholesky fact. (the memory is outside scilab "
+"space)\n"
 msgstr ""
+"     Cp — вказівник на факторизацію Холецького. (пам’ять поза простором "
+"scilab)\n"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 176
 msgid "  2/ for solving a linear system A*x = b then use:"
 msgstr ""
+"  2) Після цього для розв’язування лінійної системи A*x = b можна "
+"скористатися командою:"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 177
 #, c-format
 msgid "     x = taucs_chsolve(Cp,b)\n"
-msgstr ""
+msgstr "     x = taucs_chsolve(Cp,b)\n"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 178
 msgid "  3/ for the same thing with one refinement step, use:"
 msgstr ""
+"  3) З тією самою метою з одним кроком покращення можна скористатися такою "
+"командою:"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 179
 #, c-format
 msgid "     xr = taucs_chsolve(Cp,b,A)\n"
-msgstr ""
+msgstr "     xr = taucs_chsolve(Cp,b,A)\n"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 180
 msgid "  4/ you may also compute the 2-norm condition number with:"
 msgstr ""
+"  4) Також можна обчислити обумовленість 2-норма за допомогою такої команди:"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 181
 #, c-format
 msgid "     [K2, lm, vm, lM, vM] = cond2sp(A, Cp [, itermax, eps, verb])\n"
-msgstr ""
+msgstr "     [K2, lm, vm, lM, vM] = cond2sp(A, Cp [, itermax, eps, verb])\n"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 182
 msgid ""
 "  5/ if you don't need the Cholesky factorization anymore, it is recommended "
 "to free it with taucs_chdel(Cp)"
 msgstr ""
+"  5) Якщо елементи факторизації Холецького вже непотрібні, рекомендовано "
+"позбутися від них за допомогою команди taucs_chdel(Cp)"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 183
 #, c-format
 msgid ""
 "     if you have lost your pointer you may use taucs_chdel() which frees "
 "memory for all the current Cholesky factorizations.\n"
 msgstr ""
+"     якщо ви не можете згадати, що саме треба вилучити, можете скористатися "
+"командою taucs_chdel(), яка звільняє пам’ять для усіх поточних факторизацій "
+"Холецького.\n"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 199
-#, c-format
-msgid "     K2 (1-norm) = "
-msgstr ""
-
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 201
 msgid " with umfpack:"
-msgstr ""
+msgstr " за допомогою umfpack:"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 202
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 206
-#, c-format
-msgid "     norm of the residual      = "
-msgstr ""
-
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 205
 msgid " with the taucs snmf Cholesky solver:"
-msgstr ""
+msgstr " за допомогою засобу розв’язування Холецького snmf з taucs:"
 
-#
-# File: modules/umfpack/demos/umfpack.dem.gateway.sce, line: 12
 msgid "UMFPACK"
-msgstr ""
+msgstr "UMFPACK"
 
-#
-# File: modules/umfpack/demos/umfpack.dem.gateway.sce, line: 14
 msgid "Sparse Matrices"
-msgstr ""
+msgstr "Розріджені матриці"
 
-#
-# File: modules/umfpack/demos/umfpack.dem.gateway.sce, line: 15
 msgid "Harwell-Boeing"
-msgstr ""
+msgstr "Гарвел-Боїнг"
 
-#
-# File: modules/umfpack/demos/umfpack.dem.gateway.sce, line: 16
 msgid "condestsp"
-msgstr ""
+msgstr "condestsp"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -718,3 +658,49 @@ msgstr "невеличкі тести condestsp"
 
 msgid "Click to choose a demo"
 msgstr "Клацніть, щоб обрати приклад"
+
+#~ msgid "A small test for the condestsp"
+#~ msgstr "Невеличка перевірка для condestsp"
+
+#~ msgid "     without explicitly computing the"
+#~ msgstr "     без явного обчислення"
+
+#~ msgid "The test consists in forming small"
+#~ msgstr "Перевірка полягає у створенні невеличкого"
+
+#~ msgid "To load a sparse matrix stored in the Harwell-"
+#~ msgstr ""
+#~ "Щоб завантажити розріджену матрицю, що зберігається у форматі Гарвела-"
+
+#~ msgid "     lup = umf_lufact(A)\n"
+#~ msgstr "     lup = umf_lufact(A)\n"
+
+#~ msgid "     x = umf_lusolve(lup,b)\n"
+#~ msgstr "     x = umf_lusolve(lup,b)\n"
+
+#~ msgid "     x = umf_lusolve(lup,b,Ax''=b)\n"
+#~ msgstr "     x = umf_lusolve(lup,b,Ax''=b)\n"
+
+#~ msgid "     K1 = condestsp(A,lup)\n"
+#~ msgstr "     K1 = condestsp(A,lup)\n"
+
+#~ msgid "     umf_ludel(lup)\n"
+#~ msgstr "     umf_ludel(lup)\n"
+
+#~ msgid "     K1 = "
+#~ msgstr "     K1 = "
+
+#~ msgid "     K2 = "
+#~ msgstr "     K2 = "
+
+#~ msgid "     K3 = "
+#~ msgstr "     K3 = "
+
+#~ msgid "     K4 = "
+#~ msgstr "     K4 = "
+
+#~ msgid "     Cp = taucs_chfact(A)\n"
+#~ msgstr "     Cp = taucs_chfact(A)\n"
+
+#~ msgid "     K2 (1-norm) = "
+#~ msgstr "     K2 (1-norm) = "

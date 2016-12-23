@@ -52,12 +52,18 @@ int sciZoom2D(int iSubwinUID, const double zoomRect[4])
         // add Z scale to data bounds.
         getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **) &zoomBox);
 
-        zoomBox[0] = zoomRect[0];
-        zoomBox[1] = zoomRect[1];
-        zoomBox[2] = zoomRect[2];
-        zoomBox[3] = zoomRect[3];
-
-        return sciZoom3D(iSubwinUID, zoomBox);
+        if (zoomBox)
+        {
+            zoomBox[0] = zoomRect[0];
+            zoomBox[1] = zoomRect[1];
+            zoomBox[2] = zoomRect[2];
+            zoomBox[3] = zoomRect[3];
+            return sciZoom3D(iSubwinUID, zoomBox);
+        }
+        else
+        {
+            return SET_PROPERTY_ERROR;
+        }
     }
     else
     {

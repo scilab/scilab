@@ -12,3 +12,16 @@ and continues to be available under such terms.
 For more information, see the COPYING file which you should have received
 along with this program.
 
+PPMEncoder:
+===========
+
+Files:
+src/java/org/scilab/modules/graphic_export/convertToPPM/ImageEncoder.java
+src/java/org/scilab/modules/graphic_export/convertToPPM/PPMEncoder.java
+
+Copyright:
+Copyright (C)1996,1998 by Jef Poskanzer <jef@acme.com>
+
+License:
+BSD-2-Clause
+

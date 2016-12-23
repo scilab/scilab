@@ -115,9 +115,9 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff('y=f(x)','y=sum(x.^2)');
-    
+
 x0 = [2 2];
 Proba_start = 0.7;
 It_Pre = 100;

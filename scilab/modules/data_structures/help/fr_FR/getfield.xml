@@ -43,13 +43,23 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
-l=list(1,'qwerw',%s)
-[a,b]=getfield([3 2],l)
+        <programlisting role="example"><![CDATA[
+l = list(1,'qwerw',%s)
+[a,b] = getfield([3 2],l)
 
-a=hypermat([2,2,2],rand(1:2^3));// les hypermatrices sont stockées dans des mlist
-a(1) // le terme a(1,1,1)
-getfield(1,a) // le premier champ de la mlist
+// Les fractions rationnelles sont encodées des T-listes :
+r = [%z/(1-%z) %z^2/(1+%z)]
+type(r)
+[num, den] = getfield([2 3],r)
+
+// Les tableaux de structures sont des  M-listes:
+s.r = %pi
+s.b = %t
+s.t = "Scilab"
+s(2).t = "Basile"
+getfield(2,s)==size(s)
+getfield(1,s)(3:5)==fieldnames(s)'
+[r,b,t] = getfield([3 4 5],s)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

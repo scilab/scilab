@@ -36,28 +36,28 @@
         <programlisting role="example">
             // Get the current Modelica path and directory
             [modelica_path, modelica_directory] = getModelicaPath()
-            
+
             // To define user's Modelica blocks
             // path of the directory containing the user's Modelica files
             // It has to be global to be accessed from Atoms toolbox
             global %MODELICA_USER_LIBS
             %MODELICA_USER_LIBS = SCI + "/modules/xcos/modelica_library";
-            
+
             // Launch Xcos
             xcos();
             // Load the diagram with Modelica blocks
-            
+
             [modelica_path, modelica_directory] = getModelicaPath()
-            
+
             // To add another Modelica folder
             %MODELICA_USER_LIBS = [%MODELICA_USER_LIBS , SCI + "/modules/xcos/my_modelica_blocks/Electrical_network"];
-            
+
             // Launch Xcos
             xcos();
             // Load the diagram with Modelica blocks
-            
+
             [modelica_path, modelica_directory] = getModelicaPath()
-            
+
         </programlisting>
     </refsection>
     <refsection id="SeeAlso_MODELICA_USER_LIBS">

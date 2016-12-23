@@ -112,34 +112,34 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a = cell(3)
 b = cell(3,1)
 c = cell([2,3,4])
- 
+
 // Assigning cell entries
 b = cell(3,1);
- 
+
 // Assigning the first element of b using {}
 b{1} = 1:3
- 
+
 // Assigning the second element of b using {}
 b{2} = 'Scilab'
- 
+
 // Assigning the third element of b using the 'entries' field
 b{3} = poly(1:3,'s')
- 
+
 // Assigning sub-cells
 X = cell(3,2);
 X{:,1} = b
- 
+
 // Extracting a sub-cell: result is a cell
 b{1}
 b{1:2}
- 
+
 // Extracting a sub-cell value: result is an array
 b{1}
- 
+
 // Dimensions of b as a double value
 size(b)
  ]]></programlisting>

@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -51,11 +51,11 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>dir</function> can be used to get the files which match 
-            the patterns given by the <varname>path</varname> argument. 
+            <function>dir</function> can be used to get the files which match
+            the patterns given by the <varname>path</varname> argument.
             Patterns are given to the Unix <command>ls</command> or to the Windows
-            <command>dir</command> commands in order to get information about files. 
-            Thus in order to write portable Scilab script valid wildcard patterns 
+            <command>dir</command> commands in order to get information about files.
+            Thus in order to write portable Scilab script valid wildcard patterns
             for both OS are to be given. Note that pathname conversion is
             performed and for example <literal>SCI/modules/core/macros/*.sci</literal>
             is a valid pattern for both Unix and Windows.
@@ -86,7 +86,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 dir
 dir SCI/modules/core/macros/*.bin
 x=dir('SCI/modules/core/macros/*.bin')

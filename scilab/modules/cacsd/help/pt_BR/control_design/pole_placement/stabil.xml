@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -79,7 +79,7 @@
         <title>Description</title>
         <para>
             <literal>F=stabil(A,B,alfa)</literal> returns a gain matrix <literal>F</literal> such that
-            <literal>A+B*F</literal> is stable if pair <literal>(A,B)</literal> is stabilizable. 
+            <literal>A+B*F</literal> is stable if pair <literal>(A,B)</literal> is stabilizable.
             Assignable poles are set to <literal>alfa(1),alfa(2),...</literal>.
             If <literal>(A,B)</literal> is not stabilizable a warning is given
             and assignable poles are set to <literal>alfa(1),alfa(2),...</literal>.
@@ -88,18 +88,18 @@
         </para>
         <para>
             <literal>K=stabil(Sys,alfa,beta)</literal> returns <literal>K</literal>, a compensator for <literal>Sys</literal>
-            such that <literal>(A,B)</literal>-controllable eigenvalues are set to 
+            such that <literal>(A,B)</literal>-controllable eigenvalues are set to
             <literal>alfa</literal> and <literal>(C,A)</literal>-observable eigenvalues are set to <literal>beta</literal>.
         </para>
         <para>
-            All assignable closed loop poles (which are given by the 
+            All assignable closed loop poles (which are given by the
             eigenvalues of <literal>Aclosed=h_cl(Sys,K)</literal> are set to <literal>alfa(i)</literal>'s
             and <literal>beta(j)</literal>'s.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Gain:
 Sys=ssrand(0,2,5,list('st',2,3,3));
 A=Sys('A');B=Sys('B');F=stabil(A,B);

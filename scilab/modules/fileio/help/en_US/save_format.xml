@@ -151,7 +151,9 @@
             </tbody>
         </informaltable>
         <para>
-            Several "types" are based on <emphasis>tlist</emphasis> or <emphasis>mlist</emphasis>. It is the case of <emphasis>rational</emphasis>, <emphasis>state-space</emphasis>, <emphasis>hypermat</emphasis>, <emphasis>cell</emphasis> and <emphasis>struct</emphasis>. They are therefore transparently saved.
+            Several "types" are based on <emphasis>tlist</emphasis> or <emphasis>mlist</emphasis>.
+          It is the case of <emphasis>rational</emphasis>, <emphasis>state-space</emphasis>,
+          <emphasis>cell</emphasis> and <emphasis>struct</emphasis>. They are therefore transparently saved.
         </para>
         <para>
             <emphasis>void </emphasis>and <emphasis>undefined </emphasis>are two specific elements created to manage special cases in the list management. They are described later in this document.
@@ -227,7 +229,7 @@
                         <para>SCILAB_Class = string</para>
                     </td>
                     <td align="left">
-                        
+
                     </td>
                     <td align="left">
                         <para>String</para>
@@ -241,7 +243,7 @@
                         <para>SCILAB_Class = boolean</para>
                     </td>
                     <td align="left">
-                        
+
                     </td>
                     <td align="left">
                         <para>32-bit integer</para>
@@ -675,7 +677,7 @@
                 </tr>
                 <tr>
                     <td align="justify">
-                        
+
                     </td>
                     <td align="justify">
                         <para>6.0.0 (future)</para>

@@ -26,6 +26,8 @@
 #include "sciCall.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
+#include "CurrentFigure.h"
+#include "createGraphicObject.h"
 /*--------------------------------------------------------------------------*/
 int sci_xstringb(char *fname, void *pvApiCtx)
 {
@@ -51,6 +53,7 @@ int sci_xstringb(char *fname, void *pvApiCtx)
     long hdlstr = 0;
     double userSize[2] ;
     int textBoxMode = 1; // 0 : off | 1 : centered | 2 : filled
+    int iCurrentFigure = 0;
 
     if ( nbInputArgument(pvApiCtx) <= 0 )
     {
@@ -230,6 +233,14 @@ int sci_xstringb(char *fname, void *pvApiCtx)
 
     userSize[0] = w ;
     userSize[1] = hx ;
+
+    iCurrentFigure = getCurrentFigure();
+
+    if (iCurrentFigure == 0)
+    {
+        iCurrentFigure = createNewFigureWithAxes();
+    }
+
     Objstring (Str, m3, n3, x, y, &angle, rect, autoSize, userSize, &hdlstr, textBoxMode, NULL, NULL, FALSE, TRUE, FALSE, ALIGN_CENTER);
 
     freeArrayOfString(Str, m3 * n3);

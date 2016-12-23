@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge STEER
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -54,7 +54,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Controllability gramian of <literal>(A,B)</literal> or <literal>sl</literal> (a <literal>syslin</literal> 
+            Controllability gramian of <literal>(A,B)</literal> or <literal>sl</literal> (a <literal>syslin</literal>
             linear system).
         </para>
         <para>
@@ -64,7 +64,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=diag([-1,-2,-3]);B=rand(3,2);
 Wc=ctr_gram(A,B)
 U=rand(3,3);A1=U*A/U;B1=U*B;

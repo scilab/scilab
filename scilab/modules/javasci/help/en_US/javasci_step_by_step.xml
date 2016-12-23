@@ -159,7 +159,7 @@ java -cp $(CLASSPATH):. -DSCI=$(SCI) -Djava.library.path=$(LIB_PATH) Example1
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser). 
+                Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).
             </member>
             <member>
                 <link linkend="compile_and_run_javasci_v2">Compile and run with Javasci v2</link>

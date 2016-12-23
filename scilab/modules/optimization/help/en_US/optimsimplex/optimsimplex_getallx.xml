@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -45,14 +45,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimsimplex_getallx</literal> function returns all the coordinates of 
+            The <literal>optimsimplex_getallx</literal> function returns all the coordinates of
             all the vertices.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     simplex = [
 3.  0.  0.
 4. 1.  0.
@@ -62,7 +62,7 @@ s1 = optimsimplex_new ();
 s1 = optimsimplex_setall ( s1 , simplex );
     x_res = optimsimplex_getallx(s1);
     disp(x_res)
-    
+
     s1 = optimsimplex_destroy(s1);
  ]]>
         </programlisting>

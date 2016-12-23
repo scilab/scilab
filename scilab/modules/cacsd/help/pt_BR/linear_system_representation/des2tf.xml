@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -60,7 +60,7 @@
             <literal>Sl=list('des',A,B,C,D,E)</literal>, <literal>des2tf</literal> converts <literal>sl</literal> into
             its transfer function representation:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 S=C*(s*E-A)^(-1)*B+D
  ]]></programlisting>
         <para>
@@ -68,7 +68,7 @@ S=C*(s*E-A)^(-1)*B+D
             <literal>Bfs</literal> and <literal>Bis</literal> two polynomial matrices, and <literal>chis</literal>
             polynomial such that:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 S=Bfs/chis - Bis
  ]]></programlisting>
         <para>
@@ -77,7 +77,7 @@ S=Bfs/chis - Bis
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 G=[1/(s+1),s;1+s^2,3*s^3];
 Descrip=tf2des(G);Tf1=des2tf(Descrip)

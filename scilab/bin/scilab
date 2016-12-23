@@ -618,7 +618,7 @@ detect_java_vm() {
     case $OS in
         *darwin* | *Darwin*) # MacOS X
             export _JAVA_OPTIONS="-Djava.awt.headless=false"
-    ;;        
+    ;;
     esac
 
 ####### END OF JAVA ENV DETECTION/SETTING ######
@@ -733,6 +733,7 @@ detect_macosx_version()
 set_macox_specific_path()
 {
 
+    PATH_TO_SPECIFIC_10_12=$SCIBINARYBASE/lib/thirdparty/10.12/
     PATH_TO_SPECIFIC_10_11=$SCIBINARYBASE/lib/thirdparty/10.11/
     PATH_TO_SPECIFIC_10_10=$SCIBINARYBASE/lib/thirdparty/10.10/
     PATH_TO_SPECIFIC_10_6=$SCIBINARYBASE/lib/thirdparty/10.6/
@@ -740,7 +741,12 @@ set_macox_specific_path()
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
-		11)
+                12)
+                    # not used yet
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_12${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_12${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    ;;
+                11)
                     # not used yet
                     LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_11${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
                     DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_11${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
@@ -764,7 +770,7 @@ set_macox_specific_path()
 #
 # Version checks for Mac
 #
-dialog_try_or_exit() 
+dialog_try_or_exit()
 {
     osascript $BINPATH/checkmacosx.applescript "$1" || exit 128
 }
@@ -782,10 +788,10 @@ check_macosx_version()
                    # We force to install JRE on Mavericks
                    /usr/libexec/java_home --request > /dev/null
                    ;;
-		10|11)
-		   # ... but not on Yosemite or El Capitan:
-		   # there will be a (better) error at launch
-		   ;;
+                10|11|12)
+                   # ... but not on Yosemite, El Capitan or Sierra:
+                   # there will be a (better) error at launch
+                   ;;
                 8)
                     if test $macosxBuildVersion -le 3; then
                         # Version <= 10.8.3

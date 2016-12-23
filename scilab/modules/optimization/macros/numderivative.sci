@@ -173,7 +173,7 @@ function [J, H] = numderivative(varargin)
         if m > 1 then
             // H is a hypermatrix if m > 1
             H = H';
-            H = hypermat([n n m], H(:));
+            H = matrix(H(:), [n n m]);
         end
     end
 endfunction

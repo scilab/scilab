@@ -6,7 +6,7 @@
 
  * Copyright (C) INRIA - Serge Steer
 
- * 
+ *
 
 
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
@@ -23,94 +23,94 @@
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="titlepage">
-    
+
     <refnamediv>
-        
+
         <refname>titlepage</refname>
-        
+
         <refpurpose>グラフィックウインドウの中央にタイトルを追加する</refpurpose>
-        
+
     </refnamediv>
-    
+
     <refsynopsisdiv>
-        
+
         <title>呼び出し手順</title>
-        
+
         <synopsis>titlepage(str)</synopsis>
-        
+
     </refsynopsisdiv>
-    
+
     <refsection>
-        
+
         <title>引数</title>
-        
+
         <variablelist>
-            
+
             <varlistentry>
-                
+
                 <term>str</term>
-                
+
                 <listitem>
-                    
+
                     <para>文字列の行列</para>
-                    
+
                 </listitem>
-                
+
             </varlistentry>
-            
+
         </variablelist>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>説明</title>
-        
+
         <para>
-            
+
             <literal>titlepage</literal> はカレントのグラフィックウインドウ
-            
+
             の中央にできるだけ大きなフォントで
-            
+
             文字列の行列<literal>str</literal>を表示します.
-            
+
         </para>
-        
+
     </refsection>
-    
+
     <refsection>
-        
+
         <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+
+        <programlisting role="example"><![CDATA[
 
 titlepage("This is the title of the page");
 
  ]]></programlisting>
-        
+
         <scilab:image>
-            
+
             titlepage("This is the title of the page");
-            
+
         </scilab:image>
-        
+
     </refsection>
-    
+
     <refsection role="see also">
-        
+
         <title>参照</title>
-        
+
         <simplelist type="inline">
-            
+
             <member>
-                
+
                 <link linkend="xtitle">xtitle</link>
-                
+
             </member>
-            
+
         </simplelist>
-        
+
     </refsection>
-    
+
 </refentry>
 

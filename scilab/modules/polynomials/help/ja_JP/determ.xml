@@ -54,7 +54,7 @@
             より大きな2の冪乗の最小値です.
         </para>
         <para>
-            手法 (Wの大きさが  2*2より大きな場合のみ) : 
+            手法 (Wの大きさが  2*2より大きな場合のみ) :
             フーリエ周波数に関して
             <literal>W</literal>の行列式を評価し,
             行列式の係数に逆FFTを適用します.
@@ -62,7 +62,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 w=s*rand(10,10);
 determ(w)

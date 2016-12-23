@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
+// Copyright (C) 2000 - 2016 - INRIA - Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -28,30 +28,24 @@ function plzr(a,b,c,d)
         if rhs<>1 then
             error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"plzr",1)),
         end
-        a=tf2ss(a),
         dt=a.dt;
-        [a,b,c,d]=a(2:5)
-        if type(d)<>1 then
-            error(msprintf(gettext("%s: Wrong value of input argument #%d: Proper system expected.\n"),"plzr",1));
-        end
+        [a,b,c,d]=abcd(tf2ss(a)),
+
     case "state-space" then
         if rhs<>1 then
             error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"plzr",1)),
         end
-        dt=a(7);
-        [a,b,c,d]=a(2:5)
-        if type(d)<>1 then
-            error(msprintf(gettext("%s: Wrong value of input argument #%d: Proper system expected.\n"),"plzr",1));
-        end
+        dt=a.dt
+        [a,b,c,d]=abcd(a)
     case "constant" then
         if rhs<>4 then
             error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"plzr",4)),
         end
-        if type(d)<>1 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),..
-            "plzr",4));
-        end
+
         dt=[];
+    case "zpk" then
+        dt=a.dt;
+        [a,b,c,d]=abcd(zpk2ss(a));
     else
         if rhs==1 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"plzr",1))
@@ -59,6 +53,7 @@ function plzr(a,b,c,d)
             error(msprintf(gettext("%s: Wrong type of input argument #%d: Array of floating point numbers expected.\n"),"plzr",1))
         end
     end
+
     if type(d)<>1 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),..
         "plzr",4));

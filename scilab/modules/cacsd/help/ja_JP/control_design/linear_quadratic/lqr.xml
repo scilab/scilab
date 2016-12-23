@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -57,7 +57,7 @@
             L2ノルム,すなわち, <literal>[x,u]' * BigQ * [x;u]</literal>
             です.ただし,
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
       [C1' ]               [Q  S]
 BigQ= [    ]  * [C1 D12] = [    ]
       [D12']               [S' R]
@@ -72,7 +72,7 @@ BigQ= [    ]  * [C1 D12] = [    ]
         <para>
             連続系プラントの場合:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 (A-B2*inv(R)*S')'*X+X*(A-B2*inv(R)*S')-X*B2*inv(R)*B2'*X+Q-S*inv(R)*S'=0
  ]]></programlisting>
         <programlisting role=""><![CDATA[
@@ -81,26 +81,26 @@ K=-inv(R)*(B2'*X+S)
         <para>
             離散時間系プラントの場合:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 X=A'*X*A-(A'*X*B2+C1'*D12)*pinv(B2'*X*B2+D12'*D12)*(B2'*X*A+D12'*C1)+C1'*C1;
  ]]></programlisting>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 K=-pinv(B2'*X*B2+D12'*D12)*(B2'*X*A+D12'*C1)
  ]]></programlisting>
         <para>
             <literal>X</literal> と等価な形式は,
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 X=Abar'*inv(inv(X)+B2*inv(r)*B2')*Abar+Qbar
  ]]></programlisting>
         <para>
-            ただし, <literal>Abar=A-B2*inv(R)*S'</literal> および 
+            ただし, <literal>Abar=A-B2*inv(R)*S'</literal> および
             <literal>Qbar=Q-S*inv(R)*S'</literal>となります.
         </para>
         <para>
             リカッチ方程式に関連する3ブロック行列ペンシルは次のようになります:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
              discrete                           continuous
  |I   0    0|   | A    0    B2|         |I   0   0|   | A    0    B2|
 z|0   A'   0| - |-Q    I    -S|        s|0   I   0| - |-Q   -A'   -S|
@@ -114,7 +114,7 @@ z|0   A'   0| - |-Q    I    -S|        s|0   I   0| - |-Q   -A'   -S|
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=rand(2,2);B=rand(2,1);   //two states, one input
 Q=diag([2,5]);R=2;     //Usual notations x'Qx + u'Ru
 Big=sysdiag(Q,R);    //Now we calculate C1 and D12
@@ -124,7 +124,7 @@ P=syslin('c',A,B,C1,D12);    //The plant (continuous-time)
 spec(A+B*K)    //check stability
 norm(A'*X+X*A-X*B*inv(R)*B'*X+Q,1)  //Riccati check
 P=syslin('d',A,B,C1,D12);    // Discrete time plant
-[K,X]=lqr(P)     
+[K,X]=lqr(P)
 spec(A+B*K)   //check stability
 norm(A'*X*A-(A'*X*B)*pinv(B'*X*B+R)*(B'*X*A)+Q-X,1) //Riccati check
  ]]></programlisting>

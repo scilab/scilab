@@ -29,7 +29,7 @@
             <literal>browsehistory</literal> lists all the commands typed by the user during its various Scilab sessions.
         </para>
         <para>
-            <literal>browsehistory</literal> has several features: 
+            <literal>browsehistory</literal> has several features:
             <itemizedlist>
                 <listitem><para>
                         A simple and comprehensive list

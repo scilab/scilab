@@ -17,8 +17,9 @@ along with this program.
 sp:
 ===
 
-Files: src/c/{spFortran.c, spSolve.c, spFactor.c, spOutput.c, spUtils.c,
-spBuild.c, spAllocate.c}
+Files:
+src/c/spFortran.c src/c/spSolve.c src/c/spFactor.c src/c/spOutput.c src/c/spUtils.c
+src/c/spBuild.c src/c/spAllocate.c src/c/spConfig.h src/c/spDefs.h  src/c/spmatrix.h
 
 Copyright:
 1985,86,87,88 Kenneth S. Kundert and the University of California.
@@ -32,4 +33,21 @@ documentation and that the authors and the University of California
 are properly credited.  The authors and the University of California
 make no representations as to the suitability of this software for
 any purpose.  It is provided `as is', without express or implied warranty.
+
+Esmond G. Ng and Barry W. Peyton:
+=================================
+
+Files:
+src/fortran/blkfct.f
+src/fortran/inpnv.f
+src/fortran/ordmmd.f
+src/fortran/symfct.f
+
+Copyright:
+1994-1995
+Esmond G. Ng and Barry W. Peyton
+Oak Ridge National Laboratory
+
+License:
+Public domain
 

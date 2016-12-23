@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:04+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2016-06-30 20:11+0000\n"
+"Last-Translator: Mickael Albertus <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
@@ -28,65 +28,76 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-msgstr ""
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un entier ou une chaîne de "
+"caractères attendu.\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
-msgstr ""
+msgstr "%s : Impossible d'ouvrir le fichier %s.\n"
 
 #, c-format
 msgid "%s: Unable to parse macro '%s'"
-msgstr ""
+msgstr "%s : Impossible d'analyser la macro '%s'"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A macro without varargin and "
 "varargout expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une macro sans varargin et "
+"varargout attendue.\n"
 
 #, c-format
 msgid "Recursion limit reached (%d).\n"
-msgstr ""
+msgstr "Limite de récursion atteinte (%d).\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un vecteur de chaîne de "
+"caractères attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A String expected.\n"
 msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Invalid library %s.\n"
 msgstr "%s : Bibliothèque %s invalide.\n"
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments de sortie : %d attendu(s).\n"
+
+#, c-format
 msgid "%s: Wrong type for input arguments: macro expected.\n"
-msgstr ""
+msgstr "%s : Type erroné pour les arguments d'entrée : Une macro attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d au moins attendu(s).\n"
 
 #, c-format
 msgid "Checking: %s.\n"
@@ -156,61 +167,3 @@ msgstr "Veuillez utiliser %s à la place."
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "Cette fonctionnalité va être définitivement supprimée dans Scilab %s"
-
-#~ msgid "%s: Wrong type for input argument #%d.\n"
-#~ msgstr "%s : Type erroné de l'argument d'entrée n°%d.\n"
-
-#~ msgid "%s: obsolete op-code %d.\n"
-#~ msgstr "%s : op-code obsolète %d.\n"
-
-#~ msgid ""
-#~ "%s: Wrong values for input argument: No profile data in the function\n"
-#~ msgstr ""
-#~ "%s : Valeurs erronées de l'argument d'entrée : Pas de données de profil "
-#~ "dans la fonction\n"
-
-#~ msgid "Complexity"
-#~ msgstr "Complexité"
-
-#~ msgid "Tools"
-#~ msgstr "Outils"
-
-#~ msgid "Edit"
-#~ msgstr "Édition"
-
-#~ msgid "?"
-#~ msgstr "?"
-
-#~ msgid "Exit"
-#~ msgstr "Quitter"
-
-#~ msgid "Click to get corresponding line, move with a-z."
-#~ msgstr "Cliquez pour obtenir les lignes correspondantes, déplacez avec a-z."
-
-#~ msgid "line %s [%s call, %s sec] :: "
-#~ msgstr "ligne %s [%s appel, %s sec] :: "
-
-#~ msgid "line %s [%s calls, %s sec] :: "
-#~ msgstr "ligne %s [%s appels, %s sec] :: "
-
-#~ msgid "%s: The function has not been built for profiling"
-#~ msgstr "%s : La fonction n'a pas été construite pour le profilage"
-
-#~ msgid "No variable named: %s.\n"
-#~ msgstr "Aucune variable du nom : %s.\n"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: A Scilab function name is "
-#~ "expected.\n"
-#~ msgstr ""
-#~ "%s : Valeur erronée de l'argument d'entrée n°%d : Un nom de fonction "
-#~ "Scilab attendu.\n"
-
-#~ msgid "%s is already noncompiled.\n"
-#~ msgstr "%s n'est pas compilée.\n"
-
-#~ msgid "%s is already compiled.\n"
-#~ msgstr "%s est déjà compilé.\n"
-
-#~ msgid "%s is already compiled for profiling.\n"
-#~ msgstr "%s est déjà compilé pour le profilage.\n"

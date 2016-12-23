@@ -49,7 +49,7 @@ fileparts
             Scilab function does not get file version but Matlab one does.
         </para>
         <para>
-            Scilab function can take a second input parameter specifying the output value we want to get saying: "path", "fname" or "extension". 
+            Scilab function can take a second input parameter specifying the output value we want to get saying: "path", "fname" or "extension".
         </para>
     </refsection>
 </refentry>

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scicos_params">
@@ -41,15 +41,15 @@
         <para>Diagram configuration values. Some of the value are graphical information, others directly configure the simulator.</para>
         <para>
             Type : scilab tlist of type <code>"params"</code> with fields :
-            <link linkend="scicos_diagram_params_wpar">wpar</link>, 
-            <link linkend="scicos_diagram_params_title">title</link>, 
-            <link linkend="scicos_diagram_params_tol">tol</link>, 
-            <link linkend="scicos_diagram_params_tf">tf</link>, 
-            <link linkend="scicos_diagram_params_context">context</link>, 
-            <link linkend="scicos_diagram_params_void1">void1</link>, 
-            <link linkend="scicos_diagram_params_options">options</link>, 
-            <link linkend="scicos_diagram_params_void2">void2</link>, 
-            <link linkend="scicos_diagram_params_void3">void3</link> and 
+            <link linkend="scicos_diagram_params_wpar">wpar</link>,
+            <link linkend="scicos_diagram_params_title">title</link>,
+            <link linkend="scicos_diagram_params_tol">tol</link>,
+            <link linkend="scicos_diagram_params_tf">tf</link>,
+            <link linkend="scicos_diagram_params_context">context</link>,
+            <link linkend="scicos_diagram_params_void1">void1</link>,
+            <link linkend="scicos_diagram_params_options">options</link>,
+            <link linkend="scicos_diagram_params_void2">void2</link>,
+            <link linkend="scicos_diagram_params_void3">void3</link> and
             <link linkend="scicos_diagram_params_doc">doc</link>.
         </para>
         <refsect2 id="scicos_diagram_params_wpar">
@@ -62,7 +62,7 @@
         <refsect2 id="scicos_diagram_params_title">
             <title>title</title>
             <para> Vector of character strings, where the first one is the diagram title and default name of save file name, and the second one is the path of the directory of the file name.</para>
-            <para> 
+            <para>
                 Size : 2.
             </para>
             <para>
@@ -71,7 +71,7 @@
         </refsect2>
         <refsect2 id="scicos_diagram_params_tol">
             <title>tol</title>
-            <para> 
+            <para>
                 A vector containing simulation parameters including
                 various tolerances used by the solver. This vector is composed of : <code>[ atol , rtol , ttol , deltat , scale , solver , hmax ]</code> where :
             </para>
@@ -145,7 +145,7 @@
                     <code>0</code> means no limit, let the solver use its own time predicate.
                 </para>
             </refsect3>
-            <para> 
+            <para>
                 Size : 7.
             </para>
             <para>
@@ -155,7 +155,7 @@
         <refsect2 id="scicos_diagram_params_tf">
             <title>tf</title>
             <para> Final time simulation. The simulation stops at this time.</para>
-            <para> 
+            <para>
                 Size : 1.
             </para>
             <para>
@@ -166,7 +166,7 @@
             <title>context</title>
             <para> A vector of strings containing Scilab instructions defining Scilab variables to be used inside block's dialog box as symbolic parameters.</para>
             <para> All valid Scilab instructions can be used and also comments.</para>
-            <para> 
+            <para>
                 Size : number of lines of the context.
             </para>
             <para>
@@ -176,7 +176,7 @@
         <refsect2 id="scicos_diagram_params_void1">
             <title>void1</title>
             <para> unused field.</para>
-            <para> 
+            <para>
                 Size : -.
             </para>
             <para>
@@ -190,10 +190,10 @@
             </para>
             <para>
                 Type : scilab tlist of type <code>"scsopt"</code> with fields :
-                <link linkend="scicos_diagram_params_options_3D">3D</link>, 
-                <link linkend="scicos_diagram_params_options_Background">Background</link>, 
-                <link linkend="scicos_diagram_params_options_link">link</link>, 
-                <link linkend="scicos_diagram_params_options_ID">ID</link> and 
+                <link linkend="scicos_diagram_params_options_3D">3D</link>,
+                <link linkend="scicos_diagram_params_options_Background">Background</link>,
+                <link linkend="scicos_diagram_params_options_link">link</link>,
+                <link linkend="scicos_diagram_params_options_ID">ID</link> and
                 <link linkend="scicos_diagram_params_options_Cmap">Cmap</link>
             </para>
             <refsect3 id="scicos_diagram_params_options_3D">
@@ -232,7 +232,7 @@
         <refsect2 id="scicos_diagram_params_void2">
             <title>void2</title>
             <para> unused field.</para>
-            <para> 
+            <para>
                 Size : -.
             </para>
             <para>
@@ -242,7 +242,7 @@
         <refsect2 id="scicos_diagram_params_void3">
             <title>void3</title>
             <para> unused field.</para>
-            <para> 
+            <para>
                 Size : -.
             </para>
             <para>
@@ -252,7 +252,7 @@
         <refsect2 id="scicos_diagram_params_doc">
             <title>doc</title>
             <para> User defined diagram documentation structure.</para>
-            <para> 
+            <para>
                 Size : 1.
             </para>
             <para>

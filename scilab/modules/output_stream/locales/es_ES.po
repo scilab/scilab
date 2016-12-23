@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -142,8 +142,6 @@ msgstr "  (cont'd) %s\n"
 msgid "     (end) %s\n"
 msgstr "     (fin) %s\n"
 
-#
-# File: modules/output_stream/src/cpp/Sciwarning.cpp, line: 42
 msgid ""
 "*** Execution stopped after a warning. ***\n"
 "Set warning(\"on\") to continue execution after a warning.\n"

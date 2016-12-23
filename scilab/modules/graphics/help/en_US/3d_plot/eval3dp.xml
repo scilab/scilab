@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -60,16 +60,16 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>eval3dp</literal> computes a four sided facets representation of a 3D parametric surface 
-            defined by the function <literal>fun</literal>. <literal>fun(p1,p2)</literal> computes the 
-            x-axis ,y-axis and z-axis coordinates of the corresponding points on the 
+            <literal>eval3dp</literal> computes a four sided facets representation of a 3D parametric surface
+            defined by the function <literal>fun</literal>. <literal>fun(p1,p2)</literal> computes the
+            x-axis ,y-axis and z-axis coordinates of the corresponding points on the
             surface, as [x(i),y(i),z(i)]=fun(p1(i),p2(i)). This is used for efficiency.
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 p1=linspace(0,2*%pi,10);
 p2=linspace(0,2*%pi,10);
 deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..

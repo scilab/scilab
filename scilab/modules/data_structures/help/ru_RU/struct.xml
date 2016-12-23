@@ -44,7 +44,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Эта функция возвращает структуру с именами полей 
+            Эта функция возвращает структуру с именами полей
             <varname>fields1</varname>, <varname>field2</varname>, ..., и значениями полей, соответственно, <varname>value1</varname>, <varname>value2</varname>, ...
         </para>
     </refsection>
@@ -53,16 +53,16 @@
         <programlisting role="example"><![CDATA[
 //создадим структуру данных
 date_st=struct('day',25,'month' ,'DEC','year',2006)
- 
+
 //изменим месяц
 date_st.month='AUG';
- 
+
 //изменим год
 date_st.year=1973;
- 
+
 //изменим день
 date_st.day=19;
- 
+
 //добавим новое поле
 date_st.semaine=32
  ]]></programlisting>

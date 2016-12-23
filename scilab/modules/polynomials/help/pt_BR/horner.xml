@@ -65,7 +65,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //avaliação de um polinômio para um vetor de números
 P=poly(1:3,'x')
 horner(P,[1 2 5])

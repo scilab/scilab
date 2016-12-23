@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -25,12 +25,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xend</literal> est utilisée pour terminer une session graphique. Avec les pilotes PostScript, XFig ou Gif,  <literal>xend</literal> ferme le fichier qui a été ouvert par <literal>xinit</literal>. 
+            <literal>xend</literal> est utilisée pour terminer une session graphique. Avec les pilotes PostScript, XFig ou Gif,  <literal>xend</literal> ferme le fichier qui a été ouvert par <literal>xinit</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 driver("Pos")
 xinit("foo.ps")
 plot2d()

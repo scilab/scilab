@@ -51,8 +51,17 @@ types::Function::ReturnValue sci_fieldnames(types::typed_list &in, int _iRetCoun
         types::String* pFields = in[0]->getAs<types::Struct>()->getFieldNames();
         if (pFields)
         {
-            out.push_back(pFields);
-            //delete pFields;
+            if (pFields->getSize() == 0)
+            {
+                delete pFields;
+                out.push_back(types::Double::Empty());
+            }
+            else
+            {
+
+                out.push_back(pFields);
+                //delete pFields;
+            }
         }
         else
         {
@@ -61,7 +70,7 @@ types::Function::ReturnValue sci_fieldnames(types::typed_list &in, int _iRetCoun
         return types::Function::OK;
     }
 
-    types::InternalType* pIT;
+    types::InternalType* pIT = nullptr;
 
     // TLIST or MLIST
     if (in[0]->isList() == true)

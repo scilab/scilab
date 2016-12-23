@@ -11,7 +11,7 @@ AUTHOR 	CDATA 	"Allan CORNET DIGITEO 2010"
 <!ELEMENT gateway EMPTY >
 <!ATTLIST gateway name NMTOKEN #REQUIRED >
 <!ATTLIST gateway function CDATA #REQUIRED >
-<!ATTLIST gateway type (0|1|2) #REQUIRED >
+<!ATTLIST gateway type (0|1|2|3) #REQUIRED >
 <!--
 name:
     the gateway name

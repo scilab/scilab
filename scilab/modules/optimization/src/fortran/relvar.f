@@ -10,7 +10,7 @@ c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
 c
-      subroutine relvar(ind,n,x,binf,bsup,x2,g,diag,imp,io,ibloc,izag,
+      subroutine relvar(ind,n,x,binf,bsup,x2,g,diag,iprint,io,ibloc,izag,
      &iter,nfac,irit)
 c
 c     determination des variables a relacher par meth bertsekas
@@ -28,7 +28,7 @@ c     calcul eps1
       eps1=0.
       do 20 i=1,n
 20    eps1=eps1 + abs(x2(i)-x(i))
-      if(imp.gt.2) then
+      if(iprint.gt.2) then
         write(bufstr,322) eps1
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -58,7 +58,7 @@ c     on defactorise si necessaire
       idfac=idfac+1
       nfac=nfac-1
       ind=1
-      if(imp.ge.4) then
+      if(iprint.ge.4) then
         write(bufstr,336)k,x(k)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -73,13 +73,13 @@ c     on factorise
       ifac=ifac+1
       nfac=nfac+1
       ibloc(k)=-iter
-      if(imp.ge.4) then
+      if(iprint.ge.4) then
         write(bufstr,339)k
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
 339   format(' on factorise l indice ',i3)
 340   continue
-      if(imp.ge.2.and.(ifac.gt.0.or.idfac.gt.0)) then
+      if(iprint.ge.2.and.(ifac.gt.0.or.idfac.gt.0)) then
         write(io,350)ifac,idfac,nfac
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif

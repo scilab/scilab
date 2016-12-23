@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2016 - Serge Steer - INRIA
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="zpk2tf">
+    <refnamediv>
+        <refname>zpk2tf</refname>
+        <refpurpose>Zero pole gain to transfer function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>S=zpk2tf(sys)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+
+            <varlistentry>
+                <term>sys</term>
+                <listitem>
+                    <para>
+                        A linear dynamical system in zero-pole-gain
+                        representation (see <link
+                        linkend="zpk">zpk</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>
+                        The rational transfer function representation of sys.
+                    </para>
+                </listitem>
+            </varlistentry>
+
+
+
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Converts a  zero pole gain representation to  rational transfer function
+        </para>
+
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+sys=zpk([2;1],0;-3-%i;-3+%i],2.5,"c")
+S=zpk2tf(sys)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="zp2tf">zp2tf</link>
+            </member>
+            <member>
+                <link linkend="zpk2ss">zpk2ss</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>Function added.</para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+
+</refentry>

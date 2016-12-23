@@ -187,7 +187,7 @@ int sci_uigetdir(char *fname, void* pvApiCtx)
     }
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
-    returnArguments(pvApiCtx);
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

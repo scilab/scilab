@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-12-12 19:24+0000\n"
+"PO-Revision-Date: 2016-10-19 13:01+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -235,15 +235,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
-msgstr ""
+msgstr "%s:  Неверное количество выходных аргументов: ожидалось не менее %d.\n"
 
 #, c-format
 msgid "%s: Convergence problem...\n"
-msgstr ""
+msgstr "%s: Проблема сходимости...\n"
 
 #, c-format
 msgid "Argument %d in dgees had an illegal value.\n"
-msgstr ""
+msgstr "У аргумента %d в dgees недопустимое значение.\n"
 
 msgid "The QR algorithm failed to compute all the eigenvalues.\n"
 msgstr ""
@@ -261,11 +261,11 @@ msgstr ""
 
 #, c-format
 msgid "Argument %d in zgees had an illegal value.\n"
-msgstr ""
+msgstr "У аргумента %d в zgees недопустимое значение.\n"
 
 #, c-format
 msgid "Argument %d in dgges had an illegal value.\n"
-msgstr ""
+msgstr "У аргумента %d в dgges недопустимое значение.\n"
 
 msgid "The QZ iteration failed. (A,E) are not in Schur form.\n"
 msgstr ""
@@ -278,7 +278,7 @@ msgstr ""
 
 #, c-format
 msgid "Argument %d in zgges had an illegal value.\n"
-msgstr ""
+msgstr "У аргумента %d в zgges недопустимое значение.\n"
 
 msgid "Other than QZ iteration failed in ZHGEQZ.\n"
 msgstr ""
@@ -335,25 +335,15 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор-столбец.\n"
 
-#, c-format
-msgid "%s: Obsolete function. Please replace '%s' by '%s'."
-msgstr "%s: Устаревшая функция. Пожалуйста, замените '%s' на '%s'."
-
-#, c-format
-msgid ""
-"%s: Obsolete function. Former external functions cannot be used anymore."
-msgstr ""
-"%s: Устаревшая функция. Прежние внешние функции больше нельзя использовать."
-
 #, fuzzy, c-format
 msgid "%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
 msgstr ""
 "%s: Неверный тип аргумента %d: ожидалась вещественная или комплексная "
 "матрица.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор-столбец.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -440,3 +430,6 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного параметра №%d: запрошенный ранг больше "
 "размерности матрицы."
+
+#~ msgid "%s: Obsolete function. Please replace '%s' by '%s'."
+#~ msgstr "%s: Устаревшая функция. Пожалуйста, замените '%s' на '%s'."

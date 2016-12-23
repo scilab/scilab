@@ -64,7 +64,8 @@
                         pour chaque nombre, tout inclus : signe et digits de la
                         mantisse, séparateur décimal ("."), symbole de l'exposant
                         ("D", "E"), signe et digits de l'exposant. Par défaut,
-                        <literal>width = 10</literal> caractères sont utilisés.
+                        <literal>width = 10</literal>.
+                        En notation exponentielle (mode "e"), il faut <literal>width >= 8</literal>.
                     </para>
                 </listitem>
             </varlistentry>

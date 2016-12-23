@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -60,16 +60,16 @@
             <literal>des2tf</literal> は <literal>sl</literal> を
             その伝達関数表現に変換します:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 S=C*(s*E-A)^(-1)*B+D
  ]]></programlisting>
         <para>
             引数3個でコールされた場合, <literal>des2tf</literal> は,
             2つの多項式行列
-            <literal>Bfs</literal> および <literal>Bis</literal> と 
+            <literal>Bfs</literal> および <literal>Bis</literal> と
             次のような多項式<literal>chis</literal>を返します:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 S=Bfs/chis - Bis
  ]]></programlisting>
         <para>
@@ -79,7 +79,7 @@ S=Bfs/chis - Bis
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 G=[1/(s+1),s;1+s^2,3*s^3];
 Descrip=tf2des(G);Tf1=des2tf(Descrip)

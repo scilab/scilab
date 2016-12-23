@@ -26,13 +26,14 @@ function getd(path,option)
     path = pathconvert(path,%t,%t);
 
     // list the sci files
+    global lst
     lst          = listfiles(path+"*.sci",%f);
     lst_filtered = [];
 
     // remove wrong files extension
     // bug 2289
 
-    for i=1:size(lst,"*")
+    for i = 1:size(lst,"*")
         if( regexp(lst(i),"/.sci$/") <> [] ) then
             lst_filtered = [lst_filtered;lst(i)];
         end
@@ -46,20 +47,30 @@ function getd(path,option)
         return ;
     end
 
-    old = who("local");
+    // Bug http://bugzilla.scilab.org/13583 : some scripts loaded through the
+    //  loop may contain "clear" instructions deleting a) the list of files to
+    //  be processed, and b) the reference list of internal getd() variables not
+    //  to be returned.
+    //  Informations to be protected are set in global variables: lst, old
+    global old          // sets it as global, before first assignment
+    old = who("local")
     old = old(isdef(old, "l"))
     //prot = funcprot(); funcprot(0)
-    for k=1:size(lst,"*");
+    for k = 1:size(lst,"*");
+        global lst // recover it whenever it would have been cleared
         if fileparts(lst(k),"extension")==".sci" then
+            // disp(basename(lst(k))) // Beware: files are not sorted/loaded in alphabetical order
             if execstr("exec(lst(k));","errcatch")<>0 then
                 warning(msprintf(gettext("%s: Incorrect function in file %s.\n"),"getd",lst(k)))
             end
         end
     end
+    global old
     //funcprot(prot);
     new = who("local");
     new = new(isdef(new, "l"))
     new = setdiff(new, old)
+    clearglobal old lst
 
     if new<>[] then
         execstr("["+strcat(new,",")+"]=resume("+strcat(new,",")+")")

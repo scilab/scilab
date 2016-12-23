@@ -14,3 +14,16 @@ This module was originally licensed under the terms of the CeCILL v2.1,
 and continues to be available under such terms.
 For more information, see the COPYING file which you should have received
 along with this program.
+
+DCDFLIB:
+========
+
+Files:
+src/dcdflib
+
+Copyright:
+Barry W. Brown - James Lovato - Kathy Russell
+The University of Texas
+
+License:
+Public domain

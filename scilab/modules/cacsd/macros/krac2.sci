@@ -1,6 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - Serge Steer
-//
+// Copyright (C) 1996 - 2016 - INRIA - Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -18,27 +17,35 @@ function [kp,s]=krac2(sys)
     // K'=-(den'*num-den*num')/num^2
     // K'= 0 --> den'*num-den*num'=0
     //  http://www.scribd.com/doc/21374148/An-Introduction-to-Control-Systems
-    select typeof(sys)
-    case "rational" then
-    case "state-space" then
-        sys=ss2tf(sys);
-    else
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"krac2",1))
+    if and(typeof(sys)<>["state-space" "rational" "zpk"]) then
+        ierr=execstr("[kp,s]=%"+overloadname(sys)+"_krac2(sys)","errcatch")
+        if ierr<>0 then
+            error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"krac2",1))
+        end
+        return
     end
+
     if size(sys,"*")<>1 then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"krac2",1))
     end
-    num=sys.num
-    den=sys.den
+
+    if typeof(sys)=="state-space" then
+        sys=ss2tf(sys)
+    elseif typeof(sys)=="zpk" then
+        sys=zpk2tf(sys)
+    end
+    num=sys.num;
+    den=sys.den;
+
     s=roots(derivat(num)*den-derivat(den)*num,"e")
     //collect the real roots only
     i=find(abs(imag(s))<=10*%eps)
     if i==[] then kp=[],s=[];return,end
-    s=s(i)';
+    s=real(s(i))'
     s=s(horner(num,s)<>0);
-
     kp=-real(freq(den,num,real(s)));
     i=find(kp>=0);
     kp=kp(i)
     s=s(i)
 endfunction
+

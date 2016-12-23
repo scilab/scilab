@@ -111,7 +111,7 @@
     <refsection>
         <title>Supported bitmap formats</title>
         <para>
-            The selected driver can be one of the following bitmap 
+            The selected driver can be one of the following bitmap
             format:
         </para>
         <variablelist>

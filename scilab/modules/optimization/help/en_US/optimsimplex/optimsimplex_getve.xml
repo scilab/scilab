@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -50,14 +50,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimsimplex_getve</literal> function returns the vertex at given index, 
+            The <literal>optimsimplex_getve</literal> function returns the vertex at given index,
             as a tlist, with fields n, x and fv.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     simplex = [
 3.  0.  0.
 4. 1.  0.

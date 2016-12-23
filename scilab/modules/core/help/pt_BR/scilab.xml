@@ -1,26 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scilab" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="scilab" xml:lang="pt">
+    <refnamediv xml:id="wscilex">
+    </refnamediv>
+    <refnamediv xml:id="scilex">
+    </refnamediv>
     <refnamediv>
-        <refname>scilab</refname>
-        <refpurpose>principal script para executar o Scilab e ferramentas de
-            miscelânea
+        <refname>scilex | scilab</refname>
+        <refpurpose>principal script para executar o Scilab e ferramentas de miscelânea
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Sqeüência de Chamamento</title>
-        <synopsis>scilab &lt;Options&gt;</synopsis>
+        <synopsis>
+#      MS Windows          |  # Linux / Unix / Mac OS X
+wscilex     &lt;Options&gt;     |  scilab         &lt;Options&gt;
+wscilex -nw &lt;Options&gt; |  scilab-adv-cli &lt;Options&gt;
+scilex      &lt;Options&gt;      |  scilab-cli     &lt;Options&gt;
+        </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
         <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
-                <term>-args Arguments</term>
+                <term>-args arg#1 arg#2 ..</term>
                 <listitem>
-                    <para>Se esta opção estiver presente, os argumentos são passados ao
-                        Scilab. Eles podem ser recebidos pela função <link linkend="sciargs">sciargs</link>. para passagem de múltiplos
-                        argumentos use, seqüências de palavras separadas por espaços entre
-                        aspas simples: <literal>scilab -args 'foo1 foo2'</literal>
+                    <para>
+                        This option allows to send some data to the Scilab session:
+                        <itemizedlist>
+                            <listitem>Consecutive data are separated by one or several spaces.
+                            </listitem>
+                            <listitem>An expression between double-quotes is a single data.
+                            </listitem>
+                            <listitem>To include a double-quote in a data, write <literal>\"</literal> instead of <literal>"</literal>.
+                            </listitem>
+                            <listitem>The single quote <literal>'</literal> is a regular character. It has no special meaning.
+                            </listitem>
+                        </itemizedlist>
                     </para>
+                    <para>
+                      Inside the opened session, these data can be retrieved as separated strings with <link linkend="sciargs">sciargs()</link>.
+                     </para>
+                     <para>
+                      Example:
+                        <screen><![CDATA[C:\Users\Me> scilex -nb -args "Hello \"%USERNAME%\"" 1.2345 \"%cd%\"]]></screen>
+                        <programlisting><![CDATA[
+// Inside the opened session:
+a = sciargs()
+i = find(a=="-args")
+a(i+1)
+evstr(a(i+2))*2
+"This session has been launched from " + a(i+3)
+                        ]]>
+                        </programlisting>
+                        <screen><![CDATA[
+--> // Inside the opened session:
+--> a = sciargs()
+ a  =
+!c:\SCIdir\bin\scilex  -nw  -nb  -noatomsautoload  -args  Hello "John"  1.2345  "C:\Users\Me" !
+
+--> i = find(a=="-args")
+ i  =
+    5.
+
+--> a(i+1)
+ ans  =
+ Hello "John"
+
+--> evstr(a(i+2))*2
+ ans  =
+    2.469
+
+--> "This session has been launched from " + a(i+3)
+ ans  =
+ This session has been launched from "C:\Users\Me"
+
+-->
+]]></screen>
+                     </para>
+                     <para>
+                     <note>Using <literal>-args</literal> as the <emphasis role="italic">last</emphasis> command line option is safer.
+                     </note>
+                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -36,32 +99,49 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>-debug</term>
+                <term>-e Instructions</term>
                 <listitem>
-                    <para>Inicia o Scilab no debugger gdb (apenas para
-                        Unix/Linux/Mac OS X).
+                    <para>
+                        No final de toda a sessão de inicialização, esta opção
+                        <itemizedlist>
+                            <listitem>
+                                <para>Define o diretório de trabalho atual para o diretório shell do qual o Scilab foi lançado. Por favor veja o exemplo dado aqui-abaixo para a opção <literal> -f </literal>. Então,
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>executa dado Scilab <literal>Instructions</literal>. Exemplo :
+                                    <screen><![CDATA[ scilab-cli -e  "disp(\"Hello\"); a=%pi+%i; disp(exp(a)); exit;" -nb]]></screen>
+                                </para>
+                            </listitem>
+                        </itemizedlist>
                     </para>
+                    <warning>
+                        As opções <literal>-e</literal> e <literal>-f</literal> são mutuamente exclusivas.
+                    </warning>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>-e Instrução</term>
+                <term>-f file</term>
                 <listitem>
-                    <para>Se esta opção estiver presente, então a instrução Scilab
-                        <literal>Instrução</literal> é executada primeiro (logo após a
-                        execução do arquivo de inicialização) no Scilab. As opções
-                        <literal>-e</literal> e <literal>-f</literal> são mutuamente
-                        exclusivas
+                    <para>
+                        If this option is used, then at the beginning of the Scilab session, after the execution of the scilab and user startup files, and after the setting of user Preferences -- including the working directory ones --,
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    the current Scilab working directory is set to the shell directory from which Scilab has been launched. For instance,
+                                    <screen><![CDATA[ D:\users\me\scilab\dev> C:\scilab-5.5.2\bin\scilex -f ..\test.sce]]></screen>
+                                    will do a <literal>cd("D:\users\me\scilab\dev")</literal>.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    the Scilab script <literal>file</literal> is executed. If a relative path is used (default <literal>.\</literal>, or like <literal>..\</literal> in the sample here-above), it refers to the new Scilab working directory.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
                     </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>-f arquivo</term>
-                <listitem>
-                    <para>Se esta opção estiver presente, então o script Scilab
-                        <literal>arquivo</literal> é executado primeiro (logo após a
-                        execução do arquivo de inicialização) no Scilab. As opções
-                        <literal>-e</literal> e <literal>-f</literal> são mutuamente
-                        exclusivas.
+                    <para>
+                        A file with .xcos extension will be opened by Xcos.
                     </para>
                 </listitem>
             </varlistentry>
@@ -90,15 +170,14 @@
             <varlistentry>
                 <term>-nb</term>
                 <listitem>
-                    <para>Se esta opção está presente, então o cartão de boas-vindas não
-                        é impresso.
+                    <para>"no banner" : Se esta opção está presente, então o cartão de boas-vindas não é impresso.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>-ns</term>
                 <listitem>
-                    <para>Se esta opção está presente, o arquivo de inicialização
+                    <para>"No Startup files" : Se esta opção está presente, o arquivo de inicialização
                         <literal>SCI/etc/scilab.start</literal> e os arquivos de
                         inicialização do usuário <literal>SCIHOME/.scilab</literal>,
                         <literal>SCIHOME/scilab.ini</literal> não são executados.
@@ -125,9 +204,13 @@
             <varlistentry>
                 <term>-nwni / -nogui</term>
                 <listitem>
+                    <important>
+                        This mode prevents loading the Java Virtual Machine.
+                        It starts faster and uses less memory.
+                    </important>
                     <para>Se esta opção estiver presente, então o Scilab não é executado
-                        em uma janela específica e não aceita interação do usuário. Esta
-                        opção pode ser utilizada com as opções -f ou -e .
+                        em uma janela específica e não aceita interação do usuário
+                        (graphics, export, xcos, scinotes, help browser, Java module,...).
                     </para>
                 </listitem>
             </varlistentry>
@@ -140,13 +223,58 @@
             <varlistentry>
                 <term>-version</term>
                 <listitem>
-                    <para>Esta opção imprime a versão do produto e sai.</para>
+                    <para>Esta opção imprime a versão do Scilab.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="arguments">
+        <title>Additional options for Unix/Linux and Mac OS X</title>
+        <para>Advice: use theses options on a Scilab source tree.</para>
+        <variablelist>
+            <varlistentry>
+                <term>-debug</term>
+                <listitem>
+                    <para>Inicia o Scilab no debugger gdb.</para>
+                    <para>
+                        The variable <literal>SCILAB_GDB_OPT</literal> may be set to add custom options to gdb.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-debug-kdbg</term>
+                <listitem>
+                    <para>Start Scilab under kdbg.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-profiling</term>
+                <listitem>
+                    <para>Start Scilab under valgrind.</para>
+                    <para>The variable SCILAB_VALGRIND_OPT may be set to add custom options
+                        to valgrind (and override the existing valgrind options).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-profiling-visu</term>
+                <listitem>
+                    <para>Start Scilab under callgrind.</para>
+                    <para>The variable SCILAB_VALGRIND_OPT may be set to add custom options
+                        to callgrind (and override the existing callgrind options).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-electric-fence</term>
+                <listitem>
+                    <para>Start Scilab with the Electric Fence.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection role="description">
-        <title>Description of environment variables</title>
+        <title>Environment variables</title>
         <variablelist>
             <varlistentry>
                 <term>SCIVERBOSE</term>
@@ -184,6 +312,9 @@
     </refsection>
     <refsection role="description">
         <title>Java Virtual Machine options</title>
+        <warning>
+            The options described here-below are useless and are cancelled if the option <literal>-nwni</literal> is used.
+        </warning>
         <para>Starting from Scilab 5.0, the graphical user interface (GUI) and the
             build documentation are based on Java features. In some cases, it can be
             important to edit the JVM options (Java Virtual Machine).
@@ -242,7 +373,7 @@
     </refsection>
     <refsection role="examples">
         <title>Exemplos</title>
-        <programlisting role="no-scilab-exec"><![CDATA[
+        <screen><![CDATA[
 # Let's start Scilab in profiling mode without attaching a gdb once a SIGSEGV is met.
 # We are under Bash shell
 export SCILAB_VALGRIND_OPT="--db-attach=no --log-file=myfile.txt"
@@ -255,8 +386,9 @@ echo "handle SIGSEGV nostop" &> debug.txt
 # We are under Bash shell
 export SCILAB_GDB_OPT="--command=debug.txt"
 # Start Scilab in debug mode
-scilab -debug]]></programlisting>
-        <programlisting role="no-scilab-exec"><![CDATA[
+scilab -debug ]]></screen>
+        <para></para>
+        <screen><![CDATA[
 # Under GNU/Linux, Mac OS X or Unix:
 $ echo "disp(%pi)"|scilab-cli
 or
@@ -270,16 +402,31 @@ $ scilab -nw -e "help()"
 
 # Scilab can be used for scripting aspects:
 echo "if 1<>2 then exit(99) end"|scilab-cli
-echo $? ]]></programlisting>
+echo $? ]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Ver também</title>
         <simplelist type="inline">
             <member>
-                <link linkend="exit">exit</link>
+                <link linkend="startup">startup</link>
             </member>
             <member>
-                <link linkend="startup">startup</link>
+                <link linkend="sciargs">sciargs</link>
+            </member>
+            <member>
+                <link linkend="getpid">getpid</link>
+            </member>
+            <member>
+                <link linkend="getenv">getenv</link>
+            </member>
+            <member>
+                <link linkend="getenv">getversion</link>
+            </member>
+            <member>
+                <link linkend="consolebox">consolebox</link>
+            </member>
+            <member>
+                <link linkend="exit">exit</link>
             </member>
         </simplelist>
     </refsection>

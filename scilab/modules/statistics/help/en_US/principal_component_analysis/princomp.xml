@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -106,14 +106,14 @@
             distances can only stretch).  In other words, inertia of the
             projection onto the k dimensional subspace must be maximal.
         </para>
-        <para> 
+        <para>
             To compute principal component analysis with standardized variables may use
             <literal>princomp(wcenter(x,1))</literal> or use the <link linkend="pca">pca</link>  function.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=rand(100,10,'n');
 [facpr,comprinc,lambda,tsquare] = princomp(a);
  ]]></programlisting>

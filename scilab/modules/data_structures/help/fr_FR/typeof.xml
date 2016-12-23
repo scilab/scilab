@@ -254,7 +254,7 @@
                     <emphasis role="bold">listdelete</emphasis>
                 </td>
                 <td>
-                    est retourné par 
+                    est retourné par
                     <function>
                         typeof(<literal>null()</literal>)
                     </function>
@@ -312,6 +312,25 @@
                 <td>
                     <varname>object</varname> est une réprésentation d'état
                     d'un système dynamique (voir <link linkend="syslin">syslin</link>).
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">program</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est une liste descrivant le code interne d'une fonction
+                    compilée écrite en Scilab (voir <link linkend="macr2tree">macr2tree</link>).
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <emphasis role="bold">cblock</emphasis>
+                </td>
+                <td>
+                    <varname>object</varname> est un bloc de colonnes de mêmes hauteurs mais de
+                    types de contenus différents, tel que produit par
+                    <link linkend="mfscanf">mfscanf</link>.
                 </td>
             </tr>
             <tr>
@@ -475,14 +494,19 @@ typeof(L)
 // Typeof de T-List ou M-list prédéfinis réservés
 // ----------------------------------------------
 typeof(dir())  // listage du contenu d'un dossier
-
+//
+c = macr2tree(sind); // Code interne d'une macro Scilab
+typeof(c)
+fieldnames(c)'
+c.name
+//
 doc = xmlReadStr("<root><a att=""foo"">Hello</a></root>");
 typeof(doc)
 xmlDelete(doc)
-
+//
 x = 1;
 save(TMPDIR + "/x.sod", "x"); // Les fichiers SOD d'enregistrement d'objets
-                              //  Scilab sont au format HDF5
+//                            //  Scilab sont au format HDF5
 a = h5open(TMPDIR + "/x.sod");
 typeof(a)
 h5close(a)

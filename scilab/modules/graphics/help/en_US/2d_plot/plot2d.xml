@@ -79,7 +79,7 @@
                             <listitem>
                                 <para>controls the display of captions.</para>
                                 <para>
-                                    <literal>strf</literal> is a string of length 3 
+                                    <literal>strf</literal> is a string of length 3
                                     <literal>"xyz"</literal> (by default <literal>strf=
                                         "081"
                                     </literal>
@@ -150,16 +150,15 @@
         <para>
             If <literal>x</literal> is a vector and <literal>y</literal> a
             matrix plot2d(x,y,&lt;opt_args&gt;) plots each columns of
-            <literal>y</literal> versus vector <literal>x</literal>. In this case the
-            number of columns of <literal>y</literal> should be equal to the number of
+            <literal>y</literal> versus vector <literal>x</literal>. The
+            number of rows of <literal>y</literal> must be equal to the number of
             <literal>x</literal> entries.
         </para>
         <para>
             If <literal>x</literal> and <literal>y</literal> are matrices,
             plot2d(x,y,&lt;opt_args&gt;) plots each columns of <literal>y</literal>
-            versus corresponding column of <literal>x</literal>. In this case the
-            <literal>x</literal> and <literal>y</literal> sizes should be the
-            same.
+            versus corresponding column of <literal>x</literal>.
+            <literal>x</literal> and <literal>y</literal> must then have the same sizes.
         </para>
         <para>
             If <literal>y</literal> is a vector, plot2d(y,&lt;opt_args&gt;)

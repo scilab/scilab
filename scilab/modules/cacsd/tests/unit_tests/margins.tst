@@ -1,7 +1,7 @@
 //<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - INRIA - Serge Steer
+// Copyright (C) 2010 - 2016 - INRIA - Serge Steer
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -39,25 +39,34 @@ z=poly(0,"z");
 h = syslin(0.1,((29/625)+(2399/50000)*z)/((1131/1250)+(-181/100)*z+z^2));
 f_ref=atan(sqrt(9003479136639)/4963519)/(0.1*2*%pi);
 g_ref=6.242379356591869534116;
-if ~check_gmargin(h,f_ref,g_ref) then pause,end
-
+assert_checktrue(check_gmargin(h,f_ref,g_ref));
+assert_checktrue(check_gmargin(tf2ss(h),f_ref,g_ref));
+assert_checktrue(check_gmargin(zpk(h),f_ref,g_ref));
 
 
 h=syslin(0.1,((43/500)+(-161/1000)*z+(39/500)*z^2)/((-67/100)+(1143/500)*z+(-261/100)*z^2+z^3));
 f_ref=atan((1/215)*sqrt(1136805-8330*sqrt(5970))/(833/43+(1/215)*sqrt(5970)))/(0.1*2*%pi);
 g_ref=12.3470513198103944037870;
-if ~check_gmargin(h,f_ref,g_ref) then pause,end
+assert_checktrue(check_gmargin(h,f_ref,g_ref));
+assert_checktrue(check_gmargin(tf2ss(h),f_ref,g_ref));
+assert_checktrue(check_gmargin(zpk(h),f_ref,g_ref));
+
 
 h=syslin(0.1,((129/500)+(-483/1000)*z+(117/500)*z^2)/((-67/100)+(1143/500)*z+(-261/100)*z^2+z^3));
 f_ref=atan((1/215)*sqrt(1136805-8330*sqrt(5970))/(833/43+(1/215)*sqrt(5970)))/(0.1*2*%pi);
 g_ref=2.8046262254171456578864840;
-if ~check_gmargin(h,f_ref,g_ref) then pause,end
+assert_checktrue(check_gmargin(h,f_ref,g_ref));
+assert_checktrue(check_gmargin(tf2ss(h),f_ref,g_ref));
+assert_checktrue(check_gmargin(zpk(h),f_ref,g_ref));
+
 
 
 h=syslin(1,((21/500)+(-3933/100000)*z+(-15407/100000)*z^2+(9259/50000)*z^3+(6939/(10^12))*z^4)/((-21/500)+(11/125)*z+(57/500)*z^2+(-9/25)*z^3+(1/5)*z^4));
 f_ref=1/2;
 g_ref=6.48227782514616029706190;
-if ~check_gmargin(h,f_ref,g_ref) then pause,end
+assert_checktrue(check_gmargin(h,f_ref,g_ref));
+assert_checktrue(check_gmargin(tf2ss(h),f_ref,g_ref));
+assert_checktrue(check_gmargin(zpk(h),f_ref,g_ref));
 
 //continuous time case
 s=poly(0,"s");
@@ -72,25 +81,31 @@ s=poly(0,"s");
 h=syslin("c",(-1+s)/(3+2*s+s^2));
 f_ref=0;
 g_ref=9.5424250943932487459005580;
-if ~check_gmargin(h,f_ref,g_ref) then pause,end
+assert_checktrue(check_gmargin(h,f_ref,g_ref));
+assert_checktrue(check_gmargin(tf2ss(h),f_ref,g_ref));
+assert_checktrue(check_gmargin(zpk(h),f_ref,g_ref));
 
 
 h = syslin("c",((1/5)+(4/5)*s+(0/1)*s^2+(3/10)*s^3)/((409/10000)+(1827/10000)*s+(5129/4000)*s^2+(31909/10000)*s^3+(64/25)*s^4 +s^5));
 f_ref=0.0714555258202006740373134;
 g_ref=-4.91687406933815400242335;
-if ~check_gmargin(h,f_ref,g_ref) then pause,end
+assert_checktrue(check_gmargin(h,f_ref,g_ref));
+assert_checktrue(check_gmargin(tf2ss(h),f_ref,g_ref));
+assert_checktrue(check_gmargin(zpk(h),f_ref,g_ref));
 
 
 h=syslin("c",485000/(10000*s+200*s^2+s^3));
 f_ref=100/(2*%pi);
 g_ref=12.305765141234350772862319;
-if ~check_gmargin(h,f_ref,g_ref) then pause,end
+assert_checktrue(check_gmargin(h,f_ref,g_ref));
 
 
 h = syslin("c",1/(s+2*s^2+s^3));
 f_ref=1/(2*%pi);
 g_ref=6.0205999132796239042747779;
-if ~check_gmargin(h,f_ref,g_ref) then pause,end
+assert_checktrue(check_gmargin(h,f_ref,g_ref));
+assert_checktrue(check_gmargin(tf2ss(h),f_ref,g_ref));
+assert_checktrue(check_gmargin(zpk(h),f_ref,g_ref));
 
 //phase margin
 //-----------
@@ -119,19 +134,23 @@ endfunction
 h = syslin(0.1,((29/625)+(2399/50000)*z)/((1131/1250)+(-181/100)*z+z^2));
 f_ref=0.693016600315284442350578876;
 p_ref=13.57115563612946355428439468;
-if  ~check_pmargin(h,f_ref,p_ref) then pause,end
+assert_checktrue(check_pmargin(h,f_ref,p_ref));
+assert_checktrue(check_pmargin(tf2ss(h),f_ref,p_ref));
+assert_checktrue(check_pmargin(zpk(h),f_ref,p_ref));
 
 
 h=syslin(0.1,((43/500)+(-161/1000)*z+(39/500)*z^2)/((-67/100)+(1143/500)*z+(-261/100)*z^2+z^3));
 [p ,f]=p_margin(h);
-if p<>%inf  then pause,end
-if f<>[]  then pause,end
+assert_checktrue(p==%inf);
+assert_checktrue(f==[]);
 
 h=syslin(0.1,3*(0.086-0.161*%z+0.078*%z^2),-0.67+2.286*%z-2.61*%z^2+%z^3);
 h=syslin(0.1,((129/500)+(-483/1000)*z+(117/500)*z^2)/((-67/100)+(1143/500)*z+(-261/100)*z^2+z^3));
 f_ref=0.212336488950669705771059018;
 p_ref=52.94967415965772478856630911;
-if  ~check_pmargin(h,f_ref,p_ref) then pause,end
+assert_checktrue(check_pmargin(h,f_ref,p_ref));
+assert_checktrue(check_pmargin(tf2ss(h),f_ref,p_ref));
+assert_checktrue(check_pmargin(zpk(h),f_ref,p_ref));
 
 //continuous case
 //the reference solutions are computed using  the following Maple instructions
@@ -143,10 +162,13 @@ if  ~check_pmargin(h,f_ref,p_ref) then pause,end
 h=syslin("c",((11/10)+(12/5)*s+(7/10)*s^2)/(3+2*s+s^2));
 f_ref=(1/51)*sqrt(15861-204*sqrt(3562))/(2*%pi);
 p_ref=-148.547076202317410601324666;
-if  ~check_pmargin(h,f_ref,p_ref) then pause,end
-
+assert_checktrue(check_pmargin(h,f_ref,p_ref));
+assert_checktrue(check_pmargin(tf2ss(h),f_ref,p_ref));
+assert_checktrue(check_pmargin(zpk(h),f_ref,p_ref));
 
 h = syslin("c",((1/5)+(4/5)*s+(3/10)*s^3)/((409/10000)+(1827/10000)*s+(5129/4000)*s^2+(31909/10000)*s^3+(64/25)*s^4+s^5));
 f_ref=0.09144216563554157543991;
 p_ref=-13.1128497150069802772313;
-if  ~check_pmargin(h,f_ref,p_ref) then pause,end
+assert_checktrue(check_pmargin(h,f_ref,p_ref));
+assert_checktrue(check_pmargin(tf2ss(h),f_ref,p_ref));
+assert_checktrue(check_pmargin(zpk(h),f_ref,p_ref));

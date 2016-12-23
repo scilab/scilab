@@ -17,25 +17,9 @@
 #define __GUI_GW_HXX__
 
 #include "cpp_gateway_prototype.hxx"
-#include "dynlib_gui_gw.h"
+#include "dynlib_gui.h"
 
-class GuiModule
-{
-private :
-    GuiModule() {};
-    ~GuiModule() {};
-public :
-    GUI_GW_IMPEXP static int LoadDeps(const std::wstring& _functionName);
-    GUI_GW_IMPEXP static int Load();
-    GUI_GW_IMPEXP static int Unload()
-    {
-        return 1;
-    }
-
-    static bool loadedDep;
-};
-
-CPP_GATEWAY_PROTOTYPE(sci_displaytree);
-CPP_GATEWAY_PROTOTYPE(sci_helpbrowser);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_displaytree, GUI_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_helpbrowser, GUI_IMPEXP);
 
 #endif /* !__GUI_GW_HXX__ */

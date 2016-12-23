@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -51,7 +51,7 @@
         </para>
         <para>Os polígonos podem ser preenchidos por uma dada cor (preenchimento
             monótono) ou pintados com cores interpoladas (preenchimento por
-            graduação). 
+            graduação).
         </para>
         <variablelist>
             <varlistentry>
@@ -73,7 +73,7 @@
                         <listitem>
                             <para>
                                 se <literal>fill(i)=0</literal>, o polígono é desenhado no
-                                estilo de traço (ou cor) corrente e não é preenchido. 
+                                estilo de traço (ou cor) corrente e não é preenchido.
                             </para>
                         </listitem>
                         <listitem>
@@ -95,7 +95,7 @@
                         Neste caso, <literal>fill</literal> deve ser uma matriz com o
                         mesmo mesmo tamanho de <literal>xpols</literal> e
                         <literal>ypols</literal>. Note que <literal>p</literal> deve ser
-                        igual a 3 ou 4. 
+                        igual a 3 ou 4.
                     </para>
                     <para>
                         <literal>fill(k,i)</literal> fornece a cor da
@@ -151,7 +151,7 @@ xfpolys(xpols,ypols,cols)
             f=gcf();
             a=gca();
             a.data_bounds=[0,-10;40,30];
-            isoview
+            isoview();
             x1=[0,10,20,10]';
             y1=[10,0,10,20]';
             c=linspace(2,100,4)';
@@ -220,7 +220,7 @@ xfpolys(X,Y,C)
             Y=[y11 y12 y21 y22 y31 y32];
             C=([c11 c12 c21 c22 c31 c32]+1)*5;
             a=gca();
-            isoview()
+            isoview();
             a.data_bounds=[min(X),min(Y);max(X),max(Y)];
             f=gcf();
             f.color_map=graycolormap(max(C));

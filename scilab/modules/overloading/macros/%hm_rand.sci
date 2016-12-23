@@ -22,7 +22,7 @@ function M=%hm_rand(varargin)
         else
             dims=M("dims")
         end
-        M=hypermat(dims,rand(prod(double(dims)),1))
+        M=matrix(rand(prod(double(dims)),1), dims)
     else
 
         if type(varargin($))==10 then
@@ -36,7 +36,7 @@ function M=%hm_rand(varargin)
             if nv==2 then
                 M=rand(varargin(1:nv),opt)
             else
-                M=hypermat(dims(1:nv),rand(prod(dims(1:nv)),1,opt))
+                M=matrix(rand(prod(dims(1:nv)),1,opt), dims(1:nv))
             end
         else
             dims=ones(1,nv)
@@ -48,7 +48,7 @@ function M=%hm_rand(varargin)
             if nv==2 then
                 M=rand(varargin(1:nv))
             else
-                M=hypermat(dims(1:nv),rand(prod(dims(1:nv)),1))
+                M=matrix(rand(prod(dims(1:nv)),1), dims(1:nv))
             end
         end
     end

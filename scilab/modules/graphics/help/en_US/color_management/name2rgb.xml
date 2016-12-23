@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -44,7 +44,7 @@
         <para>
             <literal>name2rgb</literal> returns the RGB values of a color given by its name. The result is
             a vector or a matrix with 3 columns <literal>[r,g,b]</literal> where <literal>r</literal>, <literal>g</literal> and <literal>b</literal> are integers between 0 and 255
-            corresponding to colors components red, green and blue. As usual 0 means no intensity and 
+            corresponding to colors components red, green and blue. As usual 0 means no intensity and
             255 means all the intensity of the color.
         </para>
         <para>
@@ -56,7 +56,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rgb=name2rgb("gold")
 rgb2name(rgb)
  ]]></programlisting>

@@ -83,6 +83,12 @@ types::Function::ReturnValue sci_part(types::typed_list &in, int _iRetCount, typ
     for (int i = 0 ; i < pD->getSize() ; i++)
     {
         piIndex[i] = static_cast<int>(pD->getReal()[i]);
+        if (piIndex[i] < 1)
+        {
+            Scierror(36, _("%s: Wrong values for input argument #%d: Must be >= 1.\n"), "part", 2);
+            delete[] piIndex;
+            return types::Function::Error;
+        }
     }
 
     wchar_t** pwstOut = partfunctionW(pS->get(), pS->getRows(), pS->getCols(), piIndex, pD->getSize());

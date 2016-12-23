@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-14 07:08+0000\n"
+"PO-Revision-Date: 2016-11-07 14:41+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %d.\n"
@@ -87,90 +87,83 @@ msgstr "%s: неверное значение параметра %s: значе�
 msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
 msgstr "%s: неверный размер параметра %s: требуется %d, получено %d\n"
 
-# File: modules/parameters/demos/parameters.dem.gateway.sce, line: 9
 msgid "Parameters"
-msgstr ""
+msgstr "Параметры"
 
-#
-# File: modules/parameters/demos/parameters.dem.gateway.sce, line: 11
 msgid "plist handling"
-msgstr ""
+msgstr "обработка plist"
 
-#
-# File: modules/parameters/demos/params_demo.sce, line: 13
 msgid ""
 "This demo shows examples of plist utilizations: creation, insertion, "
 "removal, ..."
 msgstr ""
+"Эта демонстрация показывает примеры использования plist: создание, введение, "
+"удаление..."
 
-#
-# File: modules/parameters/demos/params_demo.sce, line: 15
 #, c-format
 msgid ""
 "\n"
 "Create a plist '%s' containing two fields 'min' = [0 0 0] and 'max' = [1 1 "
 "1].\n"
 msgstr ""
+"\n"
+"Создать plist '%s', содержащий два поля 'min' = [0 0 0] и 'max' = [1 1 1].\n"
 
-#
-# File: modules/parameters/demos/params_demo.sce, line: 23
 #, c-format
 msgid ""
 "\n"
 "Check fields: \n"
 msgstr ""
+"\n"
+"Проверьте поля: \n"
 
-#
-# File: modules/parameters/demos/params_demo.sce, line: 28
 #, c-format
 msgid "Set 'min' = [0 0 0] and 'max' = [1 1 1]:\n"
-msgstr ""
+msgstr "Установить 'min' = [0 0 0] и 'max' = [1 1 1]:\n"
 
-#
-# File: modules/parameters/demos/params_demo.sce, line: 34
 #, c-format
 msgid "Check values: \n"
-msgstr ""
+msgstr "Проверьте значения: \n"
 
-#
-# File: modules/parameters/demos/params_demo.sce, line: 39
 #, c-format
 msgid ""
 "\n"
 "Remove the parameter 'min' from %s.\n"
 msgstr ""
+"\n"
+"Удалить параметр 'min' из %s.\n"
 
-#
-# File: modules/parameters/demos/params_demo.sce, line: 40
 #, c-format
 msgid ""
 "\n"
 "Before remove_param: \n"
 msgstr ""
+"\n"
+"Перед  remove_param: \n"
 
-#
-# File: modules/parameters/demos/params_demo.sce, line: 46
 #, c-format
 msgid ""
 "\n"
 "After remove_param: \n"
 msgstr ""
+"\n"
+"После remove_param: \n"
 
-#
-# File: modules/parameters/demos/params_demo.sce, line: 49
 #, c-format
 msgid ""
 "\n"
 "Check removal: \n"
 msgstr ""
+"\n"
+"Проверить удалённое: \n"
 
-#
-# File: modules/parameters/demos/params_demo.sce, line: 53
 #, c-format
 msgid ""
 "\n"
 "Check type: \n"
 msgstr ""
+"\n"
+"Проверьте тип: \n"
 
 #, c-format
 msgid "Second output argument of %s is obsolete.\n"

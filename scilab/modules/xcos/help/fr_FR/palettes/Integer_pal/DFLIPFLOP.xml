@@ -189,7 +189,7 @@
             </tr>
         </informaltable>
         <para>
-            où 
+            où
             <emphasis>
                 <literal>X</literal>
             </emphasis>
@@ -198,7 +198,7 @@
                     Q<subscript>n-1</subscript>
                 </literal>
             </emphasis>
-            est l'état de sortie antérieur de 
+            est l'état de sortie antérieur de
             <emphasis><literal>
                     Q<subscript>n</subscript>
                 </literal>

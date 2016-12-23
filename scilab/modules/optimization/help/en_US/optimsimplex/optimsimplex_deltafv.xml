@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -46,14 +46,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimsimplex_deltafv</literal> function returns the vector of function 
+            The <literal>optimsimplex_deltafv</literal> function returns the vector of function
             values difference with respect to the function value at vertex #1.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     s1 = optimsimplex_new ();
 simplex = [
 3. 0 0

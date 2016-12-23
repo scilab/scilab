@@ -8,6 +8,7 @@
 // <-- Non-regression test for bug 14337 -->
 //
 // <-- CLI SHELL MODE -->
+// <-- NOT FIXED --> 6.0.0
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/14337

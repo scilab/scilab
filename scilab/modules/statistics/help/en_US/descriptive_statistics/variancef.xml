@@ -23,7 +23,7 @@
         <title>Syntax</title>
         <synopsis>
             [s [,mc]] = variancef(x, fre [,orien [,m]])
-            
+
             [s, mc] = variancef(x)
             [s, mc] = variancef(x, fre, "r"|1 )
             [s, mc] = variancef(x, fre, "c"|2 )

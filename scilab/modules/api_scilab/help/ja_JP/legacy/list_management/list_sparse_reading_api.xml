@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -140,7 +140,7 @@
         <!--Lib_name: common_read-->
         <!--Func_list: common_read-->
         <title>ゲートウェイのソース</title>
-        <programlisting role="code_gateway"><![CDATA[ 
+        <programlisting role="code_gateway"><![CDATA[
 #include "api_scilab.h"
 static int iTab = 0;
 void insert_indent(void)
@@ -673,7 +673,7 @@ int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
     </refsection>
     <refsection>
         <title>Scilab テストスクリプト</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+        <programlisting role="code_scilab"><![CDATA[
 function read_all()
 d = [1,2,3;4,5,6;7,8,9];common_read(d);
 s=poly(0,"x");p=1+s+2*s^2;p = [(p * 2),(p * s + 3);(p * 2 * s ** 2 - 6),(12 - 4 * p * (- s) ** 2)];common_read(p);

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2016 - DIGITEO - Sylvestre Ledru
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MPI_Finalize" xml:lang="en">
+    <refnamediv>
+        <refname>MPI_Finalize</refname>
+        <refpurpose>Terminate the MPI environment</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>MPI_Finalize()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Terminate the MPI environment, must be called before exit Scilab.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+            MPI_Init();
+            rnk =    MPI_Comm_rank();
+            sizeNodes =    MPI_Comm_size();
+
+            SLV = rnk;                // handy shortcuts, master is rank 0
+            Master = ~ SLV;            // slaves are all other
+            tag=0;
+            if Master
+            // The master node
+            for slaveId = 1:sizeNodes-1
+            // Send data to the slaves
+            value = rand(100,100) + rand(100,100) * %i;
+            MPI_Send(value, slaveId);
+            end
+
+            for slaveId = 1:sizeNodes-1
+            valueBack=MPI_Recv(slaveId, tag);
+            // Check that the slaves gaves us what we expected
+            assert_checkequal(valueBack,value + 1);
+            end
+            else
+            // The slaves
+            rankSource=0;
+            // Receive the information from the master
+            value=MPI_Recv(rankSource);
+            // Increment all the values by one
+            value=value+1;
+            // Send back to the master
+            MPI_Send(value,0);
+
+            end
+
+            MPI_Finalize();
+
+            ]]></programlisting>
+
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="MPI_Init">MPI_Finalize</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

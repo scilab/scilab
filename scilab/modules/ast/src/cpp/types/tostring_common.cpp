@@ -84,7 +84,7 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
     int iNbDigit = 0;
     int iNbDec = 0;
     int iBlankSize = _pDF->bPrintBlank ? BLANK_SIZE : 0;
-    _pDF->iSignLen = _pDF->bPrintBlank ? _pDF->iSignLen + 1 : _pDF->iSignLen;
+    _pDF->iSignLen = _pDF->bPrintBlank ? SIGN_LENGTH + BLANK_SIZE : _pDF->iSignLen;
 
     _pDF->bExp |= ConfigVariable::getFormatMode() == 0;
     int iTotalLen = 0;
@@ -92,7 +92,7 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
 
     if (ISNAN(_dblVal) || !finite(_dblVal))
     {
-        _pDF->iWidth = 5;      //" nan" or " inf"
+        _pDF->iWidth = 4;      //" nan" or " inf"
         _pDF->iPrec = 0;
         return;
     }
@@ -189,7 +189,7 @@ void getComplexFormat(double _dblR, double _dblI, int *_piTotalWidth, DoubleForm
         }
         else
         {
-            *_piTotalWidth += _pDFR->iWidth + _pDFR->iSignLen;
+            *_piTotalWidth += _pDFR->iWidth;
             _pDFI->iWidth = 0;
             _pDFI->iSignLen = 0;
         }
@@ -198,16 +198,15 @@ void getComplexFormat(double _dblR, double _dblI, int *_piTotalWidth, DoubleForm
     {
         if (isRealZero(_dblR))
         {
-            *_piTotalWidth += _pDFI->iWidth + _pDFI->iSignLen;
+            *_piTotalWidth += _pDFI->iWidth;
             _pDFR->iWidth = 0;
         }
         else
         {
-            *_piTotalWidth += _pDFR->iWidth + _pDFR->iSignLen + _pDFI->iWidth + _pDFI->iSignLen;
+            *_piTotalWidth += _pDFR->iWidth + _pDFI->iWidth;
         }
 
         // i character
-        _pDFI->iWidth += 1;
         *_piTotalWidth += 1;
     }
 }
@@ -248,17 +247,25 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
     }
 
     // Step 1: BLANK and SIGN in pwstSign
-    os_swprintf(pwstSign, 32, L"%ls%ls", pBlank, pSign);
+    if (_pDF->bPrintComplexPlusSpace)
+    {
+        os_swprintf(pwstSign, 32, L"%ls%ls%ls", pBlank, pSign, pBlank);
+    }
+    else
+    {
+        os_swprintf(pwstSign, 32, L"%ls%ls", pBlank, pSign);
+    }
+
 
     if (ISNAN(_dblVal))
     {
         //NaN
-        os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Nan");
+        os_swprintf(pwstOutput, 32, L"%ls%-*ls", pwstSign, _pDF->iWidth - 1, L"Nan");
     }
     else if (!finite(_dblVal))
     {
         //Inf
-        os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Inf");
+        os_swprintf(pwstOutput, 32, L"%ls%-*ls", pwstSign, _pDF->iWidth - 1, L"Inf");
     }
     else if (_pDF->bExp)
     {
@@ -436,6 +443,7 @@ void addDoubleComplexValue(std::wostringstream * _postr, double _dblR, double _d
             df.iPrec = _pDFI->iPrec;
             df.bExp = _pDFI->bExp;
             df.bPrintPlusSign = true;
+            df.bPrintComplexPlusSpace = true;
             df.bPrintOne = false;
 
             addDoubleValue(&ostemp, _dblI, &df);
@@ -447,7 +455,7 @@ void addDoubleComplexValue(std::wostringstream * _postr, double _dblR, double _d
         }
     }
 
-    configureStream(_postr, _iTotalWidth - 3, 0, ' ');
+    configureStream(_postr, _iTotalWidth, 0, ' ');
     *_postr << std::left << ostemp.str() << std::resetiosflags(std::ios::adjustfield);
 }
 
@@ -479,3 +487,24 @@ void addColumnString(std::wostringstream& ostr, int _iFrom, int _iTo)
     }
 }
 
+void printEmptyString(std::wostringstream& ostr)
+{
+    ostr << L"    []";
+}
+
+void printDoubleValue(std::wostringstream& ostr, double val)
+{
+    DoubleFormat df;
+    getDoubleFormat(val, &df);
+    ostr << SPACE_BETWEEN_TWO_VALUES;
+    addDoubleValue(&ostr, val, &df);
+}
+
+void printComplexValue(std::wostringstream& ostr, double val_r, double val_i)
+{
+    DoubleFormat dfR, dfI;
+    getDoubleFormat(ZeroIsZero(val_r), &dfR);
+    getDoubleFormat(ZeroIsZero(val_i), &dfI);
+    ostr << SPACE_BETWEEN_TWO_VALUES;
+    addDoubleComplexValue(&ostr, ZeroIsZero(val_r), ZeroIsZero(val_i), dfR.iWidth + dfI.iWidth, &dfR, &dfI);
+}

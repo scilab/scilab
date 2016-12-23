@@ -48,7 +48,7 @@
             対応する整数を出力します.
         </para>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 #include "api_scilab.h"
 #include "sciprint.h"
 int sci_myrhs(char * fname)

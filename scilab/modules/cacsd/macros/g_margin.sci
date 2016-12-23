@@ -9,24 +9,28 @@
 // along with this program.
 
 function [gm,fr] = g_margin(h)
-// Compute the gain margin of a SISO transfer function
+    // Compute the gain margin of a SISO transfer function
 
-  if argn(2) < 1 then
-    error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"g_margin",1));
-  end
-  if and(typeof(h)<>["state-space","rational"]) then
-    error(msprintf(gettext("%s: Wrong type for input argument: Linear dynamical system expected.\n"),"g_margin",1))
-  end
-  if size(h,"*")<>1 then
-    error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"g_margin",1))
-  end
+    if argn(2) < 1 then
+        error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"g_margin",1));
+    end
+    if and(typeof(h)<>["state-space","rational","zpk"]) then
+        ierr=execstr("[gm,fr]=%"+overloadname(h)+"_g_margin(h)","errcatch")
+        if ierr<>0 then
+            error(msprintf(gettext("%s: Wrong type for input argument: Linear dynamical system expected.\n"),"g_margin",1))
+        end
+        return
+    end
+    if size(h,"*")<>1 then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"g_margin",1))
+    end
 
-  if typeof(h)=="state-space" then
-    h=ss2tf(h)
-  end
+    if typeof(h)=="state-space" then
+        h=ss2tf(h)
+    elseif typeof(h)=="zpk" then
+        h=zpk2tf(h)
+    end
 
-
-    ieee_save=ieee();ieee(2);
     //
     epsr=1.e-7;//used for testing if complex numbers are real
     eps1=1.e-7;//used for testing if complex numbers have a modulus near 1
@@ -41,14 +45,14 @@ function [gm,fr] = g_margin(h)
         w=roots(num,"e");
         ws=[];
         if w<>[] then
-          ws=real(w(abs(imag(w))<epsr&real(w)<=0)) //points where phase is -180°
+            ws=real(w(abs(imag(w))<epsr&real(w)<=0)) //points where phase is -180°
         end
         if ws<>[] then
-          //remove nearly singular points
-          ws(abs(horner(num,ws))>=epssing*abs(horner(den,ws)))=[]
+            //remove nearly singular points
+            ws(abs(horner(num,ws))>=epssing*abs(horner(den,ws)))=[]
         end
         if ws==[] then gm=%inf,fr=[],return,end
-        mingain=real(freq(h.num,h.den,%i*ws))
+        mingain=real(freq(clean(h.num),clean(h.den),%i*ws))
     else  //discrete time case
         if h.dt=="d" then dt=1,else dt=h.dt,end
         //get z such as h(z)=h(1/z) and z=e^(%i*w*dt)
@@ -58,20 +62,19 @@ function [gm,fr] = g_margin(h)
         //find the numerator roots
         z=roots(hh.num,"e");
         if z<>[] then
-          z(abs(abs(z)-1)>eps1)=[]// retain only roots with modulus equal to 1
+            z(abs(abs(z)-1)>eps1)=[]// retain only roots with modulus equal to 1
         end
         if z<>[] then
-          //remove nearly singular points
-          z(abs(horner(hh.num,z))>=epssing*abs(horner(hh.den,z)))=[];
+            //remove nearly singular points
+            z(abs(horner(hh.num,z))>=epssing*abs(horner(hh.den,z)))=[];
         end
         ws=[];
         if z<>[] then
-          w=log(z)/(%i*dt)
-          ws=real(w(abs(imag(w))<epsr)) //points where phase is -180°
+            w=log(z)/(%i*dt)
+            ws=real(w(abs(imag(w))<epsr)) //points where phase is -180°
         end
         if ws==[] then gm=%inf,fr=[],return,end
         mingain=real(horner(h,exp(%i*ws*dt)))
-        ieee(ieee_save)
     end
 
     k=find(mingain<0)
@@ -83,5 +86,4 @@ function [gm,fr] = g_margin(h)
     [gm,k]=min(gm);ws=ws(k);//select the minimum
 
     fr=ws/(2*%pi) //transform in Hz
-    ieee(ieee_save)
 endfunction

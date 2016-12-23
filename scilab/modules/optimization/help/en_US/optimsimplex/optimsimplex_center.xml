@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -37,7 +37,7 @@
                 <term>sicenter </term>
                 <listitem>
                     <para>
-                        A vector of length <literal>nbve</literal>, where <literal>nbve</literal> 
+                        A vector of length <literal>nbve</literal>, where <literal>nbve</literal>
                         is the number of vertices in the current simplex object.
                     </para>
                 </listitem>
@@ -47,23 +47,23 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>optimsimplex_center</literal> function returns the center of the current 
+            The <literal>optimsimplex_center</literal> function returns the center of the current
             simplex.
         </para>
     </refsection>
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     coords = [...
-        0.    0.  
-        1.    0.  
-        0.    2.  
+        0.    0.
+        1.    0.
+        0.    2.
     ];
     s1 = optimsimplex_new ( coords );
     sicenter = optimsimplex_center ( s1 );
     disp(sicenter)
-    
+
     s1 = optimsimplex_destroy(s1);
  ]]>
         </programlisting>

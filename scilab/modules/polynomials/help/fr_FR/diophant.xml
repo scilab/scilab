@@ -42,7 +42,7 @@
         </para>
         <para>
             <literal>p1*x1+p2*x2=b</literal> où <literal>p1p2</literal> est un vecteur de polynômes.
-            Si l'équation n'est pas soluble 
+            Si l'équation n'est pas soluble
         </para>
         <para>
             sinon <literal>err=0</literal>
@@ -50,7 +50,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');p1=(s+3)^2;p2=(1+s);
 x1=s;x2=(2+s);
 [x,err]=diophant([p1,p2],p1*x1+p2*x2);

@@ -87,7 +87,7 @@
         <para>
             Ce bloc réalise une système linaire représenté par sa fonction de transfert rationnelle <emphasis role="bold">Numerator/Denominator</emphasis>. La fraction rationnelle doit être propre (degré du dénominateur
             inférieur ou égal à degré du numérateur).
-            
+
         </para>
     </refsection>
     <refsection id="Dialogbox_CLR">
@@ -100,7 +100,7 @@
             </inlinemediaobject>
         </para>
         <para>
-            
+
         </para>
         <itemizedlist>
             <listitem>

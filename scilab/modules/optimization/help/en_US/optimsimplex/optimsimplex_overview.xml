@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -21,8 +21,8 @@
     <refsection>
         <title>Purpose</title>
         <para>
-            The goal of this component is to provide a building block for optimization algorithms 
-            based on a simplex. The optimsimplex package may be used in the following 
+            The goal of this component is to provide a building block for optimization algorithms
+            based on a simplex. The optimsimplex package may be used in the following
             optimization methods:
         </para>
         <itemizedlist>
@@ -49,7 +49,7 @@
     <refsection>
         <title>Features</title>
         <para>
-            The following is a list of features the Nelder-Mead prototype algorithm currently 
+            The following is a list of features the Nelder-Mead prototype algorithm currently
             provides:
         </para>
         <itemizedlist>
@@ -163,7 +163,7 @@
             value of mystuff.nb is 5, which is the expected result because there is
             one function call by vertex.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2+(1-x(1))^2;
 endfunction

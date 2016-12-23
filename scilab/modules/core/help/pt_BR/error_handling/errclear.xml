@@ -28,7 +28,7 @@
             errclear()
             lasterror()
             b = undefinedvariable + a;
-            errclear(5) 
+            errclear(5)
             lasterror()
             b = undefinedvariable + a;
             errclear(4)

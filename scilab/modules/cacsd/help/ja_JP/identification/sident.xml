@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -45,7 +45,7 @@
                         <varlistentry>
                             <term>=  </term>
                             <listitem>
-                                <para>3 : 組み合わせ法: A および C はMOESP, 
+                                <para>3 : 組み合わせ法: A および C はMOESP,
                                     B および D はN4SIDによる.
                                 </para>
                             </listitem>
@@ -120,7 +120,7 @@
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>(オプション) 
+                    <para>(オプション)
                         行列のランクを推定する際に使用される許容誤差.
                         tol &gt; 0の場合,  tol に指定した値が
                         条件数の逆数の下界として使用されます.
@@ -134,12 +134,12 @@
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>(オプション) 
+                    <para>(オプション)
                         共分散を計算する際に使用されるサンプルの総数です.
                         t = 0, 	または t &gt;= 2*(m+l)*s のどちらかです.
                         共分散行列またはカルマン予測ゲイン行列が不要である場合には,
                         このパラメータは不要です.
-                        t = 0の場合,K, Q, Ry, および S は計算されません. 
+                        t = 0の場合,K, Q, Ry, および S は計算されません.
                         デフォルト:    t = 0.
                     </para>
                 </listitem>
@@ -236,7 +236,7 @@
             <varlistentry>
                 <term>rcnd</term>
                 <listitem>
-                    <para>(オプション) 長さlrのベクトル, 
+                    <para>(オプション) 長さlrのベクトル,
                         ランク決定,最小二乗,またはリカッチ方程式の解に使用される
                         行列の条件数の逆数の推定値を含みます.
                         ただし, カルマンゲイン行列が不要ｎ場合, lr = 4 ,
@@ -253,7 +253,7 @@
             離散時間状態空間実現 (A,B,C,D) および
             カルマンゲイン K を計算します.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
               [A,C,B,D] = sident(meth,1,s,n,l,R)
 [A,C,B,D,K,Q,Ry,S,rcnd] = sident(meth,1,s,n,l,R,tol,t)
                   [A,C] = sident(meth,2,s,n,l,R)
@@ -273,12 +273,12 @@
         <para>
             モデル構造は以下のようになります :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k),
  ]]></programlisting>
         <para>
-            ただし,  
+            ただし,
             x(k)  は(時刻kにおける) n次元状態ベクトル,
         </para>
         <para>
@@ -314,12 +314,12 @@ y(k)   = Cx(k) + Du(k) + e(k),
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
-      0.1, 0,  -0.1,-0.1;      
-     -0.4,-0.6,-0.7,-0.1;  
-      0.8, 0,  -0.6,-0.6];      
+      0.1, 0,  -0.1,-0.1;
+     -0.4,-0.6,-0.7,-0.1;
+      0.8, 0,  -0.6,-0.6];
 B = [0.8;0.1;1;-1];
 C = [1 2 -1 0];
 SYS=syslin(0.1,A,B,C);

@@ -48,6 +48,8 @@ import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 
 import com.mxgraph.model.mxICell;
+import java.rmi.server.UID;
+import org.scilab.modules.xcos.ObjectProperties;
 
 /**
  * Common class for the SuperBlock I/O blocks (represent ports)
@@ -296,30 +298,25 @@ public abstract class ContextUpdate extends BasicBlock {
         public static ContextUpdate createBlock(BasicPort port) {
             for (IOBlocks io : IOBlocks.values()) {
                 if (io.getReferencedPortClass().isInstance(port)) {
-                    final XcosView disabledView = (XcosView) JavaController.lookup_view(Xcos.class.getName());
                     try {
                         JavaController controller = new JavaController();
 
-                        // TODO: dunno if I should disable the view there :
-                        // CHECK
-                        JavaController.unregister_view(disabledView);
+                        // create the Input/Output block
+                        Constructor<? extends ContextUpdate> blockCstr = io.getReferencedClass().getConstructor(JavaController.class);
+                        ContextUpdate block = blockCstr.newInstance(controller);
 
-                        Constructor<? extends ContextUpdate> blockCstr = io.getReferencedClass().getConstructor(Long.TYPE);
-                        ContextUpdate block = blockCstr.newInstance(controller.createObject(Kind.BLOCK));
+                        // create the single port of the block
+                        Constructor<? extends BasicPort> portCstr = io.getOppositeClass().getConstructor(
+                                    JavaController.class, Long.TYPE, Kind.class, Object.class, String.class, String.class);
+                        BasicPort blockPort = portCstr.newInstance(
+                                                  controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
 
-                        Constructor<? extends BasicPort> portCstr = io.getOppositeClass().getConstructor(Long.TYPE);
-                        BasicPort blockPort = portCstr.newInstance(controller.createObject(Kind.BLOCK));
-
-                        disabledView.getVisibleObjects().put(block.getUID(), block);
-                        disabledView.getVisibleObjects().put(blockPort.getUID(), blockPort);
-
-                        // controller.setObjectProperty(block.getUID(), k, p, v)
+                        // inser the port into the newly created block
+                        block.insert(blockPort);
 
                         return block;
                     } catch (ReflectiveOperationException e) {
                         Logger.getLogger(IOBlocks.class.getName()).severe(e.toString());
-                    } finally {
-                        JavaController.register_view(Xcos.class.getName(), disabledView);
                     }
                 }
             }
@@ -356,11 +353,25 @@ public abstract class ContextUpdate extends BasicBlock {
     private transient boolean isContextDependent;
 
     /**
-     * Constructor.
+     * Constructor
      */
     public ContextUpdate(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
         super(controller, uid, kind, value, geometry, style, id);
     }
+
+    /**
+     * Constructor used to allocate a new block on the Java side
+     *
+     * The caller should add a port child and setup the simulation function accordingly to the style.
+     * @param controller the controller used to allocate the block
+     * @param blockName the interface function and style applied on the block
+     */
+    protected ContextUpdate(JavaController controller, String blockName) {
+        super(controller, controller.createObject(Kind.BLOCK), Kind.BLOCK, null, new mxGeometry(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT), blockName, new UID().toString());
+
+        controller.setObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, blockName);
+    }
+
 
 
     /**

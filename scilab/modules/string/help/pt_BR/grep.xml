@@ -85,7 +85,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 txt=['acha correspondência em um string ou em um vetor de strings'
      'procura posição de um string em outro string'
      'Compara Strings'];

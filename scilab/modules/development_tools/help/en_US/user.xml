@@ -11,10 +11,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            With this command it is possible to use an external program 
+            With this command it is possible to use an external program
             as a Scilab command
             where  <literal>(s_1,s_2,...,s_lhs)</literal> are the output variables and
-            <literal>(e_1,e_2,...,e_rhs)</literal> are the input variables. To insert this command 
+            <literal>(e_1,e_2,...,e_rhs)</literal> are the input variables. To insert this command
             in Scilab one has to write a few lines in the <literal>user</literal> fortran subroutine
             of Scilab.
         </para>

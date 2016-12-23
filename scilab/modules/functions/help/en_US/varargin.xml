@@ -64,15 +64,11 @@ function foo(varargin)
     disp([varargin(1),varargin(2)])
 endfunction
         ]]></programlisting>
-        <screen>
-            -->foo(a=1,b=2)
-            
-            1.    2.
-            
-            -->foo(b=1,a=2)
-            
-            1.    2.
-        </screen>
+        <screen><![CDATA[--> foo(a=1, b=2)
+ 1.    2.
+--> foo(b=1, a=2)
+ 1.    2.
+]]></screen>
         <para>
             Result is the same, but the arguments were inverted.
         </para>

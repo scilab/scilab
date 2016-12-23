@@ -42,7 +42,7 @@
     </refsection>
     <refsection>
         <title>Scilab test script</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+        <programlisting role="code_scilab"><![CDATA[
 fileData = ['#include ""api_scilab.h""'
 '#include ""MALLOC.h""'
 ''

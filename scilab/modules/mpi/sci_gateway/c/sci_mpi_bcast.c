@@ -13,15 +13,15 @@
  *
  */
 
-#include "api_scilab.h"
-#include <stdio.h>
-#include <mpi.h>
 #include "gw_mpi.h"
+#include "sci_mpi.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "sci_malloc.h"
 #include "localization.h"
 #include "serialization.h"
 #include "deserialization.h"
+#include "getOptionalComm.h"
 
 int sci_mpi_bcast(char *fname, void* pvApiCtx)
 {
@@ -35,8 +35,26 @@ int sci_mpi_bcast(char *fname, void* pvApiCtx)
     double rootID = 0;
     int rank = 0;
 
-    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckInputArgument(pvApiCtx, 2, 3);
     CheckOutputArgument(pvApiCtx, 1, 1);
+
+    // return the communicator from optional argument "comm"
+    // if no optional "comm" is given, return MPI_COMM_WORLD
+    MPI_Comm comm = getOptionalComm(pvApiCtx);
+    if (comm == NULL)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%s: An MPI communicator expected.\n"), fname, "comm");
+        return 0;
+    }
+
+    if (comm == MPI_COMM_NULL)
+    {
+        // return empty matrix
+        createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 0, 0, NULL);
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+        ReturnArguments(pvApiCtx);
+        return 0;
+    }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
     if (sciErr.iErr)
@@ -60,7 +78,7 @@ int sci_mpi_bcast(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    iRet = MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    iRet = MPI_Comm_rank(comm, &rank);
     if (iRet != MPI_SUCCESS)
     {
         char error_string[MPI_MAX_ERROR_STRING];
@@ -81,7 +99,7 @@ int sci_mpi_bcast(char *fname, void* pvApiCtx)
     }
 
     /* First, send the size of the data as broadcast */
-    iRet = MPI_Bcast(&iBufferSize, 1, MPI_INT, (int)rootID, MPI_COMM_WORLD);
+    iRet = MPI_Bcast(&iBufferSize, 1, MPI_INT, (int)rootID, comm);
     if (iRet != MPI_SUCCESS)
     {
         char error_string[MPI_MAX_ERROR_STRING];
@@ -97,7 +115,7 @@ int sci_mpi_bcast(char *fname, void* pvApiCtx)
     }
 
     /* Second, restore the data with the right size */
-    iRet = MPI_Bcast(piBuffer, iBufferSize, MPI_INT, (int)rootID, MPI_COMM_WORLD);
+    iRet = MPI_Bcast(piBuffer, iBufferSize, MPI_INT, (int)rootID, comm);
     if (iRet != MPI_SUCCESS)
     {
         char error_string[MPI_MAX_ERROR_STRING];

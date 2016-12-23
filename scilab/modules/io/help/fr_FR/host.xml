@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -45,7 +45,7 @@
         <title>Description</title>
         <para>
             Envoie la chaîne <literal>command-name</literal> à l'interpréteur de commande
-            (sh sous Unix, ou command.com sous DOS). La sortie standard et les erreurs sont reportées dans 
+            (sh sous Unix, ou command.com sous DOS). La sortie standard et les erreurs sont reportées dans
             l'interpréteur de commande.
         </para>
         <para>
@@ -55,10 +55,10 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //creation d'un fontion pour recuperer la path courant
 function wd=getdir()
-  if getos() == 'Windows' then 
+  if getos() == 'Windows' then
     host('cd>'+TMPDIR+'\path');
   else
     host('pwd>'+TMPDIR+'/path');

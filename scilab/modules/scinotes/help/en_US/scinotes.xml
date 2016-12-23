@@ -95,7 +95,7 @@
         <para>With the option 'readonly', files are opened in read-only mode so
             they cannot be modified.
         </para>
-        
+
         <para>With the options 'indent', 'quote' or 'trailing', the editor will not be opened and the file(s) will be treated consequently to the actions. The actions are the following:
             <itemizedlist>
                 <listitem>
@@ -118,7 +118,7 @@
         <para>
             One or several actions can be used at the same time, e.g. 'trailing' or ['indent','quote'].
         </para>
-        
+
         <para>Keyboard shortcuts are defined for most possible editing actions and
             reported by the menu entries.
         </para>
@@ -585,5 +585,5 @@ mgetl(f)
             </revision>
         </revhistory>
     </refsection>
-    
+
 </refentry>

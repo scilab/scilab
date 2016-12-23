@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F. Delebecque
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -106,7 +106,7 @@
             の線形システムで,次の関係を満たします:
         </para>
         <para>
-            <literal>H_norm(PHI) &lt; gamma</literal>.  
+            <literal>H_norm(PHI) &lt; gamma</literal>.
             <literal>rk (=r)</literal> は,
             <literal>nmax</literal>回反復後の
             <literal>Sk22</literal> ブロックの大きさです.

@@ -82,7 +82,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a = 1;
 b = 2;
 Z = ['a','b'];
@@ -91,7 +91,7 @@ a = 1;
 b = 2;
 Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
 evstr(Z)
-evstr('NaN'), evstr('Inf') 
+evstr('NaN'), evstr('Inf')
         ]]></programlisting>
     </refsection>
     <refsection role="see also">

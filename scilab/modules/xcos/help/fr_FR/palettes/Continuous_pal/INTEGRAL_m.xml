@@ -96,7 +96,7 @@
                 </imageobject>
             </mediaobject>
         </informalequation>
-        
+
         où y0 est une condition initiale et t0 est le temps correspondant à cette condition.
     </refsection>
     <refsection id="Dialogbox_INTEGRAL_m">
@@ -285,7 +285,7 @@ importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_1_Exam
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-            
+
         </refsection>
         <refsection id="Example_INTEGRAL_m_2">
             <title>Exemple 2</title>

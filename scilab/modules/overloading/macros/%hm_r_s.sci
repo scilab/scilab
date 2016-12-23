@@ -13,8 +13,10 @@
 function M1=%hm_r_s(M1,M2)
 
     if size(M2,"*")<>1 then
-        M1=M1/hypermat(size(M2),M2)
+        // M1 = M1/M2    // endless recursive call!
+        msg = _("%s: not implemented for argin#1 hypermatrix and argin#2 matrix\n")
+        error(msprint(msg, "%hm_r_s"))
     else
-        M1=M1/M2
+        M1 = matrix(M1(:)/M2, size(M1))
     end
 endfunction

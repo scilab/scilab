@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -22,7 +22,7 @@
         <title>Purpose</title>
         <para>
             The goal of this component is to provide a building block for optimization methods.
-            The goal is to provide a building block for a large class of specialized optimization 
+            The goal is to provide a building block for a large class of specialized optimization
             methods. This component manages
         </para>
         <itemizedlist>
@@ -65,7 +65,7 @@
                         <para>optional additional argument,</para>
                     </listitem>
                     <listitem>
-                        <para>direct communication of the task to perform: cost function or inequality 
+                        <para>direct communication of the task to perform: cost function or inequality
                             constraints.
                         </para>
                     </listitem>
@@ -162,12 +162,12 @@
         <title>Example</title>
         <para>
             In the following example, ones searches to solve f(x) = 0 thanks dichotomy method.
-            An optimization object is created and configured (number of variables, initial point, 
-            maximum number of iterations, ...). The <literal>-verbose</literal> option is enabled so that 
+            An optimization object is created and configured (number of variables, initial point,
+            maximum number of iterations, ...). The <literal>-verbose</literal> option is enabled so that
             messages are generated during the algorithm, are printed.
         </para>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
     function [f, index] = fun(x, index)
         f = 2*x - 4;
     endfunction

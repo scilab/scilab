@@ -39,7 +39,7 @@ int sci_fire_closing_finished(char *fname, void* pvApiCtx)
     CallScilabBridge::fireClosingFinished(getScilabJavaVM(), iCurrentFigure);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
-    returnArguments(pvApiCtx);
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

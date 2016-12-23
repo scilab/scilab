@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -456,7 +456,7 @@ void encodeDims(std::vector<int>& prop_content, types::GenericType* v)
     const int iDims = v->getDims();
     prop_content.push_back(iDims);
 
-    const int index = prop_content.size();
+    const int index = (int)prop_content.size();
     prop_content.resize(index + iDims);
 
     memcpy(&prop_content[index], v->getDimsArray(), iDims * sizeof(int));
@@ -503,8 +503,8 @@ bool encode(std::vector<int>& prop_content, T* v)
 {
     encodeDims(prop_content, v);
 
-    const int index = prop_content.size();
-    const int len = required_length(prop_content, v);
+    const int index = (int)prop_content.size();
+    const int len = (int)required_length(prop_content, v);
     prop_content.resize(index + len);
 
     // Using contiguity of the memory, we save the input into 'prop_content'
@@ -518,7 +518,7 @@ types::Double* decode(std::vector<int>::iterator& prop_it)
     std::vector<int> dims;
     decodeDims(prop_it, dims);
 
-    bool isComplex = *prop_it++;
+    bool isComplex = *prop_it++ != 0;
 
     types::Double* v = new types::Double(static_cast<int>(dims.size()), &dims[0], isComplex);
     memcpy(v->getReal(), &(*prop_it), v->getSize() * sizeof(double));
@@ -540,8 +540,8 @@ bool encode(std::vector<int>& prop_content, types::Double* v)
     // Flag for complex
     prop_content.push_back(v->isComplex());
 
-    const int index = prop_content.size();
-    const int len = required_length(prop_content, v);
+    const int index = (int)prop_content.size();
+    const int len = (int)required_length(prop_content, v);
     prop_content.resize(index + len);
 
     // Using contiguity of the memory, we save the input into 'prop_content'
@@ -587,7 +587,7 @@ bool encode(std::vector<int>& prop_content, types::String* v)
 {
     encodeDims(prop_content, v);
 
-    const int index = prop_content.size();
+    const int index = (int)prop_content.size();
 
     std::vector<char*> utf8;
     utf8.reserve(v->getSize());
@@ -595,7 +595,7 @@ bool encode(std::vector<int>& prop_content, types::String* v)
     std::vector<size_t> str_len;
     str_len.reserve(v->getSize());
 
-    int offset = 0;
+    size_t offset = 0;
     for (int i = 0; i < v->getSize(); i++)
     {
         char* str = wide_string_to_UTF8(v->get(i));
@@ -606,7 +606,7 @@ bool encode(std::vector<int>& prop_content, types::String* v)
         str_len.push_back(len);
 
         offset += (len * sizeof(char) + sizeof(int) - 1) / sizeof(int);
-        prop_content.push_back(offset);
+        prop_content.push_back((int)offset);
     }
 
     // reserve space for the string offsets and contents
@@ -764,7 +764,7 @@ bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& chil
 
     for (std::vector<ScicosID>::const_iterator it = children.begin(); it != children.end(); ++it)
     {
-        if (*it == 0ll)
+        if (*it == ScicosID())
         {
             continue; // Rule out mlists (Deleted or Annotations)
         }
@@ -823,7 +823,7 @@ bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& chil
                     if (!superPorts.empty())
                     {
                         // Arbitrarily take the highest possible value in case the user enters a wrong number
-                        portIndex = superPorts.size();
+                        portIndex = (int)superPorts.size();
                     }
                     else
                     {
@@ -893,13 +893,8 @@ struct rpar
         }
         else // SuperBlock, return the contained diagram (allocating it on demand)
         {
-            DiagramAdapter* diagram = adaptor.getDiagram();
-
-            /*
-             * FIXME: Sync all diagram children as the blocks might be modified by xcos
-             */
-
-            return diagram;
+            DiagramAdapter* d = new DiagramAdapter(controller, controller.referenceObject(adaptor.getAdaptee()));
+            return d;
         }
     }
 
@@ -934,128 +929,26 @@ struct rpar
                 get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Diagram expected.\n"), "model", "rpar");
                 return false;
             }
+            const DiagramAdapter* diagram = v->getAs<DiagramAdapter>();
+            DiagramAdapter* superblock = new DiagramAdapter(controller, controller.referenceObject(adaptor.getAdaptee()));
 
-            // Translate 'v' to an DiagramAdapter
-            DiagramAdapter* diagram = v->getAs<DiagramAdapter>();
+            // copy the values by name to preserve adaptors specific properties
+            superblock->copyProperties(*diagram, controller);
 
-            adaptor.setDiagram(diagram);
-
-            // Set the diagram children as block children
-            std::vector<ScicosID> diagramChildren;
-            controller.getObjectProperty(diagram->getAdaptee()->id(), DIAGRAM, CHILDREN, diagramChildren);
-            if (diagramChildren.empty())
-            {
-                // bug_12998: If inserting an empty diagram in 'rpar', simulate an empty object
-                diagramChildren.push_back(ScicosID());
-            }
-            std::vector<ScicosID> oldDiagramChildren;
-            controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, oldDiagramChildren);
-
-            std::sort(oldDiagramChildren.begin(), oldDiagramChildren.end());
-            std::vector<ScicosID> newChildren;
-            std::vector<ScicosID> clonedLinks;
-            for (const ScicosID & id : diagramChildren)
-            {
-                if (id != 0 && !std::binary_search(oldDiagramChildren.begin(), oldDiagramChildren.end(), id))
-                {
-                    ScicosID cloneID = controller.cloneObject(id, true, true);
-                    auto o = controller.getObject(cloneID);
-                    controller.setObjectProperty(o->id(), o->kind(), PARENT_BLOCK, adaptor.getAdaptee()->id());
-
-                    newChildren.push_back(cloneID);
-                    if (o->kind() == LINK)
-                    {
-                        clonedLinks.push_back(cloneID);
-                    }
-                }
-                else
-                {
-                    newChildren.push_back(id);
-                }
-            }
-            controller.setObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, newChildren);
-
-            std::sort(diagramChildren.begin(), diagramChildren.end());
-            for (const ScicosID & id : oldDiagramChildren)
-            {
-                if (id != 0 && !std::binary_search(diagramChildren.begin(), diagramChildren.end(), id))
-                {
-                    auto o = controller.getObject(id);
-                    controller.setObjectProperty(o->id(), o->kind(), PARENT_BLOCK, ScicosID());
-
-                    controller.deleteObject(id);
-                }
-            }
-
-            // After cloning the diagram elements, re-sync the link information
-            for (int i = 0; i < static_cast<int>(clonedLinks.size()); ++i)
-            {
-                auto o = controller.getObject(clonedLinks[i]);
-                LinkAdapter* newLink = new LinkAdapter(controller, static_cast<model::Link*>(o));
-                newLink->setFromInModel(diagram->getFrom()[i], controller);
-                newLink->setToInModel(diagram->getTo()[i], controller);
-            }
-
-            // Save the context
-            std::vector<std::string> context;
-            controller.getObjectProperty(diagram->getAdaptee()->id(), DIAGRAM, DIAGRAM_CONTEXT, context);
-            controller.setObjectProperty(adaptor.getAdaptee()->id(), BLOCK, DIAGRAM_CONTEXT, context);
-
-            // Link the Superblock ports to their inner "port blocks"
-            return setInnerBlocksRefs(adaptor, diagramChildren, controller);
+            superblock->killMe();
+            return true;
         }
         else if (v->getType() == types::InternalType::ScilabMList)
         {
-            ScicosID localAdaptee = controller.createObject(DIAGRAM);
-            DiagramAdapter* diagram = new DiagramAdapter(controller, controller.getObject<model::Diagram>(localAdaptee));
+            DiagramAdapter* diagram = new DiagramAdapter(controller, controller.referenceObject(adaptor.getAdaptee()));
             if (!diagram->setAsTList(v, controller))
             {
                 diagram->killMe();
                 return false;
             }
 
-            adaptor.setDiagram(diagram);
-
-            // set the diagram children as block children ; referencing them
-            std::vector<ScicosID> diagramChildren;
-            controller.getObjectProperty(diagram->getAdaptee()->id(), DIAGRAM, CHILDREN, diagramChildren);
-            if (diagramChildren.empty())
-            {
-                // bug_12998: If inserting an empty diagram in 'rpar', simulate an empty object
-                diagramChildren.push_back(ScicosID());
-            }
-            std::vector<ScicosID> oldDiagramChildren;
-            controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, oldDiagramChildren);
-
-            controller.setObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, diagramChildren);
-            {
-                std::sort(oldDiagramChildren.begin(), oldDiagramChildren.end());
-                for (const ScicosID id : diagramChildren)
-                {
-                    if (id != 0 && !std::binary_search(oldDiagramChildren.begin(), oldDiagramChildren.end(), id))
-                    {
-                        auto o = controller.getObject(id);
-                        controller.setObjectProperty(o->id(), o->kind(), PARENT_BLOCK, adaptor.getAdaptee()->id());
-
-                        controller.referenceObject(id);
-                    }
-                }
-
-                std::sort(diagramChildren.begin(), diagramChildren.end());
-                for (const ScicosID id : oldDiagramChildren)
-                {
-                    if (id != 0 && !std::binary_search(diagramChildren.begin(), diagramChildren.end(), id))
-                    {
-                        auto o = controller.getObject(id);
-                        controller.setObjectProperty(o->id(), o->kind(), PARENT_BLOCK, ScicosID());
-
-                        controller.deleteObject(id);
-                    }
-                }
-            }
-
-            // Link the Superblock ports to their inner "port blocks"
-            return setInnerBlocksRefs(adaptor, diagramChildren, controller);
+            diagram->killMe();
+            return true;
         }
         else
         {
@@ -1321,11 +1214,12 @@ struct label
         std::string label(c_str);
         FREE(c_str);
 
-        if (!isValidCIdentifier(label))
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s : Valid C identifier expected.\n"), "model", "label");
-            return false;
-        }
+        // TODO: validate a C/Scilab identifier only
+        //        if (!isValidCIdentifier(label))
+        //        {
+        //            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s : Valid C identifier expected.\n"), "model", "label");
+        //            return false;
+        //        }
 
         controller.setObjectProperty(adaptee, BLOCK, LABEL, label);
         return true;
@@ -1533,14 +1427,13 @@ static void initialize_fields()
 }
 
 ModelAdapter::ModelAdapter() :
-    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(),
-    m_diagramAdapter(nullptr)
+    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>()
 {
     initialize_fields();
 }
-ModelAdapter::ModelAdapter(const Controller& c, model::Block* adaptee, DiagramAdapter* diagramAdapter) :
-    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(c, adaptee),
-    m_diagramAdapter(diagramAdapter)
+
+ModelAdapter::ModelAdapter(const Controller& c, model::Block* adaptee) :
+    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(c, adaptee)
 {
     initialize_fields();
 }
@@ -1557,17 +1450,6 @@ std::wstring ModelAdapter::getTypeStr()
 std::wstring ModelAdapter::getShortTypeStr()
 {
     return getSharedTypeStr();
-}
-
-DiagramAdapter* ModelAdapter::getDiagram() const
-{
-    return m_diagramAdapter;
-}
-
-void ModelAdapter::setDiagram(DiagramAdapter* diagramAdapter)
-{
-    // does not increment reference as this adapter does not own the DiagramAdapter
-    m_diagramAdapter = diagramAdapter;
 }
 
 } /* namespace view_scilab */

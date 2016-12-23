@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -50,8 +50,8 @@
             (システム<literal>sl=[A,B,C,D]</literal>の応答)に
             関する可制御行列を返す.
         </para>
-        <programlisting role=""><![CDATA[ 
-Cc=[B, AB, A^2 B,..., A^(n-1) B]  
+        <programlisting role=""><![CDATA[
+Cc=[B, AB, A^2 B,..., A^(n-1) B]
  ]]></programlisting>
     </refsection>
     <refsection>

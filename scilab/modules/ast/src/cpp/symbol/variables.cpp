@@ -463,7 +463,10 @@ bool Variables::putInPreviousScope(Variable* _var, types::InternalType* _pIT, in
     }
     else
     {
-        return _var->put(_pIT, _iLevel);
+        if (_var->top()->protect == false)
+        {
+            return _var->put(_pIT, _iLevel);
+        }
     }
 
     return false;

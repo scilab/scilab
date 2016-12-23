@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -67,7 +67,7 @@
             of <literal>file-desc</literal> file.
         </para>
         <para>
-            The type of the result will depend on the specified format. 
+            The type of the result will depend on the specified format.
             If format contains only <literal>(d,e,f,g)</literal>  descriptors the function
             tries to read numerical data (the result is matrix of real numbers).
         </para>
@@ -82,17 +82,17 @@
         <para>
             Examples for <literal>format</literal>:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 (1x,e10.3,5x,3(f3.0))
-(10x,a20) 
+(10x,a20)
  ]]></programlisting>
         <para>
-            When format is omitted data are read using numerical free format: 
+            When format is omitted data are read using numerical free format:
             blank, comma and slash may be used as data separators, n*v may be use
             to represent n occurrences of value n.
         </para>
         <para>
-            A direct access file can be used if using the parameter <literal>k</literal> which is 
+            A direct access file can be used if using the parameter <literal>k</literal> which is
             is the vector of record numbers to be read (one record per row),
             thus <literal>m</literal> must be <literal>m=prod(size(k))</literal>.
         </para>
@@ -108,7 +108,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 mdelete(TMPDIR + '/foo');
 A = rand(3,5);
 write(TMPDIR + '/foo', A);

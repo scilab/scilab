@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -72,13 +72,13 @@
             <literal>dx/dt=A*x+B*u (+ noise)</literal>.
         </para>
         <para>
-            <literal>sld</literal> is the discrete-time system obtained by 
+            <literal>sld</literal> is the discrete-time system obtained by
             sampling <literal>sl</literal> with the sampling period <literal>dt</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 Sys=syslin('c',[1,1/(s+1);2*s/(s^2+2),1/s])
 ss2tf(dscr(tf2ss(Sys),0.1))

@@ -206,6 +206,8 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_set_style.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_toggle.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_manager_mode.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_displaytree.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_helpbrowser.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_loadGui.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_plotbrowser.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_useeditor.cpp" />
@@ -281,7 +283,7 @@
     <ClCompile Include="..\jni\Jxgetmouse.cpp" />
     <ClCompile Include="..\jni\LookAndFeelManager.cpp" />
     <ClCompile Include="messageboxoptions.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_ClipBoard.c" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_ClipBoard.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\sci_delmenu.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_exportUI.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_getcallbackobject.c" />
@@ -299,7 +301,7 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_toprint.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\sci_uicontextmenu.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_uicontrol.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_uigetcolor.c" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_uigetcolor.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_uigetdir.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_uigetfile.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_uigetfont.cpp" />
@@ -309,11 +311,11 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_unsetmenu.c" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_usecanvas.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\sci_waitbar.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_x_choice.c" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_x_choice.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\sci_x_choose.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_x_choose_modeless.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_x_dialog.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_x_mdialog.c" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_x_dialog.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_x_mdialog.cpp" />
     <ClCompile Include="..\jni\ScilabDisplayTree.cpp" />
     <ClCompile Include="ScilabTermination.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_figure.c" />
@@ -418,6 +420,7 @@
     <ClInclude Include="..\..\includes\exportUserInterface.hxx" />
     <ClInclude Include="..\..\includes\GetScreenProperty.h" />
     <ClInclude Include="..\..\includes\GetUicontrol.h" />
+    <ClInclude Include="..\..\includes\gui_gw.hxx" />
     <ClInclude Include="..\..\includes\SetUicontrol.h" />
     <ClInclude Include="..\..\includes\GraphicWindow.h" />
     <ClInclude Include="..\..\includes\gw_gui.h" />

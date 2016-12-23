@@ -69,7 +69,7 @@
             computa duas matrizes ortogonais <literal>Q, Z</literal> que põem o feixe
             <literal>F=s*E -A</literal> na forma triangular superior:
         </para>
-        <screen><![CDATA[ 
+        <screen><![CDATA[
            | sE(eps)-A(eps) |        X       |      X     |      X        |
            |----------------|----------------|------------|---------------|
            |        O       | sE(inf)-A(inf) |      X     |      X        |

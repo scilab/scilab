@@ -272,7 +272,7 @@ endfunction
 
 t=macr2tree(foo);
 t=tree2code(t);
-if size(t,1)<>6 then pause,end
+if size(t,1)<>5 then pause,end
 
 clear foo
 function foo()

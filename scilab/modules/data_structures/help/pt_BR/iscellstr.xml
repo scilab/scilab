@@ -51,7 +51,7 @@
     </refsection>
     <refsection>
         <title>Exemplos </title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 iscellstr(1)
 
 iscellstr(cell())

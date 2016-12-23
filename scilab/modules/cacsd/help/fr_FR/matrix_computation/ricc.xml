@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -67,13 +67,13 @@
         <para>
             Continuous time:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 X=ricc(A,B,C,'cont')
  ]]></programlisting>
         <para>
             gives a solution to the continuous time ARE
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 A'*X+X*A-X*B*X+C=0 .
  ]]></programlisting>
         <para>
@@ -88,13 +88,13 @@ A'*X+X*A-X*B*X+C=0 .
         <para>
             Discrete time:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 X=ricc(F,G,H,'disc')
  ]]></programlisting>
         <para>
             gives a solution  to the discrete time ARE
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 X=F'*X*F-F'*X*G1*((G2+G1'*X*G1)^-1)*G1'*X*F+H
  ]]></programlisting>
         <para>
@@ -116,7 +116,7 @@ X=F'*X*F-F'*X*G1*((G2+G1'*X*G1)^-1)*G1'*X*F+H
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Standard formulas to compute Riccati solutions
 A=rand(3,3);
 B=rand(3,2);

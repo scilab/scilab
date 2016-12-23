@@ -21,7 +21,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        
+
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
@@ -53,13 +53,13 @@
         </para>
         <para>
             <literal>xlib.foo</literal> loads the variable <literal>foo</literal> contained in <literal>xlib</literal>.
-            if <literal>foo</literal> is a function 
+            if <literal>foo</literal> is a function
             and <literal>xlib.foo(args)</literal> executes the functions
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // elemlib is a predefined library
 elementary_functionlib //displays the contents of the library
 A=rand(3,3);

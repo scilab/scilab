@@ -28,6 +28,12 @@ M1_m=[1.    1.
     2.    31. ];
 
 [N1,k1]=unique(M1_m(1:10,1:2),'r');
-[N2,k2]=lex_sort(M1_m(1:10,1:2),'unique');
+N2 = [1.    1.  
+    1.      30. 
+    1.      125. 
+    1.      199. 
+    2.      2.  
+    2.      31. ];
+k2 = [1 4 5 6 7 10]';
 assert_checkequal(N1, N2);
 assert_checkequal(k1, k2);

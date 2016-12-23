@@ -14,17 +14,17 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Эта функция используется внутри определения функции. Она даёт количество фактических входных 
-            аргументов (<literal>rhs</literal>) и выходных аргументов (<literal>lhs</literal>), 
-            переданных в функцию при её вызове. Она обычно используется в определениях функции для работы 
+            Эта функция используется внутри определения функции. Она даёт количество фактических входных
+            аргументов (<literal>rhs</literal>) и выходных аргументов (<literal>lhs</literal>),
+            переданных в функцию при её вызове. Она обычно используется в определениях функции для работы
             с необязательными аргументами.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function concat=myOwnFunction(name,optional)
-  [lhs,rhs]=argn(0) 
+  [lhs,rhs]=argn(0)
   if rhs <= 1 then
   	 optional="my Optional value"
   end

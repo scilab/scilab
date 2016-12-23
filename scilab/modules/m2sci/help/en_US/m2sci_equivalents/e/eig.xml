@@ -37,7 +37,7 @@ eig
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-spec ; bdiag 
+spec ; bdiag
 ]]></programlisting>
                 </td>
             </tr>
@@ -74,18 +74,18 @@ spec ; bdiag
         <title>Additional Remarks</title>
         <para>
             <note>
-                If matrix <varname>B</varname> is nonsingular, the generalized eigenvalues can be computed 
-                as the eigenvalues of the matrix <latex>B^{-1}A</latex> i.e. <code>d=spec(B^-1*A)</code>. 
+                If matrix <varname>B</varname> is nonsingular, the generalized eigenvalues can be computed
+                as the eigenvalues of the matrix <latex>B^{-1}A</latex> i.e. <code>d=spec(B^-1*A)</code>.
             </note>
         </para>
         <para>
             <note>
-                If <varname>A</varname> is a real random square matrix, Scilab equivalent for the Matlab syntax <code>[V,D] = eig(A,'balance')</code> 
+                If <varname>A</varname> is a real random square matrix, Scilab equivalent for the Matlab syntax <code>[V,D] = eig(A,'balance')</code>
                 is <code>[D,V] = bdiag(A+%i*0, 1/%eps)</code>. In this case <varname>D</varname> consists of complex 1x1 blocks.
             </note>
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
         <informaltable border="1" width="100%">

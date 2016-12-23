@@ -16,11 +16,11 @@
 #include "os_wcstok.h"
 
 
-wchar_t *os_wcstok(wchar_t *_pwstData, const wchar_t *_pwstDelim, wchar_t** _pswtState)
+wchar_t *os_wcstok(wchar_t *_pwstData, const wchar_t *_pwstDelim, wchar_t** _pwstState)
 {
 #ifndef _MSC_VER
-    return wcstok(_pwstData, _pwstDelim, _pswtState);
+    return wcstok(_pwstData, _pwstDelim, _pwstState);
 #else
-    return wcstok(_pwstData, _pwstDelim);
+    return wcstok_s(_pwstData, _pwstDelim, _pwstState);
 #endif
 }

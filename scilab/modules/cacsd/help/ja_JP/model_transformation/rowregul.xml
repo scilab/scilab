@@ -54,7 +54,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=%s;
 w=[1/s,0;s/(s^3+2),2/s];
 Sl=tf2ss(w);

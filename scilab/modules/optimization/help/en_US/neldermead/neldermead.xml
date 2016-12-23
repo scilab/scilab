@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - 2009 - INRIA - Michael Baudin
  * Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -22,7 +22,7 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>SYNOPSIS</title>
+        <title>Syntax</title>
         <synopsis>
             newobj = neldermead_new ()
             this = neldermead_destroy (this)
@@ -784,7 +784,7 @@
                                                 a 1-by-1 matrix of doubles, positive, the absolute tolerance on difference of function values in the
                                                 simplex, suggested by Box (default boxtolf = 1.e-5). This tolerance is used if
                                                 the -boxtermination option is set to %t.
-                                                
+
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -1262,17 +1262,17 @@
                 <term xml:id="neldermead_defaultoutput">stop = neldermead_defaultoutput(state, data)</term>
                 <listitem>
                     <para>
-                        Prints messages at an iteration. 
+                        Prints messages at an iteration.
                     </para>
                     <para>
-                        This function provides a default implementation for the output function. 
-                        There is one line by iteration, presenting the number of iterations, the 
-                        number of function evaluations, the current function value and the 
+                        This function provides a default implementation for the output function.
+                        There is one line by iteration, presenting the number of iterations, the
+                        number of function evaluations, the current function value and the
                         current algorithm step.
                     </para>
                     <para>
-                        See "The output function" section below for a description of the input and 
-                        output arguments. 
+                        See "The output function" section below for a description of the input and
+                        output arguments.
                         See in the Examples section below for examples of this function.
                     </para>
                 </listitem>
@@ -1888,7 +1888,7 @@
             optimization and the neldermead_get is used to retrieve the optimum
             parameters.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function [ f , index ] = quadratic ( x , index )
   f = x(1)^2 + x(2)^2;
 endfunction
@@ -1925,7 +1925,7 @@ nm = neldermead_destroy(nm);
             which is associated with the -xopt option. The optimum is plot on the
             contour plot as a red dot.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function [ f , index ] = rosenbrock ( x , index )
   f = 100*(x(2)-x(1)^2)^2+(1-x(1))^2;
 endfunction
@@ -1969,7 +1969,7 @@ plot(xopt(1),xopt(2),"r*");
             output files and graphics), the -outputcommand option should be
             used.
         </para>
-        <screen><![CDATA[ 
+        <screen><![CDATA[
 [...]
 Iteration #156 (total = 156)
 Function Eval #299
@@ -2006,22 +2006,22 @@ Sort
     <refsection>
         <title>Example #3: use output function</title>
         <para>
-            There are several ways to print intermediate messages or plots during the 
-            optimization process. 
-            The first method is to set the "-verbose" option to 1, 
-            which prints a lot of detailed information. 
-            The other method is to use the <literal>"-outputcommand"</literal> option. 
-            We can either set it to the <literal>neldermead_defaultoutput</literal> or 
-            define our own function. 
-            In this section, we present the methods based on the <literal>"-outputcommand"</literal> option. 
+            There are several ways to print intermediate messages or plots during the
+            optimization process.
+            The first method is to set the "-verbose" option to 1,
+            which prints a lot of detailed information.
+            The other method is to use the <literal>"-outputcommand"</literal> option.
+            We can either set it to the <literal>neldermead_defaultoutput</literal> or
+            define our own function.
+            In this section, we present the methods based on the <literal>"-outputcommand"</literal> option.
         </para>
         <para>
-            In the following example, we use the <literal>"-outputcommand"</literal>option and 
-            set it to the <literal>neldermead_defaultoutput</literal> 
-            default output function. 
+            In the following example, we use the <literal>"-outputcommand"</literal>option and
+            set it to the <literal>neldermead_defaultoutput</literal>
+            default output function.
             This function prints one line by iteration, with the main optimization information.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function [ f , index ] = quadratic ( x , index )
   f = x(1)^2 + x(2)^2;
 endfunction
@@ -2060,9 +2060,9 @@ nm = neldermead_destroy(nm);
             "iter" or "done", depending on the status of the optimization. The data
             input argument is a tlist, which contains the data associated with the
             current iteration. In this case, we use the fields to print a message in
-            the console. 
+            the console.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function [ f , index ] = rosenbrock ( x , index )
   f = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -2149,7 +2149,7 @@ nm = neldermead_destroy(nm);
             variables of the problem.
             In this particular case, we have n=2 variables and k=4 vertices.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function [ f , index ] = myquad ( x , index )
     f = x(1)^2 + x(2)^2
 endfunction
@@ -2198,14 +2198,14 @@ nm = neldermead_destroy(nm);
             To take this constraint into account, we turn it into two separate, positive,
             constraints and set <literal>c</literal> as a 1-by-2 matrix of doubles.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
   function [ f , c , index ] = fpostoffice ( x , index )
     f = []
     c = []
     if ( index==2 | index==6 ) then
       f = -x(1) * x(2) * x(3)
     end
-    
+
     if ( index==5 | index==6 ) then
       c1 = x(1) + 2 * x(2) + 2 * x(3)
       c2 = 72 - c1
@@ -2223,7 +2223,7 @@ nm = neldermead_destroy(nm);
             setup the bounds of the problem.
             We configure the parameters of the algorithm as suggested by Box.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
   rand("seed" , 0);
   x0 = [1.0 1.0 1.0].';
   // Compute f(x0) : should be close to -1
@@ -2283,7 +2283,7 @@ nm = neldermead_destroy(nm);
             where the first element is the function and the
             remaining elements are the extra parameters.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function [ f , index ] = quadratic_ab ( x , index , a , b )
   f = a * x(1)^2 + b * x(2)^2;
 endfunction
@@ -2302,16 +2302,16 @@ nm = neldermead_destroy(nm);
     <refsection>
         <title>Example #7: Restarting without bounds</title>
         <para>
-            In the following example, we reproduce the experiment 
-            published by Ken McKinnon in 1998. 
+            In the following example, we reproduce the experiment
+            published by Ken McKinnon in 1998.
             For this particular function and this particular initial simplex,
             the Nelder-Mead algorithm converges to a nonstationary point.
         </para>
         <para>
-            We first define the objective function, the initial simplex 
+            We first define the objective function, the initial simplex
             and the expected solution of this unconstrained optimization problem.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function [ f , index ] = mckinnon ( x , index )
   tau = 3
   theta = 6
@@ -2328,7 +2328,7 @@ lambda1 = (1.0 + sqrt(33))/8;
 lambda2 = (1.0 - sqrt(33))/8;
 coords0 = [
 1  1
-0  0 
+0  0
 lambda1 lambda2
 ];
 
@@ -2337,12 +2337,12 @@ xstar = [0;-0.5];
 fstar = -0.25;
  ]]></programlisting>
         <para>
-            Then we run the algorithm two times in sequence. 
-            At the end of the first optimization process, the algorithm has 
+            Then we run the algorithm two times in sequence.
+            At the end of the first optimization process, the algorithm has
             converged to the point [0,0] which is nonstationary.
             This is why we restart the algorithm and get the correct minimum.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",mckinnon);
@@ -2368,11 +2368,11 @@ status = neldermead_get(nm,"-status")
 nm = neldermead_destroy(nm);
  ]]></programlisting>
         <para>
-            We can also use the automatic stagnation detection method 
-            created by Kelley, so that the algorithm automatically restart 
+            We can also use the automatic stagnation detection method
+            created by Kelley, so that the algorithm automatically restart
             the algorithm when needed.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",mckinnon);
@@ -2395,7 +2395,7 @@ status = neldermead_get(nm,"-status")
 nm = neldermead_destroy(nm);
  ]]></programlisting>
         <para>
-            See the demonstrations to get a graphical plot of the 
+            See the demonstrations to get a graphical plot of the
             intermediate simplices in Mc Kinnon's experiment.
         </para>
     </refsection>
@@ -2403,12 +2403,12 @@ nm = neldermead_destroy(nm);
         <title>Example #8: Restarting with bounds</title>
         <para>
             In the following experiment, we solve an optimization problem
-            with bounds. 
+            with bounds.
             We use Box's algorithm, which is the only algorithm which manages bounds.
-            We use the randomized bounds simplex both for the initial simplex and 
+            We use the randomized bounds simplex both for the initial simplex and
             for the restart simplex.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function [ f , index ] = myquad ( x , index )
     f = x(1)^2 + x(2)^2 + x(3)^2
 endfunction
@@ -2446,7 +2446,7 @@ nm = neldermead_destroy(nm);
             Tagged -costfargument option of optimbase as obsolete: will be
             maintained for backward compatibility until 5.4.1.
             The -fun option can now be a list, where the element #1 is a
-            function, and the elements #2 to the end are automatically appended 
+            function, and the elements #2 to the end are automatically appended
             as parameters to the call.
             To update your code, replace:
         </para>
@@ -2564,7 +2564,7 @@ nm = neldermead_destroy(nm);
             nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
         </screen>
         <para>
-            Tagged "-tolvarianceflag", "-tolabsolutevariance", and 
+            Tagged "-tolvarianceflag", "-tolabsolutevariance", and
             "-tolrelativevariance" options as obsolete:
             will be maintained for backward compatibility until 5.4.1.
             To update your code, create an output function:
@@ -2582,7 +2582,7 @@ nm = neldermead_destroy(nm);
             endfunction
         </screen>
         <para>
-            Create the initial simplex and compute the variance 
+            Create the initial simplex and compute the variance
             of the function values:
         </para>
         <screen>
@@ -2795,7 +2795,7 @@ nm = neldermead_destroy(nm);
             Baudin, 2010
         </para>
         <para>
-            Ken McKinnon, Convergence of the Nelder-Mead simplex method to a nonstationary point, 
+            Ken McKinnon, Convergence of the Nelder-Mead simplex method to a nonstationary point,
             SIAM Journal on Optimization, Volume 9, Number 1, 1998, pages 148-158.
         </para>
     </refsection>

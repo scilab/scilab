@@ -56,12 +56,12 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s = struct("field_1",123,"field_2",456,"field_4",789)
- 
+
 // Single Fieldname Syntax
 isfield( s , "field_1"  )
- 
+
 // Multiple Fieldname Syntax
 isfield( s , [ "field_1" "field_2" ; "field_3" "field_4" ] )
 
@@ -96,7 +96,7 @@ isfield(s, ["b" "t" ""])  // =>  F  T  T  (anonymous fields can be detected)
             <revision>
                 <revnumber>5.5</revnumber>
                 <revremark>
-                    Extension to any mlist and tlist. 
+                    Extension to any mlist and tlist.
                 </revremark>
             </revision>
         </revhistory>

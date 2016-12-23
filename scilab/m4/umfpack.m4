@@ -1,7 +1,7 @@
 dnl
 dnl Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 dnl Copyright (C) INRIA - 2008 - Sylvestre Ledru
-dnl 
+dnl
 dnl Copyright (C) 2012 - 2016 - Scilab Enterprises
 dnl
 dnl This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -70,7 +70,7 @@ if test "x$with_umfpack_library" != "xyes"; then
 	AC_MSG_CHECKING([for umfpack_di_solve in $with_umfpack_library])
 	save_LIBS="$LIBS"
 	LIBS="$BLAS_LIBS -L$with_umfpack_library -lm $LIBS"
-	# We need -lm because sometime (ubuntu 7.10 for example) does not link libamd against lib math
+	# We need -lm because sometimes (ubuntu 7.10 for example) does not link libamd against lib math
 
 	AC_CHECK_LIB([umfpack], [umfpack_di_solve],
 			[UMFPACK_LIB="-L$with_umfpack_library -lumfpack $UMFPACK_LIB"; UMFPACK_OK=yes],
@@ -89,7 +89,7 @@ if test $UMFPACK_OK = no; then
     else
         save_LIBS="$LIBS"
         LIBS="$BLAS_LIBS $LIBS -lm" # libamd* is mandatory to link umfpack
-        # We need -lm because sometime (ubuntu 7.10 for example) does not link libamd against lib math
+        # We need -lm because sometimes (ubuntu 7.10 for example) does not link libamd against lib math
 
         AC_CHECK_LIB([amd], [amd_info],
             [UMFPACK_LIB="-lamd"],

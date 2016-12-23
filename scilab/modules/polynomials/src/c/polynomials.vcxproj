@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../src/cpp;../../includes;../../../../libs/Eigen/includes;../../../../libs/intl;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -108,7 +108,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../src/cpp;../../includes;../../../../libs/Eigen/includes;../../../../libs/intl;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -134,7 +134,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../src/cpp;../../includes;../../../../libs/Eigen/includes;../../../../libs/intl;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -167,7 +167,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../src/cpp;../../includes;../../../../libs/Eigen/includes;../../../../libs/intl;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -205,12 +205,17 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="..\..\sci_gateway\cpp\sci_simp.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_simpMode.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_varn.cpp" />
+    <ClCompile Include="..\cpp\find_polynomial_roots_jenkins_traub.cc" />
+    <ClCompile Include="..\cpp\polynomial.cc" />
+    <ClCompile Include="..\cpp\rpoly.cpp" />
     <ClCompile Include="DllmainPolynomial.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_polynomials.h" />
     <ClInclude Include="..\..\includes\dynlib_polynomials_gw.h" />
     <ClInclude Include="..\..\includes\polynomials_gw.hxx" />
+    <ClInclude Include="..\cpp\find_polynomial_roots_jenkins_traub.h" />
+    <ClInclude Include="..\cpp\polynomial.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\polynomials.pot" />

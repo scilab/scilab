@@ -84,7 +84,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //decodificando um arquivo ole, extraindo e abrindo um fluxo de dados do Excel
 [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/modules/spreadsheet/demos/xls/Test1.xls')
 //lendo a primeira folha de dados

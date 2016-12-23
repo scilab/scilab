@@ -46,7 +46,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 edit('edit')  //abre o editor com o texto dessa função
 edit('myfunction')  //abre o editor para uma nova função
  ]]></programlisting>

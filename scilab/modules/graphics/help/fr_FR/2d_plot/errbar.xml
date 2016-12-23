@@ -25,7 +25,7 @@
         <para>
             <literal>errbar</literal> ajoute des barres d'erreur sur un dessin 2D.
             <literal>x</literal> et <literal>y</literal> ont la même signification que dans <literal>plot2d</literal>.
-            <literal>em(i,j)</literal> et <literal>ep(i,j)</literal> représentent l'intervalle d'erreur autour de la valeur 
+            <literal>em(i,j)</literal> et <literal>ep(i,j)</literal> représentent l'intervalle d'erreur autour de la valeur
             <literal>y(i,j)</literal> : <literal>[y(i,j)-em(i,j),y(i,j)+ep(i,j)]</literal>.
         </para>
         <para>
@@ -34,7 +34,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t=[0:0.1:2*%pi]';
 y=[sin(t) cos(t)]; x=[t t];
 plot2d(x,y)

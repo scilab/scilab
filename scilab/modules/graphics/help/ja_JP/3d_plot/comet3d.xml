@@ -10,12 +10,12 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-           comet3d(z)
-           comet3d(x, y, z)
-           comet3d(x, y, fun)
-           comet3d(x, y, z, p)
-           comet3d(x, y, fun, p)
-           comet3d(...,"colors", c)
+            comet3d(z)
+            comet3d(x, y, z)
+            comet3d(x, y, fun)
+            comet3d(x, y, z, p)
+            comet3d(x, y, fun, p)
+            comet3d(...,"colors", c)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -96,13 +96,13 @@
                 <varlistentry>
                     <term>ボディー</term> ヘッドに続く尾の曲線を示す:
                     曲線の一部
-                    <literal>(x(i-k:i),y(i-k:i),z(i-k:i))</literal>) 
+                    <literal>(x(i-k:i),y(i-k:i),z(i-k:i))</literal>)
                     <listitem><para>
                         </para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>テール</term> 
+                    <term>テール</term>
                     曲線の一部<literal>(x(1:i-k),y(1:i-k),z(1:i-k))</literal> を示す.
                     <listitem><para>
                         </para>

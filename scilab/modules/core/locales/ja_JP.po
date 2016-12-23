@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 21:58+0000\n"
+"PO-Revision-Date: 2016-10-19 12:58+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 "X-Poedit-Country: JAPAN\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -59,7 +59,7 @@ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -72,7 +72,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 整数値を指定�
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d から%d個の引数を指定してください."
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -98,11 +98,11 @@ msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 msgid "Redefining permanent variable.\n"
-msgstr ""
+msgstr "永続的変数を再定義しています.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -110,110 +110,105 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 
 #, c-format
 msgid "%s: Debugger can be activated only at console scope level\n"
-msgstr ""
+msgstr "%s: デバッガはコンソールスコープレベルでのみ有効にできます\n"
 
 #, c-format
 msgid "%s: Debugger is not running. Call \"%s\" without parameter first.\n"
 msgstr ""
+"%s: デバッガが実行中です. パラメータfirstを指定せずに \"%s\" をコールしてくだ"
+"さい.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 正のスカラー整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Unable to retrieve information about breakpoint %d.\n"
-msgstr ""
+msgstr "%s: ブレークポイント %d に関する情報を取得できません.\n"
 
 #, c-format
 msgid "%ls"
-msgstr ""
+msgstr "%ls"
 
 msgid "callstack:"
-msgstr ""
+msgstr "コールスタック:"
 
 msgid "debug commands : \n"
-msgstr ""
+msgstr "デバッグコマンド: \n"
 
 msgid "show this help"
-msgstr ""
+msgstr "このヘルプを表示"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 520
 msgid "open debug documentation page"
-msgstr ""
+msgstr "デバッグのページをオープン"
 
 msgid "stop debugging"
-msgstr ""
+msgstr "デバッグを停止"
 
 msgid "show callstack"
-msgstr ""
+msgstr "コールスタックを表示"
 
 msgid "execute cmd"
-msgstr ""
+msgstr "コマンドを実行"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 528
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 529
 msgid "display variable"
-msgstr ""
+msgstr "変数を表示"
 
 msgid "continue execution"
-msgstr ""
+msgstr "実行を継続"
 
 msgid "abort execution"
-msgstr ""
+msgstr "実行をアボート"
 
 msgid "continue to next statement"
-msgstr ""
+msgstr "次の命令を実行"
 
 msgid "step into function"
-msgstr ""
+msgstr "ステップ実行(関数内)"
 
 msgid "step outside function"
-msgstr ""
+msgstr "ステップ実行(関数外)"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 537
 msgid "add a breakpoint"
-msgstr ""
+msgstr "ブレークポイントを追加"
 
 msgid "delete all breakpoints"
-msgstr ""
+msgstr "ブレークポイントを全て削除"
 
 msgid "delete a specific breakpoint"
-msgstr ""
+msgstr "指定したブレークポイントを削除"
 
 msgid "enable all breakpoints"
-msgstr ""
+msgstr "全てのブレークポイントを有効化"
 
 msgid "enable a specific breakpoint"
-msgstr ""
+msgstr "指定したブレークポイントを有効化"
 
 msgid "disable all breakpoints"
-msgstr ""
+msgstr "全てのブレークポイントを無効化"
 
 msgid "disable a specific breakpoint"
-msgstr ""
+msgstr "指定したブレークポイントを無効化"
 
 msgid "show all breakpoints"
-msgstr ""
+msgstr "全てのブレークポイントを表示"
 
 msgid "show a specific breakpoint"
-msgstr ""
+msgstr "指定したブレークポイントを表示"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 547
 msgid "  for more details, show help page.\n"
-msgstr ""
+msgstr "  詳細については, ヘルプを参照.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -239,10 +234,13 @@ msgstr "%s: 引数 %d の型が間違っています:　文字列の行列を指
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数#%dの型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
+msgstr "%s: 入力引数 %d が間違っています.\n"
+
+msgid "Could not retrieve sub-type.\n"
 msgstr ""
 
 #, c-format
@@ -251,19 +249,20 @@ msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A positive value expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 正の値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected."
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected."
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
+"%s: 入力引数  #%d の型が間違っています: 文字列または整数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -272,7 +271,7 @@ msgstr "%s: 入力引数 #%d の値が間違っています: [%d,%d] の範囲�
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています: %d個の引数を指定してください."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0, 1 or 2 expected.\n"
@@ -292,7 +291,7 @@ msgstr "%s: ファイル %s は存在しません.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -305,138 +304,134 @@ msgstr "%s: ファイル version.xml %s に誤りがあります.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At most %d expected.\n"
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています: 最大でも %d 個としてください.\n"
 
 #, c-format
 msgid "%s : Wrong value for argument #%d: %s\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: %s\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : 0, 1 or 2 expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: 0,1または2を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: struct array or tlist or mlist "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+"%s: 入力引数 #%d の型が間違っています: 構造体配列またはtlistまたはmlistを指定"
+"してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
 msgstr ""
+"%s: 入力引数#%dの型が間違っています: 論理値ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: macro expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: マクロを指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input arguments: more than %d expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+msgstr "%s: 入力引数の大きさは %d より大きくする必要があります.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for output arguments: %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+msgstr ""
+"%s:  出力引数の大きさが間違っています: %d 個の引数を指定してください.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 136
-# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 154
 #, c-format
 msgid ""
 "%s: Wrong input arguments: Dimensions given as first argument do not match "
 "specified cell contents.\n"
 msgstr ""
+"%s: 入力引数が間違っています: 最初の引数に指定された次元が指定されたセルの内"
+"容に一致しません.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
+"%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_mode.cpp, line: 79
 msgid "Pause mode: enter empty lines to continue.\n"
-msgstr ""
+msgstr "中断モード: 継続するには空行を入力してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 有効な関数名を指定してください.\n"
 
 #, c-format
 msgid "%s: function-name is incorrect.\n"
 msgstr "%s: 関数名が間違っています.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: [%d,%d] の範囲としてください.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: function is disabled in debug mode.\n"
-msgstr ""
+msgstr "%s: 関数がデバッグモードで無効になりました.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected."
-msgstr ""
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s', '%s'  または '%s' を指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の値が間違っています: ’%s’ を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A value >= %d expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  %d 以上の値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています:  文字列または整数を指定してください.\n"
 
-#
-# File: macros/edit.sci, line: 24
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): An even number is expected.\n"
-msgstr "%s: 入力引数の数が違います: 少なくとも %d が予想されます。\n"
+msgstr "%s: 入力引数の数が間違っています: 偶数の引数を指定してください.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_struct.cpp, line: 54
 #, c-format
 msgid "%s: Field names must be strings.\n"
-msgstr ""
+msgstr "%s: フィールド名には文字列を指定してください.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_struct.cpp, line: 79
-# File: modules/core/sci_gateway/cpp/sci_struct.cpp, line: 86
 #, c-format
 msgid "%s: Arguments must be scalar or must have same dimensions.\n"
+msgstr "%s: 引数はスカラーまたは同じ次元とする必要があります.\n"
+
+#, c-format
+msgid "%s: Can not create a %s with input argument #%d.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Can not create a %s with input argument #%d.\n"
-msgstr "%s: 入力引数 #%d を読み込めません.\n"
-
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong values for input argument #%d: '%s' expected .\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: \"%s\" を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s'を指定してください.\n"
 
 #, c-format
 msgid "WARNING: %ls\n"
-msgstr ""
+msgstr "警告: %ls\n"
 
 #, c-format
 msgid "%s:\n"
@@ -511,7 +506,7 @@ msgstr ""
 "エラー: バージョンファイル %s に誤りがあります. エンコーディング '%s' が見つ"
 "かりました  (エンコーディングが 'utf-8'　ではありません).\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "A fatal error has been detected by Scilab.\n"
 "Please check your user-defined functions (or external module ones) should "
@@ -522,16 +517,6 @@ msgid ""
 " * the following information:\n"
 "%s %s\n"
 msgstr ""
-"致命的なエラーがScilabにより検出されました.\n"
-"このインスタンスは突然終了すると思われます.\n"
-"グラフィック機能が使用されている場合, システムのグラフィックドライバにより発"
-"生した可能性があります.\n"
-"ドライバを更新した後, この機能を再度実行してみてください.\n"
-"以下のように %s にバグをリポートできます:\n"
-"* 問題を再現するサンプルコード\n"
-"* [a, b] = getdebuginfo() の結果\n"
-"* 以下の情報:\n"
-"%s %s\n"
 
 #, c-format
 msgid ""
@@ -594,8 +579,6 @@ msgstr ""
 msgid "Scilab Enterprises\n"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/banner.cpp, line: 41
 msgid "Copyright (c) 2011-2016 (Scilab Enterprises)\n"
 msgstr ""
 
@@ -677,42 +660,27 @@ msgstr "その他(&?)"
 msgid "&Toolboxes"
 msgstr "ツールボックス(&T)"
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 9
 msgid "Introduction: Getting started with Scilab"
 msgstr ""
 
-#, fuzzy
 msgid "Scilab objects"
-msgstr "Scilabバージョン: "
+msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 13
 msgid "Operations and numerical primitives"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 14
 msgid "Online definition of function"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 15
 msgid "Optimization and simulation"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 16
 msgid "Systems: definition and analysis"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 17
 msgid "Linear algebra"
 msgstr ""
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 18
 msgid "Call an external routine"
 msgstr ""
 
@@ -749,9 +717,9 @@ msgstr "%s: 入力引数 #%d の型が間違っています: double を指定し
 msgid "%s: %s is an uneditable hard coded function.\n"
 msgstr "%s: %s は編集不可のハードコードされた関数です.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to find Perl file: %s"
@@ -838,7 +806,3 @@ msgstr "サイズ"
 
 msgid "Bytes"
 msgstr "バイト"
-
-#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-#~ msgstr ""
-#~ "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"

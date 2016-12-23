@@ -27,14 +27,14 @@ a=1;
 diary([],"pause");
 a=2;
 txt = mgetl(FILENAME_DIARY); 
-assert_checkequal(txt($),'-->diary([],""pause"");');
+assert_checkequal(txt($),'--> diary([],""pause"");');
 txt2 = mgetl(FILENAME_DIARY2);
-assert_checkequal(txt2($),'-->diary([],""pause"");');
+assert_checkequal(txt2($),'--> diary([],""pause"");');
 
 diary([],"resume");
 a=3;
 diary([],"close");
 txt=mgetl(FILENAME_DIARY);
-assert_checkequal(txt($-2),'-->a=3;');
+assert_checkequal(txt($-2),'--> a=3;');
 txt2=mgetl(FILENAME_DIARY2);
-assert_checkequal(txt($-2),'-->a=3;');
+assert_checkequal(txt($-2),'--> a=3;');

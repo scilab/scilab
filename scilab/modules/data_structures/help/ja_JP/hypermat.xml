@@ -57,7 +57,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 M=hypermat([2 3 2 2],1:24)
  ]]></programlisting>
     </refsection>

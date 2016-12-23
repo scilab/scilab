@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -56,7 +56,7 @@
         <para>
             伝達関数をディスクリプタ形式: <literal>S=list('d',A,B,C,D,E)</literal>に変換します.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 E*xdot = A*x+B*u
 y = C*x + D*u
  ]]></programlisting>
@@ -69,7 +69,7 @@ y = C*x + D*u
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 G=[1/(s-1),s;1,2/s^3];
 S1=tf2des(G);des2tf(S1)

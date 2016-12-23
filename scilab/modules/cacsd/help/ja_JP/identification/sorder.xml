@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -191,8 +191,8 @@
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>(オプション) 
-                        許容誤差を含む長さ2のベクトル: 
+                    <para>(オプション)
+                        許容誤差を含む長さ2のベクトル:
                         tol(1) - 行列のランクを推定する際に使用される許容誤差.
                         tol(1) &gt; 0の場合, 条件数の逆数の下界として,指定したtol(1)の値が使用されます;
                         m行n列の行列で,推定された条件数が 1/tol(1) より小さい場合,フルランクとみなされます.
@@ -202,7 +202,7 @@
                     <para>
                         tol(2) - システム次数の推定値を定義する際に使用される許容誤差.
                         tol(2) &gt;= 0 の場合, tol(2)以上の最後の特異値の添字が推定値となります.
-                        (tol(2)よち小さな特異値はゼロとみなされます.) 
+                        (tol(2)よち小さな特異値はゼロとみなされます.)
                         tol(2) = 0の場合,デフォルト値, tol(2) = s*epsilon_machine*sval(1), が内部的に計算され,使用されます.
                         ただし,sval(1)は最大特異値,epsilon_machineは相対機械精度です.
                         tol(2) &lt; 0 の場合, 推定値は次の要素への指数的な差異が最大となる特異値の添字となります.
@@ -239,7 +239,7 @@
                 <term>ldwork</term>
                 <listitem>
                     <para>(オプション) ワークスペースの大きさ. デフォルト : 以下の式で計算</para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 nr = 2*( m + l )*s
 LDWORK = ( t - 2*s + 3 + 64 )*nr
 if ( CSIZE > MAX( nr*nr + t*( m + l ) + 16, 2*nr ) ) then
@@ -267,7 +267,7 @@ end if
                         conct = 1の場合, Rには同じく前のコールで設定された列が1列追加されます.
                     </para>
                     <para>
-                        alg = 2の場合,  R  は m+l+1 個の前のコールで設定された追加の列を有します. 
+                        alg = 2の場合,  R  は m+l+1 個の前のコールで設定された追加の列を有します.
                     </para>
                     <para>
                         このパラメータは, batch = 1 または batch = 4の場合は使用されません.
@@ -325,7 +325,7 @@ end if
         <para>
             ブロックがf個の場合 (データ系列 Yj, Uj, j = 1 : f):
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 R = sorder(meth,alg,jobd,1,conct,s,Y1,U1);
 for j = 2 : f - 1
    R = sorder(meth,alg,jobd,2,conct,s,Yj,Uj,tol,printw,ldwork,R)
@@ -342,12 +342,12 @@ end
         <para>
             モデルの構造は以下のようになります :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 x(k+1) = Ax(k) + Bu(k) + w(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k),
  ]]></programlisting>
         <para>
-            ただし, 
+            ただし,
             x(k)  は(時刻kにおける) n次元状態ベクトル,
         </para>
         <para>

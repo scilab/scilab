@@ -17,7 +17,7 @@ Slatec:
 =======
 
 Files:
-src/fortran/slatec/{pchim.f, dtensbs.f}
+src/fortran/slatec/{pchim.f,dtensbs.f}
 
 Copyright:
 
@@ -45,3 +45,29 @@ C   assumes any legal liability or responsibility for the accuracy,
 C   completeness, or usefulness of any information, apparatus, product,
 C   or process disclosed, or represents that its use would not infringe
 C   upon privately owned rights.
+
+CSHEP2D:
+========
+
+Files:
+src/fortran/cshep2d.f
+
+Copyright:
+1997 Robert J. Renka, Univ. of North Texas
+
+License:
+Public domain
+
+NSWC:
+=====
+
+Files:
+src/fortran/dspfit.f
+
+Copyright:
+CARL DE BOOR (UNIVERSITY OF WISCONSIN)
+A.H. MORRIS (NSWC)
+
+License:
+Public domain
+

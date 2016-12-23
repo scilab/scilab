@@ -88,17 +88,20 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
      * but using a rotation matrix corresponding to the default rotation angles (view == 2d)
      */
 
-    corners[1][0] = textCorners[0];
-    corners[1][1] = textCorners[1];
+    if (textCorners)
+    {
+        corners[1][0] = textCorners[0];
+        corners[1][1] = textCorners[1];
 
-    corners[0][0] = textCorners[3];
-    corners[0][1] = textCorners[4];
+        corners[0][0] = textCorners[3];
+        corners[0][1] = textCorners[4];
 
-    corners[3][0] = textCorners[6];
-    corners[3][1] = textCorners[7];
+        corners[3][0] = textCorners[6];
+        corners[3][1] = textCorners[7];
 
-    corners[2][0] = textCorners[9];
-    corners[2][1] = textCorners[10];
+        corners[2][0] = textCorners[9];
+        corners[2][1] = textCorners[10];
+    }
 
     deleteGraphicObject(iTextUID);
 }

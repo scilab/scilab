@@ -72,7 +72,7 @@
                         <literal>[R1 C1 R2 C2]</literal>の形式で範囲を
                         指定してください.
                         ただし,(R1,C1)は読み込むデータの左上隅,
-                        (R2,C2)は右下隅です.		      
+                        (R2,C2)は右下隅です.
                     </para>
                 </listitem>
             </varlistentry>
@@ -142,7 +142,7 @@ csvTextScan( Atext , ";" , "," )
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revremark>関数が導入されました. 
+                <revremark>関数が導入されました.
                     'csv_readwrite'モジュールに基づきます.
                 </revremark>
             </revision>
@@ -151,7 +151,7 @@ csvTextScan( Atext , ";" , "," )
                 <revremark>
                     <literal>decimal</literal> が <literal>[]</literal> と
                     異なり, <literal>conversion</literal> が
-                    <literal>string</literal>に設定された場合, 
+                    <literal>string</literal>に設定された場合,
                     小数点変換が行われます.
                 </revremark>
             </revision>

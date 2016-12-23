@@ -56,7 +56,7 @@
             Note also that <literal>try-catch</literal> is more or less similar
             to:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 if execstr("<try instructions>","errcatch")<>0 then
   <catch instructions>
 end
@@ -76,7 +76,7 @@ end
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // example 1
 file_path=TMPDIR+'/wrong'
 try
@@ -85,10 +85,10 @@ try
 catch
   disp(['file '+file_path+ ' cannot be read','using default values for x'])
   x=1:10
-end 
+end
  [error_message,error_number]=lasterror(%t)
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // example 2 (nested try/catch structures)
 function nestedtry(a,b)
 disp("START")

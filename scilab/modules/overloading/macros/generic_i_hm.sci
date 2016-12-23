@@ -50,7 +50,8 @@ function M=generic_i_hm(default_value,varargin)
             if or(size(dk)<>-1) then
                 dk=gsort(dk);
                 if or(dk<>(dims(k):-1:1)) then
-                    if dk(1)<1|dk($)>dims(k) then error(21),end
+                    msg_index = _("Invalid index.");
+                    if dk(1)<1|dk($)>dims(k) then error(msg_index),end
                     if ok<>[] then
                         error(msprintf(_("%s: A null assignment can have only one non-colon index.\n"),"generic_i_hm"));
                     end
@@ -68,14 +69,8 @@ function M=generic_i_hm(default_value,varargin)
             [Ndims,I]=convertindex(dims,varargin(1:$-2));
             dims(ok)=size(I1,"*")
             while dims($)==1&size(dims,"*")>2, dims($)=[],end
-            M.entries=M.entries(I);
-            if size(dims,"*")==2 then
-                M=matrix(M.entries,dims)
-            else
-                M.dims=int32(dims')
-            end
-
-            //M=M(varargin(1:rhs-2))
+            M=M(I);
+            M=matrix(M, dims)
         end
 
         return

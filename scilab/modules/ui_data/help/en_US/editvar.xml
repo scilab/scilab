@@ -4,7 +4,7 @@
  * Copyright (C) Jaime Urzua
  * Copyright (C) Allan CORNET - DIGITEO - 2010
  * Copyright (C) Sylvestre Ledru - Scilab Enterprises - 2011
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -44,7 +44,7 @@
             <literal>editvar</literal> can be started by calling it on the name of the variable or by double-clicking on the name of the variable from the <link linkend="browsevar">browsevar component</link>.
         </para>
         <para>
-            <literal>editvar</literal> has numerous features: 
+            <literal>editvar</literal> has numerous features:
             <itemizedlist>
                 <listitem><para>
                         Matrix visualisation
@@ -57,7 +57,7 @@
                             </inlinemediaobject>
                         </para>
                         <para/>
-                        
+
                     </para>
                 </listitem>
                 <listitem><para>
@@ -179,7 +179,7 @@
         </para>
         <para>
             <literal>editvar</literal> can edit the following variable types:
-            
+
             <itemizedlist>
                 <listitem><para>
                         Real or complex constant matrix (type 1)
@@ -215,7 +215,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=rand(10,10);
 editvar a;
 b=['hello';'good bye'];

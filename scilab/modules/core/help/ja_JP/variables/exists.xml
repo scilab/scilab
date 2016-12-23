@@ -17,7 +17,7 @@
                     <para>
                         <varname>name</varname>と同じ大きさの行列で,
                         使用される値は:
-                        <literal>1</literal> (trueの場合), 
+                        <literal>1</literal> (trueの場合),
                         <literal>0</literal> (falseの場合)
                     </para>
                 </listitem>
@@ -34,7 +34,7 @@
                     <para>
                         オプションの文字で,以下の値を指定します:
                         <literal>'l'</literal> (local), <literal>'n'</literal>
-                        (nolocal) および <literal>'a'</literal> (all). 
+                        (nolocal) および <literal>'a'</literal> (all).
                         デフォルト値は<literal>'a'</literal>です.
                     </para>
                 </listitem>
@@ -78,7 +78,7 @@ exists("myNotLikelyToExistVar")
 myNotLikelyToExistVar = 1;
 exists("myNotLikelyToExistVar")
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff('foo(x)',..
 ['disp([exists(''a12''),exists(''a12'',''l'')])'
  'disp([exists(''x''),exists(''x'',''l'')])'])

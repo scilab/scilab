@@ -212,8 +212,11 @@ int sci_sident(char *fname, void* pvApiCtx)
         case 2 :
             cMETH = 'N';
             break;
+        case 3 :
+            cMETH = 'C';
+            break;
         default :
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "1", "2");
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), fname, 1, "1", "2", "3");
             return 0;
     }
 
@@ -232,8 +235,11 @@ int sci_sident(char *fname, void* pvApiCtx)
         case 3 :
             cJOB = 'B';
             break;
+        case 4 :
+            cJOB = 'D';
+            break;
         default:
-            Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), fname, 2, "1", "2", "3");
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), fname, 2, "1", "2", "3", "4");
             return 0;
     }
 
@@ -333,7 +339,7 @@ int sci_sident(char *fname, void* pvApiCtx)
     {
         cJOBCK = 'K';
         CHECK_PARAM(pvApiCtx, 8);
-        iNSMPL = getInputArgumentType(pvApiCtx, 8);
+        iNSMPL = getIntegerValue(pvApiCtx, 8);
 
         if (iNSMPL != 0 && iNSMPL < iNR)
         {

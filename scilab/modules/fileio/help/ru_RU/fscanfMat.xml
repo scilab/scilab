@@ -122,16 +122,16 @@
             end
             mclose(fd);
             a1 = fscanfMat(TMPDIR + "/Mat")
-            
+
             A = ones(5,5) + 0.1;
             fprintfMat(TMPDIR + "/Matrix.txt", A, "%lg");
             B = fscanfMat(TMPDIR + "/Matrix.txt", "%lg");
             A == B
-            
+
             C = [%nan, %inf, -%inf, 1];
             fprintfMat(TMPDIR + "/MatrixNANINF.txt", C);
             D = fscanfMat(TMPDIR + '/MatrixNANINF.txt')
-            
+
         </programlisting>
     </refsection>
     <refsection role="see also">

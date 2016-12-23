@@ -89,7 +89,7 @@
     datatipSetDisplay(d1,"mydisplay")
     datatipSetStyle(e(1),2,%f)
     datatipSetOrientation(d1,"upper left");
-    
+
     d2=datatipCreate(e(2),200);
     datatipSetStyle(e(2),1,%t)
     datatipSetOrientation(d2,"lower left");
@@ -107,7 +107,7 @@
             datatipSetDisplay(d1,"mydisplay")
             datatipSetStyle(e(1),2,%f)
             datatipSetOrientation(d1,"upper left");
-            
+
             d2=datatipCreate(e(2),200);
             datatipSetStyle(e(2),1,%t)
             datatipSetOrientation(d2,"lower left");

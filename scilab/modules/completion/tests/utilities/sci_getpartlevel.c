@@ -59,7 +59,7 @@ int sci_getpartlevel(char *fname, void *pvApiCtx)
     }
 
     AssignOutputVariable(pvApiCtx, 1) = 2; // rhs + 1
-    returnArguments(pvApiCtx);
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

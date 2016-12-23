@@ -23,7 +23,10 @@ extern "C"
 namespace slint
 {
 
-SciFile::SciFile() : code(nullptr), tree(nullptr), main(nullptr) { }
+SciFile::SciFile() : code(nullptr), tree(nullptr), main(nullptr), codeLength(0)
+{
+    initLines();
+}
 
 SciFile::SciFile(const std::wstring & _filename, const wchar_t * _code, const ast::Exp * _tree) : filename(_filename), code(_code), tree(_tree), main(nullptr)
 {

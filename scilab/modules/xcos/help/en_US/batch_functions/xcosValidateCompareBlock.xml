@@ -32,7 +32,7 @@
     <refsection id="Description_xcosValidateCompareBlock">
         <title>Description</title>
         This function is used to compare two Blocks.
-        
+
         <para>
             Function will go through each block field and compare the two values.
             The function returns true if the two blocks are equal, false otherwise.

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-06-08 22:22+0100\n"
+"Revision-Date: 2016-12-07 16:04+0100\n"
 
 # File: modules/scicos_blocks/src/c/convert.c, line: 1214
 # File: modules/scicos_blocks/src/c/convert.c, line: 1239
@@ -234,29 +234,29 @@ msgid "Cannot read the values field.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 393
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 394
 msgid "The Time vector type is not double.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 408
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 409
 msgid "The Time vector type is complex.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 418
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 420
 #, c-format
 msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 433
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 436
 msgid "Cannot read the time field.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 449
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 453
 msgid "The time vector should be an increasing vector.\n"
 msgstr ""
 

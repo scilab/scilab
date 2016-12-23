@@ -181,7 +181,7 @@
             sinusoïdal, d'amplitude 2 et de frequence 1,25 Hz.
         </para>
         <para>Les formes d'onde de l'entrée et de la sortie du bloc DERIVATIVE sont montrées ci-dessous :</para>
-        
+
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/DERIV_Example.zcos">
                 <inlinemediaobject>

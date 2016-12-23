@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -81,21 +81,21 @@
         <title>Description</title>
         <para>
             <literal>sensi</literal> computes sensitivity functions. If <literal>G</literal> and <literal>K</literal> are
-            given in state-space form, the systems returned are generically minimal. 
-            Calculation is made by <literal>lft</literal>, e.g., 
-            <literal>Se</literal> can be given by the commands 
+            given in state-space form, the systems returned are generically minimal.
+            Calculation is made by <literal>lft</literal>, e.g.,
+            <literal>Se</literal> can be given by the commands
             <literal> P = augment(G,'S')</literal>, <literal>Se=lft(P,K)</literal>.
             If <literal>flag</literal> = <literal>'i'</literal>, <literal>[Si,Ri,Ti]=sensi(G,K,'i')</literal>
             returns the input sensitivity functions.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 [Se;Re;Te]= [inv(eye()+G*K);K*inv(eye()+G*K);G*K*inv(eye()+G*K)];
 [Si;Ri;Ti]= [inv(eye()+K*G);G*inv(eye()+K*G);K*G*inv(eye()+K*G)];
  ]]></programlisting>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 G=ssrand(1,1,3);
 K=ssrand(1,1,3);
 [Se,Re,Te]=sensi(G,K);

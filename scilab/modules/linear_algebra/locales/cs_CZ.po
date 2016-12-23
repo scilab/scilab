@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-24 19:25+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2016-10-19 13:08+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -314,22 +314,12 @@ msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván sloupcový vektor.\n"
 
 #, c-format
-msgid "%s: Obsolete function. Please replace '%s' by '%s'."
-msgstr "%s: Zastaralá funkce. Prosím použijte '%s' krát '%s'."
+msgid "%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
+msgstr ""
 
 #, c-format
-msgid ""
-"%s: Obsolete function. Former external functions cannot be used anymore."
-msgstr "%s: Zastaralá funkce. Bývalé externí funkce již nemohou být používány."
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván reálný skalár.\n"
-
-#, fuzzy, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván sloupcový vektor.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -409,3 +399,6 @@ msgid ""
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Požadovaná hodnost větší než "
 "rozměry matice."
+
+#~ msgid "%s: Obsolete function. Please replace '%s' by '%s'."
+#~ msgstr "%s: Zastaralá funkce. Prosím použijte '%s' krát '%s'."

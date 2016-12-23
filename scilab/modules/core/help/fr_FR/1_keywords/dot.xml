@@ -7,13 +7,13 @@
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>123.33
-            
+
             a.*b
             a .*. b
-            
+
             %pi * (%e + ..
             %i)
-            
+
             cd ..
             dir ..
         </synopsis>

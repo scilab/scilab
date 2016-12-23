@@ -38,4 +38,10 @@ public final class EventInBlock extends ContextUpdate {
 
         controller.setObjectProperty(uid, kind, ObjectProperties.SIM_FUNCTION_NAME, "input");
     }
+
+    public EventInBlock(JavaController controller) {
+        super(controller, "CLKINV_f");
+
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SIM_FUNCTION_NAME, "input");
+    }
 }

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-06-08 22:21+0100\n"
+"Revision-Date: 2016-12-07 16:04+0100\n"
 
 # File: modules/fileio/sci_gateway/c/sci_chdir.c, line: 56
 # File: modules/fileio/sci_gateway/c/sci_chdir.c, line: 73
@@ -58,12 +58,12 @@ msgstr ""
 # File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 72
 # File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 113
 # File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 141
-# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 178
-# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 195
-# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 205
-# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 222
-# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 232
-# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 265
+# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 181
+# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 198
+# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 208
+# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 225
+# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 235
+# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 268
 # File: modules/fileio/sci_gateway/c/sci_movefile.c, line: 89
 # File: modules/fileio/sci_gateway/c/sci_movefile.c, line: 97
 # File: modules/fileio/sci_gateway/c/sci_movefile.c, line: 151
@@ -132,27 +132,27 @@ msgstr ""
 
 #
 # File: modules/fileio/sci_gateway/c/sci_fprintfMat.c, line: 213
-# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 247
+# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 250
 #, c-format
 msgid "%s: can not open file %s.\n"
 msgstr ""
 
 #
 # File: modules/fileio/sci_gateway/c/sci_fprintfMat.c, line: 218
-# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 259
+# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 262
 #, c-format
 msgid "%s: Invalid format.\n"
 msgstr ""
 
 #
 # File: modules/fileio/sci_gateway/c/sci_fprintfMat.c, line: 224
-# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 272
+# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 275
 #, c-format
 msgid "%s: error.\n"
 msgstr ""
 
 #
-# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 253
+# File: modules/fileio/sci_gateway/c/sci_fscanfMat.c, line: 256
 #, c-format
 msgid "%s: can not read file %s.\n"
 msgstr ""
@@ -270,7 +270,7 @@ msgstr ""
 # File: modules/fileio/sci_gateway/cpp/sci_mfprintf.cpp, line: 76
 # File: modules/fileio/sci_gateway/cpp/sci_mfprintf.cpp, line: 83
 # File: modules/fileio/sci_gateway/cpp/sci_mfscanf.cpp, line: 90
-# File: modules/fileio/sci_gateway/cpp/sci_mscanf.cpp, line: 82
+# File: modules/fileio/sci_gateway/cpp/sci_mscanf.cpp, line: 80
 # File: modules/fileio/sci_gateway/cpp/sci_mseek.cpp, line: 92
 # File: modules/fileio/sci_gateway/cpp/sci_msscanf.cpp, line: 77
 # File: modules/fileio/sci_gateway/cpp/sci_removedir.cpp, line: 46
@@ -339,7 +339,7 @@ msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
 msgstr ""
 
 #
-# File: modules/fileio/sci_gateway/cpp/sci_get_absolute_file_path.cpp, line: 85
+# File: modules/fileio/sci_gateway/cpp/sci_get_absolute_file_path.cpp, line: 83
 #, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr ""
@@ -410,8 +410,8 @@ msgstr ""
 # File: modules/fileio/sci_gateway/cpp/sci_mclose.cpp, line: 88
 # File: modules/fileio/sci_gateway/cpp/sci_meof.cpp, line: 60
 # File: modules/fileio/sci_gateway/cpp/sci_mfprintf.cpp, line: 101
-# File: modules/fileio/sci_gateway/cpp/sci_mfprintf.cpp, line: 121
-# File: modules/fileio/sci_gateway/cpp/sci_mfprintf.cpp, line: 129
+# File: modules/fileio/sci_gateway/cpp/sci_mfprintf.cpp, line: 122
+# File: modules/fileio/sci_gateway/cpp/sci_mfprintf.cpp, line: 130
 # File: modules/fileio/sci_gateway/cpp/sci_mfscanf.cpp, line: 99
 # File: modules/fileio/sci_gateway/cpp/sci_mfscanf.cpp, line: 118
 # File: modules/fileio/sci_gateway/cpp/sci_mget.cpp, line: 98
@@ -459,7 +459,7 @@ msgstr ""
 # File: modules/fileio/sci_gateway/cpp/sci_mfprintf.cpp, line: 70
 # File: modules/fileio/sci_gateway/cpp/sci_mfscanf.cpp, line: 76
 # File: modules/fileio/sci_gateway/cpp/sci_mfscanf.cpp, line: 84
-# File: modules/fileio/sci_gateway/cpp/sci_mscanf.cpp, line: 69
+# File: modules/fileio/sci_gateway/cpp/sci_mscanf.cpp, line: 68
 # File: modules/fileio/sci_gateway/cpp/sci_mseek.cpp, line: 60
 # File: modules/fileio/sci_gateway/cpp/sci_msscanf.cpp, line: 63
 # File: modules/fileio/sci_gateway/cpp/sci_mtell.cpp, line: 48
@@ -468,13 +468,13 @@ msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
 msgstr ""
 
 #
-# File: modules/fileio/sci_gateway/cpp/sci_mfprintf.cpp, line: 141
+# File: modules/fileio/sci_gateway/cpp/sci_mfprintf.cpp, line: 142
 #, c-format
 msgid "%s: Wrong file mode: READ only.\n"
 msgstr ""
 
 #
-# File: modules/fileio/sci_gateway/cpp/sci_mfprintf.cpp, line: 170
+# File: modules/fileio/sci_gateway/cpp/sci_mfprintf.cpp, line: 171
 #, c-format
 msgid "%s: Error while writing in file: disk full or deleted file.\n"
 msgstr ""
@@ -489,8 +489,8 @@ msgstr ""
 # File: modules/fileio/sci_gateway/cpp/sci_mfscanf.cpp, line: 144
 # File: modules/fileio/sci_gateway/cpp/sci_mgetl.cpp, line: 97
 # File: modules/fileio/sci_gateway/cpp/sci_mputl.cpp, line: 76
-# File: modules/fileio/sci_gateway/cpp/sci_mscanf.cpp, line: 137
-# File: modules/fileio/sci_gateway/cpp/sci_msscanf.cpp, line: 119
+# File: modules/fileio/sci_gateway/cpp/sci_mscanf.cpp, line: 129
+# File: modules/fileio/sci_gateway/cpp/sci_msscanf.cpp, line: 115
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -606,8 +606,8 @@ msgid "%s: invalid filename.\n"
 msgstr ""
 
 #
-# File: modules/fileio/sci_gateway/cpp/sci_mscanf.cpp, line: 130
-# File: modules/fileio/sci_gateway/cpp/sci_msscanf.cpp, line: 112
+# File: modules/fileio/sci_gateway/cpp/sci_mscanf.cpp, line: 124
+# File: modules/fileio/sci_gateway/cpp/sci_msscanf.cpp, line: 110
 #, c-format
 msgid "%s: Data mismatch.\n"
 msgstr ""
@@ -678,19 +678,19 @@ msgid "Failed to set user:pwd [%s]\n"
 msgstr ""
 
 #
-# File: modules/fileio/src/c/dlManager.c, line: 326
+# File: modules/fileio/src/c/dlManager.c, line: 324
 #, c-format
 msgid "Failed to set proxy host [%s]\n"
 msgstr ""
 
 #
-# File: modules/fileio/src/c/dlManager.c, line: 336
+# File: modules/fileio/src/c/dlManager.c, line: 334
 #, c-format
 msgid "Failed to set proxy port [%s]\n"
 msgstr ""
 
 #
-# File: modules/fileio/src/c/dlManager.c, line: 347
+# File: modules/fileio/src/c/dlManager.c, line: 345
 #, c-format
 msgid "Failed to set proxy user:password [%s]\n"
 msgstr ""
@@ -702,19 +702,19 @@ msgid "Failed to set write function [%s]\n"
 msgstr ""
 
 #
-# File: modules/fileio/src/c/dlManager.c, line: 373
+# File: modules/fileio/src/c/dlManager.c, line: 372
 #, c-format
 msgid "Failed to set write data [%s]\n"
 msgstr ""
 
 #
-# File: modules/fileio/src/c/dlManager.c, line: 383
+# File: modules/fileio/src/c/dlManager.c, line: 382
 #, c-format
 msgid "Failed to set 'Follow Location' [%s]\n"
 msgstr ""
 
 #
-# File: modules/fileio/src/c/dlManager.c, line: 392
+# File: modules/fileio/src/c/dlManager.c, line: 391
 #, c-format
 msgid "Transfer did not complete successfully: %s\n"
 msgstr ""

@@ -89,7 +89,7 @@ xtitle( 'My surface is blue', 'X axis', '$Y axis$', mathml );
             plot3d() ;
             xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis' ) ;
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>

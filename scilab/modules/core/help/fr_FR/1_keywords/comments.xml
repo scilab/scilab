@@ -7,23 +7,23 @@
     <refsection>
         <title>Description</title>
         <para>
-            Une séquence de deux barres obliques consécutives <literal>//</literal> en dehors 
-            d'une chaîne de caractères marque le début d'un commentaire. Les barres obliques 
-            ainsi que tous les caractères suivants jusqu'à la fin de la ligne 
+            Une séquence de deux barres obliques consécutives <literal>//</literal> en dehors
+            d'une chaîne de caractères marque le début d'un commentaire. Les barres obliques
+            ainsi que tous les caractères suivants jusqu'à la fin de la ligne
             ne sont pas interprétés.
         </para>
         <para>
             Un autre moyen de commenter un bloc de code est d'utiliser les caractères /* pour débuter
             un commentaire et */ pour le terminer.
         </para>
-        <para>A l'intérieur d'une fonction, les premières lignes en commentaire, jusqu'à la première 
-            instruction ou la première ligne vide peuvent être utilisées comme contenu par défaut 
-            pour l'aide de la fonction. 
+        <para>A l'intérieur d'une fonction, les premières lignes en commentaire, jusqu'à la première
+            instruction ou la première ligne vide peuvent être utilisées comme contenu par défaut
+            pour l'aide de la fonction.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 g=9.81// La gravité
 
 text='a//b'

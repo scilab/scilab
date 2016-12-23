@@ -13,8 +13,10 @@
 function M2=%s_l_hm(M1,M2)
 
     if size(M1,"*")<>1 then
-        M2=hypermat(size(M1),M1)\M2
+        // M2 = M1\M2   // endless recursive call!
+        msg = _("%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n")
+        error(msprint(msg, "%s_l_hm"))
     else
-        M2.entries=M1\M2.entries
+        M2 = matrix(M1\M2(:),size(M2))
     end
 endfunction

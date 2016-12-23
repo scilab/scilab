@@ -38,7 +38,7 @@
             pattern  of the Cholesky factorization (or if you  code something which
             use the factors). Traditionally, the factorization is written :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 P A P' = C C'
  ]]></programlisting>
         <para>
@@ -46,7 +46,7 @@ P A P' = C C'
             As we get the upper triangle Ct (= C'), in scilab syntax we
             can write :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 A(p,p) = Ct' * Ct
  ]]></programlisting>
     </refsection>
@@ -64,7 +64,7 @@ Cp = taucs_chfact(A);
 full(A(p,p) - Ct'*Ct)  // this must be near the null matrix
 taucs_chdel(Cp)
  ]]></programlisting>
-        
+
         <programlisting role="example"><![CDATA[
 // Example #2 a real example
 // first load a sparse matrix

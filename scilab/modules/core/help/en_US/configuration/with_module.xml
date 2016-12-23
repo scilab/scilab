@@ -37,7 +37,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 withXML = with_module("xml");
 if withXML == %t then
    disp("XML module enabled");
@@ -46,7 +46,7 @@ else
 end
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

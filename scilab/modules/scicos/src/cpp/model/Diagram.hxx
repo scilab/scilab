@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -72,14 +72,13 @@ struct SimulationConfig
 class Diagram: public BaseObject
 {
 public:
-    Diagram() : BaseObject(DIAGRAM), m_title("Untitled"), m_path(), m_properties(), m_debugLevel(), m_context(), m_children(), m_version()
+    Diagram() : BaseObject(DIAGRAM), m_title("Untitled"), m_path(), m_properties(), m_debugLevel(), m_context(), m_children(), m_version("scicos4.4")
     {
         m_color = { -1, 1};
     }
 
     Diagram(const Diagram& o) : BaseObject(DIAGRAM), m_title(o.m_title), m_path(o.m_path), m_color(o.m_color), m_properties(o.m_properties),
         m_debugLevel(o.m_debugLevel), m_context(o.m_context), m_children(o.m_children), m_version(o.m_version) {};
-    ~Diagram() = default;
 
 private:
     friend class ::org_scilab_modules_scicos::Model;

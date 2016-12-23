@@ -74,15 +74,15 @@
             The <link linkend="readxls">readxls</link> function can be used to read all an Excel file
             in one function with a single function call.
         </para>
-        <para>      
+        <para>
             <warning>
-                Only BIFF8 Excel files (last Excel file version (2003)) are handled.   
+                Only BIFF8 Excel files (last Excel file version (2003)) are handled.
             </warning>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Decode ole file, extract and open Excel stream
 [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/modules/spreadsheet/demos/xls/Test1.xls')
 //Read first data sheet

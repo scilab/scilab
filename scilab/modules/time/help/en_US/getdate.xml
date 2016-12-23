@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -125,7 +125,7 @@
             <varlistentry>
                 <term>dt=getdate(x)</term>
                 <listitem>
-                    <para> formats the date given by x (number of seconds since Jan 1, 1970, 00:00 UTC) in format given above. 
+                    <para> formats the date given by x (number of seconds since Jan 1, 1970, 00:00 UTC) in format given above.
                         In this case dt(10) is always equal to 0.
                     </para>
                     <para>
@@ -138,7 +138,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 w=getdate()
 mprintf("Year:%d,Month:%d,Day:%d",w(1),w(2),w(6));
 

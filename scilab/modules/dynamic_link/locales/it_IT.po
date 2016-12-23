@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:07+0000\n"
+"PO-Revision-Date: 2016-10-19 13:02+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -42,48 +42,39 @@ msgid "%s : second argument must be a unique id of a shared library.\n"
 msgstr ""
 "%s: il secondo argomento deve essere un id unico di una libreria condivisa.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: unable to find entry point %ls.\n"
-msgstr "%s: c'è un problema con uno dei punti di ingresso.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
-"di stringhe.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
-"scalare.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa."
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
-"booleano.\n"
-
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha valore sbagliato: era atteso or [].\n"
 
-#, fuzzy, c-format
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
@@ -188,68 +179,42 @@ msgstr ""
 msgid "Linking %ls.\n"
 msgstr ""
 
-# File: modules/dynamic_link/demos/call_c.sce, line: 83
 msgid "Calling a C function from Scilab.\n"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_c.sce, line: 96
 msgid "Calling ilib_for_link to build C function.\n"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_c.sce, line: 109
 msgid "Calling C function. Z = X+Y"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_c.sce, line: 111
-# File: modules/dynamic_link/demos/call_fortran.sce, line: 111
 #, c-format
 msgid "with X = %d"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_c.sce, line: 113
-# File: modules/dynamic_link/demos/call_fortran.sce, line: 113
 #, c-format
 msgid "with Y = %d"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_c.sce, line: 118
-# File: modules/dynamic_link/demos/call_fortran.sce, line: 118
 #, c-format
 msgid "Result Z = %d"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_fortran.sce, line: 82
 msgid "Calling a Fortran subroutine from Scilab.\n"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_fortran.sce, line: 95
 msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/call_fortran.sce, line: 109
 msgid "Calling Fortran subroutine. Z = X+Y"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/dynamic_link.dem.gateway.sce, line: 9
 msgid "Dynamic link"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/dynamic_link.dem.gateway.sce, line: 11
 msgid "Call a C function"
 msgstr ""
 
-#
-# File: modules/dynamic_link/demos/dynamic_link.dem.gateway.sce, line: 12
 msgid "Call a Fortran subroutine"
 msgstr ""
 
@@ -344,6 +309,12 @@ msgstr "Occorre prima smontare questa libreria."
 
 msgid "   Generate a gateway file\n"
 msgstr "   Genera un file di gateway\n"
+
+#
+# File: modules/dynamic_link/macros/ilib_build.sci, line: 111
+#, c-format
+msgid "%s: %s format is not supported by your compiler."
+msgstr ""
 
 msgid "   Generate a loader file\n"
 msgstr "   Genera un file del loader\n"
@@ -627,6 +598,3 @@ msgstr "non trovato."
 msgid "%s: Wrong type for input argument #%d: String expected."
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa."
-
-#~ msgid "%s: Wrong number of input argument(s).\n"
-#~ msgstr "%s: Il numero degli argomenti in ingresso è sbagliato.\n"

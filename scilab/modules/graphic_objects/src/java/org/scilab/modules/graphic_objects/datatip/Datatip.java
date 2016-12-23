@@ -25,6 +25,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_LABEL_MODE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_ORIENTATION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_INDEXES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_DETACHED_MODE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_DETACHED_POSITION__;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -62,7 +64,10 @@ public class Datatip extends Text {
     Double ratio;
 
 
-    enum DatatipObjectProperty { TIP_DATA, TIP_BOX_MODE, TIP_LABEL_MODE, TIP_ORIENTATION, TIP_AUTOORIENTATION, TIP_DISPLAY_COMPONENTS, TIP_INTERP_MODE, TIP_DISPLAY_FNC, TIP_INDEXES};
+    enum DatatipObjectProperty { TIP_DATA, TIP_BOX_MODE, TIP_LABEL_MODE, TIP_ORIENTATION, TIP_AUTOORIENTATION, TIP_DISPLAY_COMPONENTS,
+                                 TIP_INTERP_MODE, TIP_DISPLAY_FNC, TIP_INDEXES, TIP_DETACHED_MODE, TIP_DETACHED_POSITION
+                               };
+
     enum TipOrientation { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT, LEFT, RIGHT, TOP, BOTTOM;
 
                           /**
@@ -95,6 +100,9 @@ public class Datatip extends Text {
 
     TipOrientation currentOrientation;
 
+    Boolean detachedMode;
+    Double[] detachedPosition;
+
     /**
      * Initializes the datatip, setup format, orientation and mark.
      */
@@ -111,6 +119,9 @@ public class Datatip extends Text {
         fb.setDecimalFormatSymbols(decimalFormatSymbols);
         tipTextFormat = new UserDefinedFormat(fb, "%g", 1, 0);
 
+        detachedMode = false;
+        detachedPosition = new Double[] {0.0, 0.0, 0.0};
+
         tipBoxMode = true;
         tipLabelMode = true;
         interpMode = true;
@@ -120,6 +131,7 @@ public class Datatip extends Text {
         setVisible(true);
         setBox(true);
         setLineMode(true);
+        setLineStyle(3);
         setFillMode(true);
         setBackground(-2);
         setClipStateAsEnum(ClipStateType.OFF);
@@ -159,6 +171,10 @@ public class Datatip extends Text {
                 return DatatipObjectProperty.TIP_DISPLAY_FNC;
             case __GO_DATATIP_INDEXES__ :
                 return DatatipObjectProperty.TIP_INDEXES;
+            case __GO_DATATIP_DETACHED_MODE__:
+                return DatatipObjectProperty.TIP_DETACHED_MODE;
+            case __GO_DATATIP_DETACHED_POSITION__:
+                return DatatipObjectProperty.TIP_DETACHED_POSITION;
             default:
                 return super.getPropertyFromName(propertyName);
         }
@@ -188,6 +204,10 @@ public class Datatip extends Text {
                     return getDisplayFunction();
                 case TIP_INDEXES:
                     return getIndexes();
+                case TIP_DETACHED_MODE:
+                    return getDetachedMode();
+                case TIP_DETACHED_POSITION:
+                    return getDetachedPosition();
             }
         }
 
@@ -218,6 +238,10 @@ public class Datatip extends Text {
                     return setDisplayFunction((String) value);
                 case TIP_INDEXES:
                     return setIndexes((Double[]) value);
+                case TIP_DETACHED_MODE:
+                    return setDetachedMode((Boolean)value);
+                case TIP_DETACHED_POSITION:
+                    return setDetachedPosition((Double[])value);
             }
         }
 
@@ -496,6 +520,45 @@ public class Datatip extends Text {
 
     public Integer getIndexes() {
         return dataIndex;
+    }
+
+    /**
+     * @return detached mode
+     */
+    public Boolean getDetachedMode() {
+        return detachedMode;
+    }
+
+    /**
+     * Sets the detached mode, when true datatip position
+     * is given by detachedPosition.
+     * @param status true for enable detached mode
+     */
+    public UpdateStatus setDetachedMode(Boolean status) {
+        detachedMode = status;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * Position is only used when detachedMode is true.
+     * @return datatip detached position
+     */
+    public Double[] getDetachedPosition() {
+        return detachedPosition;
+    }
+
+    /**
+     * Sets the datatip detached position
+     * @param pos detached position
+     */
+    public UpdateStatus setDetachedPosition(Double[] pos) {
+        if (pos.length != 3) {
+            return UpdateStatus.Fail;
+        }
+        for (int i = 0; i < 3; ++i) {
+            detachedPosition[i] = pos[i];
+        }
+        return UpdateStatus.Success;
     }
 
     /**

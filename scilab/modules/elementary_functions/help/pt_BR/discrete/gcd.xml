@@ -49,7 +49,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //caso polinomial
 s=poly(0,'s');
 p=[s,s*(s+1)^2,2*s^2+s^3];

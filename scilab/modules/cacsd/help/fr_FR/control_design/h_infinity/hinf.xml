@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -65,7 +65,7 @@
                 <term>gamma</term>
                 <listitem>
                     <para>
-                        the parameter gamma used in <literal>H_infinity</literal> design. 
+                        the parameter gamma used in <literal>H_infinity</literal> design.
                         It is assumed that gamma is sufficiently large so that the controller is admissible. gamma &gt;= 0.
                     </para>
                 </listitem>
@@ -135,7 +135,7 @@
             To compute the matrices of an H-infinity (sub)optimal n-state
             controller
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
     | AK | BK |
 K = |----|----|,
     | CK | DK |
@@ -146,7 +146,7 @@ K = |----|----|,
         <programlisting role=""><![CDATA[
     | A  | B1  B2  |   | A | B |
 P = |----|---------| = |---|---|,
-    | C1 | D11 D12 |   | C | D | 
+    | C1 | D11 D12 |   | C | D |
     | C2 | D21 D22 |
  ]]></programlisting>
         <para>
@@ -163,7 +163,7 @@ P = |----|---------| = |---|---|,
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //example from Niconet report SLWN1999-12
 //Hinf
 A=[-1  0  4  5 -3 -2

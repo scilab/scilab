@@ -9,33 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:01+0000\n"
+"PO-Revision-Date: 2016-10-19 12:58+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
-
-#, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr "%s: функція %s є застрарілою.\n"
-
-msgid "Warning"
-msgstr "Попередження"
-
-#, c-format
-msgid "%s: Please see documentation for more details.\n"
-msgstr "%s: докладніші відомості можна знайти у документації.\n"
-
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-"%s: цю функцію буде назавжди вилучено у Scilab %s\n"
-"\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"

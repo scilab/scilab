@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -74,20 +74,20 @@
         <para>
             <literal>G</literal> admits the following inner-outer factorization:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
  G = [ Inn ] | Gbar |
              |  0   |
  ]]></programlisting>
         <para>
-            where <literal>Inn</literal> is square and inner (all pass and stable) and <literal>Gbar</literal> 
+            where <literal>Inn</literal> is square and inner (all pass and stable) and <literal>Gbar</literal>
             square and outer i.e:
-            Gbar is square bi-proper and bi-stable (Gbar inverse is also proper 
+            Gbar is square bi-proper and bi-stable (Gbar inverse is also proper
             and stable);
         </para>
         <para>
             Note that:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
       [ Gbar ]
 X*G = [  -   ]
       [  0   ]
@@ -95,7 +95,7 @@ X*G = [  -   ]
         <para>
             is a row compression of <literal>G</literal> where <literal>X</literal> = <literal>Inn</literal> inverse is all-pass i.e:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
  T
 X (-s) X(s) = Identity
  ]]></programlisting>

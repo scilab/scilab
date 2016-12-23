@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -36,7 +36,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Sends a string <literal>cmd</literal> to Unix for execution by the sh shell. The standard 
+            Sends a string <literal>cmd</literal> to Unix for execution by the sh shell. The standard
             output is redirected  to /dev/null.
             Unix execution errors are trapped.
         </para>
@@ -50,11 +50,11 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-if getos() == 'Windows' then 
+        <programlisting role="example"><![CDATA[
+if getos() == 'Windows' then
   unix_s("del foo");
-else 
-  unix_s("rm -f foo"); 
+else
+  unix_s("rm -f foo");
 end
  ]]></programlisting>
     </refsection>

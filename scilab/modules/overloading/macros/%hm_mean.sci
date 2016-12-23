@@ -9,34 +9,33 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-function x=%hm_mean(m,d)
+
+// THIS OVERLOAD SEEMS NO LONGER CALLED  => TO BE DELETED
+
+function x = %hm_mean(m,d)
     if argn(2)==1 then
-        x=mean(m.entries)
+        x = mean(m(:))
         return
     end
-    dims=m.dims;
-    if type(dims==8) then flag=1; dims=double(dims); else flag=0;end
-    N=size(dims,"*");
-    p1=prod(dims(1:d-1));// step to build one vector on which mean is applied
-    p2=p1*dims(d);//step for beginning of next vectors
-    ind=(0:p1:p2-1)';// selection for building one vector
-    deb=(1:p1);
-    I=ind*ones(deb)+ones(ind)*deb
+    dims = size(m);
 
-    ind=(0:p2:prod(dims)-1);
-    I=ones(ind).*.I+ind.*.ones(I)
+    N  = size(dims,"*")
+    p1 = prod(dims(1:d-1)); // step to build one vector on which mean is applied
+    p2 = p1*dims(d);        // step for beginning of next vectors
+    ind = (0:p1:p2-1)';     // selection for building one vector
+    deb = (1:p1);
+    I = ind*ones(deb) + ones(ind)*deb
 
-    x=mean(matrix(m.entries(I),dims(d),-1),1)
-    dims(d)=1
+    ind = (0:p2:prod(dims)-1);
+    I = ones(ind).*.I + ind.*.ones(I)
+
+    x = mean(matrix(m(I), dims(d),-1),1)
+    dims(d) = 1
     if d==N then
-        dims=dims(1:$)
+        dims = dims(1:$)
     else
-        dims(d)=1
+        dims(d) = 1
     end
-    if size(dims,"*")==2 then
-        x=matrix(x,dims(1),dims(2))
-    else
-        if flag==1 then dims=int32(dims);end
-        x=hypermat(dims,x(:))
-    end
+
+    x = matrix(x, dims)
 endfunction

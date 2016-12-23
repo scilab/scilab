@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) ????-2008 - INRIA - Scilab 
-    * 
+    * Copyright (C) ????-2008 - INRIA - Scilab
+    *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -95,11 +95,11 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 wavread("SCI/modules/sound/demos/chimes.wav","size")
 [y,Fs,bits]=wavread("SCI/modules/sound/demos/chimes.wav");Fs,bits
 subplot(2,1,1)
-plot2d(y(1,:)) // first channel 
+plot2d(y(1,:)) // first channel
 subplot(2,1,2)
 plot2d(y(2,:)) // second channel
 y=wavread("SCI/modules/sound/demos/chimes.wav",[1 5]) //the first five samples
@@ -113,7 +113,7 @@ y=wavread("SCI/modules/sound/demos/chimes.wav",[1 5]) //the first five samples
             plot2d(y(2,:))
             y=wavread("SCI/modules/sound/demos/chimes.wav",[1 5])
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>

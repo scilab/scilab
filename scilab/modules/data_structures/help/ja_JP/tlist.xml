@@ -45,7 +45,7 @@
         <title>説明</title>
         <para>
             要素<literal>ai</literal>を有する
-            <literal>型付のリスト</literal> を作成します. 
+            <literal>型付のリスト</literal> を作成します.
             <literal>typ</literal>引数はリストの型を指定する引数です.
             この <literal>型付のリスト</literal> により
             ユーザはScilab関数によりこれらのオブジェクトで動作する
@@ -113,7 +113,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // tlist creation
 t = tlist(["listtype","field1","field2"], [], []);
 t.field1(1) = 10;

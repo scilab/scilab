@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) INRIA
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1996 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -34,7 +34,9 @@
                 <term>sl</term>
                 <listitem>
                     <para>
-                        a continuous or discrete time SIMO linear dynamical system ( see: <link linkend="syslin">syslin</link>).
+                        A siso or simo linear dynamical system, in state
+                        space, transfer function or zpk representations,
+                        in continuous or discrete time.
                     </para>
                 </listitem>
             </varlistentry>
@@ -106,9 +108,14 @@
             discretized systems )
         </para>
         <para>
-            <literal>sl</literal> can be a continuous-time or discrete-time SIMO
-            system (see <literal>syslin</literal>). In case of multi-output the
-            outputs are plotted with different symbols.
+            <literal>sl</literal> can be a continuous-time or
+            discrete-time SIMO system given by its state space,
+            rational transfer function (see <link
+            linkend="syslin">syslin</link>) or <link
+            linkend="zpk">zpk</link> representation. In case of
+            multi-output the outputs are plotted with different
+            colors.
+
         </para>
         <para>
             The frequencies are given by the bounds <literal>fmin,fmax</literal>
@@ -220,7 +227,7 @@
                 hallchart(colors=color('light gray')*[1 1])
                 ax=gca();Leg=ax.children(1);
                 Leg.legend_location="in_upper_left";
-                
+
             </scilab:image>
         </para>
     </refsection>
@@ -255,5 +262,16 @@
                 <link linkend="datatips">datatips</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>handling zpk representation</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

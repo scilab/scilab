@@ -65,7 +65,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=['esta','é';'a minha','matriz'];
 convstr(A,'u')
  ]]></programlisting>

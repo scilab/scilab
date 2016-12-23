@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-26 16:47+0000\n"
+"PO-Revision-Date: 2016-10-22 04:55+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -147,10 +147,8 @@ msgstr "команды отладки : \n"
 msgid "show this help"
 msgstr "показать данную справку"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 520
 msgid "open debug documentation page"
-msgstr ""
+msgstr "открыть справочную страницу по отладке"
 
 msgid "stop debugging"
 msgstr "остановить отладку"
@@ -161,11 +159,8 @@ msgstr "показать стек вызова"
 msgid "execute cmd"
 msgstr "выполнить cmd"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 528
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 529
 msgid "display variable"
-msgstr ""
+msgstr "отобразить переменную"
 
 msgid "continue execution"
 msgstr "продолжить исполнение"
@@ -182,9 +177,8 @@ msgstr "шаг внутрь функции"
 msgid "step outside function"
 msgstr "шаг наружу функции"
 
-#, fuzzy
 msgid "add a breakpoint"
-msgstr "установить точку останова"
+msgstr "добавить точку останова"
 
 msgid "delete all breakpoints"
 msgstr "удалить все точки останова"
@@ -210,9 +204,8 @@ msgstr "показать все точки останова"
 msgid "show a specific breakpoint"
 msgstr "показать определённую точку останова"
 
-#, fuzzy
 msgid "  for more details, show help page.\n"
-msgstr "  для подробностей, help debug.\n"
+msgstr "  за подробностями обратитесь к справке.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -244,6 +237,9 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
 msgstr "%s: Неверный входной аргумент %d.\n"
+
+msgid "Could not retrieve sub-type.\n"
+msgstr "Не удалось получить подтип.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -328,13 +324,13 @@ msgstr "%s: Неверное значение входного аргумент�
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
 msgstr "%s: Неверный размер входного аргумента №%d: ожидалась строка.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: struct array or tlist or mlist "
 "expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: Ожидалась матрица строковых "
-"значений.\n"
+"%s: Неверный тип входного аргумента №%d: ожидался массив структур или "
+"типизированный список или матричноориентированный список.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
@@ -346,31 +342,28 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: macro expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидался макрос.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input arguments: more than %d expected.\n"
-msgstr "%s: Неверный размер входного аргумента №%d: ожидалась строка.\n"
+msgstr "%s: Неверный размер входных аргументов: ожидалось более, чем %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for output arguments: %d expected.\n"
-msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
+msgstr "%s: Неверный размер выходных аргументов: ожидалось %d.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 136
-# File: modules/core/sci_gateway/cpp/sci_makecell.cpp, line: 154
 #, c-format
 msgid ""
 "%s: Wrong input arguments: Dimensions given as first argument do not match "
 "specified cell contents.\n"
 msgstr ""
+"%s: Неверные входные аргументы: Заданные первым аргументом размерности не "
+"соответствуют содержимому ячеек.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
-msgstr "%s: Неверный размер входного аргумента №%d: ожидался скаляр.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_mode.cpp, line: 79
 msgid "Pause mode: enter empty lines to continue.\n"
-msgstr ""
+msgstr "Режим паузы: для продолжения введите пустые строки.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
@@ -382,15 +375,16 @@ msgstr ""
 msgid "%s: function-name is incorrect.\n"
 msgstr "%s: неправильное имя функции.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr "%s: Неверный размер входного аргумента №%d: ожидалась строка.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалась одиночная строка.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {#%s}.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: должно быть в интервале [%d, "
-"%d].\n"
+"%s: Неверное значение входного аргумента №%d: должно быть во множестве {№"
+"%s}.\n"
 
 #, c-format
 msgid "%s: function is disabled in debug mode.\n"
@@ -421,30 +415,25 @@ msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалось строковое или "
 "целочисленное значение.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): An even number is expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось чётное число.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_struct.cpp, line: 54
 #, c-format
 msgid "%s: Field names must be strings.\n"
-msgstr ""
+msgstr "%s: Имена полей должны быть строковыми.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_struct.cpp, line: 79
-# File: modules/core/sci_gateway/cpp/sci_struct.cpp, line: 86
 #, c-format
 msgid "%s: Arguments must be scalar or must have same dimensions.\n"
-msgstr ""
+msgstr "%s: Аргументы должны быть скаляром или иметь одинаковые размерности.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Can not create a %s with input argument #%d.\n"
-msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
+msgstr "%s: Нельзя создать %s с входным аргументом  №%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong values for input argument #%d: '%s' expected .\n"
-msgstr "%s: Неверное значение входного аргумента №%d: ожидалось «%s».\n"
+msgstr "%s: Неверные значения входного аргумента №%d: ожидалось '%s' .\n"
 
 #, c-format
 msgid "WARNING: %ls\n"
@@ -521,7 +510,7 @@ msgstr ""
 "Ошибка: Неправильный файл версии %s. Определена кодировка «%s», а должна "
 "быть «utf-8».\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "A fatal error has been detected by Scilab.\n"
 "Please check your user-defined functions (or external module ones) should "
@@ -532,15 +521,13 @@ msgid ""
 " * the following information:\n"
 "%s %s\n"
 msgstr ""
-"Scilab обнаружил критическую ошибку.\n"
-"Ваша копия программы, вероятно, скоро неожиданно закроется.\n"
-"Если использовался графический компонент, то это могло быть вызвано "
-"графическими драйверами системы.\n"
-"Пожалуйста, попытайтесь обновить их и запустите этот компонент вновь.\n"
-"Вы можете сообщить об ошибке на %s с:\n"
-"* примером кода, который воспроизводит проблему\n"
-"* результат инструкции [a, b] = getdebuginfo()\n"
-"* следующую информацию:\n"
+"Scilab обнаружил фатальную ошибку.\n"
+"Пожалуйста, проверьте, что ваши функции, определённые пользователем (или "
+"внешними модулями) появились в трассировке стека.\n"
+"В противном случае вы можете сообщить об ошибке в %s, указав:\n"
+" * пример кода, который воспроизводит проблему;\n"
+" * результат инструкции [a, b] = getdebuginfo();\n"
+" * следующую информацию:\n"
 "%s %s\n"
 
 #, c-format
@@ -594,9 +581,8 @@ msgstr ""
 msgid "Scilab Enterprises\n"
 msgstr "Scilab Enterprises\n"
 
-#, fuzzy
 msgid "Copyright (c) 2011-2016 (Scilab Enterprises)\n"
-msgstr "Авторское право (c) 2011-2015 (Scilab Enterprises)\n"
+msgstr "Авторское право (c) 2011-2016 (Scilab Enterprises)\n"
 
 msgid "Copyright (c) 1989-2012 (INRIA)\n"
 msgstr "Авторское право (c) 1989-2012 (INRIA)\n"
@@ -654,43 +640,29 @@ msgstr "&Справка"
 msgid "&Toolboxes"
 msgstr "&Модули"
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 9
 msgid "Introduction: Getting started with Scilab"
-msgstr ""
+msgstr "Введение: Как начать работать в Scilab"
 
-#, fuzzy
 msgid "Scilab objects"
-msgstr "Версия Scilab: "
+msgstr "Объекты Scilab"
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 13
 msgid "Operations and numerical primitives"
-msgstr ""
+msgstr "Операции и числовые примитивы"
 
-#, fuzzy
 msgid "Online definition of function"
-msgstr "шаг внутрь функции"
+msgstr "Оперативное определение функции"
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 15
 msgid "Optimization and simulation"
-msgstr ""
+msgstr "Оптимизация и моделирование"
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 16
 msgid "Systems: definition and analysis"
-msgstr ""
+msgstr "Системы: определение и анализ"
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 17
 msgid "Linear algebra"
-msgstr ""
+msgstr "Линейная алгебра"
 
-#
-# File: modules/core/demos/core.dem.gateway.sce, line: 18
 msgid "Call an external routine"
-msgstr ""
+msgstr "Вызов внешней подпрограммы"
 
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
@@ -722,9 +694,9 @@ msgstr ""
 msgid "%s: %s is an uneditable hard coded function.\n"
 msgstr "%s: %s является нередактируемой жёстко запрограммированной функцией.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+msgstr "%s: Неверное количество входных аргументов.\n"
 
 #, c-format
 msgid "%s: Unable to find Perl file: %s"
@@ -805,10 +777,3 @@ msgstr "Размер"
 
 msgid "Bytes"
 msgstr "Байт"
-
-#~ msgid "%s: Wrong size for input argument #%d: string expected.\n"
-#~ msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
-#~ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-#~ msgstr ""
-#~ "%s: Неверное количество входных параметров: ожидалось как минимум %d.\n"

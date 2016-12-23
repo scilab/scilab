@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -45,7 +45,7 @@
                 <term>sgrid('new')</term>
                 <listitem>
                     <para>limpa a tela de gráficos e então esboça um grid de s-plano
-                        padrão 
+                        padrão
                     </para>
                 </listitem>
             </varlistentry>
@@ -62,7 +62,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
 evans(H,100)
 sgrid()

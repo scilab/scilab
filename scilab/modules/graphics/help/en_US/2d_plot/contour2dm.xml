@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) Scilab Enterprises 
- * 
+ * Copyright (C) Scilab Enterprises
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -29,7 +29,7 @@
                 <term>x, y</term>
                 <listitem>
                     <para>
-                        two vectors of size <literal>n</literal>, <literal>(x(i),y(i))</literal> gives the coordinates of 
+                        two vectors of size <literal>n</literal>, <literal>(x(i),y(i))</literal> gives the coordinates of
                         node  <literal>i</literal>.
                     </para>
                 </listitem>
@@ -38,10 +38,10 @@
                 <term>polygons</term>
                 <listitem>
                     <para>
-                        is a <literal>[Ntr,N+2]</literal> matrix. Each line of <varname>polygons</varname> specifies a convex polygon 
-                        of the  mesh <literal>polygons(j) = [number,node1,node2,node3, ..., nodeN, flag]</literal>. 
-                        <literal>node1,node2,node3, ..., nodeN</literal> are the number of the nodes which constitutes 
-                        the polygon. number is the number of the polygons and flag is an integer 
+                        is a <literal>[Ntr,N+2]</literal> matrix. Each line of <varname>polygons</varname> specifies a convex polygon
+                        of the  mesh <literal>polygons(j) = [number,node1,node2,node3, ..., nodeN, flag]</literal>.
+                        <literal>node1,node2,node3, ..., nodeN</literal> are the number of the nodes which constitutes
+                        the polygon. number is the number of the polygons and flag is an integer
                         not used in the <function>contour2dm</function> function.
                     </para>
                 </listitem>
@@ -71,7 +71,7 @@
                                     its value gives the number of
                                     level curves  equally spaced from <literal>zmin</literal> to <literal>zmax</literal> as follows:
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <programlisting role="no-scilab-exec"><![CDATA[
 z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
  ]]></programlisting>
                             </listitem>
@@ -123,7 +123,7 @@ z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 m = [6 5 4; ...
            6 2 5; ...
            6 4 1; ...
@@ -155,7 +155,7 @@ end
             6 2 5; ...
             6 4 1; ...
             5 2 3];
-            
+
             nodes = [55  20; ...
             85  5; ...
             100 10; ...
@@ -163,7 +163,7 @@ end
             80  20; ...
             70  15];
             z_fec = [-1 -1 0 0 1 1];
-            
+
             f = scf();
             f.color_map = jetcolormap(12);
             fec(nodes(:, 1), nodes(:, 2), [(1:size(m, 1))', m, (1:size(m, 1))'], z_fec);
@@ -261,7 +261,7 @@ f.color_map = jetcolormap(1024);
             10 11 14; ...
             11 14 15; ...
             11 12 15];
-            
+
             nodes = [0  50; ... //1
             20 60; ... //2
             15 40; ... //3
@@ -277,14 +277,14 @@ f.color_map = jetcolormap(1024);
             50 62; ... //13
             55 40; ... //14
             53 17]; //15
-            
+
             z = [0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 2, 2, 2];
-            
+
             nb_mesh = [(1:size(m, 1))', m, (1:size(m, 1))'];
             fec(nodes(:, 1), nodes(:, 2), nb_mesh, z, mesh=%t);
             e=gce();
             e.children.foreground = -2;
-            
+
             // Contour2dm
             [xc, yc] = contour2dm(nodes(:,1), nodes(:,2), nb_mesh, z, linspace(0,3,4));
             k=1;n=yc(k);c=1;

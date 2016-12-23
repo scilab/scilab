@@ -68,7 +68,7 @@
     <refsection>
         <title>Exemples</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 plot2d([0, 1], [0, 1], 0);
 str = ["$\underleftrightarrow{Scilab}$" "n''est"; "pas" "elisaB"];
 r = xstringl(0.5, 0.7, str);
@@ -85,7 +85,7 @@ txt.font_style = 5;
  ]]>
         </programlisting>
         <scilab:image localized="true">
-            <![CDATA[ 
+            <![CDATA[
 plot2d([0, 1], [0, 1], 0);
 str = ["$\underleftrightarrow{Scilab}$" "n''est"; "pas" "elisaB"];
 r = xstringl(0.5, 0.7, str);
@@ -104,11 +104,11 @@ txt.font_style = 5;
         <programlisting role="example">
             <![CDATA[
 plot2d([0, 1], [0, 1], 0);
-mathml = "<mrow>" +.. 
+mathml = "<mrow>" +..
             "<mfrac>" +..
-                "<mrow>" +.. 
-                    "<mi> d </mi>" +.. 
-                    "<mi> y </mi>" +..  
+                "<mrow>" +..
+                    "<mi> d </mi>" +..
+                    "<mi> y </mi>" +..
                 "</mrow>" +..
                 "<mrow>" +..
                     "<mi>d</mi>" +..
@@ -124,7 +124,7 @@ mathml = "<mrow>" +..
                 "</msup>" +..
             "</mfrac>" +..
          "</mrow>";
-str=["SCILAB", "peut écrire du LaTeX :", "$\frac{abc}{xyz}$"; "ou", "du MathML :", mathml]; 
+str=["SCILAB", "peut écrire du LaTeX :", "$\frac{abc}{xyz}$"; "ou", "du MathML :", mathml];
 r2 = xstringl(0.2, 0.4, str, 10, 4);
 xrects([r2(1) r2(2)+r2(4) r2(3) r2(4)]');
 xstring(r2(1), r2(2), str);
@@ -136,11 +136,11 @@ txt.font_style = 10;
         <scilab:image localized="true">
             <![CDATA[
 plot2d([0, 1], [0, 1], 0);
-mathml = "<mrow>" +.. 
+mathml = "<mrow>" +..
             "<mfrac>" +..
-                "<mrow>" +.. 
-                    "<mi> d </mi>" +.. 
-                    "<mi> y </mi>" +..  
+                "<mrow>" +..
+                    "<mi> d </mi>" +..
+                    "<mi> y </mi>" +..
                 "</mrow>" +..
                 "<mrow>" +..
                     "<mi>d</mi>" +..
@@ -156,7 +156,7 @@ mathml = "<mrow>" +..
                 "</msup>" +..
             "</mfrac>" +..
          "</mrow>";
-str=["SCILAB", "peut écrire du LaTeX :", "$\frac{abc}{xyz}$"; "ou", "du MathML :", mathml]; 
+str=["SCILAB", "peut écrire du LaTeX :", "$\frac{abc}{xyz}$"; "ou", "du MathML :", mathml];
 r2 = xstringl(0.2, 0.4, str, 10, 4);
 xrects([r2(1) r2(2)+r2(4) r2(3) r2(4)]');
 xstring(r2(1), r2(2), str);
@@ -168,8 +168,8 @@ txt.font_style = 10;
         <programlisting>
             <![CDATA[
 plot2d([0, 6],[0, 6], 0);
-str=["$\underleftrightarrow{\tiny{Scilab}}$"; "$\underleftrightarrow{\scriptsize{Scilab}}$";   
-     "$\underleftrightarrow{\footnotesize{Scilab}}$"; "$\underleftrightarrow{\small{Scilab}}$"; 
+str=["$\underleftrightarrow{\tiny{Scilab}}$"; "$\underleftrightarrow{\scriptsize{Scilab}}$";
+     "$\underleftrightarrow{\footnotesize{Scilab}}$"; "$\underleftrightarrow{\small{Scilab}}$";
      "$\underleftrightarrow{\normalsize{Scilab}}$"; "$\underleftrightarrow{\large{Scilab}}$";
      "$\underleftrightarrow{\Large{Scilab}}$"; "$\underleftrightarrow{\LARGE{Scilab}}$";
      "$\underleftrightarrow{\huge{Scilab}}$"; "$\underleftrightarrow{\Huge{Scilab}}$"];
@@ -193,13 +193,13 @@ txt = gce();
 txt.font_size = 3;
 txt.font_style = 0;
 txt.font_color = 2;
-]]>    
+]]>
         </programlisting>
         <scilab:image>
             <![CDATA[
 plot2d([0, 6],[0, 6], 0);
-str=["$\underleftrightarrow{\tiny{Scilab}}$"; "$\underleftrightarrow{\scriptsize{Scilab}}$";   
-     "$\underleftrightarrow{\footnotesize{Scilab}}$"; "$\underleftrightarrow{\small{Scilab}}$"; 
+str=["$\underleftrightarrow{\tiny{Scilab}}$"; "$\underleftrightarrow{\scriptsize{Scilab}}$";
+     "$\underleftrightarrow{\footnotesize{Scilab}}$"; "$\underleftrightarrow{\small{Scilab}}$";
      "$\underleftrightarrow{\normalsize{Scilab}}$"; "$\underleftrightarrow{\large{Scilab}}$";
      "$\underleftrightarrow{\Large{Scilab}}$"; "$\underleftrightarrow{\LARGE{Scilab}}$";
      "$\underleftrightarrow{\huge{Scilab}}$"; "$\underleftrightarrow{\Huge{Scilab}}$"];
@@ -223,7 +223,7 @@ txt = gce();
 txt.font_size = 3;
 txt.font_style = 0;
 txt.font_color = 2;
-]]> 
+]]>
         </scilab:image>
     </refsection>
     <refsection role="see also">

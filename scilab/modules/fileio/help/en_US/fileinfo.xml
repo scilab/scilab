@@ -156,23 +156,23 @@
             permissions for the user who owns the file: read (4), write (2), and
             execute (1); the third selects permissions for other users in the file's
             group, with the same values; and the fourth for other users not in the
-            file's group, with the same values. 
+            file's group, with the same values.
         </para>
         <para>
             So, to check permissions, it is necessary to use masks. Let us take an example:
             In octal, x(2)=1664, so first digit corresponds to sticky attributes. The second
             indicates that file owner has permission of writing and reading. It is the same
             for other users in the file's group. Finally, others users has just right to read.
-            To apply a mask, it is simpler to look at this octal in binary. 
+            To apply a mask, it is simpler to look at this octal in binary.
             So: <varname>x</varname>(2)= 1 110 110 100.
-            To check if the owner has write permission, we must take a look at the second triplet: 110 
+            To check if the owner has write permission, we must take a look at the second triplet: 110
             and compare it with write permission 010. So, the operation is: 110 000 000 &amp; 010 000 000.
             If result is not null (it is the case here), owner has write permission.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 w = fileinfo(SCI+'/etc/scilab.start')
 // file permission
 dec2oct(w(2))

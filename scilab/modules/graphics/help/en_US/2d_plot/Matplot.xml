@@ -42,7 +42,7 @@
                 <term>&lt;opt_args&gt;</term>
                 <listitem>
                     <para>
-                        this represents a sequence of statements 
+                        this represents a sequence of statements
                         <literal>key1=value1, key2=value2, ...</literal>
                         where <literal>key1</literal>,
                         <literal>key2</literal>, ... can be one of the following:
@@ -290,7 +290,7 @@
                 <listitem>
                     <para>
                         This argument is used when the second character <literal>y</literal>
-                        of argument <varname>strf</varname> is <literal>1</literal>, 
+                        of argument <varname>strf</varname> is <literal>1</literal>,
                         <literal>3</literal> or <literal>5</literal>. It is a row vector of
                         size 4 and gives the dimension of the frame:
                         <literal>rect = [xmin, ymin, xmax, ymax]</literal>.
@@ -334,15 +334,15 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 Matplot([1 2 3;4 5 6])
  ]]></programlisting>
         <scilab:image>
             Matplot([1 2 3;4 5 6])
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf()
-// draw the current colormap 
+// draw the current colormap
 Matplot((1:xget("lastpattern")))
  ]]></programlisting>
         <scilab:image>

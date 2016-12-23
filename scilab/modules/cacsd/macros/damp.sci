@@ -1,3 +1,10 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2016 - INRIA - Serge Steer
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// For more information, see the COPYING file which you should have received
+// along with this program.
 function [wn,z,p] = damp(R,dt1)
     //Natural frequency and damping factor for continuous systems.
     //   [Wn,Z,P] = damp(R) returns vectors Wn and Z containing the
@@ -47,6 +54,18 @@ function [wn,z,p] = damp(R,dt1)
             dt=1
         end
         p=roots(lcm(R.den))
+    case "zpk" then
+        dt=R.dt
+        if dt=="c" then
+            dt=0
+        elseif dt=="d" then
+            dt=1
+        end
+        [m,n]=size(R)
+        [p,P]=findCommonValues(R.P)
+        for i=1:size(P,"*")
+            p=[p;P{i}]
+        end
     case "state-space" then
         dt=R.dt
         if dt=="c" then
@@ -59,8 +78,13 @@ function [wn,z,p] = damp(R,dt1)
         p=R;
         toBeOrdered=%f
     else
-        error(msprintf(_("%s: Wrong type for input argument #%d: Array of floats or Polynomial expected.\n"),..
-        "damp",1))
+        ierr=execstr("[wn,z,p]=%"+overloadname(R)+"_damp(R)","errcatch")
+        if ierr<>0 then
+            error(msprintf(_("%s: Wrong type for input argument #%d: Array of floats, Polynomial or linear dynamical system expected.\n"),..
+            "damp",1))
+        end
+        return
+
     end
     if dt==[] then
         //R does not furnish time domain
@@ -77,7 +101,6 @@ function [wn,z,p] = damp(R,dt1)
     // Initialize
     wn=zeros(p);
     z=-ones(p);
-    im=ieee();ieee(2);//to allow inf and nan's
     if dt>0 then // Discrete  time case
         ind=find(p<>1)
         s=p(ind);
@@ -88,7 +111,6 @@ function [wn,z,p] = damp(R,dt1)
     end
     wn(ind)=abs(s)
     z(ind)=-real(s)./abs(s)
-    ieee(im)
     if toBeOrdered then
         [wn,k]=gsort(wn,"g","i");
         z=z(k);

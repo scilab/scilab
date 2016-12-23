@@ -35,7 +35,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[1,%i,-1,-%i]
 cos(acos(x))
  ]]></programlisting>

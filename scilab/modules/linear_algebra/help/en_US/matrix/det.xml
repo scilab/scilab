@@ -60,7 +60,7 @@
         </para>
         <para>
             <important>
-                The <literal>det</literal> and <literal>detr</literal> functions don't use the same algorithm. 
+                The <literal>det</literal> and <literal>detr</literal> functions don't use the same algorithm.
                 For a rational fraction, <literal>det(X)</literal> is overloaded by <literal>%r_det(X)</literal> which is based on the <literal>determ</literal> function.
                 <literal>detr()</literal> uses the Leverrier method.
             </important>

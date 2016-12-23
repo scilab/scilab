@@ -155,7 +155,7 @@
                                     <listitem>
                                         <para>
                                             <literal>"i"</literal>.この場合, 目盛の位置を
-                                            指定するベクトルは大きさ 4 の 
+                                            指定するベクトルは大きさ 4 の
                                             <literal>[k1,k2,a,n]</literal> となります.
                                             この時, 値は <literal>k1*10^a</literal>と
                                             <literal>k2*10^a</literal>の間で増加し,

@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -74,7 +74,7 @@
             For instance, using matrices of size <literal>(2,n)</literal>, the
             segments can be defined by:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[
 xv=[xi_1 xi_2 ...; xf_1 xf_2...]
 yv=[yi_1 yi_2 ...; yf_1 yf_2...]
 zv=[zi_1 zi_2 ...; zf_1 zf_2...]
@@ -146,6 +146,6 @@ e.arrow_size = 0.4;
             e = gce();
             e.arrow_size = 0.4;
         </scilab:image>
-        
+
     </refsection>
 </refentry>

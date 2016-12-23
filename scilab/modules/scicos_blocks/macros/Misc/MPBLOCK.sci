@@ -110,17 +110,17 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
             //
             //first stage of checking variable name
             //put string symbolic parameters in variable
-            ierr=execstr("in=stripblanks(evstr(Tin));..
-            intype=stripblanks(evstr(Tintype));..
-            out=stripblanks(evstr(Tout));..
-            outtype=stripblanks(evstr(Touttype));..
-            param=stripblanks(evstr(Tparam));..
-            funam=stripblanks(Tfunam)","errcatch")
+            ierr=execstr("in=stripblanks(evstr(Tin));"+..
+            "intype=stripblanks(evstr(Tintype));"+..
+            "out=stripblanks(evstr(Tout));"+..
+            "outtype=stripblanks(evstr(Touttype));"+..
+            "param=stripblanks(evstr(Tparam));"+..
+            "funam=stripblanks(Tfunam)","errcatch")
 
             if ierr<>0 then
                 //You lose! Try again! Insert coin!
-                //x_message("Error, try again please!")
-                x_message("Error in evaluation of variables.")
+                //messagebox("Error, try again please!")
+                messagebox("Error in evaluation of variables.")
                 ok=%f
                 //break
             end
@@ -137,9 +137,9 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
                     end
                 end
                 if ~ok then
-                    x_message(["Invalid variable name for the input "+string(i)+".";
+                    messagebox(["Invalid variable name for the input "+string(i)+".";
                     """"+in(i)+"""";
-                    "Please choose another variable name."] );
+                    "Please choose another variable name."]);
                 end
             end
             //out
@@ -153,9 +153,9 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
                     end
                 end
                 if ~ok then
-                    x_message(["Invalid variable name for the output "+string(i)+".";
+                    messagebox(["Invalid variable name for the output "+string(i)+".";
                     """"+out(i)+"""";
-                    "Please choose another variable name."] );
+                    "Please choose another variable name."]);
                 end
             end
             //param
@@ -170,9 +170,9 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
                     end
                 end
                 if ~ok then
-                    x_message(["Invalid variable name for the parameter "+string(i)+".";
+                    messagebox(["Invalid variable name for the parameter "+string(i)+".";
                     """"+param(i)+"""";
-                    "Please choose another variable name."] );
+                    "Please choose another variable name."]);
                 end
             end
 
@@ -182,7 +182,7 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
                 for i=1:size(intype,"*")
                     if intype(i)<>"E"&intype(i)<>"I" then
                         //typeok=%f;
-                        x_message("Input type should be ''E'' or ''I''!");
+                        messagebox("Input type should be ''E'' or ''I''!");
                         ok=%f
                         break
                     end
@@ -197,7 +197,7 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
                 for i=1:size(outtype,"*")
                     if outtype(i)<>"E"&outtype(i)<>"I" then
                         //typeok=%f;
-                        x_message("Output type should be ''E'' or ''I''!");
+                        messagebox("Output type should be ''E'' or ''I''!");
                         ok=%f
                         break
                     end
@@ -208,7 +208,7 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
             //cross size checking
             if ok then
                 if or(size(intype)<>size(in)) then
-                    x_message("Input variables are not well defined!");
+                    messagebox("Input variables are not well defined!");
                     ok=%f
                     //break;
                 end
@@ -216,7 +216,7 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
 
             if ok then
                 if or(size(outtype)<>size(out)) then
-                    x_message("Output variables are not well defined!");
+                    messagebox("Output variables are not well defined!");
                     ok=%f
                     //break;
                 end
@@ -226,9 +226,8 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
             if ok then
                 pprop = pprop(:)
                 if (size(param,"*")<>size(pprop,"*")) then
-                    x_message(["There is differences in";
-                    "size of param and size ";
-                    "of param properties." ])
+                    messagebox(["There are differences in size of param";
+                    "and size of param properties."])
                     ok=%f
                     //break;
                 end
@@ -236,10 +235,10 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
 
             if ok then
                 if max(pprop)>2 | min(pprop)<0 then
-                    x_message(["Parameters properties must be :";
-                    "0 : if it is a paramaters";
-                    "1 : if it is an initial value of state,";
-                    "2 : it it is a fixed initial state value." ])
+                    messagebox(["Parameters properties must be:";
+                    "0: if it is a paramater,";
+                    "1: if it is an initial value of state,";
+                    "2: it it is a fixed initial state value."])
                     ok=%f
                     //break;
                 end
@@ -248,7 +247,7 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
             //check name of modelica file
             if ok then
                 if funam=="" then
-                    x_message("The model name is not defined!")
+                    messagebox("The model name is not defined!")
                     ok=%f
                     //break
                 end
@@ -257,7 +256,7 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
             if ok then
                 [dirF,nameF,extF]=fileparts(funam);
                 if (extF<>"" )|(dirF<>"") then
-                    x_message("Invalid model name!")
+                    messagebox("Invalid model name!")
                     ok=%f
                     //break
                 end

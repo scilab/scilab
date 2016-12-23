@@ -104,8 +104,8 @@
             algorithme du type méthode hybride de Powell. La Jacobienne peut être
             fournie (c'est fortement conseillé).
         </para>
-        <programlisting role=""><![CDATA[ 
-0 = fct(x) 
+        <programlisting role=""><![CDATA[
+0 = fct(x)
  ]]></programlisting>
         <para>
             <literal>fct</literal> est une fonction "externe" Cette fonction
@@ -115,7 +115,7 @@
         <para>
             La séquence d'appel de <literal>fct</literal> est :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 [v]=fct(x).
  ]]></programlisting>
         <para>
@@ -123,13 +123,13 @@
             le nom d'une subroutine Fortran ou C liée dynamiquement à Scilab, avec
             comme liste d'appel Fortran :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 fct(n,x,v,iflag)
 integer n,iflag
 double precision x(n),v(n)
  ]]></programlisting>
         <para>ou alors pour une routine C :</para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 fct(int *n, double x[],double v[],int *iflag)
  ]]></programlisting>
         <para>
@@ -143,7 +143,7 @@ fct(int *n, double x[],double v[],int *iflag)
         <para>
             La séquence d'appel de <literal>jac</literal> est :
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 [v]=jac(x).
  ]]></programlisting>
         <para>
@@ -155,7 +155,7 @@ fct(int *n, double x[],double v[],int *iflag)
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // un exemple simple
 a=[1,7;2,8];b=[10;11];
 deff('[y]=fsol1(x)','y=a*x+b');

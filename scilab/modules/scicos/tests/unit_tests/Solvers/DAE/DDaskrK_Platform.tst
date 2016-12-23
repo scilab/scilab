@@ -15,12 +15,6 @@ ilib_verbose(0); //to remove ilib_* traces
 // Import diagram
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/DAE/Platform.zcos"));
 
-// Redefining messagebox() to avoid popup
-prot = funcprot();
-funcprot(0);
-function messagebox(msg, msg_title)
-endfunction
-
 for i=1:2  // 'max step size' = 10^-i, precision
 
     // Start by updating the clock block period (sampling)
@@ -50,4 +44,3 @@ for i=1:2  // 'max step size' = 10^-i, precision
     assert_checktrue(stdeviation <= 5*10^-(i+2));
 
 end
-funcprot(prot);

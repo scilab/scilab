@@ -2,6 +2,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) DIGITEO - 2009-2010 - Allan CORNET <allan.cornet@scilab.org>
 # Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
+# Copyright (C) 2012-2016 - Scilab Enterprises - Clément DAVID
 #
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
 #
@@ -48,8 +49,8 @@ XCOS_CXX_SOURCES =	\
     src/jni/Modelica.hxx \
     src/jni/JavaController_wrap.cxx \
     src/cpp/xcosUtilities.cpp \
-    src/cpp/loadStatus.cpp
-
+    src/cpp/loadStatus.cpp \
+    src/jni/JavaXMIResource_wrap.cxx
 
 GIWS_WRAPPERS = \
     src/jni/Xcos.giws.xml \
@@ -57,7 +58,9 @@ GIWS_WRAPPERS = \
     src/jni/Palette.giws.xml \
     src/jni/Modelica.giws.xml
 SWIG_WRAPPERS = \
-    src/jni/JavaController.i
+    src/jni/JavaController.i \
+    src/jni/JavaXMIResource.i
+    
 # FORCE directors due to a bug into swig
 SWIG_OPTIONS=-c++ -directors
 BUILT_SOURCES=
@@ -76,6 +79,7 @@ GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
 	sci_gateway/cpp/sci_xcosCellCreated.cpp \
+	sci_gateway/cpp/sci_xcosUpdateBlock.cpp \
 	sci_gateway/cpp/sci_xcosDiagramToScilab.cpp \
 	sci_gateway/cpp/sci_xcosPalLoad.cpp \
 	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \
@@ -116,6 +120,7 @@ libscixcos_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/fileio/includes/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
+    $(XML_FLAGS) \
     $(JAVA_JNI_INCLUDE) \
     $(AM_CPPFLAGS)
 
@@ -131,6 +136,7 @@ libscixcos_disable_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/types/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes \
+    $(XML_FLAGS) \
     $(AM_CPPFLAGS)
 
 XCOS_DISABLE_C_SOURCES = src/noxcos/noxcos.c
@@ -159,7 +165,8 @@ INCLUDE_FLAGS = $(libscixcos_la_CPPFLAGS)
 libscixcos_la_LIBADD = libscixcos-algo.la \
 		$(top_builddir)/modules/scicos/libsciscicos.la \
 		$(top_builddir)/modules/commons/libscicommons.la \
-		$(top_builddir)/modules/jvm/libscijvm.la
+		$(top_builddir)/modules/jvm/libscijvm.la \
+		$(LIBXML_LIBS)
 
 #### xcos : gateway declaration ####
 libscixcos_la_sci_gatewaydir = $(mydatadir)/sci_gateway

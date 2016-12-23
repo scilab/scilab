@@ -77,7 +77,7 @@
         </para>
         <para>
             <literal>isoview("off")</literal> ou <literal>isoview off</literal>
-            relaxes les échelles en x, y (voire z) pour le repère actif.
+            relaxe les échelles en x, y (voire z) pour le repère actif.
         </para>
         <para>
             <literal>isoview(idGraphics,..)</literal> agit sur tous les repères
@@ -182,7 +182,7 @@ isoview([a1 a2 a3], "on")
             subplot(2,nc,nc+1)
             plot2d(cos(t),sin(t))
             isoview
-            
+
             subplot(2,nc,2)
             plot2d(7*cos(t),2*sin(t))
             xtitle("True ellipse")
@@ -190,7 +190,7 @@ isoview([a1 a2 a3], "on")
             subplot(2,nc,nc+2)
             plot2d(7*cos(t),2*sin(t))
             isoview
-            
+
             // plot of a sphere using facets computed by eval3dp
             deff("[x,y,z] = sph(alp,tet)",["x = r*cos(alp).*cos(tet)+orig(1)*ones(tet)"; ..
             "y = r*cos(alp).*sin(tet)+orig(2)*ones(tet)"; ..
@@ -225,7 +225,7 @@ xtitle("with frameflag=4")
             subplot(1,2,1)
             plot2d(r.*sin(t),r.*cos(t))
             xtitle("plot2d(..)")
-            
+
             subplot(1,2,2)
             plot2d(r.*sin(t),r.*cos(t),frameflag=4)
             xtitle("with frameflag=4")
@@ -245,7 +245,7 @@ xtitle("with frameflag=4")
             </member>
         </simplelist>
     </refsection>
-    
+
     <refsection role="history">
         <title>Historique</title>
         <revhistory>
@@ -260,5 +260,5 @@ xtitle("with frameflag=4")
             </revision>
         </revhistory>
     </refsection>
-    
+
 </refentry>

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge STEER
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -72,7 +72,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>sys(s)</literal> が <literal>Sys</literal>の伝達関数の場合, 
+            <literal>sys(s)</literal> が <literal>Sys</literal>の伝達関数の場合,
             <literal>repf(k)</literal> は,
             連続時間システムの場合に<literal>s= %i*frq(k)*2*%pi</literal>,
             離散時間システム(サンプリング時間:<literal>dt</literal>)の場合に<literal>exp(2*%i*%pi*dt*frq(k))</literal>
@@ -84,7 +84,7 @@
             また, <literal>phi(k)</literal> は<literal>repf(k)</literal>の位相(単位:度)です.
         </para>
         <para>
-            <literal>fmin,fmax,step</literal> が入力パラメータの場合, 
+            <literal>fmin,fmax,step</literal> が入力パラメータの場合,
             <literal>frq=[10.^((log10(fmin)):step:(log10(fmax))) fmax];</literal>で指定された
             周波数ベクトル<literal>frq</literal>に関して応答が計算されます.
         </para>
@@ -94,14 +94,14 @@
         <para>
             ベクトル <literal>frq</literal> は,<literal>splitf</literal> ベクトルにより
             複数の通常の周波数範囲に分割されます.
-            <literal>frq(splitf(k):splitf(k+1)-1)</literal> は臨界周波数を有しません. 
+            <literal>frq(splitf(k):splitf(k+1)-1)</literal> は臨界周波数を有しません.
             <literal>sys</literal> は, <literal>[frq(splitf(k)),frq(splitf(k)+1)]</literal> の
-            範囲に極を一つ有し, その外側には極がありません. 
+            範囲に極を一つ有し, その外側には極がありません.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=diag([-1,-2]);B=[1;1];C=[1,1];
 Sys=syslin('c',A,B,C);
 frq=0:0.02:5;w=frq*2*%pi; //frq=frequencies in Hz ;w=frequencies in rad/sec;

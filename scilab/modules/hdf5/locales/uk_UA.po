@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-09 16:54+0000\n"
+"PO-Revision-Date: 2016-02-12 10:28+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation-team-uk@lists.sourceforge.net>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -242,12 +242,12 @@ msgstr "%s: помилкова кількість вихідних параме�
 msgid "%s: Unable to open file: '%s'.\n"
 msgstr "%s: не вдалося відкрити файл: «%s».\n"
 
+msgid "Redefining permanent variable.\n"
+msgstr "Повторне визначення незмінної змінної.\n"
+
 #, c-format
 msgid "%s: %s is not a valid lib file.\n"
 msgstr "%s: %s не є коректним файлом бібліотеки.\n"
-
-msgid "Redefining permanent variable.\n"
-msgstr "Повторне визначення незмінної змінної.\n"
 
 #, c-format
 msgid "%s: Unable to load '%s'\n"
@@ -821,36 +821,23 @@ msgstr "Посилання має бути вказано як рядки"
 msgid "Invalid path: %s."
 msgstr "Некоректний шлях: %s."
 
-# File: modules/hdf5/demos/hdf5.dem.gateway.sce, line: 10
 msgid "HDF5"
-msgstr ""
+msgstr "HDF5"
 
-#
-# File: modules/hdf5/demos/hdf5.dem.gateway.sce, line: 12
 msgid "Ring resonator (HDF5 data source)"
-msgstr ""
+msgstr "Кільцевий резонатор (джерело даних HDF5)"
 
-#
-# File: modules/hdf5/demos/resonator.dem.sce, line: 12
 msgid "Ring Resonator from a HDF5 file"
-msgstr ""
+msgstr "Кільцевий резонатор з файла HDF5"
 
-#
-# File: modules/hdf5/demos/resonator.dem.sce, line: 26
 msgid "X position [a]"
-msgstr ""
+msgstr "Позиція за X [a]"
 
-#
-# File: modules/hdf5/demos/resonator.dem.sce, line: 27
 msgid "Y position [a]"
-msgstr ""
+msgstr "Позиція за Y [a]"
 
-#
-# File: modules/hdf5/demos/resonator.dem.sce, line: 28
 msgid "Permittivity"
-msgstr ""
+msgstr "Проникність"
 
-#
-# File: modules/hdf5/demos/resonator.dem.sce, line: 32
 msgid "Ring Resonator"
-msgstr ""
+msgstr "Кільцевий резонатор"

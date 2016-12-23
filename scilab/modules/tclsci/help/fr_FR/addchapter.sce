@@ -10,5 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Interface avec Tcl/Tk",SCI+"/modules/tclsci/help/fr_FR",%T);
+add_help_chapter("Tcl/Tk",SCI+"/modules/tclsci/help/fr_FR",%T);
 

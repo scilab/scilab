@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+
+ * Copyright (C) INRIA - Farid Belahcene
+
+ *
+
+
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+
+ *
+
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="pie">
+
+    <refnamediv>
+
+        <refname>pie</refname>
+
+        <refpurpose>円グラフを描画</refpurpose>
+
+    </refnamediv>
+
+    <refsynopsisdiv>
+
+        <title>呼び出し手順</title>
+
+        <synopsis>pie(x)
+
+            pie(x[,sp[,txt]])
+
+        </synopsis>
+
+    </refsynopsisdiv>
+
+    <refsection>
+
+        <title>引数</title>
+
+        <variablelist>
+
+            <varlistentry>
+
+                <term>x</term>
+
+                <listitem>
+
+                    <para>正の実数のスカラーまたはベクトル.</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>sp</term>
+
+                <listitem>
+
+                    <para>実数のスカラーまたはベクトル.</para>
+
+                </listitem>
+
+            </varlistentry>
+
+            <varlistentry>
+
+                <term>txt</term>
+
+                <listitem>
+
+                    <para>文字列のセルまたはベクトルs.</para>
+
+                </listitem>
+
+            </varlistentry>
+
+        </variablelist>
+
+    </refsection>
+
+    <refsection>
+
+        <title>説明</title>
+
+        <para>
+
+            <literal>pie(x):</literal> xの大きさがNの場合,
+
+            pie 関数はN個の要素からなる円グラフを描画します.この際,
+
+            i番目の要素の面積は(x(i)/sum(x))*(単位円の面積)となります.
+
+        </para>
+
+        <para>
+
+            <literal>pie(x,sp):</literal>
+
+            spベクトルにより円グラフに一つまたは複数の要素を切り出すことが
+
+            できます(spの大きさをNとする必要があります).
+
+            spのi番目のインデクスの値が0以外の場合,i番目の要素は
+
+            その他の要素から空間的に切り出されます.
+
+            そうでない場合, この値は 0 となり,
+
+            その他の要素に結合されます.
+
+        </para>
+
+        <para>
+
+            <literal>pie(x,txt):</literal> txt ベクトルにより
+
+            円グラフの各部分のテキストを書くことができます.
+
+            txtのi番目の要素はi番目の要素に対応します.
+
+            (デフォルト: その部分の面積に対応するパーセンテージで描画されます).
+
+            txt の大きさは N に等しくする必要があります.
+
+        </para>
+
+    </refsection>
+
+    <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example"><![CDATA[
+
+// 最初の例 : 入力引数は1つ  x=[1 2 5]
+
+scf(0);
+
+pie([1 2 5]);
+
+ ]]></programlisting>
+
+
+
+        <scilab:image>
+
+            pie([1 2 5]);
+
+        </scilab:image>
+
+
+
+        <programlisting role="example"><![CDATA[
+
+// 2番目の例 : 入力引数は2つ x=[5 9  4 6 3], sp=[0 1 0 1 0],
+
+// 2番目と4番目は他の要素とは区別されています.
+
+scf(1);
+
+pie([5 9 4 6 3],[0 1 0 1 0]);
+
+ ]]></programlisting>
+
+
+
+        <scilab:image>
+
+            pie([5 9 4 6 3],[0 1 0 1 0]);
+
+        </scilab:image>
+
+
+
+        <programlisting role="example"><![CDATA[
+
+// 第3の例 : 入力引数, x=[3 4 6 2], sp=[0 1 0 0], txt=["part1","part2","part3","part4"]
+
+scf(2);
+
+pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
+
+ ]]></programlisting>
+
+        <scilab:image>
+
+            pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
+
+        </scilab:image>
+
+
+
+    </refsection>
+
+    <refsection role="see also">
+
+        <title>参照</title>
+
+        <simplelist type="inline">
+
+            <member>
+
+                <link linkend="xfpolys">xfpolys</link>
+
+            </member>
+
+        </simplelist>
+
+    </refsection>
+
+</refentry>
+

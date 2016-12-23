@@ -65,7 +65,6 @@ int sci_newaxes(char * fname, void *pvApiCtx)
         {
             if (createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iSubwinUID)))
             {
-                printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 1;
             }

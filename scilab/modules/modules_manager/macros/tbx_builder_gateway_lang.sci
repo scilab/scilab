@@ -71,6 +71,58 @@ function tbx_builder_gateway_lang(languages,path)
     end
 
     // Exec builders files
-    tbx_builder(pathconvert(directories+"/builder_gateway_"+languages+".sce",%F));
+    //look for all files of type builder_something.sce and executes them
+    builder_files = [];
+    for i = 1:size(directories, "*")
+        builder_file_i = findfiles(directories(i), "builder*.sce");
+        if ~isempty(builder_file_i)
+            tbx_builder(directories(i) + "/" + builder_file_i);
+        else
+            if languages(i) == "c"
+                res = tbx_builder_gateway_c(fullpath(path));
+                if ~res
+                    msg = _("Could not use the default compilation of gateways in %s.");
+                    warning(msprintf(msg, directories(i)));
+                end
+            else
+                msg = _("No builder script found in %s.");
+                warning(msprintf(msg, directories(i)));
+            end
+        end
+    end
 
+endfunction
+
+function res = tbx_builder_gateway_c(path)
+    res = %t;
+    // The toolbox must have a name in order to create a library with its name
+    // TODO: change this with information found in config.ini if tbx_config is validated
+    if ~isempty( listfiles(path + "/../etc/*.start") )
+        name_library = basename( listfiles(path + "/../etc/*.start") ) + "_c";
+    else
+        res = %f;
+        return
+    end
+
+    // There must be C files to compile
+    // functions will have the name of the C files without sci_ in front
+    // automation is done only for the scilab 6 api_scilab
+    files_in_library = listfiles(path + "/c/sci_*.c");
+    if ~isempty(files_in_library)
+        files_in_library = basename(listfiles(path + "/c/sci_*.c"));
+        functions_in_library = part( files_in_library, 5:$ ); // functions are sci_foo without the sci_
+        api_version = repmat("csci6", size(functions_in_library, "*"), 1); // only scilab 6 api_scilab supported
+        src_library = basename( listfiles(path + "/../src/c/lib*" + getdynlibext()) );
+        includes_src_c = ilib_include_flag(path + "/../src/c");
+
+        tbx_build_gateway(name_library, .. // Name of the library to create
+        [functions_in_library, files_in_library, api_version], .. // creation of the link between c functions and scilab gateways
+        [files_in_library + ".c"], .. // path to the files
+        path + "/c/", .. // path to the library
+        path + "/../src/c/" + src_library, .. // linked library
+        "", ..
+        includes_src_c); // Include flags
+    else
+        res = %f;
+    end
 endfunction

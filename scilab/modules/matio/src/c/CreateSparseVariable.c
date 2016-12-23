@@ -159,8 +159,8 @@ int CreateSparseVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
         {
             Scierror(999, _("%s: No more memory.\n"), "CreateSparseVariable");
             FREE(scilabSparse);
-            FREE(scilabSparseT);
             FREE(scilabSparseT->mnel);
+            FREE(scilabSparseT);
             FREE(workArray);
             FREE(colIndexes);
             FREE(rowIndexes);
@@ -175,9 +175,9 @@ int CreateSparseVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
         {
             Scierror(999, _("%s: No more memory.\n"), "CreateSparseVariable");
             FREE(scilabSparse);
-            FREE(scilabSparseT);
             FREE(scilabSparseT->icol);
             FREE(scilabSparseT->mnel);
+            FREE(scilabSparseT);
             FREE(workArray);
             FREE(colIndexes);
             FREE(rowIndexes);
@@ -192,10 +192,10 @@ int CreateSparseVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
         {
             Scierror(999, _("%s: No more memory.\n"), "CreateSparseVariable");
             FREE(scilabSparse);
-            FREE(scilabSparseT);
             FREE(scilabSparseT->icol);
             FREE(scilabSparseT->mnel);
             FREE(scilabSparseT->R);
+            FREE(scilabSparseT);
             FREE(workArray);
             FREE(colIndexes);
             FREE(rowIndexes);
@@ -217,13 +217,13 @@ int CreateSparseVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
             {
                 printError(&sciErr, 0);
                 FREE(scilabSparse);
-                FREE(scilabSparseT);
                 FREE(workArray);
                 FREE(colIndexes);
                 FREE(rowIndexes);
                 FREE(scilabSparseT->icol);
                 FREE(scilabSparseT->mnel);
                 FREE(scilabSparseT->R);
+                FREE(scilabSparseT);
                 return 0;
             }
         }
@@ -236,13 +236,13 @@ int CreateSparseVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
             {
                 printError(&sciErr, 0);
                 FREE(scilabSparse);
-                FREE(scilabSparseT);
                 FREE(workArray);
                 FREE(colIndexes);
                 FREE(rowIndexes);
                 FREE(scilabSparseT->icol);
                 FREE(scilabSparseT->mnel);
                 FREE(scilabSparseT->R);
+                FREE(scilabSparseT);
                 return 0;
             }
         }
@@ -257,13 +257,13 @@ int CreateSparseVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
             {
                 printError(&sciErr, 0);
                 FREE(scilabSparse);
-                FREE(scilabSparseT);
                 FREE(workArray);
                 FREE(colIndexes);
                 FREE(rowIndexes);
                 FREE(scilabSparseT->icol);
                 FREE(scilabSparseT->mnel);
                 FREE(scilabSparseT->R);
+                FREE(scilabSparseT);
                 return 0;
             }
         }
@@ -276,13 +276,13 @@ int CreateSparseVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
             {
                 printError(&sciErr, 0);
                 FREE(scilabSparse);
-                FREE(scilabSparseT);
                 FREE(workArray);
                 FREE(colIndexes);
                 FREE(rowIndexes);
                 FREE(scilabSparseT->icol);
                 FREE(scilabSparseT->mnel);
                 FREE(scilabSparseT->R);
+                FREE(scilabSparseT);
                 return 0;
             }
         }

@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2014 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -94,9 +94,16 @@ struct title
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string title;
-        controller.getObjectProperty(adaptee, DIAGRAM, TITLE, title);
         std::string path;
-        controller.getObjectProperty(adaptee, DIAGRAM, PATH, path);
+        if (adaptor.getAdaptee()->kind() == DIAGRAM)
+        {
+            controller.getObjectProperty(adaptee, DIAGRAM, TITLE, title);
+            controller.getObjectProperty(adaptee, DIAGRAM, PATH, path);
+        }
+        else
+        {
+            controller.getObjectProperty(adaptee, BLOCK, LABEL, title);
+        }
 
         types::String* o = new types::String(2, 1);
         o->set(0, title.data());
@@ -138,8 +145,16 @@ struct title
         title = std::string(Title);
         FREE(Title);
 
-        controller.setObjectProperty(adaptee, DIAGRAM, TITLE, title);
-        controller.setObjectProperty(adaptee, DIAGRAM, PATH, path);
+
+        if (adaptor.getAdaptee()->kind() == DIAGRAM)
+        {
+            controller.setObjectProperty(adaptee, DIAGRAM, TITLE, title);
+            controller.setObjectProperty(adaptee, DIAGRAM, PATH, path);
+        }
+        else
+        {
+            controller.setObjectProperty(adaptee, BLOCK, TITLE, title);
+        }
         return true;
     }
 };
@@ -150,6 +165,14 @@ struct tol
     static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
     {
         ScicosID adaptee = adaptor.getAdaptee()->id();
+        if (adaptor.getAdaptee()->kind() == BLOCK)
+        {
+            controller.getObjectProperty(adaptee, BLOCK, PARENT_DIAGRAM, adaptee);
+            if (adaptee == ScicosID())
+            {
+                return types::Double::Empty();
+            }
+        }
 
         double* data;
         types::Double* o = new types::Double(1, 7, &data);
@@ -167,6 +190,11 @@ struct tol
 
     static bool set(ParamsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        if (adaptor.getAdaptee()->kind() == BLOCK)
+        {
+            // ignore the updated value for a block
+            return dummy_property::set(adaptor, v, controller);
+        }
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -205,6 +233,14 @@ struct tf
     static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
     {
         ScicosID adaptee = adaptor.getAdaptee()->id();
+        if (adaptor.getAdaptee()->kind() == BLOCK)
+        {
+            controller.getObjectProperty(adaptee, BLOCK, PARENT_DIAGRAM, adaptee);
+            if (adaptee == ScicosID())
+            {
+                return types::Double::Empty();
+            }
+        }
 
         std::vector<double> tf;
         controller.getObjectProperty(adaptee, DIAGRAM, PROPERTIES, tf);
@@ -214,6 +250,11 @@ struct tf
 
     static bool set(ParamsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        if (adaptor.getAdaptee()->kind() == BLOCK)
+        {
+            // ignore the updated value for a block
+            return dummy_property::set(adaptor, v, controller);
+        }
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -248,7 +289,7 @@ struct context
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<std::string> context;
-        controller.getObjectProperty(adaptee, DIAGRAM, DIAGRAM_CONTEXT, context);
+        controller.getObjectProperty(adaptee, adaptor.getAdaptee()->kind(), DIAGRAM_CONTEXT, context);
 
         if (context.size() == 0)
         {
@@ -287,7 +328,7 @@ struct context
                 FREE(c_str);
             }
 
-            controller.setObjectProperty(adaptee, DIAGRAM, DIAGRAM_CONTEXT, context);
+            controller.setObjectProperty(adaptee, adaptor.getAdaptee()->kind(), DIAGRAM_CONTEXT, context);
             return true;
         }
         else if (v->getType() == types::InternalType::ScilabDouble)
@@ -302,7 +343,7 @@ struct context
             ScicosID adaptee = adaptor.getAdaptee()->id();
 
             std::vector<std::string> context;
-            controller.setObjectProperty(adaptee, DIAGRAM, DIAGRAM_CONTEXT, context);
+            controller.setObjectProperty(adaptee, adaptor.getAdaptee()->kind(), DIAGRAM_CONTEXT, context);
             return true;
         }
 
@@ -387,7 +428,7 @@ struct doc
 
     static bool set(ParamsAdapter& adaptor, types::InternalType* v, Controller& /*controller*/)
     {
-        adaptor.setDocContent(v->clone());
+        adaptor.setDocContent(v);
         return true;
     }
 };
@@ -414,15 +455,15 @@ static void initialize_fields()
 }
 
 ParamsAdapter::ParamsAdapter() :
-    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(),
-    doc_content(new types::List())
+    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::BaseObject>(),
+    doc_content(default_value<types::List>())
 {
     initialize_fields();
 }
 
-ParamsAdapter::ParamsAdapter(const Controller& c, org_scilab_modules_scicos::model::Diagram* adaptee) :
-    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(c, adaptee),
-    doc_content(new types::List())
+ParamsAdapter::ParamsAdapter(const Controller& c, org_scilab_modules_scicos::model::BaseObject* adaptee) :
+    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::BaseObject>(c, adaptee),
+    doc_content(default_value<types::List>())
 {
     initialize_fields();
 }
@@ -444,17 +485,18 @@ std::wstring ParamsAdapter::getShortTypeStr()
 
 types::InternalType* ParamsAdapter::getDocContent() const
 {
-    doc_content->IncreaseRef();
     return doc_content;
 }
 
 void ParamsAdapter::setDocContent(types::InternalType* v)
 {
-    doc_content->DecreaseRef();
-    doc_content->killMe();
+    types::InternalType* temp = doc_content;
 
     v->IncreaseRef();
     doc_content = v;
+
+    temp->DecreaseRef();
+    temp->killMe();
 }
 
 } /* namespace view_scilab */

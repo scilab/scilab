@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:09+0000\n"
+"PO-Revision-Date: 2016-10-19 12:59+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Generator: Launchpad (build 18282)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -400,13 +400,19 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
+#
+# File: modules/elementary_functions/macros/bit_op.sci, line: 20
 #, c-format
-msgid "%s: Wrong type for input arguments: Same types expected.\n"
-msgstr "%s: 入力引数の型が間違っています: 同じ型としてください.\n"
+msgid "%s: unknown bitwise function %s.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr "%s: 入力引数 の大きさが間違っています: 同じ大きさで指定してください.\n"
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Integers >=0 expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -426,6 +432,10 @@ msgstr ""
 "さい.\n"
 
 #, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: 入力引数 の大きさが間違っています: 同じ大きさで指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr "%s: 入力引数の大きさが間違っています: 同じ大きさで指定してください.\n"
 
@@ -442,16 +452,12 @@ msgstr ""
 "列を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-"expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 符号なし整数のスカラーまたは行列を指定"
-"してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 正の実数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Same types expected.\n"
+msgstr "%s: 入力引数の型が間違っています: 同じ型としてください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
@@ -688,13 +694,11 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 "%s:入力引数 #%d と #%d に互換性がありません: 同じ型を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Booleans, Integers, Decimals, Complexes, "
 "Polynomials, Rationals or Texts expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています:  整数, 実数, 複素数, 論理値, 多項式ま"
-"たは文字列を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -893,13 +897,9 @@ msgstr ""
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: 入力引数の大きさが間違っています: 大きさに互換性がありません.\n"
 
-#~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-#~ msgstr "%s: 入力引数の数が間違っています: 最大でも %d 個としてください.\n"
-
-#~ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-#~ msgstr "%s: 入力引数 #%d の値が間違っています: '%s'を指定してください.\n"
-
-#
-# File: macros/ndgrid.sci, line: 45
-#~ msgid "%s: Wrong type for argument #%d: Real expected.\n"
-#~ msgstr "%s: 引数 #%d のための型が不正: 実を想定します。\n"
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の型が間違っています: 符号なし整数のスカラーまたは行列を"
+#~ "指定してください.\n"

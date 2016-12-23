@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -87,11 +87,11 @@
             wからzへの伝達関数がゼロとなるようなSysの入力wを
             明らかにします.
             <literal>Sys</literal> は,
-            1入力,2出力の線形システム {A,B2,C,D2}  ( すなわち  Sys: u--&gt;(z,y) ), 
+            1入力,2出力の線形システム {A,B2,C,D2}  ( すなわち  Sys: u--&gt;(z,y) ),
             <literal>Sys</literal>
             および<literal>B1,D1</literal>で定義される以下のシステムの一部です:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 xdot =  A x + B1  w + B2  u
    z = C1 x + D11 w + D12 u
    y = C2 x + D21 w + D22 u
@@ -100,7 +100,7 @@ xdot =  A x + B1  w + B2  u
             Sysの出力は(z,y)に分割され,zはゼロ化されます.
             すなわち, 行列 CとD2は次のようになります:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 C=[C1;C2]         D2=[D12;D22]
 C1=C(zeroed,:)    D12=D2(zeroed,:)
  ]]></programlisting>
@@ -108,10 +108,10 @@ C1=C(zeroed,:)    D12=D2(zeroed,:)
             行列 <literal>D1</literal> は同様に
             <literal>D11=D1(zeroed,:)</literal>として
             <literal>D1=[D11;D21]</literal>のように分割されます.
-            制御則は u=Fx+Gw で, 
+            制御則は u=Fx+Gw で,
             閉ループシステム w--&gt;z は以下のように定義されます.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 xdot= (A+B2*F)  x + (B1 + B2*G) w
   z = (C1+D12F) x + (D11+D12*G) w
  ]]></programlisting>
@@ -127,7 +127,7 @@ xdot= (A+B2*F)  x + (B1 + B2*G) w
         <para>
             閉ループは閉ループしすてむ<literal>w--&gt;y</literal>の実現です.
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role=""><![CDATA[
 xdot= (A+B2*F)  x + (B1 + B2*G) w
   y = (C2+D22*F) x + (D21+D22*G) w
  ]]></programlisting>
@@ -137,7 +137,7 @@ xdot= (A+B2*F)  x + (B1 + B2*G) w
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 rand('seed',0);nx=6;nz=3;nu=2;ny=1;
 A=diag(1:6);A(2,2)=-7;A(5,5)=-9;B2=[1,2;0,3;0,4;0,5;0,0;0,0];
 C1=[zeros(nz,nz),eye(nz,nz)];D12=[0,1;0,2;0,3];

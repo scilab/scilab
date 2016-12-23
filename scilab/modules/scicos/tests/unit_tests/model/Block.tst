@@ -125,7 +125,7 @@ assert_checkequal(o.model.odstate, listRef);
 
 // With hypermatrices
 // Double
-testHM = hypermat([2 2 2], 1:8);
+testHM = matrix(1:8, [2 2 2]);
 listRef = list([], testHM, []);
 o.model.opar = listRef;
 assert_checkequal(o.model.opar, listRef);

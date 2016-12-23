@@ -51,7 +51,7 @@
             </note>
         </para>
     </refsection>
-    
+
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
@@ -64,7 +64,7 @@ p = (1+%i+%z)^(1:4)
 pol2str(p)
  ]]></programlisting>
     </refsection>
-    
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">

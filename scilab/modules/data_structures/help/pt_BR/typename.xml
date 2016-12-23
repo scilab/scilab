@@ -2,20 +2,20 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="typename" xml:lang="pt">
     <refnamediv>
         <refname>typename</refname>
-        <refpurpose>associa um nome ao tipo de variável</refpurpose>
+        <refpurpose>associa um nome ao tipo de variÃ¡vel</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[types [ [,names]]=typename()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>types</term>
                 <listitem>
-                    <para>vetor coluna de inteiros: os códigos dos tipos de cada tipo de
+                    <para>vetor coluna de inteiros: os cÃ³digos dos tipos de cada tipo de
                         dado definido.
                     </para>
                 </listitem>
@@ -23,7 +23,7 @@
             <varlistentry>
                 <term>names</term>
                 <listitem>
-                    <para>vetor coluna de strings: os nomes associados aos códigos de
+                    <para>vetor coluna de strings: os nomes associados aos cÃ³digos de
                         tipos.
                     </para>
                 </listitem>
@@ -31,22 +31,22 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>O overloading de funções e operadores faz uso de nomes formais
-            associados aos tipos de dados para formar o nome da função de overloading
+        <title>DescriÃ§Ã£o</title>
+        <para>O overloading de funÃ§Ãµes e operadores faz uso de nomes formais
+            associados aos tipos de dados para formar o nome da funÃ§Ã£o de overloading
             (ver overloading). <literal>typename</literal> pode ser usado para
             manipular esses nomes formais para tipos de dados "hard-coded" (os nomes
             formais de tipos de dados codificados de <literal>tlist</literal> ou
-            <literal>mlist</literal> são definidos de outra forma, ver
+            <literal>mlist</literal> sÃ£o definidos de outra forma, ver
             <literal>overloading</literal>).
         </para>
         <para>
             <literal>typename</literal>
-            retorna informações sobre tipos de dados definidos.
+            retorna informaÃ§Ãµes sobre tipos de dados definidos.
         </para>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="type">type</link>

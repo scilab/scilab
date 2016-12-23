@@ -13,6 +13,8 @@
 *
 */
 
+#include <cfloat>
+
 #include "handle_properties.hxx"
 #include "double.hxx"
 
@@ -72,7 +74,7 @@ static int getHandleIntVector(int dataset, const char* prop, int* row, int* col,
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -120,7 +122,7 @@ static int getHandleBoolVector(int dataset, const char* prop, int* row, int* col
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -169,7 +171,7 @@ static int getHandleDoubleVector(int dataset, const char* prop, int* row, int* c
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -205,7 +207,7 @@ static int getHandleString(int dataset, const char* prop, char** val)
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -237,7 +239,7 @@ static int getHandleStringVector(int dataset, const char* prop, int* row, int* c
     std::vector<int> d(dims);
     int size = getDatasetInfo(node, &complex, &dims, d.data());
 
-    if (dims == 0 || size == 0)
+    if (dims == 0 || size <= 0)
     {
         closeDataSet(node);
         return -1;
@@ -347,7 +349,7 @@ static int import_handle_generic(int dataset, int uid, int parent, const HandleP
         import_handle_children(dataset, uid);
     }
 
-    for (auto& prop : props)
+    for (auto & prop : props)
     {
         const char* name = prop.first.data();
         std::vector<int> info(prop.second);
@@ -1182,7 +1184,7 @@ static int import_handle_datatip(int dataset, int parent)
     setGraphicObjectProperty(datatip, __GO_DATATIP_INDEXES__, indexes, jni_double_vector, 2);
 
     //import "standards" properties
-    import_handle_generic(dataset, datatip, parent, DatatipHandle::getPropertyList(), true);
+    import_handle_generic(dataset, datatip, -1, DatatipHandle::getPropertyList(), true);
 
     closeList6(dataset);
     return datatip;
@@ -1230,6 +1232,76 @@ static int import_polyline_shift(int dataset, int uid, const std::string& name, 
     return uid;
 }
 
+static void updateXYDataBounds(double rect[6], int axes = -1)
+{
+    int firstPlot = 0;
+    int * piFirstPlot = &firstPlot;
+    if (axes == -1)
+    {
+        axes = getOrCreateDefaultSubwin();
+    }
+
+    getGraphicObjectProperty(axes, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
+    if (firstPlot)
+    {
+        rect[4] = 0;
+        rect[5] = 0;
+    }
+    else
+    {
+        double * dataBounds = NULL;
+        getGraphicObjectProperty(axes, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
+
+        rect[0] = Min(rect[0], dataBounds[0]);
+        rect[1] = Max(rect[1], dataBounds[1]);
+        rect[2] = Min(rect[2], dataBounds[2]);
+        rect[3] = Max(rect[3], dataBounds[3]);
+        rect[4] = dataBounds[4];
+        rect[5] = dataBounds[5];
+    }
+
+    setGraphicObjectProperty(axes, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);
+}
+
+static int mustUpdate(int axes = -1)
+{
+    int iTmp = 0;
+    int * piTmp = &iTmp;
+    if (axes == -1)
+    {
+        axes = getOrCreateDefaultSubwin();
+    }
+
+    getGraphicObjectProperty(axes, __GO_AUTO_SCALE__, jni_bool, (void **)&piTmp);
+    return iTmp;
+}
+
+void MiniMaxi(const double vect[], int n, double * const min, double * const max)
+{
+    int i = 0;
+    double _min = DBL_MAX;
+    double _max = -DBL_MAX;
+    for (; i < n; i++)
+    {
+        /*    if ( isinf(vect[i])== 0 && isnan(vect[i])==0 && vect[i] < vmin)  */
+        if (finite(vect[i]) == 1)
+        {
+            if (vect[i] < _min)
+            {
+                _min = vect[i];
+            }
+            if (vect[i] > _max)
+            {
+                _max = vect[i];
+            }
+        }
+    }
+
+    *min = _min;
+    *max = _max;
+}
+
+
 static int import_handle_polyline(int dataset, int parent)
 {
     int polyline = createGraphicObject(__GO_POLYLINE__);
@@ -1237,7 +1309,6 @@ static int import_handle_polyline(int dataset, int parent)
 
     //import "standards" properties
     import_handle_generic(dataset, polyline, parent, PolylineHandle::getPropertyList(), true);
-
 
     //x_shift
     import_polyline_shift(dataset, polyline, "x_shift", __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__, __GO_DATA_MODEL_X_COORDINATES_SHIFT__);
@@ -1301,6 +1372,17 @@ static int import_handle_polyline(int dataset, int parent)
         }
 
         setGraphicObjectProperty(polyline, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zSet, jni_int, 1);
+
+        //update parent axes data_bounds
+        if (mustUpdate())
+        {
+            double rect[6];
+
+            MiniMaxi(dataX, size, rect, rect + 1);
+            MiniMaxi(dataY, size, rect + 2, rect + 3);
+
+            updateXYDataBounds(rect);
+        }
 
         delete[] dataX;
         delete[] dataY;
@@ -1599,8 +1681,11 @@ static int import_handle_figure(int dataset, int parent)
     //force visible true FOR DEBUG ONLY
     int visible = 0;
 
-    //create a new hidden figure
-    int fig = createFigure(dockable, menubar, toolbar, default_axes, visible);
+    //create a new hidden figure without default_axes.
+    int fig = createFigure(dockable, menubar, toolbar, 0, visible);
+    //set default axes properties after creation to avoid useless axes creation
+    setGraphicObjectProperty(fig, __GO_DEFAULT_AXES__, &default_axes, jni_bool, 1);
+
     int id = getValidDefaultFigureId();
     setGraphicObjectProperty(fig, __GO_ID__, &id, jni_int, 1);
 
@@ -1733,7 +1818,7 @@ void update_link_path(int legend, Links::PathList& paths)
     getGraphicObjectProperty(legend, __GO_PARENT_AXES__, jni_int, (void**)&paxes);
     std::vector<int> links;
     //loop on child following path index
-    for (auto& path : paths)
+    for (auto & path : paths)
     {
         int current = axes;
         for (int j = 0; j < path.size(); ++j)
@@ -1842,7 +1927,7 @@ static bool export_handle_children(int parent, int uid);
 
 static bool export_handle_generic(int parent, int uid, const HandleProp& props)
 {
-    for (auto& prop : props)
+    for (auto & prop : props)
     {
         const char* name = prop.first.data();
         std::vector<int> info(prop.second);
@@ -2428,13 +2513,10 @@ static bool export_handle_uicontrol(int parent, int uid)
     getHandleIntProperty(uid, __GO_UI_STRING_SIZE__, &size);
     int col = 0;
     getHandleIntProperty(uid, __GO_UI_STRING_COLNB__, &col);
-    int row = size / col;
 
     int dims[2];
-    dims[0] = row;
-    dims[1] = col;
 
-    if (col == 0 || row == 0)
+    if (col == 0)
     {
         dims[0] = 1;
         dims[1] = 1;
@@ -2444,6 +2526,9 @@ static bool export_handle_uicontrol(int parent, int uid)
     }
     else
     {
+        int row = size / col;
+        dims[0] = row;
+        dims[1] = col;
         char** string = nullptr;
         getHandleStringVectorProperty(uid, __GO_UI_STRING__, &string);
         writeStringMatrix6(parent, "string", 2, dims, string);
@@ -3336,15 +3421,20 @@ int add_current_entity(int dataset)
     switch (type)
     {
         case __GO_FIGURE__:
+        {
             return import_handle(dataset, -1);
-            break;
+        }
         case __GO_AXES__:
         {
             //add handle to current figure
             getOrCreateDefaultSubwin();
             int iCurrentFigure = getCurrentFigure();
             return import_handle(dataset, iCurrentFigure);
-            break;
+        }
+        case __GO_COMPOUND__:
+        {
+            int axes = getOrCreateDefaultSubwin();
+            return import_handle(dataset, axes);
         }
         default:
             //add handle as child of current axes ( take care of compound ! )

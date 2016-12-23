@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - JPC
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -21,9 +21,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            Armax processes can be coded with Scilab tlist of type <literal>'ar'</literal>. 
-            <literal>armac</literal> is used to build <literal>Armax</literal> scilab object. An <literal>'ar'</literal> 
-            tlist contains the fields <literal>['a','b','d','ny','nu','sig']</literal>. 
+            Armax processes can be coded with Scilab tlist of type <literal>'ar'</literal>.
+            <literal>armac</literal> is used to build <literal>Armax</literal> scilab object. An <literal>'ar'</literal>
+            tlist contains the fields <literal>['a','b','d','ny','nu','sig']</literal>.
         </para>
         <variablelist>
             <varlistentry>
@@ -32,17 +32,17 @@
                     <para>this function creates a Scilab tlist which code an  Armax
                         process    <literal> A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal>
                     </para>
-                    <programlisting role=""><![CDATA[ 
+                    <programlisting role=""><![CDATA[
 -->ar=armac([1,2],[3,4],1,1,1,sig);
- 
--->ar('a')   
+
+-->ar('a')
  ans  =
- 
+
 !   1.    2. !
 -->ar('sig')
  ans  =
- 
-    1.  
+
+    1.
  ]]></programlisting>
                 </listitem>
             </varlistentry>
@@ -79,7 +79,7 @@
             <varlistentry>
                 <term>armax1</term>
                 <listitem>
-                    <para>armax1 is used to identify the coefficients of a 1-dimensional  ARX process    
+                    <para>armax1 is used to identify the coefficients of a 1-dimensional  ARX process
                         <literal>A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal>
                     </para>
                 </listitem>
@@ -118,17 +118,17 @@
     </refsection>
     <refsection>
         <title>Example</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Example extracted from the demo arma3.dem.sce in the cacsd module
-// Spectral power estimation 
-// ( form Sawaragi et all) 
+// Spectral power estimation
+// ( form Sawaragi et all)
 m = 18;
 a = [1,-1.3136,1.4401,-1.0919,+0.83527];
 b = [0.0,0.13137,0.023543,0.10775,0.03516];
 u = rand(1,1000,'n');
 z = arsimul(a,b,[0],0,u);
 
-//----Using macro mese 
+//----Using macro mese
 [sm,fr]=mese(z,m);
 
 //----The theoretical result
@@ -163,25 +163,25 @@ xtitle("Spectral power","frequency","spectral estimate")
             b = [0.0,0.13137,0.023543,0.10775,0.03516];
             u = rand(1,1000,'n');
             z = arsimul(a,b,[0],0,u);
-            
+
             [sm,fr]=mese(z,m);
-            
+
             function gx=gxx(z,a,b)
             w  = exp(-%i*2*%pi*z*(0:4))'
             gx = abs(b*w)^2/(abs(a*w)^2);
             endfunction
-            
+
             res=[];
             for x=fr
             res=[ res, gxx(x,a,b)];
             end
-            
+
             [arc,la,lb,sig,resid]=armax(4,4,z,u);
             res1=[];
             for x=fr
             res1=[ res1, gxx(x,la(1),lb(1))];
             end
-            
+
             plot2d([fr;fr;fr]',[20*log10(sm/sm(1));20*log10(res/res(1));20*log10(res1/res1(1))]',[2,1,-1])
             legend(["Using macro mese";"Theoretical value";"Arma identification"])
             xtitle("Spectral power","frequency","spectral estimate")

@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -19,7 +19,7 @@
     <property name="library.name" value="${library.javasci.name}"/>
     <property name="library.title" value="Scilab Java API"/>
     <property name="junit.forkMode" value="perTest"/>
-    
+
     <description>
         Build the Java/Scilab connecter (javasci) module
     </description>
@@ -28,7 +28,7 @@
         <mkdir dir="${classes.dir}/v2"/>
         <javac srcdir="src/java/" destdir="${classes.dir}/v2" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" includes="org/**/*.java" source="6" target="6"/>
     </target>
-    
+
     <!-- Create the jar -->
     <target name="jar" description="Build the jar file" depends="compile">
         <manifestclasspath property="manifest.classpath" jarfile="${build.jar.dir}/${library.name}">

@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -44,9 +44,9 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf()
-a1=newaxes(); 
+a1=newaxes();
 a1.axes_bounds=[0,0,1.0,0.5];
 t=0:0.1:20;
 plot(t,acosh(t),'r')
@@ -62,9 +62,9 @@ sca(a2); //make second axes current
 legend('sinh')
  ]]></programlisting>
         <scilab:image>
-            
+
             clf()
-            a1=newaxes(); 
+            a1=newaxes();
             a1.axes_bounds=[0,0,1.0,0.5];
             t=0:0.1:20;
             plot(t,acosh(t),'r')
@@ -75,11 +75,11 @@ legend('sinh')
             sca(a1);
             plot(t,asinh(t),'g')
             legend(['acosh','asinh'])
-            sca(a2); 
+            sca(a2);
             legend('sinh')
-            
+
         </scilab:image>
-        
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>

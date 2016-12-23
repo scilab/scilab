@@ -33,8 +33,6 @@ function M=%i_i_s(varargin)
         else
             def=iconvert(0,inttype(varargin($-1)))
         end
-        M=mlist(["hm","dims","entries"],int32(size(M)),M(:))
-        varargin($)=M;
         M=generic_i_hm(def,varargin(:))
     else //type conversion
         M=varargin($)
