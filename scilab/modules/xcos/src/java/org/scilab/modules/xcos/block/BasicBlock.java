@@ -54,6 +54,7 @@ import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.EditFormatAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
+import org.scilab.modules.xcos.block.actions.AutoPositionSplitBlockAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
@@ -753,6 +754,14 @@ public class BasicBlock extends XcosCell implements Serializable {
         alignMenu.add(AlignBlockActionBottom.createMenu(graph));
         menuList.put(AlignBlockAction.class, alignMenu);
         format.add(alignMenu);
+        /*--- */
+        format.addSeparator();
+        /*--- */
+        MenuItem sbapMenuItem = AutoPositionSplitBlockAction.createMenu(graph);
+        sbapMenuItem.setText(XcosMessages.BLOCK_AUTO_POSITION_SPLIT_BLOCK_CONTEXTUAL);
+        sbapMenuItem.setEnabled(false);
+        menuList.put(AutoPositionSplitBlockAction.class, sbapMenuItem);
+        format.add(sbapMenuItem);
         /*--- */
         format.addSeparator();
         /*--- */

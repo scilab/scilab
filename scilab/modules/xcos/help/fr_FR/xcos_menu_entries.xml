@@ -813,6 +813,38 @@
             </listitem>
             <listitem>
                 <para>
+                    <emphasis role="bold">Format : Auto-positionnement</emphasis>
+                </para>
+                <para/>
+                <mediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../gui/xcos_menu_entries/fr_FR/xcos_menu_format_auto_position.png"/>
+                    </imageobject>
+                </mediaobject>
+                <para/>
+                <para>
+                    Ce menu permet de modifier automatiquement la position des blocs.
+                </para>
+                <para>
+                    Sélectionner le(s) bloc(s) puis le menu adéquat ou utiliser le raccourci
+                    (<emphasis>P</emphasis>).
+                    La liste suivante montre les résultats obtenus.
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            Bloc split (<emphasis>P</emphasis>)
+                        </para>
+                        <mediaobject>
+                            <imageobject>
+                                <imagedata fileref="../images/xcos_menu_entries/fr_FR/xcos_auto_position_split_block_fr_FR.png"/>
+                            </imageobject>
+                        </mediaobject>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+            <listitem>
+                <para>
                     <emphasis role="bold">Format : Style de liaison</emphasis>
                 </para>
                 <para/>
@@ -845,6 +877,14 @@
                         <mediaobject>
                             <imageobject>
                                 <imagedata fileref="../images/xcos_menu_entries/fr_FR/xcos_link_vertical_fr_FR.png"/>
+                            </imageobject>
+                        </mediaobject>
+                    </listitem>
+                    <listitem>
+                        <para>Optimal</para>
+                        <mediaobject>
+                            <imageobject>
+                                <imagedata fileref="../images/xcos_menu_entries/fr_FR/xcos_link_optimal_fr_FR.png"/>
                             </imageobject>
                         </mediaobject>
                     </listitem>

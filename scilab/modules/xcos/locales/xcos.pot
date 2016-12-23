@@ -1062,6 +1062,21 @@ msgid "Text Color"
 msgstr ""
 
 #
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 
+msgid "Auto-Position Block"
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 
+msgid "Split Block"
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 
+msgid "Auto-Position Split Block"
+msgstr ""
+
+#
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 209
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1831
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1979
@@ -1087,6 +1102,12 @@ msgstr ""
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1724
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1766
 msgid "Vertical"
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 
+# File: modules/xcos/src/xcos_fake_xml.c, line: 
+msgid "Optimal"
 msgstr ""
 
 #
