@@ -336,7 +336,7 @@ struct objs
             else
             {
                 controller.referenceObject(update.adaptee->id());
-                if (deletion && (children[update.index] == ScicosID() && update.adaptee != nullptr))
+                if (deletion && children[update.index] == ScicosID())
                 {
                     // This object is the one being deleted in the diagram:
                     //  - we are in effective delete mode
