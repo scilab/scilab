@@ -142,7 +142,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 
                     try
                     {
-                        //in this case of calling, we can return only one values
+                        //in this case of calling, we can return only one value
                         int iSaveExpectedSize = getExpectedSize();
                         setExpectedSize(1);
 

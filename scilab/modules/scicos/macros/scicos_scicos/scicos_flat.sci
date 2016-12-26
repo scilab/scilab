@@ -67,7 +67,7 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
     if argn(2)<=1 then ksup=0;end //used for recursion
     if ksup==0 then   // main scheme
         MaxBlock=countblocks(scs_m);
-        //last created fictitious block (clock split,clock sum,super_blocks, superbloc))
+        //last created fictitious block (clock split,clock sum, superblocks)
         cur_fictitious=MaxBlock
         path=[];       // for delete_unconnected
         scs_m_s=scs_m ;// for delete_unconnected
@@ -199,8 +199,8 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
                     sco_mat=[sco_mat;[string(nb) "-1" "scicostimeclk0" "1" "10"]]
                 end
             elseif o.model.sim=="super"|o.model.sim=="csuper" then
-                path=[path k] //superbloc path in the hierarchy
-                //replace superbloc by a set of fictitious blocks (one per port)
+                path=[path k] //superblock path in the hierarchy
+                //replace superblock by a set of fictitious blocks (one per port)
                 //and reconnect links connected to the superblock to these
                 //ficitious blocks
                 Pinds=[];if exists("Pind") then Pinds=Pind,end
@@ -316,7 +316,7 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
                 sco_mat=[sco_mat;scop_mat]
                 nbs=size(corinvs)
 
-                //catenate superbloc data with current data
+                //catenate superblock data with current data
 
                 f=find(lt(:,1)>0&lt(:,1)<=nbs);if f<>[] then lt(f,1)=lt(f,1)+nb,end
                 links_table=[links_table;lt]

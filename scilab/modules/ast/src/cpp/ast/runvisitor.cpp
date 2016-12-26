@@ -929,7 +929,7 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
             CoverageInstance::stopChrono((void*)&e);
             throw InternalError(_W("With input arguments, return / resume expects output arguments.\n"), 999, e.getLocation());
         }
-        //in case of CallExp, we can return only one values
+        //in case of CallExp, we can return only one value
         int iSaveExpectedSize = getExpectedSize();
         setExpectedSize(1);
         try

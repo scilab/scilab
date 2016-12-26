@@ -129,7 +129,7 @@ function y = bitget(x,pos)
 
         if or(pos<=32) then
             mask( pos<=32 )  = uint32( 2^(pos(pos<=32) -1 ));
-            ytemp( pos<=32 ) = uint32( x(pos<=32) - double(uint32(x(pos<=32)/a)) * a ); // permet de récupérer les 32 bits de poid faible
+            ytemp( pos<=32 ) = uint32( x(pos<=32) - double(uint32(x(pos<=32)/a)) * a ); // permet de récupérer les 32 bits de poids faible
         end
 
         if or(pos>32) then

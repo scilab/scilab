@@ -32,7 +32,7 @@ int checkOdeError(int meth, int istate)
         {
             if (istate == -7)
             {
-                sciprint(_("Work space insufficient to finish (see messages).\n"));
+                sciprint(_("Insufficient Work space to finish (see messages).\n"));
                 return 1;
             }
         }
@@ -41,12 +41,12 @@ int checkOdeError(int meth, int istate)
         {
             if (istate == -1)
             {
-                sciprint(_("Excess work done on this call (perhaps wrong jacobian type).\n"));
+                sciprint(_("Excessive work done on this call (perhaps wrong jacobian type).\n"));
                 return 1;
             }
             else if (istate == -2)
             {
-                sciprint(_("Excess accuracy requested (tolerances too small).\n"));
+                sciprint(_("Excesive accuracy requested (tolerances too small).\n"));
                 return 1;
             }
             else if (istate == -3)
@@ -135,7 +135,7 @@ int checkOdeError(int meth, int istate)
                 }
                 case 8:
                 {
-                    sciprint(_("invalid input parameters : atol and rtol must be greater than 0.\n"));
+                    sciprint(_("Invalid input parameters : atol and rtol must be greater than 0.\n"));
                     return 1;
                 }
                 default :
@@ -187,7 +187,7 @@ int checkError(int idid, std::string strName)
         {
             if (getWarningMode())
             {
-                sciprint(_("Too many steps necessary to reached next required time discretization point. Change discretisation of time vector t or decrease accuracy.\n"));
+                sciprint(_("Too many steps necessary to reach next required time discretization point. Change discretisation of time vector t or decrease accuracy.\n"));
             }
             return 2;
         }

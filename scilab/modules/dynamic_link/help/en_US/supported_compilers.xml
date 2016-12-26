@@ -43,7 +43,7 @@
         <title>GNU/Linux</title>
         <para>On GNU/Linux, GNU compilers (gcc, g++ and gfortran) are packaged in all distributions.</para>
         <para>
-            While they are not official supported, Scilab supports <ulink url="http://clang.llvm.org/">LLVM/clang</ulink> and Intel compilers.
+            While they are not officially supported, Scilab supports <ulink url="http://clang.llvm.org/">LLVM/clang</ulink> and Intel compilers.
         </para>
     </refsection>
     <refsection>

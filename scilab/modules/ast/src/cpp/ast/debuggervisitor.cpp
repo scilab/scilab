@@ -42,7 +42,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
         return;
     }
 
-    for (const auto& exp : e.getExps())
+    for (const auto & exp : e.getExps())
     {
         if (e.isBreakable())
         {
@@ -91,7 +91,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                     debugger::Breakpoints bps = manager->getAllBreakPoint();
                     std::wstring functionName = lWhereAmI.back().m_name;
                     int i = -1;
-                    for (const auto& bp : bps)
+                    for (const auto & bp : bps)
                     {
                         ++i;
                         if (bp->isEnable() == false)
@@ -204,7 +204,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
 
                     try
                     {
-                        //in this case of calling, we can return only one values
+                        //in this case of calling, we can return only one value
                         int iSaveExpectedSize = getExpectedSize();
                         setExpectedSize(1);
 

@@ -57,7 +57,7 @@ function [ok,tt,dep_ut]=genfunc1(tt,inp,out,nci,nco,nx,nz,nrp,type_)
             " "
             "Enter Scilab instructions defining";
             w;
-            "as a functions of "+depp],txt1)
+            "as a function of "+depp],txt1)
             if txt1==[] then return,end
             // check if txt defines y from u
             mac=null();

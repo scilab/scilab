@@ -228,7 +228,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>&lt;"markerEdgeColor",value&gt; or &lt;"markerForground",value&gt;</term>
+                <term>&lt;"markerEdgeColor",value&gt; or &lt;"markerForeground",value&gt;</term>
                 <listitem>
                     <para>
                         Specify the foreground color of the marker.
