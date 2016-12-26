@@ -104,27 +104,22 @@ public class XcosRoute {
         double srcy = 0;
         double tgtx = 0;
         double tgty = 0;
-        mxPoint sourcePoint = new mxPoint(srcx, srcy);
-        mxPoint targetPoint = new mxPoint(tgtx, tgty);
+        mxCellState state;
         // if source is a port, get a new start point.
-        if (sourceCell instanceof BasicPort) {
-            mxCellState state = graph.getView().getState(sourceCell);
-            if (state != null) {
-                srcx = state.getCenterX();
-                srcy = state.getCenterY();
-                BasicPort sourcePort = (BasicPort) sourceCell;
-                sourcePortOrien = getPortRelativeOrientation(sourcePort, graph);
-            }
+        state = graph.getView().getState(sourceCell);
+        if (state != null) {
+            srcx = state.getCenterX();
+            srcy = state.getCenterY();
+            BasicPort sourcePort = (BasicPort) sourceCell;
+            sourcePortOrien = getPortRelativeOrientation(sourcePort, graph);
         }
         // if target is a port, get a new end point.
-        if (targetCell instanceof BasicPort) {
-            mxCellState state = graph.getView().getState(targetCell);
-            if (state != null) {
-                tgtx = state.getCenterX();
-                tgty = state.getCenterY();
-                BasicPort targetPort = (BasicPort) targetCell;
-                targetPortOrien = getPortRelativeOrientation(targetPort, graph);
-            }
+        state = graph.getView().getState(targetCell);
+        if (state != null) {
+            tgtx = state.getCenterX();
+            tgty = state.getCenterY();
+            BasicPort targetPort = (BasicPort) targetCell;
+            targetPortOrien = getPortRelativeOrientation(targetPort, graph);
         }
         // if source belongs to a SplitBlock
         if (sourceCell.getParent() instanceof SplitBlock) {
@@ -162,19 +157,19 @@ public class XcosRoute {
                 targetPortOrien = this.getNewOrientation(targetCell, tgtx, tgty, sourceCell, srcx, srcy, graph);
             }
         }
-        sourcePoint = getPointAwayPort(sourceCell, srcx, srcy, sourcePortOrien, allCells, graph);
-        targetPoint = getPointAwayPort(targetCell, tgtx, tgty, targetPortOrien, allCells, graph);
+        mxPoint sourcePoint = getPointAwayPort(sourceCell, srcx, srcy, sourcePortOrien, allCells, graph);
+        mxPoint targetPoint = getPointAwayPort(targetCell, tgtx, tgty, targetPortOrien, allCells, graph);
         allCells = Arrays.copyOf(allCells, allCells.length + 2);
         allCells[allCells.length - 2] = sourceCell;
         allCells[allCells.length - 1] = targetCell;
         List<mxPoint> list = XcosRouteUtils.getSimpleRoute(sourcePoint, sourcePortOrien, targetPoint,
-                targetPortOrien, allCells);
+                             targetPortOrien, allCells);
         if (list != null && list.size() > 0) {
             listRoute.addAll(list);
             return true;
         } else {
             list = XcosRouteUtils.getComplexRoute(sourcePoint, sourcePortOrien, targetPoint, targetPortOrien,
-                    allCells, XcosRouteUtils.TRY_TIMES);
+                                                  allCells, XcosRouteUtils.TRY_TIMES);
             if (list != null && list.size() > 0) {
                 listRoute.addAll(list);
                 return true;
@@ -222,45 +217,45 @@ public class XcosRoute {
      * @return
      */
     private mxPoint getPointAwayPort(mxICell port, double portX, double portY, Orientation orien,
-            Object[] allCells, XcosDiagram graph) {
+                                     Object[] allCells, XcosDiagram graph) {
         mxPoint point = new mxPoint(portX, portY);
         double distance = XcosRouteUtils.BEAUTY_AWAY_DISTANCE;
         if (port.getParent() instanceof SplitBlock) {
             distance = XcosRouteUtils.SPLITBLOCK_AWAY_DISTANCE;
         }
         switch (orien) {
-        case EAST:
-            point.setX(point.getX() + distance);
-            while (Math.abs(point.getX() - portX) > XcosRouteUtils.BEAUTY_AWAY_REVISION
-                    && (XcosRouteUtils.checkObstacle(portX, portY, point.getX(), point.getY(), allCells)
+            case EAST:
+                point.setX(point.getX() + distance);
+                while (Math.abs(point.getX() - portX) > XcosRouteUtils.BEAUTY_AWAY_REVISION
+                        && (XcosRouteUtils.checkObstacle(portX, portY, point.getX(), point.getY(), allCells)
                             || XcosRouteUtils.checkPointInBlocks(point.getX(), point.getY(), allCells))) {
-                point.setX(point.getX() - XcosRouteUtils.BEAUTY_AWAY_REVISION);
-            }
-            break;
-        case SOUTH:
-            point.setY(point.getY() + distance);
-            while (Math.abs(point.getY() - portY) > XcosRouteUtils.BEAUTY_AWAY_REVISION
-                    && (XcosRouteUtils.checkObstacle(portX, portY, point.getX(), point.getY(), allCells)
+                    point.setX(point.getX() - XcosRouteUtils.BEAUTY_AWAY_REVISION);
+                }
+                break;
+            case SOUTH:
+                point.setY(point.getY() + distance);
+                while (Math.abs(point.getY() - portY) > XcosRouteUtils.BEAUTY_AWAY_REVISION
+                        && (XcosRouteUtils.checkObstacle(portX, portY, point.getX(), point.getY(), allCells)
                             || XcosRouteUtils.checkPointInBlocks(point.getX(), point.getY(), allCells))) {
-                point.setY(point.getY() - XcosRouteUtils.BEAUTY_AWAY_REVISION);
-            }
-            break;
-        case WEST:
-            point.setX(point.getX() - distance);
-            while (Math.abs(point.getX() - portX) > XcosRouteUtils.BEAUTY_AWAY_REVISION
-                    && (XcosRouteUtils.checkObstacle(portX, portY, point.getX(), point.getY(), allCells)
+                    point.setY(point.getY() - XcosRouteUtils.BEAUTY_AWAY_REVISION);
+                }
+                break;
+            case WEST:
+                point.setX(point.getX() - distance);
+                while (Math.abs(point.getX() - portX) > XcosRouteUtils.BEAUTY_AWAY_REVISION
+                        && (XcosRouteUtils.checkObstacle(portX, portY, point.getX(), point.getY(), allCells)
                             || XcosRouteUtils.checkPointInBlocks(point.getX(), point.getY(), allCells))) {
-                point.setX(point.getX() + XcosRouteUtils.BEAUTY_AWAY_REVISION);
-            }
-            break;
-        case NORTH:
-            point.setY(point.getY() - distance);
-            while (Math.abs(point.getY() - portY) > XcosRouteUtils.BEAUTY_AWAY_REVISION
-                    && (XcosRouteUtils.checkObstacle(portX, portY, point.getX(), point.getY(), allCells)
+                    point.setX(point.getX() + XcosRouteUtils.BEAUTY_AWAY_REVISION);
+                }
+                break;
+            case NORTH:
+                point.setY(point.getY() - distance);
+                while (Math.abs(point.getY() - portY) > XcosRouteUtils.BEAUTY_AWAY_REVISION
+                        && (XcosRouteUtils.checkObstacle(portX, portY, point.getX(), point.getY(), allCells)
                             || XcosRouteUtils.checkPointInBlocks(point.getX(), point.getY(), allCells))) {
-                point.setY(point.getY() + XcosRouteUtils.BEAUTY_AWAY_REVISION);
-            }
-            break;
+                    point.setY(point.getY() + XcosRouteUtils.BEAUTY_AWAY_REVISION);
+                }
+                break;
         }
         return point;
     }
@@ -316,7 +311,7 @@ public class XcosRoute {
      * @return
      */
     private Orientation getNewOrientation(mxICell cell, double cx, double cy, mxICell otherCell, double ox,
-            double oy, XcosDiagram graph) {
+                                          double oy, XcosDiagram graph) {
         Orientation orientation = Orientation.EAST;
         if (cell.getParent() instanceof SplitBlock) {
             SplitBlock block = (SplitBlock) cell.getParent();

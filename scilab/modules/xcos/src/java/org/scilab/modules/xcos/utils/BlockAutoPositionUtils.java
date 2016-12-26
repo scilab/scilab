@@ -89,6 +89,9 @@ public abstract class BlockAutoPositionUtils {
         while ((port != null) && (port.getParent() instanceof SplitBlock)) {
             port = getSplitInLinkPort(((SplitBlock) port.getParent()));
         }
+        if (port == null) {
+            return null;
+        }
         mxICell edge = port.getEdgeAt(0);
         mxICell cell = ((mxCell) edge).getTarget();
         return ((SplitBlock) cell.getParent());
@@ -352,12 +355,12 @@ public abstract class BlockAutoPositionUtils {
                 || (in1.getEdgeAt(0) == out22.getEdgeAt(0))) {
             return in1;
         } else if ((out11.getEdgeAt(0) == in2.getEdgeAt(0))
-                || (out11.getEdgeAt(0) == out21.getEdgeAt(0))
-                || (out11.getEdgeAt(0) == out22.getEdgeAt(0))) {
+                   || (out11.getEdgeAt(0) == out21.getEdgeAt(0))
+                   || (out11.getEdgeAt(0) == out22.getEdgeAt(0))) {
             return out11;
         } else if ((out12.getEdgeAt(0) == in2.getEdgeAt(0))
-                || (out12.getEdgeAt(0) == out21.getEdgeAt(0))
-                || (out12.getEdgeAt(0) == out22.getEdgeAt(0))) {
+                   || (out12.getEdgeAt(0) == out21.getEdgeAt(0))
+                   || (out12.getEdgeAt(0) == out22.getEdgeAt(0))) {
             return out12;
         }
         return null;
@@ -643,8 +646,8 @@ public abstract class BlockAutoPositionUtils {
                             mxPoint p23 = list2.get(n + 2);
                             if (x11 == x12) { // the segment is vertical
                                 boolean flag2 = !XcosRouteUtils.checkObstacle(p20.getX(), p20.getY(), x11, y21, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x11, y21, x11, y22, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x11, y22, p23.getX(), p23.getY(), allObstacles);
+                                                && !XcosRouteUtils.checkObstacle(x11, y21, x11, y22, allObstacles)
+                                                && !XcosRouteUtils.checkObstacle(x11, y22, p23.getX(), p23.getY(), allObstacles);
                                 // if the new points of the segment was in one of the ports
                                 for (mxGeometry geometry : listGeo) {
                                     if (XcosRouteUtils.checkPointInGeometry(x11, y21, geometry)
@@ -659,8 +662,8 @@ public abstract class BlockAutoPositionUtils {
                                 }
                             } else if (y11 == y12) { // the segment is horizontal
                                 boolean flag2 = !XcosRouteUtils.checkObstacle(p20.getX(), p20.getY(), x21, y11, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x21, y11, x22, y11, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x22, y11, p23.getX(), p23.getY(), allObstacles);
+                                                && !XcosRouteUtils.checkObstacle(x21, y11, x22, y11, allObstacles)
+                                                && !XcosRouteUtils.checkObstacle(x22, y11, p23.getX(), p23.getY(), allObstacles);
                                 if (flag2) {
                                     p21.setY(y11);
                                     p22.setY(y11);
@@ -672,8 +675,8 @@ public abstract class BlockAutoPositionUtils {
                             mxPoint p13 = list1.get(m + 2);
                             if (x11 == x12) { // the segment is vertical
                                 boolean flag1 = !XcosRouteUtils.checkObstacle(p10.getX(), p10.getY(), x21, y11, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x21, y11, x21, y12, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x21, y12, p13.getX(), p13.getY(), allObstacles);
+                                                && !XcosRouteUtils.checkObstacle(x21, y11, x21, y12, allObstacles)
+                                                && !XcosRouteUtils.checkObstacle(x21, y12, p13.getX(), p13.getY(), allObstacles);
                                 for (mxGeometry geometry : listGeo) {
                                     if (XcosRouteUtils.checkPointInGeometry(x21, y11, geometry)
                                             || XcosRouteUtils.checkPointInGeometry(x21, y12, geometry)) {
@@ -687,8 +690,8 @@ public abstract class BlockAutoPositionUtils {
                                 }
                             } else if (y11 == y12) { // the segment is horizontal
                                 boolean flag1 = !XcosRouteUtils.checkObstacle(p10.getX(), p10.getY(), x11, y21, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x11, y21, x12, y21, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x12, y21, p13.getX(), p13.getY(), allObstacles);
+                                                && !XcosRouteUtils.checkObstacle(x11, y21, x12, y21, allObstacles)
+                                                && !XcosRouteUtils.checkObstacle(x12, y21, p13.getX(), p13.getY(), allObstacles);
                                 if (flag1) {
                                     p11.setY(y21);
                                     p12.setY(y21);
@@ -702,11 +705,11 @@ public abstract class BlockAutoPositionUtils {
                             mxPoint p13 = list1.get(m + 2);
                             if (x11 == x12) { // the segment is vertical
                                 boolean flag2 = !XcosRouteUtils.checkObstacle(p20.getX(), p20.getY(), x11, y21, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x11, y21, x11, y22, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x11, y22, p23.getX(), p23.getY(), allObstacles);
+                                                && !XcosRouteUtils.checkObstacle(x11, y21, x11, y22, allObstacles)
+                                                && !XcosRouteUtils.checkObstacle(x11, y22, p23.getX(), p23.getY(), allObstacles);
                                 boolean flag1 = !XcosRouteUtils.checkObstacle(p10.getX(), p10.getY(), x21, y11, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x21, y11, x21, y12, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x21, y12, p13.getX(), p13.getY(), allObstacles);
+                                                && !XcosRouteUtils.checkObstacle(x21, y11, x21, y12, allObstacles)
+                                                && !XcosRouteUtils.checkObstacle(x21, y12, p13.getX(), p13.getY(), allObstacles);
                                 for (mxGeometry geometry : listGeo) {
                                     if (XcosRouteUtils.checkPointInGeometry(x11, y21, geometry)
                                             || XcosRouteUtils.checkPointInGeometry(x11, y22, geometry)) {
@@ -729,11 +732,11 @@ public abstract class BlockAutoPositionUtils {
                                 }
                             } else if (y11 == y12) { // the segment is horizontal
                                 boolean flag2 = !XcosRouteUtils.checkObstacle(p20.getX(), p20.getY(), x21, y11, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x21, y11, x22, y11, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x22, y11, p23.getX(), p23.getY(), allObstacles);
+                                                && !XcosRouteUtils.checkObstacle(x21, y11, x22, y11, allObstacles)
+                                                && !XcosRouteUtils.checkObstacle(x22, y11, p23.getX(), p23.getY(), allObstacles);
                                 boolean flag1 = !XcosRouteUtils.checkObstacle(p10.getX(), p10.getY(), x11, y21, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x11, y21, x12, y21, allObstacles)
-                                        && !XcosRouteUtils.checkObstacle(x12, y21, p13.getX(), p13.getY(), allObstacles);
+                                                && !XcosRouteUtils.checkObstacle(x11, y21, x12, y21, allObstacles)
+                                                && !XcosRouteUtils.checkObstacle(x12, y21, p13.getX(), p13.getY(), allObstacles);
                                 for (mxGeometry geometry : listGeo) {
                                     if (XcosRouteUtils.checkPointInGeometry(x21, y11, geometry)
                                             || XcosRouteUtils.checkPointInGeometry(x22, y11, geometry)) {
@@ -784,17 +787,13 @@ public abstract class BlockAutoPositionUtils {
 
         // get the route and add all points in the route including source and target.
         List<mxPoint> list = new ArrayList<mxPoint>(0);
-        if (source != null) {
-            list.add(getPortPosition(source));
-        }
+        list.add(getPortPosition(source));
         if (util.computeRoute(source, target, allOtherCells, graph)) {
             for (mxPoint point : util.getNonRedundantPoints()) {
                 list.add(new mxPoint(Math.round(point.getX()), Math.round(point.getY())));
             }
         }
-        if (target != null) {
-            list.add(getPortPosition(target));
-        }
+        list.add(getPortPosition(target));
         return list;
     }
 
