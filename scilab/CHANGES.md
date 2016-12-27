@@ -374,6 +374,7 @@ Bug Fixes
 * [#13794](http://bugzilla.scilab.org/show_bug.cgi?id=13794): Added polyline property "datatip_display_mode", allowing datatips to be displayed "always", "mouseclick" or "mouseover".
 * [#13166](http://bugzilla.scilab.org/show_bug.cgi?id=13166): `l` and `b` endian flags used with `mget` and `mgeti` were sticky
 * [#13375](http://bugzilla.scilab.org/show_bug.cgi?id=13375): If (Max - Min) == 1, then the multiple selection is not allowed.
+* [#13401](http://bugzilla.scilab.org/show_bug.cgi?id=13401): Scilab became a ghost process when it was closed while an input() or halt() instruction was being performed in a callback of an undockable figure.
 * [#13583](http://bugzilla.scilab.org/show_bug.cgi?id=13583): `getd` loading a script including a `clear` instruction yielded an error
 * [#13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597): `help format` claimed setting a number of digits instead of characters
 * [#13613](http://bugzilla.scilab.org/show_bug.cgi?id=13613): `isdef(name, 'l')` produced wrong output.
