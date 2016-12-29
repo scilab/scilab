@@ -601,19 +601,22 @@ function %h_p(h)
             "parent: "+h.parent.type
             "children: "+fmtchildren(h.children)
             "visible = "+sci2exp(h.visible)
-            "data = "+sci2exp(h.data)
-            "box_mode = "+sci2exp(h.box_mode)
-            "label_mode = "+sci2exp(h.label_mode)
-            "orientation = "+sci2exp(h.orientation)
-            "display_components = "+sci2exp(h.display_components)
-            "auto_orientation = "+sci2exp(h.auto_orientation)
             "interp_mode = "+sci2exp(h.interp_mode)
+            "auto_orientation = "+sci2exp(h.auto_orientation)
+            "orientation = "+sci2exp(h.orientation)
+            "label_mode = "+sci2exp(h.label_mode)
+            "data = "+sci2exp(h.data)
+            "display_components = "+sci2exp(h.display_components)
             "display_function = "+sci2exp(h.display_function)
-            "detached_position = "+sci2exp(h.detached_position)
+            "text = " + sci2exp(h.text)
             "font_foreground = "+string(h.font_foreground)
+            "font_style = "+string(h.font_style)
+            "font_size = "+string(h.font_size)
+            "box_mode = "+sci2exp(h.box_mode)
+            "detached_position = "+sci2exp(h.detached_position)
+            "line_style = "+string(h.line_style)
             "foreground = "+string(h.foreground)
             "background = "+string(h.background)
-            "line_style = "+string(h.line_style)
             "mark_mode = "+sci2exp(h.mark_mode)
             "mark_style = "+sci2exp(h.mark_style)
             "mark_size_unit = "+sci2exp(h.mark_size_unit)
@@ -664,6 +667,7 @@ function %h_p(h)
             "auto_position = "+sci2exp(h.auto_position)
             "position = "+sci2exp(h.position,0)
             "auto_rotation = "+sci2exp(h.auto_rotation)
+            "user_data = "+fmtuser_data(h.user_data)
             "tag = "+sci2exp(h.tag)
             ]
 
@@ -694,15 +698,7 @@ function %h_p(h)
 
             u=h.user_data
 
-            if size(Data) == 5 then // There is a color
-                if size(Data.color,"*") > 10 then
-                    dcolor="matrix "+strcat(string(size(Data.color)),"x")
-                else
-                    dcolor=sci2exp(Data.color,0)
-                    if length(dcolor)>70 then dcolor="matrix "+strcat(string(size(Data.color)),"x"),end
-                end
-
-                t=[t;
+            t=[t;
                 "parent: "+h.parent.type
                 "children: "+fmtchildren(h.children)
                 "visible = "+sci2exp(h.visible)
@@ -718,51 +714,31 @@ function %h_p(h)
                 "data.x = "+dx
                 "data.y = "+dy
                 "data.z "+dz
-                "data.color (not used) = "+dcolor
-                "color_mode = "+string(h.color_mode)
-                "color_flag = "+sci2exp(h.color_flag,0)
-                "hiddencolor = "+string(h.hiddencolor)
-                "clip_state = "+sci2exp(h.clip_state)
-                "clip_box = "+sci2exp(h.clip_box,0)
-                "ambient_color = "+sci2exp(h.ambient_color)
-                "diffuse_color = "+sci2exp(h.diffuse_color)
-                "specular_color = "+sci2exp(h.specular_color)
-                "use_color_material = "+sci2exp(h.use_color_material)
-                "material_shininess = "+sci2exp(h.material_shininess)
-                "user_data = "+fmtuser_data(u)
-                "tag = "+sci2exp(h.tag)
                 ]
-            else
-                t=[t;
-                "parent: "+h.parent.type
-                "children: "+fmtchildren(h.children)
-                "visible = "+sci2exp(h.visible)
-                "surface_mode = "+sci2exp(h.surface_mode)
-                "foreground = "+string(h.foreground)
-                "thickness = "+string(h.thickness)
-                "mark_mode = "+sci2exp(h.mark_mode)
-                "mark_style = "+sci2exp(h.mark_style)
-                "mark_size_unit = "+sci2exp(h.mark_size_unit)
-                "mark_size = "+string(h.mark_size)
-                "mark_foreground = "+string(h.mark_foreground)
-                "mark_background = "+string(h.mark_background)
-                "data.x = "+dx
-                "data.y = "+dy
-                "data.z = "+dz
-                "color_mode = "+string(h.color_mode)
-                "color_flag = "+sci2exp(h.color_flag,0)
-                "hiddencolor = "+string(h.hiddencolor)
-                "clip_state = "+sci2exp(h.clip_state)
-                "clip_box = "+sci2exp(h.clip_box,0)
-                "ambient_color = "+sci2exp(h.ambient_color)
-                "diffuse_color = "+sci2exp(h.diffuse_color)
-                "specular_color = "+sci2exp(h.specular_color)
-                "use_color_material = "+sci2exp(h.use_color_material)
-                "material_shininess = "+sci2exp(h.material_shininess)
-                "user_data = "+fmtuser_data(u)
-                "tag = "+sci2exp(h.tag)
-                ]
+            if size(Data) == 5 then // There is a color
+                if size(Data.color,"*") > 10 then
+                    dcolor="matrix "+strcat(string(size(Data.color)),"x")
+                else
+                    dcolor=sci2exp(Data.color,0)
+                    if length(dcolor)>70 then dcolor="matrix "+strcat(string(size(Data.color)),"x"),end
+                end
+
+                t=[t; "data.color (not used) = "+dcolor ]
             end
+            t=[t;
+                "color_mode = "+string(h.color_mode)
+                "color_flag = "+sci2exp(h.color_flag,0)
+                "hiddencolor = "+string(h.hiddencolor)
+                "clip_state = "+sci2exp(h.clip_state)
+                "clip_box = "+sci2exp(h.clip_box,0)
+                "ambient_color = "+sci2exp(h.ambient_color)
+                "diffuse_color = "+sci2exp(h.diffuse_color)
+                "specular_color = "+sci2exp(h.specular_color)
+                "use_color_material = "+sci2exp(h.use_color_material)
+                "material_shininess = "+sci2exp(h.material_shininess)
+                "user_data = "+fmtuser_data(u)
+                "tag = "+sci2exp(h.tag)
+                ]
 
             // Fac3d
             // =====================================================================
@@ -792,15 +768,7 @@ function %h_p(h)
 
             u=h.user_data;
 
-            if size(Data) == 5 then // There is a color
-                if size(Data.color,"*") > 10 then
-                    dcolor="matrix "+strcat(string(size(Data.color)),"x")
-                else
-                    dcolor=sci2exp(Data.color,0)
-                    if length(dcolor)>70 then dcolor="matrix "+strcat(string(size(Data.color)),"x"),end
-                end
-
-                t=[t;
+            t=[t;
                 "parent: "+h.parent.type
                 "children: "+fmtchildren(h.children)
                 "visible = "+sci2exp(h.visible)
@@ -816,7 +784,17 @@ function %h_p(h)
                 "data.x = "+dx
                 "data.y = "+dy
                 "data.z = "+dz
-                "data.color = "+dcolor
+                ]
+            if size(Data) == 5 then // There is a color
+                if size(Data.color,"*") > 10 then
+                    dcolor="matrix "+strcat(string(size(Data.color)),"x")
+                else
+                    dcolor=sci2exp(Data.color,0)
+                    if length(dcolor)>70 then dcolor="matrix "+strcat(string(size(Data.color)),"x"),end
+                end
+                t=[t; "data.color = "+dcolor]
+            end
+            t=[t;
                 "color_mode = "+string(h.color_mode)
                 "color_flag = "+sci2exp(h.color_flag,0)
                 "cdata_mapping = "+sci2exp(h.cdata_mapping)
@@ -831,37 +809,6 @@ function %h_p(h)
                 "user_data = "+fmtuser_data(u)
                 "tag = "+sci2exp(h.tag)
                 ]
-            else
-                t=[t;
-                "parent: "+h.parent.type
-                "children: "+fmtchildren(h.children)
-                "visible = "+sci2exp(h.visible)
-                "surface_mode = "+sci2exp(h.surface_mode)
-                "foreground = "+string(h.foreground)
-                "thickness = "+string(h.thickness)
-                "mark_mode = "+sci2exp(h.mark_mode)
-                "mark_style = "+sci2exp(h.mark_style)
-                "mark_size_unit = "+sci2exp(h.mark_size_unit)
-                "mark_size = "+string(h.mark_size)
-                "mark_foreground = "+string(h.mark_foreground)
-                "mark_background = "+string(h.mark_background)
-                "data.x = "+dx
-                "data.y = "+dy
-                "data.z = "+dz
-                "color_mode = "+string(h.color_mode)
-                "color_flag = "+sci2exp(h.color_flag,0)
-                "hiddencolor = "+string(h.hiddencolor)
-                "clip_state = "+sci2exp(h.clip_state)
-                "clip_box = "+sci2exp(h.clip_box,0)
-                "ambient_color = "+sci2exp(h.ambient_color)
-                "diffuse_color = "+sci2exp(h.diffuse_color)
-                "specular_color = "+sci2exp(h.specular_color)
-                "usecolor_material = "+sci2exp(h.use_color_material)
-                "material_shininess = "+sci2exp(h.material_shininess)
-                "user_data = "+fmtuser_data(u)
-                "tag = "+sci2exp(h.tag)
-                ]
-            end
 
             // Param3d
             // =====================================================================
@@ -963,10 +910,10 @@ function %h_p(h)
             "Children: "+fmtchildren(h.children)
             "Enable = "+sci2exp(h.enable)
             "Foregroundcolor = "+sci2exp(h.foregroundcolor,0)
-            "Label = "+h.label
+            "Label = "+sci2exp(h.label)
             "Handle_Visible = "+sci2exp(h.handle_visible)
             "Visible = "+sci2exp(h.visible)
-            "Callback = "+h.callback
+            "Callback = "+sci2exp(h.callback)
             "Callback_Type = "+sci2exp(h.callback_type,0)
             "Checked =  "+sci2exp(h.checked)
             "Icon =  "+sci2exp(h.icon)
@@ -1013,7 +960,7 @@ function %h_p(h)
             showHiddenProperties = get(get(0), "ShowHiddenProperties") == "on";
             t($ + 1) = "Parent: " + h.parent.type;
             t($ + 1) = "Children: " + fmtchildren(h.children);
-            t($ + 1) = "Style = " + h.style;
+            t($ + 1) = "Style = " + sci2exp(h.style);
             if and(h.style <> ["popupmenu"]) | showHiddenProperties then
                 t($ + 1) = "BackgroundColor = " + sci2exp(h.backgroundcolor,0);
             end
@@ -1021,17 +968,17 @@ function %h_p(h)
                 t($ + 1) = "Border = " + sci2exp(b);
             end
             if and(h.style <> ["frame", "layer", "text"]) | showHiddenProperties then
-                t($ + 1) = "Callback = " + h.callback;
+                t($ + 1) = "Callback = " + sci2exp(h.callback);
                 t($ + 1) = "Callback_Type = " + sci2exp(h.callback_type,0);
             end
             t($ + 1) = "Constraints = " + sci2exp(c);
             t($ + 1) = "Enable = " + sci2exp(h.enable);
             if and(h.style <> ["image", "slider", "layer"]) | showHiddenProperties then
-                t($ + 1) = "FontAngle = " + h.fontangle;
-                t($ + 1) = "FontName = " + h.fontname;
+                t($ + 1) = "FontAngle = " + sci2exp(h.fontangle);
+                t($ + 1) = "FontName = " + sci2exp(h.fontname);
                 t($ + 1) = "FontSize = " + sci2exp(h.fontsize);
-                t($ + 1) = "FontUnits = " + h.fontunits;
-                t($ + 1) = "FontWeight = " + h.fontweight;
+                t($ + 1) = "FontUnits = " + sci2exp(h.fontunits);
+                t($ + 1) = "FontWeight = " + sci2exp(h.fontweight);
             end
             if and(h.style <> ["frame", "layer", "tab", "slider", "image", "popupmenu"]) | showHiddenProperties then
                 t($ + 1) = "ForegroundColor = " + sci2exp(h.foregroundcolor,0);
@@ -1040,7 +987,7 @@ function %h_p(h)
                 t($ + 1) = "Groupname = " + sci2exp(h.groupname);
             end
             if and(h.style <> ["frame", "layer", "tab", "listbox", "popupmenu"]) | showHiddenProperties then
-                t($ + 1) = "HorizontalAlignment = " + h.horizontalalignment;
+                t($ + 1) = "HorizontalAlignment = " + sci2exp(h.horizontalalignment);
             end
             if or(h.style == ["text", "pushbutton", "frame"]) | showHiddenProperties then
                 t($ + 1) = "Icon = " + fmtuser_data(h.icon);
@@ -1058,7 +1005,7 @@ function %h_p(h)
                 t($ + 1) = "Min = " + sci2exp(h.min);
             end
             t($ + 1) = "Position = " + sci2exp(h.position,0);
-            t($ + 1) = "Relief = " + h.relief;
+            t($ + 1) = "Relief = " + sci2exp(h.relief);
             if or(h.style == ["frame", "edit"]) | showHiddenProperties then
                 t($ + 1) = "Scrollable = " + sci2exp(h.scrollable);
             end
@@ -1074,14 +1021,14 @@ function %h_p(h)
                 t($ + 1) = "Title_scroll = " + sci2exp(h.title_scroll);
             end
             t($ + 1) = "TooltipString = " + fmtuser_data(h.tooltipstring);
-            t($ + 1) = "Units = " + h.units;
+            t($ + 1) = "Units = " + sci2exp(h.units);
             t($ + 1) = "Userdata = " + fmtuser_data(u);
             if or(h.style == ["checkbox", "radiobutton", "slider", "spinner", "listbox", "edit", "layer", "tab", "popupmenu"]) | showHiddenProperties then
                 t($ + 1) = "Value = " + sci2exp(h.value,0);
             end
 
             if and(h.style <> ["frame", "layer", "tab", "listbox", "popupmenu"]) | showHiddenProperties then
-                t($ + 1) = "VerticalAlignment = " + h.verticalalignment;
+                t($ + 1) = "VerticalAlignment = " + sci2exp(h.verticalalignment);
             end
             t($ + 1) = "Visible = " + sci2exp(h.visible);
 

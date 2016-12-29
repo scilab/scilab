@@ -16,7 +16,7 @@
 
 f=figure();
 h=uicontrol(f,"style","listbox", ...
-"position", [10 10 150 160]);
+ "position", [10 10 150 160]);
 set(h, "string", "item 1|item 2|item3");
 
 assert_checkfalse(execstr("set(h, ''value'', [1 3])", "errcatch") == 0);

@@ -13,11 +13,11 @@
 // <-- Short Description -->
 // If (Max - Min) == 1, then the multiple selection is not allowed.
 f=figure();
-h=uicontrol(f,'style','listbox', ...
- 'position', [10 10 150 160]);
-set(h, 'string', 'item 1|item 2|item3');
-assert_checkfalse(execstr('set(h, ''value'', [1 3])', 'errcatch') == 0);
+h=uicontrol(f,"style","listbox", ...
+ "position", [10 10 150 160]);
+set(h, "string", "item 1|item 2|item3");
+assert_checkfalse(execstr("set(h, ''value'', [1 3])", "errcatch") == 0);
 // Check we got the right error message
-refMsg = msprintf(_('(Max - Min) must be greater than 1 to allow the multiple selection.\n'));
-assert_checkerror('set(h, ''value'', [1 3])', refMsg);
+refMsg = msprintf(_("(Max - Min) must be greater than 1 to allow the multiple selection.\n"));
+assert_checkerror("set(h, ''value'', [1 3])", refMsg);
 close(f)
