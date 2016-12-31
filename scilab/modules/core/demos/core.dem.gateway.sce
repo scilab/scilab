@@ -6,7 +6,8 @@
 function subdemolist = demo_gateway()
 
     demopath = get_absolute_file_path("core.dem.gateway.sce");
-    add_demo(_("Introduction: Getting started with Scilab"), demopath + "core.dem.gateway.sce");
+    _("Introduction: Getting started with Scilab");  // lets gettext() harvesting it
+    add_demo("Introduction: Getting started with Scilab", demopath + "core.dem.gateway.sce");
 
     //subdemolist = [_("Getting started with Scilab")  ,"intro/intro.dem.sce"]
     subdemolist = [_("Scilab objects")                      ,"intro/scilab_objects.dem.sce"

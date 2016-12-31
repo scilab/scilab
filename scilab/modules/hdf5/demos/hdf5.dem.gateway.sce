@@ -7,7 +7,8 @@
 function subdemolist = demo_gateway()
 
     demopath = get_absolute_file_path("hdf5.dem.gateway.sce");
-    add_demo(gettext("HDF5"), demopath + "hdf5.dem.gateway.sce");
+    _("HDF5");  // lets gettext() harvesting it
+    add_demo("HDF5", demopath + "hdf5.dem.gateway.sce");
 
     subdemolist = [_("Ring resonator (HDF5 data source)")   ,"resonator.dem.sce" ]
 

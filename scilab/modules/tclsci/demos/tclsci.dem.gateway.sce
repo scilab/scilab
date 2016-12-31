@@ -7,7 +7,7 @@
 function subdemolist = demo_gateway()
 
     demopath = get_absolute_file_path("tclsci.dem.gateway.sce");
-    add_demo(gettext("Tcl/Tk"), demopath + "tclsci.dem.gateway.sce");
+    add_demo("Tcl/Tk", demopath + "tclsci.dem.gateway.sce");
 
     subdemolist = [_("Color")  ,"color.dem.sce"      ; ..
     _("Puzzle") ,"puzzle.dem.sce"     ; ..

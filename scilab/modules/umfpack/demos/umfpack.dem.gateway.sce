@@ -9,7 +9,8 @@
 function subdemolist = demo_gateway()
 
     demopath = get_absolute_file_path("umfpack.dem.gateway.sce");
-    add_demo(gettext("UMFPACK"), demopath+"umfpack.dem.gateway.sce");
+    gettext("UMFPACK");   // Lets gettext() harvesting it
+    add_demo("UMFPACK", demopath+"umfpack.dem.gateway.sce");
 
     subdemolist = [_("Sparse Matrices"), "sparse_matrices.sce"
     _("Harwell-Boeing"), "harwell-boeing.sce"

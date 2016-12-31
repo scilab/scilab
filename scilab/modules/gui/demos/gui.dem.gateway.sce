@@ -9,7 +9,8 @@
 function subdemolist = demo_gateway()
 
     demopath = get_absolute_file_path("gui.dem.gateway.sce");
-    add_demo(gettext("GUI"), demopath + "gui.dem.gateway.sce");
+    _("GUI");  // lets gettext() harvesting it
+    add_demo("GUI", demopath + "gui.dem.gateway.sce");
 
     subdemolist = [_("Dialogs")   ,"dialogs/dialogs.dem.gateway.sce" ; ..
     _("Uicontrols 1") ,"uicontrol.dem.sce" ];

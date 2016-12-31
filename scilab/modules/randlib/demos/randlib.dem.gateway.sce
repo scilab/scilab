@@ -7,7 +7,8 @@
 function subdemolist = demo_gateway()
 
     demopath = get_absolute_file_path("randlib.dem.gateway.sce");
-    add_demo(_("Random"), demopath + "randlib.dem.gateway.sce");
+    gettext("Random");   // Lets gettext() harvesting it
+    add_demo("Random", demopath + "randlib.dem.gateway.sce");
 
     subdemolist = [_("binomial random variable")        ,"binomial.dem.sce"      ; ..
     _("discrete random variable")        ,"discrete.dem.sce"      ; ..

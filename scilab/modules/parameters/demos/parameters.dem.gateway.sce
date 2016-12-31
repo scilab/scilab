@@ -6,7 +6,8 @@
 function subdemolist = demo_gateway()
 
     demopath = get_absolute_file_path("parameters.dem.gateway.sce");
-    add_demo(_("Parameters"), demopath + "parameters.dem.gateway.sce");
+    _("Parameters");  // lets gettext() harvesting it
+    add_demo("Parameters", demopath + "parameters.dem.gateway.sce");
 
     subdemolist = [_("plist handling")  ,"params_demo.sce"]
 

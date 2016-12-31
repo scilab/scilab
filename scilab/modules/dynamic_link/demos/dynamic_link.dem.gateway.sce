@@ -7,7 +7,8 @@
 function subdemolist = demo_gateway()
 
     demopath = get_absolute_file_path("dynamic_link.dem.gateway.sce");
-    add_demo(_("Dynamic link"), demopath+"dynamic_link.dem.gateway.sce");
+    _("Dynamic link");  // lets gettext() harvesting it
+    add_demo("Dynamic link", demopath+"dynamic_link.dem.gateway.sce");
 
     subdemolist = [_("Call a C function")                   , "call_c.sce" ;
     _("Call a C function (using C standard library)")       , "call_c_stdlib.sce" ;

@@ -6,7 +6,8 @@
 
 function subdemolist = demo_gateway()
     demopath = get_absolute_file_path("cacsd.dem.gateway.sce");
-    add_demo(gettext("Control Systems - CACSD"), demopath + "cacsd.dem.gateway.sce");
+    _("Control Systems - CACSD");  // lets gettext() harvesting it
+    add_demo("Control Systems - CACSD", demopath + "cacsd.dem.gateway.sce");
 
     subdemolist = [_("LQG")                , "lqg/lqg.dem"
     _("Mixed-sensitivity")  , "mixed.dem"

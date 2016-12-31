@@ -9,7 +9,7 @@
 function subdemolist = demo_gateway()
 
     demopath = get_absolute_file_path("xcos.dem.gateway.sce");
-    add_demo(gettext("Xcos"), demopath + "xcos.dem.gateway.sce");
+    add_demo("Xcos", demopath + "xcos.dem.gateway.sce");
 
     subdemolist = [
     _("Standard demos")      , "standard.dem.gateway.sce"           ; ..

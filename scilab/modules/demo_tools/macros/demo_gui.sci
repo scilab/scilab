@@ -33,6 +33,11 @@ function demo_gui()
         end
     end
 
+    // define a local demolist variable
+    tmp = demolist;
+    clear demolist   // The global one must stay in en_US
+    demolist = gettext(tmp);
+
     if get("scilab_demo_fig") <> [] then
         set("scilab_demo_fig", "visible", "on");
         return;
