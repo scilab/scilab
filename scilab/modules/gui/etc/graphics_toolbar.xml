@@ -32,6 +32,9 @@
     <button icon="data_modify" tooltiptext="Toggle curve data modification" toggle="true">
         <callback instruction="useeditor([SCILAB_FIGURE_ID])" type="-2"/>
     </button>
+    <button icon="ged_move" tooltiptext="Move objects">
+        <callback instruction="ged(6,[SCILAB_FIGURE_ID])" type="-2"/>
+    </button>
     <separator/>
     <!-- Help -->
     <button icon="help-browser" tooltiptext="Help Browser">

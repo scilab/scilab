@@ -100,15 +100,18 @@
         <submenu label="&amp;Axes properties">
             <callback instruction='ged(9,[SCILAB_FIGURE_ID]);' type="0"/>
         </submenu>
+        <submenu label="&amp;Move objects">
+            <callback instruction='ged(6,[SCILAB_FIGURE_ID]);' type="0"/>
+        </submenu>
         <separator/>
-        <submenu label="&amp;Start entity picker">
+        <submenu label="Start entity &amp;picker">
             <callback instruction='ged(10,[SCILAB_FIGURE_ID]);' type="0"/>
         </submenu>
         <submenu label="S&amp;top entity picker">
             <callback instruction='ged(11,[SCILAB_FIGURE_ID]);' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="&amp;Start datatip manager" icon="datatips">
+        <submenu label="Start &amp;datatip manager" icon="datatips">
             <callback instruction='org.scilab.modules.gui.datatip.DatatipManager.start([SCILAB_FIGURE_ID])' type="3"/>
         </submenu>
         <submenu label="Stop datatip manager">

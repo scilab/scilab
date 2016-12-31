@@ -186,6 +186,7 @@ Feature changes and additions
 * `nchoosek` is introduced, to compute the binomial coefficients.
 * The left .\. and right ./. Kronecker divisions are now implemented, for arrays of decimal or complex numbers.
 * `perms` can now build and return only unique permutations, without duplicates.
+* Most of graphic objects can be moved interactively in opened figures.
 
 
 Help pages:
@@ -270,6 +271,7 @@ Bug Fixes
 * [#7724](https://bugzilla.scilab.org/7724): When a figure is created in .auto_resize="on" mode, its .axes_size sets its .figure_size accordingly, not the reverse. But this was not documented.
 * [#7732](https://bugzilla.scilab.org/7732): The `datafit` help page needed to be fixed and overhauled.
 * [#7765](https://bugzilla.scilab.org/7765): `champ1` is useless. `champ().colored` is available for a long time.
+* [#7777](https://bugzilla.scilab.org/7777): `ged` did not allow moving several objects. 
 * [#7948](https://bugzilla.scilab.org/7948): `gsort` could not perform multilevel sorting, and could not sort complex numbers completely.
 * [#7967](https://bugzilla.scilab.org/7967): The tricky size `[ny,nx]` of `meshgrid(x,y)` results and usages with graphics was not enough documented.
 * [#8301](https://bugzilla.scilab.org/8301): `definedfields` wrongly considered as defined void elements in lists, tlists and mlists.
@@ -289,6 +291,7 @@ Bug Fixes
 * [#11852](https://bugzilla.scilab.org/11852): File browser didn't update after file creation or removal.
 * [#11363](https://bugzilla.scilab.org/11363): `show_window()` did not raise the current graphics window.
 * [#12013](https://bugzilla.scilab.org/12013): `bitset` did not work for numbers greater than 2^32-1.
+* [#12302](https://bugzilla.scilab.org/12302): Blocks of legends could not be moved interactively. 
 * [#12520](https://bugzilla.scilab.org/12520): Variable browser did not display the size of the variables.
 * [#12534](https://bugzilla.scilab.org/12534): Variable browser did not display the size of the variables.
 * [#12837](https://bugzilla.scilab.org/12837): `strcmpi` was an obsolete duplicate of `strcmp(,'i')`. It is removed.
