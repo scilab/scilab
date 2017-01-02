@@ -67,7 +67,7 @@ BEGIN
             VALUE "FileDescription", "preferences module"
             VALUE "FileVersion", "5, 4, 0, 0"
             VALUE "InternalName", "preferences module"
-            VALUE "LegalCopyright", "Copyright (C) 2016"
+            VALUE "LegalCopyright", "Copyright (C) 2017"
             VALUE "OriginalFilename", "preferences.dll"
             VALUE "ProductName", "preferences module"
             VALUE "ProductVersion", "5, 4, 0, 0"
