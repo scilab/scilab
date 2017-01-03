@@ -16,6 +16,6 @@
 // fullpath(TMPDIR+...) was bugged on MacOS
 
 short = TMPDIR;
-long  = TMPDIR+"/api_c";
+long  = TMPDIR + filesep() + "api_c";
 
-assert_checkequal(fullpath(short)+"/api_c", fullpath(long));
+assert_checkequal(fullpath(short) + filesep() + "api_c", fullpath(long));
