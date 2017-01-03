@@ -22,7 +22,7 @@
 
 extern "C"
 {
-#include <string.h>
+#include "pathconvert.h"
 #include "getshortpathname.h"
 #include "sci_malloc.h"
 #include "Scierror.h"
@@ -59,7 +59,9 @@ types::Function::ReturnValue sci_getshortpathname(types::typed_list &in, int _iR
     for (int i = 0 ; i < size; i++)
     {
         wchar_t* tmp = getshortpathnameW(p[i], (BOOL*)&pBool[i]);
-        pOut1->set(i, tmp);
+        wchar_t* pwstPath = pathconvertW(tmp, FALSE, FALSE, AUTO_STYLE);
+        pOut1->set(i, pwstPath);
+        FREE(pwstPath);
         FREE(tmp);
     }
 
@@ -74,57 +76,5 @@ types::Function::ReturnValue sci_getshortpathname(types::typed_list &in, int _iR
     }
 
     return types::Function::OK;
-    //CheckRhs(0,1);
-    //CheckLhs(1,2);
-
-    //if (GetType(1) == sci_strings)
-    //{
-    //	int n1 = 0,m1 = 0, m1n1 = 0;
-    //	char **LongNames = NULL;
-    //	char **ShortNames = NULL;
-    //	BOOL *bOK = NULL;
-    //	int i = 0;
-
-    //	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&LongNames);
-    //	m1n1 = m1*n1;
-
-    //	if (m1n1 > 0)
-    //	{
-    //		ShortNames = (char**) MALLOC(sizeof(char*)* (m1n1));
-    //		bOK = (BOOL*) MALLOC(sizeof(BOOL)*(m1n1));
-
-    //		if ( (ShortNames == NULL) || (bOK == NULL) )
-    //		{
-    //			freeArrayOfString(LongNames, m1n1);
-    //			Scierror(999,"%s: Memory allocation error.\n", fname);
-    //			return 0;
-    //		}
-    //	}
-
-    //	for (i = 0;i < m1n1; i++)
-    //	{
-    //		ShortNames[i] = getshortpathname(LongNames[i], &bOK[i]);
-    //	}
-    //	freeArrayOfString(LongNames, m1n1);
-
-    //	CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,ShortNames);
-    //	LhsVar(1) = Rhs+1;
-
-    //	if (Lhs == 2)
-    //	{
-    //		CreateVarFromPtr(Rhs+2,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1, &bOK);
-    //		LhsVar(2) = Rhs + 2;
-    //	}
-
-    //	C2F(putlhsvar)();
-
-    //	freeArrayOfString(ShortNames, m1n1);
-    //	if (bOK) {FREE(bOK); bOK = NULL;}
-    //}
-    //else
-    //{
-    //	Scierror(999,_("%s: Wrong type for input argument: string expected.\n"),fname);
-    //}
-    //return 0;
 }
 /*--------------------------------------------------------------------------*/

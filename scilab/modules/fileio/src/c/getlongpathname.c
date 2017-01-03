@@ -28,7 +28,7 @@
 #endif
 #endif
 /*--------------------------------------------------------------------------*/
-char *getlongpathname(char *shortpathname, BOOL *convertok)
+char *getlongpathname(const char *shortpathname, BOOL *convertok)
 {
     char *LongName = NULL;
     wchar_t *wcshortpathname = to_wide_string(shortpathname);
@@ -56,7 +56,7 @@ char *getlongpathname(char *shortpathname, BOOL *convertok)
     return LongName;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *getlongpathnameW(wchar_t *wcshortpathname, BOOL *convertok)
+wchar_t *getlongpathnameW(const wchar_t *wcshortpathname, BOOL *convertok)
 {
     wchar_t *wcLongName = NULL;
 

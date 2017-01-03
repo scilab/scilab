@@ -116,7 +116,7 @@ char *getshortpathname(const char *longpathname, BOOL *convertok)
     return ShortName;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t* getshortpathnameW(wchar_t* _pwstLongPathName, BOOL* _pbOK)
+wchar_t* getshortpathnameW(const wchar_t* _pwstLongPathName, BOOL* _pbOK)
 {
     wchar_t* pwstOutput = NULL;
     if (_pwstLongPathName)

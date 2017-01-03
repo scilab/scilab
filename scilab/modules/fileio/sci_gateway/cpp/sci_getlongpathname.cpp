@@ -20,6 +20,7 @@
 
 extern "C"
 {
+#include "pathconvert.h"
 #include "getlongpathname.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -55,7 +56,9 @@ types::Function::ReturnValue sci_getlongpathname(types::typed_list &in, int _iRe
     for (int i = 0 ; i < size; i++)
     {
         wchar_t* tmp = getlongpathnameW(p[i], (BOOL*)&pBool[i]);
-        pOut1->set(i, tmp);
+        wchar_t* pwstPath = pathconvertW(tmp, FALSE, FALSE, AUTO_STYLE);
+        pOut1->set(i, pwstPath);
+        FREE(pwstPath);
         FREE(tmp);
     }
 

@@ -416,6 +416,7 @@ Bug Fixes
 * [#14821](http://bugzilla.scilab.org/show_bug.cgi?id=14821): `getio` function was missing. An error on the diary file opened has been corrected
 * [#14839](http://bugzilla.scilab.org/show_bug.cgi?id=14839): `plot2d2` crashed Scilab.
 * [#14887](http://bugzilla.scilab.org/show_bug.cgi?id=14887): For many graphic handle types, the display of the `.tag` value missed `".."` delimiters
+* [#14909](http://bugzilla.scilab.org/show_bug.cgi?id=14909): getlongpathname and getshortpathname return values with "\" instead of "/"
 
 ### Bugs fixed in 6.0.0 beta-2 and earlier 6.0.0 pre-releases:
 
