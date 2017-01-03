@@ -82,8 +82,8 @@ public class ZoomAction extends CommonCallBack {
                 KeyStroke.getKeyStroke('/', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK)
             };
             keystrokesOut = new KeyStroke[] {
-                    KeyStroke.getKeyStroke('=', ACCELERATOR_KEY),
-                    KeyStroke.getKeyStroke('=', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK)
+                KeyStroke.getKeyStroke('=', ACCELERATOR_KEY),
+                KeyStroke.getKeyStroke('=', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK)
             };
         } else {
             keystrokesIn = new KeyStroke[] {
@@ -198,6 +198,7 @@ public class ZoomAction extends CommonCallBack {
      * Action
      * @param e ActionEvent
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
         if (cmd.isEmpty()) {
@@ -217,7 +218,7 @@ public class ZoomAction extends CommonCallBack {
 
     /**
      * setEnabled property of the button 'zoomIn'
-     * @param enabled enabled 
+     * @param enabled enabled
      */
     public static void setEnabledZoomIn(boolean enabled) {
         btnZoomIn.setEnabled(enabled);
@@ -226,7 +227,7 @@ public class ZoomAction extends CommonCallBack {
 
     /**
      * setEnabled property of the button 'zoomOut'
-     * @param enabled enabled 
+     * @param enabled enabled
      */
     public static void setEnabledZoomOut(boolean enabled) {
         btnZoomOut.setEnabled(enabled);

@@ -26,7 +26,6 @@ import com.mxgraph.model.mxICell;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
-import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfInt;
 
 /**

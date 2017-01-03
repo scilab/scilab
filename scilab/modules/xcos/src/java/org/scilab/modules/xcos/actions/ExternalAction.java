@@ -17,8 +17,6 @@ package org.scilab.modules.xcos.actions;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Logger;
-
 import javax.swing.Action;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;

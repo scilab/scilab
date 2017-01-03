@@ -33,8 +33,6 @@ import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
-import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosView;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.port.BasicPort;

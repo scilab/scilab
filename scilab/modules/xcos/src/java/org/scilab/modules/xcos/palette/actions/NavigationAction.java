@@ -137,6 +137,7 @@ public class NavigationAction extends CommonCallBack {
      * Action
      * @param e ActionEvent
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
         if (cmd.isEmpty()) {
@@ -152,7 +153,7 @@ public class NavigationAction extends CommonCallBack {
 
     /**
      * setEnabled property of the button 'next'
-     * @param enabled enabled 
+     * @param enabled enabled
      */
     public static void setEnabledNext(boolean enabled) {
         btnNEXT.setEnabled(enabled);
@@ -161,7 +162,7 @@ public class NavigationAction extends CommonCallBack {
 
     /**
      * setEnabled property of the button 'previous'
-     * @param enabled enabled 
+     * @param enabled enabled
      */
     public static void setEnabledPrev(boolean enabled) {
         btnPREV.setEnabled(enabled);

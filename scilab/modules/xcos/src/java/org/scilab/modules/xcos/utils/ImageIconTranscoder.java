@@ -40,6 +40,7 @@ public class ImageIconTranscoder extends ImageTranscoder {
      * @param height the image height
      * @return BufferedImage
      */
+    @Override
     public BufferedImage createImage(int width, int height) {
         return new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
     }
@@ -50,8 +51,8 @@ public class ImageIconTranscoder extends ImageTranscoder {
      * @param output the output where to store the image
      * @throws TranscoderException if an error occurred while storing the image
      */
-    public void writeImage(BufferedImage img, TranscoderOutput output)
-            throws TranscoderException {
+    @Override
+    public void writeImage(BufferedImage img, TranscoderOutput output) throws TranscoderException {
         bufferedImage = img;
         imgIcon = new ImageIcon(img);
     }

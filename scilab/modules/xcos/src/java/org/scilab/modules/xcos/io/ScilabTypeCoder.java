@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.IllegalFormatException;
-import java.util.function.Consumer;
 import org.scilab.modules.types.ScilabBoolean;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabInteger;

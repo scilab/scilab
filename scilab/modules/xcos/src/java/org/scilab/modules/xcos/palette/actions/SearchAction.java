@@ -109,6 +109,7 @@ public class SearchAction extends CommonCallBack {
      * Action
      * @param e ActionEvent
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
         search();
     }
@@ -151,6 +152,7 @@ class SearchUI extends MetalComboBoxUI {
      * Hides the arrow button
      * @return JButton
      */
+    @Override
     @SuppressWarnings("serial")
     protected JButton createArrowButton() {
         JButton btn = new JButton() {
@@ -167,6 +169,7 @@ class SearchUI extends MetalComboBoxUI {
      * Create the box editor
      * @return ComboBoxEditor
      */
+    @Override
     protected ComboBoxEditor createEditor() {
         BasicComboBoxEditor editor = (BasicComboBoxEditor) super.createEditor();
         JTextField txtField = (JTextField) editor.getEditorComponent();
@@ -189,7 +192,7 @@ class SearchUI extends MetalComboBoxUI {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     SearchAction.search();
                 } else if (e.getKeyCode() != KeyEvent.VK_UP
-                        && e.getKeyCode() != KeyEvent.VK_DOWN) {
+                           && e.getKeyCode() != KeyEvent.VK_DOWN) {
                     comboBox.hidePopup();
                 }
             }
