@@ -16,6 +16,9 @@ Scilab a better software.
     - Misc patches for Solaris
     - Testing and binary of Scilab under Solaris
 
+* Marcos Cardinot
+    - Xcos: Search engine for Xcos palette, multiple drag'n'drop, zoom
+
 * Yuri Chornoivan
     - Ukrainian localization
     - Many patches fixing typos and English mistakes
@@ -189,6 +192,9 @@ Scilab a better software.
 * Shiqi Yu
     - Simplified Chinese localization
 
+* Chenfeng Zhu
+    - Xcos: Optimal block & link positioning
+
 And many others...
 
                 ORIGIN OF CODE
@@ -201,7 +207,7 @@ calelm: low level routines (INRIA).
 
 control: LINPACK + EISPACK + INRIA routines.
          dsubsp and exchnqz: Paul van Dooren.
-         lybsc, lydsr, lybad,sydsr and sybad are adapted from SLICE 
+         lybsc, lydsr, lybad,sydsr and sybad are adapted from SLICE
                 (M. Denham).
          sszer: Emami-naeini, A. and van Dooren, P. (Automatica paper).
          syhsc: G.Golub, S.Nash, C.van Loan, Stanford University.
@@ -211,7 +217,7 @@ control: LINPACK + EISPACK + INRIA routines.
          bdiag: adapted from Bavely and Stewart.
          ereduc,fstair: T. Beelen, P. Van Dooren.
 
-default: Scilab routines (INRIA/ENPC) for the user. 
+default: Scilab routines (INRIA/ENPC) for the user.
 
 dcd: Library of Fortran Routines for Cumulative Distribution
          Functions, Inverses, and Other Parameters (February, 1994)
@@ -228,7 +234,7 @@ dld: is a library package of C functions that performs "dynamic link
 FreeBSD port: by Dan McMahill.
 
 graphics based on entities: INRIA (M. Philippe, D. Abdemouche).
- 
+
 integ: routines from Odepack and Quadpack.
          dassl: L. Petzold (LLNL).
          hybrd: Minpack (ANL).
@@ -246,7 +252,7 @@ optim: optimization routines (Modulopt library, INRIA).
 poly: Scilab polynomial library (INRIA).
 
 
-qsort: qsort.c ( quicksort from the University of California Berkeley) 
+qsort: qsort.c ( quicksort from the University of California Berkeley)
        modified for Scilab.
 
 randlib: Library of Fortran Routines for Random Number Generation
