@@ -25,6 +25,7 @@ extern "C"
 #include "expandPathVariable.h"
 #include "fullpath.h"
 #include "PATH_MAX.h"
+#include "pathconvert.h"
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
 }
@@ -37,13 +38,22 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
 {
     types::Library* lib = NULL;
 
-    wchar_t* pwstPathLib = expandPathVariableW((wchar_t*)_wstXML.c_str());
+    wchar_t* pwstXML = pathconvertW(_wstXML.data(), FALSE, FALSE, AUTO_STYLE);
+    wchar_t* pwstPathLib = expandPathVariableW(pwstXML);
+
+    bool expanded = true;
+    if (wcscmp(pwstPathLib, pwstXML) == 0)
+    {
+        expanded = false;
+    }
 
     wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
     get_full_pathW(pwstTemp, pwstPathLib, PATH_MAX * 2);
     FREE(pwstPathLib);
 
-    std::wstring wstOriginalPath(_wstXML);
+
+    std::wstring wstOriginalPath(pwstXML);
+    FREE(pwstXML);
     std::wstring wstFile(pwstTemp);
     std::wstring wstPath(pwstTemp);
     FREE(pwstTemp);
@@ -52,7 +62,7 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
     {
         //remove / or \ at the end
         size_t pos = wstPath.find_last_of(L"/\\");
-        wstPath = wstPath.substr(0, pos);
+        wstPath = wstPath.substr(0, pos + 1);
         pos = wstOriginalPath.find_last_of(L"/\\");
         wstOriginalPath = wstOriginalPath.substr(0, pos + 1); //with ending /
     }
@@ -74,7 +84,7 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
         return lib;
     }
 
-    lib = new types::Library(wstOriginalPath);
+    lib = new types::Library(expanded ? wstOriginalPath : wstPath);
 
     std::wstring stFilename(wstPath);
     if (stFilename.empty() == false && *stFilename.rbegin() != DIR_SEPARATORW[0])
@@ -119,18 +129,19 @@ int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring&
         FREE(pstFile);
         return 1;
     }
-    std::string s(_wstXML.begin(),_wstXML.end());
+
+    std::string s(_wstXML.begin(), _wstXML.end());
     std::ifstream file(s);
     if (file)
     {
         const std::string XMLDecl("<?xml");
         std::string readXMLDecl;
-        readXMLDecl.resize(XMLDecl.length(),' ');//reserve space
-        file.read(&*readXMLDecl.begin(),XMLDecl.length());
+        readXMLDecl.resize(XMLDecl.length(), ' ');//reserve space
+        file.read(&*readXMLDecl.begin(), XMLDecl.length());
         if (XMLDecl != readXMLDecl)
         {
-          FREE(pstFile);
-          return 4;
+            FREE(pstFile);
+            return 4;
         }
     }
 

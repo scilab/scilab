@@ -28,9 +28,9 @@ typedef enum
     AUTO_STYLE = 2
 } PathConvertType;
 
-FILEIO_IMPEXP wchar_t *pathconvertW(wchar_t* wcpath, BOOL flagtrail, BOOL flagexpand, PathConvertType PType);
+FILEIO_IMPEXP wchar_t *pathconvertW(const wchar_t* wcpath, BOOL flagtrail, BOOL flagexpand, PathConvertType PType);
 
-FILEIO_IMPEXP char *pathconvert(char* path, BOOL flagtrail, BOOL flagexpand, PathConvertType PType);
+FILEIO_IMPEXP char *pathconvert(const char* path, BOOL flagtrail, BOOL flagexpand, PathConvertType PType);
 
 #endif /* PATHCONVERT_H__ */
 /*--------------------------------------------------------------------------*/

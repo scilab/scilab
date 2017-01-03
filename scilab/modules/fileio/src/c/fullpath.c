@@ -42,7 +42,7 @@ char *get_full_path(char *_FullPath, const char *_Path, size_t _SizeInBytes)
     wchar_t *wPath = to_wide_string((char *)_Path);
     wchar_t *wFullPath = (wchar_t *) MALLOC(sizeof(wchar_t) * _SizeInBytes);
 
-    _wfullpath(wFullPath, wPath, _SizeInBytes);
+    get_full_pathW(wFullPath, wPath, _SizeInBytes);
     returnedFullPath = wide_string_to_UTF8(wFullPath);
     if (returnedFullPath)
     {

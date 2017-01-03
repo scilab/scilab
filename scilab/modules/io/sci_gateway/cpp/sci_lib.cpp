@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_gwlib(types::typed_list &in, int /*_iRetCount*/
     }
 
     wchar_t* pstPath = pS->get(0);
-    wchar_t* pwstPath = pathconvertW(pstPath, TRUE, TRUE, AUTO_STYLE);
+    wchar_t* pwstPath = pathconvertW(pstPath, TRUE, FALSE, AUTO_STYLE);
     int err = 0;
     types::Library* lib = loadlib(pwstPath, &err, false, false);
     FREE(pwstPath);

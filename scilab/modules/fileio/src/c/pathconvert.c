@@ -23,10 +23,10 @@
 /*--------------------------------------------------------------------------*/
 #define CYGWINSTART L"/cygdrive/"
 /*--------------------------------------------------------------------------*/
-static wchar_t *cygwintowindowspath(wchar_t *cygwinpath, BOOL *bConverted);
-static wchar_t *windowstocygwinpath(wchar_t *windowspath, BOOL *bConverted);
+static wchar_t *cygwintowindowspath(const wchar_t *cygwinpath, BOOL *bConverted);
+static wchar_t *windowstocygwinpath(const wchar_t *windowspath, BOOL *bConverted);
 /*--------------------------------------------------------------------------*/
-wchar_t *pathconvertW(wchar_t* wcpath, BOOL flagtrail, BOOL flagexpand, PathConvertType PType)
+wchar_t *pathconvertW(const wchar_t* wcpath, BOOL flagtrail, BOOL flagexpand, PathConvertType PType)
 {
     wchar_t *convertedPath = NULL;
     if (wcpath)
@@ -115,7 +115,7 @@ wchar_t *pathconvertW(wchar_t* wcpath, BOOL flagtrail, BOOL flagexpand, PathConv
     return convertedPath;
 }
 /*--------------------------------------------------------------------------*/
-char *pathconvert(char* path, BOOL flagtrail, BOOL flagexpand, PathConvertType PType)
+char *pathconvert(const char* path, BOOL flagtrail, BOOL flagexpand, PathConvertType PType)
 {
     char *convertedPath = NULL;
     if (path)
@@ -136,7 +136,7 @@ char *pathconvert(char* path, BOOL flagtrail, BOOL flagexpand, PathConvertType P
     return convertedPath;
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t *cygwintowindowspath(wchar_t *cygwinpath, BOOL *bConverted)
+static wchar_t *cygwintowindowspath(const wchar_t *cygwinpath, BOOL *bConverted)
 {
     wchar_t *windowspath = NULL;
     *bConverted	= FALSE;
@@ -205,7 +205,7 @@ static wchar_t *cygwintowindowspath(wchar_t *cygwinpath, BOOL *bConverted)
     return windowspath;
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t *windowstocygwinpath(wchar_t *windowspath, BOOL *bConverted)
+static wchar_t *windowstocygwinpath(const wchar_t *windowspath, BOOL *bConverted)
 {
     wchar_t *cygwinpath = NULL;
     *bConverted = FALSE;

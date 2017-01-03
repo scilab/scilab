@@ -55,7 +55,7 @@ static struct VARIABLEALIAS VARIABLES_words[NB_ALIAS] =
 static wchar_t *getVariableValueDefinedInScilab(VARIABLEALIAS* var);
 static wchar_t *convertFileSeparators(wchar_t *wcStr);
 /*--------------------------------------------------------------------------*/
-wchar_t *expandPathVariableW(wchar_t *wcstr)
+wchar_t *expandPathVariableW(const wchar_t *wcstr)
 {
     wchar_t *wcexpanded = NULL;
     if (wcstr)
@@ -128,7 +128,7 @@ wchar_t *expandPathVariableW(wchar_t *wcstr)
     return wcexpanded;
 }
 /*--------------------------------------------------------------------------*/
-char *expandPathVariable(char* str)
+char *expandPathVariable(const char* str)
 {
     char *expanded = NULL;
     wchar_t *wstr = to_wide_string(str);

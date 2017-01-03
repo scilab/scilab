@@ -36,14 +36,14 @@ extern "C"
 * @param[in] string where to find a variable and expand
 * @return string with expanded variable
 */
-FILEIO_IMPEXP char *expandPathVariable(char* str);
+FILEIO_IMPEXP char *expandPathVariable(const char* str);
 
 /**
 * expand in_name to produce out_name (wide string)
 * @param[in] wide string where to find a variable and expand
 * @return wide string with expanded variable
 */
-FILEIO_IMPEXP wchar_t *expandPathVariableW(wchar_t *wcstr);
+FILEIO_IMPEXP wchar_t *expandPathVariableW(const wchar_t *wcstr);
 
 /**
 * set NULL to all scilab "Variable" (ie: SCI, SCIHOME, ....)

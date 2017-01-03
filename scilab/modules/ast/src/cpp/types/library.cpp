@@ -131,10 +131,6 @@ int Library::getMacrosName(std::list<std::wstring>& lst)
 
 std::wstring Library::getPath()
 {
-    wchar_t* pwstFullPath = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
-    get_full_pathW(pwstFullPath, m_wstPath.c_str(), PATH_MAX * 2);
-    std::wstring wstrOut(pwstFullPath);
-    FREE(pwstFullPath);
-    return wstrOut;
+    return m_wstPath;
 }
 }
