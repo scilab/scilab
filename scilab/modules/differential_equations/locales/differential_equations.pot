@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-12-07 16:04+0100\n"
+"Revision-Date: 2017-01-04 17:51+0100\n"
 
 # File: modules/differential_equations/sci_gateway/cpp/sci_bvode.cpp, line: 63
 # File: modules/differential_equations/sci_gateway/cpp/sci_daskr.cpp, line: 263
@@ -540,6 +540,17 @@ msgid "%s: %s return with state %d.\n"
 msgstr ""
 
 #
+# File: modules/differential_equations/sci_gateway/cpp/sci_daskr.cpp, line: 1112
+# File: modules/differential_equations/sci_gateway/cpp/sci_dasrt.cpp, line: 790
+# File: modules/differential_equations/sci_gateway/cpp/sci_dassl.cpp, line: 724
+# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 257
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1145
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1367
+#, c-format
+msgid "%ls: An error occured in '%ls' subroutine.\n"
+msgstr ""
+
+#
 # File: modules/differential_equations/sci_gateway/cpp/sci_feval.cpp, line: 71
 # File: modules/differential_equations/sci_gateway/cpp/sci_feval.cpp, line: 77
 # File: modules/differential_equations/sci_gateway/cpp/sci_feval.cpp, line: 87
@@ -788,7 +799,7 @@ msgid "%s: Wrong type for input argument #%d: Must not contain NaN or Inf.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 271
+# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 269
 #, c-format
 msgid ""
 "%s: Maximum number of subdivisions achieved. Splitting the interval might "
@@ -796,7 +807,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 276
+# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 274
 #, c-format
 msgid ""
 "%s: Round-off error detected, the requested tolerance (or default) cannot be "
@@ -804,7 +815,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 281
+# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 279
 #, c-format
 msgid ""
 "%s: Bad integrand behavior occurs at some points of the integration "
@@ -812,7 +823,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 286
+# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 284
 #, c-format
 msgid ""
 "%s: Convergence problem, round-off error detected. Try using bigger "
@@ -820,20 +831,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 291
+# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 289
 #, c-format
 msgid "%s: The integral is probably divergent, or slowly convergent.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 296
+# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 294
 #, c-format
 msgid ""
 "%s: Invalid input, absolute tolerance <= 0 and relative tolerance < 2.e-14.\n"
 msgstr ""
 
 #
-# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 300
+# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 298
 #, c-format
 msgid "%s: Convergence problem...\n"
 msgstr ""
@@ -1019,17 +1030,17 @@ msgstr ""
 
 #
 # File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 35
-msgid "Work space insufficient to finish (see messages).\n"
+msgid "Insufficient Work space to finish (see messages).\n"
 msgstr ""
 
 #
 # File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 44
-msgid "Excess work done on this call (perhaps wrong jacobian type).\n"
+msgid "Excessive work done on this call (perhaps wrong jacobian type).\n"
 msgstr ""
 
 #
 # File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 49
-msgid "Excess accuracy requested (tolerances too small).\n"
+msgid "Excesive accuracy requested (tolerances too small).\n"
 msgstr ""
 
 #
@@ -1110,7 +1121,7 @@ msgstr ""
 
 #
 # File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 138
-msgid "invalid input parameters : atol and rtol must be greater than 0.\n"
+msgid "Invalid input parameters : atol and rtol must be greater than 0.\n"
 msgstr ""
 
 #
@@ -1121,7 +1132,7 @@ msgstr ""
 #
 # File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 190
 msgid ""
-"Too many steps necessary to reached next required time discretization point. "
+"Too many steps necessary to reach next required time discretization point. "
 "Change discretisation of time vector t or decrease accuracy.\n"
 msgstr ""
 

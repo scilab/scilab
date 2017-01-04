@@ -153,6 +153,14 @@ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor nebo skalár.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
@@ -353,10 +361,6 @@ msgstr "Kruh korelací"
 
 msgid "Eigenvalues"
 msgstr "Vlastní čísla"
-
-#, c-format
-msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"

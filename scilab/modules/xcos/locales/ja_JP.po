@@ -318,6 +318,43 @@ msgstr "カスタマイズ"
 msgid "Save block GUI"
 msgstr "GUIブロックの保存"
 
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 69
+msgid "matches"
+msgstr ""
+
+#, fuzzy
+msgid "Previous"
+msgstr "プレビュー"
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 72
+msgid "Search"
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 73
+msgid "Searching..."
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 74
+msgid "Zoom In"
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 75
+msgid "Zoom Out"
+msgstr ""
+
+#, fuzzy
+msgid "Unable to load the selected blocks."
+msgstr "%s からブロックを読み込めません."
+
+#, fuzzy
+msgid "Loading blocks"
+msgstr "ブロックを読み込み中"
+
 msgid "Load as palette"
 msgstr "パレットとして取り込む"
 
@@ -594,6 +631,10 @@ msgstr "ブロックが選択されていません"
 
 msgid "Export to XML"
 msgstr "XMLにエキスポート"
+
+#, fuzzy
+msgid "Export in progress"
+msgstr "シミュレーション実行中"
 
 msgid "Import from XML"
 msgstr "XMLをインポート"
@@ -892,6 +933,24 @@ msgid "Target datatype: "
 msgstr ""
 
 msgid "Label: "
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 330
+msgid "Optimal"
+msgstr ""
+
+#, fuzzy
+msgid "Auto-Position Block"
+msgstr "ブロック・デモ"
+
+#, fuzzy
+msgid "Split Block"
+msgstr "ブロックを整列"
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 333
+msgid "Auto-Position Split Block"
 msgstr ""
 
 #, c-format
@@ -1371,9 +1430,6 @@ msgstr "時間:"
 msgid "Flag:"
 msgstr "フラグ:"
 
-msgid "Next"
-msgstr "次へ"
-
 msgid "End debug"
 msgstr "デバッグ終了"
 
@@ -1424,6 +1480,9 @@ msgstr ""
 #, c-format
 msgid "%s: Syntax error while trying to set up context from"
 msgstr ""
+
+#~ msgid "Next"
+#~ msgstr "次へ"
 
 #~ msgid "The Scicos libraries are not loaded"
 #~ msgstr "Scilabライブラリは取り込めませんでした"

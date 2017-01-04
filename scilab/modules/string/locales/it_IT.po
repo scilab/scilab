@@ -125,6 +125,12 @@ msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato.\n"
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
@@ -378,10 +384,6 @@ msgid "%s: Given expression has no value.\n"
 msgstr "%s: L'espressione fornita non ha valore.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: %s.\n"
-msgstr "%s: La seguente caratteristica non è stata sviluppata: %s.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
@@ -407,3 +409,6 @@ msgid ""
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un carattere "
 "o un vettore di caratteri.\n"
+
+#~ msgid "%s: This feature has not been implemented: %s.\n"
+#~ msgstr "%s: La seguente caratteristica non è stata sviluppata: %s.\n"

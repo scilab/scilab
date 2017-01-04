@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-12-07 16:04+0100\n"
+"Revision-Date: 2017-01-04 17:51+0100\n"
 
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 83
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 221
@@ -1724,14 +1724,14 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_data_mapping_property.c, line: 75
 # File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 53
 # File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 69
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 119
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 209
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 234
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 259
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 283
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 307
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 330
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 364
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 120
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 210
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 235
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 260
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 284
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 308
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 331
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 365
 # File: modules/graphics/src/c/getHandleProperty/set_default_axes_property.c, line: 41
 # File: modules/graphics/src/c/getHandleProperty/set_default_values_property.c, line: 66
 # File: modules/graphics/src/c/getHandleProperty/set_diffuse_color_property.c, line: 63
@@ -1925,8 +1925,8 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/set_cdata_mapping_property.c, line: 47
 # File: modules/graphics/src/c/getHandleProperty/set_clip_state_property.c, line: 46
 # File: modules/graphics/src/c/getHandleProperty/set_data_mapping_property.c, line: 49
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 141
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 318
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 142
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 319
 # File: modules/graphics/src/c/getHandleProperty/set_event_handler_property.c, line: 45
 # File: modules/graphics/src/c/getHandleProperty/set_figure_closerequestfcn_property.c, line: 33
 # File: modules/graphics/src/c/getHandleProperty/set_figure_name_property.c, line: 44
@@ -2323,26 +2323,26 @@ msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 115
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 116
 #, c-format
 msgid ""
 "Inavlid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 151
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 152
 #, c-format
 msgid "Wrong value for '%s' property: Non-empty string expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 163
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 164
 #, c-format
 msgid "Wrong value for '%s' property: String with length 3 or less expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 172
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 173
 #, c-format
 msgid ""
 "Wrong value for '%s' property: String contains 'x' component more than "
@@ -2350,7 +2350,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 181
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 182
 #, c-format
 msgid ""
 "Wrong value for '%s' property: String contains 'y' component more than "
@@ -2358,7 +2358,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 190
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 191
 #, c-format
 msgid ""
 "Wrong value for '%s' property: String contains 'z' component more than "
@@ -2366,20 +2366,20 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 196
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 197
 #, c-format
 msgid "Wrong value for '%s' property: String with 'x|y|z' expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 342
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 343
 # File: modules/graphics/src/c/getHandleProperty/set_mark_size_property.c, line: 40
 #, c-format
 msgid "Wrong type for '%s' property: Matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 349
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 350
 #, c-format
 msgid "Wrong size for '%s' property: Matrix with length 3 or [] expected.\n"
 msgstr ""

@@ -152,6 +152,16 @@ msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un escalar "
+"o un vector.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
@@ -354,10 +364,6 @@ msgid "Correlations Circle"
 msgstr "Cercle de correlacions"
 
 msgid "Eigenvalues"
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 
 #, c-format

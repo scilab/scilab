@@ -292,6 +292,14 @@ msgstr "Помилка"
 msgid "Impossible to create : %s"
 msgstr "Не вдалося створити: %s"
 
+#, fuzzy, c-format
+msgid "Error: Could not resolve symbolic link %s\n"
+msgstr "Помилка: не вдалося створити %s: %s\n"
+
+#, fuzzy, c-format
+msgid "Error: Could not find %s\n"
+msgstr "Помилка: не вдалося створити %s: %s\n"
+
 #, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr "Помилка: не вдалося створити %s: %s\n"

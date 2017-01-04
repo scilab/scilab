@@ -104,6 +104,12 @@ msgstr "%s: %s を確認してください.\n"
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: ファイル %s は存在しません。\n"
 
+#
+# File: modules/functions/macros/expression2code.sci, line: 357
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
@@ -147,6 +153,11 @@ msgstr ""
 
 msgid "No comment available."
 msgstr "コメントがありません."
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Private function: cannot access to this function directly.\n"

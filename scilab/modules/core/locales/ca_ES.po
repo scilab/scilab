@@ -549,7 +549,9 @@ msgstr ""
 msgid "Scilab Enterprises\n"
 msgstr ""
 
-msgid "Copyright (c) 2011-2016 (Scilab Enterprises)\n"
+#
+# File: modules/core/src/cpp/banner.cpp, line: 41
+msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
 msgstr ""
 
 msgid "Copyright (c) 1989-2012 (INRIA)\n"

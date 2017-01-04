@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-12-07 16:04+0100\n"
+"Revision-Date: 2017-01-04 17:51+0100\n"
 
 # File: modules/functions/sci_gateway/cpp/sci_exec.cpp, line: 102
 # File: modules/functions/sci_gateway/cpp/sci_execstr.cpp, line: 55
@@ -144,6 +144,12 @@ msgid "%s: File %s doesn't exist.\n"
 msgstr ""
 
 #
+# File: modules/functions/macros/expression2code.sci, line: 357
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr ""
+
+#
 # File: modules/functions/macros/get_function_path.sci, line: 21
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -195,6 +201,12 @@ msgstr ""
 #
 # File: modules/functions/macros/head_comments.sci, line: 59
 msgid "No comment available."
+msgstr ""
+
+#
+# File: modules/functions/macros/tree2code.sci, line: 24
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #

@@ -99,6 +99,12 @@ msgstr "%s: Prosím zkontrolujte: %s\n"
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: Soubor %s neexistuje.\n"
 
+#
+# File: modules/functions/macros/expression2code.sci, line: 357
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
@@ -135,6 +141,10 @@ msgstr ""
 
 msgid "No comment available."
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: Private function: cannot access to this function directly.\n"

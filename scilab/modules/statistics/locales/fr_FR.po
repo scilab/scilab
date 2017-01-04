@@ -159,6 +159,16 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : au moins %d attendus.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire ou vecteur "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
@@ -379,10 +389,6 @@ msgstr "Cercle des corrélations"
 
 msgid "Eigenvalues"
 msgstr "Valeurs propres"
-
-#, c-format
-msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"

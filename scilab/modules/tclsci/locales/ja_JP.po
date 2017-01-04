@@ -19,6 +19,15 @@ msgstr ""
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
+# File: modules/tclsci/sci_gateway/c/gw_tclsci.c, line: 72
+msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/gw_tclsci.c, line: 77
+msgid "Tcl/TK interface disabled in -nogui mode.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Error main TCL interpreter not initialized.\n"
 msgstr ""

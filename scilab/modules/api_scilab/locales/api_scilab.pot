@@ -15,12 +15,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-12-07 16:04+0100\n"
+"Revision-Date: 2017-01-04 17:51+0100\n"
 
 # File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 46
 # File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 77
 # File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 43
-# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 99
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 94
 # File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 337
 # File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 481
 # File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 595
@@ -99,7 +99,7 @@ msgstr ""
 # File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 238
 # File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 50
 # File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 57
-# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 273
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 274
 # File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 68
 # File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 141
 # File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 565
@@ -150,9 +150,9 @@ msgstr ""
 # File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 149
 # File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 297
 # File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 312
-# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 127
-# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 138
-# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 167
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 122
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 133
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 162
 # File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1455
 # File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1471
 # File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 165
@@ -243,8 +243,8 @@ msgstr ""
 #
 # File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 139
 # File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 156
-# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 156
-# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 174
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 151
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 169
 # File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1524
 # File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 417
 # File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 450
@@ -265,7 +265,7 @@ msgstr ""
 
 #
 # File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 163
-# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 181
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 176
 # File: modules/api_scilab/src/cpp/api_stack_sparse.cpp, line: 304
 #, c-format
 msgid "%s: Unable to create %s named \"%s\""
@@ -278,7 +278,7 @@ msgstr ""
 
 #
 # File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 180
-# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 198
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 193
 # File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 1539
 # File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 439
 # File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 479
@@ -295,7 +295,7 @@ msgstr ""
 #
 # File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 195
 # File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 202
-# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 227
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 228
 # File: modules/api_scilab/src/cpp/api_stack_common.cpp, line: 573
 # File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 505
 # File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 512
@@ -329,8 +329,8 @@ msgstr ""
 
 #
 # File: modules/api_scilab/src/cpp/api_stack_boolean.cpp, line: 269
-# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 297
-# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 308
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 298
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 309
 # File: modules/api_scilab/src/cpp/api_stack_double.cpp, line: 623
 # File: modules/api_scilab/src/cpp/api_stack_int.cpp, line: 1276
 # File: modules/api_scilab/src/cpp/api_stack_poly.cpp, line: 441
@@ -353,12 +353,12 @@ msgid "%s: Wrong type for input argument \"%s\": A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 181
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 176
 msgid "boolean sparse matrix"
 msgstr ""
 
 #
-# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 234
+# File: modules/api_scilab/src/cpp/api_stack_boolean_sparse.cpp, line: 235
 msgid "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
 msgstr ""
 

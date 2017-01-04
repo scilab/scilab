@@ -33,6 +33,10 @@ msgstr "%s：第%d个输入参数的大小错误。\n"
 msgid "%s: No more memory.\n"
 msgstr "%s：内存不足。\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为整数。\n"
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
 msgstr "%s：第%d个输入参数的值错误：应该介于%d与%d之间。"
@@ -525,9 +529,23 @@ msgstr "%s：第%d个输入参数的值错误：应该为%d、‘%s’、%d或�
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s：第%d个输入参数的类型错误。\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Column expected.\n"
+msgstr "%s：第%d个参数错误：应该为正整数。\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Number(s) expected.\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为向量。\n"
+
+#
+# File: modules/elementary_functions/macros/linspace.sci, line: 44
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
-msgstr "%s：第%d个输入参数的大小错误：应该为列向量。\n"
+msgid "%s: Argument #%d: %%nan and %%inf values are forbidden.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: An integer value expected.\n"
+msgstr "%s：第%d个参数错误：应该为正整数。\n"
 
 #, c-format
 msgid "%s: Log of a singular matrix.\n"
@@ -536,6 +554,10 @@ msgstr "%s：一个奇异矩阵的指数。\n"
 #, c-format
 msgid "%s: Unable to diagonalize.\n"
 msgstr "%s：不能对角化。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为列向量。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"

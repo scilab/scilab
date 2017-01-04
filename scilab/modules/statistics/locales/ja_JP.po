@@ -164,6 +164,16 @@ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: スカラーまたはベクトルを指定してくださ"
+"い.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
@@ -380,10 +390,6 @@ msgstr "相関円"
 
 msgid "Eigenvalues"
 msgstr "固有値"
-
-#, c-format
-msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"

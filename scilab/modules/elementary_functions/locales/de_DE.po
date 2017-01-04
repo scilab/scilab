@@ -33,6 +33,10 @@ msgstr "%s: falsche Größe für Eingangsargument #%d.\n"
 msgid "%s: No more memory.\n"
 msgstr "%s: Kein weiterer Speicher verfügbar.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d: ein Integer erwartet.\n"
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
 msgstr "%s: falscher Wert für Eingangsargument #%d: muß %d und %d liegen."
@@ -558,10 +562,23 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Falscher Typ für Eingangsargument #%d.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Column expected.\n"
+msgstr "%s: falsches Argument #%d: positive Integerzahl erwartet.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Number(s) expected.\n"
+msgstr "%s: falsche Größe für Argument #%d: Vektor erwartet.\n"
+
+#
+# File: modules/elementary_functions/macros/linspace.sci, line: 44
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgid "%s: Argument #%d: %%nan and %%inf values are forbidden.\n"
 msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: ein Spaltenvektor erwartet.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: An integer value expected.\n"
+msgstr "%s: falsches Argument #%d: positive Integerzahl erwartet.\n"
 
 #, c-format
 msgid "%s: Log of a singular matrix.\n"
@@ -570,6 +587,11 @@ msgstr "%s: Log einer singulären Matrix.\n"
 #, c-format
 msgid "%s: Unable to diagonalize.\n"
 msgstr "%s: kann nicht diagonalisieren.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: ein Spaltenvektor erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"

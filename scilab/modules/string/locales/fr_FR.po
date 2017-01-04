@@ -130,6 +130,10 @@ msgstr "%s : Valeur erronée de l'argument d'entrée n°%d.\n"
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments de sortie : %d à %d attendu(s).\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : un caractère attendu.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
@@ -393,10 +397,6 @@ msgid "%s: Given expression has no value.\n"
 msgstr "%s : L'expression donnée n'a pas de valeur.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: %s.\n"
-msgstr "%s : Cette fonctionnalité n'a pas été implémentée : %s.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
@@ -421,3 +421,6 @@ msgid ""
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un caractère ou un "
 "vecteur de caractères attendu.\n"
+
+#~ msgid "%s: This feature has not been implemented: %s.\n"
+#~ msgstr "%s : Cette fonctionnalité n'a pas été implémentée : %s.\n"

@@ -151,6 +151,16 @@ msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje liczby skalarnej "
+"lub wektora.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
@@ -354,10 +364,6 @@ msgstr "Koło korelacyjne"
 
 msgid "Eigenvalues"
 msgstr "Wartości własne"
-
-#, c-format
-msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"

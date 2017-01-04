@@ -288,6 +288,10 @@ msgstr "%s: помилкова розмірність вхідних парам�
 msgid "%s: %s return with state %d.\n"
 msgstr "%s: %s завершила роботу із станом %d.\n"
 
+#, fuzzy, c-format
+msgid "%ls: An error occured in '%ls' subroutine.\n"
+msgstr "%s: сталася помилка у підпрограмі «%s».\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
 msgstr ""
@@ -672,15 +676,18 @@ msgstr "інтегруємо від tleft= %lf до hf=tf= %lf\n"
 msgid "integ. from tleft= %lf to hf= %lf\n"
 msgstr "інтегруємо від tleft= %lf до hf= %lf\n"
 
-msgid "Work space insufficient to finish (see messages).\n"
+#, fuzzy
+msgid "Insufficient Work space to finish (see messages).\n"
 msgstr "Недостатньо простору для завершення обчислень (див. повідомлення).\n"
 
-msgid "Excess work done on this call (perhaps wrong jacobian type).\n"
+#, fuzzy
+msgid "Excessive work done on this call (perhaps wrong jacobian type).\n"
 msgstr ""
 "Під час цього виклику виконано надмірну роботу (ймовірно, помилковий тип "
 "якобіана).\n"
 
-msgid "Excess accuracy requested (tolerances too small).\n"
+#, fuzzy
+msgid "Excesive accuracy requested (tolerances too small).\n"
 msgstr "Надто висока точність (допуски є надто малими).\n"
 
 msgid "Illegal input detected (see printed message).\n"
@@ -761,14 +768,16 @@ msgstr ""
 "виведення даних обмежує природний вибір розміру кроку. Скористайтеся "
 "однокроковим режимом інтегрування.\n"
 
-msgid "invalid input parameters : atol and rtol must be greater than 0.\n"
+#, fuzzy
+msgid "Invalid input parameters : atol and rtol must be greater than 0.\n"
 msgstr "Некоректні вхідні параметри: atol і rtol мають перевищувати 0.\n"
 
 msgid "Inappropriate error tolerance.\n"
 msgstr "Неприйнятний допуск похибки.\n"
 
+#, fuzzy
 msgid ""
-"Too many steps necessary to reached next required time discretization point. "
+"Too many steps necessary to reach next required time discretization point. "
 "Change discretisation of time vector t or decrease accuracy.\n"
 msgstr ""
 "Для досягнення наступної точки дискретизації потрібно забагато кроків. "

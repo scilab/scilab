@@ -267,6 +267,18 @@ msgstr ""
 msgid "Impossible to create : %s"
 msgstr ""
 
+#
+# File: modules/ast/src/cpp/system_env/sci_tmpdir.cpp, line: 218
+#, c-format
+msgid "Error: Could not resolve symbolic link %s\n"
+msgstr ""
+
+#
+# File: modules/ast/src/cpp/system_env/sci_tmpdir.cpp, line: 240
+#, c-format
+msgid "Error: Could not find %s\n"
+msgstr ""
+
 #, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr ""

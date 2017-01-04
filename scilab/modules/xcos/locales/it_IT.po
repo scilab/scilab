@@ -329,6 +329,43 @@ msgstr "Personalizza"
 msgid "Save block GUI"
 msgstr "Salva la GUI del blocco"
 
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 69
+msgid "matches"
+msgstr ""
+
+#, fuzzy
+msgid "Previous"
+msgstr "Anteprima"
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 72
+msgid "Search"
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 73
+msgid "Searching..."
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 74
+msgid "Zoom In"
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 75
+msgid "Zoom Out"
+msgstr ""
+
+#, fuzzy
+msgid "Unable to load the selected blocks."
+msgstr "Impossibile caricare un blocco da %s."
+
+#, fuzzy
+msgid "Loading blocks"
+msgstr "Caricamento del blocco in corso"
+
 msgid "Load as palette"
 msgstr "Carica come pannello"
 
@@ -604,6 +641,10 @@ msgstr "Nessun blocco selezionato"
 
 msgid "Export to XML"
 msgstr ""
+
+#, fuzzy
+msgid "Export in progress"
+msgstr "Simulazione in corso"
 
 msgid "Import from XML"
 msgstr ""
@@ -903,6 +944,24 @@ msgid "Target datatype: "
 msgstr ""
 
 msgid "Label: "
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 330
+msgid "Optimal"
+msgstr ""
+
+#, fuzzy
+msgid "Auto-Position Block"
+msgstr "Blocchi dimostrativi"
+
+#, fuzzy
+msgid "Split Block"
+msgstr "Allinea i blocchi"
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 333
+msgid "Auto-Position Split Block"
 msgstr ""
 
 #, c-format
@@ -1392,9 +1451,6 @@ msgid "Time:"
 msgstr ""
 
 msgid "Flag:"
-msgstr ""
-
-msgid "Next"
 msgstr ""
 
 msgid "End debug"

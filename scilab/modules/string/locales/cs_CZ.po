@@ -117,6 +117,10 @@ msgstr "%s: Špatná hodnota vstupního argumentu #%d.\n"
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
@@ -347,10 +351,6 @@ msgid "%s: Given expression has no value.\n"
 msgstr "%s: Zadaný výraz nemá žádnou hodnotu.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: %s.\n"
-msgstr "%s: Tato funkce nebyla zavedena: %s.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
@@ -370,3 +370,6 @@ msgid ""
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván znak, nebo vektor "
 "znaků.\n"
+
+#~ msgid "%s: This feature has not been implemented: %s.\n"
+#~ msgstr "%s: Tato funkce nebyla zavedena: %s.\n"

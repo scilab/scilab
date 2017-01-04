@@ -321,6 +321,43 @@ msgstr "Přizpůsobit"
 msgid "Save block GUI"
 msgstr "Uložit blok GUI"
 
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 69
+msgid "matches"
+msgstr ""
+
+#, fuzzy
+msgid "Previous"
+msgstr "Náhled"
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 72
+msgid "Search"
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 73
+msgid "Searching..."
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 74
+msgid "Zoom In"
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 75
+msgid "Zoom Out"
+msgstr ""
+
+#, fuzzy
+msgid "Unable to load the selected blocks."
+msgstr "Nelze načíst blok z %s ."
+
+#, fuzzy
+msgid "Loading blocks"
+msgstr "Načítám blok"
+
 msgid "Load as palette"
 msgstr "Načíst jako paletu"
 
@@ -598,6 +635,10 @@ msgstr "Není vybrán žádný blok"
 
 msgid "Export to XML"
 msgstr "Exportovat do XML"
+
+#, fuzzy
+msgid "Export in progress"
+msgstr "Probíhá simulace"
 
 msgid "Import from XML"
 msgstr "Importovat do XML"
@@ -898,6 +939,24 @@ msgid "Target datatype: "
 msgstr ""
 
 msgid "Label: "
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 330
+msgid "Optimal"
+msgstr ""
+
+#, fuzzy
+msgid "Auto-Position Block"
+msgstr "Ukázkové bloky"
+
+#, fuzzy
+msgid "Split Block"
+msgstr "Zarovnat bloky"
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 333
+msgid "Auto-Position Split Block"
 msgstr ""
 
 #, c-format
@@ -1359,9 +1418,6 @@ msgid "Time:"
 msgstr ""
 
 msgid "Flag:"
-msgstr ""
-
-msgid "Next"
 msgstr ""
 
 msgid "End debug"

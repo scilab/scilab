@@ -847,6 +847,11 @@ msgstr "Оптимизация"
 msgid "fminsearch"
 msgstr ""
 
+#
+# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 15
+msgid "ICSE"
+msgstr ""
+
 msgid "Genetic algorithms"
 msgstr "Генетические алгоритмы"
 

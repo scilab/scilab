@@ -276,6 +276,14 @@ msgstr "エラー"
 msgid "Impossible to create : %s"
 msgstr "作成できません: %s"
 
+#, fuzzy, c-format
+msgid "Error: Could not resolve symbolic link %s\n"
+msgstr "エラー: %s を作成できません: %s\n"
+
+#, fuzzy, c-format
+msgid "Error: Could not find %s\n"
+msgstr "エラー: %s を作成できません: %s\n"
+
 #, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr "エラー: %s を作成できません: %s\n"

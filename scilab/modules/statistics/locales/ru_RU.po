@@ -161,6 +161,14 @@ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: Неверное количество входных аргументов: Ожидалось как минимум %d.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр или вектор.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr "%s: Аргумент №%d: должен находиться во множестве {%s}.\n"
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
@@ -381,10 +389,6 @@ msgstr "Корреляцонный Круг"
 
 msgid "Eigenvalues"
 msgstr "Собственные значения"
-
-#, c-format
-msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: Аргумент №%d: должен находиться во множестве {%s}.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"

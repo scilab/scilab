@@ -35,6 +35,10 @@ msgstr "%s: Неверный размер входного параметра �
 msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr "%s: Неверный аргумент №%d:Ожидалось целочисленное значение.\n"
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
 msgstr ""
@@ -639,9 +643,23 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Неверный тип входного параметра №%d.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Column expected.\n"
+msgstr "%s: Аргумент №%d: ожидалось целое число >=0.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Number(s) expected.\n"
+msgstr "%s: Аргумент №%d: ожидалось целое число >=0.\n"
+
+#
+# File: modules/elementary_functions/macros/linspace.sci, line: 44
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
-msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор-столбец.\n"
+msgid "%s: Argument #%d: %%nan and %%inf values are forbidden.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: An integer value expected.\n"
+msgstr "%s: Неверный аргумент №%d:Ожидалось целочисленное значение.\n"
 
 #, c-format
 msgid "%s: Log of a singular matrix.\n"
@@ -650,6 +668,10 @@ msgstr "%s: Логарифм вырожденной матрицы.\n"
 #, c-format
 msgid "%s: Unable to diagonalize.\n"
 msgstr "%s: Невозможно привести к диагональному виду.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор-столбец.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"

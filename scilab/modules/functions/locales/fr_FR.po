@@ -111,6 +111,12 @@ msgstr "%s : Veuillez vérifier : %s\n"
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s : Le fichier %s n'existe pas.\n"
 
+#
+# File: modules/functions/macros/expression2code.sci, line: 357
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
@@ -150,6 +156,12 @@ msgstr ""
 
 msgid "No comment available."
 msgstr "Aucun commentaire n'est disponible"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Private function: cannot access to this function directly.\n"

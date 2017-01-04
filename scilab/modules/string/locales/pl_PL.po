@@ -125,6 +125,11 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
@@ -368,10 +373,6 @@ msgid "%s: Given expression has no value.\n"
 msgstr "%s: Podane wyrażenie nie posiada wartości.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: %s.\n"
-msgstr "%s: Funkcja ta nie została zrealizowana: %s.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Niewłaściwy rozmiar parametru wejściowego nr %d: Oczekiwano ciągu "
@@ -396,3 +397,6 @@ msgid ""
 msgstr ""
 "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwany znak lub "
 "wektor znaków.\n"
+
+#~ msgid "%s: This feature has not been implemented: %s.\n"
+#~ msgstr "%s: Funkcja ta nie została zrealizowana: %s.\n"

@@ -125,6 +125,11 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
@@ -366,10 +371,6 @@ msgid "%s: Given expression has no value.\n"
 msgstr "%s: L'expressió donada no té valor.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: %s.\n"
-msgstr "%s: Aquesta característica no està implementada: %s.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
@@ -393,3 +394,6 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un caràcter o "
 "un vector de caràcters.\n"
+
+#~ msgid "%s: This feature has not been implemented: %s.\n"
+#~ msgstr "%s: Aquesta característica no està implementada: %s.\n"

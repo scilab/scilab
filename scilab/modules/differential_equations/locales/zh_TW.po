@@ -227,6 +227,17 @@ msgstr ""
 msgid "%s: %s return with state %d.\n"
 msgstr ""
 
+#
+# File: modules/differential_equations/sci_gateway/cpp/sci_daskr.cpp, line: 1112
+# File: modules/differential_equations/sci_gateway/cpp/sci_dasrt.cpp, line: 790
+# File: modules/differential_equations/sci_gateway/cpp/sci_dassl.cpp, line: 724
+# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 257
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1145
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1367
+#, c-format
+msgid "%ls: An error occured in '%ls' subroutine.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
 msgstr ""
@@ -533,13 +544,19 @@ msgstr ""
 msgid "integ. from tleft= %lf to hf= %lf\n"
 msgstr ""
 
-msgid "Work space insufficient to finish (see messages).\n"
+#
+# File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 35
+msgid "Insufficient Work space to finish (see messages).\n"
 msgstr ""
 
-msgid "Excess work done on this call (perhaps wrong jacobian type).\n"
+#
+# File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 44
+msgid "Excessive work done on this call (perhaps wrong jacobian type).\n"
 msgstr ""
 
-msgid "Excess accuracy requested (tolerances too small).\n"
+#
+# File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 49
+msgid "Excesive accuracy requested (tolerances too small).\n"
 msgstr ""
 
 msgid "Illegal input detected (see printed message).\n"
@@ -596,14 +613,18 @@ msgid ""
 "integrator mode.\n"
 msgstr ""
 
-msgid "invalid input parameters : atol and rtol must be greater than 0.\n"
+#
+# File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 138
+msgid "Invalid input parameters : atol and rtol must be greater than 0.\n"
 msgstr ""
 
 msgid "Inappropriate error tolerance.\n"
 msgstr ""
 
+#
+# File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 190
 msgid ""
-"Too many steps necessary to reached next required time discretization point. "
+"Too many steps necessary to reach next required time discretization point. "
 "Change discretisation of time vector t or decrease accuracy.\n"
 msgstr ""
 

@@ -331,6 +331,43 @@ msgstr "Налаштувати"
 msgid "Save block GUI"
 msgstr "Зберегти графічний інтерфейс блоку"
 
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 69
+msgid "matches"
+msgstr ""
+
+#, fuzzy
+msgid "Previous"
+msgstr "Перегляд"
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 72
+msgid "Search"
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 73
+msgid "Searching..."
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 74
+msgid "Zoom In"
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 75
+msgid "Zoom Out"
+msgstr ""
+
+#, fuzzy
+msgid "Unable to load the selected blocks."
+msgstr "Не вдалося завантажити блок з %s ."
+
+#, fuzzy
+msgid "Loading blocks"
+msgstr "Завантаження блоку"
+
 msgid "Load as palette"
 msgstr "Завантажити як палітру"
 
@@ -610,6 +647,10 @@ msgstr "Не позначено жодного блоку"
 
 msgid "Export to XML"
 msgstr "Експортувати до XML"
+
+#, fuzzy
+msgid "Export in progress"
+msgstr "Виконується моделювання"
 
 msgid "Import from XML"
 msgstr "Імпортувати з XML"
@@ -908,6 +949,24 @@ msgstr "Тип даних призначення: "
 
 msgid "Label: "
 msgstr "Мітка: "
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 330
+msgid "Optimal"
+msgstr ""
+
+#, fuzzy
+msgid "Auto-Position Block"
+msgstr "Приклади блоків"
+
+#, fuzzy
+msgid "Split Block"
+msgstr "Вирівняти блоки"
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 333
+msgid "Auto-Position Split Block"
+msgstr ""
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -1407,9 +1466,6 @@ msgstr "Час:"
 msgid "Flag:"
 msgstr "Прапорець:"
 
-msgid "Next"
-msgstr "Далі"
-
 msgid "End debug"
 msgstr "Завершити діагностику"
 
@@ -1458,6 +1514,9 @@ msgstr "%s: помилка під час спроби прочитати вмі�
 #, c-format
 msgid "%s: Syntax error while trying to set up context from"
 msgstr "%s: синтаксична помилка під час спроби встановити контекст з"
+
+#~ msgid "Next"
+#~ msgstr "Далі"
 
 #~ msgid "The Scicos libraries are not loaded"
 #~ msgstr "Не завантажено бібліотеки Scicos"

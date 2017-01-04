@@ -112,6 +112,10 @@ msgstr "%s：第%d个输入参数的值错误。\n"
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
@@ -332,10 +336,6 @@ msgid "%s: Given expression has no value.\n"
 msgstr "%s：指定的表达式没有值。\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: %s.\n"
-msgstr "%s：该功能尚未实现：%s\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
@@ -353,3 +353,6 @@ msgid ""
 "%s: Wrong size for input argument #%d: A character or vector of characters "
 "expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个字符或一个字符向量。\n"
+
+#~ msgid "%s: This feature has not been implemented: %s.\n"
+#~ msgstr "%s：该功能尚未实现：%s\n"

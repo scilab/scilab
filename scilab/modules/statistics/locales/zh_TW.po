@@ -142,6 +142,14 @@ msgstr "%s: 輸入參數之數目錯誤: 應為 %d 個.\n"
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為純量或向量.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
@@ -319,10 +327,6 @@ msgid "Correlations Circle"
 msgstr "Correlations 圓"
 
 msgid "Eigenvalues"
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 
 #, c-format

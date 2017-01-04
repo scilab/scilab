@@ -179,6 +179,16 @@ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"або векторний тип.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr "%s: параметр №%d: має належати до множини {%s}.\n"
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
@@ -416,10 +426,6 @@ msgstr "Кореляційне коло"
 
 msgid "Eigenvalues"
 msgstr "Власні значення"
-
-#, c-format
-msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: параметр №%d: має належати до множини {%s}.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"

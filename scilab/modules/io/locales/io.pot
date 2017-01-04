@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-12-07 16:04+0100\n"
+"Revision-Date: 2017-01-04 17:52+0100\n"
 
 # File: modules/io/sci_gateway/c/sci_getenv.c, line: 53
 # File: modules/io/sci_gateway/c/sci_getenv.c, line: 70
@@ -31,8 +31,8 @@ msgstr ""
 
 #
 # File: modules/io/sci_gateway/c/sci_getenv.c, line: 93
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 98
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 116
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 102
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 120
 # File: modules/io/sci_gateway/cpp/sci_lib.cpp, line: 43
 # File: modules/io/sci_gateway/cpp/sci_load.cpp, line: 47
 #, c-format
@@ -61,7 +61,7 @@ msgstr ""
 
 #
 # File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 51
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 90
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 94
 # File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 67
 # File: modules/io/sci_gateway/cpp/sci_write.cpp, line: 61
 #, c-format
@@ -205,53 +205,53 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 141
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 148
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 161
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 168
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 145
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 152
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 165
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 172
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar boolean expected.\n"
 msgstr ""
 
 #
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 187
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 191
 #, c-format
 msgid "-- Creation of [%ls] (Macros) --\n"
 msgstr ""
 
 #
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 211
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 215
 #, c-format
 msgid "%ls: Cannot open file ''%ls''.\n"
 msgstr ""
 
 #
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 240
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 247
 #, c-format
 msgid "%s: Cannot open file ''%s''.\n"
 msgstr ""
 
 #
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 276
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 283
 #, c-format
 msgid "%ls: Processing file: %ls\n"
 msgstr ""
 
 #
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 288
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 295
 #, c-format
 msgid "%ls: Error in file %ls.\n"
 msgstr ""
 
 #
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 329
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 336
 #, c-format
 msgid ""
 "%ls: Warning: %ls information cannot be added to file %ls. File ignored\n"
 msgstr ""
 
 #
-# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 354
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 361
 # File: modules/io/sci_gateway/cpp/sci_lib.cpp, line: 75
 # File: modules/io/sci_gateway/cpp/sci_load.cpp, line: 87
 msgid "Redefining permanent variable.\n"

@@ -99,6 +99,12 @@ msgstr "%s:請檢查: %s\n"
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: 檔案 %s  不存在.\n"
 
+#
+# File: modules/functions/macros/expression2code.sci, line: 357
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
@@ -134,6 +140,10 @@ msgstr "%s: 第#%d個參數值有誤:  Scilab 函數名稱才對 .\n"
 
 msgid "No comment available."
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
 
 #, c-format
 msgid "%s: Private function: cannot access to this function directly.\n"

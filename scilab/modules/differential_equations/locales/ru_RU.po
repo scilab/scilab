@@ -276,6 +276,10 @@ msgstr "%s: Неверный размер входного аргумента %d
 msgid "%s: %s return with state %d.\n"
 msgstr "%s: %s возвращено с состоянием %d.\n"
 
+#, fuzzy, c-format
+msgid "%ls: An error occured in '%ls' subroutine.\n"
+msgstr "%s: В подпрограмме '%s' произошла ошибка.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
 msgstr ""
@@ -650,14 +654,17 @@ msgstr "integ. от tleft= %lf до hf=tf= %lf\n"
 msgid "integ. from tleft= %lf to hf= %lf\n"
 msgstr "integ. от tleft= %lf до hf= %lf\n"
 
-msgid "Work space insufficient to finish (see messages).\n"
+#, fuzzy
+msgid "Insufficient Work space to finish (see messages).\n"
 msgstr "Недостаточно рабочего пространства для завершения (см. сообщения).\n"
 
-msgid "Excess work done on this call (perhaps wrong jacobian type).\n"
+#, fuzzy
+msgid "Excessive work done on this call (perhaps wrong jacobian type).\n"
 msgstr ""
 "В этом вызове выполнена лишняя работа (возможно неверный тип якобиана).\n"
 
-msgid "Excess accuracy requested (tolerances too small).\n"
+#, fuzzy
+msgid "Excesive accuracy requested (tolerances too small).\n"
 msgstr "Затребована излишняя точность (допуск слишком мал).\n"
 
 msgid "Illegal input detected (see printed message).\n"
@@ -736,15 +743,17 @@ msgstr ""
 "выход ограничивает выбор естественного размера шага. Используйте режим "
 "одношагового интегратора.\n"
 
-msgid "invalid input parameters : atol and rtol must be greater than 0.\n"
+#, fuzzy
+msgid "Invalid input parameters : atol and rtol must be greater than 0.\n"
 msgstr ""
 "недопустимые входные параметры: atol и rtol должны быть больше, чем 0.\n"
 
 msgid "Inappropriate error tolerance.\n"
 msgstr "Некорректны допуск ошибки.\n"
 
+#, fuzzy
 msgid ""
-"Too many steps necessary to reached next required time discretization point. "
+"Too many steps necessary to reach next required time discretization point. "
 "Change discretisation of time vector t or decrease accuracy.\n"
 msgstr ""
 "Слишком много шагов необходимо для достижения следующей точки дискретизации "

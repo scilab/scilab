@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-12-07 16:04+0100\n"
+"Revision-Date: 2017-01-04 17:51+0100\n"
 
 # File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 45
 # File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 58
@@ -53,6 +53,15 @@ msgstr ""
 # File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 183
 #, c-format
 msgid "%s: No more memory.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 84
+# File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 77
+# File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 113
+# File: modules/elementary_functions/src/cpp/getmode.cpp, line: 72
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
@@ -220,10 +229,10 @@ msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 116
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 129
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 116
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 129
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 122
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 135
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 122
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 135
 # File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 144
 # File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 157
 # File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 140
@@ -233,10 +242,10 @@ msgid "%s: Wrong value for input argument #%d: A positive scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 144
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 251
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 144
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 251
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 150
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 257
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 150
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 257
 # File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 172
 # File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 279
 # File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 168
@@ -246,8 +255,8 @@ msgid "%s: Wrong size for input argument #%d: A scalar string expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 224
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 224
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 230
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 230
 # File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 252
 # File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 248
 #, c-format
@@ -664,6 +673,7 @@ msgstr ""
 
 #
 # File: modules/elementary_functions/macros/bit_op.sci, line: 30
+# File: modules/elementary_functions/macros/linspace.sci, line: 34
 #, c-format
 msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
@@ -779,7 +789,6 @@ msgstr ""
 
 #
 # File: modules/elementary_functions/macros/complex.sci, line: 46
-# File: modules/elementary_functions/macros/linspace.sci, line: 28
 # File: modules/elementary_functions/macros/logspace.sci, line: 29
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -914,10 +923,28 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/linspace.sci, line: 25
-# File: modules/elementary_functions/macros/logspace.sci, line: 25
+# File: modules/elementary_functions/macros/linspace.sci, line: 30
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgid "%s: Argument #%d: Column expected.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/macros/linspace.sci, line: 37
+#, c-format
+msgid "%s: Argument #%d: Number(s) expected.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/macros/linspace.sci, line: 44
+#, c-format
+msgid "%s: Argument #%d: %%nan and %%inf values are forbidden.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/macros/linspace.sci, line: 56
+# File: modules/elementary_functions/macros/logspace.sci, line: 39
+#, c-format
+msgid "%s: Argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
@@ -931,6 +958,12 @@ msgstr ""
 # File: modules/elementary_functions/macros/logm.sci, line: 64
 #, c-format
 msgid "%s: Unable to diagonalize.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/macros/logspace.sci, line: 25
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 
 #
@@ -1149,55 +1182,55 @@ msgid "%s: Wrong size for input argument #%d: a vector expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/resize_matrix.sci, line: 33
+# File: modules/elementary_functions/macros/resize_matrix.sci, line: 30
 msgid "RESIZING a matrix of DECIMALS:"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/resize_matrix.sci, line: 46
+# File: modules/elementary_functions/macros/resize_matrix.sci, line: 43
 msgid "Type <Enter> to see an example with polynomials:"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/resize_matrix.sci, line: 59
+# File: modules/elementary_functions/macros/resize_matrix.sci, line: 56
 msgid "The unknown variable of added values is forced to the P's one"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/resize_matrix.sci, line: 60
+# File: modules/elementary_functions/macros/resize_matrix.sci, line: 57
 msgid "Polynomials can't be converted"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/resize_matrix.sci, line: 62
+# File: modules/elementary_functions/macros/resize_matrix.sci, line: 59
 msgid "Type <Enter> to see an example with character strings:"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/resize_matrix.sci, line: 75
+# File: modules/elementary_functions/macros/resize_matrix.sci, line: 72
 msgid "Hypermatrices of character strings can't be converted.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/resize_matrix.sci, line: 97
+# File: modules/elementary_functions/macros/resize_matrix.sci, line: 94
 #, c-format
 msgid "%s: Wrong type of input argument #%d: %s not supported.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/resize_matrix.sci, line: 109
+# File: modules/elementary_functions/macros/resize_matrix.sci, line: 106
 #, c-format
 msgid "%s: Wrong input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/resize_matrix.sci, line: 120
+# File: modules/elementary_functions/macros/resize_matrix.sci, line: 117
 #, c-format
 msgid "%s: Wrong sizes requested, cannot convert list to matrix.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/resize_matrix.sci, line: 171
+# File: modules/elementary_functions/macros/resize_matrix.sci, line: 168
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: cannot convert the padding value to "
@@ -1205,13 +1238,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/resize_matrix.sci, line: 260
+# File: modules/elementary_functions/macros/resize_matrix.sci, line: 261
 #, c-format
 msgid "%s: conversion of polynomials is not supported\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/resize_matrix.sci, line: 286
+# File: modules/elementary_functions/macros/resize_matrix.sci, line: 287
 #, c-format
 msgid "%s: conversion into %s is not supported\n"
 msgstr ""

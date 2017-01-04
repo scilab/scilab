@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2016-12-07 16:04+0100\n"
+"Revision-Date: 2017-01-04 17:52+0100\n"
 
 # File: modules/gui/sci_gateway/c/sci_delmenu.c, line: 55
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 49
@@ -28,7 +28,7 @@ msgstr ""
 #
 # File: modules/gui/sci_gateway/c/sci_delmenu.c, line: 69
 # File: modules/gui/sci_gateway/c/sci_delmenu.c, line: 116
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 555
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 557
 # File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 71
 # File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 97
 # File: modules/gui/sci_gateway/c/sci_messagebox.c, line: 141
@@ -187,12 +187,12 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 97
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 146
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 182
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 213
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 470
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 504
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 98
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 148
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 184
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 215
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 472
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 506
 # File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 159
 # File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 141
 # File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 167
@@ -223,15 +223,15 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 103
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 152
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 105
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 154
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 109
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 158
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 111
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 160
 # File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 183
 # File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 284
 # File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 249
@@ -249,50 +249,50 @@ msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 188
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 234
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 241
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 269
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 276
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 382
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 476
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 543
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 190
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 236
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 243
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 271
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 278
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 384
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 478
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 545
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 224
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 256
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 291
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 304
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 314
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 411
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 421
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 431
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 441
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 226
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 258
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 293
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 306
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 316
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 413
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 423
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 433
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 443
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected."
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 325
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 344
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 327
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 346
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double vector expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 333
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 352
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 367
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 335
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 354
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 369
 #, c-format
 msgid "Wrong size for '%s' property: %d elements expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 391
-# File: modules/gui/sci_gateway/c/sci_figure.c, line: 401
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 393
+# File: modules/gui/sci_gateway/c/sci_figure.c, line: 403
 # File: modules/gui/src/cpp/SetUicontrolPosition.cpp, line: 46
 #, c-format
 msgid ""

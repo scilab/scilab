@@ -138,6 +138,11 @@ msgstr ""
 "%s: помилкова кількість вихідних параметрів: слід використовувати значення "
 "від %d до %d.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано символ.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d: мало бути «%s» або «%s».\n"
@@ -413,10 +418,6 @@ msgid "%s: Given expression has no value.\n"
 msgstr "%s: вказаний вираз не має значення.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: %s.\n"
-msgstr "%s: цю можливість не реалізовано: %s.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
@@ -441,3 +442,6 @@ msgid ""
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
 "символ або вектор символів.\n"
+
+#~ msgid "%s: This feature has not been implemented: %s.\n"
+#~ msgstr "%s: цю можливість не реалізовано: %s.\n"

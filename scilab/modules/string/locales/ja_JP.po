@@ -186,6 +186,15 @@ msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
+#
+# File: sci_gateway/c/sci_grep.c, line: 93
+# File: sci_gateway/c/sci_isalphanum.c, line: 78
+# File: sci_gateway/c/sci_isdigit.c, line: 78
+# File: sci_gateway/c/sci_isletter.c, line: 78
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
@@ -472,10 +481,6 @@ msgstr ""
 msgid "%s: Given expression has no value.\n"
 msgstr "%s: 与えられた表現はいかなる値も持っていません。\n"
 
-#, c-format
-msgid "%s: This feature has not been implemented: %s.\n"
-msgstr "%s: この特徴は装備されていません。: %s\n"
-
 #
 # File: sci_gateway/c/sci_convstr.c, line: 71
 # File: sci_gateway/c/sci_strindex.c, line: 141
@@ -506,3 +511,6 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: 入力引数 #%d で不正なサイズ: 文字列、または、文字ベクトルを想定します。\n"
+
+#~ msgid "%s: This feature has not been implemented: %s.\n"
+#~ msgstr "%s: この特徴は装備されていません。: %s\n"
