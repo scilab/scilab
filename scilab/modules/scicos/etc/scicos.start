@@ -12,3 +12,4 @@
 // along with this program.
 
 load('SCI/modules/scicos/macros/scicos_utils/lib');
+load('SCI/modules/scicos/macros/scicos_auto/lib');
