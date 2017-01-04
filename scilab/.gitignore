@@ -17,7 +17,6 @@ bin/xml2-config
 .dirstamp
 .deps
 .libs
-/config.cache
 Makefile
 
 #
@@ -84,7 +83,6 @@ Debug
 *.suo
 *.ncb
 VTune
-*.pdb
 
 #
 # F2C files (windows)
@@ -142,7 +140,6 @@ lib
 tcllib
 _tmp_project.h
 scilab-bin
-scilab6-bin
 scilab-cli-bin
 tclmajor
 tclminor

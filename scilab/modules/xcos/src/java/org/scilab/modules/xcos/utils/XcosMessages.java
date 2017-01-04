@@ -3,6 +3,7 @@
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2015 - Marcos CARDINOT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -63,6 +64,19 @@ public final class XcosMessages {
     public static final String REMOVE = Messages.gettext("Remove");
     public static final String CUSTOMIZE = Messages.gettext("Customize") + DOTS;
     public static final String SAVE_BLOCK_GUI = Messages.gettext("Save block GUI");
+
+    /* Palette browser */
+    public static final String MATCHES = Messages.gettext("matches");
+    public static final String NEXT = Messages.gettext("Next");
+    public static final String PREVIOUS = Messages.gettext("Previous");
+    public static final String SEARCH = Messages.gettext("Search");
+    public static final String SEARCHING = Messages.gettext("Searching...");
+    public static final String ZOOM_IN = Messages.gettext("Zoom In");
+    public static final String ZOOM_OUT = Messages.gettext("Zoom Out");
+
+    public static final String UNABLE_TO_LOAD_BLOCK = Messages.gettext("Unable to load block from %s .");
+    public static final String UNABLE_TO_LOAD_SELECTED_BLOCKS = Messages.gettext("Unable to load the selected blocks.");
+    public static final String LOADING_BLOCKS = Messages.gettext("Loading blocks") + DOTS;
 
     /* Palette menu in palette browser */
     public static final String LOAD_AS_PAL = Messages.gettext("Load as palette") + DOTS;
@@ -181,6 +195,7 @@ public final class XcosMessages {
     public static final String NO_BLOCK_SELECTED = Messages.gettext("No block selected");
 
     public static final String EXPORT_TO_XML = Messages.gettext("Export to XML") + DOTS;
+    public static final String EXPORT_IN_PROGRESS = Messages.gettext("Export in progress") + DOTS;
     public static final String IMPORT_FROM_XML = Messages.gettext("Import from XML") + DOTS;
 
     public static final String ADDTO = Messages.gettext("Add to");
@@ -334,7 +349,9 @@ public final class XcosMessages {
      * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
      */
     public static boolean isMacOsPopupTrigger(MouseEvent e) {
-        return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System
-                .getProperty("java.specification.version").equals("1.5")));
+        return (SwingUtilities.isLeftMouseButton(e)
+                && e.isControlDown()
+                && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1)
+                && (System.getProperty("java.specification.version").equals("1.5")));
     }
 }

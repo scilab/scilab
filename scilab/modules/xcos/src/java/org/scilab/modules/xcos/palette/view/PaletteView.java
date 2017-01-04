@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2015 - Marcos CARDINOT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -16,16 +17,23 @@
 
 package org.scilab.modules.xcos.palette.view;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.JPanel;
 import javax.swing.Scrollable;
 import javax.swing.SwingConstants;
 
 import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 
 /**
  * Implement a view of a block category.
@@ -37,24 +45,50 @@ import org.scilab.modules.xcos.utils.XcosConstants;
  */
 @SuppressWarnings(value = { "serial" })
 public class PaletteView extends JPanel implements Scrollable {
+
+    private static Rectangle2D.Double selectionRect;
     private boolean isLoaded;
 
     /**
      * Default constructor
      */
     public PaletteView() {
+        setName("PaletteView");
         initComponents();
     }
 
     /** Setup component */
     private void initComponents() {
         setBackground(Color.WHITE);
+
         setLayout(new ModifiedFlowLayout(FlowLayout.LEADING,
-                                         XcosConstants.PALETTE_HMARGIN, XcosConstants.PALETTE_VMARGIN));
-        setMinimumSize(new Dimension(
-                           (XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN),
-                           XcosConstants.PALETTE_BLOCK_HEIGHT
-                           + XcosConstants.PALETTE_VMARGIN));
+                                         XcosConstants.PALETTE_HMARGIN,
+                                         XcosConstants.PALETTE_VMARGIN));
+
+        // if this panel gains focus, try to select the first block!
+        setFocusable(true);
+        addFocusListener(new FocusListener() {
+            @Override
+            public void focusLost(FocusEvent e) {
+            }
+            @Override
+            public void focusGained(FocusEvent e) {
+                try {
+                    ((PaletteBlockView) getComponent(0)).getController().setSelected(true);
+                } catch (ClassCastException err) {
+                } catch (NullPointerException err) {
+                }
+            }
+        });
+    }
+
+    /**
+     * Sets the selection rectangle
+     * @param rect Rectangle2D
+     */
+    public void setSelectionRectangle(Rectangle2D.Double rect) {
+        selectionRect = rect;
+        this.repaint();
     }
 
     /**
@@ -75,7 +109,6 @@ public class PaletteView extends JPanel implements Scrollable {
         if (!b) {
             removeAll();
         }
-
         isLoaded = b;
     }
 
@@ -104,11 +137,12 @@ public class PaletteView extends JPanel implements Scrollable {
     @Override
     public int getScrollableBlockIncrement(Rectangle visibleRect,
                                            int orientation, int direction) {
+        PaletteBlockSize palBlockSize = PaletteManagerPanel.getCurrentSize();
         if (orientation == SwingConstants.VERTICAL) {
-            return XcosConstants.PALETTE_BLOCK_HEIGHT
+            return palBlockSize.getBlockDimension().height
                    + XcosConstants.PALETTE_VMARGIN;
         } else {
-            return XcosConstants.PALETTE_BLOCK_WIDTH
+            return palBlockSize.getBlockDimension().width
                    + XcosConstants.PALETTE_HMARGIN;
         }
     }
@@ -147,10 +181,33 @@ public class PaletteView extends JPanel implements Scrollable {
     @Override
     public int getScrollableUnitIncrement(Rectangle visibleRect,
                                           int orientation, int direction) {
+        PaletteBlockSize palBlockSize = PaletteManagerPanel.getCurrentSize();
         if (orientation == SwingConstants.VERTICAL) {
-            return XcosConstants.PALETTE_BLOCK_HEIGHT;
+            return palBlockSize.getBlockDimension().height;
         } else {
-            return XcosConstants.PALETTE_BLOCK_WIDTH;
+            return palBlockSize.getBlockDimension().width;
         }
+    }
+
+    /**
+     * Paints the selection rectangle.
+     * @param g Graphics
+     */
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (selectionRect == null) {
+            return;
+        }
+
+        Graphics2D g2d = (Graphics2D) g;
+        final float alpha = 0.1f;
+        AlphaComposite ta = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha);
+        g2d.setComposite(ta);
+        g2d.setColor(Color.BLUE);
+        g2d.fill(selectionRect);
+        g2d.setComposite(AlphaComposite.SrcOver);
+        g2d.setColor(Color.BLACK);
+        g2d.draw(selectionRect);
     }
 }

@@ -811,6 +811,9 @@ FOP
 JEUCLID_CORE
 JROSETTA_ENGINE
 JROSETTA_API
+LUCENE_PARSER
+LUCENE_ANALYZER
+LUCENE
 JHALL
 GLUEGEN2_RT
 JOGL2
@@ -3352,8 +3355,8 @@ else
 $as_echo "no, using $LN_S" >&6; }
 fi
 
-# Expand $ac_aux_dir to an absolute path.
-am_aux_dir=`cd "$ac_aux_dir" && pwd`
+# expand $ac_aux_dir to an absolute path
+am_aux_dir=`cd $ac_aux_dir && pwd`
 
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
@@ -5548,7 +5551,7 @@ fi
 
 
 
-am__api_version='1.15'
+am__api_version='1.14'
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether build environment is sane" >&5
 $as_echo_n "checking whether build environment is sane... " >&6; }
@@ -5644,7 +5647,7 @@ else
 $as_echo "$as_me: WARNING: 'missing' script is too old or missing" >&2;}
 fi
 
-if test x"${install_sh+set}" != xset; then
+if test x"${install_sh}" != xset; then
   case $am_aux_dir in
   *\ * | *\	*)
     install_sh="\${SHELL} '$am_aux_dir/install-sh'" ;;
@@ -6035,8 +6038,8 @@ MAKEINFO=${MAKEINFO-"${am_missing_run}makeinfo"}
 # <http://lists.gnu.org/archive/html/automake/2012-07/msg00014.html>
 mkdir_p='$(MKDIR_P)'
 
-# We need awk for the "check" target (and possibly the TAP driver).  The
-# system "awk" is bad on some platforms.
+# We need awk for the "check" target.  The system "awk" is bad on
+# some platforms.
 # Always define AMTAR for backward compatibility.  Yes, it's still used
 # in the wild :-(  We should find a proper way to deprecate it ...
 AMTAR='$${TAR-tar}'
@@ -6220,8 +6223,7 @@ to "yes", and re-run configure.
 END
     as_fn_error $? "Your 'rm' program is bad, sorry." "$LINENO" 5
   fi
-fi
- # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
+fi # Not using -Werror because we override {C,F}FLAGS in order to disable optimisation
 
 
 
@@ -16280,6 +16282,663 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar javahelp2 
                 JHALL=$PACKAGE_JAR_FILE
 
 
+                # Lucene Apache - core
+
+
+
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking lucene-core" >&5
+$as_echo_n "checking lucene-core... " >&6; }
+    PACKAGE_JAR_FILE=
+
+    DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
+
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'lucene-core.jar' -or -name 'liblucene-core.jar' -or -name 'liblucene-core-java.jar' -or -name 'lucene-core*.jar' \) 2>/dev/null |tr '\n' ':')."
+
+    if test ! -f conftestSharedChecker.class ; then
+
+    cat << \EOF > conftestSharedChecker.java
+// #line 16298 "configure"
+import java.util.regex.Pattern;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+
+public class conftestSharedChecker {
+
+    /**
+     * Required arguments :
+     *  argv[0]: name of the jar package
+     *  argv[1]: name of the class (with the package prefix)
+     *  argv[2]: possible paths of the jar package (separated by ':')
+     *
+     * Optional arguments:
+     *  argv[3]: field or method used to retrieve the version
+     *  argv[4]: expected version
+     *  argv[5]: String comparator :
+     *      "="  for exact version
+     */
+    public static void main(String[] argv) {
+        final String packageName = argv[0];
+        final String className = argv[1];
+        final String[] jarList = argv[2].split(":");
+
+        ArrayList<URL> found = new ArrayList<>();
+        for(String jar : jarList)
+        {
+            try {
+                File f = new File(jar);
+                if (f.exists()) {
+                    found.add(f.toURI().toURL());
+                }
+            } catch (IOException ex) {
+                System.err.println(ex.toString());
+            }
+        }
+
+        URLClassLoader localClassLoader = new URLClassLoader(found.toArray(new URL[found.size()]));
+        URL klassURL = null;
+        Class<?> klass = null;
+        try {
+            String resourceName = className.replace(".", "/") + ".class";
+            klassURL = localClassLoader.getResource(resourceName);
+            klass = localClassLoader.loadClass(className);
+        } catch (ClassNotFoundException ex) {
+            System.err.println(className + " not found");
+            System.exit(-1);
+        }
+
+        String pathURL = klassURL.getPath().substring(0, klassURL.getPath().indexOf('!'));
+        String path = pathURL.substring(pathURL.indexOf(':') + 1);
+        System.err.println("found: " + path);
+
+        if (argv.length > 3) {
+            checkVersion(klass, argv);
+        }
+
+        System.out.println(path);
+    }
+
+    private static void checkVersion(Class<?> klass, String[] argv) throws SecurityException, IllegalArgumentException {
+        final String versionMethod = argv[3];
+        final String expected = argv[4];
+        final String atLeastOrEqual;
+        if (argv.length > 5)
+            atLeastOrEqual = argv[5];
+        else
+            atLeastOrEqual = "<=";
+
+        try {
+            try {
+                Field field = klass.getField(versionMethod);
+                Object value = field.get(null);
+                compareAndDisplay(atLeastOrEqual, expected, value);
+            } catch (NoSuchFieldException fe) {
+                Method method = null;
+                try {
+                    method = klass.getMethod(versionMethod);
+                } catch (NoSuchMethodException ex) {
+                    System.err.println(ex.toString());
+                    System.exit(-3);
+                }
+
+                try {
+                    Object value = method.invoke(null);
+                    compareAndDisplay(atLeastOrEqual, expected, value);
+                } catch (NullPointerException ex) {
+                    Object value = method.invoke(klass.newInstance());
+                    compareAndDisplay(atLeastOrEqual, expected, value);
+                }
+            }
+        } catch (IllegalAccessException ex) {
+            System.err.println(ex);
+            System.exit(-2);
+        } catch (InvocationTargetException ex) {
+            System.err.println(ex);
+            System.exit(-2);
+        } catch (InstantiationException ex) {
+            System.err.println(ex);
+            System.exit(-2);
+        }
+    }
+
+    private static void compareAndDisplay(String atLeastOrEqual, String expected, Object value) {
+        int cmp = compare(expected, value.toString());
+
+        switch(atLeastOrEqual) {
+            case ">":
+                if (cmp > 0) {
+                    return;
+                } else {
+                    System.err.println("expected "+atLeastOrEqual+""+expected+" but got "+value);
+                    System.exit(-4);
+                }
+            case "==":
+                if (cmp == 0) {
+                    return;
+                } else {
+                    System.err.println("expected "+atLeastOrEqual+""+expected+" but got "+value);
+                    System.exit(-4);
+                }
+            case "<=":
+                if (cmp <= 0) {
+                    return;
+                } else {
+                    System.err.println("expected "+atLeastOrEqual+""+expected+" but got "+value);
+                    System.exit(-4);
+                }
+            default:
+                System.err.println("unable to compare with "+atLeastOrEqual);
+                System.exit(-4);
+        }
+    }
+
+    private static int compare(String v1, String v2) {
+        String s1 = normalisedVersion(v1);
+        String s2 = normalisedVersion(v2);
+
+        System.err.println("compare: " + v1 + " normalised to " + s1);
+        System.err.println("compare: " + v2 + " normalised to " + s2);
+        return s1.compareTo(s2);
+    }
+
+    private static String normalisedVersion(String version) {
+        return normalisedVersion(version, ".", 4);
+    }
+
+    private static String normalisedVersion(String version, String sep, int maxWidth) {
+        String[] split = Pattern.compile(sep, Pattern.LITERAL).split(version);
+        StringBuilder sb = new StringBuilder();
+        for (String s : split) {
+            sb.append(String.format("%" + maxWidth + 's', s));
+        }
+        return sb.toString();
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftestSharedChecker.java"
+    if (echo $cmd >&5 ; eval $cmd >conftestSharedChecker.java.output 2>&5) ; then
+        echo "configure: conftestSharedChecker.class available" >&5
+    else
+        echo "configure: failed program was:" >&5
+        cat conftestSharedChecker.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+    fi
+
+    fi
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVA conftestSharedChecker lucene-core org.apache.lucene.LucenePackage $jar_resolved   "
+    if (echo $cmd >&5 ; eval $cmd >conftestSharedChecker.java.output 2>&5); then
+        PACKAGE_JAR_FILE=$(tail -n 1 conftestSharedChecker.java.output);
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: $PACKAGE_JAR_FILE" >&5
+$as_echo "$PACKAGE_JAR_FILE" >&6; }
+        echo "yes" >&5
+        # append the found file to the classpath to manage jar dependency
+        ac_java_classpath="$ac_java_classpath:$PACKAGE_JAR_FILE"
+    else
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+      if test "" = "yes"; then
+         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar lucene-core used by Lucene (looking for package org.apache.lucene.LucenePackage)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar lucene-core used by Lucene (looking for package org.apache.lucene.LucenePackage)" >&2;}
+      else
+          as_fn_error $? "Could not find or use the Java package/jar lucene-core used by Lucene (looking for package org.apache.lucene.LucenePackage)" "$LINENO" 5
+      fi
+    fi
+    if test -f conftestSharedChecker.java.output; then
+        rm conftestSharedChecker.java.output
+    fi
+
+                LUCENE=$PACKAGE_JAR_FILE
+
+
+                # Lucene Apache - analyzers-common
+
+
+
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking lucene-analyzers-common" >&5
+$as_echo_n "checking lucene-analyzers-common... " >&6; }
+    PACKAGE_JAR_FILE=
+
+    DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
+
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'lucene-analyzers-common.jar' -or -name 'liblucene-analyzers-common.jar' -or -name 'liblucene-analyzers-common-java.jar' -or -name 'lucene-analyzers-common*.jar' \) 2>/dev/null |tr '\n' ':')."
+
+    if test ! -f conftestSharedChecker.class ; then
+
+    cat << \EOF > conftestSharedChecker.java
+// #line 16514 "configure"
+import java.util.regex.Pattern;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+
+public class conftestSharedChecker {
+
+    /**
+     * Required arguments :
+     *  argv[0]: name of the jar package
+     *  argv[1]: name of the class (with the package prefix)
+     *  argv[2]: possible paths of the jar package (separated by ':')
+     *
+     * Optional arguments:
+     *  argv[3]: field or method used to retrieve the version
+     *  argv[4]: expected version
+     *  argv[5]: String comparator :
+     *      "="  for exact version
+     */
+    public static void main(String[] argv) {
+        final String packageName = argv[0];
+        final String className = argv[1];
+        final String[] jarList = argv[2].split(":");
+
+        ArrayList<URL> found = new ArrayList<>();
+        for(String jar : jarList)
+        {
+            try {
+                File f = new File(jar);
+                if (f.exists()) {
+                    found.add(f.toURI().toURL());
+                }
+            } catch (IOException ex) {
+                System.err.println(ex.toString());
+            }
+        }
+
+        URLClassLoader localClassLoader = new URLClassLoader(found.toArray(new URL[found.size()]));
+        URL klassURL = null;
+        Class<?> klass = null;
+        try {
+            String resourceName = className.replace(".", "/") + ".class";
+            klassURL = localClassLoader.getResource(resourceName);
+            klass = localClassLoader.loadClass(className);
+        } catch (ClassNotFoundException ex) {
+            System.err.println(className + " not found");
+            System.exit(-1);
+        }
+
+        String pathURL = klassURL.getPath().substring(0, klassURL.getPath().indexOf('!'));
+        String path = pathURL.substring(pathURL.indexOf(':') + 1);
+        System.err.println("found: " + path);
+
+        if (argv.length > 3) {
+            checkVersion(klass, argv);
+        }
+
+        System.out.println(path);
+    }
+
+    private static void checkVersion(Class<?> klass, String[] argv) throws SecurityException, IllegalArgumentException {
+        final String versionMethod = argv[3];
+        final String expected = argv[4];
+        final String atLeastOrEqual;
+        if (argv.length > 5)
+            atLeastOrEqual = argv[5];
+        else
+            atLeastOrEqual = "<=";
+
+        try {
+            try {
+                Field field = klass.getField(versionMethod);
+                Object value = field.get(null);
+                compareAndDisplay(atLeastOrEqual, expected, value);
+            } catch (NoSuchFieldException fe) {
+                Method method = null;
+                try {
+                    method = klass.getMethod(versionMethod);
+                } catch (NoSuchMethodException ex) {
+                    System.err.println(ex.toString());
+                    System.exit(-3);
+                }
+
+                try {
+                    Object value = method.invoke(null);
+                    compareAndDisplay(atLeastOrEqual, expected, value);
+                } catch (NullPointerException ex) {
+                    Object value = method.invoke(klass.newInstance());
+                    compareAndDisplay(atLeastOrEqual, expected, value);
+                }
+            }
+        } catch (IllegalAccessException ex) {
+            System.err.println(ex);
+            System.exit(-2);
+        } catch (InvocationTargetException ex) {
+            System.err.println(ex);
+            System.exit(-2);
+        } catch (InstantiationException ex) {
+            System.err.println(ex);
+            System.exit(-2);
+        }
+    }
+
+    private static void compareAndDisplay(String atLeastOrEqual, String expected, Object value) {
+        int cmp = compare(expected, value.toString());
+
+        switch(atLeastOrEqual) {
+            case ">":
+                if (cmp > 0) {
+                    return;
+                } else {
+                    System.err.println("expected "+atLeastOrEqual+""+expected+" but got "+value);
+                    System.exit(-4);
+                }
+            case "==":
+                if (cmp == 0) {
+                    return;
+                } else {
+                    System.err.println("expected "+atLeastOrEqual+""+expected+" but got "+value);
+                    System.exit(-4);
+                }
+            case "<=":
+                if (cmp <= 0) {
+                    return;
+                } else {
+                    System.err.println("expected "+atLeastOrEqual+""+expected+" but got "+value);
+                    System.exit(-4);
+                }
+            default:
+                System.err.println("unable to compare with "+atLeastOrEqual);
+                System.exit(-4);
+        }
+    }
+
+    private static int compare(String v1, String v2) {
+        String s1 = normalisedVersion(v1);
+        String s2 = normalisedVersion(v2);
+
+        System.err.println("compare: " + v1 + " normalised to " + s1);
+        System.err.println("compare: " + v2 + " normalised to " + s2);
+        return s1.compareTo(s2);
+    }
+
+    private static String normalisedVersion(String version) {
+        return normalisedVersion(version, ".", 4);
+    }
+
+    private static String normalisedVersion(String version, String sep, int maxWidth) {
+        String[] split = Pattern.compile(sep, Pattern.LITERAL).split(version);
+        StringBuilder sb = new StringBuilder();
+        for (String s : split) {
+            sb.append(String.format("%" + maxWidth + 's', s));
+        }
+        return sb.toString();
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftestSharedChecker.java"
+    if (echo $cmd >&5 ; eval $cmd >conftestSharedChecker.java.output 2>&5) ; then
+        echo "configure: conftestSharedChecker.class available" >&5
+    else
+        echo "configure: failed program was:" >&5
+        cat conftestSharedChecker.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+    fi
+
+    fi
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVA conftestSharedChecker lucene-analyzers-common org.apache.lucene.analysis.standard.StandardAnalyzer $jar_resolved   "
+    if (echo $cmd >&5 ; eval $cmd >conftestSharedChecker.java.output 2>&5); then
+        PACKAGE_JAR_FILE=$(tail -n 1 conftestSharedChecker.java.output);
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: $PACKAGE_JAR_FILE" >&5
+$as_echo "$PACKAGE_JAR_FILE" >&6; }
+        echo "yes" >&5
+        # append the found file to the classpath to manage jar dependency
+        ac_java_classpath="$ac_java_classpath:$PACKAGE_JAR_FILE"
+    else
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+      if test "" = "yes"; then
+         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar lucene-analyzers-common used by StandardAnalyzer (looking for package org.apache.lucene.analysis.standard.StandardAnalyzer)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar lucene-analyzers-common used by StandardAnalyzer (looking for package org.apache.lucene.analysis.standard.StandardAnalyzer)" >&2;}
+      else
+          as_fn_error $? "Could not find or use the Java package/jar lucene-analyzers-common used by StandardAnalyzer (looking for package org.apache.lucene.analysis.standard.StandardAnalyzer)" "$LINENO" 5
+      fi
+    fi
+    if test -f conftestSharedChecker.java.output; then
+        rm conftestSharedChecker.java.output
+    fi
+
+                LUCENE_ANALYZER=$PACKAGE_JAR_FILE
+
+
+                # Lucene Apache - lucene-queryparser
+
+
+
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking lucene-queryparser" >&5
+$as_echo_n "checking lucene-queryparser... " >&6; }
+    PACKAGE_JAR_FILE=
+
+    DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
+
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'lucene-queryparser.jar' -or -name 'liblucene-queryparser.jar' -or -name 'liblucene-queryparser-java.jar' -or -name 'lucene-queryparser*.jar' \) 2>/dev/null |tr '\n' ':')."
+
+    if test ! -f conftestSharedChecker.class ; then
+
+    cat << \EOF > conftestSharedChecker.java
+// #line 16734 "configure"
+import java.util.regex.Pattern;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+
+public class conftestSharedChecker {
+
+    /**
+     * Required arguments :
+     *  argv[0]: name of the jar package
+     *  argv[1]: name of the class (with the package prefix)
+     *  argv[2]: possible paths of the jar package (separated by ':')
+     *
+     * Optional arguments:
+     *  argv[3]: field or method used to retrieve the version
+     *  argv[4]: expected version
+     *  argv[5]: String comparator :
+     *      "="  for exact version
+     */
+    public static void main(String[] argv) {
+        final String packageName = argv[0];
+        final String className = argv[1];
+        final String[] jarList = argv[2].split(":");
+
+        ArrayList<URL> found = new ArrayList<>();
+        for(String jar : jarList)
+        {
+            try {
+                File f = new File(jar);
+                if (f.exists()) {
+                    found.add(f.toURI().toURL());
+                }
+            } catch (IOException ex) {
+                System.err.println(ex.toString());
+            }
+        }
+
+        URLClassLoader localClassLoader = new URLClassLoader(found.toArray(new URL[found.size()]));
+        URL klassURL = null;
+        Class<?> klass = null;
+        try {
+            String resourceName = className.replace(".", "/") + ".class";
+            klassURL = localClassLoader.getResource(resourceName);
+            klass = localClassLoader.loadClass(className);
+        } catch (ClassNotFoundException ex) {
+            System.err.println(className + " not found");
+            System.exit(-1);
+        }
+
+        String pathURL = klassURL.getPath().substring(0, klassURL.getPath().indexOf('!'));
+        String path = pathURL.substring(pathURL.indexOf(':') + 1);
+        System.err.println("found: " + path);
+
+        if (argv.length > 3) {
+            checkVersion(klass, argv);
+        }
+
+        System.out.println(path);
+    }
+
+    private static void checkVersion(Class<?> klass, String[] argv) throws SecurityException, IllegalArgumentException {
+        final String versionMethod = argv[3];
+        final String expected = argv[4];
+        final String atLeastOrEqual;
+        if (argv.length > 5)
+            atLeastOrEqual = argv[5];
+        else
+            atLeastOrEqual = "<=";
+
+        try {
+            try {
+                Field field = klass.getField(versionMethod);
+                Object value = field.get(null);
+                compareAndDisplay(atLeastOrEqual, expected, value);
+            } catch (NoSuchFieldException fe) {
+                Method method = null;
+                try {
+                    method = klass.getMethod(versionMethod);
+                } catch (NoSuchMethodException ex) {
+                    System.err.println(ex.toString());
+                    System.exit(-3);
+                }
+
+                try {
+                    Object value = method.invoke(null);
+                    compareAndDisplay(atLeastOrEqual, expected, value);
+                } catch (NullPointerException ex) {
+                    Object value = method.invoke(klass.newInstance());
+                    compareAndDisplay(atLeastOrEqual, expected, value);
+                }
+            }
+        } catch (IllegalAccessException ex) {
+            System.err.println(ex);
+            System.exit(-2);
+        } catch (InvocationTargetException ex) {
+            System.err.println(ex);
+            System.exit(-2);
+        } catch (InstantiationException ex) {
+            System.err.println(ex);
+            System.exit(-2);
+        }
+    }
+
+    private static void compareAndDisplay(String atLeastOrEqual, String expected, Object value) {
+        int cmp = compare(expected, value.toString());
+
+        switch(atLeastOrEqual) {
+            case ">":
+                if (cmp > 0) {
+                    return;
+                } else {
+                    System.err.println("expected "+atLeastOrEqual+""+expected+" but got "+value);
+                    System.exit(-4);
+                }
+            case "==":
+                if (cmp == 0) {
+                    return;
+                } else {
+                    System.err.println("expected "+atLeastOrEqual+""+expected+" but got "+value);
+                    System.exit(-4);
+                }
+            case "<=":
+                if (cmp <= 0) {
+                    return;
+                } else {
+                    System.err.println("expected "+atLeastOrEqual+""+expected+" but got "+value);
+                    System.exit(-4);
+                }
+            default:
+                System.err.println("unable to compare with "+atLeastOrEqual);
+                System.exit(-4);
+        }
+    }
+
+    private static int compare(String v1, String v2) {
+        String s1 = normalisedVersion(v1);
+        String s2 = normalisedVersion(v2);
+
+        System.err.println("compare: " + v1 + " normalised to " + s1);
+        System.err.println("compare: " + v2 + " normalised to " + s2);
+        return s1.compareTo(s2);
+    }
+
+    private static String normalisedVersion(String version) {
+        return normalisedVersion(version, ".", 4);
+    }
+
+    private static String normalisedVersion(String version, String sep, int maxWidth) {
+        String[] split = Pattern.compile(sep, Pattern.LITERAL).split(version);
+        StringBuilder sb = new StringBuilder();
+        for (String s : split) {
+            sb.append(String.format("%" + maxWidth + 's', s));
+        }
+        return sb.toString();
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftestSharedChecker.java"
+    if (echo $cmd >&5 ; eval $cmd >conftestSharedChecker.java.output 2>&5) ; then
+        echo "configure: conftestSharedChecker.class available" >&5
+    else
+        echo "configure: failed program was:" >&5
+        cat conftestSharedChecker.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+    fi
+
+    fi
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVA conftestSharedChecker lucene-queryparser org.apache.lucene.queryparser.classic.QueryParser $jar_resolved   "
+    if (echo $cmd >&5 ; eval $cmd >conftestSharedChecker.java.output 2>&5); then
+        PACKAGE_JAR_FILE=$(tail -n 1 conftestSharedChecker.java.output);
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: $PACKAGE_JAR_FILE" >&5
+$as_echo "$PACKAGE_JAR_FILE" >&6; }
+        echo "yes" >&5
+        # append the found file to the classpath to manage jar dependency
+        ac_java_classpath="$ac_java_classpath:$PACKAGE_JAR_FILE"
+    else
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+      if test "" = "yes"; then
+         { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar lucene-queryparser used by QueryParser (looking for package org.apache.lucene.queryparser.classic.QueryParser)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar lucene-queryparser used by QueryParser (looking for package org.apache.lucene.queryparser.classic.QueryParser)" >&2;}
+      else
+          as_fn_error $? "Could not find or use the Java package/jar lucene-queryparser used by QueryParser (looking for package org.apache.lucene.queryparser.classic.QueryParser)" "$LINENO" 5
+      fi
+    fi
+    if test -f conftestSharedChecker.java.output; then
+        rm conftestSharedChecker.java.output
+    fi
+
+                LUCENE_PARSER=$PACKAGE_JAR_FILE
+
+
                 # Console API
 
 
@@ -16295,7 +16954,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 16298 "configure"
+// #line 16955 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -16511,7 +17170,7 @@ $as_echo_n "checking jrosetta-api... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 16514 "configure"
+// #line 17176 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -16731,7 +17390,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 16734 "configure"
+// #line 17402 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -16952,7 +17611,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 16955 "configure"
+// #line 17621 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -17173,7 +17832,7 @@ $as_echo_n "checking fop... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 17176 "configure"
+// #line 17840 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -17399,7 +18058,7 @@ $as_echo_n "checking freehep-graphics2d... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 17402 "configure"
+// #line 18059 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -17618,7 +18277,7 @@ $as_echo_n "checking freehep-graphicsio... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 17621 "configure"
+// #line 18278 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -17837,7 +18496,7 @@ $as_echo_n "checking freehep-graphicsio-emf... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 17840 "configure"
+// #line 18498 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -18056,7 +18715,7 @@ $as_echo_n "checking freehep-io... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 18059 "configure"
+// #line 18717 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -18275,7 +18934,7 @@ $as_echo_n "checking freehep-util... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 18278 "configure"
+// #line 18937 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -18495,7 +19154,7 @@ $as_echo_n "checking batik-all... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 18498 "configure"
+// #line 19156 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -18714,7 +19373,7 @@ $as_echo_n "checking batik... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 18717 "configure"
+// #line 19367 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -18934,7 +19593,7 @@ $as_echo_n "checking commons-io... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 18937 "configure"
+// #line 19587 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -19153,7 +19812,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 19156 "configure"
+// #line 19806 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;

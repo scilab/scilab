@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2015 - Marcos CARDINOT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -26,10 +27,8 @@ import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 
-import org.scilab.modules.xcos.JavaController;
-import org.scilab.modules.xcos.Kind;
-import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
+import org.scilab.modules.xcos.palette.PaletteCtrl;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.Custom;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
@@ -37,7 +36,7 @@ import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView;
 import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView.PaletteListModel;
-import org.scilab.modules.xcos.palette.view.PaletteView;
+import org.scilab.modules.xcos.palette.view.PaletteManagerPanel;
 
 /**
  * Implement the tree selection listener
@@ -45,22 +44,22 @@ import org.scilab.modules.xcos.palette.view.PaletteView;
 public class PaletteManagerTreeSelectionListener implements TreeSelectionListener {
 
     private final JScrollPane panel;
+    private PaletteManagerPanel paletteManagerPanel;
 
     /**
      * Default constructor
-     *
-     * @param panel
-     *            The default scrollpane to modify
+     * @param pmp The paletteManagerPanel instance
+     * @param panel The default scrollpane to modify
      */
-    public PaletteManagerTreeSelectionListener(JScrollPane panel) {
+    public PaletteManagerTreeSelectionListener(PaletteManagerPanel pmp,
+                                               JScrollPane panel) {
+        this.paletteManagerPanel = pmp;
         this.panel = panel;
     }
 
     /**
      * Selection handler
-     *
-     * @param tree
-     *            The source event
+     * @param tree The source event
      * @see javax.swing.event.TreeSelectionListener#valueChanged(javax.swing.event.TreeSelectionEvent)
      */
     @Override
@@ -85,28 +84,24 @@ public class PaletteManagerTreeSelectionListener implements TreeSelectionListene
         } else if (node instanceof PreLoaded) {
             final PreLoaded palette = (PreLoaded) node;
 
-            final PaletteView view = new PaletteView();
+            final PaletteCtrl ctrl = new PaletteCtrl();
             for (PaletteBlock b : palette.getBlock()) {
-                view.add(new PaletteBlockCtrl(b).getView());
+                new PaletteBlockCtrl(ctrl, b);
             }
 
-            panel.setViewportView(view);
+            panel.setViewportView(ctrl.getView());
             nodeView = panel;
         } else if (node instanceof Custom) {
-            final Custom desc = (Custom) node;
-            JavaController controller = new JavaController();
-            PaletteDiagram diagram = new PaletteDiagram(controller.createObject(Kind.DIAGRAM));
-            diagram.openDiagramAsPal(desc.getPath().getEvaluatedPath());
-            nodeView = diagram.getAsComponent();
+            nodeView = paletteManagerPanel.openDiagramAsPal(node);
         } else {
             Logger.getLogger(PaletteManagerTreeSelectionListener.class.getName()).severe("tree selection is not handled");
             return;
         }
 
         // update
+        paletteManagerPanel.updateHistory();
         nodeView.setPreferredSize(dimension);
         splitPanel.setRightComponent(nodeView);
         nodeView.validate();
     }
-
 }

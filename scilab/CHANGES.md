@@ -253,6 +253,15 @@ Added to the CVode package, it also benefits from the CVode rootfinding feature.
 * Block modifications :
   - `INVBLK`: add a divide by zero parameter to ignore the error
   - `PRODUCT`: add a divide by zero parameter to ignore the error
+* The palette browser has been improved. The following features were included:
+  - search engine
+  - history (go forward or backward)
+  - drag and drop multiple blocks at once
+  - navigate using the keyboard arrows
+  - add blocks to the most recent diagram by using the ENTER key
+  - dynamic palette with the last used blocks
+  - zoom using CTRL(+), CTRL(-) and CTRL(mousewheel)
+  - load SVG icons
 
 
 API modification
@@ -281,6 +290,7 @@ Obsolete functions or features
 * `eval3d` will be removed from Scilab 6.1. Please use `ndgrid` instead.
 * `strcmpi` is deprecated. Please use `strcmp(..,"i")`instead.
 * `square` will be removed from Scilab 6.1. Please use `gcf().axes_size` and `replot` instead.
+
 
 Removed Functions
 -----------------
@@ -340,18 +350,21 @@ Bug Fixes
 * [#9008](http://bugzilla.scilab.org/show_bug.cgi?id=9008): `test_run` applied the `create_ref` option even for tests having the `<-- NO CHECK REF -->` flag.
 * [#9153](http://bugzilla.scilab.org/show_bug.cgi?id=9153): The `isqualbitwise` help page was inaccurate and badly located
 * [#9161](http://bugzilla.scilab.org/show_bug.cgi?id=9161): Multiple insertions at a repeated index in a sparse matrice wrongly updated it.
+* [#9288](http://bugzilla.scilab.org/show_bug.cgi?id=9288): Dynamic palette with the most used blocks
 * [#9865](http://bugzilla.scilab.org/show_bug.cgi?id=9865): When making a plot with `point`(no line), no symbol was shown in the legend.
 * [#9876](http://bugzilla.scilab.org/show_bug.cgi?id=9876): Creating a complex structure with multiple hierarchy level and size failed.
 * [#9912](http://bugzilla.scilab.org/show_bug.cgi?id=9912): In case of missing translated help page, the default en_US was sometimes ignored
 * [#10116](http://bugzilla.scilab.org/show_bug.cgi?id=10116): `for h = H, .., end` could not be used when H is a vector of graphic handles
 * [#10195](http://bugzilla.scilab.org/show_bug.cgi?id=10195): `execstr` interpreted ascii(0) to ascii(31) characters as the power `^` operator.
-* [#10981](http://bugzilla.scilab.org/show_bug.cgi?id=10981):  When the view property of Axes object is set at 2d, the rotation becomes impossible.
+* [#10326](http://bugzilla.scilab.org/show_bug.cgi?id=10326): Adds a search engine for the palette browser.
+* [#10981](http://bugzilla.scilab.org/show_bug.cgi?id=10981): When the view property of Axes object is set at 2d, the rotation becomes impossible.
 * [#11375](http://bugzilla.scilab.org/show_bug.cgi?id=11375): When a localized help subdirectory has only a CHAPTER file specifying the section title, it was ignored.
 * [#11692](http://bugzilla.scilab.org/show_bug.cgi?id=11692): The summary of a help section built from both default en_US and localized files was never sorted overall.
 * [#11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959): Allow "Zoom Area" to be clicked out of axes
 * [#12017](http://bugzilla.scilab.org/show_bug.cgi?id=12017): `figure.pixel_drawing_mode` is ignored for filled regular polygons and other shapes, still does not work for vectorial export (eps, pdf, etc).
 * [#12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110): Unable to zoom multiple axes at once
 * [#12431](http://bugzilla.scilab.org/show_bug.cgi?id=12431): The page describing the `%helps` variable needed clarification.
+* [#12453](http://bugzilla.scilab.org/show_bug.cgi?id=12453): The left panel of the palette browser keeps its size when some category is enabled or disabled.
 * [#12897](http://bugzilla.scilab.org/show_bug.cgi?id=12897): Renamed optim's "imp" argument to "iprint".
 * [#13794](http://bugzilla.scilab.org/show_bug.cgi?id=13794): Added polyline property "datatip_display_mode", allowing datatips to be displayed "always", "mouseclick" or "mouseover".
 * [#13166](http://bugzilla.scilab.org/show_bug.cgi?id=13166): `l` and `b` endian flags used with `mget` and `mgeti` were sticky
@@ -366,6 +379,7 @@ Bug Fixes
 * [#13877](http://bugzilla.scilab.org/show_bug.cgi?id=13877): `<` characters included in `<screen>` areas were not rendered in the help browser.
 * [#13878](http://bugzilla.scilab.org/show_bug.cgi?id=13878): tokens([]) returns [].
 * [#13895](http://bugzilla.scilab.org/show_bug.cgi?id=13895): p.a.h = 1; p.b.h = 3; p(:).h  CRASH
+* [#13906](http://bugzilla.scilab.org/show_bug.cgi?id=13906): It is now possible to navigate through the Palette browser with the arrow keys.
 * [#13990](http://bugzilla.scilab.org/show_bug.cgi?id=13990): `warning` with localization enabled some memory corruption
 * [#14192](http://bugzilla.scilab.org/show_bug.cgi?id=14192): `g_margin` error-ed for double integrator.
 * [#14306](http://bugzilla.scilab.org/show_bug.cgi?id=14306): Comparisons `>` and `>=` between integers of mismatching inttypes were not implemented.

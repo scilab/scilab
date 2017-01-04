@@ -3,6 +3,7 @@
  * Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009-2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2015 - Marcos Cardinot
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *

@@ -68,6 +68,9 @@
         <pathelement location="${jhall.jar}"/>
         <pathelement location="${jgraphx.jar}"/>
         <pathelement location="${scirenderer.jar}"/>
+        <pathelement location="${lucene-core.jar}"/>
+        <pathelement location="${lucene-analyzers-common.jar}"/>
+        <pathelement location="${lucene-queryparser.jar}"/>
         <!-- Only useful for the documentation -->
         <pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
         <pathelement location="${batik.jar}"/>
@@ -89,7 +92,7 @@
         <available property="jdk1.6+" classname="java.util.ArrayDeque"/>
         <available property="jdk1.7+" classname="java.nio.file.Path"/>
         <available property="jdk1.8+" classname="java.util.stream.DoubleStream"/>
-        <fail message="Require JDK 1.8 or higher. Found ${ant.java.version}" unless="jdk1.8+"/>
+        <fail message="Require JDK 1.6 or higher. Found ${ant.java.version}" unless="jdk1.6+"/>
         <mkdir dir="${classes.dir}"/>
         <mkdir dir="${classes.test.dir}"/>
         <mkdir dir="${build.jar.dir}"/>

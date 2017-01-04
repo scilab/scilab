@@ -77,7 +77,7 @@ endif
 
 if SWIG
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 ## build Swig Java => C wrappers
@@ -87,7 +87,7 @@ swig: $(SWIG_WRAPPERS)
 	if test -n "$(SWIG_WRAPPERS)"; then \
 		for file in $(SWIG_WRAPPERS) ; do \
 			echo "Swig process of $$file (Java) ..."; \
-			$(SWIG_BIN) $(SWIG_JAVA) $(SWIG_OPTIONS) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 		done; \
 	fi
 
@@ -97,14 +97,14 @@ swig-scilab: $(SWIG_SCILAB_WRAPPERS)
 	if test -n "$(SWIG_SCILAB_WRAPPERS)"; then \
 		for file in $(SWIG_SCILAB_WRAPPERS) ; do \
 			echo "Swig process of $$file (Scilab) ..."; \
-			$(SWIG_BIN) $(SWIG_SCILAB) $(SWIG_OPTIONS) -outdir $$SWIG_OUTDIR $$file; \
+			$(SWIG_BIN) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
 		done; \
 	fi
 
 endif
 
 if GIWS
-# If the user request for the SWIG generation of the wrappers Java => C/C++
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 ## build Swig Java => C wrappers
@@ -127,7 +127,7 @@ giws: $(GIWS_WRAPPERS)
 giws-exception:
 	@GIWS_OUTPUTDIR=src/jni/;\
 	echo "GIWS: Generation of exception class ..."; \
-	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR
+	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 endif
 
@@ -163,7 +163,7 @@ all-local: $(TARGETS_ALL)
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci
+SUFFIXES = .sci 
 
 .sci.bin:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \
@@ -246,7 +246,7 @@ EXAMPLES_DIR=examples
 JARDIR=jar/
 # JAR files mask
 JARMASK=*.jar
-# Chapter file
+# Chapter file 
 HELP_CHAPTERDIR=help/
 HELP_CHAPTERFILE=addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR

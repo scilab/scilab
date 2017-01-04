@@ -33,6 +33,9 @@ The option is "disableUnderMode" and can be:
 <path value="@LOOKS@"/>
 <path value="@COMMONS_LOGGING@"/>
 <path value="@JHALL@"/>
+<path value="@LUCENE@"/>
+<path value="@LUCENE_ANALYZER@"/>
+<path value="@LUCENE_PARSER@"/>
 
 <!-- Load when needed -->
 

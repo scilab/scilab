@@ -1,4 +1,4 @@
-        <project name="common_qa">
+    <project name="common_qa">
     <!--  Unitary testing + code coverage -->
 
     <property name="base.dir" location="../../"/>

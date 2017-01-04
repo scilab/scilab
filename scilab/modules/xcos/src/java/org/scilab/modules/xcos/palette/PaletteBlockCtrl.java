@@ -1,9 +1,10 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
- * Copyright (C) 2011-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2015 - Marcos CARDINOT
  *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2012 - 2017 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,81 +17,96 @@
 
 package org.scilab.modules.xcos.palette;
 
-import java.awt.Point;
-import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
-import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragSource;
-import java.awt.dnd.InvalidDnDOperationException;
-import java.util.logging.Logger;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 
-import org.scilab.modules.gui.messagebox.ScilabModalDialog;
-import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.localization.Messages;
-import org.scilab.modules.xcos.JavaController;
-import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.graph.model.XcosCellFactory;
+import org.scilab.modules.xcos.palette.PaletteCtrl;
+import org.scilab.modules.xcos.palette.listener.PaletteBlockKeyListener;
 import org.scilab.modules.xcos.palette.listener.PaletteBlockMouseListener;
+import org.scilab.modules.xcos.palette.listener.PaletteDragGestureListener;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
+import org.scilab.modules.xcos.palette.view.PaletteBlockView.StatusUI;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
-import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-import com.mxgraph.swing.handler.mxGraphTransferHandler;
 import com.mxgraph.swing.util.mxGraphTransferable;
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 
 /**
- * A palette block is the representation of the block in the palette. All the
- * operations there are used to render, load and put (on a diagram) a block.
+ * A palette block is the representation of the block in the palette.
+ * @author Marcos CARDINOT <mcardinot@gmail.com>
+ * @author Clement DAVID
  */
 public final class PaletteBlockCtrl {
-    /**
-     * Internal graph used to render each block.
-     */
-    public static final XcosDiagram INTERNAL_GRAPH;
-    static {
-        JavaController controller = new JavaController();
-        INTERNAL_GRAPH = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
-        INTERNAL_GRAPH.installListeners();
-    }
 
-    private static final double BLOCK_DEFAULT_POSITION = 10.;
-    private static final Logger LOG = Logger.getLogger(PaletteBlockCtrl.class.getName());
+    private static final DragGestureListener DRAG_LISTENER = new PaletteDragGestureListener();
+    private static final KeyListener KEY_LISTENER = new PaletteBlockKeyListener();
+    private static final MouseListener MOUSE_LISTENER = new PaletteBlockMouseListener();
 
     private static final String UNABLE_TO_LOAD_BLOCK = Messages.gettext("Unable to load block from %s .");
     private static final String LOADING_THE_BLOCK = Messages.gettext("Loading the block") + XcosMessages.DOTS;
 
-    private static PaletteBlockCtrl previouslySelected;
-
+    private final PaletteCtrl paletteCtrl;
     private final PaletteBlock model;
     private final PaletteBlockView view;
+    private BasicBlock basicBlock;
+    private boolean isSelected;
 
     /**
      * Default constructor
-     *
-     * @param model
-     *            the block data
+     * @param ctrl The palette in which it belongs
+     * @param model the block data
      */
-    public PaletteBlockCtrl(PaletteBlock model) {
+    public PaletteBlockCtrl(PaletteCtrl ctrl, PaletteBlock model) {
+        this.paletteCtrl = ctrl;
         this.model = model;
         this.view = new PaletteBlockView(this);
-        installListeners(this.view);
+        this.isSelected = false;
+        this.basicBlock = null;
+
+        // add block to its parent palette
+        this.paletteCtrl.addBlock(this);
+
+        // install listeners
+        this.view.setFocusTraversalKeysEnabled(false);
+        this.view.addKeyListener(KEY_LISTENER);
+        this.view.addMouseListener(MOUSE_LISTENER);
+
+        DragSource dragSource = DragSource.getDefaultDragSource();
+        dragSource.createDefaultDragGestureRecognizer(this.getView(), DnDConstants.ACTION_COPY, DRAG_LISTENER);
     }
 
     /**
-     * @param view
-     *            The view to setup
+     * @return true if it is selected, false otherwise
      */
-    private void installListeners(PaletteBlockView view) {
-        view.addMouseListener(new PaletteBlockMouseListener());
+    public boolean isSelected() {
+        return isSelected;
+    }
 
-        DragSource dragSource = DragSource.getDefaultDragSource();
-        dragSource.createDefaultDragGestureRecognizer(this.getView(), DnDConstants.ACTION_MOVE, new PaletteDragGestureListener(getModel(), this));
+    /**
+     * @param selected The selected state to set
+     */
+    public void setSelected(boolean selected) {
+        if (selected) {
+            getView().requestFocus();
+            getView().setStatusUI(StatusUI.SELECTED);
+        } else {
+            PaletteManagerView.get().getPanel().requestFocus();
+            getView().setStatusUI(StatusUI.NON_SELECTED);
+        }
+        isSelected = selected;
+    }
+
+    /**
+     * @return the parent palette (PaletteCtrl)
+     */
+    public PaletteCtrl getPaletteCtrl() {
+        return paletteCtrl;
     }
 
     /**
@@ -108,105 +124,13 @@ public final class PaletteBlockCtrl {
     }
 
     /**
-     * This function is the only access to get the block.
-     *
-     * @return the transferable object
-     */
-    public Transferable getTransferable() {
-        Transferable transfer;
-
-        BasicBlock block;
-        try {
-            block = XcosCellFactory.createBlock(model.getName());
-        } catch (ScilabInterpreterManagement.InterpreterException ex) {
-            LOG.finest(String.format(UNABLE_TO_LOAD_BLOCK, model.getName()));
-            getView().setEnabled(false);
-            throw new InvalidDnDOperationException();
-        }
-        getView().setEnabled(true);
-
-        /* Render it and export it */
-        block.getGeometry().setX(BLOCK_DEFAULT_POSITION);
-        block.getGeometry().setY(BLOCK_DEFAULT_POSITION);
-
-        INTERNAL_GRAPH.addCell(block);
-        INTERNAL_GRAPH.selectAll();
-
-        BlockPositioning.updateBlockView(INTERNAL_GRAPH, block);
-
-        mxGraphTransferHandler handler = ((mxGraphTransferHandler) INTERNAL_GRAPH.getAsComponent().getTransferHandler());
-        Object[] cells = new Object[] {block};
-        transfer = new mxGraphTransferable(cells, INTERNAL_GRAPH.getPaintBounds(cells), handler.createTransferableImage(INTERNAL_GRAPH.getAsComponent(), cells));
-
-        INTERNAL_GRAPH.removeCells();
-        return transfer;
-    }
-
-    /**
-     * This function load the block and render it on the hidden diagram.
-     *
-     * @return a rendered block
+     * Get the loaded block.
+     * @return basicblock
      */
     public BasicBlock getBlock() {
-        return (BasicBlock) ((mxGraphTransferable) getTransferable()).getCells()[0];
-    }
-
-    /**
-     * @return true if it is selected, false otherwise
-     */
-    public boolean isSelected() {
-        return this == previouslySelected;
-    }
-
-    /**
-     * @param selected
-     *            the selected state to set
-     */
-    public void setSelected(boolean selected) {
-        if (selected) {
-            if (previouslySelected != null) {
-                previouslySelected.setSelected(false);
-            }
-            previouslySelected = this;
+        if (basicBlock == null) {
+            basicBlock = (BasicBlock) ((mxGraphTransferable) paletteCtrl.getTransferable()).getCells()[0];
         }
-        getView().setSelectedUI(selected);
-    }
-
-    /**
-     * Drag 'n drop implementation, allocate a block on demand.
-     */
-    private static final class PaletteDragGestureListener implements DragGestureListener {
-
-        private final PaletteBlock block;
-        private final PaletteBlockCtrl controller;
-
-        public PaletteDragGestureListener(final PaletteBlock block, final PaletteBlockCtrl controller) {
-            this.block = block;
-            this.controller = controller;
-        }
-
-        @Override
-        public void dragGestureRecognized(DragGestureEvent event) {
-            if (PaletteManagerView.get() == null) {
-                PaletteManagerView.restore(null);
-            }
-            final PaletteManagerView winView = PaletteManagerView.get();
-
-            winView.setInfo(LOADING_THE_BLOCK);
-            try {
-                Transferable transfer = controller.getTransferable();
-                if (transfer != null) {
-                    event.startDrag(null, null, new Point(), transfer, null);
-                } else {
-                    throw new InvalidDnDOperationException();
-                }
-            } catch (InvalidDnDOperationException exception) {
-                final String msg = String.format(UNABLE_TO_LOAD_BLOCK, block.getName());
-                ScilabModalDialog.show(winView, msg, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
-            } finally {
-                winView.setInfo(XcosMessages.EMPTY_INFO);
-            }
-        }
-
+        return basicBlock;
     }
 }
