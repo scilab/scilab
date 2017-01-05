@@ -60,6 +60,7 @@ static getHashTableCouple propertyGetTable[] =
     {"axes_size", get_axes_size_property},
     {"figure_size", get_figure_size_property},
     {"figure_name", get_figure_name_property},
+    {"name", get_figure_name_property},
     {"figure_id", get_figure_id_property},
     {"rotation_style", get_rotation_style_property},
     {"immediate_drawing", get_immediate_drawing_property},

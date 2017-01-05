@@ -101,7 +101,7 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>figure_name: </term>
+                            <term>figure_name or name:</term>
                             <listitem>
                                 <para>This field contains the name of the figure. This name is a
                                     character string displayed at the top of the graphics_window. The
@@ -308,28 +308,28 @@
                                 <para>
                                     <literal>"off"</literal> means that
                                     <itemizedlist>
-                                      <listitem>
-                                          the newly created figure has no default axes.
-                                      </listitem>
-                                      <listitem>
-                                          for an existing figure, it is possible to actually delete
-                                          all its existing axes.
-                                      </listitem>
+                                        <listitem>
+                                            the newly created figure has no default axes.
+                                        </listitem>
+                                        <listitem>
+                                            for an existing figure, it is possible to actually delete
+                                            all its existing axes.
+                                        </listitem>
                                     </itemizedlist>
                                     In both cases,
                                     <itemizedlist>
-                                       <listitem>
-                                         without any axes, the figure can't be the default
-                                         target of any plotting instruction. This feature
-                                         can be used to protect an interactive interface built in
-                                         a figure (like the demos and the ATOMS ones) from being the default
-                                         plotting target when there is no other proper opened
-                                         graphical figures.
-                                       </listitem>
-                                       <listitem>
-                                          It is still possible to force creating an axes using the
-                                          <link linkend="newaxes">newaxes</link> function.
-                                       </listitem>
+                                        <listitem>
+                                            without any axes, the figure can't be the default
+                                            target of any plotting instruction. This feature
+                                            can be used to protect an interactive interface built in
+                                            a figure (like the demos and the ATOMS ones) from being the default
+                                            plotting target when there is no other proper opened
+                                            graphical figures.
+                                        </listitem>
+                                        <listitem>
+                                            It is still possible to force creating an axes using the
+                                            <link linkend="newaxes">newaxes</link> function.
+                                        </listitem>
                                     </itemizedlist>
                                 </para>
                             </listitem>

@@ -63,6 +63,7 @@ static setHashTableCouple propertySetTable[] =
     {"axes_size", set_axes_size_property},
     {"figure_size", set_figure_size_property},
     {"figure_name", set_figure_name_property},
+    {"name", set_figure_name_property},
     {"figure_id", set_figure_id_property},
     {"rotation_style", set_rotation_style_property},
     {"immediate_drawing", set_immediate_drawing_property},

@@ -392,6 +392,7 @@ Bug Fixes
 * [#14448](http://bugzilla.scilab.org/show_bug.cgi?id=14448): removed havewindow() was still documented
 * [#14461](http://bugzilla.scilab.org/show_bug.cgi?id=14461): Calling `grand(n, "markov", P, x0)` did not return all outputs.
 * [#14470](http://bugzilla.scilab.org/show_bug.cgi?id=14470): `geomean` often overflowed for easily computable entries, and did not check input arguments.
+* [#14483](http://bugzilla.scilab.org/show_bug.cgi?id=14483): figure("Name" ...) should be an alias to figure("Figure_name" ...)
 * [#14513](http://bugzilla.scilab.org/show_bug.cgi?id=14513): `isqual` comparing two built-in functions yielded an error.
 * [#14527](http://bugzilla.scilab.org/show_bug.cgi?id=14527): Calling pathconvert function without parameters crashed Scilab.
 * [#14553](http://bugzilla.scilab.org/show_bug.cgi?id=14553): find(a=b) crashed Scilab.
