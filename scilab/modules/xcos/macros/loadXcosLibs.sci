@@ -16,7 +16,7 @@
 function loadXcosLibs()
     // Extracted from initial_scicos_tables
     scicos_pal_libs = ["Branching","Events","Misc","Sinks","Threshold","Linear","MatrixOp","NonLinear","Sources","Electrical","Hydraulics","PDE","IntegerOp"];
-    scicos_libs = ["scicos_scicos","scicos_auto"];
+    scicos_libs = ["scicos_scicos"];
 
     // list of scicos libraries that we need at xcos launch
     listlibsname = [];
