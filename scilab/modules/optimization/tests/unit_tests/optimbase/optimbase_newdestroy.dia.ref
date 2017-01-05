@@ -330,7 +330,7 @@ string(opt)
 !                                                              !
 !Store History : F                                             !
 opt
- opt  = (1)
+ opt  = 
 Optim Base Object:
 ==================
 Number of variables : 0
