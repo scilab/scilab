@@ -102,39 +102,21 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-<<<<<<< HEAD
         <programlisting role="example"><![CDATA[
-// para obter uma explanaÁ„o gr·fica dos par‚metros de xsetech entre com:
-exec('SCI/modules/graphics/demos/xsetechfig.sce');
-
-// aqui xsetech È usado para dividir a janela de gr·ficos em duas partes
-// o primeiro xsetech È usado para se ajustar a primeira sub-janela
-// e a escala de gr·ficos corrente
-xsetech([0,0,1.0,0.5],[-5,-3,5,3])
-// chamamos plot2d com a opÁ„o "001" para utilizar a escala de gr·ficos
-// ajustada por xsetech
-=======
-        <programlisting role="example"><![CDATA[ 
 // para obter uma explana√ß√£o gr√°fica dos par√¢metros de xsetech entre com:
 exec('SCI/modules/graphics/demos/xsetechfig.sce');
 
 // aqui xsetech √© usado para dividir a janela de gr√°ficos em duas partes
-// o primeiro xsetech √© usado para se ajustar a primeira sub-janela 
+// o primeiro xsetech √© usado para se ajustar a primeira sub-janela
 // e a escala de gr√°ficos corrente
 xsetech([0,0,1.0,0.5],[-5,-3,5,3])
 // chamamos plot2d com a op√ß√£o "001" para utilizar a escala de gr√°ficos
-// ajustada por xsetech 
->>>>>>> 7f4fe15... * bug #14558: square() is obsolete
+// ajustada por xsetech
 plot2d([1:10]',[1:10]',1,"001"," ")
 // ent√£o xsetech √© usado para ajustar a segunda sub-janela
 xsetech([0,0.5,1.0,0.5])
-<<<<<<< HEAD
-// a escala de gr·ficos È ajustada por xsetech para [0,0,1,1] por padr„o
-// e nÛs a modificamos utilizando o argumento rect em plot2d
-=======
 // a escala de gr√°ficos √© ajustada por xsetech para [0,0,1,1] por padr√£o
-// e n√≥s a modificamos utilizando o argumento rect em plot2d 
->>>>>>> 7f4fe15... * bug #14558: square() is obsolete
+// e n√≥s a modificamos utilizando o argumento rect em plot2d
 plot2d([1:10]',[1:10]',1,"011"," ",[-6,-6,6,6])
 // quatro esbo√ßos em uma √∫nica janela de gr√°ficos
 clf()
@@ -145,11 +127,7 @@ xsetech([0.5,0.5,0.5,0.5]); grayplot()
 xsetech([0,0.5,0.5,0.5]); histplot()
 // de volta aos valores padr√µes para a sub-janela
 xsetech([0,0,1,1])
-<<<<<<< HEAD
-// um esboÁo com arect modificado
-=======
-// um esbo√ßo com arect modificado 
->>>>>>> 7f4fe15... * bug #14558: square() is obsolete
+// um esbo√ßo com arect modificado
 clf()
 xset("default")
 xsetech(arect=[0,0,0,0])
