@@ -19,7 +19,7 @@ function left=%i_i_i(varargin)
     left  = varargin($);
     right = varargin($-1);
 
-    right = iconvert(rigth, inttype(left));
+    right = iconvert(right, inttype(left));
 
     left(varargin(1:$-2)) = right;
 endfunction

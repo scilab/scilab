@@ -43,17 +43,5 @@ b = [ 	%F  %F  %F  %F  %F  %F  %F  %F  %F  %F ; ...
 				%F  %F  %F  %F  %F  %F  %F  %F  %F  %F ; ...
 				%F  %F  %F  %F  %F  %F  %F  %F  %F  %F ; ...
 				%F  %F  %F  %F  %F  %F  %F  %F  %F  %F ; ...
-				%F  %F  %F  %F  %F  %F  %F  %F  %F  %F ]
- b  = 
-  F F F F F F F F F F
-  F F F F F F F F F F
-  F F F F F F F F F F
-  F F F F F F F F F F
-  F F F F F F F F F F
-  F F F F F F F F F F
-  F F F F F F F F F F
-  F F F F F F F F F F
-  F F F F F F F F F F
-  F F F F F F F F F F
- 
+				%F  %F  %F  %F  %F  %F  %F  %F  %F  %F ];
 if or(a <> b) then bugmes();quit;end
