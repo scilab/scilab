@@ -11,9 +11,5 @@
 print(%io(2), "Hello World")
 
 //stdin
-try
-    print(%io(1), "Hello World")
-catch
-    ierr = lasterror();
-    assert_checkequal(ierr, 49);
-end
+msg = msprintf(_("%s: Wrong file descriptor: %d.\n"), "print", 5);
+assert_checkerror("print(%io(1), ""Hello World"")", msg);

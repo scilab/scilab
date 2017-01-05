@@ -32,5 +32,6 @@ int OutputStreamModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"printf", &sci_mprintf, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mprintf", &sci_mprintf, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"diary", &sci_diary, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"print", &sci_print, MODULE_NAME));
     return 1;
 }

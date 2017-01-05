@@ -40,5 +40,6 @@ public :
 CPP_GATEWAY_PROTOTYPE(sci_disp);
 CPP_GATEWAY_PROTOTYPE(sci_msprintf);
 CPP_GATEWAY_PROTOTYPE(sci_mprintf);
+CPP_GATEWAY_PROTOTYPE(sci_print);
 
 #endif /* !__OUTPUTSTREAM_GW_HXX__ */
