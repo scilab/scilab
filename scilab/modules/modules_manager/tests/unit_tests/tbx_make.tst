@@ -15,7 +15,7 @@ mytb_dir = TMPDIR + "/foobox";
 if isdir(mytb_dir)
     removedir(mytb_dir);
 end
-status = copyfile(SCI + "/modules/modules_manager/tests/unit_tests/foobox/", mytb_dir);
+status = copyfile(SCI + "/modules/modules_manager/tests/tbx/foobox/", mytb_dir);
 assert_checkequal(status, 1);
 tbx_make(mytb_dir);
 
@@ -30,7 +30,7 @@ mytb_dir = TMPDIR + "/testbox";
 if isdir(mytb_dir)
     removedir(mytb_dir);
 end
-status = copyfile(SCI + "/modules/modules_manager/tests/unit_tests/testbox/", mytb_dir);
+status = copyfile(SCI + "/modules/modules_manager/tests/tbx/testbox/", mytb_dir);
 assert_checkequal(status, 1);
 tbx_make(mytb_dir);
 

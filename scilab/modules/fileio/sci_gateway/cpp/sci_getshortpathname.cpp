@@ -59,7 +59,7 @@ types::Function::ReturnValue sci_getshortpathname(types::typed_list &in, int _iR
     for (int i = 0 ; i < size; i++)
     {
         wchar_t* tmp = getshortpathnameW(p[i], (BOOL*)&pBool[i]);
-        wchar_t* pwstPath = pathconvertW(tmp, FALSE, FALSE, AUTO_STYLE);
+        wchar_t* pwstPath = pathconvertW(tmp, TRUE, FALSE, AUTO_STYLE);
         pOut1->set(i, pwstPath);
         FREE(pwstPath);
         FREE(tmp);

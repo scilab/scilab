@@ -21,8 +21,8 @@ genlib: Processing file: baz.sci
 genlib: Processing file: foo.sci
 Building help...
 Building the master document:
-	TMPDIR/foobox/help/en_US
-Building the manual file [javaHelp] in TMPDIR/foobox/help/en_US.
+	TMPDIR\foobox\help\en_US
+Building the manual file [javaHelp] in TMPDIR\foobox\help\en_US.
 Generating loader.sce...
 Generating unloader.sce...
 Generating cleaner.sce...
@@ -51,50 +51,44 @@ genlib: Processing file: scilab_sum.sci
 Building sources...
    Generate a loader file
    Generate a Makefile
-   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
-   ilib_gen_Make: Copy multiplybypi.c to TMPDIR
-   ilib_gen_Make: Copy csum.c to TMPDIR
-   ilib_gen_Make: Copy csub.c to TMPDIR
-   ilib_gen_Make: configure : Generate Makefile.
-   ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
+   Compilation of csub.c
+   Compilation of csum.c
+   Compilation of multiplybypi.c
+   Building shared library (be patient)
    Generate a cleaner file
    Generate a loader file
    Generate a Makefile
-   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
-   ilib_gen_Make: Copy fsum.f to TMPDIR
-   ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
+   Compilation of fsum.f
+   Building shared library (be patient)
    Generate a cleaner file
    Building JAR library org.scilab.contrib.toolboxskeleton.jar
-   Compiling Java sources in TMPDIR/testbox/src/java
-WARNING: Cannot find compilation directory TMPDIR/JIMS/bin/org/scilab/contrib/toolboxskeleton for package org.scilab.contrib.toolboxskeleton
-   Creating JAR archive TMPDIR/testbox/jar/org.scilab.contrib.toolboxskeleton.jar
+   Compiling Java sources in TMPDIR\testbox\src\java
+   Creating JAR archive TMPDIR\testbox\jar\org.scilab.contrib.toolboxskeleton.jar
    Create loader script for Java loader.sce
    Create cleaner script for Java cleaner.sce
 Building gateway...
    Generate a gateway file
    Generate a loader file
    Generate a Makefile
-   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
-   ilib_gen_Make: Copy libtestbox_c.cpp to TMPDIR
-   ilib_gen_Make: Copy libtestbox_c.h to TMPDIR
-   ilib_gen_Make: Copy libtestbox_c.hxx to TMPDIR
-   ilib_gen_Make: Copy sci_cerror6.c to TMPDIR
-   ilib_gen_Make: Copy sci_csub6.c to TMPDIR
-   ilib_gen_Make: Copy sci_csum6.c to TMPDIR
-   ilib_gen_Make: Copy sci_foo6.c to TMPDIR
-   ilib_gen_Make: Copy sci_multiplybypi6.c to TMPDIR
-   ilib_gen_Make: configure : Generate Makefile.
-   ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
+   Compilation of sci_cerror6.c
+   Compilation of sci_csub6.c
+   Compilation of sci_csum6.c
+   Compilation of sci_foo6.c
+   Compilation of sci_multiplybypi6.c
+   Compilation of testbox_c.cpp
+   Compilation of testbox_c.h
+   Compilation of testbox_c.hxx
+   Building shared library (be patient)
    Generate a cleaner file
 Generating loader_gateway.sce...
 Generating cleaner_gateway.sce...
 Building help...
 Building the master document:
-	TMPDIR/testbox/help/en_US
-Building the manual file [javaHelp] in TMPDIR/testbox/help/en_US.
+	TMPDIR\testbox\help\en_US
+Building the manual file [javaHelp] in TMPDIR\testbox\help\en_US.
 Generate image ./csub6_1.png from Scilab code from file csub6.xml
 Generate image ./csub6_en_US_2.png from Scilab code from file csub6.xml
 Generating loader.sce...
