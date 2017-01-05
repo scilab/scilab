@@ -14,7 +14,7 @@
 package org.scilab.modules.renderer.JoGLView.util;
 
 import static org.scilab.modules.graphic_objects.figure.Figure.PixelDrawingMode;
-import org.scilab.forge.scirenderer.implementantion.jogl.JoGLPixelDrawingMode;
+import org.scilab.forge.scirenderer.implementation.jogl.JoGLPixelDrawingMode;
 
 public class PixelDrawingModeUtils {
 

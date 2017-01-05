@@ -11,7 +11,7 @@
  * For more information, see the COPYING file which you should have received
  * along with this program.
  */
-package org.scilab.forge.scirenderer.implementantion.jogl;
+package org.scilab.forge.scirenderer.implementation.jogl;
 
 public enum JoGLPixelDrawingMode {
     CLEAR, AND, AND_REVERSE, COPY, AND_INVERTED, NOOP, XOR, OR, NOR, EQUIV, INVERT, OR_REVERSE, COPY_INVERTED, OR_INVERTED, NAND, SET;

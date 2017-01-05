@@ -21,7 +21,7 @@ import org.scilab.forge.scirenderer.clipping.ClippingManager;
 import org.scilab.forge.scirenderer.implementation.jogl.clipping.JoGLClippingManager;
 import org.scilab.forge.scirenderer.implementation.jogl.drawer.JoGLShapeDrawer;
 import org.scilab.forge.scirenderer.implementation.jogl.lightning.JoGLLightManager;
-import org.scilab.forge.scirenderer.implementantion.jogl.JoGLPixelDrawingMode;
+import org.scilab.forge.scirenderer.implementation.jogl.JoGLPixelDrawingMode;
 import org.scilab.forge.scirenderer.lightning.LightManager;
 import org.scilab.forge.scirenderer.renderer.Renderer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
