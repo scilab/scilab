@@ -203,6 +203,11 @@ struct tol
         }
 
         types::Double* current = v->getAs<types::Double>();
+        if (current->isEmpty())
+        {
+            // Do nothing in this case to support old diagrams
+            return false;
+        }
         if (current->getSize() != 6 && current->getSize() != 7)
         {
             get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: %d-by-%d expected.\n"), "params", "tol", 7, 1);
