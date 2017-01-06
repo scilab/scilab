@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -60,9 +61,10 @@ public final class PaletteIndexer {
     public void createIndex(Hashtable<String, List<PaletteBlock>> ht) {
         try {
             mgr.getIndexWriter().deleteAll();
-            Set<String> treePaths = ht.keySet();
-            for (String treePath : treePaths) {
-                List<PaletteBlock> blocks = ht.get(treePath);
+            Set< Entry<String, List<PaletteBlock>> > treePaths = ht.entrySet();
+            for (Entry<String, List<PaletteBlock>> entry : treePaths) {
+                String treePath = entry.getKey();
+                List<PaletteBlock> blocks = entry.getValue();
                 for (PaletteBlock block : blocks) {
                     indexBlock(treePath, block.getName());
                 }
