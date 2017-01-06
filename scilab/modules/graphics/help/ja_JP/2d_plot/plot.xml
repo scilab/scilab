@@ -363,13 +363,13 @@ a=gca(); // 軸エンティティのハンドル
 a.x_location = "origin";
 a.y_location = "origin";
 // plotにより作成されたエンティティに複数の処理を行う
-isoview()
+isoview
 a.children // 軸の子のリスト : ここでは,2個のエンティティの複合子オブジェクト
 poly1= a.children.children(2); //線分群のハンドルをpoly1 に保存
 poly1.foreground = 4; // スタイルを変更する別の方法...
 poly1.thickness = 3;  // ...曲線の太さ.
 poly1.clip_state='off' // 制御をクリップ
-isoview("off")
+isoview off
  ]]></programlisting>
         <scilab:image>
             x=[0:0.1:2*%pi]';

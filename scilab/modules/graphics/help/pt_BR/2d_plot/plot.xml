@@ -317,14 +317,14 @@ a.x_location = "middle";
 a.y_location = "middle";
 
 // algumas operações em entidades criadas por plot...
-isoview()
+isoview
 a=gca();
 a.children // listando os galhos da entidade Axes: aqui, é um galho Compound composto por duas entidades
 poly1= a.children.children(2); //armazenando um manipulador Polyline em poly1
 poly1.foreground = 4; // outro modo de se mudar o estilo...
 poly1.thickness = 3;  // ...e a espessura de uma curva.
 poly1.clip_state='off' // controle de recorte
-isoview("off")
+isoview off
 
 //exemplos com LineSpec e GlobalProperty:
 clf();
