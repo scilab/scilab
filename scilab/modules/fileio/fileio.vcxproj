@@ -322,6 +322,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="includes\mgetl.h" />
     <ClInclude Include="includes\mopen.h" />
     <ClInclude Include="includes\mput.h" />
+    <ClInclude Include="includes\mputl.h" />
     <ClInclude Include="includes\mseek.h" />
     <ClInclude Include="includes\mtell.h" />
     <ClInclude Include="includes\newest.h" />
@@ -334,7 +335,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="includes\splitpath.h" />
     <ClInclude Include="includes\URIFileToFilename.h" />
     <ClInclude Include="src\cpp\mgetstr.h" />
-    <ClInclude Include="src\cpp\mputl.h" />
     <ClInclude Include="src\cpp\scilab_sscanf.hxx" />
     <ClInclude Include="src\c\basename.h" />
     <ClInclude Include="src\c\convert_tools.h" />
