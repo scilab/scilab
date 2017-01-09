@@ -37,8 +37,8 @@ function [] = fchamp(macr_f,fch_t,fch_xr,fch_yr,arfact,rect,strf)
         end
         // Preparing the ODE
         deff(" xdot = derpol(t,x)",..
-                      "xdot = [ x(2) ; -x(1) + (1 - x(1)**2)*x(2) ]")
-       // Plotting is (x, dx/dt) graph
+        "xdot = [ x(2) ; -x(1) + (1 - x(1)**2)*x(2) ]")
+        // Plotting is (x, dx/dt) graph
         rect = [-1.1 -1.1 1.1 1.1]
         fchamp(derpol,0,-1:0.1:1,-1:0.1:1,0.7,rect,"011")
 
@@ -70,6 +70,8 @@ function [] = fchamp(macr_f,fch_t,fch_xr,fch_yr,arfact,rect,strf)
     end
     fch_v=feval(fch_xr,fch_yr,mmm);
 
-
+    if isempty(opts) then
+        opts = "";
+    end
     execstr("champ(fch_xr,fch_yr,real(fch_v),imag(fch_v),"+strcat(opts,",")+")")
 endfunction
