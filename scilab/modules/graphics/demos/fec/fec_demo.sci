@@ -92,6 +92,7 @@ function []=emc2V(i,j,k,sa,FN,rect)
     if rhs == 0 ; FN="MESH";end
     unit=file("open",FN,"old")
     resu=read(unit,noeuds,k);
+    file("close",unit);
     resu=resu(:,[i,j]);
     nm=[];
     for i=1:noeuds;
@@ -104,9 +105,7 @@ function []=emc2V(i,j,k,sa,FN,rect)
     xsegs([noeul(:,2)-(1/sa)*resu(:,1),noeul(:,2)+(1/sa)*resu(:,1)]',...
     [noeul(:,3)-(1/sa)*resu(:,2),noeul(:,3)+(1/sa)*resu(:,2)]',...
     16*ones(nm)-16*nm);
-    file("close",unit);
     xset("clipoff");
-    file("close",unit);
 
 endfunction
 
@@ -120,10 +119,9 @@ function []=emc2C(i,j,FN,rect)
     [lhs,rhs]=argn(0);
     unit=file("open",FN,"old");
     resu=read(unit,-1,j);
-    resu=resu(:,i);
     file("close",unit);
+    resu=resu(:,i);
     if rhs<=3;rect=[min(noeul(:,2)),min(noeul(:,3)),max(noeul(:,2)),max(noeul(:,3))];end
     fec(noeul(:,2),noeul(:,3),trianl,resu,"031"," ",rect);
-    file("close",unit);
 
 endfunction

@@ -78,7 +78,6 @@ function diazepam_demo()
             coords(:, $ + 1) = x2 + 0.1 * u;
         end
     end
-    coords = coords(:, 2:$);
 
     xsegs(coords(1, :), coords(2, :));
 

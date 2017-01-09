@@ -118,9 +118,9 @@ function demo_genetic_algo()
     // Genetic Algorithm for binary codage //
     /////////////////////////////////////////
     clear f;
-    deff("y=f(x)","BinLen = get_param(ga_params,''binary_length''); ..
-    tmp  = convert_to_float(x, BinLen, Max, Min); ..
-    y    = "+func+"(tmp);","n");
+    deff("y = f(x)", "BinLen = get_param(ga_params, ''binary_length'');"+..
+    "tmp  = convert_to_float(x, BinLen, Max, Min);"+..
+    "y    = "+func+"(tmp);");
 
     ga_params = add_param(ga_params, "binary_length", 8);
     ga_params = set_param(ga_params, "crossover_func", crossover_ga_binary);

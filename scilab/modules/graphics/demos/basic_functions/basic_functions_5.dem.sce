@@ -25,7 +25,7 @@ function demo_basic_function5()
     "a.clip_state = ''clipgrf'';"
     "x=[-1 1 1 -1 -1]'';y=[-1 -1 1 1 -1]'';"
     "xx=x*(n-1);yy=y*(n-1);"
-    "for k=2:n,;"
+    "for k=2:n"
     "  xx=[xx,x*((n-k))]; yy=[yy,y*(n-k)];"
     "end;"
     "c=0:(n-1);"

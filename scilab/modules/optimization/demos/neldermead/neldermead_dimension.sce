@@ -75,7 +75,7 @@ function demo_dimension()
 
     // Plot rate of convergence
     hh = scf();
-    plot(1:nmax,array_rho)
+    plot(1:nmax,array_rho')
     hh.children.x_label.text = _("Number of parameters")
     hh.children.y_label.text = _("Rate of convergence")
     hh.children.children.children.mark_mode = "on";
@@ -84,7 +84,7 @@ function demo_dimension()
 
     // Plot number of function evaluations
     hh = scf();
-    plot(1:nmax,array_nbfevals)
+    plot(1:nmax,array_nbfevals')
     hh.children.x_label.text = _("Number of parameters")
     hh.children.y_label.text = _("Number of function evaluations")
     hh.children.children.children.mark_mode = "on";
