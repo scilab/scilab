@@ -703,7 +703,10 @@ int get_logflags_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char *
             return 0;
         }
 
-        *logFlags = pstLog;
+        logFlagsCpy[0] = pstLog[0];
+        logFlagsCpy[1] = pstLog[1];
+        logFlagsCpy[2] = pstLog[2];
+        *logFlags = logFlagsCpy;
     }
 
     freeAllocatedSingleString(pstLog);
