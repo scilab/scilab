@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
- * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2010-2011 - DIGITEO - Clement DAVID
+ * Copyright (C) 2012-2016 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -17,10 +17,24 @@
 
 package org.scilab.modules.xcos.block.actions;
 
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.logging.Logger;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
+import org.scilab.modules.graph.ScilabComponent;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -67,113 +81,74 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        // FIXME implement using the MVC
-        //        final XcosDiagram graph = (XcosDiagram) getGraph(e);
-        //
-        //        // action disabled when the cell is edited
-        //        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
-        //        if (comp.isEditing()) {
-        //            return;
-        //        }
-        //
-        //        Object selectedObj = graph.getSelectionCell();
-        //        if (!(selectedObj instanceof SuperBlock)) {
-        //            graph.error(XcosMessages.ERROR_GENERATING_C_CODE);
-        //            return;
-        //        }
-        //
-        //        graph.info(XcosMessages.GENERATING_C_CODE);
-        //
-        //        final SuperBlock block = (SuperBlock) selectedObj;
-        //
-        //        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        //        if (handler == null) {
-        //            return;
-        //        }
-        //
-        //        try {
-        //            /*
-        //             * Export data
-        //             */
-        //            handler.writeBlock(block);
-        //
-        //            /*
-        //             * Prepare command and callback
-        //             */
-        //            String cmd = buildCall("blk = xcosCodeGeneration", ScilabDirectHandler.BLK.toCharArray());
-        //
-        //            final ActionListener callback = new ActionListener() {
-        //                @Override
-        //                public void actionPerformed(ActionEvent arg0) {
-        //                    /*
-        //                     * Find the block parent
-        //                     */
-        //                    XcosDiagram parent = block.getParentDiagram();
-        //                    if (parent == null) {
-        //                        block.setParentDiagram(Xcos.findParent(block));
-        //                        parent = block.getParentDiagram();
-        //                        Logger.getLogger(CodeGenerationAction.class.getName()).finest("Parent diagram was null");
-        //                    }
-        //
-        //                    /*
-        //                     * Update
-        //                     */
-        //                    parent.getModel().beginUpdate();
-        //                    doAction(block, handler);
-        //                    parent.getModel().endUpdate();
-        //
-        //                    parent.getView().clear(block, true, false);
-        //                    parent.getView().validate();
-        //
-        //                    graph.info(XcosMessages.EMPTY_INFO);
-        //                }
-        //            };
-        //
-        //            /*
-        //             * Execute
-        //             */
-        //            asynchronousScilabExec(callback, cmd);
-        //
-        //        } catch (InterpreterException ex) {
-        //            Logger.getLogger(CodeGenerationAction.class.getName()).severe(ex.toString());
-        //            graph.info(XcosMessages.EMPTY_INFO);
-        //
-        //            handler.release();
-        //        }
-        //    }
-        //
-        //    /**
-        //     * Callback function
-        //     *
-        //     * Read the block from the scilab
-        //     *
-        //     * @param block
-        //     *            The block we are working on
-        //     * @param handler
-        //     *            the handler used to read/write data to/from Scilab
-        //     */
-        //    private static void doAction(final SuperBlock block, final ScilabDirectHandler handler) {
-        //        try {
-        //            try {
-        //                final BasicBlock modifiedBlock = handler.readBlock();
-        //                if (modifiedBlock == null) {
-        //                    return;
-        //                }
-        //
-        //                block.updateBlockSettings(modifiedBlock);
-        //                block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
-        //                block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
-        //                block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
-        //                block.setChild(null);
-        //
-        //                block.setStyle(block.getStyle() + ";blockWithLabel");
-        //                block.setValue(block.getSimulationFunctionName());
-        //                BlockPositioning.updateBlockView(block);
-        //            } catch (ScicosFormatException e) {
-        //                Logger.getLogger(CodeGenerationAction.class.getName()).severe(e.toString());
-        //            }
-        //        } finally {
-        //            handler.release();
-        //        }
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
+
+        // action disabled when the cell is edited
+        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        if (comp.isEditing()) {
+            return;
+        }
+
+        Object selectedObj = graph.getSelectionCell();
+        if (!(selectedObj instanceof SuperBlock)) {
+            graph.error(XcosMessages.ERROR_GENERATING_C_CODE);
+            return;
+        }
+
+        graph.info(XcosMessages.GENERATING_C_CODE);
+        graph.setCellsLocked(true);
+        graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
+        final JavaController controller = new JavaController();
+        final SuperBlock block = (SuperBlock) selectedObj;
+
+        try {
+            /*
+             * Export data
+             */
+            String blk = buildCall("scicos_new", Long.toHexString(block.getUID()));
+
+            /*
+             * Prepare command and callback
+             */
+            String cmd = buildCall("blk = xcosCodeGeneration", blk.toCharArray());
+
+            final ActionListener action = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                    graph.getView().clear(this, true, true);
+
+                    // Now read new Block
+                    graph.getModel().beginUpdate();
+                    try {
+                        ScicosObjectOwner last = XcosCellFactory.getLastCreated();
+                        if (last != null && last.getUID() != 0l) {
+                            BasicBlock modified = XcosCellFactory.createBlock(controller, last);
+                            if (modified != null) {
+                                block.updateBlockSettings(controller, graph, modified);
+                            }
+                        }
+                        BlockPositioning.updateBlockView(graph, block);
+                    } finally {
+                        graph.getModel().endUpdate();
+
+                        graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                        graph.setCellsLocked(false);
+                        graph.info(XcosMessages.EMPTY_INFO);
+                    }
+                }
+            };
+
+            /*
+             * Execute
+             */
+            asynchronousScilabExec(action, cmd);
+
+        } catch (InterpreterException ex) {
+            graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            graph.setCellsLocked(false);
+            graph.info(XcosMessages.EMPTY_INFO);
+        }
     }
 }
