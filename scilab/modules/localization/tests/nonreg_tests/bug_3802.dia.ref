@@ -10,10 +10,10 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3802
 //
 // <-- Short Description -->
-//    When Scilab is launched in French, Tcl creates error (when it is working
+//    When Scilab is launched in French, Tcl creates error (when it is working 
 // 	  in english)
 // <-- FRENCH IMPOSED -->
 if getos() <> "Darwin" then
     TclCMD="TCL_EvalStr(""destroy .t;pack [text .t];set ts [expr 12/[tk scaling]];.t conf -tabs $ts;.t cget -tabs"")";
     if execstr(TclCMD, "errcatch")<>0 then bugmes();quit;end
-end
+  end

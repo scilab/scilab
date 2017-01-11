@@ -11,16 +11,16 @@ txt = "a";
 // UTF-8 2 bytes
 é = 1
  é  = 
-    1.
+   1.
 définie = 1
  définie  = 
-    1.
+   1.
 dé = 1
  dé  = 
-    1.
+   1.
 éd = 1
  éd  = 
-    1.
+   1.
 txt = "é"
  txt  = 
  é
@@ -36,16 +36,16 @@ txt = "éd"
 // UTF-8 3 bytes
 € = 1
  €  = 
-    1.
+   1.
 d€finie = 1
  d€finie  = 
-    1.
+   1.
 d€ = 1
  d€  = 
-    1.
+   1.
 €d = 1
  €d  = 
-    1.
+   1.
 txt = "€"
  txt  = 
  €
@@ -60,16 +60,16 @@ txt = "€d"
  €d
 豈 = 42
  豈  = 
-    42.
+   42.
 bla豈bla = 42
  bla豈bla  = 
-    42.
+   42.
 bla豈 = 42
  bla豈  = 
-    42.
+   42.
 豈bla = 42
  豈bla  = 
-    42.
+   42.
 txt = "豈"
  txt  = 
  豈
@@ -85,16 +85,16 @@ txt = "豈bla"
 // UTF-8 4 bytes
 𯿽 = 51
  𯿽  = 
-    51.
+   51.
 bla𯿽bla = 51
  bla𯿽bla  = 
-    51.
+   51.
 bla𯿽 = 51
  bla𯿽  = 
-    51.
+   51.
 𯿽bla = 51
  𯿽bla  = 
-    51.
+   51.
 txt = "𯿽"
  txt  = 
  𯿽
