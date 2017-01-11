@@ -186,6 +186,8 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
     char* pstrClName = new char[8 * iN + 1];
     pstrClName[8 * iN] = '\0';
     char* strErrorBuf = new char[bsiz];
+    memset(strErrorBuf, ' ', bsiz-1);
+    strErrorBuf[bsiz - 1] = '\0';
 
     int irobj       = 0;
     int* piStavar   = new int[iN];
@@ -222,17 +224,34 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
 
     if (ierr)
     {
-        int iLen = 4096;
-        char* str = strErrorBuf + 4095;
+        int iPos = bsiz - 1;
+        char* str = strErrorBuf + iPos;
         while (*str == ' ')
         {
-            iLen--;
+            iPos--;
             str--;
         }
 
-        strErrorBuf[iLen] = '\0';
+        iPos = iPos + 1 == bsiz ? iPos - 1 : iPos;
+        strErrorBuf[iPos + 1] = '\0';
         Scierror(999, "%s", strErrorBuf);
+
+        delete[] pstrRwName;
+        delete[] pstrClName;
         delete[] strErrorBuf;
+
+        delete[] piStavar;
+        delete[] piRwstat;
+        delete[] piRowcod;
+        delete[] piColcod;
+        delete[] piRwnmbs;
+        delete[] piClpnts;
+
+        delete pDblCoef;
+        delete pDblRhsb;
+        delete pDblRanges;
+        delete pDblBnds;
+
         return types::Function::Error;
     }
 
