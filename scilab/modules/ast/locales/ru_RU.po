@@ -107,9 +107,6 @@ msgstr "Ошибка в перегрузке функции: "
 msgid "Wrong insertion : use extraction with {} only on a Cell."
 msgstr "Неверная вставка : используйте вставку с {} только для Cell-массива."
 
-msgid "Invalid index."
-msgstr "Недопустимый индекс."
-
 msgid "Unable to insert multiple item in a Struct."
 msgstr "Нельзя вставить множество элементов в структуру"
 
@@ -134,9 +131,6 @@ msgstr "Неожиданное переопределение функции Sci
 
 msgid "Submatrix incorrectly defined.\n"
 msgstr "Подматрица некорректно определена.\n"
-
-msgid "Invalid Index.\n"
-msgstr "Недопустимый индекс.\n"
 
 msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"
 msgstr ""

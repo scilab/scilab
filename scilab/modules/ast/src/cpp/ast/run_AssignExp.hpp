@@ -225,7 +225,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 //manage error
                 std::wostringstream os;
-                os << _W("Invalid Index.\n");
+                os << _W("Invalid index.\n");
                 throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
             }
 

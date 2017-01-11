@@ -324,8 +324,8 @@ msgstr "%s : Il ne s'agit pas d'un objet H5 Compound.\n"
 msgid "%s: Can not print H5Object.\n"
 msgstr "%s : Impossible d'imprimer le H5Object.\n"
 
-msgid "Invalid index."
-msgstr "Index invalide."
+msgid "Invalid index.\n"
+msgstr "Indice invalide.\n"
 
 msgid "Dimensions"
 msgstr "Dimensions"

@@ -442,8 +442,8 @@ msgstr ""
 "%s: несумісні розмірності властивостей «%s» і «%s»: розмірності мають "
 "збігатися.\n"
 
-msgid "Invalid index."
-msgstr "Некоректний індекс."
+msgid "Invalid index.\n"
+msgstr "Некоректний індекс.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

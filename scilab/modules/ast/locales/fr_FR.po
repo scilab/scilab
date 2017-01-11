@@ -62,7 +62,7 @@ msgid "Not yet implemented in Scilab.\n"
 msgstr ""
 
 msgid "Invalid index.\n"
-msgstr ""
+msgstr "Indice invalide.\n"
 
 msgid "Redefining permanent variable.\n"
 msgstr ""
@@ -106,9 +106,6 @@ msgstr ""
 msgid "Wrong insertion : use extraction with {} only on a Cell."
 msgstr ""
 
-msgid "Invalid index."
-msgstr ""
-
 msgid "Unable to insert multiple item in a Struct."
 msgstr ""
 
@@ -132,9 +129,6 @@ msgid "Unexpected redefinition of Scilab function."
 msgstr ""
 
 msgid "Submatrix incorrectly defined.\n"
-msgstr ""
-
-msgid "Invalid Index.\n"
 msgstr ""
 
 msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"

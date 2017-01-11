@@ -622,7 +622,7 @@ msgstr ""
 
 #
 # File: modules/overloading/macros/generic_i_hm.sci, line: 53
-msgid "Invalid index."
+msgid "Invalid index.\n"
 msgstr ""
 
 #

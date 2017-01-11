@@ -100,7 +100,7 @@ H5Object & H5CompoundData::getData(const unsigned int size, const unsigned int *
 
     if (pos >= totalSize)
     {
-        throw H5Exception(__LINE__, __FILE__, _("Invalid index."));
+        throw H5Exception(__LINE__, __FILE__, _("Invalid index.\n"));
     }
 
     _dims = new hsize_t[1];

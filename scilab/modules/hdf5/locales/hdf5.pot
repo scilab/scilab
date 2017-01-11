@@ -716,7 +716,7 @@ msgstr ""
 # File: modules/hdf5/src/cpp/H5CompoundData.cpp, line: 103
 # File: modules/hdf5/src/cpp/H5ReferenceData.cpp, line: 80
 # File: modules/hdf5/src/cpp/H5VlenData.cpp, line: 57
-msgid "Invalid index."
+msgid "Invalid index.\n"
 msgstr ""
 
 #

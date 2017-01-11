@@ -178,14 +178,6 @@ msgid "Wrong insertion : use extraction with {} only on a Cell."
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 915
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1271
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1364
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1390
-msgid "Invalid index."
-msgstr ""
-
-#
 # File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 964
 msgid "Unable to insert multiple item in a Struct."
 msgstr ""
@@ -228,13 +220,6 @@ msgstr ""
 # File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1593
 # File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1680
 msgid "Submatrix incorrectly defined.\n"
-msgstr ""
-
-#
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1840
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1980
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 2088
-msgid "Invalid Index.\n"
 msgstr ""
 
 #

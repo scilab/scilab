@@ -312,8 +312,8 @@ msgstr "%s: H5 Compoundオブジェクトではありません.\n"
 msgid "%s: Can not print H5Object.\n"
 msgstr "%s: H5Objectを出力できません.\n"
 
-msgid "Invalid index."
-msgstr "添字が間違っています."
+msgid "Invalid index.\n"
+msgstr "添字が間違っています.\n"
 
 msgid "Dimensions"
 msgstr "次元"

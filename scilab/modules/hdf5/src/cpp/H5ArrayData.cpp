@@ -65,7 +65,7 @@ H5Object & H5ArrayData::getData(const unsigned int size, const unsigned int * in
 
     if (pos >= totalSize)
     {
-        throw H5Exception(__LINE__, __FILE__, _("Invalid index."));
+        throw H5Exception(__LINE__, __FILE__, _("Invalid index.\n"));
     }
 
     return H5DataFactory::getObjectData(*const_cast<H5ArrayData *>(this), atotalSize, baseSize, type, andims, adims, static_cast<char *>(data) + offset + pos * (stride ? stride : dataSize), 0, 0, false);

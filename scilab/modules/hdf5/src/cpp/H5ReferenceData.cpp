@@ -77,7 +77,7 @@ H5Object & H5ReferenceData::getData(const unsigned int size, const unsigned int 
 
     if (pos >= totalSize)
     {
-        throw H5Exception(__LINE__, __FILE__, _("Invalid index."));
+        throw H5Exception(__LINE__, __FILE__, _("Invalid index.\n"));
     }
 
     cdata += pos * (stride ? stride : dataSize);

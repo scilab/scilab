@@ -108,9 +108,6 @@ msgstr "オーバーロードされた関数でエラー発生: "
 msgid "Wrong insertion : use extraction with {} only on a Cell."
 msgstr "挿入が不正です: {} による展開はセルのみに使用してください."
 
-msgid "Invalid index."
-msgstr "添字が間違っています."
-
 msgid "Unable to insert multiple item in a Struct."
 msgstr "複数要素を構造体に挿入できません."
 
@@ -135,9 +132,6 @@ msgstr "予期されないScilab関数の再定義が行われました."
 
 msgid "Submatrix incorrectly defined.\n"
 msgstr "誤ったサブ行列の定義が行われました.\n"
-
-msgid "Invalid Index.\n"
-msgstr "添字が間違っています.\n"
 
 msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"
 msgstr ""

@@ -335,8 +335,8 @@ msgstr "%s: не є складеним об’єктом H5.\n"
 msgid "%s: Can not print H5Object.\n"
 msgstr "%s: не вдалося вивести H5Object.\n"
 
-msgid "Invalid index."
-msgstr "Некоректний індекс."
+msgid "Invalid index.\n"
+msgstr "Некоректний індекс.\n"
 
 msgid "Dimensions"
 msgstr "Розмірності"

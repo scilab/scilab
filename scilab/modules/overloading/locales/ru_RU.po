@@ -411,8 +411,8 @@ msgstr ""
 "%s: Несовместимые размеры для свойств '%s' и '%s': ожидались одинаковые "
 "размеры.\n"
 
-msgid "Invalid index."
-msgstr "Недопустимый индекс."
+msgid "Invalid index.\n"
+msgstr "Недопустимый индекс.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

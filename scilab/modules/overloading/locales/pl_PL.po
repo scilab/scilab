@@ -386,7 +386,7 @@ msgid ""
 "%s: Incompatible sizes for properties '%s' and '%s': Same sizes expected.\n"
 msgstr ""
 
-msgid "Invalid index."
+msgid "Invalid index.\n"
 msgstr ""
 
 #, c-format

@@ -38,7 +38,7 @@ msgid "%s: Invalid index.\n"
 msgstr ""
 
 msgid "Invalid index.\n"
-msgstr ""
+msgstr "Indice invalide.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"

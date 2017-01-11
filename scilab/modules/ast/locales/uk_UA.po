@@ -118,9 +118,6 @@ msgid "Wrong insertion : use extraction with {} only on a Cell."
 msgstr ""
 "Помилкове вставлення: використання видобування з {} можливе лише для Cell."
 
-msgid "Invalid index."
-msgstr "Некоректний індекс."
-
 msgid "Unable to insert multiple item in a Struct."
 msgstr "Не можна вставляти кратний запис до структури."
 
@@ -145,9 +142,6 @@ msgstr "Неочікуване перевизначення функції Scila
 
 msgid "Submatrix incorrectly defined.\n"
 msgstr "Помилково визначена підматриця.\n"
-
-msgid "Invalid Index.\n"
-msgstr "Некоректний індекс.\n"
 
 msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"
 msgstr ""

@@ -403,8 +403,8 @@ msgstr ""
 "定してください.\n"
 
 #, fuzzy
-msgid "Invalid index."
-msgstr "%s: 添字が不正です.\n"
+msgid "Invalid index.\n"
+msgstr "添字が不正です.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

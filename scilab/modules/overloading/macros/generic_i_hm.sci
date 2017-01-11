@@ -50,7 +50,7 @@ function M=generic_i_hm(default_value,varargin)
             if or(size(dk)<>-1) then
                 dk=gsort(dk);
                 if or(dk<>(dims(k):-1:1)) then
-                    msg_index = _("Invalid index.");
+                    msg_index = _("Invalid index.\n");
                     if dk(1)<1|dk($)>dims(k) then error(msg_index),end
                     if ok<>[] then
                         error(msprintf(_("%s: A null assignment can have only one non-colon index.\n"),"generic_i_hm"));

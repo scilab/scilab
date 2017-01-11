@@ -301,8 +301,8 @@ msgstr "%s: Není složený objekt H5.\n"
 msgid "%s: Can not print H5Object.\n"
 msgstr "%s: Nelze vypsat H5Object.\n"
 
-msgid "Invalid index."
-msgstr "Neplatný index."
+msgid "Invalid index.\n"
+msgstr "Neplatný index.\n"
 
 msgid "Dimensions"
 msgstr "Rozměry"

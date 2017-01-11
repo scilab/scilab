@@ -282,7 +282,7 @@ x = [1.; 2.];
 Q = qr(rand(2, 2));
 instr = "J = numderivative(myexample, x, [], [], [], Q)";
 lclmsg = "%s: Error while evaluating the function: ""%s""\n";
-assert_checkerror (instr, lclmsg, [], "numderivative", _("Invalid index.") );
+assert_checkerror (instr, lclmsg, [], "numderivative", msprintf(_("Invalid index.\n")));
 // 9.2 Cannot evaluate the function - List case
 function y = myfunction6 (x, p1, p2)
     y = p1*x*x + p2;

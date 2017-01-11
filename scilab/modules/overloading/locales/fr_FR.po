@@ -19,7 +19,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Invalid index.\n"
-msgstr "%s : Index invalide.\n"
+msgstr "%s : Indice invalide.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -433,8 +433,8 @@ msgstr ""
 "%s : Dimensions incompatibles des propriétés '%s' et '%s' : Mêmes dimensions "
 "attendues.\n"
 
-msgid "Invalid index."
-msgstr ""
+msgid "Invalid index.\n"
+msgstr "Indice invalide.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

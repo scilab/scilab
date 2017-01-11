@@ -912,7 +912,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     if (pEH->getArgsDims() == 1)
                     {
                         std::wostringstream os;
-                        os << _W("Invalid index.");
+                        os << _W("Invalid index.\n");
                         throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                     }
 
@@ -1268,7 +1268,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     if (pExtract == NULL)
                     {
                         std::wostringstream os;
-                        os << _W("Invalid index.");
+                        os << _W("Invalid index.\n");
                         throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                     }
 
@@ -1361,7 +1361,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                                 if (pEH->getArgsDims() == 1)
                                 {
                                     std::wostringstream os;
-                                    os << _W("Invalid index.");
+                                    os << _W("Invalid index.\n");
                                     throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                                 }
 
@@ -1387,7 +1387,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                                 if (pEH->getArgsDims() == 1)
                                 {
                                     std::wostringstream os;
-                                    os << _W("Invalid index.");
+                                    os << _W("Invalid index.\n");
                                     throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                                 }
 
@@ -1837,7 +1837,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 }
                 //manage error
                 std::wostringstream os;
-                os << _W("Invalid Index.\n");
+                os << _W("Invalid index.\n");
                 throw ast::InternalError(os.str(), 999, e.getLocation());
             }
 
@@ -1977,7 +1977,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     }
                     //manage error
                     std::wostringstream os;
-                    os << _W("Invalid Index.\n");
+                    os << _W("Invalid index.\n");
                     throw ast::InternalError(os.str(), 999, e.getLocation());
                 }
 
@@ -2085,7 +2085,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
 
                         //manage error
                         std::wostringstream os;
-                        os << _W("Invalid Index.\n");
+                        os << _W("Invalid index.\n");
                         throw ast::InternalError(os.str(), 999, e.getLocation());
                     }
 

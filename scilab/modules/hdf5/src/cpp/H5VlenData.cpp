@@ -54,7 +54,7 @@ H5Object & H5VlenData::getData(const unsigned int size, const unsigned int * ind
 
     if (pos >= totalSize)
     {
-        throw H5Exception(__LINE__, __FILE__, _("Invalid index."));
+        throw H5Exception(__LINE__, __FILE__, _("Invalid index.\n"));
     }
 
     x = reinterpret_cast<hvl_t *>(static_cast<char *>(data) + offset + pos * (stride ? stride : dataSize));

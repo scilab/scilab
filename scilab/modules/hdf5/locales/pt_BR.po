@@ -286,7 +286,7 @@ msgstr ""
 msgid "%s: Can not print H5Object.\n"
 msgstr ""
 
-msgid "Invalid index."
+msgid "Invalid index.\n"
 msgstr ""
 
 msgid "Dimensions"

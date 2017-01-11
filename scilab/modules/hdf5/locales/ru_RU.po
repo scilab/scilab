@@ -315,8 +315,8 @@ msgstr "%s: Не  составной объект H5.\n"
 msgid "%s: Can not print H5Object.\n"
 msgstr "%s: Не могу распечатать H5Object.\n"
 
-msgid "Invalid index."
-msgstr "Недопустимый индекс."
+msgid "Invalid index.\n"
+msgstr "Недопустимый индекс.\n"
 
 msgid "Dimensions"
 msgstr "Размеры"

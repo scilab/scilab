@@ -375,8 +375,8 @@ msgid ""
 "%s: Incompatible sizes for properties '%s' and '%s': Same sizes expected.\n"
 msgstr ""
 
-msgid "Invalid index."
-msgstr ""
+msgid "Invalid index.\n"
+msgstr "Neplatný index.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
