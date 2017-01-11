@@ -438,6 +438,27 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
             out[i]->DecreaseRef();
         }
     }
+    else
+    {
+        for (int i = 0; i < in.size(); ++i)
+        {
+            if (in[i]->isDouble() && ((types::Double*)in[i])->isViewAsInteger())
+            {
+                types::Double* pD = in[i]->getAs<types::Double>();
+                pD->convertFromInteger();
+            }
+        }
+
+    }
+
+    for (auto i : opt)
+    {
+        if (i.second->isDouble() && ((types::Double*)i.second)->isViewAsInteger())
+        {
+            types::Double* pD = i.second->getAs<types::Double>();
+            pD->convertFromInteger();
+        }
+    }
 
     return retVal;
 }
