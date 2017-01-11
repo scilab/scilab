@@ -135,12 +135,14 @@ function [y,x]=csim(u,dt,sl,x0,tol)
         ut=u;
         if min(size(ut))==1 then ut=matrix(ut,1,-1),end
         deff("[y]=u(t)",["ind=find(dt<=t);nn=ind($)"
-        "if (t==dt(nn)|nn==nt) then "
+        "if isempty(nn) then"
+        "y=[]"
+        "elseif (t==dt(nn)|nn==nt) then "
         "   y=ut(:,nn)"
         "else "
         "   y=ut(:,nn)+(t-dt(nn))/(dt(nn+1)-dt(nn))*(ut(:,nn+1)-ut(:,nn))"
         "end"]);
-        deff("[ydot]=%sim2(%tt,%y)","ydot=ak*%y+bk*u(%tt)");
+        deff("[ydot]=%sim2(%tt,%y)","ydot = [];if ~isempty(u(%tt)) then ydot = ak*%y+bk*u(%tt);end");
     elseif type(u)<>15 then
         deff("[ydot]=%sim2(%tt,%y)","ydot=ak*%y+bk*u(%tt)");
         ut=ones(mb,nt);for k=1:nt, ut(:,k)=u(dt(k)),end
