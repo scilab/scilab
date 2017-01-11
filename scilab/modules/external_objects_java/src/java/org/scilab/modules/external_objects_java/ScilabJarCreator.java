@@ -72,7 +72,9 @@ public class ScilabJarCreator {
                 manifestFilePath = commonPath + File.separator + "META-INF" + File.separator + "MANIFEST.MF";
             }
             if (new File(manifestFilePath).exists()) {
-                manifest = new Manifest(new FileInputStream(manifestFilePath));
+                FileInputStream fis = new FileInputStream(manifestFilePath);
+                manifest = new Manifest(fis);
+                fis.close();
             } else {
                 manifest = new Manifest();
             }
@@ -105,7 +107,7 @@ public class ScilabJarCreator {
             closeJarArchive(jarOutputStream);
             jarOutputStream = null;
             return 0;
-        } catch (Exception e) {
+        } catch (IOException e) {
             try {
                 closeJarArchive(jarOutputStream);
                 deleteJarArchive(jarFilePath);
