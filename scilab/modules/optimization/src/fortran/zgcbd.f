@@ -146,6 +146,7 @@ c
       nred=1
       icycl=1
       nap=0
+      znglib=0.0d+0
 c
       iresul=1
       call proj(n,binf,bsup,x)

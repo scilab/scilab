@@ -71,7 +71,6 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
     bool bMem       = false;
     int iEpsx       = 1;
     int iDzs        = 1;
-    int iIzs        = 1;
     int iPos        = 0;
     int iContr      = 1;
     int iSizeX0     = 0;
@@ -120,7 +119,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
         /*** get inputs arguments ***/
         // get optionals
-        for (const auto& o : opt)
+        for (const auto & o : opt)
         {
             // "iprint"
             if (o.first == L"iprint")
@@ -487,9 +486,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             if (iSizeX0 > 46333)
             {
                 Scierror(999, _("Can not allocate %.2f MB memory.\n"), (double)(iWorkSize * sizeof(double)) / 1.e6);
-                delete[] pdblG;
-                delete[] pdblX0;
-                return types::Function::Error;
+                throw ast::ScilabException();
             }
             try
             {
@@ -504,9 +501,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             catch (std::bad_alloc& /*ba*/)
             {
                 Scierror(999, _("Can not allocate %.2f MB memory.\n"), (double)(iWorkSize * sizeof(double)) / 1.e6);
-                delete[] pdblG;
-                delete[] pdblX0;
-                return types::Function::Error;
+                throw ast::ScilabException();
             }
         }
 
@@ -662,10 +657,11 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 {
                     delete[] pfRzs;
                 }
-                if (pdblDzs)
+                if (pdblDzs && iDzs)
                 {
                     delete[] pdblDzs;
                 }
+
                 piIzs   = new int[C2F(nird).nizs];
                 pfRzs   = new float[C2F(nird).nrzs];
                 pdblDzs = new double[C2F(nird).ndzs];
@@ -705,8 +701,6 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 {
                     piIzs[i] = (int)pDblTi->get(i);
                 }
-
-                iIzs = 0;
             }
             else if (wcscmp(pStr->get(0), L"td") == 0)
             {
@@ -715,6 +709,11 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "optim", iPos + 1);
                     throw ast::ScilabException();
+                }
+
+                if (pdblDzs && iDzs)
+                {
+                    delete[] pdblDzs;
                 }
 
                 pDblTd = in[iPos]->getAs<types::Double>();
@@ -1082,9 +1081,9 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 types::Double* pDbl = new types::Double(1, iWorkSize + iWorkSizeI);
                 double* pdbl = pDbl->get();
                 C2F(dcopy)(&iWorkSize, pdblWork, &iOne, pdbl, &iOne);
-                for (int i = iWorkSize; i < iWorkSize + iWorkSizeI; i++)
+                for (int i = 0; i < iWorkSizeI; i++)
                 {
-                    pdbl[i] = (double)(piWork[i]);
+                    pdbl[iWorkSize + i] = (double)(piWork[i]);
                 }
 
                 out.push_back(pDbl);
@@ -1160,9 +1159,10 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
     if (opFunctionsManager)
     {
         Optimization::removeOptimizationFunctions();
+        delete opFunctionsManager;
     }
 
-    if (piIzs && iIzs)
+    if (piIzs)
     {
         delete[] piIzs;
     }

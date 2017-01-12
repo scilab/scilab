@@ -21,6 +21,7 @@ function scilablibrarieslist = dlwGetScilabLibraries()
     "dynamic_link.lib"; ..
     "integer.lib"; ..
     "optimization_f.lib"; ..
+    "optimization.lib"; ..
     "libjvm.lib"; ..
     "scilocalization.lib"; ..
     "linpack_f.lib"; ..
