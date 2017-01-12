@@ -23,5 +23,4 @@ CP = javaclasspath();
 if find(strstr(CP, "saxon") <> "") == [] then pause, end
 
 // launching xcos with a file must not produce an error
-execstr("xcos(SCI + ""/modules/xcos/tests/nonreg_tests/bug_8052.zcos"")", "errcatch");
-
+execstr("xcos(SCI + ""/modules/xcos/tests/nonreg_tests/bug_7015.zcos"")", "errcatch");
