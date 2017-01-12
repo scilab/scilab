@@ -220,6 +220,7 @@
     <ClCompile Include="..\cpp\GetConsoleShowHiddenHandles.cpp" />
     <ClCompile Include="..\cpp\GetUicontrolIcon.cpp" />
     <ClCompile Include="..\cpp\GetUicontrolTooltipString.cpp" />
+    <ClCompile Include="..\cpp\InitializeGUI.cpp" />
     <ClCompile Include="..\cpp\SetConsoleShowHiddenHandles.cpp" />
     <ClCompile Include="..\cpp\SetUicontrolIcon.cpp" />
     <ClCompile Include="..\jni\DatatipCreate.cpp" />
@@ -276,7 +277,6 @@
     <ClCompile Include="..\cpp\GetUiobjectEnable.cpp" />
     <ClCompile Include="..\cpp\GetUiobjectForegroundColor.cpp" />
     <ClCompile Include="iconifyMainWindow.c" />
-    <ClCompile Include="InitializeGUI.c" />
     <ClCompile Include="..\cpp\InitUIMenu.cpp" />
     <ClCompile Include="..\jni\Juigetfile.cpp" />
     <ClCompile Include="..\jni\Jxclick.cpp" />

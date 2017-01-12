@@ -48,6 +48,7 @@ typedef struct
     int iForceQuit;
     int iTimeoutDelay;
     int iCodeAction;
+    int iWebMode;
     enum command_origin_t iCommandOrigin;
 } ScilabEngineInfo;
 

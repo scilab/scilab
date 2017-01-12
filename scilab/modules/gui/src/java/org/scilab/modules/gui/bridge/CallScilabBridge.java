@@ -1360,4 +1360,8 @@ public class CallScilabBridge {
         SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(figUID);
         ClosingOperationsManager.removeFromDunnoList(parentTab);
     }
+    
+    public static void registerSwingView() {
+        SwingView.registerSwingView();
+    }
 }

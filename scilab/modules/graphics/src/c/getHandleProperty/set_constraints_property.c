@@ -155,8 +155,8 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             piPreferredSize[0] = (int)pdblPreferredSize[0];
             piPreferredSize[1] = (int)pdblPreferredSize[1];
 
-            setGraphicObjectProperty(iObjUID, __GO_UI_BORDER_POSITION__, &iPos, jni_int, 1);
             setGraphicObjectProperty(iObjUID, __GO_UI_BORDER_PREFERREDSIZE__, piPreferredSize, jni_int_vector, 2);
+            setGraphicObjectProperty(iObjUID, __GO_UI_BORDER_POSITION__, &iPos, jni_int, 1);
         }
         else if (strcmp(pstType, "GridConstraints") == 0)
         {
@@ -358,12 +358,12 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             piPreferredSize[0] = (int)pdblPreferredSize[0];
             piPreferredSize[1] = (int)pdblPreferredSize[1];
 
-            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_GRID__, piGrid, jni_int_vector, 4);
-            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_WEIGHT__, pdblWeight, jni_double_vector, 2);
-            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_FILL__, &iFill, jni_int, 1);
-            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_ANCHOR__, &iAnchor, jni_int, 1);
-            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_PADDING__, piPadding, jni_int_vector, 2);
             setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_PREFERREDSIZE__, piPreferredSize, jni_int_vector, 2);
+            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_PADDING__, piPadding, jni_int_vector, 2);
+            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_ANCHOR__, &iAnchor, jni_int, 1);
+            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_FILL__, &iFill, jni_int, 1);
+            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_WEIGHT__, pdblWeight, jni_double_vector, 2);
+            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_GRID__, piGrid, jni_int_vector, 4);
         }
         else
         {

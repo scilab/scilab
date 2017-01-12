@@ -434,6 +434,13 @@ public class Uicontrol extends GraphicObject {
     protected static final String DEFAULT_FONTANGLE = "normal";
     private static final String STRING_SEPARATOR = "|";
 
+    /*default font properties*/
+    private static String defaultFontName = "";
+    private static String defaultFontWeight = "";
+    private static double defaultFontSize = 0;
+    private static String defaultFontAngle = "";
+    private static String defaultFontUnits = "";
+    
     private UicontrolStyle style;
     private Double[] backgroundColor = { -1.0, -1.0, -1.0};
     private Boolean enable = true;
@@ -1730,19 +1737,42 @@ public class Uicontrol extends GraphicObject {
             return;
         }
 
-        setFontName(font.getName());
-        setFontSize(font.getSize());
-
-        if (font.isItalic()) {
-            setFontAngle("italic");
+        if(getDefaultFontName().equals("")) {
+            setFontName(font.getName());
         } else {
-            setFontAngle("normal");
+            setFontName(getDefaultFontName());
         }
-
-        if (font.isBold()) {
-            setFontWeight("bold");
+        
+        if(getDefaultFontSize() == 0) {
+            setFontSize(font.getSize());
         } else {
-            setFontWeight("normal");
+            setFontSize(getDefaultFontSize());
+        }
+        
+        
+        if(getDefaultFontAngle().equals("")) {
+            if (font.isItalic()) {
+                setFontAngle("italic");
+            } else {
+                setFontAngle("normal");
+            }
+        } else {
+            setFontAngle(getDefaultFontAngle());
+        }
+        
+        
+        if(getDefaultFontWeight().equals("")) {
+            if (font.isBold()) {
+                setFontWeight("bold");
+            } else {
+                setFontWeight("normal");
+            }
+        } else {
+            setFontWeight(getDefaultFontWeight());
+        }
+        
+        if(getDefaultFontUnits().equals("") == false) {
+            setFontUnits(getDefaultFontUnits());
         }
     }
 
@@ -1777,4 +1807,60 @@ public class Uicontrol extends GraphicObject {
 
     public void accept(Visitor visitor) {
     }
+
+    /*
+    private static String defaultFontName = "";
+    */
+    public static void setDefaultFontName(String name) {
+        defaultFontName = name;
+    }
+
+    public static String getDefaultFontName() {
+        return defaultFontName;
+    }
+
+    /*
+    private static String defaultFontWeight = "";
+    */
+    public static void setDefaultFontWeight(String weight) {
+        defaultFontWeight = weight;
+    }
+
+    public static String getDefaultFontWeight() {
+        return defaultFontWeight;
+    }
+
+    /*
+    private static double defaultFontSize = 0;
+    */
+    public static void setDefaultFontSize(double size) {
+        defaultFontSize = size;
+    }
+
+    public static double getDefaultFontSize() {
+        return defaultFontSize;
+    }
+
+    /*
+    private static String defaultFontAngle = "";
+    */
+    public static void setDefaultFontAngle(String angle) {
+        defaultFontAngle = angle;
+    }
+
+    public static String getDefaultFontAngle() {
+        return defaultFontAngle;
+    }
+
+    /*
+    private static String defaultFontUnits = "";
+    */
+    public static void setDefaultFontUnits(String units) {
+        defaultFontUnits = units;
+    }
+
+    public static String getDefaultFontUnits() {
+        return defaultFontUnits;
+    }
+
 }

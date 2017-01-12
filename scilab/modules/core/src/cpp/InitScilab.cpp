@@ -248,7 +248,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     {
         InitializeTclTk();
         InitializeJVM();
-        InitializeGUI();
+        InitializeGUI(_pSEI->iWebMode == 0 ? TRUE : FALSE);
 
         /* create needed data structure if not already created */
         loadGraphicModule();

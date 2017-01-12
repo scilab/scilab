@@ -149,9 +149,6 @@
     <ClCompile Include="iconifyMainWindow.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InitializeGUI.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\InitUIMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -459,6 +456,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_helpbrowser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\InitializeGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

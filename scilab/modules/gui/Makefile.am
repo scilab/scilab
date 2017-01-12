@@ -53,7 +53,6 @@ MACROSDIRSEXT = macros/tree
 GUI_C_SOURCES = \
     src/c/buildMainWindowTitle.c \
     src/c/getMainWindowTitle.c \
-    src/c/InitializeGUI.c \
     src/c/setMainWindowTitle.c \
     src/c/addmenu.c \
     src/c/CreateUimenu.c \
@@ -63,6 +62,7 @@ GUI_C_SOURCES = \
     src/jni/ScilabTermination_wrap.c
 
 GUI_CXX_SOURCES = \
+    src/cpp/InitializeGUI.cpp \
     src/cpp/InitUIMenu.cpp \
     src/jni/CallScilabBridge.cpp \
     src/cpp/CreateUIControl.cpp \

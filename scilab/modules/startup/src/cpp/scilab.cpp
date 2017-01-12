@@ -296,6 +296,10 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
         {
             _pSEI->iKeepConsole = 1;
         }
+        else if (!strcmp("--webmode", argv[i]))
+        {
+            _pSEI->iWebMode = 1;
+        }
     }
 
     ConfigVariable::setCommandLineArgs(argc, argv);

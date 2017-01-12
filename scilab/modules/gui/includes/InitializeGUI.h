@@ -18,7 +18,7 @@
 #include "BOOL.h"
 #include "dynlib_gui.h"
 
-GUI_IMPEXP BOOL InitializeGUI(void);
+GUI_IMPEXP BOOL InitializeGUI(BOOL);
 
 #endif /* __INTIALIZEGUI_H__ */
 /*--------------------------------------------------------------------------*/

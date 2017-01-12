@@ -13,30 +13,33 @@
  *
  */
 
-#include <stdlib.h>
+#include "CallScilabBridge.hxx"
+
+extern "C"
+{
 #include "InitializeGUI.h"
 #include "configvariable_interface.h"
-#include "setMainWindowTitle.h"
-#include "sci_malloc.h"
-#include "buildMainWindowTitle.h"
+#include "getScilabJavaVM.h"
 #ifdef _MSC_VER
 #include "WindowShow.h"
 #endif
-
+}
 /*--------------------------------------------------------------------------*/
-BOOL InitializeGUI(void)
+BOOL InitializeGUI(BOOL swingView)
 {
     if (getScilabMode() == SCILAB_STD)
     {
 
-        // TODO why this line since already done above
-        // createSwingView();
 #ifdef _MSC_VER
         WindowShow();
 #endif
     }
     else
     {
+        if (swingView)
+        {
+            org_scilab_modules_gui_bridge::CallScilabBridge::registerSwingView(getScilabJavaVM());
+        }
         return TRUE;
     }
 

@@ -16,13 +16,14 @@
 #ifndef __MESSAGEBOXOPTIONS_H__
 #define __MESSAGEBOXOPTIONS_H__
 
+#include "dynlib_gui.h"
 /**
  * Verify the argument string is "modal" or "non-modal"
  *
  * @param option the string to test
  * @return 1 is the string matches "modal" or "non-modal"
  */
-int isModalOption(char *option);
+GUI_IMPEXP int isModalOption(char *option);
 
 /**
  * Verify the argument string is an icon name
@@ -31,6 +32,6 @@ int isModalOption(char *option);
  * @param option the string to test
  * @return 1 is the string matches an icon name
  */
-int isIconName(char *name);
+GUI_IMPEXP int isIconName(char *name);
 
 #endif /* ! __MESSAGEBOXOPTIONS_H__ */

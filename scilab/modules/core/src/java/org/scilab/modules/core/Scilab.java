@@ -125,7 +125,10 @@ public class Scilab {
          * they must be set before creating GUI
          */
         setJOGLFlags();
-        SwingView.registerSwingView();
+        /* Mode GUI */
+        if(mode == 2) {
+            SwingView.registerSwingView();
+        }
 
         /*
          * if not API mode
