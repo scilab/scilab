@@ -6,8 +6,7 @@
 // =============================================================================
 //
 // <-- ENGLISH IMPOSED -->
-//
-// <-- TEST WITH XCOS -->
+// <-- XCOS TEST -->
 //
 // <-- Unit test for DEBUG_SCICOS -->
 //
@@ -17,124 +16,124 @@
 global Result;Result=[];
 importXcosDiagram('SCI/modules/xcos/tests/nonreg_tests/bug_8480.zcos');
 Info=scicos_simulate(scs_m,list());
-block 1 is called with flag 4 at time 0.000000 
+block 1 [7b9ce3ac:12d299ba8fe:-7fd7] is called with flag 4 at time 0.000000 
 Entering the block 
 Leaving block 1 
-block 2 is called with flag 4 at time 0.000000 
+block 2 [7b9ce3ac:12d299ba8fe:-7fcd] is called with flag 4 at time 0.000000 
 Entering the block 
 Leaving block 2 
-block 3 is called with flag 4 at time 0.000000 
+block 3 [7b9ce3ac:12d299ba8fe:-7fc1] is called with flag 4 at time 0.000000 
 Entering the block 
 Leaving block 3 
-block 4 is called with flag 4 at time 0.000000 
+block 4 [7b9ce3ac:12d299ba8fe:-7fb4] is called with flag 4 at time 0.000000 
 Entering the block 
 Leaving block 4 
-block 6 is called with flag 4 at time 0.000000 
+block 6 [-10054033:12d2c0f9f25:-7f6c] is called with flag 4 at time 0.000000 
 Entering the block 
 Leaving block 6 
-block 1 is called with flag 6 at time 0.000000 
+block 1 [7b9ce3ac:12d299ba8fe:-7fd7] is called with flag 6 at time 0.000000 
 Entering the block 
 Leaving block 1 
-block 2 is called with flag 6 at time 0.000000 
+block 2 [7b9ce3ac:12d299ba8fe:-7fcd] is called with flag 6 at time 0.000000 
 Entering the block 
 Leaving block 2 
-block 3 is called with flag 6 at time 0.000000 
+block 3 [7b9ce3ac:12d299ba8fe:-7fc1] is called with flag 6 at time 0.000000 
 Entering the block 
 Leaving block 3 
-block 4 is called with flag 6 at time 0.000000 
+block 4 [7b9ce3ac:12d299ba8fe:-7fb4] is called with flag 6 at time 0.000000 
 Entering the block 
 Leaving block 4 
-block 6 is called with flag 6 at time 0.000000 
+block 6 [-10054033:12d2c0f9f25:-7f6c] is called with flag 6 at time 0.000000 
 Entering the block 
 Leaving block 6 
-block 1 is called with flag 6 at time 0.000000 
+block 1 [7b9ce3ac:12d299ba8fe:-7fd7] is called with flag 6 at time 0.000000 
 Entering the block 
 Leaving block 1 
-block 2 is called with flag 6 at time 0.000000 
+block 2 [7b9ce3ac:12d299ba8fe:-7fcd] is called with flag 6 at time 0.000000 
 Entering the block 
 Leaving block 2 
-block 3 is called with flag 6 at time 0.000000 
+block 3 [7b9ce3ac:12d299ba8fe:-7fc1] is called with flag 6 at time 0.000000 
 Entering the block 
 Leaving block 3 
-block 4 is called with flag 6 at time 0.000000 
+block 4 [7b9ce3ac:12d299ba8fe:-7fb4] is called with flag 6 at time 0.000000 
 Entering the block 
 Leaving block 4 
-block 6 is called with flag 6 at time 0.000000 
+block 6 [-10054033:12d2c0f9f25:-7f6c] is called with flag 6 at time 0.000000 
 Entering the block 
 Leaving block 6 
 Event: 1 activated at t=0.000000
 **mod**
-block 1 is called with flag 1 at time 0.000000 
+block 1 [7b9ce3ac:12d299ba8fe:-7fd7] is called with flag 1 at time 0.000000 
 Entering the block 
 Leaving block 1 
-block 2 is called with flag 1 at time 0.000000 
+block 2 [7b9ce3ac:12d299ba8fe:-7fcd] is called with flag 1 at time 0.000000 
 Entering the block 
 Leaving block 2 
-block 4 is called with flag 1 at time 0.000000 
+block 4 [7b9ce3ac:12d299ba8fe:-7fb4] is called with flag 1 at time 0.000000 
 Entering the block 
 Leaving block 4 
-block 6 is called with flag 1 at time 0.000000 
+block 6 [-10054033:12d2c0f9f25:-7f6c] is called with flag 1 at time 0.000000 
 Entering the block 
 Leaving block 6 
-block 3 is called with flag 1 at time 0.000000 
+block 3 [7b9ce3ac:12d299ba8fe:-7fc1] is called with flag 1 at time 0.000000 
 Entering the block 
 Leaving block 3 
-block 1 is called with flag 2 at time 0.000000 
+block 1 [7b9ce3ac:12d299ba8fe:-7fd7] is called with flag 2 at time 0.000000 
 Entering the block 
 Leaving block 1 
-block 4 is called with flag 2 at time 0.000000 
+block 4 [7b9ce3ac:12d299ba8fe:-7fb4] is called with flag 2 at time 0.000000 
 Entering the block 
 Leaving block 4 
-block 6 is called with flag 3 at time 0.000000 
+block 6 [-10054033:12d2c0f9f25:-7f6c] is called with flag 3 at time 0.000000 
 Entering the block 
 Leaving block 6 
-block 6 is called with flag 2 at time 0.000000 
+block 6 [-10054033:12d2c0f9f25:-7f6c] is called with flag 2 at time 0.000000 
 Entering the block 
 Leaving block 6 
 End of activation
 Event: 1 activated at t=0.500000
 **mod**
-block 1 is called with flag 1 at time 0.500000 
+block 1 [7b9ce3ac:12d299ba8fe:-7fd7] is called with flag 1 at time 0.500000 
 Entering the block 
 Leaving block 1 
-block 2 is called with flag 1 at time 0.500000 
+block 2 [7b9ce3ac:12d299ba8fe:-7fcd] is called with flag 1 at time 0.500000 
 Entering the block 
 Leaving block 2 
-block 4 is called with flag 1 at time 0.500000 
+block 4 [7b9ce3ac:12d299ba8fe:-7fb4] is called with flag 1 at time 0.500000 
 Entering the block 
 Leaving block 4 
-block 6 is called with flag 1 at time 0.500000 
+block 6 [-10054033:12d2c0f9f25:-7f6c] is called with flag 1 at time 0.500000 
 Entering the block 
 Leaving block 6 
-block 3 is called with flag 1 at time 0.500000 
+block 3 [7b9ce3ac:12d299ba8fe:-7fc1] is called with flag 1 at time 0.500000 
 Entering the block 
 Leaving block 3 
-block 1 is called with flag 2 at time 0.500000 
+block 1 [7b9ce3ac:12d299ba8fe:-7fd7] is called with flag 2 at time 0.500000 
 Entering the block 
 Leaving block 1 
-block 4 is called with flag 2 at time 0.500000 
+block 4 [7b9ce3ac:12d299ba8fe:-7fb4] is called with flag 2 at time 0.500000 
 Entering the block 
 Leaving block 4 
-block 6 is called with flag 3 at time 0.500000 
+block 6 [-10054033:12d2c0f9f25:-7f6c] is called with flag 3 at time 0.500000 
 Entering the block 
 Leaving block 6 
-block 6 is called with flag 2 at time 0.500000 
+block 6 [-10054033:12d2c0f9f25:-7f6c] is called with flag 2 at time 0.500000 
 Entering the block 
 Leaving block 6 
 End of activation
-block 1 is called with flag 5 at time 1.000000 
+block 1 [7b9ce3ac:12d299ba8fe:-7fd7] is called with flag 5 at time 1.000000 
 Entering the block 
 Leaving block 1 
-block 2 is called with flag 5 at time 1.000000 
+block 2 [7b9ce3ac:12d299ba8fe:-7fcd] is called with flag 5 at time 1.000000 
 Entering the block 
 Leaving block 2 
-block 3 is called with flag 5 at time 1.000000 
+block 3 [7b9ce3ac:12d299ba8fe:-7fc1] is called with flag 5 at time 1.000000 
 Entering the block 
 Leaving block 3 
-block 4 is called with flag 5 at time 1.000000 
+block 4 [7b9ce3ac:12d299ba8fe:-7fb4] is called with flag 5 at time 1.000000 
 Entering the block 
 Leaving block 4 
-block 6 is called with flag 5 at time 1.000000 
+block 6 [-10054033:12d2c0f9f25:-7f6c] is called with flag 5 at time 1.000000 
 Entering the block 
 Leaving block 6 
 guis = [];
@@ -142,6 +141,7 @@ for i=1:length(scs_m.objs) do
     o = scs_m.objs(i);
     if typeof(o) == "Block" then
         gui=o.gui;
+        
         guis = [guis ; gui];
         execstr(gui + "_index = i;");
     end
