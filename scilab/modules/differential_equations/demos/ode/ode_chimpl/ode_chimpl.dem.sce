@@ -13,7 +13,6 @@ function demo_ode_chimpl()
         r(3)=y(1)+y(2)+y(3)-1;
     endfunction
 
-
     function p=chemad(t,y,p),p=p+diag([1 1 0]),endfunction
 
     function p=chemjac(t,y,yd)
@@ -27,8 +26,9 @@ function demo_ode_chimpl()
     y0   = [1;0;0];
     yd0  = [-0.04;0.04;0];
     t    = [1.d-5:0.02:.4 0.41:.1:4 40 400 4000 40000 4d5 4d6 4d7 4d8 4d9 4d10];
-    rtol = 1d-4;atol=[1.d-6;1.d-10;1.d-6];
-    y    = impl(y0,yd0,0,t,rtol,atol,chemres,chemad,chemjac);
+    atol = [1.d-6;1.d-10;1.d-6];
+    rtol = 1d-4;
+    y    = impl(y0,yd0,0,t,atol,rtol,chemres,chemad,chemjac);
 
     // visualization
 
