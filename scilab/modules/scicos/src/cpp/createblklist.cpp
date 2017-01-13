@@ -34,13 +34,6 @@ extern "C"
 
 #include "createblklist.hxx"
 /*--------------------------------------------------------------------------*/
-//extern void str2sci(char** x, int n, int m); /* core/src/c/str2sci.h */
-//extern void C2F(itosci)();
-//extern void C2F(dtosci)();
-//extern int C2F(scierr)();
-//extern void C2F(vvtosci)();
-//extern int C2F(mktlist)();
-/*--------------------------------------------------------------------------*/
 static types::InternalType* vartosci(void* data, const int rows, const int cols, const int type)
 {
     const int size = rows * cols;
@@ -128,10 +121,10 @@ static types::InternalType* vartosci(void* data, const int rows, const int cols,
 
 types::InternalType* createblklist(const scicos_block* const Blocks, const int flag_imp, const int /*funtyp*/)
 {
-    /* set string of first element of scilab Blocks tlist -please update me- */
     const int fieldCount = 41;
     int size = 0;
 
+    /* set string of first element of scilab Blocks tlist */
     static const char *str_blklst[] = {"scicos_block", "nevprt", "funpt", "type",
                                        "scsptr", "nz", "z", "noz",
                                        "ozsz", "oztyp", "oz", "nx",
@@ -231,7 +224,6 @@ types::InternalType* createblklist(const scicos_block* const Blocks, const int f
 
     /* 5 - scsptr */
     //cast function ptr to double*
-    size = 0;
     if (sizeof(types::InternalType*) >= sizeof(double))
     {
         // store N double values as the function pointer value

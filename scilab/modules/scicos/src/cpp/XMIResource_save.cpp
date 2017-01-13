@@ -975,6 +975,10 @@ int XMIResource::writePort(xmlTextWriterPtr writer, enum object_properties_t con
     std::vector<int> intArrayValue;
     controller.getObjectProperty(id, PORT, DATATYPE, intArrayValue);
     status = writeDatatype(writer, intArrayValue);
+    if (status == -1)
+    {
+        return status;
+    }
 
     status = xmlTextWriterEndElement(writer);
     if (status == -1)

@@ -109,7 +109,7 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
         return types::Function::Error;
     }
 
-    bool ok;
+    bool ok = false;
     // Define accepted entries of getscicosvars -please update me-
     const std::vector<const char*> entry
     {
@@ -422,38 +422,38 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
 
                 /* Retrieve 'nblk' by import structure */
                 strcpy(field, "nblk");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
+                getscicosvarsfromimport(field, &ptr, &nv, &mv);
                 int nblk = ((int*)ptr)[0];
 
                 /* Retrieve 'ng' by import structure */
                 strcpy(field, "ng");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
+                getscicosvarsfromimport(field, &ptr, &nv, &mv);
                 //int ng = ((int*)ptr)[0];
 
                 /* Retrieve 'xptr' by import structure */
                 strcpy(field, "xptr");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
+                getscicosvarsfromimport(field, &ptr, &nv, &mv);
                 int* xptr = ((int*)ptr);
 
                 /* Retrieve 'zcptr' by import structure */
                 strcpy(field, "zcptr");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
+                getscicosvarsfromimport(field, &ptr, &nv, &mv);
                 int* zcptr = ((int*)ptr);
 
                 /* Retrieve 'x' and 'xd' by import structure */
                 strcpy(field, "x");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
+                getscicosvarsfromimport(field, &ptr, &nv, &mv);
                 double* x = ((double*)ptr);
                 //double* xd = &x[xptr[nblk] - 1];
 
                 /* Retrieve 'g' by import structure */
                 strcpy(field, "g");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
+                getscicosvarsfromimport(field, &ptr, &nv, &mv);
                 double* g = ((double*)ptr);
 
                 /* Retrieve 'funtyp' by import structure */
                 strcpy(field, "funtyp");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
+                getscicosvarsfromimport(field, &ptr, &nv, &mv);
                 //int* funtyp = ((int*)ptr);
 
                 for (int k = 0; k < nblk; ++k)

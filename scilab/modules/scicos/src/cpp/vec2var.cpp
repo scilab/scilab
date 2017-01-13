@@ -17,6 +17,7 @@
 #include <string>
 #include <cwchar>
 #include <cstring>
+#include <cassert>
 
 #include "vec2var.hxx"
 
@@ -88,7 +89,7 @@ int decode(const double* const tab, const int tabSize, const int iDims, const in
     {
         // Error case: the input doesn't have enough elements
         Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, numberOfDoubleNeeded + 2 + iDims + offset, 1);
-        res->killMe();
+        delete res;
         return -1;
     }
 
@@ -98,6 +99,7 @@ int decode(const double* const tab, const int tabSize, const int iDims, const in
     memcpy(res->get(), buffer, iElements * sizeof(typename T::type));
     delete[] buffer;
 
+    assert(2 + iDims + numberOfDoubleNeeded > 0);
     return 2 + iDims + numberOfDoubleNeeded;
 }
 
