@@ -285,6 +285,8 @@ static int sci_diary_one_rhs(char *fname, void* pvApiCtx)
                         printError(&sciErr, 0);
                         Scierror(999, _("%s: Memory allocation error.\n"), fname);
                         freeArrayOfWideString(wcFilenames, sizewcFilenames);
+                        FREE(wfilenameUsed[0]);
+                        delete[] wfilenameUsed;
                         return 0;
                     }
 
