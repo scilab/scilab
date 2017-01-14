@@ -1469,6 +1469,8 @@ static int AppendByFilenames(char *fname, void* pvApiCtx,
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                FREE(wfilenameUsed[0]);
+                delete[] wfilenameUsed;
                 return 0;
             }
 
@@ -1544,6 +1546,8 @@ static int NewByFilenames(char *fname, void* pvApiCtx,
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                FREE(wfilenameUsed[0]);
+                delete[] wfilenameUsed;
                 return 0;
             }
 
