@@ -169,6 +169,7 @@ int sci_TCL_GetVar(char *fname, void* pvApiCtx)
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     freeAllocatedSingleString(VarName);
+                    FREE(output);
                     return 1;
                 }
 

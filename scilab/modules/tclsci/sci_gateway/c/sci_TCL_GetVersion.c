@@ -62,6 +62,7 @@ int sci_TCL_GetVersion(char *fname, void* pvApiCtx)
         if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, output))
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            FREE(output);
             return 1;
         }
 
