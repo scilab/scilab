@@ -30,10 +30,12 @@ import java.net.URLClassLoader;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.ServiceLoader;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.SwingUtilities;
 import javax.tools.Diagnostic;
@@ -184,6 +186,12 @@ public class ScilabJavaCompiler {
 
         String[] compileOptions = new String[] {"-d", BINPATH};
         Iterable<String> options = Arrays.asList(compileOptions);
+
+        try {
+            stdFileManager.setLocation(StandardLocation.CLASS_OUTPUT, Collections.singleton(new File(BINPATH)));
+        } catch (IOException ex) {
+            Logger.getLogger(ScilabJavaCompiler.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         CompilationTask task = compiler.getTask(out, manager, diagnostics, options, null, compilationUnits);
         boolean success = task.call();
