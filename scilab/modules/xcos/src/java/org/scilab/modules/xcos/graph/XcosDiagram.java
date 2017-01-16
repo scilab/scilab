@@ -431,22 +431,22 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * CellResizedTracker Called when mxEvents.CELLS_RESIZED is fired.
      */
-    private static final class CellResizedTracker implements mxIEventListener {
+    private static final class RepositionTracker implements mxIEventListener {
 
-        private static CellResizedTracker instance;
+        private static RepositionTracker instance;
 
         /**
          * Constructor
          */
-        private CellResizedTracker() {
+        private RepositionTracker() {
         }
 
         /**
          * @return the instance
          */
-        public static CellResizedTracker getInstance() {
+        public static RepositionTracker getInstance() {
             if (instance == null) {
-                instance = new CellResizedTracker();
+                instance = new RepositionTracker();
             }
             return instance;
         }
@@ -1089,12 +1089,13 @@ public class XcosDiagram extends ScilabGraph {
         /*
          * First remove all listeners if present
          */
-        removeListener(CellResizedTracker.getInstance());
+        removeListener(RepositionTracker.getInstance());
         getUndoManager().removeListener(UndoUpdateTracker.getInstance());
         removeListener(RefreshBlockTracker.getInstance());
 
-        // Track when resizing a cell.
-        addListener(mxEvent.CELLS_RESIZED, CellResizedTracker.getInstance());
+        // Track when resizing or moving (droping) a cell.
+        addListener(mxEvent.CELLS_RESIZED, RepositionTracker.getInstance());
+        addListener(mxEvent.CELLS_MOVED, RepositionTracker.getInstance());
 
         // Update the blocks view on undo/redo
         getUndoManager().addListener(mxEvent.UNDO, UndoUpdateTracker.getInstance());
@@ -2263,13 +2264,12 @@ public class XcosDiagram extends ScilabGraph {
         };
     }
 
-   /**
-    * Counts the number of children in the diagram
-    *
-    * @return the number of children in the diagram
-    */
-    public int countChildren()
-    {
+    /**
+     * Counts the number of children in the diagram
+     *
+     * @return the number of children in the diagram
+     */
+    public int countChildren() {
         return getModel().getChildCount(this.getDefaultParent());
     }
 }

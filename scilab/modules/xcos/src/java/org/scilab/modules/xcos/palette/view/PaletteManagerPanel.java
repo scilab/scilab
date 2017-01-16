@@ -203,29 +203,35 @@ public class PaletteManagerPanel extends JSplitPane {
     public void addRecentltyUsedBlock(PaletteBlock block) {
         PaletteNode currentNode = (PaletteNode) tree.getLastSelectedPathComponent();
         if (currentNode != null && currentNode.getName().equals(RECENTLY_USED_BLOCKS)) {
+            // do not refresh when the dynamic palette is selected
             return;
         }
 
+        // look for the dynamic palette
         final Category root = PaletteManager.getInstance().getRoot();
-        List<PaletteNode> nodes = root.getNode();
-
+        ArrayList<PaletteNode> nodes = new ArrayList<>(root.getNode());
         PreLoaded p = null;
-        for (PaletteNode n : nodes) {
-            if (n.getName().equals(RECENTLY_USED_BLOCKS) && n instanceof PreLoaded) {
+        while (p == null && !nodes.isEmpty()) {
+            // pop()
+            PaletteNode n = nodes.get(nodes.size() - 1);
+            nodes.remove(nodes.size() - 1);
+
+            // terminate if found
+            if (n instanceof PreLoaded && n.getName().equals(RECENTLY_USED_BLOCKS)) {
                 p = (PreLoaded) n;
                 break;
             }
-        }
 
+            // add all the sub palettes
+            if (n instanceof Category) {
+                nodes.addAll(((Category) n).getNode());
+            }
+        }
         if (p == null) {
-            p = new PreLoaded();
-            p.setName(RECENTLY_USED_BLOCKS);
-            p.setEnable(true);
-            root.getNode().add(p);
-            p.setParent(root);
-            PaletteNode.refreshView(root, currentNode);
+            return;
         }
 
+        // do not resort if already present
         List<PaletteBlock> blocks = p.getBlock();
         for (PaletteBlock b : blocks) {
             if (b.getName().equals(block.getName())) {
@@ -233,9 +239,8 @@ public class PaletteManagerPanel extends JSplitPane {
             }
         }
 
-        if (blocks.size() >= XcosConstants.MAX_RECENTLY_USED_BLOCKS) {
-            blocks.remove(XcosConstants.MAX_RECENTLY_USED_BLOCKS - 1);
-        }
+        // add the block but keep the same number of elements (with a custom palette.xml the user can change the number of recent blocks)
+        blocks.remove(blocks.size() - 1);
         blocks.add(0, block);
     }
 

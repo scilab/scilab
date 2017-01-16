@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <category enable="true" name="Config">
     <node xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Category" enable="true" name="Palettes">
-        <node xsi:type="PreLoaded" enable="true" name="Commonly Used Blocks">
+        <node xsi:type="PreLoaded" enable="true" name="Recently Used Blocks">
             <block name="ANDBLK">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/ANDBLK.png"/>
             </block>
@@ -320,6 +320,9 @@
             <block name="TrigFun">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/TrigFun.png"/>
             </block>
+            <block name="RELATIONALOP">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/RELATIONALOP.png"/>
+            </block>
         </node>
         <node xsi:type="PreLoaded" enable="true" name="Matrix">
             <block name="CUMSUM">
@@ -505,6 +508,9 @@
             </block>
             <block name="SRFLIPFLOP">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/SRFLIPFLOP.png"/>
+            </block>
+            <block name="LOGICAL_OP">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/LOGICAL_OP.png"/>
             </block>
         </node>
         <node xsi:type="PreLoaded" enable="true" name="Port &amp; Subsystem">

@@ -37,9 +37,6 @@ public final class XcosConstants extends ScilabGraphConstants {
     /** Define the maximum number of char that might be represented as style */
     public static final int MAX_CHAR_IN_STYLE = 37;
 
-    /** Define the maximum number of blocks on the "Recently Used Blocks" palette */
-    public static final int MAX_RECENTLY_USED_BLOCKS = 12;
-
     /** Define the history length */
     public static final int HISTORY_LENGTH = 20;
 
@@ -142,7 +139,7 @@ public final class XcosConstants extends ScilabGraphConstants {
             }
             return null;
         }
-	}
+    }
 
     /* Events */
     /**
