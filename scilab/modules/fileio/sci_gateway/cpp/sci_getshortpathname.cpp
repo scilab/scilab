@@ -56,10 +56,16 @@ types::Function::ReturnValue sci_getshortpathname(types::typed_list &in, int _iR
     int* pBool = pOut2->get();
     wchar_t** p = pS->get();
     int size = pS->getSize();
-    for (int i = 0 ; i < size; i++)
+    for (int i = 0; i < size; i++)
     {
+        BOOL flagtrail = FALSE;
         wchar_t* tmp = getshortpathnameW(p[i], (BOOL*)&pBool[i]);
-        wchar_t* pwstPath = pathconvertW(tmp, TRUE, FALSE, AUTO_STYLE);
+        if (p[i][wcslen(p[i]) - 1] == '\\' || p[i][wcslen(p[i]) - 1] == '/')
+        {
+            flagtrail = TRUE;
+        }
+
+        wchar_t* pwstPath = pathconvertW(tmp, flagtrail, FALSE, AUTO_STYLE);
         pOut1->set(i, pwstPath);
         FREE(pwstPath);
         FREE(tmp);

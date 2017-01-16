@@ -53,10 +53,16 @@ types::Function::ReturnValue sci_getlongpathname(types::typed_list &in, int _iRe
     int* pBool = pOut2->get();
     int size = pS->getSize();
     wchar_t** p = pS->get();
-    for (int i = 0 ; i < size; i++)
+    for (int i = 0; i < size; i++)
     {
+        BOOL flagtrail = FALSE;
         wchar_t* tmp = getlongpathnameW(p[i], (BOOL*)&pBool[i]);
-        wchar_t* pwstPath = pathconvertW(tmp, TRUE, FALSE, AUTO_STYLE);
+        if (p[i][wcslen(p[i]) - 1] == '\\' || p[i][wcslen(p[i]) - 1] == '/')
+        {
+            flagtrail = TRUE;
+        }
+
+        wchar_t* pwstPath = pathconvertW(tmp, flagtrail, FALSE, AUTO_STYLE);
         pOut1->set(i, pwstPath);
         FREE(pwstPath);
         FREE(tmp);
