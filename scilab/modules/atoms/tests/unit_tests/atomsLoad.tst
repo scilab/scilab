@@ -34,7 +34,7 @@ atomsInstall("toolbox_5V6");
 
 if ~ and( atomsIsInstalled( ["toolbox_5V6" "1.2" ; ..
     "toolbox_4V6" "1.1" ; ..
-    "toolbox_2V6" "1.0" ; ..
+    "toolbox_2V6" "2.1" ; ..
 "toolbox_1V6" "2.0"])) then pause, end
 
 atomsLoad("toolbox_5V6");
@@ -48,7 +48,7 @@ if ~ and(atomsIsLoaded(["toolbox_5V6"; ..
 "toolbox_4V6"])) then pause, end
 
 if ~ and(atomsIsLoaded(["toolbox_5V6" "1.2"; ..
-    "toolbox_2V6" "1.0"; ..
+    "toolbox_2V6" "2.1"; ..
     "toolbox_1V6" "2.0"; ..
 "toolbox_4V6" "1.1"])) then pause, end
 
