@@ -625,7 +625,8 @@ int ScilabView::search_path(char* _pstPath)
     {
         return 0;
     }
-
+    
+    free(pstPath);
     return path->uid;
 }
 

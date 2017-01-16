@@ -218,6 +218,7 @@ int sci_toolbar(char *fname, void* pvApiCtx)
     if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, Output))
     {
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        FREE(Output);
         return 1;
     }
 

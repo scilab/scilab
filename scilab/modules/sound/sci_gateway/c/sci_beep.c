@@ -146,6 +146,7 @@ int sci_beep(char *fname, void* pvApiCtx)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        FREE(output);
         return 1;
     }
 
