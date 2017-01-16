@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // It was not possible to preview LaTeX when it was a second LaTeX string.
 
-a=["$\frac\pi2$"; "$\int_0^\inftyf(x)\mathrm{d}x$"];
+a=["$\frac\pi2$"; "$\int_0^\infty f(x)\mathrm{d}x$"];
 
 // Move the caret on the first and on the second LaTeX string
 // The LaTeX preview should be active on the two strings.

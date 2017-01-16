@@ -58,7 +58,7 @@
                     <action key="OSSCKEY H" description="_(Delete previous char)" name="console-del-prev-char"/>
                     <action key="OSSCKEY K" description="_(Delete end of line)" name="console-del-end-line"/>
                     <action key="OSSCKEY U" description="_(Delete whole line)" name="console-del-whole-line"/>
-                    <action key="OSSCKEY ESCAPE" description="_(Delete whole line)" name="console-del-whole-line"/>
+                    <action key="ESCAPE" description="_(Delete whole line)" name="console-del-whole-line"/>
                     <action key="OSSCKEY W" description="_(Delete last word)" name="console-del-last-word"/>
                     <action key="PAGE_UP" description="_(Previous console page)" name="console-prev-page"/>
                     <action key="PAGE_DOWN" description="_(Next console page)" name="console-next-page"/>

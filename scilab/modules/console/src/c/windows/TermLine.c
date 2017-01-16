@@ -448,7 +448,6 @@ char *getLineAfterCaret(void)
     if (cur_pos != max_pos)
     {
         line = os_strdup(&cur_line[cur_pos]);
-        line[(max_pos - cur_pos) + 1] = '\0';
     }
     else
     {
