@@ -60,6 +60,7 @@ cDEC$ ATTRIBUTES DLLIMPORT:: /eh0001/
       common /eh0001/ mesflg, lunit
       integer num, imess, imode
       character*80 str
+      imode = 0
 c-----------------------------------------------------------------------
       if (mesflg .eq. 0) go to 100
 c get logical unit number. ---------------------------------------------

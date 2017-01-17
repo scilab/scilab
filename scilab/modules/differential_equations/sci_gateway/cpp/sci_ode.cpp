@@ -1360,6 +1360,8 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                     FREE(rtol);
                 }
 
+                delete pDblYOut;
+
                 if (bCatch)
                 {
                     wchar_t szError[bsiz];
