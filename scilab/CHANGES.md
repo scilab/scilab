@@ -212,7 +212,7 @@ Help pages:
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
   `scilab|scilex`, `flipdim`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `and`, `format`, `typeof`,
-`brackets`, `setlanguage`, `sleep`, `isinf`, `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`
+`brackets`, `setlanguage`, `sleep`, `isinf`, `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
   - `pixel_drawing_mode`, `show_window`, `twinkle`, `uigetcolor`, `winsid`, `xdel`, `xgrid`, `xname`, `xnumb`
@@ -364,6 +364,7 @@ Bug Fixes
 * [#10326](http://bugzilla.scilab.org/show_bug.cgi?id=10326): Adds a search engine for the palette browser.
 * [#10981](http://bugzilla.scilab.org/show_bug.cgi?id=10981): When the view property of Axes object is set at 2d, the rotation becomes impossible.
 * [#11375](http://bugzilla.scilab.org/show_bug.cgi?id=11375): When a localized help subdirectory has only a CHAPTER file specifying the section title, it was ignored.
+* [#11476](http://bugzilla.scilab.org/show_bug.cgi?id=11476): `clf("reset")` used on a docked figure resized and moved the whole docked block like the Scilab desktop.
 * [#11692](http://bugzilla.scilab.org/show_bug.cgi?id=11692): The summary of a help section built from both default en_US and localized files was never sorted overall.
 * [#11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959): Allow "Zoom Area" to be clicked out of axes
 * [#12017](http://bugzilla.scilab.org/show_bug.cgi?id=12017): `figure.pixel_drawing_mode` is ignored for filled regular polygons and other shapes, still does not work for vectorial export (eps, pdf, etc).
@@ -445,6 +446,7 @@ Bug Fixes
 * [#14909](http://bugzilla.scilab.org/show_bug.cgi?id=14909): getlongpathname and getshortpathname return values with "\" instead of "/"
 * [#14941](http://bugzilla.scilab.org/show_bug.cgi?id=14941): `find` did not accept encoded integers
 * [#14942](http://bugzilla.scilab.org/show_bug.cgi?id=14942): Keep the Tkscale block label if block already has label.
+* [#14956](http://bugzilla.scilab.org/show_bug.cgi?id=14956): `clf("reset")` forgot resetting the `immediate_drawing`, `resize`, `resizefcn`, `closerequestfcn`, `toolbar_visible`, `menubar_visible`, `infobar_visible`, `default_axes`, and `icon` figure properties.
 
 ### Bugs fixed in 6.0.0 beta-2 and earlier 6.0.0 pre-releases:
 
