@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
- * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -282,7 +282,7 @@ public class BasicBlock extends XcosCell implements Serializable {
      * @param modifiedBlock
      *            the modified instance
      */
-    private void updateFields(JavaController controller, XcosDiagram parent, BasicBlock modifiedBlock) {
+    protected void updateFields(JavaController controller, XcosDiagram parent, BasicBlock modifiedBlock) {
         if (modifiedBlock == null) {
             return;
         }
@@ -358,7 +358,29 @@ public class BasicBlock extends XcosCell implements Serializable {
         /*
          * JGraphX mapped properties
          */
+        updateStyle(controller, parent, modifiedBlock);
+        updateValue(controller, parent, modifiedBlock);
+    }
+
+    /**
+     * Update the JGraphX style property accordingly to the block new style
+     *
+     * @param controller shared controller
+     * @param parent the diagram
+     * @param modifiedBlock a block copy containing the new style
+     */
+    protected void updateStyle(JavaController controller, XcosDiagram parent, BasicBlock modifiedBlock) {
         parent.getModel().setStyle(this, modifiedBlock.getStyle());
+    }
+
+    /**
+     * Update the JGraphX style property accordingly to the block new value
+     *
+     * @param controller shared controller
+     * @param parent the diagram
+     * @param modifiedBlock a block copy containing the new value
+     */
+    protected void updateValue(JavaController controller, XcosDiagram parent, BasicBlock modifiedBlock) {
         parent.getModel().setValue(this, modifiedBlock.getValue());
     }
 
@@ -368,7 +390,7 @@ public class BasicBlock extends XcosCell implements Serializable {
      * @param modifiedBlock
      *            the new block instance
      */
-    private void updateChildren(JavaController controller, XcosDiagram parent, BasicBlock modifiedBlock) {
+    protected void updateChildren(JavaController controller, XcosDiagram parent, BasicBlock modifiedBlock) {
         if (modifiedBlock == null) {
             return;
         }

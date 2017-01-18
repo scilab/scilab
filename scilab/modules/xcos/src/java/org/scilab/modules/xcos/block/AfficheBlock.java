@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
- * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -16,26 +16,32 @@
 package org.scilab.modules.xcos.block;
 
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.util.mxConstants;
+import com.mxgraph.view.mxCellState;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 import java.util.Formatter;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map.Entry;
 import java.util.TreeMap;
-import java.util.logging.Logger;
 
 import javax.swing.Timer;
+import org.scilab.modules.graph.utils.Font;
 
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.graph.utils.StyleMap;
-import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfDouble;
+import org.scilab.modules.xcos.VectorOfInt;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.XcosGraphModel;
 
 /**
  * Implement the AFFICH_m block
@@ -46,20 +52,16 @@ public final class AfficheBlock extends BasicBlock {
      */
     private static final int DEFAULT_TIMER_RATE = 200;
 
-    private static final Logger LOG = Logger.getLogger(AfficheBlock.class.getName());
-    private static final String EXPRS = "exprs";
-    private static final int PRECISION_INDEX = 4;
     private static final String NEW_LINE = System.getProperty("line.separator");
     private static final String SPACE = "  ";
 
-    private static final TreeMap<String, String[][]> values = new TreeMap<String, String[][]>();
+    private static final TreeMap<String, String[][]> values = new TreeMap<>();
     private static final UpdateValueListener updateAction = new UpdateValueListener();
     private static final Timer printTimer = new Timer(DEFAULT_TIMER_RATE, updateAction);
 
     /**
      * Update the value of the associated block
      */
-    @SuppressWarnings(value = { "serial" })
     private static class UpdateValueListener implements ActionListener, Serializable {
         /**
          * Default constructor
@@ -76,11 +78,13 @@ public final class AfficheBlock extends BasicBlock {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
+            List<XcosDiagram> diags = Xcos.getInstance().openedDiagrams();
+
             synchronized (values) {
                 for (Iterator<Entry<String, String[][]>> it = values.entrySet().iterator(); it.hasNext();) {
                     final Entry<String, String[][]> entry = it.next();
 
-                    update(entry.getKey(), entry.getValue());
+                    update(diags, entry.getKey(), entry.getValue());
 
                     it.remove();
                 }
@@ -90,195 +94,35 @@ public final class AfficheBlock extends BasicBlock {
         /**
          * Update and refresh the values
          */
-        private void update(String uid, String[][] data) {
-            // FIXME re-implement this sheet
-            //            final Object cell = Xcos.getInstance().lookupForCell(new String[] { uid });
-            //            if (cell != null) {
-            //                final XcosDiagram diag = Xcos.findParent(cell);
-            //                final String value = getText(data);
-            //
-            //                diag.getModel().setValue(cell, value);
-            //
-            //                final mxCellState state = diag.getView().getState(cell);
-            //                if (state != null) {
-            //                    state.setLabel(value);
-            //                }
-            //
-            //                diag.getAsComponent().redraw(state);
-            //            }
-        }
+        private void update(List<XcosDiagram> diags, final String uid, final String[][] data) {
+            /* Look for the cell uid, keeping its diag Diagram available */
+            class DiagramBlockPair {
+                final XcosDiagram diag;
+                final Object block;
 
-        /**
-         * Construct a String representation of the values.
-         */
-        private final String getText(final String[][] data) {
-            final StringBuilder blockResult = new StringBuilder();
-            final int iRows = data.length;
-            final int iCols = data[0].length;
-
-            for (int i = 0; i < iRows; i++) {
-                for (int j = 0; j < iCols; j++) {
-                    if (iCols != 0) {
-                        blockResult.append(SPACE);
-                    }
-
-                    blockResult.append(data[i][j]);
+                DiagramBlockPair(final XcosDiagram p, final Object b) {
+                    diag = p;
+                    block = b;
                 }
-                blockResult.append(NEW_LINE);
+            }
+            DiagramBlockPair found = diags.stream()
+                                     .map(d -> new DiagramBlockPair(d, ((XcosGraphModel)d.getModel()).getCell(uid)))
+                                     .filter(p -> p.block != null)
+                                     .findAny().orElse(null);
+            if (found == null) {
+                return;
             }
 
-            return blockResult.toString();
-        }
-    }
+            /* render and refresh */
+            final String value = getText(data);
+            found.diag.getModel().setValue(found.block, value);
 
-    /**
-     * Update the style according to the values of the expression
-     *
-     * @SuppressWarnings(value = { "serial" })
-     */
-    private static final class UpdateStyle implements PropertyChangeListener, Serializable {
-        /**
-         *
-         */
-        private static final String OPENING_BRACKET = "[";
-        private static transient UpdateStyle instance;
-
-        /**
-         * Default constructor.
-         */
-        private UpdateStyle() {
-        }
-
-        /**
-         * @return the instance
-         */
-        public static UpdateStyle getInstance() {
-            if (instance == null) {
-                instance = new UpdateStyle();
-            }
-            return instance;
-        }
-
-        /**
-         * Update the style of the block according to the expression value
-         *
-         * @param evt
-         *            the evnt
-         * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
-         */
-        @Override
-        public void propertyChange(PropertyChangeEvent evt) {
-            // Pre-condition
-            final String property = evt.getPropertyName();
-            if (evt.getSource() == null || !property.equals(EXPRS)) {
-                LOG.severe("Unable to update the style");
+            final mxCellState state = found.diag.getView().getState(found.block);
+            if (state != null) {
+                state.setLabel(value);
             }
 
-            final AfficheBlock src = (AfficheBlock) evt.getSource();
-            final String[][] data = ((ScilabString) evt.getNewValue()).getData();
-
-            updateValue(src, data);
-            updateStyle(src, data);
-
-            /*
-             * Refresh
-             */
-            // FIXME
-            //            if (src.getParentDiagram() != null) {
-            //                final XcosDiagram parent = src.getParentDiagram();
-            //                final mxRectangle rect = parent.getPreferredSizeForCell(src);
-            //
-            //                parent.getModel().setGeometry(src, new mxGeometry(src.getGeometry().getX(), src.getGeometry().getY(), rect.getWidth(), rect.getHeight()));
-            //            }
-        }
-
-        /**
-         * Update the value according to the data (matrix size and precision)
-         *
-         * @param src
-         *            the src block
-         * @param data
-         *            the "exprs" data
-         */
-        private void updateValue(AfficheBlock src, String[][] data) {
-            /*
-             * Getting the first parameter for the matrix size
-             */
-            final int[] size;
-            int[] index = new int[] { 0, 0 };
-            final String data00 = data[index[0]][index[1]];
-            if (data00.startsWith(OPENING_BRACKET)) {
-                final String[] strSize = data00.split("[\\[\\],]");
-                try {
-                    size = new int[] { Integer.parseInt(strSize[1]), Integer.parseInt(strSize[2]) };
-                } catch (NumberFormatException e) {
-                    LOG.severe(e.toString());
-                    return;
-                }
-            } else {
-                size = new int[] { 1, 1 };
-            }
-
-            index = new int[] { PRECISION_INDEX, 0 };
-            final String width = data[index[0]][index[1]];
-
-            //            AbstractElement.incrementIndexes(index, true);
-            final String rational = data[index[0]][index[1]];
-
-            final String format = "%" + width + "." + rational + "f";
-            final StringBuilder value = new StringBuilder();
-            for (int i = 0; i < size[0]; i++) {
-                for (int j = 0; j < size[1]; j++) {
-                    value.append(new Formatter(Locale.US).format(format, Double.valueOf(0.0)).toString());
-                    value.append(SPACE);
-                }
-                value.append(NEW_LINE);
-            }
-
-            src.setValue(value.toString());
-        }
-
-        /**
-         * Update the style of the block according to the data.
-         *
-         * @param src
-         *            the block
-         * @param data
-         *            the "exprs" data
-         */
-        private void updateStyle(final AfficheBlock src, final String[][] data) {
-            /*
-             * Getting the first index to handle Affich_f and Affich_m
-             */
-            int[] index = new int[] { 0, 0 };
-            final String data00 = data[index[0]][index[1]];
-            //            if (data00.startsWith(OPENING_BRACKET)) {
-            //                AbstractElement.incrementIndexes(index, true);
-            //            }
-
-            /*
-             * Apply style
-             */
-            final StyleMap style = new StyleMap(src.getStyle());
-
-            //            try {
-            //                final int parsedFontInt = Integer.parseInt(data[index[0]][index[1]]);
-            //                style.put(mxConstants.STYLE_FONTFAMILY, Font.getFont(parsedFontInt).getName());
-            //
-            //                AbstractElement.incrementIndexes(index, true);
-            //                final int parsedFontSizeInt = Integer.parseInt(data[index[0]][index[1]]);
-            //                style.put(mxConstants.STYLE_FONTSIZE, Integer.toString(Font.getSize(parsedFontSizeInt)));
-            //
-            //                AbstractElement.incrementIndexes(index, true);
-            //                final int parsedFontColorInt = Integer.parseInt(data[index[0]][index[1]]);
-            //                String color = "#" + Integer.toHexString(Font.getColor(parsedFontColorInt).getRGB());
-            //                style.put(mxConstants.STYLE_FONTCOLOR, color);
-            //            } catch (NumberFormatException e) {
-            //                LOG.severe(e.toString());
-            //                return;
-            //            }
-
-            src.setStyle(style.toString());
+            found.diag.getAsComponent().redraw(state);
         }
     }
 
@@ -286,6 +130,82 @@ public final class AfficheBlock extends BasicBlock {
         super(controller, uid, kind, value, geometry, style, id);
     }
 
+    @Override
+    protected void updateStyle(JavaController controller, XcosDiagram parent, BasicBlock modifiedBlock) {
+        final StyleMap styleMap = new StyleMap(modifiedBlock.getStyle());
+
+        VectorOfInt ipar = new VectorOfInt();
+        controller.getObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.IPAR, ipar);
+
+        // font
+        final int parsedFontInt = ipar.get(0);
+        styleMap.put(mxConstants.STYLE_FONTFAMILY, Font.getFont(parsedFontInt).getName());
+
+        // fontsize
+        final int parsedFontSizeInt = ipar.get(1);
+        styleMap.put(mxConstants.STYLE_FONTSIZE, Integer.toString(Font.getSize(parsedFontSizeInt)));
+
+        // colr
+        final int parsedFontColorInt = ipar.get(2);
+        String color = "#" + Integer.toHexString(Font.getColor(parsedFontColorInt).getRGB());
+        styleMap.put(mxConstants.STYLE_FONTCOLOR, color);
+
+        parent.getModel().setStyle(this, styleMap.toString());
+    }
+
+    @Override
+    protected void updateValue(JavaController controller, XcosDiagram parent, BasicBlock modifiedBlock) {
+
+        VectorOfInt ipar = new VectorOfInt();
+        controller.getObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.IPAR, ipar);
+
+        VectorOfDouble dstate = new VectorOfDouble();
+        controller.getObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.DSTATE, dstate);
+
+        // nt
+        final int width = ipar.get(3);
+
+        // nd
+        final int rational = ipar.get(4);
+
+        // in(1,1)
+        final int rows = ipar.get(5);
+        final int cols = (dstate.size() - 6) / rows;
+
+        final String format = "%" + Integer.toString(width) + "." + Integer.toString(rational) + "f";
+        final StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                sb.append(new Formatter(Locale.US).format(format, 0.0).toString());
+                sb.append(SPACE);
+            }
+            sb.append(NEW_LINE);
+        }
+
+        parent.getModel().setValue(this, sb.toString());
+    }
+
+    /**
+     * Construct a String representation of the values.
+     */
+    private static String getText(final String[][] data) {
+        final StringBuilder blockResult = new StringBuilder();
+        final int iRows = data.length;
+        final int iCols = data[0].length;
+
+        for (int i = 0; i < iRows; i++) {
+            for (int j = 0; j < iCols; j++) {
+                if (iCols != 0) {
+                    blockResult.append(SPACE);
+                }
+
+                blockResult.append(data[i][j]);
+            }
+            blockResult.append(NEW_LINE);
+        }
+
+        return blockResult.toString();
+    }
 
     /**
      * Assign a value to an AfficheBlock instance
