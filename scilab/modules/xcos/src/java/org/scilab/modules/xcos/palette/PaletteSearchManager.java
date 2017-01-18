@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015 - Marcos CARDINOT
+ * Copyright (C) 2017 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,22 +15,23 @@ package org.scilab.modules.xcos.palette;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JScrollPane;
 import javax.swing.tree.TreeModel;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
-import org.scilab.modules.xcos.palette.PaletteIndexer;
-import org.scilab.modules.xcos.palette.PaletteSearcher;
-import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
@@ -51,7 +53,7 @@ public final class PaletteSearchManager {
     private PaletteIndexer paletteIndexer;
     private PaletteSearcher paletteSearcher;
     private PaletteSearchView view;
-    private Hashtable<String, List<PaletteBlock>> ht;
+    private Map<String, PaletteBlock> nameToPalette;
 
     /** Default constructor */
     public PaletteSearchManager() {
@@ -61,14 +63,14 @@ public final class PaletteSearchManager {
             IndexWriterConfig config = new IndexWriterConfig(analyzer);
             config.setOpenMode(OpenMode.CREATE);
             writer = new IndexWriter(ramDir, config);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            Logger.getLogger(PaletteSearchManager.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        nameToPalette = new HashMap<>();
         view = new PaletteSearchView();
         paletteIndexer = new PaletteIndexer(this);
         paletteSearcher = new PaletteSearcher(this);
-        ht = new Hashtable<String, List<PaletteBlock>>();
     }
 
     /**
@@ -91,14 +93,14 @@ public final class PaletteSearchManager {
             indexIsOutdated = false;
         }
 
-        List<String> blockPaths = paletteSearcher.search(query);
-        for (String blockPath : blockPaths) {
-            PaletteBlock block = getBlock(blockPath);
+        List<Document> found = paletteSearcher.search(query);
+        for (Document doc : found) {
+            PaletteBlock block = nameToPalette.get(doc.get("refname"));
             if (block != null) {
                 view.addBlock(block);
             }
         }
-        view.setText(queryLabel + blockPaths.size() + " " + XcosMessages.MATCHES);
+        view.setText(queryLabel + found.size() + " " + XcosMessages.MATCHES);
         view.revalidate();
         scrollPane.revalidate();
     }
@@ -110,7 +112,7 @@ public final class PaletteSearchManager {
         TreeModel model = PaletteManagerView.get().getTree().getModel();
         if (model != null) {
             loadHashTable(model, model.getRoot(), "");
-            paletteIndexer.createIndex(ht);
+            paletteIndexer.createIndex(nameToPalette);
         }
     }
 
@@ -125,12 +127,11 @@ public final class PaletteSearchManager {
         for (int i = 0; i < cc; ++i) {
             PaletteNode node = (PaletteNode) model.getChild(obj, i);
             if (node instanceof PreLoaded) {
-                ht.put(treePath + File.separator + node.getName(),
-                       ((PreLoaded) node).getBlock());
+                for (PaletteBlock b : ((PreLoaded) node).getBlock()) {
+                    nameToPalette.put(b.getName(), b);
+                }
             } else {
-                loadHashTable(model,
-                              node,
-                              treePath + File.separator + node.toString());
+                loadHashTable(model, node, treePath + File.separator + node.toString());
             }
         }
     }
@@ -158,27 +159,5 @@ public final class PaletteSearchManager {
      */
     public IndexWriter getIndexWriter() {
         return writer;
-    }
-
-    /**
-     * Get block
-     * @param blockPath the block path
-     * @return PaletteBlock
-     */
-    public PaletteBlock getBlock(String blockPath) {
-        int lastSeparator = blockPath.lastIndexOf(File.separator);
-        String treePath = blockPath.substring(0, lastSeparator);
-        String blockName = blockPath.substring(lastSeparator + 1);
-        List<PaletteBlock> blocks = ht.get(treePath);
-        if (blocks == null) {
-            return null;
-        }
-
-        for (PaletteBlock block : blocks) {
-            if (blockName.equals(block.getName())) {
-                return block;
-            }
-        }
-        return null;
     }
 }

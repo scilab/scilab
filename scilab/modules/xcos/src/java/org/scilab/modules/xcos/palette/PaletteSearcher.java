@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015 - Marcos CARDINOT
+ * Copyright (C) 2017 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,16 +13,17 @@
 
 package org.scilab.modules.xcos.palette;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.queryparser.flexible.core.QueryNodeException;
+import org.apache.lucene.queryparser.flexible.standard.StandardQueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
@@ -35,53 +37,47 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 public final class PaletteSearcher {
 
     private PaletteSearchManager mgr;
-    private QueryParser parser;
 
     /**
-     * Default constructor 
+     * Default constructor
      * @param psm PaletteSearchManager
      */
     public PaletteSearcher(PaletteSearchManager psm) {
         mgr = psm;
-        parser = new QueryParser("helpPage", mgr.getAnalyzer());
-        parser.setAllowLeadingWildcard(true);
     }
 
     /**
      * @param str Query
      * @return paths to the found blocks
      */
-    public List<String> search(String str) {
-        List<String> blockPaths = new ArrayList<String>();
-        try {
-            IndexReader reader = DirectoryReader.open(mgr.getIndexWriter(), true);
+    public List<Document> search(String str) {
+        List<Document> found = new ArrayList<>();
+        try (IndexReader reader = DirectoryReader.open(mgr.getIndexWriter(), true)) {
             IndexSearcher searcher = new IndexSearcher(reader);
 
-            // escape special characters -- except *
-            String escaped = QueryParser.escape(str);
-            escaped = escaped.replaceAll("\\\\\\*", "*");
+            StandardQueryParser queryParserHelper = new StandardQueryParser();
+            queryParserHelper.setAllowLeadingWildcard(true);
+            queryParserHelper.setLowercaseExpandedTerms(true);
+            queryParserHelper.setAnalyzer(mgr.getAnalyzer());
+            queryParserHelper.setMultiFields(new String[] {"refname", "refpurpose", "content"});
 
-            Query query = parser.parse(escaped);
+            Query query = queryParserHelper.parse(str, null);
             TopDocs results  = searcher.search(query, XcosConstants.MAX_HITS);
             ScoreDoc[] hits = results.scoreDocs;
 
-            if (hits.length == 0 && !str.contains("*")) {
-                escaped = "*" + escaped + "*";
-                query = parser.parse(escaped);
+            if (hits.length == 0) {
+                query = queryParserHelper.parse("*" + str + "*", null);
                 results  = searcher.search(query, XcosConstants.MAX_HITS);
                 hits = results.scoreDocs;
             }
 
             for (int i = 0; i < hits.length; i++) {
                 Document doc = searcher.doc(hits[i].doc);
-                blockPaths.add(doc.get("treePath") + File.separator + doc.get("blockName"));
+                found.add(doc);
             }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
+        } catch (IOException | QueryNodeException e) {
+            Logger.getLogger(PaletteSearcher.class.getName()).log(Level.SEVERE, null, e);
         }
-        return blockPaths;
+        return found;
     }
 }

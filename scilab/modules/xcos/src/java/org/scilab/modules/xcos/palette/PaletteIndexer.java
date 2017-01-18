@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015 - Marcos CARDINOT
+ * Copyright (C) 2017 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,25 +10,29 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
-
 package org.scilab.modules.xcos.palette;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FilenameFilter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Set;
-import java.util.Map.Entry;
-
+import java.util.Map;
+import java.util.Optional;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.lucene.document.Document;
+
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
@@ -37,99 +42,165 @@ import org.scilab.modules.xcos.palette.model.PaletteBlock;
 
 /**
  * Index the help pages of all blocks.
+ *
  * @author Marcos Cardinot <mcardinot@gmail.com>
  */
 public final class PaletteIndexer {
 
     private PaletteSearchManager mgr;
-    private List<String> roots;
+    private List<File> roots;
 
     /**
      * Default constructor
+     *
      * @param psm PaletteSearchManager
      */
     public PaletteIndexer(PaletteSearchManager psm) {
         mgr = psm;
         // javaHelp directories
-        roots = new ArrayList<String>();
-        roots.add(ScilabConstants.SCI.getAbsolutePath() + "/modules/helptools/javaHelp");
+        roots = new ArrayList<>();
+
+        // for local builds
+        roots.add(new File(ScilabConstants.SCI.getAbsolutePath() + "/modules/helptools/javaHelp"));
+
+        // for binary version
+        roots.add(new File(ScilabConstants.SCI.getAbsolutePath() + "/modules/helptools/jar"));
     }
 
-    /**
-     * @param ht Hashtable
-     */
-    public void createIndex(Hashtable<String, List<PaletteBlock>> ht) {
+    public void createIndex(Map<String, PaletteBlock> blockNameToPalette) {
         try {
             mgr.getIndexWriter().deleteAll();
-            Set< Entry<String, List<PaletteBlock>> > treePaths = ht.entrySet();
-            for (Entry<String, List<PaletteBlock>> entry : treePaths) {
-                String treePath = entry.getKey();
-                List<PaletteBlock> blocks = entry.getValue();
-                for (PaletteBlock block : blocks) {
-                    indexBlock(treePath, block.getName());
-                }
+
+            // insert all block names
+            for (String blk : blockNameToPalette.keySet()) {
+                index(blk);
             }
+
+            // insert all help pages
+            for (File r : roots) {
+                if (!r.exists()) {
+                    continue;
+                }
+
+                Files.walkFileTree(r.toPath(), new SimpleFileVisitor<Path>() {
+                    @Override
+                    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                        String fname = file.getFileName().toString();
+                        int dot = fname.lastIndexOf('.');
+                        if (dot <= 0) {
+                            return FileVisitResult.CONTINUE;
+                        }
+
+                        String basename = fname.substring(0, dot);
+                        if (fname.endsWith(".jar")) {
+                            try (JarFile jf = new JarFile(file.toFile())) {
+                                index(file.toAbsolutePath().toUri().toString(), basename, jf, blockNameToPalette);
+                            }
+                        } else if (fname.endsWith(".html")) {
+                            // this is a regular file
+                            if (blockNameToPalette.containsKey(basename)) {
+                                index(basename, file.toUri().toURL());
+                            }
+                        }
+
+                        return FileVisitResult.CONTINUE;
+                    }
+                });
+            }
+
             mgr.getIndexWriter().commit();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            Logger.getLogger(PaletteIndexer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    /**
-     * @param treePath tree path
-     * @param blockName block name
-     * @throws IOException If there is a low-level I/O error
-     */
-    private void indexBlock(String treePath, String blockName) throws IOException {
-        Document doc = new Document();
-        doc.add(new StringField("blockName", blockName, Field.Store.YES));
-        doc.add(new StringField("treePath", treePath, Field.Store.YES));
+    private void index(String fileURI, String basename, JarFile jf, Map<String, PaletteBlock> blockNameToTreePath) {
+        class Entry {
 
-        List<File> helpPages = findHelpPages(blockName);
-        if (helpPages.isEmpty()) {
-            doc.add(new TextField("helpPage", blockName, Field.Store.YES));
-        } else {
-            for (File helpPage : helpPages) {
-                InputStream stream = new FileInputStream(helpPage);
-                doc.add(new StringField("filePath", helpPage.getAbsolutePath(), Field.Store.YES));
-                doc.add(new TextField("helpPage", new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8))));
-            }
-        }
-
-        mgr.getIndexWriter().addDocument(doc);
-    }
-
-    /**
-     * @param blockName block name
-     * @return File[]
-     */
-    private List<File> findHelpPages(final String blockName) {
-        List<String> subdirs = new ArrayList<String>();
-        for (String root : roots) {
-            File r = new File(root);
-            if (!r.exists()) {
-                continue;
+            Entry(JarEntry jarEntry) {
+                je = jarEntry;
             }
 
-            String[] ss = r.list(new FilenameFilter() {
-                @Override
-                public boolean accept(File current, String name) {
-                    return new File(current, name).isDirectory();
+            JarEntry je;
+            String blk;
+            URL url;
+
+            boolean block() {
+                int slash = je.getName().lastIndexOf('/') + 1;
+                int dot = je.getName().lastIndexOf('.');
+                if (slash < 0 || dot < 0) {
+                    return false;
                 }
-            });
-            for (int i = 0; i < ss.length; ++i) {
-                ss[i] = root + File.separator + ss[i];
+
+                blk = je.getName().substring(slash, dot);
+                return true;
             }
-            subdirs.addAll(Arrays.asList(ss));
+
+            boolean url() {
+                try {
+                    // we have to generate a url in the form before indexing
+                    // jar:file:/modules/helptools/jar/scilab_en_US_help.jar!/scilab_en_US_help/blockName.html
+                    url = new URL("jar:" + fileURI + "!/" + basename + '/' + blk + ".html");
+                } catch (MalformedURLException ex) {
+                    Logger.getLogger(PaletteIndexer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                return true;
+            }
         }
 
-        List<File> helpPages = new ArrayList<File>();
-        for (String dir : subdirs) {
-            File file = new File(dir + File.separator + blockName + ".html");
-            if (file.exists()) {
-                helpPages.add(file);
+        jf.stream()
+        .map(je -> new Entry(je))
+        .filter(e -> e.block())
+        .filter(e -> blockNameToTreePath.containsKey(e.blk))
+        .filter(e -> e.url())
+        .forEach(e -> index(e.blk, e.url));
+    }
+
+    private void index(String basename, URL url) {
+        try {
+            Document doc = new Document();
+
+            // add the block name
+            Field refname = new TextField("refname", basename, Field.Store.YES);
+            refname.setBoost(100f);
+            doc.add(refname);
+
+            // add the refpurpose
+            try (BufferedReader r = new BufferedReader(new InputStreamReader(url.openStream()))) {
+                Optional<String> found = r.lines().filter(l -> l.contains("refpurpose")).findFirst();
+
+                Field refpurpose;
+                if (found.isPresent()) {
+                    refpurpose = new TextField("refpurpose", found.get(), Field.Store.YES);
+                } else {
+                    refpurpose = new TextField("refpurpose", "", Field.Store.YES);
+                }
+
+                refpurpose.setBoost(10f);
+                doc.add(refpurpose);
             }
+
+            // add the html content
+            try (BufferedReader r = new BufferedReader(new InputStreamReader(url.openStream()))) {
+                doc.add(new TextField("content", r));
+            }
+
+            mgr.getIndexWriter().addDocument(doc);
+        } catch (IOException e) {
+            Logger.getLogger(PaletteIndexer.class.getName()).log(Level.SEVERE, null, e);
         }
-        return helpPages;
+    }
+
+    private void index(String block) {
+        try {
+            Document doc = new Document();
+            doc.add(new StringField("refname", block, Field.Store.YES));
+            doc.add(new StringField("refpurpose", block, Field.Store.YES));
+            doc.add(new TextField("content", block, Field.Store.YES));
+
+            mgr.getIndexWriter().addDocument(doc);
+        } catch (IOException e) {
+            Logger.getLogger(PaletteIndexer.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 }
