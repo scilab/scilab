@@ -248,6 +248,7 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                delete[] selectedFontName;
                 return 1;
             }
         }

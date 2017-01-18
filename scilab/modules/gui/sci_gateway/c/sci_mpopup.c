@@ -99,6 +99,7 @@ int sci_mpopup(char *fname, void* pvApiCtx)
     pstRes = uiWaitContextMenu(iUicontextmenuUID);
 
     iRet = createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pstRes);
+    FREE(pstRes);
     if (iRet)
     {
         freeAllocatedMatrixOfString(iRows, iCols, pstAllMenuLabels);
