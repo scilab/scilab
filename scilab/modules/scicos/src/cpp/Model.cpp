@@ -48,6 +48,32 @@ Model::~Model()
     datatypes.clear();
 }
 
+/* define a custom delete as the BaseObject class is fully abstract */
+static inline void deleteBaseObject(model::BaseObject* o)
+{
+    switch (o->kind())
+    {
+        case ANNOTATION:
+            delete static_cast<model::Annotation*>(o);
+            break;
+        case DIAGRAM:
+            delete static_cast<model::Diagram*>(o);
+            break;
+        case BLOCK:
+            delete static_cast<model::Block*>(o);
+            break;
+        case LINK:
+            delete static_cast<model::Link*>(o);
+            break;
+        case PORT:
+            delete static_cast<model::Port*>(o);
+            break;
+        default:
+            break;
+    }
+};
+
+
 ScicosID Model::createObject(kind_t k)
 {
     /*
@@ -103,7 +129,7 @@ ScicosID Model::createObject(kind_t k)
                 // return the invalid value if the loop counter encounter 2 zeros.
                 if (has_looped_twice)
                 {
-                    delete o;
+                    deleteBaseObject(o);
                     return ScicosID();
                 }
                 else
@@ -159,7 +185,7 @@ void Model::deleteObject(ScicosID uid)
     if (modelObject->refCount() == 0)
     {
         allObjects.erase(iter);
-        delete modelObject;
+        deleteBaseObject(modelObject);
     }
     else
     {

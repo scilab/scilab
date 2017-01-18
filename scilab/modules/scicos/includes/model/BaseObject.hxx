@@ -47,8 +47,6 @@ public:
     {
     }
 
-    ~BaseObject() = default;
-
     inline BaseObject& operator=(BaseObject&& o)
     {
         m_id = o.m_id;
