@@ -792,7 +792,7 @@ int Triangulator::getNumberTriangles(void)
 
 int* Triangulator::getIndices(void)
 {
-    return &triangleIndices[0];
+    return triangleIndices.data();
 }
 
 int Triangulator::getNumberSteps(void)
