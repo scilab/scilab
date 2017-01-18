@@ -46,7 +46,7 @@ function [x,y,typ]=EDGE_TRIGGER(job,arg1,arg2)
             end
             xx=arg1(spath)// get the block
             execstr("xxn="+xx.gui+"(''set'',xx)")
-            if diffobjs(xxn,xx) then
+            if or(xxn<>xx) then
                 model=xx.model
                 model_n=xxn.model
                 if ~is_modelica_block(xx) then

@@ -75,7 +75,7 @@ function [x,y,typ]=freq_div(job,arg1,arg2)
         end
 
 
-        if diffobjs(xxn,xx) then
+        if or(xxn<>xx) then
             model=xx.model
             model_n=xxn.model
             if ~is_modelica_block(xx) then
