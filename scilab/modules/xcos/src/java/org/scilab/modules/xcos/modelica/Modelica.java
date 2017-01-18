@@ -19,7 +19,7 @@ package org.scilab.modules.xcos.modelica;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
@@ -168,10 +168,10 @@ public final class Modelica {
             }
             buffer.append(newline);
 
-            new FileOutputStream(file).write(strw.toString().getBytes());
-        } catch (FactoryConfigurationError e) {
-            Logger.getLogger(Modelica.class.getName()).severe(e.toString());
-        } catch (IOException e) {
+            try (FileWriter fw = new FileWriter(file)) {
+                fw.append(buffer);
+            }
+        } catch (FactoryConfigurationError | IOException e) {
             Logger.getLogger(Modelica.class.getName()).severe(e.toString());
         }
     }
