@@ -52,9 +52,9 @@ Building sources...
    Generate a loader file
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
-   ilib_gen_Make: Copy multiplybypi.c to TMPDIR
    ilib_gen_Make: Copy csum.c to TMPDIR
    ilib_gen_Make: Copy csub.c to TMPDIR
+   ilib_gen_Make: Copy multiplybypi.c to TMPDIR
    ilib_gen_Make: configure : Generate Makefile.
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
@@ -68,7 +68,6 @@ Building sources...
    Generate a cleaner file
    Building JAR library org.scilab.contrib.toolboxskeleton.jar
    Compiling Java sources in TMPDIR/testbox/src/java
-WARNING: Cannot find compilation directory TMPDIR/JIMS/bin/org/scilab/contrib/toolboxskeleton for package org.scilab.contrib.toolboxskeleton
    Creating JAR archive TMPDIR/testbox/jar/org.scilab.contrib.toolboxskeleton.jar
    Create loader script for Java loader.sce
    Create cleaner script for Java cleaner.sce
