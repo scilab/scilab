@@ -60,7 +60,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
     int clipState = 0;
     int autoScale = 0;
     int firstPlot = 0;
-    int logFlags[3];
+    int logFlags[3] = {0};
     char dataflag = 0;
     int autoSubticks = 0;
 

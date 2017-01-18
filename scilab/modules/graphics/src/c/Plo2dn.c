@@ -110,7 +110,7 @@ int plot2dn(int ptype, char *logflags, double *x, double *y, int *n1, int *n2, i
     int *pObj = NULL;
     int cmpt = 0;
     int with_leg = 0;
-    double drect[6];
+    double drect[6] = {0};
     char dataflag = 0;
 
     BOOL bounds_changed = FALSE;
@@ -628,7 +628,7 @@ BOOL update_specification_bounds(int iSubwinUID, double rect[6], int flag)
     if (flag != 3)
     {
         getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
-        
+
         if (dataBounds)
         {
             rect[4] = dataBounds[4];
