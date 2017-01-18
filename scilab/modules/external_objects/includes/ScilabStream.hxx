@@ -54,6 +54,7 @@ public:
     virtual ~ScilabStream()
     {
         flush();
+        delete rdbuf();
     }
 };
 }
