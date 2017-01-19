@@ -6,6 +6,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- NOT FIXED --> 6.0.0
+
 //Generate the process
 t1=0:0.1:100;
 y1=sin(2*%pi*t1)+sin(2*%pi*2*t1);
