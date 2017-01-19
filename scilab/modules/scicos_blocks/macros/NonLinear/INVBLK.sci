@@ -33,7 +33,7 @@ function [x,y,typ]=INVBLK(job,arg1,arg2)
 
         // Compatibility before 6.0.0, there was no divideByZero parameter
         if exprs == " " then
-            exprs($+1) = "1";
+            exprs = "1";
         end
 
         while %t do
