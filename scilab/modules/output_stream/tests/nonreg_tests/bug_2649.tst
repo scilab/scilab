@@ -24,5 +24,6 @@ b = 1;
 diary(dia0, 'close');
 diary(dia1, 'close');
 
-mgetl(TMPDIR+'/my_log_1')
-mgetl(TMPDIR+'/my_log_2') 
+ret = mgetl(TMPDIR+'/my_log_1')
+ret = mgetl(TMPDIR+'/my_log_2')
+
