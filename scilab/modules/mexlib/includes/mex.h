@@ -36,7 +36,9 @@ extern "C" {
 typedef int bool;
 #endif
 
-typedef int mxArray;
+typedef struct __MXARRAY__ {
+    int* ptr;
+} mxArray;
 
 typedef int mwSize;
 typedef int mwIndex;

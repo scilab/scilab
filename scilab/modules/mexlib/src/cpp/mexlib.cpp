@@ -110,14 +110,15 @@ static int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, con
     types::optional_list opt;
     for (int i = 0; i < nrhs; i++)
     {
-        in.push_back((types::InternalType*)prhs[i]);
+        in.push_back((types::InternalType*)prhs[i]->ptr);
     }
 
     func->call(in, opt, nlhs, out);
 
     for (int i = 0; i < nlhs; i++)
     {
-        plhs[i] = (mxArray *) (out[i]);
+        plhs[i] = new mxArray;
+        plhs[i]->ptr = (int*) (out[i]);
     }
     return 0;
 }
@@ -128,14 +129,15 @@ static int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, con
 mxArray *mxCreateDoubleMatrix(int m, int n, mxComplexity complexFlag)
 {
     types::Double *ptr = new types::Double(m, n, complexFlag == mxCOMPLEX);
-    return (mxArray *)ptr;
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateDoubleScalar(double value)
 {
     mxArray *ptr = mxCreateDoubleMatrix(1, 1, mxREAL);
-
-    ((types::Double *)ptr)->set(0, value);
+    ((types::Double *)ptr->ptr)->set(0, value);
     return ptr;
 }
 
@@ -181,7 +183,15 @@ mxArray *mxCreateNumericArray(int ndim, const int *dims, mxClassID CLASS, mxComp
         default:
             ptr = NULL;
     }
-    return (mxArray *)ptr;
+
+    if (ptr == NULL)
+    {
+        return NULL;
+    }
+
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateUninitNumericMatrix(size_t m, size_t n, mxClassID classid, mxComplexity ComplexFlag)
@@ -199,7 +209,9 @@ mxArray *mxCreateUninitNumericArray(size_t ndim, size_t *dims, mxClassID classid
 mxArray *mxCreateString(const char *string)
 {
     types::String *ptr = new types::String(string);
-    return (mxArray *)ptr;
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateCharMatrixFromStrings(int m, const char **str)
@@ -214,7 +226,9 @@ mxArray *mxCreateCharMatrixFromStrings(int m, const char **str)
 
     types::String *ptr = new types::String(m, n, strings);
     freeArrayOfWideString(strings, m);
-    return (mxArray *)ptr;
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateCharArray(int ndim, const int *dims)
@@ -230,27 +244,33 @@ mxArray *mxCreateCharArray(int ndim, const int *dims)
     {
         ptr->set(i, L"");
     }
-    return (mxArray *)ptr;
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateLogicalScalar(mxLogical value)
 {
     mxArray *ptr = mxCreateLogicalMatrix(1, 1);
 
-    ((types::Bool *)ptr)->set(0, value);
+    ((types::Bool *)ptr->ptr)->set(0, value);
     return ptr;
 }
 
 mxArray *mxCreateLogicalMatrix(int m, int n)
 {
     types::Bool *ptr = new types::Bool(m, n);
-    return (mxArray *)ptr;
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateLogicalArray(int ndim, const int *dims)
 {
     types::Bool *ptr = new types::Bool(ndim, (int *)dims);
-    return (mxArray *)ptr;
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateSparseLogicalMatrix(mwSize m, mwSize n, mwSize nzmax)
@@ -280,13 +300,17 @@ mxArray *mxCreateStructArray(int ndim, const int *dims, int nfields, const char 
         ptr->addField(name);
         FREE(name);
     }
-    return (mxArray *)ptr;
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateCellArray(int ndim, const int *dims)
 {
     types::Cell *ptr = new types::Cell(ndim, (int *)dims);
-    return (mxArray *)ptr;
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateCellMatrix(int m, int n)
@@ -299,20 +323,21 @@ void mxDestroyArray(mxArray *ptr)
 {
     if (mxGetClassID(ptr) != mxUNKNOWN_CLASS)
     {
-        delete (types::InternalType*)ptr;
-        ptr = NULL;
+        delete (types::InternalType*)ptr->ptr;
     }
 }
 
 mxArray *mxDuplicateArray(const mxArray *ptr)
 {
-    types::InternalType *pIT = (types::InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return 0;
     }
 
-    return (mxArray *)pIT->clone();
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)pIT->clone();
+    return ret;
 }
 
 void *mxCalloc(size_t n, size_t size)
@@ -351,7 +376,7 @@ int mxIsSingle(const mxArray *ptr)
 
 int mxIsComplex(const mxArray *ptr)
 {
-    types::InternalType *pIT = (types::InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return 0;
@@ -559,7 +584,7 @@ int mxIsNaN(double x)
 
 int mxIsEmpty(const mxArray *ptr)
 {
-    types::InternalType * pIT = (types::InternalType *)ptr;
+    types::InternalType * pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         //true or false, whatever ;)
@@ -614,7 +639,7 @@ char *mxArrayToString(const mxArray *ptr)
         return (char *)0;
     }
 
-    types::String *pa = (types::String *)ptr;
+    types::String *pa = (types::String *)ptr->ptr;
     int items = mxGetM(ptr);
     int index = 0;
     int length = 1; // one extra char to \0
@@ -651,7 +676,7 @@ int mxGetString(const mxArray *ptr, char *str, int strl)
         return 1;
     }
 
-    types::String *pa = (types::String *)ptr;
+    types::String *pa = (types::String *)ptr->ptr;
     int items = mxGetM(ptr);
     int index = 0;
     int free_space = strl - 1;
@@ -682,7 +707,7 @@ int mxSetClassName(mxArray *array_ptr, const char *classname)
 
 int mxGetNumberOfDimensions(const mxArray *ptr)
 {
-    types::InternalType *pIT = (types::InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return 0;
@@ -761,7 +786,7 @@ int mxGetElementSize(const mxArray *ptr)
 
 mwSize *mxGetDimensions(const mxArray *ptr)
 {
-    types::InternalType *pIT = (types::InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return NULL;
@@ -795,15 +820,15 @@ int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
 {
     if (mxIsCell(array_ptr))
     {
-        ((types::Cell *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Cell *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsChar(array_ptr))
     {
-        ((types::String *)array_ptr)->resize((int *)dims, ndim);
+        ((types::String *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsDouble(array_ptr))
     {
-        ((types::Double *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Double *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsSparse(array_ptr))
     {
@@ -811,43 +836,43 @@ int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
     }
     else if (mxIsInt8(array_ptr))
     {
-        ((types::Int8 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Int8 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsInt16(array_ptr))
     {
-        ((types::Int16 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Int16 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsInt32(array_ptr))
     {
-        ((types::Int32 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Int32 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsInt64(array_ptr))
     {
-        ((types::Int64 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Int64 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsLogical(array_ptr))
     {
-        ((types::Bool *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Bool *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsStruct(array_ptr))
     {
-        ((types::Struct *)array_ptr)->resize((int *)dims, ndim);
+        ((types::Struct *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsUint8(array_ptr))
     {
-        ((types::UInt8 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::UInt8 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsUint16(array_ptr))
     {
-        ((types::UInt16 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::UInt16 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsUint32(array_ptr))
     {
-        ((types::UInt32 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::UInt32 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
     else if (mxIsUint64(array_ptr))
     {
-        ((types::UInt64 *)array_ptr)->resize((int *)dims, ndim);
+        ((types::UInt64 *)array_ptr->ptr)->resize((int *)dims, ndim);
     }
 
     return 0;
@@ -855,7 +880,7 @@ int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
 
 int mxGetNumberOfElements(const mxArray *ptr)
 {
-    types::InternalType *pIT = (types::InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return 0;
@@ -885,7 +910,7 @@ int mxCalcSingleSubscript(const mxArray *ptr, int nsubs, const int *subs)
 
 int mxGetM(const mxArray *ptr)
 {
-    types::InternalType *pIT = (types::InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return 0;
@@ -901,7 +926,7 @@ int mxGetM(const mxArray *ptr)
 
 void mxSetM(mxArray *ptr, int M)
 {
-    types::InternalType *pIT = (types::InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return;
@@ -913,12 +938,13 @@ void mxSetM(mxArray *ptr, int M)
         return;
     }
 
-    pGT->resize(M, pGT->getCols());
+    types::InternalType* res = pGT->resize(M, pGT->getCols());
+    ptr->ptr = (int*)res;
 }
 
 int mxGetN(const mxArray *ptr)
 {
-    types::InternalType * pIT = (types::InternalType *)ptr;
+    types::InternalType * pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return 0;
@@ -934,7 +960,7 @@ int mxGetN(const mxArray *ptr)
 
 void mxSetN(mxArray *ptr, int N)
 {
-    types::InternalType * pIT = (types::InternalType *)ptr;
+    types::InternalType * pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return;
@@ -946,13 +972,14 @@ void mxSetN(mxArray *ptr, int N)
         return;
     }
 
-    pGT->resize(pGT->getRows(), N);
+    types::InternalType* res = pGT->resize(pGT->getRows(), N);
+    ptr->ptr = (int*)res;
 }
 
 double mxGetScalar(const mxArray *ptr)
 {
     // TODO: review spec
-    types::InternalType *pIT = (types::InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return 0;
@@ -1017,39 +1044,34 @@ double mxGetScalar(const mxArray *ptr)
 
 double *mxGetPr(const mxArray *ptr)
 {
-    types::InternalType *pIT = (types::InternalType *)ptr;
-    if (pIT == NULL)
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
+    if (pIT == NULL || pIT->isDouble() == false)
     {
         return NULL;
     }
 
-    types::Double *pD = dynamic_cast<types::Double *>(pIT);
-    if (pD == NULL)
-    {
-        return NULL;
-    }
-
+    types::Double *pD = pIT->getAs<types::Double>();
     return pD->get();
 }
 
 void mxSetPr(mxArray *ptr, double *pr)
 {
-    ((types::Double *)ptr)->set(pr);
+    ((types::Double *)ptr->ptr)->set(pr);
 }
 
 double *mxGetPi(const mxArray *ptr)
 {
-    return ((types::Double *)ptr)->getImg();
+    return ((types::Double *)ptr->ptr)->getImg();
 }
 
 void mxSetPi(mxArray *ptr, double *pi)
 {
-    ((types::Double *)ptr)->setImg(pi);
+    ((types::Double *)ptr->ptr)->setImg(pi);
 }
 
 void *mxGetData(const mxArray *ptr)
 {
-    types::InternalType *pIT = (types::InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return NULL;
@@ -1116,53 +1138,53 @@ void mxSetData(mxArray *array_ptr, void *data_ptr)
 {
     if (mxIsChar(array_ptr))
     {
-        ((types::String *)array_ptr)->set((wchar_t **)data_ptr);
+        array_ptr->ptr = (int*)((types::String *)array_ptr->ptr)->set((wchar_t **)data_ptr);
     }
     else if (mxIsDouble(array_ptr))
     {
-        ((types::Double *)array_ptr)->set((double *)data_ptr);
+        array_ptr->ptr = (int*)((types::Double *)array_ptr->ptr)->set((double *)data_ptr);
     }
     else if (mxIsInt8(array_ptr))
     {
-        ((types::Int8 *)array_ptr)->set((char *)data_ptr);
+        array_ptr->ptr = (int*)((types::Int8 *)array_ptr->ptr)->set((char *)data_ptr);
     }
     else if (mxIsInt16(array_ptr))
     {
-        ((types::Int16 *)array_ptr)->set((short *)data_ptr);
+        array_ptr->ptr = (int*)((types::Int16 *)array_ptr->ptr)->set((short *)data_ptr);
     }
     else if (mxIsInt32(array_ptr))
     {
-        ((types::Int32 *)array_ptr)->set((int *)data_ptr);
+        array_ptr->ptr = (int*)((types::Int32 *)array_ptr->ptr)->set((int *)data_ptr);
     }
     else if (mxIsInt64(array_ptr))
     {
-        ((types::Int64 *)array_ptr)->set((long long *)data_ptr);
+        array_ptr->ptr = (int*)((types::Int64 *)array_ptr->ptr)->set((long long *)data_ptr);
     }
     else if (mxIsLogical(array_ptr))
     {
-        ((types::Bool *)array_ptr)->set((int *)data_ptr);
+        array_ptr->ptr = (int*)((types::Bool *)array_ptr->ptr)->set((int *)data_ptr);
     }
     else if (mxIsUint8(array_ptr))
     {
-        ((types::UInt8 *)array_ptr)->set((unsigned char *)data_ptr);
+        array_ptr->ptr = (int*)((types::UInt8 *)array_ptr->ptr)->set((unsigned char *)data_ptr);
     }
     else if (mxIsUint16(array_ptr))
     {
-        ((types::UInt16 *)array_ptr)->set((unsigned short *)data_ptr);
+        array_ptr->ptr = (int*)((types::UInt16 *)array_ptr->ptr)->set((unsigned short *)data_ptr);
     }
     else if (mxIsUint32(array_ptr))
     {
-        ((types::UInt32 *)array_ptr)->set((unsigned int *)data_ptr);
+        array_ptr->ptr = (int*)((types::UInt32 *)array_ptr->ptr)->set((unsigned int *)data_ptr);
     }
     else if (mxIsUint64(array_ptr))
     {
-        ((types::UInt64 *)array_ptr)->set((unsigned long long *) data_ptr);
+        array_ptr->ptr = (int*)((types::UInt64 *)array_ptr->ptr)->set((unsigned long long *) data_ptr);
     }
 }
 
 void *mxGetImagData(const mxArray *ptr)
 {
-    types::InternalType *pIT = (types::InternalType *)ptr;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
     if (pIT == NULL)
     {
         return NULL;
@@ -1227,49 +1249,9 @@ void *mxGetImagData(const mxArray *ptr)
 
 void mxSetImagData(mxArray *array_ptr, void *data_ptr)
 {
-    if (mxIsChar(array_ptr))
+    if (mxIsDouble(array_ptr))
     {
-        ((types::String *)array_ptr)->setImg((wchar_t **)data_ptr);
-    }
-    else if (mxIsDouble(array_ptr))
-    {
-        ((types::Double *)array_ptr)->setImg((double *)data_ptr);
-    }
-    else if (mxIsInt8(array_ptr))
-    {
-        ((types::Int8 *)array_ptr)->setImg((char *)data_ptr);
-    }
-    else if (mxIsInt16(array_ptr))
-    {
-        ((types::Int16 *)array_ptr)->setImg((short *)data_ptr);
-    }
-    else if (mxIsInt32(array_ptr))
-    {
-        ((types::Int32 *)array_ptr)->setImg((int *)data_ptr);
-    }
-    else if (mxIsInt64(array_ptr))
-    {
-        ((types::Int64 *)array_ptr)->setImg((long long *)data_ptr);
-    }
-    else if (mxIsLogical(array_ptr))
-    {
-        ((types::Bool *)array_ptr)->setImg((int *)data_ptr);
-    }
-    else if (mxIsUint8(array_ptr))
-    {
-        ((types::UInt8 *)array_ptr)->setImg((unsigned char *)data_ptr);
-    }
-    else if (mxIsUint16(array_ptr))
-    {
-        ((types::UInt16 *)array_ptr)->setImg((unsigned short *)data_ptr);
-    }
-    else if (mxIsUint32(array_ptr))
-    {
-        ((types::UInt32 *)array_ptr)->setImg((unsigned int *)data_ptr);
-    }
-    else if (mxIsUint64(array_ptr))
-    {
-        ((types::UInt64 *)array_ptr)->setImg((unsigned long long *) data_ptr);
+        ((types::Double *)array_ptr->ptr)->setImg((double *)data_ptr);
     }
 }
 
@@ -1279,30 +1261,25 @@ mxChar *mxGetChars(mxArray *array_ptr)
     {
         return NULL;
     }
-    wchar_t *chars = ((types::String *)array_ptr)->get(0);
+    wchar_t *chars = ((types::String *)array_ptr->ptr)->get(0);
     return (mxChar *)wide_string_to_UTF8(chars);
 }
 
 mxLogical *mxGetLogicals(const mxArray *ptr)
 {
-    types::InternalType *pIT = (types::InternalType *)ptr;
-    if (pIT == NULL)
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
+    if (pIT == NULL || pIT->isBool() == false)
     {
         return NULL;
     }
 
     types::Bool *pB = pIT->getAs<types::Bool>();
-    if (pB == NULL)
-    {
-        return NULL;
-    }
-
     return (mxLogical *)pB->get();
 }
 
 mxClassID mxGetClassID(const mxArray *ptr)
 {
-    types::InternalType *pIT = dynamic_cast<types::InternalType*>((types::InternalType*)ptr);
+    types::InternalType *pIT = dynamic_cast<types::InternalType*>((types::InternalType*)ptr->ptr);
     if (pIT == NULL)
     {
         return mxUNKNOWN_CLASS;
@@ -1443,7 +1420,7 @@ int mxGetNumberOfFields(const mxArray *ptr)
         return 0;
     }
 
-    types::Struct * pa = (types::Struct*)ptr;
+    types::Struct * pa = (types::Struct*)ptr->ptr;
     return pa->getFieldNames()->getSize();
 }
 
@@ -1457,7 +1434,7 @@ const char *mxGetFieldNameByNumber(const mxArray *array_ptr, int field_number)
     {
         return NULL;
     }
-    types::String *names = ((types::Struct*)array_ptr)->getFieldNames();
+    types::String *names = ((types::Struct*)array_ptr->ptr)->getFieldNames();
     wchar_t *name = names->get(field_number);
     return (const char *)wide_string_to_UTF8(name);
 }
@@ -1469,7 +1446,7 @@ int mxGetFieldNumber(const mxArray *ptr, const char *string)
         return -1;
     }
 
-    types::Struct *pa = (types::Struct *)ptr;
+    types::Struct *pa = (types::Struct *)ptr->ptr;
     types::String *names = pa->getFieldNames();
     wchar_t *field_name = to_wide_string(string);
 
@@ -1500,19 +1477,22 @@ mxArray *mxGetFieldByNumber(const mxArray *ptr, int lindex, int field_number)
         return NULL;
     }
 
-    types::Struct *pa = (types::Struct *)ptr;
+    types::Struct *pa = (types::Struct *)ptr->ptr;
     types::String *names = pa->getFieldNames();
     types::SingleStruct *s = pa->get(lindex);
-    return (mxArray *)s->get(names->get(field_number));
+
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)s->get(names->get(field_number));
+    return ret;
 }
 
 void mxSetFieldByNumber(mxArray *array_ptr, int lindex, int field_number, mxArray *value)
 {
     if (mxIsStruct(array_ptr) && lindex < mxGetNumberOfElements(array_ptr))
     {
-        types::SingleStruct *ptr = ((types::Struct*)array_ptr)->get(lindex);
+        types::SingleStruct *ptr = ((types::Struct*)array_ptr->ptr)->get(lindex);
         types::String *names = ptr->getFieldNames();
-        ptr->set(names->get(field_number), (types::InternalType *)value);
+        ptr->set(names->get(field_number), (types::InternalType *)value->ptr);
     }
 }
 
@@ -1523,9 +1503,9 @@ int mxAddField(mxArray *ptr, const char *fieldname)
         return -1;
     }
 
-    types::Struct *pa = (types::Struct*)ptr;
+    types::Struct *pa = (types::Struct*)ptr->ptr;
     wchar_t *wfieldname = to_wide_string(fieldname);
-    pa->addField(wfieldname);
+    ptr->ptr = (int*)pa->addField(wfieldname);
     FREE(wfieldname);
     return mxGetFieldNumber(ptr, fieldname);
 }
@@ -1537,13 +1517,15 @@ void mxRemoveField(mxArray *pm, int fieldnumber)
 
 mxArray *mxGetCell(const mxArray *ptr, int lindex)
 {
-    types::Cell * pa = (types::Cell *)ptr;
-    return (mxArray *)pa->get(lindex);
+    types::Cell * pa = (types::Cell *)ptr->ptr;
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)pa->get(lindex);
+    return ret;
 }
 
 void mxSetCell(mxArray *array_ptr, int lindex, mxArray *value)
 {
-    ((types::Cell *)array_ptr)->set(lindex, (types::InternalType *)value);
+    array_ptr->ptr = (int*)((types::Cell *)array_ptr->ptr)->set(lindex, (types::InternalType *)value->ptr);
 }
 
 int mxGetNzmax(const mxArray *ptr)
@@ -1644,10 +1626,12 @@ mxArray *mexGetVariable(const char *workspace, const char *name)
     mxArray* ret = NULL;
     const mxArray* ptr = mexGetVariablePtr(workspace, name);
 
-    if (ptr)
+    if (ptr && ptr->ptr)
     {
-        ret = (mxArray*)((types::InternalType*)ptr)->clone();
+        ret = new mxArray;
+        ret->ptr = (int*)((types::InternalType*)ptr->ptr)->clone();
     }
+
     return ret;
 }
 
@@ -1655,28 +1639,35 @@ const mxArray *mexGetVariablePtr(const char *workspace, const char *name)
 {
     symbol::Context *context = symbol::Context::getInstance();
     wchar_t *key = to_wide_string(name);
-    types::InternalType *value = NULL;
+    mxArray* ret = new mxArray;
+    ret->ptr = NULL;
     symbol::Symbol sym = symbol::Symbol(key);
     if (strcmp(workspace, "base") == 0)
     {
-        value = context->get(sym);
+        ret->ptr = (int*)context->get(sym);
     }
     else if (strcmp(workspace, "caller") == 0)
     {
         if (context->isGlobalVisible(sym) == false)
         {
-            value = context->get(sym);
+            ret->ptr = (int*)context->get(sym);
         }
     }
     else if (strcmp(workspace, "global") == 0)
     {
         if (context->isGlobalVisible(sym))
         {
-            value = context->getGlobalValue(sym);
+            ret->ptr = (int*)context->getGlobalValue(sym);
         }
     }
     FREE(key);
-    return (mxArray *)value;
+    if (ret->ptr == NULL)
+    {
+        delete ret;
+        return NULL;
+    }
+
+    return ret;
 }
 
 int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm)
@@ -1685,16 +1676,16 @@ int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm
     wchar_t *dest = to_wide_string(varname);
     if (strcmp(workspace, "base") == 0)
     {
-        context->putInPreviousScope(context->getOrCreate(symbol::Symbol(dest)), (types::InternalType *)pm);
+        context->putInPreviousScope(context->getOrCreate(symbol::Symbol(dest)), (types::InternalType *)pm->ptr);
     }
     else if (strcmp(workspace, "caller") == 0)
     {
-        context->put(symbol::Symbol(dest), (types::InternalType *)pm);
+        context->put(symbol::Symbol(dest), (types::InternalType *)pm->ptr);
     }
     else if (strcmp(workspace, "global") == 0)
     {
         context->setGlobalVisible(symbol::Symbol(dest), true);
-        context->put(symbol::Symbol(dest), (types::InternalType *)pm);
+        context->put(symbol::Symbol(dest), (types::InternalType *)pm->ptr);
     }
     else
     {
@@ -1714,8 +1705,8 @@ int mexIsGlobal(const mxArray *ptr)
     for (auto it : lst)
     {
         symbol::Symbol s = symbol::Symbol(it);
-        const mxArray *value = (const mxArray *)context->getGlobalValue(s);
-        if (value == ptr)
+        types::InternalType* value = context->getGlobalValue(s);
+        if ((int*)value == ptr->ptr)
         {
             return 1;
         }

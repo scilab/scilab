@@ -16,12 +16,13 @@ mputl(["#include ""mex.h""";
 "void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
 "{";
 "    int dims[2] = {2,2};";
-"    mxSetDimensions(prhs[0], dims, 2);";
+"    plhs[0] = mxDuplicateArray(prhs[0]);";
+"    mxSetDimensions(plhs[0], dims, 2);";
 "}"],"mexsetDimensions.c");
 ilib_mex_build("libmextest",["setDimensions","mexsetDimensions","cmex"], "mexsetDimensions.c",[]);
 exec("loader.sce");
 
 a = 3;
-setDimensions(a);
-assert_checkequal(size(a, "*"), 4);
-assert_checkequal(a(1), 3);
+b = setDimensions(a);
+assert_checkequal(size(b, "*"), 4);
+assert_checkequal(b(1), 3);

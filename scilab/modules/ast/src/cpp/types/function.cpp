@@ -492,6 +492,10 @@ WrapMexFunction* WrapMexFunction::clone()
 
 Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt*/, int _iRetCount, typed_list &out)
 {
+    typedef struct __MAXARRAY__ {
+        int* ptr;
+    } mxArray;
+
     int ret = 1;
     if (m_pLoadDeps != NULL)
     {
@@ -510,19 +514,20 @@ Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt
     FREE(name);
 
     int nlhs = _iRetCount;
-    int** plhs = new int*[nlhs];
-    memset(plhs, 0x00, sizeof(int*) * nlhs);
+    mxArray** plhs = new mxArray*[nlhs];
+    memset(plhs, 0x00, sizeof(mxArray*) * nlhs);
 
     int nrhs = (int)in.size();
-    int** prhs = new int*[nrhs];
+    mxArray** prhs = new mxArray*[nrhs];
     for (int i = 0; i < nrhs; i++)
     {
-        prhs[i] = (int*)(in[i]);
+        prhs[i] = new mxArray;
+        prhs[i]->ptr = (int*)(in[i]);
     }
 
     try
     {
-        m_pOldFunc(nlhs, plhs, nrhs, prhs);
+        m_pOldFunc(nlhs, (int**)plhs, nrhs, (int**)prhs);
     }
     catch (const ast::InternalError& ie)
     {
@@ -539,10 +544,17 @@ Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt
 
     for (int i = 0; i < nlhs; i++)
     {
-        out.push_back((types::InternalType*)plhs[i]);
+        out.push_back((types::InternalType*)plhs[i]->ptr);
+        delete plhs[i];
     }
 
     delete[] plhs;
+
+    for (int i = 0; i < nrhs; i++)
+    {
+        delete prhs[i];
+    }
+
     delete[] prhs;
     return retVal;
 }
