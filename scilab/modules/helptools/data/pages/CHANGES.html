@@ -27,7 +27,6 @@
     <br/>
     <div class="refsection">
 <!-- Copy the html rendered CHANGES.md file below -->
-
 <h1>Welcome to Scilab 6.0.0 beta-2</h1>
 <p>This file details the changes between Scilab 6.0.0 (this release), and the previous release 5.5.2.
 For changelogs of earlier releases, please see <a href="https://www.scilab.org/en/content/download/3332/24658/file/Scilab5.5.2_ReleaseNotes.pdf">Scilab 5.5.2</a>.</p>
@@ -57,12 +56,20 @@ as the &quot;What's new&quot; page of the help, by simply typing <code>help</cod
 <li>Xcos also uses the new re-written Scilab engine.</li>
 </ul>
 </li>
-<li>New code productivity features: full-featured debugger, profiler / coverage tool,
-and &quot;lint&quot;-like commands.</li>
-<li>Newsfeed, providing a continuous feed of news, tips, and general communication
-from the community and from Scilab Enterprises.</li>
-<li>Licensing change: Scilab is now released under the terms of the GNU General Public License (GPL) v2.0.
+<li>New code productivity features: full-featured debugger, profiler / coverage tool, and &quot;lint&quot;-like commands.</li>
+<li>Newsfeed, providing a continuous feed of news, tips, and general communication from the community and from Scilab Enterprises.</li>
+<li>Licensing change: Scilab is now released under the terms of the GNU General Public License (GPL) v2.0
 It is still also available under the terms of the CeCILL v2.1.</li>
+<li>A <code>tbx_make()</code> function is added to build a toolbox following the toolbox directory structure convention</li>
+<li>ATOMS builder functions are now less dependent on the script files in the macros, <code>help</code>, <code>etc</code>, <code>src</code> and <code>sci_gateway</code> directories. These functions will do nothing (but warn the user) if they find no target to build:
+<ul>
+<li><code>tbx_builder_macros</code>: compiles the <code>.sci</code> files present in <code>macros/</code> directory into the toolbox library. If <code>buildmacros.sce</code> or <code>builder.sce</code> script in <code>macros/</code> are present, executes them instead;</li>
+<li><code>tbx_builder_help</code>: compiles the help for each language (<code>la_LA</code>) directories in <code>help/</code>. If <code>builder_help</code> script is present in help, executes it instead;</li>
+<li><code>tbx_build_loader</code>: builds a default loader that mimics the skeleton <code>.start</code> files. If a <code>.start</code> file is found in <code>etc/</code> builds a loader calling this script;</li>
+<li><code>tbx_builder_src</code>: scans the subdirectories under <code>src</code> for builder files and executes them</li>
+<li><code>tbx_builder_gateway</code>: scans the subdirectories under <code>sci_gateway</code> for builder files and executes them</li>
+</ul>
+</li>
 </ul>
 <h2>Installation</h2>
 <ul>
@@ -146,11 +153,11 @@ Both shortcut and element-wise operators are evaluated from left to right.</li>
 <li><code>while ... else ... end</code> control instruction is not supported anymore.</li>
 <li>Transposed matrix can now use the extraction operator directly <code>A'(1, 2)</code>.</li>
 <li>Function without output argument cannot be called in assignation expression anymore:
-<pre><code>function foo()
-	//...
-endfunction
+<pre><code> function foo()
+ 	//...
+ endfunction
 
-val = foo() // now returns an error
+ val = foo() // now returns an error
 </code></pre>
 </li>
 </ul>
@@ -171,9 +178,10 @@ val = foo() // now returns an error
 </ul>
 </li>
 <li><code>householder</code> can now return the reflection matrix, and has a demo.</li>
-<li><code>ndgrid</code> can now works with any types of homogeneous data.</li>
-<li><code>bench_run</code> can now return its results and/or record them in a file.</li>
-<li><code>typeof(.., &quot;overload&quot;)</code> allows now to get the overloading type-code of an object.</li>
+<li><code>ndgrid</code> can now works with any types of homogeneous data</li>
+<li><code>permute</code> now supports arrays of rationals.</li>
+<li><code>bench_run</code> can now return its results and/or record them in a file</li>
+<li><code>typeof(.., &quot;overload&quot;)</code> allows now to get the overloading type-code of an object</li>
 <li><code>sign</code> can now handle a sparse matrix.</li>
 <li><code>sleep(..,'s')</code> allows now to specify the duration in seconds.</li>
 <li><code>real</code>, <code>imag</code>, <code>conj</code> and <code>isreal</code> now accept rational fractions.</li>
@@ -209,6 +217,7 @@ input and output arguments.</li>
 <li><code>pdiv</code>: Return a matrix of type 'constant' when all the rank are 0.</li>
 <li><code>test_run</code> can now take &quot;[]&quot; as argument to be used on console; for instance: <code>test_run string [] no_check_ref</code>.</li>
 <li><code>typeof(:)</code> and <code>typeof(n:$)</code> now return <code>&quot;implicitlist&quot;</code> instead of respectively <code>&quot;constant&quot;</code> and <code>&quot;size implicit&quot;</code>.</li>
+<li><code>linspace(a, b, n&lt;=0)</code> now returns <code>[]</code> instead of b.</li>
 <li><code>strange([])</code> now returns <code>%nan</code> instead of <code>[]</code>, as all other functions for statistical dispersion.</li>
 <li><code>stdev(x, dir&gt;ndims(x))</code> now yields an error instead of returning <code>zeros(x)</code>.</li>
 <li><code>write</code>: Writing string or string matrix in a file does not add blank space before each value.</li>
@@ -230,23 +239,30 @@ will zoom all axes in the current figure.</li>
 <li>The graphics entity &quot;Datatip&quot; has a new property <code>detached_position</code> which accepts <code>[]</code>
 or a 3-components vector to set the position in axes coordinates to draw the datatip text box.</li>
 <li><code>MPI_Create_comm</code> create a new communicator from MPI_COMM_WORLD using MPI world ranks.</li>
+<li>The <code>grand</code> non-free <code>fsultra</code> generator was removed.</li>
+<li>The original <code>rpoly</code> algorithm was removed in favor of a C++11 implementation</li>
+<li>When the view property of Axes object is set at <code>2d</code>, the rotation becomes impossible.</li>
+<li>The zero-pole-gain (zpk) representation added for linear dynamical systems.</li>
 </ul>
 <h2>Help pages:</h2>
 <ul>
-<li>fixed / improved:  <code>members</code>, <code>part</code>, <code>ode</code>, <code>ode_optional_output</code>, <code>ode_roots</code>, <code>roots</code>,
-<code>printf</code>, <code>sprintf</code>, <code>iconvert</code>, <code>stdev</code>, <code>xlabel</code>, <code>and_op</code>, <code>or_op</code></li>
-<li>rewritten: <code>consolebox</code>, <code>double</code>, <code>isoview</code>, <code>householder</code>, <code>or</code>, <code>and</code>, <code>format</code>, <code>typeof</code>,
-<code>brackets</code>, <code>setlanguage</code>, <code>sleep</code>, <code>isinf</code>, <code>bitor</code>, <code>bitxor</code>, <code>bitand</code></li>
+<li>fixed / improved:  <code>members</code>, <code>part</code>, <code>ode</code>, <code>ode_optional_output</code>, <code>ode_roots</code>, <code>plot2d</code>, <code>roots</code>,
+<code>printf</code>, <code>sprintf</code>, <code>iconvert</code>, <code>stdev</code>, <code>xlabel</code>, <code>and_op</code>, <code>or_op</code>, <code>permute</code>, <code>tree2code</code>, <code>%helps</code>,
+<code>scilab|scilex</code>, <code>flipdim</code></li>
+<li>rewritten: <code>consolebox</code>, <code>double</code>, <code>isoview</code>, <code>pixel_drawing_mode</code>, <code>householder</code>, <code>or</code>, <code>and</code>, <code>format</code>, <code>typeof</code>,
+<code>brackets</code>, <code>setlanguage</code>, <code>sleep</code>, <code>isinf</code>, <code>bitor</code>, <code>bitxor</code>, <code>bitand</code>, <code>macr2tree</code>, <code>geomean</code></li>
 <li>reorganized:
 <ul>
 <li><code>else</code>, <code>elseif</code>, <code>end</code>, <code>try</code>, <code>sciargs</code>, <code>global</code>, <code>halt</code>, <code>empty</code>, <code>power</code></li>
+<li><code>pixel_drawing_mode</code>, <code>show_window</code>, <code>twinkle</code>, <code>uigetcolor</code>, <code>winsid</code>, <code>xdel</code>, <code>xgrid</code>, <code>xname</code>, <code>xnumb</code></li>
 <li>CACSD and Signal Processing help pages have been sorted up.</li>
+<li>Signal processing: New <code>Convolution - correlation</code> subsection. <code>wfir_gui</code>, <code>filt_sinc</code>, <code>hilb</code>, <code>fft2</code>, <code>fftshift</code>,<code>ifftshift</code>, <code>hilbert</code>, <code>cepstrum</code>, <code>conv</code>, <code>conv2</code>, <code>convol2d</code>, <code>xcor</code>, <code>corr</code>, <code>hank</code>, <code>mrfit</code>, <code>frfir</code> sorted up in existing subsections.</li>
 <li>Colormaps and GUI/Menus subsections created</li>
 </ul>
 </li>
 <li>translations added:
 <ul>
-<li>(fr): <code>format</code>, <code>typeof</code>, <code>isoview</code>, <code>ndgrid</code>, <code>bench_run</code>, <code>consolebox</code>, <code>harmean</code>, <code>sleep</code>, <code>strtod</code></li>
+<li>(fr): <code>format</code>, <code>typeof</code>, <code>isoview</code>, <code>ndgrid</code>, <code>bench_run</code>, <code>consolebox</code>, <code>harmean</code>, <code>sleep</code>, <code>strtod</code>, <code>permute</code></li>
 <li>(ru): homepage</li>
 </ul>
 </li>
@@ -282,6 +298,26 @@ The memory usage on diagram edition is also slightly reduced.</li>
 Scilab 5.5.2 is able to open the newly saved files, but the ports have to be repositioned manually.</li>
 <li>Implicit fixed-size step ODE solver added: Crank-Nicolson 2(3).
 Added to the CVode package, it also benefits from the CVode rootfinding feature.</li>
+<li>Added a new link style (<code>Optimal</code>) for automatically finding the optimal route.</li>
+<li>Automatically reposition split blocks for better-looking layout.</li>
+<li>Block modifications :
+<ul>
+<li><code>INVBLK</code>: add a divide by zero parameter to ignore the error</li>
+<li><code>PRODUCT</code>: add a divide by zero parameter to ignore the error</li>
+</ul>
+</li>
+<li>The palette browser has been improved. The following features were included:
+<ul>
+<li>search engine</li>
+<li>history (go forward or backward)</li>
+<li>drag and drop multiple blocks at once</li>
+<li>navigate using the keyboard arrows</li>
+<li>add blocks to the most recent diagram by using the ENTER key</li>
+<li>dynamic palette with the last used blocks</li>
+<li>zoom using CTRL(+), CTRL(-) and CTRL(mousewheel)</li>
+<li>load SVG icons</li>
+</ul>
+</li>
 </ul>
 <h2>API modification</h2>
 <p>A new set of C APIs to write C or C++ extensions (toolboxes) to Scilab.
@@ -300,6 +336,7 @@ as a second parameter instead of any <code>unsigned long l</code>. This is now r
 <li><code>isoview(xmin,xmax,ymin,ymax)</code> is deprecated. Please use <code>isoview(&quot;on&quot;), replot(..)</code> instead.</li>
 <li><code>eval3d</code> will be removed from Scilab 6.1. Please use <code>ndgrid</code> instead.</li>
 <li><code>strcmpi</code> is deprecated. Please use <code>strcmp(..,&quot;i&quot;)</code>instead.</li>
+<li><code>square</code> will be removed from Scilab 6.1. Please use <code>gcf().axes_size</code> and <code>replot</code> instead.</li>
 </ul>
 <h2>Removed Functions</h2>
 <ul>
@@ -352,6 +389,9 @@ as a second parameter instead of any <code>unsigned long l</code>. This is now r
 <p><code>fcontour</code> was obsolete since Scilab 4 and has been removed. Please use <code>contour</code> instead.</p>
 </li>
 <li>
+<p><code>m_circle</code> was obsolete since Scilab 5.2.0. It is removed. Please use <code>hallchart</code> instead.</p>
+</li>
+<li>
 <p>Symbolic module functions have been removed: <code>addf</code>, <code>cmb_lin</code>, <code>ldivf</code>, <code>mulf</code>, <code>rdivf</code>, <code>solve</code>, <code>subf</code>, <code>trianfml</code>, <code>trisolve</code> and <code>block2exp</code>.</p>
 </li>
 <li>
@@ -360,6 +400,9 @@ as a second parameter instead of any <code>unsigned long l</code>. This is now r
 <li><code>comp</code>, <code>errcatch</code>, <code>iserror</code>, <code>fun2string</code>, <code>getvariablesonstack</code>, <code>gstacksize</code>, <code>macr2lst</code>, <code>stacksize</code>, <code>code2str</code> and <code>str2code</code>.</li>
 <li><code>-mem</code> launching option (used to set <code>stacksize</code> at startup).</li>
 </ul>
+</li>
+<li>
+<p>Former debugging functions have been removed: <code>setbpt</code>, <code>delbpt</code>, <code>dispbpt</code>. Please use <code>debug</code> instead.</p>
 </li>
 </ul>
 <h2>Known issues</h2>
@@ -372,35 +415,76 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <h2>Bug Fixes</h2>
 <h3>Bugs fixed in 6.0.0:</h3>
 <ul>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=592">#592</a>: <code>linspace(a, b, n&lt;=0)</code> returned <code>b</code> instead of <code>[]</code></li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=2919">#2919</a>: The <code>fchamp</code> example and demo were unclear and badly rendered</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=4327">#4327</a>: Overloading did not support custom types names longer than 8 characters</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=5723">#5723</a>: Cross-references were missing between axis_properties and axes_properties help pages</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=7192">#7192</a>: From S=[], S($+1,:) = some_row inserted it in row#2 after a parasitic row#1.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=7649">#7649</a>: <code>isempty</code> returned <code>%F</code> on <code>struct()</code>, <code>{}</code> or <code>list(,)</code> and was not shortcut</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=7696">#7696</a>: The <code>parallel_run</code> help page was poorly formated</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=7794">#7794</a>: Example of findABCD help page failed.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=7958">#7958</a>: <code>mrfit</code>did not allow a fourth parameter as shown in the help page.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=8010">#8010</a>: Permanent variables could be redefined through a syntax like <code>%i(1,1)=1</code></li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=8190">#8190</a>: Fixed ICSE demos of Optimization module.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=8356">#8356</a>: <code>sci2exp</code> applied to lists, tlists or mlists having undefined fields yielded an error or a wrong result.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=8493">#8493</a>: Some trivial simplifications of <code>p1./p2</code> with matrices of complex-encoded polynomials were not done.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=8841">#8841</a>: Error in struct extraction, s.a is not equal to s(1).a</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=8938">#8938</a>: In a boolean sparse matrix <code>sp</code>, distributive insertions like <code>sp(1,:)=%t</code>, <code>sp(1,1:$)=%t</code> or <code>sp(:,:)=%t</code> yielded an error.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=9008">#9008</a>: <code>test_run</code> applied the <code>create_ref</code> option even for tests having the <code>&lt;-- NO CHECK REF --&gt;</code> flag.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=9153">#9153</a>: The <code>isqualbitwise</code> help page was inaccurate and badly located</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=9161">#9161</a>: Multiple insertions at a repeated index in a sparse matrice wrongly updated it.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=9288">#9288</a>: Dynamic palette with the most used blocks</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=9865">#9865</a>: When making a plot with <code>point</code>(no line), no symbol was shown in the legend.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=9876">#9876</a>: Creating a complex structure with multiple hierarchy level and size failed.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=9912">#9912</a>: In case of missing translated help page, the default en_US was sometimes ignored</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=10116">#10116</a>: <code>for h = H, .., end</code> could not be used when H is a vector of graphic handles</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=10195">#10195</a>: <code>execstr</code> interpreted ascii(0) to ascii(31) characters as the power <code>^</code> operator.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=10326">#10326</a>: Adds a search engine for the palette browser.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=10981">#10981</a>: When the view property of Axes object is set at 2d, the rotation becomes impossible.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=11375">#11375</a>: When a localized help subdirectory has only a CHAPTER file specifying the section title, it was ignored.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=11692">#11692</a>: The summary of a help section built from both default en_US and localized files was never sorted overall.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=11959">#11959</a>: Allow &quot;Zoom Area&quot; to be clicked out of axes</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=12017">#12017</a>: <code>figure.pixel_drawing_mode</code> is ignored for filled regular polygons and other shapes, still does not work for vectorial export (eps, pdf, etc).</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=12110">#12110</a>: Unable to zoom multiple axes at once</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=12417">#12417</a>: Set &quot;All supported formats&quot; as default selected on Xcos open.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=12431">#12431</a>: The page describing the <code>%helps</code> variable needed clarification.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=12453">#12453</a>: The left panel of the palette browser keeps its size when some category is enabled or disabled.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=12897">#12897</a>: Renamed optim's &quot;imp&quot; argument to &quot;iprint&quot;.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13794">#13794</a>: Added polyline property &quot;datatip_display_mode&quot;, allowing datatips to be displayed &quot;always&quot;, &quot;mouseclick&quot; or &quot;mouseover&quot;.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13166">#13166</a>: <code>l</code> and <code>b</code> endian flags used with <code>mget</code> and <code>mgeti</code> were sticky</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13375">#13375</a>: If (Max - Min) == 1, then the multiple selection is not allowed.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13583">#13583</a>: <code>getd</code> loading a script including a <code>clear</code> instruction yielded an error</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13597">#13597</a>: <code>help format</code> claimed setting a number of digits instead of characters</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13613">#13613</a>: <code>isdef(name, 'l')</code> produced wrong output.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13620">#13620</a>: <code>dos</code> called with a vector as input crashed.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13651">#13651</a>: It was not possible to <code>copy</code> an axes into an uicontrol frame.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13757">#13757</a>: The toolbox menu dit not load properly ATOMS modules not autoloaded.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13759">#13759</a>: Atoms modules do not start, randomly.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13856">#13856</a>: <code>messagebox</code> crashed under Windows in 5.5 Scilab version and updated in version 6.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13877">#13877</a>: <code>&lt;</code> characters included in <code>&lt;screen&gt;</code> areas were not rendered in the help browser.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13878">#13878</a>: tokens([]) returns [].</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13895">#13895</a>: p.a.h = 1; p.b.h = 3; p(:).h  CRASH</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13906">#13906</a>: It is now possible to navigate through the Palette browser with the arrow keys.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13990">#13990</a>: <code>warning</code> with localization enabled some memory corruption</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14192">#14192</a>: <code>g_margin</code> error-ed for double integrator.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14306">#14306</a>: Comparisons <code>&gt;</code> and <code>&gt;=</code> between integers of mismatching inttypes were not implemented.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14367">#14367</a>: <code>edit_curv</code> failed opening due to a <code>[]+1</code> operation.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14379">#14379</a>: Problem with lists of functions having 2 arguments.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14395">#14395</a>: <code>dir</code> displayed a []+&quot;..&quot; warning when no subdirectory exists.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14411">#14411</a>: abort crashes scilab in a loop while</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14437">#14437</a>: Problem with the affectation cmde &quot;=&quot; applied to a &quot;list of struct&quot;</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14448">#14448</a>: removed havewindow() was still documented</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14461">#14461</a>: Calling <code>grand(n, &quot;markov&quot;, P, x0)</code> did not return all outputs.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14470">#14470</a>: <code>geomean</code> often overflowed for easily computable entries, and did not check input arguments.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14483">#14483</a>: figure(&quot;Name&quot; ...) should be an alias to figure(&quot;Figure_name&quot; ...)</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14513">#14513</a>: <code>isqual</code> comparing two built-in functions yielded an error.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14527">#14527</a>: Calling pathconvert function without parameters crashed Scilab.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14553">#14553</a>: find(a=b) crashed Scilab.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14557">#14557</a>: <code>csim</code> failed when the system has no state.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14558">#14558</a>: fixed - <code>square</code> was poor, clumsy and too specific. It is tagged as obsolete.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14564">#14564</a>: fieldnames failed for empty structs.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14571">#14571</a>: The type of input argument of <code>figure</code>function was not checked.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14578">#14578</a>: LaTeX string used for text uicontrol was not updated.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14582">#14582</a>: <code>gettext</code>or it alias <code>_()</code> were sometimes applied to broken literal strings</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14586">#14586</a>: Xcos simulation stop button did not work.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14587">#14587</a>: Datatip textbox wrong clipping when loaded from <code>*.scg</code> file.</li>
@@ -416,11 +500,26 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14662">#14662</a>: Matrix of strings concatenation with single quote led to a parser error.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14667">#14667</a>: Multi line string without final quote generated a non terminal parser state.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14681">#14681</a>: Short-circuited AND operation was not possible with double matrices in if and while clauses</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14689">#14689</a>: fixed - <code>resize_matrix(rand(2,3),[0 2])</code> did not return []. Usage of new sizes &lt;0 to keep them unchanged was not documented.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14690">#14690</a>: The user's startup files set in the working directory were not executed. When <code>SCIHOME</code> is not the working directory, <code>SCIHOME\scilab.ini</code> was executed twice.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14692">#14692</a>: isequal() was always returning true for builtin functions</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14694">#14694</a>: The list of named colors was misaligned and poorly rendered in <code>help color_list</code></li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14710">#14710</a>: fullpath(TMPDIR+...) was bugged on MacOS</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14714">#14714</a>: Crash/Leak when deleting datatip</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14743">#14743</a>: <code>test_run(.., &quot;show_error&quot;)</code> did not document &quot;failed: Slave Scilab exited with error code #&quot; errors.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14758">#14758</a>: xstringb creates a figure when no exists.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14779">#14779</a>: When used logarithmic mode using coordinates &lt;=0, xsegs crashed Scilab.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14784">#14784</a>: Setting field of graphics handle using children($) failed.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14796">#14796</a>: <code>ind2sub(dims, [])</code> returned [] in version 6. Warnings due to a <code>[]+1</code> operation occurred</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14775">#14775</a>: Loading empty (0 bytes) .sod File crashed scilab</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14808">#14808</a>: E=[ 'A' 'B' 'C' 'D' 'E']  ,  E(0:0) Crash Scilab Console</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14821">#14821</a>: <code>getio</code> function was missing. An error on the diary file opened has been corrected</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14824">#14824</a>: Incorrect error message with <code>mfprintf(fd, &quot;%d&quot;, [])</code>.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14839">#14839</a>: <code>plot2d2</code> crashed Scilab.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14887">#14887</a>: For many graphic handle types, the display of the <code>.tag</code> value missed <code>&quot;..&quot;</code> delimiters</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14909">#14909</a>: getlongpathname and getshortpathname return values with &quot;&quot; instead of &quot;/&quot;</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14941">#14941</a>: <code>find</code> did not accept encoded integers</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14942">#14942</a>: Keep the Tkscale block label if block already has label.</li>
 </ul>
 <h3>Bugs fixed in 6.0.0 beta-2 and earlier 6.0.0 pre-releases:</h3>
 <ul>
