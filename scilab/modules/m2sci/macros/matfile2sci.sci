@@ -50,7 +50,7 @@ function matfile2sci(mat_file_path, result_file_path, overwrite)
 
     //Wipe file if overwrite is true and the output file previously existed
     if isfile(fdo_path) & overwrite
-        fdo = mopen(fdo_path, "wb");
+        deletefile(fdo_path);
     end
 
     //-- Read first variable
@@ -72,10 +72,6 @@ function matfile2sci(mat_file_path, result_file_path, overwrite)
             //-- Read next variable
             ierr = execstr("[Name, Matrix, Class] = matfile_varreadnext(fdi);", "errcatch");
         end
-    end
-
-    if exists("fdo")==1
-        mclose(fdo);
     end
 
     //--file closing
