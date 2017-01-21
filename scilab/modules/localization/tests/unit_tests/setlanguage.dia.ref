@@ -17,39 +17,34 @@ lang=getdefaultlanguage(); if setlanguage(lang) <> %T then bugmes();quit;end
 lang="en_US"; if setlanguage(lang) <> %T then bugmes();quit;end
 getlanguage()
  ans  =
- 
- en_US   
+ en_US
 // Switch to english with small code
 lang="en"; if setlanguage(lang) <> %T then bugmes();quit;end
 getlanguage()
  ans  =
- 
- en_US   
+ en_US
 // Switch to french with small code
 lang="fr"; if setlanguage(lang) <> %T then bugmes();quit;end
 getlanguage()
  ans  =
- 
- fr_FR   
+ fr_FR
 // Switch to russian with full code
 lang="ru_RU"; if setlanguage(lang) <> %T then bugmes();quit;end
 getlanguage()
  ans  =
- 
- ru_RU   
+ ru_RU
 // Switch to a wrong code
 lang="f"; if setlanguage(lang) <> %F then bugmes();quit;end
-setlanguage: Язык «f» не поддерживается.
+setlanguage: Язык 'f' не поддерживается.
 getlanguage()
  ans  =
- 
- ru_RU   
+ ru_RU
 // Switch to a wrong code
 lang="ff"; if setlanguage(lang) <> %F then bugmes();quit;end
-setlanguage: Язык «ff» не поддерживается.
+setlanguage: Язык 'ff' не поддерживается.
 // Switch to a wrong code
 lang="fff"; if setlanguage(lang) <> %F then bugmes();quit;end
-setlanguage: Язык «fff» не поддерживается.
+setlanguage: Язык 'fff' не поддерживается.
 // Switch to a wrong code
 lang="ffff"; if setlanguage(lang) <> %F then bugmes();quit;end
-setlanguage: Язык «ffff» не поддерживается.
+setlanguage: Язык 'ffff' не поддерживается.
