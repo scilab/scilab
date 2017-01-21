@@ -137,10 +137,10 @@ s = ["-0.034" "- 0.034"  "+1234.5678" "1234 5678"
 ];
 format(10);
 disp(strtod(s));
-  -0.034       Nan   1234.5678   1234.
-   1.000D+43  -3.5  -1.2         Nan  
-   Nan         Nan   Nan         Nan  
-   Nan         Nan   Nan         Nan  
+  -0.034       Nan         1234.5678   1234.
+   1.000D+43  -3.500D-12  -1.2         Nan  
+   Nan         Nan         Nan         Nan  
+   Nan         Nan         Nan         Nan  
 // display with complex numbers
 A =  matrix(linspace(-1E10,1E20,64), 8, 8);
 B =  matrix(linspace(1E20,-1E10,64), 8, 8);
