@@ -325,6 +325,8 @@ void mxDestroyArray(mxArray *ptr)
     {
         delete (types::InternalType*)ptr->ptr;
     }
+
+    delete ptr;
 }
 
 mxArray *mxDuplicateArray(const mxArray *ptr)
@@ -1623,16 +1625,14 @@ int mexSet(double handle, const char *property, mxArray *value)
 
 mxArray *mexGetVariable(const char *workspace, const char *name)
 {
-    mxArray* ret = NULL;
-    const mxArray* ptr = mexGetVariablePtr(workspace, name);
+    mxArray* ptr = const_cast<mxArray*>(mexGetVariablePtr(workspace, name));
 
     if (ptr && ptr->ptr)
     {
-        ret = new mxArray;
-        ret->ptr = (int*)((types::InternalType*)ptr->ptr)->clone();
+        ptr->ptr = (int*)((types::InternalType*)ptr->ptr)->clone();
     }
 
-    return ret;
+    return ptr;
 }
 
 const mxArray *mexGetVariablePtr(const char *workspace, const char *name)
