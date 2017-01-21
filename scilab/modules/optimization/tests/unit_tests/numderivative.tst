@@ -7,6 +7,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
 
 // 1. Test with a scalar argument
 function y = myfunction (x)

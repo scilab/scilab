@@ -7,6 +7,8 @@
 //
 // <-- CLI SHELL MODE -->
 //<-- ENGLISH IMPOSED -->
+lines([120, 0]);
+cd TMPDIR;
 // Constants
 rand("seed", 0);
 n  = 2;
@@ -16,7 +18,7 @@ Xs = diag(1:n);
 Q1 = -(A1'*Xs+Xs*A1+0.1*eye());
 Q2 = -(A2'*Xs+Xs*A2+0.2*eye());
 lmitool("prob", "X", "A1, A2"); // Create prob.sci
- messagebox: functions saved in SCI/prob.sci
+ messagebox: functions saved in TMPDIR\prob.sci
 deletefile "prob.sci";
 copyfile("SCI/modules/optimization/demos/prob_bak.sci", "prob.sci"); // Replace prob.sci by prob_bak.sci
 exec("prob.sci", -1);
@@ -55,4 +57,4 @@ assert_checkalmostequal(Y, refY, [], 1d-6);
 assert_checkalmostequal(Z(1), refZ(1), [], 1d-6);
 assert_checkalmostequal(Z(2), refZ(2), [], 1d-6);
 assert_checkalmostequal(c, refC, [], 1d-6);
-deletefile "prob.sci"; // Delete created file
+deletefile("prob.sci"); // Delete created file

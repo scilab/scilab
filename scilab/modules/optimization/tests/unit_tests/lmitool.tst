@@ -9,6 +9,8 @@
 
 //<-- ENGLISH IMPOSED -->
 
+lines([120, 0]);
+cd TMPDIR;
 // Constants
 rand("seed", 0);
 n  = 2;
@@ -37,4 +39,4 @@ assert_checkalmostequal(Z(1), refZ(1), [], 1d-6);
 assert_checkalmostequal(Z(2), refZ(2), [], 1d-6);
 assert_checkalmostequal(c, refC, [], 1d-6);
 
-deletefile "prob.sci"; // Delete created file
+deletefile("prob.sci"); // Delete created file

@@ -6,6 +6,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
 // 1. Test with a scalar argument
 function y = myfunction (x)
     y = x*x;
