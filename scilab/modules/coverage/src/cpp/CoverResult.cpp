@@ -116,13 +116,13 @@ std::wostream & operator<<(std::wostream & out, const CoverResult & cr)
     const std::size_t branches = cr.info.branchesCount;
     const double percentBranches = branches ? 100 * (1 - (double)cr.uncoveredBranches / (double)branches) : 100.;
     out << tools::underline(L"Macro " + cr.name)
-        << L" -called: " << cr.counter << L" time" << tools::getPlural(cr.counter) << L"." << std::endl
-        << L" -instrs: " << instrs << std::endl
-        << L" -branches: " << cr.info.branchesCount << std::endl
-        << L" -paths: " << cr.info.pathsCount << std::endl
-        << L" -covered instrs: " << (instrs - cr.uncoveredInstrs) << L" (" << percentInstrs << L"%)" << std::endl
-        << L" -covered branches: " << (branches - cr.uncoveredBranches) << L" (" << percentBranches << L"%)" << std::endl
-        << std::endl;
+        << L" -called: " << cr.counter << L" time" << tools::getPlural(cr.counter) << L"." << '\n'
+        << L" -instrs: " << instrs << '\n'
+        << L" -branches: " << cr.info.branchesCount << '\n'
+        << L" -paths: " << cr.info.pathsCount << '\n'
+        << L" -covered instrs: " << (instrs - cr.uncoveredInstrs) << L" (" << percentInstrs << L"%)" << '\n'
+        << L" -covered branches: " << (branches - cr.uncoveredBranches) << L" (" << percentBranches << L"%)" << '\n'
+        << '\n';
 
     if (!cr.branches.empty())
     {
@@ -131,7 +131,7 @@ std::wostream & operator<<(std::wostream & out, const CoverResult & cr)
         {
             const std::vector<uint64_t> & counters = p.second;
             const std::size_t size = counters.size();
-            out << L"Expr at " << p.first << L" has " << size << (size > 1 ? L" branches" : L" branch") << std::endl;
+            out << L"Expr at " << p.first << L" has " << size << (size > 1 ? L" branches" : L" branch") << '\n';
 
             if (size > 1)
             {
@@ -148,24 +148,24 @@ std::wostream & operator<<(std::wostream & out, const CoverResult & cr)
                         const double percent = (100. * (double)counters[i] / (double)sum);
                         out << L"Br " << (i + 1) << L": " << percent << L"% ";
                     }
-                    out << std::endl;
+                    out << '\n';
                 }
             }
         }
 
-        out << std::endl;
+        out << '\n';
     }
 
     if (cr.counter && !cr.unused.empty())
     {
-        out << tools::underline(L"Non covered") << std::endl;
+        out << tools::underline(L"Non covered") << '\n';
 
         ast::PrintVisitor print(out);
         for (const auto & loc : cr.unused)
         {
-            out << L"At " << loc << L":" << std::endl;
+            out << L"At " << loc << L":" << '\n';
             //e->accept(print);
-            out << std::endl;
+            out << '\n';
         }
     }
 
@@ -178,7 +178,7 @@ void CoverResult::toXML(const std::wstring & outputDir)
     const std::wstring tab1(L"  ");
     const std::wstring tab2(L"    ");
     const std::wstring tab3(L"      ");
-    out << L"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>" << std::endl
+    out << L"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>" << '\n'
 
         << L"<cover name=\"" << name << L"\""
         << L" file=\"" << info.macroFilePath << L"\""
@@ -186,61 +186,61 @@ void CoverResult::toXML(const std::wstring & outputDir)
         << L" instrs_count=\"" << info.instrsCount << L"\""
         << L" branches_count=\"" << info.branchesCount << L"\""
         << L" paths_count=\"" << info.pathsCount << L"\""
-        << L">" << std::endl
+        << L">" << '\n'
 
         << tab1 << L"<result instrs_count=\"" << (info.instrsCount - uncoveredInstrs) << L"\""
         << L" branches_count=\"" << (info.branchesCount - uncoveredBranches) << L"\""
         << L" paths_count=\"" << 0 << L"\""
-        << L"/>" << std::endl;
+        << L"/>" << '\n';
 
     if (branches.empty())
     {
-        out << tab1 << L"<branches/>" << std::endl;
+        out << tab1 << L"<branches/>" << '\n';
     }
     else
     {
-        out << tab1 << L"<branches>" << std::endl;
+        out << tab1 << L"<branches>" << '\n';
         for (const auto & p : branches)
         {
             const std::vector<uint64_t> & counters = p.second;
             const std::size_t size = counters.size();
             const Location & loc = p.first;
-            out << tab2 << L"<exp branches_number=\"" << size << L"\">" << std::endl
+            out << tab2 << L"<exp branches_number=\"" << size << L"\">" << '\n'
 
                 << tab3 << L"<location first_line=\"" << loc.first_line << L"\""
                 << L" first_column=\"" << loc.first_column << L"\""
                 << L" last_line=\"" << loc.last_line << L"\""
                 << L" last_column=\"" << loc.last_column << L"\""
-                << L"/>" << std::endl;
+                << L"/>" << '\n';
 
             for (std::size_t i = 0; i < size; ++i)
             {
                 out << tab3 << L"<branche index=\"" << (i + 1) << L"\""
                     << L" counter=\"" << counters[i] << L"\""
-                    << L"/>" << std::endl;
+                    << L"/>" << '\n';
             }
 
-            out << tab2 << L"</exp>" << std::endl;
+            out << tab2 << L"</exp>" << '\n';
         }
-        out << tab1 << L"</branches>" << std::endl;
+        out << tab1 << L"</branches>" << '\n';
     }
 
     if (unused.empty())
     {
-        out << tab1 << L"<uncovered/>" << std::endl;
+        out << tab1 << L"<uncovered/>" << '\n';
     }
     else
     {
-        out << tab1 << L"<uncovered>" << std::endl;
+        out << tab1 << L"<uncovered>" << '\n';
         for (const auto & loc : unused)
         {
             out << tab2 << L"<location first_line=\"" << loc.first_line << L"\""
                 << L" first_column=\"" << loc.first_column << L"\""
                 << L" last_line=\"" << loc.last_line << L"\""
                 << L" last_column=\"" << loc.last_column << L"\""
-                << L"/>" << std::endl;
+                << L"/>" << '\n';
         }
-        out << tab1 << L"</uncovered>" << std::endl;
+        out << tab1 << L"</uncovered>" << '\n';
     }
 
     out << L"</cover>";
@@ -263,85 +263,71 @@ void CoverResult::toJSON(const std::wstring & outputDir)
     const std::wstring tab1(L"    ");
     const std::wstring tab2(L"        ");
     const std::wstring tab3(L"            ");
-    out << L"{" << std::endl
+    out << L"{" << '\n'
 
-        << tab1 << L"\"name\": \"" << name << L"\"," << std::endl
-        << tab1 << L"\"file\": \"" << info.macroFilePath << L"\"," << std::endl
-        << tab1 << L"\"module\": \"" << info.macroModule << L"\"," << std::endl
-        << tab1 << L"\"instrs_count\": \"" << info.instrsCount << L"\"," << std::endl
-        << tab1 << L"\"branches_count\": \"" << info.branchesCount << L"\"," << std::endl
-        << tab1 << L"\"paths_count\": \"" << info.pathsCount << L"\"," << std::endl
+        << tab1 << L"\"name\": \"" << name << L"\"," << '\n'
+        << tab1 << L"\"file\": \"" << info.macroFilePath << L"\"," << '\n'
+        << tab1 << L"\"module\": \"" << info.macroModule << L"\"," << '\n'
+        << tab1 << L"\"instrs_count\": \"" << info.instrsCount << L"\"," << '\n'
+        << tab1 << L"\"branches_count\": \"" << info.branchesCount << L"\"," << '\n'
+        << tab1 << L"\"paths_count\": \"" << info.pathsCount << L"\"," << '\n'
 
-        << tab1 << L"\"result\": {" << std::endl
-        << tab2 << L"\"instrs_count\": \"" << (info.instrsCount - uncoveredInstrs) << L"\"," << std::endl
-        << tab2 << L"\"branches_count\": \"" << (info.branchesCount - uncoveredBranches) << L"\"," << std::endl
-        << tab2 << L"\"paths_count\": \"" << 0 << L"\"," << std::endl
-        << tab1 << L"}," << std::endl;
+        << tab1 << L"\"result\": {" << '\n'
+        << tab2 << L"\"instrs_count\": \"" << (info.instrsCount - uncoveredInstrs) << L"\"," << '\n'
+        << tab2 << L"\"branches_count\": \"" << (info.branchesCount - uncoveredBranches) << L"\"," << '\n'
+        << tab2 << L"\"paths_count\": \"" << 0 << L"\"," << '\n'
+        << tab1 << L"}," << '\n';
 
     if (branches.empty())
     {
-        out << tab1 << L"\"branches\": []," << std::endl;
+        out << tab1 << L"\"branches\": []," << '\n';
     }
     else
     {
-        out << tab1 << L"\"branches\": [" << std::endl;
-        const auto last = std::prev(branches.end());
-        for (auto i = branches.begin(), end = branches.end(); i != end; ++i)
+        out << tab1 << L"\"branches\": [" << '\n';
+        for (auto i = branches.begin(); i != branches.end(); ++i)
         {
             const std::vector<uint64_t> & counters = i->second;
             const std::size_t size = counters.size();
             const Location & loc = i->first;
-            out << tab2 << L"{" << std::endl
+            out << tab2 << L"{" << '\n'
                 << tab3 << L"\"location\": { \"first_line\": \"" << loc.first_line << L"\""
                 << L", \"first_column\": \"" << loc.first_column << L"\""
                 << L", \"last_line\": \"" << loc.last_line << L"\""
                 << L", \"last_column\": \"" << loc.last_column << L"\""
-                << L"}," << std::endl
+                << L"}," << '\n'
                 << tab3 << L"\"counters\": [";
 
             for (std::size_t j = 0; j < size - 1; ++j)
             {
                 out << L"\"" << counters[j] << L"\", ";
             }
-            out << L"\"" << counters[size - 1] << L"\"]" << std::endl;
+            out << L"\"" << counters[size - 1] << L"\"]" << '\n';
 
-            if (i != last)
-            {
-                out << tab2 << L"}, " << std::endl;
-            }
-            else
-            {
-                out << tab2 << L"}" << std::endl;
-            }
+            out << tab2 << L"}, " << '\n';
         }
-        out << tab1 << L"]," << std::endl;
+        out.seekp(-1, out.cur); // Ignore the last comma. Safe because we overwrite it with the next instruction
+        out << tab1 << L"]," << '\n';
     }
 
     if (unused.empty())
     {
-        out << tab1 << L"\"uncovered\": []" << std::endl;
+        out << tab1 << L"\"uncovered\": []" << '\n';
     }
     else
     {
-        out << tab1 << L"\"uncovered\": [" << std::endl;
-        const auto last = std::prev(unused.end());
-        for (auto i = unused.begin(), end = unused.end(); i != end; ++i)
+        out << tab1 << L"\"uncovered\": [" << '\n';
+        for (auto i = unused.begin(); i != unused.end(); ++i)
         {
             const Location & loc = *i;
             out << tab2 << L"{ \"first_line\": \"" << loc.first_line << L"\""
                 << L", \"first_column\": \"" << loc.first_column << L"\""
                 << L", \"last_line\": \"" << loc.last_line << L"\""
                 << L", \"last_column\": \"" << loc.last_column << L"\"";
-            if (i != last)
-            {
-                out << L"}," << std::endl;
-            }
-            else
-            {
-                out << L"}" << std::endl;
-            }
+            out << L"}," << '\n';
         }
-        out << tab1 << L"]" << std::endl;
+        out.seekp(-1, out.cur); // Ignore the last comma. Safe because we overwrite it with the next instruction
+        out << tab1 << L"]" << '\n';
     }
 
     out << L"}";
