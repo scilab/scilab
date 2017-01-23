@@ -780,7 +780,12 @@ void GraphicsAdapter::add_partial_links_information(Controller& controller, mode
 
             for (size_t i = 0; i < originalChildren.size(); ++i)
             {
-                add_partial_links_information(controller, controller.getObject(originalChildren[i]), controller.getObject(clonedChildren[i]));
+                // a clone preserve position thus null ID, ignore them on
+                // this loop
+                if (originalChildren[i] != ScicosID())
+                {
+                    add_partial_links_information(controller, controller.getObject(originalChildren[i]), controller.getObject(clonedChildren[i]));
+                }
             }
             break;
         }
