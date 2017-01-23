@@ -53,9 +53,12 @@ function [p,err]=datafit(iprint,G,varargin)
     [lhs,rhs]=argn(0)
 
     if type(iprint)<>1 then
+        wflag=warning("query") // Disable warnings as the following lines may produce some
+        warning("off")
         varargin(0)=G
         G=iprint
         iprint=0
+        warning(wflag)
     end
 
     if type(G)==15 then
