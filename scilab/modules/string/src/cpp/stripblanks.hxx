@@ -25,7 +25,7 @@
 * @param[in] Bool: remove TAB if get() != 0
 * @return String: output String
 */
-STRING_IMPEXP types::String * stripblanks(types::String *InputStrings, bool bWithTAB);
+STRING_IMPEXP types::String * stripblanks(types::String *InputStrings, bool bWithTAB, int flag);
 
 #endif /* __STRIPBLANKS_HXX__ */
 /*--------------------------------------------------------------------------*/

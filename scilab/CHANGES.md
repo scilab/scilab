@@ -207,6 +207,7 @@ or a 3-components vector to set the position in axes coordinates to draw the dat
 * `getPreferencesValue` can now read a tag having multiple occurrences, and accepts the path to a preferences file instead of its XML handle.
 * atomsSetConfig does not update cache.
 * lqi function added to compute "linear quadratic integral compensator".
+* The function `stripblanks` now supports an option to remove trailing or leading spaces or both.
 
 
 Help pages:
@@ -550,6 +551,7 @@ Bug Fixes
 * [#13986](http://bugzilla.scilab.org/show_bug.cgi?id=13986): `setdefaultlanguage` did not set value correctly in Windows registry.
 * [#13990](http://bugzilla.scilab.org/show_bug.cgi?id=13990): `gettext` did not manage the added `_W` macro.
 * [#13999](http://bugzilla.scilab.org/show_bug.cgi?id=13999): `editor` was modal. It locked the console using an external editor.
+* [#14012](http://bugzilla.scilab.org/show_bug.cgi?id=14012): Function `stripblanks` did not allow to remove only leading spaces of a set of strings, or only trailing one. An option to do so was added.
 * [#14020](http://bugzilla.scilab.org/show_bug.cgi?id=14020): Incorrect carriage return ascii code.
 * [#14022](http://bugzilla.scilab.org/show_bug.cgi?id=14022): `getscilabkeywords` was KO (+gateway what() added).
 * [#14023](http://bugzilla.scilab.org/show_bug.cgi?id=14023): It was not possible to concatenate cells.
