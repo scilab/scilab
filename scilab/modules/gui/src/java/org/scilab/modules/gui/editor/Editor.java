@@ -65,7 +65,7 @@ import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 public class Editor {
 
     JPopupMenu menu;
-    JMenuItem copy, copyStyle, cut, paste, pasteStyle, delete, clear, hide, unhide, clipboardCopy, labelX, labelY, labelZ, insert, remove, ged, editdata, undo, redo;
+    JMenuItem copy, copyStyle, cut, paste, pasteStyle, delete, clear, hide, unhide, clipboardCopy, labelX, labelY, labelZ, title, insert, remove, ged, editdata, undo, redo;
     JMenu labels, legends;
 
     EntityPicker.LegendInfo selectedLegend = null;
@@ -312,6 +312,8 @@ public class Editor {
         unhide.setToolTipText(Messages.gettext("Unhide all objects"));
         clipboardCopy = new JMenuItem(Messages.gettext("Copy to Clipboard"));
         clipboardCopy.setToolTipText(Messages.gettext("Copy figure to system clipboard"));
+        title = new JMenuItem(Messages.gettext("Title"));
+        title.setToolTipText(Messages.gettext("Insert a title"));
         labelX = new JMenuItem(Messages.gettext("Label X"));
         labelX.setToolTipText(Messages.gettext("Insert a label in X axis"));
         labelY = new JMenuItem(Messages.gettext("Label Y"));
@@ -400,6 +402,11 @@ public class Editor {
                 onClickLabel(AxesHandler.axisTo.__Z__);
             }
         });
+        title.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
+                onClickLabel(AxesHandler.axisTo.__TITLE__);
+            }
+        });
 
         insert.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -453,6 +460,7 @@ public class Editor {
         labels.add(labelX);
         labels.add(labelY);
         labels.add(labelZ);
+        labels.add(title);
         legends.add(insert);
         legends.add(remove);
         menu.add(copy);

@@ -203,6 +203,7 @@ or a 3-components vector to set the position in axes coordinates to draw the dat
 * The original `rpoly` algorithm was removed in favor of a C++11 implementation
 * When the view property of Axes object is set at `2d`, the rotation becomes impossible.
 * The zero-pole-gain (zpk) representation added for linear dynamical systems.
+* It is now possible to add a title to the axes via the "Label -> Title" context menu entry
 
 
 Help pages:
@@ -444,6 +445,7 @@ Bug Fixes
 * [#14839](http://bugzilla.scilab.org/show_bug.cgi?id=14839): `plot2d2` crashed Scilab.
 * [#14887](http://bugzilla.scilab.org/show_bug.cgi?id=14887): For many graphic handle types, the display of the `.tag` value missed `".."` delimiters
 * [#14909](http://bugzilla.scilab.org/show_bug.cgi?id=14909): getlongpathname and getshortpathname return values with "\" instead of "/"
+* [#14911](http://bugzilla.scilab.org/show_bug.cgi?id=14911): Added the entry "Label => Title" in the graphic context menu in a figure
 * [#14941](http://bugzilla.scilab.org/show_bug.cgi?id=14941): `find` did not accept encoded integers
 * [#14942](http://bugzilla.scilab.org/show_bug.cgi?id=14942): Keep the Tkscale block label if block already has label.
 * [#14956](http://bugzilla.scilab.org/show_bug.cgi?id=14956): `clf("reset")` forgot resetting the `immediate_drawing`, `resize`, `resizefcn`, `closerequestfcn`, `toolbar_visible`, `menubar_visible`, `infobar_visible`, `default_axes`, and `icon` figure properties.
