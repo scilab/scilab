@@ -13,6 +13,8 @@
 *
 */
 
+#include <vector>
+#include <string>
 #include <cfloat>
 
 #include "handle_properties.hxx"
@@ -39,10 +41,10 @@ extern "C"
 extern types::InternalType* import_data(int dataset);
 extern int export_data(int parent, const std::string& name, types::InternalType* data);
 
-static int getHandleInt(int dataset, const char* prop, int* val)
+static int getHandleInt(int dataset, const std::string& prop, int* val)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -52,10 +54,10 @@ static int getHandleInt(int dataset, const char* prop, int* val)
     return 0;
 }
 
-static int getHandleIntVector(int dataset, const char* prop, int* row, int* col, int** vals)
+static int getHandleIntVector(int dataset, const std::string& prop, int* row, int* col, int** vals)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -87,10 +89,10 @@ static int getHandleIntVector(int dataset, const char* prop, int* row, int* col,
     return 0;
 }
 
-static int getHandleBool(int dataset, const char* prop, int* val)
+static int getHandleBool(int dataset, const std::string& prop, int* val)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -100,10 +102,10 @@ static int getHandleBool(int dataset, const char* prop, int* val)
     return 0;
 }
 
-static int getHandleBoolVector(int dataset, const char* prop, int* row, int* col, int** vals)
+static int getHandleBoolVector(int dataset, const std::string& prop, int* row, int* col, int** vals)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -136,10 +138,10 @@ static int getHandleBoolVector(int dataset, const char* prop, int* row, int* col
     return 0;
 }
 
-static double getHandleDouble(int dataset, const char* prop, double* val)
+static int getHandleDouble(int dataset, const std::string& prop, double* val)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -149,10 +151,10 @@ static double getHandleDouble(int dataset, const char* prop, double* val)
     return 0;
 }
 
-static int getHandleDoubleVector(int dataset, const char* prop, int* row, int* col, double** vals)
+static int getHandleDoubleVector(int dataset, const std::string& prop, int* row, int* col, double** vals)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -185,10 +187,10 @@ static int getHandleDoubleVector(int dataset, const char* prop, int* row, int* c
     return 0;
 }
 
-static int getHandleString(int dataset, const char* prop, char** val)
+static int getHandleString(int dataset, const std::string& prop, char** val)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -217,10 +219,10 @@ static int getHandleString(int dataset, const char* prop, char** val)
     return node;
 }
 
-static int getHandleStringVector(int dataset, const char* prop, int* row, int* col, char*** vals)
+static int getHandleStringVector(int dataset, const std::string& prop, int* row, int* col, char*** vals)
 {
     int node = 0;
-    node = getDataSetIdFromName(dataset, prop);
+    node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
         return -1;
@@ -2520,7 +2522,8 @@ static bool export_handle_uicontrol(int parent, int uid)
     {
         dims[0] = 1;
         dims[1] = 1;
-        char* empty = "";
+        char null_char = '\0';
+        char* empty = &null_char;
         writeStringMatrix6(parent, "string", 2, dims, &empty);
 
     }
@@ -3138,28 +3141,28 @@ static bool export_handle_champ(int parent, int uid)
     getHandleDoubleVectorProperty(uid, __GO_BASE_X__, &arrowBasesX);
     dims[0] = 1;
     dims[1] = dimensions[0];
-    writeDoubleMatrix(parent, "base_x", 2, dims, arrowBasesX);
+    writeDoubleMatrix6(parent, "base_x", 2, dims, arrowBasesX);
     releaseGraphicObjectProperty(__GO_BASE_X__, arrowBasesX, jni_double_vector, dims[1]);
 
     //base y
     getHandleDoubleVectorProperty(uid, __GO_BASE_Y__, &arrowBasesY);
     dims[0] = 1;
     dims[1] = dimensions[1];
-    writeDoubleMatrix(parent, "base_y", 2, dims, arrowBasesY);
+    writeDoubleMatrix6(parent, "base_y", 2, dims, arrowBasesY);
     releaseGraphicObjectProperty(__GO_BASE_Y__, arrowBasesY, jni_double_vector, dims[1]);
 
     //direction x
     getHandleDoubleVectorProperty(uid, __GO_DIRECTION_X__, &arrowDirectionsX);
     dims[0] = dimensions[0];
     dims[1] = dimensions[1];
-    writeDoubleMatrix(parent, "direction_x", 2, dims, arrowDirectionsX);
+    writeDoubleMatrix6(parent, "direction_x", 2, dims, arrowDirectionsX);
     releaseGraphicObjectProperty(__GO_DIRECTION_X__, arrowDirectionsX, jni_double_vector, dims[0] * dims[1]);
 
     //direction y
     getHandleDoubleVectorProperty(uid, __GO_DIRECTION_Y__, &arrowDirectionsY);
     dims[0] = dimensions[0];
     dims[1] = dimensions[1];
-    writeDoubleMatrix(parent, "direction_y", 2, dims, arrowDirectionsY);
+    writeDoubleMatrix6(parent, "direction_y", 2, dims, arrowDirectionsY);
     releaseGraphicObjectProperty(__GO_DIRECTION_Y__, arrowDirectionsY, jni_double_vector, dims[0] * dims[1]);
 
     releaseGraphicObjectProperty(__GO_CHAMP_DIMENSIONS__, dimensions, jni_int_vector, 2);
