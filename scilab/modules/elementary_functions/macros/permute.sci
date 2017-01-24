@@ -23,16 +23,16 @@ function y = permute(x, dims)
     // 2013 - S. GOUGEON : processing rewritten, fixing http://bugzilla.scilab.org/5205
     // 2016 - S. GOUGEON : extension to rationals
 
-    if x==[] then
-        y = []
-        return
-    end
-
     // CHECKING ARGUMENTS
     // ------------------
     if argn(2) <> 2 then
         msg = gettext("%s: Wrong number of input argument(s): %d expected.\n")
         error(msprintf(msg, "permute", 2));
+    end
+
+    if x==[] then
+        y = []
+        return
     end
 
     // Verify if the size of dims corresponds to dimension of x
