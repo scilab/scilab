@@ -194,7 +194,6 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
             }
 
             Xcos.getInstance().destroy(diag);
-            diag.setOpened(false);
         }
 
         @Override
@@ -330,7 +329,6 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
         final XcosTab tab = new XcosTab(graph, uuid);
         ScilabTabFactory.getInstance().addToCache(tab);
 
-        graph.setOpened(true);
         if (visible) {
             tab.createDefaultWindow().setVisible(true);
 

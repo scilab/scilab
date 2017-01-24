@@ -57,6 +57,7 @@ import org.scilab.modules.xcos.configuration.model.ObjectFactory;
 import org.scilab.modules.xcos.configuration.model.SettingType;
 import org.scilab.modules.xcos.configuration.utils.ConfigurationConstants;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.io.XcosFileType;
 import org.scilab.modules.xcos.preferences.XcosOptions;
 import org.scilab.modules.xcos.utils.FileUtils;
@@ -415,7 +416,7 @@ public final class ConfigurationManager {
                 filetype.load(filename, graph);
                 graph.postLoad(f);
             }
-            Xcos.getInstance().addDiagram(graph.getUID(), graph);
+            Xcos.getInstance().addDiagram(new ScicosObjectOwner(graph.getUID(), Kind.DIAGRAM), graph);
 
             graph = loadPath(doc, graph);
 

@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -74,6 +74,7 @@ import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.view.mxStylesheet;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 
 /**
  * Xcos entry point class
@@ -123,7 +124,7 @@ public final class Xcos {
     /*
      * Instance data
      */
-    private final Map<Long, List<XcosDiagram>> diagrams;
+    private final Map<ScicosObjectOwner, List<XcosDiagram>> diagrams;
     private XcosView view;
     private BrowserView browser;
     private boolean onDiagramIteration = false;
@@ -306,10 +307,10 @@ public final class Xcos {
      * @return the opened diagrams list
      */
     public List<XcosDiagram> openedDiagrams() {
-        final List<XcosDiagram> opened = new ArrayList<XcosDiagram>();
-        for (Long l : diagrams.keySet()) {
-            opened.addAll(openedDiagrams(l));
-        }
+        final List<XcosDiagram> opened = new ArrayList<>();
+        diagrams.entrySet().forEach((e) -> {
+            opened.addAll(e.getValue());
+        });
 
         return opened;
     }
@@ -317,32 +318,25 @@ public final class Xcos {
     /**
      * Opened diagrams
      *
-     * @param l
-     *            the root diagram uid
+     * @param root
+     *            the root diagram
      * @return the opened diagrams list
      */
-    public List<XcosDiagram> openedDiagrams(Long l) {
-        final List<XcosDiagram> opened = new ArrayList<>();
-        for (XcosDiagram d : diagrams.get(l)) {
-            if (d.isOpened()) {
-                opened.add(d);
-            }
-        }
-
-        return opened;
+    public List<XcosDiagram> openedDiagrams(ScicosObjectOwner root) {
+        return diagrams.get(root);
     }
 
-    public Long openedDiagramUID(File f) {
-        Long opened = 0l;
+    public long openedDiagramUID(File f) {
+        long opened = 0l;
         if (f == null) {
             return opened;
         }
 
-        for (Long diagUID : diagrams.keySet()) {
-            List<XcosDiagram> diags = diagrams.getOrDefault(diagUID, Collections.emptyList());
+        for (ScicosObjectOwner root : diagrams.keySet()) {
+            List<XcosDiagram> diags = diagrams.getOrDefault(root, Collections.emptyList());
 
             if (!diags.isEmpty() && f.equals(diags.get(0).getSavedFile())) {
-                opened = diagUID;
+                opened = root.getUID();
                 break;
             }
         }
@@ -353,12 +347,12 @@ public final class Xcos {
     /**
      * Check if the in memory file representation is modified
      *
-     * @param l
-     *            the root diagram UID
+     * @param root
+     *            the root diagram
      * @return is modified
      */
-    public boolean isModified(Long l) {
-        for (XcosDiagram d : diagrams.get(l)) {
+    public boolean isModified(ScicosObjectOwner root) {
+        for (XcosDiagram d : diagrams.get(root)) {
             if (d.isModified()) {
                 return true;
             }
@@ -445,24 +439,21 @@ public final class Xcos {
             diag = null;
         }
 
-	// looking for an empty, unsaved diagram to use if opening a new file
+        // looking for an empty, unsaved diagram to use if opening a new file
         // if not found an already open instance of the file
-        if(diag == null)
-        {
-	// traverse through the key set of all the opened diagrams
-        for(long key : diagrams.keySet())
-	{
-	List<XcosDiagram> diagramsWithKey = diagrams.get(key);
-	XcosDiagram diagramWithKey = diagramsWithKey.get(0); // get the diagram that maps to that key
-	int childCount = diagramWithKey.countChildren(); //count the number of children in the diagram
-	// if empty, unsaved and unused
-	        if(childCount == 0 && diagramWithKey.getSavedFile() == null && !diagramWithKey.isModified())
-	        {
-		// use that open diagram
-		diag = diagramWithKey;
-		diag.transformAndLoadFile(controller, file);
-	        }
-        }
+        if (diag == null) {
+            // traverse through the key set of all the opened diagrams
+            for (Map.Entry<ScicosObjectOwner, List<XcosDiagram>> entry : diagrams.entrySet()) {
+                List<XcosDiagram> diagramsWithKey = entry.getValue();
+                XcosDiagram diagramWithKey = diagramsWithKey.get(0); // get the diagram that maps to that key
+                int childCount = diagramWithKey.countChildren(); //count the number of children in the diagram
+                // if empty, unsaved and unused
+                if (childCount == 0 && diagramWithKey.getSavedFile() == null && !diagramWithKey.isModified()) {
+                    // use that open diagram
+                    diag = diagramWithKey;
+                    diag.transformAndLoadFile(controller, file);
+                }
+            }
         }
         // if reuse then request focus
         if (diag != null) {
@@ -524,7 +515,7 @@ public final class Xcos {
              */
             diag.transformAndLoadFile(controller, file);
 
-            addDiagram(diag.getUID(), diag);
+            addDiagram(new ScicosObjectOwner(controller, diag.getUID(), Kind.DIAGRAM), diag);
         }
     }
 
@@ -569,12 +560,12 @@ public final class Xcos {
     /**
      * Get an unmodifiable view of the diagrams for an UID
      *
-     * @param l
-     *            the root diagram UID
+     * @param root
+     *            the root diagram
      * @return the diagram collection
      */
-    public Collection<XcosDiagram> getDiagrams(final long l) {
-        final Collection<XcosDiagram> diags = diagrams.get(l);
+    public Collection<XcosDiagram> getDiagrams(final ScicosObjectOwner root) {
+        final Collection<XcosDiagram> diags = diagrams.get(root);
         if (diags == null) {
             return null;
         }
@@ -584,26 +575,26 @@ public final class Xcos {
     /**
      * Add a diagram to the diagram list for a file. Be sure to set the right opened status on the diagram before calling this method.
      *
-     * @param l
-     *            the root diagram UID
+     * @param root
+     *            the root diagram
      * @param diag
      *            the diag
      */
-    public void addDiagram(final long l, final XcosDiagram diag) {
+    public void addDiagram(final ScicosObjectOwner root, final XcosDiagram diag) {
         if (onDiagramIteration) {
             throw new RuntimeException();
         }
-        if (l == 0l) {
+        if (root == null) {
             throw new IllegalArgumentException();
         }
 
         /*
          * Create the collection if it does not exist
          */
-        List<XcosDiagram> diags = diagrams.get(l);
+        List<XcosDiagram> diags = diagrams.get(root);
         if (diags == null) {
             diags = createDiagramCollection();
-            diagrams.put(l, diags);
+            diagrams.put(root, diags);
         }
 
         // insert the diagram
@@ -617,18 +608,9 @@ public final class Xcos {
      * @param diag the diagram to add
      */
     public void addDiagram(final XcosDiagram diag) {
-        if (diag.getKind() == Kind.DIAGRAM) {
-            addDiagram(diag.getUID(), diag);
-        } else {
-            long[] root = new long[1];
-            new JavaController().getObjectProperty(diag.getUID(), diag.getKind(), ObjectProperties.PARENT_DIAGRAM, root);
-
-            addDiagram(root[0], diag);
-        }
-
+        ScicosObjectOwner root = findRoot(diag);
+        addDiagram(root, diag);
     }
-
-
 
     /**
      * Create a diagram collections (sorted List)
@@ -664,15 +646,10 @@ public final class Xcos {
     public boolean canClose(final XcosDiagram graph) {
         boolean canClose = false;
 
-        JavaController controller = new JavaController();
-        long[] rootDiagram = new long[1];
-        controller.getObjectProperty(graph.getUID(), graph.getKind(), ObjectProperties.PARENT_DIAGRAM, rootDiagram);
-        if (rootDiagram[0] == 0l) {
-            rootDiagram[0] = graph.getUID();
-        }
+        ScicosObjectOwner root = findRoot(graph);
 
-        final boolean wasLastOpened = openedDiagrams(rootDiagram[0]).size() <= 1;
-        final boolean isModified = isModified(rootDiagram[0]);
+        final boolean wasLastOpened = openedDiagrams(root).size() <= 1;
+        final boolean isModified = isModified(root);
         if (!(wasLastOpened && isModified)) {
             canClose = true;
         }
@@ -683,7 +660,7 @@ public final class Xcos {
 
             switch (ans) {
                 case YES_OPTION:
-                    canClose = diagrams.get(rootDiagram[0]).iterator().next().saveDiagram();
+                    canClose = diagrams.get(root).iterator().next().saveDiagram();
                     break;
                 case NO_OPTION:
                     canClose = true; // can close
@@ -713,18 +690,13 @@ public final class Xcos {
      *            the diagram to close
      */
     public void destroy(XcosDiagram graph) {
-        JavaController controller = new JavaController();
-        long[] rootDiagram = new long[1];
-        controller.getObjectProperty(graph.getUID(), graph.getKind(), ObjectProperties.PARENT_DIAGRAM, rootDiagram);
-        if (rootDiagram[0] == 0l) {
-            rootDiagram[0] = graph.getUID();
-        }
+        ScicosObjectOwner root = findRoot(graph);
 
-        final boolean wasLastOpenedForFile = openedDiagrams(rootDiagram[0]).size() <= 1;
+        final boolean wasLastOpenedForFile = openedDiagrams(root).size() <= 1;
         if (wasLastOpenedForFile) {
-            diagrams.remove(rootDiagram[0]);
+            diagrams.remove(root);
         } else {
-            diagrams.get(rootDiagram[0]).remove(graph);
+            diagrams.get(root).remove(graph);
         }
 
         if (openedDiagrams().size() <= 0) {
@@ -820,7 +792,7 @@ public final class Xcos {
         // clear states
         if (status) {
             /* reset the shared instance state */
-            instance.diagrams.keySet().clear();
+            instance.diagrams.clear();
 
             /* terminate any remaining simulation */
             JavaController.end_simulation();
@@ -1101,6 +1073,35 @@ public final class Xcos {
         }
 
         return null;
+    }
+
+    /**
+     * Look for the root object of the whole graph hierarchy
+     * @param graph the graph
+     * @return the root MVC object with Kind.DIAGRAM
+     */
+    public static ScicosObjectOwner findRoot(XcosDiagram graph) {
+        return findRoot(new JavaController(), graph);
+    }
+
+    /**
+     * Look for the root object of the whole graph hierarchy
+     * @param  controller the shared controller
+     * @param graph the graph
+     * @return the root MVC object with Kind.DIAGRAM
+     */
+    public static ScicosObjectOwner findRoot(JavaController controller, XcosDiagram graph) {
+        ScicosObjectOwner root;
+        if (graph.getKind() == Kind.DIAGRAM) {
+            root = new ScicosObjectOwner(controller, graph.getUID(), graph.getKind());
+        } else {
+            long[] rootDiagram = new long[1];
+            controller.getObjectProperty(graph.getUID(), graph.getKind(), ObjectProperties.PARENT_DIAGRAM, rootDiagram);
+            root = new ScicosObjectOwner(controller, rootDiagram[0], Kind.DIAGRAM);
+        }
+
+        return root;
+
     }
 
     /*

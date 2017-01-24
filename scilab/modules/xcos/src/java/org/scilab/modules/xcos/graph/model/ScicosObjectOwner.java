@@ -55,9 +55,35 @@ public class ScicosObjectOwner {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + (int) (this.uid ^ (this.uid >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ScicosObjectOwner other = (ScicosObjectOwner) obj;
+        if (this.uid != other.uid) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     protected void finalize() throws Throwable {
         JavaController controller = new JavaController();
 
         controller.deleteObject(uid);
     }
+
 }

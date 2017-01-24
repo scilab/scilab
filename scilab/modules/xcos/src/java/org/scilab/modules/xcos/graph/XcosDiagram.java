@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009-2010 - DIGITEO - Clement DAVID
- * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2015 - Marcos Cardinot
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
@@ -115,6 +115,7 @@ import com.mxgraph.view.mxMultiplicity;
 import java.lang.reflect.Constructor;
 import java.rmi.server.UID;
 import java.util.Hashtable;
+import java.util.Optional;
 import org.scilab.modules.xcos.io.ScilabTypeCoder;
 
 /**
@@ -124,7 +125,6 @@ public class XcosDiagram extends ScilabGraph {
 
     private static final Logger LOG = Logger.getLogger(XcosDiagram.class.getName());
 
-    private static final String MODIFIED = "modified";
     private static final String CELLS = "cells";
     public static final String IN = "in";
     public static final String OUT = "out";
@@ -1923,12 +1923,39 @@ public class XcosDiagram extends ScilabGraph {
         }
 
         JavaController controller = new JavaController();
-        long[] parent = new long[1];
-        controller.getObjectProperty(getUID(), getKind(), ObjectProperties.PARENT_DIAGRAM, parent);
 
-        Collection<XcosDiagram> diagrams = Xcos.getInstance().getDiagrams(parent[0]);
-        return diagrams.stream().filter(d -> d.getUID() == parent[0]).findFirst().get();
+        ScicosObjectOwner root = Xcos.findRoot(controller, this);
+        Collection<XcosDiagram> diagrams = Xcos.getInstance().getDiagrams(root);
+        Optional<XcosDiagram> found = diagrams.stream().filter(d -> d.getUID() == root.getUID()).findFirst();
+        if (found.isPresent()) {
+            return found.get();
+        } else {
+            // create a temporary hidden root diagram
+            String[] uid = {""};
+            controller.getObjectProperty(root.getUID(), Kind.DIAGRAM, ObjectProperties.UID, uid);
+            return new XcosDiagram(controller, root.getUID(), Kind.DIAGRAM, uid[0]);
+        }
+
+
     }
+
+    /**
+     * Getting the root diagram UID of a decomposed diagram
+     *
+     * @param controller the current JavaController
+     * @return Root parent of the whole parent
+     */
+    public long getRootDiagramUID(JavaController controller) {
+        if (getKind() == Kind.DIAGRAM) {
+            return getUID();
+        }
+
+        long[] uid = new long[1];
+        controller.getObjectProperty(getUID(), getKind(), ObjectProperties.PARENT_DIAGRAM, uid);
+
+        return uid[0];
+    }
+
 
     /**
      * Returns the tooltip to be used for the given cell.

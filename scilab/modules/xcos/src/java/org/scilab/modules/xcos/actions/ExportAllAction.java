@@ -115,7 +115,7 @@ public final class ExportAllAction extends DefaultAction {
         Collection<String> imageFormats = Arrays.asList(ImageIO.getWriterFileSuffixes());
 
         // The mask ordered collection
-        Set<String> mask = new TreeSet<String>(String.CASE_INSENSITIVE_ORDER);
+        Set<String> mask = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
 
         mask.add(SVG);
         mask.add(HTML);
@@ -155,9 +155,6 @@ public final class ExportAllAction extends DefaultAction {
             JavaController controller = new JavaController();
             ArrayList<XcosDiagram> diagrams = new ArrayList<>();
             diagrams.add(graph);
-
-            // append the already allocated diagram
-            diagrams.addAll(Xcos.getInstance().getDiagrams(graph.getUID()));
 
             ArrayList<Long> stash = new ArrayList<>();
             allocateDiagrams(controller, diagrams, stash, graph.getUID(), Kind.DIAGRAM);

@@ -300,25 +300,6 @@ public class ScilabGraph extends mxGraph {
     }
 
     /**
-     * The instance can be not visible but used (when using SuperBlock). The
-     * openned flag is true in this case and also when the Window/Tab is
-     * visible.
-     *
-     * @param opened
-     *            Openned state
-     */
-    public void setOpened(boolean opened) {
-        this.opened = opened;
-    }
-
-    /**
-     * @return Openned state
-     */
-    public boolean isOpened() {
-        return opened;
-    }
-
-    /**
      * A read-only state will disable all actions in the graph.
      *
      * @param readOnly

@@ -734,7 +734,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
         if (parentGraph.getKind() == Kind.DIAGRAM) {
             parentDiagram = parentGraph.getUID();
         } else {
-            parentDiagram = parentGraph.getRootDiagram().getUID();
+            parentDiagram = parentGraph.getRootDiagramUID(controller);
         }
 
         cellsToCopy.stream().forEach(c -> {
