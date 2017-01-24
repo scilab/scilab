@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -16,6 +16,7 @@
 
 package org.scilab.modules.xcos.palette;
 
+import com.mxgraph.model.mxGeometry;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
@@ -59,6 +60,7 @@ import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxGraphView;
 import com.mxgraph.view.mxStylesheet;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
+import org.scilab.modules.xcos.port.BasicPort;
 
 /**
  * Utility class which is the entry point from Scilab for palette related
@@ -499,6 +501,7 @@ public final class Palette {
      * Generate a palette block image from a block instance stored into scilab
      * (need a valid style).
      *
+     * @param uid the block to load an render
      * @param iconPath
      *            the output file path use to save the palette block.
      * @throws Exception
@@ -536,9 +539,9 @@ public final class Palette {
             return;
         }
 
-        Dimension blockSize = PaletteManagerPanel.getCurrentSize().getBlockDimension();
-        block.getGeometry().setX(blockSize.width);
-        block.getGeometry().setY(blockSize.height);
+        mxGeometry geom = block.getGeometry();
+        geom.setX(BasicPort.DEFAULT_PORTSIZE);
+        geom.setY(BasicPort.DEFAULT_PORTSIZE);
 
         JavaController controller = new JavaController();
 
@@ -551,7 +554,7 @@ public final class Palette {
         BlockPositioning.updateBlockView(graph, block);
 
         /*
-         * Render
+         * Render wiht the right resolution
          */
         final mxGraphComponent graphComponent = graph.getAsComponent();
         graphComponent.refresh();
@@ -560,18 +563,10 @@ public final class Palette {
         final double width = bounds.getWidth();
         final double height = bounds.getHeight();
 
-        double scale;
-        if (width > blockSize.width || height > blockSize.height) {
-            scale = Math.min(blockSize.width / width, blockSize.height / height);
-            scale /= XcosConstants.PALETTE_BLOCK_ICON_RATIO;
-        } else {
-            scale = 1.0;
-        }
-
         final BufferedImage image = mxCellRenderer.createBufferedImage(
-                graph, null, scale, graphComponent.getBackground(),
-                graphComponent.isAntiAlias(), null, graphComponent.getCanvas()
-        );
+                                        graph, null, 2 * XcosConstants.PALETTE_BLOCK_ICON_RATIO, graphComponent.getBackground(),
+                                        true, null, graphComponent.getCanvas()
+                                    );
 
         final String extension = iconPath.substring(iconPath.lastIndexOf('.') + 1);
         ImageIO.write(image, extension, new File(iconPath));
