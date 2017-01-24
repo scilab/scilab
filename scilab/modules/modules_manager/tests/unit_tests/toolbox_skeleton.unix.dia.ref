@@ -118,7 +118,7 @@ Start Toolbox Skeleton
 	Load help
 	Load demos
 test_run("TMPDIR/toolbox_skeleton/", [], "short_summary");
-   001/001 - [TMPDIR/toolbox_skeleton/] : 
+ Module  001/001 - [TMPDIR/toolbox_skeleton/] : 
    001/004 - [TMPDIR/toolbox_skeleton/] c_sum...................passed
    002/004 - [TMPDIR/toolbox_skeleton/] fortran_sum.............passed
    003/004 - [TMPDIR/toolbox_skeleton/] java_sum................passed

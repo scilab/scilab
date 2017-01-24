@@ -24,6 +24,7 @@ Source: modules\{#MODULES_MANAGER}\license.txt; DestDir: {app}\modules\{#MODULES
 ;
 Source: modules\{#MODULES_MANAGER}\etc\{#MODULES_MANAGER}.quit; DestDir: {app}\modules\{#MODULES_MANAGER}\etc; Components: {#COMPN_MODULES_MANAGER}
 Source: modules\{#MODULES_MANAGER}\etc\{#MODULES_MANAGER}.start; DestDir: {app}\modules\{#MODULES_MANAGER}\etc; Components: {#COMPN_MODULES_MANAGER}
+Source: modules\{#MODULES_MANAGER}\etc\loader_template.sce; DestDir: {app}\modules\{#MODULES_MANAGER}\etc; Components: {#COMPN_MODULES_MANAGER}
 ;
 ;Source: modules\{#MODULES_MANAGER}\includes\*.h; DestDir: {app}\modules\{#MODULES_MANAGER}\includes; Flags: recursesubdirs; Components: {#COMPN_MODULES_MANAGER}
 ;
