@@ -335,6 +335,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="includes\splitpath.h" />
     <ClInclude Include="includes\URIFileToFilename.h" />
     <ClInclude Include="src\cpp\mgetstr.h" />
+    <ClInclude Include="src\cpp\mputi.hxx" />
     <ClInclude Include="src\cpp\scilab_sscanf.hxx" />
     <ClInclude Include="src\c\basename.h" />
     <ClInclude Include="src\c\convert_tools.h" />

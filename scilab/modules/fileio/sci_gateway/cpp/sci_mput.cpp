@@ -1,9 +1,9 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA - Allan CORNET
-* Copyright (C) 2009 - DIGITEO - Allan CORNET
-* Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -12,8 +12,9 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
+
 /*--------------------------------------------------------------------------*/
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
@@ -21,6 +22,7 @@
 #include "double.hxx"
 #include "int.hxx"
 #include "function.hxx"
+#include "mputi.hxx"
 
 extern "C"
 {
@@ -35,11 +37,11 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    char* pstType   = os_strdup("l");//default type value : long
-    int iSize       = 0;
-    int iFile       = -1; //default file : last opened file
-    double* pData   = NULL;
-    int iErr        = 0;
+    char* pstType = os_strdup("l");//default type value : long
+    int iSize = 0;
+    int iFile = -1; //default file : last opened file
+    double* pData = NULL;
+    int iErr = 0;
 
     if (in.size() < 1 || in.size() > 3)
     {
@@ -95,91 +97,89 @@ types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble())
     {
+        int iErr = 0;
         pData = in[0]->getAs<types::Double>()->get();
+        C2F(mput)(&iFile, pData, &iSize, pstType, &iErr);
+
+        if (iErr)
+        {
+            FREE(pstType);
+            Scierror(10000, "");
+            return types::Function::Error;
+        }
     }
     else
     {
-        pData = (double*)malloc(iSize * sizeof(double));
-        if (in[0]->isInt8())
+        int err = 0;
+        switch (in[0]->getType())
         {
-            char* piData = in[0]->getAs<types::Int8>()->get();
-            for (int i = 0; i < iSize; i++)
+            case types::InternalType::ScilabInt8:
             {
-                pData[i] = (double)piData[i];
+                char* piData = NULL;
+                piData = in[0]->getAs<types::Int8>()->get();
+                err = mputi(iFile, piData, iSize, pstType);
+                break;
+            }
+            case types::InternalType::ScilabInt16:
+            {
+                short* piData = NULL;
+                piData = in[0]->getAs<types::Int16>()->get();
+                err = mputi(iFile, piData, iSize, pstType);
+                break;
+            }
+            case types::InternalType::ScilabInt32:
+            {
+                int* piData = NULL;
+                piData = in[0]->getAs<types::Int32>()->get();
+                err = mputi(iFile, piData, iSize, pstType);
+                break;
+            }
+            case types::InternalType::ScilabInt64:
+            {
+                long long* piData = NULL;
+                piData = in[0]->getAs<types::Int64>()->get();
+                err = mputi(iFile, piData, iSize, pstType);
+                break;
+            }
+            case types::InternalType::ScilabUInt8:
+            {
+                unsigned char* piData = NULL;
+                piData = in[0]->getAs<types::UInt8>()->get();
+                err = mputi(iFile, piData, iSize, pstType);
+                break;
+            }
+            case types::InternalType::ScilabUInt16:
+            {
+                unsigned short* piData = NULL;
+                piData = in[0]->getAs<types::UInt16>()->get();
+                err = mputi(iFile, piData, iSize, pstType);
+                break;
+            }
+            case types::InternalType::ScilabUInt32:
+            {
+                unsigned int* piData = NULL;
+                piData = in[0]->getAs<types::UInt32>()->get();
+                err = mputi(iFile, piData, iSize, pstType);
+                break;
+            }
+            case types::InternalType::ScilabUInt64:
+            {
+                unsigned long long* piData = NULL;
+                piData = in[0]->getAs<types::UInt64>()->get();
+                err = mputi(iFile, piData, iSize, pstType);
+                break;
             }
         }
-        else if (in[0]->isUInt8())
+
+        if (err)
         {
-            unsigned char* piData = in[0]->getAs<types::UInt8>()->get();
-            for (int i = 0; i < iSize; i++)
-            {
-                pData[i] = (double)piData[i];
-            }
-        }
-        else if (in[0]->isInt16())
-        {
-            short* piData = in[0]->getAs<types::Int16>()->get();
-            for (int i = 0; i < iSize; i++)
-            {
-                pData[i] = (double)piData[i];
-            }
-        }
-        else if (in[0]->isUInt16())
-        {
-            unsigned short* piData = in[0]->getAs<types::UInt16>()->get();
-            for (int i = 0; i < iSize; i++)
-            {
-                pData[i] = (double)piData[i];
-            }
-        }
-        else if (in[0]->isInt32())
-        {
-            int* piData = in[0]->getAs<types::Int32>()->get();
-            for (int i = 0; i < iSize; i++)
-            {
-                pData[i] = (double)piData[i];
-            }
-        }
-        else if (in[0]->isUInt32())
-        {
-            unsigned int* piData = in[0]->getAs<types::UInt32>()->get();
-            for (int i = 0; i < iSize; i++)
-            {
-                pData[i] = (double)piData[i];
-            }
-        }
-        else if (in[0]->isInt64())
-        {
-            long long* piData = in[0]->getAs<types::Int64>()->get();
-            for (int i = 0; i < iSize; i++)
-            {
-                pData[i] = (double)piData[i];
-            }
-        }
-        else if (in[0]->isUInt64())
-        {
-            unsigned long long* piData = in[0]->getAs<types::UInt64>()->get();
-            for (int i = 0; i < iSize; i++)
-            {
-                pData[i] = (double)piData[i];
-            }
+            FREE(pstType);
+            Scierror(10000, "");
+            return types::Function::Error;
         }
     }
-
-    C2F(mput)(&iFile, pData, &iSize, pstType, &iErr);
 
     FREE(pstType);
-    if (in[0]->isDouble() == false)
-    {
-        free(pData);
-    }
-
-    if (iErr)
-    {
-        Scierror(10000, "");
-        return types::Function::Error;
-    }
-
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
