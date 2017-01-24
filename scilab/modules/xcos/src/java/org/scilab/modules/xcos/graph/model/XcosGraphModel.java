@@ -25,7 +25,6 @@ import org.scilab.modules.xcos.Kind;
  * Implement a custom model for Xcos
  */
 public class XcosGraphModel extends mxGraphModel {
-
     public XcosGraphModel(JavaController controller, long diagramId, Kind kind, String uid) {
         super(new mxCell());
 
@@ -37,5 +36,4 @@ public class XcosGraphModel extends mxGraphModel {
     public final String createId(Object cell) {
         return new UID().toString();
     }
-
 }

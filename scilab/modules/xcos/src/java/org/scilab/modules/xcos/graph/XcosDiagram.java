@@ -197,6 +197,15 @@ public class XcosDiagram extends ScilabGraph {
 
         // do not put loop links inside the common block cell but on the defaultParent
         ((mxGraphModel) getModel()).setMaintainEdgeParent(false);
+        getModel().addListener(mxEvent.CHANGE, new mxIEventListener() {
+            @Override
+            public void invoke(Object sender, mxEventObject evt) {
+                if (sender instanceof XcosGraphModel) {
+                    List<XcosDiagram> diagrams = Xcos.getInstance().openedDiagrams(Xcos.findRoot(XcosDiagram.this));
+                    diagrams.stream().forEach(d -> d.updateTabTitle());
+                }
+            }
+        });
     }
 
     /*
@@ -1731,7 +1740,7 @@ public class XcosDiagram extends ScilabGraph {
 
             setTitle(writeFile.getName().substring(0, writeFile.getName().lastIndexOf('.')));
             ConfigurationManager.getInstance().addToRecentFiles(writeFile);
-            setModified(false);
+            Xcos.getInstance().setModified(Xcos.findRoot(this), false);
             isSuccess = true;
         } catch (final Exception e) {
             LOG.severe(e.toString());
@@ -1794,7 +1803,7 @@ public class XcosDiagram extends ScilabGraph {
     public void updateTabTitle() {
         // get the modifier string
         final String modified;
-        if (isModified()) {
+        if (Xcos.getInstance().isModified(Xcos.findRoot(this))) {
             modified = "*";
         } else {
             modified = "";

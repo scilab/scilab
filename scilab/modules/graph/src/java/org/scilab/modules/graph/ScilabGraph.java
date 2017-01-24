@@ -68,7 +68,6 @@ public class ScilabGraph extends mxGraph {
     private String title = null;
     private File savedFile;
     private boolean modified;
-    private boolean opened;
     private boolean readOnly;
 
     private transient mxRubberband rubberBand;
@@ -211,12 +210,7 @@ public class ScilabGraph extends mxGraph {
      * @category UseEvent
      */
     public void setModified(boolean modified) {
-        boolean oldValue = this.modified;
         this.modified = modified;
-
-        if (getAsComponent() != null) {
-            getAsComponent().firePropertyChange("modified", oldValue, modified);
-        }
     }
 
     /**

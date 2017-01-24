@@ -111,8 +111,10 @@ public class BlockParametersAction extends VertexSelectionDependantAction {
                 // this is a super-block, open it
                 XcosDiagram sub = new XcosDiagram(controller, cell.getUID(), cell.getKind(), cell.getId());
                 XcosCellFactory.insertChildren(controller, sub);
+                sub.setModified(false);
 
-                Xcos.getInstance().addDiagram(sub);
+                ScicosObjectOwner root = Xcos.findRoot(graph);
+                Xcos.getInstance().addDiagram(root, sub);
                 XcosTab.restore(sub, true);
             } else {
                 BasicBlock block = (BasicBlock) cell;
