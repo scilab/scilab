@@ -7,6 +7,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 // Check error
 d=[1 10;254 9];
 
@@ -201,7 +202,7 @@ for typ=T
     assert_checkequal(sum(i, "*", typ(:)), uint8(274));
     assert_checkequal(sum(i, 1, typ(:)), uint8([255 19]));
     assert_checkequal(sum(i, 2, typ(:)), uint8([11;263]));
-    assert_checkequal(sum(i, 3, typ(:)), double(i));
+    assert_checkequal(sum(i, 3, typ(:)), i);
 end
 
 assert_checkequal(sum(i, "double"), 274);
@@ -219,7 +220,7 @@ for typ=T
     assert_checkequal(sum(i, 1, typ(:)), matrix(uint8([255;19;1;0]), [1,2,2]));
     assert_checkequal(sum(i, 2, typ(:)), matrix(uint8([11;263;1;0]), [2,1,2]));
     assert_checkequal(sum(i, 3, typ(:)), uint8([2,10;254,9]));
-    assert_checkequal(sum(i, 5, typ(:)), double(i));
+    assert_checkequal(sum(i, 5, typ(:)), i);
 end
 
 assert_checkequal(sum(i, "double"), 275);
