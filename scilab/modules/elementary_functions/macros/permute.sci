@@ -30,8 +30,9 @@ function y = permute(x, dims)
         error(msprintf(msg, "permute", 2));
     end
 
-    if x==[] then
-        y = []
+    // Case x is empty
+    if isempty(x) then
+        y = x
         return
     end
 
@@ -40,12 +41,6 @@ function y = permute(x, dims)
         and(gsort(dims(:)',"g","i")==(1:max(length(dims),ndims(x))))) then
         msg = _("%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>%d] integers.\n")
         error(msprintf(msg, "permute", 2, ndims(x)-1));
-    end
-
-    // Case x is empty
-    if isempty(x) then
-        y = x
-        return
     end
 
     // ---------------- PROCESSING --------------------
