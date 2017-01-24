@@ -25,7 +25,7 @@ assert_checkalmostequal(f,f1);
 assert_checkalmostequal(bnds,bnds1);
 assert_checkequal(split,split1);
 [f1,bnds1,split1]=calfrq(zpk(h),0.01,100);
-save /tmp/fii f1 bnds1 split1 f bnds split
+save TMPDIR/fii f1 bnds1 split1 f bnds split
 assert_checkalmostequal(f,f1);
 assert_checkalmostequal(bnds,bnds1);
 assert_checkequal(split,split1);
