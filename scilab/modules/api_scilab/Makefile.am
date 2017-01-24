@@ -113,7 +113,8 @@ includes/api_pointer.h \
 includes/api_struct.h \
 includes/api_string.h \
 includes/api_handle.h \
-includes/api_optional.h
+includes/api_optional.h \
+includes/api_scilab.hxx
 
 
 
