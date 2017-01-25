@@ -29,7 +29,7 @@ char *ConsoleRead(void)
 {
     if (line)
     {
-        delete line;
+        delete[] line;
         line = NULL;
     }
     line = CallScilabBridge::readLine(getScilabJavaVM());

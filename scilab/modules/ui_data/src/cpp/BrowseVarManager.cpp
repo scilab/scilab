@@ -97,17 +97,17 @@ void SetBrowseVarData()
     iLocalVariablesUsed = ctx->getVarsToVariableBrowser(lstVars);
     iLocalVariablesUsed += ctx->getLibsToVariableBrowser(lstLibs);
 
-    char **pstAllVariableNames = new char*[iLocalVariablesUsed];
-    char **pstAllVariableVisibility = new char*[iLocalVariablesUsed];
-    char **pstAllVariableListTypes = new char*[iLocalVariablesUsed];
-    int *piAllVariableBytes = new int[iLocalVariablesUsed];
-    char **pstAllVariableSizes = new char*[iLocalVariablesUsed];
-    int *piAllVariableTypes = new int[iLocalVariablesUsed];
-    int *piAllVariableIntegerTypes = new int[iLocalVariablesUsed];
-    bool *piAllVariableFromUser = new bool[iLocalVariablesUsed];
+    char **pstAllVariableNames = new char*[iLocalVariablesUsed]();
+    char **pstAllVariableVisibility = new char*[iLocalVariablesUsed]();
+    char **pstAllVariableListTypes = new char*[iLocalVariablesUsed]();
+    int *piAllVariableBytes = new int[iLocalVariablesUsed]();
+    char **pstAllVariableSizes = new char*[iLocalVariablesUsed]();
+    int *piAllVariableTypes = new int[iLocalVariablesUsed]();
+    int *piAllVariableIntegerTypes = new int[iLocalVariablesUsed]();
+    bool *piAllVariableFromUser = new bool[iLocalVariablesUsed]();
     /* Necessary for the plots in the var browser */
-    int *piAllVariableNbRows = new int[iLocalVariablesUsed];
-    int *piAllVariableNbCols = new int[iLocalVariablesUsed];
+    int *piAllVariableNbRows = new int[iLocalVariablesUsed]();
+    int *piAllVariableNbCols = new int[iLocalVariablesUsed]();
 
     int nbRows, nbCols;
     char *sizeStr = NULL;
