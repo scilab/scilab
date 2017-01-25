@@ -40,6 +40,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "Matplot.h"
+#include "os_string.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -56,7 +57,6 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
     int *axesflag  = NULL;
 
     char* strf      = NULL ;
-    char strfl[4];
     double* rect    = NULL ;
     int* nax        = NULL ;
     BOOL flagNax    = FALSE;
@@ -381,22 +381,21 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
     {
         reinitDefStrfN();
 
-        strcpy(strfl, DEFSTRFN);
-        strf = strfl;
+        strf = os_strdup(DEFSTRFN);
 
         if (!isDefRect(rect))
         {
-            strfl[1] = '7';
+            strf[1] = '7';
         }
 
         if (frameflag != &frame_def)
         {
-            strfl[1] = (char)(*frame + 48);
+            strf[1] = (char)(*frame + 48);
         }
 
         if (axesflag != &axes_def)
         {
-            strfl[2] = (char)(*axes + 48);
+            strf[2] = (char)(*axes + 48);
         }
     }
 
