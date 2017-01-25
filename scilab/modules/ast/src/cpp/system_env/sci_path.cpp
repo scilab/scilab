@@ -31,6 +31,7 @@ extern "C"
 #include "getenvc.h"
 #include "setenvvar.h"
 #include "getshortpathname.h"
+#include "getlongpathname.h"
 }
 
 char *getSCI(void)
@@ -55,14 +56,14 @@ void setSCIW(const wchar_t* _sci_path)
 void setSCI(const char* _sci_path)
 {
     //
-    char *ShortPath = NULL;
-    char *pstSlash = new char[strlen(_sci_path) + 1];
     BOOL bConvertOK = FALSE;
-    ShortPath = getshortpathname(_sci_path, &bConvertOK);
-    AntislashToSlash(ShortPath, pstSlash);
+    char* ShortPath = getshortpathname(_sci_path, &bConvertOK);
+    char* LongPath = getlongpathname(_sci_path, &bConvertOK);
 
 
     //SCI
+    char *pstSlash = new char[strlen(_sci_path) + 1];
+    AntislashToSlash(ShortPath, pstSlash);
     wchar_t* pwstSCI = to_wide_string(pstSlash);
     types::String *pSSCI = new types::String(pwstSCI);
     symbol::Context::getInstance()->put(symbol::Symbol(L"SCI"), pSSCI);
@@ -71,8 +72,8 @@ void setSCI(const char* _sci_path)
     wchar_t* pwstWSCI = NULL;
 #ifdef _MSC_VER
     char *pstBackSlash = NULL;
-    pstBackSlash = new char[strlen(_sci_path) + 1];
-    SlashToAntislash(_sci_path, pstBackSlash);
+    pstBackSlash = new char[strlen(LongPath) + 1];
+    SlashToAntislash(LongPath, pstBackSlash);
     pwstWSCI = to_wide_string(pstBackSlash);
     types::String *pSWSCI = new types::String(pwstWSCI);
     symbol::Context::getInstance()->put(symbol::Symbol(L"WSCI"), pSWSCI);
@@ -90,9 +91,15 @@ void setSCI(const char* _sci_path)
     {
         delete[] pstSlash;
     }
+
     if (ShortPath)
     {
         FREE(ShortPath);
+    }
+
+    if (LongPath)
+    {
+        FREE(LongPath);
     }
 }
 /*--------------------------------------------------------------------------*/

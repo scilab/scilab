@@ -4,6 +4,7 @@ LIBRARY    fileio.dll
 EXPORTS
 removedir
 getshortpathname
+getlongpathname
 FileExistW
 getfile_filename
 get_full_pathW
