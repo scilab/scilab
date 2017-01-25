@@ -28,6 +28,7 @@ STRING_C_SOURCES = \
     src/c/StringConvert.c \
     src/c/os_wcsdup.c \
     src/c/os_wcstok.c \
+    src/c/os_wcstod.c \
     src/c/scistrtostr.c \
     src/c/stringToDouble.c \
     src/c/stringToComplex.c \
@@ -158,6 +159,7 @@ includes/getfastcode.h \
 includes/men_Sutils.h \
 includes/os_string.h \
 includes/os_wcstok.h \
+includes/os_wcstod.h \
 includes/pcre_private.h \
 includes/scistrtostr.h \
 includes/StringConvert.h \

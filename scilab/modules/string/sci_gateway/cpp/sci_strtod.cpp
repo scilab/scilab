@@ -27,6 +27,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "os_string.h"
+#include "os_wcstod.h"
 #include "locale.h"
 }
 
@@ -159,7 +160,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
                 }
                 else // strtod("  000xxx")
                 {
-                    pOutDouble->set(i, wcstod(pstStr + iKey, &pwstStop));
+                    pOutDouble->set(i, os_wcstod(pstStr + iKey, &pwstStop));
                 }
             }
         }
@@ -169,7 +170,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
         }
         else //all characters are digits
         {
-            pOutDouble->set(i, wcstod(pstStr, &pwstStop));
+            pOutDouble->set(i, os_wcstod(pstStr, &pwstStop));
         }
 
         if (_iRetCount == 2)

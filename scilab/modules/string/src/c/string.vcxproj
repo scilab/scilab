@@ -259,6 +259,7 @@
     <ClCompile Include="isdigit.c" />
     <ClCompile Include="isletter.c" />
     <ClCompile Include="men_Sutils.c" />
+    <ClCompile Include="os_wcstod.c" />
     <ClCompile Include="os_wcstok.c" />
     <ClCompile Include="partfunction.c" />
     <ClCompile Include="pcre_error.c" />
@@ -318,6 +319,7 @@
     <ClInclude Include="..\..\includes\getfastcode.h" />
     <ClInclude Include="..\..\includes\men_Sutils.h" />
     <ClInclude Include="..\..\includes\os_string.h" />
+    <ClInclude Include="..\..\includes\os_wcstod.h" />
     <ClInclude Include="..\..\includes\os_wcstok.h" />
     <ClInclude Include="..\..\includes\os_wtoi.h" />
     <ClInclude Include="..\..\includes\pcre_private.h" />
