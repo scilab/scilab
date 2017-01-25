@@ -46,17 +46,22 @@ function d = assert_computedigits ( varargin )
         d( k & expected == %inf & computed <> %inf ) = dmin;
         d( k & expected == -%inf & computed <> -%inf ) = dmin;
         // From now, neither of computed, nor expected is infinity
-        kdinf=find(d==%inf);
+        kdinf = find(d==%inf);
         if ( kdinf <> [] ) then
             relerr = ones(expected)*%nan;
             relerr(kdinf) = abs(computed(kdinf)-expected(kdinf)) ./ abs(expected(kdinf));
+            // specific case of neighbour floats (whose relative error less or equal than %eps in Scilab)
+            k = find( relerr <= %eps );
+            if ( k <> [] ) then
+                d(k) = -log(2^(-52))/log(basis);
+            end
             k = find( relerr >= 1 );
-            if ( k<> [] ) then
+            if ( k <> [] ) then
                 d(k) = dmin;
             end
             k = find( d==%inf & relerr < 1 );
-            if ( k<> [] ) then
-                sigdig(k) = -log ( 2*relerr(k) ) ./ log(basis);
+            if ( k <> [] ) then
+                sigdig(k) = -log (relerr(k)) ./ log(basis);
                 d(k) = max ( sigdig(k) , dmin );
             end
         end
