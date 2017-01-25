@@ -675,13 +675,15 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                             break;
                         }
                         default:
+                            Scierror(999, _("%s: Could not set property '%s'.\n"), fname, (char*)propertiesNames[inputIndex]);
                             setStatus = SET_PROPERTY_ERROR;
                             break;
                     }
                 }
                 if (setStatus == SET_PROPERTY_ERROR)
                 {
-                    Scierror(999, _("%s: Could not set property '%s'.\n"), fname, (char*)propertiesNames[inputIndex]);
+                    // comment error because the 'set_propertiesNames[inputIndex]_property' functions already returns an error.
+                    //Scierror(999, _("%s: Could not set property '%s'.\n"), fname, (char*)propertiesNames[inputIndex]);
                     FREE(propertiesValuesIndices);
                     return FALSE;
                 }
