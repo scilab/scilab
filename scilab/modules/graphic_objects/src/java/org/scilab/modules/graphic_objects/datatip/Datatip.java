@@ -30,6 +30,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 import org.scilab.forge.scirenderer.ruler.graduations.UserDefinedFormat;
 
@@ -76,48 +77,42 @@ public class Datatip extends Text {
     public static TipOrientation intToEnum(Integer i) {
         switch (i) {
             case 0:
-                return TipOrientation.TOP_LEFT;
-            case 1:
-                return TipOrientation.TOP_RIGHT;
-            case 2:
-                return TipOrientation.BOTTOM_LEFT;
-            case 3:
-                return TipOrientation.BOTTOM_RIGHT;
-            case 4:
-                return TipOrientation.LEFT;
-            case 5:
-                return TipOrientation.RIGHT;
-            case 6:
-                return TipOrientation.TOP;
-            case 7:
-                return TipOrientation.BOTTOM;
-            default:
-                return TipOrientation.TOP_RIGHT;
+                        return TipOrientation.TOP_LEFT;
+                case 1:
+                    return TipOrientation.TOP_RIGHT;
+                case 2:
+                    return TipOrientation.BOTTOM_LEFT;
+                case 3:
+                    return TipOrientation.BOTTOM_RIGHT;
+                case 4:
+                    return TipOrientation.LEFT;
+                case 5:
+                    return TipOrientation.RIGHT;
+                case 6:
+                    return TipOrientation.TOP;
+                case 7:
+                    return TipOrientation.BOTTOM;
+                default:
+                    return TipOrientation.TOP_RIGHT;
+            }
         }
-    }
 
-                        };
+                            };
 
-    TipOrientation currentOrientation;
+        TipOrientation currentOrientation;
 
-    Boolean detachedMode;
-    Double[] detachedPosition;
+        Boolean detachedMode;
+        Double[] detachedPosition;
 
-    /**
-     * Initializes the datatip, setup format, orientation and mark.
-     */
-    public Datatip() {
+        /**
+         * Initializes the datatip, setup format, orientation and mark.
+         */
+        public Datatip() {
         super();
         displayComponents = "xy";
         autoOrientation = true;
         setOrientationAsEnum(TipOrientation.TOP_RIGHT);
-        DecimalFormat fb = new DecimalFormat("#.####E00");
-        DecimalFormatSymbols decimalFormatSymbols = fb.getDecimalFormatSymbols();
-        decimalFormatSymbols.setDecimalSeparator('.');
-        decimalFormatSymbols.setExponentSeparator("e");
-        decimalFormatSymbols.setGroupingSeparator('\u00A0');
-        fb.setDecimalFormatSymbols(decimalFormatSymbols);
-        tipTextFormat = new UserDefinedFormat(fb, "%g", 1, 0);
+        tipTextFormat = new DecimalFormat("%g", DecimalFormatSymbols.getInstance(Locale.US));
 
         detachedMode = false;
         detachedPosition = new Double[] {0.0, 0.0, 0.0};
