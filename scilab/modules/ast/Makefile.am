@@ -279,6 +279,7 @@ libsciast_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/io/includes \
 	-I$(top_srcdir)/modules/fileio/includes \
+	-I$(top_srcdir)/modules/fileio/src/c \
 	-I$(top_srcdir)/modules/coverage/includes \
 	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
