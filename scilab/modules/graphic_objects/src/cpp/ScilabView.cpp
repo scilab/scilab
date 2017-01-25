@@ -361,7 +361,7 @@ void ScilabView::updateObject(int iUID, int iProperty)
 
                 PathItem* item = (*it).second;
                 item->tag = tag;
-                free(tag);
+                delete[] tag;
             }
             break;
         }
@@ -625,7 +625,7 @@ int ScilabView::search_path(char* _pstPath)
     {
         return 0;
     }
-    
+
     free(pstPath);
     return path->uid;
 }

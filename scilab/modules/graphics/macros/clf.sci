@@ -98,43 +98,43 @@ function clf(varargin)
     // reset figures to default values if needed
     if (job == "reset") then
         defaultFig = gdf();
-        // This literal list should be replaced ASAP with a getproperties(gdf())
+        // This literal list should be replaced with a getproperties(gdf())
         // when such a function will be available:
         allprops = [
-            "children"
-            "figure_position"
-            "figure_size"
-            "axes_size"
-            "auto_resize"
-            "viewport"
-            "figure_name"
-            "figure_id"
-            "info_message"
-            "color_map"
-            "pixel_drawing_mode"
-            "anti_aliasing"
-            "immediate_drawing"
-            "background"
-            "visible"
-            "rotation_style"
-            "event_handler"
-            "event_handler_enable"
-            "user_data"
-            "resizefcn"
-            "closerequestfcn"
-            "resize"
-            "toolbar"
-            "toolbar_visible"
-            "menubar"
-            "menubar_visible"
-            "infobar_visible"
-            "dockable"
-            "layout"
-            "layout_options"
-            "default_axes"
-            "icon"
-            "tag"
-            ];
+        "children"
+        "figure_position"
+        "figure_size"
+        "axes_size"
+        "auto_resize"
+        "viewport"
+        "figure_name"
+        "figure_id"
+        "info_message"
+        "color_map"
+        "pixel_drawing_mode"
+        "anti_aliasing"
+        "immediate_drawing"
+        "background"
+        "visible"
+        "rotation_style"
+        "event_handler"
+        "event_handler_enable"
+        "user_data"
+        "resizefcn"
+        "closerequestfcn"
+        "resize"
+        "toolbar"
+        "toolbar_visible"
+        "menubar"
+        "menubar_visible"
+        "infobar_visible"
+        "dockable"
+        "layout"
+        "layout_options"
+        "default_axes"
+        "icon"
+        "tag"
+        ];
         excluded0 = ["children" "dockable" "menubar" "toolbar" "immediate_drawing"]
         excluded0 = [excluded0 "layout" "layout_options"] // http://bugzilla.scilab.org/14955
         for k = 1: nbHandles
@@ -174,8 +174,8 @@ function yn = isDocked(fh)
     as = matrix(fh.axes_size,2,-1)'
 
     yn = (fh.dockable=="on" & ((fs(:,1)-as(:,1)) > 20)')
-   // A test on vertical dimensions is more complicated, due to switchable
-   // menubar, toolbar and infobar.
+    // A test on vertical dimensions is more complicated, due to switchable
+    // menubar, toolbar and infobar.
     yn = matrix(yn, sf)
 endfunction
 

@@ -320,7 +320,6 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_outside_colors_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_grid_position_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_anti_aliasing_property.lo \
-	src/c/getHandleProperty/libscigraphics_algo_la-get_tag_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_image_type_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_resize_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_toolbar_property.lo \
@@ -553,6 +552,7 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/libscigraphics_algo_la-DllmainGraphics.lo
 am__objects_2 =  \
 	src/cpp/libscigraphics_algo_la-configgraphicvariable.lo \
+	src/cpp/libscigraphics_algo_la-get_tag_property.lo \
 	src/cpp/libscigraphics_algo_la-set_data_property.lo \
 	src/cpp/libscigraphics_algo_la-ContourOnMesh.lo
 am_libscigraphics_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
@@ -1170,7 +1170,6 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/get_outside_colors_property.c \
     src/c/getHandleProperty/get_grid_position_property.c \
     src/c/getHandleProperty/get_anti_aliasing_property.c \
-    src/c/getHandleProperty/get_tag_property.c \
     src/c/getHandleProperty/get_image_type_property.c \
     src/c/getHandleProperty/get_resize_property.c \
     src/c/getHandleProperty/get_toolbar_property.c \
@@ -1404,6 +1403,7 @@ GRAPHICS_C_SOURCES = \
 
 GRAPHICS_CXX_SOURCES = \
     src/cpp/configgraphicvariable.cpp \
+    src/cpp/get_tag_property.cpp \
     src/cpp/set_data_property.cpp \
     src/cpp/ContourOnMesh.cpp
 
@@ -2176,9 +2176,6 @@ src/c/getHandleProperty/libscigraphics_algo_la-get_grid_position_property.lo:  \
 src/c/getHandleProperty/libscigraphics_algo_la-get_anti_aliasing_property.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
-src/c/getHandleProperty/libscigraphics_algo_la-get_tag_property.lo:  \
-	src/c/getHandleProperty/$(am__dirstamp) \
-	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
 src/c/getHandleProperty/libscigraphics_algo_la-get_image_type_property.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
@@ -2844,6 +2841,8 @@ src/cpp/$(DEPDIR)/$(am__dirstamp):
 	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscigraphics_algo_la-configgraphicvariable.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscigraphics_algo_la-get_tag_property.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscigraphics_algo_la-set_data_property.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscigraphics_algo_la-ContourOnMesh.lo:  \
@@ -3318,7 +3317,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_surface_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_surface_mode_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_tabtitle_property.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_tag_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_text_box_mode_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_text_box_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_text_property.Plo@am__quote@
@@ -3523,6 +3521,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_zoom_state_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphics_algo_la-ContourOnMesh.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphics_algo_la-configgraphicvariable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphics_algo_la-get_tag_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphics_algo_la-set_data_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/nographics/$(DEPDIR)/libscigraphics_disable_la-nographics.Plo@am__quote@
 
@@ -4536,13 +4535,6 @@ src/c/getHandleProperty/libscigraphics_algo_la-get_anti_aliasing_property.lo: sr
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_anti_aliasing_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_anti_aliasing_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_anti_aliasing_property.lo `test -f 'src/c/getHandleProperty/get_anti_aliasing_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_anti_aliasing_property.c
-
-src/c/getHandleProperty/libscigraphics_algo_la-get_tag_property.lo: src/c/getHandleProperty/get_tag_property.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_tag_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_tag_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_tag_property.lo `test -f 'src/c/getHandleProperty/get_tag_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_tag_property.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_tag_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_tag_property.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_tag_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_tag_property.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_tag_property.lo `test -f 'src/c/getHandleProperty/get_tag_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_tag_property.c
 
 src/c/getHandleProperty/libscigraphics_algo_la-get_image_type_property.lo: src/c/getHandleProperty/get_image_type_property.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_image_type_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_image_type_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_image_type_property.lo `test -f 'src/c/getHandleProperty/get_image_type_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_image_type_property.c
@@ -6583,6 +6575,13 @@ src/cpp/libscigraphics_algo_la-configgraphicvariable.lo: src/cpp/configgraphicva
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/configgraphicvariable.cpp' object='src/cpp/libscigraphics_algo_la-configgraphicvariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigraphics_algo_la-configgraphicvariable.lo `test -f 'src/cpp/configgraphicvariable.cpp' || echo '$(srcdir)/'`src/cpp/configgraphicvariable.cpp
+
+src/cpp/libscigraphics_algo_la-get_tag_property.lo: src/cpp/get_tag_property.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigraphics_algo_la-get_tag_property.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigraphics_algo_la-get_tag_property.Tpo -c -o src/cpp/libscigraphics_algo_la-get_tag_property.lo `test -f 'src/cpp/get_tag_property.cpp' || echo '$(srcdir)/'`src/cpp/get_tag_property.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscigraphics_algo_la-get_tag_property.Tpo src/cpp/$(DEPDIR)/libscigraphics_algo_la-get_tag_property.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/get_tag_property.cpp' object='src/cpp/libscigraphics_algo_la-get_tag_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigraphics_algo_la-get_tag_property.lo `test -f 'src/cpp/get_tag_property.cpp' || echo '$(srcdir)/'`src/cpp/get_tag_property.cpp
 
 src/cpp/libscigraphics_algo_la-set_data_property.lo: src/cpp/set_data_property.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigraphics_algo_la-set_data_property.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigraphics_algo_la-set_data_property.Tpo -c -o src/cpp/libscigraphics_algo_la-set_data_property.lo `test -f 'src/cpp/set_data_property.cpp' || echo '$(srcdir)/'`src/cpp/set_data_property.cpp

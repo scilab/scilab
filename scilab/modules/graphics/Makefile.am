@@ -172,7 +172,6 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/get_outside_colors_property.c \
     src/c/getHandleProperty/get_grid_position_property.c \
     src/c/getHandleProperty/get_anti_aliasing_property.c \
-    src/c/getHandleProperty/get_tag_property.c \
     src/c/getHandleProperty/get_image_type_property.c \
     src/c/getHandleProperty/get_resize_property.c \
     src/c/getHandleProperty/get_toolbar_property.c \
@@ -406,6 +405,7 @@ GRAPHICS_C_SOURCES = \
 
 GRAPHICS_CXX_SOURCES = \
     src/cpp/configgraphicvariable.cpp \
+    src/cpp/get_tag_property.cpp \
     src/cpp/set_data_property.cpp \
     src/cpp/ContourOnMesh.cpp
 
