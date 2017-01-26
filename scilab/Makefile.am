@@ -305,10 +305,16 @@ if BUILD_HELP
 		done; \
 	else \
 		echo "Cannot find Scilab-adv-cli binary"; \
-	fi
+	fi \
 else
 	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
 endif
+
+$(top_builddir)/modules/helptools/data/pages/CHANGES.html: $(top_builddir)/CHANGES.md
+	sed -n '1,/html rendered CHANGES.md/{p;}' $@ >$@~
+	cmark $< >>$@~
+	sed -n '/End of the html rendered CHANGES.md/,$${p;}' $@ >>$@~
+	mv $@~ $@
 
 doxygen: modules/development_tools/etc/doxyfile
 if DOXYGEN

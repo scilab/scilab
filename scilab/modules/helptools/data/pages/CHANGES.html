@@ -243,6 +243,7 @@ or a 3-components vector to set the position in axes coordinates to draw the dat
 <li>The original <code>rpoly</code> algorithm was removed in favor of a C++11 implementation</li>
 <li>When the view property of Axes object is set at <code>2d</code>, the rotation becomes impossible.</li>
 <li>The zero-pole-gain (zpk) representation added for linear dynamical systems.</li>
+<li>It is now possible to add a title to the axes via the &quot;Label -&gt; Title&quot; context menu entry</li>
 </ul>
 <h2>Help pages:</h2>
 <ul>
@@ -250,11 +251,12 @@ or a 3-components vector to set the position in axes coordinates to draw the dat
 <code>printf</code>, <code>sprintf</code>, <code>iconvert</code>, <code>stdev</code>, <code>xlabel</code>, <code>and_op</code>, <code>or_op</code>, <code>permute</code>, <code>tree2code</code>, <code>%helps</code>,
 <code>scilab|scilex</code>, <code>flipdim</code></li>
 <li>rewritten: <code>consolebox</code>, <code>double</code>, <code>isoview</code>, <code>pixel_drawing_mode</code>, <code>householder</code>, <code>or</code>, <code>and</code>, <code>format</code>, <code>typeof</code>,
-<code>brackets</code>, <code>setlanguage</code>, <code>sleep</code>, <code>isinf</code>, <code>bitor</code>, <code>bitxor</code>, <code>bitand</code>, <code>macr2tree</code>, <code>geomean</code></li>
+<code>brackets</code>, <code>setlanguage</code>, <code>sleep</code>, <code>isinf</code>, <code>bitor</code>, <code>bitxor</code>, <code>bitand</code>, <code>macr2tree</code>, <code>geomean</code>, <code>clf</code></li>
 <li>reorganized:
 <ul>
 <li><code>else</code>, <code>elseif</code>, <code>end</code>, <code>try</code>, <code>sciargs</code>, <code>global</code>, <code>halt</code>, <code>empty</code>, <code>power</code></li>
 <li><code>pixel_drawing_mode</code>, <code>show_window</code>, <code>twinkle</code>, <code>uigetcolor</code>, <code>winsid</code>, <code>xdel</code>, <code>xgrid</code>, <code>xname</code>, <code>xnumb</code></li>
+<li><code>repmat</code>, <code>sign</code>, <code>nthroot</code>, <code>lstsize</code>, <code>cell2mat</code>, <code>cellstr</code>, <code>ind2sub</code>, <code>sub2ind</code>, <code>and</code>, <code>or</code>, <code>unwrap</code></li>
 <li>CACSD and Signal Processing help pages have been sorted up.</li>
 <li>Signal processing: New <code>Convolution - correlation</code> subsection. <code>wfir_gui</code>, <code>filt_sinc</code>, <code>hilb</code>, <code>fft2</code>, <code>fftshift</code>,<code>ifftshift</code>, <code>hilbert</code>, <code>cepstrum</code>, <code>conv</code>, <code>conv2</code>, <code>convol2d</code>, <code>xcor</code>, <code>corr</code>, <code>hank</code>, <code>mrfit</code>, <code>frfir</code> sorted up in existing subsections.</li>
 <li>Colormaps and GUI/Menus subsections created</li>
@@ -416,6 +418,7 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <h3>Bugs fixed in 6.0.0:</h3>
 <ul>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=592">#592</a>: <code>linspace(a, b, n&lt;=0)</code> returned <code>b</code> instead of <code>[]</code></li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=2835">#2835</a>: On negative &quot;initial event&quot;, EVTDLY_c took no notice of the input.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=2919">#2919</a>: The <code>fchamp</code> example and demo were unclear and badly rendered</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=4327">#4327</a>: Overloading did not support custom types names longer than 8 characters</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=5723">#5723</a>: Cross-references were missing between axis_properties and axes_properties help pages</li>
@@ -434,6 +437,8 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=9153">#9153</a>: The <code>isqualbitwise</code> help page was inaccurate and badly located</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=9161">#9161</a>: Multiple insertions at a repeated index in a sparse matrice wrongly updated it.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=9288">#9288</a>: Dynamic palette with the most used blocks</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=9451">#9451</a>: <code>test_run</code> output did not clearly distinguish heading lines of modules and tests lines</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=9825">#9825</a>: <code>assert_computedigits</code> returns too much digits</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=9865">#9865</a>: When making a plot with <code>point</code>(no line), no symbol was shown in the legend.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=9876">#9876</a>: Creating a complex structure with multiple hierarchy level and size failed.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=9912">#9912</a>: In case of missing translated help page, the default en_US was sometimes ignored</li>
@@ -442,6 +447,7 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=10326">#10326</a>: Adds a search engine for the palette browser.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=10981">#10981</a>: When the view property of Axes object is set at 2d, the rotation becomes impossible.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=11375">#11375</a>: When a localized help subdirectory has only a CHAPTER file specifying the section title, it was ignored.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=11476">#11476</a>: <code>clf(&quot;reset&quot;)</code> used on a docked figure resized and moved the whole docked block like the Scilab desktop.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=11692">#11692</a>: The summary of a help section built from both default en_US and localized files was never sorted overall.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=11959">#11959</a>: Allow &quot;Zoom Area&quot; to be clicked out of axes</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=12017">#12017</a>: <code>figure.pixel_drawing_mode</code> is ignored for filled regular polygons and other shapes, still does not work for vectorial export (eps, pdf, etc).</li>
@@ -450,9 +456,10 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=12431">#12431</a>: The page describing the <code>%helps</code> variable needed clarification.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=12453">#12453</a>: The left panel of the palette browser keeps its size when some category is enabled or disabled.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=12897">#12897</a>: Renamed optim's &quot;imp&quot; argument to &quot;iprint&quot;.</li>
-<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13794">#13794</a>: Added polyline property &quot;datatip_display_mode&quot;, allowing datatips to be displayed &quot;always&quot;, &quot;mouseclick&quot; or &quot;mouseover&quot;.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13217">#13217</a>: Fixed augment return when flag2=&quot;i&quot;</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13166">#13166</a>: <code>l</code> and <code>b</code> endian flags used with <code>mget</code> and <code>mgeti</code> were sticky</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13375">#13375</a>: If (Max - Min) == 1, then the multiple selection is not allowed.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13401">#13401</a>: Scilab became a ghost process when it was closed while an input() or halt() instruction was being performed in a callback of an undockable figure.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13583">#13583</a>: <code>getd</code> loading a script including a <code>clear</code> instruction yielded an error</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13597">#13597</a>: <code>help format</code> claimed setting a number of digits instead of characters</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13613">#13613</a>: <code>isdef(name, 'l')</code> produced wrong output.</li>
@@ -460,6 +467,7 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13651">#13651</a>: It was not possible to <code>copy</code> an axes into an uicontrol frame.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13757">#13757</a>: The toolbox menu dit not load properly ATOMS modules not autoloaded.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13759">#13759</a>: Atoms modules do not start, randomly.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13794">#13794</a>: Added polyline property &quot;datatip_display_mode&quot;, allowing datatips to be displayed &quot;always&quot;, &quot;mouseclick&quot; or &quot;mouseover&quot;.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13856">#13856</a>: <code>messagebox</code> crashed under Windows in 5.5 Scilab version and updated in version 6.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13877">#13877</a>: <code>&lt;</code> characters included in <code>&lt;screen&gt;</code> areas were not rendered in the help browser.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=13878">#13878</a>: tokens([]) returns [].</li>
@@ -515,11 +523,14 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14808">#14808</a>: E=[ 'A' 'B' 'C' 'D' 'E']  ,  E(0:0) Crash Scilab Console</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14821">#14821</a>: <code>getio</code> function was missing. An error on the diary file opened has been corrected</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14824">#14824</a>: Incorrect error message with <code>mfprintf(fd, &quot;%d&quot;, [])</code>.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14835">#14835</a>: <code>AFFICH_m</code> block was not rendered correctly.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14839">#14839</a>: <code>plot2d2</code> crashed Scilab.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14887">#14887</a>: For many graphic handle types, the display of the <code>.tag</code> value missed <code>&quot;..&quot;</code> delimiters</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14909">#14909</a>: getlongpathname and getshortpathname return values with &quot;&quot; instead of &quot;/&quot;</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14911">#14911</a>: Added the entry &quot;Label =&gt; Title&quot; in the graphic context menu in a figure</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14941">#14941</a>: <code>find</code> did not accept encoded integers</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14942">#14942</a>: Keep the Tkscale block label if block already has label.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14956">#14956</a>: <code>clf(&quot;reset&quot;)</code> forgot resetting the <code>immediate_drawing</code>, <code>resize</code>, <code>resizefcn</code>, <code>closerequestfcn</code>, <code>toolbar_visible</code>, <code>menubar_visible</code>, <code>infobar_visible</code>, <code>default_axes</code>, and <code>icon</code> figure properties.</li>
 </ul>
 <h3>Bugs fixed in 6.0.0 beta-2 and earlier 6.0.0 pre-releases:</h3>
 <ul>
@@ -725,9 +736,7 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14540">#14540</a>: Datatips did not clip outside axes bounds</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14685">#14685</a>: datavec produced an invalid index error.</li>
 </ul>
-
 <!-- End of the html rendered CHANGES.md file -->
     </div>
   </body>
 </html>
-
