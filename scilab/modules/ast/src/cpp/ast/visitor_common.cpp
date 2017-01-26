@@ -595,6 +595,26 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
     }
 
     types::InternalType* pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
+    if (pFunc == NULL &&
+            (_source->getShortTypeStr().size() > 8 || _dest && _dest->getShortTypeStr().size() > 8))
+    {
+        if (_source->getShortTypeStr().size() > 8)
+        {
+            function_name = L"%" + _source->getShortTypeStr().substr(0, 8) + L"_" + _strType;
+        }
+        else if (_dest)
+        {
+            function_name = L"%" + _source->getShortTypeStr() + L"_" + _strType;
+        }
+
+        if (_dest && _dest->getShortTypeStr().size() > 8)
+        {
+            function_name += L"_" + _dest->getShortTypeStr().substr(0, 8);
+        }
+
+        pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
+    }
+
     // if %type_6 doesn't exist, call %l_6
     if (_dest == NULL && pFunc == NULL)
     {
