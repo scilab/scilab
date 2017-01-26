@@ -350,9 +350,15 @@ public class BasicBlock extends XcosCell implements Serializable {
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.DIAGRAM_CONTEXT, vStr);
         controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DIAGRAM_CONTEXT, vStr);
 
+        // move the children to the parent
         VectorOfScicosID localChildren = new VectorOfScicosID();
-
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.CHILDREN, localChildren);
+        final int size = localChildren.size();
+        for (int i = 0; i < size; i++) {
+            long child = localChildren.get(i);
+            controller.referenceObject(child);
+            controller.setObjectProperty(child, controller.getKind(child), ObjectProperties.PARENT_BLOCK, getUID());
+        }
         controller.setObjectProperty(getUID(), getKind(), ObjectProperties.CHILDREN, localChildren);
 
         /*
