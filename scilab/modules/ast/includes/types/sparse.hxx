@@ -225,9 +225,16 @@ struct EXTERN_AST Sparse : GenericType
 
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring         getTypeStr() SPARSE_CONST {return std::wstring(L"sparse");}
+    virtual std::wstring         getTypeStr() const
+    {
+        return std::wstring(L"sparse");
+    }
+
     /* return type as short string ( s, i, ce, l, ... ), as in overloading macros*/
-    virtual std::wstring         getShortTypeStr() SPARSE_CONST {return std::wstring(L"sp");}
+    virtual std::wstring         getShortTypeStr() const
+    {
+        return std::wstring(L"sp");
+    }
 
     /* create a new sparse matrix containing the result of an addition
        @param o other matrix to add
