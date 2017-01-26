@@ -364,8 +364,9 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                 int sizeRef = viewAsVector ? _pRef->getSize() : pdims[i];
                 double start = evalute(pIL->getStart(), sizeRef);
                 double step = evalute(pIL->getStep(), sizeRef);
+                double end = evalute(pIL->getEnd(), sizeRef);
 
-                int size = pIL->getSize();
+                int size = (end - start) / step + 1;
                 if (size <= 0)
                 {
                     //manage implicit that return []
