@@ -35,6 +35,7 @@
 #include "overload.hxx"
 #include "configvariable.hxx"
 #include "exp.hxx"
+#include "types_comparison_eq.hxx"
 
 #include "view_scilab/Adapters.hxx"
 #include "controller_helpers.hxx"
@@ -266,6 +267,41 @@ public:
     /**
      * property comparison
      */
+
+    bool operator==(const types::InternalType& o) override final
+    {
+
+        const Adapters::adapters_index_t adapter_index = Adapters::instance().lookup_by_typename(o.getShortTypeStr());
+        // Check that 'ut' is an Adapter of the same type as *this
+        if (adapter_index == Adapters::INVALID_ADAPTER)
+        {
+            return false;
+        }
+        if (this->getTypeStr() != o.getTypeStr())
+        {
+            return false;
+        }
+
+        typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
+        std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
+
+        bool internal_equal = true;
+        Controller controller;
+        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end() && internal_equal; ++it)
+        {
+            types::InternalType* ith_prop1 = it->get(*static_cast<const Adaptor*>(this), controller);
+            types::InternalType* ith_prop2 = it->get(*static_cast<const Adaptor*>(&o), controller);
+
+            // loop while the inner types are equals
+            internal_equal = *ith_prop1 == *ith_prop2;
+
+            // Getting a property allocates data, so free it
+            ith_prop1->killMe();
+            ith_prop2->killMe();
+        }
+
+        return internal_equal;
+    }
 
     types::Bool* equal(types::UserType*& ut) override final
     {

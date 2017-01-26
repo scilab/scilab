@@ -62,6 +62,11 @@ public :
     /*** User can overload these methods                            ***/
     /*** all methods not overloaded will call scilab overload       ***/
 
+    virtual bool operator==(const InternalType& it) override
+    {
+        return false;
+    }
+
     virtual Bool* equal(UserType*& /*ut*/)
     {
         return NULL;
