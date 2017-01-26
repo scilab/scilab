@@ -101,12 +101,12 @@ public :
     virtual ReturnValue     call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    virtual std::wstring    getTypeStr() const
     {
         return L"fptr";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
+    virtual std::wstring    getShortTypeStr() const
     {
         return L"fptr";
     }

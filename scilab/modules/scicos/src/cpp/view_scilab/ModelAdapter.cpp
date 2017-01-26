@@ -1442,12 +1442,12 @@ ModelAdapter::~ModelAdapter()
 {
 }
 
-std::wstring ModelAdapter::getTypeStr()
+std::wstring ModelAdapter::getTypeStr() const
 {
     return getSharedTypeStr();
 }
 
-std::wstring ModelAdapter::getShortTypeStr()
+std::wstring ModelAdapter::getShortTypeStr() const
 {
     return getSharedTypeStr();
 }

@@ -41,8 +41,8 @@ public:
         return L"graphics";
     }
 
-    std::wstring getTypeStr();
-    std::wstring getShortTypeStr();
+    std::wstring getTypeStr() const;
+    std::wstring getShortTypeStr() const;
 
     types::InternalType* getGrIContent() const;
     void setGrIContent(types::InternalType* v);

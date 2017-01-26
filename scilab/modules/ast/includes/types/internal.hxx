@@ -338,9 +338,9 @@ public :
     virtual int getInvokeNbIn();
     virtual int getInvokeNbOut();
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring            getTypeStr() = 0;
+    virtual std::wstring            getTypeStr() const = 0;
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring            getShortTypeStr() = 0;
+    virtual std::wstring            getShortTypeStr() const = 0;
     virtual bool                    operator==(const InternalType& it);
     virtual bool                    operator!=(const InternalType& it);
 

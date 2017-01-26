@@ -104,12 +104,12 @@ public :
     bool                    operator!=(const InternalType& it);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    virtual std::wstring    getTypeStr() const
     {
         return L"polynomial";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
+    virtual std::wstring    getShortTypeStr() const
     {
         return L"p";
     }

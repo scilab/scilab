@@ -22,7 +22,7 @@
 
 namespace types
 {
-class UserType : public GenericType
+class EXTERN_AST UserType : public GenericType
 {
 public :
     UserType() {}
@@ -54,8 +54,8 @@ public :
     /*** User will be asked to implement the following methods      ***/
     /*** in order Scilab engine to manage correctly this user type  ***/
 
-    virtual std::wstring    getTypeStr() = 0;
-    virtual std::wstring    getShortTypeStr() = 0;
+    virtual std::wstring    getTypeStr() const = 0;
+    virtual std::wstring    getShortTypeStr() const = 0;
     virtual UserType*       clone() = 0;
 
 public :

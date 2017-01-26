@@ -85,13 +85,13 @@ public :
 
     inline bool isNumericallyComplex(double tolerance = 0)
     {
-        if(isComplex())
+        if (isComplex())
         {
             int listSize = getSize();
             double* bImg = getImg();
-            for(int i = 0; i < listSize; i++)
+            for (int i = 0; i < listSize; i++)
             {
-                if(abs(bImg[i]) > tolerance)
+                if (abs(bImg[i]) > tolerance)
                 {
                     return false;
                 }
@@ -138,12 +138,12 @@ public :
     void                        convertFromZComplex();
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring        getTypeStr()
+    virtual std::wstring        getTypeStr() const
     {
         return L"constant";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring        getShortTypeStr()
+    virtual std::wstring        getShortTypeStr() const
     {
         return L"s";
     }

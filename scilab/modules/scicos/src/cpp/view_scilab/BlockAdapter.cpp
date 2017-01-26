@@ -203,12 +203,12 @@ BlockAdapter::~BlockAdapter()
     GraphicsAdapter::remove_partial_links_information(getAdaptee());
 }
 
-std::wstring BlockAdapter::getTypeStr()
+std::wstring BlockAdapter::getTypeStr() const
 {
     return getSharedTypeStr();
 }
 
-std::wstring BlockAdapter::getShortTypeStr()
+std::wstring BlockAdapter::getShortTypeStr() const
 {
     return getSharedTypeStr();
 }

@@ -76,11 +76,11 @@ CprAdapter::~CprAdapter()
 {
 }
 
-std::wstring CprAdapter::getTypeStr()
+std::wstring CprAdapter::getTypeStr() const
 {
     return getSharedTypeStr();
 }
-std::wstring CprAdapter::getShortTypeStr()
+std::wstring CprAdapter::getShortTypeStr() const
 {
     return getSharedTypeStr();
 }

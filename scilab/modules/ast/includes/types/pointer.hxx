@@ -50,12 +50,12 @@ public:
         return false;
     }
 
-    std::wstring getTypeStr()
+    std::wstring getTypeStr() const
     {
         return L"pointer";
     }
 
-    std::wstring getShortTypeStr()
+    std::wstring getShortTypeStr() const
     {
         return L"ptr";
     }

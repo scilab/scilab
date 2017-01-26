@@ -39,8 +39,8 @@ public:
         return L"diagram";
     }
 
-    std::wstring getTypeStr();
-    std::wstring getShortTypeStr();
+    std::wstring getTypeStr() const;
+    std::wstring getShortTypeStr() const;
 
     types::InternalType* getContribContent() const;
     void setContribContent(types::InternalType* v);

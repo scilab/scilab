@@ -268,7 +268,7 @@ InternalType* TList::extractStrings(const std::list<std::wstring>& _stFields)
     return pLResult;
 }
 
-std::wstring TList::getTypeStr()
+std::wstring TList::getTypeStr() const
 {
     if (getSize() < 1)
     {
@@ -278,7 +278,7 @@ std::wstring TList::getTypeStr()
     return getFieldNames()->get(0);
 }
 
-std::wstring TList::getShortTypeStr()
+std::wstring TList::getShortTypeStr() const
 {
     return getTypeStr();
 }
@@ -293,7 +293,7 @@ TList* TList::set(const int _iIndex, InternalType* _pIT)
     return List::set(_iIndex, _pIT)->getAs<TList>();
 }
 
-String* TList::getFieldNames()
+String* TList::getFieldNames() const
 {
     return (*m_plData)[0]->getAs<types::String>();
 }

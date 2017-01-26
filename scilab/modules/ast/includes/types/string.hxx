@@ -59,12 +59,12 @@ public :
 
     bool                    subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    virtual std::wstring    getTypeStr() const
     {
         return L"string";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
+    virtual std::wstring    getShortTypeStr() const
     {
         return L"c";
     }

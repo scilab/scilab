@@ -19,7 +19,7 @@
 #include "dynlib_mpi.h"
 #include "cpp_gateway_prototype.hxx"
 
-MPI_IMPEXP CPP_GATEWAY_PROTOTYPE_EXPORT(sci_mpi_createComm, MPI_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_mpi_createComm, MPI_IMPEXP);
 
 #endif /* __MPI_GW_HXX__ */
 

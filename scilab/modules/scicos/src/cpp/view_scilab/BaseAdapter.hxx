@@ -336,8 +336,8 @@ public:
      * All following methods should be implemented by each template instance
      */
 
-    virtual std::wstring getTypeStr() = 0;
-    virtual std::wstring getShortTypeStr() = 0;
+    virtual std::wstring getTypeStr() const = 0;
+    virtual std::wstring getShortTypeStr() const = 0;
 
 private:
     virtual UserType* clone() override final

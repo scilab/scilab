@@ -28,30 +28,33 @@ public:
         bHasToString = _VariableToString;
     }
 
-    ~NewType() {}
+    ~NewType()
+    {
+        
+    }
 
-    bool                    hasToString()
+    bool hasToString()
     {
         return bHasToString;
     }
 
-    bool                    toString(std::wostringstream& ostr)
+    bool toString(std::wostringstream& ostr)
     {
         ostr << "This is my type.";
         return true;
     }
 
-    std::wstring            getTypeStr()
+    std::wstring getTypeStr() const
     {
         return L"NewType";
     }
 
-    std::wstring            getShortTypeStr()
+    std::wstring getShortTypeStr() const
     {
         return L"nt";
     }
 
-    NewType*    clone()
+    NewType* clone()
     {
         return new NewType();
     }

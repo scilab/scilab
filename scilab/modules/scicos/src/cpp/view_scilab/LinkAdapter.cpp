@@ -903,11 +903,11 @@ LinkAdapter::~LinkAdapter()
     }
 }
 
-std::wstring LinkAdapter::getTypeStr()
+std::wstring LinkAdapter::getTypeStr() const
 {
     return getSharedTypeStr();
 }
-std::wstring LinkAdapter::getShortTypeStr()
+std::wstring LinkAdapter::getShortTypeStr() const
 {
     return getSharedTypeStr();
 }
@@ -942,7 +942,7 @@ void LinkAdapter::add_partial_links_information(Controller& controller, model::B
 {
     switch (original->kind())
     {
-            // add the from / to information if applicable
+        // add the from / to information if applicable
         case LINK:
         {
             auto it = partial_links.find(original->id());

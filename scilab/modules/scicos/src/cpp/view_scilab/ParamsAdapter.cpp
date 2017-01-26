@@ -479,11 +479,11 @@ ParamsAdapter::~ParamsAdapter()
     doc_content->killMe();
 }
 
-std::wstring ParamsAdapter::getTypeStr()
+std::wstring ParamsAdapter::getTypeStr() const
 {
     return getSharedTypeStr();
 }
-std::wstring ParamsAdapter::getShortTypeStr()
+std::wstring ParamsAdapter::getShortTypeStr() const
 {
     return getSharedTypeStr();
 }

@@ -80,11 +80,11 @@ StateAdapter::~StateAdapter()
 {
 }
 
-std::wstring StateAdapter::getTypeStr()
+std::wstring StateAdapter::getTypeStr() const
 {
     return getSharedTypeStr();
 }
-std::wstring StateAdapter::getShortTypeStr()
+std::wstring StateAdapter::getShortTypeStr() const
 {
     return getSharedTypeStr();
 }

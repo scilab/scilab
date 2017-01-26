@@ -90,7 +90,7 @@ std::vector<InternalType *> *List::getData()
 ** size_get
 ** Return the number of elements in list
 */
-int List::getSize()
+int List::getSize() const
 {
     return static_cast<int>(m_plData->size());
 }

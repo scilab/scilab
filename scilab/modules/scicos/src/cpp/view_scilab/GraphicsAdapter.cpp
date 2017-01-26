@@ -673,12 +673,12 @@ GraphicsAdapter::~GraphicsAdapter()
     }
 }
 
-std::wstring GraphicsAdapter::getTypeStr()
+std::wstring GraphicsAdapter::getTypeStr() const
 {
     return getSharedTypeStr();
 }
 
-std::wstring GraphicsAdapter::getShortTypeStr()
+std::wstring GraphicsAdapter::getShortTypeStr() const
 {
     return getSharedTypeStr();
 }

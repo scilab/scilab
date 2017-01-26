@@ -38,8 +38,8 @@ public:
         return L"cpr";
     }
 
-    std::wstring getTypeStr();
-    std::wstring getShortTypeStr();
+    std::wstring getTypeStr() const;
+    std::wstring getShortTypeStr() const;
 };
 
 } /* namespace view_scilab */

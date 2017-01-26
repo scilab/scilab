@@ -39,8 +39,8 @@ public:
         return L"params";
     }
 
-    std::wstring getTypeStr();
-    std::wstring getShortTypeStr();
+    std::wstring getTypeStr() const;
+    std::wstring getShortTypeStr() const;
 
     types::InternalType* getDocContent() const;
     void setDocContent(types::InternalType* v);

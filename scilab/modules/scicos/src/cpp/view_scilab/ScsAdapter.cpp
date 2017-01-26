@@ -52,11 +52,11 @@ ScsAdapter::~ScsAdapter()
 {
 }
 
-std::wstring ScsAdapter::getTypeStr()
+std::wstring ScsAdapter::getTypeStr() const
 {
     return getSharedTypeStr();
 }
-std::wstring ScsAdapter::getShortTypeStr()
+std::wstring ScsAdapter::getShortTypeStr() const
 {
     return getSharedTypeStr();
 }

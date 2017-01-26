@@ -31,7 +31,7 @@ protected :
     std::vector<InternalType *>*    getData();
     List(List *_oListCopyMe);
 public :
-    int                             getSize();
+    int                             getSize() const;
 
     void                            whoAmI(void)
     {
@@ -119,12 +119,12 @@ public :
     virtual List*                   set(const int _iIndex, InternalType* _pIT);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring            getTypeStr()
+    virtual std::wstring            getTypeStr() const
     {
         return L"list";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring            getShortTypeStr()
+    virtual std::wstring            getShortTypeStr() const
     {
         return L"l";
     }

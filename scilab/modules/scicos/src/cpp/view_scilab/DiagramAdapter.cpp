@@ -531,11 +531,11 @@ DiagramAdapter::~DiagramAdapter()
     contrib_content->killMe();
 }
 
-std::wstring DiagramAdapter::getTypeStr()
+std::wstring DiagramAdapter::getTypeStr() const
 {
     return getSharedTypeStr();
 }
-std::wstring DiagramAdapter::getShortTypeStr()
+std::wstring DiagramAdapter::getShortTypeStr() const
 {
     return getSharedTypeStr();
 }

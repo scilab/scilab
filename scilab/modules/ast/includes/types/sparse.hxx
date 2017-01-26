@@ -561,9 +561,15 @@ struct EXTERN_AST SparseBool : GenericType
     bool operator!=(const InternalType& it) SPARSE_CONST;
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring getTypeStr() SPARSE_CONST {return std::wstring(L"boolean sparse");}
+    virtual std::wstring getTypeStr() const
+    {
+        return std::wstring(L"boolean sparse");
+    }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring getShortTypeStr() SPARSE_CONST {return std::wstring(L"spb");}
+    virtual std::wstring getShortTypeStr() const
+    {
+        return std::wstring(L"spb");
+    }
 
     inline ScilabType getType(void) SPARSE_CONST
     {

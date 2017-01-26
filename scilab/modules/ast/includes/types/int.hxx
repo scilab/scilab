@@ -153,10 +153,10 @@ public :
     }
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring        getTypeStr();
+    virtual std::wstring        getTypeStr() const;
 
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring        getShortTypeStr()
+    virtual std::wstring        getShortTypeStr() const
     {
         return L"i";
     }
@@ -609,42 +609,42 @@ template<> inline InternalType::ScilabId Int<unsigned long long>::getId()
 }
 
 // Specializations
-template<> inline std::wstring Int<char>::getTypeStr()
+template<> inline std::wstring Int<char>::getTypeStr() const
 {
     return L"int8";
 }
 
-template<> inline std::wstring Int<short>::getTypeStr()
+template<> inline std::wstring Int<short>::getTypeStr() const
 {
     return L"int16";
 }
 
-template<> inline std::wstring Int<int>::getTypeStr()
+template<> inline std::wstring Int<int>::getTypeStr() const
 {
     return L"int32";
 }
 
-template<> inline std::wstring Int<long long>::getTypeStr()
+template<> inline std::wstring Int<long long>::getTypeStr() const
 {
     return L"int64";
 }
 
-template<> inline std::wstring Int<unsigned char>::getTypeStr()
+template<> inline std::wstring Int<unsigned char>::getTypeStr() const
 {
     return L"uint8";
 }
 
-template<> inline std::wstring Int<unsigned short>::getTypeStr()
+template<> inline std::wstring Int<unsigned short>::getTypeStr() const
 {
     return L"uint16";
 }
 
-template<> inline std::wstring Int<unsigned int>::getTypeStr()
+template<> inline std::wstring Int<unsigned int>::getTypeStr() const
 {
     return L"uint32";
 }
 
-template<> inline std::wstring Int<unsigned long long>::getTypeStr()
+template<> inline std::wstring Int<unsigned long long>::getTypeStr() const
 {
     return L"uint64";
 }

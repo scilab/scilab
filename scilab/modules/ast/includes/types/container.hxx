@@ -32,7 +32,7 @@ public :
         std::cout << "types::Container";
     }
 
-    virtual int             getSize() = 0 ;
+    virtual int             getSize() const = 0 ;
 
     virtual bool            isAssignable(void)
     {
@@ -49,9 +49,9 @@ public :
     }
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr() = 0;
+    virtual std::wstring    getTypeStr() const = 0;
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr() = 0;
+    virtual std::wstring    getShortTypeStr() const = 0;
 };
 }
 

@@ -296,11 +296,11 @@ TextAdapter::~TextAdapter()
 {
 }
 
-std::wstring TextAdapter::getTypeStr()
+std::wstring TextAdapter::getTypeStr() const
 {
     return getSharedTypeStr();
 }
-std::wstring TextAdapter::getShortTypeStr()
+std::wstring TextAdapter::getShortTypeStr() const
 {
     return getSharedTypeStr();
 }

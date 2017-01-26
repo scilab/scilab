@@ -93,12 +93,12 @@ public :
     }
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring  getTypeStr()
+    virtual std::wstring  getTypeStr() const
     {
         return L"callable";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring  getShortTypeStr() = 0;
+    virtual std::wstring  getShortTypeStr() const = 0;
     virtual InternalType* clone(void) = 0;
 
     virtual bool        isAssignable(void)

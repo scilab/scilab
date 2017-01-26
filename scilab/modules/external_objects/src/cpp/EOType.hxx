@@ -37,12 +37,12 @@ public :
     }
     virtual ~EOType() {}
 
-    inline std::wstring getTypeStr()
+    inline std::wstring getTypeStr() const
     {
         return L"eotype";
     }
 
-    inline std::wstring getShortTypeStr()
+    inline std::wstring getShortTypeStr() const
     {
         return L"eo";
     }

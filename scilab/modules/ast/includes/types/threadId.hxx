@@ -38,12 +38,12 @@ public :
     bool                    toString(std::wostringstream& ostr);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    virtual std::wstring    getTypeStr() const
     {
         return L"ThreadId";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
+    virtual std::wstring    getShortTypeStr() const
     {
         return L"tid";
     }
