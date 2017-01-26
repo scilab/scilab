@@ -419,9 +419,7 @@ public final class Xcos {
         /*
          * If it is the first window opened, then open the palette first.
          */
-        if (openedDiagrams().isEmpty()) {
-            PaletteManager.setVisible(true);
-        }
+        boolean openThePalette = openedDiagrams().isEmpty();
 
         JavaController controller = new JavaController();
         XcosDiagram diag = null;
@@ -439,7 +437,7 @@ public final class Xcos {
         /*
          * looking for an already opened diagram
          */
-        final ScicosObjectOwner root = openedDiagram(f);
+        ScicosObjectOwner root = openedDiagram(f);
         if (root != null) {
             diag = diagrams.get(root).iterator().next();
         }
@@ -495,6 +493,9 @@ public final class Xcos {
             diag = new XcosDiagram(controller, currentId, Kind.DIAGRAM, "");
             diag.installListeners();
 
+            root = new ScicosObjectOwner(controller, diag.getUID(), Kind.DIAGRAM);
+            addDiagram(root, diag);
+
             /*
              * Ask for file creation
              */
@@ -507,18 +508,21 @@ public final class Xcos {
                     }
 
                     // return now, to avoid tab creation
-                    controller.deleteObject(diag.getUID());
+                    diagrams.remove(root);
                     return;
                 }
             }
 
-            addDiagram(new ScicosObjectOwner(controller, diag.getUID(), Kind.DIAGRAM), diag);
 
             /*
              * Create a visible window before loading
              */
             if (XcosTab.get(diag) == null) {
                 XcosTab.restore(diag);
+
+            }
+            if (openThePalette) {
+                PaletteManager.setVisible(true);
             }
 
             /*
