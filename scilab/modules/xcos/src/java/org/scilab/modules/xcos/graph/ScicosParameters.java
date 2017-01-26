@@ -217,7 +217,7 @@ public class ScicosParameters implements Serializable, Cloneable {
     public void setDebugLevel(final JavaController controller, int debugLevel) throws PropertyVetoException {
         int oldValue = getDebugLevel(controller);
         vcs.fireVetoableChange(DEBUG_LEVEL_CHANGE, oldValue, debugLevel);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DIAGRAM_CONTEXT, debugLevel);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DEBUG_LEVEL, debugLevel);
     }
 
     /*
