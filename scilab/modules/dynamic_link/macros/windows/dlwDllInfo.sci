@@ -13,9 +13,28 @@
 //=============================================================================
 function dllinfolist = dlwDllInfo(dllname, options)
     //=============================================================================
+    
+    function cmd = getEnvCmd()
+        if win64() then
+            if dlwIsExpress() then
+                arch = "x86_amd64";
+            else
+                arch = "x64";
+            end
+        else
+            arch = "x86";
+        end
+
+        path = dlwGetVisualStudioPath();
+        cmd = """" + path + "\VC\vcvarsall.bat"" " + arch;
+    endfunction
+    
     function symbolslist = dllinfoimports(dllname)
         symbolslist = list();
-        [result,bOK] = dos("dumpbin /IMPORTS """ + dllname +"""");
+
+        cmd = getEnvCmd() + " && dumpbin /IMPORTS """ + dllname +""""
+
+        [result,bOK] = dos(cmd);
         if bOK == %T then
             // cleaning output
             result = stripblanks(result);
@@ -54,7 +73,8 @@ function dllinfolist = dlwDllInfo(dllname, options)
     function symbolslist = dllinfoexports(dllname)
         symbolslist = list();
         symbolsdll = [];
-        [result, bOK] = dos("dumpbin /EXPORTS """ + dllname +"""");
+        cmd = getEnvCmd() + " && dumpbin /EXPORTS """ + dllname +"""";
+        [result, bOK] = dos(cmd);
         if bOK == %T then
             result(result == "") = [];
             ilastcomment = grep(result, "ordinal hint RVA");
@@ -77,7 +97,8 @@ function dllinfolist = dlwDllInfo(dllname, options)
     function dllinfolist = dllinfomachine(dllname)
         dllinfolist = list();
         machine = "";
-        [result,bOK] = dos("dumpbin /HEADERS """ + dllname +"""");
+        cmd = getEnvCmd() + " && dumpbin /HEADERS """ + dllname +"""";
+        [result, bOK] = dos(cmd);
         if bOK == %T then
             iMachine = grep(result, "machine (");
             if iMachine <> [] then
