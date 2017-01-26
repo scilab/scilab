@@ -9,7 +9,7 @@
 // Import diagram
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Integer/dflipflop.zcos"));
 A_ref = int8(zeros(128,1));
-try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end
+try scicos_simulate(scs_m, "nw"); catch disp(lasterror()); end
 !messagebox: No continuous-time state. Thresholds are ignored; this    !
 !                                                                      !
 !messagebox: may be OK if you don't generate external events with them.!

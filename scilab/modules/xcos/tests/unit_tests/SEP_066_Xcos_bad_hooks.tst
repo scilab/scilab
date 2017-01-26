@@ -5,6 +5,8 @@
 
 // <-- ENGLISH IMPOSED -->
 // <-- XCOS TEST -->
+// <-- NO CHECK REF -->
+
 //
 // <-- Short Description -->
 // Check the API of the Xcos hooks, see SEP_066_Xcos_hooks.odt

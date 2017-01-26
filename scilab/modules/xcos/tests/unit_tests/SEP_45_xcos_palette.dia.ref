@@ -21,14 +21,6 @@ end
 // Import a Scicos palette
 exec(SCI + "/modules/scicos/palettes/Branching.cosf", -1);
 pal = xcosPal(scs_m);
-Xcos error: Wrong value for field graphics.pin: FIXME port has not been updated.
-Xcos error: Wrong value for field graphics.pin: FIXME port has not been updated.
-Xcos error: Wrong value for field graphics.pout: FIXME port has not been updated.
-Xcos error: Wrong value for field graphics.pein: FIXME port has not been updated.
-Xcos error: Wrong value for field graphics.pin: FIXME port has not been updated.
-Xcos error: Wrong value for field graphics.pein: FIXME port has not been updated.
-Xcos error: Wrong value for field graphics.pout: FIXME port has not been updated.
-Xcos error: Wrong value for field graphics.pein: FIXME port has not been updated.
 xcosPalExport(pal, exportedFile);
 xcosPalAdd(exportedFile);
 // unit test for a custom simple block

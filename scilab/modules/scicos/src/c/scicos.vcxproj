@@ -247,6 +247,7 @@ lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="..\..\sci_gateway\cpp\sci_curblock.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_getblocklabel.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_getscicosvars.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_model2blk.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_phase_simulation.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_pointer_xproperty.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_scicosim.cpp" />

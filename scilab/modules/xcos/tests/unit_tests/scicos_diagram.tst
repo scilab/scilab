@@ -9,7 +9,7 @@
 // Check scicos_diagram
 
 
-function assert_check_diagram(scs_m)
+function assert_check_diagram(scs_m, version)
 
     // check type
     assert_checktrue(or(type(scs_m) == [17 128]));
@@ -22,7 +22,11 @@ function assert_check_diagram(scs_m)
     assert_checkequal(scs_m.objs, list());
 
     // check version
-    assert_checkequal(scs_m.version, "");
+    if exists("version") then
+        assert_checkequal(scs_m.version, version);
+    else
+        assert_checkequal(scs_m.version, "");
+    end
 
     // check contrib
     assert_checkequal(scs_m.contrib, list());
@@ -94,4 +98,4 @@ assert_check_diagram(scicos_diagram());
 
 // assert on an empty xcos diagram
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/empty.zcos"));
-assert_check_diagram(scs_m);
+assert_check_diagram(scs_m, "scicos4.4");

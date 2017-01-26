@@ -7,7 +7,7 @@
 // ============================================================================
 
 // <-- TEST WITH GRAPHIC -->
-// <-- NOT YET FIXED -->
+// <-- NOT FIXED -->
 
 // libs are not loaded at startup
 if isdef("BIGSOM_f") then pause, end
