@@ -20,13 +20,6 @@
 
 ilib_verbose(0);
 
-// Redefining messagebox() to avoid popup from c_pass2.sci
-prot = funcprot();
-funcprot(0);
-function messagebox(msg, modal, msg_title)
-endfunction
-funcprot(prot);
-
 importXcosDiagram(SCI+"/modules/xcos/tests/nonreg_tests/bug_12384.zcos");
 Info = scicos_simulate(scs_m,list());
 

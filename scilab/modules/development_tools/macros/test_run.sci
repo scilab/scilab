@@ -738,7 +738,7 @@ function status = test_single(_module, _testPath, _testName)
     "   quit;" ;
     "endfunction"];
     if ~interactive then
-        head($+1) = "function []=messagebox(msg, msg_title, info), disp(''messagebox: '' + msg);endfunction";
+        head($+1) = "function []=messagebox(msg, msg_title, info, buttons, isModal), disp(''messagebox: '' + msg);endfunction";
     end
     head = [ head ;
     "predef(''all'');";
@@ -888,10 +888,10 @@ function status = test_single(_module, _testPath, _testName)
             tmp = mgetl(tmp_res)
             tmp(tmp=="") = []
             status.details = "   " + strsubst(..
-                [""
-                 "----- " + tmp_res + ": 10 last lines: -----"
-                 tmp(max(1,size(tmp,1)-9):$)
-                 ], TMPDIR, "TMPDIR")
+            [""
+            "----- " + tmp_res + ": 10 last lines: -----"
+            tmp(max(1,size(tmp,1)-9):$)
+            ], TMPDIR, "TMPDIR")
         end
         return;
     end
@@ -1084,7 +1084,7 @@ function status = test_single(_module, _testPath, _testName)
     // Comparaison ref <--> dia
 
     if   (reference=="check" & _module.reference=="check") | ..
-         (reference ~= "skip" & _module.reference=="create") then
+        (reference ~= "skip" & _module.reference=="create") then
         //  Do some modification in  dia file
 
         dia(grep(dia, "printf(''%s\n'',tmpdirToPrint);")) = [];

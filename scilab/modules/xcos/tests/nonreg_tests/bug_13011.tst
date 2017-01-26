@@ -18,14 +18,6 @@
 // Fails under Mac OS X 10.9
 
 ilib_verbose(0);
-prot = funcprot();
-funcprot(0);
-
-// Stubbing the messagebox method
-function messagebox(msg, msg_title)
-endfunction
-
-funcprot(prot);
 
 importXcosDiagram(SCI+"/modules/xcos/tests/nonreg_tests/bug_12384.zcos");
 xcos_simulate(scs_m, 4);

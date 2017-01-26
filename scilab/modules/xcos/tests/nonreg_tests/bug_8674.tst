@@ -15,7 +15,7 @@
 //
 // <-- Short Description -->
 // Check that an erroneous "From workspace" block does not produce an error.
-// 
+//
 
 result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8674.zcos");
 if (result <> %T) then pause,end
@@ -23,10 +23,6 @@ if (result <> %T) then pause,end
 // overwrtie dialogs
 prot = funcprot();
 funcprot(0);
-
-function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
-    btn = 1;
-endfunction
 
 function result = dialog(labels,valueini)
     result = valueini;
