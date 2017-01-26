@@ -118,7 +118,18 @@ int createNewFigureWithAxes()
     if (iUserDataSize != 0)
     {
         int* pUserData = NULL;
+
         getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA__, jni_int_vector, (void**)&pUserData);
+
+        if (sizeof(void*) == 4) //32 bits
+        {
+            increaseValRef(NULL, (int*)* (int*)pUserData);
+        }
+        else //64 bits
+        {
+            increaseValRef(NULL, (int*)* (long long*)pUserData);
+        }
+
         setGraphicObjectProperty(getCurrentSubWin(), __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
     }
 
