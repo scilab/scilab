@@ -453,16 +453,17 @@ public final class XcosCellFactory {
         if (block instanceof SplitBlock) {
             convertGeometry = false;
         } else if (block instanceof RoundBlock) {
-            int numberOfPorts = properties.get(ObjectProperties.INPUTS) +
-                                properties.get(ObjectProperties.OUTPUTS) +
-                                properties.get(ObjectProperties.EVENT_INPUTS) +
-                                properties.get(ObjectProperties.EVENT_OUTPUTS);
+            int numberOfPorts = properties.get(ObjectProperties.INPUTS) + 1 +
+                                properties.get(ObjectProperties.OUTPUTS) + 1 +
+                                properties.get(ObjectProperties.EVENT_INPUTS) + 1 +
+                                properties.get(ObjectProperties.EVENT_OUTPUTS) + 1;
             convertGeometry = (2 * w + 2 * h) < (numberOfPorts * BasicPort.DEFAULT_PORTSIZE);
         } else {
-            convertGeometry = h < (properties.get(ObjectProperties.INPUTS) * BasicPort.DEFAULT_PORTSIZE) |
-                              h < (properties.get(ObjectProperties.OUTPUTS) * BasicPort.DEFAULT_PORTSIZE) |
-                              w < (properties.get(ObjectProperties.EVENT_INPUTS) * BasicPort.DEFAULT_PORTSIZE) |
-                              w < (properties.get(ObjectProperties.EVENT_OUTPUTS) * BasicPort.DEFAULT_PORTSIZE);
+            double minimalHeight = Math.max((properties.get(ObjectProperties.INPUTS) + 1) * BasicPort.DEFAULT_PORTSIZE, (properties.get(ObjectProperties.OUTPUTS) + 1) * BasicPort.DEFAULT_PORTSIZE);
+            double minimalWidth = Math.max((properties.get(ObjectProperties.EVENT_INPUTS) + 1) * BasicPort.DEFAULT_PORTSIZE, (properties.get(ObjectProperties.EVENT_OUTPUTS) + 1) * BasicPort.DEFAULT_PORTSIZE);
+
+            convertGeometry = h < minimalHeight | w < minimalWidth;
+            convertGeometry |= h * w < minimalHeight * minimalWidth;
         }
 
         if (convertGeometry) {
