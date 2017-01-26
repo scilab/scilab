@@ -76,6 +76,7 @@ import com.mxgraph.util.mxEventObject;
 import com.mxgraph.view.mxStylesheet;
 import java.util.stream.Collectors;
 import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
+import org.scilab.modules.xcos.graph.model.XcosGraphModel;
 
 /**
  * Xcos entry point class
@@ -962,23 +963,21 @@ public final class Xcos {
 
     private void warnCell(final String[] uids, final String message) {
 
-        final mxCell[] cells = lookupForCells(uids);
+        final mxCell[] cells  = new mxCell[uids.length];
+        final XcosDiagram[] diags  = new XcosDiagram[uids.length];
+
+        lookupForCells(uids, cells, diags);
         for (int i = cells.length - 1; i >= 0; --i) {
             mxCell cell = cells[i];
 
             // perform the action on the last visible block
             if (cell != null) {
-                final XcosDiagram parent = findParent(cell);
+                final XcosDiagram parent = diags[i];
                 parent.warnCellByUID(cell.getId(), message);
 
-                SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        /*
-                         * Focus on an existing diagram
-                         */
-                        XcosTab.get(parent).setCurrent();
-                    }
+                // Focus on an existing diagram
+                SwingUtilities.invokeLater(() -> {
+                    XcosTab.get(parent).setCurrent();
                 });
 
                 return;
@@ -987,21 +986,16 @@ public final class Xcos {
         }
     }
 
-    public mxCell[] lookupForCells(final String[] uid) {
-        mxCell[] found = new mxCell[uid.length];
-        XcosView view = (XcosView) JavaController.lookup_view(Xcos.class.getName());
-
-        final String[] sortedUIDs = Arrays.copyOf(uid, uid.length);
-        Arrays.sort(sortedUIDs);
-
-        view.getVisibleObjects().values().stream()
-        // look for the visible objects in the UID set
-        .filter(o -> o instanceof mxCell).map(o -> (mxCell) o).filter(o -> Arrays.binarySearch(sortedUIDs, o.getId()) >= 0)
-
-        // push the results to the resulting array
-        .forEach(o -> found[Arrays.asList(uid).indexOf(o.getId())] = o);
-
-        return found;
+    public void lookupForCells(final String[] uid, final mxCell[] cells, final XcosDiagram[] diags) {
+        final List<XcosDiagram> all = openedDiagrams();
+        for (int i = 0; i < uid.length; i++) {
+            final String id = uid[i];
+            diags[i] = all.stream().filter(d -> ((XcosGraphModel) d.getModel()).getCell(id) != null)
+                       .findFirst().orElse(null);
+            if (diags[i] != null) {
+                cells[i] = (mxCell) ((XcosGraphModel) diags[i].getModel()).getCell(id);
+            }
+        }
     }
 
     /**
