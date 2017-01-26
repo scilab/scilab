@@ -49,6 +49,11 @@ bool descendent (T left, T right)
 {
     if (ISNAN((double)left))
     {
+        if (ISNAN((double)right))
+        {
+            return false;
+        }
+
         return true;
     }
 
