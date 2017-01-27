@@ -16,6 +16,7 @@
 
 package org.scilab.modules.xcos.graph;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyVetoException;
 import java.beans.VetoableChangeListener;
 import java.beans.VetoableChangeSupport;
@@ -26,6 +27,8 @@ import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfString;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.preferences.XcosOptions;
 
 /**
@@ -103,8 +106,7 @@ public class ScicosParameters implements Serializable, Cloneable {
     /**
      * Reference to the diagram
      */
-    private final long uid;
-    private final Kind kind;
+    private final ScicosObjectOwner root;
 
     /*
      * Beans support, used to follow instance modification and validate changes.
@@ -115,23 +117,29 @@ public class ScicosParameters implements Serializable, Cloneable {
      * Default constructor
      *
      * Initialize parameters with their default values.
+     * @param root the diagram
      */
-    public ScicosParameters(final long uid, final Kind kind) {
-        this.uid = uid;
-        this.kind = kind;
+    public ScicosParameters(final ScicosObjectOwner root) {
+        this.root = root;
 
         /*
          * This call will update static values from the configuration.
          */
         XcosOptions.getSimulation();
+
+        // install the modification handler
+        vcs.addVetoableChangeListener((PropertyChangeEvent evt) -> {
+            Xcos.getInstance().setModified(root, true);
+            Xcos.getInstance().openedDiagrams(root).stream().forEach(d -> d.updateTabTitle());
+        });
     }
 
     public long getUID() {
-        return uid;
+        return root.getUID();
     }
 
     public Kind getKind() {
-        return kind;
+        return root.getKind();
     }
 
     /**
@@ -218,61 +226,5 @@ public class ScicosParameters implements Serializable, Cloneable {
         int oldValue = getDebugLevel(controller);
         vcs.fireVetoableChange(DEBUG_LEVEL_CHANGE, oldValue, debugLevel);
         controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DEBUG_LEVEL, debugLevel);
-    }
-
-    /*
-     * VetoableChangeSupport proxy methods
-     */
-
-    /**
-     * Each setXXX method fire a vetoable change event. This method register a new listener for all events.
-     *
-     * @param listener
-     *            A listener
-     */
-    public void addVetoableChangeListener(VetoableChangeListener listener) {
-        this.vcs.addVetoableChangeListener(listener);
-    }
-
-    /**
-     * Each setXXX method fire a vetoable change event. This method register a new listener for a specific event. Each event name is equal to the field name.
-     *
-     * @param propertyName
-     *            the property name
-     * @param listener
-     *            A listener
-     */
-    public void addVetoableChangeListener(String propertyName, VetoableChangeListener listener) {
-        this.vcs.addVetoableChangeListener(propertyName, listener);
-    }
-
-    /**
-     * Each setXXX method fire a vetoable change event. This method remove a listener for all events.
-     *
-     * @param listener
-     *            A listener
-     */
-    public void removeVetoableChangeListener(VetoableChangeListener listener) {
-        this.vcs.removeVetoableChangeListener(listener);
-    }
-
-    /**
-     * Each setXXX method fire a vetoable change event. This method remove a listener for a specific event. Each event name is equal to the field name.
-     *
-     * @param propertyName
-     *            the property name
-     * @param listener
-     *            A listener
-     */
-    public void removeVetoableChangeListener(String propertyName, VetoableChangeListener listener) {
-        this.vcs.removeVetoableChangeListener(propertyName, listener);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
     }
 }

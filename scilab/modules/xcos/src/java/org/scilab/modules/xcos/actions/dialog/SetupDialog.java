@@ -485,10 +485,6 @@ public class SetupDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    /*
-                     * TODO This logic must be deported to a vetoable
-                     * handler
-                     */
                     int solverSelectedIndex = solver.getSelectedIndex();
 
                     VectorOfDouble v = new VectorOfDouble(8);

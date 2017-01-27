@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.actions.dialog.DebugLevelDialog;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -109,7 +110,7 @@ public final class DebugLevelAction extends SimulationNotRunningAction {
             return;
         }
 
-        final DebugLevelDialog dialog = new DebugLevelDialog(graph.getAsComponent(), new ScicosParameters(graph.getUID(), graph.getKind()));
+        final DebugLevelDialog dialog = new DebugLevelDialog(graph.getAsComponent(), new ScicosParameters(Xcos.findRoot(graph)));
 
         dialog.pack();
         dialog.setVisible(true);

@@ -31,6 +31,7 @@ import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
@@ -191,7 +192,7 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
 
         // Fill the diagram attributes
         ScicosParametersElement params = new ScicosParametersElement(controller);
-        params.decode(base.get(1), new ScicosParameters(diag.getUID(), diag.getKind()));
+        params.decode(base.get(1), new ScicosParameters(Xcos.findRoot(diag)));
 
         // Decode the objs attributes
         decodeObjs(diag);

@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.actions.dialog.SetupDialog;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -79,7 +80,7 @@ public final class SetupAction extends SimulationNotRunningAction {
             return;
         }
 
-        final SetupDialog dialog = new SetupDialog(comp, graph, new ScicosParameters(graph.getUID(), graph.getKind()));
+        final SetupDialog dialog = new SetupDialog(comp, graph, new ScicosParameters(Xcos.findRoot(graph)));
 
         dialog.pack();
         dialog.setVisible(true);

@@ -187,7 +187,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
         Field field;
         try {
             field = ScicosParameters.class.getDeclaredField(fieldname);
-            ScicosParameters params = new ScicosParameters(((XcosDiagram) obj).getUID(), ((XcosDiagram) obj).getKind());
+            ScicosParameters params = new ScicosParameters(Xcos.findRoot((XcosDiagram) obj));
             super.setFieldValue(params, fieldname, value);
         } catch (SecurityException e) {
             field = null;
