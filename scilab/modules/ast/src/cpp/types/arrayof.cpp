@@ -499,10 +499,24 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
     if (getArgsDims(_pArgs, dims))
     {
         InternalType *pOut = NULL;
+
+        if (dims.size() == 1 && getDims() == 2)
+        {
+            if (getCols() != 1)
+            {
+                dims.insert(dims.begin(), 1);
+            }
+            else
+            {
+                dims.push_back(1);
+            }
+        }
+
         while (dims.size() < 2)
         {
             dims.push_back(1);
         }
+
         pOut = createEmpty((int)dims.size(), dims.data(), bComplex);
         ArrayOf* pArrayOut = pOut->getAs<ArrayOf>();
         pArrayOut->fillDefaultValues();
