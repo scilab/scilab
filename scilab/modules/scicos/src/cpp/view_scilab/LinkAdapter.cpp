@@ -940,9 +940,15 @@ void LinkAdapter::relink(Controller& controller, model::BaseObject* adaptee, con
 
 void LinkAdapter::add_partial_links_information(Controller& controller, model::BaseObject* original, model::BaseObject* cloned)
 {
+    // precondition
+    if (cloned == nullptr)
+    {
+        return;
+    }
+
     switch (original->kind())
     {
-        // add the from / to information if applicable
+            // add the from / to information if applicable
         case LINK:
         {
             auto it = partial_links.find(original->id());

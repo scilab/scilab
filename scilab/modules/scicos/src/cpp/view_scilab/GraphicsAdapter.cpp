@@ -758,6 +758,12 @@ void copyOnClone(model::BaseObject* original, model::BaseObject* cloned, std::ma
 
 void GraphicsAdapter::add_partial_links_information(Controller& controller, model::BaseObject* original, model::BaseObject* cloned)
 {
+    // precondition
+    if (cloned == nullptr)
+    {
+        return;
+    }
+
     if (original->kind() == BLOCK)
     {
         // add the from / to information if applicable
@@ -769,7 +775,7 @@ void GraphicsAdapter::add_partial_links_information(Controller& controller, mode
 
     switch (original->kind())
     {
-        // handle recursion
+            // handle recursion
         case DIAGRAM:
         case BLOCK:
         {
