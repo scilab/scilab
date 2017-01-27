@@ -14,25 +14,10 @@
 function dllinfolist = dlwDllInfo(dllname, options)
     //=============================================================================
     
-    function cmd = getEnvCmd()
-        if win64() then
-            if dlwIsExpress() then
-                arch = "x86_amd64";
-            else
-                arch = "x64";
-            end
-        else
-            arch = "x86";
-        end
-
-        path = dlwGetVisualStudioPath();
-        cmd = """" + path + "\VC\vcvarsall.bat"" " + arch;
-    endfunction
-    
     function symbolslist = dllinfoimports(dllname)
         symbolslist = list();
 
-        cmd = getEnvCmd() + " && dumpbin /IMPORTS """ + dllname +""""
+        cmd = dlwGetEnvCmd() + " && dumpbin /IMPORTS """ + dllname +""""
 
         [result,bOK] = dos(cmd);
         if bOK == %T then
@@ -73,7 +58,7 @@ function dllinfolist = dlwDllInfo(dllname, options)
     function symbolslist = dllinfoexports(dllname)
         symbolslist = list();
         symbolsdll = [];
-        cmd = getEnvCmd() + " && dumpbin /EXPORTS """ + dllname +"""";
+        cmd = dlwGetEnvCmd() + " && dumpbin /EXPORTS """ + dllname +"""";
         [result, bOK] = dos(cmd);
         if bOK == %T then
             result(result == "") = [];
@@ -97,7 +82,7 @@ function dllinfolist = dlwDllInfo(dllname, options)
     function dllinfolist = dllinfomachine(dllname)
         dllinfolist = list();
         machine = "";
-        cmd = getEnvCmd() + " && dumpbin /HEADERS """ + dllname +"""";
+        cmd = dlwGetEnvCmd() + " && dumpbin /HEADERS """ + dllname +"""";
         [result, bOK] = dos(cmd);
         if bOK == %T then
             iMachine = grep(result, "machine (");

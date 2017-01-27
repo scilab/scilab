@@ -44,24 +44,26 @@ function tbx_builder_src(module)
         error(msprintf(gettext("%s: This module requires a C or Fortran compiler and it has not been found.\n"),"tbx_builder_src"));
     end
 
-
     // check there is a builder file is  present and if so execute it with tbx_builder
-    builder_src_dir = module + "/src/"
+    builder_src_dir = module + "/src/";
     if isdir(builder_src_dir)
         mprintf(gettext("Building sources...\n"));
         builder_src_file = findfiles(builder_src_dir, "build*.sce");
+
+        d = dir(builder_src_dir);
+        languages = d.name(d.isdir);
+        if isempty(languages)
+            warning(_("No builder file found, nothing to be done"));
+            return
+        end
         if ~isempty(builder_src_file)
             builder_src_file = pathconvert(builder_src_dir + "/" + builder_src_file, %F);
             tbx_builder(builder_src_file);
         else
             // Default mode look in directories to find builder files and execute them
-            d = dir(builder_src_dir);
-            languages = d.name(d.isdir);
-            if isempty(languages)
-                warning(_("No builder file found, nothing to be done"));
-                return
-            end
             tbx_builder_src_lang(languages, builder_src_dir);
         end
+        
+        tbx_build_src_clean(languages, builder_src_dir);
     end
 endfunction

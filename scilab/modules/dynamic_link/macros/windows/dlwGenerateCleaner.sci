@@ -20,8 +20,7 @@ function dlwGenerateCleaner(fd, makename)
     mfprintf(fd,"  if ~ exists(""dynamic_linkwindowslib"") then\n");
     mfprintf(fd,"    load(""SCI/modules/dynamic_link/macros/windows/lib"")\n");
     mfprintf(fd,"  end\n");
-    mfprintf(fd,"  dlwConfigureEnv();\n");
-    mfprintf(fd,"  unix_s(''%s'');\n", make_command);
+    mfprintf(fd,"  unix_s(dlwGetEnvCmd() + '' && %s'');\n", make_command);
     mfprintf(fd,"  mdelete(''%s'');\n", makename);
     mfprintf(fd,"end\n");
     mfprintf(fd,"// ------------------------------------------------------\n");
