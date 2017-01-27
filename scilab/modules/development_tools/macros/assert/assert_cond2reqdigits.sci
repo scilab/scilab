@@ -147,6 +147,13 @@ function d = assert_cond2reqdigits ( varargin )
     // Let the user and assert_expandvar manage this.
     //
     // Check content of variables
+
+    if find(abs(imag(condition)) > 0) <> []
+        errmsg = sprintf ( gettext ( "%s: Wrong value for input argument #%d: Must be real.\n") , "assert_cond2reqdigits" , 1 )
+        error(errmsg)
+    end
+    condition = real(condition);
+
     if ( or ( condition < 0 ) ) then
         errmsg = sprintf ( gettext ( "%s: Wrong value for input argument #%d: Must be > %d.\n") , "assert_cond2reqdigits" , 1 , 0 )
         error(errmsg)
