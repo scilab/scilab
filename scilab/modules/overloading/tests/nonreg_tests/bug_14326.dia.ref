@@ -14,7 +14,7 @@
 // <-- Short Description -->
 // deletion of a element in a structure was impossible
 for i=1:10
-    demo(i)=struct('a',[i i*2],'b','demo '+string(i));
+    demo(i)=struct("a",[i i*2],"b","demo "+string(i));
 end
 ierr = execstr("demo(4) = [];", "errcatch");
 assert_checkequal(ierr, 0);
