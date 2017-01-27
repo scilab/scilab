@@ -35,11 +35,11 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int iFileID                 = 0;
-    int iErr                    = 0;
-    bool bCloseFile             = false;
-    int iLinesExcepted          = -1;
-    int iLinesRead              = -1;
+    int iFileID = 0;
+    int iErr = 0;
+    bool bCloseFile = false;
+    int iLinesExcepted = -1;
+    int iLinesRead = -1;
     wchar_t** wcReadedStrings   = NULL;
 
     if (in.size() < 1 || in.size() > 2)
@@ -134,13 +134,16 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
                 return types::Function::Error;
             }
 
-            wcReadedStrings = mgetl(iFileID, iLinesExcepted, &iLinesRead, &iErr);
-
-            switch (iErr)
+            if ((iLinesExcepted > 0) && (iFileID == 5))
             {
-                case MGETL_MEMORY_ALLOCATION_ERROR :
-                    break;
+                iLinesExcepted = 1;
+            }
 
+            iLinesRead = mgetl(iFileID, iLinesExcepted, &wcReadedStrings);
+
+            if (iLinesRead < 0)
+            {
+                break;
             }
         }
     }
