@@ -34,13 +34,13 @@
         <programlisting role="example"><![CDATA[
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
 xfrect(-1,1,2,2)
-gce().background = color("red");
+gce().background = color("green");
  ]]></programlisting>
         <scilab:image>
             plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
             xfrect(-1,1,2,2)
-            gce().background = color("red");
-      </scilab:image>
+            gce().background = color("green");
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

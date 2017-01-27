@@ -55,7 +55,6 @@ gce().background = color("green");
             xfrect(-1,1,2,2)
             gce().background = color("green");
         </scilab:image>
-
     </refsection>
     <refsection role="see also">
         <title>See also</title>
