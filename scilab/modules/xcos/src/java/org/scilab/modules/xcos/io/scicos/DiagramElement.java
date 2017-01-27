@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -31,10 +31,10 @@ import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.JavaController;
-import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.VersionMismatchException;
@@ -192,7 +192,7 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
 
         // Fill the diagram attributes
         ScicosParametersElement params = new ScicosParametersElement(controller);
-        params.decode(base.get(1), new ScicosParameters(Xcos.findRoot(diag)));
+        params.decode(base.get(1), new ScicosParameters(new ScicosObjectOwner(controller, diag.getUID(), diag.getKind())));
 
         // Decode the objs attributes
         decodeObjs(diag);

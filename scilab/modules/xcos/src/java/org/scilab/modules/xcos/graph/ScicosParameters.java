@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * Copyright (C) 2011 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -117,10 +117,10 @@ public class ScicosParameters implements Serializable, Cloneable {
      * Default constructor
      *
      * Initialize parameters with their default values.
-     * @param root the diagram
+     * @param diagramOwner the diagram
      */
-    public ScicosParameters(final ScicosObjectOwner root) {
-        this.root = root;
+    public ScicosParameters(final ScicosObjectOwner diagramOwner) {
+        this.root = diagramOwner;
 
         /*
          * This call will update static values from the configuration.
@@ -128,10 +128,15 @@ public class ScicosParameters implements Serializable, Cloneable {
         XcosOptions.getSimulation();
 
         // install the modification handler
-        vcs.addVetoableChangeListener((PropertyChangeEvent evt) -> {
-            Xcos.getInstance().setModified(root, true);
-            Xcos.getInstance().openedDiagrams(root).stream().forEach(d -> d.updateTabTitle());
-        });
+        if (diagramOwner.getKind() == Kind.DIAGRAM) {
+            vcs.addVetoableChangeListener((PropertyChangeEvent evt) -> {
+                Xcos xcos = Xcos.getInstance();
+                if (!xcos.openedDiagrams(diagramOwner).isEmpty()) {
+                    xcos.setModified(diagramOwner, true);
+                    xcos.openedDiagrams(diagramOwner).stream().forEach(d -> d.updateTabTitle());
+                }
+            });
+        }
     }
 
     public long getUID() {
