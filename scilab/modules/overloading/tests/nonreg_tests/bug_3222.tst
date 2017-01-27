@@ -7,6 +7,7 @@
 
 //
 // <-- CLI SHELL MODE -->
+// <-- NOT FIXED --> 6.0.0
 //
 // <-- Non-regression test for bug 3222 -->
 //
