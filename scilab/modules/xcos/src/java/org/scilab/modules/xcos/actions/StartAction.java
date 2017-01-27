@@ -3,7 +3,7 @@
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -38,6 +38,8 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 
 /**
  * Start the simulation
@@ -109,10 +111,14 @@ public final class StartAction extends OneBlockDependantAction {
             return;
         }
 
+        // clear warnings
+        ScicosObjectOwner root = Xcos.findRoot(graph);
+        Xcos.getInstance().openedDiagrams(root).stream().forEach( d ->  d.getAsComponent().clearCellOverlays());
+
         updateUI(true);
         displayTimer.start();
 
-        final String cmd = createSimulationCommand(graph);
+        final String cmd = createSimulationCommand(root);
         final ActionListener action = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -132,11 +138,11 @@ public final class StartAction extends OneBlockDependantAction {
     /**
      * Create the command String
      *
-     * @param diagram
-     *            the working diagram
+     * @param root
+     *            the root diagram
      * @return the command string
      */
-    private String createSimulationCommand(final XcosDiagram diagram) {
+    private String createSimulationCommand(final ScicosObjectOwner root) {
         String cmd;
         final StringBuilder command = new StringBuilder();
 
@@ -148,13 +154,13 @@ public final class StartAction extends OneBlockDependantAction {
 
         JavaController controller = new JavaController();
         int[] debugLevel = new int[1];
-        controller.getObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.DEBUG_LEVEL, debugLevel);
+        controller.getObjectProperty(root.getUID(), root.getKind(), ObjectProperties.DEBUG_LEVEL, debugLevel);
         command.append(buildCall("scicos_debug", debugLevel[0])).append("; ");
 
         /*
          * Export the schema on `scs_m` and simulate
          */
-        command.append("scs_m = scicos_new(\"0x").append(Long.toHexString(diagram.getUID())).append("\"); ");
+        command.append("scs_m = scicos_new(\"0x").append(Long.toHexString(root.getUID())).append("\"); ");
         command.append("xcos_simulate(scs_m, 4); ");
 
         cmd = command.toString();

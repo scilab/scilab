@@ -34,7 +34,9 @@ import org.scilab.modules.graph.actions.base.OneBlockDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -98,10 +100,14 @@ public final class CompileAction extends OneBlockDependantAction {
             return;
         }
 
+        // clear warnings
+        ScicosObjectOwner root = Xcos.findRoot(graph);
+        Xcos.getInstance().openedDiagrams(root).stream().forEach( d ->  d.getAsComponent().clearCellOverlays());
+
         updateUI(true);
         displayTimer.start();
 
-        final String cmd = createCompilationCommand(graph);
+        final String cmd = createCompilationCommand(root);
         final ActionListener action = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -121,11 +127,11 @@ public final class CompileAction extends OneBlockDependantAction {
     /**
      * Create the command String
      *
-     * @param diagram
-     *            the working diagram
+     * @param root
+     *            the root diagram
      * @return the command string
      */
-    private String createCompilationCommand(final XcosDiagram diagram) {
+    private String createCompilationCommand(final ScicosObjectOwner root) {
         String cmd;
         final StringBuilder command = new StringBuilder();
 
@@ -137,13 +143,13 @@ public final class CompileAction extends OneBlockDependantAction {
 
         JavaController controller = new JavaController();
         int[] debugLevel = new int[1];
-        controller.getObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.DEBUG_LEVEL, debugLevel);
+        controller.getObjectProperty(root.getUID(), root.getKind(), ObjectProperties.DEBUG_LEVEL, debugLevel);
         command.append(buildCall("scicos_debug", debugLevel[0])).append("; ");
 
         /*
          * Export the schema on `scs_m`
          */
-        command.append("scs_m = scicos_new(\"0x").append(Long.toHexString(diagram.getUID())).append("\"); ");
+        command.append("scs_m = scicos_new(\"0x").append(Long.toHexString(root.getUID())).append("\"); ");
         command.append("cpr = xcos_compile(scs_m); ");
 
         cmd = command.toString();
