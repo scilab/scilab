@@ -295,8 +295,8 @@ function [lf,r1]=lftpssd(p,r,k,r2)
         zeros(l3,k1),-eye(l3,k2),zeros(l3,k3),k;
         eye(l4,k1),zeros(l4,k2+k3+k4)];
         w=clean(ss2tf(psi));
-        lf=[zeros(k3,k1+k2),eye(k3,k3),zeros(k3,k4)]*inv(psi)*...
-        [zeros(l1+l2+l3,l4);eye(l4,l4)];
+        lf=[zeros(k3,k1+k2),eye(k3,k3),zeros(k3,k4)]*inv(psi)* ...
+            [zeros(l1+l2+l3,l4);eye(l4,l4)];
         r1=[l1,k1];
         return;
     end
