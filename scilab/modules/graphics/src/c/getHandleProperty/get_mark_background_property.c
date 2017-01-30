@@ -46,7 +46,7 @@ void* get_mark_background_property(void* _pvCtx, int iObjUID)
 
     if (numMarkBackgrounds == 0)
     {
-        getGraphicObjectProperty(iObjUID, __GO_MARK_BACKGROUND__, jni_int, &piMarkBackground);
+        getGraphicObjectProperty(iObjUID, __GO_MARK_BACKGROUND__, jni_int, (void**)&piMarkBackground);
         if (piMarkBackground == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_background");
@@ -56,7 +56,7 @@ void* get_mark_background_property(void* _pvCtx, int iObjUID)
     }
     else
     {
-        getGraphicObjectProperty(iObjUID, __GO_MARK_BACKGROUNDS__, jni_int_vector, &markBackgrounds);
+        getGraphicObjectProperty(iObjUID, __GO_MARK_BACKGROUNDS__, jni_int_vector, (void**)&markBackgrounds);
         return sciReturnRowVectorFromInt(markBackgrounds, numMarkBackgrounds);
     }
 }

@@ -29,7 +29,7 @@
 /*------------------------------------------------------------------------*/
 int set_toolbar_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    enum BarType tool = NONE;
+    BarType tool = NONE;
 
     if (valueType != sci_strings)
     {

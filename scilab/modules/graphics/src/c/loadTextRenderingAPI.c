@@ -23,7 +23,7 @@ static BOOL loadedDepLatex = FALSE;
  * dependencies */
 static BOOL loadedDepMathML = FALSE;
 
-void loadTextRenderingAPI(char const* const* text, int nbRow, int nbCol)
+void loadTextRenderingAPI(char** text, int nbRow, int nbCol)
 {
 
     int i = 0;
