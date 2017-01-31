@@ -67,8 +67,11 @@ static int xlfont_no_rhs(char * fname, void* pvApiCtx)
     sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m1, n1, (const char * const*)fontsname);
     if (sciErr.iErr)
     {
+
+        freeArrayOfString(fontsname, nbElements);
         printError(&sciErr, 0);
         return 1;
+
     }
 
     freeArrayOfString(fontsname, nbElements);
