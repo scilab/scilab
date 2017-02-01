@@ -248,6 +248,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\cpp\prompt.cpp" />
     <ClCompile Include="..\cpp\scilabRead.cpp" />
     <ClCompile Include="..\jni\CallScilabBridge.cpp" />
     <ClCompile Include="..\cpp\ClearConsole.cpp" />
@@ -268,8 +269,6 @@
     <ClCompile Include="..\cpp\ScilabLinesUpdate.cpp" />
     <ClCompile Include="..\cpp\SetConsolePrompt.cpp" />
     <ClCompile Include="more.c" />
-    <ClCompile Include="prompt.c" />
-    <ClCompile Include="promptecho.c" />
     <ClCompile Include="scilines.c" />
     <ClCompile Include="tohome.c" />
     <ClCompile Include="windows\clrscrPart_nw.c" />
@@ -321,7 +320,6 @@
     <ClInclude Include="dropFiles.h" />
     <ClInclude Include="GetCharWithoutOutput.h" />
     <ClInclude Include="GuiManagement.h" />
-    <ClInclude Include="promptecho.h" />
     <ClInclude Include="PromptToHome.h" />
     <ClInclude Include="PutChar.h" />
     <ClInclude Include="ScilabLinesUpdate.h" />

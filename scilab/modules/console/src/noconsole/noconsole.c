@@ -62,7 +62,7 @@ BOOL PromptToHome(void)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-BOOL SetConsolePrompt(char *Sci_prompt)
+BOOL SetConsolePrompt(const char *Sci_prompt)
 {
     return FALSE;
 }

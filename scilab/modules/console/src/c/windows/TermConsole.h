@@ -26,7 +26,7 @@ void InitializeTerminal(void);
 * @param[in] buffer
 * @return number of characters
 */
-int TerminalPrintf(char *buffer);
+int TerminalPrintf(const char *buffer);
 
 /**
 * put a character
@@ -39,7 +39,7 @@ int TerminalPutc(char ch);
 * @param[in] prompt
 * @return line from terminal
 */
-char *TerminalGetString(char *prompt);
+char *TerminalGetString(const char *prompt);
 
 /**
 * do a beep

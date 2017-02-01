@@ -32,17 +32,14 @@
  */
 int printPrompt(int token)
 {
-    char * prompt = (char*)malloc(sizeof(char) * (PROMPT_SIZE_MAX + 1));
-    char * tmpPrompt = GetTemporaryPrompt();
-    int promptLen;
-
     /* Retrieve the prompt. It can be different if the pause mode is enabled */
-    GetCurrentPrompt(prompt);
+    const char * prompt     = GetCurrentPrompt();
+    const char * tmpPrompt  = GetTemporaryPrompt();
 
     if (token == WRITE_PROMPT)
     {
         setCharDisplay(DISP_DEFAULT);
-        if (tmpPrompt)
+        if (tmpPrompt == '\0')
         {
             printf("%s", tmpPrompt);
         }
@@ -54,8 +51,5 @@ int printPrompt(int token)
         fflush(stdout);
     }
 
-    promptLen = strlen(prompt);
-    free(prompt);
-    return promptLen;
+    return strlen(prompt);;
 }
-

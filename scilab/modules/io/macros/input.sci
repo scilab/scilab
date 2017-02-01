@@ -33,8 +33,6 @@ function [x] = input(msg, flag)
     // a tricky way to get all ascii codes  sequences
     fmt = "%[" + ascii(32) + "-" + ascii(254) + "]";
 
-    currentprompt = prompt();
-
     if argn(2) == 2 then
         if type(flag) <> 10 then
             msg = _("%s: Wrong type for input argument #%d: String expected.\n")
@@ -51,43 +49,26 @@ function [x] = input(msg, flag)
             error(msprintf(msg, "input", 2, "string"));
         end
 
-        prompt("");
-        mprintf(msg);
+        prompt(msg);
         x = mscanf(fmt);
-
-        currentpromptAfter = prompt();
-        // bug 5513
-        // we had change prompt during exec of input
-        // we recall input
-        if (currentpromptAfter <> currentprompt) then
-            x = input(msg, flag);
-        end
-
     else
         while %t
-            prompt("");
-            mprintf(msg);
+            prompt(msg);
             __#x#__ = mscanf(fmt);
-
-            currentpromptAfter = prompt();
-            // bug 5513
-            // we had change prompt during exec of input
-            // we recall input
-            if (currentpromptAfter <> currentprompt) then
-                __#x#__ = string(input(msg));
-            end
 
             if (length(__#x#__) == 0) | (__#x#__ == " ") then
                 __#x#__ = "[]";
             end
+
             ierr = execstr("x=" + __#x#__,"errcatch");
+
             if ierr == 0 then
                 break;
             end
-            mprintf(strcat(lasterror(),"\n"));
+            mprintf(lasterror());
+            mprintf("\n");
         end
-
     end
-    prompt(currentprompt);
-    mprintf("\n")
+
+    mprintf("\n");
 endfunction

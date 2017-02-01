@@ -16,26 +16,22 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
+
+#include "prompt.h"
 #include "TermReadAndProcess.h"
 #include "sci_malloc.h"
-#include "prompt.h"
 #include "TermConsole.h"
 /*--------------------------------------------------------------------------*/
 char * getCmdLine(void)
 {
-    char *line = NULL;
-    static char save_prompt[PROMPT_SIZE_MAX];
-
-    if (GetTemporaryPrompt() != NULL) /* Input function is used */
+    const char* tmp = GetTemporaryPrompt();
+    if (tmp[0] != 0) /* Input function is used */
     {
-        line = TerminalGetString(GetTemporaryPrompt());
+        return TerminalGetString(tmp);
     }
     else
     {
-        GetCurrentPrompt(save_prompt);
-        line = TerminalGetString(save_prompt);
+        return TerminalGetString(GetCurrentPrompt());
     }
-    strcpy(save_prompt, "");
-    return line;
 }
 /*--------------------------------------------------------------------------*/

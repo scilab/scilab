@@ -26,6 +26,8 @@
 #include "scilines.h"
 #include "HistoryManager.h"
 #include "localization.h"
+#include "storeCommand.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 #ifdef CR_1
 #undef CR_1
@@ -109,7 +111,7 @@ void TerminalBeep(void)
     MessageBeep(MB_OK);
 }
 /*--------------------------------------------------------------------------*/
-int TerminalPrintf(char *buffer)
+int TerminalPrintf(const char *buffer)
 {
     if (buffer)
     {
@@ -399,7 +401,7 @@ static char actionControlKey(void)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-char *TerminalGetString(char *prompt)
+char *TerminalGetString(const char *prompt)
 {
     if (InitTerm)
     {

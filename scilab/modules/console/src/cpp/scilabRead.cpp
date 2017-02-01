@@ -19,10 +19,10 @@
 
 extern "C"
 {
+#include "prompt.h"
 #include "sci_malloc.h"
 #include "scilabRead.h"
 #include "SetConsolePrompt.h"
-#include "prompt.h"
 #include "TermReadAndProcess.h"
 #include "os_string.h"
 #include "configvariable_interface.h"
@@ -53,15 +53,14 @@ int scilabRead()
     if (getScilabMode() == SCILAB_STD)
     {
         /* Send new prompt to Java Console, do not display it */
-        if (GetTemporaryPrompt() != NULL)
+        std::string tmp = GetTemporaryPrompt();
+        if (tmp.empty() == false)
         {
-            SetConsolePrompt(GetTemporaryPrompt());
+            SetConsolePrompt(tmp.data());
         }
         else
         {
-            char pstCurrentPrompt[PROMPT_SIZE_MAX];
-            GetCurrentPrompt(pstCurrentPrompt);
-            SetConsolePrompt(pstCurrentPrompt);
+            SetConsolePrompt(GetCurrentPrompt());
         }
     }
 
@@ -69,9 +68,7 @@ int scilabRead()
     char* pstTemp = (*_reader)();
 
     //add prompt to diary
-    static char pstPrompt[PROMPT_SIZE_MAX];
-    GetCurrentPrompt(pstPrompt);
-    wchar_t* pwstPrompt = to_wide_string(pstPrompt);
+    wchar_t* pwstPrompt = to_wide_string(GetCurrentPrompt());
     diaryWrite(pwstPrompt, TRUE);
     FREE(pwstPrompt);
 

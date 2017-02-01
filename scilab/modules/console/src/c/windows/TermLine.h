@@ -114,7 +114,7 @@ void clearCurrentLine(void);
 /**
 * set prompt used by terminal
 */
-void setCurrentPrompt(char *prompt);
+void setCurrentPrompt(const char *prompt);
 
 /**
 * display prompt

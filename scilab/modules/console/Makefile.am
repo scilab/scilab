@@ -83,8 +83,7 @@ libsciconsole_minimal_la_SOURCES = \
     src/c/scilines.c \
     src/c/others/gotoxy_nw.c \
     src/c/others/clrscr_nw.c \
-    src/c/prompt.c \
-    src/c/promptecho.c \
+    src/cpp/prompt.cpp \
     src/c/getpipeline.c \
     src/c/cmdLine/autoCompletionCli.c \
     src/c/cmdLine/charactersManagement.c \
