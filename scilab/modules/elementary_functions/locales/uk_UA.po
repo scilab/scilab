@@ -549,30 +549,6 @@ msgid "%s: Wrong type for input arguments: Same types expected.\n"
 msgstr "%s: помилковий тип вхідних параметрів: типи мали збігатися.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"комірки.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same type expected for all cell "
-"contents"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: всі елементи комірок мають "
-"належати до одного типу."
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-msgstr "%s: помилкова розмірність вхідного параметра №%d: має бути <= %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
-"рядків.\n"
-
-#, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: помилковий тип параметра %d: слід використовувати матрицю.\n"
 
@@ -838,34 +814,18 @@ msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr "%s: якщо x є від’ємним, n повинне містити лише непарні цілі числа.\n"
 
 #, c-format
-msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr ""
-"%s: помилковий параметр №%d: слід використовувати додатне ціле число.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
 "вектор.\n"
 
-#, c-format
-msgid "%s: Wrong size for argument #%d: Vector expected.\n"
-msgstr "%s: помилковий розмір параметра №%d: слід використовувати вектор.\n"
-
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"
+"%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>"
+"%d] integers.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: має бути коректний вектор "
 "перестановки.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument #"
-"%d expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"розмірність вхідного параметра №%d.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
@@ -1030,6 +990,40 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: помилкові розмірності вхідних параметрів: несумісні розмірності.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+#~ "комірки.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same type expected for all cell "
+#~ "contents"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: всі елементи комірок мають "
+#~ "належати до одного типу."
+
+#~ msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
+#~ msgstr "%s: помилкова розмірність вхідного параметра №%d: має бути <= %d.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+#~ "рядків.\n"
+
+#~ msgid "%s: Wrong argument #%d: Positive integer expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий параметр №%d: слід використовувати додатне ціле число.\n"
+
+#~ msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+#~ msgstr "%s: помилковий розмір параметра №%d: слід використовувати вектор.\n"
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: At least the size of input "
+#~ "argument #%d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+#~ "розмірність вхідного параметра №%d.\n"
 
 #~ msgid ""
 #~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "

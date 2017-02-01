@@ -141,6 +141,10 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати масив з "
 "рядків.\n"
 
+#, fuzzy
+msgid "Generating cleaner_src.sce...\n"
+msgstr "Створення cleaner.sce…\n"
+
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr "%s: файла з назвою «%s» не існує, або читання цього файла неможливе.\n"

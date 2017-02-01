@@ -844,11 +844,47 @@ msgstr "加载运行环境(&L)..."
 msgid "&Save environment..."
 msgstr "保存运行环境(&S)"
 
-msgid "&Change current directory..."
-msgstr "更改当前目录...(&C)"
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 94
+# File: modules/gui/src/gui_fake_xml.c, line: 148
+msgid "&Current Working Directory (CWD):"
+msgstr ""
 
-msgid "&Display current directory"
-msgstr "显示当前目录(&D)"
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 95
+# File: modules/gui/src/gui_fake_xml.c, line: 149
+msgid "    &Browse for new"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 96
+# File: modules/gui/src/gui_fake_xml.c, line: 150
+msgid "    Go to &Favorite"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 97
+# File: modules/gui/src/gui_fake_xml.c, line: 151
+msgid "TMPDIR"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 98
+# File: modules/gui/src/gui_fake_xml.c, line: 152
+msgid "SCIHOME"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 99
+# File: modules/gui/src/gui_fake_xml.c, line: 153
+msgid "SCI"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 100
+# File: modules/gui/src/gui_fake_xml.c, line: 154
+msgid "User's home ~"
+msgstr ""
 
 msgid "&Quit"
 msgstr "退出(&Q)"
@@ -913,14 +949,14 @@ msgstr "命令历史(&C)"
 msgid "&File Browser"
 msgstr "文件浏览器(&F)"
 
-msgid "&News feed"
-msgstr ""
-
 msgid "Scilab &Help"
 msgstr "Scilab帮助(&H)"
 
 msgid "Scilab &Demonstrations"
 msgstr "Scilab示例(&D)"
+
+msgid "&News feed"
+msgstr ""
 
 msgid "&Links"
 msgstr "链接(&L)"
@@ -1411,6 +1447,11 @@ msgid "Copy to Clipboard"
 msgstr ""
 
 msgid "Copy figure to system clipboard"
+msgstr ""
+
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 316
+msgid "Insert a title"
 msgstr ""
 
 msgid "Label X"
@@ -2621,6 +2662,12 @@ msgstr "%s：%s的类型错误：应该为一个实数。\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s：%s的大小错误：应该为一个实数。\n"
+
+#~ msgid "&Change current directory..."
+#~ msgstr "更改当前目录...(&C)"
+
+#~ msgid "&Display current directory"
+#~ msgstr "显示当前目录(&D)"
 
 #~ msgid "Ok"
 #~ msgstr "确定"

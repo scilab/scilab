@@ -1029,14 +1029,46 @@ msgid "&Save environment..."
 msgstr "環境を保存(&S)..."
 
 #
-# File: scilab_fake_localization_file.c, line: 46
-msgid "&Change current directory..."
-msgstr "現在のディレクトリを変更(&C)..."
+# File: modules/gui/src/gui_fake_xml.c, line: 94
+# File: modules/gui/src/gui_fake_xml.c, line: 148
+msgid "&Current Working Directory (CWD):"
+msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 47
-msgid "&Display current directory"
-msgstr "現在のディレクトリを表示(&D)"
+# File: modules/gui/src/gui_fake_xml.c, line: 95
+# File: modules/gui/src/gui_fake_xml.c, line: 149
+msgid "    &Browse for new"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 96
+# File: modules/gui/src/gui_fake_xml.c, line: 150
+msgid "    Go to &Favorite"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 97
+# File: modules/gui/src/gui_fake_xml.c, line: 151
+msgid "TMPDIR"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 98
+# File: modules/gui/src/gui_fake_xml.c, line: 152
+msgid "SCIHOME"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 99
+# File: modules/gui/src/gui_fake_xml.c, line: 153
+msgid "SCI"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 100
+# File: modules/gui/src/gui_fake_xml.c, line: 154
+msgid "User's home ~"
+msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 50
@@ -1119,9 +1151,6 @@ msgstr "コマンドヒストリ (&C)"
 msgid "&File Browser"
 msgstr "ファイルブラウザ (&F)"
 
-msgid "&News feed"
-msgstr ""
-
 #
 # File: scilab_fake_localization_file.c, line: 74
 msgid "Scilab &Help"
@@ -1129,6 +1158,9 @@ msgstr "Scilab ヘルプ(&H)"
 
 msgid "Scilab &Demonstrations"
 msgstr "Scilab デモ(&D)"
+
+msgid "&News feed"
+msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 76
@@ -1650,6 +1682,10 @@ msgstr "クリップボードへコピー"
 
 msgid "Copy figure to system clipboard"
 msgstr "図をシステムクリップボードにコピー"
+
+#, fuzzy
+msgid "Insert a title"
+msgstr "新しい点を挿入"
 
 msgid "Label X"
 msgstr "ラベルX"
@@ -2889,6 +2925,16 @@ msgstr "%s: %s の型が間違っています: 実数を指定してください
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: %sの大きさが間違っています: 実数を指定してください.\n"
+
+#
+# File: scilab_fake_localization_file.c, line: 46
+#~ msgid "&Change current directory..."
+#~ msgstr "現在のディレクトリを変更(&C)..."
+
+#
+# File: scilab_fake_localization_file.c, line: 47
+#~ msgid "&Display current directory"
+#~ msgstr "現在のディレクトリを表示(&D)"
 
 #~ msgid "Fit zoom to data"
 #~ msgstr "データに合わせてズーム"

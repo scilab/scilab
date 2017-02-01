@@ -424,24 +424,6 @@ msgid "%s: Wrong type for input arguments: Same types expected.\n"
 msgstr "%s：输入参数的类型错误，应该为同一类型。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为Cell。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same type expected for all cell "
-"contents"
-msgstr "%s：第%d个输入参数的类型错误：所有Cell的内容应该为同一类型。"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-msgstr "%s：第%d个输入参数的大小错误：必须<=%d。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为字符串矩阵。\n"
-
-#, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s：参数%d的类型错误：应该为矩阵。\n"
 
@@ -647,27 +629,14 @@ msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr "%s：第%d个参数错误：应该为正整数。\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该为向量。\n"
 
-#, c-format
-msgid "%s: Wrong size for argument #%d: Vector expected.\n"
-msgstr "%s：第%d个输入参数的大小错误：应该为向量。\n"
-
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument #"
-"%d expected.\n"
-msgstr "%s：第%d个输入参数的大小错误：应该至少第%d个输入参数的大小。\n"
+"%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>"
+"%d] integers.\n"
+msgstr "%s：第%d个输入参数的值错误：必须介于%d与%d之间。\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
@@ -798,6 +767,31 @@ msgstr "%s：第%d和第%d个输入参数不兼容：应该为相同类型。\n"
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s：输入参数的大小错误：大小不兼容。\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
+#~ msgstr "%s：第%d个输入参数的类型错误：应该为Cell。\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same type expected for all cell "
+#~ "contents"
+#~ msgstr "%s：第%d个输入参数的类型错误：所有Cell的内容应该为同一类型。"
+
+#~ msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
+#~ msgstr "%s：第%d个输入参数的大小错误：必须<=%d。\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
+#~ msgstr "%s：第%d个输入参数的类型错误：应该为字符串矩阵。\n"
+
+#~ msgid "%s: Wrong argument #%d: Positive integer expected.\n"
+#~ msgstr "%s：第%d个参数错误：应该为正整数。\n"
+
+#~ msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+#~ msgstr "%s：第%d个输入参数的大小错误：应该为向量。\n"
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: At least the size of input "
+#~ "argument #%d expected.\n"
+#~ msgstr "%s：第%d个输入参数的大小错误：应该至少第%d个输入参数的大小。\n"
 
 #~ msgid ""
 #~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "

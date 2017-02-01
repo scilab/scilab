@@ -198,6 +198,10 @@ msgstr ""
 "%s: Se esperaban %d columnas en el argumento de entrada #%d, pero en su "
 "lugar se encontraron %d."
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be real.\n"
+msgstr "%s: Valor incorrecto del argumento de entrada #%d: Debe ser > %d.\n"
+
 #, c-format
 msgid "%s: %s is not an installed module"
 msgstr ""

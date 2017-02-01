@@ -340,6 +340,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A Strings expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: An error occurred: Not enough entries.\n"
+msgstr "%s: エラーが発生しました.\n"
+
 #, c-format
 msgid "%s: Error while opening, reading or writing.\n"
 msgstr "%s: オープン中, 読込中または書込み中にエラーが発生しました.\n"
@@ -521,6 +525,14 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 "%s: 入力引数 #%d ('%s') の値が間違っています: フォーマットを認識できません.\n"
+
+#, fuzzy, c-format
+msgid "%s: No output file.\n"
+msgstr "%s: ファイル %s を開けません.\n"
+
+#, fuzzy, c-format
+msgid "%s: %s format not recognized.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: フォーマットを認識できません.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"

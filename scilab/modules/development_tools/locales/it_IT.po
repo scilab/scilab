@@ -205,6 +205,11 @@ msgstr ""
 "%s: Erano attese %d colonne nell'argomento in ingresso #%d, ma ve ne sono %d "
 "invece."
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be real.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere >%d.\n"
+
 #, c-format
 msgid "%s: %s is not an installed module"
 msgstr ""

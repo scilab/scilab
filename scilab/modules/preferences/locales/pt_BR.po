@@ -96,8 +96,14 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Invalid %s file.\n"
+msgstr "Arquivo de preferências inválido:"
+
+#
+# File: modules/preferences/macros/getPreferencesValue.sci, line: 46
 #, c-format
-msgid "%s: Invalid XConfiguration.xml file.\n"
+msgid "%s: The file %s does not exist.\n"
 msgstr ""
 
 #, c-format
@@ -122,4 +128,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid XConfiguration.xml file.\n"
 msgstr ""

@@ -455,29 +455,6 @@ msgstr ""
 "mismo tipo.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr ""
-"%s Tipo incorrecto del argumento de entrada #%d: Se esperaba una celdas.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same type expected for all cell "
-"contents"
-msgstr ""
-"%s Tipo incorrecto del argumento de entrada #%d: Se esperaba el mismo tipo "
-"para los contenidos de todas las celdas."
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-msgstr "%s: Tamaño incorrecto del argumento de entrada #%d: Debe ser <= %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
-"strings.\n"
-
-#, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: Tipo incorrecto para el argumento %d: Se esperaba una matriz.\n"
 
@@ -709,31 +686,17 @@ msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr "%s: Argumento #%d incorrecto: Se esperaba un entero positivo.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un vector.\n"
 
-#, c-format
-msgid "%s: Wrong size for argument #%d: Vector expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un vector.\n"
-
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"
+"%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>"
+"%d] integers.\n"
 msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument #"
-"%d expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba al menos el "
-"de la entrada del argumento #%d.\n"
+"%s: Valor incorrecto del argumento de entrada #%d: Debe estar entre %d y "
+"%d.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
@@ -883,6 +846,41 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: Tamaño incorrecto para los argumentos de entrada: Tamaños "
 "incompatibles.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
+#~ msgstr ""
+#~ "%s Tipo incorrecto del argumento de entrada #%d: Se esperaba una celdas.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same type expected for all cell "
+#~ "contents"
+#~ msgstr ""
+#~ "%s Tipo incorrecto del argumento de entrada #%d: Se esperaba el mismo "
+#~ "tipo para los contenidos de todas las celdas."
+
+#~ msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
+#~ msgstr ""
+#~ "%s: Tamaño incorrecto del argumento de entrada #%d: Debe ser <= %d.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz "
+#~ "de strings.\n"
+
+#~ msgid "%s: Wrong argument #%d: Positive integer expected.\n"
+#~ msgstr "%s: Argumento #%d incorrecto: Se esperaba un entero positivo.\n"
+
+#~ msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+#~ msgstr ""
+#~ "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un "
+#~ "vector.\n"
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: At least the size of input "
+#~ "argument #%d expected.\n"
+#~ msgstr ""
+#~ "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba al menos "
+#~ "el de la entrada del argumento #%d.\n"
 
 #~ msgid ""
 #~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "

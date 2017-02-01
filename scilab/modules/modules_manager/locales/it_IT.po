@@ -145,6 +145,10 @@ msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
 "stringhe.\n"
 
+#, fuzzy
+msgid "Generating cleaner_src.sce...\n"
+msgstr "Creazione di cleaner.sce ...\n"
+
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr "%s: Il file '%s' non esiste o non è accessibile in lettura.\n"

@@ -358,6 +358,10 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s' .\n"
 msgid "%s: Wrong type for input argument #%d: A Strings expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: An error occurred: Not enough entries.\n"
+msgstr "%s: 產生錯誤.\n"
+
 #, c-format
 msgid "%s: Error while opening, reading or writing.\n"
 msgstr "%s: 開啟, 讀取 或寫入中發生錯誤.\n"
@@ -559,6 +563,20 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤 ('%s'): 應為非空字串.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤 ('%s'): 無法辨識此格式.\n"
+
+#
+# File: macros/mputl.sci, line: 41
+# File: sci_gateway/c/sci_fileio.c, line: 82
+# File: sci_gateway/c/sci_fprintfMat.c, line: 77
+#, fuzzy, c-format
+msgid "%s: No output file.\n"
+msgstr "%s: 無法開啟檔案 %s.\n"
+
+#
+# File: src/c/mget.c, line: 181
+#, fuzzy, c-format
+msgid "%s: %s format not recognized.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: Format not recognized.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"

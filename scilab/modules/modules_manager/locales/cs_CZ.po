@@ -123,6 +123,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řetězců.\n"
 
+#, fuzzy
+msgid "Generating cleaner_src.sce...\n"
+msgstr "Vytvářím cleaner.ace...\n"
+
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr "%s: Soubor '%s' neexistuje, nebo není přístupný pro čtení.\n"

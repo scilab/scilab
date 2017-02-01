@@ -121,9 +121,49 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 64
+#, c-format
+msgid "%s: Too many files opened!\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: メモリ不足です.\n"
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 73
+#, c-format
+msgid "%s: invalid filename %s.\n"
+msgstr ""
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 76
+#, c-format
+msgid "%s: invalid status.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong file descriptor: %d.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
+msgstr ""
+"%s: 最初の入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #
 # File: src/c/sciprint_full.c, line: 96

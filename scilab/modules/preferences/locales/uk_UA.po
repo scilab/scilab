@@ -102,9 +102,15 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
 "рядків.\n"
 
+#, fuzzy, c-format
+msgid "%s: Invalid %s file.\n"
+msgstr "%s: некоректний запит XPath.\n"
+
+#
+# File: modules/preferences/macros/getPreferencesValue.sci, line: 46
 #, c-format
-msgid "%s: Invalid XConfiguration.xml file.\n"
-msgstr "%s: некоректний файл XConfiguration.xml.\n"
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
@@ -133,3 +139,7 @@ msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
 "матрицю 2xN.\n"
+
+#, c-format
+msgid "%s: Invalid XConfiguration.xml file.\n"
+msgstr "%s: некоректний файл XConfiguration.xml.\n"

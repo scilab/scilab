@@ -925,11 +925,47 @@ msgstr "&Načíst prostředí..."
 msgid "&Save environment..."
 msgstr "&Uložit prostředí..."
 
-msgid "&Change current directory..."
-msgstr "Změnit &současný adresář..."
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 94
+# File: modules/gui/src/gui_fake_xml.c, line: 148
+msgid "&Current Working Directory (CWD):"
+msgstr ""
 
-msgid "&Display current directory"
-msgstr "&Zobrazit současný adresář"
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 95
+# File: modules/gui/src/gui_fake_xml.c, line: 149
+msgid "    &Browse for new"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 96
+# File: modules/gui/src/gui_fake_xml.c, line: 150
+msgid "    Go to &Favorite"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 97
+# File: modules/gui/src/gui_fake_xml.c, line: 151
+msgid "TMPDIR"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 98
+# File: modules/gui/src/gui_fake_xml.c, line: 152
+msgid "SCIHOME"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 99
+# File: modules/gui/src/gui_fake_xml.c, line: 153
+msgid "SCI"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 100
+# File: modules/gui/src/gui_fake_xml.c, line: 154
+msgid "User's home ~"
+msgstr ""
 
 msgid "&Quit"
 msgstr "&Ukončit"
@@ -994,14 +1030,14 @@ msgstr "&Historie Příkazů"
 msgid "&File Browser"
 msgstr "&Průzkumník Souborů"
 
-msgid "&News feed"
-msgstr ""
-
 msgid "Scilab &Help"
 msgstr "&Nápověda Scilab"
 
 msgid "Scilab &Demonstrations"
 msgstr "&Ukázky Scilab"
+
+msgid "&News feed"
+msgstr ""
 
 msgid "&Links"
 msgstr "&Propojení"
@@ -1498,6 +1534,11 @@ msgid "Copy to Clipboard"
 msgstr ""
 
 msgid "Copy figure to system clipboard"
+msgstr ""
+
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 316
+msgid "Insert a title"
 msgstr ""
 
 msgid "Label X"
@@ -2723,6 +2764,12 @@ msgstr "%s: Špatný typ %s: Očekáváno reálné číslo.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Špatná velikost %s: Očekáváno reálné číslo.\n"
+
+#~ msgid "&Change current directory..."
+#~ msgstr "Změnit &současný adresář..."
+
+#~ msgid "&Display current directory"
+#~ msgstr "&Zobrazit současný adresář"
 
 #~ msgid "Ok"
 #~ msgstr "Ok"

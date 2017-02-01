@@ -464,27 +464,6 @@ msgid "%s: Wrong type for input arguments: Same types expected.\n"
 msgstr "%s: 入力引数の型が間違っています: 同じ型としてください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: セルを指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same type expected for all cell "
-"contents"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています:  全てのセルの内容に関して同じ型を指定"
-"してください."
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 以下としてください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　行列を指定してください.\n"
 
@@ -740,32 +719,17 @@ msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr "%s: x が負の場合, n は奇数の整数のみを含む必要があります.\n"
 
 #, c-format
-msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr "%s: 引数 #%d が間違っています: 正の整数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong size for argument #%d: Vector expected.\n"
-msgstr "%s: 引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
-
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"
+"%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>"
+"%d] integers.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 有効な置換ベクトルを指定してくださ"
 "い.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument #"
-"%d expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 少なくとも入力引数 #%d の大きさを"
-"指定してください.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
@@ -918,6 +882,37 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: 入力引数の大きさが間違っています: 大きさに互換性がありません.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています: セルを指定してください.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same type expected for all cell "
+#~ "contents"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の型が間違っています:  全てのセルの内容に関して同じ型を指"
+#~ "定してください."
+
+#~ msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
+#~ msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 以下としてください.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+
+#~ msgid "%s: Wrong argument #%d: Positive integer expected.\n"
+#~ msgstr "%s: 引数 #%d が間違っています: 正の整数を指定してください.\n"
+
+#~ msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+#~ msgstr ""
+#~ "%s: 引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: At least the size of input "
+#~ "argument #%d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の大きさが間違っています: 少なくとも入力引数 #%d の大きさ"
+#~ "を指定してください.\n"
 
 #~ msgid ""
 #~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "

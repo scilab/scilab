@@ -386,6 +386,10 @@ msgid "%s: Wrong type for input argument #%d: A Strings expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано рядки.\n"
 
+#, fuzzy, c-format
+msgid "%s: An error occurred: Not enough entries.\n"
+msgstr "%s: сталася помилка.\n"
+
 #, c-format
 msgid "%s: Error while opening, reading or writing.\n"
 msgstr "%s: помилка під час спроби відкриття, читання або запису.\n"
@@ -562,6 +566,14 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d («%s»): формат не розпізнано.\n"
+
+#, fuzzy, c-format
+msgid "%s: No output file.\n"
+msgstr "%s: не вдалося відкрити файл %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: %s format not recognized.\n"
+msgstr "%s: помилкове значення вхідного параметра №%d: формат не розпізнано.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"

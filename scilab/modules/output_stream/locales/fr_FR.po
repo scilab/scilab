@@ -131,9 +131,51 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 64
+#, c-format
+msgid "%s: Too many files opened!\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
+
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s : Plus de mémoire disponible.\n"
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 73
+#, c-format
+msgid "%s: invalid filename %s.\n"
+msgstr ""
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 76
+#, c-format
+msgid "%s: invalid status.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong file descriptor: %d.\n"
+msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "  (cont'd) %s\n"

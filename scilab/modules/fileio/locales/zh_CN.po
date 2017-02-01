@@ -319,6 +319,10 @@ msgstr "%s：输入参数#%d的值错误：应该为'%s'、'%s'或'%s'。\n"
 msgid "%s: Wrong type for input argument #%d: A Strings expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: An error occurred: Not enough entries.\n"
+msgstr "%s：发生一个错误。\n"
+
 #, c-format
 msgid "%s: Error while opening, reading or writing.\n"
 msgstr "%s：打开文件，读文件或写文件时发生错误。\n"
@@ -479,6 +483,14 @@ msgstr "%s：输入参数#%d（%s）的大小错误：应该为非空字符串�
 #, c-format
 msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr "%s：输入参数#%d（%s）的值错误：格式未被识别。\n"
+
+#, fuzzy, c-format
+msgid "%s: No output file.\n"
+msgstr "%s：无法打开文件%s。\n"
+
+#, fuzzy, c-format
+msgid "%s: %s format not recognized.\n"
+msgstr "%s：第%d个输入参数的值错误：格式无法识别。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"

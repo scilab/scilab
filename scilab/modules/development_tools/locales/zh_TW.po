@@ -161,6 +161,10 @@ msgid ""
 "%s: Expected %d columns in input argument #%d, but found %d columns instead."
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be real.\n"
+msgstr "%s: 輸入參數長度錯誤"
+
 #, c-format
 msgid "%s: %s is not an installed module"
 msgstr ""

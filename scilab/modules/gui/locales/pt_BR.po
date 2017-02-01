@@ -963,11 +963,47 @@ msgstr "&Carregar ambiente..."
 msgid "&Save environment..."
 msgstr "&Salvar ambiente..."
 
-msgid "&Change current directory..."
-msgstr "&Alterar o diretório atual..."
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 94
+# File: modules/gui/src/gui_fake_xml.c, line: 148
+msgid "&Current Working Directory (CWD):"
+msgstr ""
 
-msgid "&Display current directory"
-msgstr "&Exibir o diretório atual"
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 95
+# File: modules/gui/src/gui_fake_xml.c, line: 149
+msgid "    &Browse for new"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 96
+# File: modules/gui/src/gui_fake_xml.c, line: 150
+msgid "    Go to &Favorite"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 97
+# File: modules/gui/src/gui_fake_xml.c, line: 151
+msgid "TMPDIR"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 98
+# File: modules/gui/src/gui_fake_xml.c, line: 152
+msgid "SCIHOME"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 99
+# File: modules/gui/src/gui_fake_xml.c, line: 153
+msgid "SCI"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 100
+# File: modules/gui/src/gui_fake_xml.c, line: 154
+msgid "User's home ~"
+msgstr ""
 
 msgid "&Quit"
 msgstr "Sai&r"
@@ -1032,14 +1068,14 @@ msgstr "Histórico de &comandos"
 msgid "&File Browser"
 msgstr "&Navegador de arquivos"
 
-msgid "&News feed"
-msgstr ""
-
 msgid "Scilab &Help"
 msgstr "A&juda do Scilab"
 
 msgid "Scilab &Demonstrations"
 msgstr "&Demonstrações do Scilab"
+
+msgid "&News feed"
+msgstr ""
 
 msgid "&Links"
 msgstr "Links da &Web"
@@ -1537,6 +1573,11 @@ msgid "Copy to Clipboard"
 msgstr ""
 
 msgid "Copy figure to system clipboard"
+msgstr ""
+
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 316
+msgid "Insert a title"
 msgstr ""
 
 msgid "Label X"
@@ -2767,6 +2808,12 @@ msgstr "%s: Tipo incorreto para %s: esperava-se um número real.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Tamanho incorreto para %s: esperava-se um número real.\n"
+
+#~ msgid "&Change current directory..."
+#~ msgstr "&Alterar o diretório atual..."
+
+#~ msgid "&Display current directory"
+#~ msgstr "&Exibir o diretório atual"
 
 #~ msgid "Ok"
 #~ msgstr "Ok"

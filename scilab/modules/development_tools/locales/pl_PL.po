@@ -177,6 +177,10 @@ msgid ""
 msgstr ""
 "%s: W argumencie wejściowym nr %d oczekiwano na %d kolumn, ale jest %d."
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be real.\n"
+msgstr "%s: Nieprawidłowa wartość argumentu wejściowego #%d: musi być > %d.\n"
+
 #, c-format
 msgid "%s: %s is not an installed module"
 msgstr ""

@@ -137,6 +137,10 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un tableau de chaîne de "
 "caractères attendu.\n"
 
+#, fuzzy
+msgid "Generating cleaner_src.sce...\n"
+msgstr "Génération de cleaner.sce...\n"
+
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr ""

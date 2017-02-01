@@ -187,6 +187,11 @@ msgid ""
 msgstr ""
 "%s: 予定では %d 列が入力引数 #%d に含まれるはずでしたが, %d 列となりました."
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be real.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
+
 #, c-format
 msgid "%s: %s is not an installed module"
 msgstr ""

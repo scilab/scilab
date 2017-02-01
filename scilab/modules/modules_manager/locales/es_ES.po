@@ -136,6 +136,10 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un arreglo de "
 "strings.\n"
 
+#, fuzzy
+msgid "Generating cleaner_src.sce...\n"
+msgstr "Generando cleaner.sce...\n"
+
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr "%s: El archivo '%s' no existe o no puede ser leído.\n"

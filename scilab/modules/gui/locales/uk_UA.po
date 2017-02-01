@@ -1054,11 +1054,47 @@ msgstr "&Завантажити середовище..."
 msgid "&Save environment..."
 msgstr "З&берегти середовище…"
 
-msgid "&Change current directory..."
-msgstr "З&мінити поточний каталог…"
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 94
+# File: modules/gui/src/gui_fake_xml.c, line: 148
+msgid "&Current Working Directory (CWD):"
+msgstr ""
 
-msgid "&Display current directory"
-msgstr "П&оказати поточний каталог"
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 95
+# File: modules/gui/src/gui_fake_xml.c, line: 149
+msgid "    &Browse for new"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 96
+# File: modules/gui/src/gui_fake_xml.c, line: 150
+msgid "    Go to &Favorite"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 97
+# File: modules/gui/src/gui_fake_xml.c, line: 151
+msgid "TMPDIR"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 98
+# File: modules/gui/src/gui_fake_xml.c, line: 152
+msgid "SCIHOME"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 99
+# File: modules/gui/src/gui_fake_xml.c, line: 153
+msgid "SCI"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 100
+# File: modules/gui/src/gui_fake_xml.c, line: 154
+msgid "User's home ~"
+msgstr ""
 
 msgid "&Quit"
 msgstr "Ви&йти"
@@ -1123,14 +1159,14 @@ msgstr "Журнал ко&манд"
 msgid "&File Browser"
 msgstr "Перегляд &файлів"
 
-msgid "&News feed"
-msgstr "&Подача новин"
-
 msgid "Scilab &Help"
 msgstr "&Довідка Scilab"
 
 msgid "Scilab &Demonstrations"
 msgstr "Де&монстрації Scilab"
+
+msgid "&News feed"
+msgstr "&Подача новин"
 
 msgid "&Links"
 msgstr "&Веб-посилання"
@@ -1633,6 +1669,10 @@ msgstr "Скопіювати до буфера обміну"
 
 msgid "Copy figure to system clipboard"
 msgstr "Копіювати рисунок до буфера обміну даними системи"
+
+#, fuzzy
+msgid "Insert a title"
+msgstr "Вставити у цій позиції нову точку"
 
 msgid "Label X"
 msgstr "Мітка X"
@@ -2896,6 +2936,12 @@ msgstr "%s: помилковий тип для %s: слід використов
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: помилковий розмір для %s: слід використовувати дійсне число.\n"
+
+#~ msgid "&Change current directory..."
+#~ msgstr "З&мінити поточний каталог…"
+
+#~ msgid "&Display current directory"
+#~ msgstr "П&оказати поточний каталог"
 
 #~ msgid "Fit zoom to data"
 #~ msgstr "Підібрати масштаб за даними"

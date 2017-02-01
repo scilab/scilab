@@ -199,6 +199,11 @@ msgid ""
 msgstr ""
 "%s: мало бути %d стовпчиків у вхідному параметрі №%d, виявлено %d стовпчиків."
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be real.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати > %d.\n"
+
 #, c-format
 msgid "%s: %s is not an installed module"
 msgstr "%s: %s не є встановленим модулем"

@@ -181,6 +181,10 @@ msgstr ""
 "%s: Očekáváno %d sloupců ve vstupním argumentu #%d, ale místo toho nalezeno "
 "%d sloupců."
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be real.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být > %d.\n"
+
 #, c-format
 msgid "%s: %s is not an installed module"
 msgstr ""

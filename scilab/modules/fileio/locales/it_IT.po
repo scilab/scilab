@@ -346,6 +346,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A Strings expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: An error occurred: Not enough entries.\n"
+msgstr "%s: Si è verificato un errore.\n"
+
 #, c-format
 msgid "%s: Error while opening, reading or writing.\n"
 msgstr "%s: Errore durante l'apertura, la lettura o la scrittura.\n"
@@ -526,6 +530,16 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ('%s') ha un valore sbagliato : formato non "
+"riconosciuto.\n"
+
+#, fuzzy, c-format
+msgid "%s: No output file.\n"
+msgstr "%s: Non è possibile aprire il file %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: %s format not recognized.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: formato non "
 "riconosciuto.\n"
 
 #, c-format

@@ -1006,11 +1006,47 @@ msgstr "&Charger un environnement..."
 msgid "&Save environment..."
 msgstr "&Enregistrer l'environnement..."
 
-msgid "&Change current directory..."
-msgstr "&Changer le répertoire courant..."
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 94
+# File: modules/gui/src/gui_fake_xml.c, line: 148
+msgid "&Current Working Directory (CWD):"
+msgstr ""
 
-msgid "&Display current directory"
-msgstr "&Afficher le répertoire courant"
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 95
+# File: modules/gui/src/gui_fake_xml.c, line: 149
+msgid "    &Browse for new"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 96
+# File: modules/gui/src/gui_fake_xml.c, line: 150
+msgid "    Go to &Favorite"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 97
+# File: modules/gui/src/gui_fake_xml.c, line: 151
+msgid "TMPDIR"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 98
+# File: modules/gui/src/gui_fake_xml.c, line: 152
+msgid "SCIHOME"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 99
+# File: modules/gui/src/gui_fake_xml.c, line: 153
+msgid "SCI"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 100
+# File: modules/gui/src/gui_fake_xml.c, line: 154
+msgid "User's home ~"
+msgstr ""
 
 msgid "&Quit"
 msgstr "&Quitter"
@@ -1075,14 +1111,14 @@ msgstr "Historique des &Commandes"
 msgid "&File Browser"
 msgstr "Navigateur de &Fichiers"
 
-msgid "&News feed"
-msgstr "&Nouvelles RSS"
-
 msgid "Scilab &Help"
 msgstr "Aide de &Scilab"
 
 msgid "Scilab &Demonstrations"
 msgstr "&Démonstrations"
+
+msgid "&News feed"
+msgstr "&Nouvelles RSS"
 
 msgid "&Links"
 msgstr "&Liens Internet"
@@ -1587,6 +1623,10 @@ msgstr "Copier dans le presse-papier"
 
 msgid "Copy figure to system clipboard"
 msgstr "Copier la figure dans le presse-papier du système"
+
+#, fuzzy
+msgid "Insert a title"
+msgstr "Insérer un nouveau point ici"
 
 msgid "Label X"
 msgstr "Label X"
@@ -2833,6 +2873,12 @@ msgstr "%s : Type erroné de %s : Un réel attendu.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s : Dimension erronée de %s : Un réel attendu.\n"
+
+#~ msgid "&Change current directory..."
+#~ msgstr "&Changer le répertoire courant..."
+
+#~ msgid "&Display current directory"
+#~ msgstr "&Afficher le répertoire courant"
 
 #~ msgid "Fit zoom to data"
 #~ msgstr "Ajuster le zoom aux données"

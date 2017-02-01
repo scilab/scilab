@@ -960,11 +960,47 @@ msgstr "&Загрузить окружение..."
 msgid "&Save environment..."
 msgstr "&Сохранить окружение..."
 
-msgid "&Change current directory..."
-msgstr "С&менить текущий каталог..."
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 94
+# File: modules/gui/src/gui_fake_xml.c, line: 148
+msgid "&Current Working Directory (CWD):"
+msgstr ""
 
-msgid "&Display current directory"
-msgstr "О&тобразить текущий каталог"
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 95
+# File: modules/gui/src/gui_fake_xml.c, line: 149
+msgid "    &Browse for new"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 96
+# File: modules/gui/src/gui_fake_xml.c, line: 150
+msgid "    Go to &Favorite"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 97
+# File: modules/gui/src/gui_fake_xml.c, line: 151
+msgid "TMPDIR"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 98
+# File: modules/gui/src/gui_fake_xml.c, line: 152
+msgid "SCIHOME"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 99
+# File: modules/gui/src/gui_fake_xml.c, line: 153
+msgid "SCI"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 100
+# File: modules/gui/src/gui_fake_xml.c, line: 154
+msgid "User's home ~"
+msgstr ""
 
 msgid "&Quit"
 msgstr "В&ыход"
@@ -1029,14 +1065,14 @@ msgstr "&Журнал команд"
 msgid "&File Browser"
 msgstr "&Обозреватель файлов"
 
-msgid "&News feed"
-msgstr "&Новостная лента"
-
 msgid "Scilab &Help"
 msgstr "&Содержание"
 
 msgid "Scilab &Demonstrations"
 msgstr "&Примеры"
+
+msgid "&News feed"
+msgstr "&Новостная лента"
 
 msgid "&Links"
 msgstr "&Веб-ресурсы"
@@ -1539,6 +1575,10 @@ msgstr "Скопировать в буфер обмена"
 
 msgid "Copy figure to system clipboard"
 msgstr "Скопировать графическое окно в буфер обмена системы"
+
+#, fuzzy
+msgid "Insert a title"
+msgstr "Вставить здесь новую точку"
 
 msgid "Label X"
 msgstr "Подпись X"
@@ -2771,6 +2811,12 @@ msgstr "%s: Неверный тип %s: ожидалось вещественн�
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Неверный размер %s: ожидалось вещественное число.\n"
+
+#~ msgid "&Change current directory..."
+#~ msgstr "С&менить текущий каталог..."
+
+#~ msgid "&Display current directory"
+#~ msgstr "О&тобразить текущий каталог"
 
 #~ msgid "Fit zoom to data"
 #~ msgstr "Подогнать масштаб под данные"

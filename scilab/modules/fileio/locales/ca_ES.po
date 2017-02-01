@@ -336,6 +336,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A Strings expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: An error occurred: Not enough entries.\n"
+msgstr "%s: Hi ha hagut un error.\n"
+
 #, c-format
 msgid "%s: Error while opening, reading or writing.\n"
 msgstr "%s: S'ha produït un error en obrir, llegir o escriure.\n"
@@ -515,6 +519,16 @@ msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d (%s) té un valor incorrecte: No s'ha reconegut "
 "el format.\n"
+
+#, fuzzy, c-format
+msgid "%s: No output file.\n"
+msgstr "%s: No s'ha pogut obrir el fitxer %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: %s format not recognized.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: No s'ha reconegut el "
+"format.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"

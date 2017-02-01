@@ -121,9 +121,47 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 64
+#, c-format
+msgid "%s: Too many files opened!\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
+
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Není více paměti.\n"
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 73
+#, c-format
+msgid "%s: invalid filename %s.\n"
+msgstr ""
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 76
+#, c-format
+msgid "%s: invalid status.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong file descriptor: %d.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid "  (cont'd) %s\n"

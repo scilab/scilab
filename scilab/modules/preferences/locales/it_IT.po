@@ -104,9 +104,15 @@ msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
 "di stringhe.\n"
 
+#, fuzzy, c-format
+msgid "%s: Invalid %s file.\n"
+msgstr "%s: Richiesta XPath non valida.\n"
+
+#
+# File: modules/preferences/macros/getPreferencesValue.sci, line: 46
 #, c-format
-msgid "%s: Invalid XConfiguration.xml file.\n"
-msgstr "%s: FIle XConfiguration.xml non valido.\n"
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
@@ -134,3 +140,7 @@ msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "matrice 2xN.\n"
+
+#, c-format
+msgid "%s: Invalid XConfiguration.xml file.\n"
+msgstr "%s: FIle XConfiguration.xml non valido.\n"

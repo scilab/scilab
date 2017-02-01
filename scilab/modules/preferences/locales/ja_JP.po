@@ -96,9 +96,15 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
+#, fuzzy, c-format
+msgid "%s: Invalid %s file.\n"
+msgstr "%s: XPath リクエストが無効です.\n"
+
+#
+# File: modules/preferences/macros/getPreferencesValue.sci, line: 46
 #, c-format
-msgid "%s: Invalid XConfiguration.xml file.\n"
-msgstr "%s: XConfiguration.xml ファイルが無効です.\n"
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
@@ -124,3 +130,7 @@ msgstr "%s: 属性名が無効です: %s."
 msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 2xNの行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Invalid XConfiguration.xml file.\n"
+msgstr "%s: XConfiguration.xml ファイルが無効です.\n"

@@ -187,6 +187,10 @@ msgstr ""
 "%s: Ожидалось %d столбцов во  входном параметре #%d, но получено  %d "
 "столбцов."
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be real.\n"
+msgstr "%s: Неверное значение входного параметра №%d: должно быть > %d.\n"
+
 #, c-format
 msgid "%s: %s is not an installed module"
 msgstr "%s: %s не является установленным модулем"

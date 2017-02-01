@@ -127,6 +127,10 @@ msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が正しくありません: 文字列の配列を指定してください.\n"
 
+#, fuzzy
+msgid "Generating cleaner_src.sce...\n"
+msgstr "cleaner.sceを生成中...\n"
+
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr "%s: ファイル '%s' が存在しないか, 読込みアクセス許可がありません.\n"

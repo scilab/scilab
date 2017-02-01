@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-01-04 17:52+0100\n"
+"Revision-Date: 2017-02-01 14:30+0100\n"
 
 # File: modules/overloading/macros/%0_i_st.sci, line: 22
 #, c-format
@@ -172,88 +172,6 @@ msgid "%s: Inconsistent dimensions.\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/%hm_cumprod.sci, line: 43
-# File: modules/overloading/macros/%hm_cumsum.sci, line: 46
-# File: modules/overloading/macros/%r_cumprod.sci, line: 32
-# File: modules/overloading/macros/%r_cumsum.sci, line: 32
-# File: modules/overloading/macros/%r_prod.sci, line: 32
-# File: modules/overloading/macros/%r_sum.sci, line: 33
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_cumprod.sci, line: 50
-# File: modules/overloading/macros/%hm_cumsum.sci, line: 53
-# File: modules/overloading/macros/%r_cumprod.sci, line: 39
-# File: modules/overloading/macros/%r_cumsum.sci, line: 39
-# File: modules/overloading/macros/%r_prod.sci, line: 39
-# File: modules/overloading/macros/%r_sum.sci, line: 40
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_cumprod.sci, line: 53
-# File: modules/overloading/macros/%hm_cumsum.sci, line: 56
-# File: modules/overloading/macros/%r_cumprod.sci, line: 42
-# File: modules/overloading/macros/%r_cumsum.sci, line: 42
-# File: modules/overloading/macros/%r_prod.sci, line: 42
-# File: modules/overloading/macros/%r_sum.sci, line: 43
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_cumprod.sci, line: 57
-# File: modules/overloading/macros/%hm_cumprod.sci, line: 75
-# File: modules/overloading/macros/%hm_cumsum.sci, line: 60
-# File: modules/overloading/macros/%hm_cumsum.sci, line: 78
-# File: modules/overloading/macros/%r_cumprod.sci, line: 46
-# File: modules/overloading/macros/%r_cumsum.sci, line: 46
-# File: modules/overloading/macros/%r_prod.sci, line: 46
-# File: modules/overloading/macros/%r_sum.sci, line: 47
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_cumprod.sci, line: 60
-# File: modules/overloading/macros/%hm_cumsum.sci, line: 63
-# File: modules/overloading/macros/%r_cumprod.sci, line: 49
-# File: modules/overloading/macros/%r_cumsum.sci, line: 49
-# File: modules/overloading/macros/%r_prod.sci, line: 49
-# File: modules/overloading/macros/%r_sum.sci, line: 50
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_cumprod.sci, line: 66
-# File: modules/overloading/macros/%hm_cumsum.sci, line: 69
-# File: modules/overloading/macros/%r_cumprod.sci, line: 56
-# File: modules/overloading/macros/%r_cumsum.sci, line: 57
-# File: modules/overloading/macros/%r_prod.sci, line: 56
-# File: modules/overloading/macros/%r_sum.sci, line: 57
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_cumprod.sci, line: 71
-# File: modules/overloading/macros/%hm_cumsum.sci, line: 74
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_cumprod.sci, line: 79
-# File: modules/overloading/macros/%hm_cumsum.sci, line: 82
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr ""
-
-#
 # File: modules/overloading/macros/%hm_d_hm.sci, line: 18
 # File: modules/overloading/macros/%hm_d_s.sci, line: 16
 # File: modules/overloading/macros/%hm_j_hm.sci, line: 18
@@ -273,18 +191,6 @@ msgid "%s: Too many subscripts.\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/%hm_eye.sci, line: 16
-#, c-format
-msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_eye.sci, line: 19
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Hypermatrix expected.\n"
-msgstr ""
-
-#
 # File: modules/overloading/macros/%hm_m_s.sci, line: 20
 # File: modules/overloading/macros/%s_m_hm.sci, line: 20
 #, c-format
@@ -299,62 +205,9 @@ msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/%hm_matrix.sci, line: 21
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be non-negative "
-"integers.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_matrix.sci, line: 50
-#, c-format
-msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_matrix.sci, line: 79
-#, c-format
-msgid "%s: Only one -1 value admitted.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_matrix.sci, line: 85
-#, c-format
-msgid "%s: Input and output matrices  must have the same number of elements"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_max.sci, line: 48
-#, c-format
-msgid "%s: Arguments #%d and #%d must have compatible sizes\n"
-msgstr ""
-
-#
 # File: modules/overloading/macros/%hm_r_s.sci, line: 17
 #, c-format
 msgid "%s: not implemented for argin#1 hypermatrix and argin#2 matrix\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_size.sci, line: 30
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_size.sci, line: 35
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%hm_size.sci, line: 43
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar positive integer or character "
-"string expected.\n"
 msgstr ""
 
 #
@@ -473,6 +326,60 @@ msgstr ""
 # File: modules/overloading/macros/%s_v_s.sci, line: 18
 #, c-format
 msgid "%s: Wrong size for input argument(s).\n"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%r_cumprod.sci, line: 32
+# File: modules/overloading/macros/%r_cumsum.sci, line: 32
+# File: modules/overloading/macros/%r_prod.sci, line: 32
+# File: modules/overloading/macros/%r_sum.sci, line: 33
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%r_cumprod.sci, line: 39
+# File: modules/overloading/macros/%r_cumsum.sci, line: 39
+# File: modules/overloading/macros/%r_prod.sci, line: 39
+# File: modules/overloading/macros/%r_sum.sci, line: 40
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%r_cumprod.sci, line: 42
+# File: modules/overloading/macros/%r_cumsum.sci, line: 42
+# File: modules/overloading/macros/%r_prod.sci, line: 42
+# File: modules/overloading/macros/%r_sum.sci, line: 43
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%r_cumprod.sci, line: 46
+# File: modules/overloading/macros/%r_cumsum.sci, line: 46
+# File: modules/overloading/macros/%r_prod.sci, line: 46
+# File: modules/overloading/macros/%r_sum.sci, line: 47
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%r_cumprod.sci, line: 49
+# File: modules/overloading/macros/%r_cumsum.sci, line: 49
+# File: modules/overloading/macros/%r_prod.sci, line: 49
+# File: modules/overloading/macros/%r_sum.sci, line: 50
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%r_cumprod.sci, line: 56
+# File: modules/overloading/macros/%r_cumsum.sci, line: 57
+# File: modules/overloading/macros/%r_prod.sci, line: 56
+# File: modules/overloading/macros/%r_sum.sci, line: 57
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #

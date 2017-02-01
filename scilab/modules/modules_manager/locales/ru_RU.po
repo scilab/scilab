@@ -126,6 +126,10 @@ msgstr "Формирование локализации\n"
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался массив строк.\n"
 
+#, fuzzy
+msgid "Generating cleaner_src.sce...\n"
+msgstr "Формирование cleaner.sce...\n"
+
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr "%s: Файл «%s» не существует или недоступен для чтения.\n"
