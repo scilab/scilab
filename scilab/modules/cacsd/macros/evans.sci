@@ -220,12 +220,3 @@ function evans(n,d,kmax)
     end
 endfunction
 
-function str=formatEvansTip(curve)
-    //this function is called by the datatip mechanism to format the tip
-    //string for the evans root loci curves
-    ud = curve.parent.display_function_data;
-    pt = curve.data(1:2);
-    [d,ptp,i,c]=orthProj(curve.parent.data, pt);
-    K=ud(i)+(ud(i+1)-ud(i))*c;
-    str=msprintf("r: %.4g %+.4g i\nK: %.4g", pt,K);
-endfunction
