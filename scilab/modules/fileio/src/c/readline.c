@@ -19,6 +19,7 @@
 #include "readline.h"
 #include "mgetl.h"
 #include "freeArrayOfString.h"
+#include "charEncoding.h"
 #include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 #define EMPTYSTR ""
