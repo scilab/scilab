@@ -11,21 +11,23 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-
 function [x] = input(msg, flag)
 
     [lhs,rhs] = argn(0);
 
     if rhs <> 1 & rhs <> 2 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "input", 1, 2));
+        msg = _("%s: Wrong number of input arguments: %d to %d expected.\n")
+        error(msprintf(msg, "input", 1, 2));
     end
 
     if type(msg) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"input",1));
+        msg = _("%s: Wrong type for input argument #%d: String expected.\n")
+        error(msprintf(msg, "input",1));
     end
 
     if size(msg, "*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"input",1));
+        msg = _("%s: Wrong size for input argument #%d: string expected.\n")
+        error(msprintf(msg, "input",1));
     end
 
     // a tricky way to get all ascii codes  sequences
@@ -35,15 +37,18 @@ function [x] = input(msg, flag)
 
     if argn(2) == 2 then
         if type(flag) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"input",2));
+            msg = _("%s: Wrong type for input argument #%d: String expected.\n")
+            error(msprintf(msg, "input",2));
         end
 
         if size(flag, "*") <> 1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"input",2));
+            msg = _("%s: Wrong size for input argument #%d: string expected.\n")
+            error(msprintf(msg, "input",2));
         end
 
         if (flag <> "s" & flag <> "string") then
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' value expected.\n"),"input",2,"string"));
+            msg = _("%s: Wrong value for input argument #%d: ''%s'' value expected.\n")
+            error(msprintf(msg, "input", 2, "string"));
         end
 
         prompt("");
@@ -62,20 +67,20 @@ function [x] = input(msg, flag)
         while %t
             prompt("");
             mprintf(msg);
-            x = mscanf(fmt);
+            __#x#__ = mscanf(fmt);
 
             currentpromptAfter = prompt();
             // bug 5513
             // we had change prompt during exec of input
             // we recall input
             if (currentpromptAfter <> currentprompt) then
-                x = string(input(msg));
+                __#x#__ = string(input(msg));
             end
 
-            if (length(x) == 0) | (x == " ") then
-                x = "[]";
+            if (length(__#x#__) == 0) | (__#x#__ == " ") then
+                __#x#__ = "[]";
             end
-            ierr = execstr("x=" + x,"errcatch");
+            ierr = execstr("x=" + __#x#__,"errcatch");
             if ierr == 0 then
                 break;
             end
@@ -84,4 +89,5 @@ function [x] = input(msg, flag)
 
     end
     prompt(currentprompt);
+    mprintf("\n")
 endfunction
