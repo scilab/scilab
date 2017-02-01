@@ -155,6 +155,7 @@ if getscilabmode() == "STD" then
   setmenu(gettext("&?"));
   setmenu(gettext("&Toolboxes"));
   toolbar(-1, "on");
+  main_menubar_cb("setFavoriteDirs");
 end
 // ====================================================================
 clear ans

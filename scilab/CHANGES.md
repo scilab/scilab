@@ -212,7 +212,7 @@ Help pages:
 
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `plot2d`, `roots`,
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
-  `scilab|scilex`, `flipdim`
+  `scilab|scilex`, `flipdim`, `Matplot_properties`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `and`, `format`, `typeof`,
 `brackets`, `setlanguage`, `sleep`, `isinf`, `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`
 * reorganized:
@@ -223,7 +223,7 @@ Help pages:
   - Signal processing: New `Convolution - correlation` subsection. `wfir_gui`, `filt_sinc`, `hilb`, `fft2`, `fftshift`,`ifftshift`, `hilbert`, `cepstrum`, `conv`, `conv2`, `convol2d`, `xcor`, `corr`, `hank`, `mrfit`, `frfir` sorted up in existing subsections.
   - Colormaps and GUI/Menus subsections created
 * translations added:
-  - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`, `sleep`, `strtod`, `permute`
+  - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`, `sleep`, `strtod`, `permute`, `geomean`
   - (ru): homepage
 
 
@@ -357,7 +357,7 @@ Bug Fixes
 * [#9153](http://bugzilla.scilab.org/show_bug.cgi?id=9153): The `isqualbitwise` help page was inaccurate and badly located
 * [#9161](http://bugzilla.scilab.org/show_bug.cgi?id=9161): Multiple insertions at a repeated index in a sparse matrice wrongly updated it.
 * [#9288](http://bugzilla.scilab.org/show_bug.cgi?id=9288): Dynamic palette with the most used blocks
-* [#9451](http://bugzilla.scilab.org/show_bug.cgi?id=9451): `test_run` output did not clearly distinguish heading lines of modules and tests lines 
+* [#9451](http://bugzilla.scilab.org/show_bug.cgi?id=9451): `test_run` output did not clearly distinguish heading lines of modules and tests lines
 * [#9825](http://bugzilla.scilab.org/show_bug.cgi?id=9825): `assert_computedigits` returns too much digits
 * [#9865](http://bugzilla.scilab.org/show_bug.cgi?id=9865): When making a plot with `point`(no line), no symbol was shown in the legend.
 * [#9876](http://bugzilla.scilab.org/show_bug.cgi?id=9876): Creating a complex structure with multiple hierarchy level and size failed.
@@ -420,6 +420,7 @@ Bug Fixes
 * [#14591](http://bugzilla.scilab.org/show_bug.cgi?id=14591): `<=` and `>=` elementwise operators comparing 2 hypermatrices of decimal numbers or encoded integers were inverted.
 * [#14593](http://bugzilla.scilab.org/show_bug.cgi?id=14593): Signs are no more drawn in BIGSOM and PRODUCT components.
 * [#14602](http://bugzilla.scilab.org/show_bug.cgi?id=14602): WRITEC_f block didn't work for x86 machines.
+* [#14609](http://bugzilla.scilab.org/show_bug.cgi?id=14609): "msscanf" crashes Scilab when 'niter' parameter is out of range.
 * [#14632](http://bugzilla.scilab.org/show_bug.cgi?id=14632): Zooming moves drawn axis offscreen
 * [#14640](http://bugzilla.scilab.org/show_bug.cgi?id=14640): `median(int8([10 60 80 100]))` returned -58 instead of 70 due to overflow when interpolating (60+80)>128
 * [#14648](http://bugzilla.scilab.org/show_bug.cgi?id=14648): `isinf` returned `%F` for complex numbers with both real and imag infinite parts.
@@ -429,7 +430,7 @@ Bug Fixes
 * [#14667](http://bugzilla.scilab.org/show_bug.cgi?id=14667): Multi line string without final quote generated a non terminal parser state.
 * [#14681](http://bugzilla.scilab.org/show_bug.cgi?id=14681): Short-circuited AND operation was not possible with double matrices in if and while clauses
 * [#14689](http://bugzilla.scilab.org/show_bug.cgi?id=14689): fixed - `resize_matrix(rand(2,3),[0 2])` did not return []. Usage of new sizes <0 to keep them unchanged was not documented.
-* [#14690](http://bugzilla.scilab.org/show_bug.cgi?id=14690): The user's startup files set in the working directory were not executed. When `SCIHOME` is not the working directory, `SCIHOME\scilab.ini` was executed twice.
+* [#14690](http://bugzilla.scilab.org/show_bug.cgi?id=14690): The user startup files set in the working directory were not executed. When `SCIHOME` is not the working directory, `SCIHOME\scilab.ini` was executed twice.
 * [#14692](http://bugzilla.scilab.org/show_bug.cgi?id=14692): isequal() was always returning true for builtin functions
 * [#14694](http://bugzilla.scilab.org/show_bug.cgi?id=14694): The list of named colors was misaligned and poorly rendered in `help color_list`
 * [#14710](http://bugzilla.scilab.org/show_bug.cgi?id=14710): fullpath(TMPDIR+...) was bugged on MacOS
@@ -445,6 +446,7 @@ Bug Fixes
 * [#14824](http://bugzilla.scilab.org/show_bug.cgi?id=14824): Incorrect error message with `mfprintf(fd, "%d", [])`.
 * [#14835](http://bugzilla.scilab.org/show_bug.cgi?id=14835): `AFFICH_m` block was not rendered correctly.
 * [#14839](http://bugzilla.scilab.org/show_bug.cgi?id=14839): `plot2d2` crashed Scilab.
+* [#14885](http://bugzilla.scilab.org/show_bug.cgi?id=14885): The tag property was not documented in Matplot_properties help page.
 * [#14887](http://bugzilla.scilab.org/show_bug.cgi?id=14887): For many graphic handle types, the display of the `.tag` value missed `".."` delimiters
 * [#14909](http://bugzilla.scilab.org/show_bug.cgi?id=14909): getlongpathname and getshortpathname return values with "\" instead of "/"
 * [#14911](http://bugzilla.scilab.org/show_bug.cgi?id=14911): Added the entry "Label => Title" in the graphic context menu in a figure
@@ -452,6 +454,8 @@ Bug Fixes
 * [#14942](http://bugzilla.scilab.org/show_bug.cgi?id=14942): Keep the Tkscale block label if block already has label.
 * [#14956](http://bugzilla.scilab.org/show_bug.cgi?id=14956): `clf("reset")` forgot resetting the `immediate_drawing`, `resize`, `resizefcn`, `closerequestfcn`, `toolbar_visible`, `menubar_visible`, `infobar_visible`, `default_axes`, and `icon` figure properties.
 * [#14965](http://bugzilla.scilab.org/show_bug.cgi?id=14965): `getPreferencesValue` could not read a tag having multiple occurrences and did not accept the path to the preferences file.
+* [#14976](http://bugzilla.scilab.org/show_bug.cgi?id=14976): `asciimat(colNum)` concatenated rows when colNum has a single column of ascii codes. With UTF-8 chars, `asciimat(asciimat("àéïôù"))` yielded an error.
+* [#14978](http://bugzilla.scilab.org/show_bug.cgi?id=14978): `input(message)` interpreted an entered `x` as a literal string, and exited with the new prompt on the same line.
 
 ### Bugs fixed in 6.0.0 beta-2 and earlier 6.0.0 pre-releases:
 

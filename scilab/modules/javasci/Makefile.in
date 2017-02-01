@@ -1147,7 +1147,7 @@ uninstall-am: uninstall-libjavasci2_la_etcDATA \
 @JAVASCI_TRUE@@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @JAVASCI_TRUE@@SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @JAVASCI_TRUE@@SWIG_TRUE@			echo "Swig process of $$file (Java) ..."; \
-@JAVASCI_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@JAVASCI_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_OPTIONS) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @JAVASCI_TRUE@@SWIG_TRUE@		done; \
 @JAVASCI_TRUE@@SWIG_TRUE@	fi
 
@@ -1156,7 +1156,7 @@ uninstall-am: uninstall-libjavasci2_la_etcDATA \
 @JAVASCI_TRUE@@SWIG_TRUE@	if test -n "$(SWIG_SCILAB_WRAPPERS)"; then \
 @JAVASCI_TRUE@@SWIG_TRUE@		for file in $(SWIG_SCILAB_WRAPPERS) ; do \
 @JAVASCI_TRUE@@SWIG_TRUE@			echo "Swig process of $$file (Scilab) ..."; \
-@JAVASCI_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
+@JAVASCI_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_OPTIONS) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
 @JAVASCI_TRUE@@SWIG_TRUE@		done; \
 @JAVASCI_TRUE@@SWIG_TRUE@	fi
 

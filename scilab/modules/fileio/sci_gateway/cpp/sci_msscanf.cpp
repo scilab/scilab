@@ -83,6 +83,12 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
     {
         iNiter = pStrRead->getRows();
     }
+    else if (iNiter > pStrRead->getRows())
+    {
+        Scierror(999, _("%s: An error occurred: Not enough entries.\n"), "msscanf");
+        return types::Function::Error;
+    }
+
     wcsFormat = in[size - 1]->getAs<types::String>()->get(0);
     nrow = iNiter;
     while (++rowcount < iNiter)

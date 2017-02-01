@@ -114,6 +114,7 @@ import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
 import java.lang.reflect.Constructor;
 import java.rmi.server.UID;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Optional;
 import org.scilab.modules.xcos.io.ScilabTypeCoder;
@@ -197,15 +198,6 @@ public class XcosDiagram extends ScilabGraph {
 
         // do not put loop links inside the common block cell but on the defaultParent
         ((mxGraphModel) getModel()).setMaintainEdgeParent(false);
-        getModel().addListener(mxEvent.CHANGE, new mxIEventListener() {
-            @Override
-            public void invoke(Object sender, mxEventObject evt) {
-                if (sender instanceof XcosGraphModel) {
-                    List<XcosDiagram> diagrams = Xcos.getInstance().openedDiagrams(Xcos.findRoot(XcosDiagram.this));
-                    diagrams.stream().forEach(d -> d.updateTabTitle());
-                }
-            }
-        });
     }
 
     /*
@@ -629,6 +621,32 @@ public class XcosDiagram extends ScilabGraph {
                 diagram.getModel().endUpdate();
             }
         }
+    }
+
+    /**
+     * Update the tab title depending on the status
+     */
+    private static final class SavedStatusTracker implements mxIEventListener {
+        private static final Map<XcosDiagram, SavedStatusTracker> instances = new HashMap<>();
+        private ScicosObjectOwner owner;
+
+        private SavedStatusTracker(final ScicosObjectOwner o) {
+            this.owner = o;
+        }
+
+        public static SavedStatusTracker getInstance(XcosDiagram d) {
+            return instances.putIfAbsent(d, new SavedStatusTracker(Xcos.findRoot(d)));
+        }
+
+        @Override
+        public void invoke(Object sender, mxEventObject eo) {
+            if (sender instanceof XcosGraphModel) {
+                List<XcosDiagram> diagrams = Xcos.getInstance().openedDiagrams(owner);
+                diagrams.stream().forEach(d -> d.updateTabTitle());
+            }
+        }
+
+
     }
 
     /**
@@ -1101,6 +1119,10 @@ public class XcosDiagram extends ScilabGraph {
         removeListener(RepositionTracker.getInstance());
         getUndoManager().removeListener(UndoUpdateTracker.getInstance());
         removeListener(RefreshBlockTracker.getInstance());
+        getModel().removeListener(SavedStatusTracker.getInstance(this));
+
+        // Update the saved status rendering on modification
+        getModel().addListener(mxEvent.CHANGE, SavedStatusTracker.getInstance(this));
 
         // Track when resizing or moving (droping) a cell.
         addListener(mxEvent.CELLS_RESIZED, RepositionTracker.getInstance());

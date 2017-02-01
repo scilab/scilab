@@ -42,7 +42,6 @@ types::Function::ReturnValue sci_ordmmd(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-
     //get argument #1
     if (in[0]->isDouble() == false)
     {
@@ -50,24 +49,24 @@ types::Function::ReturnValue sci_ordmmd(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    types::Double* pdbl1 = in[0]->getAs<types::Double>();
-    pdbl1->convertToInteger();
-    int* pXADJ = (int*)pdbl1->get();
+    types::Double* pdbl1 = in[0]->getAs<types::Double>()->clone();
 
     //get argument #2
     if (in[1]->isDouble() == false)
     {
+        delete(pdbl1);
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"), "ordmmd", 2);
         return types::Function::Error;
     }
 
-    types::Double* pdbl2 = in[1]->getAs<types::Double>();
-    pdbl2->convertToInteger();
-    int* pADJNCY = (int*)pdbl2->get();
+    types::Double* pdbl2 = in[1]->getAs<types::Double>()->clone();
+
     //get argument #3
     types::Double* pdbl3 = in[2]->getAs<types::Double>();
     if (in[2]->isDouble() == false || pdbl3->getSize() != 1)
     {
+        delete pdbl1;
+        delete pdbl2;
         Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), "ordmmd", 3);
         return types::Function::Error;
     }
@@ -75,10 +74,14 @@ types::Function::ReturnValue sci_ordmmd(types::typed_list &in, int _iRetCount, t
     int NEQNS = (int)pdbl3->get(0);
     if (NEQNS != (pdbl1->getSize() - 1))
     {
-
+        delete pdbl1;
+        delete pdbl2;
         Scierror(999, _(" The provided \"n\" does not correspond to the matrix defined by xadj and iadj\n"));
         return types::Function::Error;
     }
+
+    pdbl1->convertToInteger();
+    pdbl2->convertToInteger();
 
     types::Double* pdbl4 = new types::Double(NEQNS, 1);
     pdbl4->convertToInteger();
@@ -89,30 +92,37 @@ types::Function::ReturnValue sci_ordmmd(types::typed_list &in, int _iRetCount, t
     types::Double* pdbl6 = new types::Double(1, 1);
     pdbl6->convertToInteger();
 
-    types::Double* pdbl7 = new types::Double(4 * NEQNS, 1);
-    pdbl7->convertToInteger();
+    int* pdbl7 = new int[4 * NEQNS];
+
     int iSize = 4 * NEQNS;
     int iFlag = 0;
+
     C2F(ordmmd)(&NEQNS, (int*)pdbl1->get(), (int*)pdbl2->get(), (int*)pdbl5->get(),
-                (int*)pdbl4->get(), &iSize, (int*)pdbl7->get(), (int*)pdbl6->get(), &iFlag);
+                (int*)pdbl4->get(), &iSize, pdbl7, (int*)pdbl6->get(), &iFlag);
 
     if (iFlag)
     {
+        delete pdbl1;
+        delete pdbl2;
+        delete pdbl4;
+        delete pdbl5;
+        delete pdbl6;
+        delete[] pdbl7;
         Scierror(999, _("%s: insufficient working storage"), "ordmmd");
         return types::Function::Error;
     }
 
-    pdbl1->convertFromInteger();
-    pdbl2->convertFromInteger();
     pdbl4->convertFromInteger();
     pdbl5->convertFromInteger();
     pdbl6->convertFromInteger();
-    pdbl7->convertFromInteger();
-    delete pdbl7;
 
     out.push_back(pdbl4);
     out.push_back(pdbl5);
     out.push_back(pdbl6);
+
+    delete pdbl1;
+    delete pdbl2;
+    delete[] pdbl7;
 
     return types::Function::OK;
 }
