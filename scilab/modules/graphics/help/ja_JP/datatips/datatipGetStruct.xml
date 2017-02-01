@@ -132,7 +132,7 @@
 
     datatips_struct=datatipGetStruct(p)
 
-    datatips_struct.formatfunction
+    datatips_struct.display_function
 
     ]]></programlisting>
 

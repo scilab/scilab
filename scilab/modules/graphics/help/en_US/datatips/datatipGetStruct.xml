@@ -67,7 +67,7 @@
     datatipCreate(p,50);
     datatipCreate(p,20);
     datatips_struct=datatipGetStruct(p)
-    datatips_struct.formatfunction
+    datatips_struct.display_function
     ]]></programlisting>
         <scilab:image>
             x=linspace(0,1,100)';

@@ -112,7 +112,7 @@ public class Datatip extends Text {
         displayComponents = "xy";
         autoOrientation = true;
         setOrientationAsEnum(TipOrientation.TOP_RIGHT);
-        tipTextFormat = new DecimalFormat("%g", DecimalFormatSymbols.getInstance(Locale.US));
+        tipTextFormat = new DecimalFormat("#,###.###", DecimalFormatSymbols.getInstance(Locale.US));
 
         detachedMode = false;
         detachedPosition = new Double[] {0.0, 0.0, 0.0};
