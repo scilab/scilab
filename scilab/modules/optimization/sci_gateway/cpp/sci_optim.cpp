@@ -111,9 +111,9 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             throw ast::ScilabException();
         }
 
-        if (_iRetCount > 7)
+        if (_iRetCount > 9)
         {
-            Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "optim", 1, 7);
+            Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "optim", 1, 9);
             throw ast::ScilabException();
         }
 
@@ -701,6 +701,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 {
                     piIzs[i] = (int)pDblTi->get(i);
                 }
+                pdblDzs = new double[1];
             }
             else if (wcscmp(pStr->get(0), L"td") == 0)
             {
