@@ -36,7 +36,7 @@ extern "C"
 #endif
 #define BUFFER_SIZE 4096
 
-static const char UTF8_BOM[] = { 0xEF, 0xBB, 0xBF, 0x00 };
+static const unsigned char UTF8_BOM[] = { 0xEF, 0xBB, 0xBF, 0x00 };
 
 int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
 {
@@ -66,7 +66,7 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
         if (fgets(cValues, 4 * sizeof(char), fd) != NULL)
         {
             // skip BOM
-            if (strcmp(cValues, UTF8_BOM) != 0)
+            if (strcmp(cValues, (const char*) UTF8_BOM) != 0)
             {
                 rewind(fd);
             }
