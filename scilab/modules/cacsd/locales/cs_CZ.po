@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:02+0000\n"
+"PO-Revision-Date: 2016-12-06 16:51+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -163,8 +163,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong row size for input argument #%d: Same row size of input argument #"
-"%d expected.\n"
+"%s: Wrong row size for input argument #%d: Same row size of input argument "
+"#%d expected.\n"
 msgstr ""
 "%s: Špatná velikost řádku vstupního argumentu #%d: Očekávána stejná velikost "
 "řádku jako u vstupního argumentu #%d.\n"
@@ -254,11 +254,13 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
 msgstr ""
 
 #, c-format
@@ -294,7 +296,8 @@ msgid "%s: DORGQR exit with info = %d.\n"
 msgstr "%s: DORGQR ukončení s informacemi = %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -331,7 +334,8 @@ msgid "%s: Wrong size for input argument #%d: Must have %d rows expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Must have %d columns expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Must have %d columns expected.\n"
 msgstr ""
 
 #, c-format
@@ -371,7 +375,8 @@ msgid "%s: Wrong type for input argument #%d: A real polynom expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"
 msgstr ""
 
 #, c-format
@@ -383,13 +388,14 @@ msgid "%s: Wrong value for input argument #%d: A real polynom expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: More or equal to %d expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: More or equal to %d expected.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: More than degree of input argument #"
-"%d expected.\n"
+"%s: Wrong value for input argument #%d: More than degree of input argument "
+"#%d expected.\n"
 msgstr ""
 
 #, c-format
@@ -457,7 +463,8 @@ msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
 msgstr ""
 
 #, c-format
@@ -560,7 +567,8 @@ msgid "Press Return to continue ... \n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid ""
+"%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu: Očekáván lineárně dynamický systém.\n"
 
@@ -784,7 +792,8 @@ msgstr "%s: Záporné frekvence pod Nyqistovou frekvencí jsou ignorovány.\n"
 
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
-msgstr "%s: Špatná hodnota vstupních argumentů #%d a #%d: Očekáváno %s < %s.\n"
+msgstr ""
+"%s: Špatná hodnota vstupních argumentů #%d a #%d: Očekáváno %s < %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -798,7 +807,8 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Continuous time system expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván spojitý systém.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván spojitý systém.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
@@ -858,7 +868,8 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Špatná velikost argumentu %d: očekáváno %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáván stabilizovatelný "
 "systém.\n"
@@ -908,13 +919,11 @@ msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár nebo řetězec.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floats, Polynomial or linear "
 "dynamical system expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole desetinných čísel "
-"nebo polynom.\n"
 
 #, c-format
 msgid "%s: Input argument #%d ignored.\n"
@@ -1004,15 +1013,14 @@ msgstr "%s: Křivka zkrácena na první(ch) %d diskretizačních bodů.\n"
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet výstupních argumentů: Očekáváno %d až %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván seznam.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: cell entries must have the same type\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván lineární stavový prostor.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
@@ -1087,12 +1095,14 @@ msgid "%s: %s is indefinite.\n"
 msgstr "%s: %s je neurčité.\n"
 
 #, c-format
-msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid ""
+"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr "%s: Ovladatelný a pozorovatelný režim(y) %s blízko pomyslné ose.\n"
 
 #, c-format
 msgid "%s: All modes of %s are nearly nonminimal so that %s is almost %d.\n"
-msgstr "%s: Všechny režimy %s jsou skoro neminimální, aby %s bylo skoro %d.\n"
+msgstr ""
+"%s: Všechny režimy %s jsou skoro neminimální, aby %s bylo skoro %d.\n"
 
 #, c-format
 msgid "%s: Francis equations not satisfied.\n"
@@ -1240,7 +1250,8 @@ msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s nesymetrické.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván lineární stav prostoru.\n"
 
@@ -1253,7 +1264,8 @@ msgid "%s: Controllable & observable mode(s) of A near the imaginary axis"
 msgstr "%s: Ovladatelný a pozorovatelný režim(y) A blízko pomyslné ose"
 
 #, c-format
-msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid ""
+"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr ""
 "%s: Všechny režimyA jsou skoro neminimální, aby || G || bylo skoro 0.\n"
 
@@ -1377,13 +1389,13 @@ msgstr "Póly"
 msgid "Transmission zeros and poles"
 msgstr "Nuly a póly přenosu"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána reálná matice.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
-msgstr "%s: A a B musí mít stejný počet řádků.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Stationary Riccati solver failed.\n"
@@ -1393,9 +1405,9 @@ msgstr "%s: Řešitel stálého Riccatiho selhal.\n"
 msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
 msgstr "%s: Špatný rozměr (%d) stabilního podprostoru: Očekáváno %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván seznam.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1405,7 +1417,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial array expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno polynomické pole.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno polynomické pole.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
@@ -1417,17 +1430,17 @@ msgid ""
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné desetinné pole\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekávány alespoň %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno %d nebo %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for input argument %d: Real or complex array expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno polynomické pole.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot find the state dimension.\n"
@@ -1440,10 +1453,10 @@ msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván systém lineárního stavového "
 "prostoru.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a single input system expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván lineární systém.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
@@ -1546,21 +1559,17 @@ msgstr ""
 msgid "%s: Incorrect answer.\n"
 msgstr "%s: Nesprávná odpověď.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
 "equal to the column dimension of #%d.\n"
 msgstr ""
-"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekávány stejné rozměry "
-"sloupce.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
 "equal to the column dimension of #%d.\n"
 msgstr ""
-"%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekávány stejné rozměry "
-"sloupce.\n"
 
 #, c-format
 msgid "%s: Residual norm = %g\n"
@@ -1587,81 +1596,73 @@ msgstr "Reálná Osa"
 msgid "Imaginary Axis"
 msgstr "Pomyslná Osa"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex array expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno polynomické pole.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: complex zeros  must appear in "
 "complex conjugate pairs.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Vlastní čísla musí mít záporné "
-"reálné části.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno polynomické pole.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: complex poles  must appear in "
 "complex conjugate pairs.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Vlastní čísla musí mít záporné "
-"reálné části.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván reálný skalár.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván skalár nebo řetězec.\n"
 
-#, fuzzy, c-format
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "Wrong type for argument %d: A system in state space or transfer matrix form "
 "expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván lineární stavový prostor "
-"nebo funkce převodu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument  #%d: Cell expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván seznam.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument  #%d: Cell elements must be numerical "
 "arrays.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván lineární stavový prostor.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván seznam.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván reálný skalár.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A vector or a cell of vectors "
 "expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáván vektor desetinných čísel.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
-msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: zero-pole-gain representation "
 "expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána funkce převodu.\n"
+msgstr ""

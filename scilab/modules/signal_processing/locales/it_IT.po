@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-02-18 07:44+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: it\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -417,11 +417,9 @@ msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d o "
 "%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
-"reale o complesso.\n"
 
 #, c-format
 msgid ""
@@ -439,7 +437,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 
 #, c-format
@@ -485,7 +484,8 @@ msgstr ""
 "intero positivo.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un intero "
 "positivo.\n"
@@ -542,17 +542,13 @@ msgstr ""
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr "%s: Gli argomenti in ingresso #%d e #%d hanno un valore sbagliato.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Column expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
-"vettore.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: era atteso lo "
-"stesso numero di elementi.\n"
 
 #, c-format
 msgid ""
@@ -580,7 +576,8 @@ msgstr ""
 "tipo frazionario razionale.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "aray con %d elementi.\n"

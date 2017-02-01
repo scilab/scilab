@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:02+0000\n"
+"PO-Revision-Date: 2016-12-06 17:02+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -159,8 +159,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong row size for input argument #%d: Same row size of input argument #"
-"%d expected.\n"
+"%s: Wrong row size for input argument #%d: Same row size of input argument "
+"#%d expected.\n"
 msgstr ""
 
 #, c-format
@@ -236,11 +236,13 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
 msgstr ""
 
 #, c-format
@@ -274,7 +276,8 @@ msgid "%s: DORGQR exit with info = %d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -311,7 +314,8 @@ msgid "%s: Wrong size for input argument #%d: Must have %d rows expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Must have %d columns expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Must have %d columns expected.\n"
 msgstr ""
 
 #, c-format
@@ -351,7 +355,8 @@ msgid "%s: Wrong type for input argument #%d: A real polynom expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"
 msgstr ""
 
 #, c-format
@@ -363,13 +368,14 @@ msgid "%s: Wrong value for input argument #%d: A real polynom expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: More or equal to %d expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: More or equal to %d expected.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: More than degree of input argument #"
-"%d expected.\n"
+"%s: Wrong value for input argument #%d: More than degree of input argument "
+"#%d expected.\n"
 msgstr ""
 
 #, c-format
@@ -437,7 +443,8 @@ msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
 msgstr ""
 
 #, c-format
@@ -540,7 +547,8 @@ msgid "Press Return to continue ... \n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid ""
+"%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 
 #, c-format
@@ -674,8 +682,7 @@ msgstr "%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 列之維度必須
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system or row vector "
 "of floats expected.\n"
-msgstr ""
-"%s: 第 #%d 個輸入參數型態錯誤: 應該是一線動態系統或實數行 (row) 向量.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一線動態系統或實數行 (row) 向量.\n"
 
 #, c-format
 msgid ""
@@ -867,7 +874,8 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 
 #, c-format
@@ -916,11 +924,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floats, Polynomial or linear "
 "dynamical system expected.\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一線動態系統.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Input argument #%d ignored.\n"
@@ -1018,19 +1026,14 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: 輸出參數之數目錯誤: 應為 %d 到 %d 之數.\n"
 
-#
-# File: macros/bloc2exp.sci, line: 16
-# File: macros/bloc2exp.sci, line: 19
-# File: macros/bloc2ss.sci, line: 17
-# File: macros/bloc2ss.sci, line: 21
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一串列 (list).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: cell entries must have the same type\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是線性狀態空間.\n"
+msgstr ""
 
 #
 # File: macros/findx0BD.sci, line: 64
@@ -1129,7 +1132,8 @@ msgstr "%s: %s 不定值.\n"
 #
 # File: macros/gamitg.sci, line: 336
 #, c-format
-msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid ""
+"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr "%s:  %s 接近虛軸之可控 (controllable) 及可觀 (observable) 模式.\n"
 
 #
@@ -1311,7 +1315,8 @@ msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s 非對稱.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr "%s: 輸入引數的型態錯誤 #%d: 需爲線性子空間。\n"
 
 #
@@ -1329,7 +1334,8 @@ msgstr "%s: A 矩陣之有接近虛軸之可控 (controllable) 及可觀 (observ
 #
 # File: macros/linfn.sci, line: 214
 #, c-format
-msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid ""
+"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr "%s: A 之所有模式皆非最小，因此 || G || 幾乎為 0.\n"
 
 #
@@ -1461,13 +1467,13 @@ msgstr "極點"
 msgid "Transmission zeros and poles"
 msgstr "傳輸 (transmission) 零點及極點"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
-msgstr "%s: 輸入引數 #%d 型態錯誤: 需爲實數矩陣。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
-msgstr "%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 列之維度必須相同.\n"
+msgstr ""
 
 #
 # File: macros/ric_desc.sci, line: 56
@@ -1479,14 +1485,9 @@ msgstr "%s: Stationary Riccati 方程式求解失敗.\n"
 msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
 msgstr ""
 
-#
-# File: macros/bloc2exp.sci, line: 16
-# File: macros/bloc2exp.sci, line: 19
-# File: macros/bloc2ss.sci, line: 17
-# File: macros/bloc2ss.sci, line: 21
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一串列 (list).\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1506,26 +1507,17 @@ msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
 msgstr ""
 
-#
-# File: macros/findx0BD.sci, line: 61
-# File: macros/findAC.sci, line: 60
-# File: macros/inistate.sci, line: 58
-# File: macros/inistate.sci, line: 108
-# File: macros/narsimul.sci, line: 28
-# File: macros/arsimul.sci, line: 17
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤: 最少應為 %d.\n"
+msgstr ""
 
-#
-# File: macros/findx0BD.sci, line: 77
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 %d 或 %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for input argument %d: Real or complex array expected.\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是多項式陣列.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot find the state dimension.\n"
@@ -1536,10 +1528,10 @@ msgid ""
 "%s: Wrong type for input argument #%d: Linear state space system expected.\n"
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是線性狀態空間系統.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a single input system expected.\n"
-msgstr "%s: 輸入引數的型態錯誤 #%d: 需爲線性系統。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
@@ -1595,8 +1587,7 @@ msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same formal variable names "
 "expected.\n"
 msgstr ""
-"%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 應該有相同的形式變數名稱 "
-"(formal variable names.\n"
+"%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 應該有相同的形式變數名稱 (formal variable names.\n"
 
 #
 # File: macros/invsyslin.sci, line: 18
@@ -1644,17 +1635,17 @@ msgstr "轉移函數之不可約因子之自然頻率及阻尼參數(點擊下�
 msgid "%s: Incorrect answer.\n"
 msgstr "%s: 答案錯誤.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
 "equal to the column dimension of #%d.\n"
-msgstr "%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 列之維度必須相同.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
 "equal to the column dimension of #%d.\n"
-msgstr "%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 列之維度必須相同.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Residual norm = %g\n"
@@ -1679,94 +1670,73 @@ msgstr ""
 msgid "Imaginary Axis"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex array expected.\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是多項式陣列.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: complex zeros  must appear in "
 "complex conjugate pairs.\n"
-msgstr "%s:第 %d 輸入參數值有誤: 元素必須是正值.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是多項式陣列.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: complex poles  must appear in "
 "complex conjugate pairs.\n"
-msgstr "%s:第 %d 輸入參數值有誤: 元素必須是正值.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
-msgstr "%s: 輸入引數 #%d 型態錯誤: 需爲實數矩陣。\n"
+msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
-msgstr "%s: 輸入引數 #%d 型態錯誤: 需爲實數矩陣。\n"
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr ""
 
-#
-# File: macros/syslin.sci, line: 49
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Wrong type for argument %d: A system in state space or transfer matrix form "
 "expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為線性狀態空間或轉移函數.\n"
+msgstr ""
 
-#
-# File: macros/bloc2exp.sci, line: 16
-# File: macros/bloc2exp.sci, line: 19
-# File: macros/bloc2ss.sci, line: 17
-# File: macros/bloc2ss.sci, line: 21
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument  #%d: Cell expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一串列 (list).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument  #%d: Cell elements must be numerical "
 "arrays.\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是線性狀態空間.\n"
+msgstr ""
 
-#
-# File: macros/bloc2exp.sci, line: 16
-# File: macros/bloc2exp.sci, line: 19
-# File: macros/bloc2ss.sci, line: 17
-# File: macros/bloc2ss.sci, line: 21
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一串列 (list).\n"
+msgstr ""
 
-#
-# File: macros/bloc2exp.sci, line: 16
-# File: macros/bloc2exp.sci, line: 19
-# File: macros/bloc2ss.sci, line: 17
-# File: macros/bloc2ss.sci, line: 21
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一串列 (list).\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A vector or a cell of vectors "
 "expected.\n"
-msgstr "%s: 輸入引數 #%d 型態錯誤: 需爲實數矩陣。\n"
+msgstr ""
 
-#
-# File: macros/minreal.sci, line: 22
-# File: macros/minreal.sci, line: 34
-# File: macros/minss.sci, line: 18
-# File: macros/contrss.sci, line: 19
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d 或 %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: zero-pole-gain representation "
 "expected.\n"
-msgstr "%s: 輸入引數 #%d 型態錯誤: 需爲實數矩陣。\n"
+msgstr ""

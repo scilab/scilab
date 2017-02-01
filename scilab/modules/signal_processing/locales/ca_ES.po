@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2010-04-10 19:18+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
-"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: ca\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -404,11 +404,9 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
-"de decimals amb coma flotant.\n"
 
 #, c-format
 msgid ""
@@ -426,7 +424,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 
 #, c-format
@@ -468,7 +467,8 @@ msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -516,16 +516,13 @@ msgstr ""
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Column expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un polinomi.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir el "
-"mateix nombre d'elements.\n"
 
 #, c-format
 msgid ""
@@ -553,7 +550,8 @@ msgstr ""
 "de fraccions racionals.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector de "
 "%d elements.\n"

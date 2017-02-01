@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 13:00+0000\n"
+"PO-Revision-Date: 2017-01-09 17:52+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -321,42 +321,29 @@ msgstr "Přizpůsobit"
 msgid "Save block GUI"
 msgstr "Uložit blok GUI"
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 69
 msgid "matches"
 msgstr ""
 
-#, fuzzy
 msgid "Previous"
-msgstr "Náhled"
+msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 72
 msgid "Search"
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 73
 msgid "Searching..."
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 74
 msgid "Zoom In"
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 75
 msgid "Zoom Out"
 msgstr ""
 
-#, fuzzy
 msgid "Unable to load the selected blocks."
-msgstr "Nelze načíst blok z %s ."
+msgstr ""
 
-#, fuzzy
 msgid "Loading blocks"
-msgstr "Načítám blok"
+msgstr ""
 
 msgid "Load as palette"
 msgstr "Načíst jako paletu"
@@ -568,7 +555,8 @@ msgstr "Povolit"
 msgid "Palette name"
 msgstr "Jméno palety"
 
-msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid ""
+"Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr "Graf byl od posledního uložení změněn.<br/> Chcete ho uložit?"
 
 #, c-format
@@ -636,9 +624,8 @@ msgstr "Není vybrán žádný blok"
 msgid "Export to XML"
 msgstr "Exportovat do XML"
 
-#, fuzzy
 msgid "Export in progress"
-msgstr "Probíhá simulace"
+msgstr ""
 
 msgid "Import from XML"
 msgstr "Importovat do XML"
@@ -649,22 +636,26 @@ msgstr "Přidat do"
 msgid "Add to new diagram"
 msgstr "Přidat do nového grafu"
 
-msgid "Explicit data input port must be connected to explicit data output port"
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Explicitní port pro vstup dat musí být připojen k explicitnímu portu pro "
 "výstup dat"
 
-msgid "Implicit data input port must be connected to implicit data output port"
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Vstupní port implicitních dat musí být připojen k výstupnímu portu "
 "implicitních dat"
 
-msgid "Explicit data output port must be connected to explicit data input port"
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Explicitní port pro výstup dat musí být připojen k explicitnímu portu pro "
 "vstup dat"
 
-msgid "Implicit data output port must be connected to implicit data input port"
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Výstupní port implicitních dat musí být připojen ke vstupnímu portu "
 "implicitních dat"
@@ -788,7 +779,8 @@ msgstr ""
 msgid "Generate SuperBlock, please wait"
 msgstr "Vytvářím SuperBlok, čekejte prosím"
 
-msgid "Click on diagram to add link point or on a compatible target to finish"
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Klikněte na graf pro přidání bod propojení nebo kompatibilní cíl pro "
 "dokončení"
@@ -899,11 +891,11 @@ msgid "Expecting '%d'."
 msgstr "Očekáváno '%d'."
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. <br/"
-">Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. "
+"<br/>Please reconnect it.</body></html>"
 msgstr ""
-"<html><body>Chyba sestavení: propojení ignorováno protože není spojené. <br/"
-">Prosím, znovu ho spojte.</body></html>"
+"<html><body>Chyba sestavení: propojení ignorováno protože není spojené. "
+"<br/>Prosím, znovu ho spojte.</body></html>"
 
 msgid "Block name: "
 msgstr ""
@@ -941,21 +933,15 @@ msgstr ""
 msgid "Label: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 330
 msgid "Optimal"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-Position Block"
-msgstr "Ukázkové bloky"
+msgstr ""
 
-#, fuzzy
 msgid "Split Block"
-msgstr "Zarovnat bloky"
+msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 333
 msgid "Auto-Position Split Block"
 msgstr ""
 
@@ -1139,7 +1125,8 @@ msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr "%s: Špatný typ argumentu %s: Očekáván typ bloku.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr "%s: Špatný typ argumentu %s: očekáván řetězec cesty adresáře.\n"
 
 #, c-format
@@ -1223,7 +1210,8 @@ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet výstupních argumentů: očekáváno %d až %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr "%s: Špatný typ argumentu %s: očekáván typ palety nebo cesta.\n"
 
 #, c-format
@@ -1468,6 +1456,3 @@ msgstr ""
 #, c-format
 msgid "%s: Syntax error while trying to set up context from"
 msgstr ""
-
-#~ msgid "The Scicos libraries are not loaded"
-#~ msgstr "Knihovny Scicos nejsou načteny"

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2012-04-28 19:15+0000\n"
 "Last-Translator: Grzegorz Szostek <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: pl\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -54,7 +54,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A vector of size 11 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A vector of size 11 expected.\n"
 msgstr ""
 
 #, c-format
@@ -135,7 +136,8 @@ msgid "%s: The collocation matrix is singular.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: The expected no. of subintervals exceeds storage specifications.\n"
+msgid ""
+"%s: The expected no. of subintervals exceeds storage specifications.\n"
 msgstr ""
 
 #, c-format
@@ -227,13 +229,6 @@ msgstr ""
 msgid "%s: %s return with state %d.\n"
 msgstr ""
 
-#
-# File: modules/differential_equations/sci_gateway/cpp/sci_daskr.cpp, line: 1112
-# File: modules/differential_equations/sci_gateway/cpp/sci_dasrt.cpp, line: 790
-# File: modules/differential_equations/sci_gateway/cpp/sci_dassl.cpp, line: 724
-# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 257
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1145
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1367
 #, c-format
 msgid "%ls: An error occured in '%ls' subroutine.\n"
 msgstr ""
@@ -544,18 +539,12 @@ msgstr ""
 msgid "integ. from tleft= %lf to hf= %lf\n"
 msgstr ""
 
-#
-# File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 35
 msgid "Insufficient Work space to finish (see messages).\n"
 msgstr ""
 
-#
-# File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 44
 msgid "Excessive work done on this call (perhaps wrong jacobian type).\n"
 msgstr ""
 
-#
-# File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 49
 msgid "Excesive accuracy requested (tolerances too small).\n"
 msgstr ""
 
@@ -613,16 +602,12 @@ msgid ""
 "integrator mode.\n"
 msgstr ""
 
-#
-# File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 138
 msgid "Invalid input parameters : atol and rtol must be greater than 0.\n"
 msgstr ""
 
 msgid "Inappropriate error tolerance.\n"
 msgstr ""
 
-#
-# File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 190
 msgid ""
 "Too many steps necessary to reach next required time discretization point. "
 "Change discretisation of time vector t or decrease accuracy.\n"
@@ -646,7 +631,8 @@ msgstr ""
 msgid "Singular partial derivatives matrix (may be redundant equations).\n"
 msgstr ""
 
-msgid "Either ill-posed problem or discontinuity or singularity encountered.\n"
+msgid ""
+"Either ill-posed problem or discontinuity or singularity encountered.\n"
 msgstr ""
 
 msgid "External ''res'' return many times with ires=-1.\n"
@@ -695,11 +681,13 @@ msgid "%s: Wrong size for output argument #%d: Matrix of size %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"
+msgid ""
+"%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"
+msgid ""
+"%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -711,7 +699,8 @@ msgid ""
 "%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"
 msgstr ""
 
-msgid "An error occurred while getting DifferentialEquationFunctions object.\n"
+msgid ""
+"An error occurred while getting DifferentialEquationFunctions object.\n"
 msgstr ""
 
 msgid "Unstable trajectory"
@@ -878,7 +867,8 @@ msgstr "jeden krok bez przechodzenia tcrit i powrót"
 msgid "Meaning of jactype:"
 msgstr "Znaczenie parametru jactype:"
 
-msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid ""
+"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr ""
 "0 : iteracji funkcjonalnej (bez użycia jakobianu ( tylko 'adams' lub "
 "'stiff'))"

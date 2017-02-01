@@ -11,12 +11,12 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 21:58+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -47,8 +47,6 @@ msgstr ""
 msgid "%s: No more memory.\n"
 msgstr "%s: メモリ不足です.\n"
 
-#
-# File: modules/fftw/sci_gateway/c/sci_fftw_flags.c, line: 345
 #, c-format
 msgid "%s: Failed to generate the planner name.\n"
 msgstr ""
@@ -67,8 +65,7 @@ msgstr "%s: メモリを確保できません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: a valid wisdom expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 有効な wisdom を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 有効な wisdom を指定してください.\n"
 
 #, c-format
 msgid "%s: Creation of requested fftw plan failed.\n"
@@ -88,32 +85,27 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %d または %d を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d または %d を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: %d および %d の間としてください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d および %d の間としてください.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
+msgid ""
+"%s: Wrong values for input argument #%d: Positive integers expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 正の整数を指定してください.\n"
 
 #, c-format
@@ -130,9 +122,7 @@ msgstr "%s: 入力引数 #%d の値が正しくありません: 要素は昇順�
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be greater than %d.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 要素は %d より大きな値としてくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 要素は %d より大きな値としてください.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Must be less than %d.\n"
@@ -144,14 +134,12 @@ msgstr "%s: 入力引数 #%d の値が間違っています: %d の約数を指�
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be divisors of %d.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています:要素は  %d の約数としてください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています:要素は  %d の約数としてください.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d.\n"
@@ -167,7 +155,8 @@ msgstr "fftwモジュール付きのScilabインストールが選択されま�
 msgid "This module requires: "
 msgstr "このモジュールは以下を必要とします : "
 
-msgid "Scilab will use standard fft by default until you install this library."
+msgid ""
+"Scilab will use standard fft by default until you install this library."
 msgstr "Scilab はこのライブラリをインストールするまで標準のfftを使用します."
 
 msgid "See help fftw for more information."

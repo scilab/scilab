@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:08+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: \n"
 
 #, c-format
 msgid ""
@@ -47,7 +47,8 @@ msgid ""
 msgstr "%s: 輸入參數錯誤: 第一參數之維度無法搭配 cell  之容.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid ""
+"%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s: 此特性尚未實作: 支援超矩陣 (hypermatrices).\n"
 
 #, c-format
@@ -90,7 +91,8 @@ msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr "%s: 第 %d 輸入參數型態錯誤: 應為一方陣.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr "%s: 第 %d 輸入參數數值錯誤: 應為 %s, %s,'%s' 或 '%s' .\n"
 
 msgid "Jan"
@@ -175,7 +177,8 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s: Scilab 中並無小格線 (minor grid) .\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: '%s', 應為 '%s' 或 '%s'.\n"
 
 #, c-format

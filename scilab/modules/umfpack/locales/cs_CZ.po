@@ -11,15 +11,16 @@ msgstr ""
 "PO-Revision-Date: 2013-05-24 21:22+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr "%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
+msgstr ""
+"%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
 
 #, c-format
 msgid ""
@@ -314,8 +315,6 @@ msgstr ""
 msgid "  1/ lu factors of a sparse matrix A are obtained through:"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 97
 #, c-format
 msgid ""
 "     lup = umf_lufact(A)\n"
@@ -326,8 +325,6 @@ msgstr ""
 msgid "  2/ for solving a linear system A*x = b, use:"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 99
 #, c-format
 msgid ""
 "     x = umf_lusolve(lup,b)\n"
@@ -337,8 +334,6 @@ msgstr ""
 msgid "  3/ to solve A'*x=b you may use:"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 101
 #, c-format
 msgid ""
 "     x = umf_lusolve(lup,b,Ax''=b)\n"
@@ -349,8 +344,6 @@ msgstr ""
 msgid "  4/ you may also compute the 1-norm condition number quicky with:"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 103
 #, c-format
 msgid ""
 "     K1 = condestsp(A,lup)\n"
@@ -363,8 +356,6 @@ msgid ""
 "them with:"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 105
 #, c-format
 msgid ""
 "     umf_ludel(lup)\n"
@@ -372,32 +363,18 @@ msgid ""
 "the current umf lu factors\n"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 144
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 148
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 152
 #, c-format
 msgid "     norm of the residual    = "
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 145
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 149
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 153
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 191
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 195
 #, c-format
 msgid "     same but with refinment = "
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 156
 #, c-format
 msgid "     norm of the residual     = "
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 157
 #, c-format
 msgid "     same but with refinement = "
 msgstr ""
@@ -410,11 +387,10 @@ msgid ""
 "definite (s.p.d.)."
 msgstr ""
 
-msgid "  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
+msgid ""
+"  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 165
 #, c-format
 msgid ""
 "     Cp is a pointer to the Cholesky fact. (the memory is outside scilab "
@@ -552,12 +528,14 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová řídká matice.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekávána čtvercová řídká "
 "matice.\n"
@@ -568,7 +546,8 @@ msgstr "%s: Matice a faktory LU nemají stejné rozměry !\n"
 
 #, c-format
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
-msgstr "%s: Neplatný typ a/nebo velikost a/nebo hodnota pro druhý argument.\n"
+msgstr ""
+"%s: Neplatný typ a/nebo velikost a/nebo hodnota pro druhý argument.\n"
 
 msgid "how to use this stuff"
 msgstr "jak toto používat"

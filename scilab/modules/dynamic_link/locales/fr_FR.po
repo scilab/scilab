@@ -8,34 +8,35 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 13:04+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-01-13 18:17+0000\n"
+"Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: fr\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
 #, c-format
 msgid "%s : Wrong type for input argument #%d: string expected.\n"
-msgstr ""
+msgstr "%s : Type erroné de l'argument d'entrée #%d : texte attendu.\n"
 
 #, c-format
 msgid "%s : Wrong type for input argument #%d: String vector expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée #%d : vecteur de textes attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s : second argument must be a unique id of a shared library.\n"
@@ -46,36 +47,46 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid "%s: unable to find entry point %ls.\n"
-msgstr ""
+msgstr "%s : point d'entrée %ls introuvable.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"
 msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : une matrice réelle ou une "
+"chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
 msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : un scalaire réel attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
+"%s : Type erroné pour l'argument d'entrée n°%d : une chaîne de caractères "
+"attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
 msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : '%s', '%s', '%s' ou '%s' "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : une matrice réelle attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr ""
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
@@ -84,11 +95,12 @@ msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Un int attendu.\n"
 #, c-format
 msgid "%ls Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
+"%ls : Valeur erronée de l'argument d'entrée #%d : '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid ""
 "%s Wrong type for input argument #%d: string or string vector expected.\n"
-msgstr ""
+msgstr "%s : Type erroné de l'argument d'entrée #%d : texte attendu.\n"
 
 #, c-format
 msgid "%s : Wrong value for argument #%d: %s\n"
@@ -98,8 +110,9 @@ msgid "Unique id of a shared library expected."
 msgstr "Identifiant unique d'une bibliothèque partagée attendu."
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
-msgstr ""
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : texte attendu.\n"
 
 #, c-format
 msgid ""
@@ -119,11 +132,12 @@ msgstr "] : %d bibliothèques.\n"
 
 #, c-format
 msgid "Entry point %ls in shared library %d.\n"
-msgstr ""
+msgstr "Point d'entrée %ls dans la librairie partagée %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: real scalar expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée #%d : scalaire réel attendu.\n"
 
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
@@ -151,11 +165,11 @@ msgstr "%s : Impossible de charger une dll x64 dans un environnement x86.\n"
 
 #, c-format
 msgid "%ls: The file %ls does not exist in PATH environment.\n"
-msgstr ""
+msgstr "%ls : Le fichier %ls n'existe pas dans PATH.\n"
 
 #, c-format
 msgid "Link failed for dynamic library '%ls'.\n"
-msgstr ""
+msgstr "Echec de la création de liens pour la librairie dynamique '%ls'.\n"
 
 #, c-format
 msgid "An error occurred: %s\n"
@@ -169,54 +183,54 @@ msgstr "Édition de liens effectuée.\n"
 
 #, c-format
 msgid "Entry name %ls.\n"
-msgstr ""
+msgstr "Nom d'entrée %ls.\n"
 
 #, c-format
 msgid "%ls is not an entry point.\n"
-msgstr ""
+msgstr "%ls n'est pas un point d'entrée.\n"
 
 #, c-format
 msgid "Linking %ls.\n"
-msgstr ""
+msgstr "Création des liens pour %ls.\n"
 
 msgid "Calling a C function from Scilab.\n"
-msgstr ""
+msgstr "Appel d'une fonction C depuis Scilab.\n"
 
 msgid "Calling ilib_for_link to build C function.\n"
-msgstr ""
+msgstr "Appel d'ilib_for_link pour compiler une fonction C.\n"
 
 msgid "Calling C function. Z = X+Y"
-msgstr ""
+msgstr "Appel de la fonction C Z=X+Y"
 
 #, c-format
 msgid "with X = %d"
-msgstr ""
+msgstr "avec X = %d"
 
 #, c-format
 msgid "with Y = %d"
-msgstr ""
+msgstr "avec Y = %d"
 
 #, c-format
 msgid "Result Z = %d"
-msgstr ""
+msgstr "Résultat Z = %d"
 
 msgid "Calling a Fortran subroutine from Scilab.\n"
-msgstr ""
+msgstr "Appel d'une fonction Fortran depuis Scilab.\n"
 
 msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
-msgstr ""
+msgstr "Appel d'ilib_for_link pour compiler une fonction Fortran.\n"
 
 msgid "Calling Fortran subroutine. Z = X+Y"
-msgstr ""
+msgstr "Appel de la fonction Fortran Z=X+Y"
 
 msgid "Dynamic link"
-msgstr ""
+msgstr "Lien dynamique"
 
 msgid "Call a C function"
-msgstr ""
+msgstr "Appel d'une fonction C"
 
 msgid "Call a Fortran subroutine"
-msgstr ""
+msgstr "Appel d'une fonction Fortran"
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
@@ -271,7 +285,8 @@ msgstr ""
 "caractères attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaînes de "
 "caractères attendue.\n"
@@ -308,11 +323,9 @@ msgstr "Cette bibliothèque doit être déchargée avant toute action."
 msgid "   Generate a gateway file\n"
 msgstr "   Génère un fichier gateway\n"
 
-#
-# File: modules/dynamic_link/macros/ilib_build.sci, line: 111
 #, c-format
 msgid "%s: %s format is not supported by your compiler."
-msgstr ""
+msgstr "%s : le format %s n'est pas supporté par votre compilateur."
 
 msgid "   Generate a loader file\n"
 msgstr "   Génère un fichier loader\n"
@@ -542,7 +555,8 @@ msgstr "%s : Dimension erronée de l'argument d'entrée n°%d : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d,%d ou %d attendu(s).\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : %d,%d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
@@ -579,7 +593,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
 
 msgid "not found."
 msgstr "absent."

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2016-10-19 13:07+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -250,7 +250,8 @@ msgid "%s: Wrong type for input argument #%d: An integer expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -347,7 +348,8 @@ msgid "Pause mode: enter empty lines to continue.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Valid function name expected.\n"
 msgstr ""
 
 #, c-format
@@ -371,7 +373,8 @@ msgid "%s: Wrong size for input argument #%d: string expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -517,7 +520,8 @@ msgstr "Informace o Verzi Scilab."
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
-msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
+msgid ""
+"(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
 msgid ""
@@ -537,8 +541,6 @@ msgstr ""
 msgid "Scilab Enterprises\n"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/banner.cpp, line: 41
 msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
 msgstr ""
 

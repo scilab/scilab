@@ -11,12 +11,12 @@ msgstr ""
 "PO-Revision-Date: 2013-01-26 04:11+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18315)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -51,7 +51,8 @@ msgid "%s: Wrong type for input argument #%d: A %s tlist expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d : A vector of size 3 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d : A vector of size 3 expected.\n"
 msgstr ""
 
 #, c-format
@@ -75,7 +76,8 @@ msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -122,18 +124,15 @@ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさで指定してく"
-"ださい.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさで指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf "
 "detected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: (厳密に)昇順ではありません, もしくは "
-"+-inf を検出しました.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: (厳密に)昇順ではありません, もしくは +-inf を検出しました.\n"
 
 #
 # File: sci_gateway/c/sci_linear_interpn.c, line: 115
@@ -148,8 +147,7 @@ msgstr "%s: 次元 %d 値 とグリッド点との間でサイズに互換性が
 msgid ""
 "%s: Size incompatibility between grid points and values in dimension %d or "
 "%d.\n"
-msgstr ""
-"%s: 次元 %d 値 と %d のグリッド点との間でサイズに互換性がありません。\n"
+msgstr "%s: 次元 %d 値 と %d のグリッド点との間でサイズに互換性がありません。\n"
 
 #, c-format
 msgid "%s: %s must be a real %d-dim hypermatrix.\n"
@@ -162,7 +160,8 @@ msgid ""
 msgstr "%s: %d 次元のグリッド点とグリッド値の間でサイズに互換性がありません.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d : A vector of size 2 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d : A vector of size 2 expected.\n"
 msgstr ""
 
 #, c-format
@@ -182,19 +181,16 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Vector of same size "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさのベクトルを"
-"指定してください.\n"
+msgstr "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさのベクトルを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d : A matrix of size 2 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d : A matrix of size 2 expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for periodic spline %s: Must be equal to %s.\n"
-msgstr ""
-"%s: 周期スプライン %s の値が間違っています: %s に等しい値を指定してくださ"
-"い.\n"
+msgstr "%s: 周期スプライン %s の値が間違っています: %s に等しい値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A vector expected.\n"
@@ -246,43 +242,33 @@ msgstr "%s: 'flag' = %d に関して問題があります.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d と %d の間とする必要があります..\n"
+msgstr "%s: 入力引数の数が間違っています: %d と %d の間とする必要があります..\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d　の大きさが間違っています: ベクトルまたは行列を指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d　の大きさが間違っています: ベクトルまたは行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
-msgstr ""
-"%s: 入力引数 #%d　の型が間違っています: 実数の配列を指定してください.\n"
+msgstr "%s: 入力引数 #%d　の型が間違っています: 実数の配列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 実数を指定する必要がありますが, NaNが"
-"見つかりました.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 実数を指定する必要がありますが, NaNが見つかりました.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' または '%s' を指定し"
-"てください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or real expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s' または実数を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または実数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"

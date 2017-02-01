@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2016-06-04 01:38+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -35,7 +35,8 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Value at most 20 expected.\n"
-msgstr "%s: Неверное значение входного аргумента №%d: ожидалось не более 20.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось не более 20.\n"
 
 #, c-format
 msgid ""
@@ -60,7 +61,8 @@ msgstr ""
 "равным zeta(j+1).\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A vector of size 11 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A vector of size 11 expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидался вектор размером 11.\n"
 
@@ -114,8 +116,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: %d to sum of m (=%d) expected.\n"
 msgstr ""
-"%s: Неверное значение входного аргумента №%d: ожидалось от %d до суммы m (="
-"%d).\n"
+"%s: Неверное значение входного аргумента №%d: ожидалось от %d до суммы m "
+"(=%d).\n"
 
 #, c-format
 msgid ""
@@ -162,7 +164,8 @@ msgid "%s: The collocation matrix is singular.\n"
 msgstr "%s: Матрица коллокации сингулярна.\n"
 
 #, c-format
-msgid "%s: The expected no. of subintervals exceeds storage specifications.\n"
+msgid ""
+"%s: The expected no. of subintervals exceeds storage specifications.\n"
 msgstr ""
 "%s: Ожидаемое количество подынтервалов превысило спецификации запоминающего "
 "устройства.\n"
@@ -177,7 +180,8 @@ msgstr "%s: Ошибка во входных данных.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+msgstr ""
+"%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
@@ -276,9 +280,9 @@ msgstr "%s: Неверный размер входного аргумента %d
 msgid "%s: %s return with state %d.\n"
 msgstr "%s: %s возвращено с состоянием %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%ls: An error occured in '%ls' subroutine.\n"
-msgstr "%s: В подпрограмме '%s' произошла ошибка.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
@@ -516,8 +520,8 @@ msgstr "%s: Интеграл вероятно расходится или мед
 msgid ""
 "%s: Invalid input, absolute tolerance <= 0 and relative tolerance < 2.e-14.\n"
 msgstr ""
-"%s: Недопустимый вход, абсолютный допуск  <= 0, а относительный допуск < 2."
-"e-14.\n"
+"%s: Недопустимый вход, абсолютный допуск  <= 0, а относительный допуск < 2.e-"
+"14.\n"
 
 #, c-format
 msgid "%s: Convergence problem...\n"
@@ -539,12 +543,14 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong value of hmin and hmax: hmin = %d is greater than hmax = %d.\n"
-msgstr "%s: Неверное значение hmin и hmax: hmin = %d больше, чем hmax = %d.\n"
+msgstr ""
+"%s: Неверное значение hmin и hmax: hmin = %d больше, чем hmax = %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value of Jacobian type: A number between %d and %d expected.\n"
-msgstr "%s: Неверное значение типа якобиана: ожидалось число между %d и %d.\n"
+msgstr ""
+"%s: Неверное значение типа якобиана: ожидалось число между %d и %d.\n"
 
 #, c-format
 msgid "%s: Warning: Jacobian is given, but not used.\n"
@@ -563,8 +569,8 @@ msgid ""
 "At most %d for mxordn, %d for mxords and no null value for both expected.\n"
 "Wrong value will be reduced to the default value.\n"
 msgstr ""
-"%s: Предупреждение: неверное значение разрешённого максимального жёсткого/"
-"нежёсткого порядка :\n"
+"%s: Предупреждение: неверное значение разрешённого максимального "
+"жёсткого/нежёсткого порядка :\n"
 "ожидалось не более %d для mxordn, %d для mxords и ненулевое для обоих.\n"
 "Неверное значение будет уменьшено до значения по умолчанию.\n"
 
@@ -654,18 +660,14 @@ msgstr "integ. от tleft= %lf до hf=tf= %lf\n"
 msgid "integ. from tleft= %lf to hf= %lf\n"
 msgstr "integ. от tleft= %lf до hf= %lf\n"
 
-#, fuzzy
 msgid "Insufficient Work space to finish (see messages).\n"
-msgstr "Недостаточно рабочего пространства для завершения (см. сообщения).\n"
+msgstr ""
 
-#, fuzzy
 msgid "Excessive work done on this call (perhaps wrong jacobian type).\n"
 msgstr ""
-"В этом вызове выполнена лишняя работа (возможно неверный тип якобиана).\n"
 
-#, fuzzy
 msgid "Excesive accuracy requested (tolerances too small).\n"
-msgstr "Затребована излишняя точность (допуск слишком мал).\n"
+msgstr ""
 
 msgid "Illegal input detected (see printed message).\n"
 msgstr "обнаружен недопустимый вход (см. распечатываемое сообщение).\n"
@@ -743,21 +745,16 @@ msgstr ""
 "выход ограничивает выбор естественного размера шага. Используйте режим "
 "одношагового интегратора.\n"
 
-#, fuzzy
 msgid "Invalid input parameters : atol and rtol must be greater than 0.\n"
 msgstr ""
-"недопустимые входные параметры: atol и rtol должны быть больше, чем 0.\n"
 
 msgid "Inappropriate error tolerance.\n"
 msgstr "Некорректны допуск ошибки.\n"
 
-#, fuzzy
 msgid ""
 "Too many steps necessary to reach next required time discretization point. "
 "Change discretisation of time vector t or decrease accuracy.\n"
 msgstr ""
-"Слишком много шагов необходимо для достижения следующей точки дискретизации "
-"времени. Измените дискретизацию вектора времени t или снизьте точность.\n"
 
 msgid "The error tolerances are too stringent.\n"
 msgstr "Допуски на ошибку слишком ограничены.\n"
@@ -778,7 +775,8 @@ msgid "Singular partial derivatives matrix (may be redundant equations).\n"
 msgstr ""
 "Вырожденная матрица частных производных (могут быть лишние уравнения).\n"
 
-msgid "Either ill-posed problem or discontinuity or singularity encountered.\n"
+msgid ""
+"Either ill-posed problem or discontinuity or singularity encountered.\n"
 msgstr ""
 "Обнаружена некорректно поставленная задача или разрыв или вырожденность.\n"
 
@@ -832,12 +830,14 @@ msgstr ""
 "%s: Неверный размер выходного аргумента №%d: ожидалась матрица размером %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"
+msgid ""
+"%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"
 msgstr ""
 "%s: Неверный размер выходного аргумента №%d: ожидалась матрица размером %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"
+msgid ""
+"%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"
 msgstr ""
 "%s: Неверный размер выходного аргумента №%d: ожидалась матрица размером %d.\n"
 
@@ -852,7 +852,8 @@ msgstr ""
 "%s: Неверный размер выходного аргумента №%d: ожидалась матрица размером %d x "
 "%d.\n"
 
-msgid "An error occurred while getting DifferentialEquationFunctions object.\n"
+msgid ""
+"An error occurred while getting DifferentialEquationFunctions object.\n"
 msgstr ""
 "Произошла ошибка при получении объекта DifferentialEquationFunctions.\n"
 
@@ -940,7 +941,8 @@ msgstr "%s: Неверное количество входных парамет�
 
 #, c-format
 msgid "%s: Invalid option %s: real matrix expected.\n"
-msgstr "%s: Недопустимый параметр %s: ожидалась матрица вещественных чисел.\n"
+msgstr ""
+"%s: Недопустимый параметр %s: ожидалась матрица вещественных чисел.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
@@ -988,7 +990,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+msgstr ""
+"%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
 
 msgid "Defining %ODEOPTIONS variable"
 msgstr "Определение переменной %ODEOPTIONS"
@@ -1015,7 +1018,8 @@ msgstr "5 : один шаг без первышения tcrit и возврат"
 msgid "Meaning of jactype:"
 msgstr "Значение элемента jactype:"
 
-msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid ""
+"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr ""
 "0 : функциональные итерации (матрица Якоби не используется (только для "
 "методов 'adams' и 'stiff'))"

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 21:59+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -68,7 +68,8 @@ msgstr ""
 "zápis do tohoto souboru.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
 
 #, c-format
@@ -123,10 +124,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řetězců.\n"
 
-#, fuzzy
-msgid "Generating cleaner_src.sce...\n"
-msgstr "Vytvářím cleaner.ace...\n"
-
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr "%s: Soubor '%s' neexistuje, nebo není přístupný pro čtení.\n"
@@ -176,5 +173,6 @@ msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
+msgid ""
+"%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
 msgstr ""

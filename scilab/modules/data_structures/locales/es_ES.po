@@ -11,11 +11,15 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:09+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: es\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
 
 #, c-format
 msgid "%s:  Wrong type for input argument #%d: List expected.\n"
@@ -68,26 +72,6 @@ msgstr ""
 msgid "%s: Not implemented in scilab...\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same type expected for all cell "
-"contents"
-msgstr ""
-"%s: Valores incorrectos para el argumento de entrada #%d: Los elementos "
-"deben ser enteros no negativos.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
-msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
-
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be non-negative "
@@ -116,11 +100,3 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument %d: List expected.\n"
 msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"

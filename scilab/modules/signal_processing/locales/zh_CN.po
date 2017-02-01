@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2009-04-12 06:56+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: \n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -387,9 +387,9 @@ msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为浮点数组。\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -407,7 +407,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 
 #, c-format
@@ -445,7 +446,8 @@ msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -487,13 +489,13 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个tall矩阵。\n"
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Column expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个多项式。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
-msgstr "%s：输入参数#%d和#%d不兼容：元素的数目相同。\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -515,7 +517,8 @@ msgid ""
 msgstr "%s：输入参数#%d的类型错误：应该为有理分数数组。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个有%d个元素的数组。\n"
 
 #, c-format

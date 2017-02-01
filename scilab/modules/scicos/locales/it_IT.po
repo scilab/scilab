@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2011-09-03 11:05+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: it\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -48,7 +48,8 @@ msgstr ""
 
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
-msgstr "%s: Il primo argomento deve essere una lista tipizzata scicos_block.\n"
+msgstr ""
+"%s: Il primo argomento deve essere una lista tipizzata scicos_block.\n"
 
 #, c-format
 msgid "%s : First argument must be a valid scicos_block typed list.\n"
@@ -206,30 +207,25 @@ msgstr "%s: Grandezza indeterminata. out2(%d)=%d. Aggiustare il modello.\n"
 msgid "%s : Undetermined Size. outtyp(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
-"almeno %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
-"stringhe.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una lista.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Unable to load \"%s\" .\n"
-msgstr "%s: Non è possibile trovare i valori di ingresso del diagramma\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Unable to save \"%s\" .\n"
-msgstr "%s: Non è possibile trovare i valori di ingresso del diagramma\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -268,7 +264,8 @@ msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
+msgid ""
+"%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
 msgstr ""
 
 #, c-format
@@ -329,7 +326,8 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -444,7 +442,8 @@ msgid "%s: Wrong size for input argument #%d : A single struct expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
+msgid ""
+"%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
 msgstr ""
 
 #, c-format
@@ -719,7 +718,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
+msgid ""
+"%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
 msgstr ""
 
 #, c-format
@@ -754,8 +754,6 @@ msgstr ""
 msgid "Wrong size for field %s: at least %d-by-%d expected.\n"
 msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/DiagramAdapter.cpp, line: 452
 #, c-format
 msgid "\"%s\" is a read-only field.\n"
 msgstr ""
@@ -900,16 +898,12 @@ msgstr ""
 msgid "Wrong type for field %s.%s: String matrix expected.\n"
 msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 348
 #, c-format
 msgid ""
 "Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' "
 "vector. Switching to '%s'.\n"
 msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 362
 #, c-format
 msgid "Wrong type for field %s.%s.\n"
 msgstr ""
@@ -1192,8 +1186,6 @@ msgid ""
 "What is the size of this link?"
 msgstr ""
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2294
 #, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:01+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: pl\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -71,7 +71,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 
 #, c-format
@@ -126,10 +127,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr ""
 
-#, fuzzy
-msgid "Generating cleaner_src.sce...\n"
-msgstr "Tworzenie cleaner.sce...\n"
-
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr ""
@@ -178,5 +175,6 @@ msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
+msgid ""
+"%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
 msgstr ""

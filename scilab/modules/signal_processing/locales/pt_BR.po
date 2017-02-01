@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2012-04-23 16:33+0000\n"
 "Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: pt_BR\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -405,10 +405,9 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
 msgstr ""
-"%s: Tipo errado para argumento #%d: vetor real ou complexo é esperado.\n"
 
 #, c-format
 msgid ""
@@ -426,7 +425,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 
 #, c-format
@@ -470,7 +470,8 @@ msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -519,15 +520,13 @@ msgstr ""
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Column expected.\n"
-msgstr "%s: Tipo errado para argumento #%d: vetor real é esperado.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s: Argumentos de entrada incompatíveis #%d e #%d: esperava-se o mesmo "
-"número de elementos.\n"
 
 #, c-format
 msgid ""
@@ -555,7 +554,8 @@ msgstr ""
 "de frações racionais.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
 "matriz de %d elementos.\n"
@@ -715,4 +715,5 @@ msgstr ""
 
 #, c-format
 msgid "%s: Too abrupt change near end of frequency range.\n"
-msgstr "%s: Mudança muito abrupta perto do final do intervalo de frequência.\n"
+msgstr ""
+"%s: Mudança muito abrupta perto do final do intervalo de frequência.\n"

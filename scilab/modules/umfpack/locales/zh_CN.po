@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2013-05-17 22:18+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: \n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -25,8 +25,7 @@ msgstr "%s：输入参数的大小错误：应该为同样大小。\n"
 msgid ""
 "%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
 "factors.\n"
-msgstr ""
-"%s：输入参数#%d的值错误：不是一个Cholesky因式分解的参考（reference）。\n"
+msgstr "%s：输入参数#%d的值错误：不是一个Cholesky因式分解的参考（reference）。\n"
 
 #, c-format
 msgid ""
@@ -89,8 +88,7 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
 "LU factors.\n"
-msgstr ""
-"%s：输入参数#%d的值错误：必须是一个正确的(umf)LU系数的参考（reference）。\n"
+msgstr "%s：输入参数#%d的值错误：必须是一个正确的(umf)LU系数的参考（reference）。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
@@ -308,8 +306,6 @@ msgstr ""
 msgid "  1/ lu factors of a sparse matrix A are obtained through:"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 97
 #, c-format
 msgid ""
 "     lup = umf_lufact(A)\n"
@@ -320,8 +316,6 @@ msgstr ""
 msgid "  2/ for solving a linear system A*x = b, use:"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 99
 #, c-format
 msgid ""
 "     x = umf_lusolve(lup,b)\n"
@@ -331,8 +325,6 @@ msgstr ""
 msgid "  3/ to solve A'*x=b you may use:"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 101
 #, c-format
 msgid ""
 "     x = umf_lusolve(lup,b,Ax''=b)\n"
@@ -343,8 +335,6 @@ msgstr ""
 msgid "  4/ you may also compute the 1-norm condition number quicky with:"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 103
 #, c-format
 msgid ""
 "     K1 = condestsp(A,lup)\n"
@@ -357,8 +347,6 @@ msgid ""
 "them with:"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 105
 #, c-format
 msgid ""
 "     umf_ludel(lup)\n"
@@ -366,32 +354,18 @@ msgid ""
 "the current umf lu factors\n"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 144
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 148
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 152
 #, c-format
 msgid "     norm of the residual    = "
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 145
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 149
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 153
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 191
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 195
 #, c-format
 msgid "     same but with refinment = "
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 156
 #, c-format
 msgid "     norm of the residual     = "
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 157
 #, c-format
 msgid "     same but with refinement = "
 msgstr ""
@@ -404,11 +378,10 @@ msgid ""
 "definite (s.p.d.)."
 msgstr ""
 
-msgid "  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
+msgid ""
+"  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
 msgstr ""
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 165
 #, c-format
 msgid ""
 "     Cp is a pointer to the Cholesky fact. (the memory is outside scilab "
@@ -544,11 +517,13 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为稀疏方阵。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为稀疏方阵。\n"
 
 #, c-format

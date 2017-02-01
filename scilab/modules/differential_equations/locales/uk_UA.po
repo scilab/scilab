@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-06-10 05:52+0000\n"
+"PO-Revision-Date: 2017-01-09 20:08+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -65,7 +65,8 @@ msgstr ""
 "рівним zeta(j+1).\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A vector of size 11 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A vector of size 11 expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
 "вектор розмірності 11.\n"
@@ -169,7 +170,8 @@ msgid "%s: The collocation matrix is singular.\n"
 msgstr "%s: матриця колокації є виродженою.\n"
 
 #, c-format
-msgid "%s: The expected no. of subintervals exceeds storage specifications.\n"
+msgid ""
+"%s: The expected no. of subintervals exceeds storage specifications.\n"
 msgstr ""
 "%s: очікувана кількість підінтервалів перевищує обмеження специфікації "
 "пам’яті.\n"
@@ -184,7 +186,8 @@ msgstr "%s: у вхідних даних помилка.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
@@ -288,9 +291,9 @@ msgstr "%s: помилкова розмірність вхідних парам�
 msgid "%s: %s return with state %d.\n"
 msgstr "%s: %s завершила роботу із станом %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%ls: An error occured in '%ls' subroutine.\n"
-msgstr "%s: сталася помилка у підпрограмі «%s».\n"
+msgstr "%ls: сталася помилка у підпрограмі «%ls».\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
@@ -531,8 +534,8 @@ msgstr "%s: ймовірно, інтеграл є розбіжним або зб
 msgid ""
 "%s: Invalid input, absolute tolerance <= 0 and relative tolerance < 2.e-14.\n"
 msgstr ""
-"%s: некоректні вхідні дані: абсолютний допуск <= 0 і відносний допуск < 2."
-"e-14.\n"
+"%s: некоректні вхідні дані: абсолютний допуск <= 0 і відносний допуск < 2.e-"
+"14.\n"
 
 #, c-format
 msgid "%s: Convergence problem...\n"
@@ -676,19 +679,15 @@ msgstr "інтегруємо від tleft= %lf до hf=tf= %lf\n"
 msgid "integ. from tleft= %lf to hf= %lf\n"
 msgstr "інтегруємо від tleft= %lf до hf= %lf\n"
 
-#, fuzzy
 msgid "Insufficient Work space to finish (see messages).\n"
-msgstr "Недостатньо простору для завершення обчислень (див. повідомлення).\n"
+msgstr "Недостатньо робочого простору для завершення (див. повідомлення).\n"
 
-#, fuzzy
 msgid "Excessive work done on this call (perhaps wrong jacobian type).\n"
 msgstr ""
-"Під час цього виклику виконано надмірну роботу (ймовірно, помилковий тип "
-"якобіана).\n"
+"Надмірна робота за цим викликом (ймовірно, помилковий тип за якобіаном).\n"
 
-#, fuzzy
 msgid "Excesive accuracy requested (tolerances too small).\n"
-msgstr "Надто висока точність (допуски є надто малими).\n"
+msgstr "Надіслано запит на надмірну точність (похибки є надто малими).\n"
 
 msgid "Illegal input detected (see printed message).\n"
 msgstr "Виявлено некоректні вхідні дані (див. виведене повідомлення).\n"
@@ -768,20 +767,19 @@ msgstr ""
 "виведення даних обмежує природний вибір розміру кроку. Скористайтеся "
 "однокроковим режимом інтегрування.\n"
 
-#, fuzzy
 msgid "Invalid input parameters : atol and rtol must be greater than 0.\n"
-msgstr "Некоректні вхідні параметри: atol і rtol мають перевищувати 0.\n"
+msgstr "Некоректні вхідні параметри: atol і rtol мають бути більшими за 0.\n"
 
 msgid "Inappropriate error tolerance.\n"
 msgstr "Неприйнятний допуск похибки.\n"
 
-#, fuzzy
 msgid ""
 "Too many steps necessary to reach next required time discretization point. "
 "Change discretisation of time vector t or decrease accuracy.\n"
 msgstr ""
-"Для досягнення наступної точки дискретизації потрібно забагато кроків. "
-"Змініть дискретизацію вектора часу t або зменшіть точність.\n"
+"Для досягнення наступної точки дискретизації за часом потрібно забагато "
+"кроків. Змініть дискретизацію за вектором часу t або виберіть меншу "
+"точність.\n"
 
 msgid "The error tolerances are too stringent.\n"
 msgstr "Допусти на похибку є надто строгими.\n"
@@ -801,7 +799,8 @@ msgstr "Неточний або погано обумовлений якобіа
 msgid "Singular partial derivatives matrix (may be redundant equations).\n"
 msgstr "Вироджена матриця частинних похідних (можливо, є зайві рівняння).\n"
 
-msgid "Either ill-posed problem or discontinuity or singularity encountered.\n"
+msgid ""
+"Either ill-posed problem or discontinuity or singularity encountered.\n"
 msgstr "Маємо справу із некоректною, розривною або виродженою задачею.\n"
 
 msgid "External ''res'' return many times with ires=-1.\n"
@@ -858,13 +857,15 @@ msgstr ""
 "розмірності %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"
+msgid ""
+"%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"
 msgstr ""
 "%s: помилкова розмірність вихідного параметра №%d: мала бути матриця "
 "розмірності %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"
+msgid ""
+"%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"
 msgstr ""
 "%s: помилкова розмірність вихідного параметра №%d: мала бути матриця "
 "розмірності %d.\n"
@@ -881,7 +882,8 @@ msgstr ""
 "%s: помилкова розмірність вихідного параметра №%d: мало бути використано "
 "матрицю розмірності %d на %d.\n"
 
-msgid "An error occurred while getting DifferentialEquationFunctions object.\n"
+msgid ""
+"An error occurred while getting DifferentialEquationFunctions object.\n"
 msgstr ""
 "Під час спроби отримання об’єкта DifferentialEquationFunctions сталася "
 "помилка.\n"
@@ -1059,7 +1061,8 @@ msgstr "5: один крок без перевищення tcrit з поверн
 msgid "Meaning of jactype:"
 msgstr "Значення елемента jactype:"
 
-msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid ""
+"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr ""
 "0: функціональні ітерації (без використання якобіана (лише «adams» або "
 "«stiff»))"
@@ -1098,7 +1101,8 @@ msgstr ""
 "матрицю J, розмірності  ml+mu+1 на ny (де ny — розмірність y у ydot=f(t,y))"
 
 msgid "such that column 1 of J is made of mu zeros followed by"
-msgstr "так, що стовпчик 1 матриці J складається з mu нулів, за якими слідують"
+msgstr ""
+"так, що стовпчик 1 матриці J складається з mu нулів, за якими слідують"
 
 msgid "df1/dy1, df2/dy1, df3/dy1,... (1+ml possibly non-zero entries)"
 msgstr "df1/dy1, df2/dy1, df3/dy1,... (1+ml можливо ненульових елементів)"
@@ -1111,7 +1115,8 @@ msgid "Default values are given in square brackets"
 msgstr "Типові значення наведено у квадратних дужках"
 
 msgid "If the function is called without argument, default values are used"
-msgstr "Якщо функцію викликано без параметра, буде використано типові значення"
+msgstr ""
+"Якщо функцію викликано без параметра, буде використано типові значення"
 
 msgid "tcrit (assumes itask=4 or 5)"
 msgstr "tcrit (припускається, що itask=4 або 5)"
