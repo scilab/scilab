@@ -108,8 +108,6 @@ import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
-import com.mxgraph.util.mxUndoableEdit;
-import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
 import java.lang.reflect.Constructor;
@@ -117,7 +115,13 @@ import java.rmi.server.UID;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import org.scilab.modules.xcos.VectorOfBool;
+import org.scilab.modules.xcos.VectorOfScicosID;
+import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.block.io.ContextUpdate;
 import org.scilab.modules.xcos.io.ScilabTypeCoder;
+import org.scilab.modules.xcos.utils.XcosEvent;
 
 /**
  * The base class for a diagram. This class contains jgraphx + Scicos data.
@@ -257,14 +261,14 @@ public class XcosDiagram extends ScilabGraph {
      * Sort the blocks per first integer parameter value
      *
      * @param blocks the block list
+     * @param the shared controller
      * @return the sorted block list (same instance)
      */
-    public List<? extends BasicBlock> iparSort(final List<? extends BasicBlock> blocks) {
+    public static List<? extends BasicBlock> iparSort(final List<? extends BasicBlock> blocks, final JavaController controller) {
         Collections.sort(blocks, new Comparator<BasicBlock>() {
             @Override
             public int compare(BasicBlock o1, BasicBlock o2) {
 
-                JavaController controller = new JavaController();
 
                 final VectorOfInt data1 = new VectorOfInt();
                 final VectorOfInt data2 = new VectorOfInt();
@@ -332,21 +336,25 @@ public class XcosDiagram extends ScilabGraph {
      * Fill the context with I/O port
      *
      * @param context the context to fill
+     * @param controller the shared controller
+     * @return the context
      */
     @SuppressWarnings("unchecked")
-    protected void fillContext(final Hashtable<Object, Object> context) {
+    public final Map<Object, Object> fillContext(final Map<Object, Object> context, final JavaController controller) {
         if (!context.containsKey(IN)) {
-            context.put(IN, iparSort(getAllTypedBlock(new Class[] {ExplicitInBlock.class, ImplicitInBlock.class})));
+            context.put(IN, iparSort(getAllTypedBlock(new Class[] {ExplicitInBlock.class, ImplicitInBlock.class}), controller));
         }
         if (!context.containsKey(OUT)) {
-            context.put(OUT, iparSort(getAllTypedBlock(new Class[] {ExplicitOutBlock.class, ImplicitOutBlock.class})));
+            context.put(OUT, iparSort(getAllTypedBlock(new Class[] {ExplicitOutBlock.class, ImplicitOutBlock.class}), controller));
         }
         if (!context.containsKey(EIN)) {
-            context.put(EIN, iparSort(getAllTypedBlock(new Class[] {EventInBlock.class})));
+            context.put(EIN, iparSort(getAllTypedBlock(new Class[] {EventInBlock.class}), controller));
         }
         if (!context.containsKey(EOUT)) {
-            context.put(EOUT, iparSort(getAllTypedBlock(new Class[] {EventOutBlock.class})));
+            context.put(EOUT, iparSort(getAllTypedBlock(new Class[] {EventOutBlock.class}), controller));
         }
+
+        return context;
     }
 
     @Override
@@ -367,8 +375,9 @@ public class XcosDiagram extends ScilabGraph {
      *
      * @param cell Cell that represents the cell to validate.
      * @param context Hashtable that represents the global validation state.
+     * @return the error message or null
      */
-    public String validateChildDiagram(final Object cell, final Hashtable<Object, Object> context) {
+    public String validateChildDiagram(final Object cell, final Map<Object, Object> context) {
         String err = null;
 
         /*
@@ -388,12 +397,13 @@ public class XcosDiagram extends ScilabGraph {
             return null;
         }
         final BasicBlock block = (BasicBlock) cell;
+        final JavaController controller = new JavaController();
 
         /*
          * Prepare validation
          */
         // fill the context once
-        fillContext(context);
+        fillContext(context, controller);
 
         /*
          * Validate with ipar
@@ -403,7 +413,6 @@ public class XcosDiagram extends ScilabGraph {
         final int realIndex = blocks.indexOf(block) + 1;
 
         // get the user index
-        JavaController controller = new JavaController();
         VectorOfInt ipar = new VectorOfInt();
         controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.IPAR, ipar);
         if (ipar.size() < 1) {
@@ -417,13 +426,60 @@ public class XcosDiagram extends ScilabGraph {
             str.append("<html><body><em>");
             str.append(XcosMessages.WRONG_PORT_NUMBER);
             str.append("</em><br/>");
-            str.append(String.format(XcosMessages.EXPECTING_NUMBER, realIndex));
+            str.append(String.format(XcosMessages.EXPECTING_NUMBER, realIndex, userIndex));
             str.append("</body></html>    ");
 
             err = str.toString();
         }
 
         return err;
+    }
+
+    /**
+     * Set a model property and track undo/redo operation
+     * @param cell the cell
+     * @param values the value to set
+     */
+    public void updateBlock(BasicBlock cell, Map<ObjectProperties, Object> values) {
+        model.beginUpdate();
+        try {
+            blockUpdated(cell, values);
+            fireEvent(new mxEventObject(XcosEvent.UPDATE_BLOCK, XcosEvent.BLOCK, cell));
+        } finally {
+            model.endUpdate();
+        }
+    }
+
+    private void blockUpdated(BasicBlock cell, Map<ObjectProperties, Object> values) {
+        model.beginUpdate();
+        try {
+            for (Map.Entry<ObjectProperties, Object> e : values.entrySet()) {
+                if (e.getValue() instanceof double[]) {
+                    ((XcosGraphModel) model).setProperty(cell, e.getKey(), (double[]) e.getValue());
+                } else if (e.getValue() instanceof int[]) {
+                    ((XcosGraphModel) model).setProperty(cell, e.getKey(), (int[]) e.getValue());
+                } else if (e.getValue() instanceof boolean[]) {
+                    ((XcosGraphModel) model).setProperty(cell, e.getKey(), (boolean[]) e.getValue());
+                } else if (e.getValue() instanceof String[]) {
+                    ((XcosGraphModel) model).setProperty(cell, e.getKey(), (String[]) e.getValue());
+                } else if (e.getValue() instanceof long[]) {
+                    ((XcosGraphModel) model).setProperty(cell, e.getKey(), (long[]) e.getValue());
+                } else if (e.getValue() instanceof VectorOfDouble) {
+                    ((XcosGraphModel) model).setProperty(cell, e.getKey(), (VectorOfDouble) e.getValue());
+                } else if (e.getValue() instanceof VectorOfInt) {
+                    ((XcosGraphModel) model).setProperty(cell, e.getKey(), (VectorOfInt) e.getValue());
+                } else if (e.getValue() instanceof VectorOfBool) {
+                    ((XcosGraphModel) model).setProperty(cell, e.getKey(), (VectorOfBool) e.getValue());
+                } else if (e.getValue() instanceof VectorOfString) {
+                    ((XcosGraphModel) model).setProperty(cell, e.getKey(), (VectorOfString) e.getValue());
+                } else if (e.getValue() instanceof VectorOfScicosID) {
+                    ((XcosGraphModel) model).setProperty(cell, e.getKey(), (VectorOfScicosID) e.getValue());
+                }
+            }
+        } finally {
+            model.endUpdate();
+        }
+
     }
 
     /*
@@ -480,101 +536,10 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * Update the modified block on undo/redo
-     */
-    private static final class UndoUpdateTracker implements mxIEventListener {
-
-        private static UndoUpdateTracker instance;
-
-        /**
-         * Constructor
-         */
-        public UndoUpdateTracker() {
-        }
-
-        /**
-         * @return the instance
-         */
-        public static UndoUpdateTracker getInstance() {
-            if (instance == null) {
-                instance = new UndoUpdateTracker();
-            }
-            return instance;
-        }
-
-        /**
-         * Update the block and style on undo
-         *
-         * @param source the source instance
-         * @param evt the event data
-         * @see
-         * com.mxgraph.util.mxEventSource.mxIEventListener#invoke(java.lang.Object,
-         * com.mxgraph.util.mxEventObject)
-         */
-        @Override
-        public void invoke(final Object source, final mxEventObject evt) {
-            final mxUndoableEdit edit = (mxUndoableEdit) evt.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT);
-
-            final mxGraphModel model = (mxGraphModel) edit.getSource();
-            final List<mxUndoableChange> changes = edit.getChanges();
-
-            final Object[] changedCells = getSelectionCellsForChanges(changes, model);
-            model.beginUpdate();
-            try {
-                // FIXME manage that for the MVC
-                // for (final Object object : changedCells) {
-                // if (object instanceof BasicBlock) {
-                // final BasicBlock current = (BasicBlock) object;
-                // final XcosDiagram graph = current.getParentDiagram();
-                //
-                // // When we change the style property we have to update
-                // // some BasiBlock fields
-                // if (changes.get(0) instanceof mxStyleChange) {
-                // current.updateFieldsFromStyle();
-                // }
-                //
-                // // update the superblock container ports if the block is
-                // // inside a superblock diagram
-                // if (graph instanceof SuperBlockDiagram) {
-                // SuperBlockDiagram superdiagram = (SuperBlockDiagram) current.getParentDiagram();
-                // SuperBlock superblock = superdiagram.getContainer();
-                // superblock.updateExportedPort();
-                // }
-                //
-                // // Update the block position
-                // BlockPositioning.updateBlockView(current);
-                //
-                // // force a refresh of the block ports and links
-                // // connected to these ports
-                // final int childCount = model.getChildCount(current);
-                // for (int i = 0; i < childCount; i++) {
-                // final Object port = model.getChildAt(current, i);
-                // graph.getView().clear(port, true, true);
-                // final int edgeCount = model.getEdgeCount(port);
-                // for (int j = 0; j < edgeCount; j++) {
-                // final Object edge = model.getEdgeAt(port, j);
-                // graph.getView().clear(edge, true, true);
-                // }
-                // }
-                // // force a refresh of the block
-                // graph.getView().clear(current, true, true);
-                //
-                // graph.getView().validate();
-                // graph.repaint();
-                // }
-                // }
-            } finally {
-                model.endUpdate();
-            }
-        }
-    }
-
-    /**
      * Refresh each block on modification (update port position, etc...)
      */
     private static final class RefreshBlockTracker implements mxIEventListener {
-
-        private static RefreshBlockTracker instance;
+        private static RefreshBlockTracker instance = new RefreshBlockTracker();
 
         /**
          * Default constructor
@@ -586,9 +551,6 @@ public class XcosDiagram extends ScilabGraph {
          * @return the instance
          */
         public static RefreshBlockTracker getInstance() {
-            if (instance == null) {
-                instance = new RefreshBlockTracker();
-            }
             return instance;
         }
 
@@ -605,9 +567,13 @@ public class XcosDiagram extends ScilabGraph {
         public void invoke(Object sender, mxEventObject evt) {
             final XcosDiagram diagram = (XcosDiagram) sender;
 
+            if (diagram.isReadonly()) {
+                return;
+            }
+
             diagram.getModel().beginUpdate();
             try {
-                final BasicBlock updatedBlock = (BasicBlock) evt.getProperty(XcosConstants.EVENT_BLOCK_UPDATED);
+                final BasicBlock updatedBlock = (BasicBlock) evt.getProperty(XcosEvent.BLOCK);
                 BlockPositioning.updateBlockView(diagram, updatedBlock);
 
                 diagram.getView().clear(updatedBlock, true, true);
@@ -645,8 +611,154 @@ public class XcosDiagram extends ScilabGraph {
                 diagrams.stream().forEach(d -> d.updateTabTitle());
             }
         }
+    }
 
+    /**
+     * Update the number and position of ports for a Superblock
+     */
+    public static final class UpdateSuperblockPortsTracker implements mxIEventListener {
 
+        private static UpdateSuperblockPortsTracker instance = new UpdateSuperblockPortsTracker();
+
+        public static UpdateSuperblockPortsTracker getInstance() {
+            return instance;
+        }
+
+        @Override
+        public void invoke(Object sender, mxEventObject evt) {
+            final XcosDiagram diagram = (XcosDiagram) sender;
+
+            if (diagram.isReadonly()) {
+                return;
+            }
+
+            // common behavior for both block adding/removing and block update
+            List<Object> updatedIOBlocks;
+            if (XcosEvent.UPDATE_BLOCK.equals(evt.getName())) {
+                updatedIOBlocks = new ArrayList<>();
+                Object b = evt.getProperty(XcosEvent.BLOCK);
+                if  (b instanceof ContextUpdate) {
+                    updatedIOBlocks.add(b);
+                }
+            } else { // ADD_CELLS or REMOVE_CELLS
+                Object[] cells = (Object[]) evt.getProperty("cells");
+                updatedIOBlocks = Arrays.stream(cells).filter(b -> b instanceof ContextUpdate).collect(Collectors.toList());
+            }
+            if (updatedIOBlocks.isEmpty()) {
+                return;
+            }
+
+            final JavaController controller = new JavaController();
+
+            String[] superBlockUID = {""};
+            controller.getObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.UID, superBlockUID);
+
+            List<XcosDiagram> diagrams = Xcos.getInstance().openedDiagrams(Xcos.findRoot(controller, diagram));
+            for (XcosDiagram parent : diagrams) {
+                final XcosGraphModel model = (XcosGraphModel) parent.getModel();
+                Object cell = model.getCell(superBlockUID[0]);
+                if (cell != null) {
+                    // associated parent superblock when visible
+                    SuperBlock superblock = (SuperBlock) cell;
+
+                    // create a full context
+                    Map<Object, Object> context = new HashMap<>();
+                    diagram.fillContext(context, controller);
+
+                    // only update the superblock ports if all of them are valids
+                    diagram.getAsComponent().clearCellOverlays();
+                    String status = diagram.getAsComponent().validateGraph();
+                    if (status != null) {
+                        return;
+                    }
+
+                    model.beginUpdate();
+                    try {
+                        syncPorts(controller, superblock, ObjectProperties.INPUTS, (List<ContextUpdate>) context.get(IN), parent);
+                        syncPorts(controller, superblock, ObjectProperties.OUTPUTS, (List<ContextUpdate>) context.get(OUT), parent);
+                        syncPorts(controller, superblock, ObjectProperties.EVENT_INPUTS, (List<ContextUpdate>) context.get(EIN), parent);
+                        syncPorts(controller, superblock, ObjectProperties.EVENT_OUTPUTS, (List<ContextUpdate>) context.get(EOUT), parent);
+                    } finally {
+                        model.endUpdate();
+                    }
+                    break;
+                }
+            }
+        }
+
+        /**
+         * Synchronize ports on the parent diagram accordingly to the updated IOBlocks
+         * @param controller shared controller;
+         * @param superblock the superblock to update
+         * @param p port kind
+         * @param updated the updated IOBlocks (ipar sorted)
+         * @param parent diagram containing the superblock
+         */
+        public static void syncPorts(final JavaController controller, SuperBlock superblock, ObjectProperties p, List<ContextUpdate> updated, XcosDiagram parent) {
+            VectorOfScicosID ports = new VectorOfScicosID();
+            controller.getObjectProperty(superblock.getUID(), superblock.getKind(), p, ports);
+
+            int added = updated.size() - ports.size();
+            if (added > 0) {
+                for (int i = 0; i < added; i++) {
+                    // adding port
+                    BasicPort port = ContextUpdate.IOBlocks.createPort(controller, updated.get(ports.size() + i));
+                    parent.addCell(port, superblock);
+                }
+            } else if (added < 0) {
+                for (int i = 0; i < -added; i++) {
+                    // removing port
+                    String portUID[] = {""};
+                    controller.getObjectProperty(ports.get(updated.size() + i), Kind.PORT, ObjectProperties.UID, portUID);
+                    parent.removeCells(new Object[] {((XcosGraphModel) parent.getModel()).getCell(portUID[0])});
+                }
+            }
+        }
+
+        /**
+         * Append the modified blocks to an existing context
+         * @param context the validation context
+         * @param updatedIOBlocks the blocks to add
+         * @param controller shared controller
+         */
+        public static void updateContext(Map<Object, Object> context, List<XcosCell> updatedIOBlocks, final JavaController controller) {
+            {
+                List<BasicBlock> l = (List<BasicBlock>) context.getOrDefault(IN, new ArrayList<>());
+                updatedIOBlocks.stream()
+                .filter(b -> b instanceof ExplicitInBlock || b instanceof ImplicitInBlock)
+                .map(b -> (ContextUpdate) b)
+                .collect(Collectors.toCollection(() -> l));
+                iparSort(l, controller);
+                context.putIfAbsent(IN, l);
+            }
+            {
+                List<BasicBlock> l = (List<BasicBlock>) context.getOrDefault(OUT, new ArrayList<>());
+                updatedIOBlocks.stream()
+                .filter(b -> b instanceof ExplicitOutBlock || b instanceof ImplicitOutBlock)
+                .map(b -> (ContextUpdate) b)
+                .collect(Collectors.toCollection(() -> l));
+                iparSort(l, controller);
+                context.putIfAbsent(OUT, l);
+            }
+            {
+                List<BasicBlock> l = (List<BasicBlock>) context.getOrDefault(EIN, new ArrayList<>());
+                updatedIOBlocks.stream()
+                .filter(b -> b instanceof EventInBlock)
+                .map(b -> (ContextUpdate) b)
+                .collect(Collectors.toCollection(() -> l));
+                iparSort(l, controller);
+                context.putIfAbsent(EIN, l);
+            }
+            {
+                List<BasicBlock> l = (List<BasicBlock>) context.getOrDefault(EOUT, new ArrayList<>());
+                updatedIOBlocks.stream()
+                .filter(b -> b instanceof EventOutBlock)
+                .map(b -> (ContextUpdate) b)
+                .collect(Collectors.toCollection(() -> l));
+                iparSort(l, controller);
+                context.putIfAbsent(EOUT, l);
+            }
+        }
     }
 
     /**
@@ -1116,22 +1228,29 @@ public class XcosDiagram extends ScilabGraph {
         /*
          * First remove all listeners if present
          */
-        removeListener(RepositionTracker.getInstance());
-        getUndoManager().removeListener(UndoUpdateTracker.getInstance());
-        removeListener(RefreshBlockTracker.getInstance());
         getModel().removeListener(SavedStatusTracker.getInstance(this));
-
-        // Update the saved status rendering on modification
-        getModel().addListener(mxEvent.CHANGE, SavedStatusTracker.getInstance(this));
+        removeListener(UpdateSuperblockPortsTracker.getInstance());
+        removeListener(RefreshBlockTracker.getInstance());
+        removeListener(RepositionTracker.getInstance());
 
         // Track when resizing or moving (droping) a cell.
         addListener(mxEvent.CELLS_RESIZED, RepositionTracker.getInstance());
         addListener(mxEvent.CELLS_MOVED, RepositionTracker.getInstance());
 
-        // Update the blocks view on undo/redo
-        getUndoManager().addListener(mxEvent.UNDO, UndoUpdateTracker.getInstance());
-        getUndoManager().addListener(mxEvent.REDO, UndoUpdateTracker.getInstance());
+        // Refresh block rendering on update
+        addListener(XcosEvent.UPDATE_BLOCK, RefreshBlockTracker.getInstance());
 
+        // on Superblock diagram, refresh port interface on the parent diagram
+        if (getKind() == Kind.BLOCK) {
+            addListener(XcosEvent.UPDATE_BLOCK, UpdateSuperblockPortsTracker.getInstance());
+
+            addListener(mxEvent.ADD_CELLS, UpdateSuperblockPortsTracker.getInstance());
+            addListener(mxEvent.REMOVE_CELLS, UpdateSuperblockPortsTracker.getInstance());
+            addListener(mxEvent.MOVE_CELLS, UpdateSuperblockPortsTracker.getInstance());
+        }
+
+        // Update the saved status rendering on modification
+        getModel().addListener(mxEvent.CHANGE, SavedStatusTracker.getInstance(this));
     }
 
     /**
@@ -1762,7 +1881,12 @@ public class XcosDiagram extends ScilabGraph {
 
             setTitle(writeFile.getName().substring(0, writeFile.getName().lastIndexOf('.')));
             ConfigurationManager.getInstance().addToRecentFiles(writeFile);
-            Xcos.getInstance().setModified(Xcos.findRoot(this), false);
+
+            ScicosObjectOwner root = Xcos.findRoot(this);
+            Xcos.getInstance().setModified(root, false);
+            Xcos.getInstance().openedDiagrams(root).stream()
+            .forEach(d -> d.updateTabTitle());
+
             isSuccess = true;
         } catch (final Exception e) {
             LOG.severe(e.toString());

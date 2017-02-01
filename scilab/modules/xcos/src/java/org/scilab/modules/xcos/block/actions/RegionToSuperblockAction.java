@@ -48,7 +48,9 @@ import com.mxgraph.util.mxRectangle;
 import java.nio.LongBuffer;
 import java.rmi.server.UID;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import static java.util.stream.Collectors.toList;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
@@ -60,6 +62,11 @@ import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfInt;
 import org.scilab.modules.xcos.VectorOfScicosID;
+import static org.scilab.modules.xcos.graph.XcosDiagram.EIN;
+import static org.scilab.modules.xcos.graph.XcosDiagram.EOUT;
+import static org.scilab.modules.xcos.graph.XcosDiagram.IN;
+import static org.scilab.modules.xcos.graph.XcosDiagram.OUT;
+import static org.scilab.modules.xcos.graph.XcosDiagram.UpdateSuperblockPortsTracker.syncPorts;
 import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.io.ScilabTypeCoder;
@@ -409,6 +416,11 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
              */
             moveToChild(controller, parentGraph, superBlock, brokenLinks, toBeMoved);
 
+            /*
+             * Append the port to the superblock (in case of IN_f / OUT_f selected)
+             */
+            updateIO(controller, parentGraph, superBlock, toBeMoved);
+
             BlockPositioning.updateBlockView(parentGraph, superBlock);
         } catch (ScilabInterpreterManagement.InterpreterException ex) {
             // Scilab seems to be blocked, just consume the exception at this point
@@ -746,6 +758,23 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
         });
 
         controller.setObjectProperty(superBlock.getUID(), superBlock.getKind(), ObjectProperties.CHILDREN, children);
+    }
+
+    /**
+     * Update the ports according to the IOBlocks moved
+     * @param controller the shared controller
+     * @param parent the parent diagram
+     * @param superblock the superblock cell
+     * @param toBeMoved the moved blocks
+     */
+    private void updateIO(JavaController controller, XcosDiagram parent, SuperBlock superblock, List<XcosCell> toBeMoved) {
+        Map<Object, Object> context = new HashMap<>();
+        XcosDiagram.UpdateSuperblockPortsTracker.updateContext(context, toBeMoved, controller);
+
+        syncPorts(controller, superblock, ObjectProperties.INPUTS, (List<ContextUpdate>) context.get(IN), parent);
+        syncPorts(controller, superblock, ObjectProperties.OUTPUTS, (List<ContextUpdate>) context.get(OUT), parent);
+        syncPorts(controller, superblock, ObjectProperties.EVENT_INPUTS, (List<ContextUpdate>) context.get(EIN), parent);
+        syncPorts(controller, superblock, ObjectProperties.EVENT_OUTPUTS, (List<ContextUpdate>) context.get(EOUT), parent);
     }
 }
 // CSON: ClassFanOutComplexity

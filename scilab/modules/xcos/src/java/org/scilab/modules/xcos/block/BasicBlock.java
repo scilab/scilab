@@ -82,6 +82,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
+import java.util.TreeMap;
 
 /**
  * A block on the diagram
@@ -287,79 +288,93 @@ public class BasicBlock extends XcosCell implements Serializable {
             return;
         }
 
-        // TODO these copies are not managed by undo/redo ; fix that
+        Map<ObjectProperties, Object> props = new TreeMap<>();
 
-        int[] integer = new int[1];
+        int[] integer;
 
+        integer = new int[1];
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.SIM_FUNCTION_API, integer);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SIM_FUNCTION_API, integer[0]);
+        props.put(ObjectProperties.SIM_FUNCTION_API, integer);
 
-        String[] str = new String[1];
+        String[] str;
 
+        str = new String[1];
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.INTERFACE_FUNCTION, str);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.INTERFACE_FUNCTION, str[0]);
+        props.put(ObjectProperties.INTERFACE_FUNCTION, str);
 
+        str = new String[1];
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.SIM_FUNCTION_NAME, str);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SIM_FUNCTION_NAME, str[0]);
+        props.put(ObjectProperties.SIM_FUNCTION_NAME, str);
 
+        str = new String[1];
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.SIM_BLOCKTYPE, str);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SIM_BLOCKTYPE, str[0]);
+        props.put(ObjectProperties.SIM_BLOCKTYPE, str);
 
-        VectorOfDouble vDouble = new VectorOfDouble();
+        VectorOfDouble vDouble;
 
+        vDouble = new VectorOfDouble();
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.EXPRS, vDouble);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.EXPRS, vDouble);
+        props.put(ObjectProperties.EXPRS, vDouble);
 
+        vDouble = new VectorOfDouble();
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.STATE, vDouble);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.STATE, vDouble);
+        props.put(ObjectProperties.STATE, vDouble);
 
+        vDouble = new VectorOfDouble();
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.DSTATE, vDouble);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DSTATE, vDouble);
+        props.put(ObjectProperties.DSTATE, vDouble);
 
+        vDouble = new VectorOfDouble();
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.ODSTATE, vDouble);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.ODSTATE, vDouble);
+        props.put(ObjectProperties.ODSTATE, vDouble);
 
+        vDouble = new VectorOfDouble();
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.RPAR, vDouble);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.RPAR, vDouble);
+        props.put(ObjectProperties.RPAR, vDouble);
 
+        vDouble = new VectorOfDouble();
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.OPAR, vDouble);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.OPAR, vDouble);
+        props.put(ObjectProperties.OPAR, vDouble);
 
+        vDouble = new VectorOfDouble();
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.EQUATIONS, vDouble);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.EQUATIONS, vDouble);
+        props.put(ObjectProperties.EQUATIONS, vDouble);
 
-        VectorOfInt vInt = new VectorOfInt();
+        VectorOfInt vInt;
 
+        vInt = new VectorOfInt();
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.SIM_DEP_UT, vInt);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SIM_DEP_UT, vInt);
+        props.put(ObjectProperties.SIM_DEP_UT, vInt);
 
+        vInt = new VectorOfInt();
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.NZCROSS, vInt);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.NZCROSS, vInt);
+        props.put(ObjectProperties.NZCROSS, vInt);
 
+        vInt = new VectorOfInt();
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.NMODE, vInt);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.NMODE, vInt);
+        props.put(ObjectProperties.NMODE, vInt);
 
+        vInt = new VectorOfInt();
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.IPAR, vInt);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.IPAR, vInt);
+        props.put(ObjectProperties.IPAR, vInt);
 
+        vInt = new VectorOfInt();
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.COLOR, vInt);
         controller.setObjectProperty(getUID(), getKind(), ObjectProperties.COLOR, vInt);
+        props.put(ObjectProperties.COLOR, vInt);
 
-        VectorOfString vStr = new VectorOfString();
+        VectorOfString vStr;
 
+        vStr = new VectorOfString();
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.DIAGRAM_CONTEXT, vStr);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DIAGRAM_CONTEXT, vStr);
+        props.put(ObjectProperties.DIAGRAM_CONTEXT, vStr);
 
-        // move the children to the parent
         VectorOfScicosID localChildren = new VectorOfScicosID();
         controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.CHILDREN, localChildren);
-        final int size = localChildren.size();
-        for (int i = 0; i < size; i++) {
-            long child = localChildren.get(i);
-            controller.referenceObject(child);
-            controller.setObjectProperty(child, controller.getKind(child), ObjectProperties.PARENT_BLOCK, getUID());
-        }
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.CHILDREN, localChildren);
+        props.put(ObjectProperties.CHILDREN, localChildren);
+
+        // apply changes
+        parent.updateBlock(this, props);
 
         /*
          * JGraphX mapped properties

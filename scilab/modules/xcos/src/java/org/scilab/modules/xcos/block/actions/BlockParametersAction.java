@@ -115,8 +115,14 @@ public class BlockParametersAction extends VertexSelectionDependantAction {
                 ScicosObjectOwner root = Xcos.findRoot(graph);
                 Xcos.getInstance().addDiagram(root, sub);
 
-                // propagate the modified status
+                // propagate the modified status after discarding modification
+                // done on children insertion
+                sub.setModified(false);
                 sub.setModified(Xcos.getInstance().isModified(root));
+
+                // setup graphical interface
+                sub.getUndoManager().clear();
+                sub.installListeners();
 
                 XcosTab.restore(sub, true);
             } else {

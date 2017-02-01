@@ -67,7 +67,7 @@ public class ScilabGraph extends mxGraph {
 
     private String title = null;
     private File savedFile;
-    private boolean modified;
+    private boolean modified = false;
     private boolean readOnly;
 
     private transient mxRubberband rubberBand;
