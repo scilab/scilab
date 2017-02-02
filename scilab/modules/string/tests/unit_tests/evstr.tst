@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // =============================================================================
 // unit tests evstr
@@ -16,6 +17,9 @@ Z = ["a","b"];
 res = evstr(Z);
 assert_checkequal(res(1), a);
 assert_checkequal(res(2), b);
+assert_checkequal(evstr("cos(a)"), cos(a));
+assert_checkequal(evstr("cos(a), sin(a)"), [cos(a), sin(a)]);
+assert_checkequal(evstr("cos(a); sin(a)"), [cos(a); sin(a)]);
 // =============================================================================
 a = 1;
 b = 2;
@@ -38,7 +42,7 @@ Scilab_value = 3;
 assert_checkequal(Scilab_value, evstr("Scilab_value"));
 // =============================================================================
 clear toto;
-assert_checkfalse(execstr("evstr(''toto'')", "errcatch") == 0);
+assert_checkequal(evstr('toto'),[]);
 assert_checkfalse(execstr("evstr(toto)", "errcatch") == 0);
 // =============================================================================
 s = rand(3,3,3);
@@ -46,6 +50,8 @@ assert_checkequal(execstr("evstr(s)", "errcatch"), 0);
 // =============================================================================
 function foo(), endfunction
 assert_checkequal(execstr("evstr(''foo'')", "errcatch"), 0);
+// assert_checkequal(evstr('foo'), foo); // assert_checkequal() upgrade needed
+assert_checkequal(evstr('foo()'), []);
 // =============================================================================
 assert_checkequal(evstr(""), []);
 // =============================================================================

@@ -224,6 +224,8 @@ bounds selected out of the axes areas is now restored, after the Scilab 5.4 regr
   - It can now be used for builtin functions.
   - When the same function name is registered in several libraries, `whereis` now returns all of them instead of only the last loaded one.
   - For unregistered user-defined macros, `"script"` is now returned instead of `[]`.
+* `evstr` now support inputs including `ascii(10)`, `ascii(13)`, only a comment or/and
+   spaces or/and `"[]"`, only spaces, being `""`, or instructions returning nothing.
 
 
 Help pages:
@@ -460,11 +462,14 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#9288](http://bugzilla.scilab.org/show_bug.cgi?id=9288): No palette dynamically built with the most used blocks was available
 * [#9451](http://bugzilla.scilab.org/show_bug.cgi?id=9451): `test_run` output did not clearly distinguish heading lines of modules and tests lines
 * [#9825](http://bugzilla.scilab.org/show_bug.cgi?id=9825): `assert_computedigits` returns too much digits
+* [#9838](http://bugzilla.scilab.org/show_bug.cgi?id=9838):  `evstr` froze on text components having some comments but no result.
+* [#9839](http://bugzilla.scilab.org/show_bug.cgi?id=9839):  `evstr` failed when some text components include `ascii(10)` or/and `ascii(13)` linebreak characters.
 * [#9865](http://bugzilla.scilab.org/show_bug.cgi?id=9865): When making a plot with `point`(no line), no symbol was shown in the legend.
 * [#9876](http://bugzilla.scilab.org/show_bug.cgi?id=9876): Creating a complex structure with multiple hierarchy level and size failed.
 * [#9912](http://bugzilla.scilab.org/show_bug.cgi?id=9912): In case of missing translated help page, its default `en_US` version was sometimes ignored
 * [#10116](http://bugzilla.scilab.org/show_bug.cgi?id=10116): `for h = H, .., end` could not be used when H is a vector of graphic handles
 * [#10195](http://bugzilla.scilab.org/show_bug.cgi?id=10195): `execstr` interpreted ascii(0) to ascii(31) characters as the power `^` operator.
+* [#10196](http://bugzilla.scilab.org/show_bug.cgi?id=10196): a) `evstr("whereami()")` yielded an error (instead of []) because `whereami()` has no output argument. b) `evstr(["%pi" "[]" "%i"])` returned a vector with only 2 components instead of 3. c) `evstr(["%pi" "[]" ; "3" "%i"])` yielded an error.
 * [#10326](http://bugzilla.scilab.org/show_bug.cgi?id=10326): The palette browser didn't have any search engine.
 * [#10981](http://bugzilla.scilab.org/show_bug.cgi?id=10981): It was possible to rotate a 2D axes, and hard to get it back to a 2D view.
 * [#11375](http://bugzilla.scilab.org/show_bug.cgi?id=11375): When a localized help subdirectory has only a `CHAPTER` file specifying the section title, this one was ignored.
