@@ -68,4 +68,5 @@ CPP_GATEWAY_PROTOTYPE(sci_isdigit);
 CPP_GATEWAY_PROTOTYPE(sci_isascii);
 CPP_GATEWAY_PROTOTYPE(sci_strsplit);
 CPP_GATEWAY_PROTOTYPE(sci_isnum);
+CPP_GATEWAY_PROTOTYPE(sci_emptystr);
 #endif /* !__STRING_GW_HXX__ */

@@ -176,6 +176,7 @@
   <ItemGroup>
     <ClCompile Include="sci_ascii.cpp" />
     <ClCompile Include="sci_convstr.cpp" />
+    <ClCompile Include="sci_emptystr.cpp" />
     <ClCompile Include="sci_grep.cpp" />
     <ClCompile Include="sci_isalphanum.cpp" />
     <ClCompile Include="sci_isascii.cpp" />

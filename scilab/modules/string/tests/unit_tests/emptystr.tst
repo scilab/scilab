@@ -6,54 +6,42 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //===============================
 // unit tests emptystr
 //===============================
-s = emptystr();
-if (s <> '') then pause,end;
+assert_checkequal(emptystr(), "");
 //===============================
-s = emptystr([]);
-if (s <> []) then pause,end;
+assert_checkequal(emptystr([]), []);
 //===============================
-s = emptystr("Scilab");
-d = size(s);
-if (d <> [1 1]) then pause,end;
-if (s <> '') then pause,end;
+assert_checkequal(size(emptystr("Scilab")), [1 1]);
+assert_checkequal(emptystr("Scilab"), "");
 //===============================
-MS = ["Scilab";"String"];
-s = emptystr(MS);
-d = size(s);
-if (d <> size(MS)) then pause,end;
-if or(s <> '') then pause,end;
+s = emptystr(["Scilab";"String"]);
+assert_checkequal(size(s), [2 1]);
+assert_checktrue(and(s == ""));
 //===============================
 M = 5;
 N = 3;
 s = emptystr(M,N);
-d = size(s);
-if (d <> [M N]) then pause,end;
-if or(s <> '') then pause,end;
+assert_checkequal(size(s), [M N]);
+assert_checktrue(and(s == ""));
 //===============================
 M = 200;
 N = 300;
 s = emptystr(M,N);
-d = size(s);
-if (d <> [M N]) then pause,end;
-if or(s <> '') then pause,end;
+assert_checkequal(size(s), [M N]);
+assert_checktrue(and(s == ""));
 //===============================
-s = emptystr(0,0);
-if (s <> []) then pause,end;
+assert_checkequal(emptystr(0,0), []);
 //===============================
-s = emptystr(0);
-d = size(s);
-if (d <> [1 1]) then pause,end;
-if (s <> '') then pause,end;
+assert_checkequal(emptystr(0), "");
 //===============================
 M = 200;
 s = emptystr(M);
-d = size(s);
-if (d <> [1 1]) then pause,end;
-if (s <> '') then pause,end;
+assert_checkequal(size(s), [1 1]);
+assert_checkequal(s, "");
 //===============================
-if ( size(emptystr(0,1)) <> [ 0 0 ] ) then pause,end
+assert_checkequal(size(emptystr(0,1)), [0 0]);
 //===============================

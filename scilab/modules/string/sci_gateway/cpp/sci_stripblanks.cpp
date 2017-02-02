@@ -64,7 +64,7 @@ types::Function::ReturnValue sci_stripblanks(types::typed_list &in, int _iRetCou
 
     if (in.size() == 3)
     {
-        if (in[2]->isDouble() == false || in[2]->getAs<types::Double>()->isScalar() == false) 
+        if (in[2]->isDouble() == false || in[2]->getAs<types::Double>()->isScalar() == false)
         {
 
             Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), FUNCNAME, 2);
@@ -74,7 +74,7 @@ types::Function::ReturnValue sci_stripblanks(types::typed_list &in, int _iRetCou
 
         flag = in[2]->getAs<types::Double>()->get()[0];
 
-        if (floor(flag) != flag || (flag != 0.0 && flag != 1.0 && flag != -1.0)) 
+        if (floor(flag) != flag || (flag != 0.0 && flag != 1.0 && flag != -1.0))
         {
 
             Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), FUNCNAME, 3, "-1, 0, 1");

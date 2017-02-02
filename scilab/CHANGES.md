@@ -424,6 +424,7 @@ Bug Fixes
 * [#14591](http://bugzilla.scilab.org/show_bug.cgi?id=14591): `<=` and `>=` elementwise operators comparing 2 hypermatrices of decimal numbers or encoded integers were inverted.
 * [#14593](http://bugzilla.scilab.org/show_bug.cgi?id=14593): Signs are no more drawn in BIGSOM and PRODUCT components.
 * [#14602](http://bugzilla.scilab.org/show_bug.cgi?id=14602): WRITEC_f block didn't work for x86 machines.
+* [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` was 40x slower than Scilab 5
 * [#14609](http://bugzilla.scilab.org/show_bug.cgi?id=14609): "msscanf" crashes Scilab when 'niter' parameter is out of range.
 * [#14632](http://bugzilla.scilab.org/show_bug.cgi?id=14632): Zooming moves drawn axis offscreen
 * [#14640](http://bugzilla.scilab.org/show_bug.cgi?id=14640): `median(int8([10 60 80 100]))` returned -58 instead of 70 due to overflow when interpolating (60+80)>128

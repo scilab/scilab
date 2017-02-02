@@ -65,7 +65,8 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_isdigit.cpp \
     sci_gateway/cpp/sci_isascii.cpp \
     sci_gateway/cpp/sci_strsplit.cpp \
-    sci_gateway/cpp/sci_isnum.cpp
+    sci_gateway/cpp/sci_isnum.cpp \
+    sci_gateway/cpp/sci_emptystr.cpp
 
 libscistring_la_CFLAGS= \
     $(PCRE_CFLAGS) \
