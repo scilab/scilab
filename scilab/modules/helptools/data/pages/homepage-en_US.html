@@ -26,27 +26,13 @@
     <br/>
     <br/>
     <div class="refsection">
-      <h3 class="title">Welcome to Scilab 6.0.0 beta 2</h3>
+      <h3 class="title">Welcome to Scilab 6.0.0</h3>
       <p class="para">
         Scilab 6.0 is a major new release of Scilab, the open source
-        platform for numerical computation. This 6.0.0 beta 2 is a
-        release candidate for all users, commercial as well as community.
+        platform for numerical computation.
       </p>
-      <p class="para">
-        As a beta, this release is a preview of what will be present in Scilab 6.0.0. If
-        you are already a Scilab user: helping us testing it, and
-        reporting bugs, can be your great contribution to the Scilab
-        community, to ensure it continues to be free and
-        open-source. If you have developed code on Scilab, or if you
-        are an experienced user, then this the moment to start
-        upgrading your code, and report any issue, bugs or
-        incompatibilities, on
-        our <a href="http://bugzilla.scilab.org/" class="ulink">Bug
-        Tracker</a>: we will try to address them before the final 6.0.0
-        release.
-      </p>
-      <h3 class="title">What's new in Scilab 6.0</h3>
-      <h2 class="title">New language,  &amp; new core, new Xcos</h2>
+      <h3 class="title">What's new</h3>
+      <h2 class="title">New language, new core &amp; new Xcos</h2>
       <p class="para">
         This release includes a major rewrite of Scilab's internal
         core, for better usability and performance: the changes to the
@@ -60,7 +46,6 @@
           <li>The grammar is stricter, but more consistent,</li>
           <li>Error handling has been improved (but may still be
           incomplete:  please report issues you find),</li>
-
           <li>The language has slightly better compatibility with
           Matlab's language (for example control instructions such as
           switch/case statements).</li>
@@ -80,13 +65,10 @@
           control instructions such
           as <a href="try.html">try</a>.</li>
           <li>The operation plus and minus with the empty matrix will now
-          yield an empty matrix. To simplify the transition of your code base
-          during beta, a specific warning is issued when such operation is detected. </li>
+          yield an empty matrix.</li>
           <li>To determine the exact line of code generating a warning,
             an option <a href="warning.html">warning("stop")</a> has been added.</li>
           <li>
-          A retrocompatibility flag for empty behaviour operations is also
-            available during beta. It will be deprecated in a future scilab release.
             See <a href="oldEmptyBehaviour.html">oldEmptyBehaviour</a>.
           </li>
         </ul>
@@ -183,17 +165,6 @@
         Math Kernel Library are included in Scilab. They are subject
         to the Intel EULA.
       </p>
-      <h2 class="title">Main limitations of this beta</h2>
-      <p class="para">
-        This might probably be the last Scilab 6.0.0 pre-release and it is available to ease toolbox developers transition. Both API and ABI are stable and external modules could be ported using this release.
-        <ul>
-          <li><p>Scilab 6 is still in a beta stage and likely to contain a number of known or unknown bugs (especially memory leaks). Do not hesitate to <a href="https://bugzilla.scilab.org">report</a> them.</p>
-          </li>
-          <li>
-<p>Toolboxes rebuild is in progress. Do not hesitate to submit patch or feature upgrade to the <a href="dev@lists.scilab.org">development mailing list</a> for a particular toolbox.</p>
-          </li>
-        </ul>
-      </p>
       <h2 class="title">Platform-specific limitations</h2>
       <p class="para">
         All functionalities of Scilab are present on all platforms,
@@ -215,7 +186,7 @@
       <h2 class="title">Complete changelog</h2>
       <p class="para">
       For a precise list of changes (in particular, bug fixes) between
-      the 5.5.2 release and the 6.0.0 beta 2 release, please see the
+      the 5.5.2 release and this one, please see the
       <a href="CHANGES.html">CHANGES</a> file.
       </p>
     </div>

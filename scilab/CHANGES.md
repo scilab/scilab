@@ -1,5 +1,5 @@
-Welcome to Scilab 6.0.0 beta-2
-==============================
+Welcome to Scilab 6.0.0
+=======================
 
 This file details the changes between Scilab 6.0.0 (this release), and the previous release 5.5.2.
 For changelogs of earlier releases, please see [Scilab 5.5.2](https://www.scilab.org/en/content/download/3332/24658/file/Scilab5.5.2_ReleaseNotes.pdf).
@@ -11,10 +11,6 @@ This file is intended for the specific needs of advanced users, and describes:
 - New and modified features, in each module,
 - Changes in functions (removed/added/modified),
 - Bug fixes.
-
-This changelog is most likely incomplete, as an enormous amount of code has changed between 5.5.2 and 6.
-Please report any thing we could have missed, on the [mailing lists][1] or on the [bug tracker][2],
-and we will correct it before the final Scilab 6.0.0 release.
 
 [1]: http://mailinglists.scilab.org
 [2]: http://bugzilla.scilab.org
@@ -117,7 +113,7 @@ These are reserved for cell definition.
 while `&` and `|` are element-wise operations and will not shortcut one of the operand.
 Both shortcut and element-wise operators are evaluated from left to right.
 * Syntax `%i:10` is now deprecated (only real scalars can be used).
-* `while ... else ... end` control instruction is not supported anymore.
+* `else` is no longer supported in a `while ... end` control instruction.
 * Transposed matrix can now use the extraction operator directly `A'(1, 2)`.
 * Function without output argument cannot be called in assignation expression anymore:
 	```
@@ -133,15 +129,15 @@ Feature changes and additions
 -----------------------------
 
 * Addition or subtraction with an empty matrix now returns an empty matrix.
-* scatter/scatter3 plot with different mark colors is now available.
-* parulacolormap is now available.
-* name2rgb can now handle a single string and a matrix of strings.
+* `scatter/scatter3` plot with different mark colors is now available.
+* `parulacolormap` is now available.
+* `name2rgb` can now handle a single string and a matrix of strings.
 * `isoview`, `isoview on`, `isoview off`, `isoview(idGraphics, "on"|"off")` are now supported.
 * `twinkle` and `twinkle(n)` are now supported: by default, the current element `gce` blinks.
 * `replot` has been upgraded:
-  - a bound set to %inf now gets the position of the most marginal object,
-  - replot() can now be used to reframe axes to all their contents,
-  - option "tigh_limits" added,
+  - a bound set to `%inf` now gets the position of the most marginal object,
+  - `replot` can now be used to reframe axes to all their contents,
+  - option `tigh_limits` added,
   - Any handle having some Axes as direct children -- as uicontrol-frame -- is now supported.
 * `householder` can now return the reflection matrix, and has a demo.
 * `ndgrid` can now works with any types of homogeneous data
@@ -151,15 +147,19 @@ Feature changes and additions
 * `sign` can now handle a sparse matrix.
 * `sleep(..,'s')` allows now to specify the duration in seconds.
 * `real`, `imag`, `conj` and `isreal` now accept rational fractions.
-* A call stack limit has been introduced. Default maximum depth is setup to 1000
+* A call stack limit has been introduced. Default maximum depth is setup to `1000`
 and can be changed by `recursionlimit` or through the Preferences interface.
 * The floating point exception mode `ieee` is now set to `2` by default: floating
 point exceptions now produce `Inf` or `Nan`, and do not cause any error.
 The previous behavior can be recalled by simply calling: `ieee(0)`.
-* The graphics entity "Datatip" has its property `z_component = 'on|off'` changed to
-`display_components = 'xyz'`; it is now possible to choose which components to display,
-and in which order. Loading old `*.scg` files containing datatips with "z_component"
-property may not display the z component.
+* Datatips:
+  - The property `z_component = 'on|off'` is renamed to `display_components = 'xyz'`.
+  It is now possible to choose which components to display, and in which order.
+  The `.z_component` property will be ignored in former `*.scg` files.
+  - A new `detached_position` property is available to display the datatip away from but linked to
+  its anchor on the curve.
+  - A new `Polyline.datatip_display_mode` property now allows to display each datatip of the curve
+  only on `mouseover` its anchor or only on `mouseclick`.
 * Valgrind error detection added to `test_run` (on Linux only).
 * `amell` now:
   - checks if its parameters are real numbers,
@@ -178,7 +178,7 @@ input and output arguments.
 * `ode`: `y0` is restricted to a column vector.
 * `pppdiv`: Return a scalar of type 'constant' when the rank is 0.
 * `pdiv`: Return a matrix of type 'constant' when all the rank are 0.
-* `test_run` can now take "[]" as argument to be used on console; for instance: `test_run string [] no_check_ref`.
+* `test_run` can now take `[]` as argument to be used on console; for instance: `test_run string [] no_check_ref`.
 * `typeof(:)` and `typeof(n:$)` now return `"implicitlist"` instead of respectively `"constant"` and `"size implicit"`.
 * `linspace(a, b, n<=0)` now returns `[]` instead of b.
 * `strange([])` now returns `%nan` instead of `[]`, as all other functions for statistical dispersion.
@@ -192,22 +192,23 @@ input and output arguments.
    - results with decimal-encoded integers > 2^32 are now correct.
    - decimal-encoded integers > 2^52 are now supported up to the biggest 1.80D+308.
    - `bitxor` is now vectorized and fast.
-* The zoom rubber box now can start/finish from points lying outside the axes bounds.
-* The zoom rubber box now can select multiple and overlying axes at once. Changed behavior of scroll zoom,
-scrolling over overlying axes will zoom all of them together, using the CTRL key while scrolling
-will zoom all axes in the current figure.
-* The graphics entity "Datatip" has a new property `detached_position` which accepts `[]`
-or a 3-components vector to set the position in axes coordinates to draw the datatip text box.
+* Interactively setting a common zoom box on multiple neighbouring or overlaying axes, and with
+bounds selected out of the axes areas is now restored, after the Scilab 5.4 regression.
+* Scroll to zoom:
+  - Scrolling over overlaying axes now zooms all of them together.
+  - Pressing CTRL while scrolling will zoom all axes in the current figure.
 * `MPI_Create_comm` create a new communicator from MPI_COMM_WORLD using MPI world ranks.
 * The `grand` non-free `fsultra` generator was removed.
 * The original `rpoly` algorithm was removed in favor of a C++11 implementation
-* When the view property of Axes object is set at `2d`, the rotation becomes impossible.
-* The zero-pole-gain (zpk) representation added for linear dynamical systems.
-* It is now possible to add a title to the axes via the "Label -> Title" context menu entry
+* When `Axes.view=="2d"`, the rotation becomes impossible.
+* The zero-pole-gain (zpk) representation is now available for linear dynamical systems.
+* On a figure, the contextual menu now proposes an entry `Label -> Title` to interactively set the title of any axes.
 * `getPreferencesValue` can now read a tag having multiple occurrences, and accepts the path to a preferences file instead of its XML handle.
-* atomsSetConfig does not update cache.
-* lqi function added to compute "linear quadratic integral compensator".
 * The function `stripblanks` now supports an option to remove trailing or leading spaces or both.
+* `atomsSetConfig` does not update cache.
+* `lqi` function added to compute "linear quadratic integral compensator".
+* A new console `File => Go to Favorite directory` menu allows to go to a favorite directory selected
+  in a dynamical list set from Scinotes favorite and most recent directories.
 
 
 Help pages:
@@ -215,19 +216,20 @@ Help pages:
 
 * fixed / improved:  `members`, `part`, `ode`, `ode_optional_output`, `ode_roots`, `plot2d`, `roots`,
   `printf`, `sprintf`, `iconvert`, `stdev`, `xlabel`, `and_op`, `or_op`, `permute`, `tree2code`, `%helps`,
-  `scilab|scilex`, `flipdim`, `Matplot_properties`
-* rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`, `and`, `format`, `typeof`,
-`brackets`, `setlanguage`, `sleep`, `isinf`, `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`
+  `scilab|scilex`, `flipdim`, `Matplot_properties`, `meshgrid`, `ismatrix`
+* rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
+`and`, `&,&&`, `format`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`,
+`bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`
   - `pixel_drawing_mode`, `show_window`, `twinkle`, `uigetcolor`, `winsid`, `xdel`, `xgrid`, `xname`, `xnumb`
-  - `repmat`, `sign`, `nthroot`, `lstsize`, `cell2mat`, `cellstr`, `ind2sub`, `sub2ind`, `and`, `or`, `unwrap`
-  - CACSD and Signal Processing help pages have been sorted up.
-  - Signal processing: New `Convolution - correlation` subsection. `wfir_gui`, `filt_sinc`, `hilb`, `fft2`, `fftshift`,`ifftshift`, `hilbert`, `cepstrum`, `conv`, `conv2`, `convol2d`, `xcor`, `corr`, `hank`, `mrfit`, `frfir` sorted up in existing subsections.
+  - `repmat`, `sign`, `nthroot`, `lstsize`, `cell2mat`, `cellstr`, `ind2sub`, `sub2ind`, `and`, `or`, `unwrap`, `members`
+  - CACSD and Signal Processing help pages have been sorted out.
+  - Signal processing: New `Convolution - correlation` subsection. `wfir_gui`, `filt_sinc`, `hilb`, `fft2`, `fftshift`,`ifftshift`, `hilbert`, `cepstrum`, `conv`, `conv2`, `convol2d`, `xcor`, `corr`, `hank`, `mrfit`, `frfir` sorted out in existing subsections.
   - Colormaps and GUI/Menus subsections created
 * translations added:
   - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`, `sleep`, `strtod`, `permute`, `geomean`
-  - (ru): homepage
+  - (ru): homepage, `strtod`
 
 
 Data Structures
@@ -325,13 +327,14 @@ Removed Functions
   - `comp`, `errcatch`, `iserror`, `fun2string`, `getvariablesonstack`, `gstacksize`, `macr2lst`, `stacksize`, `code2str` and `str2code`.
   - `-mem` launching option (used to set `stacksize` at startup).
 * Former debugging functions have been removed: `setbpt`, `delbpt`, `dispbpt`. Please use `debug` instead.
+* Former profiling functions have been removed: `add_profiling`, `reset_profiling`, `remove_profiling`, `profile`, `showprofile`, and `plotprofile`.
 
 
 Known issues
 ------------
 
-* Scilab 6 is still in a beta stage and likely to contain a number of known or unknown bugs.
-Do not hesitate to [report](https://bugzilla.scilab.org) them.
+* Scilab 6.0.0 is the first release of a completly rewritten interpreter engine. If you discover
+strange behaviors or unexpected results do not hesitate to [report](https://bugzilla.scilab.org) them.
 * Toolboxes rebuild is in progress. Do not hesitate to submit patch or feature upgrade to
 the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 
@@ -344,91 +347,94 @@ Bug Fixes
 * [#2835](http://bugzilla.scilab.org/show_bug.cgi?id=2835): On negative "initial event", EVTDLY_c took no notice of the input.
 * [#2919](http://bugzilla.scilab.org/show_bug.cgi?id=2919): The `fchamp` example and demo were unclear and badly rendered
 * [#4327](http://bugzilla.scilab.org/show_bug.cgi?id=4327): Overloading did not support custom types names longer than 8 characters
-* [#5723](http://bugzilla.scilab.org/show_bug.cgi?id=5723): Cross-references were missing between axis_properties and axes_properties help pages
-* [#6307](http://bugzilla.scilab.org/show_bug.cgi?id=6307): Make easy version of lqr, lqe, lqg
-* [#7192](http://bugzilla.scilab.org/show_bug.cgi?id=7192): From S=[], S($+1,:) = some_row inserted it in row#2 after a parasitic row#1.
+* [#5278](http://bugzilla.scilab.org/show_bug.cgi?id=5278): Most of the references to `xset` in help pages and in tests were obsolete.
+* [#5723](http://bugzilla.scilab.org/show_bug.cgi?id=5723): Cross-references were missing between `axis_properties` and axes_properties` help pages
+* [#6307](http://bugzilla.scilab.org/show_bug.cgi?id=6307): There were no  easy versions of `lqr`, `lqe`, and `lqg`
+* [#7192](http://bugzilla.scilab.org/show_bug.cgi?id=7192): From `S=[]`, `S($+1,:) = some_row` inserted it in row#2 after a parasitic row#1.
 * [#7649](http://bugzilla.scilab.org/show_bug.cgi?id=7649): `isempty` returned `%F` on `struct()`, `{}` or `list(,)` and was not shortcut
 * [#7696](http://bugzilla.scilab.org/show_bug.cgi?id=7696): The `parallel_run` help page was poorly formated
-* [#7794](http://bugzilla.scilab.org/show_bug.cgi?id=7794): Example of findABCD help page failed.
+* [#7794](http://bugzilla.scilab.org/show_bug.cgi?id=7794): The example in the `findABCD` help page failed.
 * [#7958](http://bugzilla.scilab.org/show_bug.cgi?id=7958): `mrfit`did not allow a fourth parameter as shown in the help page.
 * [#8010](http://bugzilla.scilab.org/show_bug.cgi?id=8010): Permanent variables could be redefined through a syntax like `%i(1,1)=1`
 * [#8190](http://bugzilla.scilab.org/show_bug.cgi?id=8190): Fixed ICSE demos of Optimization module.
 * [#8356](http://bugzilla.scilab.org/show_bug.cgi?id=8356): `sci2exp` applied to lists, tlists or mlists having undefined fields yielded an error or a wrong result.
 * [#8493](http://bugzilla.scilab.org/show_bug.cgi?id=8493): Some trivial simplifications of `p1./p2` with matrices of complex-encoded polynomials were not done.
-* [#8841](http://bugzilla.scilab.org/show_bug.cgi?id=8841): Error in struct extraction, s.a is not equal to s(1).a
+* [#8841](http://bugzilla.scilab.org/show_bug.cgi?id=8841): After `s.a=list(4,7)`, `s.a` was not equal to `s(1).a`
 * [#8938](http://bugzilla.scilab.org/show_bug.cgi?id=8938): In a boolean sparse matrix `sp`, distributive insertions like `sp(1,:)=%t`, `sp(1,1:$)=%t` or `sp(:,:)=%t` yielded an error.
 * [#9008](http://bugzilla.scilab.org/show_bug.cgi?id=9008): `test_run` applied the `create_ref` option even for tests having the `<-- NO CHECK REF -->` flag.
 * [#9153](http://bugzilla.scilab.org/show_bug.cgi?id=9153): The `isqualbitwise` help page was inaccurate and badly located
 * [#9161](http://bugzilla.scilab.org/show_bug.cgi?id=9161): Multiple insertions at a repeated index in a sparse matrice wrongly updated it.
-* [#9288](http://bugzilla.scilab.org/show_bug.cgi?id=9288): Dynamic palette with the most used blocks
+* [#9288](http://bugzilla.scilab.org/show_bug.cgi?id=9288): No palette dynamically built with the most used blocks was available
 * [#9451](http://bugzilla.scilab.org/show_bug.cgi?id=9451): `test_run` output did not clearly distinguish heading lines of modules and tests lines
 * [#9825](http://bugzilla.scilab.org/show_bug.cgi?id=9825): `assert_computedigits` returns too much digits
 * [#9865](http://bugzilla.scilab.org/show_bug.cgi?id=9865): When making a plot with `point`(no line), no symbol was shown in the legend.
 * [#9876](http://bugzilla.scilab.org/show_bug.cgi?id=9876): Creating a complex structure with multiple hierarchy level and size failed.
-* [#9912](http://bugzilla.scilab.org/show_bug.cgi?id=9912): In case of missing translated help page, the default en_US was sometimes ignored
+* [#9912](http://bugzilla.scilab.org/show_bug.cgi?id=9912): In case of missing translated help page, its default `en_US` version was sometimes ignored
 * [#10116](http://bugzilla.scilab.org/show_bug.cgi?id=10116): `for h = H, .., end` could not be used when H is a vector of graphic handles
 * [#10195](http://bugzilla.scilab.org/show_bug.cgi?id=10195): `execstr` interpreted ascii(0) to ascii(31) characters as the power `^` operator.
-* [#10326](http://bugzilla.scilab.org/show_bug.cgi?id=10326): Adds a search engine for the palette browser.
-* [#10981](http://bugzilla.scilab.org/show_bug.cgi?id=10981): When the view property of Axes object is set at 2d, the rotation becomes impossible.
-* [#11375](http://bugzilla.scilab.org/show_bug.cgi?id=11375): When a localized help subdirectory has only a CHAPTER file specifying the section title, it was ignored.
+* [#10326](http://bugzilla.scilab.org/show_bug.cgi?id=10326): The palette browser didn't have any search engine.
+* [#10981](http://bugzilla.scilab.org/show_bug.cgi?id=10981): It was possible to rotate a 2D axes, and hard to get it back to a 2D view.
+* [#11375](http://bugzilla.scilab.org/show_bug.cgi?id=11375): When a localized help subdirectory has only a `CHAPTER` file specifying the section title, this one was ignored.
 * [#11476](http://bugzilla.scilab.org/show_bug.cgi?id=11476): `clf("reset")` used on a docked figure resized and moved the whole docked block like the Scilab desktop.
-* [#11692](http://bugzilla.scilab.org/show_bug.cgi?id=11692): The summary of a help section built from both default en_US and localized files was never sorted overall.
-* [#11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959): Allow "Zoom Area" to be clicked out of axes
-* [#12017](http://bugzilla.scilab.org/show_bug.cgi?id=12017): `figure.pixel_drawing_mode` is ignored for filled regular polygons and other shapes, still does not work for vectorial export (eps, pdf, etc).
-* [#12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110): Unable to zoom multiple axes at once
+* [#11692](http://bugzilla.scilab.org/show_bug.cgi?id=11692): The summary of a help section built from both default `en_US` and localized files was never sorted overall.
+* [#11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959): Selecting a zoom area starting on some axes borders was hard and tricky.
+* [#12017](http://bugzilla.scilab.org/show_bug.cgi?id=12017): The on-screen rendering according to `figure.pixel_drawing_mode` was out of work since Scilab 5.4
+* [#12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110): Zooming multiple side-by-side or overlaying axes at once was out of work since Scilab 5.4
 * [#12417](http://bugzilla.scilab.org/show_bug.cgi?id=12417): Set "All supported formats" as default selected on Xcos open.
 * [#12431](http://bugzilla.scilab.org/show_bug.cgi?id=12431): The page describing the `%helps` variable needed clarification.
-* [#12453](http://bugzilla.scilab.org/show_bug.cgi?id=12453): The left panel of the palette browser keeps its size when some category is enabled or disabled.
-* [#12897](http://bugzilla.scilab.org/show_bug.cgi?id=12897): Renamed optim's "imp" argument to "iprint".
-* [#13217](http://bugzilla.scilab.org/show_bug.cgi?id=13217): Fixed augment return when flag2="i"
+* [#12453](http://bugzilla.scilab.org/show_bug.cgi?id=12453): In the Xcos palette browser, enabling or disabling some category resized the left panel.
+* [#12623](http://bugzilla.scilab.org/show_bug.cgi?id=12623): When `%onprompt()` is defined, variables defined in any callback of a console's menu were not accessible in the console.
+* [#12897](http://bugzilla.scilab.org/show_bug.cgi?id=12897): Renamed `optim`'s `imp` argument to `"iprint"`.
+* [#13217](http://bugzilla.scilab.org/show_bug.cgi?id=13217): `augment` was wrong when `flag2` was `"i"`
 * [#13166](http://bugzilla.scilab.org/show_bug.cgi?id=13166): `l` and `b` endian flags used with `mget` and `mgeti` were sticky
-* [#13375](http://bugzilla.scilab.org/show_bug.cgi?id=13375): If (Max - Min) == 1, then the multiple selection is not allowed.
-* [#13401](http://bugzilla.scilab.org/show_bug.cgi?id=13401): Scilab became a ghost process when it was closed while an input() or halt() instruction was being performed in a callback of an undockable figure.
-* [#13583](http://bugzilla.scilab.org/show_bug.cgi?id=13583): `getd` loading a script including a `clear` instruction yielded an error
-* [#13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597): `help format` claimed setting a number of digits instead of characters
+* [#13375](http://bugzilla.scilab.org/show_bug.cgi?id=13375): For a uicontrol listbox, `.Max - .Min==1` prevented any multiple selection. The default value documented for uicontrol`.relief` was wrong.
+* [#13401](http://bugzilla.scilab.org/show_bug.cgi?id=13401): Scilab became a ghost process when it was closed while an `input` or a `halt` instruction was being performed in a callback of an undockable figure.
+* [#13583](http://bugzilla.scilab.org/show_bug.cgi?id=13583): `getd` loading a script including a `clear` instruction yielded an error.
+* [#13597](http://bugzilla.scilab.org/show_bug.cgi?id=13597): `help format` claimed setting a number of digits instead of a number of characters.
 * [#13613](http://bugzilla.scilab.org/show_bug.cgi?id=13613): `isdef(name, 'l')` produced wrong output.
-* [#13620](http://bugzilla.scilab.org/show_bug.cgi?id=13620): `dos` called with a vector as input crashed.
+* [#13620](http://bugzilla.scilab.org/show_bug.cgi?id=13620): `dos` called with a vector of OS instructions crashed Scilab.
 * [#13651](http://bugzilla.scilab.org/show_bug.cgi?id=13651): It was not possible to `copy` an axes into an uicontrol frame.
-* [#13757](http://bugzilla.scilab.org/show_bug.cgi?id=13757): The toolbox menu dit not load properly ATOMS modules not autoloaded.
-* [#13759](http://bugzilla.scilab.org/show_bug.cgi?id=13759): Atoms modules do not start, randomly.
-* [#13794](http://bugzilla.scilab.org/show_bug.cgi?id=13794): Added polyline property "datatip_display_mode", allowing datatips to be displayed "always", "mouseclick" or "mouseover".
+* [#13757](http://bugzilla.scilab.org/show_bug.cgi?id=13757): The `Toolboxes` menu dit not load properly not autoloaded ATOMS modules.
+* [#13759](http://bugzilla.scilab.org/show_bug.cgi?id=13759): At startup, sometimes autoloadable Atoms modules were not loaded, randomly.
+* [#13794](http://bugzilla.scilab.org/show_bug.cgi?id=13794): It was not possible to toggle the display of a datatip just by clicking on its anchor or by overflying its anchor with the mouse pointer.
 * [#13856](http://bugzilla.scilab.org/show_bug.cgi?id=13856): `messagebox` crashed under Windows in 5.5 Scilab version and updated in version 6.
-* [#13877](http://bugzilla.scilab.org/show_bug.cgi?id=13877): `<` characters included in `<screen>` areas were not rendered in the help browser.
-* [#13878](http://bugzilla.scilab.org/show_bug.cgi?id=13878): tokens([]) returns [].
-* [#13895](http://bugzilla.scilab.org/show_bug.cgi?id=13895): p.a.h = 1; p.b.h = 3; p(:).h  CRASH
-* [#13906](http://bugzilla.scilab.org/show_bug.cgi?id=13906): It is now possible to navigate through the Palette browser with the arrow keys.
-* [#13990](http://bugzilla.scilab.org/show_bug.cgi?id=13990): `warning` with localization enabled some memory corruption
+* [#13877](http://bugzilla.scilab.org/show_bug.cgi?id=13877): In help pages, `<` characters included in `<screen>` areas were not rendered in the help browser.
+* [#13878](http://bugzilla.scilab.org/show_bug.cgi?id=13878): `tokens([])` yielded an error instead of returning `[]`.
+* [#13895](http://bugzilla.scilab.org/show_bug.cgi?id=13895): After `p.a.h = 1; p.b.h = 3;`, `p(:).h` crashed Scilab.
+* [#13906](http://bugzilla.scilab.org/show_bug.cgi?id=13906): Arrows keys did not allow to navigate through the Palette browser.
+* [#13990](http://bugzilla.scilab.org/show_bug.cgi?id=13990): `warning` with localization enabled some memory corruption.
+* [#14171](http://bugzilla.scilab.org/show_bug.cgi?id=14171): Scinotes Favorite and most recently used directories could no be targeted through the console `File` menu.
 * [#14192](http://bugzilla.scilab.org/show_bug.cgi?id=14192): `g_margin` error-ed for double integrator.
 * [#14278](http://bugzilla.scilab.org/show_bug.cgi?id=14278): `ltitr` returned an incorrect xf output value.
-* [#14306](http://bugzilla.scilab.org/show_bug.cgi?id=14306): Comparisons `>` and `>=` between integers of mismatching inttypes were not implemented.
+* [#14306](http://bugzilla.scilab.org/show_bug.cgi?id=14306): `>` and `>=` operators could not be used to compare encoded integers of mismatching inttypes.
 * [#14330](http://bugzilla.scilab.org/show_bug.cgi?id=14330): luget was really slow.
 * [#14367](http://bugzilla.scilab.org/show_bug.cgi?id=14367): `edit_curv` failed opening due to a `[]+1` operation.
 * [#14379](http://bugzilla.scilab.org/show_bug.cgi?id=14379): Problem with lists of functions having 2 arguments.
 * [#14395](http://bugzilla.scilab.org/show_bug.cgi?id=14395): `dir` displayed a []+".." warning when no subdirectory exists.
-* [#14411](http://bugzilla.scilab.org/show_bug.cgi?id=14411): abort crashes scilab in a loop while
-* [#14437](http://bugzilla.scilab.org/show_bug.cgi?id=14437): Problem with the affectation cmde "=" applied to a "list of struct"
-* [#14448](http://bugzilla.scilab.org/show_bug.cgi?id=14448): removed havewindow() was still documented
+* [#14411](http://bugzilla.scilab.org/show_bug.cgi?id=14411): `abort` used in a `while`loop crashed Scilab.
+* [#14437](http://bugzilla.scilab.org/show_bug.cgi?id=14437): Changing the field of a struct embedded in a list sometimes misworked.
+* [#14448](http://bugzilla.scilab.org/show_bug.cgi?id=14448): `havewindow` is removed but was still documented.
 * [#14461](http://bugzilla.scilab.org/show_bug.cgi?id=14461): Calling `grand(n, "markov", P, x0)` did not return all outputs.
 * [#14470](http://bugzilla.scilab.org/show_bug.cgi?id=14470): `geomean` often overflowed for easily computable entries, and did not check input arguments.
-* [#14483](http://bugzilla.scilab.org/show_bug.cgi?id=14483): figure("Name" ...) should be an alias to figure("Figure_name" ...)
+* [#14483](http://bugzilla.scilab.org/show_bug.cgi?id=14483): The `figure.figure_name` property had no `figure.name` alias
 * [#14513](http://bugzilla.scilab.org/show_bug.cgi?id=14513): `isqual` comparing two built-in functions yielded an error.
-* [#14527](http://bugzilla.scilab.org/show_bug.cgi?id=14527): Calling pathconvert function without parameters crashed Scilab.
-* [#14553](http://bugzilla.scilab.org/show_bug.cgi?id=14553): find(a=b) crashed Scilab.
+* [#14527](http://bugzilla.scilab.org/show_bug.cgi?id=14527): Calling `pathconvert` function without parameters crashed Scilab.
+* [#14553](http://bugzilla.scilab.org/show_bug.cgi?id=14553): `find(a=b)` crashed Scilab.
 * [#14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557): `csim` failed when the system has no state.
-* [#14558](http://bugzilla.scilab.org/show_bug.cgi?id=14558): fixed - `square` was poor, clumsy and too specific. It is tagged as obsolete.
-* [#14564](http://bugzilla.scilab.org/show_bug.cgi?id=14564): fieldnames failed for empty structs.
-* [#14571](http://bugzilla.scilab.org/show_bug.cgi?id=14571): The type of input argument of `figure`function was not checked.
+* [#14558](http://bugzilla.scilab.org/show_bug.cgi?id=14558): `square` was poor, clumsy and too specific. It is tagged as obsolete.
+* [#14564](http://bugzilla.scilab.org/show_bug.cgi?id=14564): `fieldnames` failed for empty structs.
+* [#14571](http://bugzilla.scilab.org/show_bug.cgi?id=14571): The types of input arguments of `figure()` were not checked.
 * [#14578](http://bugzilla.scilab.org/show_bug.cgi?id=14578): LaTeX string used for text uicontrol was not updated.
-* [#14582](http://bugzilla.scilab.org/show_bug.cgi?id=14582): `gettext`or it alias `_()` were sometimes applied to broken literal strings
-* [#14586](http://bugzilla.scilab.org/show_bug.cgi?id=14586): Xcos simulation stop button did not work.
+* [#14582](http://bugzilla.scilab.org/show_bug.cgi?id=14582): `gettext` or it alias `_()` were sometimes applied to broken literal strings
+* [#14586](http://bugzilla.scilab.org/show_bug.cgi?id=14586): The Stop button of Xcos simulation did not work.
 * [#14587](http://bugzilla.scilab.org/show_bug.cgi?id=14587): Datatip textbox wrong clipping when loaded from `*.scg` file.
-* [#14590](http://bugzilla.scilab.org/show_bug.cgi?id=14590): Help pages in pt_BR directories had a wrong xml:lang="en" tag.
+* [#14590](http://bugzilla.scilab.org/show_bug.cgi?id=14590): Many help pages in `pt_BR` version had a wrong xml:lang="en" tag.
 * [#14591](http://bugzilla.scilab.org/show_bug.cgi?id=14591): `<=` and `>=` elementwise operators comparing 2 hypermatrices of decimal numbers or encoded integers were inverted.
-* [#14593](http://bugzilla.scilab.org/show_bug.cgi?id=14593): Signs are no more drawn in BIGSOM and PRODUCT components.
+* [#14593](http://bugzilla.scilab.org/show_bug.cgi?id=14593): Signs were no longer drawn in BIGSOM and PRODUCT components.
 * [#14602](http://bugzilla.scilab.org/show_bug.cgi?id=14602): WRITEC_f block didn't work for x86 machines.
 * [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` was 40x slower than Scilab 5
 * [#14609](http://bugzilla.scilab.org/show_bug.cgi?id=14609): "msscanf" crashes Scilab when 'niter' parameter is out of range.
-* [#14632](http://bugzilla.scilab.org/show_bug.cgi?id=14632): Zooming moves drawn axis offscreen
+* [#14632](http://bugzilla.scilab.org/show_bug.cgi?id=14632): Zooming moved offscreen any drawn axis
 * [#14640](http://bugzilla.scilab.org/show_bug.cgi?id=14640): `median(int8([10 60 80 100]))` returned -58 instead of 70 due to overflow when interpolating (60+80)>128
 * [#14648](http://bugzilla.scilab.org/show_bug.cgi?id=14648): `isinf` returned `%F` for complex numbers with both real and imag infinite parts.
 * [#14649](http://bugzilla.scilab.org/show_bug.cgi?id=14649): `isnan(complex(%inf, %inf))` returned `%F` while the phase is `NaN`.
@@ -437,29 +443,29 @@ Bug Fixes
 * [#14662](http://bugzilla.scilab.org/show_bug.cgi?id=14662): Matrix of strings concatenation with single quote led to a parser error.
 * [#14667](http://bugzilla.scilab.org/show_bug.cgi?id=14667): Multi line string without final quote generated a non terminal parser state.
 * [#14681](http://bugzilla.scilab.org/show_bug.cgi?id=14681): Short-circuited AND operation was not possible with double matrices in if and while clauses
-* [#14689](http://bugzilla.scilab.org/show_bug.cgi?id=14689): fixed - `resize_matrix(rand(2,3),[0 2])` did not return []. Usage of new sizes <0 to keep them unchanged was not documented.
+* [#14689](http://bugzilla.scilab.org/show_bug.cgi?id=14689): `resize_matrix(rand(2,3),[0 2])` did not return `[]`. Usage of new sizes <0 to keep them unchanged was not documented.
 * [#14690](http://bugzilla.scilab.org/show_bug.cgi?id=14690): The user startup files set in the working directory were not executed. When `SCIHOME` is not the working directory, `SCIHOME\scilab.ini` was executed twice.
-* [#14692](http://bugzilla.scilab.org/show_bug.cgi?id=14692): isequal() was always returning true for builtin functions
+* [#14692](http://bugzilla.scilab.org/show_bug.cgi?id=14692): `isequal` always returned `%T` for builtin functions
 * [#14694](http://bugzilla.scilab.org/show_bug.cgi?id=14694): The list of named colors was misaligned and poorly rendered in `help color_list`
-* [#14710](http://bugzilla.scilab.org/show_bug.cgi?id=14710): fullpath(TMPDIR+...) was bugged on MacOS
-* [#14714](http://bugzilla.scilab.org/show_bug.cgi?id=14714): Crash/Leak when deleting datatip
+* [#14710](http://bugzilla.scilab.org/show_bug.cgi?id=14710): `fullpath(TMPDIR+...)` was bugged on MacOS
+* [#14714](http://bugzilla.scilab.org/show_bug.cgi?id=14714): Deleting a datatip made Scilab leaking or crashed.
 * [#14743](http://bugzilla.scilab.org/show_bug.cgi?id=14743): `test_run(.., "show_error")` did not document "failed: Slave Scilab exited with error code #" errors.
-* [#14758](http://bugzilla.scilab.org/show_bug.cgi?id=14758): xstringb creates a figure when no exists.
+* [#14758](http://bugzilla.scilab.org/show_bug.cgi?id=14758): `xstringb` opened a default figure.
 * [#14761](http://bugzilla.scilab.org/show_bug.cgi?id=14761): `||` misworked when LHS is %f or zeros. `&&` misworked when LHS is %t or non-zeros
-* [#14779](http://bugzilla.scilab.org/show_bug.cgi?id=14779): When used logarithmic mode using coordinates <=0, xsegs crashed Scilab.
+* [#14779](http://bugzilla.scilab.org/show_bug.cgi?id=14779): `xsegs` used in logarithmic scale with coordinates `<= 0` crashed Scilab.
 * [#14784](http://bugzilla.scilab.org/show_bug.cgi?id=14784): Setting field of graphics handle using children($) failed.
-* [#14796](http://bugzilla.scilab.org/show_bug.cgi?id=14796): `ind2sub(dims, [])` returned [] in version 6. Warnings due to a `[]+1` operation occurred
-* [#14775](http://bugzilla.scilab.org/show_bug.cgi?id=14775): Loading empty (0 bytes) .sod File crashed scilab
+* [#14796](http://bugzilla.scilab.org/show_bug.cgi?id=14796): `ind2sub([4,2], [])` returned `[4 0]` instead of `[]`.
+* [#14775](http://bugzilla.scilab.org/show_bug.cgi?id=14775): Loading an empty (0 bytes) `.sod` file crashed scilab
 * [#14801](http://bugzilla.scilab.org/show_bug.cgi?id=14801): The horizontal concatenation of cells arrays wrongly puzzled components.
-* [#14808](http://bugzilla.scilab.org/show_bug.cgi?id=14808): E=[ 'A' 'B' 'C' 'D' 'E']  ,  E(0:0) Crash Scilab Console
-* [#14821](http://bugzilla.scilab.org/show_bug.cgi?id=14821): `getio` function was missing. An error on the diary file opened has been corrected
-* [#14824](http://bugzilla.scilab.org/show_bug.cgi?id=14824): Incorrect error message with `mfprintf(fd, "%d", [])`.
+* [#14808](http://bugzilla.scilab.org/show_bug.cgi?id=14808): After `E=['A' 'B' 'C' 'D' 'E']`, `E(0:0)` crashed Scilab
+* [#14821](http://bugzilla.scilab.org/show_bug.cgi?id=14821): `getio` function was missing. An error on the diary file opened has been corrected.
+* [#14824](http://bugzilla.scilab.org/show_bug.cgi?id=14824): `mfprintf(fd, "%d", [])` yielded an incorrect error message.
 * [#14835](http://bugzilla.scilab.org/show_bug.cgi?id=14835): `AFFICH_m` block was not rendered correctly.
 * [#14839](http://bugzilla.scilab.org/show_bug.cgi?id=14839): `plot2d2` crashed Scilab.
-* [#14885](http://bugzilla.scilab.org/show_bug.cgi?id=14885): The tag property was not documented in Matplot_properties help page.
-* [#14887](http://bugzilla.scilab.org/show_bug.cgi?id=14887): For many graphic handle types, the display of the `.tag` value missed `".."` delimiters
-* [#14909](http://bugzilla.scilab.org/show_bug.cgi?id=14909): getlongpathname and getshortpathname return values with "\" instead of "/"
-* [#14911](http://bugzilla.scilab.org/show_bug.cgi?id=14911): Added the entry "Label => Title" in the graphic context menu in a figure
+* [#14885](http://bugzilla.scilab.org/show_bug.cgi?id=14885): The `tag` property was not documented in the `Matplot_properties` help page.
+* [#14887](http://bugzilla.scilab.org/show_bug.cgi?id=14887): For many types of graphic handles, the display of the `.tag` value missed `".."` delimiters
+* [#14909](http://bugzilla.scilab.org/show_bug.cgi?id=14909): On Windows, `getlongpathname` and `getshortpathname` did not force the file separator to `"\"`
+* [#14911](http://bugzilla.scilab.org/show_bug.cgi?id=14911): The entry "Label => Title" was missing in the graphic context menu on a figure.
 * [#14941](http://bugzilla.scilab.org/show_bug.cgi?id=14941): `find` did not accept encoded integers
 * [#14942](http://bugzilla.scilab.org/show_bug.cgi?id=14942): Keep the Tkscale block label if block already has label.
 * [#14956](http://bugzilla.scilab.org/show_bug.cgi?id=14956): `clf("reset")` forgot resetting the `immediate_drawing`, `resize`, `resizefcn`, `closerequestfcn`, `toolbar_visible`, `menubar_visible`, `infobar_visible`, `default_axes`, and `icon` figure properties.
