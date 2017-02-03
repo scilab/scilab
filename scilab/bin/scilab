@@ -61,12 +61,23 @@ DISABLE_JAVA_DETECTION=0
 IS_SCILAB_BINARY=0
 
 start_debug() {
+
+    case $OS in
+        *darwin* | *Darwin*)
+            DEBUG_CMD=lldb
+            DEBUG_ARGS=--
+            ;;
+        *)
+            DEBUG_CMD=gdb
+            DEBUG_ARGS=--args
+            ;;
+    esac
     if test -n "$DEVENV"; then
-        echo "Running debug of Scilab [gdb]  : " "$SCI"/libtool --mode=execute gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
-        "$SCI"/libtool --mode=execute gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
+        echo "Running debug of Scilab [$DEBUG_CMD]  : " "$SCI"/libtool --mode=execute $DEBUG_CMD $SCILAB_GDB_OPT $DEBUG_ARGS "$SCILABBIN" "$@"
+        "$SCI"/libtool --mode=execute $DEBUG_CMD $SCILAB_GDB_OPT $DEBUG_ARGS "$SCILABBIN" "$@"
     else
-        echo "Running debug of Scilab [gdb]  : " gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
-        gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
+        echo "Running debug of Scilab [$DEBUG_CMD]  : " $DEBUG_CMD $SCILAB_GDB_OPT $DEBUG_ARGS "$SCILABBIN" "$@"
+        $DEBUG_CMD $SCILAB_GDB_OPT $DEBUG_ARGS "$SCILABBIN" "$@"
     fi
 }
 
@@ -742,12 +753,11 @@ set_macox_specific_path()
         10)
             case $macosxMinorVersion in
                 12)
-                    # not used yet
+                    # Specific libBLAS.dylib version for 10.12
                     LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_12${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
                     DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_12${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
                     ;;
                 11)
-                    # not used yet
                     LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_11${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
                     DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_11${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
                     ;;
