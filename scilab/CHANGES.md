@@ -65,13 +65,10 @@ Packaging & Supported Operating Systems
 * [SSE2](https://en.wikipedia.org/wiki/SSE2), Streaming SIMD Extensions 2 support is mandatory.
 
 
-Language changes
-----------------
-
-
 Feature changes and additions
 -----------------------------
 
+* Empty strings are used as the default values on String allocation
 
 Help pages:
 -----------
@@ -105,5 +102,5 @@ Bug Fixes
 ---------
 
 ### Bugs fixed in 6.1.0:
-* [#XXXX](http://bugzilla.scilab.org/show_bug.cgi?id=XXXX): dummy bug report example
+* [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` is 40x slower with 6.0.0 wrt 5.5.2
 

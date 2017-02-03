@@ -104,7 +104,7 @@ types::Function::ReturnValue sci_emptystr(types::typed_list &in, int _iRetCount,
     wchar_t** strs = ret->get();
     for (int i = 0; i < size; ++i)
     {
-        strs[i] = os_wcsdup(L"");
+        strs[i] = types::String::nullValue();
     }
 
     out.push_back(ret);

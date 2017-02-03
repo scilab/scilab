@@ -118,7 +118,7 @@ void String::deleteString(int _iPos)
 {
     if (m_pRealData != NULL)
     {
-        if (m_pRealData[_iPos] != NULL)
+        if (m_pRealData[_iPos] != NULL && m_pRealData[_iPos] != String::nullValue())
         {
             FREE(m_pRealData[_iPos]);
             m_pRealData[_iPos] = NULL;
@@ -546,9 +546,12 @@ bool String::operator!=(const InternalType& it)
     return !(*this == it);
 }
 
-wchar_t* String::getNullValue()
+static std::wstring null = L"";
+wchar_t* String::nullValue()
 {
-    return os_wcsdup(L"");
+    // The null value pointer is shared to speed up "" assignement
+    // Empty strings creation can then be done without memory allocation
+    return (wchar_t*) null.data();
 }
 
 String* String::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
@@ -558,6 +561,11 @@ String* String::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
 
 wchar_t* String::copyValue(wchar_t* _pwstData)
 {
+    if (_pwstData == nullValue())
+    {
+        return nullValue();
+    }
+
     try
     {
         return os_wcsdup(_pwstData);
@@ -574,12 +582,17 @@ wchar_t* String::copyValue(wchar_t* _pwstData)
 
 wchar_t* String::copyValue(const wchar_t* _pwstData)
 {
+    if (_pwstData == nullValue())
+    {
+        return nullValue();
+    }
+
     return os_wcsdup(_pwstData);
 }
 
 void String::deleteData(wchar_t* data)
 {
-    if (data)
+    if (data && data != nullValue())
     {
         // data are always allocated using C-like malloc API
         FREE(data);

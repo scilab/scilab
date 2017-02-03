@@ -44,6 +44,8 @@ public :
     String(const char *_pstData);
     virtual                 ~String();
 
+    static wchar_t* nullValue();
+
     void                    whoAmI();
 
     virtual String*         set(int _iPos, const wchar_t* _pwstData);
@@ -105,7 +107,10 @@ private :
     virtual wchar_t*        copyValue(wchar_t* _pwstData);
     virtual wchar_t*        copyValue(const wchar_t* _pwstData);
     virtual String*         createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-    virtual wchar_t*        getNullValue();
+    virtual wchar_t*        getNullValue()
+    {
+        return nullValue();
+    };
     virtual void            deleteAll();
     virtual void            deleteImg();
     virtual wchar_t**       allocData(int _iSize);
