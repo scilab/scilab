@@ -1340,32 +1340,35 @@ function exportToXUnitFormat(exportToFile, testsuites)
         testsuite.attributes.tests = string(module.tests);
         testsuite.attributes.errors = string(module.errors);
 
-        for j=1:size(module.testcase,"*") // Export test by test
-            testsuite.children(j) = xmlElement(doc,"testcase");
-            unitTest = module.testcase(j);
-            testsuite.children(j).attributes.name = unitTest.name;
-            testsuite.children(j).attributes.time = string(unitTest.time);
-            testsuite.children(j).attributes.classname = getversion()+"."+module.name;
-            if isfield(unitTest,"failure") & size(unitTest.failure,"*") >= 1 then
-                testsuite.children(j).children(1) = xmlElement(doc,"failure");
-                testsuite.children(j).children(1).attributes.type = unitTest.failure.type;
-                content = unitTest.failure.content;
-                for kL=1:size(content, "*")
-                    ampIdx = strindex(content(kL), "&");
-                    while ~isempty(ampIdx)
-                        cur = ampIdx(1);
-                        ampIdx(1) = [];
-                        if or(part(content(kL), (cur+1):(cur+3))==["gt;" "lt"]) then
-                            // Ignored
-                        else
-                            content(kL) = part(content(kL), 1:cur) + "amp;" + part(content(kL), (cur+1):$);
-                            ampIdx = strindex(part(content(kL), (cur+1):$), "&");
+
+        if isfield(module, "testcase") then
+            for j=1:size(module.testcase,"*") // Export test by test
+                testsuite.children(j) = xmlElement(doc,"testcase");
+                unitTest = module.testcase(j);
+                testsuite.children(j).attributes.name = unitTest.name;
+                testsuite.children(j).attributes.time = string(unitTest.time);
+                testsuite.children(j).attributes.classname = getversion()+"."+module.name;
+                if isfield(unitTest,"failure") & size(unitTest.failure,"*") >= 1 then
+                    testsuite.children(j).children(1) = xmlElement(doc,"failure");
+                    testsuite.children(j).children(1).attributes.type = unitTest.failure.type;
+                    content = unitTest.failure.content;
+                    for kL=1:size(content, "*")
+                        ampIdx = strindex(content(kL), "&");
+                        while ~isempty(ampIdx)
+                            cur = ampIdx(1);
+                            ampIdx(1) = [];
+                            if or(part(content(kL), (cur+1):(cur+3))==["gt;" "lt"]) then
+                                // Ignored
+                            else
+                                content(kL) = part(content(kL), 1:cur) + "amp;" + part(content(kL), (cur+1):$);
+                                ampIdx = strindex(part(content(kL), (cur+1):$), "&");
+                            end
                         end
                     end
+                    testsuite.children(j).children(1).content = content;
+                elseif unitTest.skipped then
+                    testsuite.children(j).children(1) = xmlElement(doc,"skipped");
                 end
-                testsuite.children(j).children(1).content = content;
-            elseif unitTest.skipped then
-                testsuite.children(j).children(1) = xmlElement(doc,"skipped");
             end
         end
 
