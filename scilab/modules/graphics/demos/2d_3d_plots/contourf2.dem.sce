@@ -34,7 +34,7 @@ function demo_contourf2()
     g = [zeros(n,1); (1:n)'/n; ones(m-2*n,1)];
     b = [zeros(2*n,1); (1:m-2*n)'/(m-2*n)];
     h = [r g b];
-    xset("colormap",h);
+    my_handle.color_map = h;
     xset("fpf"," ");
     clf();
 

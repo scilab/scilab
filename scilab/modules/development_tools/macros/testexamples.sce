@@ -69,12 +69,12 @@ function r=xdel_run(w,opt)
 
     r=%f
     if winsid()==[] then return,end
-    cur=xget("window")
+    cur = gcf().figure_id
     //
     if argn(2)==1 then
         ids_=[]
         for k=1:size(w,"*")
-            xset("window",w(k))
+            scf(w(k))
             if get("figure_style")=="new" then ids_=[ids_,w(k)],end
         end
         load(%U,"ids_ref")
@@ -87,7 +87,7 @@ function r=xdel_run(w,opt)
         xdel(w)
     else
         if get("figure_style")=="old" then return,end
-        ids_=xget("window")
+        ids_ = cur
         load(%U,"ids_ref")
         if or(ids_ref<>ids_) then r=%t,return,end
         %wins_=ghdl2tree(gcf());
@@ -95,7 +95,7 @@ function r=xdel_run(w,opt)
         if %CMP(%wins_,%wins_ref) then r=%t,return,end
         xdel()
     end
-    if or(winsid()==cur) then xset("window",cur),end
+    if or(winsid()==cur) then scf(cur),end
 
 endfunction
 
@@ -110,10 +110,12 @@ function r=clf_run(w,opt)
 
     r=%f
     if winsid()==[] then return,end
-    cur=xget("window")
+    cur = gcf().figure_id
     rhs=argn(2)
-    if rhs==1&type(w)==10 then opt=w;rhs=0,end
-    if winsid()==[] then return,end
+    if rhs==1 & type(w)==10 then
+        opt = w;
+        rhs = 0
+    end
     //
     if rhs==1 then
         ids_=[]
@@ -122,7 +124,7 @@ function r=clf_run(w,opt)
             for h=H,w=[w,h.figure_id],end
         end
         for k=1:size(w,"*")
-            xset("window",w(k))
+            scf(w(k))
             if get("figure_style")=="new" then ids_=[ids_,w(k)],end
         end
         load(%U,"ids_ref")
@@ -135,7 +137,7 @@ function r=clf_run(w,opt)
         if rhs==1 then clf(w),else clf(w,opt),end
     else
         if get("figure_style")=="old" then return,end
-        ids_=xget("window")
+        ids_ = cur
         load(%U,"ids_ref")
         if or(ids_ref<>ids_) then r=%t,return,end
         %wins_=ghdl2tree(gcf());
@@ -143,7 +145,7 @@ function r=clf_run(w,opt)
         if %CMP(%wins_,%wins_ref) then r=%t,return,end
         clf()
     end
-    if or(winsid()==cur) then xset("window",cur),end
+    if or(winsid()==cur) then scf(cur),end
 
 endfunction
 
@@ -155,14 +157,14 @@ function r=xbasc_run(w)
     //
     //Compare the graphic windows to be cleared with the reference given in  a Scilab  binary file.
     // This function must mirror the  xbasc_build one.
-    r=%f
+    r = %f
     if winsid()==[] then return,end
-    cur=xget("window")
+    cur = gcf().figure_id
     //
     if argn(2)==1 then
         ids_=[]
         for k=1:size(w,"*")
-            xset("window",w(k))
+            scf(w(k))
             if get("figure_style")=="new" then ids_=[ids_,w(k)],end
         end
         load(%U,"ids_ref")
@@ -177,7 +179,7 @@ function r=xbasc_run(w)
         clf(w)
     else
         if get("figure_style")=="old" then return,end
-        ids_=xget("window");
+        ids_ = cur;
         load(%U,"ids_ref")
         if or(ids_ref<>ids_) then r=%t,return,end
         %wins_=ghdl2tree(gcf());
@@ -186,7 +188,7 @@ function r=xbasc_run(w)
         if %CMP(%wins_, %wins_ref) then r=%t,return,end
         clf()
     end
-    if or(winsid()==cur) then xset("window",cur),end
+    if or(winsid()==cur) then scf(cur), end
 
 endfunction
 

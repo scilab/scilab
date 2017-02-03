@@ -22,7 +22,7 @@ function [] = %_fec()
     mode(0)
     exec("SCI/modules/graphics/demos/fec/fec_demo.sci",-1);
     clf();
-    xset("colormap",jetcolormap(128));
+    gcf().color_map = jetcolormap(128);
     N=20;
     n=1:N;
     x=cos(n*2*%pi/N);

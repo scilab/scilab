@@ -26,7 +26,7 @@ function demo_fec4()
 
     // Set the colormap
 
-    xset("colormap",jetcolormap(128));
+    curFig.color_map = jetcolormap(128);
 
     drawlater();
     colorbar(1,N+1);

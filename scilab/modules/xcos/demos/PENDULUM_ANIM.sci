@@ -59,14 +59,16 @@ function [x,y,typ]=PENDULUM_ANIM(job,arg1,arg2)
         model.dep_ut=[%f %f]
 
         exprs=string(model.rpar)
-        gr_i=["thick=xget(''thickness'');xset(''thickness'',2);";
+        gr_i=[
+        "thick = gca().thickness;"
+        "gca().thickness = 2;"
         "xx=orig(1)+sz(1)*[.4 .6 .6 .4 .4]"
         "yy=orig(2)+sz(2)*[.2 .2 .4 .4 .2]"
         "xpoly(xx,yy,''lines'')"
         "xx=orig(1)+sz(1)*[.5 .6]"
         "yy=orig(2)+sz(2)*[.4 .8]"
         "xpoly(xx,yy)"
-        "xset(''thickness'',thick);"]
+        "gca().thickness = thick;"]
         x=standard_define([3 3],model,exprs,gr_i)
     end
 endfunction

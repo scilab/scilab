@@ -17,17 +17,21 @@ function titlepage(str,win)
     [lhs,rhs]=argn(0)
 
     if ~isdef("str") then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "titlepage", 1, 2));
+        msg = _("%s: Wrong number of input argument(s): %d or %d expected.\n")
+        error(msprintf(msg, "titlepage", 1, 2));
     end
 
     if type(str) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"), "titlepage", 1));
+        msg = _("%s: Wrong type for input argument #%d: String array expected.\n")
+        error(msprintf(msg, "titlepage", 1));
     end
 
 
-    old=xget("window")
-    if rhs==2 then xset("window",win);end
+    old = gcf()
+    if rhs==2 then
+        scf(win)
+    end
     plot2d([0,1],[0,1],[-1,-1],"022");
     xstringb(0,0,str,1,1,"fill");
-    xset("window",old)
+    scf(old)
 endfunction

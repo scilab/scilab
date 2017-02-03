@@ -46,7 +46,7 @@ function []=meshvisu(col,rect)
     if rhs<=1;rect=[min(noeul(:,2)),min(noeul(:,3)),max(noeul(:,2)),max(noeul(:,3))];end
     if rhs<=2;iso="1";end
     plot2d(1,1,[1],"031"," ",rect);
-    xset("clipgrf");
+    gca().clip_state = "clipgrf";
     xx=trianl(:,2:4);
     xx=matrix(xx,prod(size(xx)),1);
     x=noeul(xx,2);
@@ -57,7 +57,7 @@ function []=meshvisu(col,rect)
     x=[x,x(:,1)]';
     y=[y,y(:,1)]';
     xpolys(x,y,col*ones(1,triang));
-    xset("clipoff");
+    gca().clip_state = "off";
 
 endfunction
 
@@ -68,13 +68,13 @@ function []=nvisu(rect)
     [lhs,rhs]=argn(0);
     if rhs==0;rect=[min(noeul(:,2)),min(noeul(:,3)),max(noeul(:,2)),max(noeul(:,3))];end
     plot2d(1,1,[1],"031"," ",rect);
-    xset("clipgrf");
+    gca().clip_state = "clipgrf";
     bords=noeul(find(noeul(:,4)>0),:);
     [no,ign]=size(bords);
     for i=1:no
         xstring(bords(i,2),bords(i,3),string(bords(i,4)));
     end
-    xset("clipoff");
+    gca().clip_state = "off";
 
 endfunction
 
@@ -88,7 +88,7 @@ function []=emc2V(i,j,k,sa,FN,rect)
 
     [lhs,rhs]=argn(0);
     plot2d(1,1,[1],"031"," ",rect);
-    xset("clipgrf");
+    gca().clip_state = "clipgrf";
     if rhs == 0 ; FN="MESH";end
     unit=file("open",FN,"old")
     resu=read(unit,noeuds,k);
@@ -105,7 +105,7 @@ function []=emc2V(i,j,k,sa,FN,rect)
     xsegs([noeul(:,2)-(1/sa)*resu(:,1),noeul(:,2)+(1/sa)*resu(:,1)]',...
     [noeul(:,3)-(1/sa)*resu(:,2),noeul(:,3)+(1/sa)*resu(:,2)]',...
     16*ones(nm)-16*nm);
-    xset("clipoff");
+    gca().clip_state = "off";
 
 endfunction
 

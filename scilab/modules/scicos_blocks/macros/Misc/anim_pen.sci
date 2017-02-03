@@ -32,17 +32,18 @@ function [blocks] = anim_pen(blocks,flag)
     phi=rpar(3);
     rcirc=csiz/3;
     if flag==4 then
-        xset("window",win)
+        scf(win)
         set("figure_style","new")
         H=scf(win)
         clf(H)
         Axe=H.children
         Axe.data_bounds=rpar(4:7)
         Axe.isoview="on"
+        color_old = Axe.foreground
 
         S=[cos(phi),-sin(phi);sin(phi),cos(phi)]
         XY=S*[rpar(4),rpar(5);-csiz,-csiz]
-        xset("color",3)
+        Axe.foreground = 3;
         xsegs(XY(1,:),XY(2,:)-rcirc)
 
         x=0;
@@ -52,15 +53,15 @@ function [blocks] = anim_pen(blocks,flag)
         y1=-csiz;
         y2=csiz
         XY=S*[x1 x2 x2 x1 x1;y1,y1,y2,y2,y1]
-        xset("color",5)
+        Axe.foreground = 5;
         xfpoly(XY(1,:),XY(2,:))// cart
-        xset("color",2)
+        Axe.foreground = 2;
         xfarc(XY(1,1),XY(2,1),rcirc,rcirc,0,360*64) //wheel
         xfarc(XY(1,2),XY(2,2),rcirc,rcirc,0,360*64) //wheel
 
         XY=S*[x,x+plen*sin(theta);0,0+plen*cos(theta)]//pendulum
-        xset("color",2)
         xsegs(XY(1,:),XY(2,:))
+        Axe.foreground = color_old
 
     elseif flag==2 then
         Axe=H.children

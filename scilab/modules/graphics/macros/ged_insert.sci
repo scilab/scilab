@@ -10,7 +10,6 @@
 // along with this program.
 
 function ged_insert(k,win)
-    //xset, xget used because ged should handle both old and new style
 
     [lhs,rhs]=argn(0);
 
@@ -24,8 +23,8 @@ function ged_insert(k,win)
     active=active+1;men=k
     if  active>1 then return,end
 
-    ged_current_figure=xget("window")
-    xset("window",win)
+    ged_current_figure = gcf().figure_id
+    scf(win)
 
     scf(win);
     ged_cur_fig_handle=gcf();
@@ -219,7 +218,9 @@ function  ged_insert_end()
         f=gcf()
         clearglobal active men
     end
-    if win<>ged_current_figure then xset("window",ged_current_figure),end
+    if win <> ged_current_figure then
+        scf(ged_current_figure)
+    end
 
 endfunction
 function [men,xc,yc]=ged_click()

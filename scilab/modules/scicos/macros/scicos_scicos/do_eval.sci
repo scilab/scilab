@@ -101,9 +101,9 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
                 context=sblock.props.context
                 [scicos_context1,ierr]=script2var(context,%scicos_context)
                 if ierr <>0 then
-                    %now_win=xget("window")
+                    %now_win = gcf()
                     scicosmessage(["Cannot evaluate a context";lasterror()])
-                    xset("window",%now_win)
+                    scf(%now_win)
                 else
                     previous_full_uids = full_uids;
                     if length(o.model.uid) >= 1 then

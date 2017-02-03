@@ -42,9 +42,9 @@ function puit_draw_ports(o)
     if subStr<>"" then
         orient=%f;
     end
-    xset("pattern",default_color(0));
+    gca().foreground = default_color(0);
 
-    //xset('thickness',1)
+    //gca().thickness = 1;
     // draw input/output ports
     //------------------------
 
@@ -72,7 +72,7 @@ function puit_draw_ports(o)
         0   1
         -1   1]*diag([xf/7,yf/14])
         dy=sz(2)/(nout+1)
-        xset("pattern",default_color(1));
+        gca().foreground = default_color(1);
 
         dy=sz(2)/(nin+1);
         for k=1:nin
@@ -122,7 +122,7 @@ function puit_draw_ports(o)
 
 
         dy=sz(2)/(nout+1)
-        xset("pattern",default_color(1))
+        gca().foreground = default_color(1);
 
         dy=sz(2)/(nin+1)
         for k=1:nin

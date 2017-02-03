@@ -34,7 +34,7 @@ function [p,err]=datafit(iprint,G,varargin)
     //Z=[Y;X];
     //deff('e=G(p,z)','a=p(1),b=p(2),c=p(3),y=z(1),x=z(2),e=y-FF(x)')
     //[p,err]=datafit(G,Z,[3;5;10])
-    //xset('window',0)
+    //scf(0)
     //clf();
     //plot2d(X',Y',-1)
     //plot2d(X',FF(X)',5,'002')
@@ -43,7 +43,7 @@ function [p,err]=datafit(iprint,G,varargin)
     //a=34;b=12;c=14;
     //deff('s=DG(p,z)','y=z(1),x=z(2),s=-[x-p(2),-p(1),x*x]')
     //[p,err]=datafit(G,DG,Z,[3;5;10])
-    //xset('window',1)
+    //scf(1)
     //clf();
     //plot2d(X',Y',-1)
     //plot2d(X',FF(X)',5,'002')

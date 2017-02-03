@@ -17,7 +17,7 @@ function demo_fec_example2()
 
     show_window();
 
-    xset("colormap",jetcolormap(128));
+    curFig.color_map = jetcolormap(128);
 
     drawlater();
     amdbaR(path+"MESH");
