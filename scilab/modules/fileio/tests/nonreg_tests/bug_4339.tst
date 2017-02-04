@@ -66,7 +66,7 @@ hGrayplot = gce();
 clear m n M;
 
 //Matplot
-Matplot((1:xget("lastpattern")))
+Matplot(1:size(gcf().color_map, 1))
 hMatplot = gce();
 
 //Fec

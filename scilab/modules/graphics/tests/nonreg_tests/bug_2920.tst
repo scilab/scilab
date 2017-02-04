@@ -16,7 +16,7 @@
 // The demo called "Rectangles, Arcs, Polylines, Segments and Numbers" do not display yellow filled objects.
 
 // should draw a white rectangle (draw a yellow one in Scilab 4).
-xrects([0.25;0.75;0.5;0.5],xget('white'));
+xrects([0.25;0.75;0.5;0.5], color('white'));
 e = gce();
 e = e.children;
 e.line_mode = "on";
