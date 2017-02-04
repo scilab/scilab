@@ -823,14 +823,12 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xget">xget</link>
+                    <link linkend="get">get</link>
                 </term>
                 <listitem>
                     <para>
-                        Получение текущих значений графического окружения
-                        <warning>
-                            Эта функция устарела.
-                        </warning>
+                         Получает значение свойства от ручки графического элемента или
+                         интерактивный объект.
                     </para>
                 </listitem>
             </varlistentry>

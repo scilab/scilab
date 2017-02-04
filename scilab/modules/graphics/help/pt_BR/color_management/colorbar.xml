@@ -116,7 +116,6 @@ clf()
 gcf().color_map = hotcolormap(nb_col);
 drawlater() ;
 colorbar(zzm,zzM,fmt="%.1f")
-nbcol = xget("lastpattern")
 zcol = dsearch(zf, linspace(zzm, zzM, nb_col+1));
 plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])
 xtitle("um plot3d com cores de gradação interpolada")

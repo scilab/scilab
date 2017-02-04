@@ -773,10 +773,13 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xget">xget</link>
+                    <link linkend="get">get</link>
                 </term>
                 <listitem>
-                    <para>récupère des valeurs du contexte graphique</para>
+                    <para>
+                      fournit la valeur d'un attribut d'un élément graphique passif ou interactif,
+                      à partir de l'identifiant de l'élément.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

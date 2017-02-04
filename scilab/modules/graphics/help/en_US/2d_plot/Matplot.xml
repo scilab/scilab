@@ -343,10 +343,12 @@ Matplot([1 2 3;4 5 6])
         <programlisting role="example"><![CDATA[
 clf()
 // draw the current colormap
-Matplot((1:xget("lastpattern")))
+nbcol = size(gcf().color_map, 1);
+Matplot(1:nbcol)
  ]]></programlisting>
         <scilab:image>
-            Matplot((1:xget("lastpattern")))
+            nbcol = size(gcf().color_map, 1);
+            Matplot(1:nbcol)
         </scilab:image>
     </refsection>
     <refsection role="see also">

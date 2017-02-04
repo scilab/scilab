@@ -155,7 +155,6 @@ clf()
 gcf().color_map = hotcolormap(nb_col);
 drawlater() ;
 colorbar(zzm,zzM,[1, nb_col],fmt="%.1f")
-nbcol = xget("lastpattern")
 zcol = dsearch(zf, linspace(zzm, zzM, nb_col+1));
 plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])
 xtitle("a plot3d with shaded interpolated colors")
@@ -170,7 +169,6 @@ show_window()
             nb_col = 64;
             gcf().color_map = hotcolormap(nb_col);
             colorbar(zzm,zzM,[1, nb_col],fmt="%.1f")
-            nbcol = xget("lastpattern")
             zcol = dsearch(zf, linspace(zzm, zzM, nb_col+1));
             plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])
             xtitle("a plot3d with shaded interpolated colors")

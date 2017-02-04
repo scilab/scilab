@@ -274,14 +274,16 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-Matplot((1:xget("lastpattern")))
-e=gce(); // カレントのエンティティを取得
-e.data=e.data($:-1:1) // 逆順
+nbcolors = size(gcf().color_map, 1);
+Matplot(1:nbcolors)
+e = gce(); // カレントのエンティティを取得
+e.data = e.data($:-1:1) // 逆順
  ]]></programlisting>
         <scilab:image>
-            Matplot((1:xget("lastpattern")));
-            e=gce();
-            e.data=e.data($:-1:1);
+            nbcolors = size(gcf().color_map, 1);
+            Matplot(1:nbcolors)
+            e = gce();
+            e.data = e.data($:-1:1);
         </scilab:image>
     </refsection>
     <refsection role="see also">

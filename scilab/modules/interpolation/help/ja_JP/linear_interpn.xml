@@ -256,7 +256,7 @@ vmin = min(VF); vmax = max(VF);
 color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
 gcf().color_map = jetcolormap(nb_col);
 clf()
-gca().hiddencolor = xget("background");
+gca().hiddencolor = gca().background;
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("tri-linear interpolation of "+func)

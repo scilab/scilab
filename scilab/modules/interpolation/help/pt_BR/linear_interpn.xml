@@ -21,7 +21,7 @@
                 <term>x1 ,x2, ..., xn</term>
                 <listitem>
                     <para> vetores linhas estritamente crescentes (com pelo menos 2
-                        elementos) definindo o grid de interpolação n-dimensional 
+                        elementos) definindo o grid de interpolação n-dimensional
                     </para>
                 </listitem>
             </varlistentry>
@@ -30,7 +30,7 @@
                 <listitem>
                     <para>vetor (caso n=1), matriz (caso n=2) ou hipermatriz (caso n
                         &gt; 2) com valores da função subjacente interpolada nos pontos do
-                        grid. 
+                        grid.
                     </para>
                 </listitem>
             </varlistentry>
@@ -226,7 +226,7 @@ vmin = min(VF); vmax = max(VF);
 color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
 clf()
 gcf().color_map = jetcolormap(nb_col);
-gca().hiddencolor = xget("background");
+gca().hiddencolor = gca().background;
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("Interpolação trilinear de"+func)
