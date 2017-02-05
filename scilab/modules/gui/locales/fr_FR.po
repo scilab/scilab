@@ -905,7 +905,7 @@ msgid "&Copy to clipboard"
 msgstr "&Copier dans le presse-papier"
 
 msgid "P&age setup..."
-msgstr "Mise en p&age..."
+msgstr "&Mise en page..."
 
 msgid "&Print..."
 msgstr "&Imprimer..."
@@ -1013,16 +1013,16 @@ msgid "&Open a file..."
 msgstr "&Ouvrir un fichier..."
 
 msgid "&Load environment..."
-msgstr "&Charger un environnement..."
+msgstr "Charger une &session archivée"
 
 msgid "&Save environment..."
-msgstr "&Enregistrer l'environnement..."
+msgstr "&Archiver la session"
 
 msgid "&Change current directory..."
-msgstr "&Changer le répertoire courant..."
+msgstr "&Changer le dossier de travail"
 
 msgid "&Display current directory"
-msgstr "&Afficher le répertoire courant"
+msgstr "Afficher le &dossier de travail"
 
 msgid "&Quit"
 msgstr "&Quitter"
