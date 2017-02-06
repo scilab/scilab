@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Samuel GOUGEON
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+ * Copyright (C) 2017 - 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,218 +12,1015 @@
  * For more information, see the COPYING file which you should have received
  * along with this program.
  *
- --><!-- This document was created with Syntext Serna Free. -->
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
           xml:lang="en" xml:id="histc">
     <refnamediv>
         <refname>histc</refname>
-        <refpurpose>computes an histogram</refpurpose>
+        <refpurpose>computes the histogram of a simple series of data</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            h = histc(n, data)
-            h = histc(x, data)
-            h = histc(.., normalization)
+            Heights = histc(Data)
+            Heights = histc(Data, nbins)
+            Heights = histc(Data, -binsWidth)
+            Heights = histc(Data, binsAlgo)
+            Heights = histc(Data, binsEdges)
+            Heights = histc(Data, binsValues [, "discrete"])
+            Heights = histc(Data,    , Options)
+            Heights = histc(Data, .. , Options)
+            [Heights, jokers]              = histc(Data, ..)
+            [Heights, jokers, bins]        = histc(Data, ..)
+            [Heights, jokers, bins, inBin] = histc(Data, ..)
         </synopsis>
     </refsynopsisdiv>
-    <refsection role="parameters">
+    <refsection role="arguments">
         <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>n</term>
-                <listitem>
-                    <para>positive integer (number of classes)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>
-                        increasing vector defining the classes (<literal>x</literal> may have at
-                        least 2 components)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>data</term>
-                <listitem>
-                    <para>
-                        vector (data to be analysed)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>h</term>
-                <listitem>
-                    <para>
-                      <itemizedlist>
-                        <listitem>
-                            <para>
-                            If <varname>normalization</varname> is %T: Probability densities on the
-                            bins defined by <varname>n</varname> or <varname>x</varname>, such that
-                            the bins areas are proportional to their populations.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                            If <varname>normalization</varname> is %F: Numbers of elements in the bins.
-                            </para>
-                        </listitem>
-                      </itemizedlist>
-                    </para>
-                </listitem>
-            </varlistentry>
-          <!--
-            <varlistentry>
-                <term>ind</term>
-                <listitem>
-                    <para>
-                        vector or matrix of same size as <varname>data</varname>,
-                        representing the respective belonging of each element of data <varname>data</varname>
-                        to the classes defined by <varname>n</varname> or <varname>x</varname>
-                    </para>
-                </listitem>
-            </varlistentry>
-           -->
-            <varlistentry>
-                <term>normalization</term>
-                <listitem>
-                    <para>
-                      scalar boolean (default = %T), setting the type of output
-                      (see <varname>h</varname>).
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
+        <refsect2>
+            <title>Input arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>Data</term>
+                    <listitem>
+                        <para>
+                            vector, matrix or hypermatrix of encoded integers, decimal numbers,
+                            complex numbers, polynomials, or texts. Sparse-encoded matrices are accepted.
+                            <itemizedlist>
+                                <listitem>
+                                    <literal>Data</literal> must have at least 2 components.
+                                    <literal>histc([],..)</literal> returns <literal>[]</literal>
+                                    for every output argument.
+                                </listitem>
+                                <listitem>
+                                    Numerical <literal>Data</literal> may include
+                                    <literal>Inf</literal>inite or <literal>NaN</literal> values.
+                                    However,
+                                    <literal>NaN</literal> values are never binned in the histogram;
+                                    <literal>Inf</literal>inite values can be binned only in categorial
+                                    histograms.
+                                </listitem>
+                                <listitem>
+                                    Textual <literal>Data</literal> may include empty texts
+                                    <literal>""</literal> or extended-ascii or UTF-8 characters.
+                                </listitem>
+                            </itemizedlist>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Binning:</term>
+                    <listitem>
+                        <para>
+                            <literal>histc</literal> allows to define the set of histogram bins in
+                            several ways depending on the <literal>Data</literal> type and on the need.
+                            Two major binning types / histogram modes can be used:
+                            <itemizedlist>
+                                <listitem>
+                                    <para>
+                                        <emphasis role="bold">
+                                            continuous contiguous ranging bins
+                                        </emphasis>
+                                        :this is meaningful
+                                        whether <varname>Data</varname> values are sortable. This is
+                                        the case for encoded integers, decimal numbers, and texts.
+                                        <important>
+                                            <itemizedlist>
+                                                <listitem>
+                                                    <literal>histc()</literal> continuously bins complex
+                                                    numbers considering only their real parts.
+                                                </listitem>
+                                                <listitem>
+                                                    Any number with either a real or imaginary part set to
+                                                    <literal>%nan</literal>, <literal>-%inf</literal>, or to
+                                                    <literal>+%inf</literal> is excluded from bins and from
+                                                    the histogram.
+                                                </listitem>
+                                                <listitem>
+                                                    For sparse-encoded <varname>Data</varname>, the zero
+                                                    value is not taken into account to define the whole
+                                                    binning range.
+                                                </listitem>
+                                            </itemizedlist>
+                                        </important>
+                                    </para>
+                                    <para>
+                                        In this case, bins are defined by their edges. For a given bin,
+                                        any data value being between the bin's edges belongs to it.
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        <emphasis role="bold">
+                                            discrete / categorial binning mode
+                                        </emphasis>
+                                        :this can be used for any <literal>Data</literal>
+                                        type. It is the only binning mode available for polynomial data.
+                                    </para>
+                                    <para>
+                                        A categorial bin -- aka category -- is defined by its value:
+                                        any data belongs to the bin if its value
+                                        <emphasis role="italic">is equal to</emphasis> the bin's value.
+                                        <important>
+                                            Any <literal>Data</literal> or bin's value being
+                                            <literal>NaN</literal> is canceled before computing the
+                                            categorial histogram.
+                                        </important>
+                                    </para>
+                                </listitem>
+                            </itemizedlist>
+                            <variablelist>
+                                <varlistentry>
+                                    <term>(default)</term>
+                                    <listitem>
+                                        <para>
+                                            When no binning specification is provided,
+                                            <itemizedlist>
+                                                <listitem>
+                                                    For integers, decimal, or complex numbers, the
+                                                    <literal>"sqrt"</literal> binning algorithm is used
+                                                    See here-below for more informations.
+                                                </listitem>
+                                                <listitem>
+                                                    For texts and polynomials: the histogram is
+                                                    computed in <literal>"discrete"</literal> mode, with
+                                                    as many bins as there are distinct data entries.
+                                                </listitem>
+                                            </itemizedlist>
+                                        </para>
+                                    </listitem>
+                                </varlistentry>
+                                <varlistentry>
+                                    <term>nbins</term>
+                                    <listitem>
+                                        <para>
+                                            single positive integer: required number of contiguous
+                                            bins of equal widths covering the whole range of
+                                            non-infinite <literal>Data</literal> values.
+                                            <warning>
+                                                This binning specification can't be used for texts
+                                                <literal>Data</literal>
+                                            </warning>
+                                        </para>
+                                    </listitem>
+                                </varlistentry>
+                                <varlistentry>
+                                    <term>binsWidth</term>
+                                    <listitem>
+                                        <para>
+                                            Single decimal number > 0 specifying the bins width for all
+                                            bins. Its opposite <literal>-binsWidth &lt; 0</literal>
+                                            must be provided in input (to not get confused with
+                                            <literal>nbins</literal> that is already a single positive
+                                            number).
+                                        </para>
+                                    </listitem>
+                                </varlistentry>
+                                <varlistentry>
+                                    <term>binsAlgo</term>
+                                    <listitem>
+                                        <para>
+                                            Single text word among the ones described here-below. These
+                                            automatic binning modes can be used for encoded integers,
+                                            decimal, or complex numbers. None of them can be used for
+                                            texts or polynomial data.
+                                        </para>
+                                        <para>
+                                            For these 3 modes, the whole range of data values is shared
+                                            into nB bins of equal widths. nB is set according to the
+                                            chosen algorithm as follows.
+                                        </para>
+                                        <para>
+                                            <table>
+                                                <tr>
+                                                    <td valign="top">
+                                                        <emphasis role="bold">"sqrt"</emphasis>:
+                                                    </td>
+                                                    <td>
+                                                        <para>
+                                                            nB is set to the square-root of the number
+                                                            <literal>Nvalid</literal> of
+                                                            valid data in <varname>Data</varname>, in such a
+                                                            way that there are as many bins as the
+                                                            average number of counts in bins. The vertical
+                                                            average relative resolution
+                                                            <literal>1 count / nB counts = 1/nB</literal>
+                                                            of the histogram is then similar to the
+                                                            horizontal one
+                                                            <literal>binWidth/range = (range/nB)/range = 1/nB</literal>
+                                                        </para>
+                                                        <para>
+                                                            However, for encoded integers data, if the
+                                                            data range
+                                                            <literal>dR=max(Data)-min(Data)+1</literal>
+                                                            is narrower than nB, nB is then set to dR,
+                                                            so setting the bins width to 1. Bins are then
+                                                            automatically centered on integer values in the
+                                                            range.
+                                                        </para>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td valign="top">
+                                                        <emphasis role="bold">"freediac"</emphasis>:
+                                                    </td>
+                                                    <td>
+                                                        Freedmann - Diaconis binning criterion:
+                                                        <code>nB = round(strange(Data)/binWidth)</code>
+                                                        with
+                                                        <code>binsWidth = 2*iqr(Data)* Nvalid^(-1/3)</code>.
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td valign="top">
+                                                        <emphasis role="bold">"sturges"</emphasis>:
+                                                    </td>
+                                                    <td>
+                                                        Sturges binning criterion:
+                                                        <literal>nB = ceil(1 + log2(Nvalid))</literal>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </para>
+                                    </listitem>
+                                </varlistentry>
+                                <varlistentry>
+                                    <term>binsEdges</term>
+                                    <listitem>
+                                        <para>
+                                            Vector of values sorted in strict increasing order (without
+                                            duplicates). N bins edges define N-1 bins.
+                                            For encoded integers <varname>Data</varname>,
+                                            <varname>binsEdges</varname> can be decimal numbers. For
+                                            complex numbers <varname>Data</varname>, decimal numbers are
+                                            expected in <varname>binsEdges</varname>: only the distribution
+                                            of real parts is considered.
+                                        </para>
+                                        <para>
+                                            <itemizedlist>
+                                                <listitem>
+                                                    First bin: Any non-infinite <varname>Data</varname>
+                                                    component belonging to the closed interval
+                                                    <literal>[binsEdges(1), binsEdges(2)]</literal>
+                                                    belongs to the first bin and is accounted in
+                                                    the <literal>Heights(1)</literal> count.
+                                                </listitem>
+                                                <listitem>
+                                                    Next bins # i>1: Any non-infinite
+                                                    <varname>Data</varname> component belonging to
+                                                    the semi-open interval
+                                                    <literal>]binsEdges(i), binsEdges(i+1)]</literal>
+                                                    belongs to the bin #i and is accounted in
+                                                    the <literal>Heights(i)</literal> count.
+                                                </listitem>
+                                            </itemizedlist>
+                                        </para>
+                                        <para>
+                                            <emphasis role="bold">Marginal bins:</emphasis>
+                                        </para>
+                                        <para>
+                                            For numerical and text <varname>Data</varname>, the first
+                                            or/and the last <varname>binsEdges</varname> components
+                                            may be set to collect and count
+                                            in marginal bins all non-infinite <varname>Data</varname>
+                                            components
+                                            remaining in the left and right wings of the complete
+                                            histogram:
+                                            <itemizedlist>
+                                                <listitem>
+                                                    <emphasis role="italic">Left wing:</emphasis> set
+                                                    <itemizedlist>
+                                                        <listitem>
+                                                            <literal>binsEdges(1) =
+                                                                <emphasis role="bold">-%inf</emphasis>
+                                                            </literal>
+                                                            ,
+                                                            or
+                                                        </listitem>
+                                                        <listitem>
+                                                            <literal>binsEdges(1) = ""</literal>
+                                                        </listitem>
+                                                    </itemizedlist>
+                                                    Then,
+                                                    <itemizedlist>
+                                                        <listitem>
+                                                            <varname>Data</varname> entries such that
+                                                            <literal>Data &lt; binsEdges(2)</literal> are
+                                                            counted in <literal>Heights(1)</literal>.
+                                                        </listitem>
+                                                        <listitem>
+                                                            The actual <literal>bins(1)</literal> edge
+                                                            is set to <literal>min(Data)</literal>.
+                                                        </listitem>
+                                                    </itemizedlist>
+                                                </listitem>
+                                                <listitem>
+                                                    <para></para>
+                                                    <emphasis role="italic">Right wing:</emphasis> set
+                                                    <itemizedlist>
+                                                        <listitem>
+                                                            <literal>binsEdges($) =
+                                                                <emphasis role="bold">%inf</emphasis>
+                                                            </literal>
+                                                            ,
+                                                            or
+                                                        </listitem>
+                                                        <listitem>
+                                                            <literal>binsEdges($) = "~~"</literal> (for
+                                                            texts in standard ascii,
+                                                            <literal>ascii(126)=="~"</literal> is the
+                                                            last printable character)
+                                                        </listitem>
+                                                    </itemizedlist>
+                                                    Then,
+                                                    <itemizedlist>
+                                                        <listitem>
+                                                            <varname>Data</varname> entries such that
+                                                            <literal>Data > binsEdges($-1)</literal> are
+                                                            counted in <literal>Heights($)</literal>.
+                                                        </listitem>
+                                                        <listitem>
+                                                            The actual <literal>bins($)</literal> edge
+                                                            is set to <literal>max(Data)</literal>.
+                                                        </listitem>
+                                                    </itemizedlist>
+                                                </listitem>
+                                            </itemizedlist>
+                                        </para>
+                                    </listitem>
+                                </varlistentry>
+                                <varlistentry>
+                                    <term>binsValues</term>
+                                    <listitem>
+                                        <para>
+                                            For polynomial <varname>Data</varname> or when the
+                                            <varname>"discrete"</varname> option is used,
+                                            <varname>binsValues</varname> provides values whose
+                                            occurrences in <varname>Data</varname> must be counted.
+                                        </para>
+                                        <para>
+                                            <itemizedlist>
+                                                <listitem>
+                                                    Duplicates and <literal>%nan</literal> values are
+                                                    priorly removed from <varname>binsValues</varname>.
+                                                </listitem>
+                                                <listitem>
+                                                    <varname>binsValues</varname> may include some
+                                                    <literal>%inf</literal> values. However,
+                                                    for encoded integers <varname>Data</varname>,
+                                                    any <literal>%inf</literal> value is removed
+                                                    before processing.
+                                                </listitem>
+                                                <listitem>
+                                                    Components of <varname>binsValues</varname> may be
+                                                    unsorted: the order of <varname>binsValues</varname>
+                                                    components is kept as is in the
+                                                    <varname>Heights</varname> output vector.
+                                                </listitem>
+                                            </itemizedlist>
+
+                                        </para>
+                                    </listitem>
+                                </varlistentry>
+                            </variablelist>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Options</term>
+                    <listitem>
+                        <para>
+                            <literal>Options</literal> is either a vector of textual flags, or equivalently
+                            a single word of <emphasis role="italic">comma-separated</emphasis>
+                            concatenated flags, or both. All flags are
+                            <emphasis role="italic">case-insensitive</emphasis> and can be specified
+                            <emphasis role="italic">in any order</emphasis>.
+                        </para>
+                        <para>
+                            Examples: The following options specifications are equivalent:
+                            <literal>["discrete" "countsNorm" "normWith: Out Inf"]</literal>, or
+                            <literal>["countsNORM" "NORMwith: inf out" "Discrete" ]</literal>, or
+                            <literal>["normWith: INF OUT", "discrete, countsNorm" ]</literal>, or simply
+                            <literal>"discrete,countsNorm,normWith: inf out"</literal>.
+                        </para>
+                        <para>
+                            <variablelist>
+                                <varlistentry>
+                                    <term>"discrete"</term>
+                                    <listitem>
+                                        <para>
+                                            This flag must be used when a discrete / categorial histogram is
+                                            required. Then, the vector provided in argument #2 with at
+                                            least 2 components sets
+                                            <emphasis role="italic">bins values</emphasis> instead of
+                                            <emphasis role="italic">bins edges</emphasis> (by default).
+                                            <note>
+                                                Presently, polynomial <varname>Data</varname> are always
+                                                processed in a categorial way. The <varname>"discrete"</varname>
+                                                flag looks then useless. However, in a future release, polynomials
+                                                could become sortable. Using the <varname>"discrete"</varname>
+                                                flag does not hurt and would avoid future back-compatibility
+                                                issues.
+                                            </note>
+                                        </para>
+                                    </listitem>
+                                </varlistentry>
+                                <varlistentry>
+                                    <term>Histogram scale:</term>
+                                    <listitem>
+                                        <table>
+                                            <tr>
+                                                <td valign="top">
+                                                    <emphasis role="bold">"counts"</emphasis>
+                                                </td>
+                                                <td>
+                                                    <para>
+                                                        This mode is the default one: Whatever is each bin's width, the
+                                                        <emphasis role="italic">height</emphasis> of the bin is equal
+                                                        to the number of <varname>Data</varname> components falling in it.
+                                                    </para>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top">
+                                                    <emphasis role="bold">"countsNorm"</emphasis>
+                                                </td>
+                                                <td>
+                                                    <para>
+                                                        Whatever is each bin's width and position, the
+                                                        <emphasis role="italic">height</emphasis> of the bin is equal
+                                                        to the <emphasis role="italic">relative</emphasis> number of
+                                                        <varname>Data</varname> components falling in it,
+                                                        over all counted components.
+                                                        Then, unless the <literal>"normWith:.."</literal>
+                                                        option is used, the cumulated bins heights is equal to 1:
+                                                        <literal>sum(Heights)==1</literal>.
+                                                    </para>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top">
+                                                    <emphasis role="bold">"density"</emphasis>
+                                                </td>
+                                                <td>
+                                                    <para>
+                                                        The <emphasis role="italic">area</emphasis> of each bin is equal
+                                                        to the number of <varname>Data</varname> components falling in it.
+                                                        This scaling mode is meaningless and ignored in case of
+                                                        <emphasis role="italic">categorial</emphasis> histogram.
+                                                    </para>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top">
+                                                    <emphasis role="bold">"densityNorm"</emphasis>
+                                                </td>
+                                                <td>
+                                                    <para>
+                                                        The <emphasis role="italic">area</emphasis> of each bin is equal
+                                                        to the <emphasis role="italic">relative</emphasis> number of
+                                                        <varname>Data</varname> components falling in it. Then, unless
+                                                        the <literal>"normWith:.."</literal> option is used, the whole
+                                                        area of the histogram is equal to 1:
+                                                        <para>
+                                                            <latex style="display"><![CDATA[ \int_{binsEdges(1)}^{binsEdges(\$)}h(x)\,\mathrm{d}x=1 ]]></latex>
+                                                        </para>
+                                                    </para>
+                                                    <para>
+                                                        This scaling mode is meaningless and ignored in case of
+                                                        <emphasis role="italic">categorial</emphasis> histogram.
+                                                    </para>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </listitem>
+                                </varlistentry>
+                                <varlistentry>
+                                    <term>"normWith:.."</term>
+                                    <listitem>
+                                        <para>
+                                            When the <literal>"countsNorm"</literal> or <literal>"densityNorm"</literal>
+                                            option is used, it is possible to provide additional informations about which
+                                            components of <varname>Data</varname> out of bins should be considered
+                                            for the total number N of counts over which the normalization is computed.
+                                        </para>
+                                        <para>
+                                            After the <literal>"normWith:"</literal> option's header, a
+                                            <emphasis role="italic">space-separated</emphasis> list of
+                                            <emphasis role="italic">case-insensitive</emphasis> flags can be provided
+                                            <emphasis role="italic">in any order</emphasis>. If several concurrent
+                                            flags are provided, only the last specified one is taken into account.
+                                            Unrelevant flags for the given <literal>Data</literal> type are ignored.
+                                            Available flags and their relative priorities are described here-below.
+                                            Examples:
+                                            <literal>"normWith: all"</literal>,
+                                            <literal>"normWith: out inf"</literal>,
+                                            <literal>"normWith: Nan inf"</literal>,
+                                            <literal>"normWith: rightout inf"</literal>, etc.
+                                        </para>
+                                        <table>
+                                            <tr>
+                                                <td valign="top">
+                                                    <emphasis role="bold">"all"</emphasis>
+                                                </td>
+                                                <td>
+                                                    All components of <varname>Data</varname> are considered:
+                                                    <literal>N = size(Data,"*")</literal>. If <literal>"all"</literal>
+                                                    is used, all other <literal>"normWith:.."</literal> options are ignored.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top">
+                                                    <emphasis role="bold">"out"</emphasis>
+                                                </td>
+                                                <td>
+                                                    All <varname>Data</varname> out of <varname>bins</varname> that are
+                                                    not <literal>Nan</literal> or <literal>Inf</literal> or
+                                                    <literal>""</literal> are accounted.
+                                                    If <varname>Data</varname> is sparse-encoded, zeros remain excluded
+                                                    unless the option <literal>"normWith: zeros"</literal> is used.
+                                                    If <literal>"out"</literal> is used, <literal>"leftout"</literal>
+                                                    and <literal>"rightout"</literal> options are ignored.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top">
+                                                    <emphasis role="bold">"leftout"</emphasis>
+                                                </td>
+                                                <td>
+                                                    As with <literal>"out"</literal>, but only for
+                                                    <literal>Data &lt; binsEdges(1)</literal>.
+                                                    This flag is ignored in discrete/categorial mode.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top">
+                                                    <emphasis role="bold">"rightout"</emphasis>
+                                                </td>
+                                                <td>
+                                                    As with <literal>"out"</literal>, but only for
+                                                    <literal>Data > binsEdges($)</literal>.
+                                                    This flag is ignored in discrete/categorial mode.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top">
+                                                    <emphasis role="bold">"NaN"</emphasis>
+                                                </td>
+                                                <td>
+                                                    <literal>NaN</literal> data are accounted, in addition to
+                                                    other ones.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top">
+                                                    <emphasis role="bold">"Inf"</emphasis>
+                                                </td>
+                                                <td>
+                                                    <literal>Inf</literal> data are accounted, in addition to
+                                                    other ones.
+                                                    <para>
+                                                        In discrete/categorial mode, <literal>Inf</literal>
+                                                        values are not specific and are processed as other ones.
+                                                        This flag is then ignored.
+                                                    </para>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top">
+                                                    <emphasis role="bold">"zeros"</emphasis>
+                                                </td>
+                                                <td>
+                                                    If <varname>Data</varname> is sparse-encoded, by default only
+                                                    non-zero elements are considered (otherwise, zeros are not specific
+                                                    and are processed as other values). Nevertheless, it's possible
+                                                    to take them into account in the normalization by using this
+                                                    <literal>"normWith: zeros"</literal> flag.
+                                                    <important>
+                                                        Using this flag does not credit the <literal>Heights</literal>
+                                                        of the bin covering the zero value (if any).
+                                                    </important>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top">
+                                                    <emphasis role="bold">"empty"</emphasis>
+                                                </td>
+                                                <td>
+                                                    <literal>""</literal> empty texts in <varname>Data</varname>
+                                                    are accounted, in addition to other ones.
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </listitem>
+                                </varlistentry>
+                            </variablelist>
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsect2>
+        <refsect2>
+            <title>Results</title>
+            <variablelist>
+                <varlistentry>
+                    <term>Heights</term>
+                    <listitem>
+                        <para>
+                            vector of decimal numbers whose values depend on the histogram scaling mode
+                            set with each dedicated option.
+                            See the description of the <literal>Histogram scales</literal> options
+                            here-above. In brief:
+                            <itemizedlist>
+                                <listitem>
+                                    <literal>"counts"</literal> mode: <varname>Heights(i)</varname>
+                                    is the number of <varname>Data</varname> components equal to the
+                                    <literal>bins(i)</literal> value (categorial), or belonging to the
+                                    <literal>]bins(i), bins(i+1)]</literal> interval (continuous histogram).
+                                </listitem>
+                                <listitem>
+                                    <literal>"countsNorm"</literal> mode: <varname>Heights(i)</varname>
+                                    is as for <literal>"counts"</literal>, divided by the total number
+                                    <literal>N</literal> of considered <varname>Data</varname> components.
+                                    <literal>N</literal> is the sum of counts in all bins, plus
+                                    possibly the number of counts of some special jokers values
+                                    (<literal>%inf, %nan, 0, ""</literal>), according to the
+                                    <literal>normWith:</literal> option used.
+                                </listitem>
+                            </itemizedlist>
+                        </para>
+                        <para>
+                            In continuous mode, statistical densities may be returned in the vector
+                            <varname>Heights</varname> instead of integer numbers of counts: Let's
+                            call <literal>counts(i)</literal> the number of counts in the
+                            bin #i defined by its edges. Then
+                            <itemizedlist>
+                                <listitem>
+                                    In <literal>"density"</literal> mode: <varname>Heights(i)</varname>
+                                    is set such that the <emphasis role="italic">area</emphasis> of
+                                    the bin is equal to its population:
+                                    <literal>Heights(i) * (binsEdges(i+1) - binsEdges(i)) == counts(i)</literal>.
+                                </listitem>
+                                <listitem>
+                                    In <literal>"densityNorm"</literal> mode: the
+                                    <literal>"density"</literal> results are divided by the total number
+                                    <literal>N</literal> of considered counts
+                                    (see <literal>"countsNorm"</literal>).
+                                </listitem>
+                            </itemizedlist>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>jokers</term>
+                    <listitem>
+                        <para>
+                            Row vector of 1 to 5 decimal numbers indicating the frequency of special
+                            values in <literal>Data</literal>. Let's define the following numbers:
+                            <itemizedlist>
+                                <listitem>
+                                    <literal>Nnan</literal>: number of <literal>NaN</literal> objects
+                                    in <literal>Data</literal>.
+                                </listitem>
+                                <listitem>
+                                    <literal>Ninf</literal>: number of <literal>Inf</literal> objects
+                                    in <literal>Data</literal>.
+                                </listitem>
+                                <listitem>
+                                    <literal>Nzeros</literal>: number of null values in
+                                    <literal>Data</literal>.
+                                </listitem>
+                                <listitem>
+                                    <literal>Nempty</literal>: number of empty texts "" in
+                                    <literal>Data</literal>.
+                                </listitem>
+                                <listitem>
+                                    <literal>Nleftout</literal>: number of <literal>Data</literal>
+                                    components not equal to <literal>-%inf</literal> nor to
+                                    <literal>""</literal>, such that
+                                    <literal>Data &lt; binsEdges(1)</literal>.
+                                </listitem>
+                                <listitem>
+                                    <literal>Nrightout</literal>: number of <literal>Data</literal>
+                                    components not equal to <literal>%inf</literal> such that
+                                    <literal>Data > binsEdges($)</literal>.
+                                </listitem>
+                                <listitem>
+                                    <literal>Nout</literal>: number of <literal>Data</literal>
+                                    components out of bins, non-infinite, not being
+                                    <literal>Nan</literal>, not being empty text <literal>""</literal>,
+                                    and for sparse <literal>Data</literal>: not equal to zero.
+                                </listitem>
+                            </itemizedlist>
+                        </para>
+                        <para>
+                            In unnormalized <literal>"counts"</literal> and <literal>"density"</literal>
+                            histogram scales, <varname>jokers</varname> returns the integer
+                            <emphasis role="italic">counts</emphasis> numbers of special values.
+                        </para>
+                        <para>
+                            In normalized <literal>"countsNorm"</literal> and <literal>"densityNorm"</literal>
+                            histogram scales, <varname>jokers</varname> returns
+                            <emphasis role="italic">countsNorm</emphasis> frequencies of special values.
+                        </para>
+                        <para>
+                            Then, according to the <literal>Data</literal> type and the
+                            <emphasis role="italic">continuous</emphasis> or
+                            <emphasis role="italic">categorial</emphasis> histogram mode,
+                            <varname>jokers</varname> is made of the following:
+                            <orderedlist>
+                                <listitem>
+                                    <emphasis role="italic">Encoded integers:</emphasis>
+                                    <itemizedlist>
+                                        <listitem>
+                                            continuous: <literal>[Nleftout, Nrightout]</literal>
+                                        </listitem>
+                                        <listitem>
+                                            categorial: <literal>[Nout]</literal>
+                                        </listitem>
+                                    </itemizedlist>
+                                </listitem>
+                                <listitem>
+                                    <emphasis role="italic">
+                                        Decimal or complex numbers, full or sparse:
+                                    </emphasis>
+                                    <itemizedlist>
+                                        <listitem>
+                                            continuous:
+                                            <literal>[Nleftout, Nrightout, Nzeros, Nnan, Ninf]</literal>
+                                        </listitem>
+                                        <listitem>
+                                            categorial: <literal>[Nout, 0, Nzeros, Nnan, Ninf]</literal>
+                                        </listitem>
+                                    </itemizedlist>
+                                </listitem>
+                                <listitem>
+                                    <emphasis role="italic">Polynomials:</emphasis>
+                                    <literal>[Nout, 0, 0, Nnan, Ninf]</literal>
+                                </listitem>
+                                <listitem>
+                                    <emphasis role="italic">Texts:</emphasis>
+                                    <itemizedlist>
+                                        <listitem>
+                                            continuous: <literal>[Nleftout, Nrightout, Nempty]</literal>
+                                        </listitem>
+                                        <listitem>
+                                            categorial: <literal>[Nout, 0, Nempty]</literal>
+                                        </listitem>
+                                    </itemizedlist>
+                                </listitem>
+                            </orderedlist>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>bins</term>
+                    <listitem>
+                        <para>
+                            Row vector of bins edges or of bins values actually used to build the histogram.
+                            <literal>histc()</literal> allows using many semi-automatic or automatic
+                            binning modes for which no explicit or incomplete <varname>binsEdges</varname>
+                            or <varname>binsValues</varname> vector is provided as input.
+                            <itemizedlist>
+                                <listitem>
+                                    Continuous binning mode:
+                                    <itemizedlist>
+                                        <listitem>
+                                            The actual <varname>binsEdges</varname> is returned in
+                                            <varname>bins</varname>. It has the
+                                            <varname>Heights</varname> number of components, + 1
+                                            (position of the closing edge).
+                                        </listitem>
+                                        <listitem>
+                                            <para>
+                                                For encoded integers, decimal numbers, and complex numbers
+                                                <varname>Data</varname>, <varname>bins</varname> is of
+                                                decimal type. For text <varname>Data</varname>,
+                                                <varname>bins</varname> is of type text as well.
+                                            </para>
+                                        </listitem>
+                                        <listitem>
+                                            <para>
+                                                When marginal bins are required (see the
+                                                <varname>binsEdges</varname> description)
+                                                <literal>bins(1)</literal> and <literal>bins($)</literal>
+                                                return the actual boundaries of the whole binning range
+                                                used.
+                                            </para>
+                                        </listitem>
+                                    </itemizedlist>
+                                </listitem>
+                                <listitem>
+                                    Discrete categorial mode:
+                                    <para>
+                                        For polynomial <varname>Data</varname>, or
+                                        for other <varname>Data</varname> types used with the
+                                        <varname>"discrete"</varname> option: if no explicit
+                                        <varname>binsValues</varname> vector is provided,
+                                        <literal>histc()</literal> sets it to
+                                        <literal>unique(Data)(:)'</literal> and returns it as
+                                        <varname>bins</varname>.
+                                    </para>
+                                </listitem>
+                            </itemizedlist>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>inBin</term>
+                    <listitem>
+                        <para>
+                            Array of decimal integers having the sizes of <varname>Data</varname>.
+                            If <varname>Data</varname> is sparse-encoded, <varname>inBin</varname>
+                            is so as well.
+                        </para>
+                        <para>
+                            <literal>inBin(i,j)</literal> returns the index of the <varname>bins</varname>
+                            which <literal>Data(i,j)</literal> belongs to. If the value of
+                            <literal>Data(i,j)</literal> is out of bins, <literal>inBin(i,j)=0</literal>.
+                            Otherwise, <literal>Data(i,j)</literal> increments the
+                            <literal>Heights(inBin(i,j))</literal> counts by one unit.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsect2>
     </refsection>
-    <refsection role="description">
-        <title>Description</title>
-        <para>
-            This function computes a histogram of the <literal>data</literal> vector using the
-            classes <literal>x</literal>. When the number <literal>n</literal> of classes is provided
-            instead of <literal>x</literal>, the classes are chosen equally spaced and
-            <emphasis>x(1) = min(data) &lt; x(2) = x(1) + dx &lt; ... &lt; x(n+1) = max(data)</emphasis>
-            with <emphasis>dx = (x(n+1)-x(1))/n</emphasis>.
-        </para>
-        <para>
-            The classes are defined by <literal>C1 = [x(1), x(2)]</literal> and <literal>Ci = ( x(i), x(i+1)]</literal> for i &gt;= 2.
-            Noting <literal>Nmax</literal> the total number of <literal>data</literal> (Nmax = length(data))
-            and <literal>Ni</literal> the number of <literal>data</literal> components falling in
-            <literal>Ci</literal>, the value of the histogram for <literal>x</literal> in
-            <literal>Ci</literal> is equal to <emphasis>Ni/(Nmax (x(i+1)-x(i)))</emphasis> when
-            <literal>"normalized"</literal> is selected and else, simply equal to <emphasis>Ni</emphasis>.
-            When normalization occurs the histogram verifies:
-        </para>
-        <para>
-            <latex style="display"><![CDATA[ \int_{x(1)}^{x(n+1)}h(x)\,\mathrm{d}x=1 ]]></latex>
-        </para>
-        <para>
-            when <emphasis>x(1)&lt;=min(data)</emphasis> and <emphasis>max(data) &lt;= x(n+1)</emphasis>
-        </para>
-    </refsection>
-    <refsection role="examples">
+     <refsection role="examples">
         <title>Examples</title>
-        <simplelist>
-            <member> Example #1: variations around a histogram of a gaussian random sample
-                <programlisting role="example"><![CDATA[
-// The gaussian random sample
-d = rand(1, 10000, 'normal');
+        <refsect2>
+            <title>with decimal numbers:</title>
+            <programlisting role="example"><![CDATA[
+data = [1 1 1 2 2 3 4 4 5 5 5 6 6 7 8 8 9 9 9];
+N = size(data,"*")   // ==19
 
-h = histc(20, d, normalization=%f);
-sum(h)   // = 10000
-// We use histplot to show a graphic representation
-clf(); histplot(20, d, normalization=%f);
+// Default binning; "sqrt": sqrt(19) => 4. .. => 4 bins
+[h, j, b, i] = histc(data)
+// expected: h = [6 5 3 5] = href
+// expected: b = [1 3 5 7 9] bins edges
+// expected: i = [1 1 1 1 1 1 2 2 2 2 2 3 3 3 4 4 4 4 4]  d memberships to bins
+histc(data, , "countsNorm")   // Expected: href/N
+histc(data, , "density")      // Expected: href/2, 2 being the bins width
+histc(data, , "densityNorm")  // Expected: href/N/2
 
-// Normalized histogram (probability density)
-h = histc(20, d);
-dx = (max(d)-min(d))/20;  sum(h)*dx   // = 1
-clf(); histplot(20, d);
+// Automatic Sturges binning
+[h, j, b, i] = histc(data,"sturges")    // h = [5 1 5 2 1 5]
+                                        // b = [3 7 11 15 19 23 27] / 3
+                                        // i = [1 1 1 1 1 2 3 3 3 3 3 4 4 5 6 6 6 6 6]
+
+// Explicit bins edges, with marginal bins
+// ---------------------------------------
+data = [1 1 1 2 2 3 4 4 5 5 5 6 6 7 8 8 9 9 9];
+be = [-%inf 3 5 7 %inf];
+[href, j, b, i] = histc(data, be)   // href = [6 5 3 5] => sum N = 19
+                                    // b = [1 3 5 7 9]  // bins completed with actual data bounds
+                                    // i = [1 1 1 1 1 1 2 2 2 2 2 3 3 3 4 4 4 4 4]
+histc(data, be, "countsNorm")       // href/N
+histc(data, be, "density")          // href/2   bins width = 2: see b
+histc(data, be, "densityNorm")      // href/N/2
+
+// Explicit bins edges, with outsiders
+// -----------------------------------
+data = [1 1 1 2 2 3 4 4 5 5 5 6 6 7 8 8 9 9 9]; // still the same
+be = [2, 5.5, 7];   // Bins edges (2 bins)
+[href, jref, b, i] = histc(d, be)   // href = [8 3]   jref = [3 5 0 0 0] = [leftout, rightout, ..]
+                                    // i = [0 0 0 1 1 1 1 1 1 1 1 2 2 2 0 0 0 0 0]
+histc(data, be, "countsNorm")                       // href / 11
+histc(data, be, "countsNorm, normWith: leftout")    // href / 14
+histc(data, be, "countsNorm, normWith: rightout")   // href / 16
+histc(data, be, "countsNorm, normWith: out")        // href / 19
+histc(data, be, "density")                          // href ./ diff(be)
+histc(data, be, "densityNorm")                      // href ./ diff(be) / 11
+histc(data, be, "densityNorm, normWith: leftout")   // href ./ diff(be) / 14
+histc(data, be, "densityNorm, normWith: rightout")  // href ./ diff(be) / 16
+histc(data, be, "densityNorm, normWith: all");      // href ./ diff(be) / 19
+
+// With Nan and Inf values
+// -----------------------
+data = [1 1 1 2 2 3 4 4 5 5 5 6 6 7 8 8 9 9 9];
+data = [%nan %inf, data, %nan %nan -%inf];
+N = size(data,"*");         // 24
+be = [2, 4.5, 7];           // Set bins edges (2 bins)
+[href, jref, b, iref] = histc(data, be) //  href = [5 6]  jref = [3 5 0 3 2];
+                            // continuous mode: jokers = [leftout, rightout, zeros, nan, inf]
+                            // iref = [0 0 0 0 0 1 1 1 1 1 2 2 2 2 2 2 0 0 0 0 0 0 0 0]  memberships
+[h, j] = histc(data, be, "countsNorm")                          // Expected: href/11, jref/11
+[h, j] = histc(data, be, "countsNorm, normWith: nan")           // Expected: href/14, jref/14
+[h, j] = histc(data, be, "countsNorm, normWith: inf")           // Expected: href/13, jref/13
+[h, j] = histc(data, be, "countsNorm, normWith: inf nan")       // Expected: href/16, jref/16
+[h, j] = histc(data, be, "countsNorm, normWith: leftout nan")   // Expected: href/17, jref/17
+[h, j] = histc(data, be, "countsNorm, normWith: rightout inf")  // Expected: href/18, jref/18
+[h, j] = histc(data, be, "countsNorm, normWith: out inf")       // Expected: href/21, jref/21
+[h, j] = histc(data, be, "countsNorm, normWith: all")           // Expected: href/24, jref/24
+
+// Normalized densities over a Bins width = 2.5 (see be)
+[h, j] = histc(data, be, "densityNorm")                         // Expected: href/11/2.5, jref/11
+[h, j] = histc(data, be, "densityNorm, normWith: nan")          // Expected: href/14/2.5, jref/14
+[h, j] = histc(data, be, "densityNorm, normWith: inf")          // Expected: href/13/2.5, jref/13
+[h, j] = histc(data, be, "densityNorm, normWith: inf nan")      // Expected: href/16/2.5, jref/16
+[h, j] = histc(data, be, "densityNorm, normWith: leftout nan")  // Expected: href/17/2.5, jref/17
+[h, j] = histc(data, be, "densityNorm, normWith: rightout inf") // Expected: href/18/2.5, jref/18
+[h, j] = histc(data, be, "densityNorm, normWith: all")          // Expected: href/24/2.5, jref/24
+     ]]></programlisting>
+        </refsect2>
+        <refsect2>
+            <title>with texts:</title>
+            <programlisting role="example"><![CDATA[
+histc(["a" "c" "a" "a" "b" "c"])    //  [3 1 2]
+
+t = [
+"c" "n" "h" "i" "b" "i" "f" "i" "p" "l" "p" "d" "f" "i" "l"
+"b" "m" "e" "o" "o" "f" "p" "o" "h" "f" "h" "h" "c" "k" "o"
+"p" "f" "k" "a" "j" "o" "j" "d" "h" "h" "n" "m" "o" "l" "n"
+"h" "b" "o" "l" "j" "n" "o" "i" "g" "i" "a" "a" "j" "d" "p"
+ ];
+// With default discrete bins
+// --------------------------
+[h,j,b,i] = histc(t)  // h = [3  3 2 3 1 5 1 7 6 4 2 4 2 4 8 5]
+                      // b = "a" b c d e f g h i j k l m n o p
+iref = [
+3   14  8   9   2   9   6   9   16  12  16  4   6   9   12
+2   13  5   15  15  6   16  15  8   6   8   8   3   11  15
+16  6   11  1   10  15  10  4   8   8   14  13  15  12  14
+8   2   15  12  10  14  15  9   7   9   1   1   10  4   16
+];
+
+// With given discrete bins WITHOUT "" bins
+// ----------------------------------------
+t2 = t;
+t2([7 13 19 26 32 39 43]) = "";
+// --> t2  =
+// c  n  h     b  i  f  i  p  l  p  d  f  i  l
+// b  m  e  o  o  f     o  h  f  h  h  c  k  o
+// p     k  a     o  j  d  h        m  o  l  n
+// h  b  o  l  j  n  o     g  i  a  a  j  d  p
+//
+// b =  '' a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p
+// h =  7  3  3  2  3  1  4  1  6  4  3  2  4  2  3  8  4
+
+[h, j, b, i] = histc(t2, ["a" "e" "i" "o"], "discrete")
+                                            // h = [3 1 4 8];  N = 16
+                                            // j = [37 0 7] = [out, 0, #""]
+// i = [    // memberships
+// 0  0  0  0  0  3  0  3  0  0  0  0  0  3  0
+// 0  0  2  4  4  0  0  4  0  0  0  0  0  0  4
+// 0  0  0  1  0  4  0  0  0  0  0  0  4  0  0
+// 0  0  4  0  0  0  4  0  0  3  1  1  0  0  0
+// ];
+
+// With continuous and marginal bins: "" <=> -inf , "~~" <=> Inf (regular ascii)
+// -----------------------------------------------------------------------------
+[h,j,b,i] = histc(t, ["" "c" "e" "g" "i" "k" "m" "~~"])
+                    // h = [8 4 6 13 6 6 17]    j = [0 0 0]
+// i = [    // memberships
+// 1  7  4  4  1  4  3  4  7  6  7  2  3  4  6
+// 1  6  2  7  7  3  7  7  4  3  4  4  1  5  7
+// 7  3  5  1  5  7  5  2  4  4  7  6  7  6  7
+// 4  1  7  6  5  7  7  4  3  4  1  1  5  2  7
+// ];
+
+// Continuous bins. Data WITH ""
+// -----------------------------
+// t2  =
+// c  n  h     b  i  f  i  p  l  p  d  f  i  l
+// b  m  e  o  o  f     o  h  f  h  h  c  k  o
+// p     k  a     o  j  d  h        m  o  l  n
+// h  b  o  l  j  n  o     g  i  a  a  j  d  p
+//
+// b =  '' a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p
+// h =  7  3  3  2  3  1  4  1  6  4  3  2  4  2  3  8  4
+binsEdges = ["e" "f" "g" "h" "i" "j"];
+[href, jref, b, i] = histc(t2, binsEdges)   // href=[5 1 6 4 3]; N = sum(href) = 19
+                                            // jref=[11  23  7]; [leftout rightout ""]
+
+[h,j,b,i] = histc(t2, binsEdges, "countsNorm,normWith: leftout")
+                                            // h = href / (N+jref(1)),   j = jref / (N+jref(1))
+[h,j,b,i] = histc(t2, binsEdges, "countsNorm,normWith: rightout")
+                                            // h = href / (N+jref(2)),  j = jref / (N+jref(2))
+[h,j,b,i] = histc(t2, binsEdges, "countsNorm,normWith: out");
+                                            // h = href / sum([N jref(1:2)]), j = jref / sum([N jref(1:2)])
+[h,j,b,i] = histc(t2, binsEdges, "countsNorm,normWith: empty")
+                                            // h = href / (N+jref(3)), j = jref/(N+jref(3))
+[h,j,b,i] = histc(t2, binsEdges,"countsNorm,normWith: out empty")
+                                            // h = href / sum([N jref]), j = jref / sum([N jref])
+[h,j,b,i] = histc(t2, binsEdges, "countsNorm,normWith: all")
+                                            // h = href / sum([N jref]), j = jref/sum([N jref])
+     ]]></programlisting>
+        </refsect2>
+        <refsect2>
+            <title>with polynomials:</title>
+            <programlisting role="example"><![CDATA[
+histc([%z 2+%z %z])                                     // [2 1]
+histc([%z 2+%z %z],, "countsnorm")                      // [2 1] / 3
+histc([%z 2+%z %z %nan],, "countsnorm")                 // [2 1] / 3
+histc([%z 2+%z %z %nan],, "countsnorm, normWith: Nan")  // [2 1] / 4
+// Data order is kept:
+histc([2+%z %z %z ]) == [1 2]
 ]]></programlisting>
-                <scilab:image>
-                    d = rand(1, 10000, 'normal');
-                    h = histc(20, d);
-                    clf(); histplot(20, d);
-                </scilab:image>
-            </member>
-            <member>
-                Example #2: histogram of a binomial (B(6,0.5)) random sample
-                <programlisting role="example"><![CDATA[
-d = grand(1000,1,"bin", 6, 0.5);
-c = linspace(-0.5,6.5,8);
-clf()
+        </refsect2>
 
-subplot(2,1,1)
-h = histc(c, d);
-histplot(c, d, style=2);
-xtitle(_("Normalized histogram"))
-
-subplot(2,1,2)
-h = histc(c, d, normalization=%f);
-histplot(c, d, normalization=%f, style=5);
-xtitle(_("Non normalized histogram"))
-]]></programlisting>
-                <scilab:image localized="true">
-                    d = grand(1000,1,"bin", 6, 0.5);
-                    c = linspace(-0.5,6.5,8);
-                    clf()
-                    subplot(2,1,1)
-                    h = histc(c, d);
-                    histplot(c, d, style=2);
-                    xtitle(_("Normalized histogram"))
-                    subplot(2,1,2)
-                    h = histc(c, d, normalization=%f)
-                    histplot(c, d, normalization=%f, style=5);
-                    xtitle(_("Non normalized histogram"))
-                </scilab:image>
-            </member>
-            <member>
-                Example #3: histogram of an exponential random sample
-                <programlisting role="example"><![CDATA[
-lambda = 2;
-X = grand(100000,1,"exp", 1/lambda);
-Xmax = max(X);
-h = histc(40, X);
-
-clf()
-histplot(40, X, style=2);
-x = linspace(0, max(Xmax), 100)';
-plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
-legend([_("exponential random sample histogram") _("exact density curve")]);
-]]></programlisting>
-                <scilab:image localized="true">
-                    lambda = 2;
-                    X = grand(100000,1,"exp", 1/lambda);
-                    Xmax = max(X);
-                    h = histc(40, X);
-                    clf()
-                    histplot(40, X, style=2);
-                    x = linspace(0, max(Xmax), 100)';
-                    plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
-                    legend([_("exponential random sample histogram") _("exact density curve")]);
-                </scilab:image>
-            </member>
-            <member>
-                Example #4: the frequency polygon chart and the histogram of a gaussian random sample
-                <programlisting role="example"><![CDATA[
-n = 10;
-data = rand(1, 1000, "normal");
-h = histc(n, data);
-
-clf(), histplot(n, data, style=12, polygon=%t);
-legend([_("normalized histogram") _("frequency polygon chart")], "lower_caption");
-]]></programlisting>
-                <scilab:image localized="true">
-                    n = 10;
-                    data = rand(1, 1000, "normal");
-                    h = histc(n, data);
-                    clf(); histplot(n, data, style=12, polygon=%t);
-                    legend([_("normalized histogram") _("frequency polygon chart")],"lower_caption");
-                </scilab:image>
-            </member>
-        </simplelist>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -235,10 +1032,31 @@ legend([_("normalized histogram") _("frequency polygon chart")], "lower_caption"
                 <link linkend="hist3d">hist3d</link>
             </member>
             <member>
-                <link linkend="plot2d">plot2d</link>
+                <link linkend="bar">bar</link>
+            </member>
+            <member>
+                <link linkend="barh">barh</link>
+            </member>
+            <member>
+                <link linkend="plot2d2">plot2d2</link>
             </member>
             <member>
                 <link linkend="dsearch">dsearch</link>
+            </member>
+            <member>
+                <link linkend="members">members</link>
+            </member>
+            <member>
+                <link linkend="grep">grep</link>
+            </member>
+            <member>
+                <link linkend="strcmp">strcmp</link>
+            </member>
+            <member>
+                <link linkend="isnan">isnan</link>
+            </member>
+            <member>
+                <link linkend="isinf">isinf</link>
             </member>
         </simplelist>
     </refsection>
@@ -248,7 +1066,68 @@ legend([_("normalized histogram") _("frequency polygon chart")], "lower_caption"
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revdescription>
-                    Introduction
+                    histc() introduced
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    histc() reforged:
+                    <itemizedlist>
+                        <listitem>
+                            Data and nbins input arguments are commuted.
+                        </listitem>
+                        <listitem>
+                            New accepted Data types: complex numbers, sparse decimal or complex
+                            matrices, polynomials, texts.
+                        </listitem>
+                        <listitem>
+                            Histogram binning:
+                            <itemizedlist>
+                                <listitem>
+                                    binsWidth and binsAlgo = ["sqrt" "sturges" "freediac"] input
+                                    arguments added.
+                                </listitem>
+                                <listitem>
+                                    histc() can now build categorial histograms: "discrete" option
+                                    added; binsValues input arguments added.
+                                </listitem>
+                                <listitem>
+                                    Marginal bins are now handled with binsEdges(1)=-%inf and
+                                    binsEdges($)=%inf, or with binsEdges(1)="" and binsEdges($)="~"
+                                </listitem>
+                            </itemizedlist>
+                        </listitem>
+                        <listitem>
+                            Histogram scaling:
+                            <itemizedlist>
+                                <listitem>
+                                    normalization option removed
+                                </listitem>
+                                <listitem>
+                                    "counts", "countsNorm", "density" and "densityNorm" options added.
+                                </listitem>
+                                <listitem>
+                                    "normWith:" option added, with flags among "leftout",
+                                    "rightout", "out", "inf", "nan", "zeros", "empty", "all"
+                                    possible values.
+                                </listitem>
+                                <listitem>
+                                    "counts" is now the default scaling mode, instead of
+                                    "densityNorm" in Scilab 5.5.0 and 5.5.1, and
+                                    "countsNorm" in Scilab 5.5.2. The backward compatibility to the
+                                    former "densityNorm" default Scilab 5.5 mode is ensured.
+                                </listitem>
+                            </itemizedlist>
+                        </listitem>
+                        <listitem>
+                            jokers and bins output arguments are added and inserted after the
+                            histogram heights. The backward compatibility to Scilab 5.5 is ensured
+                            for the ind result.
+                        </listitem>
+                        <listitem>Extensive unit tests added.</listitem>
+                        <listitem>Help page rewritten.</listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

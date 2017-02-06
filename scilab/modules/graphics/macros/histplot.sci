@@ -4,7 +4,7 @@
 // Copyright (C) 2010 - Samuel Gougeon
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
 // Copyright (C) 2013 - A. Khorshidi (new option)
-// Copyright (C) 2013 - Scilab Enterpriss - Paul Bignier: added output
+// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added output
 // Copyright (C) 2016 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
@@ -90,7 +90,13 @@ function [y, ind] = histplot(n,data,style,strf,leg,rect,nax,logflag,frameflag,ax
             opt_arg_seq = opt_arg_seq +","+ opt_arg + "=" + opt_arg
         end
     end
-    [y, ind] = histc(n, data, normalization);
+
+    if normalization then
+        tmp = "densityNorm,normWith: all"
+    else
+        tmp = "counts"
+    end
+    [y, tmp, tmp, ind] = histc(data, n, tmp);
 
     if length(n) == 1 then  // The number of classes is provided
         x = linspace(min(data), max(data), n+1); // Class boundary
