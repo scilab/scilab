@@ -141,7 +141,7 @@ types::Function::ReturnValue sci_ltitr(types::typed_list &in, int _iRetCount, ty
     pdblA   = pDblA->get();
     iRowsA  = pDblA->getRows();
 
-    if (pDblA->getRows() != pDblB->getRows())
+    if (iRowsA != pDblB->getRows())
     {
         Scierror(60, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "ltitr");
         return types::Function::Error;
@@ -149,7 +149,7 @@ types::Function::ReturnValue sci_ltitr(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() == 4)
     {
-        if (pDblX0->getRows() != pDblA->getRows() || pDblX0->getCols() != 1)
+        if (pDblX0->getRows() != iRowsA || pDblX0->getCols() != 1)
         {
             Scierror(60, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "ltitr");
             return types::Function::Error;
@@ -183,7 +183,7 @@ types::Function::ReturnValue sci_ltitr(types::typed_list &in, int _iRetCount, ty
     {
         types::Double* pDblOutXf = new types::Double(iRowsA, 1);
         double* pdblOutXf = pDblOutXf->get();
-        C2F(dcopy)(&iRowsA, pdblWgr + iColsU, &iOne, pdblOutXf, &iOne);
+        C2F(dcopy)(&iRowsA, pdblWgr + ig, &iOne, pdblOutXf, &iOne);
         out.push_back(pDblOutXf);
     }
 
