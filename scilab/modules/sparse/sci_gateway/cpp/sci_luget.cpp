@@ -1,17 +1,17 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
- *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
+*
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+*/
 
 #include "sparse_gw.hxx"
 #include "function.hxx"
@@ -31,35 +31,34 @@ extern "C"
 }
 types::Function::ReturnValue sci_luget(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    double abstol   = 0;
-    double reltol   = 0.001;
-    int nrank       = 0;
-    int ierr        = 0;
-    int n1          = 0;
-    int nl          = 0;
-    int nu          = 0;
-    int tp          = 0;
-    int nonZerosP   = 0;
-    int nonZerosL   = 0;
-    int nonZerosU   = 0;
-    int nonZerosQ   = 0;
+    double abstol = 0;
+    double reltol = 0.001;
+    int nrank = 0;
+    int ierr = 0;
+    int n1 = 0;
+    int nl = 0;
+    int nu = 0;
+    int nonZerosP = 0;
+    int nonZerosL = 0;
+    int nonZerosU = 0;
+    int nonZerosQ = 0;
 
-    bool cplx           = false;
-    const void* pData   = NULL;
+    bool cplx = false;
+    const void* pData = NULL;
 
-    double* dblP    = NULL;
-    double* dblL    = NULL;
-    double* dblU    = NULL;
-    double* dblQ    = NULL;
-    int* itemsRowP  = NULL;
-    int* itemsRowL  = NULL;
-    int* itemsRowU  = NULL;
-    int* itemsRow   = NULL;
-    int* itemsRowQ  = NULL;
-    int* fmatindex  = NULL;
+    double* dblP = NULL;
+    double* dblL = NULL;
+    double* dblU = NULL;
+    double* dblQ = NULL;
+    int* itemsRowP = NULL;
+    int* itemsRowL = NULL;
+    int* itemsRowU = NULL;
+    int* itemsRow = NULL;
+    int* itemsRowQ = NULL;
+    int* fmatindex = NULL;
 
     //check input parameters
-    if (in.size() != 1 )
+    if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d  expected.\n"), "luget", 1);
         return types::Function::Error;
@@ -107,46 +106,30 @@ types::Function::ReturnValue sci_luget(types::typed_list &in, int _iRetCount, ty
 
     C2F(luget1)(fmatindex, itemsRowP, dblP, itemsRowL, dblL, itemsRowU, dblU, itemsRowQ, dblQ, &ierr);
 
-    tp = n1;
-    for (int i = 0; i < n1; i++)
-    {
-        for (int j = 0; j < itemsRowP[i]; j++)
-        {
-            p->set(i, itemsRowP[j + tp] - 1, dblP[j + tp - n1], true);
-        }
-        tp += itemsRowP[i];
-    }
+    int tpL = n1;
+    int tpU = n1;
 
-    tp = n1;
     for (int i = 0; i < n1; i++)
     {
+        p->set(i, itemsRowP[i + n1] - 1, dblP[i], false);
+        q->set(i, itemsRowQ[i + n1] - 1, dblQ[i], false);
+
         for (int j = 0; j < itemsRowL[i]; j++)
         {
-
-            l->set(i, itemsRowL[j + tp] - 1, dblL[j + tp - n1], true);
+            l->set(i, itemsRowL[j + tpL] - 1, dblL[j + tpL - n1], false);
         }
-        tp += itemsRowL[i];
-    }
-
-    tp = n1;
-    for (int i = 0; i < n1; i++)
-    {
+        tpL += itemsRowL[i];
         for (int j = 0; j < itemsRowU[i]; j++)
         {
-            u->set(i, itemsRowU[j + tp] - 1, dblU[j + tp - n1], true);
+            u->set(i, itemsRowU[j + tpU] - 1, dblU[j + tpU - n1], false);
         }
-        tp += itemsRowU[i];
+        tpU += itemsRowU[i];
     }
 
-    tp = n1;
-    for (int i = 0; i < n1; i++)
-    {
-        for (int j = 0; j < itemsRowQ[i]; j++)
-        {
-            q->set(i, itemsRowQ[j + tp] - 1, dblQ[j + tp - n1], true);
-        }
-        tp += itemsRowQ[i];
-    }
+    p->finalize();
+    q->finalize();
+    u->finalize();
+    l->finalize();
 
     out.push_back(p);
     out.push_back(l);

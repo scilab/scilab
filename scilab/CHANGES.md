@@ -401,6 +401,7 @@ Bug Fixes
 * [#14192](http://bugzilla.scilab.org/show_bug.cgi?id=14192): `g_margin` error-ed for double integrator.
 * [#14278](http://bugzilla.scilab.org/show_bug.cgi?id=14278): `ltitr` returned an incorrect xf output value.
 * [#14306](http://bugzilla.scilab.org/show_bug.cgi?id=14306): Comparisons `>` and `>=` between integers of mismatching inttypes were not implemented.
+* [#14330](http://bugzilla.scilab.org/show_bug.cgi?id=14330): luget was really slow.
 * [#14367](http://bugzilla.scilab.org/show_bug.cgi?id=14367): `edit_curv` failed opening due to a `[]+1` operation.
 * [#14379](http://bugzilla.scilab.org/show_bug.cgi?id=14379): Problem with lists of functions having 2 arguments.
 * [#14395](http://bugzilla.scilab.org/show_bug.cgi?id=14395): `dir` displayed a []+".." warning when no subdirectory exists.

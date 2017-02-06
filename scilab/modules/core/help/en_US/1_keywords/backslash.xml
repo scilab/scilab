@@ -92,7 +92,7 @@ A*x-b, A*y-b
 // A benchmark of several linear solvers
 
 [A,descr,ref,mtype] = ReadHBSparse(SCI+..
-   "/modules/umfpack/examples/bcsstk24.rsa");
+   "/modules/umfpack/demos/bcsstk24.rsa");
 
 b = zeros(size(A,1),1);
 
