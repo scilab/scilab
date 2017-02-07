@@ -444,6 +444,7 @@ Bug Fixes
 * [#14714](http://bugzilla.scilab.org/show_bug.cgi?id=14714): Crash/Leak when deleting datatip
 * [#14743](http://bugzilla.scilab.org/show_bug.cgi?id=14743): `test_run(.., "show_error")` did not document "failed: Slave Scilab exited with error code #" errors.
 * [#14758](http://bugzilla.scilab.org/show_bug.cgi?id=14758): xstringb creates a figure when no exists.
+* [#14761](http://bugzilla.scilab.org/show_bug.cgi?id=14761): `||` misworked when LHS is %f or zeros. `&&` misworked when LHS is %t or non-zeros
 * [#14779](http://bugzilla.scilab.org/show_bug.cgi?id=14779): When used logarithmic mode using coordinates <=0, xsegs crashed Scilab.
 * [#14784](http://bugzilla.scilab.org/show_bug.cgi?id=14784): Setting field of graphics handle using children($) failed.
 * [#14796](http://bugzilla.scilab.org/show_bug.cgi?id=14796): `ind2sub(dims, [])` returned [] in version 6. Warnings due to a `[]+1` operation occurred
