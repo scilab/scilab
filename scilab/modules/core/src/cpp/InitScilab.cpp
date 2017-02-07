@@ -79,6 +79,7 @@ extern "C"
 #include "MutexClosingScilab.h"
 #include "WinConsole.h"
 #include "SignalManagement.h"
+#include "splashScreen.h"
 #else
 #include "signal_mgmt.h"
 #include "initConsoleMode.h"
@@ -188,8 +189,17 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     checkForLinkerErrors();
 
 #ifdef _MSC_VER
+
     //get current console window and hide it
     int scilabMode = getScilabMode();
+
+#ifndef _DEBUG
+    if (scilabMode == SCILAB_STD && _pSEI->pstFile == NULL && _pSEI->pstExec == NULL)
+    {
+        splashScreen();
+    }
+#endif
+
     if (scilabMode == SCILAB_STD || scilabMode == SCILAB_NW || scilabMode == SCILAB_API)
     {
         CreateScilabHiddenWndThread();
