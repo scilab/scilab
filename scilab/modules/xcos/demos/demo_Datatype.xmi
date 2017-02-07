@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xcos:Diagram xmi:version="2.0" xsi:schemaLocation="org.scilab.modules.xcos xcos.ecore" title="demo_Datatype" path="" debugLevel="0" version="scicos4.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:xcos="org.scilab.modules.xcos">
+ <context><![CDATA[;]]></context>
+ <child xsi:type="xcos:Block" uid="-340058e7:124a0e147ac:-7c59" parentDiagram="/" description="&lt;html&gt;&lt;body&gt; MScope &lt;/body&gt;&lt;/html&gt;" label="" style="mirror=false;CMSCOPE;rotation=0;flip=false" interfaceFunction="CMSCOPE" functionName="cmscope" functionAPI="4" dependsOnU="1" blocktype="c">
+  <geometry x="520" y="150" width="40" height="40"/>
+  <expression><![CDATA[1 1 1]]></expression>
+  <expression><![CDATA[1 3 5 7 9 11 13 15]]></expression>
+  <expression><![CDATA[-1]]></expression>
+  <expression><![CDATA[[]]]></expression>
+  <expression><![CDATA[[]]]></expression>
+  <expression><![CDATA[-210 -210 -210]]></expression>
+  <expression><![CDATA[210 210 210]]></expression>
+  <expression><![CDATA[30 30 30]]></expression>
+  <expression><![CDATA[20]]></expression>
+  <expression><![CDATA[0]]></expression>
+  <expression><![CDATA[Data Type]]></expression>
+  <nzcross>0</nzcross>
+  <nmode>0</nmode>
+  <in uid="3374eeac:126b1b70a8a:-7e27" sourceBlock="-340058e7:124a0e147ac:-7c59" kind="in" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e0b" style="mirror=false;ExplicitInputPort;rotation=0;flip=false;align=left;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="1" columns="1"/>
+  </in>
+  <in uid="3374eeac:126b1b70a8a:-7e26" sourceBlock="-340058e7:124a0e147ac:-7c59" kind="in" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e06" style="mirror=false;ExplicitInputPort;rotation=0;flip=false;align=left;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="1" columns="1"/>
+  </in>
+  <in uid="3374eeac:126b1b70a8a:-7e25" sourceBlock="-340058e7:124a0e147ac:-7c59" kind="in" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e04" style="mirror=false;ExplicitInputPort;rotation=0;flip=false;align=left;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="1" columns="1"/>
+  </in>
+  <ein uid="3374eeac:126b1b70a8a:-7e24" sourceBlock="-340058e7:124a0e147ac:-7c59" kind="ein" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e0c" style="mirror=false;ControlPort;rotation=90;flip=false;align=center;verticalAlign=top;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </ein>
+  <rpar>0</rpar>
+  <rpar>30</rpar>
+  <rpar>30</rpar>
+  <rpar>30</rpar>
+  <rpar>-210</rpar>
+  <rpar>210</rpar>
+  <rpar>-210</rpar>
+  <rpar>210</rpar>
+  <rpar>-210</rpar>
+  <rpar>210</rpar>
+  <ipar>-1</ipar>
+  <ipar>3</ipar>
+  <ipar>20</ipar>
+  <ipar>-1</ipar>
+  <ipar>-1</ipar>
+  <ipar>-1</ipar>
+  <ipar>-1</ipar>
+  <ipar>1</ipar>
+  <ipar>1</ipar>
+  <ipar>1</ipar>
+  <ipar>1</ipar>
+  <ipar>3</ipar>
+  <ipar>5</ipar>
+  <ipar>0</ipar>
+ </child>
+ <child xsi:type="xcos:Block" uid="-340058e7:124a0e147ac:-7c54" parentDiagram="/" description="&lt;html&gt;&lt;body&gt; Convert to &lt;/body&gt;&lt;/html&gt;" label="" style="mirror=false;rotation=0;CONVERT;flip=false" interfaceFunction="CONVERT" functionName="convert" functionAPI="4" dependsOnU="1" blocktype="c">
+  <geometry x="170" y="190" width="90" height="40"/>
+  <expression><![CDATA[1]]></expression>
+  <expression><![CDATA[5]]></expression>
+  <expression><![CDATA[1]]></expression>
+  <nzcross>0</nzcross>
+  <nmode>0</nmode>
+  <in uid="3374eeac:126b1b70a8a:-7e22" sourceBlock="-340058e7:124a0e147ac:-7c54" kind="in" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e0a" style="mirror=false;ExplicitInputPort;rotation=0;flip=false;align=left;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </in>
+  <out uid="3374eeac:126b1b70a8a:-7e21" sourceBlock="-340058e7:124a0e147ac:-7c54" kind="out" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e07" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false;align=right;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </out>
+  <ipar>40</ipar>
+ </child>
+ <child xsi:type="xcos:Block" uid="-340058e7:124a0e147ac:-7c51" parentDiagram="/" description="&lt;html&gt;&lt;body&gt; Convert to &lt;/body&gt;&lt;/html&gt;" label="" style="mirror=false;rotation=0;CONVERT;flip=false" interfaceFunction="CONVERT" functionName="convert" functionAPI="4" dependsOnU="1" blocktype="c">
+  <geometry x="170" y="280" width="90" height="40"/>
+  <expression><![CDATA[1]]></expression>
+  <expression><![CDATA[8]]></expression>
+  <expression><![CDATA[1]]></expression>
+  <nzcross>0</nzcross>
+  <nmode>0</nmode>
+  <in uid="3374eeac:126b1b70a8a:-7e1f" sourceBlock="-340058e7:124a0e147ac:-7c51" kind="in" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e08" style="mirror=false;ExplicitInputPort;rotation=0;flip=false;align=left;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </in>
+  <out uid="3374eeac:126b1b70a8a:-7e1e" sourceBlock="-340058e7:124a0e147ac:-7c51" kind="out" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e05" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false;align=right;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </out>
+  <ipar>43</ipar>
+ </child>
+ <child xsi:type="xcos:Block" uid="-340058e7:124a0e147ac:-7c4e" parentDiagram="/" description="SPLIT_f" label="SPLIT_f" style="mirror=false;SPLIT_f;rotation=0;flip=false" interfaceFunction="SPLIT_f" functionName="" functionAPI="0" dependsOnU="1" blocktype="c">
+  <geometry x="1.365000E+02" y="2.065000E+02" width="7" height="7"/>
+  <nzcross>0</nzcross>
+  <nmode>0</nmode>
+  <in uid="3374eeac:126b1b70a8a:-7e1c" sourceBlock="-340058e7:124a0e147ac:-7c4e" kind="in" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e09" style="mirror=false;ExplicitInputPort;rotation=0;flip=false;align=left;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </in>
+  <out uid="3374eeac:126b1b70a8a:-7e1b" sourceBlock="-340058e7:124a0e147ac:-7c4e" kind="out" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e0b" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false;align=right;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </out>
+  <out uid="3374eeac:126b1b70a8a:-7e1a" sourceBlock="-340058e7:124a0e147ac:-7c4e" kind="out" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e0a" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false;align=right;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </out>
+  <out uid="3374eeac:126b1b70a8a:-7e19" sourceBlock="-340058e7:124a0e147ac:-7c4e" kind="out" implicit="false" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false;align=right;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </out>
+ </child>
+ <child xsi:type="xcos:Block" uid="-340058e7:124a0e147ac:-7c49" parentDiagram="/" description="SPLIT_f" label="SPLIT_f" style="mirror=false;SPLIT_f;rotation=0;flip=false" interfaceFunction="SPLIT_f" functionName="" functionAPI="0" dependsOnU="1" blocktype="c">
+  <geometry x="1.365000E+02" y="2.065000E+02" width="7" height="7"/>
+  <nzcross>0</nzcross>
+  <nmode>0</nmode>
+  <in uid="3374eeac:126b1b70a8a:-7e17" sourceBlock="-340058e7:124a0e147ac:-7c49" kind="in" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e0d" style="mirror=false;ExplicitInputPort;rotation=0;flip=false;align=left;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </in>
+  <out uid="3374eeac:126b1b70a8a:-7e16" sourceBlock="-340058e7:124a0e147ac:-7c49" kind="out" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e09" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false;align=right;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </out>
+  <out uid="3374eeac:126b1b70a8a:-7e15" sourceBlock="-340058e7:124a0e147ac:-7c49" kind="out" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e08" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false;align=right;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </out>
+  <out uid="3374eeac:126b1b70a8a:-7e14" sourceBlock="-340058e7:124a0e147ac:-7c49" kind="out" implicit="false" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false;align=right;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </out>
+ </child>
+ <child xsi:type="xcos:Block" uid="-340058e7:124a0e147ac:-7c44" parentDiagram="/" description="&lt;html&gt;&lt;body&gt; Convert to &lt;/body&gt;&lt;/html&gt;" label="" style="mirror=false;rotation=0;CONVERT;flip=false" interfaceFunction="CONVERT" functionName="convert" functionAPI="4" dependsOnU="1" blocktype="c">
+  <geometry x="310" y="190" width="80" height="40"/>
+  <expression><![CDATA[5]]></expression>
+  <expression><![CDATA[1]]></expression>
+  <expression><![CDATA[0]]></expression>
+  <nzcross>0</nzcross>
+  <nmode>0</nmode>
+  <in uid="3374eeac:126b1b70a8a:-7e12" sourceBlock="-340058e7:124a0e147ac:-7c44" kind="in" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e07" style="mirror=false;ExplicitInputPort;rotation=0;flip=false;align=left;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </in>
+  <out uid="3374eeac:126b1b70a8a:-7e11" sourceBlock="-340058e7:124a0e147ac:-7c44" kind="out" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e06" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false;align=right;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </out>
+  <ipar>18</ipar>
+ </child>
+ <child xsi:type="xcos:Block" uid="-340058e7:124a0e147ac:-7c41" parentDiagram="/" description="&lt;html&gt;&lt;body&gt; Convert to &lt;/body&gt;&lt;/html&gt;" label="" style="mirror=false;rotation=0;CONVERT;flip=false" interfaceFunction="CONVERT" functionName="convert" functionAPI="4" dependsOnU="1" blocktype="c">
+  <geometry x="310" y="280" width="80" height="40"/>
+  <expression><![CDATA[8]]></expression>
+  <expression><![CDATA[1]]></expression>
+  <expression><![CDATA[0]]></expression>
+  <nzcross>0</nzcross>
+  <nmode>0</nmode>
+  <in uid="3374eeac:126b1b70a8a:-7e0f" sourceBlock="-340058e7:124a0e147ac:-7c41" kind="in" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e05" style="mirror=false;ExplicitInputPort;rotation=0;flip=false;align=left;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </in>
+  <out uid="3374eeac:126b1b70a8a:-7e0e" sourceBlock="-340058e7:124a0e147ac:-7c41" kind="out" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e04" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false;align=right;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </out>
+  <ipar>33</ipar>
+ </child>
+ <child xsi:type="xcos:Link" uid="3374eeac:126b1b70a8a:-7e0d" parentDiagram="/" sourcePort="3374eeac:126b1b70a8a:-7e2b" destinationPort="3374eeac:126b1b70a8a:-7e17" style="ExplicitLink;noEdgeStyle=1" label="" color="1">
+  <geometry/>
+  <controlPoint x="0" y="0"/>
+  <controlPoint x="0" y="0"/>
+ </child>
+ <child xsi:type="xcos:Link" uid="3374eeac:126b1b70a8a:-7e0c" parentDiagram="/" sourcePort="3374eeac:126b1b70a8a:-7e29" destinationPort="3374eeac:126b1b70a8a:-7e24" style="CommandControlLink" label="" color="1">
+  <geometry/>
+  <controlPoint x="0" y="0"/>
+  <controlPoint x="0" y="0"/>
+ </child>
+ <child xsi:type="xcos:Link" uid="3374eeac:126b1b70a8a:-7e0b" parentDiagram="/" sourcePort="3374eeac:126b1b70a8a:-7e1b" destinationPort="3374eeac:126b1b70a8a:-7e27" style="ExplicitLink;noEdgeStyle=0;edgeStyle=elbowEdgeStyle;elbow=horizontal" label="" color="1">
+  <geometry/>
+  <controlPoint x="0" y="0"/>
+  <controlPoint x="140" y="190"/>
+  <controlPoint x="0" y="0"/>
+ </child>
+ <child xsi:type="xcos:Link" uid="3374eeac:126b1b70a8a:-7e0a" parentDiagram="/" sourcePort="3374eeac:126b1b70a8a:-7e1a" destinationPort="3374eeac:126b1b70a8a:-7e22" style="ExplicitLink" label="" color="1">
+  <geometry/>
+  <controlPoint x="0" y="0"/>
+  <controlPoint x="0" y="0"/>
+ </child>
+ <child xsi:type="xcos:Link" uid="3374eeac:126b1b70a8a:-7e09" parentDiagram="/" sourcePort="3374eeac:126b1b70a8a:-7e16" destinationPort="3374eeac:126b1b70a8a:-7e1c" style="ExplicitLink" label="" color="1">
+  <geometry/>
+  <controlPoint x="0" y="0"/>
+  <controlPoint x="0" y="0"/>
+ </child>
+ <child xsi:type="xcos:Link" uid="3374eeac:126b1b70a8a:-7e08" parentDiagram="/" sourcePort="3374eeac:126b1b70a8a:-7e15" destinationPort="3374eeac:126b1b70a8a:-7e1f" style="ExplicitLink" label="" color="1">
+  <geometry/>
+  <controlPoint x="0" y="0"/>
+  <controlPoint x="140" y="300"/>
+  <controlPoint x="0" y="0"/>
+ </child>
+ <child xsi:type="xcos:Link" uid="3374eeac:126b1b70a8a:-7e07" parentDiagram="/" sourcePort="3374eeac:126b1b70a8a:-7e21" destinationPort="3374eeac:126b1b70a8a:-7e12" style="ExplicitLink;strokeColor=#00FF00" label="" color="1">
+  <geometry/>
+  <controlPoint x="0" y="0"/>
+  <controlPoint x="0" y="0"/>
+ </child>
+ <child xsi:type="xcos:Link" uid="3374eeac:126b1b70a8a:-7e06" parentDiagram="/" sourcePort="3374eeac:126b1b70a8a:-7e11" destinationPort="3374eeac:126b1b70a8a:-7e26" style="ExplicitLink;noEdgeStyle=0;edgeStyle=elbowEdgeStyle;elbow=horizontal" label="" color="1">
+  <geometry/>
+  <controlPoint x="0" y="0"/>
+  <controlPoint x="0" y="0"/>
+ </child>
+ <child xsi:type="xcos:Link" uid="3374eeac:126b1b70a8a:-7e05" parentDiagram="/" sourcePort="3374eeac:126b1b70a8a:-7e1e" destinationPort="3374eeac:126b1b70a8a:-7e0f" style="ExplicitLink;strokeColor=#00FF00" label="" color="1">
+  <geometry/>
+  <controlPoint x="0" y="0"/>
+  <controlPoint x="0" y="0"/>
+ </child>
+ <child xsi:type="xcos:Link" uid="3374eeac:126b1b70a8a:-7e04" parentDiagram="/" sourcePort="3374eeac:126b1b70a8a:-7e0e" destinationPort="3374eeac:126b1b70a8a:-7e25" style="ExplicitLink;noEdgeStyle=0;edgeStyle=elbowEdgeStyle;elbow=horizontal" label="" color="1">
+  <geometry/>
+  <controlPoint x="0" y="0"/>
+  <controlPoint x="470" y="240"/>
+  <controlPoint x="0" y="0"/>
+ </child>
+ <child xsi:type="xcos:Annotation" uid="-340058e7:124a0e147ac:-7c3e" parentDiagram="/" description="Data Type Demonstration" font="2" fontSize="1" style="mirror=false;TEXT_f;rotation=0;flip=false"/>
+ <child xsi:type="xcos:Annotation" uid="-340058e7:124a0e147ac:-7c3d" parentDiagram="/" description="int8" font="2" fontSize="1" style="mirror=false;TEXT_f;rotation=0;flip=false"/>
+ <child xsi:type="xcos:Annotation" uid="-340058e7:124a0e147ac:-7c3c" parentDiagram="/" description="uint8" font="2" fontSize="1" style="mirror=false;TEXT_f;rotation=0;flip=false"/>
+ <child xsi:type="xcos:Annotation" uid="-340058e7:124a0e147ac:-7c3b" parentDiagram="/" description="double" font="2" fontSize="1" style="mirror=false;TEXT_f;rotation=0;flip=false"/>
+ <child xsi:type="xcos:Annotation" uid="-340058e7:124a0e147ac:-7c3a" parentDiagram="/" description="Amplitude = 200" font="2" fontSize="1" style="mirror=false;TEXT_f;rotation=0;flip=false"/>
+ <child xsi:type="xcos:Block" uid="-340058e7:124a0e147ac:-7c5d" parentDiagram="/" description="&lt;html&gt;&lt;body&gt; Sinusoid&lt;BR&gt; generator &lt;/body&gt;&lt;/html&gt;" label="" style="mirror=false;rotation=0;GENSIN_f;flip=false" interfaceFunction="GENSIN_f" functionName="gensin" functionAPI="0" dependsOnT="1" blocktype="c">
+  <geometry x="20" y="190" width="80" height="40"/>
+  <expression><![CDATA[200]]></expression>
+  <expression><![CDATA[1]]></expression>
+  <expression><![CDATA[0]]></expression>
+  <nzcross>0</nzcross>
+  <nmode>0</nmode>
+  <out uid="3374eeac:126b1b70a8a:-7e2b" sourceBlock="-340058e7:124a0e147ac:-7c5d" kind="out" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e0d" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false;align=right;verticalAlign=middle;spacing=10.0" label="">
+   <datatype type="1" rows="1" columns="-2"/>
+  </out>
+  <rpar>200</rpar>
+  <rpar>1</rpar>
+  <rpar>0</rpar>
+ </child>
+ <child xsi:type="xcos:Block" uid="-340058e7:124a0e147ac:-7c5b" parentDiagram="/" description="CLOCK_f" label="CLOCK_f" style="mirror=false;rotation=0;CLOCK_f;flip=false" interfaceFunction="CLOCK_f" functionName="csuper" functionAPI="0" blocktype="h">
+  <context/>
+  <child xsi:type="xcos:Block" uid="-2502bbc7:12e75ddc273:-7b51" parentDiagram="/" description="" label="" style="" interfaceFunction="CLKOUT_f" functionName="output" functionAPI="0" blocktype="d">
+   <geometry width="20" height="20"/>
+   <expression><![CDATA[1]]></expression>
+   <nzcross>0</nzcross>
+   <nmode>0</nmode>
+   <ein uid="24fb1012:15a18f866bf:-7ff9" sourceBlock="-2502bbc7:12e75ddc273:-7b51" kind="ein" implicit="false" connectedSignal="24fb1012:15a18f866bf:-7ff0" style="ControlPort;align=center;verticalAlign=top;spacing=10.0;rotation=90" label="">
+    <datatype type="1" rows="-1" columns="1"/>
+   </ein>
+   <ipar>1</ipar>
+  </child>
+  <child xsi:type="xcos:Block" uid="-2502bbc7:12e75ddc273:-7b4d" parentDiagram="/" description="" label="" style="" interfaceFunction="EVTDLY_f" functionName="evtdly" functionAPI="0" blocktype="d">
+   <geometry width="20" height="20"/>
+   <expression><![CDATA[0.1]]></expression>
+   <expression><![CDATA[0.1]]></expression>
+   <nzcross>0</nzcross>
+   <nmode>0</nmode>
+   <ein uid="24fb1012:15a18f866bf:-7ff7" sourceBlock="-2502bbc7:12e75ddc273:-7b4d" kind="ein" implicit="false" connectedSignal="24fb1012:15a18f866bf:-7fef" style="ControlPort;align=center;verticalAlign=top;spacing=10.0;rotation=90" label="">
+    <datatype type="1" rows="-1" columns="1"/>
+   </ein>
+   <eout uid="24fb1012:15a18f866bf:-7ff6" sourceBlock="-2502bbc7:12e75ddc273:-7b4d" kind="eout" implicit="false" connectedSignal="24fb1012:15a18f866bf:-7ff1" style="CommandPort;align=center;verticalAlign=bottom;spacing=10.0;rotation=90" label="">
+    <datatype type="1" rows="-1" columns="1"/>
+   </eout>
+   <rpar>1.000000E-01</rpar>
+  </child>
+  <child xsi:type="xcos:Block" uid="-2502bbc7:12e75ddc273:-7b48" parentDiagram="/" description="" label="" style="" interfaceFunction="CLKSPLIT_f" functionName="split" functionAPI="0" blocktype="d">
+   <geometry width="7" height="7"/>
+   <nzcross>0</nzcross>
+   <nmode>0</nmode>
+   <ein uid="24fb1012:15a18f866bf:-7ff4" sourceBlock="-2502bbc7:12e75ddc273:-7b48" kind="ein" implicit="false" connectedSignal="24fb1012:15a18f866bf:-7ff1" style="ControlPort;align=center;verticalAlign=top;spacing=10.0;rotation=90" label="">
+    <datatype type="1" rows="-1" columns="1"/>
+   </ein>
+   <eout uid="24fb1012:15a18f866bf:-7ff3" sourceBlock="-2502bbc7:12e75ddc273:-7b48" kind="eout" implicit="false" connectedSignal="24fb1012:15a18f866bf:-7ff0" style="CommandPort;align=center;verticalAlign=bottom;spacing=10.0;rotation=90" label="">
+    <datatype type="1" rows="-1" columns="1"/>
+   </eout>
+   <eout uid="24fb1012:15a18f866bf:-7ff2" sourceBlock="-2502bbc7:12e75ddc273:-7b48" kind="eout" implicit="false" connectedSignal="24fb1012:15a18f866bf:-7fef" style="CommandPort;align=center;verticalAlign=bottom;spacing=10.0;rotation=90" label="">
+    <datatype type="1" rows="-1" columns="1"/>
+   </eout>
+  </child>
+  <child xsi:type="xcos:Link" uid="24fb1012:15a18f866bf:-7ff1" parentDiagram="/" sourcePort="24fb1012:15a18f866bf:-7ff6" destinationPort="24fb1012:15a18f866bf:-7ff4" style="CommandControlLink" label="" color="1">
+   <geometry/>
+   <controlPoint x="20" y="44"/>
+   <controlPoint x="132" y="262"/>
+   <controlPoint x="0" y="-4"/>
+  </child>
+  <child xsi:type="xcos:Link" uid="24fb1012:15a18f866bf:-7ff0" parentDiagram="/" sourcePort="24fb1012:15a18f866bf:-7ff3" destinationPort="24fb1012:15a18f866bf:-7ff9" style="CommandControlLink" label="" color="1">
+   <geometry/>
+   <controlPoint x="0" y="12"/>
+   <controlPoint x="20" y="-4"/>
+  </child>
+  <child xsi:type="xcos:Link" uid="24fb1012:15a18f866bf:-7fef" parentDiagram="/" sourcePort="24fb1012:15a18f866bf:-7ff2" destinationPort="24fb1012:15a18f866bf:-7ff7" style="CommandControlLink" label="" color="1">
+   <geometry/>
+   <controlPoint x="10" y="12"/>
+   <controlPoint x="1.827100E+02" y="116"/>
+   <controlPoint x="142" y="116"/>
+   <controlPoint x="20" y="-4"/>
+  </child>
+  <geometry x="520" y="80" width="40" height="40"/>
+  <nzcross>0</nzcross>
+  <nmode>0</nmode>
+  <eout uid="3374eeac:126b1b70a8a:-7e29" sourceBlock="-340058e7:124a0e147ac:-7c5b" kind="eout" implicit="false" connectedSignal="3374eeac:126b1b70a8a:-7e0c" style="mirror=false;CommandPort;rotation=90;flip=false;align=center;verticalAlign=bottom;spacing=10.0" label="">
+   <datatype type="1" rows="-1" columns="-2"/>
+  </eout>
+ </child>
+ <properties finalTime="30" absoluteTolerance="1.000000E-06" relativeTolerance="1.000000E-06" timeTolerance="1.000000E-10" deltaT="100001" realtimeScale="0" solver="1" deltaH="0"/>
+</xcos:Diagram>
