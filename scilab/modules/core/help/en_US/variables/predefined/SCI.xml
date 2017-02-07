@@ -15,9 +15,8 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SCI" xml:lang="en">
     <refnamediv>
-        <refname>SCI</refname>
-        <refpurpose>variable containing the value of the root path of
-            Scilab.
+        <refname>SCI, WSCI</refname>
+        <refpurpose>variable containing the value of the root path of Scilab.
         </refpurpose>
     </refnamediv>
     <refsection>
@@ -25,6 +24,13 @@
         <para>
             The <literal>SCI</literal> constant variable contains the value of
             the root path of Scilab.
+        </para>
+        <para>
+            For MSWindows users, <literal>SCI</literal> is the
+            <emphasis role="italic">short MSDOS-like</emphasis> version of the
+            path to the Scilab installation directory. When needed, the long version of the path
+            is available from the <literal>WSCI</literal> constant variable. It is equal to
+           <literal>getlongpathname(SCI)</literal>.
         </para>
     </refsection>
     <refsection>
@@ -39,12 +45,19 @@ cd(SCI)
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="TMPDIR">TMPDIR</link>
+            </member>
+            <member>
                 <link linkend="SCIHOME">SCIHOME</link>
             </member>
-        </simplelist>
-        <simplelist type="inline">
             <member>
-                <link linkend="TMPDIR">TMPDIR</link>
+                <link linkend="home">home</link>
+            </member>
+            <member>
+                <link linkend="pwd">pwd</link>
+            </member>
+            <member>
+                <link linkend="getlongpathname">getlongpathname</link>
             </member>
         </simplelist>
     </refsection>

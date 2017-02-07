@@ -81,8 +81,6 @@ evstr(a(i+2))*2
 --> "Эта сессия была запущена из " + a(i+3)
  ans  =
  Эта сессия была запущена из "C:\Users\Me"
-
--->
 ]]></screen>
                      </para>
                      <para>
@@ -509,7 +507,7 @@ echo $? ]]></screen>
                 <link linkend="getenv">getenv</link>
             </member>
             <member>
-                <link linkend="getenv">getversion</link>
+                <link linkend="getversion">getversion</link>
             </member>
             <member>
                 <link linkend="consolebox">consolebox</link>
