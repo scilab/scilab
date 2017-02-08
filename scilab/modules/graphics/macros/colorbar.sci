@@ -1,6 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) Bruno Pincon
 // Copyright (C) Serge Steer (adaptation to new graphic system)
+// Copyright (C) 2017 - Samuel GOUGEON : http://bugzilla.scilab.org/14711
+//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -74,7 +76,7 @@ function colorbar(umin, umax, colminmax, fmt)
     a_pl.axes_bounds=[wr(1) , wr(2) , 0.85*wr(3) , wr(4)]
 
     // create a new axes for the colorbar et set its properties
-    a_cb=newaxes();
+    a_cb = newaxes(a.parent);
     a_cb.axes_bounds=[wr(1)+0.83*wr(3) , wr(2)+wr(4)*0.2 , 0.2*wr(3) , wr(4)*0.6];
     a_cb.data_bounds=[0 umin;1 umax];
     a_cb.foreground=a.foreground;
