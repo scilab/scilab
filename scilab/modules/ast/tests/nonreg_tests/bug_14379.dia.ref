@@ -14,8 +14,8 @@
 // <-- Short Description -->
 // Problem with lists of functions having 2 arguments
 function [y1, y2] = F1(x)
- y1 = x + 1;
- y2 = x + 2;
+    y1 = x + 1;
+    y2 = x + 2;
 endfunction
 L = list(F1);
 [y1, y2] = L(1)(1);

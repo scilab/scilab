@@ -13,7 +13,7 @@
 // <-- CLI SHELL MODE -->
 //
 // <-- Short Description -->
-// 1./M and 1 ./ M did not lead to the same result 
+// 1./M and 1 ./ M did not lead to the same result
 // as 1./M was parsed as (1.)/M instead of (1) ./ M
 x1=0:1:5;
 y1=1./(1+(((5-x1)/2).^2));

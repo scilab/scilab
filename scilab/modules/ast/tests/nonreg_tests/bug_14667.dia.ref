@@ -13,7 +13,7 @@
 // <-- Short Description -->
 // Multi line string in a matrix without line feed generated a non terminal parser state
 ierr = execstr(["A = [""some text ..."; ...
-  "ending here""]"], "errcatch");
+"ending here""]"], "errcatch");
 assert_checktrue(ierr <> 0); // previous line must generate an error
 ierr = execstr("A = ""some text ...", "errcatch");
 assert_checktrue(ierr <> 0); // previous line must generate an error

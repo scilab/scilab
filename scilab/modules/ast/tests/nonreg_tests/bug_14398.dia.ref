@@ -17,8 +17,8 @@
 x = zeros(1,10);
 y = x;
 function [a, b] = F(x1, y1)
-  a = 0;
-  b = 0;
+    a = 0;
+    b = 0;
 endfunction
 err = execstr("[a, b] = F(x, y1=y(1:3));", "errcatch");
 assert_checkequal(err, 0);
