@@ -4,6 +4,7 @@
  * Copyright (C) 2008 - INRIA - Serge STEER
  * Copyright (C) 2008 - INRIA - Ramine NIKOUKHAH
  * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2017 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -15,62 +16,433 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="vectorfind" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="vectorfind" xml:lang="en">
     <refnamediv>
         <refname>vectorfind</refname>
-        <refpurpose>finds in a matrix rows or columns matching a vector</refpurpose>
+        <refpurpose>locates occurences of a (wildcarded) vector in a matrix or hypermatrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>ind = vectorfind(m,v[,job])</synopsis>
+        <synopsis>
+            ind             = vectorfind(haystack, needle)
+            ind             = vectorfind(haystack, needle, dimAlong)
+            ind             = vectorfind(haystack, needle, dimAlong, ,indType)
+            [ind, matching] = vectorfind(haystack, needle, dimAlong, joker)
+            [ind, matching] = vectorfind(haystack, needle, dimAlong, joker, indType)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>m</term>
+                <term>haystack</term>
                 <listitem>
-                    <para>a matrix of any type (the same type as v).</para>
+                    <para>
+                    A matrix or hypermatrix of any type, possibly sparse encoded: The array in
+                    which the vector will be searched.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>v</term>
+                <term>needle</term>
                 <listitem>
-                    <para>a vector of any type (the same type as m).</para>
+                    <para>
+                    The vector to be searched in the <varname>haystack</varname>, of the same type.
+                    If the <varname>haystack</varname> is sparse-encoded, the <varname>needle</varname>
+                    may be dense. In addition, if the <varname>haystack</varname> is boolean and a
+                    <varname>joker</varname> is used, the <varname>needle</varname> must be numerical
+                    instead of boolean. In this case, any of its non-zero components is
+                    <literal>%T</literal>
+                    </para>
+                    <note>
+                        <itemizedlist>
+                            <listitem>
+                                Decimal numbers, complex numbers, and encoded integers are considered
+                                of the same type: numerical.
+                            </listitem>
+                            <listitem>
+                                <literal>%nan</literal> values are accepted in the <varname>needle</varname>.
+                                They are processed in a regular way, as other values. They are matched only
+                                by <literal>%nan</literal> in the <varname>haystack</varname>.
+                            </listitem>
+                        </itemizedlist>
+                    </note>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>job</term>
+                <term>dimAlong</term>
                 <listitem>
-                    <para>A character string: optional flag with possible values "r" to look for matching rows
-                        or "c" to look for matching columns. Default value is "r".
+                    <para>Direction inside the <varname>haystack</varname> array along which the
+                    <varname>needle</varname> vector is searched. Possible values are
+                    <literal>"r"</literal> or <literal>1</literal> (along rows),
+                    <literal>"c"</literal> or <literal>2</literal> (along columns),
+                    or for an hypermatrix, any integer such that
+                    <literal>2 &lt; dimAlong &lt;= ndims(haystack)</literal>
+                    representing the index of the scanned dimension.
+                    By default, <literal>"r"</literal> is used.
+                    </para>
+                    <important>
+                        <varname>dimAlong</varname> is mandatory when a <varname>joker</varname>
+                        or <varname>indType</varname> is specified.
+                    </important>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>joker</term>
+                <listitem>
+                    <para>
+                    Single element of <varname>needle</varname>'s data type.
+                    The <varname>needle</varname> components equal to the <varname>joker</varname>
+                    are ignored (they match/accept any values from the <varname>haystack</varname>).
+                    </para>
+                    <para>
+                        When the haystack is boolean, the <varname>joker</varname> must be a
+                        non-zero number.
+                    </para>
+                    <para>
+                        To skip the <varname>joker</varname>, specify
+                        <literal>..dimAlong, ,indType</literal> with no joker value.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>indType</term>
+                <listitem>
+                    <para>Single case-insensitive word among <literal>""</literal>
+                    (empty text = default), <literal>"headIJK"</literal>, and <literal>"headN"</literal>:
+                    Specifies the format or returned indices. See here-below the description of
+                    <varname>ind</varname>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ind</term>
                 <listitem>
-                    <para>row vector containing indices of matching rows or columns</para>
+                    <para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                            When the <varname>needle</varname> is longer than the
+                            <varname>haystack</varname> size along the chosen dimension
+                            <varname>dimAlong</varname>, <varname>ind=[]</varname> is returned.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                            When the <varname>needle</varname>'s length matches the
+                            <varname>haystack</varname> size along the chosen dimension,
+                            <itemizedlist>
+                                <listitem>
+                                    <para>
+                                    <emphasis role="bold">By default</emphasis>
+                                    (<varname>indType==""</varname>):
+                                    <varname>ind</varname> is a row vector containing the indices
+                                    of matching rows or columns of the haystack. In case of hypermatrix,
+                                    returned indices of matching ranges are linearized accross all
+                                    dimensions but the <varname>dimAlong</varname> one (see examples).
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                    <emphasis role="bold">indType="headN"</emphasis>:
+                                    <varname>ind</varname> is the row vector of
+                                    <emphasis role="italic">linear</emphasis> indices in
+                                    the <varname>haystack</varname> of the heading component of its
+                                    matching rows, columns, or higher ranges.
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                    <emphasis role="bold">indType="headIJK"</emphasis>:
+                                    <varname>ind</varname> is a matrix: Each row returns the
+                                    <literal>[i j ..]</literal>
+                                    indices in the <varname>haystack</varname> of the heading
+                                    component of its matching ranges (rows, columns, or higher ranges).
+                                    <varname>ind</varname> has as many rows as there are matching
+                                    ranges in the <varname>haystack</varname>.
+                                    </para>
+                                </listitem>
+                            </itemizedlist>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                            Otherwise (short needle): By default,
+                            <varname>ind</varname> is the row vector of linear indices of the
+                            components of the <varname>haystack</varname> where matching ranges
+                            start. Using the <literal>indType="headN"</literal> option does
+                            nothing more. Using <literal>indType="headIJK"</literal> returns
+                            <varname>ind</varname> as a matrix of <literal>[i j k ..]</literal>
+                            indices, as described here-above.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    </para>
+                    <note>Returned indices are sorted in increasing order.</note>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>matching</term>
+                <listitem>
+                    <para>When a joker is used, this <varname>matching</varname> optional output
+                    is a matrix of haystack's data type returning the actual matching ranges:
+                    The matching range number #i is returned in the row <literal>matching(i,:)</literal>.
+                    </para>
+                    <note>
+                        When the <varname>haystack</varname> is sparse-encoded,
+                        the <varname>matching</varname> matrix is sparse as well.
+                    </note>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Finds in a matrix rows or columns matching a vector.</para>
+        <para>
+            <literal>vectorfind()</literal> looks for a given series of values (needle) in a
+            haystack array, along a given right direction/dimension: width (rows), height (columns),
+            thickness (like RGB pixels), etc. The needle may be as long or shorter than the size
+            of the probed side of the haystack.
+        </para>
+        <para>
+            A special value so-called <emphasis role="italic">joker</emphasis> may be specified.
+            Then this value works as a wildcard where it occurs in the needle vector.
+            Since this value is no longer selective -- ANY value from the haystack matches at its
+            position --, it can't simultaneously be used in the needle as a selective one.
+            In practical, any value not present in the haystack makes necessarily a good joker.
+            However, this condition is not mandatory.
+        </para>
+        <para>
+            Consequence: When the haystack is boolean, the joker -- and so the needle vector as
+            well -- must be numerical. Indeed, it would be otherwise impossible to choose
+            a joker value out of the {%T, %F} limited set of values.
+        </para>
+        <para>
+            When such a wildcard is used, actual values in matching ranges are not fixed. It is
+            then possible to retrieve them thanks to the
+            <literal>matching</literal> optional output. Otherwise, <literal>matching</literal>
+            is empty (it is a trivial repetition of the needle vector).
+        </para>
+        <refsect3>
+            <title>Search in hypermatrices</title>
+            <para>
+            Using <literal>vectorfind()</literal> with an hypermatrix haystack deserves some
+            special attention:
+            <itemizedlist>
+                <listitem>
+                    <para>About the direction value <literal>dimAlong</literal>:
+                    </para>
+                    <para>
+                        For instance, we
+                       can then probe the haystack array in "thickness", i.e.
+                       <emphasis role="italic">accross</emphasis> its successive layers
+                       <literal>haystack(:,:,#,..)</literal>. To do so, we will here specify
+                       <literal>dimAlong = 3</literal>.
+                    </para>
+                    <para>
+                    Like for matrices, this kind of high-dimension array can be
+                    scanned <emphasis role="italic">along</emphasis> its rows or columns.
+                    The corresponding <literal>dimAlong</literal> values have there some exceptions:
+                    <itemizedlist>
+                        <listitem>
+                            Searching the needle <emphasis role="italic">as rows</emphasis>
+                            is scanning the array
+                            <emphasis role="italic">accross its columns</emphasis>. Therefore,
+                            the <literal>dimAlong = "r"</literal> value should be equivalent to
+                            <literal>dimAlong = 2</literal> instead of 1!
+                        </listitem>
+                        <listitem>
+                            In the same way, searching the needle
+                            <emphasis role="italic">as columns</emphasis> is scanning the array
+                            <emphasis role="italic">accross its rows</emphasis>: The usual
+                            value
+                            <literal>dimAlong = "c"</literal> should be equivalent to
+                            <literal>dimAlong = 1</literal> instead of 2!
+                        </listitem>
+                    </itemizedlist>
+                    </para>
+                    <para>
+                    In order to not quit the common convention <literal>"r"&lt;=>1</literal>
+                    and <literal>"c"&lt;=>2</literal> used everywhere in Scilab,
+                    <literal>vectorfind()</literal> keeps and copes with it. But one should keep in
+                    mind the underlying switch, to have a clear understanding of the returned
+                    default indices when <literal>"r",1</literal> or <literal>"c",2</literal>
+                    are used.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                    About returned indices of matching rows, columns, "pixels"... when the needle
+                    is as long as the haystack side size and no <literal>indType</literal> option
+                    is used:
+                    </para>
+                    <para>
+                    Indices of matching ranges are then <emphasis role="italic">linear</emphasis>
+                    indices of components of the following subspaces:
+                    <itemizedlist>
+                        <listitem>
+                            With <literal>dimAlong = "r" = 1</literal>:
+                            in <literal>haystack(:,1,:,:..)</literal>
+                        </listitem>
+                        <listitem>
+                            With <literal>dimAlong = "c" = 2</literal>:
+                            in <literal>haystack(1,:,:,:..)</literal>
+                        </listitem>
+                        <listitem>
+                            With <literal>dimAlong = 3</literal>:
+                            in <literal>haystack(:,:,1,:..)</literal>
+                        </listitem>
+                        <listitem>
+                            With <literal>dimAlong = 4</literal>:
+                            in <literal>haystack(:,:,:,1,:..)</literal>.
+                        </listitem>
+                        <listitem>
+                            etc...
+                        </listitem>
+                    </itemizedlist>
+                    The case of a 3D and of a 4D array is dealt with in the Examples section.
+                    </para>
+                    Despite they are easy to understand and use for a simple matrix,
+                    it is somewhat hard to work with these linear indices in the haystack subspace
+                    to actually address the matching ranges in a ND-dimensional array with N>2.
+                    The option <literal>indType = "headN" | "headIJK</literal> will then return
+                    more workable indices refering to the whole <literal>haystack</literal> array.
+                </listitem>
+            </itemizedlist>
+            </para>
+        </refsect3>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para>
+            <emphasis role="bold">In a matrix of numbers:</emphasis>
+        </para>
         <programlisting role="example"><![CDATA[
-alr=[1,2,2;
-     1,2,1;
-     1,1,2;
-     1,1,1;
-     1,2,1];
+m = [ 1  0   1   2  2  1
+      2  2   0   1  0  2
+      0  2  %nan 2  1  2
+      2 %nan 1   0  1  2
+    ];
+vectorfind(m,[2 0 1 1], "c")            // => 5
+vectorfind(m,[2 0 1 1], "c",,"headN")   // => 17
+vectorfind(m,[2 0 1 1], "c",,"headIJK") // [1 5]
 
-ind = vectorfind(alr,[1,2,1],'r')
-ind = vectorfind(string(alr),string([1,2,1]),'r')
+// With a short needle:
+vectorfind(m,[2 2])                     // => [2 13]
+vectorfind(m,[2 2], "r",,"headN")       // same output
+vectorfind(m,[2 2], "r",,"headIJK")     // => [2 1 ; 1 4]
+vectorfind(m,[2 %nan])                  // => [4 7]
+
+// With a wildcard in the needle:
+
+// ex #1: All columns starting with 1 and ending with 2:
+[n, ma] = vectorfind(m,[1 .3 .3 2], "c", .3) // => n = [1 6], ma = [1 2 0 2; 1 2 2 2]
+
+// ex #2: All rows having a [2 * 2] range (wildcarded short needle):
+[n, ma] = vectorfind(m,[2 .3  2], "r", .3)   // => n = [7 15], ma = [2 %nan 2; 2 1 2]
+vectorfind(m,[2 .3  2], "r", .3, "headIJK")  // => [3 2 ; 3 4]
+                                             // Note: The %nan is matched by *
  ]]></programlisting>
+        <para>
+            <emphasis role="bold">In a boolean matrix:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+m = [0  0  0  1  1  0
+     0  1  1  1  0  1
+     1  1  0  1  1  1
+     1  0  1  0  0  1]==1
+// m  =
+//  F F F T T F
+//  F T T T F T
+//  T T F T T T
+//  T F T F F T
+vectorfind(m, [%F %T %T %F], "c")   // => 2
+vectorfind(m, [%T %T], "c")         // => [3 6 13 14 22 23]
+vectorfind(m, [1 1], "c")           // => error: same type expected
+// Joker => the needle is numerical:
+[n, ma] = vectorfind(m, [0 %nan 0 %nan 1], "r", %nan) // => n=[1 8], ma=[F F F T T ; F T F F T]
+ ]]></programlisting>
+
+        <para>
+            <emphasis role="bold">In a tiny 8-color RGB image (3D hypermatrix of uint8 integers):</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+// Generating the array of color brightnesses:
+m = [1  1  1  1  1  0  1  0  0  0  1  0  1  0  0
+     1  1  0  0  0  0  1  0  1  0  1  1  1  1  1
+     1  1  0  1  0  1  1  0  0  1  1  0  0  1  0];
+m = uint8(matrix(m,3,5,3)*255)
+// m  =
+//(:,:,1)                   // RED layer
+//  255  255  255  255  255
+//  255  255    0    0    0
+//  255  255    0  255    0
+//(:,:,2)                   // GREEN layer
+//    0  255    0    0    0
+//    0  255    0  255    0
+//  255  255    0    0  255
+//(:,:,3)                   // BLUE layer
+//  255    0  255    0    0
+//  255  255  255  255  255
+//  255    0    0  255    0
+
+// Locates red pixels:
+vectorfind(m, [255 0 0], 3)             // => [10 13]
+vectorfind(m, [255 0 0], 3,,"headIJK")  // => [1 4 1 ; 1 5 1]
+
+// Pixels with Green & Blue ON, whatever is their Red channel:
+//   We may use a decimal-encoded needle (not a uint8).
+//   Then, %nan is a possible joker, that can't be in the uint8 image:
+vectorfind(m, [%nan 255 255], 3, %nan,"headIJK") // => [3 1 1; 2 2 1; 2 4 1]
+
+// Columns of 255:
+vectorfind(m, [255 255 255], "c")      // => [1 2 7 11]
+ ]]></programlisting>
+        <para>
+            <emphasis role="bold">In a 4D hypermatrix of text:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+m  = [
+  "U"  "C"  "G"  "A"  "A"  "A"  "U"  "U"  "A"  "G"  "A"  "G"
+  "A"  "A"  "A"  "A"  "C"  "C"  "U"  "U"  "C"  "G"  "G"  "G"
+  "A"  "G"  "A"  "C"  "G"  "C"  "C"  "C"  "G"  "C"  "A"  "G"
+  "C"  "U"  "G"  "G"  "G"  "A"  "A"  "G"  "C"  "C"  "C"  "C"
+  "C"  "G"  "G"  "A"  "A"  "G"  "U"  "C"  "A"  "U"  "G"  "C"
+  ];
+m = matrix(m, 3, 5, 2, 2);
+// (:,:,1,1)
+// !U  C  A  G  A  !
+// !A  C  G  G  G  !
+// !A  C  U  A  G  !
+//(:,:,2,1)
+// !A  G  C  A  C  !
+// !A  A  G  A  A  !
+// !C  A  G  C  G  !
+//(:,:,1,2)
+// !U  A  U  C  G  !
+// !U  U  C  A  C  !
+// !C  U  G  C  A  !
+//(:,:,2,2)
+// !G  C  G  G  G  !
+// !G  U  A  G  C  !
+// !C  A  C  G  C  !
+
+vectorfind(m, ["A" "A" "C"], "c")       // => [6 9]
+vectorfind(m, [""  "G" "G"], "c", "")   // => [5 8 19]
+
+// Joker
+[n, ma] = vectorfind(m, ["" "G" "G"], "c", "", "headN") // => n=[13 22 55], ma=[A G G; C G G; G G G]
+vectorfind(m, ["" "C" "C"], "c", "", "headIJK") // => [1 2 1 1 ; 1 5 2 2]
+
+// Short needle
+vectorfind(m, ["C" "C"], "c",,"headIJK")        // => [1 2 1 1; 2 2 1 1; 2 5 2 2]
+
+// Short needle with joker
+vectorfind(m, ["A" "" "A"],"r","","headIJK")    // => [1 3 1 1 ; 2 2 2 1]
+]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -79,8 +451,55 @@ ind = vectorfind(string(alr),string([1,2,1]),'r')
                 <link linkend="find">find</link>
             </member>
             <member>
-                <link linkend="gsort">gsort</link>
+                <link linkend="members">members</link>
+            </member>
+            <member>
+                <link linkend="grep">grep</link>
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <literal>vectorfind(H,[])</literal> nows returns <literal>[]</literal>
+                            instead of an error.
+                        </listitem>
+                        <listitem>
+                            When the needle is too long, <literal>[]</literal> is now returned
+                            instead of an error.
+                        </listitem>
+                        <listitem>
+                            A needle shorter than the haystack size can now be used.
+                        </listitem>
+                        <listitem>
+                            A wildcard value matched by any value of the haystack can now be specified
+                            and used in the needle. Then, actual matching ranges can be returned:
+                            Options <literal>joker</literal> and <literal>matching</literal> added.
+                        </listitem>
+                        <listitem>
+                            Any <literal>%nan</literal> value occuring in the needle is now processed
+                            as any other regular value: It is matched by <literal>%nan</literal> in
+                            the haystack. It could formerly never be matched.
+                        </listitem>
+                        <listitem>
+                            Hypermatrices can now be processed as haystack.
+                        </listitem>
+                        <listitem>
+                            The probing direction <literal>dimAlong</literal> can now be numerical:
+                            1, 2, ..
+                        </listitem>
+                        <listitem>
+                            Option <literal>indType</literal> added.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+
 </refentry>

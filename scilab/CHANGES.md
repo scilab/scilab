@@ -158,14 +158,25 @@ Feature changes and additions
 * `twinkle` can now blink together several hierarchically independent objects, like a curve and its labels, etc.
 * `repmat` has been rewritten. It is 7 times faster now.
 * `plot` can now work in semi or bi-logarithmic mode with some input logflag.
-* `plotimplicit()` function added.
+* `plotimplicit` function added.
 * The default smarter grid_style value is now 7 instead of 3.
-* `weekday` accepts new date formats and syntaxes like `weekday()`, `weekday([2017 7 15])`, `weekday(2017, 7, 15)`, `weekday("15/7/2017")`,  `weekday("15-Jul-2017")`,  `weekday("2017-07-15")`, and `weekday("2017-07-15 21:53:17")`. A language option applying to the day names is now available.
+* `weekday` accepts new date formats and new syntaxes. A language option applying to the day names is now available.
+* `vectorfind` is upgraded:
+  - vectorfind(m, []) now returns [] instead of an error.
+  - A too long needle now returns [] instead of an error.
+  - %nan values never matched. They are now regularly processed, as other values.
+  - A needle shorter than the haystack size can now be used.
+  - A wildcard value matching any value of the haystack can now be specified and used in the needle. Actual matching ranges can then be returned: Options `joker` and `matching` added.
+  - Hypermatrices are now accepted as haystack.
+  - The probing direction can now be numeric: 1, 2, ..
+  - Returned indices can now be formatted with the new option `indType`.
+  - There were no unit tests. More than 100 tests are added.
+
 
 Help pages:
 -----------
 
-* overhauled / rewritten: `bitget`, `edit`, `factorial`
+* overhauled / rewritten: `bitget`, `edit`, `factorial`, `vectorfind`
 * fixed / improved:  `bench_run` `M_SWITCH`, `comet`, `comet3d`
 * Rewritten: `weekday`
 * Translations added:

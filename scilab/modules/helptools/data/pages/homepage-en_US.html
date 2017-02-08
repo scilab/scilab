@@ -154,13 +154,33 @@
             <li><code>twinkle</code> can now blink together several hierarchically independent objects, like a curve and its labels, etc.</li>
             <li><code>repmat</code> is improved: more neutral default frame color; improved labels positioning; colors can now be specified by their predefined name or "#RRGGBB" hexa code; a structure of handles is now returned to easily post-process both subframes and the set of labels.</li>
             <li><code>plot</code> can now work in semi or bi-logarithmic mode with some input logflag.</li>
-            <li><code>v</code> function added.</li>
-            <li>The default smarter grid_style value is now 7 instead of 3.</li>
+            <li><code>plotimplicit</code> function added.</li>
+            </li>The default smarter grid_style value is now 7 instead of 3.</li>
+            <li><code>weekday</code> accepts new date formats and new syntaxes. A language option applying to the day names is now available.</li>
+            <li><code>vectorfind</code> is upgraded:
+                <ul>
+                    <li><code>vectorfind(m, [])</code> now returns <code>[]</code> instead of an error.</li>
+                    <li>A too long needle now returns [] instead of an error.</li>
+                    <li>%nan values never matched. They are now regularly processed, as other values.</li>
+                    <li>A needle shorter than the haystack size can now be used.</li>
+                    <li>A wildcard value matching any value of the haystack can now be specified and used in the needle. Actual matching ranges can then be returned: Options `joker` and `matching` added.</li>
+                    <li>Hypermatrices are now accepted as haystack.</li>
+                    <li>The probing direction can now be numeric: 1, 2, ..</li>
+                    <li>Returned indices can now be formatted with the new option <code>indType</code>.</li>
+                    <li>There were no unit tests. More than 100 tests are added.</li>
+                </ul>
+            </li>
         </ul>
         <h2 class="title">Help pages</h2>
         <ul>
             <li>overhauled/rewritten: <code>bitget, edit, factorial</code></li>
             <li>fixed / improved:  <code>bench_run, M_SWITCH, comet, comet3d</code></li>
+            <li>Rewritten: <code>weekday</code></li>
+            <li>Translations added:
+                <ul>
+                    <li>ru_RU: <code>weekday</code></li>
+                </ul>
+            </li>
         </ul>
 
         <h2 class="title">Bug fixes</h2>

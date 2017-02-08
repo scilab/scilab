@@ -4,6 +4,7 @@
  * Copyright (C) 2008 - INRIA - Serge STEER
  * Copyright (C) 2008 - INRIA - Ramine NIKOUKHAH
  * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2017 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -15,62 +16,415 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="vectorfind" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="vectorfind" xml:lang="ru">
     <refnamediv>
         <refname>vectorfind</refname>
-        <refpurpose>ищет в строках или столбцах матриц совпадения с вектором</refpurpose>
+        <refpurpose>ищет расположение вектора (отмеченный символом групповой подстановки) в матрице или гиперматрице</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>ind = vectorfind(m,v[,job])</synopsis>
+        <synopsis>
+            ind             = vectorfind(haystack, needle)
+            ind             = vectorfind(haystack, needle, dimAlong)
+            ind             = vectorfind(haystack, needle, dimAlong, ,indType)
+            [ind, matching] = vectorfind(haystack, needle, dimAlong, joker)
+            [ind, matching] = vectorfind(haystack, needle, dimAlong, joker, indType)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>m</term>
-                <listitem>
-                    <para>матрица любого типа (того же типа, что и v).</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>v</term>
-                <listitem>
-                    <para>вектор любого типа (того же типа, что и m).</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>job</term>
+                <term>haystack</term>
                 <listitem>
                     <para>
-                        Символьная строка: необязательный флаг с возможными значениями "r" для поиска совпадений строк или "c" для поиска совпадений столбцов. По умолчанию значение  "r".
+                    Матрица или гиперматрица любого типа, возможно разрежённая: массив в
+            котором будет идти поиск вектора.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>needle</term>
+                <listitem>
+                    <para>
+                    Вектор, который надо искать в <varname>haystack</varname>, того же самого типа.
+            Если <varname>haystack</varname> является разрежённой, то <varname>needle</varname>
+            может быть неразрежённой. К тому же, если <varname>haystack</varname> является
+            логической и используется <varname>joker</varname>, то <varname>needle</varname>
+            должна быть числовой, а не логической. В этом случае любой её ненулевой элемент
+            считается равным <literal>%T</literal>.
+                    </para>
+                    <note>
+                        <itemizedlist>
+                            <listitem>
+                                Десятичные числа, комплексные числа и кодированные целые числа считаются
+                одним типом: числовым.
+                            </listitem>
+                            <listitem>
+                                Значения <literal>%nan</literal> принимаются в <varname>needle</varname>.
+                Они обрабатываются обычным способом, как и другие значения. Они совпадают
+                только с <literal>%nan</literal> в <varname>haystack</varname>.
+                            </listitem>
+                        </itemizedlist>
+                    </note>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dimAlong</term>
+                <listitem>
+                    <para>
+              Направление внутри массива <varname>haystack</varname> вдоль которого идёт поиск
+              вектора <varname>needle</varname>. Возможными значениями являются <literal>"r"</literal>
+              или <literal>1</literal> (вдоль строк), <literal>"c"</literal> или <literal>2</literal>
+              (вдоль столбцов) или для гиперматрицы любое целое значение, такое, что
+              <literal>2 &lt; dimAlong &lt;= ndims(haystack)</literal>, представляющее индекс сканируемого измерения. По умолчанию используется <literal>"r"</literal>.
+                    </para>
+                    <important>
+                        <varname>dimAlong</varname> обязателен, когда определён <varname>joker</varname>
+                        или <varname>indType</varname>.
+                    </important>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>joker</term>
+                <listitem>
+                    <para>
+              Одиночный элемент типа данных <varname>needle</varname>. Элементы <varname>needle</varname>,
+              равные значению <varname>joker</varname> игнорируются (сопоставляются/принимаются любые
+              значения из <varname>haystack</varname>).
+                    </para>
+                    <para>
+              Когда <varname>haystack</varname> является логическим, то <varname>joker</varname>
+              должно быть ненулевым числом.
+                    </para>
+                    <para>
+              Чтобы пропустить <varname>joker</varname>, укажите
+              <literal>..dimAlong, ,indType</literal> без значения <varname>joker</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>indType</term>
+                <listitem>
+                    <para>
+              Одиночное нечувствительное к регистру слово внутри кавычек <literal>""</literal>
+              (по умолчанию без текста), <literal>"headIJK"</literal> и <literal>"headN"</literal>:
+              Определяет формат или индексы. Смотрите ниже описание переменной <varname>ind</varname>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ind</term>
                 <listitem>
-                    <para>вектор-строка, содержащая индексы совпадений строк или столбцов</para>
+                    <para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                  Если <varname>needle</varname> по размеру больше, чем <varname>haystack</varname>,
+                  в выбранной размерности <varname>dimAlong</varname>, и возвращается
+                  <varname>ind=[]</varname>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                  Если длина <varname>needle</varname> соответствует по размеру <varname>haystack</varname>
+                  по выбранной размерности:
+                            <itemizedlist>
+                                <listitem>
+                                    <para>
+                                    <emphasis role="bold">По умолчанию</emphasis>
+                                    (<varname>indType==""</varname>):
+                                    <varname>ind</varname> является вектором-строкой, содержащей индексы совпавших
+                    строк и столбцов <varname>haystack</varname>. В случае гиперматрицы возвращаемые
+                    индексы совпавших диапазонов линеаризованы через все размерности кроме одной
+                    <varname>dimAlong</varname> (см. примеры).
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                    <emphasis role="bold">indType="headN"</emphasis>:
+                                    <varname>ind</varname> является  вектором-строкой <emphasis role="italic">линейных</emphasis>
+                    индексов в <varname>haystack</varname> первых элементов совпавших строк, столбцов и более высоких диапазонов.
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                    <emphasis role="bold">indType="headIJK"</emphasis>:
+                                    <varname>ind</varname> является матрицей: каждая строка возвращает
+                                    индексы <literal>[i j ..]</literal> в <varname>haystack</varname> первых
+                    элементов совпавших диапазонов (строки, столбцы или более высокие диапазоны).
+                                    <varname>ind</varname> имеет столько строк, сколько совпавших диапазонов в
+                    <varname>haystack</varname>.
+                                    </para>
+                                </listitem>
+                            </itemizedlist>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                            В противном случае (короткая <varname>needle</varname>): По умолчанию,
+                            <varname>ind</varname> является  вектором-строкой линейных индексов элементов
+                <varname>haystack</varname>, где начинаются совпавшие диапазоны. Используя опцию
+                <literal>indType="headN"</literal> ни к чему не приводит. Использование
+                <literal>indType="headIJK"</literal> возвращает <varname>ind</varname> в виде матрицы
+                индексов <literal>[i j k ..]</literal>, как было описано выше.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    </para>
+                    <note>Возвращаемые индексы сортированы в порядке возрастания.</note>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>matching</term>
+                <listitem>
+                    <para>
+              Когда используется <varname>matching</varname> выходная необязательная переменная
+              <varname>matching</varname> является матрицей с типом данных, как у
+              <varname>haystack</varname>, возвращающей фактические диапазоны совпадения: диапазон
+              совпадения №i возвращается в строке <literal>matching(i,:)</literal>.
+                    </para>
+                    <note>
+                        Когда <varname>haystack</varname> является разрежённой, то матрица
+            <varname>matching</varname> тоже является разрежённой.
+                    </note>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Описание</title>
-        <para>Ищет строки или столбцы матрицы, совпадающие с вектором.</para>
+        <para>
+            <literal>vectorfind()</literal> ищет указанную последовательность значений
+        <varname>needle</varname> (иголка) в массиве <varname>haystack</varname> (стог сена) по указанному
+        прямому направлению/измерению: ширина (строки), высота (столбцы), толщина (подобно пикселям RGB) и т.д.
+        Иголка <varname>needle</varname> может быть длиннее или короче, чем размер исследуемой стороны стога
+        сена <varname>haystack</varname>.
+        </para>
+        <para>
+        Может быть определено специальное значение, так называемый <emphasis role="italic">джокер</emphasis>.
+        Тогда это значение работает, как символ универсальной подстановки там, где он встречается в векторе иглы
+        <varname>needle</varname>. Поскольку это значение более нельзя выбирать, то -- ЛЮБОЕ значение после
+        совпадений в стогу сена <varname>haystack</varname> на своей позиции --, оно не может одновременно
+        использоваться в игле <varname>needle</varname> в качестве выбираемого. На практике любое значение,
+        не представленное в стоге сена <varname>haystack</varname>, обязательно требует хорошего джокера. Однако,
+        это условие не является обязательным.
+        </para>
+        <para>
+            Следовательно: когда стог сена <varname>haystack</varname> является логическим, то джокер -- а также
+        вектор иглы <varname>needle</varname> -- должен быть числовым. Действительно, в противном случае было
+        бы невозможно выбрать значение джокера из ограниченного множества значений <literal>{%T, %F}</literal>.
+        </para>
+        <para>
+        Когда такой символ универсальной подстановки используется, то фактические значения в совпавших
+        диапазонах не фиксируются. Тогда можно получить их благодаря необязательной выходной переменной
+        <varname>matching</varname>. В противном случае <varname>matching</varname> будет пустой (это
+        тривиальный повтор вектора иглы <varname>needle</varname>).
+        </para>
+        <refsect3>
+            <title>Поиск в гиперматрицах</title>
+            <para>
+          Использование <literal>vectorfind()</literal> с гиперматрицей в качестве <varname>haystack</varname>
+          заслуживает несколько особого внимания:
+            <itemizedlist>
+                <listitem>
+                    <para>О значении направления <literal>dimAlong</literal>:
+                    </para>
+                    <para>
+                        Например, мы можем затем исследовать массив <varname>haystack</varname> по "толщине",
+            то есть  <emphasis role="italic">сквозь</emphasis> её следующие друг за другом слои
+            <literal>haystack(:,:,#,..)</literal>. Чтобы так сделать, мы определим здесь
+            <literal>dimAlong = 3</literal>.
+                    </para>
+                    <para>
+              Как и для матриц, этот вид многомерного массива может быть просканирован
+              <emphasis role="italic">вдоль</emphasis> его строк или столбцов. Подходящие значения
+              <literal>dimAlong</literal> имеют некоторые исключения:
+                    <itemizedlist>
+                        <listitem>
+                Поиск иглы <emphasis role="italic">как строки</emphasis> сканирует массив
+                <emphasis role="italic">сквозь его столбцы</emphasis>. Следовательно,
+                значение <literal>dimAlong = "r"</literal> должно быть эквивалентно значению
+                <literal>dimAlong = 2</literal> вместо 1!
+                        </listitem>
+                        <listitem>
+                            Аналогично поиск иглы <emphasis role="italic">как столбцы</emphasis> сканирует массив
+                <emphasis role="italic">сквозь его строки</emphasis>: Обычное значение
+                            <literal>dimAlong = "c"</literal> должно быть эквивалентно значению
+                            <literal>dimAlong = 1</literal> вместо 2!
+                        </listitem>
+                    </itemizedlist>
+                    </para>
+                    <para>
+              Для того, чтобы не нарушать общую договорённость, о том что  <literal>"r"&lt;=>1</literal> и
+              <literal>"c"&lt;=>2</literal> используется везде в Scilab, <literal>vectorfind()</literal>
+              придерживается и справляется с ним. Но нужно иметь в виду лежащий в основе переключатель, чтобы
+              иметь чёткое понимание возвращаемых по умолчанию индексов, когда используются <literal>"r",1</literal>
+              или <literal>"c",2</literal>.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+              О возвращаемых индексах совпадающих строк, столбцов, "пикселей"... когда игла <varname>needle</varname>
+              такой же длины, как размер стороны стога сена <varname>haystack</varname> и опция
+              <literal>indType</literal> не используется:
+                    </para>
+                    <para>
+              Индексы совпадающих диапазонов являются <emphasis role="italic">линейными</emphasis>
+              индексами компонентов следующих подпространств:
+                    <itemizedlist>
+                        <listitem>
+                            С <literal>dimAlong = "r" = 1</literal>:
+                            в <literal>haystack(:,1,:,:..)</literal>
+                        </listitem>
+                        <listitem>
+                            С <literal>dimAlong = "c" = 2</literal>:
+                            в <literal>haystack(1,:,:,:..)</literal>
+                        </listitem>
+                        <listitem>
+                            С <literal>dimAlong = 3</literal>:
+                            в <literal>haystack(:,:,1,:..)</literal>
+                        </listitem>
+                        <listitem>
+                            С <literal>dimAlong = 4</literal>:
+                            в <literal>haystack(:,:,:,1,:..)</literal>.
+                        </listitem>
+                        <listitem>
+                            и др...
+                        </listitem>
+                    </itemizedlist>
+                    Случай трёх- и четырёхмерных массивов рассмотрен в разделе примеров.
+                    </para>
+            Несмотря на то, что легко понять и использовать для простых матриц, несколько трудно
+            работать с этими линейными индексами в подпространстве <literal>haystack</literal>,
+            чтобы фактически обращаться к совпадающим диапазонам в ND-мерном массиве с N>2.
+                    Необязательный параметр <literal>indType = "headN" | "headIJK</literal> затем вернёт
+            более удобные в работе индексы, обращающиеся ко всему массиву <literal>haystack</literal>.
+                </listitem>
+            </itemizedlist>
+            </para>
+        </refsect3>
     </refsection>
     <refsection>
         <title>Примеры</title>
+        <para>
+            <emphasis role="bold">В матрице чисел:</emphasis>
+        </para>
         <programlisting role="example"><![CDATA[
-alr=[1,2,2;
-     1,2,1;
-     1,1,2;
-     1,1,1;
-     1,2,1];
-
-ind = vectorfind(alr,[1,2,1],'r')
-ind = vectorfind(string(alr),string([1,2,1]),'r')
+m = [ 1  0   1   2  2  1
+      2  2   0   1  0  2
+      0  2  %nan 2  1  2
+      2 %nan 1   0  1  2
+    ];
+vectorfind(m,[2 0 1 1], "c")            // => 5
+vectorfind(m,[2 0 1 1], "c",,"headN")   // => 17
+vectorfind(m,[2 0 1 1], "c",,"headIJK") // [1 5]
+// С короткой иглой:
+vectorfind(m,[2 2])                     // => [2 13]
+vectorfind(m,[2 2], "r",,"headN")       // тот же выходной параметр
+vectorfind(m,[2 2], "r",,"headIJK")     // => [2 1 ; 1 4]
+vectorfind(m,[2 %nan])                  // => [4 7]
+// С символом универсальной подстановки в игле:
+// пример №1: все столбцы начинаются с 1 и заканчиваются 2:
+[n, ma] = vectorfind(m,[1 .3 .3 2], "c", .3) // => n = [1 6], ma = [1 2 0 2; 1 2 2 2]
+// пример №2: все строки, имеющие диапазон [2 * 2] (короткая игла с символом универсальной подстановки):
+[n, ma] = vectorfind(m,[2 .3  2], "r", .3)   // => n = [7 15], ma = [2 %nan 2; 2 1 2]
+vectorfind(m,[2 .3  2], "r", .3, "headIJK")  // => [3 2 ; 3 4]
+                                             // Примечание: значение %nan соответствует *
  ]]></programlisting>
+        <para>
+            <emphasis role="bold">Логическая матрица:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+m = [0  0  0  1  1  0
+     0  1  1  1  0  1
+     1  1  0  1  1  1
+     1  0  1  0  0  1]==1
+// m  =
+//  F F F T T F
+//  F T T T F T
+//  T T F T T T
+//  T F T F F T
+vectorfind(m, [%F %T %T %F], "c")   // => 2
+vectorfind(m, [%T %T], "c")         // => [3 6 13 14 22 23]
+vectorfind(m, [1 1], "c")           // => ошибка: ожидался тот же тип
+// джокер => игла является числовой:
+[n, ma] = vectorfind(m, [0 %nan 0 %nan 1], "r", %nan) // => n=[1 8], ma=[F F F T T ; F T F F T]
+ ]]></programlisting>
+        <para>
+            <emphasis role="bold">В маленьком 8-цветном RGB-изображении (трёхмерная гиперматрица
+          целых чисел типа uint8):</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+// Формирование массива яркости цвета:
+m = [1  1  1  1  1  0  1  0  0  0  1  0  1  0  0
+     1  1  0  0  0  0  1  0  1  0  1  1  1  1  1
+     1  1  0  1  0  1  1  0  0  1  1  0  0  1  0];
+m = uint8(matrix(m,3,5,3)*255)
+// m  =
+//(:,:,1)                   // Красный слой
+//  255  255  255  255  255
+//  255  255    0    0    0
+//  255  255    0  255    0
+//(:,:,2)                   // Зелёный слой
+//    0  255    0    0    0
+//    0  255    0  255    0
+//  255  255    0    0  255
+//(:,:,3)                   // Синий слой
+//  255    0  255    0    0
+//  255  255  255  255  255
+//  255    0    0  255    0
+// Определяет позицию красных пикселей:
+vectorfind(m, [255 0 0], 3)             // => [10 13]
+vectorfind(m, [255 0 0], 3,,"headIJK")  // => [1 4 1 ; 1 5 1]
+// Пиксели с включённым зелёным и синим цветом, каким бы ни был их красный канал:
+//   Мы можем использовать десятично-кодированную иглу (не uint8).
+//   Тогда, %nan можно использовать в качестве джокера, который не может быт в изображении с типом uint8:
+vectorfind(m, [%nan 255 255], 3, %nan,"headIJK") // => [3 1 1; 2 2 1; 2 4 1]
+// Столбцы из 255:
+vectorfind(m, [255 255 255], "c")      // => [1 2 7 11]
+ ]]></programlisting>
+        <para>
+            <emphasis role="bold">В четырёхмерной текстовой гиперматрице:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+m  = [
+  "U"  "C"  "G"  "A"  "A"  "A"  "U"  "U"  "A"  "G"  "A"  "G"
+  "A"  "A"  "A"  "A"  "C"  "C"  "U"  "U"  "C"  "G"  "G"  "G"
+  "A"  "G"  "A"  "C"  "G"  "C"  "C"  "C"  "G"  "C"  "A"  "G"
+  "C"  "U"  "G"  "G"  "G"  "A"  "A"  "G"  "C"  "C"  "C"  "C"
+  "C"  "G"  "G"  "A"  "A"  "G"  "U"  "C"  "A"  "U"  "G"  "C"
+  ];
+m = matrix(m, 3, 5, 2, 2);
+// (:,:,1,1)
+// !U  C  A  G  A  !
+// !A  C  G  G  G  !
+// !A  C  U  A  G  !
+//(:,:,2,1)
+// !A  G  C  A  C  !
+// !A  A  G  A  A  !
+// !C  A  G  C  G  !
+//(:,:,1,2)
+// !U  A  U  C  G  !
+// !U  U  C  A  C  !
+// !C  U  G  C  A  !
+//(:,:,2,2)
+// !G  C  G  G  G  !
+// !G  U  A  G  C  !
+// !C  A  C  G  C  !
+vectorfind(m, ["A" "A" "C"], "c")       // => [6 9]
+vectorfind(m, [""  "G" "G"], "c", "")   // => [5 8 19]
+// Джокер
+[n, ma] = vectorfind(m, ["" "G" "G"], "c", "", "headN") // => n=[13 22 55], ma=[A G G; C G G; G G G]
+vectorfind(m, ["" "C" "C"], "c", "", "headIJK") // => [1 2 1 1 ; 1 5 2 2]
+// Короткая игла
+vectorfind(m, ["C" "C"], "c",,"headIJK")        // => [1 2 1 1; 2 2 1 1; 2 5 2 2]
+// Короткая игла с джокером
+vectorfind(m, ["A" "" "A"],"r","","headIJK")    // => [1 3 1 1 ; 2 2 2 1]
+]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
@@ -79,8 +433,53 @@ ind = vectorfind(string(alr),string([1,2,1]),'r')
                 <link linkend="find">find</link>
             </member>
             <member>
-                <link linkend="gsort">gsort</link>
+                <link linkend="members">members</link>
+            </member>
+            <member>
+                <link linkend="grep">grep</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <literal>vectorfind(H,[])</literal> теперь возвращает <literal>[]</literal>
+                            вместо ошибки.
+                        </listitem>
+                        <listitem>
+                            Когда игла слишком длинная, теперь вместо ошибки возвращается <literal>[]</literal>.
+                        </listitem>
+                        <listitem>
+                            Теперь может быть использована игла, короче, чем размер стога сена.
+                        </listitem>
+                        <listitem>
+                Значение символа универсальной подстановки, совпавшее с любым значением стога сена теперь может быть
+                определён и использован в качестве иглы. Затем могут быть возвращены фактически совпадающие диапазоны:
+                добавлены необязательные параметры <literal>joker</literal> и <literal>matching</literal>.
+                        </listitem>
+                        <listitem>
+                            Любое значение <literal>%nan</literal>, встреченное в игле, теперь обрабатывается
+                как любое иное регулярное значение: оно соответствует значению <literal>%nan</literal>
+                в стоге сена. Оно ранее никогда не соответствовало.
+                        </listitem>
+                        <listitem>
+                            Гиперматрицы могут теперь обрабатываться в качестве стога сена.
+                        </listitem>
+                        <listitem>
+                            Исследуемое направление <literal>dimAlong</literal> теперь может быть числовым:
+                            1, 2, ..
+                        </listitem>
+                        <listitem>
+                            Добавлен необязательный параметр <literal>indType</literal>.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 6862 -->
 //
@@ -18,14 +19,12 @@
 // * typeof(M)==typeof(V) is not checked.
 
 // Check that at least 2 inputs are needed
-ierr = execstr("vectorfind([2 2])", "errcatch");
-errmsg = msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "vectorfind", 2, 3);
-if ierr==0 | (lasterror() <> errmsg) then pause; end
+msg = msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "vectorfind", 2, 5);
+assert_checkerror("vectorfind([2 2])", msg);
 
 // Check that "r" option is added by default
-if vectorfind([2 2], [2 2]) <> vectorfind([2 2], [2 2], "r") then pause; end
+assert_checkequal(vectorfind([2 2], [2 2]), vectorfind([2 2], [2 2], "r"));
 
 // Check that an error message is returned if first and second input arguments have not the same type
-ierr = execstr("vectorfind([1 2], string([1 2]))", "errcatch");
-errmsg = msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same type expected.\n"), "vectorfind", 1, 2);
-if ierr==0 | lasterror() <> errmsg then pause; end
+msg = msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same type expected.\n"), "vectorfind", 1, 2);
+assert_checkerror("vectorfind([1 2], string([1 2]))", msg);
