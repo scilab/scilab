@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 21:58+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18315)\n"
-"Language: de\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -184,15 +184,13 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: ein Fehler ist aufgetreten: %s wird nicht unterstützt.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: ein Fehler ist aufgetreten: ungültiges Dateiformat: Fehler beim Lesen "
 "des <%s> Stücks.\n"
 
 msgid "Invalid .wav file: found data before format information."
-msgstr ""
-"Ungültige .wav-Datei gefunden: Daten beginnen vor Formatinformationen."
+msgstr "Ungültige .wav-Datei gefunden: Daten beginnen vor Formatinformationen."
 
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "Inkorrekte Information der Blockgröße in RIFF Datei,"

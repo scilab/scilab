@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2017-01-09 17:55+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18315)\n"
-"Language: pl\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -112,8 +112,7 @@ msgid "%s: variable size exceeded : less than %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : Singularity of the function.\n"
+msgid "%s: Wrong value for input argument #%d : Singularity of the function.\n"
 msgstr ""
 
 #, c-format
@@ -226,8 +225,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Input and output matrices must have the same number of elements.\n"
+msgid "%s: Input and output matrices must have the same number of elements.\n"
 msgstr ""
 
 #, c-format
@@ -457,30 +455,6 @@ msgstr ""
 "typu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ dla parametru wejściowego nr %d: oczekiwana komórka.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same type expected for all cell "
-"contents"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwany  ten sam typ "
-"dla zawartości wszystkich komórek"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Musi być <= %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz "
-"łańcuchów.\n"
-
-#, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: Niewłaściwy typ argumentu %d: Oczekiwana jest macierz.\n"
 
@@ -497,8 +471,7 @@ msgstr ""
 "kwadratowej.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr ""
 "%s: Niewłaściwa wartość argumentu wejściowego nr %d: macierz nie można "
 "zdiagonalizować.\n"
@@ -535,8 +508,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
 "integers expected.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwany "
-"skalar/wektor/macierz liczb całkowitych dodatnich.\n"
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwany skalar/"
+"wektor/macierz liczb całkowitych dodatnich.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
@@ -555,8 +528,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
 "positive integers expected.\n"
 msgstr ""
-"%s: Niepoprawna wartość argumentu wejściowego nr %d: Oczekiwany "
-"skalar/wektor/macierz/hipermacierz z liczb całkowitych dodatnich.\n"
+"%s: Niepoprawna wartość argumentu wejściowego nr %d: Oczekiwany skalar/"
+"wektor/macierz/hipermacierz z liczb całkowitych dodatnich.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
@@ -702,8 +675,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
@@ -711,31 +683,17 @@ msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr ""
-"%s: Nieprawidłowy argument nr %d: oczekiwano liczbę całkowitą dodatnią.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: Oczekiwano wektora.\n"
 
-#, c-format
-msgid "%s: Wrong size for argument #%d: Vector expected.\n"
-msgstr "%s: Nieprawidłowy rozmiar argumentu nr %d: Oczekiwano wektora.\n"
-
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"
+"%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>"
+"%d] integers.\n"
 msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument "
-"#%d expected.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d:  oczekiwano "
-"rozmiar przynajmniej jak u argumentu wejściowego nr %d\n"
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być pomiędzy %d "
+"i %d.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
@@ -858,8 +816,7 @@ msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 
 #, c-format
@@ -878,3 +835,39 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego: Niekompatybilny "
 "rozmiar.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy typ dla parametru wejściowego nr %d: oczekiwana "
+#~ "komórka.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same type expected for all cell "
+#~ "contents"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwany  ten sam "
+#~ "typ dla zawartości wszystkich komórek"
+
+#~ msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Musi być <= "
+#~ "%d.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz "
+#~ "łańcuchów.\n"
+
+#~ msgid "%s: Wrong argument #%d: Positive integer expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy argument nr %d: oczekiwano liczbę całkowitą dodatnią.\n"
+
+#~ msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+#~ msgstr "%s: Nieprawidłowy rozmiar argumentu nr %d: Oczekiwano wektora.\n"
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: At least the size of input "
+#~ "argument #%d expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d:  oczekiwano "
+#~ "rozmiar przynajmniej jak u argumentu wejściowego nr %d\n"

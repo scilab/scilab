@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2017-01-09 17:54+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18315)\n"
-"Language: ca\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -111,8 +111,7 @@ msgid "%s: variable size exceeded : less than %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : Singularity of the function.\n"
+msgid "%s: Wrong value for input argument #%d : Singularity of the function.\n"
 msgstr ""
 
 #, c-format
@@ -225,8 +224,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Input and output matrices must have the same number of elements.\n"
+msgid "%s: Input and output matrices must have the same number of elements.\n"
 msgstr ""
 
 #, c-format
@@ -453,31 +451,6 @@ msgstr ""
 "tipus.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte:  Ha de ser una "
-"cel·la.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same type expected for all cell "
-"contents"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte:  Totes les cel·les "
-"han de tenir el mateix tipus d'elements."
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser <= %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
-"de cadenes de text.\n"
-
-#, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr ""
 
@@ -492,8 +465,7 @@ msgstr ""
 "quadrada.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: La matriu no es pot "
 "diagonalitzar.\n"
@@ -522,16 +494,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
-"%s: Nombre d'arguments d'entrada incorrecte: Hi ha d'haver %d o %d.\n"
+msgstr "%s: Nombre d'arguments d'entrada incorrecte: Hi ha d'haver %d o %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
 "integers expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un "
-"escalar/matriu/hipermatriu de nombres enters positius.\n"
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un escalar/"
+"matriu/hipermatriu de nombres enters positius.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
@@ -550,8 +521,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
 "positive integers expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un "
-"escalar/vector/matriu/hipermatriu de nombres enters positius.\n"
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un escalar/"
+"vector/matriu/hipermatriu de nombres enters positius.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
@@ -699,8 +670,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
@@ -708,32 +678,18 @@ msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr ""
-"%s: L'argument #%d és incorrecte: Ha de ser un nombre enter positiu.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d tenen una mida incorrecta: Ha de ser un "
 "vector.\n"
 
-#, c-format
-msgid "%s: Wrong size for argument #%d: Vector expected.\n"
-msgstr "%s: L'argument #%d té una mida incorrecta: Ha de ser un vector.\n"
-
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"
+"%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>"
+"%d] integers.\n"
 msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument "
-"#%d expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de tenir com a mínim "
-"la de l'argument #%d.\n"
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha d'estar entre %d i "
+"%d.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
@@ -856,8 +812,7 @@ msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 
 #, c-format
@@ -876,3 +831,38 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: La mida dels arguments d'entrada és incorrecte: Han de tenir mides "
 "compatibles.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte:  Ha de ser una "
+#~ "cel·la.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same type expected for all cell "
+#~ "contents"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte:  Totes les cel·les "
+#~ "han de tenir el mateix tipus d'elements."
+
+#~ msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser <= %d.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
+#~ "matriu de cadenes de text.\n"
+
+#~ msgid "%s: Wrong argument #%d: Positive integer expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument #%d és incorrecte: Ha de ser un nombre enter positiu.\n"
+
+#~ msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+#~ msgstr "%s: L'argument #%d té una mida incorrecta: Ha de ser un vector.\n"
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: At least the size of input "
+#~ "argument #%d expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de tenir com a "
+#~ "mínim la de l'argument #%d.\n"

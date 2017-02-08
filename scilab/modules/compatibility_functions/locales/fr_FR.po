@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:01+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18315)\n"
-"Language: fr\n"
 
 #, c-format
 msgid ""
@@ -55,8 +55,7 @@ msgstr ""
 "ne correspondent pas au contenu de la cellule spécifiée.\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr ""
 "%s : Cette fonctionnalité n'a pas été implémentée : Support pour les "
 "hypermatrices.\n"
@@ -105,8 +104,7 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice carrée attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : %s, %s,'%s' ou '%s' "
 "attendu.\n"
@@ -184,8 +182,7 @@ msgstr "%s : Le format '%s' n'est pas encore traité.\n"
 
 #, c-format
 msgid "%s: End of file reached before all matrix is read.\n"
-msgstr ""
-"%s : Fin du fichier atteinte avant que toute la matrice ne soit lue.\n"
+msgstr "%s : Fin du fichier atteinte avant que toute la matrice ne soit lue.\n"
 
 #, c-format
 msgid "%s: No equivalent for '%s' property.\n"
@@ -196,8 +193,7 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s : Pas de grille mineure dans Scilab.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
 "attendu.\n"

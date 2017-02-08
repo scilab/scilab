@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-09 06:46+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18315)\n"
-"Language: uk\n"
 
 #, c-format
 msgid ""
@@ -55,8 +55,7 @@ msgstr ""
 "параметра, не відповідають вказаному вмісту комірок.\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s: цю можливість не реалізовано: підтримка гіперматриць.\n"
 
 #, c-format
@@ -103,8 +102,7 @@ msgstr ""
 "матрицю.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати %s, %s, "
 "«%s» або «%s».\n"
@@ -192,8 +190,7 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s: у Scilab не передбачено додаткової ґратки.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
 "«%s» або «%s».\n"
@@ -226,8 +223,7 @@ msgstr "%s: параметр «%s» проігноровано.\n"
 
 #, c-format
 msgid "%s: Unknown line style found in '%s' -> set to 6.\n"
-msgstr ""
-"%s: у «%s» виявлено невідомий стиль лінії -> встановлено значення 6.\n"
+msgstr "%s: у «%s» виявлено невідомий стиль лінії -> встановлено значення 6.\n"
 
 #, c-format
 msgid "%s: Unknown color found in '%s' -> set to black.\n"

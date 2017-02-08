@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:08+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18315)\n"
-"Language: it\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -97,8 +97,7 @@ msgstr ""
 "chiudere un diario.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato:un errore non può "
 "chiudere il diario %d.\n"
@@ -110,8 +109,7 @@ msgstr ""
 "fermare un diario.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato:un errore non può "
 "fermare il diario %d.\n"
@@ -137,9 +135,55 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa.\n"
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 64
+#, c-format
+msgid "%s: Too many files opened!\n"
+msgstr ""
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 67
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Memoria esaurita.\n"
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 73
+#, c-format
+msgid "%s: invalid filename %s.\n"
+msgstr ""
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 76
+#, c-format
+msgid "%s: invalid status.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno "
+"scalare.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong file descriptor: %d.\n"
+msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
 
 #, c-format
 msgid "  (cont'd) %s\n"
@@ -217,8 +261,7 @@ msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 
 #, c-format

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:07+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18315)\n"
-"Language: \n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -57,6 +57,14 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：应该为'u'（大写）或'l'（小写）。\n"
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
@@ -69,17 +77,12 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为非空字符串。\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: 内存不足。\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -161,8 +164,20 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s：输入参数#%d的类型错误。\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个布尔值。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个布尔值。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr "%s：输入参数#%d的值错误：必须介于%d与%d之间。\n"
 
 #, c-format
 msgid ""
@@ -176,10 +191,6 @@ msgstr "%s：输入参数#%d的大小错误：应该为非空矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of Strings expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -329,7 +340,8 @@ msgstr "%s：输入参数#%d的值错误：应该为一个非负整数。\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
 "character strings or list expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数或附属矩阵、字符串矩阵或者列表。\n"
+msgstr ""
+"%s：输入参数#%d的类型错误：应该为实数或附属矩阵、字符串矩阵或者列表。\n"
 
 #, c-format
 msgid "%s: Given expression has no value.\n"

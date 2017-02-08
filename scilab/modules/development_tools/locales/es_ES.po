@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2012-02-01 22:28+0000\n"
 "Last-Translator: Adrian Pardini <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18315)\n"
-"Language: es\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected."
@@ -186,8 +186,7 @@ msgstr ""
 "argumentos de entrada %d."
 
 #, c-format
-msgid ""
-"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
 msgstr ""
 "%s: Se esperaban %d filas en el argumento de entrada #%d, pero en su lugar "
 "se encontraron %d."
@@ -198,6 +197,10 @@ msgid ""
 msgstr ""
 "%s: Se esperaban %d columnas en el argumento de entrada #%d, pero en su "
 "lugar se encontraron %d."
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be real.\n"
+msgstr "%s: Valor incorrecto del argumento de entrada #%d: Debe ser > %d.\n"
 
 #, c-format
 msgid "%s: %s is not an installed module"

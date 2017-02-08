@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:08+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18315)\n"
-"Language: \n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -37,8 +37,8 @@ msgid ""
 "If Scilab is started in a chroot, you might want to try to set the two "
 "environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"
 msgstr ""
-"如果Sclab啟動在一個chroot環境下，您也許會需要設定這兩個環境變數：SCI_DISABLE_TK=1  "
-"SCI_JAVA_ENABLE_HEADLESS=1\n"
+"如果Sclab啟動在一個chroot環境下，您也許會需要設定這兩個環境變數："
+"SCI_DISABLE_TK=1  SCI_JAVA_ENABLE_HEADLESS=1\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -288,8 +288,8 @@ msgstr "%s: The CHAPTER 檔 沒有正確的格式在第 %d行\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
 msgstr "%s: 第 #%d 輸入參數值錯誤: 字串結尾是 .last_successful_build 才對.\n"
 
 #, c-format

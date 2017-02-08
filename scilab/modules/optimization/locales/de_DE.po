@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2012-11-12 18:11+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18315)\n"
-"Language: de\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -30,8 +30,7 @@ msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: Anzahl an Spalten %d erwartet.\n"
 
@@ -155,8 +154,7 @@ msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -204,8 +202,7 @@ msgid "%s: Wrong number of input argument(s): %d or more expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
 msgstr ""
 
 #, c-format
@@ -243,8 +240,7 @@ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -634,8 +630,7 @@ msgstr ""
 msgid "Relative error on f = %e\n"
 msgstr ""
 
-msgid ""
-"Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
+msgid "Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
 msgstr ""
 
 msgid ""
@@ -871,8 +866,7 @@ msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
 msgstr ""
 
 #, c-format
@@ -896,8 +890,7 @@ msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
 
 #, c-format
@@ -1247,15 +1240,13 @@ msgstr ""
 "%s anstattdessen."
 
 #, c-format
-msgid ""
-"%s: Expected function but for variable %s at input #%d, got %s instead."
+msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s: erwartete Funktion für Variable %s ist bei Eingang #%d, erhalte aber %s "
 "anstattdessen."
 
 #, c-format
-msgid ""
-"%s: Expected boolean but for variable %s at input #%d, got %s instead."
+msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s: Erwarte boolschen Ert für Variable %s beim Eingang #%d; erhalte %s "
 "anstattdessen."
@@ -1332,8 +1323,7 @@ msgid "%s: Unknown restart detection %s"
 msgstr "%s: unbekannte Neustarterkennung %s"
 
 #, c-format
-msgid ""
-"%s: Randomized bounds initial simplex is not available without bounds."
+msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr ""
 "%s: zufällige Grenzen der übersprünglichen Simplex ist ohne Grenzen nicht "
 "verfügbar."
@@ -1358,8 +1348,7 @@ msgstr ""
 "skalieren"
 
 #, c-format
-msgid ""
-"%s: Problem has no constraints, but Box algorithm is designed for them."
+msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 "%s: Problem hat keine Bedingungen, aber Box Algorithmus ist für diesen "
 "designet."
@@ -1371,8 +1360,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Randomized bounds restart simplex is not available without bounds."
+msgid "%s: Randomized bounds restart simplex is not available without bounds."
 msgstr ""
 
 #, c-format
@@ -1478,8 +1466,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: eine Funktion erwartet.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d: eine Funktion erwartet.\n"
 
 #, c-format
 msgid ""
@@ -1492,8 +1479,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
+msgid "%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
 msgstr ""
 
 #, c-format
@@ -1570,8 +1556,7 @@ msgstr "%s: Logging bereist gestartet."
 
 #, c-format
 msgid "%s: Log file handle non zero while starting up the logging."
-msgstr ""
-"%s: Logdatei verarbeitet nicht Null während des Start des Protokolls."
+msgstr "%s: Logdatei verarbeitet nicht Null während des Start des Protokolls."
 
 #, c-format
 msgid "%s: No output command is defined."
@@ -1606,8 +1591,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Number of columns of fv is %d, which is different from 1."
-msgstr ""
-"%s: Anzahl der Spalten von fv ist %d, dies ist von 1 unterschiedlich."
+msgstr "%s: Anzahl der Spalten von fv ist %d, dies ist von 1 unterschiedlich."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"

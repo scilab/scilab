@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2013-05-17 22:18+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18315)\n"
-"Language: es\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -388,8 +388,7 @@ msgid ""
 "definite (s.p.d.)."
 msgstr ""
 
-msgid ""
-"  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
+msgid "  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
 msgstr ""
 
 #, c-format
@@ -536,15 +535,13 @@ msgstr ""
 "%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz "
 "dispersa cuadrada.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba una matriz "
 "dispersa cuadrada.\n"

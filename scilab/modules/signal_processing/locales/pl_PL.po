@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2011-12-03 13:51+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18315)\n"
-"Language: pl\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -425,8 +425,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 
 #, c-format
@@ -468,8 +467,7 @@ msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -550,8 +548,7 @@ msgstr ""
 "rzeczywistych.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwane elementy "
 "tablicy %d.\n"

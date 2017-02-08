@@ -12,11 +12,11 @@ msgstr ""
 "PO-Revision-Date: 2017-01-09 20:03+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18315)\n"
-"Language: uk\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -52,8 +52,7 @@ msgstr "%s: помилкова кількість вхідних парамет�
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -115,8 +114,7 @@ msgstr "Повторне визначення незмінної змінної.
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -287,8 +285,7 @@ msgid "%s: Wrong type for input argument #%d: An integer expected."
 msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число."
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати рядок або "
 "ціле число.\n"
@@ -306,8 +303,7 @@ msgstr "%s: помилкова кількість вихідних параме�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0, 1 or 2 expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: мало бути 0, 1 або 2.\n"
+msgstr "%s: помилкове значення вхідного параметра №%d: мало бути 0, 1 або 2.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -354,8 +350,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : 0, 1 or 2 expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: мало бути 0, 1 або 2.\n"
+msgstr "%s: помилкове значення вхідного параметра №%d: мало бути 0, 1 або 2.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
@@ -378,8 +373,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: macro expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути вказано макрос.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: мало бути вказано макрос.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: more than %d expected.\n"
@@ -410,8 +404,7 @@ msgid "Pause mode: enter empty lines to continue.\n"
 msgstr "Режим призупинення: для продовження натискайте Enter.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути вказано коректну "
 "функцію.\n"
@@ -442,8 +435,7 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано рядок."
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
 "«%s» або «%s».\n"
@@ -611,8 +603,7 @@ msgstr "Відомості щодо версії Scilab."
 msgid "Debugger is on a breakpoint\n"
 msgstr "Засіб діагностики зупинився на точці зупинки\n"
 
-msgid ""
-"(c)ontinue or (a)bort current execution before execute a new command\n"
+msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 "продовжити (c) чи перервати (a) виконання поточної дії до виконання "
 "наступної команди\n"

@@ -4,7 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
 // <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
 //
 // <-- Non-regression test for bug 14300 -->
 //
@@ -18,6 +20,6 @@ clear s;
 s.a.h = 1;
 s.b.h = 2;
 
-errmsg = msprintf(_("Unknown field : %s."), "h");
+errmsg = msprintf("Unknown field : %s.", "h");
 assert_checkerror("s(:).h;", errmsg);
 assert_checkerror("s(1)(:).h;", errmsg);

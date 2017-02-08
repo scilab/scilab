@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 22:08+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18315)\n"
-"Language: ru\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -99,9 +99,15 @@ msgstr ""
 "%s: Неверный тип входного аргумента №%d: Ожидалась матрица строковых "
 "значений.\n"
 
+#, fuzzy, c-format
+msgid "%s: Invalid %s file.\n"
+msgstr "%s: Недопустимый запрос XPath.\n"
+
+#
+# File: modules/preferences/macros/getPreferencesValue.sci, line: 46
 #, c-format
-msgid "%s: Invalid XConfiguration.xml file.\n"
-msgstr "%s: Некорректный файл XConfiguration.xml.\n"
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
@@ -126,3 +132,7 @@ msgstr "%s: Недопустимое имя атрибута: %s."
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
 msgstr "%s: Неверный размер входного аргумента №%d: ожидалась матрица 2xN.\n"
+
+#, c-format
+msgid "%s: Invalid XConfiguration.xml file.\n"
+msgstr "%s: Некорректный файл XConfiguration.xml.\n"

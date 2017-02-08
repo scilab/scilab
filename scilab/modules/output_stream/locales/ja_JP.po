@@ -11,12 +11,12 @@ msgstr ""
 "PO-Revision-Date: 2015-10-08 21:58+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 18315)\n"
 "X-Poedit-Country: Japan\n"
-"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -57,7 +57,8 @@ msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
@@ -69,33 +70,38 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary ID %d not exists.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています:  カレンダーID %d が存在しません.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  カレンダーID %d が存在しません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary filename not exists.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています:  カレンダーファイル名が存在しません.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  カレンダーファイル名が存在しません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not close diary.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています:  カレンダーを閉じることができません.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  カレンダーを閉じることができません.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています:  カレンダー %d を閉じることができません.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  カレンダー %d を閉じることができませ"
+"ん.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not pause diary.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: カレンダー を休止できません.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: カレンダー %d を休止できません.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: カレンダー %d を休止できません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not resume diary.\n"
@@ -104,7 +110,8 @@ msgstr "%s: 入力引数 #%d の値が間違っています: カレンダー を
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: error can not resume diary %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: カレンダー %d を復帰できません.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: カレンダー %d を復帰できません.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -114,9 +121,49 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 64
+#, c-format
+msgid "%s: Too many files opened!\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: メモリ不足です.\n"
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 73
+#, c-format
+msgid "%s: invalid filename %s.\n"
+msgstr ""
+
+#
+# File: modules/output_stream/sci_gateway/cpp/sci_print.cpp, line: 76
+#, c-format
+msgid "%s: invalid status.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong file descriptor: %d.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
+msgstr ""
+"%s: 最初の入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #
 # File: src/c/sciprint_full.c, line: 96
@@ -137,7 +184,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
-msgstr "%s: 入力引数の数が間違っています: データがフォーマットに適合しません.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: データがフォーマットに適合しません.\n"
 
 #, c-format
 msgid "%s: Wrong type of input arguments #%d: A real scalar expected.\n"
@@ -149,13 +197,16 @@ msgstr "%1$s: 入力引数の数が不正です: %3$d への %2$d を想定し�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 最初の入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 最初の入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: '%s', '%s', '%s', '%s', '%s' または '%s' を想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な値: '%s', '%s', '%s', '%s', '%s' または '%s' を想定"
+"します。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
@@ -163,7 +214,8 @@ msgstr "%s: 引数 #%d の型が不正: ブーリアンを想定します。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください."
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください."
 
 #, c-format
 msgid "%s: Wrong export format: %s"
@@ -186,9 +238,9 @@ msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 状態空間モデルを指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 状態空間モデルを指定してください.\n"
 
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"

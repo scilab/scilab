@@ -4,7 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
+// <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Non-regression test for bug 13895 -->
 //
 // <-- Bugzilla URL -->
@@ -16,5 +19,5 @@
 p.a.h = 1;
 p.b.h = 3;
 
-refMsg = msprintf(_("Unknown field : %s.\n"), "h");
+refMsg = msprintf("Unknown field : %s.\n", "h");
 assert_checkerror("p(:).h", refMsg);

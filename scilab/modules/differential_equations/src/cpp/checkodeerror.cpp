@@ -249,14 +249,14 @@ int checkError(int idid, std::string strName)
         {
             if (getWarningMode())
             {
-                sciprint(_("External ''res'' return many times with ires=-1.\n"));
+                sciprint(_("External 'res' return many times with ires=-1.\n"));
             }
             return 2;
         }
         case -11 : //IRES equal to -2 was encountered and
         {
             //control is being returned to the calling program.
-            sciprint(_("Error in external ''res''.\n"));
+            sciprint(_("Error in external 'res'.\n"));
             return 1;
         }
         case -12 : //DDASSL, dasrt or daskr failed to compute the initial YPRIME.
