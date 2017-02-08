@@ -409,6 +409,8 @@ public final class ConfigurationManager {
             graph = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
             graph.installListeners();
 
+            Xcos.getInstance().addDiagram(new ScicosObjectOwner(graph.getUID(), Kind.DIAGRAM), graph);
+
             if (f != null) {
                 final String filename = f.getCanonicalPath();
                 final XcosFileType filetype = XcosFileType.findFileType(f);
@@ -416,12 +418,15 @@ public final class ConfigurationManager {
                 filetype.load(filename, graph);
                 graph.postLoad(f);
             }
-            Xcos.getInstance().addDiagram(new ScicosObjectOwner(graph.getUID(), Kind.DIAGRAM), graph);
+
 
             graph = loadPath(doc, graph);
 
             graph.setGraphTab(doc.getUuid());
         } catch (Exception e) {
+            // the only way to spot something on window restoration is to print the stacktrace
+            e.printStackTrace();
+
             Logger.getLogger(ConfigurationManager.class.getName()).log(Level.SEVERE, null, e);
             graph = null;
         }
