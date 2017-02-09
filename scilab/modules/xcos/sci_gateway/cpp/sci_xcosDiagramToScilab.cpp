@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - 2009-2009 - Antoine ELIAS <antoine.elias@scilab.org>
  * Copyright (C) DIGITEO - 2009-2010 - Clément DAVID <clement.david@scilab.org>
+ * Copyright (C) Scilab Enterprises - 2016-2017 - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -152,8 +153,6 @@ static types::InternalType* importFile(char const* file)
     }
 
     types::InternalType* pIT = view_scilab::Adapters::instance().allocate_view(uid, DIAGRAM);
-    // unreference as ownership is transfered to the adapter
-    controller.deleteObject(uid);
     return pIT;
 }
 /*--------------------------------------------------------------------------*/
