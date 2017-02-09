@@ -473,9 +473,12 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>xget</term>
+                <term>get</term>
                 <listitem>
-                    <para>retorna valores correntes do contexto gráfico.</para>
+                     <para>
+                         Recupera o valor de uma propriedade do identificador de um gráfico ou de um
+                         objeto interativo.
+                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

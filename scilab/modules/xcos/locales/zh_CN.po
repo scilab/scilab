@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -317,42 +317,27 @@ msgstr "自定义"
 msgid "Save block GUI"
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 69
 msgid "matches"
 msgstr ""
 
-#, fuzzy
 msgid "Previous"
-msgstr "预览"
+msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 72
 msgid "Search"
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 73
 msgid "Searching..."
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 74
 msgid "Zoom In"
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 75
 msgid "Zoom Out"
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 78
 msgid "Unable to load the selected blocks."
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 79
 msgid "Loading blocks"
 msgstr ""
 
@@ -630,8 +615,6 @@ msgstr ""
 msgid "Export to XML"
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 198
 msgid "Export in progress"
 msgstr ""
 
@@ -874,8 +857,10 @@ msgstr ""
 msgid "Evaluation problem: wrong port number."
 msgstr ""
 
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 309
 #, c-format
-msgid "Expecting '%d'."
+msgid "Expecting <code>%d</code> but got <code>%d</code>."
 msgstr ""
 
 msgid ""
@@ -919,23 +904,15 @@ msgstr ""
 msgid "Label: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 330
 msgid "Optimal"
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 331
 msgid "Auto-Position Block"
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 332
 msgid "Split Block"
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 333
 msgid "Auto-Position Split Block"
 msgstr ""
 

@@ -6,11 +6,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>covStart(paths)</synopsis>
-        <synopsis>covStart(lib)</synopsis>
-        <synopsis>covStart([path ; lib])</synopsis>
-        <synopsis>covStart(macro)</synopsis>
-        <synopsis>covStart("all")</synopsis>
+        <synopsis>
+          covStart(paths
+          covStart(lib)
+          covStart([path ; lib])
+          covStart(macro)
+          covStart("all")
+       </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

@@ -13,6 +13,8 @@
 //
 
 // <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
+
 
 function v = while_return()
     v = 0;
@@ -67,4 +69,5 @@ assert_checkequal(while_return(), 1);
 assert_checkequal(while_if_return(), 1);
 assert_checkequal(for_return(), 1);
 assert_checkequal(for_if_return(), 1);
-assert_checkerror("foo()", _("With input arguments, return / resume expects output arguments."));
+assert_checkerror("foo()", "With input arguments, return / resume expects output arguments.");
+

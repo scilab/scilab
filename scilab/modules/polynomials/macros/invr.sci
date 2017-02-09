@@ -63,6 +63,12 @@ function [f,d]=invr(h,flag)
     case "rational" then
         [m,n]=size(h(2));
         if m<>n then error(20),end
+        if m==1 then
+          f=h.den
+          d=h.num
+          if lhs==1 then f=f/d;end
+          return
+        end
         select flag
         case "L" //    Leverrier
             f=eye(n,n);

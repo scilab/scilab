@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 14:57+0000\n"
+"PO-Revision-Date: 2017-01-09 20:16+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -331,42 +331,29 @@ msgstr "Налаштувати"
 msgid "Save block GUI"
 msgstr "Зберегти графічний інтерфейс блоку"
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 69
 msgid "matches"
-msgstr ""
+msgstr "відповідностей"
 
-#, fuzzy
 msgid "Previous"
-msgstr "Перегляд"
+msgstr "Назад"
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 72
 msgid "Search"
-msgstr ""
+msgstr "Шукати"
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 73
 msgid "Searching..."
-msgstr ""
+msgstr "Шукаємо…"
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 74
 msgid "Zoom In"
-msgstr ""
+msgstr "Збільшити"
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 75
 msgid "Zoom Out"
-msgstr ""
+msgstr "Зменшити"
 
-#, fuzzy
 msgid "Unable to load the selected blocks."
-msgstr "Не вдалося завантажити блок з %s ."
+msgstr "Не вдалося завантажити позначені блоки."
 
-#, fuzzy
 msgid "Loading blocks"
-msgstr "Завантаження блоку"
+msgstr "Завантажуємо блоки"
 
 msgid "Load as palette"
 msgstr "Завантажити як палітру"
@@ -648,9 +635,8 @@ msgstr "Не позначено жодного блоку"
 msgid "Export to XML"
 msgstr "Експортувати до XML"
 
-#, fuzzy
 msgid "Export in progress"
-msgstr "Виконується моделювання"
+msgstr "Триває експортування"
 
 msgid "Import from XML"
 msgstr "Імпортувати з XML"
@@ -903,9 +889,11 @@ msgstr "Помилка: не вдалося зібрати цей супербл
 msgid "Evaluation problem: wrong port number."
 msgstr "Помилка обчислень: помилковий номер порту"
 
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 309
 #, c-format
-msgid "Expecting '%d'."
-msgstr "Мало бути вказано «%d»."
+msgid "Expecting <code>%d</code> but got <code>%d</code>."
+msgstr ""
 
 msgid ""
 "<html><body>Compilation error: link ignored because it is not connected. <br/"
@@ -950,23 +938,17 @@ msgstr "Тип даних призначення: "
 msgid "Label: "
 msgstr "Мітка: "
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 330
 msgid "Optimal"
-msgstr ""
+msgstr "Оптимальний"
 
-#, fuzzy
 msgid "Auto-Position Block"
-msgstr "Приклади блоків"
+msgstr "Блок з автопозиціюванням"
 
-#, fuzzy
 msgid "Split Block"
-msgstr "Вирівняти блоки"
+msgstr "Розділений блок"
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 333
 msgid "Auto-Position Split Block"
-msgstr ""
+msgstr "Розділений блок і автопозиціюванням"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -1515,8 +1497,5 @@ msgstr "%s: помилка під час спроби прочитати вмі�
 msgid "%s: Syntax error while trying to set up context from"
 msgstr "%s: синтаксична помилка під час спроби встановити контекст з"
 
-#~ msgid "Next"
-#~ msgstr "Далі"
-
-#~ msgid "The Scicos libraries are not loaded"
-#~ msgstr "Не завантажено бібліотеки Scicos"
+#~ msgid "Expecting '%d'."
+#~ msgstr "Мало бути вказано «%d»."

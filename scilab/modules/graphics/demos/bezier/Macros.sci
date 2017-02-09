@@ -63,14 +63,15 @@ function bezier3d(p)
     // Shows a 3D Bezier curve and its polygon
     t=linspace(0,1,300);
     s=bezier(p,t);
-    dh=xget("dashes");
-    xset("dashes",3)
+    ax = gca();
+    dh = ax.line_style;
+    ax.line_style = 3;
     param3d(p(1,:),p(2,:),p(3,:),34,45)
-    xset("dashes",4);
+    ax.line_style = 4;
     param3d(s(1,:),s(2,:),s(3,:),34,45,"x@y@z",[0,0])
-    xset("dashes",dh);
+    ax.line_style = dh;
     xtitle("A 3d polygon and its Bezier curve");
-    current_axe = gca();current_axe.title.font_size = 3;
+    ax.title.font_size = 3;
 endfunction
 
 

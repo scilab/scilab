@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -125,6 +125,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr ""
+
+#, fuzzy
+msgid "Generating cleaner_src.sce...\n"
+msgstr "Tworzenie cleaner.sce...\n"
 
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"

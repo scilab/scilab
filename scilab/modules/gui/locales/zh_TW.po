@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 12:57+0000\n"
+"PO-Revision-Date: 2016-12-07 22:09+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -315,9 +315,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Invalid value for datatip index %d.\n"
-msgstr "%s: 無效的父節點.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -843,11 +843,47 @@ msgstr "將軟體環境載入(&L)...."
 msgid "&Save environment..."
 msgstr "將軟體環境存起(&S)...."
 
-msgid "&Change current directory..."
-msgstr "改變目前目錄(&C)"
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 94
+# File: modules/gui/src/gui_fake_xml.c, line: 148
+msgid "&Current Working Directory (CWD):"
+msgstr ""
 
-msgid "&Display current directory"
-msgstr "顯示目前目錄(&D)"
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 95
+# File: modules/gui/src/gui_fake_xml.c, line: 149
+msgid "    &Browse for new"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 96
+# File: modules/gui/src/gui_fake_xml.c, line: 150
+msgid "    Go to &Favorite"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 97
+# File: modules/gui/src/gui_fake_xml.c, line: 151
+msgid "TMPDIR"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 98
+# File: modules/gui/src/gui_fake_xml.c, line: 152
+msgid "SCIHOME"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 99
+# File: modules/gui/src/gui_fake_xml.c, line: 153
+msgid "SCI"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 100
+# File: modules/gui/src/gui_fake_xml.c, line: 154
+msgid "User's home ~"
+msgstr ""
 
 msgid "&Quit"
 msgstr "退出(&Q)"
@@ -912,14 +948,14 @@ msgstr "& 之前的指令"
 msgid "&File Browser"
 msgstr ""
 
-msgid "&News feed"
-msgstr ""
-
 msgid "Scilab &Help"
 msgstr "Scilab 線上手冊(&H)"
 
 msgid "Scilab &Demonstrations"
 msgstr "Scilab 範例(&D)"
+
+msgid "&News feed"
+msgstr ""
 
 msgid "&Links"
 msgstr "網站連結 (&W)"
@@ -1408,6 +1444,11 @@ msgid "Copy to Clipboard"
 msgstr ""
 
 msgid "Copy figure to system clipboard"
+msgstr ""
+
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 316
+msgid "Insert a title"
 msgstr ""
 
 msgid "Label X"
@@ -2621,5 +2662,8 @@ msgstr "%s:  輸入參數 %s 之型態錯誤: 應為一實數.\n"
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: 參數 %s 長度錯誤: 應為一實數.\n"
 
-#~ msgid "Ok"
-#~ msgstr "確定"
+#~ msgid "&Change current directory..."
+#~ msgstr "改變目前目錄(&C)"
+
+#~ msgid "&Display current directory"
+#~ msgstr "顯示目前目錄(&D)"

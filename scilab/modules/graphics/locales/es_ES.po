@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -215,11 +215,9 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un vector %s o "
 "%s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un arreglo de "
-"strings bidimensional.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -633,8 +631,6 @@ msgstr ""
 msgid "The parent has to be a SUBWIN\n"
 msgstr "El padre debe ser una SUBVENTANA\n"
 
-#
-# File: modules/graphics/src/c/Champ.c, line: 147
 #, c-format
 msgid "%s: Could not retrive bounding box.\n"
 msgstr ""
@@ -677,8 +673,6 @@ msgstr ""
 msgid "%s: Wrong type argument %s.\n"
 msgstr "%s: Argumento de tipo %s incorrecto.\n"
 
-#
-# File: modules/graphics/src/c/Format.c, line: 1089
 #, c-format
 msgid "%s: Cannot get coordinates.\n"
 msgstr ""
@@ -956,8 +950,6 @@ msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr ""
 "Tamaño incorrecto para la propiedad '%s': Debe estar en el conjunto {%s}.\n"
 
-#
-# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 115
 #, c-format
 msgid ""
 "Inavlid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
@@ -1167,13 +1159,11 @@ msgstr ""
 msgid "Impossible case when building axis\n"
 msgstr "Caso imposible creando ejes\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error: Values must be strictly positive when logarithmic mode on %s axis is "
 "active.\n"
 msgstr ""
-"Error: data_bounds en el eje %s deben ser estrictamente positivos para "
-"cambiar a modo logarítmico.\n"
 
 msgid "Wrong type for input argument: A tlist expected.\n"
 msgstr ""
@@ -2065,29 +2055,21 @@ msgstr ""
 msgid "%s: '%s' cannot be used with '%s'.\n"
 msgstr ""
 
-#
-# File: modules/graphics/macros/replot.sci, line: 48
 #, c-format
 msgid "%s: Argument #%d is badly placed. Please check available syntaxes.\n"
 msgstr ""
 
-#
-# File: modules/graphics/macros/replot.sci, line: 67
 #, c-format
 msgid "%s: Argument #%d: Wrong type. Please check available syntaxes.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Matrix with 4 or 6 columns expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
-"manejadores.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: tight or on or off values expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un manejador "
-"de figura o de ejes.\n"
 
 #, c-format
 msgid "%s: Handle of unsupported type '%s' as Argument #%d\n"

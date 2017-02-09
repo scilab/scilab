@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-07-17 12:26+0000\n"
-"Last-Translator: Mickael Albertus <Unknown>\n"
+"PO-Revision-Date: 2017-01-27 12:24+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -64,14 +64,6 @@ msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
 msgstr "%s : La syntaxe x(j) est seulement autorisée pour les blocs C ligne.\n"
 
 #, c-format
-msgid ""
-"%s: In concatenation the number of dimensions for each component must "
-"match.\n"
-msgstr ""
-"%s : En concaténation, le nombre de dimensions de chaque composant doit "
-"correspondre.\n"
-
-#, c-format
 msgid "%s: Invalid field name.\n"
 msgstr "%s : Nom de champ invalide.\n"
 
@@ -110,8 +102,101 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
+msgid ""
+"%s: In concatenation the number of dimensions for each component must "
+"match.\n"
+msgstr ""
+"%s : En concaténation, le nombre de dimensions de chaque composant doit "
+"correspondre.\n"
+
+#, c-format
 msgid "%s: Inconsistent dimensions.\n"
 msgstr "%s : Dimensions incohérentes.\n"
+
+#, c-format
+msgid "%s: Inconsistent element-wise operation.\n"
+msgstr "%s : Opération élément par élément incohérente.\n"
+
+#, c-format
+msgid "%s: Too many subscripts.\n"
+msgstr "%s : Trop d'indices.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Au maximum de la 3D "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
+msgstr "%s : Dimensions erronées de l'argument : Dimensions incompatibles\n"
+
+#, c-format
+msgid "%s: not implemented for argin#1 hypermatrix and argin#2 matrix\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: integer <= ndims(argument #%d) "
+"expected.\n"
+msgstr ""
+"%s : Valeur erronée pour l'argument d'entrée n°%d : entier <= ndims(argument "
+"n°%d) attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Des valeurs entières "
+"attendues.\n"
+
+#, c-format
+msgid "%s: time domains are not compatible.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of columns "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid syntax for a MIMO system.\n"
+msgstr "%s : Syntaxe invalide pour un système MIMO.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %s attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
+msgstr ""
+"%s : L'insertion d'une matrice creuse dans une matrice de nombre n'est pas "
+"définie.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice entière "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments.\n"
+msgstr "%s : Dimension erronée des arguments d'entrée.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument(s).\n"
+msgstr "%s : Dimension erronée de l'argument ou des argument(s) d'entrée.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -145,184 +230,6 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
 "un scalaire attendu.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %s ou %s attendu.\n"
-
-#, c-format
-msgid "%s: Inconsistent element-wise operation.\n"
-msgstr "%s : Opération élément par élément incohérente.\n"
-
-#, c-format
-msgid "%s: Too many subscripts.\n"
-msgstr "%s : Trop d'indices.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Hypermatrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une hypermatrice attendue.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Au maximum de la 3D "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
-msgstr "%s : Dimensions erronées de l'argument : Dimensions incompatibles\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be non-negative "
-"integers.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être dans l'ensemble "
-"{%s}.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument ou des arguments d'entrée : Des "
-"scalaires entiers attendus.\n"
-
-#, c-format
-msgid "%s: Only one -1 value admitted.\n"
-msgstr "%s : Une seule valeur -1 est possible.\n"
-
-#, c-format
-msgid "%s: Input and output matrices  must have the same number of elements"
-msgstr ""
-"%s : Les matrices d'entrée et de sortie doivent avoir le même nombre "
-"d'éléments."
-
-#, fuzzy, c-format
-msgid "%s: Arguments #%d and #%d must have compatible sizes\n"
-msgstr ""
-"%s : Les arguments d'entrée n°%d et n°%d ont des dimensions incompatibles.\n"
-
-#, c-format
-msgid "%s: not implemented for argin#1 hypermatrix and argin#2 matrix\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
-"attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Un scalaire entier positif "
-"attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar positive integer or character "
-"string expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Un scalaire entier positif "
-"ou une chaîne de caractères attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle attendue.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: integer <= ndims(argument #%d) "
-"expected.\n"
-msgstr ""
-"%s : Valeur erronée pour l'argument d'entrée n°%d : entier <= ndims(argument "
-"n°%d) attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Des valeurs entières "
-"attendues.\n"
-
-#
-# File: modules/overloading/macros/%lss_c_zpk.sci, line: 10
-# File: modules/overloading/macros/%lss_f_zpk.sci, line: 13
-# File: modules/overloading/macros/%r_c_zpk.sci, line: 10
-# File: modules/overloading/macros/%r_f_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_a_zpk.sci, line: 11
-# File: modules/overloading/macros/%zpk_c_lss.sci, line: 12
-# File: modules/overloading/macros/%zpk_c_r.sci, line: 13
-# File: modules/overloading/macros/%zpk_c_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_d_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_f_lss.sci, line: 12
-# File: modules/overloading/macros/%zpk_f_r.sci, line: 12
-# File: modules/overloading/macros/%zpk_f_zpk.sci, line: 12
-# File: modules/overloading/macros/%zpk_i_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_l_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_m_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_q_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_r_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_v_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_x_zpk.sci, line: 13
-#, c-format
-msgid "%s: time domains are not compatible.\n"
-msgstr ""
-
-#, fuzzy, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
-msgstr ""
-"%s : Type erroné des arguments d'entrée n°%d et n°%d : Des valeurs entières "
-"attendues.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same number of columns "
-"expected.\n"
-msgstr ""
-"%s : Type erroné des arguments d'entrée n°%d et n°%d : Des valeurs entières "
-"attendues.\n"
-
-#, c-format
-msgid "%s: Invalid syntax for a MIMO system.\n"
-msgstr "%s : Syntaxe invalide pour un système MIMO.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %s attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
-msgstr ""
-"%s : L'insertion d'une matrice creuse dans une matrice de nombre n'est pas "
-"définie.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice entière "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments.\n"
-msgstr "%s : Dimension erronée des arguments d'entrée.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument(s).\n"
-msgstr "%s : Dimension erronée de l'argument ou des argument(s) d'entrée.\n"
-
 msgid "Invalid exponent: expected real exponents."
 msgstr "Exposant invalide : exposants réels attendus."
 
@@ -349,8 +256,6 @@ msgstr ""
 "%s : Une assignation à null peut seulement avoir un seul index qui ne soit "
 "pas :\n"
 
-#
-# File: modules/overloading/macros/%s_l_hm.sci, line: 17
 #, c-format
 msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
 msgstr ""
@@ -396,24 +301,20 @@ msgstr "%s : Dimension ou valeur erronée de l'argument d'entrée n°%d.\n"
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s : Valeur erronée de l'argument d'entrée n°%d.\n"
 
-#, fuzzy
 msgid "Inconsistent row/column dimensions.\n"
-msgstr "%s : Dimensions incohérentes.\n"
+msgstr ""
 
-#, fuzzy
 msgid "Inconsistent multiplication.\n"
-msgstr "%s : Opération élément par élément incohérente.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same dimensions expected.\n"
 msgstr ""
-"%s : Type erroné des arguments d'entrée n°%d et n°%d : Des valeurs entières "
-"attendues.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Not implemented.\n"
@@ -440,13 +341,52 @@ msgstr "Indice invalide.\n"
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
-#~ msgid "%s: Operand is not a boolean hypermatrix.\n"
-#~ msgstr "%s : L'opérande n'est pas une hypermatrice booléenne.\n"
-
-#~ msgid "%s: Incompatible operand dimensions.\n"
-#~ msgstr "%s : Dimensions de l'opérande incompatibles.\n"
-
-#~ msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
+#~ msgid "%s: Wrong type for input argument #%d: string expected.\n"
 #~ msgstr ""
-#~ "%s : Type erroné de l'argument ou des arguments d'entrée : Une "
-#~ "hypermatrice attendue.\n"
+#~ "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+#~ "attendue.\n"
+
+#~ msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+#~ msgstr ""
+#~ "%s : Valeur erronée de l'argument d'entrée n°%d : %s ou %s attendu.\n"
+
+#~ msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Hypermatrix expected.\n"
+#~ msgstr ""
+#~ "%s : Type erroné de l'argument d'entrée n°%d : Une hypermatrice "
+#~ "attendue.\n"
+
+#~ msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
+#~ msgstr ""
+#~ "%s : Dimension erronée de l'argument ou des arguments d'entrée : Des "
+#~ "scalaires entiers attendus.\n"
+
+#~ msgid "%s: Only one -1 value admitted.\n"
+#~ msgstr "%s : Une seule valeur -1 est possible.\n"
+
+#~ msgid "%s: Input and output matrices  must have the same number of elements"
+#~ msgstr ""
+#~ "%s : Les matrices d'entrée et de sortie doivent avoir le même nombre "
+#~ "d'éléments."
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
+#~ "attendu.\n"
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar positive integer "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s : Valeur erronée de l'argument d'entrée n°%d : Un scalaire entier "
+#~ "positif attendu.\n"
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar positive integer or "
+#~ "character string expected.\n"
+#~ msgstr ""
+#~ "%s : Valeur erronée de l'argument d'entrée n°%d : Un scalaire entier "
+#~ "positif ou une chaîne de caractères attendu.\n"

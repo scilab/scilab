@@ -233,7 +233,7 @@
         </para>
         <programlisting role="example"><![CDATA[
 function [f, index]=rosenbrock(x, index)
-  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+  f = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
 nm = neldermead_new ();
@@ -243,6 +243,7 @@ nm = neldermead_configure(nm,"-simplex0length",0.1);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-function",rosenbrock);
+nm = neldermead_configure(nm,"-storehistory",%t);
 nm = neldermead_search(nm, "off");
 xopt = neldermead_get(nm,"-xopt");
 fopt = neldermead_get(nm,"-fopt");

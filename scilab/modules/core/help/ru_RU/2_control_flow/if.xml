@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="if">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ru" xml:id="if">
     <refnamediv>
         <refname>if</refname>
         <refpurpose>ключевое слово для условного выполнения</refpurpose>
@@ -8,12 +11,12 @@
         <title>Синтаксис</title>
         <synopsis>
             if expr1 then
-            statements 1
+                statements 1
             elseif expri then
-            statements i
-            ....
+                statements i
+                ....
             else
-            statements
+                statements
             end
         </synopsis>
     </refsynopsisdiv>
@@ -86,9 +89,9 @@
         </para>
         <programlisting role=""><![CDATA[
       if rand(1,1) > 0.5 then
-	disp("True");
+    disp("True");
       else
-	disp("False");
+    disp("False");
       end
 ]]></programlisting>
         <para>
@@ -97,11 +100,11 @@
         <programlisting role=""><![CDATA[
       if rand(1,1) > 0.5 then disp("True"); else disp("False"); end
 ]]></programlisting>
-        <para>
-            Предупреждение: число символов, используемых для определения тела любой инструкции условия
-            (<literal>if while for</literal> или <literal>select/case</literal>) должно быть ограничено
-            16К.
-        </para>
+      <warning>
+        число символов, используемых для определения тела любой инструкции условия
+        (<literal>if while for</literal> или <literal>select/case</literal>) должно быть ограничено
+        16К.
+      </warning>
     </refsection>
     <refsection>
         <title>Примеры</title>
@@ -121,7 +124,16 @@ end
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="try">try</link>
+                <link linkend="then">then</link>
+            </member>
+            <member>
+                <link linkend="else">else</link>
+            </member>
+            <member>
+                <link linkend="elseif">elseif</link>
+            </member>
+            <member>
+                <link linkend="end">end</link>
             </member>
             <member>
                 <link linkend="while">while</link>
@@ -133,16 +145,13 @@ end
                 <link linkend="boolean">boolean</link>
             </member>
             <member>
-                <link linkend="end">end</link>
-            </member>
-            <member>
-                <link linkend="then">then</link>
-            </member>
-            <member>
-                <link linkend="else">else</link>
-            </member>
-            <member>
                 <link linkend="comparison">сравнение</link>
+            </member>
+            <member>
+                <link linkend="or_op">|, ||</link>
+            </member>
+            <member>
+                <link linkend="and_op">&amp;, &amp;&amp;</link>
             </member>
         </simplelist>
     </refsection>

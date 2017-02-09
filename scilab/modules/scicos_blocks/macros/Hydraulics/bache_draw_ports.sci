@@ -42,9 +42,9 @@ function bache_draw_ports(o)
     if subStr<>"" then
         orient=%f;
     end
-    xset("pattern",default_color(0));
+    gca().foreground = default_color(0);
 
-    //xset('thickness',1)
+    //gca().thickness = 1;
     // draw input/output ports
     //------------------------
 
@@ -71,7 +71,7 @@ function bache_draw_ports(o)
         0   1
         -1   1]*diag([xf/7,yf/14])
         dy=sz(2)/(nout+1)
-        xset("pattern",default_color(1))
+        gca().foreground = default_color(1);
 
         for k=1:nout
             if outporttype==[] then
@@ -128,7 +128,7 @@ function bache_draw_ports(o)
 
 
         dy=sz(2)/(nout+1)
-        xset("pattern",default_color(1))
+        gca().foreground = default_color(1);
         for k=1:nout
             if outporttype==[] then
                 xfpoly(out1(:,1)+ones(4,1)*orig(1)-1,..
@@ -177,7 +177,7 @@ function bache_draw_ports(o)
 
 
     dx=sz(1)/(clkout+1)
-    xset("pattern",default_color(-1))
+    gca().foreground = default_color(-1);
     for k=1:clkout
         xfpoly(out(:,1)+ones(4,1)*(orig(1)+k*dx),..
         out(:,2)+ones(4,1)*orig(2),1)
@@ -187,5 +187,5 @@ function bache_draw_ports(o)
         xfpoly(in(:,1)+ones(4,1)*(orig(1)+k*dx),..
         in(:,2)+ones(4,1)*(orig(2)+sz(2)),1)
     end
-    xset("pattern",default_color(0))
+    gca().foreground = default_color(0);
 endfunction

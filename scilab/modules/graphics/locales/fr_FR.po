@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 13:01+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-01-13 18:26+0000\n"
+"Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -236,11 +236,11 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un vecteur de %s ou de %s "
 "attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice de chaîne "
-"de caractères attendue.\n"
+"%s : Type erroné de l'argument d'entrée n°%d : une matrice de chaînes de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -679,8 +679,6 @@ msgstr "%s : les dimensions de la fenêtre ont été modifiées à moins de 2^16
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Le parent doit être une sous-fenêtre\n"
 
-#
-# File: modules/graphics/src/c/Champ.c, line: 147
 #, c-format
 msgid "%s: Could not retrive bounding box.\n"
 msgstr ""
@@ -720,9 +718,9 @@ msgstr "Erreur : ComputeFormat doit être utilisé avec des objets AXIS\n"
 msgid "%s: Wrong type argument %s.\n"
 msgstr "%s : Type erroné d'argument %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Cannot get coordinates.\n"
-msgstr "%s : Impossible d'ouvrir le fichier "
+msgstr "%s : Impossible d'obtenir les coordonnées.\n"
 
 #, c-format
 msgid "Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"
@@ -1021,10 +1019,12 @@ msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr ""
 "Dimension erronée de la propriété '%s' : Doit être dans l'ensemble {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Inavlid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
-msgstr "Valeur erronée de la propriété '%s' : '%s' ou '%s' attendu.\n"
+msgstr ""
+"Valeur invalide pour la propriété '%s' : utiliser 'always', 'mouseclick' ou "
+"'mouseover'.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Non-empty string expected.\n"
@@ -1072,11 +1072,10 @@ msgstr ""
 msgid "Wrong type for '%s' property: Matrix expected.\n"
 msgstr "Type erroné pour la propriété '%s' : une matrice attendue.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong size for '%s' property: Matrix with length 3 or [] expected.\n"
 msgstr ""
-"Valeur erronée pour la propriété '%s' : une chaîne de caractères de longueur "
-"3 ou moins est attendue.\n"
+"Taille erronée pour la propriété '%s' : matrice de taille 3 ou [] attendue.\n"
 
 msgid "Datatips property can not be modified directly.\n"
 msgstr "La propriété des datatips ne peut pas être modifiée directement.\n"
@@ -1097,7 +1096,7 @@ msgstr ""
 "Valeur erronée de la propriété '%s' : Un entier entre %d et %d attendu.\n"
 
 msgid "Could not retrieve format.\n"
-msgstr ""
+msgstr "Impossible de retrouver le format.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be -1 or a valid color index.\n"
@@ -1248,13 +1247,13 @@ msgstr "%s : Le vecteur y n'est pas monotone.\n"
 msgid "Impossible case when building axis\n"
 msgstr "Cas impossible lors de la construction des axes\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error: Values must be strictly positive when logarithmic mode on %s axis is "
 "active.\n"
 msgstr ""
-"Erreur : data_bounds suivant l'axe %s doit être strictement positif pour "
-"passer au mode logarithmique.\n"
+"Erreur : les valeurs doivent être strictement positives lorsque le mode "
+"logarithmique est activé sur l'axe %s.\n"
 
 msgid "Wrong type for input argument: A tlist expected.\n"
 msgstr "Type erroné de l'argument d'entrée : Une tlist attendue.\n"
@@ -1443,7 +1442,7 @@ msgid "datatips on 3D curves"
 msgstr "Astuces sur les données pour les courbes 3D"
 
 msgid "Datatips detached from curve"
-msgstr ""
+msgstr "Datatips détachés de la courbe"
 
 msgid "2D curves"
 msgstr "Courbes 2D"
@@ -1452,7 +1451,7 @@ msgid "3D curve"
 msgstr "Courbe 3D"
 
 msgid "Detach"
-msgstr ""
+msgstr "Détacher"
 
 msgid "Graphics"
 msgstr "Graphiques"
@@ -2263,27 +2262,29 @@ msgstr ""
 msgid "%s: '%s' cannot be used with '%s'.\n"
 msgstr "%s : '%s' ne peut pas être utilisé avec '%s'.\n"
 
-#
-# File: modules/graphics/macros/replot.sci, line: 48
 #, c-format
 msgid "%s: Argument #%d is badly placed. Please check available syntaxes.\n"
 msgstr ""
+"%s : L'argument #%d est mal placé. Veuillez vérifier les syntaxes "
+"disponibles.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Wrong type. Please check available syntaxes.\n"
 msgstr ""
+"%s : Argument #%d : type erroné. Veuillez vérifier les syntaxes "
+"disponibles.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Matrix with 4 or 6 columns expected.\n"
-msgstr ""
+msgstr "%s : Argument #%d : matrice à 4 ou 6 colonnes attendue.\n"
 
 #, c-format
 msgid "%s: Argument #%d: tight or on or off values expected.\n"
-msgstr ""
+msgstr "%s : Argument #%d : valeurs 'tight', 'on' ou 'off' attendues.\n"
 
 #, c-format
 msgid "%s: Handle of unsupported type '%s' as Argument #%d\n"
-msgstr ""
+msgstr "%s : Handle de type '%s' non géré comme argument #%d\n"
 
 #, c-format
 msgid ""
@@ -2472,6 +2473,3 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s : Valeur erronée donnée pour %s."
-
-#~ msgid "%s: Input argument #%d must be a handle on an axis.\n"
-#~ msgstr "%s : L'argument d'entrée n°%d : Doit être un handle de type axe.\n"

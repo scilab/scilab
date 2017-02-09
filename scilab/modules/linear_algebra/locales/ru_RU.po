@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 13:01+0000\n"
+"PO-Revision-Date: 2016-12-07 22:10+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -335,11 +335,9 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор-столбец.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d: ожидалась вещественная или комплексная "
-"матрица.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
@@ -430,6 +428,3 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного параметра №%d: запрошенный ранг больше "
 "размерности матрицы."
-
-#~ msgid "%s: Obsolete function. Please replace '%s' by '%s'."
-#~ msgstr "%s: Устаревшая функция. Пожалуйста, замените '%s' на '%s'."

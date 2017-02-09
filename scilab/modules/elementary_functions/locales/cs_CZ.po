@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 12:59+0000\n"
+"PO-Revision-Date: 2017-01-09 17:51+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -33,9 +33,9 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
 msgid "%s: No more memory.\n"
 msgstr "%s: Není více paměti.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáváno celé číslo.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
@@ -399,8 +399,6 @@ msgstr "%s: Matice není diagonizovatelná.\n"
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
 
-#
-# File: modules/elementary_functions/macros/bit_op.sci, line: 20
 #, c-format
 msgid "%s: unknown bitwise function %s.\n"
 msgstr ""
@@ -454,26 +452,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input arguments: Same types expected.\n"
 msgstr "%s: Špatný typ vstupních argumentů: Očekávány stejné velikosti.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána buňka.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same type expected for all cell "
-"contents"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávány stejné velikosti pro "
-"všechen obsah buňky"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Musí být <= %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězce.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
@@ -578,23 +556,21 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Column expected.\n"
-msgstr "%s: Špatný argument #%d: Očekáváno kladné celé číslo.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number(s) expected.\n"
-msgstr "%s: Špatná velikost argumentu #%d: Očekáván vektor.\n"
+msgstr ""
 
-#
-# File: modules/elementary_functions/macros/linspace.sci, line: 44
 #, c-format
 msgid "%s: Argument #%d: %%nan and %%inf values are forbidden.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: An integer value expected.\n"
-msgstr "%s: Špatný argument #%d: Očekáváno kladné celé číslo.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Log of a singular matrix.\n"
@@ -709,29 +685,14 @@ msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr "%s: Pokud je x záporné, pak n musí obsahovat pouze lichá celá čísla.\n"
 
 #, c-format
-msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr "%s: Špatný argument #%d: Očekáváno kladné celé číslo.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor.\n"
 
-#, c-format
-msgid "%s: Wrong size for argument #%d: Vector expected.\n"
-msgstr "%s: Špatná velikost argumentu #%d: Očekáván vektor.\n"
-
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument #"
-"%d expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekávána alespoň velikost "
-"vstupního argumentu #%d.\n"
+"%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>"
+"%d] integers.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být mezi %d a %d.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
@@ -869,9 +830,31 @@ msgstr "%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekáván stejný ty
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: Špatná velikost vstupních argumentů: Nekompatibilní velikosti.\n"
 
+#~ msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
+#~ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána buňka.\n"
+
 #~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-#~ "expected.\n"
+#~ "%s: Wrong type for input argument #%d: Same type expected for all cell "
+#~ "contents"
 #~ msgstr ""
-#~ "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár/matice celých "
-#~ "čísel bez znaménka.\n"
+#~ "%s: Špatný typ vstupního argumentu #%d: Očekávány stejné velikosti pro "
+#~ "všechen obsah buňky"
+
+#~ msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
+#~ msgstr "%s: Špatná velikost vstupního argumentu #%d: Musí být <= %d.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
+#~ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězce.\n"
+
+#~ msgid "%s: Wrong argument #%d: Positive integer expected.\n"
+#~ msgstr "%s: Špatný argument #%d: Očekáváno kladné celé číslo.\n"
+
+#~ msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+#~ msgstr "%s: Špatná velikost argumentu #%d: Očekáván vektor.\n"
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: At least the size of input "
+#~ "argument #%d expected.\n"
+#~ msgstr ""
+#~ "%s: Špatná velikost vstupního argumentu #%d: Očekávána alespoň velikost "
+#~ "vstupního argumentu #%d.\n"

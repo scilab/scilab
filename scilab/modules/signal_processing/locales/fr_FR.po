@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -404,10 +404,9 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument n°%d : Un vecteur réel ou complexe attendu.\n"
 
 #, c-format
 msgid ""
@@ -535,15 +534,13 @@ msgstr ""
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr "%s : Valeurs erronées des arguments d'entrée n°%d et n°%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Column expected.\n"
-msgstr "%s : Dimension erronée de l'argument n°%d : Un vecteur attendu.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s : Arguments d'entrée n°%d et n°%d incompatibles : Mêmes nombres "
-"d'éléments attendus.\n"
 
 #, c-format
 msgid ""

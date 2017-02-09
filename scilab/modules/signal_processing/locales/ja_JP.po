@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -415,11 +415,9 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: 入力引数の数が不正です: %d または、%d を想定します。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
 msgstr ""
-"%s: 引数 #%d の型が間違っています: 実数または複素数ベクトルを指定してくださ"
-"い.\n"
 
 #, c-format
 msgid ""
@@ -544,14 +542,13 @@ msgstr ""
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr "%s: 入力引数 #%d と #%d の値が正しくありません.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Column expected.\n"
-msgstr "%s: 引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
-"%s: 入力引数 #%d と #%d は互換性がありません: 要素数を同じにしてください.\n"
 
 #
 # File: macros/pspect.sci, line: 38

@@ -8,12 +8,12 @@
         <title>呼び出し手順</title>
         <synopsis>
             if expr1 then
-            statements
+                statements
             elseif expri then
-            statements
-            ....
+                statements
+                ....
             else
-            statements
+                statements
             end
         </synopsis>
     </refsynopsisdiv>
@@ -90,9 +90,9 @@
         </para>
         <programlisting role=""><![CDATA[
       if rand(1,1) > 0.5 then
-	disp("True");
+    disp("True");
       else
-	disp("False");
+    disp("False");
       end
 ]]></programlisting>
         <para>
@@ -101,10 +101,10 @@
         <programlisting role=""><![CDATA[
       if rand(1,1) > 0.5 then disp("True"); else disp("False"); end
 ]]></programlisting>
-        <para>
-            警告: 条件文(if while for または select/case)の内部に記述可能な文字数は
-            16kに制限されています.
-        </para>
+      <warning>
+        条件文(if while for または select/case)の内部に記述可能な文字数は
+        16kに制限されています.
+      </warning>
     </refsection>
     <refsection>
         <title>例</title>
@@ -124,7 +124,16 @@ end
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="try">try</link>
+                <link linkend="then">then</link>
+            </member>
+            <member>
+                <link linkend="else">else</link>
+            </member>
+            <member>
+                <link linkend="elseif">elseif</link>
+            </member>
+            <member>
+                <link linkend="end">end</link>
             </member>
             <member>
                 <link linkend="while">while</link>
@@ -136,16 +145,13 @@ end
                 <link linkend="boolean">boolean</link>
             </member>
             <member>
-                <link linkend="end">end</link>
-            </member>
-            <member>
-                <link linkend="then">then</link>
-            </member>
-            <member>
-                <link linkend="else">else</link>
-            </member>
-            <member>
                 <link linkend="comparison">comparison</link>
+            </member>
+            <member>
+                <link linkend="or_op">|, ||</link>
+            </member>
+            <member>
+                <link linkend="and_op">&amp;, &amp;&amp;</link>
             </member>
         </simplelist>
     </refsection>

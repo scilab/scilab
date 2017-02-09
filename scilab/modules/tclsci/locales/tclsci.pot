@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-01-04 17:52+0100\n"
+"Revision-Date: 2017-02-01 14:30+0100\n"
 
 # File: modules/tclsci/sci_gateway/c/gw_tclsci.c, line: 72
 msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
@@ -53,7 +53,7 @@ msgstr ""
 # File: modules/tclsci/sci_gateway/c/sci_TCL_ExistVar.c, line: 84
 # File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 58
 # File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 85
-# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 93
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 94
 # File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 69
 # File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 108
 # File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 161
@@ -91,8 +91,8 @@ msgstr ""
 # File: modules/tclsci/sci_gateway/c/sci_TCL_ExistVar.c, line: 101
 # File: modules/tclsci/sci_gateway/c/sci_TCL_ExistVar.c, line: 126
 # File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 101
-# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 194
-# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 132
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 195
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 133
 # File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 84
 # File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 214
 # File: modules/tclsci/sci_gateway/c/sci_TCL_UnsetVar.c, line: 100
@@ -131,7 +131,7 @@ msgstr ""
 # File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 132
 # File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 170
 # File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 64
-# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 113
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 114
 # File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 226
 # File: modules/tclsci/sci_gateway/c/sci_TCL_UnsetVar.c, line: 115
 # File: modules/tclsci/sci_gateway/c/sci_TCL_UpVar.c, line: 157
@@ -156,7 +156,7 @@ msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 185
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 186
 #, c-format
 msgid "%s: Could not read Tcl Variable.\n"
 msgstr ""
@@ -182,7 +182,7 @@ msgid "Unknown Release"
 msgstr ""
 
 #
-# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 125
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 126
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""

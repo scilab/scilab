@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 16:03+0000\n"
+"PO-Revision-Date: 2016-12-07 22:12+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -359,8 +359,6 @@ msgstr "Тепер, побачимо, як скористатися множни
 msgid "  1/ lu factors of a sparse matrix A are obtained through:"
 msgstr "  1) Множники LU розрідженої матриці A отримано такою командою:"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 97
 #, c-format
 msgid ""
 "     lup = umf_lufact(A)\n"
@@ -374,8 +372,6 @@ msgid "  2/ for solving a linear system A*x = b, use:"
 msgstr ""
 "  2) Для розв’язування лінійної системи A*x = b використовуємо таку команду:"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 99
 #, c-format
 msgid ""
 "     x = umf_lusolve(lup,b)\n"
@@ -388,8 +384,6 @@ msgstr ""
 msgid "  3/ to solve A'*x=b you may use:"
 msgstr "  3) Для розв’язування A'*x=b можна скористатися такою командою:"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 101
 #, c-format
 msgid ""
 "     x = umf_lusolve(lup,b,Ax''=b)\n"
@@ -405,8 +399,6 @@ msgstr ""
 "  4) Також можна швидко обчислити обумовленість 1-норма за допомогою такої "
 "команди:"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 103
 #, c-format
 msgid ""
 "     K1 = condestsp(A,lup)\n"
@@ -466,8 +458,6 @@ msgid "  1/ the Cholesky factorization of a s.p.d. matrix A is obtained with:"
 msgstr ""
 "  1) Факторизацію Холецького СДВ-матриці A можна отримати такою командою:"
 
-#
-# File: modules/umfpack/demos/sparse_matrices.sce, line: 165
 #, c-format
 msgid ""
 "     Cp is a pointer to the Cholesky fact. (the memory is outside scilab "
@@ -658,49 +648,3 @@ msgstr "невеличкі тести condestsp"
 
 msgid "Click to choose a demo"
 msgstr "Клацніть, щоб обрати приклад"
-
-#~ msgid "A small test for the condestsp"
-#~ msgstr "Невеличка перевірка для condestsp"
-
-#~ msgid "     without explicitly computing the"
-#~ msgstr "     без явного обчислення"
-
-#~ msgid "The test consists in forming small"
-#~ msgstr "Перевірка полягає у створенні невеличкого"
-
-#~ msgid "To load a sparse matrix stored in the Harwell-"
-#~ msgstr ""
-#~ "Щоб завантажити розріджену матрицю, що зберігається у форматі Гарвела-"
-
-#~ msgid "     lup = umf_lufact(A)\n"
-#~ msgstr "     lup = umf_lufact(A)\n"
-
-#~ msgid "     x = umf_lusolve(lup,b)\n"
-#~ msgstr "     x = umf_lusolve(lup,b)\n"
-
-#~ msgid "     x = umf_lusolve(lup,b,Ax''=b)\n"
-#~ msgstr "     x = umf_lusolve(lup,b,Ax''=b)\n"
-
-#~ msgid "     K1 = condestsp(A,lup)\n"
-#~ msgstr "     K1 = condestsp(A,lup)\n"
-
-#~ msgid "     umf_ludel(lup)\n"
-#~ msgstr "     umf_ludel(lup)\n"
-
-#~ msgid "     K1 = "
-#~ msgstr "     K1 = "
-
-#~ msgid "     K2 = "
-#~ msgstr "     K2 = "
-
-#~ msgid "     K3 = "
-#~ msgstr "     K3 = "
-
-#~ msgid "     K4 = "
-#~ msgstr "     K4 = "
-
-#~ msgid "     Cp = taucs_chfact(A)\n"
-#~ msgstr "     Cp = taucs_chfact(A)\n"
-
-#~ msgid "     K2 (1-norm) = "
-#~ msgstr "     K2 (1-norm) = "

@@ -333,6 +333,12 @@ op = optimset ()
             with all fields set to specific settings.
         </para>
         <programlisting role="example"><![CDATA[
+function y = myoutputfun (x)
+  y = x;
+endfunction
+function y = myplotfun (x)
+  y = x;
+endfunction
 op = optimset ("Display","iter",...
                "FunValCheck","on",...
                "MaxFunEvals",100,...

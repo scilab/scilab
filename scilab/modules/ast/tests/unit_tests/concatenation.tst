@@ -6,6 +6,7 @@
 // ============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 function checkCallOverload(mat)
     assert_checkerror(mat, [], 999);
@@ -21,6 +22,7 @@ lspb    = [sparse(%t) sparse(%f) sparse(%t)];
 lstring = ["Scilab" "Enterprises" "2014"];
 sta.x   = 12;
 lsta    = [sta sta sta];
+lcell   = {ldouble, lbool, lstring};
 
 // list, tlist, mlist
 checkCallOverload("[list(1) list(2)]");
@@ -215,3 +217,80 @@ checkCallOverload("[1:2 ; 1:$]");
 checkCallOverload("[1:$ ; 1:$]");
 assert_checkequal([1:3 ; 1:3], matrix([1 1 2 2 3 3], 2, 3));
 
+//cells
+
+//row
+c = [lcell,lcell];
+assert_checkequal(c, {ldouble, lbool, lstring, ldouble, lbool, lstring});
+assert_checkequal(c{1, 1}, ldouble);
+assert_checkequal(c{1, 2}, lbool);
+assert_checkequal(c{1, 3}, lstring);
+assert_checkequal(c{1, 4}, ldouble);
+assert_checkequal(c{1, 5}, lbool);
+assert_checkequal(c{1, 6}, lstring);
+
+//col
+c = [lcell;lcell];
+assert_checkequal(c, {ldouble, lbool, lstring;ldouble, lbool, lstring});
+assert_checkequal(c{1, 1}, ldouble);
+assert_checkequal(c{1, 2}, lbool);
+assert_checkequal(c{1, 3}, lstring);
+assert_checkequal(c{2, 1}, ldouble);
+assert_checkequal(c{2, 2}, lbool);
+assert_checkequal(c{2, 3}, lstring);
+
+//2d
+c = [lcell,lcell;lcell,lcell;lcell,lcell];
+assert_checkequal(c(1, 1:3), lcell);
+assert_checkequal(c(1, 4:6), lcell);
+assert_checkequal(c(2, 1:3), lcell);
+assert_checkequal(c(2, 4:6), lcell);
+assert_checkequal(c(3, 1:3), lcell);
+assert_checkequal(c(3, 4:6), lcell);
+
+c_2_4 = {ldouble, lbool, lstring, lcell;lcell, lstring, lbool, ldouble};
+c_2_2 = {ldouble, lbool;lstring, lcell}
+c = [c_2_4;c_2_2,c_2_2];
+assert_checkequal(c{1, 1}, ldouble);
+assert_checkequal(c{1, 2}, lbool);
+assert_checkequal(c{1, 3}, lstring);
+assert_checkequal(c{1, 4}, lcell);
+assert_checkequal(c{2, 1}, lcell);
+assert_checkequal(c{2, 2}, lstring);
+assert_checkequal(c{2, 3}, lbool);
+assert_checkequal(c{2, 4}, ldouble);
+assert_checkequal(c{3, 1}, ldouble);
+assert_checkequal(c{3, 2}, lbool);
+assert_checkequal(c{3, 3}, ldouble);
+assert_checkequal(c{3, 4}, lbool);
+assert_checkequal(c{4, 1}, lstring);
+assert_checkequal(c{4, 2}, lcell);
+assert_checkequal(c{4, 3}, lstring);
+assert_checkequal(c{4, 4}, lcell);
+
+//3d
+c1 = {ldouble, lbool;lstring, lcell};
+c2 = {lpoly;lsta};
+C1(:,:,2) = c1;
+C1(:,:,1) = c1;
+C2(:,:,2) = c2;
+C2(:,:,1) = c2;
+R = [C1;C2 C2];
+assert_checkequal(R{1,1,1}, C1{1,1,1});
+assert_checkequal(R{1,1,2}, C1{1,1,2});
+assert_checkequal(R{1,2,1}, C1{1,2,1});
+assert_checkequal(R{1,2,2}, C1{1,2,2});
+assert_checkequal(R{2,1,1}, C1{2,1,1});
+assert_checkequal(R{2,1,2}, C1{2,1,2});
+assert_checkequal(R{2,2,1}, C1{2,2,1});
+assert_checkequal(R{2,2,2}, C1{2,2,2});
+
+assert_checkequal(R{3,1,1}, C2{1,1,1});
+assert_checkequal(R{3,1,2}, C2{1,1,2});
+assert_checkequal(R{3,2,1}, C2{1,1,1});
+assert_checkequal(R{3,2,2}, C2{1,1,2});
+
+assert_checkequal(R{4,1,1}, C2{2,1,1});
+assert_checkequal(R{4,1,2}, C2{2,1,2});
+assert_checkequal(R{4,2,1}, C2{2,1,1});
+assert_checkequal(R{4,2,2}, C2{2,1,2});

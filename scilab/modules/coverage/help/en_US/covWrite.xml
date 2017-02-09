@@ -6,9 +6,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>covWrite("html", dir)</synopsis>
-        <synopsis>covWrite("binary", binaryFile)</synopsis>
-        <synopsis>covWrite("html", binaryFile, dir)</synopsis>
+        <synopsis>
+          covWrite("html", dir)
+          covWrite("binary", binaryFile)
+          covWrite("html", binaryFile, dir)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

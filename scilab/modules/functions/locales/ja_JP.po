@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18315)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -104,8 +104,6 @@ msgstr "%s: %s を確認してください.\n"
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: ファイル %s は存在しません。\n"
 
-#
-# File: modules/functions/macros/expression2code.sci, line: 357
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
 msgstr ""
@@ -154,10 +152,9 @@ msgstr ""
 msgid "No comment available."
 msgstr "コメントがありません."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Private function: cannot access to this function directly.\n"

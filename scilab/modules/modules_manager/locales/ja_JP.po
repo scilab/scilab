@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:08+0000\n"
+"PO-Revision-Date: 2016-12-06 16:53+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -54,9 +54,9 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Text(s) expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr ""
 
 msgid "Generating cleaner.sce...\n"
 msgstr "cleaner.sceを生成中...\n"
@@ -126,6 +126,10 @@ msgstr "ローカル化を生成中\n"
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が正しくありません: 文字列の配列を指定してください.\n"
+
+#, fuzzy
+msgid "Generating cleaner_src.sce...\n"
+msgstr "cleaner.sceを生成中...\n"
 
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"

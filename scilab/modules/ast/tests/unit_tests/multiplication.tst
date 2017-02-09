@@ -6,6 +6,7 @@
 // ============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
 
 r = 2;
 R = [1,2;3,4];
@@ -88,6 +89,6 @@ assert_checkequal(C * R, [ 7+%i*14, 10+%i*20; 15+%i*30, 22+%i*44]);
 // C * C
 assert_checkequal(C * C, [-21+%i*28,-30+%i*40;-45+%i*60,-66+%i*88]);
 
-errmsg = gettext("Inconsistent row/column dimensions.");
+errmsg = "Inconsistent row/column dimensions.";
 assert_checkerror("[1;1]*[1;1]", errmsg);
 assert_checkerror("[1 1]*[1 1]", errmsg);

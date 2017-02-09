@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-22 04:58+0000\n"
+"PO-Revision-Date: 2017-01-09 17:52+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -35,9 +35,9 @@ msgstr "%s: Неверный размер входного параметра �
 msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr "%s: Неверный аргумент №%d:Ожидалось целочисленное значение.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
@@ -510,28 +510,6 @@ msgid "%s: Wrong type for input arguments: Same types expected.\n"
 msgstr "%s: Неверный тип входных параметров: ожидался одинаковый тип.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась ячейка.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same type expected for all cell "
-"contents"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался одинаковый тип для всех "
-"ячеек"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: должен быть меньше или равен "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
-
-#, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидалась матрица.\n"
 
@@ -643,23 +621,21 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Неверный тип входного параметра №%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Column expected.\n"
-msgstr "%s: Аргумент №%d: ожидалось целое число >=0.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number(s) expected.\n"
-msgstr "%s: Аргумент №%d: ожидалось целое число >=0.\n"
+msgstr ""
 
-#
-# File: modules/elementary_functions/macros/linspace.sci, line: 44
 #, c-format
 msgid "%s: Argument #%d: %%nan and %%inf values are forbidden.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: An integer value expected.\n"
-msgstr "%s: Неверный аргумент №%d:Ожидалось целочисленное значение.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Log of a singular matrix.\n"
@@ -785,31 +761,16 @@ msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr "%s: Если x отрицательный, то n должна иметь только нечётные числа.\n"
 
 #, c-format
-msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr "%s: Неверный параметр №%d: ожидалось положительное целое число.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор.\n"
 
-#, c-format
-msgid "%s: Wrong size for argument #%d: Vector expected.\n"
-msgstr "%s: Неверный размер параметра №%d: ожидался вектор.\n"
-
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"
+"%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>"
+"%d] integers.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: должен быть корректный вектор "
 "перестановок.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument #"
-"%d expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидался размер не меньше, чем у "
-"входного параметра №%d.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
@@ -966,9 +927,33 @@ msgstr ""
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: Неверный размер входных параметров: ожидался совместимый размер.\n"
 
+#~ msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
+#~ msgstr "%s: Неверный тип входного параметра №%d: ожидалась ячейка.\n"
+
 #~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-#~ "expected.\n"
+#~ "%s: Wrong type for input argument #%d: Same type expected for all cell "
+#~ "contents"
 #~ msgstr ""
-#~ "%s: Неверный тип входного параметра №%d: ожидался скаляр или матрица "
-#~ "целых чисел без знака.\n"
+#~ "%s: Неверный тип входного параметра №%d: ожидался одинаковый тип для всех "
+#~ "ячеек"
+
+#~ msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
+#~ msgstr ""
+#~ "%s: Неверный размер входного параметра №%d: должен быть меньше или равен "
+#~ "%d.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
+#~ msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
+
+#~ msgid "%s: Wrong argument #%d: Positive integer expected.\n"
+#~ msgstr "%s: Неверный параметр №%d: ожидалось положительное целое число.\n"
+
+#~ msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+#~ msgstr "%s: Неверный размер параметра №%d: ожидался вектор.\n"
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: At least the size of input "
+#~ "argument #%d expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный размер входного параметра №%d: ожидался размер не меньше, "
+#~ "чем у входного параметра №%d.\n"

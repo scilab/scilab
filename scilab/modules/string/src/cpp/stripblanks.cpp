@@ -1,9 +1,10 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2010 - DIGITEO - Allan CORNET
-*  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2010 - DIGITEO - Allan CORNET
+ *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Siddhartha Gairola
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,8 +12,8 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
-*/
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #include "stripblanks.hxx"
 
@@ -28,42 +29,48 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 static wchar_t* subwcs(const wchar_t *_pstStr, int _iStartPos, int _iEndPos);
 /*--------------------------------------------------------------------------*/
-types::String * stripblanks(types::String *InputStrings, bool bRemoveTAB)
+types::String * stripblanks(types::String *InputStrings, bool bRemoveTAB, int flag)
 {
-    types::String *pOutputStrings = new types::String(InputStrings->getRows(), InputStrings->getCols());
+    types::String *pOutputStrings = InputStrings->clone();
+    //flag = -1 to remove leading spaces, flag = 1 to remove trailing spaces, flag = 0 to remove both.
     if (pOutputStrings)
     {
-        pOutputStrings->set(InputStrings->get());
-
-        for (int x = 0 ; x < InputStrings->getSize() ; x++)
+        for (int x = 0; x < InputStrings->getSize(); x++)
         {
             wchar_t* pStr = InputStrings->get(x);
-            int iInputStartIndex    = 0;
-            int iInputEndIndex      = (int)wcslen(pStr);
+            int iInputStartIndex = 0;
+            int iInputLength = static_cast<int>(wcslen(pStr));
+            int iInputEndIndex = iInputLength;
 
             /* search character ' ' or TAB from end of the string */
-            for (int i = static_cast<int>(wcslen(pStr) - 1) ; i >= 0 ; i--)
+            if (flag == 1 || flag == 0)
             {
-                if (pStr[i] == BLANK_CHARACTER || (bRemoveTAB == true && pStr[i] == TAB_CHARACTER))
+                for (int i = iInputLength - 1; i >= 0; i--)
                 {
-                    iInputEndIndex--;
-                }
-                else
-                {
-                    break;
+                    if (pStr[i] == BLANK_CHARACTER || (bRemoveTAB == true && pStr[i] == TAB_CHARACTER))
+                    {
+                        iInputEndIndex--;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
 
             /* search character ' ' or TAB from beginning of the string */
-            for (int i = 0 ; i < static_cast<int>(wcslen(pStr)) ; i++)
+            if (flag == -1 || flag == 0)
             {
-                if (pStr[i] == BLANK_CHARACTER || (bRemoveTAB == true && pStr[i] == TAB_CHARACTER))
+                for (int i = 0; i < iInputLength; i++)
                 {
-                    iInputStartIndex++;
-                }
-                else
-                {
-                    break;
+                    if (pStr[i] == BLANK_CHARACTER || (bRemoveTAB == true && pStr[i] == TAB_CHARACTER))
+                    {
+                        iInputStartIndex++;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
 
@@ -72,6 +79,7 @@ types::String * stripblanks(types::String *InputStrings, bool bRemoveTAB)
             FREE(pwstReplace);
         }
     }
+
     return pOutputStrings;
 }
 /*--------------------------------------------------------------------------*/

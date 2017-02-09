@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 13:03+0000\n"
+"PO-Revision-Date: 2016-12-07 22:13+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -232,10 +232,9 @@ msgstr ""
 "%s: 入力引数 #%d の型が間違っています: ベクトル %s または %sを指定してくださ"
 "い.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -662,8 +661,6 @@ msgstr ""
 msgid "The parent has to be a SUBWIN\n"
 msgstr "親は、SUBWINである必要があります\n"
 
-#
-# File: modules/graphics/src/c/Champ.c, line: 147
 #, c-format
 msgid "%s: Could not retrive bounding box.\n"
 msgstr ""
@@ -1182,11 +1179,10 @@ msgstr ""
 "'%s' プロパティの大きさが間違っています: 集合 {%s} の中から指定してくださ"
 "い.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Inavlid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
 msgstr ""
-"'%s'プロパティの値が間違っています: '%s'または '%s' を指定してください.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Non-empty string expected.\n"
@@ -1555,17 +1551,11 @@ msgstr "%s: ベクトルy は単調ではありません.\n"
 msgid "Impossible case when building axis\n"
 msgstr "軸が構築できない場合がありました\n"
 
-#
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 156
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 170
-# File: src/c/getHandleProperty/set_log_flags_property.c, line: 191
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Error: Values must be strictly positive when logarithmic mode on %s axis is "
 "active.\n"
 msgstr ""
-"エラー: %s 軸のdata_boundsは、対数のモードに変えるとき、厳密でなくてはいけま"
-"せん。\n"
 
 msgid "Wrong type for input argument: A tlist expected.\n"
 msgstr "入力引数の型が間違っています: tlist を指定してください.\n"
@@ -2569,8 +2559,6 @@ msgstr ""
 msgid "%s: '%s' cannot be used with '%s'.\n"
 msgstr "%s: '%s' を '%s'と共に使用できません.\n"
 
-#
-# File: modules/graphics/macros/replot.sci, line: 48
 #, c-format
 msgid "%s: Argument #%d is badly placed. Please check available syntaxes.\n"
 msgstr ""
@@ -2774,6 +2762,3 @@ msgstr "%s: 入力引数の大きさが間違っています: 同じ大きさで
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: %s に指定された値が間違っています."
-
-#~ msgid "%s: Input argument #%d must be a handle on an axis.\n"
-#~ msgstr "%s: 入力引数 #%d は軸のハンドルを指定してください.\n"

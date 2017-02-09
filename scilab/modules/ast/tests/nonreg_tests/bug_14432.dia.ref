@@ -13,8 +13,8 @@
 // <-- Short Description -->
 // Mysterious anomaly makes Scilab crash
 function [res] = F(x)
-  res = struct();
-  res.y = x;
+    res = struct();
+    res.y = x;
 endfunction
 err=execstr("F(x = (1:4));", "errcatch");
 assert_checkequal(err, 0);

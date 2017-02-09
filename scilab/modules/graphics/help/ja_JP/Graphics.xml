@@ -773,10 +773,13 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xget">xget</link>
+                    <link linkend="get">get</link>
                 </term>
                 <listitem>
-                    <para>グラフィックコンテキストのカレントの値を取得</para>
+                    <para>
+                        Retrieve the value of a property from the handle of a graphic or of an
+                        interactive object.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

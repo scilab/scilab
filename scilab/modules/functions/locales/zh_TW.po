@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -99,8 +99,6 @@ msgstr "%s:請檢查: %s\n"
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: 檔案 %s  不存在.\n"
 
-#
-# File: modules/functions/macros/expression2code.sci, line: 357
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
 msgstr ""
@@ -141,9 +139,9 @@ msgstr "%s: 第#%d個參數值有誤:  Scilab 函數名稱才對 .\n"
 msgid "No comment available."
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Private function: cannot access to this function directly.\n"

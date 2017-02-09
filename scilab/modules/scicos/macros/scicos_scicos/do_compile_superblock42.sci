@@ -1467,7 +1467,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
     Code_gene_run=[];
 
     //** OLD GRAPHICS
-    //** %windo=xget('window')
+    //** %windo = gcf().figure_id
 
     cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 
@@ -1542,7 +1542,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
     cpr.sim.funtyp=funtyp_save;
 
     //** OLD GRAPHICS
-    //** xset('window',%windo)
+    //** scf(%windo)
 
     ///////////////////
     //les pointeurs de cpr :

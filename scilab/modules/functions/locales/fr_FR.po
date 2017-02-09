@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-06-30 20:11+0000\n"
-"Last-Translator: Mickael Albertus <Unknown>\n"
+"PO-Revision-Date: 2017-01-10 16:50+0000\n"
+"Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -111,11 +111,9 @@ msgstr "%s : Veuillez vérifier : %s\n"
 msgid "%s: File %s doesn't exist.\n"
 msgstr "%s : Le fichier %s n'existe pas.\n"
 
-#
-# File: modules/functions/macros/expression2code.sci, line: 357
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
-msgstr ""
+msgstr "%s : Cette fonctionnalité n'a pas été implémentée : %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -157,11 +155,9 @@ msgstr ""
 msgid "No comment available."
 msgstr "Aucun commentaire n'est disponible"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
+msgstr "%s : Type erroné de l'argument d'entrée #%d : '%s' attendu.\n"
 
 #, c-format
 msgid "%s: Private function: cannot access to this function directly.\n"

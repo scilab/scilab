@@ -62,7 +62,7 @@
               are the sizes of its dimensions --, use simply <literal>ndims(x)&lt;3</literal>.
             </listitem>
             <listitem>
-              <literal>matrix([])</literal> returns false.
+              <literal>ismatrix([])</literal> returns false.
             </listitem>
           </itemizedlist>
         </note>

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-09-09 09:50+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2016-12-07 22:14+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -213,29 +213,25 @@ msgstr ""
 msgid "%s : Undetermined Size. outtyp(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr "%s : Nombre d'argument(s) d'entrée erroné : Au moins %d attendus.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une table de chaîne de "
-"caractères attendue.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
-"%s : L'argument d'entrée numéro %d est de mauvais type : Une liste est "
-"attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Unable to load \"%s\" .\n"
-msgstr "%s : Impossible de trouver les entrées du diagramme\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Unable to save \"%s\" .\n"
-msgstr "%s : Impossible de trouver les entrées du diagramme\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -792,8 +788,6 @@ msgstr ""
 msgid "Wrong size for field %s: at least %d-by-%d expected.\n"
 msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/DiagramAdapter.cpp, line: 452
 #, c-format
 msgid "\"%s\" is a read-only field.\n"
 msgstr ""
@@ -938,16 +932,12 @@ msgstr ""
 msgid "Wrong type for field %s.%s: String matrix expected.\n"
 msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 348
 #, c-format
 msgid ""
 "Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' "
 "vector. Switching to '%s'.\n"
 msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 362
 #, c-format
 msgid "Wrong type for field %s.%s.\n"
 msgstr ""
@@ -1475,12 +1465,3 @@ msgid ""
 msgstr ""
 "La solution donnée pour %s \n"
 " est erronée : %s.\n"
-
-#~ msgid "A C or Fortran block is used but not linked.\n"
-#~ msgstr "Un bloc C ou Fortran est utilisé mais n'est pas connecté.\n"
-
-#~ msgid "I cannot find a link with undetermined size.\n"
-#~ msgstr "Impossible de trouver un lien avec une taille indéterminée.\n"
-
-#~ msgid "There are too many Modelica files.\n"
-#~ msgstr "Il y a trop de fichiers Modelica.\n"

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 13:00+0000\n"
+"PO-Revision-Date: 2017-01-09 17:53+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -318,42 +318,29 @@ msgstr "カスタマイズ"
 msgid "Save block GUI"
 msgstr "GUIブロックの保存"
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 69
 msgid "matches"
 msgstr ""
 
-#, fuzzy
 msgid "Previous"
-msgstr "プレビュー"
+msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 72
 msgid "Search"
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 73
 msgid "Searching..."
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 74
 msgid "Zoom In"
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 75
 msgid "Zoom Out"
 msgstr ""
 
-#, fuzzy
 msgid "Unable to load the selected blocks."
-msgstr "%s からブロックを読み込めません."
+msgstr ""
 
-#, fuzzy
 msgid "Loading blocks"
-msgstr "ブロックを読み込み中"
+msgstr ""
 
 msgid "Load as palette"
 msgstr "パレットとして取り込む"
@@ -632,9 +619,8 @@ msgstr "ブロックが選択されていません"
 msgid "Export to XML"
 msgstr "XMLにエキスポート"
 
-#, fuzzy
 msgid "Export in progress"
-msgstr "シミュレーション実行中"
+msgstr ""
 
 msgid "Import from XML"
 msgstr "XMLをインポート"
@@ -888,9 +874,11 @@ msgstr "エラー: このSuperBlockをコンパイルできません"
 msgid "Evaluation problem: wrong port number."
 msgstr "評価時の問題: ポート番号が間違っています."
 
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 309
 #, c-format
-msgid "Expecting '%d'."
-msgstr "'%d' を待っています."
+msgid "Expecting <code>%d</code> but got <code>%d</code>."
+msgstr ""
 
 msgid ""
 "<html><body>Compilation error: link ignored because it is not connected. <br/"
@@ -935,21 +923,15 @@ msgstr ""
 msgid "Label: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 330
 msgid "Optimal"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-Position Block"
-msgstr "ブロック・デモ"
+msgstr ""
 
-#, fuzzy
 msgid "Split Block"
-msgstr "ブロックを整列"
+msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 333
 msgid "Auto-Position Split Block"
 msgstr ""
 
@@ -1481,8 +1463,5 @@ msgstr ""
 msgid "%s: Syntax error while trying to set up context from"
 msgstr ""
 
-#~ msgid "Next"
-#~ msgstr "次へ"
-
-#~ msgid "The Scicos libraries are not loaded"
-#~ msgstr "Scilabライブラリは取り込めませんでした"
+#~ msgid "Expecting '%d'."
+#~ msgstr "'%d' を待っています."

@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
- * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2015 - Marcos CARDINOT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
@@ -306,7 +306,7 @@ public final class XcosMessages {
     /* Errors */
     public static final String ERROR_UNABLE_TO_COMPILE_THIS_SUPER_BLOCK = Messages.gettext("Error: unable to compile this SuperBlock");
     public static final String WRONG_PORT_NUMBER = Messages.gettext("Evaluation problem: wrong port number.");
-    public static final String EXPECTING_NUMBER = Messages.gettext("Expecting '%d'.");
+    public static final String EXPECTING_NUMBER = Messages.gettext("Expecting <code>%d</code> but got <code>%d</code>.");
     public static final String LINK_NOT_CONNECTED = Messages
             .gettext("<html><body>Compilation error: link ignored because it is not connected. <br/>Please reconnect it.</body></html>");
 

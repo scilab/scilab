@@ -5,6 +5,9 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
+// <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Non-regression test for bug 9344 -->
 //
 // <-- Bugzilla URL -->
@@ -12,8 +15,6 @@
 //
 // <-- Short Description -->
 // Parser did not display anything when failing on UTF-8 char
-
-// <-- CLI SHELL MODE -->
 
 errmsg = ["mclose(1";"^";"Error: syntax error, unexpected end of line, expecting "","" or )"];
 assert_checkerror("execstr(""mclose(1"")", errmsg);

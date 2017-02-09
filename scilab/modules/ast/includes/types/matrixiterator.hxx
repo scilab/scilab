@@ -165,7 +165,12 @@ template<> bool set(types::Sparse::RealSparse_t& s, int r, int c, double v)
 {
     if (v != 0.)
     {
-        s.insert(r, c) = v;
+        if (s.isCompressed() && s.coeff(r, c) == 0)
+        {
+            s.reserve(s.nonZeros() + 1);
+        }
+
+        s.coeffRef(r, c) = v;
     }
     return true;
 }
@@ -174,7 +179,12 @@ template<> bool set(types::Sparse::RealSparse_t& s, int r, int c, std::complex<d
 {
     if ( v.real() != 0.)
     {
-        s.insert(r, c) = v.real();
+        if (s.isCompressed() && s.coeff(r, c) == 0)
+        {
+            s.reserve(s.nonZeros() + 1);
+        }
+
+        s.coeffRef(r, c) = v.real();
     }
     return  true;
 }
@@ -183,20 +193,29 @@ template<> bool set(types::Sparse::CplxSparse_t& s, int r, int c, double v)
 {
     if (v != 0.)
     {
-        s.insert(r, c) = std::complex<double>(v);
+        if (s.isCompressed() && s.coeff(r, c) == 0.)
+        {
+            s.reserve(s.nonZeros() + 1);
+        }
+
+        s.coeffRef(r, c) = std::complex<double>(v);
     }
     return true;
 }
 
 namespace
 {
-std::complex<double> const cplxZero(0., 0.);
 }
 template<> bool set(types::Sparse::CplxSparse_t& s, int r, int c, std::complex<double> v)
 {
-    if (v != cplxZero)
+    if (v != 0.)
     {
-        s.insert(r, c) = v;
+        if (s.isCompressed() && s.coeff(r, c) == 0.)
+        {
+            s.reserve(s.nonZeros() + 1);
+        }
+
+        s.coeffRef(r, c) = v;
     }
     return true;
 }
@@ -205,7 +224,12 @@ template<> bool set(types::SparseBool::BoolSparse_t& s, int r, int c, bool v)
 {
     if (v)
     {
-        s.insert(r, c) = v;
+        if (s.isCompressed() && s.coeff(r, c) == false)
+        {
+            s.reserve(s.nonZeros() + 1);
+        }
+
+        s.coeffRef(r, c) = v;
     }
     return true;
 }

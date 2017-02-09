@@ -238,7 +238,8 @@ am__objects_3 = sci_gateway/cpp/libscistring_la-sci_stripblanks.lo \
 	sci_gateway/cpp/libscistring_la-sci_isdigit.lo \
 	sci_gateway/cpp/libscistring_la-sci_isascii.lo \
 	sci_gateway/cpp/libscistring_la-sci_strsplit.lo \
-	sci_gateway/cpp/libscistring_la-sci_isnum.lo
+	sci_gateway/cpp/libscistring_la-sci_isnum.lo \
+	sci_gateway/cpp/libscistring_la-sci_emptystr.lo
 am_libscistring_la_OBJECTS = $(am__objects_3)
 libscistring_la_OBJECTS = $(am_libscistring_la_OBJECTS)
 libscistring_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
@@ -683,7 +684,8 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_isdigit.cpp \
     sci_gateway/cpp/sci_isascii.cpp \
     sci_gateway/cpp/sci_strsplit.cpp \
-    sci_gateway/cpp/sci_isnum.cpp
+    sci_gateway/cpp/sci_isnum.cpp \
+    sci_gateway/cpp/sci_emptystr.cpp
 
 libscistring_la_CFLAGS = \
     $(PCRE_CFLAGS) \
@@ -1100,6 +1102,9 @@ sci_gateway/cpp/libscistring_la-sci_strsplit.lo:  \
 sci_gateway/cpp/libscistring_la-sci_isnum.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscistring_la-sci_emptystr.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscistring.la: $(libscistring_la_OBJECTS) $(libscistring_la_DEPENDENCIES) $(EXTRA_libscistring_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(libscistring_la_LINK) $(am_libscistring_la_rpath) $(libscistring_la_OBJECTS) $(libscistring_la_LIBADD) $(LIBS)
@@ -1118,6 +1123,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscistring_la-sci_ascii.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscistring_la-sci_convstr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscistring_la-sci_emptystr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscistring_la-sci_grep.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscistring_la-sci_isalphanum.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscistring_la-sci_isascii.Plo@am__quote@
@@ -1628,6 +1634,13 @@ sci_gateway/cpp/libscistring_la-sci_isnum.lo: sci_gateway/cpp/sci_isnum.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_isnum.cpp' object='sci_gateway/cpp/libscistring_la-sci_isnum.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscistring_la-sci_isnum.lo `test -f 'sci_gateway/cpp/sci_isnum.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_isnum.cpp
+
+sci_gateway/cpp/libscistring_la-sci_emptystr.lo: sci_gateway/cpp/sci_emptystr.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscistring_la-sci_emptystr.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscistring_la-sci_emptystr.Tpo -c -o sci_gateway/cpp/libscistring_la-sci_emptystr.lo `test -f 'sci_gateway/cpp/sci_emptystr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_emptystr.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscistring_la-sci_emptystr.Tpo sci_gateway/cpp/$(DEPDIR)/libscistring_la-sci_emptystr.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_emptystr.cpp' object='sci_gateway/cpp/libscistring_la-sci_emptystr.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscistring_la-sci_emptystr.lo `test -f 'sci_gateway/cpp/sci_emptystr.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_emptystr.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

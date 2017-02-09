@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="while">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+    xml:lang="ru" xml:id="while">
     <refnamediv>
         <refname>while</refname>
         <refpurpose>ключевое слово while</refpurpose>
@@ -70,8 +73,8 @@
         <programlisting role=""><![CDATA[
       i = 0
       while i<5
-	disp("i");
-	i = i + 1;
+    disp("i");
+    i = i + 1;
       end
 ]]></programlisting>
         <para>
@@ -80,19 +83,21 @@
         <programlisting role=""><![CDATA[
       i = 0; while i<5 disp("i"); i = i + 1; end
 ]]></programlisting>
-        <para>
-            Предупреждение: число символов, используемых для определения тела любой инструкции условия
+        <warning>
+            число символов, используемых для определения тела любой инструкции условия
             (<literal>if while for</literal> или <literal>select/case</literal>) должно быть ограничено
             16К.
-        </para>
+        </warning>
     </refsection>
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-e=1; a=1; k=1;
+e = 1;
+a = 1;
+k = 1;
 while norm(a-(a+e),1) > %eps,
-    e=e/2;
-    k=k+1;
+    e = e/2;
+    k = k+1;
 end
 e,k
  ]]></programlisting>
@@ -101,19 +106,19 @@ e,k
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="for">for</link>
+                <link linkend="or_op">|, ||</link>
             </member>
             <member>
-                <link linkend="select">select</link>
+                <link linkend="and_op">&amp;, &amp;&amp;</link>
             </member>
             <member>
                 <link linkend="break">break</link>
             </member>
             <member>
-                <link linkend="return">return</link>
+                <link linkend="for">for</link>
             </member>
             <member>
-                <link linkend="pause">pause</link>
+                <link linkend="select">select</link>
             </member>
         </simplelist>
     </refsection>

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -207,30 +207,22 @@ msgstr "%s : Tamaño indeterminado. out2(%d)=%d. Por favor ajuste su modelo.\n"
 msgid "%s : Undetermined Size. outtyp(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
-"%s: Número incorrecto de argumentos de entrada: Se esperaban al menos %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un arreglo de "
-"strings.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una lista.\n"
 
-#
-# File: modules/scicos/sci_gateway/cpp/sci_scicosDiagramToScilab.cpp, line: 133
 #, c-format
 msgid "%s: Unable to load \"%s\" .\n"
 msgstr ""
 
-#
-# File: modules/scicos/sci_gateway/cpp/sci_scicosDiagramToScilab.cpp, line: 153
 #, c-format
 msgid "%s: Unable to save \"%s\" .\n"
 msgstr ""
@@ -754,8 +746,6 @@ msgstr ""
 msgid "Wrong size for field %s: at least %d-by-%d expected.\n"
 msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/DiagramAdapter.cpp, line: 452
 #, c-format
 msgid "\"%s\" is a read-only field.\n"
 msgstr ""
@@ -900,16 +890,12 @@ msgstr ""
 msgid "Wrong type for field %s.%s: String matrix expected.\n"
 msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 348
 #, c-format
 msgid ""
 "Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' "
 "vector. Switching to '%s'.\n"
 msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 362
 #, c-format
 msgid "Wrong type for field %s.%s.\n"
 msgstr ""
@@ -1190,8 +1176,6 @@ msgid ""
 "What is the size of this link?"
 msgstr ""
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2294
 #, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"

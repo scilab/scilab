@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:04+0000\n"
+"PO-Revision-Date: 2016-12-06 17:06+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -914,13 +914,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floats, Polynomial or linear "
 "dynamical system expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un sistema "
-"dinàmic lineal.\n"
 
 #, c-format
 msgid "%s: Input argument #%d ignored.\n"
@@ -1018,18 +1016,14 @@ msgstr ""
 "%s: El nombre d'arguments de sortida és incorrecte: Han de ser entre %d i "
 "%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
-"llista.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: cell entries must have the same type\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un espai "
-"d'estat lineal.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
@@ -1055,6 +1049,14 @@ msgstr "Hz"
 
 msgid "dB"
 msgstr "dB"
+
+#
+# File: modules/cacsd/macros/formatEvansTip.sci, line: 18
+#, c-format
+msgid ""
+"Pole: %.4g %+.4g i\n"
+"Loop gain: %.4g"
+msgstr ""
 
 msgid "rad/sec"
 msgstr ""
@@ -1263,6 +1265,42 @@ msgstr "%s: Condició incorrecta.\n"
 msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s no és simètric.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments d'entrada és incorrecte: Han de ser com a mínim "
+"%d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
+"llista.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"buida.\n"
+
+#, fuzzy, c-format
+msgid "%s: incompatible input arguments %d and %d\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir la "
+"mateixa mida.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
+msgstr ""
+"%s: L'arguments d'entrada #%d té un valor incorrecte: Ha de ser un "
+"d'aquests: [%d %d].\n"
+
+#
+# File: modules/cacsd/macros/lft.sci, line: 104
+#, c-format
+msgid "%s: incompatible time domains\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
@@ -1289,8 +1327,11 @@ msgid "G is all-pass"
 msgstr ""
 
 #, c-format
-msgid "%s: %s is not zero! (set to zero)"
-msgstr "%s: %s no és zero! (s'ha posat a zero)"
+msgid ""
+"%s: Wrong value for input argument #%d: Time domain must be 'c' or 'd'.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: El domini temporal ha "
+"de ser 'c' o 'd'.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
@@ -1301,17 +1342,18 @@ msgid "%s: Wrong value for input argument #%d: Must be symmetric.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be a symmetric non negative "
-"matrix.\n"
+msgid "%s: %s is not zero! (set to zero)"
+msgstr "%s: %s no és zero! (s'ha posat a zero)"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected."
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Time domain must be 'c' or 'd'.\n"
+"%s: Wrong value for input argument #%d: Must be a symmetric non negative "
+"matrix.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: El domini temporal ha "
-"de ser 'c' o 'd'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: c or d expected.\n"
@@ -1400,17 +1442,13 @@ msgstr "Pols"
 msgid "Transmission zeros and poles"
 msgstr "Zeros i pols de transmissió"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
-"llista.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
 msgstr ""
-"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir la "
-"mateixa dimensió de columna.\n"
 
 #, c-format
 msgid "%s: Stationary Riccati solver failed.\n"
@@ -1421,11 +1459,9 @@ msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
 msgstr ""
 "%s: El subespai estable té una dimensió incorrecta (%d): Ha de ser%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
-"llista.\n"
 
 #, c-format
 msgid ""
@@ -1450,22 +1486,17 @@ msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
 msgstr ""
-"%s: El nombre d'arguments d'entrada és incorrecte: Han de ser com a mínim "
-"%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser %d o %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for input argument %d: Real or complex array expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
-"de polinomis.\n"
 
 #, c-format
 msgid "%s: Cannot find the state dimension.\n"
@@ -1478,12 +1509,10 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un espai "
 "lineal d'estat.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a single input system expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
-"llista.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
@@ -1589,21 +1618,17 @@ msgstr ""
 msgid "%s: Incorrect answer.\n"
 msgstr "%s: Resposta incorrecta.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
 "equal to the column dimension of #%d.\n"
 msgstr ""
-"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir la "
-"mateixa dimensió de columna.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
 "equal to the column dimension of #%d.\n"
 msgstr ""
-"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir la "
-"mateixa dimensió de columna.\n"
 
 #, c-format
 msgid "%s: Residual norm = %g\n"
@@ -1628,99 +1653,68 @@ msgstr ""
 msgid "Imaginary Axis"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex array expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
-"de polinomis.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: complex zeros  must appear in "
 "complex conjugate pairs.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un sistema "
-"adequat.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
-"de polinomis.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: complex poles  must appear in "
 "complex conjugate pairs.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un sistema "
-"adequat.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
-"llista.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
-"llista.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Wrong type for argument %d: A system in state space or transfer matrix form "
 "expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un espai "
-"d'estat lineal o una funció de transferència.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument  #%d: Cell expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
-"llista.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument  #%d: Cell elements must be numerical "
 "arrays.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un espai "
-"d'estat lineal.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
-"llista.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
-"llista.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A vector or a cell of vectors "
 "expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
-"llista.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
-msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
-
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: zero-pole-gain representation "
 "expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
-"llista.\n"

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-01-04 17:52+0100\n"
+"Revision-Date: 2017-02-01 14:30+0100\n"
 
 # File: modules/scicos/sci_gateway/cpp/sci_buildouttb.cpp, line: 72
 # File: modules/scicos/sci_gateway/cpp/sci_coserror.cpp, line: 61
@@ -324,7 +324,7 @@ msgstr ""
 
 #
 # File: modules/scicos/sci_gateway/cpp/sci_model2blk.cpp, line: 282
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1408
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1407
 #, c-format
 msgid "%s : unknown block : %s\n"
 msgstr ""
@@ -653,18 +653,18 @@ msgstr ""
 # File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1000
 # File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1060
 # File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1078
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1315
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1461
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1482
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1504
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1637
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1661
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1686
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1731
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1858
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1885
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1913
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1961
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1314
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1460
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1481
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1503
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1636
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1660
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1685
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1730
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1857
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1884
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1912
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1960
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -682,20 +682,20 @@ msgid "%s: Wrong size for input argument #%d : %d to %d elements expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1290
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1289
 #, c-format
 msgid "%s : error in cross variable size checking : %d\n"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1349
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1348
 #, c-format
 msgid ""
 "%s: Wrong size for element #%d of input argument #%d : A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1430
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1429
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of input argument #%d : string or macro "
@@ -703,9 +703,9 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1601
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1815
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2047
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1600
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 1814
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2046
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of element #%d of argument #%d : A matrix "
@@ -713,78 +713,78 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2078
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2077
 #, c-format
 msgid "%s : No more free memory.\n"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2180
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2179
 msgid "scheduling problem"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2185
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2184
 msgid "input to zero-crossing stuck on zero"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2190
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2189
 msgid "event conflict"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2195
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2194
 msgid "algebraic loop detected"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2200
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2213
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2242
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2285
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2199
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2212
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2241
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2284
 msgid "cannot allocate memory"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2209
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2208
 #, c-format
 msgid "the block %d has been called with input out of its domain"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2218
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2217
 msgid "singularity in a block"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2222
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2221
 msgid "block produces an internal error"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2230
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2229
 msgid "initial conditions not converging"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2238
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2237
 #, c-format
 msgid "cannot allocate memory in block=%d"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2247
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2246
 msgid "sliding mode condition, cannot integrate"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2251
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2250
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2254
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2253
 msgid ""
 "You have changed a parameter in your model, but the model has been compiled "
 "to use an XML file containing initial values and parameters. So you should "
@@ -793,12 +793,12 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2258
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2257
 msgid "Undefined data type."
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2261
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2260
 msgid ""
 "The number of parameter provided by Scicos blocks is different from what "
 "expected by the code generated by the Modelica compiler. You might have "
@@ -807,18 +807,18 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2268
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2267
 msgid "unknown or erroneous block"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2281
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2280
 #, c-format
 msgid "integration problem istate=%d"
 msgstr ""
 
 #
-# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2291
+# File: modules/scicos/sci_gateway/cpp/sci_scicosim.cpp, line: 2290
 msgid "scicos unexpected error, please report..."
 msgstr ""
 
@@ -874,22 +874,22 @@ msgstr ""
 
 #
 # File: modules/scicos/sci_gateway/cpp/sci_vec2var.cpp, line: 66
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 90
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 118
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 162
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 196
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 219
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 237
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 255
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 273
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 291
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 309
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 327
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 345
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 366
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 385
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 406
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 441
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 91
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 120
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 164
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 198
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 221
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 239
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 257
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 275
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 293
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 311
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 329
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 347
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 368
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 387
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 408
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 443
 #, c-format
 msgid "%s: Wrong size for input argument #%d: At least %dx%d expected.\n"
 msgstr ""
@@ -1205,7 +1205,7 @@ msgid "%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 71
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 72
 #, c-format
 msgid ""
 "%s: Wrong value for element #%d of input argument #%d: Integer matrix cannot "
@@ -1213,7 +1213,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 147
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 149
 #, c-format
 msgid ""
 "%s: Wrong value for element #%d of input argument #%d: String matrix cannot "
@@ -1221,31 +1221,31 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/vec2var.cpp, line: 549
+# File: modules/scicos/src/cpp/vec2var.cpp, line: 551
 #, c-format
 msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/BaseAdapter.hxx, line: 221
+# File: modules/scicos/src/cpp/view_scilab/BaseAdapter.hxx, line: 222
 #, c-format
 msgid "Wrong type for field %s: Tlist or Mlist expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/BaseAdapter.hxx, line: 228
+# File: modules/scicos/src/cpp/view_scilab/BaseAdapter.hxx, line: 229
 #, c-format
 msgid "Wrong length for field %s: at least %d element expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/BaseAdapter.hxx, line: 236
+# File: modules/scicos/src/cpp/view_scilab/BaseAdapter.hxx, line: 237
 #, c-format
 msgid "Wrong length for header of field %s: at least %d element expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/BaseAdapter.hxx, line: 242
+# File: modules/scicos/src/cpp/view_scilab/BaseAdapter.hxx, line: 243
 #, c-format
 msgid "Wrong value for header of field %s: %s expected.\n"
 msgstr ""
@@ -1301,7 +1301,7 @@ msgstr ""
 # File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 144
 # File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 465
 # File: modules/scicos/src/cpp/view_scilab/GraphicsAdapter.cpp, line: 585
-# File: modules/scicos/src/cpp/view_scilab/ParamsAdapter.cpp, line: 208
+# File: modules/scicos/src/cpp/view_scilab/ParamsAdapter.cpp, line: 213
 # File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 386
 #, c-format
 msgid "Wrong dimension for field %s.%s: %d-by-%d expected.\n"
@@ -1474,26 +1474,26 @@ msgid "Wrong dimension for field %s.%s: String expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/ParamsAdapter.cpp, line: 261
+# File: modules/scicos/src/cpp/view_scilab/ParamsAdapter.cpp, line: 266
 #, c-format
 msgid "Wrong type for field %s.%s: Real expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/ParamsAdapter.cpp, line: 268
+# File: modules/scicos/src/cpp/view_scilab/ParamsAdapter.cpp, line: 273
 #, c-format
 msgid "Wrong dimension for field %s.%s: Real expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/ParamsAdapter.cpp, line: 317
+# File: modules/scicos/src/cpp/view_scilab/ParamsAdapter.cpp, line: 322
 #, c-format
 msgid "Wrong dimension for field %s.%s: m-by-1 expected.\n"
 msgstr ""
 
 #
-# File: modules/scicos/src/cpp/view_scilab/ParamsAdapter.cpp, line: 339
-# File: modules/scicos/src/cpp/view_scilab/ParamsAdapter.cpp, line: 350
+# File: modules/scicos/src/cpp/view_scilab/ParamsAdapter.cpp, line: 344
+# File: modules/scicos/src/cpp/view_scilab/ParamsAdapter.cpp, line: 355
 #, c-format
 msgid "Wrong type for field %s.%s : string expected.\n"
 msgstr ""

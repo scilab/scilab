@@ -11,7 +11,7 @@
 // along with this program.
 
 function h=mtlb_pcolor(varargin)
-    h=xget("window")
+    h = gcf().figure_id
     //find first propertyname position
     Rhs=size(varargin)
     for k=1:Rhs

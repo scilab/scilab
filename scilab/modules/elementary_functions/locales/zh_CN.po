@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 12:59+0000\n"
+"PO-Revision-Date: 2017-01-09 17:54+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -33,9 +33,9 @@ msgstr "%s：第%d个输入参数的大小错误。\n"
 msgid "%s: No more memory.\n"
 msgstr "%s：内存不足。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr "%s：第%d个输入参数的大小错误：应该为整数。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
@@ -370,8 +370,6 @@ msgstr "%s：矩阵不是对角阵。\n"
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s：第%d个输入参数的类型错误，应该为字符串矩阵。\n"
 
-#
-# File: modules/elementary_functions/macros/bit_op.sci, line: 20
 #, c-format
 msgid "%s: unknown bitwise function %s.\n"
 msgstr ""
@@ -422,24 +420,6 @@ msgstr "%s：第%d个输入参数的类型错误：应该为正实数。\n"
 #, c-format
 msgid "%s: Wrong type for input arguments: Same types expected.\n"
 msgstr "%s：输入参数的类型错误，应该为同一类型。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为Cell。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Same type expected for all cell "
-"contents"
-msgstr "%s：第%d个输入参数的类型错误：所有Cell的内容应该为同一类型。"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-msgstr "%s：第%d个输入参数的大小错误：必须<=%d。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为字符串矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
@@ -529,23 +509,21 @@ msgstr "%s：第%d个输入参数的值错误：应该为%d、‘%s’、%d或�
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s：第%d个输入参数的类型错误。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Column expected.\n"
-msgstr "%s：第%d个参数错误：应该为正整数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Number(s) expected.\n"
-msgstr "%s：第%d个输入参数的大小错误：应该为向量。\n"
+msgstr ""
 
-#
-# File: modules/elementary_functions/macros/linspace.sci, line: 44
 #, c-format
 msgid "%s: Argument #%d: %%nan and %%inf values are forbidden.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: An integer value expected.\n"
-msgstr "%s：第%d个参数错误：应该为正整数。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Log of a singular matrix.\n"
@@ -647,27 +625,14 @@ msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr "%s：第%d个参数错误：应该为正整数。\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该为向量。\n"
 
-#, c-format
-msgid "%s: Wrong size for argument #%d: Vector expected.\n"
-msgstr "%s：第%d个输入参数的大小错误：应该为向量。\n"
-
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument #"
-"%d expected.\n"
-msgstr "%s：第%d个输入参数的大小错误：应该至少第%d个输入参数的大小。\n"
+"%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>"
+"%d] integers.\n"
+msgstr "%s：第%d个输入参数的值错误：必须介于%d与%d之间。\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
@@ -799,7 +764,27 @@ msgstr "%s：第%d和第%d个输入参数不兼容：应该为相同类型。\n"
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s：输入参数的大小错误：大小不兼容。\n"
 
+#~ msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
+#~ msgstr "%s：第%d个输入参数的类型错误：应该为Cell。\n"
+
 #~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
-#~ "expected.\n"
-#~ msgstr "%s：第%d个输入参数的类型错误：应该为无符号整数标量或矩阵。\n"
+#~ "%s: Wrong type for input argument #%d: Same type expected for all cell "
+#~ "contents"
+#~ msgstr "%s：第%d个输入参数的类型错误：所有Cell的内容应该为同一类型。"
+
+#~ msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
+#~ msgstr "%s：第%d个输入参数的大小错误：必须<=%d。\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
+#~ msgstr "%s：第%d个输入参数的类型错误：应该为字符串矩阵。\n"
+
+#~ msgid "%s: Wrong argument #%d: Positive integer expected.\n"
+#~ msgstr "%s：第%d个参数错误：应该为正整数。\n"
+
+#~ msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+#~ msgstr "%s：第%d个输入参数的大小错误：应该为向量。\n"
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: At least the size of input "
+#~ "argument #%d expected.\n"
+#~ msgstr "%s：第%d个输入参数的大小错误：应该至少第%d个输入参数的大小。\n"

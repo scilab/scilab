@@ -9,7 +9,7 @@
 // <-- Non-regression test for bug 14024 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/14024
+// http://bugzilla.scilab.org/14082
 //
 // <-- Short Description -->
 // print of macrofile display a debug message instead of macro prototype.

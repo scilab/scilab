@@ -42,7 +42,7 @@ size_t ast::Ast::globalNodeNumber = 0;
 /*
  * Generate destination variable from _poSource type and size parameters
  */
-types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _iCols)
+static types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _iCols)
 {
     types::InternalType* poResult = NULL;
     switch (_poSource->getType())
@@ -77,10 +77,13 @@ types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _
         case types::InternalType::ScilabUInt64 :
             poResult = new types::UInt64(_iRows, _iCols);
             break;
-        case types::InternalType::ScilabString :
+        case types::InternalType::ScilabString:
             poResult = new types::String(_iRows, _iCols);
             break;
-        case types::InternalType::ScilabPolynom :
+        case types::InternalType::ScilabCell:
+            poResult = new types::Cell(_iRows, _iCols);
+            break;
+        case types::InternalType::ScilabPolynom:
         {
             int* piRank = new int[_iRows * _iCols];
             memset(piRank, 0x00, _iRows * _iCols * sizeof(int));
@@ -255,10 +258,13 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
             case types::InternalType::ScilabImplicitList :
                 poResult = new types::ImplicitList();
                 break;
-            case types::InternalType::ScilabHandle :
+            case types::InternalType::ScilabHandle:
                 poResult = new types::GraphicHandle(_iRows, _iCols);
                 break;
-            default :
+            case types::InternalType::ScilabCell:
+                poResult = new types::Cell(_iRows, _iCols);
+                break;
+            default:
                 // FIXME What should we do here ...
                 break;
         }
@@ -509,12 +515,13 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
             case types::InternalType::ScilabSparseBool :
                 poResult->getAs<types::SparseBool>()->append(iCurRow, iCurCol, _poSource->getAs<types::SparseBool>());
                 break;
-            case types::InternalType::ScilabString :
-            {
+            case types::InternalType::ScilabString:
                 poResult->getAs<types::String>()->append(iCurRow, iCurCol, _poSource);
-            }
-            break;
-            case types::InternalType::ScilabImplicitList :
+                break;
+            case types::InternalType::ScilabCell:
+                poResult->getAs<types::Cell>()->append(iCurRow, iCurCol, _poSource);
+                break;
+            case types::InternalType::ScilabImplicitList:
             {
                 types::ImplicitList* pIL = _poSource->getAs<types::ImplicitList>();
                 types::ImplicitList* pOL = poResult->getAs<types::ImplicitList>();

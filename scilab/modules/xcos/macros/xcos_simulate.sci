@@ -292,11 +292,10 @@ function [%cpr, ok] = xcos_simulate(scs_m, needcompile)
             end
 
             ok = %f;
-            //xset('window',curwin)
+            // scf(curwin)
             return
         end
         //scf(gh_win);
-        //xset('window',win);
     end
 
     //** scicos simulation

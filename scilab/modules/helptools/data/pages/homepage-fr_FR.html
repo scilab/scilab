@@ -10,9 +10,7 @@
       @import url("style.css");
     </style>
   </head>
-
   <body>
-
     <div class="manualnavbar" align="left">
       <a href="http://www.scilab.org/" class="ulink">Portail Scilab</a> |
       <a href="http://help.scilab.org/" class="ulink">Aide en ligne</a> |
@@ -24,41 +22,17 @@
       <a href="http://fileexchange.scilab.org/" class="ulink">File Exchange</a>
       <hr/>
     </div>
-
     <span class="path"><a href="index.html">Aide Scilab</a> &gt;&gt; Page d'accueil</span>
-
     <br/>
     <br/>
-
     <div class="refsection">
-      <h3 class="title">Bienvenue dans Scilab 6.0.0 beta 2</h3>
+      <h3 class="title">Bienvenue dans Scilab 6.0.0</h3>
       <p class="para">
         Scilab 6.0 est une nouvelle version majeure de Scilab, la
-        plateforme open source de calcul numérique. Cette version
-        6.0.0 beta 2 est un aperçu pour tous utilisateurs, entreprises
-        comme communaut&eacute;.
-
+        plateforme open source de calcul numérique.
       </p>
-      <p class="para">
-        Comme toute beta, cette version est un aperçu des modifications
-        qui seront présentes dans Scilab 6.0.0.
-        Si vous &ecirc;tes
-        d&eacute;j&agrave; un utilisateur de Scilab : nous aider &agrave; la tester,
-        rapporter des bugs, permettra &agrave; Scilab de continuer &agrave; &ecirc;tre
-        libre et gratuit ! Si vous avez d&eacute;velopp&eacute; du
-        code sur Scilab, ou si vous &ecirc;tes un utilisateur
-        exp&eacute;riment&eacute;, alors c'est le moment de migrer
-        votre code, et de reporter tout probl&egrave;me, bug ou
-        incompatibilit&eacute; sur
-        le <a href="http://bugzilla.scilab.org/"
-        class="ulink">gestionnaire de bugs</a> : nous ferons tout
-        notre possible pour les r&eacute;soudre avant la version
-        finale de Scilab 6.0.0.
-      </p>
-      </p>
-
-      <h3 class="title">Les nouveautés de Scilab 6.0</h3>
-      <h2 class="title">Nouveau langage, nouveau coeur, nouvel Xcos</h2>
+      <h3 class="title">Les nouveautés</h3>
+      <h2 class="title">Nouveau langage, nouveau coeur &amp; nouvel Xcos</h2>
       <p class="para">
         Cette version inclut une réécriture majeure du noyau interne
         de Scilab. Les modifications apportées aux aspects visibles du
@@ -71,9 +45,7 @@
         <ul>
           <li>Le langage est beaucoup plus cohérent et prévisible,</li>
           <li>La grammaire est plus stricte, mais plus cohérente,</li>
-          <li>La gestion des erreurs a été améliorée (mais peut encore
-          être limitée dans l'alpha : merci d’avance de nous signaler
-          les problèmes que vous pourriez rencontrer).</li>
+          <li>La gestion des erreurs a été améliorée.</li>
           <li>Le langage est légèrement plus compatible avec le
           langage Matlab (par exemple dans le cas d’instructions de
           contrôle telles que les déclarations switch/case).</li>
@@ -97,18 +69,13 @@
           contrôle comme <a href="try.html">try</a>.</li>
 
           <li>Les opérations plus et moins avec la matrice vide ont maintenant
-            pour résultat la matrice vide. Afin de simplifier la transition
-            de votre base de code pendant la beta, un avertissement
-            spécifique est généré quand une telle opération est détectée.
+            pour résultat la matrice vide.
           </li>
           <li>Pour déterminer avec exactitude les lignes de codes générant
             un avertissement, une nouvelle option
             <a href="warning.html">warning("stop")</a> a,été ajoutée.</li>
           <li>
-          Un flag de rétrocompatibilité pour le comportement de la matrice vide
-            est aussi disponible durant la beta. Il sera enlevé
-            dans une future version de scilab. Voir
-            <a href="oldEmptyBehaviour.html">oldEmptyBehaviour</a>.
+            Voir <a href="oldEmptyBehaviour.html">oldEmptyBehaviour</a>.
           </li>
         </ul>
         </p>
@@ -211,26 +178,6 @@
         et la bibliothèque FFTW optimis&eacute;e sont incluses dans Scilab. Elles
         sont sujettes &agrave; la licence Intel (EULA).
         </p>
-      <h2 class="title">Principales limitations</h2>
-      <p class="para">
-      Cette version sera probablement la dernière version précédant la sortie de Scilab 6.0.0
-      et est distribuée pour faciliter le travail de migration des contributeurs de <i>toolboxes</i>.
-      L'API et l'ABI de Scilab sont stables et les <i>toolboxes</i> externes peuvent désormais être entièrement
-      migrées.
-      <ul>
-          <li><p>
-          Scilab 6 est encore en état de beta et peut contenir des bugs à ce jour inconnus (surtout concernant
-          des fuites mémoires).
-          N'hésitez pas à les <a href="https://bugzilla.scilab.org">remonter</a>.</p>
-          </li>
-          <li>
-          <p>
-          Les <i>toolboxes</i> de contributeurs sont en cours de portage. N'hésitez pas à soumettre des
-          modifications ou de nouvelles fonctionnalités pour une <i>toolbox</i> à la
-          <a href="dev@lists.scilab.org">liste de diffusion des développeurs</a>.</p>
-          </li>
-      </ul>
-      </p>
       <h2 class="title">Limitations spécifiques aux systèmes d'exploitation</h2>
       <p class="para">
       Toutes les fonctionnalités de Scilab sont présentes sur l'ensemble des systèmes d'exploitations
@@ -241,7 +188,6 @@
         <li>La compilation de C/C++ ou autre code natif dans les modules additionnels (toolboxes), ainsi que les interfaces avec les third-parties peuvent dépendre du système d'exploitation, et donc peuvent ne pas être supportés sur toutes les plateformes.</li>
       </ul>
       </p>
-
       <h2 class="title">Changelog complet</h2>
       <p class="para">
         Pour une liste complète des changements entre la version 5.5.2 et cette version, veuillez consulter le fichier <a href="CHANGES.html">CHANGES</a>.

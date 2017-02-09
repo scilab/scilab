@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -209,9 +209,9 @@ msgstr ""
 msgid "The file %s does not exist.\n"
 msgstr "ファイル %s は存在しません。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Cannot read file name.\n"
-msgstr "%s: ファイル %s を読み込めません.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"

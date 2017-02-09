@@ -1,0 +1,351 @@
+# French translation for scilab
+# Copyright (c) 2017 Rosetta Contributors and Canonical Ltd 2017
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2017-01-06 08:59+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 18315)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d au moins attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"est attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single boolean expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument d'entrée n°%d : Un booléen est attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument d'entrée n°%d :  Une chaîne de caractères "
+"ou un booléen sont attendus.\n"
+
+#, c-format
+msgid "%s: %s\n"
+msgstr "%s : %s\n"
+
+msgid "Module developed with the contribution of CNES."
+msgstr "Module développé avec la contribution du CNES."
+
+msgid "Expression is not bracketed."
+msgstr ""
+
+#, c-format
+msgid "Number of break is limited: %d max."
+msgstr ""
+
+#, c-format
+msgid "Number of continue is limited: %d max."
+msgstr ""
+
+msgid "Cannot open the file"
+msgstr "Impossible d'ouvrir le fichier"
+
+#, c-format
+msgid ""
+"The minimal ratio between commented lines and total lines is not reached: %d "
+"< %d."
+msgstr ""
+
+#, c-format
+msgid "Bad decimal exponent: %s was expected and %s was found."
+msgstr ""
+
+msgid "Decimal numbers must not begin by a dot."
+msgstr ""
+
+#, c-format
+msgid "Deprecated function: %s."
+msgstr ""
+
+#, c-format
+msgid "Deprecated function %s: use %s instead."
+msgstr ""
+
+msgid "svd(..., 0) is deprecated."
+msgstr ""
+
+msgid "mfprintf(-1, ...) is deprecated."
+msgstr ""
+
+msgid "Empty block."
+msgstr ""
+
+msgid ""
+"Possible confusion between assignment operator '=' and equality operator "
+"'=='."
+msgstr ""
+
+#, c-format
+msgid "Number of expressions in condition is limited: %d max."
+msgstr ""
+
+#, c-format
+msgid "Duplicated function arguments: %s."
+msgstr ""
+
+#, c-format
+msgid "Duplicated function output values: %s."
+msgstr ""
+
+#, c-format
+msgid "Function arguments used as output values: %s."
+msgstr ""
+
+#, c-format
+msgid "Argument at position %d must be an assignment."
+msgstr ""
+
+#, c-format
+msgid "Argument %s declared at position %d and assigned at position %d."
+msgstr ""
+
+#, c-format
+msgid "Function name doesn't match the pattern: %s, %s"
+msgstr ""
+
+#, c-format
+msgid "Function name length is lower than minimum: %d < %d"
+msgstr ""
+
+#, c-format
+msgid "Function name length is greater than maximum: %d > %d"
+msgstr ""
+
+#, c-format
+msgid "Function %s requires an error checking just after the call."
+msgstr ""
+
+msgid "Function 'global' not allowed."
+msgstr ""
+
+#, c-format
+msgid "Illegal call: %s."
+msgstr ""
+
+msgid "Invalid list, it contains NaN or Inf."
+msgstr ""
+
+msgid "Bad use of ':' operator."
+msgstr ""
+
+#, c-format
+msgid "Maximum line length exceeded at lines: %s."
+msgstr ""
+
+#, c-format
+msgid "Maximum lines number exceeded: %d > %d."
+msgstr ""
+
+#, c-format
+msgid "Function %s has at least one argument."
+msgstr ""
+
+#, c-format
+msgid "Function %s should be called with names of variables."
+msgstr ""
+
+#, c-format
+msgid "Function %s should be called with constant strings."
+msgstr ""
+
+#, c-format
+msgid "McCabe's complexity is %d and is greater than %d."
+msgstr ""
+
+msgid "Open file is not assigned."
+msgstr ""
+
+msgid "The instruction mclose(\"all\") may have any side effects."
+msgstr ""
+
+#, c-format
+msgid "Open files not closed: %s."
+msgstr ""
+
+#, c-format
+msgid "Use %nan in a comparison expression will return false."
+msgstr ""
+
+#, c-format
+msgid "Use isnan() when comparing values with %nan."
+msgstr ""
+
+#, c-format
+msgid "Too many nested blocks: %d max."
+msgstr ""
+
+#, c-format
+msgid "Operator '%s' should be used rather than '%s'."
+msgstr ""
+
+msgid "Double negation is not allowed."
+msgstr ""
+
+msgid "Not operator '~' should be used rather than '@'."
+msgstr ""
+
+#, c-format
+msgid "Invalid number of arguments in %s: data don't correspond to the format."
+msgstr ""
+
+#, c-format
+msgid "Redefinition of Scilab's constant: %s."
+msgstr ""
+
+#, c-format
+msgid "Redefinition of a built-in function: %s."
+msgstr ""
+
+#, c-format
+msgid "Redefinition of a library function: %s."
+msgstr ""
+
+#, c-format
+msgid "Redefinition of a macro: %s."
+msgstr ""
+
+#, c-format
+msgid "Redefinition of a private macro: %s."
+msgstr ""
+
+#, c-format
+msgid "Too many return instructions: %d max."
+msgstr ""
+
+msgid "Select should have a default case."
+msgstr ""
+
+msgid "Select with no case."
+msgstr ""
+
+msgid "Select with one case: it could be replaced by an if statement."
+msgstr ""
+
+msgid "Case expression should be a number or string."
+msgstr ""
+
+msgid "Case expression types are mixed."
+msgstr ""
+
+msgid "Instruction not finished by a semi-colon."
+msgstr ""
+
+msgid "Two instructions on the same line."
+msgstr ""
+
+#, c-format
+msgid "Operator %s should be surrounded by single spaces."
+msgstr ""
+
+msgid "No space after function argument."
+msgstr ""
+
+msgid "No space before first function argument."
+msgstr ""
+
+msgid "A function argument must be preceded by a single space."
+msgstr ""
+
+msgid "All the fields in a struct should be defined at the struct definition."
+msgstr ""
+
+msgid "Struct definition must contain an even number of arguments."
+msgstr ""
+
+#, c-format
+msgid "Field name doesn't match the pattern: %s, %s"
+msgstr ""
+
+#, c-format
+msgid "Field name length is lower than minimum: %d < %d"
+msgstr ""
+
+#, c-format
+msgid "Field name length is greater than maximum: %d > %d"
+msgstr ""
+
+#, c-format
+msgid "Duplicated field definition: %s."
+msgstr ""
+
+msgid "Field should be defined by a constant string."
+msgstr ""
+
+msgid "Function struct has only one return argument."
+msgstr ""
+
+#, c-format
+msgid "It should be better to define field %s at struct definition."
+msgstr ""
+
+#, c-format
+msgid "Read an undefined field: %s."
+msgstr ""
+
+msgid "Comment contains a TODO."
+msgstr ""
+
+msgid "The code after the return statement is unreachable."
+msgstr ""
+
+#, c-format
+msgid "Function argument might be unused: %s."
+msgstr ""
+
+msgid "Possible useless operation."
+msgstr ""
+
+#, c-format
+msgid "Function returned value might be unused: %s."
+msgstr ""
+
+#, c-format
+msgid "Variable name doesn't match the pattern: %s, %s"
+msgstr ""
+
+#, c-format
+msgid "Variable name length is lower than minimum: %d < %d"
+msgstr ""
+
+#, c-format
+msgid "Variable name length is greater than maximum: %d > %d"
+msgstr ""
+
+#, c-format
+msgid "Use of non-initialized variable '%s' may have any side-effects."
+msgstr ""
+
+#, c-format
+msgid "Use of a private macro '%s' defined in an other file %s."
+msgstr ""
+
+#, c-format
+msgid "Use of non-initialized variable '%s' may have side effects."
+msgstr ""
+
+#, c-format
+msgid "Declared variable and might be unused: %s."
+msgstr ""
+
+msgid "Cannot create a parser context"
+msgstr ""

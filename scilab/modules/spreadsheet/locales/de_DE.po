@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -182,9 +182,9 @@ msgstr ""
 msgid "The file %s does not exist.\n"
 msgstr "Die Datei %s existiert nicht.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Cannot read file name.\n"
-msgstr "%s: kann Datei nicht öffnen %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"

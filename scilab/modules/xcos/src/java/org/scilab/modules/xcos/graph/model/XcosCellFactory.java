@@ -542,6 +542,7 @@ public final class XcosCellFactory {
      *            <LI>{@link ObjectProperties#OUTPUTS}
      *            <LI>{@link ObjectProperties#EVENT_INPUTS}
      *            <LI>{@link ObjectProperties#EVENT_OUTPUTS}
+     *            </UL>
      * @param parent
      *            is the parent {@link mxCell} to modify
      * @return the number of inserted children

@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 14:52+0000\n"
+"PO-Revision-Date: 2016-12-06 17:35+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -580,15 +580,13 @@ msgstr ""
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr "%s: помилкові значення вхідних параметрів №%d та №%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Column expected.\n"
-msgstr "%s: помилковий розмір параметра №%d: слід використовувати вектор.\n"
+msgstr "%s: параметр №%d: мало бути вказано стовпчик.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
-msgstr ""
-"%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
-"кількість елементів.\n"
+msgstr "%s: параметри №%d і №%d: кількість елементів мала бути однаковою.\n"
 
 #, c-format
 msgid ""

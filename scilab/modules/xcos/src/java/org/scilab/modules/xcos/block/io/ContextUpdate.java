@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
- * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -46,7 +46,9 @@ import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 
 import com.mxgraph.model.mxICell;
+import java.lang.reflect.InvocationTargetException;
 import java.rmi.server.UID;
+import java.util.logging.Level;
 import org.scilab.modules.xcos.ObjectProperties;
 
 /**
@@ -287,6 +289,22 @@ public abstract class ContextUpdate extends BasicBlock {
         }
 
         /**
+         * Return the assignement compatible port class of the block
+         *
+         * @param klass
+         *            the klass
+         * @return the klass of the port
+         */
+        public static Class<? extends BasicPort> getPort(Class<? extends ContextUpdate> klass) {
+            for (IOBlocks b : IOBlocks.values()) {
+                if (b.getReferencedClass() == klass) {
+                    return b.getReferencedPortClass();
+                }
+            }
+            return null;
+        }
+
+        /**
          * Create a corresponding I/O block
          *
          * @param port
@@ -319,6 +337,26 @@ public abstract class ContextUpdate extends BasicBlock {
                 }
             }
 
+            return null;
+        }
+
+        /**
+         * Create a corresponding port
+         * @param controller the shared controller
+         * @param block the block used on the superblock level
+         * @return port of the superblock
+         */
+        public static BasicPort createPort(JavaController controller, ContextUpdate block) {
+            Class<? extends BasicPort> p = ContextUpdate.IOBlocks.getPort(block.getClass());
+
+            BasicPort port;
+            try {
+                port = p.getConstructor(JavaController.class, Long.TYPE, Kind.class, Object.class, String.class, String.class).
+                       newInstance(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
+                return port;
+            } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+                Logger.getLogger(ContextUpdate.class.getName()).log(Level.SEVERE, null, ex);
+            }
             return null;
         }
 

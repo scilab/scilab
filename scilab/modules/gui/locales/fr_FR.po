@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 13:04+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-01-13 18:29+0000\n"
+"Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -384,9 +384,9 @@ msgstr "%s : Impossible de créer l'argument de sortie n°%d.\n"
 msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un handle attendu.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Invalid value for datatip index %d.\n"
-msgstr "%s : Nœud parent invalide.\n"
+msgstr "%s : Valeur invalide pour le datatip %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -856,6 +856,7 @@ msgstr ""
 
 msgid "(Max - Min) must be greater than 1 to allow the multiple selection.\n"
 msgstr ""
+"(Max-Min) doit être supérieur à 1 pour permettre la sélection multiple.\n"
 
 #, c-format
 msgid "'%s' value must be between 0 and %d.\n"
@@ -893,7 +894,7 @@ msgid "&Copy to clipboard"
 msgstr "&Copier dans le presse-papier"
 
 msgid "P&age setup..."
-msgstr "Mise en p&age..."
+msgstr "&Mise en page..."
 
 msgid "&Print..."
 msgstr "&Imprimer..."
@@ -914,7 +915,7 @@ msgid "&Original View"
 msgstr "Vue &Originale"
 
 msgid "Reframe to contents"
-msgstr ""
+msgstr "Recardrer au contenu"
 
 msgid "2D/3D &Rotation"
 msgstr "&Rotation 2D/3D"
@@ -1001,16 +1002,52 @@ msgid "&Open a file..."
 msgstr "&Ouvrir un fichier..."
 
 msgid "&Load environment..."
-msgstr "&Charger un environnement..."
+msgstr "Charger une &session archivée"
 
 msgid "&Save environment..."
-msgstr "&Enregistrer l'environnement..."
+msgstr "&Archiver la session"
 
-msgid "&Change current directory..."
-msgstr "&Changer le répertoire courant..."
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 94
+# File: modules/gui/src/gui_fake_xml.c, line: 148
+msgid "&Current Working Directory (CWD):"
+msgstr ""
 
-msgid "&Display current directory"
-msgstr "&Afficher le répertoire courant"
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 95
+# File: modules/gui/src/gui_fake_xml.c, line: 149
+msgid "    &Browse for new"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 96
+# File: modules/gui/src/gui_fake_xml.c, line: 150
+msgid "    Go to &Favorite"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 97
+# File: modules/gui/src/gui_fake_xml.c, line: 151
+msgid "TMPDIR"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 98
+# File: modules/gui/src/gui_fake_xml.c, line: 152
+msgid "SCIHOME"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 99
+# File: modules/gui/src/gui_fake_xml.c, line: 153
+msgid "SCI"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 100
+# File: modules/gui/src/gui_fake_xml.c, line: 154
+msgid "User's home ~"
+msgstr ""
 
 msgid "&Quit"
 msgstr "&Quitter"
@@ -1075,14 +1112,14 @@ msgstr "Historique des &Commandes"
 msgid "&File Browser"
 msgstr "Navigateur de &Fichiers"
 
-msgid "&News feed"
-msgstr "&Nouvelles RSS"
-
 msgid "Scilab &Help"
 msgstr "Aide de &Scilab"
 
 msgid "Scilab &Demonstrations"
 msgstr "&Démonstrations"
+
+msgid "&News feed"
+msgstr "&Nouvelles RSS"
 
 msgid "&Links"
 msgstr "&Liens Internet"
@@ -1587,6 +1624,10 @@ msgstr "Copier dans le presse-papier"
 
 msgid "Copy figure to system clipboard"
 msgstr "Copier la figure dans le presse-papier du système"
+
+#, fuzzy
+msgid "Insert a title"
+msgstr "Insérer un nouveau point ici"
 
 msgid "Label X"
 msgstr "Label X"
@@ -2447,10 +2488,10 @@ msgid "Uicontrols rendering"
 msgstr "Rendu des interfaces graphiques de contrôle"
 
 msgid "Uicontrols layout"
-msgstr ""
+msgstr "Disposition des uicontrols"
 
 msgid "Uicontrols messagebox-like"
-msgstr ""
+msgstr "Uicontrols ressemblant aux messagebox"
 
 msgid "<Enter color name here>"
 msgstr "<Entrez le nom de la couleur ici>"
@@ -2593,7 +2634,7 @@ msgid "Uicontrols demo with LaTeX"
 msgstr "Démonstration des interfaces graphiques de contrôle avec LaTeX"
 
 msgid "Please fill the table"
-msgstr ""
+msgstr "Merci de remplir la table"
 
 #, c-format
 msgid "%s: can not add a menu in this mode: %s.\n"
@@ -2834,8 +2875,8 @@ msgstr "%s : Type erroné de %s : Un réel attendu.\n"
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s : Dimension erronée de %s : Un réel attendu.\n"
 
-#~ msgid "Fit zoom to data"
-#~ msgstr "Ajuster le zoom aux données"
+#~ msgid "&Change current directory..."
+#~ msgstr "&Changer le dossier de travail"
 
-#~ msgid "Ok"
-#~ msgstr "Ok"
+#~ msgid "&Display current directory"
+#~ msgstr "Afficher le &dossier de travail"

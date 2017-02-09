@@ -37,7 +37,7 @@ function [col, mark] = ana_style(style)
                     end
                 end
                 col = evstr(part(style,1:ic-1))
-                nb_col = xget("lastpattern")
+                nb_col = size(gcf().color_map, 1)
                 if col < 1  |  col > nb_col then
                     col = default_markColor
                 end

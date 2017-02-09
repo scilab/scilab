@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:06+0000\n"
+"PO-Revision-Date: 2016-12-06 16:48+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -854,11 +854,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floats, Polynomial or linear "
 "dynamical system expected.\n"
-msgstr "%s：输入参数#%d类型错误：应该为线性动态系统。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Input argument #%d ignored.\n"
@@ -943,14 +943,14 @@ msgstr "%s：曲线被截断为前%d个离散点。\n"
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该介于%d与%d之间。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: cell entries must have the same type\n"
-msgstr "%s：输入参数#%d的类型错误：应该为线性状态空间。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
@@ -972,6 +972,14 @@ msgid "Hz"
 msgstr ""
 
 msgid "dB"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/formatEvansTip.sci, line: 18
+#, c-format
+msgid ""
+"Pole: %.4g %+.4g i\n"
+"Loop gain: %.4g"
 msgstr ""
 
 msgid "rad/sec"
@@ -1165,6 +1173,32 @@ msgstr "%s：不良条件。\n"
 msgid "%s: %s non symmetric.\n"
 msgstr "%s：%s非对称。\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为一个空矩阵。\n"
+
+#, fuzzy, c-format
+msgid "%s: incompatible input arguments %d and %d\n"
+msgstr "%s：输入参数#%d和#%d不兼容：应该为同样大小。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
+msgstr "%s：输入参数#%d的值错误：必须在[%d %d]之间。\n"
+
+#
+# File: modules/cacsd/macros/lft.sci, line: 104
+#, c-format
+msgid "%s: incompatible time domains\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
@@ -1189,8 +1223,9 @@ msgid "G is all-pass"
 msgstr ""
 
 #, c-format
-msgid "%s: %s is not zero! (set to zero)"
-msgstr "%s：%s是非零值！（请设置为零）"
+msgid ""
+"%s: Wrong value for input argument #%d: Time domain must be 'c' or 'd'.\n"
+msgstr "%s：输入参数#%d的值错误：时间域必须为'cc'或'd'。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
@@ -1201,15 +1236,18 @@ msgid "%s: Wrong value for input argument #%d: Must be symmetric.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be a symmetric non negative "
-"matrix.\n"
+msgid "%s: %s is not zero! (set to zero)"
+msgstr "%s：%s是非零值！（请设置为零）"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected."
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Time domain must be 'c' or 'd'.\n"
-msgstr "%s：输入参数#%d的值错误：时间域必须为'cc'或'd'。\n"
+"%s: Wrong value for input argument #%d: Must be a symmetric non negative "
+"matrix.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: c or d expected.\n"
@@ -1296,13 +1334,13 @@ msgstr "极点"
 msgid "Transmission zeros and poles"
 msgstr "转换零和极点"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
-msgstr "%s：输入参数#%d和参数#%d不兼容：应该有同样的行数。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Stationary Riccati solver failed.\n"
@@ -1312,9 +1350,9 @@ msgstr "%s：Stationary Riccati 方程式求解失败。\n"
 msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
 msgstr "%s：稳定子空间的维数错误（%d）：应该为%d。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1334,17 +1372,17 @@ msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
-msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
-msgstr "%s：第%d个输入参数的值错误：应该为%d或%d。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for input argument %d: Real or complex array expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为多项式数组。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot find the state dimension.\n"
@@ -1355,10 +1393,10 @@ msgid ""
 "%s: Wrong type for input argument #%d: Linear state space system expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为线性状态空间系统。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a single input system expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
@@ -1447,17 +1485,17 @@ msgstr "不可约的传递函数因素的固有频率和阻尼因子（点击下
 msgid "%s: Incorrect answer.\n"
 msgstr "%s：不正确的答案。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: state dimension of #%d must be "
 "equal to the column dimension of #%d.\n"
-msgstr "%s：输入参数#%d和参数#%d不兼容：应该有同样的行数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: input dimension of #%d must be "
 "equal to the column dimension of #%d.\n"
-msgstr "%s：输入参数#%d和参数#%d不兼容：应该有同样的行数。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Residual norm = %g\n"
@@ -1482,72 +1520,68 @@ msgstr ""
 msgid "Imaginary Axis"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex array expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为多项式数组。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: complex zeros  must appear in "
 "complex conjugate pairs.\n"
-msgstr "%s：输入参数#%d的值错误：应该为正确的系统。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为多项式数组。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: complex poles  must appear in "
 "complex conjugate pairs.\n"
-msgstr "%s：输入参数#%d的值错误：应该为正确的系统。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Wrong type for argument %d: A system in state space or transfer matrix form "
 "expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为线性状态空间或者一个传递函数。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument  #%d: Cell expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument  #%d: Cell elements must be numerical "
 "arrays.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为线性状态空间。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A vector or a cell of vectors "
 "expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
+msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
-msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
-
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: zero-pole-gain representation "
 "expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
+msgstr ""

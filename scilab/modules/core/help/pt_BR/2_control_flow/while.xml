@@ -7,52 +7,52 @@
         </refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>while</literal> . Deve ser terminado por
             <literal>"end"</literal>
         </para>
         <para>
-            <literal>while expressão ,instruções1,...[,else instruções],
+            <literal>while expressÃ£o ,instruÃ§Ãµes1,...[,else instruÃ§Ãµes],
                 end
             </literal>
         </para>
         <para>
-            <literal>while expressão do instruções1,...[,else instruções],
+            <literal>while expressÃ£o do instruÃ§Ãµes1,...[,else instruÃ§Ãµes],
                 end
             </literal>
         </para>
         <para>
-            <literal>while expressão then instruções1,...[,else instruções],
+            <literal>while expressÃ£o then instruÃ§Ãµes1,...[,else instruÃ§Ãµes],
                 end
             </literal>
         </para>
         <para>Notas:</para>
         <itemizedlist>
             <listitem>
-                <para>A única restrição é que cada palavra-chave "then" ou "do" deve
+                <para>A Ãºnica restriÃ§Ã£o Ã© que cada palavra-chave "then" ou "do" deve
                     estar na mesma linha que a palavra-chave "while".
                 </para>
             </listitem>
             <listitem>
-                <para>As palavras-chaves "then" ou "do" podem ser substituídas por um
-                    retorno de carro ou uma vírgula. Para compatibilidade com o Matlab,
-                    também é possível, mas não recomendado, por um espaço entre o fim da
-                    expressão e o início da primeira instrução.
+                <para>As palavras-chaves "then" ou "do" podem ser substituÃ­das por um
+                    retorno de carro ou uma vÃ­rgula. Para compatibilidade com o Matlab,
+                    tambÃ©m Ã© possÃ­vel, mas nÃ£o recomendado, por um espaÃ§o entre o fim da
+                    expressÃ£o e o inÃ­cio da primeira instruÃ§Ã£o.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    A construção opcional <literal>,else instruções</literal>
-                    permite fornecer instruções que são executadas quando a expressão
-                    expressão torna-se falsa.
+                    A construÃ§Ã£o opcional <literal>,else instruÃ§Ãµes</literal>
+                    permite fornecer instruÃ§Ãµes que sÃ£o executadas quando a expressÃ£o
+                    expressÃ£o torna-se falsa.
                 </para>
             </listitem>
         </itemizedlist>
-        <para>Aviso: o número de caracateres usados para definir o corpo de
-            qualquer estrutura condicional (if while for ou select/case) deve ser
-            limitado a 16k.
-        </para>
+        <warning>
+            O nÃºmero de caracateres usados para definir o corpo de  qualquer estrutura condicional
+            (if while for ou select/case) deve ser  limitado a 16k.
+        </warning>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -67,22 +67,22 @@ e,k
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
-                <link linkend="for">for</link>
+                <link linkend="or_op">|, ||</link>
             </member>
             <member>
-                <link linkend="select">select</link>
+                <link linkend="and_op">&amp;, &amp;&amp;</link>
             </member>
             <member>
                 <link linkend="break">break</link>
             </member>
             <member>
-                <link linkend="return">return</link>
+                <link linkend="for">for</link>
             </member>
             <member>
-                <link linkend="pause">pause</link>
+                <link linkend="select">select</link>
             </member>
         </simplelist>
     </refsection>

@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 15:46+0000\n"
+"PO-Revision-Date: 2016-12-07 22:12+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -883,11 +883,9 @@ msgstr "Помилкова розмірність поля %s: мала бути
 msgid "Wrong size for field %s: at least %d-by-%d expected.\n"
 msgstr "Помилкова розмірність поля %s: мала бути принаймні %d x %d.\n"
 
-#
-# File: modules/scicos/src/cpp/view_scilab/DiagramAdapter.cpp, line: 452
 #, c-format
 msgid "\"%s\" is a read-only field.\n"
-msgstr ""
+msgstr "Поле «%s» призначено лише для читання.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s: Real matrix expected.\n"
@@ -1592,21 +1590,3 @@ msgid ""
 msgstr ""
 "Відповідь, вказана для %s \n"
 " є помилковою: %s.\n"
-
-#~ msgid "Wrong value for field %s.%s: Must be in the interval [%d, %d].\n"
-#~ msgstr ""
-#~ "Помилкове значення поля %s.%s: значення має належати інтервалу [%d, %d].\n"
-
-#~ msgid "Wrong value for field %s.%s : Valid C identifier expected.\n"
-#~ msgstr ""
-#~ "Помилкове значення поля %s.%s: мало бути вказано коректний ідентифікатор "
-#~ "C.\n"
-
-#~ msgid "A C or Fortran block is used but not linked.\n"
-#~ msgstr "Використано блок C або Fortran, але сам блок не скомпоновано.\n"
-
-#~ msgid "I cannot find a link with undetermined size.\n"
-#~ msgstr "Виявлення зв’язку з невизначеною розмірністю неможливе.\n"
-
-#~ msgid "There are too many Modelica files.\n"
-#~ msgstr "Забагато файлів Modelica.\n"

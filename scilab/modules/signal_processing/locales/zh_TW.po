@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -387,9 +387,9 @@ msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: 輸入參數數目錯誤: 預期為 %d 或 %d 個.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
-msgstr "%s: 第 %d 輸入參數型別有誤: 浮點數的向量才對.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -487,13 +487,13 @@ msgstr "%s: 第 %d 輸入參數長度錯誤 :  tall 矩陣才對.\n"
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Column expected.\n"
-msgstr "%s: 第 %d 輸入參數長度錯誤: 應為一多項式.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
-msgstr "%s:  輸入參數 #%d and #%d 不相容:相同元素個素才對.\n"
+msgstr ""
 
 #, c-format
 msgid ""

@@ -19,5 +19,4 @@
 //
 
 function [] = %_xset()
-    ged(1);
 endfunction

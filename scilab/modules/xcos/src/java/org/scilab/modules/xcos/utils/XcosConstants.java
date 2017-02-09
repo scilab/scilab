@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement David
- * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2015 - Marcos CARDINOT
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
@@ -140,16 +140,6 @@ public final class XcosConstants extends ScilabGraphConstants {
             return null;
         }
     }
-
-    /* Events */
-    /**
-     * When a block changed
-     */
-    public static final String EVENT_BLOCK_UPDATED = "block";
-    /** Change event old name */
-    public static final String EVENT_CHANGE_OLD = "old";
-    /** Change event new name */
-    public static final String EVENT_CHANGE_NEW = "new";
 
     /* SCI environment */
     /** Path from SCI or SCIHOME to the Xcos configuration directory */

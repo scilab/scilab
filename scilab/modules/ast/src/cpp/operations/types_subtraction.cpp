@@ -904,6 +904,7 @@ InternalType* sub_M_E(T *_pL, U * /*_pR*/)
         Sciwarning(_("operation -: Warning adding a matrix with the empty matrix old behaviour.\n"));
         return _pL;
     }
+
     Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
@@ -991,6 +992,7 @@ InternalType* sub_MC_E(T *_pL, U * /*_pR*/)
         Sciwarning(_("operation -: Warning adding a matrix with the empty matrix old behaviour.\n"));
         return _pL;
     }
+
     Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
@@ -1038,6 +1040,7 @@ InternalType* sub_S_E(T *_pL, U * /*_pR*/)
         Sciwarning(_("operation -: Warning adding a matrix with the empty matrix old behaviour.\n"));
         return _pL;
     }
+
     Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
@@ -1085,6 +1088,7 @@ InternalType* sub_SC_E(T *_pL, U * /*_pR*/)
         Sciwarning(_("operation -: Warning adding a matrix with the empty matrix old behaviour.\n"));
         return _pL;
     }
+
     Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
@@ -1100,6 +1104,7 @@ InternalType* sub_E_M(T * /*_pL*/, U *_pR)
         Sciwarning(_("operation -: Warning adding a matrix with the empty matrix old behaviour.\n"));
         return opposite_M<U, O>(_pR);
     }
+
     Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
@@ -1114,6 +1119,7 @@ InternalType* sub_E_MC(T * /*_pL*/, U *_pR)
         Sciwarning(_("operation -: Warning adding a matrix with the empty matrix old behaviour.\n"));
         return opposite_MC<U, O>(_pR);
     }
+
     Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
@@ -1502,6 +1508,7 @@ template<class T, class U, class O> types::InternalType* sub_I_E(T *_pL, U * /*_
         Sciwarning(_("operation -: Warning adding a matrix with the empty matrix old behaviour.\n"));
         return _pL;
     }
+
     Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
@@ -1515,6 +1522,7 @@ template<class T, class U, class O> types::InternalType* sub_IC_E(T *_pL, U * /*
         Sciwarning(_("operation -: Warning adding a matrix with the empty matrix old behaviour.\n"));
         return _pL;
     }
+
     Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
@@ -1528,6 +1536,7 @@ template<class T, class U, class O> types::InternalType* sub_E_I(T * /*_pL*/, U 
         Sciwarning(_("operation -: Warning adding a matrix with the empty matrix old behaviour.\n"));
         return opposite_I<U, O>(_pR);
     }
+
     Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();
@@ -1541,6 +1550,7 @@ template<class T, class U, class O> types::InternalType* sub_E_IC(T * /*_pL*/, U
         Sciwarning(_("operation -: Warning adding a matrix with the empty matrix old behaviour.\n"));
         return opposite_IC<U, O>(_pR);
     }
+
     Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n"));
     Double* pOut = Double::Empty();
     sub();

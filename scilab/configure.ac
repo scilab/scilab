@@ -40,7 +40,7 @@ else
 fi
 
 SCILAB_VERSION_MAJOR=6
-SCILAB_VERSION_MINOR=0
+SCILAB_VERSION_MINOR=1
 SCILAB_VERSION_MAINTENANCE=0
 AC_SUBST(SCILAB_VERSION_MAJOR)
 AC_SUBST(SCILAB_VERSION_MINOR)
@@ -1155,7 +1155,7 @@ Unit tests],"yes")
         fi
         JUNIT4=$PACKAGE_JAR_FILE
         AC_SUBST(JUNIT4)
-        
+
         # hamcrest (junit4 dependency)
         AC_JAVA_CHECK_JAR([hamcrest-all],[org.hamcrest.core.IsNull],[Hamcrest- library matchers],"yes")
         if test -z "$PACKAGE_JAR_FILE"; then
@@ -1490,7 +1490,7 @@ if test "$with_openmp" != no; then
 #   AC_OPENMP
     OPENMP_CFLAGS="-fopenmp"
     OPENMP_CXXFLAGS="-fopenmp"
-    OPENMP_LIBS="-lgomp" 
+    OPENMP_LIBS="-lgomp"
 
     AC_CHECK_HEADERS([omp.h], [],
      [AC_MSG_ERROR([Could not find omp.h])])
@@ -1955,7 +1955,7 @@ fi
 
 
 #########
-## Make sure that the libstdc++ libgcc and libgfortran can be compiled as 
+## Make sure that the libstdc++ libgcc and libgfortran can be compiled as
 ## static if requested
 #########
 AC_CHECK_STDCPP_STATIC()

@@ -161,7 +161,7 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
         ii = ii + nl + 1;
     end
 
-    lp=xget("lastpattern");
+    lp = size(gcf().color_map, 1);
 
     if size(nv,"*") > 1 // case where nv is a vector defining the level curve values
         if  size(nv,"*") > lp
@@ -191,18 +191,18 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
     H=[];
     [FA,IA]=gsort(abs(Area));
 
-    drawlater(); // postpon the drawing here
-    a=gca();
-    old_foreground = a.foreground;
-    pat=xget("pattern");
+    drawlater(); // postpone the drawing here
+    ax = gca();
+    old_foreground = ax.foreground;
+    pat = old_foreground;
     for jj=IA',
         nl=CS(2,I(jj));
         lev1=CS(1,I(jj));
         if (lev1 ~= minz | draw_min) then
             xp=CS(1,I(jj)+(1:nl));
             yp=CS(2,I(jj)+(1:nl));
-            pat=size(find( nv <= lev1),"*");
-            xset("pattern",pat);
+            pat = size(find( nv <= lev1),"*");
+            ax.foreground = pat;
             xfpoly(xp,yp)
         end
     end
@@ -210,7 +210,7 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
     if style(1)<>-1 then
         contour2d(xx,yy,zz,nv,style,"000",leg,rect,nax);
     end
-    a.foreground = old_foreground;
+    ax.foreground = old_foreground;
     drawnow(); // draw all now!
 
 endfunction

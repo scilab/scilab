@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 12:57+0000\n"
+"PO-Revision-Date: 2017-01-09 17:54+0000\n"
 "Last-Translator: Ramiro Pereira de Magalhães <ramiro.p.magalhaes@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -325,42 +325,29 @@ msgstr "Personalizar"
 msgid "Save block GUI"
 msgstr "Salvar GUI do bloco"
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 69
 msgid "matches"
 msgstr ""
 
-#, fuzzy
 msgid "Previous"
-msgstr "Pré-visualização"
+msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 72
 msgid "Search"
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 73
 msgid "Searching..."
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 74
 msgid "Zoom In"
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 75
 msgid "Zoom Out"
 msgstr ""
 
-#, fuzzy
 msgid "Unable to load the selected blocks."
-msgstr "Não é possível de carregar bloco de %s."
+msgstr ""
 
-#, fuzzy
 msgid "Loading blocks"
-msgstr "Carregando o bloco"
+msgstr ""
 
 msgid "Load as palette"
 msgstr "Carregar como paleta"
@@ -640,9 +627,8 @@ msgstr "Nenhum bloco selecionado"
 msgid "Export to XML"
 msgstr "Exportar para XML"
 
-#, fuzzy
 msgid "Export in progress"
-msgstr "Simulação em andamento"
+msgstr ""
 
 msgid "Import from XML"
 msgstr "Importar de XML"
@@ -899,9 +885,11 @@ msgstr "Erro: incapaz de compilar este SuperBloco"
 msgid "Evaluation problem: wrong port number."
 msgstr "Problema de avaliação: número de porta errado."
 
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 309
 #, c-format
-msgid "Expecting '%d'."
-msgstr "Esperando '%d'."
+msgid "Expecting <code>%d</code> but got <code>%d</code>."
+msgstr ""
 
 msgid ""
 "<html><body>Compilation error: link ignored because it is not connected. <br/"
@@ -946,21 +934,15 @@ msgstr ""
 msgid "Label: "
 msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 330
 msgid "Optimal"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-Position Block"
-msgstr "Blocos de demonstração"
+msgstr ""
 
-#, fuzzy
 msgid "Split Block"
-msgstr "Alinhe blocos"
+msgstr ""
 
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 333
 msgid "Auto-Position Split Block"
 msgstr ""
 
@@ -1506,5 +1488,5 @@ msgstr ""
 msgid "%s: Syntax error while trying to set up context from"
 msgstr ""
 
-#~ msgid "The Scicos libraries are not loaded"
-#~ msgstr "As bibliotecas Scicos não estão carregadas"
+#~ msgid "Expecting '%d'."
+#~ msgstr "Esperando '%d'."

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-07-03 16:21+0000\n"
-"Last-Translator: Mickael Albertus <Unknown>\n"
+"PO-Revision-Date: 2017-01-10 16:49+0000\n"
+"Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -49,11 +49,9 @@ msgstr ""
 msgid "%s: No more memory.\n"
 msgstr "%s : Plus de mémoire disponible.\n"
 
-#
-# File: modules/fftw/sci_gateway/c/sci_fftw_flags.c, line: 345
 #, c-format
 msgid "%s: Failed to generate the planner name.\n"
-msgstr ""
+msgstr "%s : Impossible de générer le nom du planificateur.\n"
 
 #, c-format
 msgid "%s: MKL fftw library does not implement wisdom functions yet.\n"

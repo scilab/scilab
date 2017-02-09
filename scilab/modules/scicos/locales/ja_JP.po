@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-09-15 05:22+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2016-12-07 22:13+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -212,25 +212,25 @@ msgstr ""
 msgid "%s : Undetermined Size. outtyp(%d)=%d. Please adjust your model.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: 入力引数 #%d の型が正しくありません: 文字配列を指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: リストを指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Unable to load \"%s\" .\n"
-msgstr "%s: ダイアグラムの入力がありません\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Unable to save \"%s\" .\n"
-msgstr "%s: ダイアグラムの入力がありません\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -778,8 +778,6 @@ msgstr ""
 msgid "Wrong size for field %s: at least %d-by-%d expected.\n"
 msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/DiagramAdapter.cpp, line: 452
 #, c-format
 msgid "\"%s\" is a read-only field.\n"
 msgstr ""
@@ -924,16 +922,12 @@ msgstr ""
 msgid "Wrong type for field %s.%s: String matrix expected.\n"
 msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 348
 #, c-format
 msgid ""
 "Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' "
 "vector. Switching to '%s'.\n"
 msgstr ""
 
-#
-# File: modules/scicos/src/cpp/view_scilab/ports_management.hxx, line: 362
 #, c-format
 msgid "Wrong type for field %s.%s.\n"
 msgstr ""
@@ -1446,12 +1440,3 @@ msgid ""
 msgstr ""
 "%s に指定された回答は\n"
 "間違っています: %s.\n"
-
-#~ msgid "A C or Fortran block is used but not linked.\n"
-#~ msgstr "CまたはFortranブロックが使用されていますが, リンクされていません.\n"
-
-#~ msgid "I cannot find a link with undetermined size.\n"
-#~ msgstr "大きさが未定義のリンクが見つかりません.\n"
-
-#~ msgid "There are too many Modelica files.\n"
-#~ msgstr "Modelicaファイルが多すぎます.\n"

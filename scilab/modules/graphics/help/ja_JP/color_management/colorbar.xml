@@ -324,8 +324,6 @@ drawlater() ;
 
 colorbar(zzm,zzM,[1, nb_col],fmt="%.1f")
 
-nbcol = xget("lastpattern")
-
 zcol = dsearch(zf, linspace(zzm, zzM, nb_col+1));
 
 plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])
@@ -349,12 +347,10 @@ show_window()
             [xf,yf,zf]=genfac3d(x,x,zz);
 
             nb_col = 64;
-            
-            gcf().color_map = hotcolormap(nb_col);
-            
-            colorbar(zzm,zzM,[1, nb_col],fmt="%.1f")
 
-            nbcol = xget("lastpattern")
+            gcf().color_map = hotcolormap(nb_col);
+
+            colorbar(zzm,zzM,[1, nb_col],fmt="%.1f")
 
             zcol = dsearch(zf, linspace(zzm, zzM, nb_col+1));
 

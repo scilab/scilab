@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -278,9 +278,9 @@ msgstr ""
 "Soubor %s není platný:\n"
 "%s\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Cannot write the file.\n"
-msgstr "%s: Zde nelze soubor zapsat: %s\n"
+msgstr ""
 
 #, c-format
 msgid ""

@@ -69,13 +69,10 @@
         <programlisting role=""><![CDATA[
       i = 0; while i<5 disp("i"); i = i + 1; end
 ]]></programlisting>
-        <para>
-            <warning>
-                Attention : le nombre de caractères constituant le corps d'une
-                instruction conditionnelle (if while for ou select/case) est limité à
-                16k.
-            </warning>
-        </para>
+      <warning>
+        Le nombre de caractères constituant le corps d'une instruction conditionnelle (if while
+        for ou select/case) est limité à 16k.
+      </warning>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -93,19 +90,19 @@ e,k
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="for">for</link>
+                <link linkend="or_op">|, ||</link>
             </member>
             <member>
-                <link linkend="select">select</link>
+                <link linkend="and_op">&amp;, &amp;&amp;</link>
             </member>
             <member>
                 <link linkend="break">break</link>
             </member>
             <member>
-                <link linkend="return">return</link>
+                <link linkend="for">for</link>
             </member>
             <member>
-                <link linkend="pause">pause</link>
+                <link linkend="select">select</link>
             </member>
         </simplelist>
     </refsection>

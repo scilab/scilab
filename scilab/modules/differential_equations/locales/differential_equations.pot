@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2017-01-04 17:51+0100\n"
+"Revision-Date: 2017-02-08 09:22+0100\n"
 
 # File: modules/differential_equations/sci_gateway/cpp/sci_bvode.cpp, line: 63
 # File: modules/differential_equations/sci_gateway/cpp/sci_daskr.cpp, line: 263
@@ -545,7 +545,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_dassl.cpp, line: 724
 # File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 257
 # File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1145
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1367
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1369
 #, c-format
 msgid "%ls: An error occured in '%ls' subroutine.\n"
 msgstr ""
@@ -930,7 +930,7 @@ msgstr ""
 
 #
 # File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1161
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1397
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1399
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1269
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1531
 #, c-format
@@ -939,7 +939,7 @@ msgstr ""
 
 #
 # File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1173
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1419
+# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1421
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1285
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1550
 #, c-format
@@ -1173,12 +1173,12 @@ msgstr ""
 
 #
 # File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 252
-msgid "External ''res'' return many times with ires=-1.\n"
+msgid "External 'res' return many times with ires=-1.\n"
 msgstr ""
 
 #
 # File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 259
-msgid "Error in external ''res''.\n"
+msgid "Error in external 'res'.\n"
 msgstr ""
 
 #

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-06-10 05:52+0000\n"
+"PO-Revision-Date: 2017-01-09 20:08+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -288,9 +288,9 @@ msgstr "%s: помилкова розмірність вхідних парам�
 msgid "%s: %s return with state %d.\n"
 msgstr "%s: %s завершила роботу із станом %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%ls: An error occured in '%ls' subroutine.\n"
-msgstr "%s: сталася помилка у підпрограмі «%s».\n"
+msgstr "%ls: сталася помилка у підпрограмі «%ls».\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
@@ -676,19 +676,15 @@ msgstr "інтегруємо від tleft= %lf до hf=tf= %lf\n"
 msgid "integ. from tleft= %lf to hf= %lf\n"
 msgstr "інтегруємо від tleft= %lf до hf= %lf\n"
 
-#, fuzzy
 msgid "Insufficient Work space to finish (see messages).\n"
-msgstr "Недостатньо простору для завершення обчислень (див. повідомлення).\n"
+msgstr "Недостатньо робочого простору для завершення (див. повідомлення).\n"
 
-#, fuzzy
 msgid "Excessive work done on this call (perhaps wrong jacobian type).\n"
 msgstr ""
-"Під час цього виклику виконано надмірну роботу (ймовірно, помилковий тип "
-"якобіана).\n"
+"Надмірна робота за цим викликом (ймовірно, помилковий тип за якобіаном).\n"
 
-#, fuzzy
 msgid "Excesive accuracy requested (tolerances too small).\n"
-msgstr "Надто висока точність (допуски є надто малими).\n"
+msgstr "Надіслано запит на надмірну точність (похибки є надто малими).\n"
 
 msgid "Illegal input detected (see printed message).\n"
 msgstr "Виявлено некоректні вхідні дані (див. виведене повідомлення).\n"
@@ -768,20 +764,19 @@ msgstr ""
 "виведення даних обмежує природний вибір розміру кроку. Скористайтеся "
 "однокроковим режимом інтегрування.\n"
 
-#, fuzzy
 msgid "Invalid input parameters : atol and rtol must be greater than 0.\n"
-msgstr "Некоректні вхідні параметри: atol і rtol мають перевищувати 0.\n"
+msgstr "Некоректні вхідні параметри: atol і rtol мають бути більшими за 0.\n"
 
 msgid "Inappropriate error tolerance.\n"
 msgstr "Неприйнятний допуск похибки.\n"
 
-#, fuzzy
 msgid ""
 "Too many steps necessary to reach next required time discretization point. "
 "Change discretisation of time vector t or decrease accuracy.\n"
 msgstr ""
-"Для досягнення наступної точки дискретизації потрібно забагато кроків. "
-"Змініть дискретизацію вектора часу t або зменшіть точність.\n"
+"Для досягнення наступної точки дискретизації за часом потрібно забагато "
+"кроків. Змініть дискретизацію за вектором часу t або виберіть меншу "
+"точність.\n"
 
 msgid "The error tolerances are too stringent.\n"
 msgstr "Допусти на похибку є надто строгими.\n"
@@ -804,10 +799,12 @@ msgstr "Вироджена матриця частинних похідних (�
 msgid "Either ill-posed problem or discontinuity or singularity encountered.\n"
 msgstr "Маємо справу із некоректною, розривною або виродженою задачею.\n"
 
-msgid "External ''res'' return many times with ires=-1.\n"
+#, fuzzy
+msgid "External 'res' return many times with ires=-1.\n"
 msgstr "Зовнішня функція «res» багато разів повертала ires=-1.\n"
 
-msgid "Error in external ''res''.\n"
+#, fuzzy
+msgid "Error in external 'res'.\n"
 msgstr "Помилка у зовнішній функції «res».\n"
 
 msgid "failed to compute the initial Ydot.\n"

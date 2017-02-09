@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 14:32+0000\n"
+"PO-Revision-Date: 2016-12-06 17:55+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -1027,13 +1027,13 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
 "або скалярний тип.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floats, Polynomial or linear "
 "dynamical system expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути вказано масив зі "
-"значень float або поліном.\n"
+"%s: помилковий тип вхідного параметра №%d: мав бути масив за значень із "
+"рухомою крапкою, поліном або лінійна динамічна система.\n"
 
 #, c-format
 msgid "%s: Input argument #%d ignored.\n"
@@ -1134,17 +1134,18 @@ msgstr ""
 "%s: помилкова кількість вихідних параметрів: слід використовувати значення "
 "від %d до %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"комірки.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: cell entries must have the same type\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати лінійний "
-"простір станів.\n"
+"%s: помилковий тип вхідного параметра №%d: вміст комірок має належати до "
+"одного типу\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
@@ -1169,6 +1170,14 @@ msgstr "Гц"
 
 msgid "dB"
 msgstr "дБ"
+
+#
+# File: modules/cacsd/macros/formatEvansTip.sci, line: 18
+#, c-format
+msgid ""
+"Pole: %.4g %+.4g i\n"
+"Loop gain: %.4g"
+msgstr ""
 
 msgid "rad/sec"
 msgstr "рад/с"
@@ -1389,6 +1398,36 @@ msgstr "%s: погана обумовленість.\n"
 msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s не є симетричною.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: мало бути вказано вектор дійсних значень.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути не більше 3 "
+"елементів.\n"
+
+#, fuzzy, c-format
+msgid "%s: incompatible input arguments %d and %d\n"
+msgstr "%s: несумісний вхідний параметр.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: матриця має бути "
+"симетричною.\n"
+
+#, fuzzy, c-format
+msgid "%s: incompatible time domains\n"
+msgstr "%s: несумісний вхідний параметр.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
@@ -1420,8 +1459,11 @@ msgid "G is all-pass"
 msgstr "G — всепрохідна"
 
 #, c-format
-msgid "%s: %s is not zero! (set to zero)"
-msgstr "%s: %s не є нулем! (встановлено у нульове значення)"
+msgid ""
+"%s: Wrong value for input argument #%d: Time domain must be 'c' or 'd'.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: параметр часового діапазону "
+"повинен мати значення «c» (неперервний) або «d» (дискретний).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
@@ -1436,19 +1478,20 @@ msgstr ""
 "симетричною.\n"
 
 #, c-format
+msgid "%s: %s is not zero! (set to zero)"
+msgstr "%s: %s не є нулем! (встановлено у нульове значення)"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected."
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d."
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a symmetric non negative "
 "matrix.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: матриця має бути симетричною "
 "невід’ємною.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Time domain must be 'c' or 'd'.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: параметр часового діапазону "
-"повинен мати значення «c» (неперервний) або «d» (дискретний).\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: c or d expected.\n"
@@ -1544,15 +1587,15 @@ msgstr "Полюси"
 msgid "Transmission zeros and poles"
 msgstr "Перехід нулів і полюсів"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: мало бути вказано матрицю з "
-"дійсними елементами.\n"
+"%s: помилковий тип вхідного параметра №%d: мала бути матриця із дійсних "
+"значень.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
-msgstr "%s: у матрицях A і B має бути рівна кількість рядків.\n"
+msgstr "%s: параметр %d і параметр %d повинні мати однакові розмірності.\n"
 
 #, c-format
 msgid "%s: Stationary Riccati solver failed.\n"
@@ -1565,10 +1608,10 @@ msgstr ""
 "%s: помилкова розмірність (%d) підпростору стійкості: мала бути розмірність "
 "%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
+"%s: помилковий тип вхідного параметра №%d: мало бути додатне дійсне число.\n"
 
 #, c-format
 msgid ""
@@ -1596,20 +1639,21 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано масив "
 "дійсних значень з плаваючою крапкою\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути не більше %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
-msgstr "%s: помилкове значення вхідного параметра №%d: мало бути c або d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: Мало бути вказано невід’ємний "
+"скаляр.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for input argument %d: Real or complex array expected.\n"
 msgstr ""
-"%s: помилковий тип параметра №%d: слід використовувати матрицю з дійсних або "
-"комплексних значень.\n"
+"Помилковий тип вхідного параметра %d: мав бути масив з дійсних або "
+"комплексних чисел.\n"
 
 #, c-format
 msgid "%s: Cannot find the state dimension.\n"
@@ -1622,12 +1666,12 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати лінійну "
 "систему у просторі станів.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a single input system expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати лінійну "
-"систему.\n"
+"%s: помилковий тип вхідного параметра №%d: мала бути одинарна вхідна "
+"система.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
@@ -1784,96 +1828,92 @@ msgstr "Вісь дійсних значень"
 msgid "Imaginary Axis"
 msgstr "Вісь уявних значень"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex array expected.\n"
 msgstr ""
-"%s: помилковий тип параметра №%d: слід використовувати матрицю з дійсних або "
-"комплексних значень.\n"
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано масив із "
+"дійсних або комплексних чисел.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: complex zeros  must appear in "
 "complex conjugate pairs.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: дійсні частини власних "
-"значень мають бути від’ємними.\n"
+"%s: помилкове значення вхідного параметра №%d: у парах комплексного "
+"спряження мають бути комплексні нулі.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
 msgstr ""
-"%s: помилковий тип параметра №%d: слід використовувати матрицю з дійсних або "
-"комплексних значень.\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
+"дійсних або комплексних значень.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: complex poles  must appear in "
 "complex conjugate pairs.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: дійсні частини власних "
-"значень мають бути від’ємними.\n"
+"%s: помилкове значення вхідного параметра №%d: у парах комплексного "
+"спряження мають бути комплексні полюси.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати дійсне "
-"число.\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
+"дійсних чисел.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
 "або скалярний тип.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Wrong type for argument %d: A system in state space or transfer matrix form "
 "expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати лінійний "
-"простір станів або функцію переходу.\n"
+"Помилковий тип вхідного параметра %d: мало бути вказано систему у просторі "
+"станів або форму передавальної матриці.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument  #%d: Cell expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: мала бути комірка.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument  #%d: Cell elements must be numerical "
 "arrays.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати лінійний "
-"простір станів.\n"
+"%s: помилковий тип вхідного параметра №%d: елементи комірок мають бути "
+"числовими масивами.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути використано матрицю.\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"вектора.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати дійсне "
 "число.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A vector or a cell of vectors "
 "expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип вектора "
-"дійсних значень.\n"
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано вектор або "
+"комірку з векторів.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"
-
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: zero-pole-gain representation "
 "expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути використано функцію "
-"переходу.\n"
+"%s: помилковий тип вхідного параметра №%d: мало бути представлення у форматі "
+"моделі з нулями, полюсами і масштабним коефіцієнтом передавальної функції.\n"

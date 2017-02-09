@@ -495,7 +495,7 @@ echo $? ]]></screen>
                 <link linkend="getenv">getenv</link>
             </member>
             <member>
-                <link linkend="getenv">getversion</link>
+                <link linkend="getversion">getversion</link>
             </member>
             <member>
                 <link linkend="consolebox">consolebox</link>

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 12:59+0000\n"
+"PO-Revision-Date: 2016-12-06 17:17+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -338,11 +338,9 @@ msgstr "Спочатку вам слід вивантажити цю біблі�
 msgid "   Generate a gateway file\n"
 msgstr "   Створення файла шлюзу\n"
 
-#
-# File: modules/dynamic_link/macros/ilib_build.sci, line: 111
 #, c-format
 msgid "%s: %s format is not supported by your compiler."
-msgstr ""
+msgstr "%s: підтримку формату %s не передбачено у вашому компіляторі."
 
 msgid "   Generate a loader file\n"
 msgstr "   Створення файла завантаження\n"

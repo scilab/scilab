@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:01+0000\n"
+"PO-Revision-Date: 2017-01-27 12:24+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -59,12 +59,6 @@ msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
 msgstr "%s: 構文 x(i) は cblockの行でのみ使用可能です.\n"
 
 #, c-format
-msgid ""
-"%s: In concatenation the number of dimensions for each component must "
-"match.\n"
-msgstr "%s: 結合時, 各要素の次元数は一致する必要があります.\n"
-
-#, c-format
 msgid "%s: Invalid field name.\n"
 msgstr "%s: フィールド名が不正です.\n"
 
@@ -100,8 +94,90 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
+msgid ""
+"%s: In concatenation the number of dimensions for each component must "
+"match.\n"
+msgstr "%s: 結合時, 各要素の次元数は一致する必要があります.\n"
+
+#, c-format
 msgid "%s: Inconsistent dimensions.\n"
 msgstr "%s: 次元に整合性がありません.\n"
+
+#, c-format
+msgid "%s: Inconsistent element-wise operation.\n"
+msgstr "%s: 要素毎の処理に整合性がありません.\n"
+
+#, c-format
+msgid "%s: Too many subscripts.\n"
+msgstr "%s: 添字記号が多すぎます.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています:  3D最大値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
+msgstr "%s: 引数の大きさが間違っています:  次元に互換性がありません.\n"
+
+#, c-format
+msgid "%s: not implemented for argin#1 hypermatrix and argin#2 matrix\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数の行列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: integer <= ndims(argument #%d) "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
+msgstr "%s: 入力引数 #%d の型は間違っています: 整数値を指定してください.\n"
+
+#, c-format
+msgid "%s: time domains are not compatible.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of columns "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid syntax for a MIMO system.\n"
+msgstr "%s: MIMOシステムの構文が不正です.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d または %s を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
+msgstr "%s: 数値行列への疎行列の挿入は定義されていません.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments.\n"
+msgstr "%s: 入力引数の大きさが間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument(s).\n"
+msgstr "%s: 入力引数の大きさが間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -134,170 +210,6 @@ msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 文字列またはスカラーを指定してくださ"
 "い.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %s または %sを指定してください.\n"
-
-#, c-format
-msgid "%s: Inconsistent element-wise operation.\n"
-msgstr "%s: 要素毎の処理に整合性がありません.\n"
-
-#, c-format
-msgid "%s: Too many subscripts.\n"
-msgstr "%s: 添字記号が多すぎます.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Hypermatrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: ハイパー行列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています:  3D最大値を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
-msgstr "%s: 引数の大きさが間違っています:  次元に互換性がありません.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be non-negative "
-"integers.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
-"さい.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
-msgstr ""
-"%s: 入力引数の大きさが間違っています: 整数スカラーを指定してください.\n"
-
-#, c-format
-msgid "%s: Only one -1 value admitted.\n"
-msgstr "%s: one -1 個の値のみ使用可能です.\n"
-
-#, c-format
-msgid "%s: Input and output matrices  must have the same number of elements"
-msgstr "%s: 入力/出力行列の要素数は同じである必要があります"
-
-#, fuzzy, c-format
-msgid "%s: Arguments #%d and #%d must have compatible sizes\n"
-msgstr "%s: 入力引数 #%d と入力引数 #%d は次元に互換性がありません.\n"
-
-#, c-format
-msgid "%s: not implemented for argin#1 hypermatrix and argin#2 matrix\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s', '%s'  または '%s' を指定してくだ"
-"さい.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 正のスカラー整数を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar positive integer or character "
-"string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 正のスカラー整数または文字列を指定して"
-"ください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数の行列を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: integer <= ndims(argument #%d) "
-"expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
-msgstr "%s: 入力引数 #%d の型は間違っています: 整数値を指定してください.\n"
-
-#
-# File: modules/overloading/macros/%lss_c_zpk.sci, line: 10
-# File: modules/overloading/macros/%lss_f_zpk.sci, line: 13
-# File: modules/overloading/macros/%r_c_zpk.sci, line: 10
-# File: modules/overloading/macros/%r_f_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_a_zpk.sci, line: 11
-# File: modules/overloading/macros/%zpk_c_lss.sci, line: 12
-# File: modules/overloading/macros/%zpk_c_r.sci, line: 13
-# File: modules/overloading/macros/%zpk_c_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_d_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_f_lss.sci, line: 12
-# File: modules/overloading/macros/%zpk_f_r.sci, line: 12
-# File: modules/overloading/macros/%zpk_f_zpk.sci, line: 12
-# File: modules/overloading/macros/%zpk_i_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_l_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_m_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_q_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_r_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_v_zpk.sci, line: 13
-# File: modules/overloading/macros/%zpk_x_zpk.sci, line: 13
-#, c-format
-msgid "%s: time domains are not compatible.\n"
-msgstr ""
-
-#, fuzzy, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
-msgstr ""
-"%s: 入力引数 #%d および #%d の型が間違っています:  整数値を指定してくださ"
-"い.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same number of columns "
-"expected.\n"
-msgstr ""
-"%s: 入力引数 #%d および #%d の型が間違っています:  整数値を指定してくださ"
-"い.\n"
-
-#, c-format
-msgid "%s: Invalid syntax for a MIMO system.\n"
-msgstr "%s: MIMOシステムの構文が不正です.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %d または %s を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
-msgstr "%s: 数値行列への疎行列の挿入は定義されていません.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数行列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments.\n"
-msgstr "%s: 入力引数の大きさが間違っています.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument(s).\n"
-msgstr "%s: 入力引数の大きさが間違っています.\n"
-
 msgid "Invalid exponent: expected real exponents."
 msgstr ""
 
@@ -322,8 +234,6 @@ msgstr "%s: まだ実装されていません.\n"
 msgid "%s: A null assignment can have only one non-colon index.\n"
 msgstr "%s: ヌル値代入時,  コロン以下の添字を指定できるのは一つだけです.\n"
 
-#
-# File: modules/overloading/macros/%s_l_hm.sci, line: 17
 #, c-format
 msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
 msgstr ""
@@ -365,24 +275,20 @@ msgstr "%s: 入力引数 #%d の大きさまたは値が間違っています.\n
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
-#, fuzzy
 msgid "Inconsistent row/column dimensions.\n"
-msgstr "%s: 次元に整合性がありません.\n"
+msgstr ""
 
-#, fuzzy
 msgid "Inconsistent multiplication.\n"
-msgstr "%s: 要素毎の処理に整合性がありません.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same dimensions expected.\n"
 msgstr ""
-"%s: 入力引数 #%d および #%d の型が間違っています:  整数値を指定してくださ"
-"い.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Not implemented.\n"
@@ -402,20 +308,54 @@ msgstr ""
 "%s: プロパティ '%s' および '%s' の大きさに互換性がありません: 同じ大きさで指"
 "定してください.\n"
 
-#, fuzzy
 msgid "Invalid index.\n"
-msgstr "添字が不正です.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
-#~ msgid "%s: Operand is not a boolean hypermatrix.\n"
-#~ msgstr "%s: オペランドは論理値ハイパー行列ではありません.\n"
+#~ msgid "%s: Wrong type for input argument #%d: string expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
-#~ msgid "%s: Incompatible operand dimensions.\n"
-#~ msgstr "%s: オペランドの次元に互換性がありません.\n"
-
-#~ msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
+#~ msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 #~ msgstr ""
-#~ "%s: 入力引数の型が間違っています:  ハイパー行列を指定してください.\n"
+#~ "%s: 入力引数 #%d の値が間違っています: %s または %sを指定してください.\n"
+
+#~ msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: Hypermatrix expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の型が間違っています: ハイパー行列を指定してください.\n"
+
+#~ msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の大きさが間違っています: 整数スカラーを指定してください.\n"
+
+#~ msgid "%s: Only one -1 value admitted.\n"
+#~ msgstr "%s: one -1 個の値のみ使用可能です.\n"
+
+#~ msgid "%s: Input and output matrices  must have the same number of elements"
+#~ msgstr "%s: 入力/出力行列の要素数は同じである必要があります"
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の値が間違っています: '%s', '%s'  または '%s' を指定して"
+#~ "ください.\n"
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar positive integer "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の値が間違っています: 正のスカラー整数を指定してくださ"
+#~ "い.\n"
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar positive integer or "
+#~ "character string expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の値が間違っています: 正のスカラー整数または文字列を指定"
+#~ "してください.\n"

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:06+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2017-01-14 13:28+0000\n"
+"Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18282)\n"
+"X-Generator: Launchpad (build 18315)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -59,7 +59,7 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Text(s) expected.\n"
-msgstr ""
+msgstr "%s : Argument #%d : texte(s) attendu(s).\n"
 
 msgid "Generating cleaner.sce...\n"
 msgstr "Génération de cleaner.sce...\n"
@@ -137,6 +137,10 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un tableau de chaîne de "
 "caractères attendu.\n"
 
+#, fuzzy
+msgid "Generating cleaner_src.sce...\n"
+msgstr "Génération de cleaner.sce...\n"
+
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr ""
@@ -157,11 +161,11 @@ msgstr "Création de la passerelle...\n"
 
 #, c-format
 msgid "Could not use the default compilation of gateways in %s."
-msgstr ""
+msgstr "Impossible d'utiliser la compilation par défaut des gateways de %s."
 
 #, c-format
 msgid "No builder script found in %s."
-msgstr ""
+msgstr "Pas de script de compilation trouvé dans %s."
 
 msgid "Building help...\n"
 msgstr "Création des fichiers d'aide...\n"
@@ -180,15 +184,17 @@ msgid "Building sources...\n"
 msgstr "Création des sources...\n"
 
 msgid "No builder file found, nothing to be done"
-msgstr ""
+msgstr "Pas de script de compilation trouvé, rien à faire."
 
 msgid "No builder file found, nothing to be done."
-msgstr ""
+msgstr "Pas de script de compilation trouvé, rien à faire."
 
 #, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr ""
+msgstr "%s : Argument #%d : scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"
 msgstr ""
+"%s : %d est un bon nombre d'arguments mais je préfère produire une erreur, "
+"désolé.\n"

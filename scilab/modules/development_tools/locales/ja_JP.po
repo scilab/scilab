@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18315)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -186,6 +186,11 @@ msgid ""
 "%s: Expected %d columns in input argument #%d, but found %d columns instead."
 msgstr ""
 "%s: 予定では %d 列が入力引数 #%d に含まれるはずでしたが, %d 列となりました."
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be real.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
 
 #, c-format
 msgid "%s: %s is not an installed module"

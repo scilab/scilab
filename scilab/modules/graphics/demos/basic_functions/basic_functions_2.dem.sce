@@ -16,6 +16,7 @@ function demo_basic_function2()
 
     plot2d([-100,500],[-100,600],[-1,-1],"022");
     a           = gca();
+    a.mark_size_unit = 'tabulated';
     t           = a.title;
     t.text      = my_plot_desc;
     t.font_size = 3;
@@ -54,10 +55,12 @@ function demo_basic_function2()
     "y1=50*cos(x)+90*ones(x);"];
 
     expr=[expr0;
-    "xset(''mark'',6,1);";
+    "a.mark_style = 6;";
+    "a.mark_size = 1;";
     "y1=transl(y1,200);";
     "xpoly(x1,y1,''marks'',0);";
-    "xset(''mark'',4,6);";
+    "a.mark_style = 4;";
+    "a.mark_size = 6;";
     "x1=transl(x1,80);";
     "xpoly(x1,y1,''marks'',0);"];
 
@@ -83,15 +86,19 @@ function demo_basic_function2()
     execstr(expr);
 
     // Demo II.9
-    expr=["xset(''font'',2,2);";
-    "xstring(200,200,''Character string'',0,0);";
-    "xstring(200,250,''Character string'',0,1);";
-    "xstring(400,300,''Chaine '',45,0);"];
+    expr=[
+        "a.font_style = 2;";
+        "a.font_size = 2;";
+        "xstring(200,200,''Character string'',0,0);";
+        "xstring(200,250,''Character string'',0,1);";
+        "xstring(400,300,''Chaine '',45,0);"];
     messagebox(["[II.5] xstring";expr],"modal");
     execstr(expr);
 
     // Demo II.10
-    expr=["xset(''mark'', 0, 0);"
+    expr=[
+        "a.mark_style = 0;";
+        "a.mark_size = 0;";
         "rect=xstringl(350,200,''Character string'');";
         "xrect(rect(1),rect(2),rect(3),rect(4));"]
     messagebox(["[II.6] xstringl";expr],"modal");

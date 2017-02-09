@@ -166,7 +166,6 @@ function polarplot(theta,rho,style,strf,leg,rect)
     execstr("plot2d(x,y,"+strcat(opts,",")+")")
 
     fcolor=color("grey70");
-    xset("dashes",1)
 
     // CIRCULAR FRAME:
     // Radial values for the frame:
@@ -185,14 +184,16 @@ function polarplot(theta,rho,style,strf,leg,rect)
     // Tuning for smart 10^ display using LaTeX instead of D+## exponential display
     if abs(p)<4,
         Rtxt=string(R)
-        [v,k]=max(length(Rtxt)), tmp=xstringl(0,0,Rtxt(k))
+        [v,k]=max(length(Rtxt))
+        tmp=xstringl(0,0,Rtxt(k))
     else
         if dm<1, dm=dm*10, p=p-1, end
-        tmp=string(R/10^p)+"108"
-        [v,k]=max(length(tmp)), tmp=xstringl(0,0,tmp(k))
-        Rtxt="$\scriptstyle "+string(R/10^p)+"\:.10^{"+string(p)+"}$";
+        tmp = string(R/10^p)+"108"
+        [v,k] = max(length(tmp))
+        tmp = xstringl(0,0,tmp(k))
+        Rtxt = "$\scriptstyle "+string(R/10^p)+"\:.10^{"+string(p)+"}$";
     end
-    w=tmp(3); h=tmp(4);
+    w = tmp(3); h = tmp(4);
     format(fmt_in(2),fmt_in(1))  // Restoring entrance format
     R = [ R  rm ]
 
@@ -201,8 +202,9 @@ function polarplot(theta,rho,style,strf,leg,rect)
     for k=1:kM
         r=R(k)
         xarc(-r,r,2*r,2*r,Amin*64,dA*64)
-        e = gce();,e.line_style=3
-        e.foreground=fcolor;
+        e = gce();
+        e.line_style = 3
+        e.foreground = fcolor;
         if k==kM
             e.line_style=1;  // solid outer arc
         else
@@ -223,7 +225,9 @@ function polarplot(theta,rho,style,strf,leg,rect)
     rL=rm*1.03;  // Radius of angular labels
     for k=an  // draws and labels angular rays
         xsegs([0;rm*cosd(k)],[0;rm*sind(k)])
-        e = gce(); e.segs_color=fcolor; e.line_style=3;
+        e = gce();
+        e.segs_color = fcolor;
+        e.line_style = 3;
         xstring((rL+w/2)*cosd(k)-w/2, (rL+h/2)*sind(k)-h/2, string(k))
         e = gce();
         e.clip_state = "off";

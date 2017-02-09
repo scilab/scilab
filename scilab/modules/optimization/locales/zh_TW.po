@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Generator: Launchpad (build 18315)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -830,8 +830,6 @@ msgstr ""
 msgid "fminsearch"
 msgstr ""
 
-#
-# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 15
 msgid "ICSE"
 msgstr ""
 
