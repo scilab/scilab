@@ -23,6 +23,7 @@
 #include "listundefined.hxx"
 #include "tlist.hxx"
 #include "mlist.hxx"
+#include "struct.hxx"
 #include "pointer.hxx"
 #include "polynom.hxx"
 #include "gatewaystruct.hxx"
@@ -102,13 +103,23 @@ SciErr getListItemNumber(void* _pvCtx, int* _piAddress, int* _piNbItem)
         return sciErr;
     }
 
+    types::InternalType* pIT = (types::InternalType*)_piAddress;
     types::List* pL = (types::List*)_piAddress;
     switch (iType)
     {
         case sci_list :
-        case sci_mlist :
         case sci_tlist :
             *_piNbItem = pL->getSize();
+        case sci_mlist :
+            // an mlist can also be a struct in Scilab 5 do not manage it in this API
+            if (pIT->isStruct())
+            {
+                *_piNbItem = 0;
+            }
+            else
+            {
+                *_piNbItem = pL->getSize();
+            }
             break;
         default :
             addErrorMessage(&sciErr, API_ERROR_INVALID_LIST_TYPE, _("%s: Invalid argument type, %s expected"), "getListItemNumber", _("list"));
