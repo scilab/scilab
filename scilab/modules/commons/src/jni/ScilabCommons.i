@@ -234,3 +234,12 @@ char* getScilabVersionAsString();
    */
 public";
 int setRecursionLimit(int);
+/* JavaDoc */
+%javamethodmodifiers getStartProcessing() "
+ /**
+   * returns the Scilab initialization status
+   * @return 1 if Scilab is being started, 0 if up and running
+   */
+public";
+int getStartProcessing();
+
