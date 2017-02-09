@@ -310,7 +310,7 @@ R2 = blocksize + R1-1;
 irange = [R1 C1 R2 C2];
 mprintf("Block #%d, rows #%d to #%d\n",iblock,R1,R2);
 tic();
-M=csvRead(filename , [] , [] , [] , [] , [] , [] , irange );
+M=csvRead(filename , [] , [] , [] , [] , [] , irange );
 t = toc();
 nrows = size(M,"r");
 ncols = size(M,"c");
@@ -360,7 +360,7 @@ csvRead(filename, [], [], "double", [], [], [5 3 7 6])
         Example with header
         <programlisting role="example"><![CDATA[
 comments = [
-"// Copyright (C) INRIA"
+"// Copyright (C) INRIA"];
 filename = fullfile(TMPDIR , 'foo.csv');
 csvWrite(rand(2,3), filename, ascii(9), ",", [], comments);
 

@@ -171,7 +171,7 @@
             オプションの入力引数に空の行列<literal>[]</literal>を指定すると,
             デフォルト値が設定されます.
         </para>
-
+        
         <para>
             入力引数 "conversion" が "double" の時,
             .csvの中の数値以外のフィールド(例:文字列)は NaNに変換されます.
@@ -327,7 +327,7 @@ R2 = blocksize + R1-1;
 irange = [R1 C1 R2 C2];
 mprintf("Block #%d, rows #%d to #%d\n",iblock,R1,R2);
 tic();
-M=csvRead(filename , [] , [] , [] , [] , [] , [] , irange );
+M=csvRead(filename , [] , [] , [] , [] , [] , irange );
 t = toc();
 nrows = size(M,"r");
 ncols = size(M,"c");
@@ -377,7 +377,7 @@ csvRead(filename, [], [], "double", [], [], [5 3 7 6])
         ヘッダを有する例
         <programlisting role="example"><![CDATA[
 comments = [
-"// Copyright (C) INRIA"
+"// Copyright (C) INRIA"];
 filename = fullfile(TMPDIR , 'foo.csv');
 csvWrite(rand(2,3), filename, ascii(9), ",", [], comments);
 header = 2;
