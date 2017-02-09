@@ -473,7 +473,7 @@ void isValueFalse(Double* _pL, Bool** _pOut)
     if (_pL->isEmpty())
     {
         //call non shorcut operation
-        *_pOut = NULL;
+        *_pOut = new Bool(0); //[] && something -> false
         return;
     }
 
