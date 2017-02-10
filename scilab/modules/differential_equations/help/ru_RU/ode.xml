@@ -547,8 +547,9 @@ ccode=['#include <math.h>'
        '}']
 mputl(ccode,TMPDIR+'/myode.c') // создаём C-файл
 // Компилируем
-ilib_for_link('myode','myode.c',[],'c',[],TMPDIR+'/loader.sce');
-exec(TMPDIR+'/loader.sce') // пошаговая компоновка
+cd TMPDIR
+ilib_for_link('myode','myode.c',[],'c',[],'loader.sce');
+exec('loader.sce') // пошаговая компоновка
 y0=0;
 t0=0;
 t=0:0.1:%pi;

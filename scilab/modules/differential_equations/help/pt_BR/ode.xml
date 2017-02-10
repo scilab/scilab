@@ -402,8 +402,9 @@ ccode=['#include <math.h>'
        '  ydot[0]=y[0]*y[0]-y[0]*sin(*t)+cos(*t);'
        '}']
 mputl(ccode,TMPDIR+'/myode.c') //criando o arquivo C
-ilib_for_link('myode','myode.c',[],'c',[],TMPDIR+'/loader.sce');//compilando
-exec(TMPDIR+'/loader.sce') //linking incremental
+cd TMPDIR
+ilib_for_link('myode','myode.c',[],'c',[],'loader.sce');//compilando
+exec('loader.sce') //linking incremental
 y0=0;t0=0;t=0:0.1:%pi;
 y=ode(y0,t0,t,'myode');
 

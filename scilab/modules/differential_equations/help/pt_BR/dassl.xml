@@ -357,6 +357,7 @@ y3=dassl([y0,yd0],0,t,list(chemres,0.04,1d4,3d7),list(chemjac,0.04,1d4,3d7));
 //utilizando código c
 //------------
 // - criando o código C
+cd TMPDIR
 rescode=['void chemres(double *t, double y[], double yd[], double r[], int *ires, double rpar[], int ipar[])'
          ' {'
          '   r[0] = -0.04*y[0]+1.0e4*y[1]*y[2]                -yd[0];'
@@ -380,13 +381,13 @@ jaccode=['void chemjac(double *t, double y[], double yd[], double pd[], double *
          '   pd[7] = -1.0e4*y[1];'
          '   pd[8] =  1.0;'
          ' }'];
-mputl([rescode;jaccode],fullfile(TMPDIR,'mycode.c')) //create the C file
+mputl([rescode;jaccode],'mycode.c') //create the C file
 
 // - compilando-o
-ilib_for_link(['chemres','chemjac'],fullfile(TMPDIR,'mycode.c'),[],'c','',fullfile(TMPDIR,'loader.sce'));//compilando
+ilib_for_link(['chemres','chemjac'],'mycode.c',[],'c','','loader.sce');//compilando
 
 // - ligando-o com o Scilab
-exec(fullfile(TMPDIR,'loader.sce')) //linking incremental
+exec('loader.sce') //linking incremental
 
 // - chamada a dassl
 y4=dassl([y0,yd0],0,t,'chemres','chemjac');
