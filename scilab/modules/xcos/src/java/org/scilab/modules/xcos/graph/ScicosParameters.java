@@ -18,7 +18,6 @@ package org.scilab.modules.xcos.graph;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyVetoException;
-import java.beans.VetoableChangeListener;
 import java.beans.VetoableChangeSupport;
 import java.io.Serializable;
 
