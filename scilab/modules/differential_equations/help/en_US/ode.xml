@@ -408,7 +408,7 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
                         ODE solver with rootfinding capabilities. The
                         <literal>lsodar</literal> solver of package ODEPACK is used. It is a
                         variant of the <literal>lsoda</literal> solver where it finds the
-                        roots of a given vector function. See help on <link linkend="ode_root">ode_root</link> for more
+                        roots of a given vector function. See help on <link linkend="ode_roots">ode_roots</link> for more
                         details.
                     </para>
                 </listitem>
@@ -567,7 +567,7 @@ y = ode(y0,t0,t,'myode');
                 <link linkend="ode_optional_output">ode_optional_output</link>
             </member>
             <member>
-                <link linkend="ode_root">ode_root</link>
+                <link linkend="ode_roots">ode_roots</link>
             </member>
             <member>
                 <link linkend="ode_discrete">ode_discrete</link>

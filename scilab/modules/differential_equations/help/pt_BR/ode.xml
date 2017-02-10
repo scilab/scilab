@@ -205,7 +205,7 @@
                         solucionador <literal>lsodar</literal> do pacote ODEPACK é
                         utilizado. É uma variante do solucionador <literal>lsoda</literal>
                         onde se acha raízes de uma dada função vetorial. Ver ajuda em
-                        <link linkend="ode_root">ode_root</link> para mais detalhes.
+                        <link linkend="ode_roots">ode_roots</link> para mais detalhes.
                     </para>
                 </listitem>
             </varlistentry>
@@ -448,7 +448,7 @@ ode("stiff",[0;1],0,1,f,Jacobian)
                 <link linkend="ode_optional_output">ode_optional_output</link>
             </member>
             <member>
-                <link linkend="ode_root">ode_root</link>
+                <link linkend="ode_roots">ode_roots</link>
             </member>
             <member>
                 <link linkend="ode_discrete">ode_discrete</link>

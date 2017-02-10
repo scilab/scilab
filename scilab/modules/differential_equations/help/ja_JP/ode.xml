@@ -403,7 +403,7 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
                         <literal>lsodar</literal> ソルバが使用されます.
                         使用されているのは<literal>lsoda</literal> ソルバを改変したもので,
                         指定したベクトル関数の根を見つけることができます.
-                        詳細は <link linkend="ode_root">ode_root</link> のヘルプを参照してください.
+                        詳細は <link linkend="ode_roots">ode_roots</link> のヘルプを参照してください.
                     </para>
                 </listitem>
             </varlistentry>
@@ -563,7 +563,7 @@ y = ode(y0,t0,t,'myode');
                 <link linkend="ode_optional_output">ode_optional_output</link>
             </member>
             <member>
-                <link linkend="ode_root">ode_root</link>
+                <link linkend="ode_roots">ode_roots</link>
             </member>
             <member>
                 <link linkend="ode_discrete">ode_discrete</link>

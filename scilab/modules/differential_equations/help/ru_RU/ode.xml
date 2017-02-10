@@ -419,7 +419,7 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
                         Используется программа решения <literal>lsodar</literal> из пакета
                         ODEPACK. Она является вариантом программы
                         решения <literal>lsoda</literal>, где она ищет корни заданной
-                        векторной функции. См. справку по <link linkend="ode_root">ode_root</link>.
+                        векторной функции. См. справку по <link linkend="ode_roots">ode_roots</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -566,7 +566,7 @@ y = ode(y0,t0,t,'myode');
                 <link linkend="ode_optional_output">ode_optional_output</link>
             </member>
             <member>
-                <link linkend="ode_root">ode_root</link>
+                <link linkend="ode_roots">ode_roots</link>
             </member>
             <member>
                 <link linkend="ode_discrete">ode_discrete</link>

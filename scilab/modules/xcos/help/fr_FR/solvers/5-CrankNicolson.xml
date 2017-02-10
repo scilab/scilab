@@ -299,7 +299,7 @@ Temps pour Crank-Nicolson :
                 <link linkend="ode_discrete">ode_discrete</link>
             </member>
             <member>
-                <link linkend="ode_root">ode_root</link>
+                <link linkend="ode_roots">ode_roots</link>
             </member>
             <member>
                 <link linkend="odedc">odedc</link>

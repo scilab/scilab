@@ -197,7 +197,7 @@
                     <para>Solveur d'EDO avec recherche de racines. Le solveur
                         <literal>lsodar</literal> du package ODEPACK est utilisé. C'est une
                         variante de <literal>lsoda</literal> permettant la recherche d'une
-                        racine d'une fonction vectorielle donnée. Voir <link linkend="ode_root">ode_root</link> pour plus de
+                        racine d'une fonction vectorielle donnée. Voir <link linkend="ode_roots">ode_roots</link> pour plus de
                         détails.
                     </para>
                 </listitem>
@@ -439,7 +439,7 @@ ode("stiff",[0;1],0,1,f,Jacobian)
                 <link linkend="ode_optional_output">ode_optional_output</link>
             </member>
             <member>
-                <link linkend="ode_root">ode_root</link>
+                <link linkend="ode_roots">ode_roots</link>
             </member>
             <member>
                 <link linkend="ode_discrete">ode_discrete</link>
