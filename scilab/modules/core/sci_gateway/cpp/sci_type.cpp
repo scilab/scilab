@@ -73,8 +73,6 @@ types::Function::ReturnValue sci_type(types::typed_list &in, int _iRetCount, typ
             type = sci_strings;
             break;
         case types::InternalType::ScilabMacroFile :
-            type = sci_u_function;
-            break;
         case types::InternalType::ScilabMacro :
             type = sci_c_function;
             break;

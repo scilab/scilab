@@ -519,8 +519,6 @@ SciErr getVarType(void *_pvCtx, int *_piAddress, int *_piType)
             *_piType = sci_strings;
             break;
         case types::InternalType::ScilabMacroFile :
-            *_piType = sci_u_function;
-            break;
         case types::InternalType::ScilabMacro :
             *_piType = sci_c_function;
             break;
