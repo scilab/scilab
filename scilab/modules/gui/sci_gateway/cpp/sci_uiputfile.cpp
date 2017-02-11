@@ -37,6 +37,37 @@ extern "C"
 }
 using namespace org_scilab_modules_gui_filechooser;
 
+static int deleteArrayOfString(char **Str, int dim)
+{
+    int ret = 1;
+
+    if(Str)
+    {
+        int i = 0;
+        for(i = 0; i < dim; i++)
+        {
+            if(Str[i])
+            {
+                delete Str[i];
+                Str[i] = NULL;
+            }
+            else
+            {
+                ret = 0;
+            }
+        }
+        delete[] Str;
+        Str = NULL;
+
+    }
+    else
+    {
+        ret = 0;
+    }
+
+    return ret;
+}
+
 /*--------------------------------------------------------------------------*/
 
 int sci_uiputfile(char *fname, void* pvApiCtx)
@@ -46,6 +77,7 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
     int nbRow  = 0, nbCol  = 0;
     int nbRow2 = 0, nbCol2 = 0;
     int nbRow3 = 0, nbCol3 = 0;
+    int ret = 0;
 
     int nbRowOutSelection = 1, nbColOutSelection = 0;
     int nbRowOutFilterIndex = 1, nbColOutFilterIndex = 1;
@@ -248,6 +280,13 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            ret = deleteArrayOfString(selection, selectionSize);
+            ret = deleteArrayOfString(selectionFileNames, selectionSize);
+            if(selectionPathName)
+            {
+                delete selectionPathName;
+                selectionPathName = NULL;
+            }
             return 1;
         }
 
@@ -261,6 +300,13 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                ret = deleteArrayOfString(selection, selectionSize);
+                ret = deleteArrayOfString(selectionFileNames, selectionSize);
+                if(selectionPathName)
+                {
+                    delete selectionPathName;
+                    selectionPathName = NULL;
+                }
                 return 1;
             }
 
@@ -276,6 +322,13 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                ret = deleteArrayOfString(selection, selectionSize);
+                ret = deleteArrayOfString(selectionFileNames, selectionSize);
+                if(selectionPathName)
+                {
+                    delete selectionPathName;
+                    selectionPathName = NULL;
+                }
                 return 1;
             }
 
@@ -283,6 +336,13 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
         }
 
         ReturnArguments(pvApiCtx);
+        ret = deleteArrayOfString(selection, selectionSize);
+        ret = deleteArrayOfString(selectionFileNames, selectionSize);
+        if(selectionPathName)
+        {
+            delete selectionPathName;
+            selectionPathName = NULL;
+        }
         return 0;
     }
 
@@ -294,11 +354,25 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            ret = deleteArrayOfString(selection, selectionSize);
+            ret = deleteArrayOfString(selectionFileNames, selectionSize);
+            if(selectionPathName)
+            {
+                delete selectionPathName;
+                selectionPathName = NULL;
+            }
             return 1;
         }
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
         ReturnArguments(pvApiCtx);
+        ret = deleteArrayOfString(selection, selectionSize);
+        ret = deleteArrayOfString(selectionFileNames, selectionSize);
+        if(selectionPathName)
+        {
+            delete selectionPathName;
+            selectionPathName = NULL;
+        }
         return 0;
     }
 
@@ -308,12 +382,26 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        ret = deleteArrayOfString(selection, selectionSize);
+        ret = deleteArrayOfString(selectionFileNames, selectionSize);
+        if(selectionPathName)
+        {
+            delete selectionPathName;
+            selectionPathName = NULL;
+        }
         return 1;
     }
 
     if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 2, selectionPathName))
     {
         printError(&sciErr, 0);
+        ret = deleteArrayOfString(selection, selectionSize);
+        ret = deleteArrayOfString(selectionFileNames, selectionSize);
+        if(selectionPathName)
+        {
+            delete selectionPathName;
+            selectionPathName = NULL;
+        }
         return 1;
     }
 
@@ -325,12 +413,26 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
         if (createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 3, filterIndex))
         {
             printError(&sciErr, 0);
+            ret = deleteArrayOfString(selection, selectionSize);
+            ret = deleteArrayOfString(selectionFileNames, selectionSize);
+            if(selectionPathName)
+            {
+                delete selectionPathName;
+                selectionPathName = NULL;
+            }
             return 1;
         }
         AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
     }
 
     ReturnArguments(pvApiCtx);
+    ret = deleteArrayOfString(selection, selectionSize);
+    ret = deleteArrayOfString(selectionFileNames, selectionSize);
+    if(selectionPathName)
+    {
+        delete selectionPathName;
+        selectionPathName = NULL;
+    }
     return 0;
 
 }
