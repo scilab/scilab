@@ -4,8 +4,11 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
+
 // <-- Non-regression test for bug 4083 -->
 //
 // <-- Bugzilla URL -->
@@ -15,15 +18,18 @@
 //    The numderivative function is created, which replaces both derivative and
 //    numdiff functions.
 // =============================================================================
+
 function y = myfunction(x)
     y = x^3;
 endfunction
+
 // Old 'numdiff' function equivalent
 x = 1;
 dx = sqrt(%eps)*(1+1d-3*abs(x));
 g = numderivative(myfunction, x, dx);
 expectedJ = 3;
 assert_checkalmostequal(g, expectedJ, [], 1.d-8);
+
 // Old 'numderivative' function equivalent
 [J, H] = numderivative(myfunction, x);
 expectedH = 6;
@@ -33,6 +39,7 @@ assert_checkequal(H, expectedH);
 expectedH = 6;
 assert_checkalmostequal(J, expectedJ, [], 1.d-8);
 assert_checkequal(H, expectedH);
+
 // numderivative test
 [J,H] = numderivative(myfunction, x);
 assert_checkalmostequal(J, expectedJ, [], 1.d-8);
