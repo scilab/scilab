@@ -19,7 +19,7 @@
             <callback instruction="%fileToSave = uiputfile([&quot;*.sav&quot;;&quot;*.sod&quot;], &quot;&quot;, gettext(&quot;Select a file to write&quot;)); if ~(%fileToSave == &quot;&quot;) then if (fileparts(%fileToSave, &quot;extension&quot;) == &quot;&quot;) then %fileToSave = %fileToSave + &quot;.sav&quot;; end; save(%fileToSave); disp(msprintf(gettext(&quot;Environment saved.\n&quot;))); end; clear(&quot;%fileToSave&quot;);" type="0"/>
         </submenu>
         <separator/>
-        <submenu label="&amp;Current Working Directory (CWD):" icon="scilab-folder-open">
+        <submenu label="&amp;Current Working Directory" icon="scilab-folder-open">
             <callback instruction="if iswaitingforinput() then printf(&quot;\n%s\n\n%s\n&quot;,prompt(),pwd()); else printf(&quot;\n\n%s\n\n&quot;,pwd());end" type="0"/>
         </submenu>
         <submenu label="    &amp;Browse for new">
@@ -174,10 +174,6 @@
             <submenu label="&amp;Bugs And Requests">
                 <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openBugzilla" type="3"/>
             </submenu>
-        </submenu>
-        <separator/>
-        <submenu label="&amp;News feed">
-            <callback instruction="org.scilab.modules.ui_data.newsfeed.NewsFeedTab.displayTab" type="3"/>
         </submenu>
         <separator/>
         <submenu label="&amp;Scilab Enterprises">
