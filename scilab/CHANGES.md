@@ -226,6 +226,7 @@ Help pages:
   - `repmat`, `sign`, `nthroot`, `lstsize`, `cell2mat`, `cellstr`, `ind2sub`, `sub2ind`, `and`, `or`, `unwrap`, `members`
   - CACSD and Signal Processing help pages have been sorted out.
   - Signal processing: New `Convolution - correlation` subsection. `wfir_gui`, `filt_sinc`, `hilb`, `fft2`, `fftshift`,`ifftshift`, `hilbert`, `cepstrum`, `conv`, `conv2`, `convol2d`, `xcor`, `corr`, `hank`, `mrfit`, `frfir` sorted out in existing subsections.
+  - Cells subsection created: `cell`, `cell2mat`, `cellstr`, `iscell`, `iscellstr`, `makecell`, `num2cell` gathered.
   - Colormaps and GUI/Menus subsections created
 * translations added:
   - (fr): `format`, `typeof`, `isoview`, `ndgrid`, `bench_run`, `consolebox`, `harmean`, `sleep`, `strtod`, `permute`, `geomean`
