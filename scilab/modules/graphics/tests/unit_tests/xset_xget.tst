@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 // test xset and xget
 
@@ -98,10 +99,4 @@ assert_checkequal(out, 1);
 
 // XSET
 ierr = execstr("xset(""fpf"");","errcatch");
-assert_checkequal(ierr, 77);
-ierr = execstr("xset(""dashes"");","errcatch");
-assert_checkequal(ierr, 77);
-ierr = execstr("xset(""color"");","errcatch");
-assert_checkequal(ierr, 77);
-ierr = execstr("xset(""pattern"");","errcatch");
 assert_checkequal(ierr, 77);
