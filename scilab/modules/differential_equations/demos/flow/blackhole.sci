@@ -64,7 +64,7 @@ function Y = calculate_traj(g_r, g_t, g_V, g_Vdir, t)
     Y0(3) = g_r*sin(g_t*%pi/180);      // y
     Y0(4) = g_V*sin(g_Vdir*%pi/180);   // v_y
 
-    Y     = ode("root", Y0, t(1), t, 1d-10, 1.D-10, list(traj, blackhole), 5, blackholelim); //traj d'ecoulement
+    Y     = ode("roots", Y0, t(1), t, 1d-10, 1.D-10, list(traj, blackhole), 5, blackholelim); //traj d'ecoulement
 
 endfunction
 

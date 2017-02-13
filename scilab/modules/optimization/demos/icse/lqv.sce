@@ -13,7 +13,8 @@
 
 function demo_lqv()
 
-    cd "SCI/modules/optimization/demos/icse/"
+    copyfile("SCI/modules/optimization/demos/icse/", "TMPDIR/icse");
+    cd("TMPDIR/icse");
 
     libn  = ilib_for_link("icsez0","icsez0.f",[],"f")
     nlink = link("./"+libn,"icsez0","f")
