@@ -36,7 +36,6 @@
     <PRIMITIVE gatewayId="13" primitiveId="3" primitiveName="warning" />
     <PRIMITIVE gatewayId="13" primitiveId="4" primitiveName="argn" />
     <PRIMITIVE gatewayId="13" primitiveId="5" primitiveName="getvariablesonstack" />
-    <PRIMITIVE gatewayId="13" primitiveId="6" primitiveName="comp" />
     <PRIMITIVE gatewayId="13" primitiveId="7" primitiveName="getscilabmode" />
     <PRIMITIVE gatewayId="13" primitiveId="8" primitiveName="mode" />
     <PRIMITIVE gatewayId="13" primitiveId="9" primitiveName="type" />

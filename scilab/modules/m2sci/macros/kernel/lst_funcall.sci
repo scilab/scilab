@@ -191,9 +191,6 @@ function   funcallname=lst_funcall(fil,fnamvect)
         w=who("get");
         mname=w(1);
 
-        // Compilation
-        execstr("comp("+mname+",1)")
-
         funcprot(fprot)
 
         // Get Scilab pseudo code of the function

@@ -93,12 +93,9 @@ function contour(x, y, z, nz, theta, alpha, leg, flag, ebox, zlev)
         zlev = 0;
     end
 
-    if or(type(z) == [11 13]) then
+    if or(type(z) == [13]) then
         fun = z;
         clear z //to avoid redfinition warning
-        if type(fun) == 11 then
-            comp(fun);
-        end
         z = feval(x, y, fun);
     end
 

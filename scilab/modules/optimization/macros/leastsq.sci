@@ -41,7 +41,7 @@ function [f,x,g]=leastsq(iprint,fun,varargin)
         else
             J=%t //jacobian
         end
-    elseif type(Dfun)==11|type(Dfun)==13 then
+    elseif type(Dfun)==13 then
         J=%t  //Jacobian provided
     elseif type(Dfun)==15 then
         error(msprintf(gettext("%s: Jacobian cannot be a list, parameters must be set in fun."),"leastsq"));

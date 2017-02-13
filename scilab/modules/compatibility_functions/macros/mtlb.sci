@@ -11,7 +11,7 @@
 // along with this program.
 
 function x=mtlb(a)
-    if type(a)==13|type(a)==11 then
+    if type(a)==13 then
         x=a()
     else
         x=a

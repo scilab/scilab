@@ -55,7 +55,7 @@ function comet(varargin)
     if type(x)<>1|~isreal(x) then
         error(msprintf(_("%s: Wrong type for argument #%d: Real vector expected.\n"),"comet",1))
     end
-    if or(type(y)==[11 13]) then //a function
+    if type(y)==13 then //a function
         prot=funcprot();funcprot(0)
         y=feval(x,y)
         funcprot(prot)

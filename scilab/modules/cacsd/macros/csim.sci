@@ -91,8 +91,6 @@ function [y,x]=csim(u,dt,sl,x0,tol)
             error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"csim",1,"""step"",""impuls"""))
         end;
         deff("[y]=u(t)",text);
-    case 11 then //input given by a function of time
-        comp(u)
     case 13 then //input given by a function of time
     case 1 then //input given by a vector of data
         [mbu,ntu]=size(u);
@@ -101,10 +99,6 @@ function [y,x]=csim(u,dt,sl,x0,tol)
         end
     case 15 then  //input given by a list: function of time with parameters
         uu=u(1),
-        if type(uu)==11 then
-            comp(uu),
-            u(1)=uu,
-        end
     else error(msprintf(gettext("%s: Wrong type for input argument #%d: Function expected"), "csim", 2));
     end;
     //

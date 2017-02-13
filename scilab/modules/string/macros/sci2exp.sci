@@ -95,16 +95,13 @@ function t=sci2exp(a,nom,lmax)
         t=tlist2exp(a,lmax)
     case 17 then
         t=mlist2exp(a,lmax)
-    case 11 then
-        t=func2exp(a,lmax)
-        named=%f
     case 129 then
         t=imp2exp(a,lmax)
     else
         //  execstr('t='+typeof(a)+'2exp(a,lmax)')
         error(msprintf(gettext("%s: This feature has not been implemented: Variable translation of type %s.\n"),"sci2exp",string(type(a))));
     end,
-    if named&and(type(a)<>[11 13]) then
+    if named&and(type(a)<>13) then
         t(1)=nom+" = "+t(1)
     end
 endfunction
@@ -644,9 +641,6 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
                 f28_strg=h2exp(a.userdata,0)
             elseif type(a.userdata) == 10 then
                 f28_strg=str2exp(a.userdata,0)
-            elseif type(a.userdata) == 11 then
-                f28_strg=func2exp(a.userdata,0)
-                named=%f
             elseif type(a.userdata) == 13 then
                 if named then
                     f28_strg=sci2exp(a.userdata,nom)
@@ -730,9 +724,6 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
                 f47_strg=h2exp(a.userdata,0)
             elseif type(a.userdata) == 10 then
                 f47_strg=str2exp(a.userdata,0)
-            elseif type(a.userdata) == 11 then
-                f47_strg=func2exp(a.userdata,0)
-                named=%f
             elseif type(a.userdata) == 13 then
                 if named then
                     f47_strg=sci2exp(a.userdata,nom)

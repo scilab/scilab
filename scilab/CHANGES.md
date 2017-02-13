@@ -330,7 +330,7 @@ Removed Functions
   - `-mem` launching option (used to set `stacksize` at startup).
 * Former debugging functions have been removed: `setbpt`, `delbpt`, `dispbpt`. Please use `debug` instead.
 * Former profiling functions have been removed: `add_profiling`, `reset_profiling`, `remove_profiling`, `profile`, `showprofile`, and `plotprofile`.
-
+* `comp` and his associated type '11' have been removed. All functions will have type '13'.
 
 Known issues
 ------------

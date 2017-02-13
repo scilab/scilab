@@ -61,12 +61,12 @@ function comet3d(varargin)
         error(msprintf(_("%s: Wrong type for argument #%d: Real vector expected.\n"),"comet3d",1))
     end
 
-    if (type(z)<>1|~isreal(z))&and(type(z)<>[11 13]) then
+    if (type(z)<>1|~isreal(z))&type(z)<>13 then
         error(msprintf(_("%s: Wrong type for argument #%d: Real vector expected.\n"),"comet3d",3))
     end
 
 
-    if or(type(z)==[11 13]) then
+    if type(z)==13 then
         x=x(:);y=y(:)
         n=size(x,"*")
         m=1

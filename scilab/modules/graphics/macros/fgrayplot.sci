@@ -50,6 +50,5 @@ function []=fgrayplot(x,y,f,strf,rect,nax,void)
         opts = ""
     end
 
-    if type(f)==11 then comp(f),end;
     execstr("grayplot(x,y,feval(x,y,f),"+strcat(opts,",")+")")
 endfunction

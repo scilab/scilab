@@ -93,13 +93,10 @@ function levels = contour2d(x, y, z, nz, style, strf, leg, rect, nax, void)
     end
     opts = strcat([opts, "style=style(c)"], ",");
 
-    if or(type(z) == [11 13]) then
+    if or(type(z) == 13) then
         fun = z;
         //to avoid redfinition warning
         clear z
-        if type(fun) == 11 then
-            comp(fun);
-        end
         z = feval(x, y, fun);
     end
 

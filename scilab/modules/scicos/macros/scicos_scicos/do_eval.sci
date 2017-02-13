@@ -121,7 +121,7 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
             elseif o.model.sim(1)=="asuper" then
             else
                 model=o.model
-                if ~isdef(o.gui) | ~or(type(evstr(o.gui) == [13 11])) then
+                if ~isdef(o.gui) | ~type(evstr(o.gui) == 13) then
                     if length(o.model.uid) >= 1 & getscilabmode() == "STD" then
                         uid = [full_uids o.model.uid];
 
