@@ -14,9 +14,6 @@ function demo_atan()
     theta = -110;
     alpha = 75;
 
-    my_handle = scf(100001);
-    clf(my_handle,"reset");
-
     PlotCmplxFunc(R,0.001,"Square","Oy",41,"atan",theta,alpha,[-R,R]);
     demo_viewCode("demo_atan.dem.sce");
 

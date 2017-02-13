@@ -16,9 +16,6 @@ function demo_sin()
     alpha = 73;
     e     = 0.001;
 
-    my_handle = scf(100001);
-    clf(my_handle,"reset");
-
     PlotCmplxFunc(R,e,"Disk","Ox",[40 20],"sin",theta,alpha,[-R,R]);
     demo_viewCode("demo_sin.dem.sce");
 

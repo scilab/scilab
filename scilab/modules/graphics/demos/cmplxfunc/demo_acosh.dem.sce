@@ -15,9 +15,6 @@ function demo_acosh()
     theta = -110;
     alpha = 75;
 
-    my_handle = scf(100001);
-    clf(my_handle,"reset");
-
     PlotCmplxFunc(R,e,"Square","Ox",41,"acosh",theta,alpha,[1,R]);
     demo_viewCode("demo_acosh.dem.sce");
 

@@ -13,9 +13,6 @@ function demo_acos()
     theta = -110;
     alpha = 75;
 
-    my_handle = scf(100001);
-    clf(my_handle,"reset");
-
     PlotCmplxFunc(2,%eps,"Square","Ox",41,"acos",theta,alpha,[-1,1]);
     demo_viewCode("demo_acos.dem.sce");
 
