@@ -670,6 +670,7 @@ schema/extendedStyle.xsl
 #### helptools : pages files ####
 libscihelptools_la_data_pagesdir = $(mydatadir)/data/pages
 libscihelptools_la_data_pages_DATA = \
+data/pages/CHANGES.html \
 data/pages/error.html \
 data/pages/homepage-en_US.html \
 data/pages/homepage-fr_FR.html \
