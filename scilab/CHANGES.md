@@ -183,6 +183,7 @@ input and output arguments.
 * `pdiv`: Returns a matrix of type 'constant' when all the rank are 0.
 * `assert_checkalmostequal` can now work with polynomials.
 * `test_run` can now take `[]` as argument to be used on console; for instance: `test_run string [] no_check_ref`.
+* `type(:)` now returns `129` instead of `1`.
 * `typeof(:)` and `typeof(n:$)` now return `"implicitlist"` instead of respectively `"constant"` and `"size implicit"`.
 * `linspace(a, b, n<=0)` now returns `[]` instead of b.
 * `strange([])` now returns `%nan` instead of `[]`, as all other functions for statistical dispersion.
