@@ -76,7 +76,7 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
     if (iLineCount > 0)
     {
         *pwstLines = (wchar_t**)MALLOC(iLineCount * sizeof(wchar_t*));
-        if (pwstLines == NULL)
+        if (*pwstLines == NULL)
         {
             return -1;
         }

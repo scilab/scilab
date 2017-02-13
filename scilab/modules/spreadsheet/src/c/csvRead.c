@@ -187,11 +187,6 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
             pCleanedLines = removeComments((const char**)pstLines, nbLines, (const char*)regexpcomments, &nbCleanedLines, &iErr);
             if (pCleanedLines)
             {
-                if (pwstLines)
-                {
-                    freeArrayOfWideString(pwstLines, nbLines);
-                    pwstLines = NULL;
-                }
                 FREE(pstLines);
                 pstLines = pCleanedLines;
                 nbLines = nbCleanedLines;
