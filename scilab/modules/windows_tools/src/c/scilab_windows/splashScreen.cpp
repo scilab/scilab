@@ -29,7 +29,7 @@ extern "C"
 #include "version.h"
 #include "WndThread.h"
 #include "charEncoding.h"
-#include "getScilabDirectory.h"
+#include "sci_path.h"
 #include "InnosetupMutex.h"
 #include "sci_malloc.h"
 };
@@ -65,6 +65,7 @@ LRESULT CALLBACK SplashWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPara
                 Gdiplus::Graphics gdip(hwnd);
                 gdip.DrawImage(pImage, 0, 0, pImage->GetWidth(), pImage->GetHeight());
             }
+
             ValidateRect(hwnd, NULL);
             return 0;
         }
@@ -96,7 +97,7 @@ static DWORD WINAPI ThreadSplashScreen(LPVOID lpParam)
 
     HINSTANCE hInstanceThisDll = (HINSTANCE)GetModuleHandle("scilab_windows");
 
-    ScilabDirectory = getScilabDirectory(TRUE);
+    ScilabDirectory = computeSCI();
     if (ScilabDirectory == NULL)
     {
         return 0;
