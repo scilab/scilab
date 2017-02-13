@@ -51,8 +51,20 @@ types::Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
+        std::wstring sym(pS->get()[0]);
+        types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(sym));
+        if (pIT)
+        {
+            switch (pIT->getType())
+            {
+                case types::InternalType::ScilabFunction:
+                    out.push_back(new types::String(pIT->getAs<types::Callable>()->getModule().c_str()));
+                    return types::Function::OK;
+            }
+        }
+
         std::list<std::wstring> lst;
-        int size = symbol::Context::getInstance()->getWhereIs(lst, pS->get(0));
+        int size = symbol::Context::getInstance()->getWhereIs(lst, pS->get()[0]);
         if (lst.empty())
         {
             out.push_back(types::Double::Empty());
@@ -70,7 +82,6 @@ types::Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, 
     }
     else
     {
-        std::wstring stModule;
         switch (in[0]->getType())
         {
             case types::InternalType::ScilabFunction:

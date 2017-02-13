@@ -323,7 +323,6 @@ Removed Functions
 * `jconvMatrixMethod` was obsolete and is now removed. Please use `jautoTranspose` instead.
 * `fcontour` was obsolete since Scilab 4 and has been removed. Please use `contour` instead.
 * `m_circle` was obsolete since Scilab 5.2.0. It is removed. Please use `hallchart` instead.
-
 * Symbolic module functions have been removed: `addf`, `cmb_lin`, `ldivf`, `mulf`, `rdivf`, `solve`, `subf`, `trianfml`, `trisolve` and `block2exp`.
 * Functionnalities based on former Scilab stack have been removed:
   - `comp`, `errcatch`, `iserror`, `fun2string`, `getvariablesonstack`, `gstacksize`, `macr2lst`, `stacksize`, `code2str` and `str2code`.
@@ -332,6 +331,7 @@ Removed Functions
 * Former profiling functions have been removed: `add_profiling`, `reset_profiling`, `remove_profiling`, `profile`, `showprofile`, and `plotprofile`.
 * `comp` and its associated type `11` have been removed. All functions will have type `13`.
 * `readgateway` has been removed.
+
 
 Known issues
 ------------
@@ -681,3 +681,4 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14540](http://bugzilla.scilab.org/show_bug.cgi?id=14540): Datatips did not clip outside axes bounds
 * [#14685](http://bugzilla.scilab.org/show_bug.cgi?id=14685): datavec produced an invalid index error.
 * [#14980] (http://bugzilla.scilab.org/show_bug.cgi?id=14980): The datatip display of the root locus arcs is broken.
+* [#14992] (http://bugzilla.scilab.org/show_bug.cgi?id=14992): `readgateway` has been removed, use `whereis` instead.
