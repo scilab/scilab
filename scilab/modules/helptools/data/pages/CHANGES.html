@@ -267,11 +267,12 @@ in a dynamical list set from Scinotes favorite and most recent directories.</li>
 <code>bitor</code>, <code>bitxor</code>, <code>bitand</code>, <code>macr2tree</code>, <code>geomean</code>, <code>clf</code>, <code>getPreferencesValue</code></li>
 <li>reorganized:
 <ul>
-<li><code>else</code>, <code>elseif</code>, <code>end</code>, <code>try</code>, <code>sciargs</code>, <code>global</code>, <code>halt</code>, <code>empty</code>, <code>power</code></li>
+<li><code>else</code>, <code>elseif</code>, <code>end</code>, <code>try</code>, <code>sciargs</code>, <code>global</code>, <code>halt</code>, <code>empty</code>, <code>power</code>, <code>numderivative</code></li>
 <li><code>pixel_drawing_mode</code>, <code>show_window</code>, <code>twinkle</code>, <code>uigetcolor</code>, <code>winsid</code>, <code>xdel</code>, <code>xgrid</code>, <code>xname</code>, <code>xnumb</code></li>
 <li><code>repmat</code>, <code>sign</code>, <code>nthroot</code>, <code>lstsize</code>, <code>cell2mat</code>, <code>cellstr</code>, <code>ind2sub</code>, <code>sub2ind</code>, <code>and</code>, <code>or</code>, <code>unwrap</code>, <code>members</code></li>
 <li>CACSD and Signal Processing help pages have been sorted out.</li>
 <li>Signal processing: New <code>Convolution - correlation</code> subsection. <code>wfir_gui</code>, <code>filt_sinc</code>, <code>hilb</code>, <code>fft2</code>, <code>fftshift</code>,<code>ifftshift</code>, <code>hilbert</code>, <code>cepstrum</code>, <code>conv</code>, <code>conv2</code>, <code>convol2d</code>, <code>xcor</code>, <code>corr</code>, <code>hank</code>, <code>mrfit</code>, <code>frfir</code> sorted out in existing subsections.</li>
+<li>Cells subsection created: <code>cell</code>, <code>cell2mat</code>, <code>cellstr</code>, <code>iscell</code>, <code>iscellstr</code>, <code>makecell</code>, <code>num2cell</code> gathered.</li>
 <li>Colormaps and GUI/Menus subsections created</li>
 </ul>
 </li>
@@ -333,6 +334,7 @@ Added to the CVode package, it also benefits from the CVode rootfinding feature.
 <li>load SVG icons</li>
 </ul>
 </li>
+<li>Deleted obsolete WFILE_f block, please use WRITEC_f instead.</li>
 </ul>
 <h2>API modification</h2>
 <p>A new set of C APIs to write C or C++ extensions (toolboxes) to Scilab.
@@ -355,73 +357,34 @@ as a second parameter instead of any <code>unsigned long l</code>. This is now r
 </ul>
 <h2>Removed Functions</h2>
 <ul>
-<li>
-<p><code>intersci</code> has been removed. Please use <a href="http://swig.org/">swig</a> instead.</p>
-</li>
-<li>
-<p><code>numdiff</code> has been removed. Please use <code>numderivative</code> instead.</p>
-</li>
-<li>
-<p><code>derivative</code> has been removed. Please use <code>numderivative</code> instead.</p>
-</li>
-<li>
-<p><code>curblockc</code> has been removed. Please use <code>curblock</code> instead.</p>
-</li>
-<li>
-<p><code>extract_help_examples</code> has been removed.</p>
-</li>
-<li>
-<p><code>xpause</code> has been removed. Please use <code>sleep</code> instead.</p>
-</li>
-<li>
-<p><code>xclear</code> has been removed. Please use <code>clf</code> instead.</p>
-</li>
-<li>
-<p><code>fcontour2d</code> has been removed. Please use <code>contour2d</code> instead.</p>
-</li>
-<li>
-<p><code>plot2d1</code> has been removed. Please use <code>plot2d</code> instead.</p>
-</li>
-<li>
-<p><code>lex_sort</code> has been removed. Please use <code>gsort(..,&quot;lr&quot;)</code> instead.</p>
-</li>
-<li>
-<p><code>gspec</code> was obsolete already in Scilab 4 and is now removed. Please use <code>spec</code> instead.</p>
-</li>
-<li>
-<p><code>gschur</code> was obsolete already in Scilab 4 and is now removed. Please use <code>schur</code> instead.</p>
-</li>
-<li>
-<p><code>havewindow</code> has been removed. Please use <code>getscilabmode()==&quot;STD&quot;</code> instead</p>
-</li>
-<li>
-<p><code>rafiter</code> was obsolete since Scilab 5.1 and is now removed.</p>
-</li>
-<li>
-<p><code>jconvMatrixMethod</code> was obsolete and is now removed. Please use <code>jautoTranspose</code> instead.</p>
-</li>
-<li>
-<p><code>fcontour</code> was obsolete since Scilab 4 and has been removed. Please use <code>contour</code> instead.</p>
-</li>
-<li>
-<p><code>m_circle</code> was obsolete since Scilab 5.2.0. It is removed. Please use <code>hallchart</code> instead.</p>
-</li>
-<li>
-<p>Symbolic module functions have been removed: <code>addf</code>, <code>cmb_lin</code>, <code>ldivf</code>, <code>mulf</code>, <code>rdivf</code>, <code>solve</code>, <code>subf</code>, <code>trianfml</code>, <code>trisolve</code> and <code>block2exp</code>.</p>
-</li>
-<li>
-<p>Functionnalities based on former Scilab stack have been removed:</p>
+<li><code>intersci</code> has been removed. Please use <a href="http://swig.org/">swig</a> instead.</li>
+<li><code>numdiff</code> has been removed. Please use <code>numderivative</code> instead.</li>
+<li><code>derivative</code> has been removed. Please use <code>numderivative</code> instead.</li>
+<li><code>curblockc</code> has been removed. Please use <code>curblock</code> instead.</li>
+<li><code>extract_help_examples</code> has been removed.</li>
+<li><code>xpause</code> has been removed. Please use <code>sleep</code> instead.</li>
+<li><code>xclear</code> has been removed. Please use <code>clf</code> instead.</li>
+<li><code>fcontour2d</code> has been removed. Please use <code>contour2d</code> instead.</li>
+<li><code>plot2d1</code> has been removed. Please use <code>plot2d</code> instead.</li>
+<li><code>lex_sort</code> has been removed. Please use <code>gsort(..,&quot;lr&quot;)</code> instead.</li>
+<li><code>gspec</code> was obsolete already in Scilab 4 and is now removed. Please use <code>spec</code> instead.</li>
+<li><code>gschur</code> was obsolete already in Scilab 4 and is now removed. Please use <code>schur</code> instead.</li>
+<li><code>havewindow</code> has been removed. Please use <code>getscilabmode()==&quot;STD&quot;</code> instead</li>
+<li><code>rafiter</code> was obsolete since Scilab 5.1 and is now removed.</li>
+<li><code>jconvMatrixMethod</code> was obsolete and is now removed. Please use <code>jautoTranspose</code> instead.</li>
+<li><code>fcontour</code> was obsolete since Scilab 4 and has been removed. Please use <code>contour</code> instead.</li>
+<li><code>m_circle</code> was obsolete since Scilab 5.2.0. It is removed. Please use <code>hallchart</code> instead.</li>
+<li>Symbolic module functions have been removed: <code>addf</code>, <code>cmb_lin</code>, <code>ldivf</code>, <code>mulf</code>, <code>rdivf</code>, <code>solve</code>, <code>subf</code>, <code>trianfml</code>, <code>trisolve</code> and <code>block2exp</code>.</li>
+<li>Functionnalities based on former Scilab stack have been removed:
 <ul>
 <li><code>comp</code>, <code>errcatch</code>, <code>iserror</code>, <code>fun2string</code>, <code>getvariablesonstack</code>, <code>gstacksize</code>, <code>macr2lst</code>, <code>stacksize</code>, <code>code2str</code> and <code>str2code</code>.</li>
 <li><code>-mem</code> launching option (used to set <code>stacksize</code> at startup).</li>
 </ul>
 </li>
-<li>
-<p>Former debugging functions have been removed: <code>setbpt</code>, <code>delbpt</code>, <code>dispbpt</code>. Please use <code>debug</code> instead.</p>
-</li>
-<li>
-<p>Former profiling functions have been removed: <code>add_profiling</code>, <code>reset_profiling</code>, <code>remove_profiling</code>, <code>profile</code>, <code>showprofile</code>, and <code>plotprofile</code>.</p>
-</li>
+<li>Former debugging functions have been removed: <code>setbpt</code>, <code>delbpt</code>, <code>dispbpt</code>. Please use <code>debug</code> instead.</li>
+<li>Former profiling functions have been removed: <code>add_profiling</code>, <code>reset_profiling</code>, <code>remove_profiling</code>, <code>profile</code>, <code>showprofile</code>, and <code>plotprofile</code>.</li>
+<li><code>comp</code> and its associated type <code>11</code> have been removed. All functions will have type <code>13</code>.</li>
+<li><code>readgateway</code> has been removed.</li>
 </ul>
 <h2>Known issues</h2>
 <ul>
@@ -430,14 +393,13 @@ strange behaviors or unexpected results do not hesitate to <a href="https://bugz
 <li>Toolboxes rebuild is in progress. Do not hesitate to submit patch or feature upgrade to
 the <a href="dev@lists.scilab.org">development mailing list</a> for a particular toolbox.</li>
 </ul>
-<h2>Bug Fixes</h2>
 <h3>Bugs fixed in 6.0.0:</h3>
 <ul>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=592">#592</a>: <code>linspace(a, b, n&lt;=0)</code> returned <code>b</code> instead of <code>[]</code></li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=2835">#2835</a>: On negative &quot;initial event&quot;, EVTDLY_c took no notice of the input.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=2919">#2919</a>: The <code>fchamp</code> example and demo were unclear and badly rendered</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=4327">#4327</a>: Overloading did not support custom types names longer than 8 characters</li>
-<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=5278">#5278</a>: Most of the references to <code>xset</code> in help pages and in tests were obsolete.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=5278">#5278</a>: Most of the references to <code>xset</code> and <code>xget</code> in scripts, macros, help pages and tests were obsolete.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=5723">#5723</a>: Cross-references were missing between <code>axis_properties</code> and axes_properties` help pages</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=6307">#6307</a>: There were no  easy versions of <code>lqr</code>, <code>lqe</code>, and <code>lqg</code></li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=7192">#7192</a>: From <code>S=[]</code>, <code>S($+1,:) = some_row</code> inserted it in row#2 after a parasitic row#1.</li>
@@ -501,6 +463,7 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14367">#14367</a>: <code>edit_curv</code> failed opening due to a <code>[]+1</code> operation.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14379">#14379</a>: Problem with lists of functions having 2 arguments.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14395">#14395</a>: <code>dir</code> displayed a []+&quot;..&quot; warning when no subdirectory exists.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14405">#14405</a>: <code>xcosPalAdd</code> did not work on Windows.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14411">#14411</a>: <code>abort</code> used in a <code>while</code>loop crashed Scilab.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14437">#14437</a>: Changing the field of a struct embedded in a list sometimes misworked.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14448">#14448</a>: <code>havewindow</code> is removed but was still documented.</li>
@@ -526,11 +489,13 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14609">#14609</a>: &quot;msscanf&quot; crashes Scilab when 'niter' parameter is out of range.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14632">#14632</a>: Zooming moved offscreen any drawn axis</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14640">#14640</a>: <code>median(int8([10 60 80 100]))</code> returned -58 instead of 70 due to overflow when interpolating (60+80)&gt;128</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14645">#14645</a>: Xcos Demos -&gt; Control Systems -&gt; Lorenz Butterfly didn't end at the expected time (30)</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14648">#14648</a>: <code>isinf</code> returned <code>%F</code> for complex numbers with both real and imag infinite parts.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14649">#14649</a>: <code>isnan(complex(%inf, %inf))</code> returned <code>%F</code> while the phase is <code>NaN</code>.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14654">#14654</a>: <code>bitor</code>, <code>bitxor</code> and <code>bitand</code> did not accept positive inputs of type <code>int8</code>, <code>int16</code>, <code>int32</code>, <code>int64</code> or <code>uint64</code></li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14659">#14659</a>: number of I/O ports of the superblock was not updated when adding or deleting I/O blocks inside a superblock.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14662">#14662</a>: Matrix of strings concatenation with single quote led to a parser error.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14664">#14664</a>: Deleted obsolete WFILE_f block. Regenerated some Xcos demos to work with Scilab 6.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14667">#14667</a>: Multi line string without final quote generated a non terminal parser state.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14681">#14681</a>: Short-circuited AND operation was not possible with double matrices in if and while clauses</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14689">#14689</a>: <code>resize_matrix(rand(2,3),[0 2])</code> did not return <code>[]</code>. Usage of new sizes &lt;0 to keep them unchanged was not documented.</li>
@@ -538,7 +503,9 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14692">#14692</a>: <code>isequal</code> always returned <code>%T</code> for builtin functions</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14694">#14694</a>: The list of named colors was misaligned and poorly rendered in <code>help color_list</code></li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14710">#14710</a>: <code>fullpath(TMPDIR+...)</code> was bugged on MacOS</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14711">#14711</a>: When current axes is an uicontrol frame, <code>colorbar</code> did not display anything.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14714">#14714</a>: Deleting a datatip made Scilab leaking or crashed.</li>
+<li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14731">#14731</a>: The demos <code>Graphics =&gt; Complex functions</code> opened an empty figure#0. Rotation of Im+Re parts were not synchronized</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14743">#14743</a>: <code>test_run(.., &quot;show_error&quot;)</code> did not document &quot;failed: Slave Scilab exited with error code #&quot; errors.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14758">#14758</a>: <code>xstringb</code> opened a default figure.</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14761">#14761</a>: <code>||</code> misworked when LHS is %f or zeros. <code>&amp;&amp;</code> misworked when LHS is %t or non-zeros</li>
@@ -769,6 +736,7 @@ the <a href="dev@lists.scilab.org">development mailing list</a> for a particular
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14540">#14540</a>: Datatips did not clip outside axes bounds</li>
 <li><a href="http://bugzilla.scilab.org/show_bug.cgi?id=14685">#14685</a>: datavec produced an invalid index error.</li>
 <li>[#14980] (http://bugzilla.scilab.org/show_bug.cgi?id=14980): The datatip display of the root locus arcs is broken.</li>
+<li>[#14992] (http://bugzilla.scilab.org/show_bug.cgi?id=14992): <code>readgateway</code> has been removed, use <code>whereis</code> instead.</li>
 </ul>
 <!-- End of the html rendered CHANGES.md file -->
     </div>
