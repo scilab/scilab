@@ -76,7 +76,6 @@
     <PRIMITIVE gatewayId="13" primitiveId="44" primitiveName="getmodules" />
     <PRIMITIVE gatewayId="13" primitiveId="45" primitiveName="with_module" />
     <PRIMITIVE gatewayId="13" primitiveId="46" primitiveName="getdebuginfo" />
-    <PRIMITIVE gatewayId="13" primitiveId="47" primitiveName="readgateway" />
     <PRIMITIVE gatewayId="13" primitiveId="48" primitiveName="exit" />
     <PRIMITIVE gatewayId="13" primitiveId="49" primitiveName="oldEmptyBehaviour" />
 
