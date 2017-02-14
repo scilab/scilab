@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:17+0000\n"
+"PO-Revision-Date: 2019-02-23 22:09+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1157,7 +1157,7 @@ msgid "Console Background..."
 msgstr "控制台背景..."
 
 msgid "No print service found."
-msgstr ""
+msgstr "未发现打印服务。"
 
 #, c-format
 msgid ""

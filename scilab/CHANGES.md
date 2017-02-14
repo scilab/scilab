@@ -298,6 +298,7 @@ Bug Fixes
 * [#11363](https://bugzilla.scilab.org/11363): `show_window()` did not raise the current graphics window.
 * [#12013](https://bugzilla.scilab.org/12013): `bitset` did not work for numbers greater than 2^32-1.
 * [#12302](https://bugzilla.scilab.org/12302): Blocks of legends could not be moved interactively. 
+* [#12428](https://bugzilla.scilab.org/12428): A part of an error message from `toprint` was not translated.
 * [#12520](https://bugzilla.scilab.org/12520): Variable browser did not display the size of the variables.
 * [#12534](https://bugzilla.scilab.org/12534): Variable browser did not display the size of the variables.
 * [#12837](https://bugzilla.scilab.org/12837): `strcmpi` was an obsolete duplicate of `strcmp(,'i')`. It is removed.

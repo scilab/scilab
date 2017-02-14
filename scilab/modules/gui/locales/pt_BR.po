@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: _gui-pt_BR\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:09+0000\n"
+"PO-Revision-Date: 2019-02-23 22:12+0000\n"
 "Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -1285,7 +1285,7 @@ msgid "Console Background..."
 msgstr "Plano de fundo do Console..."
 
 msgid "No print service found."
-msgstr ""
+msgstr "Nenhum serviço de impressão encontrado."
 
 #, c-format
 msgid ""
