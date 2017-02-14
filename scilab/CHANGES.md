@@ -430,6 +430,7 @@ Known issues
 * [#13984](http://bugzilla.scilab.org/show_bug.cgi?id=13984): For a set of curves, `plot(.., "color", colors..)` was not vectorized for colors specifications. Moreover, only 10 basic named colors were accepted, instead of the full list of predefined colors names.
 * [#14221](http://bugzilla.scilab.org/show_bug.cgi?id=14221): `msprintf` and `mprintf` ignored row-wise processing with `%%`.
 * [#14254](http://bugzilla.scilab.org/show_bug.cgi?id=14254): When installing an ATOMS module that is not locally registered and available, the error message was unclear.
+* [#14305](http://bugzilla.scilab.org/show_bug.cgi?id=14305): unused `%i_d_i` was still distributed.
 * [#14371](http://bugzilla.scilab.org/show_bug.cgi?id=14371): Scilab crashed when a block is edited.
 * [#14376](http://bugzilla.scilab.org/show_bug.cgi?id=14376): `input()` was broken: \n was introduced before prompting; multiple prompts occurred; the output value could be missing; "%" "\n" "\t" were no longer supported in messages...
 * [#14399](http://bugzilla.scilab.org/show_bug.cgi?id=14399): `whereami`: wrong information (line numbers).
@@ -893,4 +894,3 @@ Known issues
 * [#14685](http://bugzilla.scilab.org/show_bug.cgi?id=14685): datavec produced an invalid index error.
 * [#14980](http://bugzilla.scilab.org/show_bug.cgi?id=14980): The datatip display of the root locus arcs is broken.
 * [#14992](http://bugzilla.scilab.org/show_bug.cgi?id=14992): `readgateway` has been removed, use `whereis` instead.
-
