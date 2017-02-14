@@ -23,7 +23,7 @@ GUI_IMPEXP int gw_gui(void);
 GUI_IMPEXP int sci_x_dialog(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_x_choose(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_x_mdialog(char* fname, void* pvApiCtx);
-GUI_IMPEXP int sci_x_choice(char* fname, void* pvApiCtx);
+GUI_IMPEXP int sci_xchoicesi(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_delmenu(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_setmenu(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_unsetmenu(char* fname, void* pvApiCtx);

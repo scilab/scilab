@@ -251,9 +251,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_waitbar.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_x_choice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_x_choose.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -459,6 +456,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\InitializeGUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xchoicesi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
