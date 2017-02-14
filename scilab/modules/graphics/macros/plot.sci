@@ -21,6 +21,7 @@ function plot(varargin)
         //LineSpec and PropertySpec examples:
         t = 0:%pi/20:2*%pi;
         tt = t';
+        clf('reset');
         drawlater();
         subplot(211);
         plot(tt, sin(tt), "ro-.", tt, cos(tt), "cya+", tt, abs(sin(tt)), "--mo");
