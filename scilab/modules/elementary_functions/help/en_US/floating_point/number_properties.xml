@@ -48,9 +48,7 @@
         <para>
             <latex>$d_i$</latex> the digits are in <literal>[0, b-1]</literal>
             and <literal>e</literal> in <literal>[emin, emax]</literal>, the number is
-            said "normalized" if <latex>$d_1 \neq 0$</latex>. The following may be
-            gotten:
-        </para>
+            said "normalized" if <latex>$d_1 \neq 0$</latex>. The following queries may be used:
         <variablelist>
             <varlistentry>
                 <term>prop = "radix"</term>
@@ -136,23 +134,18 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-    </refsection>
-    <refsection>
-        <title>Remarks</title>
-        <para>This function uses the lapack routine dlamch to get the machine
-            parameters (the names (radix, digit, huge, etc...) are those recommended
-            by the LIA 1 standard and are different from the corresponding lapack's
-            ones).
-        </para>
-        <para>
-            <warning>
-                CAUTION: sometimes you can see the following definition for the
-                epsilon machine : <latex>$eps = b^{1-p}$</latex> but in this function we
-                use the traditional one (see prop = "eps" before) and so <latex>$eps = \dfrac{b^{1-p}}{2}$</latex>
-                if normal rounding occurs and <latex>$eps = b^{1-p}$</latex>
-                if not.
-            </warning>
-        </para>
+      </para>
+        <note>
+            This function uses the lapack routine <literal>dlamch</literal> to get the machine
+            parameters (the names (radix, digit, huge, etc...) are those recommended by the LIA 1
+            standard and are different from the corresponding lapack's ones).
+        </note>
+        <warning>
+          Sometimes you can see the following definition for the epsilon machine :
+          <latex>$eps = b^{1-p}$</latex> but in this function we use the traditional one
+          (see prop = "eps" before) and so <latex>$eps = \dfrac{b^{1-p}}{2}$</latex>
+          if normal rounding occurs, and <latex>$eps = b^{1-p}$</latex> otherwise.
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>

@@ -42,29 +42,29 @@
                     <para>
                     Ensemble d'objets à concaténer (rassembler) et à fusionner :
                     les conteneurs individuels initiaux des objets sont supprimés.
-                    Les types d'objets des familles suivantes peuvent
-                    être mélangés entre eux dans une même famille, mais pas
-                    entre familles :
+                    Les types d'objets des familles suivantes peuvent être mélangés entre eux dans
+                    une même famille, mais pas entre familles :
                     <itemizedlist>
                         <listitem>
-                            Matrices de booléens, nombres décimaux,
-                            nombres complexes, polynômes, fractions rationnelles :
-                            le type de l'objet résultant est le type de l'élément le
-                            plus complexe, des booléens (le moins complexe) aux fractions
-                            rationelles à coefficients complexes
-                            (voir les règles de
-                            <link linkend="brackets_Types_conversions">
+                            Matrices de booléens, nombres décimaux, nombres complexes, polynômes,
+                            fractions rationnelles : le type de l'objet résultant est le type de
+                            l'élément le plus complexe, des booléens (le moins complexe) aux
+                            fractions rationelles à coefficients complexes
+                            (voir les règles de <link linkend="brackets_Types_conversions">
                             <emphasis role="italic">transtypages</emphasis></link>).
                         </listitem>
                         <listitem>Matrices d'entiers encodés de type entier
                             <link linkend="inttype">inttype</link> quelconque.
-                            <warning>Des entiers de types différents ne peuvent
-                            pas être concaténés entre eux.
+                            <warning>
+                            Des entiers de types différents ne peuvent pas être concaténés entre eux.
                             </warning>
                         </listitem>
-                        <listitem>Tableaux de structures ayant les mêmes champs.
-                            Les champs peuvent être dans des ordres différents
-                            d'un tableau à l'autre.
+                        <listitem>
+                            Tableaux de structures ayant les mêmes champs. Les champs peuvent être
+                            dans des ordres différents d'un tableau à l'autre.
+                        </listitem>
+                        <listitem>
+                            Tableaux de cellules.
                         </listitem>
                         <listitem>
                             Listes de type <link linkend="syslin">syslin</link>
@@ -77,7 +77,7 @@
                 <term>M, Mh, Mv</term>
                 <listitem>
                     <para>
-                        Matrices ayant le type des éléments <varname>m##</varname>
+                        Matrices ou tableaux ayant le type des éléments <varname>m##</varname>
                         (s'ils ont tous le même type).
                     </para>
                 </listitem>

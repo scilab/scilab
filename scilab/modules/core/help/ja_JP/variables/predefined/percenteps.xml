@@ -36,10 +36,13 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example">%eps
-            format(20)
-            1 + %eps
-            1 + (%eps / 2) == 1
+        <programlisting role="example">
+          mw = format();
+          %eps
+          format(21);
+          1 + %eps
+          1 + (%eps / 2) == 1
+          format(mw([2 1]));
         </programlisting>
     </refsection>
     <refsection role="see also">

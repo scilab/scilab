@@ -1,68 +1,104 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ieee" xml:lang="pt">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+    xmlns:scilab="http://www.scilab.org" xml:id="ieee" xml:lang="pt">
     <refnamediv>
         <refname>ieee</refname>
-        <refpurpose>ajusta o modo de exceção de ponto flutuante</refpurpose>
+        <refpurpose>ajusta o modo de exceÃ§Ã£o de ponto flutuante</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>mod=ieee()
             ieee(mod)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>mod</term>
                 <listitem>
-                    <para>escalar inteiro com possíveis valores 0,1,ou 2</para>
+                    <para>escalar inteiro com possÃ­veis valores 0,1,ou 2</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>ieee()</literal> retorna o modo de exceção de ponto
+            <literal>ieee()</literal> retorna o modo de exceÃ§Ã£o de ponto
             flutuante corrente
-        </para>
         <variablelist>
             <varlistentry>
                 <term>0</term>
                 <listitem>
-                    <para>exceção de ponto flutuante produz um erro;</para>
+                    <para>exceÃ§Ã£o de ponto flutuante produz um erro;</para>
+                    <para>
+                       <literal>%inf</literal> and <literal>%nan</literal> special values can be
+                       used in this mode without error. For instance, <literal>%inf/%inf</literal>,
+                       <literal>%inf-%inf</literal> or <literal>%inf/%nan</literal> are known
+                       operations.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>1</term>
                 <listitem>
-                    <para>exceção de ponto flutuante produz um aviso; </para>
+                    >exceÃ§Ã£o de ponto flutuante produz um aviso.
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>2</term>
                 <listitem>
-                    <para>exceção de ponto flutuante produz um Inf ou NaN ("infinito" ou
-                        "não é número").
-                    </para>
+                    exceÃ§Ã£o de ponto flutuante produz um Inf ou NaN ("infinito" ou
+                        "nÃ£o Ã© nÃºmero").
                 </listitem>
             </varlistentry>
         </variablelist>
+        </para>
         <para>
-            <literal>ieee(mod)</literal> ajusta o modo corrente de excessão de
-            ponto flutuante.
+            <literal>ieee(mod)</literal> sets the current floating point exception mode to
+            <varname>mod</varname>.
         </para>
+        <note>
+            The default initial mode is 2. This default value may be set in any of the following ways:
+            <itemizedlist>
+                <listitem>
+                  Through the Preferences GUI: <code>preferences</code>, in the section
+                  <emphasis role="italic">General => Environment => ieee</emphasis>.
+                </listitem>
+                <listitem>
+                  Equivalently, using <code>setPreferencesValue</code> as follows
+                  (to set the mode to 1) :
+                  <para>
+                  <literal>setPreferencesValue("//general/body/environment", ["fpe";"1"])</literal>
+                  </para>
+                </listitem>
+                <listitem>
+                    Or by using <literal>ieee(mod)</literal> in your startup file.
+                </listitem>
+            </itemizedlist>
+        </note>
         <warning>
-            <para>O valor de modo incial é 2.</para>
+            ExceÃ§Ãµes de ponto flutuante emergentes em alguns algoritmos de  bibliotecas ainda nÃ£o
+            sÃ£o manipuladas pelos modos <literal>ieee</literal>.
         </warning>
-    </refsection>
-    <refsection>
-        <title>Observações </title>
-        <para>Exceções de ponto flutuante emergentes em alguns algoritmos de
-            bibliotecas ainda não são manipuladas pelos modos
-            <literal>ieee</literal>.
-        </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -71,10 +107,33 @@ ieee(1);1/0
 ieee(2);1/0,log(0)
  ]]></programlisting>
     </refsection>
-    <revhistory>
-        <revision>
-            <revnumber>6.0.0</revnumber>
-            <revremark>O valor de modo incial é 2.</revremark>
-        </revision>
-    </revhistory>
+    <refsection role="see also">
+        <title>Ver tambÃ©m</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="percentnan">%nan</link>
+            </member>
+            <member>
+                <link linkend="percentinf">%inf</link>
+            </member>
+            <member>
+                <link linkend="isinf">isinf</link>
+            </member>
+            <member>
+                <link linkend="isnan">isnan</link>
+            </member>
+            <member>
+                <link linkend="number_properties">number_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>O valor de modo incial Ã© 2.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

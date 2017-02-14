@@ -28,7 +28,9 @@
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>матрица чисел с плавающей запятой или целых чисел.</para>
+                    <para> матрица десятичных чисел или кодированных целых чисел.
+                      Комплексные числа не поддерживаются.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

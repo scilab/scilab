@@ -155,7 +155,6 @@
                                         <varname>data</varname> as a matrix of uint32 provides RGBA colors where the alpha channel will be set to 0xFF.
                                     </listitem>
                                 </itemizedlist>
-                                <para></para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -175,7 +174,6 @@
                                         <varname>data</varname> as a matrix of int32 or uint32 provides RGBA colors.
                                     </listitem>
                                 </itemizedlist>
-                                <para></para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -195,7 +193,6 @@
                                         <varname>data</varname> as a matrix of int32 or uint32 provides ARGB colors.
                                     </listitem>
                                 </itemizedlist>
-                                <para></para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -209,7 +206,6 @@
                                         <varname>data</varname> of another type is considered as RGB intensities. They are then converted into red levels (a mask is applied to keep the Red component).
                                     </listitem>
                                 </itemizedlist>
-                                <para></para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -223,7 +219,6 @@
                                         <varname>data</varname> of another type is considered as RGB intensities. They are then converted into green levels (a mask is applied to keep the Green component).
                                     </listitem>
                                 </itemizedlist>
-                                <para></para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -237,7 +232,6 @@
                                         <varname>data</varname> of another type is considered as RGB intensities. They are then converted into blue levels (a mask is applied to keep the Blue component).
                                     </listitem>
                                 </itemizedlist>
-                                <para></para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -251,7 +245,6 @@
                                         For other <varname>data</varname> types, RGB (8-8-8) data are converted into RGB (3-3-2).
                                     </listitem>
                                 </itemizedlist>
-                                <para></para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -265,7 +258,6 @@
                                         For other <varname>data</varname> types, RGB (8-8-8) data are converted into RGB (4-4-4).
                                     </listitem>
                                 </itemizedlist>
-                                <para></para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -279,7 +271,6 @@
                                         For other <varname>data</varname> types, RGB (8-8-8) data are converted into RGB (5-5-5).
                                     </listitem>
                                 </itemizedlist>
-                                <para></para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -293,7 +284,6 @@
                                         For other <varname>data</varname> types, RGBA (8-8-8-8) data are converted into RGBA (4-4-4-4).
                                     </listitem>
                                 </itemizedlist>
-                                <para></para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -307,7 +297,6 @@
                                         For other <varname>data</varname> types, RGBA (8-8-8-8) data are converted into RGBA (5-5-5-1).
                                     </listitem>
                                 </itemizedlist>
-                                <para></para>
                             </listitem>
                         </varlistentry>
                     </variablelist>

@@ -216,8 +216,6 @@
             <literal>&amp;&amp;</literal> with <literal>bitand()</literal> and
             <literal>and()</literal>
             </emphasis> :
-        </para>
-        <para>
             <itemizedlist>
                 <listitem>
                     <literal>and(A)</literal> is equivalent to <literal>A &amp;&amp; %T</literal>,

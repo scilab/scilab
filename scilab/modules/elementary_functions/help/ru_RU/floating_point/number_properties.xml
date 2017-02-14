@@ -53,7 +53,6 @@
             а <literal>e</literal> находится в диапазоне
             <literal>[emin, emax]</literal>, скажем, что число "нормированное", если
             <latex>$d_1 \neq 0$</latex>. Можно получить следующие сведения:
-        </para>
         <variablelist>
             <varlistentry>
                 <term>prop = "radix"</term>
@@ -96,7 +95,7 @@
                 <term>prop = "denorm"</term>
                 <listitem>
                     <para>
-                        тогда <literal>pr</literal> является логическим значением (%t,
+                        тогда <literal>pr</literal> является логическим значением (<constant>%t</constant>,
                         если используются ненормированные числа)
                     </para>
                 </listitem>
@@ -128,8 +127,7 @@
                 <term>prop = "minexp"</term>
                 <listitem>
                     <para>
-                        тогда <literal>pr</literal> является
-                        <literal>emin</literal>
+                        тогда <literal>pr</literal> является <literal>emin</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -137,25 +135,24 @@
                 <term>prop = "maxexp"</term>
                 <listitem>
                     <para>
-                        тогда <literal>pr</literal> является
-                        <literal>emax</literal>
+                        тогда <literal>pr</literal> является <literal>emax</literal>
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
-    </refsection>
-    <refsection>
-        <title>Примечания</title>
-        <para>
+        </para>
+        <note>
             Эта функция использует подпрограмму dlamch для получения параметров
             машины (имена (radix, digit, huge и т. д.) рекомендованы стандартом LIA 1
-            и отличаются от соответствующих имён lapack); ПРЕДУПРЕЖДЕНИЕ: иногда вы
-            можете увидеть следующее определение машинного эпсилона: <latex>$eps = b^{1-p}$</latex>
-            ,но в этой функции мы используем традиционное определение
+            и отличаются от соответствующих имён lapack).
+        </note>
+        <warning>
+            иногда вы можете увидеть следующее определение машинного эпсилона:
+            <latex>$eps = b^{1-p}$</latex>,но в этой функции мы используем традиционное определение
             (см. выше prop = "eps") и поэтому <latex>$eps = \dfrac{b^{1-p}}{2}$</latex>
-            ,если производится нормальное округление, а
+            , если производится нормальное округление, а
             если нет, то <latex>$eps = b^{1-p}$</latex>.
-        </para>
+        </warning>
     </refsection>
     <refsection>
         <title>Примеры</title>

@@ -214,8 +214,6 @@
         <para>
             <emphasis role="bold">Comparing <literal>|</literal> and <literal>||</literal> with
             <literal>bitor()</literal> and <literal>or()</literal></emphasis> :
-        </para>
-        <para>
             <itemizedlist>
                 <listitem>
                     <literal>or(A)</literal> is equivalent to <literal>A || %F</literal>, whereas

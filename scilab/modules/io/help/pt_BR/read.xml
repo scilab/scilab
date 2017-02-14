@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -20,27 +20,27 @@
         <refpurpose>Leitura de matrizes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[x]=read(file-desc,m,n,[format])
             [x]=read(file-desc,m,n,k,format)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>file-desc</term>
                 <listitem>
                     <para>string especificando o nome do arquivo ou valor inteiro
-                        especificando uma unidade lógica (fortran)(ver  <link linkend="file">file</link>).
+                        especificando uma unidade lÃ³gica (fortran)(ver  <link linkend="file">file</link>).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>m, n</term>
                 <listitem>
-                    <para>inteiros (dimensões da matriz x). Ajuste m=-1 se você
-                        desconhece o número de linhas, para que todo o arquivo seja
+                    <para>inteiros (dimensÃµes da matriz x). Ajuste m=-1 se vocÃª
+                        desconhece o nÃºmero de linhas, para que todo o arquivo seja
                         lido.
                     </para>
                 </listitem>
@@ -49,9 +49,9 @@
                 <term>format</term>
                 <listitem>
                     <para>string, especifica um formato "Fortran". Este string deve
-                        começar com um parêntese direito e terminar com um parêntese
-                        esquerdo. Formatos não podem misturar pontos flutuantes, inteiros ou
-                        modo de edição de caractere
+                        comeÃ§ar com um parÃªntese direito e terminar com um parÃªntese
+                        esquerdo. Formatos nÃ£o podem misturar pontos flutuantes, inteiros ou
+                        modo de ediÃ§Ã£o de caractere
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,24 +64,24 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Lê linha após linha a matriz x <literal>mxn</literal>
+            LÃª linha apÃ³s linha a matriz x <literal>mxn</literal>
             (<literal>n=1</literal> para cadeia de caracteres) no arquivo
             <literal>file-desc</literal> (string ou inteiro). Cada linha da matriz
-            <literal>x</literal> começa em uma nova linha do arquivo
+            <literal>x</literal> comeÃ§a em uma nova linha do arquivo
             <literal>file-desc</literal>. Dependendo de <literal>format</literal>, uma
             dada linha da matriz <literal>x</literal> pode ser lida de mais de uma
             linha do arquivo <literal>file-desc</literal>.
         </para>
-        <para>O tipo do resultado dependerá do formato especificado. Se format
-            contém apenas os descritores <literal>(d,e,f,g)</literal> a função tenta
-            ler dados numéricos (o resultado é uma matriz de números reais).
+        <para>O tipo do resultado dependerÃ¡ do formato especificado. Se format
+            contÃ©m apenas os descritores <literal>(d,e,f,g)</literal> a funÃ§Ã£o tenta
+            ler dados numÃ©ricos (o resultado Ã© uma matriz de nÃºmeros reais).
         </para>
         <para>
-            Se format contém apenas o descritor <literal>a</literal> a função
-            tenta ler strings (o resultado é um vetor coluna de strings). Neste caso,
-            n deve ser igual a 1. Aviso: Os strings serão truncados se tiverem tamanho
+            Se format contÃ©m apenas o descritor <literal>a</literal> a funÃ§Ã£o
+            tenta ler strings (o resultado Ã© um vetor coluna de strings). Neste caso,
+            n deve ser igual a 1. Aviso: Os strings serÃ£o truncados se tiverem tamanho
             maior que 4093.
         </para>
         <para>
@@ -91,25 +91,23 @@
 (1x,e10.3,5x,3(f3.0))
 (10x,a20)
  ]]></programlisting>
-        <para>Quando format é o omitido, os dados são lidos utilizando-se o
-            formato numérico livre: espaços em branco, vírgulas e barras podem ser
+        <para>Quando format Ã© o omitido, os dados sÃ£o lidos utilizando-se o
+            formato numÃ©rico livre: espaÃ§os em branco, vÃ­rgulas e barras podem ser
             utilizados como separadores de dados, n*v pode ser utilizado para
-            representar n ocorrências do valor n.
+            representar n ocorrÃªncias do valor n.
         </para>
-        <para>Um arquivo de acesso direto pode ser utilzado na presença de um
-            parâmetro <literal>k</literal> que é um vetor de números de gravações a
-            serem lidas (uma gravação por linha), logo <literal>m</literal> deve ser
+        <para>Um arquivo de acesso direto pode ser utilzado na presenÃ§a de um
+            parÃ¢metro <literal>k</literal> que Ã© um vetor de nÃºmeros de gravaÃ§Ãµes a
+            serem lidas (uma gravaÃ§Ã£o por linha), logo <literal>m</literal> deve ser
             <literal>m=prod(size(k))</literal>.
         </para>
         <para>
             Para ler no teclado use <literal>read(%io(1),...)</literal>.
         </para>
-    </refsection>
-    <refsection>
-        <title>Observação</title>
-        <para>A última linha de cada arquivo de dados devemser terminada por uma
+        <note>
+            A Ãºltima linha de cada arquivo de dados devemser terminada por uma
             nova linha (newline) a ser levada em conta.
-        </para>
+        </note>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -119,11 +117,11 @@ A = rand(3,5);
 write(TMPDIR + '/foo', A);
 B = read(TMPDIR + '/foo', 3, 5);
 B = read(TMPDIR + '/foo', -1, 5);
-read(%io(1), 1, 1, '(a)')  // espera por entrada do usuário
+read(%io(1), 1, 1, '(a)')  // espera por entrada do usuÃ¡rio
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="file">file</link>

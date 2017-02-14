@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="debug">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="debug">
     <refnamediv>
         <refname>debug</refname>
-        <refpurpose>Environnement de déboggage dans Scilab</refpurpose>
+        <refpurpose>Environnement de débogage dans Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -13,41 +16,46 @@
     <refsection>
         <title>Description</title>
         <para>
-            Cet environnement sert a débogger un cript Scilab.
-            Après l'appel a <literal>debug()</literal>, vous entrez en mode debug.
+            Cet environnement sert à débogger un cript Scilab.
+            Après l'appel à <literal>debug()</literal>, vous entrez en mode debogage.
             Ce mode vous permet de manipuler des points d'arrêts,
             de lancer des exécutions avec arrêt sur erreur,
             d'exécuter des scripts en mode pas à pas ...
 
-            Une fois que ce mode est actif, l'invite devient <literal>debug> </literal>.
+            Dans la console, ce mode est indiqué par l'invite <literal>debug></literal>.
         </para>
         <term>Commandes: </term>
         <listitem>
             <variablelist>
                 <varlistentry>
-                    <term>(h)elp: </term>
-                    <para>Affiche l'aide dans la console</para>
+                    <term>h: </term>
+                    <para>
+                      Affiche l'aide du débogueur dans la console, quel que soit le mode de
+                      lancement de Scilab.
+                    </para>
                 </varlistentry>
                 <varlistentry>
                     <term>help: </term>
-                    <para>Affiche l'aide dans le navigateur si cela est possible sinon l'affiche dans la console</para>
+                    <para>
+                      En mode Scilab standard (avec fenêtres et interfaces graphiques), ouvre
+                      le navigateur d'aide. Sinon affiche l'aide du debogueur dans la console
+                      (comme avec "h").
+                    </para>
                 </varlistentry>
                 <varlistentry>
                     <term>(q)uit: </term>
-                    <para>Quitte l'environnement de déboggage et revient au mode normal de Scilab.</para>
+                    <para>Quitte l'environnement de débogage et revient au mode normal de Scilab.</para>
                 </varlistentry>
                 <varlistentry>
-                    <term>(w)here or bt: </term>
+                    <term>(w)here ou bt: </term>
                     <para>Affiche la pile d'appel.</para>
                 </varlistentry>
                 <varlistentry>
-                    <term>(e)xec: </term>
-                    <term>(r)un: </term>
+                    <term>(e)xec, ou (r)un: </term>
                     <para>Exécute une commande.</para>
                 </varlistentry>
                 <varlistentry>
-                    <term>(d)isp var: </term>
-                    <term>(p)rint var: </term>
+                    <term>(d)isp var, ou (p)rint var: </term>
                     <para>
                         Affiche la variable <literal>var</literal>.
                     </para>
@@ -61,25 +69,27 @@
                     <para>Annule l'éxécution.</para>
                 </varlistentry>
                 <varlistentry>
-                    <term>step(n)ext or next: </term>
+                    <term>step(n)ext ou next: </term>
                     <para>Poursuit l'éxécution jusqu'a l'expression suivante.</para>
                 </varlistentry>
                 <varlistentry>
-                    <term>step(i)n or in: </term>
+                    <term>step(i)n ou in: </term>
                     <para>Poursuit l'éxécution dans la sous fonction.</para>
                 </varlistentry>
                 <varlistentry>
-                    <term>step(o)ut or out: </term>
-                    <para>Poursuit l'éxécution jusqu'a revenir dans la fonction appelante.</para>
+                    <term>step(o)ut ou out: </term>
+                    <para>Poursuit l'éxécution jusqu'à revenir dans la fonction appelante.</para>
                 </varlistentry>
                 <varlistentry>
-                    <term>(b)reakpoint or break: </term>
+                    <term>(b)reakpoint ou break: </term>
                     <synopsis>breakpoint function [line [condition]]</synopsis>
                     <para>
-                        Ajoute un point d'arrêt dans une fonction a une ligne <literal>line</literal>
+                        Ajoute un point d'arrêt dans une fonction, à la ligne <literal>line</literal>
+                        indiquée.
                     </para>
                     <para>
-                        Si une condition est spécifiée, le point d'arrêt ne devient active que si la condition est <literal>%t</literal>
+                        Si une condition est spécifiée, le point d'arrêt devient actif uniquement si
+                        la condition est vérifiée.
                     </para>
                 </varlistentry>
                 <varlistentry>
@@ -95,18 +105,18 @@
                 <varlistentry>
                     <term>disable [n]: </term>
                     <para>Désactive tous les points d'arrêt.</para>
-                    <para>Si n est spécifié, désavtive le point d'arrêt #n</para>
+                    <para>Si n est spécifié, désactive le point d'arrêt #n</para>
                 </varlistentry>
                 <varlistentry>
                     <term>(s)how [n]: </term>
-                    <para>Affiche tous les information sur les points d'arrêt.</para>
-                    <para>Si n est spécifié, affiche les information du point d'arrêt #n</para>
+                    <para>Affiche toutes les informations sur les points d'arrêt.</para>
+                    <para>Si n est spécifié, affiche les informations du point d'arrêt #n</para>
                 </varlistentry>
             </variablelist>
         </listitem>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[
 //fonction de surcharge de la fonction cosinus pour les chaînes de caractères
 function v = %c_cos(val)
@@ -149,11 +159,11 @@ quit
     </refsection>
 
     <refsection>
-        <title>History</title>
+        <title>Historique</title>
         <revhistory>
             <revision>
                 <revnumber>6.0.0</revnumber>
-                <revremark>Nouvelle version: Interface console avec le debugger de Scilab 6.</revremark>
+                <revremark>Introduction du débogueur intégré, en interface console</revremark>
             </revision>
         </revhistory>
     </refsection>

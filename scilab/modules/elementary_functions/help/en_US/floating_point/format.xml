@@ -12,7 +12,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="format" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="format" xml:lang="en">
     <refnamediv>
         <refname>format</refname>
         <refpurpose>set the default output format of decimal numbers</refpurpose>
@@ -24,7 +27,7 @@
             format(width)
             format(mode, width)
             format(wm)
-            v = format()
+            mw = format()
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -69,15 +72,15 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>v</term>
+                <term>mw</term>
                 <listitem>
                     <para>vector returning the current formatting parameters:
                         <itemizedlist>
-                          <listitem><literal>v(1)</literal> is the formatting mode:
+                          <listitem><literal>mw(1)</literal> is the formatting mode:
                             0 for <literal>'e'</literal> and 1 for <literal>'v'</literal>
                           </listitem>
                           <listitem>
-                            <literal>v(2)</literal> is the width:
+                            <literal>mw(2)</literal> is the width:
                             Number of characters used to output each number.
                           </listitem>
                          </itemizedlist>

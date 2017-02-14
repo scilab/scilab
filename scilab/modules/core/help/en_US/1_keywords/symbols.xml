@@ -160,23 +160,15 @@
             </tr>
             <tr>
                 <td>
-                    <literal>^</literal>
+                    <literal>^, .^</literal>
                 </td>
                 <td>
-                    <link linkend="hat">hat</link>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <literal>.^</literal>
-                </td>
-                <td>
-                    <link linkend="power">power</link>
+                    <link linkend="hat">hat</link>, <link linkend="power">power</link>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <literal>|</literal>
+                    <literal>|, ||</literal>
                 </td>
                 <td>
                     <link linkend="or_op">or_op</link>
@@ -184,7 +176,7 @@
             </tr>
             <tr>
                 <td>
-                    <literal>&amp;</literal>
+                    <literal>&amp;, &amp;&amp;</literal>
                 </td>
                 <td>
                     <link linkend="and_op">and_op</link>
@@ -199,23 +191,18 @@
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Remark</title>
-        <para>For historical reasons, different symbols may represent the same operator:</para>
-        <para>
-            <literal>{</literal> as the same meaning as <literal>[</literal>
-        </para>
-        <para>
-            <literal>}</literal> as the same meaning as <literal>]</literal>
-        </para>
-        <para>
-            <literal>@</literal> as the same meaning as <literal>~</literal>
-        </para>
-        <para>
-            <literal>`</literal> as the same meaning as &lt;
-        </para>
-        <para> It is highly recommended not to use these features because they will be removed in the future. </para>
+        <warning>
+          <para>For historical reasons, different symbols may represent the same operator:</para>
+          <para>
+              <literal>@</literal> as the same meaning as <literal>~</literal>
+          </para>
+          <para>
+              <literal>`</literal> as the same meaning as &lt;
+          </para>
+          <para> It is highly recommended not to use these features because they will be removed in
+            the future.
+          </para>
+        </warning>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

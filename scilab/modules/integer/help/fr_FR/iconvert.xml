@@ -14,7 +14,9 @@
             <varlistentry>
                 <term>X  </term>
                 <listitem>
-                    <para>matrice de flottants ou d'entiers
+                    <para>
+                      matrice de nombres décimaux ou d'entiers encodés. Les nombres complexes ne
+                      sont pas acceptés.
                     </para>
                 </listitem>
             </varlistentry>

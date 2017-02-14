@@ -21,7 +21,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>y=iconvert(X,itype)</synopsis>
+        <synopsis>y = iconvert(X, itype)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -29,7 +29,9 @@
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>matriz de floats ou inteiros </para>
+                    <para>matriz de números decimais ou inteiros codificados. Os números complexos
+                      não são aceitos
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

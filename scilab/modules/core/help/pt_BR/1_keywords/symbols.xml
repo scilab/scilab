@@ -126,28 +126,20 @@
             </tr>
             <tr>
                 <td>
-                    <literal>^</literal>
+                    <literal>^,  .^</literal>
                 </td>
                 <td>
-                    <link linkend="hat">hat</link> (chapéu, circunflexo)
+                    <link linkend="hat">hat</link>, <link linkend="power">power</link>
                 </td>
             </tr>
             <tr>
-                <td>
-                    <literal>.^</literal>
-                </td>
-                <td>
-                    <link linkend="power">power</link> (potência)
-                </td>
-            </tr>
-            <tr>
-                <td> |</td>
+                <td>|, ||</td>
                 <td>
                     <link linkend="or_op">or_op</link> (barra vertical, "ou" lógico)
                 </td>
             </tr>
             <tr>
-                <td> &amp;</td>
+                <td>&amp;,  &amp;&amp;</td>
                 <td>
                     <link linkend="and_op">and_op</link> ("e" comercial, "e" lógico)
                 </td>
@@ -161,30 +153,20 @@
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title> Observações</title>
-        <para>Por razões históricas, símbolos diferentes podem representar o mesmo
-            operador:
-        </para>
-        <para>
-            <literal>{</literal> tem o mesmo significado que
-            <literal>[</literal>
-        </para>
-        <para>
-            <literal>}</literal> tem o mesmo significado que
-            <literal>]</literal>
-        </para>
-        <para>
-            <literal>@</literal> tem o mesmo significado que
-            <literal>~</literal>
-        </para>
-        <para>
-            <literal>`</literal> tem o mesmo significado que &lt;
-        </para>
-        <para>É altamente recomendável que não se use esses recursos, pois eles
-            serão removidos futuramente
-        </para>
+        <warning>
+            <para>Por razões históricas, símbolos diferentes podem representar o mesmo operador:
+            </para>
+            <para>
+                <literal>@</literal> tem o mesmo significado que
+                <literal>~</literal>
+            </para>
+            <para>
+                <literal>`</literal> tem o mesmo significado que &lt;
+            </para>
+            <para>É altamente recomendável que não se use esses recursos, pois eles
+                serão removidos futuramente
+            </para>
+        </warning>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>

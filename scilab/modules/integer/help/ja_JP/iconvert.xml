@@ -28,7 +28,7 @@
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>浮動小数点数または整数の行列</para>
+                    <para>浮動小数点数または整数の行列. Complex numbers are not accepted.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

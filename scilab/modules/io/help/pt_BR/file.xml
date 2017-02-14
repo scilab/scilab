@@ -13,20 +13,23 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="file" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="file" xml:lang="pt">
     <refnamediv>
         <refname>file</refname>
         <refpurpose>Gerenciamento de arquivos</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seq¸Íncia de Chamamento</title>
+        <title>Seq√º√™ncia de Chamamento</title>
         <synopsis>[unit [,err]]=file('open', file-name [,status] [,access [,recl]] [,format])
             file(action,unit)
             [units [,typ [,nams [,mod [,swap]]]]] = file([unit])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Par‚metros</title>
+        <title>Par√¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>file-name</term>
@@ -42,13 +45,13 @@
                         <varlistentry>
                             <term>"new"</term>
                             <listitem>
-                                <para>o arquivo n„o deve existir, novo arquivo (padr„o)</para>
+                                <para>o arquivo n√£o deve existir, novo arquivo (padr√£o)</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>"old"</term>
                             <listitem>
-                                <para>o arquivo j· deve existir</para>
+                                <para>o arquivo j√° deve existir</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -60,7 +63,7 @@
                         <varlistentry>
                             <term>"scratch"</term>
                             <listitem>
-                                <para>o arquivo deve ser deletado ao fim da sess„o</para>
+                                <para>o arquivo deve ser deletado ao fim da sess√£o</para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
@@ -74,7 +77,7 @@
                         <varlistentry>
                             <term>"sequential"</term>
                             <listitem>
-                                <para>acesso seq¸encial (padr„o)</para>
+                                <para>acesso seq√ºencial (padr√£o)</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -94,13 +97,13 @@
                         <varlistentry>
                             <term>"formatted"</term>
                             <listitem>
-                                <para>para um arquivo formatado (padr„o)</para>
+                                <para>para um arquivo formatado (padr√£o)</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>"unformatted"</term>
                             <listitem>
-                                <para>registro bin·rio</para>
+                                <para>registro bin√°rio</para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
@@ -109,7 +112,7 @@
             <varlistentry>
                 <term>recl</term>
                 <listitem>
-                    <para>inteiro, È o tamanho de registros quando
+                    <para>inteiro, √© o tamanho de registros quando
                         <literal>access="direct"</literal>
                     </para>
                 </listitem>
@@ -117,15 +120,15 @@
             <varlistentry>
                 <term>unit</term>
                 <listitem>
-                    <para>inteiro, descritor de unidade lÛgica do arquivo aberto</para>
+                    <para>inteiro, descritor de unidade l√≥gica do arquivo aberto</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>units</term>
                 <listitem>
-                    <para>vetor de inteiros, descritores de unidades lÛgicas dos
-                        arquivos abertos. As unidades 5 e 6 s„o reservadas pelo sistema para
-                        dispositivos de entrada e saÌda.
+                    <para>vetor de inteiros, descritores de unidades l√≥gicas dos
+                        arquivos abertos. As unidades 5 e 6 s√£o reservadas pelo sistema para
+                        dispositivos de entrada e sa√≠da.
                     </para>
                 </listitem>
             </varlistentry>
@@ -140,13 +143,13 @@
             <varlistentry>
                 <term>nams</term>
                 <listitem>
-                    <para>vetor de strings, endereÁos dos arquivos abertos.</para>
+                    <para>vetor de strings, endere√ßos dos arquivos abertos.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>mod</term>
                 <listitem>
-                    <para>modo de abertura de arquivo. Formado por trÍs dÌgitos
+                    <para>modo de abertura de arquivo. Formado por tr√™s d√≠gitos
                         abc
                     </para>
                     <variablelist>
@@ -157,8 +160,8 @@
                                     <varlistentry>
                                         <term>a</term>
                                         <listitem>
-                                            <para>0 significa formatado e 1 n„o formatado
-                                                (bin·rio)
+                                            <para>0 significa formatado e 1 n√£o formatado
+                                                (bin√°rio)
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -189,23 +192,23 @@
                                         <term>a</term>
                                         <listitem>
                                             <para>1 significa "r" (leitura), 2 significa "w"
-                                                (escrita) e 3 significa "a" (anexaÁ„o)
+                                                (escrita) e 3 significa "a" (anexa√ß√£o)
                                             </para>
                                         </listitem>
                                     </varlistentry>
                                     <varlistentry>
                                         <term>b</term>
                                         <listitem>
-                                            <para>È 1 se o arquivo foi aberto pelo modo "+"
-                                                (atualizaÁ„o)
+                                            <para>√© 1 se o arquivo foi aberto pelo modo "+"
+                                                (atualiza√ß√£o)
                                             </para>
                                         </listitem>
                                     </varlistentry>
                                     <varlistentry>
                                         <term>c</term>
                                         <listitem>
-                                            <para>È 1 se o arquivo foi aberto pelo modo "b"
-                                                (bin·rio)
+                                            <para>√© 1 se o arquivo foi aberto pelo modo "b"
+                                                (bin√°rio)
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -218,15 +221,15 @@
             <varlistentry>
                 <term>swap</term>
                 <listitem>
-                    <para>alavanca de troca autom·tica. swap=1 se a troca autom·tica
-                        estiver ativada. swap È sempre 0 para arquivos Fortran.
+                    <para>alavanca de troca autom√°tica. swap=1 se a troca autom√°tica
+                        estiver ativada. swap √© sempre 0 para arquivos Fortran.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>err</term>
                 <listitem>
-                    <para>inteiro, n˙mero de mensagem de erro (ver error), se a abertura
+                    <para>inteiro, n√∫mero de mensagem de erro (ver error), se a abertura
                         falha. Se err for omitido, uma mensagem de erro aparece.
                     </para>
                 </listitem>
@@ -234,32 +237,32 @@
             <varlistentry>
                 <term>action</term>
                 <listitem>
-                    <para>È um dos seguintes strings:</para>
+                    <para>√© um dos seguintes strings:</para>
                     <variablelist>
                         <varlistentry>
                             <term>"close"</term>
                             <listitem>
                                 <para>fecha os arquivos fornecidos pelos descritores de
-                                    unidades lÛgicas fornecidos em <literal>units</literal>
+                                    unidades l√≥gicas fornecidos em <literal>units</literal>
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>"rewind"</term>
                             <listitem>
-                                <para>coloca o ponteiro no inÌcio do arquivo</para>
+                                <para>coloca o ponteiro no in√≠cio do arquivo</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>"backspace"</term>
                             <listitem>
-                                <para>coloca o ponteiro no inÌcio do ˙ltimo registro.</para>
+                                <para>coloca o ponteiro no in√≠cio do √∫ltimo registro.</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>"last"</term>
                             <listitem>
-                                <para>coloca o ponteiro apÛs o ˙ltimo registro.</para>
+                                <para>coloca o ponteiro ap√≥s o √∫ltimo registro.</para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
@@ -268,9 +271,9 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>DescriÁ„o</title>
+        <title>Descri√ß√£o</title>
         <para>
-            Seleciona uma unidade lÛgica <literal>unit</literal> e gerencia o
+            Seleciona uma unidade l√≥gica <literal>unit</literal> e gerencia o
             arquivo <literal>file-name</literal>.
         </para>
         <para>
@@ -278,10 +281,10 @@
                 [,recl]][,format])
             </literal>
             permite abrir um arquivo com propriedades
-            especificadas e obter o n˙mero de unidade associado
-            <literal>unit</literal>. Este n˙mero de unidade pode ser utilizado para
-            aÁıes futuras no arquivo, ou como descritor de arquivo em chamadas ‡s
-            funÁıes <literal>read</literal>, <literal>write</literal>,
+            especificadas e obter o n√∫mero de unidade associado
+            <literal>unit</literal>. Este n√∫mero de unidade pode ser utilizado para
+            a√ß√µes futuras no arquivo, ou como descritor de arquivo em chamadas √†s
+            fun√ß√µes <literal>read</literal>, <literal>write</literal>,
             <literal>readb</literal>,
             <literal>writb</literal>,<literal>save</literal>,
             <literal>load</literal>.
@@ -291,9 +294,9 @@
             mover o ponteiro do arquivo corrente.
         </para>
         <para>
-            <literal>file()</literal> retorna os descritores de unidades lÛgicas
+            <literal>file()</literal> retorna os descritores de unidades l√≥gicas
             dos arquivos abertos. So <literal>file('close',file() )</literal> fecha
-            todos os arquivos do usu·rio abertos (tipo C ou Fortran).
+            todos os arquivos do usu√°rio abertos (tipo C ou Fortran).
         </para>
     </refsection>
     <refsection>
@@ -316,8 +319,11 @@ mclose(u2);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver TambÈm</title>
+        <title>Ver Tamb√©m</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="isfile">isfile</link>
+            </member>
             <member>
                 <link linkend="save">save</link>
             </member>

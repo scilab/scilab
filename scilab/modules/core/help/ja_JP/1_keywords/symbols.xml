@@ -127,28 +127,20 @@
             </tr>
             <tr>
                 <td>
-                    <literal>^</literal>
+                    <literal>^,  .^</literal>
                 </td>
                 <td>
-                    <link linkend="hat">hat</link>
+                    <link linkend="hat">hat</link>, <link linkend="power">power</link>
                 </td>
             </tr>
             <tr>
-                <td>
-                    <literal>.^</literal>
-                </td>
-                <td>
-                    <link linkend="power">power</link>
-                </td>
-            </tr>
-            <tr>
-                <td>|</td>
+                <td>|, ||</td>
                 <td>
                     <link linkend="or_op">or_op</link>
                 </td>
             </tr>
             <tr>
-                <td>&amp;</td>
+                <td>&amp;,  &amp;&amp;</td>
                 <td>
                     <link linkend="and_op">and_op</link>
                 </td>
@@ -162,25 +154,18 @@
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>注意</title>
-        <para>歴史的な理由により, 異なる記号が同じ演算子を表す場合があります:</para>
-        <para>
-            <literal>{</literal> は <literal>[</literal>と同じ意味です
-        </para>
-        <para>
-            <literal>}</literal> は <literal>]</literal>と同じ意味です
-        </para>
-        <para>
-            <literal>@</literal> は <literal>~</literal>と同じ意味です
-        </para>
-        <para>
-            <literal>`</literal> は &lt; と同じ意味です
-        </para>
-        <para> これらは将来削除される予定ですので,これらの機能を使用しないことを
-            強く推奨します.
-        </para>
+        <warning>
+            <para>歴史的な理由により, 異なる記号が同じ演算子を表す場合があります:</para>
+            <para>
+                <literal>@</literal> は <literal>~</literal>と同じ意味です
+            </para>
+            <para>
+                <literal>`</literal> は &lt; と同じ意味です
+            </para>
+            <para> これらは将来削除される予定ですので,これらの機能を使用しないことを
+                強く推奨します.
+            </para>
+        </warning>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

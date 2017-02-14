@@ -126,28 +126,20 @@
             </tr>
             <tr>
                 <td>
-                    <literal>^</literal>
+                    <literal>^,  .^</literal>
                 </td>
                 <td>
-                    <link linkend="hat">hat</link>
+                    <link linkend="hat">hat</link>, <link linkend="power">power</link>
                 </td>
             </tr>
             <tr>
-                <td>
-                    <literal>.^</literal>
-                </td>
-                <td>
-                    <link linkend="power">power</link>
-                </td>
-            </tr>
-            <tr>
-                <td> |</td>
+                <td>|,  ||</td>
                 <td>
                     <link linkend="or_op">or_op</link>
                 </td>
             </tr>
             <tr>
-                <td> &amp;</td>
+                <td>&amp;,  &amp;&amp;</td>
                 <td>
                     <link linkend="and_op">and_op</link>
                 </td>
@@ -161,27 +153,20 @@
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Примечание</title>
-        <para>
-            В силу исторических причин различные символы могут представлять один и тот же оператор:
-        </para>
-        <para>
-            <literal>{</literal> то же самое, что и <literal>[</literal>
-        </para>
-        <para>
-            <literal>}</literal> то же самое, что и <literal>]</literal>
-        </para>
-        <para>
-            <literal>@</literal> то же самое, что и <literal>~</literal>
-        </para>
-        <para>
-            <literal>`</literal> то же самое, что и &lt;
-        </para>
-        <para>
-            Настоятельно рекомендуется не использовать эти символы, поскольку они будут в будущем удалены.
-        </para>
+        <warning>
+            <para>
+                В силу исторических причин различные символы могут представлять один и тот же оператор:
+            </para>
+            <para>
+                <literal>@</literal> то же самое, что и <literal>~</literal>
+            </para>
+            <para>
+                <literal>`</literal> то же самое, что и &lt;
+            </para>
+            <para>
+                Настоятельно рекомендуется не использовать эти символы, поскольку они будут в будущем удалены.
+            </para>
+        </warning>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
