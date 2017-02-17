@@ -28,7 +28,7 @@
             <varlistentry>
                 <term>title</term>
                 <listitem>
-                    <para>String array, Help chapter title</para>
+                    <para>A character string, help chapter title</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
