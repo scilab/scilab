@@ -23,15 +23,29 @@
         <synopsis>num = demo_choose(fil)</synopsis>
     </refsynopsisdiv>
     <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>fil</term>
+                <listitem>
+                    <para>String containing the path of the binary file.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>num</term>
+                <listitem>
+                    <para>a number of the selected line.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
         <title>Description</title>
         <para>
             The function demo_choose create a dialog box for the choice of options. It
-            takes as argument the binary file 'fil'. This file is built by a .sce file
-            written like below. It shall contain the variables 'choice', an array of text
-            within bracket (the different options), and 'titl', the title of the dialog
-            box. After that, the .sce file shall save both variables in the binary file
-            in argument.
-            Before the use of demo_choose, the .sce file shall be executed.
+            takes as argument the binary file 'fil'. It shall contain the variables 'choice',
+            an array of text within bracket (the different options), and 'titl', the title of 
+            the dialog box. 
             The function demo_choose returns the number of line chosen in the options
             array.
         </para>
@@ -39,15 +53,17 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-exec('SCI/demos/control/pid/pid_ch_2.sce');
-[n]=demo_choose('SCI/demos/control/pid/pid_ch_2.bin');
+choice = ['Continuous time';'Discrete time'];
+titl = 'Select time domain';
+save(fullfile(TMPDIR, "example.bin"));
+[n]=demo_choose(fullfile(TMPDIR, "example.bin"));
 select n
   case 0
-    break
+    disp("Cancel")
   case 1
-    mode(1)
+    disp("Choice: 1")
   case 2
-    mode(-1)
+    disp("Choice: 2")
 end
  ]]></programlisting>
     </refsection>
