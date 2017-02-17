@@ -1,6 +1,6 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c Copyright (C) 2012 - 2016 - Scilab Enterprises
 c
 c This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -23,8 +23,8 @@ c          0 : format incorrect ou ayant des types mixtes
 c!
       integer form(nf),nf
       integer count,quote,lparen,rparen,typf(7),typb(7),ntyp,fk
-      data quote/53/,lparen/41/,rparen/42/,ntyp/7/
-      data typf/18,15,14,13,16,21,10/,typb/2,1,1,1,1,3,4/
+      data quote/39/,lparen/40/,rparen/41/,ntyp/7/
+      data typf/105,102,101,102,103,108,97/,typb/2,1,1,1,1,3,4/
 c
       count=0
       fmttyp=0
