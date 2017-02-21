@@ -203,7 +203,7 @@ function r=write_nD_format(x)
         if nD1==1 then // rows vector
             r="{"+strcat(string(x),",")+"}"
             r=strsubst(r,"D","e");
-            return r;
+            return;
         elseif nD2==1   then // column vector
             N=nD1;
             cmd=")"
@@ -249,7 +249,7 @@ endfunction
 function     Pari=construct_Pars(Pari,opari,Parembed)
 
     if Pari==[] then
-        return " "
+        return
     end
     // Pars='  parameter Real '+Pars+'(fixed=false);'
     [atemp]=format();
