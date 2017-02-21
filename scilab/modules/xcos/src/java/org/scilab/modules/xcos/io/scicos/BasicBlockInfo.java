@@ -163,7 +163,7 @@ public final class BasicBlockInfo {
                     data.add(p);
                 }
 
-                counterMap.put(p.getClass(), counter + 1);
+                counterMap.put(klass, counter + 1);
             }
         }
 
