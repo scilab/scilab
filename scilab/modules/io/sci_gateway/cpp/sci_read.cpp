@@ -340,7 +340,15 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
 
                         if (error != 2)
                         {
-                            out.push_back(pS);
+                            // on empty file, data are not set
+                            if (pS->get(0) == NULL)
+                            {
+                                out.push_back(types::Double::Empty());
+                            }
+                            else
+                            {
+                                out.push_back(pS);
+                            }
                         }
                         else
                         {
