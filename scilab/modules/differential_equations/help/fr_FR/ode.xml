@@ -8,7 +8,7 @@
         <title>Syntaxe</title>
         <synopsis>y=ode(y0,t0,t,f)
             [y,w,iw]=ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])
-            [y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])
+            [y,rd,w,iw]=ode("roots",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])
             y=ode("discrete",y0,k0,kvect,f)
         </synopsis>
     </refsynopsisdiv>
@@ -192,7 +192,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"root":</term>
+                <term>"roots":</term>
                 <listitem>
                     <para>Solveur d'EDO avec recherche de racines. Le solveur
                         <literal>lsodar</literal> du package ODEPACK est utilisé. C'est une

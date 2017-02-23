@@ -23,7 +23,7 @@
         <title>Seqüência de Chamamento</title>
         <synopsis>y = ode(y0,t0,t,f)
             [y,w,iw] = ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])
-            [y,rd,w,iw] = ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])
+            [y,rd,w,iw] = ode("roots",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])
             y = ode("discrete",y0,k0,kvect,f)
         </synopsis>
     </refsynopsisdiv>
@@ -199,7 +199,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"root":</term>
+                <term>"roots":</term>
                 <listitem>
                     <para>Solucionador de EDOs com capacidade de encontrar raízes. O
                         solucionador <literal>lsodar</literal> do pacote ODEPACK é
