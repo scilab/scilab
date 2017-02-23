@@ -45,7 +45,7 @@ typedef double (*cplxFun_t)(std::complex<double> const&);
 cplxFun_t const mostSignificant (&std::abs);
 cplxFun_t const leastSignificant(&std::arg);
 #else
-/*  on real and imaginary parts as per SEP 21 recommandation.  */
+/*  on real and imaginary parts as per SEP 21 recommendation.  */
 cplxFun_t const mostSignificant (&std::real);
 cplxFun_t const leastSignificant(&std::imag);
 #endif

@@ -14,7 +14,7 @@ function scilab_error(varargin)
     end
 
     if argSize == 1 then
-        error(999, msprintf(dgettext("toolbox_skeleton", "%s: Yeah! %d is a good number of arguments but I prefer fail, sorry.\n"), "scilab_error", 1));
+        error(999, msprintf(dgettext("toolbox_skeleton", "%s: Yeah! %d is a good number of arguments but I prefer to fail, sorry.\n"), "scilab_error", 1));
     end
 endfunction
 // ====================================================================

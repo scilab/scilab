@@ -432,10 +432,6 @@ msgid "     norm of the residual    = "
 msgstr "     норма нев’язки    = "
 
 #, c-format
-msgid "     same but with refinment = "
-msgstr "     те саме, але з уточненням = "
-
-#, c-format
 msgid "     norm of the residual     = "
 msgstr "     норма нев’язки     = "
 

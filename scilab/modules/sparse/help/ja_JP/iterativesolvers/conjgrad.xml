@@ -72,7 +72,7 @@ function y = A ( x )
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>mehtod</term>
+                <term>method</term>
                 <listitem>
                     <para>スカラー文字列, "pcg", "cgs", "bicg" または "bicgstab" (デフォルト "bicgstab")</para>
                 </listitem>

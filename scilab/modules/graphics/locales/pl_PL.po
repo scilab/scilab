@@ -642,7 +642,7 @@ msgid "The parent has to be a SUBWIN\n"
 msgstr "Rodzic musi być typu SUBWIN\n"
 
 #, c-format
-msgid "%s: Could not retrive bounding box.\n"
+msgid "%s: Could not retrieve bounding box.\n"
 msgstr ""
 
 #, c-format
@@ -652,7 +652,7 @@ msgstr ""
 "wyświetlenia.\n"
 ".\n"
 
-msgid "Could not retrive bounds.\n"
+msgid "Could not retrieve bounds.\n"
 msgstr ""
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"

@@ -2591,7 +2591,7 @@ msgstr ""
 #
 # File: modules/cacsd/macros/reduceToCommonDenominator.sci, line: 18
 #, c-format
-msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
+msgid "%s: Wrong type for input argument #%d: real matrix expected.\n"
 msgstr ""
 
 #

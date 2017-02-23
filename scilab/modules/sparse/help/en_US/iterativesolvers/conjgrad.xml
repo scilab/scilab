@@ -73,7 +73,7 @@ function y = A ( x )
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>mehtod</term>
+                <term>method</term>
                 <listitem>
                     <para>scalar string, "pcg", "cgs", "bicg" or "bicgstab" (default "bicgstab")</para>
                 </listitem>

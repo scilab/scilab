@@ -142,15 +142,15 @@ function demo_sparse_matrices()
     disp("A1 ("+descr1+"): order = "+ string(n1) + " nnz = " + string(nnz(A1)))
     printf("     K1 = " + string(K1)+"\n" + ..
          _("     norm of the residual    = ") + string(norm_res1) + "\n" + ..
-         _("     same but with refinment = ") + string(norm_res1r) + "\n")
+         _("     same but with refinement = ") + string(norm_res1r) + "\n")
     disp("A2 ("+descr2+"): order = "+ string(n2) + " nnz = " + string(nnz(A2)))
     printf("     K2 = " + string(K2)+"\n"+..
          _("     norm of the residual    = ") + string(norm_res2) + "\n" + ..
-         _("     same but with refinment = ") + string(norm_res2r) + "\n")
+         _("     same but with refinement = ") + string(norm_res2r) + "\n")
     disp("A3 ("+descr3+"): order = "+ string(n3) + " nnz = " + string(nnz(A3)))
     printf("     K3 = " + string(K3)+"\n"+..
          _("     norm of the residual    = ") + string(norm_res3) + "\n" + ..
-         _("     same but with refinment = ") + string(norm_res3r) + "\n")
+         _("     same but with refinement = ") + string(norm_res3r) + "\n")
     disp("A4 ("+descr4+"): order = "+ string(n4) + " nnz = " + string(nnz(A4)))
     printf("     K4 = " + string(K4) + "\n" + ..
          _("     norm of the residual     = ") + string(norm_res4) + "\n" + ..
@@ -190,11 +190,11 @@ function demo_sparse_matrices()
            "     K2 (2-norm) = " + string(K2_norm2) + "\n" )
     disp(_(" with umfpack:"));
     printf(_("     norm of the residual = ") + string(norm_res2) + "\n" + ..
-           _("     same but with refinment = ") + string(norm_res2r) + "\n" + ..
+           _("     same but with refinement = ") + string(norm_res2r) + "\n" + ..
            _("     computing time       = ") + string(t2) + "\n")
     disp(_(" with the taucs snmf Cholesky solver:"))
     printf(_("     norm of the residual = ") + string(norm_res_chol_2) + "\n" + ..
-           _("     same but with refinment = ") + string(norm_res_chol_2r) + "\n" + ..
+           _("     same but with refinement = ") + string(norm_res_chol_2r) + "\n" + ..
            _("     computing time       = ") + string(t2_chol) + "\n")
 
     if num == max(winsid()) then

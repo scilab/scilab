@@ -400,10 +400,6 @@ msgid "     norm of the residual    = "
 msgstr ""
 
 #, c-format
-msgid "     same but with refinment = "
-msgstr ""
-
-#, c-format
 msgid "     norm of the residual     = "
 msgstr ""
 

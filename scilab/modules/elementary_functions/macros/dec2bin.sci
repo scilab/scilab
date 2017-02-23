@@ -16,13 +16,13 @@
 // Author : F.Belahcene
 // DEC2BIN function
 //
-// Given x, a positive scalar/vector/matix of reals, this function returns
+// Given x, a positive scalar/vector/matrix of reals, this function returns
 // a column vector of strings. Each string is the binary representation
 // of the input argument components (i.e y(i) is the binary representation
 // of x(i))
 //
 // -Inputs :
-//    x : a  scalar/vector/matix of positives reals
+//    x : a  scalar/vector/matrix of positives reals
 //    n : an integer
 // -Output :
 //    y : a vector of strings (positives)

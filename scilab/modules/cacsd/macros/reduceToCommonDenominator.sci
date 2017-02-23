@@ -15,7 +15,7 @@ function [Zc,Pc]=reduceToCommonDenominator(Z,P,K)
         "reduceToCommonDenominator",2))
     end
     if type(K)<>1|~isreal(K) then
-        error(msprintf(_("%s: Wrong type for input argument #%d: real matix expected.\n"),...
+        error(msprintf(_("%s: Wrong type for input argument #%d: real matrix expected.\n"),...
         "reduceToCommonDenominator",3))
     end
 

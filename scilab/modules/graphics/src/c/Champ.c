@@ -144,7 +144,7 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
     getGraphicObjectProperty(iNewSegsUID, __GO_BOUNDING_BOX__, jni_double_vector, (void **)&boundingBox);
     if (!boundingBox)
     {
-        Scierror(999, _("%s: Could not retrive bounding box.\n"), "champg");
+        Scierror(999, _("%s: Could not retrieve bounding box.\n"), "champg");
         return;
     }
 

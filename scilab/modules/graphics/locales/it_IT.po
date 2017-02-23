@@ -649,7 +649,7 @@ msgid "The parent has to be a SUBWIN\n"
 msgstr "Il padre deve essere una SUBWIN\n"
 
 #, c-format
-msgid "%s: Could not retrive bounding box.\n"
+msgid "%s: Could not retrieve bounding box.\n"
 msgstr ""
 
 #, c-format
@@ -657,7 +657,7 @@ msgid "%s is only made to compute level curves and not display them.\n"
 msgstr ""
 "%s è creato solo per calcolare le curve di livello e non per mostrarle.\n"
 
-msgid "Could not retrive bounds.\n"
+msgid "Could not retrieve bounds.\n"
 msgstr ""
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"

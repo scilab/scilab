@@ -50,7 +50,7 @@
         <para>
             <varname>M</varname> data structure contains the vector of matrix dimensions
             <code>M('dims')</code> and the vector of entries <code>M('entries')</code> such as
-            the leftmost subcripts vary first
+            the leftmost subscripts vary first
             <literal>[M(1,1,..);..;M(n1,1,..);...;M(1,n2,..);..;M(n1,n2,..);...]</literal>
         </para>
         <para>

@@ -1567,7 +1567,7 @@ msgid "Transmission zeros and poles"
 msgstr "Zéros et pôles de transmission"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
+msgid "%s: Wrong type for input argument #%d: real matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée #%d : matrice réelle attendue.\n"
 

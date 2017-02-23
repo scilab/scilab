@@ -1588,7 +1588,7 @@ msgid "Transmission zeros and poles"
 msgstr "Перехід нулів і полюсів"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
+msgid "%s: Wrong type for input argument #%d: real matrix expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мала бути матриця із дійсних "
 "значень.\n"

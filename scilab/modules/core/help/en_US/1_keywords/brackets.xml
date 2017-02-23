@@ -246,7 +246,7 @@
                     <para>
                         <itemizedlist>
                             <listitem>Recipients must be variables.
-                                Litteral expressions are not accepted.
+                                Literal expressions are not accepted.
                             </listitem>
                             <listitem>Variables shall be separated with comas.
                             </listitem>

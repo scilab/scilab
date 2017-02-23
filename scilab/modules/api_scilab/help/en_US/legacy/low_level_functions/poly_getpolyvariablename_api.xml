@@ -132,7 +132,7 @@ int read_poly(char *fname,void* pvApiCtx)
 		return 0;
 	}
 
-	//First call: retrieve dimmension
+	//First call: retrieve dimension
 	sciErr = getComplexMatrixOfPoly(pvApiCtx, piAddr, &iRows, &iCols, NULL, NULL, NULL);
 	if(sciErr.iErr)
 	{

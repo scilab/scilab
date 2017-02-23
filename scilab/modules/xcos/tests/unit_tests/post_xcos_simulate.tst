@@ -49,7 +49,7 @@ function analyze_post_simulate(%cpr, scs_m, needcompile)
         end
     end
 
-// Diplay Diagram analisys.
+// Diplay Diagram analysis.
     disp("Diagram Analysis:")
     disp("Found "+string(blocks)+" Blocks.")
     disp("Found "+string(links)+" Links.")

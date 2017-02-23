@@ -83,7 +83,7 @@
                         From <literal>Q*R = X</literal> , it follows that
                         the kth column of the matrix <literal>X</literal>, is expressed as a linear combination
                         of the k first columns of <literal>Q</literal> (with coefficients <literal> R(1,k), ..., R(k,k) </literal>). The  k first columns of <literal>Q</literal> make an orthogonal basis
-                        of the subspace spanned by the k first comumns of <literal>X</literal>. If column <literal>k</literal>
+                        of the subspace spanned by the k first columns of <literal>X</literal>. If column <literal>k</literal>
                         of <literal>X</literal> (i.e. <literal>X(:,k)</literal> ) is a linear combination of the first
                         <literal>p</literal> columns of <literal>X</literal>, then the entries <literal>R(p+1,k), ..., R(k,k)</literal>
                         are zero. It this situation, <literal>R</literal> is upper trapezoidal. If <literal>X</literal> has

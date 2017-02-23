@@ -39,7 +39,7 @@
                 <listitem>
                     <para>
                         Optional argument specifying the light properties. The optional arguments are set using
-                        sintax: <literal>"light(propname1=propvalue1, propname2=propvalue2, ..., propnameN=propvalueN)"</literal>.
+                        syntax: <literal>"light(propname1=propvalue1, propname2=propvalue2, ..., propnameN=propvalueN)"</literal>.
                     </para>
                     <para>Following there is the list of optional arguments:</para>
                     <variablelist>

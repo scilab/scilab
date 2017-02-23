@@ -161,7 +161,7 @@
         <para>
             <literal>S=zpk(z,p,k,dt)</literal> forms the single-input,
             single output zero pole gain system representation given the
-            vecteors of the transmission zeros and poles and the scalar
+            vectors of the transmission zeros and poles and the scalar
             gain.
         </para>
         <para>

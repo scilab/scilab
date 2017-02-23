@@ -135,7 +135,7 @@ consolebox()
 // processed in the consolebox:
 host("echo Test of output") // displays "Test of output" in the consolebox
 host("cls")  // clears the consolebox screen
-host("set")  // lists all defined MS Windows environnement variables
+host("set")  // lists all defined MS Windows environment variables
 
 // Other unix_#() commands catch results returned by the Operating System
 //  instead of displaying them in the consolebox:

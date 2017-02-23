@@ -46,7 +46,7 @@ dir
     <refsection>
         <title>Particular cases</title>
         <para>
-            When used in command window, Scilab and Matlab <emphasis role="bold">dir</emphasis> are equivalents. When result is stored in a value, Matlab returns a struture but Scilab returns a tlist. To get the same result, you can use <emphasis role="bold">mtlb_dir</emphasis>, note that in this case, hidden files are not get.
+            When used in command window, Scilab and Matlab <emphasis role="bold">dir</emphasis> are equivalents. When result is stored in a value, Matlab returns a structure but Scilab returns a tlist. To get the same result, you can use <emphasis role="bold">mtlb_dir</emphasis>, note that in this case, hidden files are not get.
         </para>
     </refsection>
 </refentry>

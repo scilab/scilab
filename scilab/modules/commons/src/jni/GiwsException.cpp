@@ -233,7 +233,7 @@ return res;
 
   /**
    * To be called when all the information about the exceptions have been
-   * retrived.
+   * retrieved.
    * Remove the exception from the environment.
    */
   void JniException::closeException(JNIEnv * curEnv)

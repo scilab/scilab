@@ -17,7 +17,7 @@ function M=hypermat(dims,v)
     // all entries are set to 0
     //
     // M data structure contains the vector of matrix dimensions M('dims')
-    // and the vector of entries M('entries') such as the leftmost subcripts vary first
+    // and the vector of entries M('entries') such as the leftmost subscripts vary first
     // [M(1,1,..);..;M(n1,1,..);...;M(1,n2,..);..;M(n1,n2,..);...]
     warnobsolete("matrix", "6.1.0");
     [lhs,rhs]=argn(0)

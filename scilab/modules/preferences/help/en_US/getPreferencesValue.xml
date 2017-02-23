@@ -136,7 +136,7 @@
         </para>
         <para>
             The <varname>path2tag</varname> argument must be a valid "XPath" according to the
-            <ulink url="https://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandations</ulink>.
+            <ulink url="https://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommendations</ulink>.
             Examples are given herebelow. If the path uses a intermediate or a final tag that does
             not exist, or if one of the queried attributes does not exist, an error is yielded.
         </para>

@@ -85,7 +85,7 @@ void sciGetDisplayedBounds(int iSubWinUID,
 
     if (!bounds)
     {
-        Scierror(999, _("Could not retrive bounds.\n"));
+        Scierror(999, _("Could not retrieve bounds.\n"));
         return;
     }
 

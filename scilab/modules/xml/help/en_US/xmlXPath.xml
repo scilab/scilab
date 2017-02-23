@@ -57,7 +57,7 @@
         <title>Description</title>
         <para>Make a XPath query on a document or in starting on an element. If you need to use namespaces, then you must define them in using the optional argument. XML namespaces are defined in the first tag with the keyword "xmlns".</para>
         <para>
-            For more information about XPath, you can read the <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>.
+            For more information about XPath, you can read the <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommendation</ulink>.
         </para>
     </refsection>
     <refsection>
@@ -132,7 +132,7 @@
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C XPath recommandation</ulink>
+                <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C XPath recommendation</ulink>
             </member>
             <member>
                 <ulink url="http://www.w3schools.com/xpath/">XPath tutorial</ulink>

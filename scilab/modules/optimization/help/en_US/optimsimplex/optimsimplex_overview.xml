@@ -110,7 +110,7 @@
         </para>
         <para>
             The simplex can be created with various shapes. It can be configured
-            and queried at will. The simplex can also be reflected or shrinked. The
+            and queried at will. The simplex can also be reflected or shrunk. The
             simplex gradient can be computed with an order 1 forward formula and with an
             order 2 centered formula.
         </para>

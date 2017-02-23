@@ -695,7 +695,7 @@ msgid "The parent has to be a SUBWIN\n"
 msgstr "Батьківським елементом має бути SUBWIN\n"
 
 #, c-format
-msgid "%s: Could not retrive bounding box.\n"
+msgid "%s: Could not retrieve bounding box.\n"
 msgstr "%s: не вдалося отримати обмежувальну рамку.\n"
 
 #, c-format
@@ -704,7 +704,7 @@ msgstr ""
 "%s призначено для обчислення даних кривих рівнів, а не для показу цих "
 "кривих.\n"
 
-msgid "Could not retrive bounds.\n"
+msgid "Could not retrieve bounds.\n"
 msgstr "Не вдалося отримати межі.\n"
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"

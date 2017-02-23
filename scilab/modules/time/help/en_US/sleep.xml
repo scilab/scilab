@@ -44,7 +44,7 @@
         <title>Description</title>
         <para>
             <function>sleep</function> stops Scilab processing any instruction for
-            a specified number of miliseconds or seconds:
+            a specified number of milliseconds or seconds:
             <para>
                 <variablelist>
                     <varlistentry>

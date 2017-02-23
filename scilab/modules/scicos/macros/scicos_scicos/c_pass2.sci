@@ -2291,7 +2291,7 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,.
         sizenin=size(ll.in,"*");
         if (size(ll.dep_ut,"*") <> 2) then
             if ( size(ll.dep_ut(1:$-1),"*") <> sizenin) then
-                msg = _("the dep_ut size of the %s block is not correct.\nIt should be a colon vector of size %d.")
+                msg = _("the dep_ut size of the %s block is not correct.\nIt should be a column vector of size %d.")
                 messagebox(msprintf(msg, ll.sim(1), sizenin+1), "modal", "error")
                 ok=%f;
             end
