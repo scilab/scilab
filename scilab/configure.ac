@@ -546,7 +546,6 @@ case "$CXX" in
         else
             DEBUG_CXXFLAGS="-DNDEBUG"
         fi
-        COMPILER_CXXFLAGS="$COMPILER_CXXFLAGS -fno-stack-protector " # bug 3131
     ;;
 
 esac
