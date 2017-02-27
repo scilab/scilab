@@ -385,6 +385,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 
 ### Bugs fixed in 6.0.1:
 * [#2441](http://bugzilla.scilab.org/show_bug.cgi?id=2441): `%onprompt()` could be defined only at the top execution level.
+* [#3256](http://bugzilla.scilab.org/show_bug.cgi?id=3256): The cursor of slider uicontrol is not displayed if the slider step is not an integer value.
 * [#4276](http://bugzilla.scilab.org/show_bug.cgi?id=4276): `strsubst` replaced the first occurence in regex mode.
 * [#5248](http://bugzilla.scilab.org/show_bug.cgi?id=5248): The graphical entity picker was out of work.
 * [#5278](http://bugzilla.scilab.org/show_bug.cgi?id=5278): obsolete `xset()` was still used in scripts, macros, tests and help pages.
