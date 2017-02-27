@@ -9,7 +9,7 @@
 // White-box test for the xcosPalGenerateAllIcons.
 loadXcosLibs();
 // on the standard palette
-xcosPalGenerateAllIcons(["Palettes" "Commonly Used Blocks"]);
+xcosPalGenerateAllIcons(["Palettes" "Recently Used Blocks"]);
 // on a custom palette
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, "BIGSOM_f", "SCI/modules/xcos/images/palettes/GOTO.png", "SCI/modules/xcos/images/palettes/GOTO.png");

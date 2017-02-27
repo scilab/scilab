@@ -159,7 +159,7 @@ public final class XcosMessages {
     public static final String DISCRETE_PAL = Messages.gettext("Discrete time systems");
     public static final String EVENTS_PAL = Messages.gettext("Event handling");
     public static final String SIGNALROUTING_PAL = Messages.gettext("Signal Routing");
-    public static final String COMMONUSED_PAL = Messages.gettext("Commonly Used Blocks");
+    public static final String RECENTLYUSED_PAL = Messages.gettext("Recently Used Blocks");
     public static final String USERDEFINEDFUNCTIONS_PAL = Messages.gettext("User-Defined Functions");
     public static final String DEMOBLOCKS_PAL = Messages.gettext("Demonstrations Blocks");
     public static final String ELECTRICAL_PAL = Messages.gettext("Electrical");
