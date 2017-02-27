@@ -462,6 +462,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15015](http://bugzilla.scilab.org/show_bug.cgi?id=15015): Xcos blocks using the `ascii` didn't work
 * [#15017](http://bugzilla.scilab.org/show_bug.cgi?id=15017): On numbers, `gcd` result was always of `int32` type instead of matching the input type.
 * [#15019](http://bugzilla.scilab.org/show_bug.cgi?id=15019): Add 'csci6' in the calling of ilib_build in 'Getting started with API_Scilab' help page.
+* [#15020](http://bugzilla.scilab.org/show_bug.cgi?id=15020): Examples of ilib_build help page updated.
 * [#15023](http://bugzilla.scilab.org/show_bug.cgi?id=15023): `clf()` wrongly reset `figure_id`.
 * [#15024](http://bugzilla.scilab.org/show_bug.cgi?id=15024): Xcos labels were not preserved at diagram compilation.
 * [#15028](http://bugzilla.scilab.org/show_bug.cgi?id=15028): `assert_checkalmostequal` could not work with polynomials.
