@@ -24,6 +24,7 @@
 #include "pcre_private.h"
 #include "os_string.h"
 #include "charEncoding.h"
+#include "pcre_error.h"
 /*--------------------------------------------------------------------------*/
 char **strsubst(const char **strings_input, int strings_dim, const char *string_to_search, const char *replacement_string)
 {
@@ -255,7 +256,11 @@ wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const
     pcre_error_code iPcreStatus = PCRE_FINISHED_OK;
     int iStart = 0;
     int iEnd = 0;
-    int iLen = 0;
+    int len = (int)wcslen(_pwstInput);
+    int* arriStart = (int*)MALLOC(sizeof(int) * len);
+    int* arriEnd = (int*)MALLOC(sizeof(int) * len);
+    int iOccurs = 0;
+    int iJump = 0;
 
     wchar_t* pwstOutput = NULL;
 
@@ -269,28 +274,75 @@ wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const
         return os_wcsdup(_pwstInput);
     }
 
-    iPcreStatus = wide_pcre_private((wchar_t*)_pwstInput, (wchar_t*)_pwstSearch, &iStart, &iEnd, NULL, NULL);
-    if (iPcreStatus != PCRE_FINISHED_OK)
+    do
+    {
+        iPcreStatus = wide_pcre_private(_pwstInput + iJump, _pwstSearch, &iStart, &iEnd, NULL, NULL);
+        if (iPcreStatus == PCRE_FINISHED_OK)
+        {
+            if (iEnd != iStart)
+            {
+                arriStart[iOccurs] = iStart + iJump;
+                arriEnd[iOccurs++] = iEnd + iJump;
+                iJump += iEnd;
+            }
+            else if (iEnd == 0 && _pwstInput[iJump] != L'\0')
+            {
+                //avoid infinite loop
+                iJump++;
+            }
+        }
+        else if (iPcreStatus != NO_MATCH)
+        {
+            pcre_error("strsubst", iPcreStatus);
+            FREE(arriStart);
+            FREE(arriEnd);
+            return NULL;
+        }
+    } while (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd);
+
+    if (iOccurs)
+    {
+        int i = 0;
+        int replaceLen = (int)wcslen(_pwstReplace);
+        int finalSize = len;
+        wchar_t* result = NULL;
+        //compute final size
+        for (i = 0; i < iOccurs; ++i)
+        {
+            finalSize -= (arriEnd[i] - arriStart[i]);
+            finalSize += replaceLen;
+        }
+
+        result = (wchar_t*)MALLOC(sizeof(wchar_t) * (finalSize + 1));
+        result[0] = '\0';
+
+        //from start to first occurence
+        wcsncat(result, _pwstInput, arriStart[0]);
+        result[arriStart[0]] = '\0';
+
+        for (i = 0; i < iOccurs - 1; ++i)
+        {
+            int curLen = (int)wcslen(result);
+            int partLen = arriStart[i + 1] - arriEnd[i];
+            //insert replace string
+            wcscat(result, _pwstReplace);
+            //copy part between 2 occurences
+            wcsncat(result, _pwstInput + arriEnd[i], partLen);
+            result[curLen + replaceLen + partLen] = '\0';
+        }
+
+        wcscat(result, _pwstReplace);
+        //copy part after last occurence
+        wcscat(result, _pwstInput + arriEnd[iOccurs - 1]);
+        return result;
+    }
+    else
     {
         *_piErr = iPcreStatus;
         return os_wcsdup(_pwstInput);
     }
 
-    //compute new size of output string
-    iLen += (int)wcslen(_pwstReplace) - (iEnd - iStart);
-
-    pwstOutput = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(_pwstInput) + iLen + 1));
-    memset(pwstOutput, 0x00, sizeof(wchar_t) * (wcslen(_pwstInput) + iLen + 1));
-
-    //copy start of original string
-    wcsncpy(pwstOutput, _pwstInput, iStart);
-    //copy replace string
-    wcscpy(pwstOutput + wcslen(pwstOutput), _pwstReplace);
-    //copy end of original string
-    wcscpy(pwstOutput + wcslen(pwstOutput), _pwstInput + iEnd);
-
-    *_piErr = iPcreStatus;
-    return pwstOutput;
+    return NULL;
 }
 /*-------------------------------------------------------------------------------------*/
 wchar_t **wcssubst_reg(const wchar_t** _pwstInput, int _iInputSize, const wchar_t* _pwstSearch, const wchar_t* _pwstReplace, int* _piErr)
