@@ -4,6 +4,11 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
+function str=mydisplay(h)
+    pt = h.data;
+    str = msprintf('The point\n (%0.2g,%0.2g,%0.2g)', pt(1), pt(2), pt(3))
+endfunction
+
 function demo_geom3d()
 
     my_handle             = scf(100001);
@@ -44,10 +49,6 @@ function demo_geom3d()
     param3d(0, 0, 0);
     e = gce();
     dt = datatipCreate(e, 0);
-    function str=mydisplay(h)
-        pt = h.data;
-        str = msprintf('The point\n (%0.2g,%0.2g,%0.2g)', pt(1), pt(2), pt(3))
-    endfunction
     datatipSetDisplay(dt,"mydisplay")
 
     a = gca();

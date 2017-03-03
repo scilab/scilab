@@ -46,8 +46,8 @@
         <para>
             <programlisting role="example"><![CDATA[
 function myExternalFunction(blk, scs_m)
-    execstr(''[ok, blk] = '' + blk.gui + ''(''''set'''', blk)'') ;
-    xcosUpdateBlock(blk) ;
+    execstr('[ok, blk] = ' + blk.gui + '(''set'', blk)');
+    xcosUpdateBlock(blk);
 endfunction
 xcosAddToolsMenu("update block", "myExternalFunction(blk, scs_m)");
 ]]></programlisting>

@@ -41,7 +41,6 @@ function []=fplot3d1(xr,yr,f,theta,alpha,leg,flag,ebox)
     if exists("leg"  ,"local")==1 then opts=[opts,"leg=leg"]    ,end
     if exists("flag" ,"local")==1 then opts=[opts,"flag=flag"]  ,end
     if exists("ebox" ,"local")==1 then opts=[opts,"ebox=ebox"]  ,end
-    if type(f)==11 then comp(f),end;
 
     execstr("plot3d1(xr,yr,feval(xr,yr,f),"+strcat(opts,",")+")")
 endfunction

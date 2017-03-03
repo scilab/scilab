@@ -40,7 +40,7 @@ function demo_ode_chstiff()
     deff("[y]=Surf(t,x)","y=[x(1)-1.e-4;x(3)-1.e-2]");
 
     // First root
-    [y,rd,w,iw] = ode("root",[1;0;0],0,t,rtol,atol,chem,2,Surf);rd;
+    [y,rd,w,iw] = ode("roots",[1;0;0],0,t,rtol,atol,chem,2,Surf);rd;
 
     while rd<>[] then
 
@@ -52,7 +52,7 @@ function demo_ode_chstiff()
         plot2d("ln", rd(1), (diag([1 10000 1])*y(:,ny))',style=[-3,-3,-3]);
 
         // Next root
-        [y,rd,w,iw]=ode("root",[1;0;0],rd(1),t(k+1:nt),rtol,atol,chem,2,Surf,w,iw);
+        [y,rd,w,iw]=ode("roots",[1;0;0],rd(1),t(k+1:nt),rtol,atol,chem,2,Surf,w,iw);
     end
 
 endfunction

@@ -96,6 +96,8 @@ class LinkHandler implements ScilabHandler {
                 }
                 refList.add(new UnresolvedReference(new ScicosObjectOwner(uid, Kind.LINK), ObjectProperties.SOURCE_PORT, ObjectProperties.CONNECTED_SIGNALS, 0));
             }
+        } else if (atts.getValue("parent") != null) {
+            return null; // Ignore the Scilab 5.5.2 "ghost links" that presented the <!--Invalid source--> tag
         }
 
         v = atts.getValue("target");

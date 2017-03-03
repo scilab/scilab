@@ -284,7 +284,7 @@ function savematfile(varargin)
                 %var=evstr(mtlb_names(k));
                 // We transpose the sparse matrix so as to ease the conversion to the matlab sparse format
                 if type(%var)==5 then %var = %var'; end
-                if and(type(%var)<>[9 11 13]) then
+                if and(type(%var)<>[9 13]) then
                     if ~matfile_varwrite(mtlb_fd, mtlb_names(k), %var, %F) then
                         error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
                     end
@@ -313,7 +313,7 @@ function savematfile(varargin)
                 %var=evstr(mtlb_names(k));
                 // We transpose the sparse matrix so as to ease the conversion to the matlab sparse format
                 if type(%var)==5 then %var = %var'; end
-                if and(type(%var)<>[9 11 13]) then
+                if and(type(%var)<>[9 13]) then
                     if ~matfile_varwrite(mtlb_fd, mtlb_names(k), %var, %T) then
                         error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
                     end
@@ -342,7 +342,7 @@ function savematfile(varargin)
                 %var=evstr(mtlb_names(k));
                 // We transpose the sparse matrix so as to ease the conversion to the matlab sparse format
                 if type(%var)==5 then %var = %var'; end
-                if and(type(%var)<>[9 11 13]) then
+                if and(type(%var)<>[9 13]) then
                     if ~matfile_varwrite(mtlb_fd, mtlb_names(k), %var, %T) then
                         error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
                     end

@@ -176,7 +176,7 @@ static int check_match_limit(pcre *re, pcre_extra *extra, char *bptr, int len,
 consist of a regular expression, in delimiters and optionally followed by
 options, followed by a set of test data, terminated by an empty line. */
 
-pcre_error_code pcre_private(char *INPUT_LINE, char *INPUT_PAT, int *Output_Start, int *Output_End, char*** _pstCapturedString, int* _piCapturedStringCount)
+pcre_error_code pcre_private(const char *INPUT_LINE, const char *INPUT_PAT, int *Output_Start, int *Output_End, char*** _pstCapturedString, int* _piCapturedStringCount)
 {
     /* ALL strings are managed as UTF-8 by default */
     int options = PCRE_UTF8;
@@ -1157,7 +1157,7 @@ SKIP_DATA:
     return PCRE_EXIT;
 }
 /*-------------------------------------------------------------------------------*/
-pcre_error_code wide_pcre_private(wchar_t* _pwstInput, wchar_t* _pwstPattern, int* _piStart, int* _piEnd, wchar_t*** _pstCapturedString, int* _piCapturedStringCount)
+pcre_error_code wide_pcre_private(const wchar_t* _pwstInput, const wchar_t* _pwstPattern, int* _piStart, int* _piEnd, wchar_t*** _pstCapturedString, int* _piCapturedStringCount)
 {
     pcre_error_code iPcreStatus = PCRE_FINISHED_OK;
     int i               = 0;

@@ -415,28 +415,28 @@ InternalType* GenericShortcutOr(InternalType* _pL)
             isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
             break;
         case InternalType::ScilabUInt8 :
-            isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
+            isValueTrue(_pL->getAs<UInt8>(), (Bool**)&pResult);
             break;
         case InternalType::ScilabInt16 :
-            isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
+            isValueTrue(_pL->getAs<Int16>(), (Bool**)&pResult);
             break;
         case InternalType::ScilabUInt16 :
-            isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
+            isValueTrue(_pL->getAs<UInt16>(), (Bool**)&pResult);
             break;
         case InternalType::ScilabInt32 :
-            isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
+            isValueTrue(_pL->getAs<Int32>(), (Bool**)&pResult);
             break;
         case InternalType::ScilabUInt32 :
-            isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
+            isValueTrue(_pL->getAs<UInt32>(), (Bool**)&pResult);
             break;
         case InternalType::ScilabInt64 :
-            isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
+            isValueTrue(_pL->getAs<Int64>(), (Bool**)&pResult);
             break;
         case InternalType::ScilabUInt64 :
-            isValueTrue(_pL->getAs<Int8>(), (Bool**)&pResult);
+            isValueTrue(_pL->getAs<UInt64>(), (Bool**)&pResult);
             break;
         case InternalType::ScilabSparse :
-            isValueTrue(_pL->getAs<SparseBool>(), (Bool**)&pResult);
+            isValueTrue(_pL->getAs<Sparse>(), (Bool**)&pResult);
             break;
         case InternalType::ScilabSparseBool :
             isValueTrue(_pL->getAs<SparseBool>(), (Bool**)&pResult);

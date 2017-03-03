@@ -15,16 +15,16 @@
  * along with this program.
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ode_root" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ode_roots" xml:lang="ru">
     <refnamediv>
-        <refname>ode_root</refname>
+        <refname>ode_roots</refname>
         <refpurpose>
             программа решения обыкновенных дифференциальных уравнений с поиском корней
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>[y, rd, w, iw] = ode("root", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [,w, iw])</synopsis>
+        <synopsis>[y, rd, w, iw] = ode("roots", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [,w, iw])</synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
         <title>Аргументы</title>
@@ -105,7 +105,7 @@
     <refsection role="description">
         <title>Описание</title>
         <para>
-            С таким синтаксисом (первый аргумент равен <literal>"root"</literal>) <literal>ode</literal> вычисляет решение дифференциального уравнения  <literal>dy/dt=f(t,y)</literal> до тех пор, пока состояние <literal>y(t)</literal> не пересечёт поверхность <literal>g(t,y)=0</literal>.
+            С таким синтаксисом (первый аргумент равен <literal>"roots"</literal>) <literal>ode</literal> вычисляет решение дифференциального уравнения  <literal>dy/dt=f(t,y)</literal> до тех пор, пока состояние <literal>y(t)</literal> не пересечёт поверхность <literal>g(t,y)=0</literal>.
         </para>
         <para>
             <literal>g</literal> должно задавать уравнение поверхности. Это внешняя функция, то есть функция с определённым синтаксисом или имя процедуры Fortran или функции C (символьная строка) с определённой последовательностью вызова или список.

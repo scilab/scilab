@@ -60,11 +60,9 @@ function [] = fchamp(macr_f,fch_t,fch_xr,fch_yr,arfact,rect,strf)
     if exists("strf","local")==1 then opts=[opts,"strf=strf"],end
 
     if type(macr_f) <> 15,
-        if type(macr_f)==11 then comp(macr_f),end;
         deff("[yy]=mmm(x1,x2)",["xx=macr_f(fch_t,[x1;x2])";"yy=xx(1)+%i*xx(2);"]);
     else
         mmm1=macr_f(1)
-        if type(mmm1)==11 then comp(mmm1),end;
         deff("[yy]=mmm(x1,x2)",["xx=mmm1(fch_t,[x1;x2],macr_f(2));";
         "yy=xx(1)+%i*xx(2);"]);
     end

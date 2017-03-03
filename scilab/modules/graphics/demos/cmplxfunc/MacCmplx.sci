@@ -84,6 +84,7 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 
     current_figure_hdl = scf(100001);
     clf(current_figure_hdl,"reset");
+    current_figure_hdl.rotation_style = "multiple";
 
     drawlater();
 

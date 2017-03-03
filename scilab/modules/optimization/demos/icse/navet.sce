@@ -12,7 +12,8 @@
 
 function demo_navet()
 
-    cd "SCI/modules/optimization/demos/icse/"
+    copyfile("SCI/modules/optimization/demos/icse/", "TMPDIR/icse");
+    cd("TMPDIR/icse");
 
     libn  = ilib_for_link("icsenb", "icsenb.f",[], "f", "", "", "", "-L"+SCI+"/modules/optimization/.libs/ -lscioptimization")
     nlink = link("./"+libn, ["icsenb", "icsenf"], "f")

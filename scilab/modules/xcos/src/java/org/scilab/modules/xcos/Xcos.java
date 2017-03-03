@@ -74,7 +74,8 @@ import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.view.mxStylesheet;
-import java.util.stream.Collectors;
+import javax.swing.Timer;
+import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosGraphModel;
 
@@ -112,12 +113,18 @@ public final class Xcos {
     private static volatile Xcos sharedInstance;
 
     static {
-        Scilab.registerInitialHook(new Runnable() {
-            @Override
-            public void run() {
+        Scilab.registerInitialHook(() -> {
+            // wait the Scilab startup termination
+            final Timer t = new Timer(500, null);
+            t.addActionListener((e) -> {
+                if (ScilabCommons.getStartProcessing() == 1)
+                    return;
+                t.stop();
+
                 /* load scicos libraries (macros) */
                 InterpreterManagement.requestScilabExec(LOAD_XCOS_LIBS_LOAD_SCICOS);
-            }
+            });
+            t.start();
         });
 
         XConfiguration.addXConfigurationListener(new XcosConfiguration());

@@ -135,7 +135,7 @@ function clf(varargin)
         "icon"
         "tag"
         ];
-        excluded0 = ["children" "dockable" "menubar" "toolbar" "immediate_drawing"]
+        excluded0 = ["children" "figure_id" "dockable" "menubar" "toolbar" "immediate_drawing"]
         excluded0 = [excluded0 "layout" "layout_options"] // http://bugzilla.scilab.org/14955
         for k = 1: nbHandles
             curFig = h(k);

@@ -39,8 +39,8 @@ typedef enum
 } pcre_error_code;
 
 
-STRING_IMPEXP pcre_error_code pcre_private(char *INPUT_LINE, char *INPUT_PAT, int *Output_Start, int *Output_End, char*** _pstCapturedString, int* _piCapturedStringCount);
-STRING_IMPEXP pcre_error_code wide_pcre_private(wchar_t *INPUT_LINE, wchar_t *INPUT_PAT, int *Output_Start, int *Output_End, wchar_t*** _pstCapturedString, int* _piCapturedStringCount);
+STRING_IMPEXP pcre_error_code pcre_private(const char *INPUT_LINE, const char *INPUT_PAT, int *Output_Start, int *Output_End, char*** _pstCapturedString, int* _piCapturedStringCount);
+STRING_IMPEXP pcre_error_code wide_pcre_private(const wchar_t *INPUT_LINE, const wchar_t *INPUT_PAT, int *Output_Start, int *Output_End, wchar_t*** _pstCapturedString, int* _piCapturedStringCount);
 
 #endif /* __PCRE_PRIVATE_H__ */
 /*------------------------------------------------------------------------*/

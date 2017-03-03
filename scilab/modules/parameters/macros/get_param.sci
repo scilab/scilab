@@ -18,23 +18,23 @@ function [result,err] = get_param(list_name,param_name,param_default)
         param_default = [];
     end
 
-    if ( or(type(param_default) == [13 11]) ) then
+    if ( type(param_default) == 13) then
         prot=funcprot()
         funcprot(0);
     end
     result = param_default;
-    if ( or(type(param_default) == [13 11]) ) then
+    if (type(param_default) == 13) then
         funcprot(prot);
     end
 
     if typeof(list_name)=="plist" then
         if is_param(list_name,param_name) then
-            if ( or(type(param_default) == [13 11]) ) then
+            if (type(param_default) == 13) then
                 prot=funcprot()
                 funcprot(0);
             end
             result = list_name(param_name);
-            if ( or(type(param_default) == [13 11]) ) then
+            if (type(param_default) == 13) then
                 funcprot(prot);
             end
             if nargout==2 then

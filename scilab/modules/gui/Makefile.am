@@ -218,7 +218,7 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_datatip_set_orient.cpp \
     sci_gateway/cpp/sci_saveGui.cpp \
     sci_gateway/cpp/sci_loadGui.cpp \
-    sci_gateway/cpp/sci_x_choice.cpp \
+    sci_gateway/cpp/sci_xchoicesi.cpp \
     sci_gateway/cpp/sci_uigetcolor.cpp \
     sci_gateway/cpp/sci_ClipBoard.cpp \
     sci_gateway/cpp/sci_x_mdialog.cpp \

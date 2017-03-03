@@ -35,7 +35,7 @@ function []=Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colou
     if ~(type(y)==1 & isreal(y)) then
         error(msprintf(gettext("%s: Input argument #%d must be real.\n"), "Sfgrayplot", 2))
     end
-    if type(f)~=11 & type(f)~=13 then
+    if type(f)~=13 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: function expected.\n"), "Sfgrayplot", 3));
     end
 

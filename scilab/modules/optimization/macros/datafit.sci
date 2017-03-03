@@ -70,7 +70,7 @@ function [p,err]=datafit(iprint,G,varargin)
 
 
     DG=varargin(1)
-    if type(DG)==10|type(DG)==11|type(DG)==13 then
+    if type(DG)==10|type(DG)==13 then
         GR=%t  //Jacobian provided
         varargin(1)=null()
     elseif type(DG)==15 then

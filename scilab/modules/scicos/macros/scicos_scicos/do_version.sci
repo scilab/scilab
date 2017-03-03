@@ -111,7 +111,7 @@ function scs_m_new=do_version43(scs_m)
             omod=o.model;
 
             // Clear the doc fields if it contains a function pointer
-            if type(o.doc) == 15 & size(o.doc) > 1 & (type(o.doc(1)) == 11 | type(o.doc(1)) == 13) then
+            if type(o.doc) == 15 & size(o.doc) > 1 & type(o.doc(1)) == 13 then
                 scs_m_new.objs(j).doc = list();
             end
 
@@ -2012,22 +2012,10 @@ function o=block_version(o)
         label=" "
         gr_i=["xstringb(orig(1),orig(2),''Trash'',sz(1),sz(2),''fill'')"]
     case "WFILE_f" then
-        state=model(7)
-        [in,ipar]=model([2  9])
-        N=ipar(3);
-        lunit=state(2)
-        N=ipar(4)
-        lfil=ipar(1)
-        lfmt=ipar(2)
-        if lfil>0 then fname=ascii(ipar(5:4+lfil)),else fname=" ",end
-        if lfmt>0 then Fmt=ascii(ipar(5+lfil:4+lfil+lfmt)),else Fmt=" ",end
-        label=[sci2exp(in);
-        fname;
-        Fmt;
-        string(N)]
-
-        gr_i=["txt=[''write to'';''output file''];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"]
+        write(%io(2),["PB with WFILE_f";
+        "Obsolete block, please use WRITEC_f instead."])
+        label=[]
+        gr_i=[]
     case "ZCROSS_f" then
         in=model(2)
         label=strcat(sci2exp(in))

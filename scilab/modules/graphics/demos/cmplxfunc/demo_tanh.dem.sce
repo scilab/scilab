@@ -16,9 +16,6 @@ function demo_tanh()
     theta = -130;
     alpha = 73;
 
-    my_handle = scf(100001);
-    clf(my_handle,"reset");
-
     PlotCmplxFunc(R,e,"Square","Ox",41,"tanh",theta,alpha,[-R,R]);
     demo_viewCode("demo_tanh.dem.sce");
 

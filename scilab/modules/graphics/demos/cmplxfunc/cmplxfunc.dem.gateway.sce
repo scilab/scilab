@@ -12,6 +12,7 @@ subdemolist = ["log"       ,"demo_log.dem.sce"    ; ..
 "sin"       ,"demo_sin.dem.sce"    ; ..
 "asin"      ,"demo_asin.dem.sce"   ; ..
 "cos"       ,"demo_cos.dem.sce"    ; ..
+"acos"      ,"demo_acos.dem.sce"  ; ..
 "sinh"      ,"demo_sinh.dem.sce"   ; ..
 "asinh"     ,"demo_asinh.dem.sce"  ; ..
 "cosh"      ,"demo_cosh.dem.sce"   ; ..

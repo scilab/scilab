@@ -41,7 +41,7 @@ function z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,...
     if ~exists("ystart","local") then
         %ys=%ystart1; iguess=0;
     else
-        if and(type(ystart)<>[13 15 11]) then
+        if and(type(ystart)<>[13 15]) then
             error(msprintf(gettext("%s: Wrong type for input argument #%s: external expected.\n"),"bvodeS","guess"));
         end
         %ys=%ystart;iguess=1;
@@ -50,7 +50,7 @@ function z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,...
     if ~exists("dfsub","local") then
         dfsubA=%dfsub;
     else
-        if and(type(ystart)<>[13 15 11]) then
+        if and(type(ystart)<>[13 15]) then
             error(msprintf(gettext("%s: Wrong type for input argument #%s: external expected.\n"),"bvodeS","dfsub"));
         end
         dfsubA=%dfsub1;
@@ -58,7 +58,7 @@ function z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,...
     if ~exists("dgsub","local") then
         dgsubA=%dgsub;
     else
-        if and(type(ystart)<>[13 15 11]) then
+        if and(type(ystart)<>[13 15]) then
             error(msprintf(gettext("%s: Wrong type for input argument #%s: external expected.\n"),"bvodeS","dgsub"));
         end
         dgsubA=%dgsub1;

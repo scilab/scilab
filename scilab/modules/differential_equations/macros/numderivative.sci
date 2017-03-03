@@ -26,14 +26,14 @@ function [J, H] = numderivative(varargin)
     //
     // Get input arguments
     __numderivative_f__ = varargin(1)
-    if and(type(__numderivative_f__) <> [11 13 15 130]) then
+    if and(type(__numderivative_f__) <> [13 15 130]) then
         // Must be a function (uncompiled or compiled) or a list
         error(msprintf(gettext("%s: Wrong type for argument #%d: Function or list expected.\n"), "numderivative", 1));
     end
     if type(__numderivative_f__) == 15 then
         // List case
         // Check that the first element in the list is a function
-        if and(type(__numderivative_f__(1)) <> [11 13]) then
+        if type(__numderivative_f__(1)) <> 13 then
             error(msprintf(gettext("%s: Wrong type for argument #%d: Function expected in first element of list.\n"), "numderivative", 1));
         end
         if length(__numderivative_f__) < 2 then
@@ -341,7 +341,7 @@ function y = numderivative_evalf(__numderivative_f__, x)
         // List case
         __numderivative_fun__ = __numderivative_f__(1);
         instr = "y = __numderivative_fun__(x, __numderivative_f__(2:$))";
-    elseif or(type(__numderivative_f__) == [11 13 130]) then
+    elseif or(type(__numderivative_f__) == [13 130]) then
         // Function case
         instr = "y = __numderivative_f__(x)";
     else

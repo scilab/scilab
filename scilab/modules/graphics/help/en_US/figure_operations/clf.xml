@@ -39,7 +39,8 @@
                 <term>numFig</term>
                 <listitem>
                     <para>
-                        Vector of indices of figures to clear or reset (<literal>.figure_id</literal> values). By default, the current figure is targeted.
+                        Vector of indices of figures to clear or reset (<literal>.figure_id</literal>
+                        values). By default, the current figure is targeted.
                     </para>
                 </listitem>
             </varlistentry>
@@ -47,14 +48,16 @@
                 <term>figFrameHandle</term>
                 <listitem>
                     <para>
-                        Vector of handles of figures or frame uicontrol to clear or reset. Mixing figures and frames is possible. By default, the current figure is targeted.
+                        Vector of handles of figures or frame uicontrol to clear or reset. Mixing
+                        figures and frames is possible. By default, the current figure is targeted.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"reset"</term>
                 <listitem>
-                    Provide this option keyword to reset properties of chosen figures to their default values, in addition to deleting the figures contents.
+                    Provide this option keyword to reset properties of chosen figures to their
+                    default values, in addition to deleting the figures contents.
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -62,8 +65,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>clf</literal> command can be used to delete all children of a given graphic window, hence clearing it.
-            If the <literal>"reset"</literal> keyword is used, in addition most of the figure properties are reset to their default values.
+            The <literal>clf</literal> command can be used to delete all children of a given
+            graphic window, hence clearing it. If the <literal>"reset"</literal> keyword is used,
+            in addition most of the figure properties are reset to their default values.
             The detailled changes are now described:
         </para>
         <para>
@@ -73,34 +77,54 @@
                     <para>
                     <itemizedlist>
                         <listitem>
-                                All visible and invisible axes of each targeted figure or frame are deleted.
+                            All visible and invisible axes of each targeted figure or frame are
+                            deleted.
                         </listitem>
                         <listitem>
-                                All menus whose figure.children handles are not hidden are deleted. It is possible to protect them with <literal>set(get(0), "ShowHiddenHandles", "off")</literal>. This then applies to all opened figures and forthcoming ones. See <link linkend="console_properties">ShowHiddenHandles</link>.
+                            All menus whose figure.children handles are not hidden are deleted.
+                            It is possible to protect them with
+                            <literal>set(get(0), "ShowHiddenHandles", "off")</literal>.
+                            This then applies to all opened figures and forthcoming ones.
+                            See <link linkend="console_properties">ShowHiddenHandles</link>.
                         </listitem>
                         <listitem>
-                                The message in the status bar of each figure is cleared.
+                            The message in the status bar of each figure is cleared.
                         </listitem>
                         <listitem>
-                                The event handler of each figure is disabled, but their references are kept .
+                            The event handler of each figure is disabled, but their references are kept .
                         </listitem>
                     </itemizedlist>
                     </para>
                     <para>
-                        Values of all <link linkend="figure_properties">figures properties</link> are unchanged, except <literal>.info_message=""</literal> and <literal>.event_handler_enable="off"</literal> that are forced.
+                        Values of all <link linkend="figure_properties">figures properties</link>
+                        are unchanged, except <literal>.info_message=""</literal> and
+                        <literal>.event_handler_enable="off"</literal> that are forced.
                     </para>
                 </listitem>
                 <listitem>
                     <para>
-                        <literal>"reset"</literal>: in addition to default actions, <literal>"reset"</literal> resets most of figures properties to their default values, as specified by <function>gdf()</function>. This applies only to figures.
+                        <literal>"reset"</literal>: in addition to default actions,
+                        <literal>"reset"</literal> resets most of figures properties to their
+                        default values, as specified by <function>gdf()</function>.
+                        This applies only to figures.
                     </para>
                     <warning>
                         <itemizedlist>
                             <listitem>
-                                <emphasis role="italic">Some properties are never reset</emphasis>: <literal>.toolbar</literal>,  <literal>.menubar</literal>, <literal>.layout</literal>,  <literal>.layout_options</literal>, and <literal>.dockable</literal> can be set only once and so are never resettable.
+                                <emphasis role="italic">Some properties are never reset</emphasis>:
+                                The figure's number <literal>.figure_id</literal> is kept as is.
+                                <literal>.toolbar</literal>,  <literal>.menubar</literal>,
+                                <literal>.layout</literal>,  <literal>.layout_options</literal>,
+                                and <literal>.dockable</literal> can be set only once and so are
+                                never resettable.
                             </listitem>
                             <listitem>
-                                <emphasis role="italic">For docked figures</emphasis>: <literal>.figure_position</literal>, <literal>.figure_size</literal>, and <literal>.axes_size</literal> are unchanged if the parent figure is docked to the Scilab's desktop or to another Scilab interface. Changing their value would change the position or size of the whole block of docked interfaces, not only the targeted figure.
+                                <emphasis role="italic">For docked figures</emphasis>:
+                                <literal>.figure_position</literal>, <literal>.figure_size</literal>,
+                                and <literal>.axes_size</literal> are unchanged if the parent figure
+                                is docked to the Scilab's desktop or to another Scilab interface.
+                                Changing their value would change the position or size of the whole
+                                block of docked interfaces, not only the targeted figure.
                             </listitem>
                         </itemizedlist>
                     </warning>
@@ -111,19 +135,27 @@
             <title>Clearing specific parts of a figure</title>
             <itemizedlist>
                 <listitem>
-                    <literal>xname("")</literal> or <literal>gcf().name = ""</literal> clears the name of the window, displayed at its very top left corner.
+                    <literal>xname("")</literal> or <literal>gcf().name = ""</literal> clears the
+                    name of the window, displayed at its very top left corner.
                 </listitem>
                 <listitem>
-                    <literal>xinfo("")</literal> or <literal>gcf().info_message = ""</literal> clears the message displayed in the status bar of the current figure.
+                    <literal>xinfo("")</literal> or <literal>gcf().info_message = ""</literal>
+                    clears the message displayed in the status bar of the current figure.
                 </listitem>
                 <listitem>
-                    <literal>delete(gca())</literal> deletes the current axes in the current window. All other components of the window are kept: other axes (if any), menus, interactive components, figure properties, etc.
+                    <literal>delete(gca())</literal> deletes the current axes in the current window.
+                    All other components of the window are kept: other axes (if any), menus,
+                    interactive components, figure properties, etc.
                 </listitem>
                 <listitem>
-                    Deleting only all axes of a figure may be done with <literal>c=gcf().children; delete(c(c.type=="Axes"))</literal>. This keeps all its other components: menus, interactive components, etc.
+                    Deleting only all axes of a figure may be done with
+                    <literal>c=gcf().children; delete(c(c.type=="Axes"))</literal>. This keeps all
+                    its other components: menus, interactive components, etc.
                 </listitem>
                 <listitem>
-                    Deleting only menus: <literal>c=gcf().children; delete(c(c.type=="uimenu"))</literal>. This assumes that <literal>get(get(0), "ShowHiddenHandles")</literal> is <literal>"on"</literal>.
+                    Deleting only menus: <literal>c=gcf().children; delete(c(c.type=="uimenu"))</literal>.
+                    This assumes that <literal>get(get(0), "ShowHiddenHandles")</literal> is
+                    <literal>"on"</literal>.
                 </listitem>
             </itemizedlist>
         </refsect2>
@@ -206,6 +238,12 @@
                 <revnumber>5.5.0</revnumber>
                 <revremark>
                     <literal>clf</literal> now clears frames as well.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <literal>clf('reset')</literal> no longer resizes nor moves docked figures.
                 </revremark>
             </revision>
         </revhistory>

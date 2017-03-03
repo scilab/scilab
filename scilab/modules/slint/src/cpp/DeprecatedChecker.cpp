@@ -147,6 +147,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"gstacksize", L"");
     map.emplace(L"stacksize", L"");
     map.emplace(L"macr2lst", L"");
+    map.emplace(L"readgateway", L"");
 
     // Scilab 5.5.1 => 5.5.2
     map.emplace(L"%asn", L"delip");

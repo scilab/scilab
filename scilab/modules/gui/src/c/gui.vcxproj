@@ -216,6 +216,7 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipcreate.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipremove.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_saveGui.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xchoicesi.cpp" />
     <ClCompile Include="..\cpp\CreateUIControl.cpp" />
     <ClCompile Include="..\cpp\GetConsoleShowHiddenHandles.cpp" />
     <ClCompile Include="..\cpp\GetUicontrolIcon.cpp" />
@@ -311,7 +312,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_unsetmenu.c" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_usecanvas.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\sci_waitbar.c" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_x_choice.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\sci_x_choose.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_x_choose_modeless.c" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_x_dialog.cpp" />

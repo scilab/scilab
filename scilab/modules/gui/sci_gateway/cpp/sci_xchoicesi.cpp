@@ -27,7 +27,7 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_x_choice(char *fname, void* pvApiCtx)
+int sci_xchoicesi(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 

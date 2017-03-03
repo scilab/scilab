@@ -84,8 +84,6 @@ int API_PROTO(getType)(scilabEnv env, scilabVar var)
             return sci_strings;
             break;
         case types::InternalType::ScilabMacroFile:
-            return sci_u_function;
-            break;
         case types::InternalType::ScilabMacro:
             return sci_c_function;
             break;

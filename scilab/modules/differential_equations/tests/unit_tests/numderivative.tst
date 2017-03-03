@@ -5,12 +5,16 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
+
 // 1. Test with a scalar argument
 function y = myfunction (x)
     y = x*x;
 endfunction
+
 x = 1.0;
 expected = 2.0;
 // 1.1 With default parameters
@@ -50,6 +54,7 @@ assert_checkalmostequal ( Jcomputed , Jexpected , 1.e-13 );
 [Jcomputed, Hcomputed] = numderivative(myfunction,x,1.e-1);
 assert_checkalmostequal ( Jcomputed , Jexpected , 1.e-13 );
 assert_checkalmostequal ( Hcomputed , Hexpected , 1.e-11 );
+
 // 2. Test with a vector argument
 function y = myfunction2 (x)
     y = x(1)*x(1) + x(2) + x(1)*x(2);
@@ -69,6 +74,7 @@ assert_checkalmostequal ( computed , Jexpected , 1.e-10 );
 // 2.4 Test order 4
 computed = numderivative(myfunction2, x, [], 4);
 assert_checkalmostequal ( computed , Jexpected , 1.e-13 );
+
 // 2.5 Compute second numderivative at the same time
 [Jcomputed, Hcomputed] = numderivative(myfunction2, x);
 assert_checkalmostequal ( Jcomputed , Jexpected , 1.e-10 );
@@ -95,6 +101,7 @@ h = %eps^(1/3)*abs(x);
 [Jcomputed, Hcomputed] = numderivative(myfunction2, x, h);
 assert_checkalmostequal ( Jcomputed , Jexpected , 1.e-8 );
 assert_checkalmostequal ( Hcomputed , Hexpected , 1.e-5 , 1.e-5);
+
 // 3. Test H_form
 // 3.1 Test H_form = "default"
 Jexpected = [4.0 2.0];
@@ -116,6 +123,7 @@ Hexpected = [2.0 1.0
 [Jcomputed, Hcomputed] = numderivative(myfunction2, x, [], [], "blockmat");
 assert_checkalmostequal ( Jcomputed , Jexpected , 1.e-10 );
 assert_checkalmostequal ( Hcomputed , Hexpected , %eps );
+
 // 5. Test h parameter
 // Test a case where the default step h is very small ~ 1.e-9,
 // but, because the function is very flat in the neighbourhood of the
@@ -133,6 +141,7 @@ Hexpected = (2/myn) * (2/myn-1) * x^(2/myn-2);
 [Jcomputed, Hcomputed] = numderivative(myfunction3, x, 1.e-4, 1);
 assert_checkalmostequal ( Jcomputed , Jexpected , 1.e-4 );
 assert_checkalmostequal ( Hcomputed , Hexpected , 1.e-3 );
+
 // 6. Test Q parameter
 function y = myfunction4 (x)
     y = x(1)*x(1) + x(2)+ x(1)*x(2);
@@ -184,6 +193,7 @@ function [H1, H2] = exactH(x)
     H2(3, 2) = H2(2, 3);
     H2(3, 3) = 6*x(3);
 endfunction
+
 x=[1; 2; 3];
 [g1, g2] = exactg(x);
 [H1, H2] = exactH(x);
@@ -273,6 +283,7 @@ assert_checkequal ( FEVAL, 4*n^2+2*n );
 FEVAL = 0;
 [g, H] = numderivative(myFevalFun, x, [], 4);
 assert_checkequal ( FEVAL, 16*n^2+4*n );
+
 //
 // 9. Check error messages.
 //
@@ -365,6 +376,7 @@ Q = ones(2, 3);
 instr = "[J, H] = numderivative(myfunction2, x, [], [], [], Q)";
 lclmsg = "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n";
 assert_checkerror (instr, lclmsg, [], "numderivative", 6, 2, 2);
+
 // 10. Check that a nonzero step is used for components of x which are zero.
 // Check also that a scaled step is used.
 x=[0; 0; 1.e-50];
@@ -376,6 +388,7 @@ Hexpected = [H1(:)'; H2(:)'];
 Jcomputed = numderivative(myexample, x);
 assert_checkalmostequal ( Jcomputed , Jexpected , 1.e-9 , 1.e-10);
 // For the Jacobian, the step used is h = [%eps^(1/3); %eps^(1/3); %eps^(1/3)*1.e50]
+
 // 11. Prove the numerical superiority of numderivative.
 // Although the step provided by numderivative is not always
 // optimal, it is often sufficiently accurate.
@@ -385,6 +398,7 @@ assert_checkalmostequal ( Jcomputed , Jexpected , 1.e-9 , 1.e-10);
 // x = 1.000D+32, numdiff = 5, derivative = 0,  numderivative = 11
 // x = 1.00D+100, numdiff = 5, derivative = 0,  numderivative = 10
 // x = 1,         numdiff = 7, derivative = 11, numderivative = 11
+
 function y = myfunction10 (x)
     y = x^3;
 endfunction
@@ -397,6 +411,7 @@ for x = [10^-100 10^-32 10^32 10^100 1]
     d3 = assert_computedigits ( g3, exact );
     assert_checktrue ( d3 > 9 );
 end
+
 // 12. Check that numderivative also accepts row vector x
 function f = myfunction11(x)
     f = x(1)*x(1) + x(1)*x(2);
@@ -410,10 +425,12 @@ assert_checkalmostequal ( g , exact , 1.e-9 );
 h = sqrt(%eps)*(1+1d-3*abs(x));
 g = numderivative(myfunction11, x, h);
 assert_checkalmostequal ( g , exact , 1.e-8 );
+
 // 13. Check that we can derivate a compiled function
 x = 1;
 g = numderivative (sqrt, x);
 assert_checkalmostequal ( g , 0.5 , 1.e-8 );
+
 // 14.1 Check that numderivative works when f takes extra arguments
 function y = f(x, A, p, w)
     y = x'*A*x + p'*x + w;

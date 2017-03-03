@@ -51,14 +51,10 @@ function [r, err] = intc(a, b, f, abserr, relerr)
         end
     end
 
-    if and(type(f) <> [11 13 130]) then
+    if and(type(f) <> [13 130]) then
         error(msprintf(_("%s: Wrong type for input argument #%d: Scilab function expected.\n"), "intc", 3));
     end
 
-    // Compile f if necessary:
-    if type(f) == 11 then
-        comp(f);
-    end
     // Define two functions which define the real part and
     // imaginary part of f(g(t))*g'(t) where g(t) is a
     // parametrization of the line a-b.

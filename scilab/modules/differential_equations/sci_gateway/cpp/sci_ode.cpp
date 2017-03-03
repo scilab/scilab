@@ -117,7 +117,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
         {
             meth = 2;
         }
-        else if (wcscmp(wcsType, L"root") == 0)
+        else if (wcscmp(wcsType, L"roots") == 0)
         {
             meth = 3;
         }
@@ -139,7 +139,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
         }
         else
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: It must be one of the following strings: adams, stiff, rk, rkf, fix, root or discrete.\n"), "ode", 1);
+            Scierror(999, _("%s: Wrong value for input argument #%d: It must be one of the following strings: adams, stiff, rk, rkf, fix, roots or discrete.\n"), "ode", 1);
             return types::Function::Error;
         }
     }

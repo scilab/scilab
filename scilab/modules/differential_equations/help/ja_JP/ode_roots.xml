@@ -14,15 +14,15 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ode_root" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ode_roots" xml:lang="ja">
     <refnamediv>
-        <refname>ode_root</refname>
+        <refname>ode_roots</refname>
         <refpurpose>求解付きの常微分方程式ソルバ</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            [y, rd, w, iw] = ode("root", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [,w,iw])
+            [y, rd, w, iw] = ode("roots", y0, t0, t [,rtol [,atol]], f [,jac], ng, g [,w,iw])
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -94,7 +94,8 @@
                 <term>w, iw</term>
                 <listitem>
                     <para>実数ベクトル.(入力/出力).
-                    See <link linkend="ode_optional_output">ode() optional output</link></para>
+                        See <link linkend="ode_optional_output">ode() optional output</link>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -102,7 +103,7 @@
     <refsection role="description">
         <title>説明</title>
         <para>
-            この構文により (最初の引数が<literal>"root"</literal>)
+            この構文により (最初の引数が<literal>"roots"</literal>)
             <literal>ode</literal> は, 状態量<literal>y(t)</literal>が
             面<literal>g(t,y)=0</literal>と交差するまで
             微分方程式<literal>dy/dt=f(t,y)</literal>
