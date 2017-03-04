@@ -95,6 +95,8 @@ Obsolete functions or features
 Removed Functions
 -----------------
 
+* `square` was obsolete and has been removed.
+
 
 Known issues
 ------------

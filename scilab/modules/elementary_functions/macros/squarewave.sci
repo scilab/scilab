@@ -12,11 +12,11 @@
 // along with this program.
 
 function s = squarewave(t, percentPositive)
-    //square(t) generates a square wave with period 2*Pi
-    //square(t) is like sin(t), only it creates a square wave
+    //squarewave(t) generates a square wave with period 2*Pi
+    //squarewave(t) is like sin(t), only it creates a square wave
     //with peaks of +1 to -1 instead of a sine wave.
 
-    //square(t,%) generates an unsymmetric  square wave: %, is the
+    //squarewave(t,%) generates an unsymmetric  square wave: %, is the
     //percent of the period in which the signal is positive.
     [lhs,rhs] = argn();
     if rhs < 1 then
