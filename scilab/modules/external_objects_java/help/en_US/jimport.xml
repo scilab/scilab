@@ -91,7 +91,7 @@
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link type="scilab" linkend="scilab.help/javaclasspath">javaclasspath</link>
+                <link linkend="javaclasspath">javaclasspath</link>
             </member>
             <member>
                 <link linkend="jallowClassReloading">jallowClassReloading</link>
