@@ -38,6 +38,8 @@ function [s,index] = nanmin(x,orient)
     //
     //
 
+    warnobsolete("min", "6.1");
+
     [lhs, rhs] = argn(0)
     if rhs == 0 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nanmin",1,2))

@@ -39,6 +39,8 @@ function [s,index] = nanmax(x,orient)
     //
     // correction of bug 1239 (Bruno)
 
+    warnobsolete("max", "6.1");
+
     [lhs, rhs] = argn(0)
     if rhs == 0 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nanmax",1,2))

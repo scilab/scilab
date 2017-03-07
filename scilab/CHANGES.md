@@ -303,6 +303,8 @@ Obsolete functions or features
 * `eval3d` will be removed from Scilab 6.1. Please use `ndgrid` instead.
 * `strcmpi` is deprecated. Please use `strcmp(..,"i")`instead.
 * `square` will be removed from Scilab 6.1. Please use `gcf().axes_size` and `replot` instead.
+* `nanmin` is obsolete and will be removed in Scilab 6.1. Please use `min` instead.
+* `nanmax` is obsolete and will be removed in Scilab 6.1. Please use `max` instead.
 
 
 Removed Functions
@@ -351,6 +353,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#11756](http://bugzilla.scilab.org/show_bug.cgi?id=11756): In the categories of the ATOMS GUI, actually available modules might be not listed.
 * [#12771](http://bugzilla.scilab.org/show_bug.cgi?id=12771): xcosPalGenerateAllIcons help example was broken.
 * [#13592](http://bugzilla.scilab.org/show_bug.cgi?id=13592): In an axes in a uicontrol frame, setting a `legend` interactively might not follow the mouse accurately.
+* [#13900](http://bugzilla.scilab.org/show_bug.cgi?id=13900): `nanmin` and `nanmax` were useless duplicates of `min` and `max`
 * [#14254](http://bugzilla.scilab.org/show_bug.cgi?id=14254): When installing an ATOMS module that is not locally registered and available, the error message was unclear.
 * [#14376](http://bugzilla.scilab.org/show_bug.cgi?id=14376): input() is broken: \n introduced before prompting, multiple prompts, missing assignment, "%" "\n" "\t" no longer supported in messages...
 * [#14399](http://bugzilla.scilab.org/show_bug.cgi?id=14399): Whereami : wrong information (line numbers).
