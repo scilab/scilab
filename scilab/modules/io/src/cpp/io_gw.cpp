@@ -26,6 +26,7 @@ int IoModule::Load()
 {
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"genlib", &sci_genlib, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"file", &sci_file, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getpid", &sci_getpid, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"host", &sci_host, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"unix", &sci_unix, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getenv", &sci_getenv, MODULE_NAME));
@@ -33,6 +34,6 @@ int IoModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"lib", &sci_gwlib, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"write", &sci_write, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"read", &sci_read, MODULE_NAME));
-	symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getio", &sci_getio, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getio", &sci_getio, MODULE_NAME));
     return 1;
 }
