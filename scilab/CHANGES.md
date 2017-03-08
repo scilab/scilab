@@ -67,7 +67,7 @@ Packaging & Supported Operating Systems
 
 Feature changes and additions
 -----------------------------
-
+ 
 * Empty strings are used as the default values on String allocation
 
 Help pages:
@@ -109,6 +109,7 @@ Bug Fixes
 * [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` is 40x slower with 6.0.0 wrt 5.5.2
 * [#14605](http://bugzilla.scilab.org/show_bug.cgi?id=14605): fixed - `bench_run` was too strict about the specification of tests names.
 * [#14812](http://bugzilla.scilab.org/show_bug.cgi?id=14812): Minor typos in messages.
+* [#14982](http://bugzilla.scilab.org/show_bug.cgi?id=14982): `msprintf`segmentation fault was caught due to wrong size
 
 ### Bugs fixed in 6.0.1:
 * [#4276](http://bugzilla.scilab.org/show_bug.cgi?id=4276): `strsubst` replaced the first occurence in regex mode.

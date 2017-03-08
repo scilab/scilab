@@ -695,6 +695,15 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
             iStart = i + 1;
             j++;
         }
+        else if ( i == iLen - 1 )
+        {
+            int iSize = i - iStart + 1;
+            pwstOutput[j] = (wchar_t*)MALLOC(sizeof(wchar_t) * (iSize + 1));
+            wcsncpy(pwstOutput[j], pwstFirstOutput + iStart, iSize );
+            pwstOutput[j][iSize] = L'\0';
+            iStart = i + 1;
+            j++;
+        }
     }
 
     if (j == (*_piOutputRows) - 1)
