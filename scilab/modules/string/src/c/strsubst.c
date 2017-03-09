@@ -271,6 +271,8 @@ wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const
 
     if (_pwstSearch == NULL || _pwstReplace == NULL)
     {
+        FREE(arriStart);
+        FREE(arriEnd);
         return os_wcsdup(_pwstInput);
     }
 
@@ -334,13 +336,20 @@ wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const
         wcscat(result, _pwstReplace);
         //copy part after last occurence
         wcscat(result, _pwstInput + arriEnd[iOccurs - 1]);
+        FREE(arriStart);
+        FREE(arriEnd);
         return result;
     }
     else
     {
         *_piErr = iPcreStatus;
+        FREE(arriStart);
+        FREE(arriEnd);
         return os_wcsdup(_pwstInput);
     }
+
+    FREE(arriStart);
+    FREE(arriEnd);
 
     return NULL;
 }
