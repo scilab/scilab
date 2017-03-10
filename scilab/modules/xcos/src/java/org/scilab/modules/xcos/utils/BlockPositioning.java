@@ -265,7 +265,7 @@ public final class BlockPositioning {
         final boolean mirrored = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_MIRROR));
         final boolean flipped = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_FLIP));
         final int intRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0")).intValue();
-        final int angle = ((Math.round(intRotation)) % 360 + 360) % 360;
+        final int angle = (intRotation % 360 + 360) % 360;
 
         List<BasicPort> working = ports;
 
@@ -378,7 +378,7 @@ public final class BlockPositioning {
         final boolean mirrored = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_MIRROR));
         final boolean flipped = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_FLIP));
         final int intRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0")).intValue();
-        final int angle = ((Math.round(intRotation)) % 360 + 360) % 360;
+        final int angle = (intRotation % 360 + 360) % 360;
 
         final int childrenCount = block.getChildCount();
         for (int i = 0; i < childrenCount; ++i) {
