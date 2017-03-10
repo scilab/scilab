@@ -353,7 +353,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15015](http://bugzilla.scilab.org/show_bug.cgi?id=15015): Xcos blocks using the `ascii` didn't work
 * [#15023](http://bugzilla.scilab.org/show_bug.cgi?id=15023): `clf()` wrongly reset `figure_id`.
 * [#15052](http://bugzilla.scilab.org/show_bug.cgi?id=15052): `getpid` wasn't available anymore
-
+* [#15054](http://bugzilla.scilab.org/show_bug.cgi?id=15054): The callbacks of `wfir_gui()` were not prioritary.
 
 ### Bugs fixed in 6.0.0:
 * [#592](http://bugzilla.scilab.org/show_bug.cgi?id=592): `linspace(a, b, n<=0)` returned `b` instead of `[]`
