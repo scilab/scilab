@@ -461,7 +461,7 @@ int sci_foo6(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt* opt, in
             <programlisting role="no-scilab-exec">
                 <![CDATA[
       files=["sci_foo6.c"];
-      ilib_build('build_lib',['foo6','sci_foo6'],files,[]);
+      ilib_build('build_lib',['foo6','sci_foo6','csci6'],files,[]);
       exec loader.sce
       [c, d] = foo6([2,%pi], [%t, %f])
       ]]>
