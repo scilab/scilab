@@ -58,7 +58,6 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_convstr.c, line: 103
 # File: sci_gateway/c/sci_convstr.c, line: 109
-# File: sci_gateway/c/sci_str2code.c, line: 90
 # File: sci_gateway/c/sci_strchr.c, line: 92
 # File: sci_gateway/c/sci_strcmp.c, line: 126
 # File: sci_gateway/c/sci_strcmp.c, line: 130
@@ -94,7 +93,6 @@ msgstr "%s: 出力引数で不正な数: %d を想定します。\n"
 #
 # File: sci_gateway/c/sci_convstr.c, line: 103
 # File: sci_gateway/c/sci_convstr.c, line: 109
-# File: sci_gateway/c/sci_str2code.c, line: 90
 # File: sci_gateway/c/sci_strchr.c, line: 92
 # File: sci_gateway/c/sci_strcmp.c, line: 126
 # File: sci_gateway/c/sci_strcmp.c, line: 130
@@ -144,7 +142,6 @@ msgstr "%s: 入力引数 #%d で不正な値: 空でない文字列を想定し�
 # File: sci_gateway/c/sci_isascii.c, line: 102
 # File: sci_gateway/c/sci_part.c, line: 117
 # File: sci_gateway/c/sci_regexp.c, line: 168
-# File: sci_gateway/c/sci_str2code.c, line: 84
 # File: sci_gateway/c/sci_strcat.c, line: 128
 # File: sci_gateway/c/sci_strcat.c, line: 142
 # File: sci_gateway/c/sci_strcat.c, line: 150

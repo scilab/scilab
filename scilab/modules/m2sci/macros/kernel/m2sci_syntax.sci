@@ -145,17 +145,6 @@ function [helppart,txt,batch]=m2sci_syntax(txt)
             end
         end
 
-        // Insert a blank when a digit is followed by a dotted operator
-        // So that point is associated to operator and not to digit
-        // Because if it is associated to digit, dot is suppressed by comp()
-        kdot=strindex(tk,[".*","./",".\",".^",".''"])
-        if kdot<>[] then
-            kdgt=kdot(find(abs(_str2code(part(tk,kdot-1)))<9))
-            for kk=size(kdgt,"*"):-1:1
-                tk=part(tk,1:kdgt(kk)-1)+" "+part(tk,kdgt(kk):length(tk));
-            end
-        end
-
         // Modify struct like x.(fieldname) which become x(fieldname)
         tk=strsubst(tk,".(","(")
 

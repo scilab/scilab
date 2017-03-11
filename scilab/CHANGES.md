@@ -357,6 +357,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15023](http://bugzilla.scilab.org/show_bug.cgi?id=15023): `clf()` wrongly reset `figure_id`.
 * [#15039](http://bugzilla.scilab.org/show_bug.cgi?id=15039): Added demos to showcase Xcos' new graphical features
 * [#15052](http://bugzilla.scilab.org/show_bug.cgi?id=15052): `getpid` wasn't available anymore
+* [#15053](http://bugzilla.scilab.org/show_bug.cgi?id=15053): `_str2code` was removed with no proper equivalence and made `mfile2sci` failing.
 * [#15054](http://bugzilla.scilab.org/show_bug.cgi?id=15054): The callbacks of `wfir_gui()` were not prioritary.
 * [#15057](http://bugzilla.scilab.org/show_bug.cgi?id=15057): Matplot .data assignation did not take care of >2 dimension
 * [#15060](http://bugzilla.scilab.org/show_bug.cgi?id=15060): `fplot3d` did not draw because of an addition with an empty matrix which now returns an empty matrix.
