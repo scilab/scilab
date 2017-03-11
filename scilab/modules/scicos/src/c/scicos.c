@@ -6155,13 +6155,15 @@ int C2F(funnum)(char * fname)
         i++;
     }
     ln = (int)strlen(fname);
-    //C2F(iislink)(fname, &loc);
-    //C2F(iislink)(fname, &loc);
+    /*
+    C2F(iislink)(fname, &loc);
+    C2F(iislink)(fname, &loc);
     if (loc >= 0)
     {
         return (ntabsim + (int)loc + 1);
     }
-    return (0);
+    */
+    return 0;
 }/* funnum */
 /*--------------------------------------------------------------------------*/
 /* Subroutine funnum2 */
