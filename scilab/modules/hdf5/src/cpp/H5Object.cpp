@@ -403,9 +403,14 @@ std::string H5Object::getCompletePath() const
 void H5Object::getLinksInfo(const H5Object & obj, std::vector<std::string> & linksName, std::vector<std::string> & type, std::vector<std::string> & linksType)
 {
     hsize_t idx = 0;
+    herr_t err;
     LinksInfo info(&linksName, &type, &linksType);
 
-    H5Literate(obj.getH5Id(), H5_INDEX_NAME, H5_ITER_INC, &idx, iterateGetInfo, &info);
+    err = H5Literate(obj.getH5Id(), H5_INDEX_NAME, H5_ITER_INC, &idx, iterateGetInfo, &info);
+    if(err < 0)
+    {
+        throw H5Exception(__LINE__, __FILE__, _("Cannot list group contents"));
+    }
 }
 
 herr_t H5Object::iterateGetInfo(hid_t g_id, const char * name, const H5L_info_t * info, void * op_data)

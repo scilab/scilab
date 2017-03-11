@@ -43,9 +43,15 @@ H5Dataset::H5Dataset(H5Object & _parent, hid_t _dataset, const std::string & _na
 
 H5Dataset::~H5Dataset()
 {
+    herr_t status;
+
     if (dataset >= 0)
     {
-        H5Dclose(dataset);
+        status = H5Dclose(dataset);
+        if (status < 0)
+        {
+            throw H5Exception(__LINE__, __FILE__, _("Cannot close the dataset named %s."), name.c_str());
+        }
     }
 }
 
