@@ -104,7 +104,7 @@ public class ColorTriplet {
             return UpdateStatus.Fail;
         }
 
-        if (specular[0] != color[0] || specular[1] != specular[1] || specular[2] != color[2]) {
+        if (specular[0] != color[0] || specular[1] != color[1] || specular[2] != color[2]) {
             specular[0] = color[0];
             specular[1] = color[1];
             specular[2] = color[2];
