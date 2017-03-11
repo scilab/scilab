@@ -244,7 +244,8 @@ public class FontManager {
         } catch (FontFormatException ffe) {
             loadedFont = DEFAULT_FONT;
         }
-
+        
+        in.close();
         return loadedFont;
     }
 
