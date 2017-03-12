@@ -211,6 +211,7 @@ bounds selected out of the axes areas is now restored, after the Scilab 5.4 regr
 * A new console `File => Go to Favorite directory` menu allows to go to a favorite directory selected
   in a dynamical list set from Scinotes favorite and most recent directories.
 * `size` can now be overloadable for tlist lists, as it already could for mlist lists.
+* `gcd` now accepts `int64` and `uint64` integers. The input can now be any array instead of a row.
 
 
 Help pages:
@@ -221,7 +222,7 @@ Help pages:
   `scilab|scilex`, `flipdim`, `Matplot_properties`, `meshgrid`, `ismatrix`, `xget`, `xset`, `ieee`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
 `and`, `&,&&`, `format`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`,
-`bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`
+`bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`
 * reorganized:
   - `else`, `elseif`, `end`, `try`, `sciargs`, `global`, `halt`, `empty`, `power`, `numderivative`
   - `pixel_drawing_mode`, `show_window`, `twinkle`, `uigetcolor`, `winsid`, `xdel`, `xgrid`, `xname`, `xnumb`
@@ -370,6 +371,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15008](http://bugzilla.scilab.org/show_bug.cgi?id=15008): scilab crash in using operator AND (&, &&) or OR (| ||) with a string.
 * [#15010](http://bugzilla.scilab.org/show_bug.cgi?id=15010): Coselica did not simulate on Scilab 6.
 * [#15015](http://bugzilla.scilab.org/show_bug.cgi?id=15015): Xcos blocks using the `ascii` didn't work
+* [#15017](http://bugzilla.scilab.org/show_bug.cgi?id=15017): On numbers, `gcd` result was always of `int32` type instead of matching the input type.
 * [#15019](http://bugzilla.scilab.org/show_bug.cgi?id=15019): Add 'csci6' in the calling of ilib_build in 'Getting started with API_Scilab' help page.
 * [#15023](http://bugzilla.scilab.org/show_bug.cgi?id=15023): `clf()` wrongly reset `figure_id`.
 * [#15024](http://bugzilla.scilab.org/show_bug.cgi?id=15024): Xcos labels were not preserved at diagram compilation.
@@ -741,3 +743,4 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14685](http://bugzilla.scilab.org/show_bug.cgi?id=14685): datavec produced an invalid index error.
 * [#14980] (http://bugzilla.scilab.org/show_bug.cgi?id=14980): The datatip display of the root locus arcs is broken.
 * [#14992] (http://bugzilla.scilab.org/show_bug.cgi?id=14992): `readgateway` has been removed, use `whereis` instead.
+
