@@ -189,15 +189,15 @@ int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
                     plottype = buildMatplotType(MATPLOT_Char, (DataOrder)dataorder, (ImageType)imagetype);
                     bRGB = true;
                 }
-                else if (piDimsArray[2] != 1 && (DataType)datatype != MATPLOT_HM1_Char)
+                else if (piDimsArray[2] == 1 && (DataType)datatype != MATPLOT_HM1_Char)
                 {
                     plottype = buildMatplotType(MATPLOT_HM1_Char, (DataOrder)dataorder, (ImageType)imagetype);
                 }
-                else if (piDimsArray[2] != 3 && (DataType)datatype != MATPLOT_HM3_Char)
+                else if (piDimsArray[2] == 3 && (DataType)datatype != MATPLOT_HM3_Char)
                 {
                     plottype = buildMatplotType(MATPLOT_HM3_Char, (DataOrder)dataorder, (ImageType)imagetype);
                 }
-                else if (piDimsArray[2] != 4 && (DataType)datatype != MATPLOT_HM4_Char)
+                else if (piDimsArray[2] == 4 && (DataType)datatype != MATPLOT_HM4_Char)
                 {
                     plottype = buildMatplotType(MATPLOT_HM4_Char, (DataOrder)dataorder, (ImageType)imagetype);
                 }
@@ -212,15 +212,15 @@ int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
                     plottype = buildMatplotType(MATPLOT_UChar, (DataOrder)dataorder, (ImageType)imagetype);
                     bRGB = true;
                 }
-                else if ((DataType)datatype != MATPLOT_HM1_Char)
+                else if (piDimsArray[2] == 1 && (DataType)datatype != MATPLOT_HM1_UChar)
                 {
                     plottype = buildMatplotType(MATPLOT_HM1_UChar, (DataOrder)dataorder, (ImageType)imagetype);
                 }
-                else if (piDimsArray[2] != 3 && (DataType)datatype != MATPLOT_HM3_UChar)
+                else if (piDimsArray[2] == 3 && (DataType)datatype != MATPLOT_HM3_UChar)
                 {
                     plottype = buildMatplotType(MATPLOT_HM3_UChar, (DataOrder)dataorder, (ImageType)imagetype);
                 }
-                else if (piDimsArray[2] != 4 && (DataType)datatype != MATPLOT_HM4_UChar)
+                else if (piDimsArray[2] == 4 && (DataType)datatype != MATPLOT_HM4_UChar)
                 {
                     plottype = buildMatplotType(MATPLOT_HM4_UChar, (DataOrder)dataorder, (ImageType)imagetype);
                 }
@@ -286,15 +286,15 @@ int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
                 {
                     plottype = buildMatplotType(MATPLOT_Double, (DataOrder)dataorder, (ImageType)imagetype);
                 }
-                else if ((DataType)datatype != MATPLOT_HM1_Double)
+                else if (piDimsArray[2] == 1 && (DataType)datatype != MATPLOT_HM1_Double)
                 {
                     plottype = buildMatplotType(MATPLOT_HM1_Double, (DataOrder)dataorder, (ImageType)imagetype);
                 }
-                else if (piDimsArray[2] != 3 && (DataType)datatype != MATPLOT_HM3_Double)
+                else if (piDimsArray[2] == 3 && (DataType)datatype != MATPLOT_HM3_Double)
                 {
                     plottype = buildMatplotType(MATPLOT_HM3_Double, (DataOrder)dataorder, (ImageType)imagetype);
                 }
-                else if (piDimsArray[2] != 4 && (DataType)datatype != MATPLOT_HM4_Double)
+                else if (piDimsArray[2] == 4 && (DataType)datatype != MATPLOT_HM4_Double)
                 {
                     plottype = buildMatplotType(MATPLOT_HM4_Double, (DataOrder)dataorder, (ImageType)imagetype);
                 }
