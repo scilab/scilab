@@ -41,12 +41,12 @@ static int deleteArrayOfString(char **Str, int dim)
 {
     int ret = 1;
 
-    if(Str)
+    if (Str)
     {
         int i = 0;
-        for(i = 0; i < dim; i++)
+        for (i = 0; i < dim; i++)
         {
-            if(Str[i])
+            if (Str[i])
             {
                 delete Str[i];
                 Str[i] = NULL;
@@ -282,9 +282,9 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             ret = deleteArrayOfString(selection, selectionSize);
             ret = deleteArrayOfString(selectionFileNames, selectionSize);
-            if(selectionPathName)
+            if (selectionPathName)
             {
-                delete selectionPathName;
+                delete[] selectionPathName;
                 selectionPathName = NULL;
             }
             return 1;
@@ -302,9 +302,9 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 ret = deleteArrayOfString(selection, selectionSize);
                 ret = deleteArrayOfString(selectionFileNames, selectionSize);
-                if(selectionPathName)
+                if (selectionPathName)
                 {
-                    delete selectionPathName;
+                    delete[] selectionPathName;
                     selectionPathName = NULL;
                 }
                 return 1;
@@ -324,9 +324,9 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 ret = deleteArrayOfString(selection, selectionSize);
                 ret = deleteArrayOfString(selectionFileNames, selectionSize);
-                if(selectionPathName)
+                if (selectionPathName)
                 {
-                    delete selectionPathName;
+                    delete[] selectionPathName;
                     selectionPathName = NULL;
                 }
                 return 1;
@@ -338,9 +338,9 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
         ReturnArguments(pvApiCtx);
         ret = deleteArrayOfString(selection, selectionSize);
         ret = deleteArrayOfString(selectionFileNames, selectionSize);
-        if(selectionPathName)
+        if (selectionPathName)
         {
-            delete selectionPathName;
+            delete[] selectionPathName;
             selectionPathName = NULL;
         }
         return 0;
@@ -356,9 +356,9 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             ret = deleteArrayOfString(selection, selectionSize);
             ret = deleteArrayOfString(selectionFileNames, selectionSize);
-            if(selectionPathName)
+            if (selectionPathName)
             {
-                delete selectionPathName;
+                delete[] selectionPathName;
                 selectionPathName = NULL;
             }
             return 1;
@@ -368,9 +368,9 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
         ReturnArguments(pvApiCtx);
         ret = deleteArrayOfString(selection, selectionSize);
         ret = deleteArrayOfString(selectionFileNames, selectionSize);
-        if(selectionPathName)
+        if (selectionPathName)
         {
-            delete selectionPathName;
+            delete[] selectionPathName;
             selectionPathName = NULL;
         }
         return 0;
@@ -384,9 +384,9 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         ret = deleteArrayOfString(selection, selectionSize);
         ret = deleteArrayOfString(selectionFileNames, selectionSize);
-        if(selectionPathName)
+        if (selectionPathName)
         {
-            delete selectionPathName;
+            delete[] selectionPathName;
             selectionPathName = NULL;
         }
         return 1;
@@ -397,9 +397,9 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
         printError(&sciErr, 0);
         ret = deleteArrayOfString(selection, selectionSize);
         ret = deleteArrayOfString(selectionFileNames, selectionSize);
-        if(selectionPathName)
+        if (selectionPathName)
         {
-            delete selectionPathName;
+            delete[] selectionPathName;
             selectionPathName = NULL;
         }
         return 1;
@@ -415,9 +415,9 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
             printError(&sciErr, 0);
             ret = deleteArrayOfString(selection, selectionSize);
             ret = deleteArrayOfString(selectionFileNames, selectionSize);
-            if(selectionPathName)
+            if (selectionPathName)
             {
-                delete selectionPathName;
+                delete[] selectionPathName;
                 selectionPathName = NULL;
             }
             return 1;
@@ -428,9 +428,9 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
     ReturnArguments(pvApiCtx);
     ret = deleteArrayOfString(selection, selectionSize);
     ret = deleteArrayOfString(selectionFileNames, selectionSize);
-    if(selectionPathName)
+    if (selectionPathName)
     {
-        delete selectionPathName;
+        delete[] selectionPathName;
         selectionPathName = NULL;
     }
     return 0;

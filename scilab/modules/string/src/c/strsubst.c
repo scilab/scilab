@@ -300,7 +300,8 @@ wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const
             FREE(arriEnd);
             return NULL;
         }
-    } while (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd);
+    }
+    while (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd);
 
     if (iOccurs)
     {
@@ -347,11 +348,6 @@ wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const
         FREE(arriEnd);
         return os_wcsdup(_pwstInput);
     }
-
-    FREE(arriStart);
-    FREE(arriEnd);
-
-    return NULL;
 }
 /*-------------------------------------------------------------------------------------*/
 wchar_t **wcssubst_reg(const wchar_t** _pwstInput, int _iInputSize, const wchar_t* _pwstSearch, const wchar_t* _pwstReplace, int* _piErr)
