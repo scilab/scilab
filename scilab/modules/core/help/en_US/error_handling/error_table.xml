@@ -86,8 +86,6 @@
             %s"
         </para>
         <para>69 "Floating point exception."</para>
-        <para>70 "Too many arguments in fort (max 30)."</para>
-        <para>71 "This variable is not valid in fort."</para>
         <para>72 "%s is not valid in this context."</para>
         <para>73 "Error while linking."</para>
         <para>74 "Leading coefficient is zero."</para>

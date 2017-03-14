@@ -106,9 +106,6 @@
             <member>
                 <link linkend="link">link</link>
             </member>
-            <member>
-                <link linkend="fort">fort</link>
-            </member>
         </simplelist>
     </refsection>
 </refentry>
