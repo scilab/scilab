@@ -95,7 +95,7 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
                             Integer id = 0;
                             if (aButton instanceof SwingScilabRadioButton) {
                                 id = ((SwingScilabRadioButton) aButton).getId();
-                            } else if (aButton instanceof SwingScilabRadioButton) {
+                            } else if (aButton instanceof SwingScilabCheckBox) {
                                 id = ((SwingScilabCheckBox) aButton).getId();
                             } else {
                                 continue;
@@ -353,6 +353,11 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
                     GroupManager.getGroupManager().removeFromGroup(this);
                 } else {
                     GroupManager.getGroupManager().addToGroup(groupName, this);
+                    boolean select = GroupManager.getGroupManager().isSelected(groupName);
+                    Double[] Value = (Double[]) controller.getProperty(uid, __GO_UI_VALUE__);
+                    if (select && Value[0] == 1) {
+                        setChecked(true);
+                    }
                 }
                 break;
             }
