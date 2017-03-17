@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -53,6 +54,9 @@ import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
+import javax.swing.AbstractAction;
+import org.scilab.modules.localization.Messages;
+import org.scilab.modules.xcos.block.BasicBlock;
 
 /**
  * Customize the block representation.
@@ -153,6 +157,7 @@ public final class EditFormatAction extends DefaultAction {
         int fontSize;
         int fontStyle;
         Color textColor;
+        String description;
         String text;
         String image = null;
 
@@ -238,6 +243,16 @@ public final class EditFormatAction extends DefaultAction {
         }
 
         /*
+         * Description
+         */
+        final Object currentValue = model.getValue(cell);
+        if (currentValue == null) {
+            description = "";
+        } else {
+            description = currentValue.toString();
+        }
+
+        /*
          * Text
          */
         final Object current = model.getValue(identifier);
@@ -248,7 +263,7 @@ public final class EditFormatAction extends DefaultAction {
         }
 
         EditFormatDialog dialog = new EditFormatDialog(window);
-        dialog.setValues(border, fill, font, fontSize, fontStyle, textColor, text, image);
+        dialog.setValues(border, fill, font, fontSize, fontStyle, textColor, description, text, image);
         dialog.setGraph(graph);
         dialog.setCell(cell);
         return dialog;
@@ -276,6 +291,8 @@ public final class EditFormatAction extends DefaultAction {
      *            is the text italic ?
      * @param textColor
      *            the selected color
+     * @param oneliner
+     *            the one-line description text
      * @param text
      *            the typed text
      * @param image
@@ -283,7 +300,7 @@ public final class EditFormatAction extends DefaultAction {
      */
     // CSOFF: NPathComplexity
     private static void updateFromDialog(EditFormatDialog dialog, Color borderColor, Color backgroundColor, String fontName, int fontSize, Color textColor,
-                                         boolean isBold, boolean isItalic, String text, String image) {
+                                         boolean isBold, boolean isItalic, String oneliner, String text, String image) {
         final XcosDiagram graph = dialog.getGraph();
         final mxGraphModel model = (mxGraphModel) graph.getModel();
 
@@ -339,15 +356,11 @@ public final class EditFormatAction extends DefaultAction {
             model.setStyle(identifier, identifierStyle.toString());
         }
 
+        graph.cellLabelChanged(cell, oneliner, false);
+        graph.fireEvent(new mxEventObject(mxEvent.LABEL_CHANGED, "cell", cell, "value", text, "parent", cell.getParent()));
+
         graph.cellLabelChanged(identifier, text, false);
         graph.fireEvent(new mxEventObject(mxEvent.LABEL_CHANGED, "cell", identifier, "value", text, "parent", cell));
-
-        /*
-         * Should also update diagram title
-         */
-        if (cell instanceof SuperBlock) {
-            graph.cellLabelChanged(cell, text, false);
-        }
     }
 
     // CSON: NPathComplexity
@@ -377,7 +390,7 @@ public final class EditFormatAction extends DefaultAction {
 
         cellStyle.clear();
 
-        dialog.setValues(DEFAULT_BORDERCOLOR, DEFAULT_FILLCOLOR, mxConstants.DEFAULT_FONTFAMILY, mxConstants.DEFAULT_FONTSIZE, 0, DEFAULT_BORDERCOLOR, "", null);
+        dialog.setValues(DEFAULT_BORDERCOLOR, DEFAULT_FILLCOLOR, mxConstants.DEFAULT_FONTFAMILY, mxConstants.DEFAULT_FONTSIZE, 0, DEFAULT_BORDERCOLOR, "", "", null);
 
         dialog.updateFont();
     }
@@ -494,6 +507,7 @@ public final class EditFormatAction extends DefaultAction {
         private javax.swing.JPanel jPanel2;
         private javax.swing.JScrollPane jScrollPane1;
         private javax.swing.JTabbedPane mainTab;
+        private javax.swing.JTextField labelArea;
         private javax.swing.JTextArea textArea;
         private javax.swing.JPanel textFormat;
 
@@ -569,7 +583,7 @@ public final class EditFormatAction extends DefaultAction {
          *            the current URL of the image (may be null, absolute or
          *            relative)
          */
-        public void setValues(Color borderColor, Color backgroundColor, String fontName, int fontSize, int fontStyle, Color textColor, String text, String image) {
+        public void setValues(Color borderColor, Color backgroundColor, String fontName, int fontSize, int fontStyle, Color textColor, String description, String text, String image) {
             borderColorChooser.setColor(borderColor);
             backgroundColorChooser.setColor(backgroundColor);
             textColorChooser.setColor(textColor);
@@ -580,6 +594,7 @@ public final class EditFormatAction extends DefaultAction {
             fontStyleBold.setSelected((fontStyle & mxConstants.FONT_BOLD) != 0);
             fontStyleItalic.setSelected((fontStyle & mxConstants.FONT_ITALIC) != 0);
 
+            labelArea.setText(description);
             textArea.setText(text);
             if (image != null) {
                 imagePath.setText(image);
@@ -663,8 +678,12 @@ public final class EditFormatAction extends DefaultAction {
             imagePath = new javax.swing.JTextField(TEXT_AREA_COLUMNS);
             backgroundPane = new javax.swing.JPanel();
 
+            labelArea = new javax.swing.JTextField();
+            labelArea.setToolTipText(XcosMessages.ONELINE_DESCRIPTION_TOOLTIP);
+
             jScrollPane1 = new javax.swing.JScrollPane();
             textArea = new javax.swing.JTextArea();
+            textArea.setToolTipText(XcosMessages.MULTILINE_DESCRIPTION_TOOLTIP);
 
             textArea.setColumns(TEXT_AREA_COLUMNS);
             textArea.setRows(TEXT_AREA_ROWS);
@@ -673,6 +692,7 @@ public final class EditFormatAction extends DefaultAction {
 
             cancelButton = new javax.swing.JButton(XcosMessages.CANCEL);
             okButton = new javax.swing.JButton(XcosMessages.OK);
+            okButton.setMnemonic(KeyEvent.VK_ENTER);
             resetButton = new javax.swing.JButton(XcosMessages.RESET);
             buttonPane = new javax.swing.JPanel();
 
@@ -762,6 +782,7 @@ public final class EditFormatAction extends DefaultAction {
             jScrollPane1.setViewportView(textArea);
             jScrollPane1.setBackground(Color.WHITE);
 
+            textFormat.add(labelArea, java.awt.BorderLayout.PAGE_START);
             textFormat.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
             backgroundPane.add(backgroundColorChooser, java.awt.BorderLayout.CENTER);
@@ -808,7 +829,7 @@ public final class EditFormatAction extends DefaultAction {
                     graph.getModel().beginUpdate();
                     EditFormatAction.updateFromDialog(getDialog(), borderColorChooser.getColor(), backgroundColorChooser.getColor(),
                                                       (String) fontNameComboBox.getSelectedItem(), (Integer) fontSizeSpinner.getValue(), textColorChooser.getColor(),
-                                                      fontStyleBold.isSelected(), fontStyleItalic.isSelected(), textArea.getText(), imagePath.getText());
+                                                      fontStyleBold.isSelected(), fontStyleItalic.isSelected(), labelArea.getText(), textArea.getText(), imagePath.getText());
                     graph.getModel().endUpdate();
                     getDialog().dispose();
                 }
@@ -873,6 +894,7 @@ public final class EditFormatAction extends DefaultAction {
             });
 
             getRootPane().setDefaultButton(okButton);
+            labelArea.requestFocusInWindow();
 
             buttonPane.setLayout(new javax.swing.BoxLayout(buttonPane, javax.swing.BoxLayout.LINE_AXIS));
             buttonPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(BORDER_SIZE, BORDER_SIZE, BORDER_SIZE, BORDER_SIZE));

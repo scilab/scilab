@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2015-2017 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -68,7 +69,7 @@ public class LinkWriter extends ScilabWriter {
         shared.controller.getObjectProperty(scicosId[0], Kind.PORT, ObjectProperties.UID, dst);
 
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.STYLE, style);
-        shared.controller.getObjectProperty(uid, kind, ObjectProperties.LABEL, value);
+        shared.controller.getObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, value);
 
         /*
          * Only serialized a fully connected link
@@ -92,6 +93,7 @@ public class LinkWriter extends ScilabWriter {
             shared.stream.writeAttribute("value", escaped);
 
             new JGraphXWriter(shared).write(uid, kind);
+            writeAnnotationCell(uid, kind);
 
             shared.stream.writeEndElement(); // localName
         }

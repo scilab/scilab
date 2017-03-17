@@ -4,6 +4,7 @@
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2015 - Marcos CARDINOT
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -331,6 +332,9 @@ public final class XcosMessages {
     public static final String BLOCK_AUTO_POSITION = Messages.gettext("Auto-Position Block");
     public static final String BLOCK_AUTO_POSITION_SPLIT_BLOCK = Messages.gettext("Split Block");
     public static final String BLOCK_AUTO_POSITION_SPLIT_BLOCK_CONTEXTUAL = Messages.gettext("Auto-Position Split Block");
+
+    public static final String ONELINE_DESCRIPTION_TOOLTIP = Messages.gettext("A one-line description of the block");
+    public static final String MULTILINE_DESCRIPTION_TOOLTIP = Messages.gettext("Annotation (or comment) attached to the object");
 
     // CSON: JavadocVariable
     // CSON: LineLength

@@ -1,6 +1,7 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -231,6 +232,8 @@ update_status_t Model::setObjectProperty(model::BaseObject* object, object_prope
                 return o->setParentDiagram(v);
             case PARENT_BLOCK:
                 return o->setParentBlock(v);
+            case RELATED_TO:
+                return o->setRelatedTo(v);
             default:
                 break;
         }
@@ -244,6 +247,8 @@ update_status_t Model::setObjectProperty(model::BaseObject* object, object_prope
                 return o->setParentDiagram(v);
             case PARENT_BLOCK:
                 return o->setParentBlock(v);
+            case LABEL:
+                return o->setLabel(v);
             case PORT_REFERENCE:
                 return o->setPortReference(v);
             default:
@@ -267,6 +272,8 @@ update_status_t Model::setObjectProperty(model::BaseObject* object, object_prope
                 return o->setParentDiagram(v);
             case PARENT_BLOCK:
                 return o->setParentBlock(v);
+            case LABEL:
+                return o->setLabel(v);
             case SOURCE_PORT:
                 return o->setSourcePort(v);
             case DESTINATION_PORT:
@@ -334,8 +341,6 @@ update_status_t Model::setObjectProperty(model::BaseObject* object, object_prope
                 return o->setStyle(v);
             case DESCRIPTION:
                 return o->setDescription(v);
-            case LABEL:
-                return o->setLabel(v);
             case UID:
                 return o->setUID(v);
             default:
@@ -364,8 +369,8 @@ update_status_t Model::setObjectProperty(model::BaseObject* object, object_prope
         {
             case STYLE:
                 return o->setStyle(v);
-            case LABEL:
-                return o->setLabel(v);
+            case DESCRIPTION:
+                return o->setDescription(v);
             case UID:
                 return o->setUID(v);
             default:

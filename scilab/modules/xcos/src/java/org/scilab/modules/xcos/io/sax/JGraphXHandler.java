@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2015-2017 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -33,6 +34,8 @@ class JGraphXHandler implements ScilabHandler {
         this.saxHandler = saxHandler;
     }
 
+
+
     @Override
     public Object startElement(HandledElement found, Attributes atts) {
         String v;
@@ -43,14 +46,17 @@ class JGraphXHandler implements ScilabHandler {
                 if (v != null) {
                     long parentUID = saxHandler.allChildren.peek().getOrDefault(v, 0l);
                     if (parentUID != 0) {
-                        v = atts.getValue("value");
-                        if (v != null && saxHandler.validCIdentifier.matcher(v).matches()) {
-                            Kind kind = saxHandler.controller.getKind(parentUID);
-                            saxHandler.controller.setObjectProperty(parentUID, kind, ObjectProperties.LABEL, v);
+                        return decodeCellAnnotation(parentUID, saxHandler.controller.getKind(parentUID), atts);
+                    }
+                } else {
+                    Object parent = saxHandler.parents.peek();
+                    if (parent instanceof XcosCell) {
+                        XcosCell cell = ((XcosCell) parent);
+                        if (cell.getUID() != 0) {
+                            return decodeCellAnnotation(cell.getUID(), cell.getKind(), atts);
                         }
                     }
                 }
-
                 return null;
             }
             case mxGeometry: {
@@ -104,6 +110,29 @@ class JGraphXHandler implements ScilabHandler {
             default:
                 throw new IllegalArgumentException();
         }
+    }
+
+    private XcosCell decodeCellAnnotation(long parentUID, Kind parentKind, Attributes atts) {
+        Kind kind = Kind.ANNOTATION;
+        final long uid = saxHandler.controller.createObject(kind);
+        String value = atts.getValue("value");
+        if (value != null) {
+            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, value);
+        }
+        String style = atts.getValue("style");
+        if (style != null) {
+            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.STYLE, style);
+        }
+        String id = atts.getValue("id");
+        if (id != null) {
+            saxHandler.allChildren.peek().put(id, uid);
+        }
+
+        XcosCell label = new XcosCell(saxHandler.controller, uid, kind, value, null, style, id);
+        saxHandler.controller.setObjectProperty(parentUID, parentKind, ObjectProperties.LABEL, label.getUID());
+        saxHandler.controller.setObjectProperty(label.getUID(), label.getKind(), ObjectProperties.RELATED_TO, parentUID);
+
+        return label;
     }
 
     @Override

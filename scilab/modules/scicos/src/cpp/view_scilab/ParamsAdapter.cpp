@@ -1,6 +1,7 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -102,7 +103,7 @@ struct title
         }
         else
         {
-            controller.getObjectProperty(adaptee, BLOCK, LABEL, title);
+            controller.getObjectProperty(adaptee, BLOCK, DESCRIPTION, title);
         }
 
         types::String* o = new types::String(2, 1);
@@ -153,7 +154,7 @@ struct title
         }
         else
         {
-            controller.setObjectProperty(adaptee, BLOCK, TITLE, title);
+            controller.setObjectProperty(adaptee, BLOCK, DESCRIPTION, title);
         }
         return true;
     }

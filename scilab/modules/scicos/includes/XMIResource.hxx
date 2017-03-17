@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2016-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -53,7 +54,7 @@ private:
     int writeBlock(xmlTextWriterPtr writer, ScicosID id);
     int writePort(xmlTextWriterPtr writer, enum object_properties_t container, ScicosID id);
     int writeLink(xmlTextWriterPtr writer, ScicosID id);
-    int writeAnnotation(xmlTextWriterPtr writer, ScicosID id);
+    int writeAnnotation(xmlTextWriterPtr writer, ScicosID id, bool isLabel);
 
     /*
      * Load helpers
