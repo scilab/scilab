@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2010 - INRIA - Serge Steer <serge.steer@inria.fr>
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2017 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -130,7 +131,17 @@ function c=legend(varargin)
         else
             if vis_on then drawnow(); end    // draw if figure status allows it (otherwise standby)
             bnds=get(gca(),"axes_bounds");
-            as=get(gcf(),"axes_size");
+            as = get(gcf(),"axes_size");
+            tmp = c.parent.parent   // Figure | uicontrol (frame)
+            if tmp.type=="uicontrol"  // frame
+                asf = tmp.position(3:4)
+                if tmp.units=="normalized"
+                    as = as .* asf
+                else
+                    // pixels ('points' not implemented: scale point/pixel unknown)
+                    as = asf
+                end
+            end
             while %t
                 rep=xgetmouse()
                 if rep(3)<> -1 then break,end
