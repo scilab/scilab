@@ -15,7 +15,7 @@ function x = %hm_stdev(m, d, ms)
     if argn(2) < 3 then
         ms = %f
     end
-    if argn(2) == 3 & type(ms)~=1 & typeof(ms) ~= "hypermat" then
+    if argn(2) == 3 & type(ms)~=1 then
         msg = _("%s: Wrong type for input argument #%d: A real matrix expected.\n")
         error(msprintf(msg, "stdev", 3));
     end

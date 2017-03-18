@@ -1419,7 +1419,6 @@ uiGetParentNode
 uiInsertNode
 cell
 fieldnames
-hypermat
 iscell
 iscellstr
 isfield

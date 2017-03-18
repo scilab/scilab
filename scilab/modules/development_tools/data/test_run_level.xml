@@ -40,7 +40,6 @@
         </module>
 
         <module name="data_structures">
-            <test>hypermat</test>
             <test>isfield</test>
             <test>listextraction</test>
             <test>listinsertion</test>

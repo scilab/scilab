@@ -140,10 +140,10 @@
                             <listitem>
                                 <itemizedlist>
                                     <listitem>
-                                        <varname>data</varname> as an hypermat of int8 or uint8 provides the RGB components ;
+                                        <varname>data</varname> as an hypermatrix of int8 or uint8 provides the RGB components ;
                                     </listitem>
                                     <listitem>
-                                        <varname>data</varname> as an hypermat of doubles provides normalized RGB components (values between 0 and 1) ;
+                                        <varname>data</varname> as an hypermatrix of doubles provides normalized RGB components (values between 0 and 1) ;
                                     </listitem>
                                     <listitem>
                                         <varname>data</varname> as a matrix of int8 or uint8 with a number of rows multiple of 3 provides the RGB components ;
@@ -163,10 +163,10 @@
                             <listitem>
                                 <itemizedlist>
                                     <listitem>
-                                        <varname>data</varname> as an hypermat of int8 or uint8 provides the RGBA components ;
+                                        <varname>data</varname> as an hypermatrix of int8 or uint8 provides the RGBA components ;
                                     </listitem>
                                     <listitem>
-                                        <varname>data</varname> as an hypermat of doubles provides normalized RGBA components (values between 0 and 1) ;
+                                        <varname>data</varname> as an hypermatrix of doubles provides normalized RGBA components (values between 0 and 1) ;
                                     </listitem>
                                     <listitem>
                                         <varname>data</varname> as a matrix of int8 or uint8 with a number of rows multiple of 4 provides the RGBA components ;
@@ -183,10 +183,10 @@
                             <listitem>
                                 <itemizedlist>
                                     <listitem>
-                                        <varname>data</varname> as an hypermat of int8 or uint8 provides the ARGB components ;
+                                        <varname>data</varname> as an hypermatrix of int8 or uint8 provides the ARGB components ;
                                     </listitem>
                                     <listitem>
-                                        <varname>data</varname> as an hypermat of doubles provides normalized ARGB components (values between 0 and 1) ;
+                                        <varname>data</varname> as an hypermatrix of doubles provides normalized ARGB components (values between 0 and 1) ;
                                     </listitem>
                                     <listitem>
                                         <varname>data</varname> as a matrix of int8 or uint8 with a number of rows multiple of 4 provides the ARGB components ;

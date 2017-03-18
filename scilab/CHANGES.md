@@ -95,6 +95,7 @@ Obsolete functions or features
 Removed Functions
 -----------------
 
+* `hypermat` was obsolete and has been removed. Please use `matrix` instead.
 * `square` was obsolete and has been removed.
 
 

@@ -104,11 +104,11 @@ function [flag,errmsg] = assert_checkalmostequal ( varargin )
     comptype = assert_argindefault ( rhs , varargin , 5 , "element" )
     //
     // Check types of variables
-    if ( and(typeof(computed) <> ["constant" "sparse" "hypermat"]) ) then
+    if ( and(typeof(computed) <> ["constant" "sparse"]) ) then
         errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkalmostequal" , 1 )
         error(errmsg)
     end
-    if ( and(typeof(expected) <> ["constant" "sparse" "hypermat"]) ) then
+    if ( and(typeof(expected) <> ["constant" "sparse"]) ) then
         errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkalmostequal" , 2 )
         error(errmsg)
     end

@@ -11,7 +11,7 @@
 // along with this program.
 
 function S = pol2str(p)
-    if type(p) <> 2 & (typeof(p)~="hypermat" | type(p(:))~=2) then
+    if type(p) <> 2 then
         msg = _("%s: Wrong type for input argument #%d: Polynomial expected.\n")
         error(msprintf(msg, "pol2str", 1));
     end

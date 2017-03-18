@@ -211,15 +211,6 @@ function r=write_nD_format(x)
             N=sx(1);
             cmd=",:)"
         end
-    else // hypermatrix
-        // typeof(x)==hypermat
-        //  xd=x.entries
-        //  sdims=x.dims(2:$)
-        //  N=x.dims(1)
-        //  cmd=':)'
-        //  n=size(sx,'c')
-        //  for i=1:n-2;cmd=':,'+cmd;end;
-        //  cmd=','+cmd;
     end
     r=[];
     for i=1:N
@@ -228,23 +219,6 @@ function r=write_nD_format(x)
     end
     r="{"+strcat(r,",")+"}";
 endfunction
-
-// a 2x3 matrix {{xx,xx,xx},{xx,xx,xx}}
-// A[2] {xx,xx}
-// A[1,2] {{xx,xx}}
-// A[2,1] {{xx},{xx}}
-// A[1,1,2] {{{xx,xx}}}
-// a=rand(2,3)
-// a=[3,4];
-// a=[4;2];
-// a=rand(2,3);
-// a=rand(1,2,3,4,5);
-// a=[1 2 3 4 1 4];a(:,:,2)=[5 6 7 8 1 5] ;
-//if typeof(a)== 'hypermat' then
-// disp('not supported')
-//end
-//sa=write_nD_format(a)
-
 
 function     Pari=construct_Pars(Pari,opari,Parembed)
 
@@ -258,13 +232,13 @@ function     Pari=construct_Pars(Pari,opari,Parembed)
     //erpar=string(rpar); will put 1e-16 to zero in a vector containing
     //big numbers
 
-    C=opari;
-    [a1,b1]=size(C);
-    npi=a1*b1;
-    if typeof(C)== "hypermat" then
+    C = opari;
+    if ndims(C)>2 then
         messagebox(_("Hyper Matrix is not supported"),"error","modal")
         return
     end
+    [a1,b1] = size(C);
+    npi = a1*b1;
 
     if (type(C)==1) then
         if isreal(C) then
@@ -313,7 +287,7 @@ function eopari = construct_redeclar(opari)
     C=opari;
     npi=size(C,"*");
 
-    if typeof(C)== "hypermat" then
+    if ndims(C)>2 then
         messagebox(_("Hyper Matrix is not supported"),"error","modal")
         return
     end

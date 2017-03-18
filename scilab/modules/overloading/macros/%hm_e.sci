@@ -57,10 +57,6 @@ function [M] = %hm_e(varargin)
         elseif type_ik==4 | type_ik==6 then   // boolean and sparse boolean subscript
             if size(ik,"*") ~= dims(k) then, error(21), end
             ik=find(ik)
-        elseif typeof(ik) == "hypermat" then  // hm boolean subscript
-            if type(ik.entries) ~= 4 then, error(21), end
-            if size(ik,"*") ~= dims(k) then, error(21), end
-            ik=find(ik.entries)
         else
             error(21)
         end
