@@ -127,7 +127,7 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
     @Override
     public void updateObject(Integer id, int property) {
         // Watch figure.auto_resize = "on" | "off"
-        if (figure.getIdentifier() == id) {
+        if (figure.getIdentifier().equals(id)) {
             if (property == __GO_AUTORESIZE__) {
                 Boolean autoResize = (Boolean) GraphicController.getController().getProperty(id, property);
                 if (autoResize) {
