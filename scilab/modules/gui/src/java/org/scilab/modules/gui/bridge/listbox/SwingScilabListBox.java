@@ -630,7 +630,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      */
     public void setListBoxTop(int index) {
         getVerticalScrollBar().removeAdjustmentListener(adjustmentListener);
-        if (index > 0 & index != getListBoxTop() && getList().getModel().getSize() != 0) {
+        if (index > 0 && index != getListBoxTop() && getList().getModel().getSize() != 0) {
             getViewport().setViewPosition(getList().getUI().indexToLocation(getList(), index - 1));
             doLayout();
         }
