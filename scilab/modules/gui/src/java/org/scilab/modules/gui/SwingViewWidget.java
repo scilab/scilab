@@ -39,6 +39,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.lang.StringBuilder;
 
 import javax.swing.JComponent;
 
@@ -251,11 +252,13 @@ public final class SwingViewWidget {
                 String[] tooltipString = ((String[]) value);
                 String tooltipText = tooltipString[0];
                 if (tooltipString.length > 1) {
-                    tooltipText = "<html>" + tooltipText;
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("<html>" + tooltipText);
                     for (int kString = 1; kString < tooltipString.length; kString++) {
-                        tooltipText = tooltipText + "<br>" + tooltipString[kString];
+                        sb.append("<br>").append(tooltipString[kString]);
                     }
-                    tooltipText = tooltipText + "</html>";
+                    sb.append("</html>");
+                    tooltipText = sb.toString();
                 }
                 if (tooltipText.equals("")) {
                     uiControl.setToolTipText(null);
