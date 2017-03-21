@@ -412,7 +412,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
             /* Display only SciNotes compatibles fonts which are monospaced */
             for (int fontIndex = 0; fontIndex < availableFontNames.length; fontIndex++) {
                 if (ScilabFontUtils.isMonospaced(new Font(availableFontNames[fontIndex], Font.PLAIN, DEFAULT_FONT_SIZE))
-                        & ScilabFontUtils.isAllStylesSameWidths(availableFontNames[fontIndex])) {
+                        && ScilabFontUtils.isAllStylesSameWidths(availableFontNames[fontIndex])) {
                     ((DefaultListModel) fontNameList.getModel()).addElement(availableFontNames[fontIndex]);
                 }
             }
