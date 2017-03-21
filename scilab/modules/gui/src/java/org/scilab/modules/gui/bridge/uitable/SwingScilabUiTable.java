@@ -434,6 +434,7 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
      * @param status status value either True or False
      */
     public void setEnabled(boolean status){
+        super.setEnabled(status);
         uiTable.setEnabled(status);
     }
 
