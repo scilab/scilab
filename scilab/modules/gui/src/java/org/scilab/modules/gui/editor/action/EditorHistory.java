@@ -34,10 +34,10 @@ public class EditorHistory implements ActionHistory {
     LinkedList<Action> history;
 
     /* pointer for the action to undo/redo */
-    Integer head;
+    int head = -1;
 
     /* max size of the history */
-    private final Integer MAX_HISTORY_SIZE = 100;
+    private static final int MAX_HISTORY_SIZE = 100;
 
     public EditorHistory() {
 
@@ -53,9 +53,6 @@ public class EditorHistory implements ActionHistory {
     */
     public void addAction(Action action) {
 
-        if (head == null) {
-            head = 0;
-        }
         while (head > 0) {
             /*same as removeFirst without throwing exception if the deque is empty*/
             Action a = history.pollFirst();
