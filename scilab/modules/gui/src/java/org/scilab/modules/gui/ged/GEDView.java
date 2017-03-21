@@ -23,7 +23,6 @@ import org.scilab.modules.graphic_objects.graphicView.GraphicView;
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
 public class GEDView implements GraphicView {
-    private String lastID = null;
 
     private static boolean visible = true;
     private static boolean autoresize = true;
@@ -75,28 +74,28 @@ public class GEDView implements GraphicView {
                     break;
                 case GraphicObjectProperties.__GO_PIXEL_DRAWING_MODE__:
                     Integer c_pixelDrawingMode = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PIXEL_DRAWING_MODE__);
-                    if (pixelDrawingMode != c_pixelDrawingMode) {
+                    if (!(pixelDrawingMode.equals(c_pixelDrawingMode))) {
                         isValid = true;
                         pixelDrawingMode = c_pixelDrawingMode;
                     }
                     break;
                 case GraphicObjectProperties.__GO_ANTIALIASING__:
                     Integer c_antialiasing = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_ANTIALIASING__);
-                    if (antialiasing != c_antialiasing) {
+                    if (!(antialiasing.equals(c_antialiasing))) {
                         isValid = true;
                         antialiasing = c_antialiasing;
                     }
                     break;
                 case GraphicObjectProperties.__GO_ROTATION_TYPE__:
                     Integer c_rotationType = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_ROTATION_TYPE__);
-                    if (rotationType != c_rotationType) {
+                    if (!(rotationType.equals(c_rotationType))) {
                         isValid = true;
                         rotationType = c_rotationType;
                     }
                     break;
                 case GraphicObjectProperties.__GO_CLIP_STATE__:
                     Integer c_clipState = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CLIP_STATE__);
-                    if (clipState != c_clipState) {
+                    if (!(clipState.equals(c_clipState))) {
                         isValid = true;
                         clipState = c_clipState;
                     }
@@ -110,7 +109,7 @@ public class GEDView implements GraphicView {
                     break;
                 case GraphicObjectProperties.__GO_LINE_STYLE__:
                     Integer c_lineStyle = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_LINE_STYLE__);
-                    if (lineStyle != c_lineStyle) {
+                    if (!(lineStyle.equals(c_lineStyle))) {
                         isValid = true;
                         lineStyle = c_lineStyle;
                     }
@@ -124,14 +123,14 @@ public class GEDView implements GraphicView {
                     break;
                 case GraphicObjectProperties.__GO_MARK_SIZE_UNIT__:
                     Integer c_markSizeUnit = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_MARK_SIZE_UNIT__);
-                    if (markSizeUnit != c_markSizeUnit) {
+                    if (!(markSizeUnit.equals(c_markSizeUnit))) {
                         isValid = true;
                         markSizeUnit = c_markSizeUnit;
                     }
                     break;
                 case GraphicObjectProperties.__GO_DATA_MAPPING__:
                     Integer c_dataMapping = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_DATA_MAPPING__);
-                    if (dataMapping != c_dataMapping) {
+                    if (!(dataMapping.equals(c_dataMapping))) {
                         isValid = true;
                         dataMapping = c_dataMapping;
                     }
@@ -159,14 +158,14 @@ public class GEDView implements GraphicView {
                     break;
                 case GraphicObjectProperties.__GO_DATATIP_ORIENTATION__:
                     Integer c_datatipOrientation = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_DATATIP_ORIENTATION__);
-                    if (datatipOrientation != c_datatipOrientation) {
+                    if (!(datatipOrientation.equals(c_datatipOrientation))) {
                         isValid = true;
                         datatipOrientation = c_datatipOrientation;
                     }
                     break;
                 case GraphicObjectProperties.__GO_DATATIP_DISPLAY_COMPONENTS__:
                     String c_datatipDisplayComponents = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_DATATIP_DISPLAY_COMPONENTS__);
-                    if (datatipDisplayComponents != c_datatipDisplayComponents) {
+                    if (!(datatipDisplayComponents.equals(c_datatipDisplayComponents))) {
                         isValid = true;
                         datatipDisplayComponents = c_datatipDisplayComponents;
                     }
@@ -194,7 +193,7 @@ public class GEDView implements GraphicView {
                     break;
                 case GraphicObjectProperties.__GO_FONT_STYLE__:
                     Integer c_fontStyle = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_FONT_STYLE__);
-                    if (fontStyle != c_fontStyle) {
+                    if (!(fontStyle.equals(c_fontStyle))) {
                         isValid = true;
                         fontStyle = c_fontStyle;
                     }
@@ -208,7 +207,7 @@ public class GEDView implements GraphicView {
                     break;
                 case GraphicObjectProperties.__GO_LEGEND_LOCATION__:
                     Integer c_legendLocation = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_LEGEND_LOCATION__);
-                    if (legendLocation != c_legendLocation) {
+                    if (!(legendLocation.equals(c_legendLocation))) {
                         isValid = true;
                         legendLocation = c_legendLocation;
                     }
