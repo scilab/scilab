@@ -38,43 +38,45 @@ extern "C"
 #include "BOOL.h"
 }
 /*--------------------------------------------------------------------------*/
-#define freePointersUigetfile()                 \
-    if (selection)                              \
-    {                                           \
-        for (int i = 0; i < selectionSize; i++) \
-        {                                       \
-            if (selection[i])                   \
-            {                                   \
-                delete selection[i];            \
-                selection[i] = NULL;            \
-            }                                   \
-        }                                       \
-        delete [] selection;                    \
-        selection = NULL;                       \
-    }                                           \
-    if (selectionPathName)                      \
-    {                                           \
-        delete selectionPathName;               \
-        selectionPathName = NULL;               \
-    }                                           \
-    if (selectionFileNames)                     \
-    {                                           \
-        for (int i = 0; i < selectionSize; i++) \
-        {                                       \
-            if (selectionFileNames[i])          \
-            {                                   \
-                delete selectionFileNames[i];   \
-                selectionFileNames[i] = NULL;   \
-            }                                   \
-        }                                       \
-        delete [] selectionFileNames;           \
-        selectionFileNames = NULL;              \
-    }                                           \
-    if (menuCallback)                           \
-    {                                           \
-        delete menuCallback;                    \
-        menuCallback = NULL;                    \
+static void freePointersUigetfile(char **selection, char **selectionFileNames, char *selectionPathName, char *menuCallback,int selectionSize)
+{
+    if (selection)
+    {
+        for (int i = 0; i < selectionSize; i++)
+        {
+            if (selection[i])
+            {
+                delete selection[i];
+                selection[i] = NULL;
+            }
+        }
+        delete [] selection;
+        selection = NULL;
     }
+    if (selectionPathName)
+    {
+        delete selectionPathName;
+        selectionPathName = NULL;
+    }
+    if (selectionFileNames)
+    {
+        for (int i = 0; i < selectionSize; i++)
+        {
+            if (selectionFileNames[i])
+            {
+                delete selectionFileNames[i];
+                selectionFileNames[i] = NULL;
+            }
+        }
+        delete [] selectionFileNames;
+        selectionFileNames = NULL;
+    }
+    if (menuCallback)
+    {
+        delete menuCallback;
+        menuCallback = NULL;
+    }
+}
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_gui_filechooser;
 
@@ -329,6 +331,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
             return 1;
         }
 
@@ -342,6 +345,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
                 return 1;
             }
 
@@ -357,13 +361,14 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
                 return 1;
             }
 
             AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
         }
 
-        freePointersUigetfile();
+        freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
         ReturnArguments(pvApiCtx);
         return 0;
     }
@@ -376,11 +381,12 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
             return 1;
         }
 
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
-        freePointersUigetfile();
+        freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
         ReturnArguments(pvApiCtx);
         return 0;
     }
@@ -391,12 +397,14 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
         return 1;
     }
 
     if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 2, selectionPathName))
     {
         printError(&sciErr, 0);
+        freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
         return 1;
     }
 
@@ -413,7 +421,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         AssignOutputVariable(pvApiCtx, 3) = nbInputArgument(pvApiCtx) + 3;
     }
 
-    freePointersUigetfile();
+    freePointersUigetfile(selection, selectionFileNames, selectionPathName, menuCallback, selectionSize);
     ReturnArguments(pvApiCtx);
     return 0;
 }
