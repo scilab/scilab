@@ -63,7 +63,7 @@ public class LegendHandler {
      */
 
     public static void setLegend(Integer legend, Integer axes, Integer polyline, String text) {
-        if (text == null || text == "" || polyline == null || axes == null || legend == null) {
+    	if (text == null || text.equals("") || polyline == null || axes == null || legend == null) {
             return;
         }
 
@@ -131,7 +131,7 @@ public class LegendHandler {
             Integer[] linksOld = (Integer[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
             int remove = -1;
             for (int i = 0; i < linksOld.length; i++) {
-                if (polyline != linksOld[i]) {
+                if (!(polyline.equals(linksOld[i]))) {
                     links.add(linksOld[i]);
                 } else {
                     remove = i;
@@ -177,7 +177,7 @@ public class LegendHandler {
                 String[] textOld = (String[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_TEXT_STRINGS__);
                 Integer[] linksOld = (Integer[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
                 for (int i = 0; i < linksOld.length; i++) {
-                    if (linksOld[i] == polyline) {
+                    if (linksOld[i].equals(polyline)) {
                         return textOld[linksOld.length - i - 1];
                     }
                 }
