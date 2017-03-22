@@ -1,5 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
+// Copyright (C) 2017 - Samuel GOUGEON
+//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -18,27 +20,34 @@ function [c] = getcolor(Title,cini)
         cini = 1;
     elseif rhs==1 then
         if type(Title)~=10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "getcolor", 1));
+            msg = gettext("%s: Wrong type for input argument #%d: string expected.\n")
+            error(msprintf(msg, "getcolor", 1));
         end
         if size(Title, "*")~=1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "getcolor", 1));
+            msg = gettext("%s: Wrong size for input argument #%d: string expected.\n")
+            error(msprintf(msg, "getcolor", 1));
         end
         cini = 1;
     elseif rhs==2 then
         if type(Title)~=10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "getcolor", 1));
+            msg = gettext("%s: Wrong type for input argument #%d: string expected.\n")
+            error(msprintf(msg, "getcolor", 1));
         end
         if size(Title, "*")~=1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "getcolor", 1));
+            msg = gettext("%s: Wrong size for input argument #%d: string expected.\n")
+            error(msprintf(msg, "getcolor", 1));
         end
         if type(cini)~=1 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"), "getcolor", 2));
+            msg = gettext("%s: Wrong type for input argument #%d: A real expected.\n")
+            error(msprintf(msg, "getcolor", 2));
         end
         if size(cini, "*")~=1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A real expected.\n"), "getcolor", 2));
+            msg = gettext("%s: Wrong size for input argument #%d: A real expected.\n")
+            error(msprintf(msg, "getcolor", 2));
         end
     else
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "getcolor", 2, 0, 2));
+        msg = gettext("%s: Wrong number of input arguments: %d to %d expected.\n")
+        error(msprintf(msg, "getcolor", 2, 0, 2));
     end
 
     if winsid()~=[] then
@@ -51,17 +60,12 @@ function [c] = getcolor(Title,cini)
     end;
 
     // create the window for getcolor
-    
-    win = max(winsid());
-    if isempty(win) then 
-        win = 1;
-    end
-        
-    scf(win);
+    fig = scf();
+    fig.visible = "off";
+    win = fig.figure_id;
 
-    sdf;
-    sda;
-    fig = gcf();
+    sdf;    // quite agressive. Not sure it is actually useful
+    sda;    // same remark
     if cmap~=[] then
         fig.color_map = cmap;
     else
@@ -79,10 +83,10 @@ function [c] = getcolor(Title,cini)
 
     toolbar(win, "off")
 
-    delmenu(win,gettext("&File"))
-    delmenu(win,gettext("&Tools"))
-    delmenu(win,gettext("&Edit"))
-    delmenu(win,gettext("&?"))
+    delmenu(win, gettext("&File"))
+    delmenu(win, gettext("&Tools"))
+    delmenu(win, gettext("&Edit"))
+    delmenu(win, gettext("&?"))
 
     dx = wdim(1)/m;
     dy = wdim(2)/n;
@@ -138,6 +142,7 @@ function [c] = getcolor(Title,cini)
 
     addmenu(win, gettext("Ok"));
     addmenu(win, gettext("Cancel"));
+    fig.visible = "on";
 
     c_i = 0;
     c = cini;
@@ -165,12 +170,13 @@ function [c] = getcolor(Title,cini)
             end;
             k1 = k;
             name = rgb2name(cmap(k,eye())*255);
-            fig.info_message = ..
-            gettext("Color number")+" "+string(k)+": R="+string(floor(cmap(k,1)*255))+" G="+string(floor(cmap(k,2)*255))+" B="+string(floor(cmap(k,3)*255))+" "+gettext("Name")+"="""+name(1)+"""";
-
-
-        end;
-    end;
+            txt = msprintf("RGB(%d)=[%d %d %d]",k,cmap(k,1:3)*255);
+            if name~=[]
+                txt = txt + " : """ + name(1) + """"
+            end
+            fig.info_message = txt
+        end
+    end
 
     if (c_i <> windowCloseButton) then
         delete(fig);
