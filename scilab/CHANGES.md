@@ -354,6 +354,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14886](http://bugzilla.scilab.org/show_bug.cgi?id=14886): Matplot save/load failed.
 * [#14910](http://bugzilla.scilab.org/show_bug.cgi?id=14910): The `plot()` example was displayed in overlay to the existing graphics.
 * [#14978](http://bugzilla.scilab.org/show_bug.cgi?id=15006): ode help page still contained 'root' which has been replaced by 'roots'.
+* [#15008](http://bugzilla.scilab.org/show_bug.cgi?id=15008): scilab crash in using operator AND (&, &&) or OR (| ||) with a string.
 * [#15010](http://bugzilla.scilab.org/show_bug.cgi?id=15010): Coselica did not simulate on Scilab 6.
 * [#15015](http://bugzilla.scilab.org/show_bug.cgi?id=15015): Xcos blocks using the `ascii` didn't work
 * [#15019](http://bugzilla.scilab.org/show_bug.cgi?id=15019): Add 'csci6' in the calling of ilib_build in 'Getting started with API_Scilab' help page.
