@@ -43,6 +43,7 @@ import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxICell;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 
 /**
  * Codec for an {@link org.scilab.modules.xcos.graph.XcosDiagram} instance.
@@ -187,7 +188,8 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
         Field field;
         try {
             field = ScicosParameters.class.getDeclaredField(fieldname);
-            ScicosParameters params = new ScicosParameters(Xcos.findRoot((XcosDiagram) obj));
+            XcosDiagram d = (XcosDiagram) obj;
+            ScicosParameters params = new ScicosParameters(Xcos.findRoot(d), new ScicosObjectOwner(d.getUID(), d.getKind()));
             super.setFieldValue(params, fieldname, value);
         } catch (SecurityException e) {
             field = null;

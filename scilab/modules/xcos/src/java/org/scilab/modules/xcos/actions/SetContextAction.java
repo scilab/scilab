@@ -22,10 +22,12 @@ import java.awt.event.ActionEvent;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.actions.dialog.SetContextDialog;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -80,7 +82,8 @@ public final class SetContextAction extends SimulationNotRunningAction {
             return;
         }
 
-        final SetContextDialog dialog = new SetContextDialog(comp, graph, new ScicosParameters(Xcos.findRoot(graph)));
+        ScicosObjectOwner current = new ScicosObjectOwner(graph.getUID(), graph.getKind());
+        final SetContextDialog dialog = new SetContextDialog(comp, graph, new ScicosParameters(Xcos.findRoot(graph), current));
 
         dialog.pack();
         dialog.setVisible(true);
