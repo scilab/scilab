@@ -239,13 +239,13 @@ public class FontManager {
 
         try {
             loadedFont = Font.createFont(Font.TRUETYPE_FONT, in);
+            in.close();
         } catch (IOException e) {
             loadedFont = DEFAULT_FONT;
         } catch (FontFormatException ffe) {
             loadedFont = DEFAULT_FONT;
         }
-        
-        in.close();
+
         return loadedFont;
     }
 
