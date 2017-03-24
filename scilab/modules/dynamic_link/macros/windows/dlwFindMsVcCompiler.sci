@@ -16,26 +16,28 @@ function MSCompiler = dlwFindMsVcCompiler()
     MSCompiler = "unknown"; // unknown
 
     // We use always last version of MS compiler
-
     val = getenv("SCILAB_PREFERED_MSVC", "");
     if val <> "" then
-        funcs = list(dlwIsVc14Express,dlwIsVc12Pro,dlwIsVc14Express,dlwIsVc12Pro,dlwIsVc11Express,dlwIsVc11Pro,dlwIsVc10Express,dlwIsVc10Pro);
-        compilers = [ ...
-        "msvc140express";
-        "msvc140pro";
-        "msvc120express";
-        "msvc120pro";
-        "msvc110express";
-        "msvc110pro";
-        "msvc100express";
-        "msvc100pro";];
-        idx = find(val == compilers);
-        if idx <> [] then
-            func = funcs(idx);
+        funcs = struct(...
+            "msvc140express", dlwIsVc14Express, ...
+            "msvc140pro", dlwIsVc14Pro, ...
+            "msvc120express", dlwIsVc12Express, ...
+            "msvc120pro", dlwIsVc12Pro, ...
+            "msvc110express", dlwIsVc11Express, ...
+            "msvc110pro", dlwIsVc11Pro, ...
+            "msvc100express", dlwIsVc10Express, ...
+            "msvc100pro", dlwIsVc10Pro);
+
+        try
+            func = funcs(val);
             if func() then
                 MSCompiler = val;
-                return;
             end
+        catch
+        end
+        
+        if MSCompiler <> "unknown" then
+            return;
         end
     end
 
