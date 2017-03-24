@@ -143,7 +143,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                         int iSaveExpectedSize = getExpectedSize();
                         setExpectedSize(1);
 
-                        pCall->invoke(in, opt, getExpectedSize(), out, e);
+                        pCall->invoke(in, opt, getExpectedSize(), out, **it);
                         setExpectedSize(iSaveExpectedSize);
 
                         if (out.size() == 0)

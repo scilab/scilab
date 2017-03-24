@@ -208,7 +208,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                         int iSaveExpectedSize = getExpectedSize();
                         setExpectedSize(1);
 
-                        pCall->invoke(in, opt, getExpectedSize(), out, e);
+                        pCall->invoke(in, opt, getExpectedSize(), out, *exp);
                         setExpectedSize(iSaveExpectedSize);
 
                         if (out.size() == 0)
@@ -312,4 +312,3 @@ void DebuggerVisitor::visit(const SeqExp  &e)
     }
 }
 }
-

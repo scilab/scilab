@@ -912,6 +912,7 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
 
             //return or resume
             ConfigVariable::DecreasePauseLevel();
+            ConfigVariable::macroFirstLine_end();
             CoverageInstance::stopChrono((void*)&e);
             return;
         }
