@@ -348,6 +348,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#5278](http://bugzilla.scilab.org/show_bug.cgi?id=5278): obsolete `xset()` was still used in scripts, macros, tests and help pages.
 * [#12771](http://bugzilla.scilab.org/show_bug.cgi?id=12771): xcosPalGenerateAllIcons help example was broken
 * [#13592](http://bugzilla.scilab.org/show_bug.cgi?id=13592): In an axes in a uicontrol frame, setting a `legend` interactively might not follow the mouse accurately.
+* [#14254](http://bugzilla.scilab.org/show_bug.cgi?id=14254): When installing an ATOMS module that is not locally registered and available, the error message was unclear.
 * [#14376](http://bugzilla.scilab.org/show_bug.cgi?id=14376): input() is broken: \n introduced before prompting, multiple prompts, missing assignment, "%" "\n" "\t" no longer supported in messages...
 * [#14399](http://bugzilla.scilab.org/show_bug.cgi?id=14399): Whereami : wrong information (line numbers).
 * [#14424](http://bugzilla.scilab.org/show_bug.cgi?id=14424): New problem with the input function.
