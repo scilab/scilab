@@ -376,6 +376,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15063](http://bugzilla.scilab.org/show_bug.cgi?id=15063): `fort` wasn't properly removed.
 * [#15072](http://bugzilla.scilab.org/show_bug.cgi?id=15072): The context was stored as a root diagram attribute instead of being stored on each Superblock layer.
 * [#15079](http://bugzilla.scilab.org/show_bug.cgi?id=15079): When all children of a graphic handle have not the same number of sub-children, any vectorized extraction or insertion in subchildren failed.
+* [#15107](http://bugzilla.scilab.org/show_bug.cgi?id=15107): failed to build with ocaml 4.04.0.
 * [#15117](http://bugzilla.scilab.org/show_bug.cgi?id=15117): Imbricated optim/leastsq/lsqrsolve/fsolve calls either crashed or returned errors
 * [#15119](http://bugzilla.scilab.org/show_bug.cgi?id=15119): Inequality comparisons between complex-encoded real numbers failed.
 * [#15121](http://bugzilla.scilab.org/show_bug.cgi?id=15121): getOptionals() fails to recognize some options.

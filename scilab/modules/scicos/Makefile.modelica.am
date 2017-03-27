@@ -29,7 +29,7 @@ OCAMLLIBS=nums.cma
 
 XML2Modelica_SOURCES = \
 	$(srcdir)/src/xml2modelica/xMLTree.ml \
-	$(srcdir)/src/xml2modelica/linenum.mll \
+	$(srcdir)/src/modelica_compiler/linenum.mll \
 	$(srcdir)/src/xml2modelica/stringParser.ml \
 	$(srcdir)/src/xml2modelica/stringLexer.ml \
 	$(srcdir)/src/xml2modelica/xMLParser.ml \
