@@ -87,6 +87,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
                     if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, output))
                     {
                         freeAllocatedSingleString(param1);
+                        delete[] output;
                         Scierror(999, _("%s: Memory allocation error.\n"), fname);
                         return 1;
                     }

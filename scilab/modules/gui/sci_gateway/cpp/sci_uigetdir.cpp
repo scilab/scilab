@@ -147,6 +147,15 @@ int sci_uigetdir(char *fname, void* pvApiCtx)
         return 1;
     }
 
+    if (expandedpath)
+    {
+        FREE(expandedpath);
+    }
+    if (title)
+    {
+        FREE(title);
+    }
+
     if (nbRow != 0)
     {
         /* The user selected a file --> returns the files names */
