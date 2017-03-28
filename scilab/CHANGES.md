@@ -362,6 +362,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#14376](http://bugzilla.scilab.org/show_bug.cgi?id=14376): input() is broken: \n introduced before prompting, multiple prompts, missing assignment, "%" "\n" "\t" no longer supported in messages...
 * [#14399](http://bugzilla.scilab.org/show_bug.cgi?id=14399): Whereami : wrong information (line numbers).
 * [#14424](http://bugzilla.scilab.org/show_bug.cgi?id=14424): New problem with the input function.
+* [#14532](http://bugzilla.scilab.org/show_bug.cgi?id=14532): `test_run` failed for toolboxes that are not autoloaded.
 * [#14573](http://bugzilla.scilab.org/show_bug.cgi?id=14573): Management of varargout when is not alone.
 * [#14598](http://bugzilla.scilab.org/show_bug.cgi?id=14598): `fort` wasn't properly removed.
 * [#14623](http://bugzilla.scilab.org/show_bug.cgi?id=14623): Bad lhs in MList extraction overload.
