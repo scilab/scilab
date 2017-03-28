@@ -55,7 +55,7 @@ static void freePointersUigetfile(char **selection, char **selectionFileNames, c
     }
     if (selectionPathName)
     {
-        delete selectionPathName;
+        delete[] selectionPathName;
         selectionPathName = NULL;
     }
     if (selectionFileNames)
@@ -73,7 +73,7 @@ static void freePointersUigetfile(char **selection, char **selectionFileNames, c
     }
     if (menuCallback)
     {
-        delete menuCallback;
+        delete[] menuCallback;
         menuCallback = NULL;
     }
 }
