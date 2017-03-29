@@ -27,7 +27,7 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "list.hxx"
-#include "tlist.hxx"
+#include "mlist.hxx"
 #include "user.hxx"
 
 #include "Controller.hxx"
@@ -55,12 +55,6 @@ namespace view_scilab
 {
 namespace
 {
-
-const std::wstring modelica (L"modelica");
-const std::wstring model (L"model");
-const std::wstring inputs (L"inputs");
-const std::wstring outputs (L"outputs");
-const std::wstring parameters (L"parameters");
 
 types::InternalType* get_with_vec2var(const ModelAdapter& adaptor, const Controller& controller, object_properties_t p)
 {
