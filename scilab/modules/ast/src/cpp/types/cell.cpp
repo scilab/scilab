@@ -54,19 +54,24 @@ void Cell::createCell(int _iDims, const int* _piDims, InternalType** data)
 {
     InternalType** pIT = NULL;
     create(_piDims, _iDims, &pIT, NULL);
-    for (int i = 0; i < m_iSizeMax; i++)
+    if (data == nullptr)
     {
-        if (data == nullptr)
+        types::Double* pDbl = Double::Empty();
+        for (int i = 0; i < m_iSizeMax; i++)
         {
-            m_pRealData[i] = Double::Empty();
+            m_pRealData[i] = pDbl;
+            m_pRealData[i]->IncreaseRef();
         }
-        else
+    }
+    else
+    {
+        for (int i = 0; i < m_iSizeMax; i++)
         {
             m_pRealData[i] = data[i];
+            m_pRealData[i]->IncreaseRef();
         }
-
-        m_pRealData[i]->IncreaseRef();
     }
+
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -494,7 +499,6 @@ void Cell::deleteData(InternalType* _pData)
 {
     if (_pData)
     {
-        _pData->DecreaseRef();
         _pData->killMe();
     }
 }

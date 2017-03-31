@@ -161,7 +161,7 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
                             status = false;
                             break;
                         }
-                        
+
                         m_pRealData[i] = *pRealData;
                         ++pRealData;
                     }
@@ -1641,16 +1641,12 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
                 int iNewIdx = getIndexWithDims(piIndexes, _piDims, _iDims);
                 pRealData[iNewIdx] = m_pRealData[i];
                 m_pRealData[i] = NULL;
+                T pTemp = getNullValue();
                 for (int j = iPreviousNewIdx; j < iNewIdx; ++j)
                 {
-                    T pTemp = getNullValue();
-                    T pTemp2 = copyValue(pTemp);
-                    pRealData[j] = pTemp2;
-                    if (pTemp != pTemp2)
-                    {
-                        deleteData(pTemp);
-                    }
+                    pRealData[j] = copyValue(pTemp);
                 }
+                deleteData(pTemp);
 
                 iPreviousNewIdx = iNewIdx + 1;
             }
@@ -1676,16 +1672,12 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             //}
 
             //fill exceeded with NullValue
+            T pTemp = getNullValue();
             for (int i = iPreviousNewIdx; i < m_iSizeMax; ++i)
             {
-                T pTemp = getNullValue();
-                T pTemp2 = copyValue(pTemp);
-                pRealData[i] = pTemp2;
-                if (pTemp != pTemp2)
-                {
-                    deleteData(pTemp);
-                }
+                pRealData[i] = copyValue(pTemp);
             }
+            deleteData(pTemp);
 
             delete[] piIndexes;
             //delete all array
