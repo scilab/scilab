@@ -74,6 +74,11 @@
                     <imagedata linkend="CSCOPE" fileref="../../../../../../modules/xcos/images/palettes/CSCOPE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
+             <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="SCALE_CSCOPE" fileref="../../../../../../modules/xcos/images/palettes/SCALE_CSCOPE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
             <inlinemediaobject>
                 <imageobject>
                     <imagedata linkend="CSCOPXY" fileref="../../../../../../modules/xcos/images/palettes/CSCOPXY.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
@@ -199,6 +204,11 @@
             <listitem>
                 <para>
                     <link linkend="CSCOPE">CSCOPE - Single Display Scope</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="SCALE_CSCOPE">CSCOPE - Single Display Scope with Autoscale Graph Feature</link>
                 </para>
             </listitem>
             <listitem>

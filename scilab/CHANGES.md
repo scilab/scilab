@@ -42,6 +42,7 @@ Compilation
    - autoconf 2.69
    - libtool 2.4.6 (patched for Mac Os X)
 
+
 Dependencies
 ------------
 
@@ -71,13 +72,14 @@ Packaging & Supported Operating Systems
 
 Feature changes and additions
 -----------------------------
- 
+
 * Empty strings are used as the default values on String allocation
 * HTTP get, post, put, upload, patch, delete functions added
 * JSON encoding / decoding for Scilab datatypes added
 * Memory invalid accesses have been greatly reduced thanks to :
   - PVS-Studio inspections blog report
   - Coverity scan weekly source analysis
+
 
 Help pages:
 -----------
@@ -93,6 +95,8 @@ Xcos
 ----
 
 * scicos_log() support options parameters to retrieve model statistics.
+* Added a new block `SCALE_CSCOPE` which is `CSCOPE` block with additional feature of autoscaling of graph. It takes a parameter (1 for Yes/0 for No) for scaling/no-scaling.
+
 
 API modification
 ----------------
@@ -117,6 +121,7 @@ Bug Fixes
 ---------
 
 ### Bugs fixed in 6.1.0:
+* [#8784](http://bugzilla.scilab.org/show_bug.cgi?id=8784): automatic self-adjusting scopes.
 * [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` is 40x slower with 6.0.0 wrt 5.5.2
 * [#14605](http://bugzilla.scilab.org/show_bug.cgi?id=14605): fixed - `bench_run` was too strict about the specification of tests names.
 * [#14812](http://bugzilla.scilab.org/show_bug.cgi?id=14812): Minor typos in messages.

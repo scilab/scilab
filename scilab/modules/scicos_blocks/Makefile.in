@@ -228,6 +228,7 @@ am__objects_1 = src/c/libsciscicos_blocks_algo_la-absblk.lo \
 	src/c/libsciscicos_blocks_algo_la-cosh_blk.lo \
 	src/c/libsciscicos_blocks_algo_la-counter.lo \
 	src/c/libsciscicos_blocks_algo_la-cscope.lo \
+	src/c/libsciscicos_blocks_algo_la-scale_cscope.lo \
 	src/c/libsciscicos_blocks_algo_la-cscopxy3d.lo \
 	src/c/libsciscicos_blocks_algo_la-cscopxy.lo \
 	src/c/libsciscicos_blocks_algo_la-csslti4.lo \
@@ -1017,6 +1018,7 @@ SCICOS_BLOCKS_C_SOURCES = \
     src/c/cosh_blk.c \
     src/c/counter.c \
     src/c/cscope.c \
+    src/c/scale_cscope.c \
     src/c/cscopxy3d.c \
     src/c/cscopxy.c \
     src/c/csslti4.c \
@@ -1708,6 +1710,8 @@ src/c/libsciscicos_blocks_algo_la-cosh_blk.lo: src/c/$(am__dirstamp) \
 src/c/libsciscicos_blocks_algo_la-counter.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_blocks_algo_la-cscope.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciscicos_blocks_algo_la-scale_cscope.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_blocks_algo_la-cscopxy3d.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
@@ -2465,6 +2469,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-cosh_blk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-counter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-cscope.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-scale_cscope.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-cscopxy.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-cscopxy3d.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-csslti4.Plo@am__quote@
@@ -2679,6 +2684,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-samphold4_m.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-satur.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-scalar2vector.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-scale_cscope.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-scicos_evalhermite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-scicos_indexfinder.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-scicosexit.Plo@am__quote@
@@ -3023,6 +3029,13 @@ src/c/libsciscicos_blocks_algo_la-cscope.lo: src/c/cscope.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cscope.c' object='src/c/libsciscicos_blocks_algo_la-cscope.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_blocks_algo_la-cscope.lo `test -f 'src/c/cscope.c' || echo '$(srcdir)/'`src/c/cscope.c
+
+src/c/libsciscicos_blocks_algo_la-scale_cscope.lo: src/c/scale_cscope.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_blocks_algo_la-scale_cscope.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-scale_cscope.Tpo -c -o src/c/libsciscicos_blocks_algo_la-scale_cscope.lo `test -f 'src/c/scale_cscope.c' || echo '$(srcdir)/'`src/c/scale_cscope.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-scale_cscope.Tpo src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-scale_cscope.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/scale_cscope.c' object='src/c/libsciscicos_blocks_algo_la-scale_cscope.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_blocks_algo_la-scale_cscope.lo `test -f 'src/c/scale_cscope.c' || echo '$(srcdir)/'`src/c/scale_cscope.c
 
 src/c/libsciscicos_blocks_algo_la-cscopxy3d.lo: src/c/cscopxy3d.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_blocks_algo_la-cscopxy3d.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-cscopxy3d.Tpo -c -o src/c/libsciscicos_blocks_algo_la-cscopxy3d.lo `test -f 'src/c/cscopxy3d.c' || echo '$(srcdir)/'`src/c/cscopxy3d.c

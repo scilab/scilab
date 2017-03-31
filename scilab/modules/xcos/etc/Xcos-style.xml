@@ -543,6 +543,9 @@
     <add as="CSCOPE" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/ASCOPE.svg"/>
     </add>
+    <add as="SCALE_CSCOPE" extend="Icon">
+        <add as="image" value="$SCILAB/modules/xcos/images/blocks/SCALE_ASCOPE.svg"/>
+    </add>
     <add as="CSCOPXY" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY.svg"/>
     </add>

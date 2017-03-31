@@ -137,6 +137,9 @@
     <ClCompile Include="cscope.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="scale_cscope.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="cscopxy.c">
       <Filter>Source Files</Filter>
     </ClCompile>

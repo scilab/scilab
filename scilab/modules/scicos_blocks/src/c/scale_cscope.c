@@ -1,4 +1,4 @@
-/*
+﻿/*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2012 - Scilab Enterprises - Clement DAVID
  *  Copyright (C) 2016-2017 - FOSSEE IIT Bombay - Dipti Ghosalkar
@@ -190,12 +190,12 @@ static BOOL setPolylinesBounds(scicos_block * block, int iAxeUID, int periodCoun
  * Simulation function
  ****************************************************************************/
 
-/** \fn void cscope(scicos_block * block,int flag)
+/** \fn void scale_cscope(scicos_block * block,int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-SCICOS_BLOCKS_IMPEXP void cscope(scicos_block * block, scicos_flag flag)
+SCICOS_BLOCKS_IMPEXP void scale_cscope(scicos_block * block, scicos_flag flag)
 {
     int iFigureUID;
 
@@ -244,7 +244,7 @@ SCICOS_BLOCKS_IMPEXP void cscope(scicos_block * block, scicos_flag flag)
                 result = pushData(block, 0, i);
                 if (result == FALSE)
                 {
-                    Coserror("%s: unable to push some data.", "cscope");
+                    Coserror("%s: unable to push some data.", "scale_cscope");
                     break;
                 }
             }
@@ -606,6 +606,53 @@ static void appendData(scicos_block * block, int input, double t, double *data)
         {
             const double value = data[i];
             setBuffersCoordinates(block, sco->internal.bufferCoordinates[input][i], sco->internal.numberOfPoints, block->ipar[2], t, value);
+
+
+            if ( block->rpar[0] == 1)
+            {
+                double max_curr_val, prev_max_curr_val, min_curr_val, prev_min_curr_val;
+                //Get the current maximum value of the axes
+                max_curr_val = block->rpar[2];
+                prev_max_curr_val = max_curr_val;
+
+                //Get the current minimum value of the axes
+                min_curr_val = block->rpar[1];
+                prev_min_curr_val = min_curr_val;
+
+                /* If the value to be plotted exceeds the current range, then we update the range.
+                 * We could update the range from current value to the new value i.e. (value + R)
+                 * where R varies from 0 to approx 150. So we have used (value + 100.0) to give the graph good feature.
+                 *
+                 * However, the auto-scaling feature implemented is general
+                 */
+
+                //If the value to be plotted is greater than or equal to the current max, then update the current max
+                if (value >= max_curr_val)
+                {
+                    max_curr_val = value + 10.0;
+                    block->rpar[2] = max_curr_val;
+                }
+
+                //If the value to be plotted is smaller than or equal to the current min, then update the current min
+                if (value <= min_curr_val)
+                {
+                    min_curr_val = value - 10.0;
+                    block->rpar[1] = min_curr_val;
+                }
+
+                //If value has changed, call the setPolylinesBounds function to update the ranges
+                if ((max_curr_val != prev_max_curr_val) || (min_curr_val != prev_min_curr_val))
+                {
+                    if (setPolylinesBounds(block, getAxe(getFigure(block), block, input), sco->scope.periodCounter) == FALSE)
+                    {
+                        set_block_error(-5);
+                        freeScoData(block);
+                        sco = NULL;
+                    }
+                }
+
+            }
+
         }
 
         sco->internal.numberOfPoints++;
@@ -770,7 +817,7 @@ static int getFigure(scicos_block * block)
     }
     return iFigureUID;
 #else
-    Coserror("%s: Scilab is compiled without GUI, can not use Scope.", "cscope");
+    Coserror("%s: Scilab is compiled without GUI, can not use Scope.", "scale_cscope");
     return 0;
 #endif
 }

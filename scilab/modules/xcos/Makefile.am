@@ -291,6 +291,7 @@ images/palettes/CONVERT.png \
 images/palettes/COSBLK_f.png \
 images/palettes/Counter.png \
 images/palettes/CSCOPE.png \
+images/palettes/SCALE_CSCOPE.png \
 images/palettes/CSCOPXY3D.png \
 images/palettes/CSCOPXY.png \
 images/palettes/CUMSUM.png \

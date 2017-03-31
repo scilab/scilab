@@ -55,6 +55,7 @@ SCICOS_BLOCKS_C_SOURCES = \
     src/c/cosh_blk.c \
     src/c/counter.c \
     src/c/cscope.c \
+    src/c/scale_cscope.c \
     src/c/cscopxy3d.c \
     src/c/cscopxy.c \
     src/c/csslti4.c \

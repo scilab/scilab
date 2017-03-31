@@ -674,6 +674,9 @@
             <block name="CSCOPE">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/CSCOPE.png"/>
             </block>
+            <block name="SCALE_CSCOPE">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SCALE_CSCOPE.png"/>
+            </block>
             <block name="CSCOPXY">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/CSCOPXY.png"/>
             </block>
