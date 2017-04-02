@@ -296,9 +296,12 @@ char *ezxml_decode(char *s, char **ent, char t)
                     r = (r == m) ? strcpy(MALLOC(l), r) : REALLOC(r, l);
                     e = strchr((s = r + d), ';'); // fix up pointers
                 }
-
-                memmove(s + c, e + 1, strlen(e)); // shift rest of string
-                strncpy(s, ent[b], c); // copy in replacement text
+                
+                if (e)
+                {
+                    memmove(s + c, e + 1, strlen(e)); // shift rest of string
+                    strncpy(s, ent[b], c); // copy in replacement text
+                }
             }
             else
             {
@@ -569,9 +572,13 @@ short ezxml_internal_dtd(ezxml_root_t root, char *s, size_t len)
             {
                 *s = '\0';    // null terminate tag name
             }
-            for (i = 0; root->attr[i] && strcmp(n, root->attr[i][0]); i++)
+            
+            if (n)
             {
-                ;
+                for (i = 0; root->attr[i] && strcmp(n, root->attr[i][0]); i++)
+                {
+                    ;
+                }
             }
 
             while (*(n = ++s + strspn(s, EZXML_WS)) && *n != '>')
@@ -1064,8 +1071,11 @@ ezxml_t ezxml_parse_fd(int fd)
     {
 #endif // EZXML_NOMMAP
         l = read(fd, m = MALLOC(st.st_size), st.st_size);
-        root = (ezxml_root_t)ezxml_parse_str(m, l);
-        root->len = (size_t) - 1; // so we know to free s in ezxml_free()
+        if (l > 0)
+        {
+            root = (ezxml_root_t)ezxml_parse_str(m, l);
+            root->len = (size_t) - 1; // so we know to free s in ezxml_free()
+        }
 #ifndef EZXML_NOMMAP
     }
 #endif // EZXML_NOMMAP
