@@ -136,15 +136,10 @@ static int findOptional(void* _pvCtx, char *pstProperty, rhs_opts opts[])
     while (opts[i].pstName != NULL)
     {
         int cmp;
-
         /* name is terminated by white space and we want to ignore them */
         if ((cmp = strcmp(pstProperty, opts[i].pstName)) == 0)
         {
             rep = i;
-            break;
-        }
-        else if (cmp < 0)
-        {
             break;
         }
         else
