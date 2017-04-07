@@ -73,7 +73,7 @@ Feature changes and additions
 Help pages:
 -----------
 
-* fixed / improved:  `bench_run`
+* fixed / improved:  `bench_run` `M_SWITCH`
 
 
 Data Structures

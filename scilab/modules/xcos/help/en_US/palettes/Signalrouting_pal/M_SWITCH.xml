@@ -214,6 +214,28 @@
             </listitem>
         </itemizedlist>
     </refsection>
+    <refsection id="Examples_M_SWITCH">
+        <title>Example</title>
+        <refsection id="Example_M_SWITCH_1">
+            <title>Example 1</title>
+            <para>This sample model demonstrates signal selection with different parameters : with a 0 or 1 indexation and with different rounding modes.
+            </para>
+            <para>
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/M_SWITCH.zcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata align="center" fileref="../../../../examples/signalrouting_pal/M_SWITCH.zcos" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+                <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/signalrouting_pal/M_SWITCH.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+            </para>
+        </refsection>
+
+    </refsection>
     <refsection id="Interfacingfunction_M_SWITCH">
         <title>Interfacing function</title>
         <itemizedlist>
