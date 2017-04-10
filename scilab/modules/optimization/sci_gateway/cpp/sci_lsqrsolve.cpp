@@ -33,8 +33,6 @@ extern "C"
 
 types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    OptimizationFunctions* opFunctionsManager = NULL;
-
     types::Double* pDblX    = NULL;
     types::Double* pDblM    = NULL;
     types::Double* pDblV    = NULL;
@@ -92,26 +90,27 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
     iSizeX = pDblX->getSize();
 
     // get function
-    opFunctionsManager = new OptimizationFunctions(L"lsqrsolve");
-    Optimization::addOptimizationFunctions(opFunctionsManager);
-    opFunctionsManager->setXRows(pDblX->getRows());
-    opFunctionsManager->setXCols(pDblX->getCols());
+    OptimizationFunctions opFunctionsManager(L"lsqrsolve");
+    Optimization::addOptimizationFunctions(&opFunctionsManager);
+    opFunctionsManager.setXRows(pDblX->getRows());
+    opFunctionsManager.setXCols(pDblX->getCols());
 
     if (in[1]->isCallable())
     {
         types::Callable* pCall = in[1]->getAs<types::Callable>();
-        opFunctionsManager->setFsolveFctFunction(pCall);
+        opFunctionsManager.setFsolveFctFunction(pCall);
     }
     else if (in[1]->isString())
     {
         types::String* pStr = in[1]->getAs<types::String>();
         char* pst = wide_string_to_UTF8(pStr->get(0));
-        bool bOK = opFunctionsManager->setFsolveFctFunction(pStr);
+        bool bOK = opFunctionsManager.setFsolveFctFunction(pStr);
 
         if (bOK == false)
         {
             Scierror(50, _("%s: Subroutine not found: %s\n"), "lsqrsolve", pst);
             FREE(pst);
+            Optimization::removeOptimizationFunctions();
             return types::Function::Error;
         }
 
@@ -123,6 +122,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
         if (pList->getSize() == 0)
         {
             Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "lsqrsolve", 2, "(string empty)");
+            Optimization::removeOptimizationFunctions();
             return types::Function::Error;
         }
 
@@ -130,12 +130,13 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
         {
             types::String* pStr = pList->get(0)->getAs<types::String>();
             char* pst = wide_string_to_UTF8(pStr->get(0));
-            bool bOK = opFunctionsManager->setFsolveFctFunction(pStr);
+            bool bOK = opFunctionsManager.setFsolveFctFunction(pStr);
 
             if (bOK == false)
             {
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "lsqrsolve", pst);
                 FREE(pst);
+                Optimization::removeOptimizationFunctions();
                 return types::Function::Error;
             }
 
@@ -144,21 +145,23 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
         else if (pList->get(0)->isCallable())
         {
             types::Callable* pCall = pList->get(0)->getAs<types::Callable>();
-            opFunctionsManager->setFsolveFctFunction(pCall);
+            opFunctionsManager.setFsolveFctFunction(pCall);
             for (int iter = 1; iter < pList->getSize(); iter++)
             {
-                opFunctionsManager->setFsolveFctArgs(pList->get(iter)->getAs<types::InternalType>());
+                opFunctionsManager.setFsolveFctArgs(pList->get(iter)->getAs<types::InternalType>());
             }
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: The first argument in the list must be a string or a function.\n"), "lsqrsolve", 2);
+            Optimization::removeOptimizationFunctions();
             return types::Function::Error;
         }
     }
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix or a function expected.\n"), "lsqrsolve", 2);
+        Optimization::removeOptimizationFunctions();
         return types::Function::Error;
     }
 
@@ -166,6 +169,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
     if (in[2]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A real Scalar expected.\n"), "lsqrsolve", 3);
+        Optimization::removeOptimizationFunctions();
         return types::Function::Error;
     }
 
@@ -174,6 +178,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
     if (pDblM->isComplex() || pDblM->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A real Scalar expected.\n"), "lsqrsolve", 3);
+        Optimization::removeOptimizationFunctions();
         return types::Function::Error;
     }
 
@@ -182,6 +187,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
     if (iM < iSizeX)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: At most %d expected.\n"), "lsqrsolve", 3, iM);
+        Optimization::removeOptimizationFunctions();
         return types::Function::Error;
     }
 
@@ -193,7 +199,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
         if (in[iPos]->isCallable())
         {
             types::Callable* pCall = in[iPos]->getAs<types::Callable>();
-            opFunctionsManager->setFsolveJacFunction(pCall);
+            opFunctionsManager.setFsolveJacFunction(pCall);
 
             bJac = true;
             iPos++;
@@ -202,12 +208,13 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
         {
             types::String* pStr = in[iPos]->getAs<types::String>();
             char* pst = wide_string_to_UTF8(pStr->get(0));
-            bool bOK = opFunctionsManager->setFsolveJacFunction(pStr);
+            bool bOK = opFunctionsManager.setFsolveJacFunction(pStr);
 
             if (bOK == false)
             {
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "lsqrsolve", pst);
                 FREE(pst);
+                Optimization::removeOptimizationFunctions();
                 return types::Function::Error;
             }
 
@@ -221,6 +228,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
             if (pList->getSize() == 0)
             {
                 Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "lsqrsolve", 4, "(string empty)");
+                Optimization::removeOptimizationFunctions();
                 return types::Function::Error;
             }
 
@@ -228,12 +236,13 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
             {
                 types::String* pStr = pList->get(0)->getAs<types::String>();
                 char* pst = wide_string_to_UTF8(pStr->get(0));
-                bool bOK = opFunctionsManager->setFsolveJacFunction(pStr);
+                bool bOK = opFunctionsManager.setFsolveJacFunction(pStr);
 
                 if (bOK == false)
                 {
                     Scierror(50, _("%s: Subroutine not found: %s\n"), "lsqrsolve", pst);
                     FREE(pst);
+                    Optimization::removeOptimizationFunctions();
                     return types::Function::Error;
                 }
 
@@ -244,10 +253,10 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
             else if (pList->get(0)->isCallable())
             {
                 types::Callable* pCall = pList->get(0)->getAs<types::Callable>();
-                opFunctionsManager->setFsolveJacFunction(pCall);
+                opFunctionsManager.setFsolveJacFunction(pCall);
                 for (int iter = 1; iter < pList->getSize(); iter++)
                 {
-                    opFunctionsManager->setFsolveJacArgs(pList->get(iter)->getAs<types::InternalType>());
+                    opFunctionsManager.setFsolveJacArgs(pList->get(iter)->getAs<types::InternalType>());
                 }
 
                 bJac = true;
@@ -256,6 +265,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
             else
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: The first argument in the list must be a string or a function.\n"), "lsqrsolve", 4);
+                Optimization::removeOptimizationFunctions();
                 return types::Function::Error;
             }
         }
@@ -264,6 +274,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
     if (bJac == false && in.size() > 5)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "lsqrsolve", 3, 5);
+        Optimization::removeOptimizationFunctions();
         return types::Function::Error;
     }
 
@@ -276,6 +287,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
             if (pDblStop->getRows() != 1 || pDblStop->getCols() != 6)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A vector of size %d x %d expected.\n"), "lsqrsolve", iPos + 1, 1, 6);
+                Optimization::removeOptimizationFunctions();
                 return types::Function::Error;
             }
 
@@ -289,12 +301,14 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
             if (dFtol < 0 || dXtol < 0 || dGtol < 0 || iMaxfev <= 0 || dFactor <= 0)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "lsqrsolve", iPos + 1, 1, 6);
+                Optimization::removeOptimizationFunctions();
                 return types::Function::Error;
             }
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A vector expected.\n"), "lsqrsolve", iPos + 1);
+            Optimization::removeOptimizationFunctions();
             return types::Function::Error;
         }
 
@@ -309,6 +323,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
             if (pDblDiag->getSize() != iSizeX)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A vector of size %d expected.\n"), "lsqrsolve", iPos + 1, iSizeX);
+                Optimization::removeOptimizationFunctions();
                 return types::Function::Error;
             }
 
@@ -319,6 +334,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
                 if (pdblDiag[i] <= 0)
                 {
                     Scierror(999, _("%s: Wrong value for input argument #%d: A strictly positive vector expected.\n"), "lsqrsolve", iPos + 1);
+                    Optimization::removeOptimizationFunctions();
                     return types::Function::Error;
                 }
             }
@@ -328,6 +344,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A vector expected.\n"), "lsqrsolve", iPos + 1);
+            Optimization::removeOptimizationFunctions();
             return types::Function::Error;
         }
     }
@@ -386,8 +403,11 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
             delete[] pdblDiag;
         }
 
+        Optimization::removeOptimizationFunctions();
         return types::Function::Error;
     }
+
+    Optimization::removeOptimizationFunctions();
 
     delete[] piPvt;
     delete[] pDblQtf;
@@ -446,4 +466,3 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
 
     return types::Function::OK;
 }
-

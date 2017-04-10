@@ -13,6 +13,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <vector>
 #include "string.hxx"
 #include "double.hxx"
 #include "optimizationfunctions.hxx"
@@ -31,22 +32,22 @@ extern "C"
 ** \{
 */
 
-OptimizationFunctions* Optimization::m_OptimizationFunctions;
+std::vector<OptimizationFunctions*> Optimization::m_OptimizationFunctions;
 
 using namespace types;
 void Optimization::addOptimizationFunctions(OptimizationFunctions* _opFunction)
 {
-    m_OptimizationFunctions = _opFunction;
+    m_OptimizationFunctions.push_back(_opFunction);
 }
 
 void Optimization::removeOptimizationFunctions()
 {
-    m_OptimizationFunctions = NULL;
+    m_OptimizationFunctions.pop_back();
 }
 
 OptimizationFunctions* Optimization::getOptimizationFunctions()
 {
-    return m_OptimizationFunctions;
+    return m_OptimizationFunctions.back();
 }
 
 /*
@@ -473,6 +474,14 @@ void OptimizationFunctions::callCostfMacro(int *ind, int *n, double *x, double *
         throw ast::InternalError(errorMsg);
     }
 
+    if (pDblOut->getSize() != *n)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallOptimCostfFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: %d element(s) expected.\n"), pstrName, 2, *n);
+        FREE(pstrName);
+        throw ast::InternalError(errorMsg);
+    }
+
     C2F(dcopy)(n, pDblOut->get(), &one, g, &one);
 
     out[1]->DecreaseRef();
@@ -884,4 +893,3 @@ void OptimizationFunctions::callLsqrsolveJacMacro(int *m, int *n, double *x, dou
         delete out[0];
     }
 }
-

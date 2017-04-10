@@ -16,6 +16,7 @@
 #ifndef __OPTIMIZATIONS_HXX__
 #define __OPTIMIZATIONS_HXX__
 
+#include <vector>
 #include <map>
 #include "dynlib_optimization.h"
 #include "string.hxx"
@@ -111,7 +112,7 @@ class OPTIMIZATION_IMPEXP Optimization
 {
     // differential equation functions
 private :
-    static OptimizationFunctions* m_OptimizationFunctions;
+    static std::vector<OptimizationFunctions*> m_OptimizationFunctions;
 
 public :
     static void addOptimizationFunctions(OptimizationFunctions* _opFunction);
