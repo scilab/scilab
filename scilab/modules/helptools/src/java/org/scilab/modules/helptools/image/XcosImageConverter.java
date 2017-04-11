@@ -65,7 +65,7 @@ public class XcosImageConverter implements ExternalImageConverter {
             return convertToPNG(name, schema.getAbsolutePath(), attributes, imageFile, imageName);
         } catch (Exception e) {
             e.printStackTrace();
-            System.err.printf("Problem when exporting Xcos schema %s !\n%s\n", schema, e.toString());
+            System.err.printf("Problem when exporting Xcos schema %s !%n%s%n", schema, e.toString());
         }
 
         return null;

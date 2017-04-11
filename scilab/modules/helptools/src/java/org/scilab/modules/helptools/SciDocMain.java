@@ -110,7 +110,7 @@ public final class SciDocMain {
             str.append(values[i].toString().toLowerCase());
         }
         str.append(']');
-        System.err.printf("%s is not a supported format : one of %s expected.\n", format.toString(), str);
+        System.err.printf("%s is not a supported format : one of %s expected.%n", format.toString(), str);
 
     }
 
@@ -161,7 +161,7 @@ public final class SciDocMain {
                     converter = new FopConverter(this);
                     break;
                 default:
-                    System.err.printf("%s is not a supported format.\n", format);
+                    System.err.printf("%s is not a supported format.%n", format);
                     return null;
             }
 

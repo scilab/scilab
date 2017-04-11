@@ -61,7 +61,7 @@ public class FopConverter extends ContainerConverter {
 
                 default:
                     out.close();
-                    throw new IOException(String.format("%s is not a supported format.\n", format));
+                    throw new IOException(String.format("%s is not a supported format.%n", format));
             }
 
             // Step 4: Setup JAXP using identity transformer
