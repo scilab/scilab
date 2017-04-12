@@ -381,6 +381,7 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap[L"tclsci"] = std::pair<GW_MOD, GW_MOD>(&TclsciModule::Load, &TclsciModule::Unload);
     m_ModuleMap[L"jvm"] = std::pair<GW_MOD, GW_MOD>(&JvmModule::Load, &JvmModule::Unload);
     m_ModuleMap[L"ui_data"] = std::pair<GW_MOD, GW_MOD>(&UiDataModule::Load, &UiDataModule::Unload);
+    m_ModuleMap[L"webtools"] = std::pair<GW_MOD, GW_MOD>(&WebtoolsModule::Load, &WebtoolsModule::Unload);
 
 #ifdef _MSC_VER
     m_ModuleMap[L"windows_tools"] = std::pair<GW_MOD, GW_MOD>(&WindowsToolsModule::Load, &WindowsToolsModule::Unload);

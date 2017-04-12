@@ -27,7 +27,7 @@ consult the [embedded help](modules/helptools/data/pages/homepage-en_US.html). I
 as the "What's new" page of the help, by simply typing `help` in Scilab console.
 
 In summary, the main new features are:
-* 
+* Webtools utilities added for HTTP protocol, JSON data usage
 
 
 Installation
@@ -73,6 +73,8 @@ Feature changes and additions
 -----------------------------
  
 * Empty strings are used as the default values on String allocation
+* HTTP get, post, put, upload, patch, delete functions added
+* JSON encoding / decoding for Scilab datatypes added
 * Memory invalid accesses have been greatly reduced thanks to :
   - PVS-Studio inspections blog report
   - Coverity scan weekly source analysis

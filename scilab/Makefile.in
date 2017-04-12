@@ -481,11 +481,11 @@ am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/modules/atoms/tests/unit_tests/repositories.orig.in \
 	$(top_srcdir)/modules/core/includes/machine.h.in \
 	$(top_srcdir)/modules/core/includes/version.h.in \
-	$(top_srcdir)/modules/helptools/etc/SciDocConf.xml.in \
-	ABOUT-NLS COPYING config/ar-lib config/compile \
-	config/config.guess config/config.rpath config/config.sub \
-	config/depcomp config/install-sh config/ltmain.sh \
-	config/missing config/mkinstalldirs
+	$(top_srcdir)/modules/helptools/etc/SciDocConf.xml.in COPYING \
+	config/ar-lib config/compile config/config.guess \
+	config/config.rpath config/config.sub config/depcomp \
+	config/install-sh config/ltmain.sh config/missing \
+	config/mkinstalldirs
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)

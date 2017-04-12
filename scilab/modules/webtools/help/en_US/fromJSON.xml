@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2017 - ESI-Group
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="fromJSON">
+    <refnamediv>
+        <refname>fromJSON</refname>
+        <refpurpose>
+            Convert JSON to scilab variable.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            result = fromJSON(arg [,type])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>arg</term>
+                <listitem>
+                    <para>
+                        A string wich contain JSON data, or a filename if the argument "type" is given.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>type</term>
+                <listitem>
+                    <para>
+                        A scalar string wich contain "file".
+                        If this argument is given, the arguement "arg" is the filename wich contain JSON data.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>result</term>
+                <listitem>
+                    <para>
+                        If the string is a correct JSON, result contain the scilab variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function convert string or JSON files into a Scilab variable.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+fromJSON("{status: OK, value:12}")
+fromJSON("[1, 2, 3]")
+fromJSON("{test:[a, b], values:[1, 2]")
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="http_post">http_post</link>
+            </member>
+            <member>
+                <link linkend="http_put">http_put</link>
+            </member>
+            <member>
+                <link linkend="http_patch">http_patch</link>
+            </member>
+            <member>
+                <link linkend="http_delete">http_delete</link>
+            </member>
+            <member>
+                <link linkend="http_upload">http_upload</link>
+            </member>
+            <member>
+                <link linkend="toJSON">toJSON</link>
+            </member>
+            <member>
+                <link linkend="http_get">http_get</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revremark>
+                    Function introduced.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

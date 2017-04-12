@@ -96,7 +96,8 @@ preferences \
 xml \
 external_objects \
 slint \
-coverage
+coverage \
+webtools
 
 if GUI
 SUBDIRS += external_objects_java
@@ -222,7 +223,8 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
-	$(top_builddir)/modules/parallel/libsciparallel.la
+	$(top_builddir)/modules/parallel/libsciparallel.la \
+    $(top_builddir)/modules/webtools/libsciwebtools.la
 
 if MPI
 ENGINE_LIBS += $(top_builddir)/modules/mpi/libscimpi.la

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2017 - ESI-Group
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="http_post">
+    <refnamediv>
+        <refname>http_post</refname>
+        <refpurpose>
+            HTTP POST request.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            [result, status] = http_post(url [,data, &lt;opt_args&gt;])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>url</term>
+                <listitem>
+                    <para>
+                        A string containing the server adresse following by the optional port, the route of the request and query datas.
+                        syntax: "adresse:port/route?queryfield=querydata"
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>data</term>
+                <listitem>
+                    <para>
+                        This argument represent data sent by the request.
+                        Can be a scilab variable wich will be converted
+                        into JSON format if possible or sent as a string.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;opt_args&gt;</term>
+                <listitem>
+                    <para>
+                        This represents a sequence of statements
+                        <literal>key1=value1, key2=value2, ...</literal>
+                        where <literal>key1</literal>,
+                        <literal>key2</literal>, ... can be one of the following:
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>cert</term>
+                            <listitem>
+                                <para>This option determines whether Scilab verifies the authenticity of the peer's certificate.
+                                    If <literal>none</literal> is given, no verification is performed.
+                                    <warning>
+                                        Disabling verification of the certificate allows bad guys to man-in-the-middle the communication without you knowing it.
+                                        Disabling verification makes the communication insecure.
+                                        Just having encryption on a transfer is not enough as you cannot be sure that you are communicating with the correct end-point.
+                                    </warning>
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>follow</term>
+                            <listitem>
+                                <para>
+                                    By default, <literal>follow</literal> is false. Set <literal>follow=%t</literal> to follow eventual redirections.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>auth</term>
+                            <listitem>
+                                <para>Username and password can be specified for the websites which required authentication.</para>
+                                <para>
+                                    The syntax is <literal>auth="username:password"</literal>
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <variablelist>
+                        <varlistentry>
+                            <term>format</term>
+                            <listitem>
+                                <para>
+                                    This option determines the format of data sent.
+                                    Only the JSON format is supported. Value can be "json" or "JSON".
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>result</term>
+                <listitem>
+                    <para>
+                        Result is a string wich contain the server answer or
+                        a scilab variable if the answer is in JSON format.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>status</term>
+                <listitem>
+                    <para>
+                        HTTP response code.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This function will perform an HTTP POST request.</para>
+        <para>The proxy configuration is used if it's enabled in the Preferences under the rubric "Internet".</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+data.userId = 12;
+data.title  = "A title";
+data.body   = "A body";
+result = http_post("http://jsonplaceholder.typicode.com/posts", data)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="http_get">http_get</link>
+            </member>
+            <member>
+                <link linkend="http_put">http_put</link>
+            </member>
+            <member>
+                <link linkend="http_patch">http_patch</link>
+            </member>
+            <member>
+                <link linkend="http_delete">http_delete</link>
+            </member>
+            <member>
+                <link linkend="http_upload">http_upload</link>
+            </member>
+            <member>
+                <link linkend="toJSON">toJSON</link>
+            </member>
+            <member>
+                <link linkend="fromJSON">fromJSON</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revremark>
+                    Function introduced.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

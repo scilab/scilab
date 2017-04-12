@@ -287,7 +287,7 @@ DIST_SUBDIRS = prebuildjava threads output_stream arnoldi \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms graph ast \
 	scinotes parallel modules_manager ui_data history_browser \
-	preferences xml external_objects slint coverage \
+	preferences xml external_objects slint coverage webtools \
 	external_objects_java scicos_blocks scicos xcos mpi . javasci
 am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/config/mkinstalldirs
@@ -624,8 +624,8 @@ SUBDIRS = prebuildjava threads output_stream arnoldi \
 	genetic_algorithms simulated_annealing parameters matio atoms \
 	hdf5 graph ast scinotes parallel modules_manager ui_data \
 	history_browser preferences xml external_objects slint \
-	coverage $(am__append_1) $(am__append_2) $(am__append_3) \
-	$(am__append_4) . $(am__append_5)
+	coverage webtools $(am__append_1) $(am__append_2) \
+	$(am__append_3) $(am__append_4) . $(am__append_5)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -726,7 +726,8 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
-	$(top_builddir)/modules/parallel/libsciparallel.la
+	$(top_builddir)/modules/parallel/libsciparallel.la \
+    $(top_builddir)/modules/webtools/libsciwebtools.la
 
 
 # Core modules
