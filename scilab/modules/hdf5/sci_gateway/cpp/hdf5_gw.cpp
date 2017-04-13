@@ -27,14 +27,14 @@ extern "C"
 #include "h5_fileManagement.h"
 }
 /*--------------------------------------------------------------------------*/
-int Initialize(void)
+int Initialize_HDF5(void)
 {
     org_modules_hdf5::H5VariableScope::initScope();
     org_modules_hdf5::H5Object::initRoot();
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int Finalize(void)
+int Finalize_HDF5(void)
 {
     org_modules_hdf5::H5Type::cleanMap();
     //org_modules_hdf5::H5VariableScope::clearScope();
@@ -44,5 +44,3 @@ int Finalize(void)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-
-

@@ -18,8 +18,8 @@
 /*--------------------------------------------------------------------------*/
 #include "dynlib_hdf5_scilab.h"
 /*--------------------------------------------------------------------------*/
-HDF5_SCILAB_IMPEXP int Initialize(void);
-HDF5_SCILAB_IMPEXP int Finalize(void);
+HDF5_SCILAB_IMPEXP int Initialize_HDF5(void);
+HDF5_SCILAB_IMPEXP int Finalize_HDF5(void);
 /*--------------------------------------------------------------------------*/
 HDF5_SCILAB_IMPEXP int sci_hdf5_load_v1(char *fname, int* pvApiCtx);
 HDF5_SCILAB_IMPEXP int sci_hdf5_load_v2(char *fname, int* pvApiCtx);

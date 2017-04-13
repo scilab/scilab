@@ -34,12 +34,12 @@ int WINAPI DllMain(HINSTANCE hinstDLL, DWORD flag, LPVOID reserved)
     {
         case DLL_PROCESS_ATTACH :
         {
-            Initialize();
+            Initialize_HDF5();
             break;
         }
         case DLL_PROCESS_DETACH :
         {
-            Finalize();
+            Finalize_HDF5();
             break;
         }
         case DLL_THREAD_ATTACH :
@@ -58,18 +58,17 @@ int WINAPI DllMain(HINSTANCE hinstDLL, DWORD flag, LPVOID reserved)
     return 1;
 }
 #else
-void __attribute__ ((constructor)) load(void);
-void __attribute__ ((destructor)) unload(void);
+void __attribute__ ((constructor)) load_hdf5(void);
+void __attribute__ ((destructor)) unload_hdf5(void);
 
-void load(void)
+void load_hdf5(void)
 {
-    Initialize();
+    Initialize_HDF5();
 }
 
-void unload(void)
+void unload_hdf5(void)
 {
-    Finalize();
+    Finalize_HDF5();
 }
 #endif
 /*--------------------------------------------------------------------------*/
-
