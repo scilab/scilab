@@ -374,6 +374,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15121](http://bugzilla.scilab.org/show_bug.cgi?id=15121): getOptionals() fails to recognize some options.
 * [#15137](http://bugzilla.scilab.org/show_bug.cgi?id=15137): ilib_build cannot build a library with more than 999 function entries in Scilab 6
 * [#15138](http://bugzilla.scilab.org/show_bug.cgi?id=15138): Scilab crashes at start on Windows
+* [#15139](http://bugzilla.scilab.org/show_bug.cgi?id=15139): Fix return in try/catch expression
 
 ### Bugs fixed in 6.0.0:
 * [#592](http://bugzilla.scilab.org/show_bug.cgi?id=592): `linspace(a, b, n<=0)` returned `b` instead of `[]`
