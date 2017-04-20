@@ -48,6 +48,7 @@ SCICOS_BLOCKS_C_SOURCES = \
     src/c/cmat3d.c \
     src/c/cmatview.c \
     src/c/cmscope.c \
+    src/c/scale_cmscope.c \
     src/c/constraint_c.c \
     src/c/convert.c \
     src/c/cos_blk.c \

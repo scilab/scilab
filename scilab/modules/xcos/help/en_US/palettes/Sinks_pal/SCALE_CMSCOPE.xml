@@ -22,66 +22,66 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CMSCOPE">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SCALE_CMSCOPE">
     <refnamediv>
-        <refname>CMSCOPE</refname>
-        <refpurpose>Multi display scope</refpurpose>
+        <refname>SCALE_CMSCOPE</refname>
+        <refpurpose>Multi display scope with autoscale feature of graph</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../images/palettes/CMSCOPE.png" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/palettes/SCALE_CMSCOPE.png" align="center" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </para>
     </refsection>
-    <refsection id="Contents_CMSCOPE">
+    <refsection id="Contents_SCALE_CMSCOPE">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
                 <para>
-                    <link linkend="CMSCOPE">Multi display scope</link>
+                    <link linkend="SCALE_CMSCOPE">Multi display scope</link>
                 </para>
             </listitem>
             <listitem>
                 <itemizedlist>
                     <listitem>
                         <para>
-                            <xref linkend="Palette_CMSCOPE">Palette</xref>
+                            <xref linkend="Palette_SCALE_CMSCOPE">Palette</xref>
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <xref linkend="Description_CMSCOPE">Description</xref>
+                            <xref linkend="Description_SCALE_CMSCOPE">Description</xref>
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <xref linkend="Dialogbox_CMSCOPE">Dialog box</xref>
+                            <xref linkend="Dialogbox_SCALE_CMSCOPE">Dialog box</xref>
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <xref linkend="Defaultproperties_CMSCOPE">Default properties</xref>
+                            <xref linkend="Defaultproperties_SCALE_CMSCOPE">Default properties</xref>
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <xref linkend="Interfacingfunction_CMSCOPE">Interfacing function</xref>
+                            <xref linkend="Interfacingfunction_SCALE_CMSCOPE">Interfacing function</xref>
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <xref linkend="Computationalfunction_CMSCOPE">Computational function</xref>
+                            <xref linkend="Computationalfunction_SCALE_CMSCOPE">Computational function</xref>
                         </para>
                     </listitem>
                 </itemizedlist>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_CMSCOPE">
+    <refsection id="Palette_SCALE_CMSCOPE">
         <title>Palette</title>
         <itemizedlist>
             <listitem>
@@ -91,7 +91,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Description_CMSCOPE">
+    <refsection id="Description_SCALE_CMSCOPE">
         <title>Description</title>
         <para>
             When you start a simulation, Xcos open Scope windows.  The Scope
@@ -102,12 +102,12 @@
 
         </para>
     </refsection>
-    <refsection id="Dialogbox_CMSCOPE">
+    <refsection id="Dialogbox_SCALE_CMSCOPE">
         <title>Dialog box</title>
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../images/gui/CMSCOPE_gui.gif" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/gui/SCALE_CMSCOPE_gui.gif" align="center" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </para>
@@ -200,9 +200,18 @@
                 <para> Name/label of the block.</para>
                 <para> Properties : Type 'str' of size 1</para>
             </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Auto scale 0/1</emphasis>
+                </para>
+                <para>
+                    if 0 autoscaling of graph wont be activated  If 1 autoscaling of graph at runtime will be activated and visible.
+                </para>
+                <para> Properties : Type 'vec' of size 1</para>
+            </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Defaultproperties_CMSCOPE">
+    <refsection id="Defaultproperties_SCALE_CMSCOPE">
         <title>Default properties</title>
         <itemizedlist>
             <listitem>
@@ -264,43 +273,43 @@
             <listitem>
                 <para>
                     <emphasis role="bold">name of computational function:</emphasis>
-                    <emphasis role="italic">cmscope</emphasis>
+                    <emphasis role="italic">scale_cmscope</emphasis>
                 </para>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Interfacingfunction_CMSCOPE">
+    <refsection id="Interfacingfunction_SCALE_CMSCOPE">
         <title>Interfacing function</title>
         <itemizedlist>
             <listitem>
-                <para> SCI/modules/scicos_blocks/macros/Sinks/CMSCOPE.sci</para>
+                <para> SCI/modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci</para>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Computationalfunction_CMSCOPE">
+    <refsection id="Computationalfunction_SCALE_CMSCOPE">
         <title>Computational function</title>
         <itemizedlist>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/cmscope.c (Type 4)</para>
+                <para> SCI/modules/scicos_blocks/src/c/scale_cmscope.c (Type 4)</para>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Example_CMSCOPE">
-        <title>Multi display scope example</title>
-        <link type="scilab" linkend="scilab.xcos/xcos/tests/unit_tests/cmscope.zcos">
+    <refsection id="Example_SCALE_CMSCOPE">
+        <title>Multi display scope example with autoscale graph</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/en_US/SCALE_CMSCOPE_en_US.zcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../../tests/unit_tests/cmscope.zcos" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../examples/sinks_pal/en_US/SCALE_CMSCOPE_en_US.zcos" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </link>
     </refsection>
-    <refsection id="Seealso_CMSCOPE">
+    <refsection id="Seealso_SCALE_CMSCOPE">
         <title>See also</title>
         <itemizedlist>
             <listitem>
                 <para>
-                    <link linkend="SCALE_CMSCOPE">SCALE_CMSCOPE - Multi display scope with autoscale feature of graph</link>
+                    <link linkend="CMSCOPE">CMSCOPE - Multi display scope</link>
                 </para>
             </listitem>
         </itemizedlist>

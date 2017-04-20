@@ -11,6 +11,9 @@
             <block name="CMSCOPE">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/CMSCOPE.png"/>
             </block>
+            <block name="SCALE_CMSCOPE">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SCALE_CMSCOPE.png"/>
+            </block>
             <block name="CONST_m">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/CONST_m.png"/>
             </block>
@@ -670,6 +673,9 @@
             </block>
             <block name="CMSCOPE">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/CMSCOPE.png"/>
+            </block>
+            <block name="SCALE_CMSCOPE">
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SCALE_CMSCOPE.png"/>
             </block>
             <block name="CSCOPE">
                 <icon variable="SCI" path="/modules/xcos/images/palettes/CSCOPE.png"/>

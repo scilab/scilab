@@ -221,6 +221,7 @@ am__objects_1 = src/c/libsciscicos_blocks_algo_la-absblk.lo \
 	src/c/libsciscicos_blocks_algo_la-cmat3d.lo \
 	src/c/libsciscicos_blocks_algo_la-cmatview.lo \
 	src/c/libsciscicos_blocks_algo_la-cmscope.lo \
+	src/c/libsciscicos_blocks_algo_la-scale_cmscope.lo \
 	src/c/libsciscicos_blocks_algo_la-constraint_c.lo \
 	src/c/libsciscicos_blocks_algo_la-convert.lo \
 	src/c/libsciscicos_blocks_algo_la-cos_blk.lo \
@@ -544,7 +545,7 @@ libsciscicos_blocks_algo_la_OBJECTS =  \
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
-am__v_lt_1 = 
+am__v_lt_1 =
 libsciscicos_blocks_algo_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(AM_CXXFLAGS) $(CXXFLAGS) \
@@ -583,11 +584,11 @@ am__v_P_1 = :
 AM_V_GEN = $(am__v_GEN_@AM_V@)
 am__v_GEN_ = $(am__v_GEN_@AM_DEFAULT_V@)
 am__v_GEN_0 = @echo "  GEN     " $@;
-am__v_GEN_1 = 
+am__v_GEN_1 =
 AM_V_at = $(am__v_at_@AM_V@)
 am__v_at_ = $(am__v_at_@AM_DEFAULT_V@)
 am__v_at_0 = @
-am__v_at_1 = 
+am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -601,7 +602,7 @@ LTCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 AM_V_CC = $(am__v_CC_@AM_V@)
 am__v_CC_ = $(am__v_CC_@AM_DEFAULT_V@)
 am__v_CC_0 = @echo "  CC      " $@;
-am__v_CC_1 = 
+am__v_CC_1 =
 CCLD = $(CC)
 LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -609,7 +610,7 @@ LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
-am__v_CCLD_1 = 
+am__v_CCLD_1 =
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -619,7 +620,7 @@ LTCXXCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 AM_V_CXX = $(am__v_CXX_@AM_V@)
 am__v_CXX_ = $(am__v_CXX_@AM_DEFAULT_V@)
 am__v_CXX_0 = @echo "  CXX     " $@;
-am__v_CXX_1 = 
+am__v_CXX_1 =
 CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -627,14 +628,14 @@ CXXLINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
-am__v_CXXLD_1 = 
+am__v_CXXLD_1 =
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
 LTF77COMPILE = $(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
 AM_V_F77 = $(am__v_F77_@AM_V@)
 am__v_F77_ = $(am__v_F77_@AM_DEFAULT_V@)
 am__v_F77_0 = @echo "  F77     " $@;
-am__v_F77_1 = 
+am__v_F77_1 =
 F77LD = $(F77)
 F77LINK = $(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
@@ -642,7 +643,7 @@ F77LINK = $(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) \
 AM_V_F77LD = $(am__v_F77LD_@AM_V@)
 am__v_F77LD_ = $(am__v_F77LD_@AM_DEFAULT_V@)
 am__v_F77LD_0 = @echo "  F77LD   " $@;
-am__v_F77LD_1 = 
+am__v_F77LD_1 =
 SOURCES = $(libsciscicos_blocks_algo_la_SOURCES) \
 	$(libsciscicos_blocks_cli_la_SOURCES) \
 	$(libsciscicos_blocks_la_SOURCES)
@@ -1011,6 +1012,7 @@ SCICOS_BLOCKS_C_SOURCES = \
     src/c/cmat3d.c \
     src/c/cmatview.c \
     src/c/cmscope.c \
+    src/c/scale_cmscope.c \
     src/c/constraint_c.c \
     src/c/convert.c \
     src/c/cos_blk.c \
@@ -1506,7 +1508,7 @@ TARGETS_ALL = $(am__append_8)
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci 
+SUFFIXES = .sci
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -1548,7 +1550,7 @@ EXAMPLES_DIR = examples
 JARDIR = jar/
 # JAR files mask
 JARMASK = *.jar
-# Chapter file 
+# Chapter file
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
@@ -1696,6 +1698,8 @@ src/c/libsciscicos_blocks_algo_la-cmat3d.lo: src/c/$(am__dirstamp) \
 src/c/libsciscicos_blocks_algo_la-cmatview.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_blocks_algo_la-cmscope.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciscicos_blocks_algo_la-scale_cmscope.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_blocks_algo_la-constraint_c.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
@@ -2398,12 +2402,12 @@ src/c/libsciscicos_blocks_algo_la-scicos_indexfinder.lo:  \
 src/cpp/libsciscicos_blocks_algo_la-scoUtils.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
-libsciscicos_blocks-algo.la: $(libsciscicos_blocks_algo_la_OBJECTS) $(libsciscicos_blocks_algo_la_DEPENDENCIES) $(EXTRA_libsciscicos_blocks_algo_la_DEPENDENCIES) 
+libsciscicos_blocks-algo.la: $(libsciscicos_blocks_algo_la_OBJECTS) $(libsciscicos_blocks_algo_la_DEPENDENCIES) $(EXTRA_libsciscicos_blocks_algo_la_DEPENDENCIES)
 	$(AM_V_CXXLD)$(libsciscicos_blocks_algo_la_LINK)  $(libsciscicos_blocks_algo_la_OBJECTS) $(libsciscicos_blocks_algo_la_LIBADD) $(LIBS)
 src/cpp/libsciscicos_blocks_cli_la-HelpersCLI.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
-libsciscicos_blocks-cli.la: $(libsciscicos_blocks_cli_la_OBJECTS) $(libsciscicos_blocks_cli_la_DEPENDENCIES) $(EXTRA_libsciscicos_blocks_cli_la_DEPENDENCIES) 
+libsciscicos_blocks-cli.la: $(libsciscicos_blocks_cli_la_OBJECTS) $(libsciscicos_blocks_cli_la_DEPENDENCIES) $(EXTRA_libsciscicos_blocks_cli_la_DEPENDENCIES)
 	$(AM_V_CXXLD)$(libsciscicos_blocks_cli_la_LINK) -rpath $(pkglibdir) $(libsciscicos_blocks_cli_la_OBJECTS) $(libsciscicos_blocks_cli_la_LIBADD) $(LIBS)
 src/cpp/libsciscicos_blocks_la-HelpersJNI.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -2416,7 +2420,7 @@ src/jni/$(DEPDIR)/$(am__dirstamp):
 src/jni/libsciscicos_blocks_la-AfficheBlock.lo:  \
 	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
 
-libsciscicos_blocks.la: $(libsciscicos_blocks_la_OBJECTS) $(libsciscicos_blocks_la_DEPENDENCIES) $(EXTRA_libsciscicos_blocks_la_DEPENDENCIES) 
+libsciscicos_blocks.la: $(libsciscicos_blocks_la_OBJECTS) $(libsciscicos_blocks_la_DEPENDENCIES) $(EXTRA_libsciscicos_blocks_la_DEPENDENCIES)
 	$(AM_V_CXXLD)$(libsciscicos_blocks_la_LINK) $(am_libsciscicos_blocks_la_rpath) $(libsciscicos_blocks_la_OBJECTS) $(libsciscicos_blocks_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
@@ -2462,6 +2466,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-cmat3d.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-cmatview.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-cmscope.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-scale_cmscope.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-constraint_c.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-convert.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-cos_blk.Plo@am__quote@
@@ -2980,6 +2985,13 @@ src/c/libsciscicos_blocks_algo_la-cmscope.lo: src/c/cmscope.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/cmscope.c' object='src/c/libsciscicos_blocks_algo_la-cmscope.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_blocks_algo_la-cmscope.lo `test -f 'src/c/cmscope.c' || echo '$(srcdir)/'`src/c/cmscope.c
+
+src/c/libsciscicos_blocks_algo_la-scale_cmscope.lo: src/c/scale_cmscope.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_blocks_algo_la-scale_cmscope.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-scale_cmscope.Tpo -c -o src/c/libsciscicos_blocks_algo_la-scale_cmscope.lo `test -f 'src/c/scale_cmscope.c' || echo '$(srcdir)/'`src/c/scale_cmscope.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-scale_cmscope.Tpo src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-scale_cmscope.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/scale_cmscope.c' object='src/c/libsciscicos_blocks_algo_la-scale_cmscope.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_blocks_algo_la-scale_cmscope.lo `test -f 'src/c/scale_cmscope.c' || echo '$(srcdir)/'`src/c/scale_cmscope.c
 
 src/c/libsciscicos_blocks_algo_la-constraint_c.lo: src/c/constraint_c.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_blocks_algo_la-constraint_c.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-constraint_c.Tpo -c -o src/c/libsciscicos_blocks_algo_la-constraint_c.lo `test -f 'src/c/constraint_c.c' || echo '$(srcdir)/'`src/c/constraint_c.c
@@ -5405,7 +5417,7 @@ check-code:
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
@@ -5427,7 +5439,7 @@ check-code:
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
@@ -5448,7 +5460,7 @@ check-code:
 @GIWS_TRUE@giws-exception:
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
-@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

@@ -71,6 +71,11 @@
             </inlinemediaobject>
             <inlinemediaobject>
                 <imageobject>
+                    <imagedata linkend="SCALE_CMSCOPE" fileref="../../../../../../modules/xcos/images/palettes/SCALE_CMSCOPE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
                     <imagedata linkend="CSCOPE" fileref="../../../../../../modules/xcos/images/palettes/CSCOPE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
@@ -199,6 +204,11 @@
             <listitem>
                 <para>
                     <link linkend="CMSCOPE">CMSCOPE - Multi display scope</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="SCALE_CMSCOPE">SCALE_CMSCOPE - Multi display scope with Autoscale Graph Feature</link>
                 </para>
             </listitem>
             <listitem>

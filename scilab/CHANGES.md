@@ -95,7 +95,7 @@ Xcos
 ----
 
 * scicos_log() support options parameters to retrieve model statistics.
-* Added a new block `SCALE_CSCOPE` which is `CSCOPE` block with additional feature of autoscaling of graph. It takes a parameter (1 for Yes/0 for No) for scaling/no-scaling.
+* Added two new blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` which are `CSCOPE` & `CMSCOPE` blocks (resp) with additional feature of autoscaling of graph. It takes a parameter (1 for Yes or 0 for No) for scaling or no-scaling.
 
 
 API modification
@@ -121,7 +121,7 @@ Bug Fixes
 ---------
 
 ### Bugs fixed in 6.1.0:
-* [#8784](http://bugzilla.scilab.org/show_bug.cgi?id=8784): automatic self-adjusting scopes.
+* [#8784](http://bugzilla.scilab.org/show_bug.cgi?id=8784): Automatic self-adjusting blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` in Xcos.
 * [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` is 40x slower with 6.0.0 wrt 5.5.2
 * [#14605](http://bugzilla.scilab.org/show_bug.cgi?id=14605): fixed - `bench_run` was too strict about the specification of tests names.
 * [#14812](http://bugzilla.scilab.org/show_bug.cgi?id=14812): Minor typos in messages.
