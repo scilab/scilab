@@ -371,6 +371,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15072](http://bugzilla.scilab.org/show_bug.cgi?id=15072): The context was stored as a root diagram attribute instead of being stored on each Superblock layer.
 * [#15079](http://bugzilla.scilab.org/show_bug.cgi?id=15079): When all children of a graphic handle have not the same number of sub-children, any vectorized extraction or insertion in subchildren failed.
 * [#15117](http://bugzilla.scilab.org/show_bug.cgi?id=15117): Imbricated optim/leastsq/lsqrsolve/fsolve calls either crashed or returned errors
+* [#15137](http://bugzilla.scilab.org/show_bug.cgi?id=15137): ilib_build cannot build a library with more than 999 function entries in Scilab 6
 
 
 ### Bugs fixed in 6.0.0:
