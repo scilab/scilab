@@ -183,6 +183,7 @@ input and output arguments.
 * `linspace(a, b, n<=0)` now returns `[]` instead of b.
 * `strange([])` now returns `%nan` instead of `[]`, as all other functions for statistical dispersion.
 * `stdev(x, dir>ndims(x))` now yields an error instead of returning `zeros(x)`.
+* `mean` and `stdev` can now be overloaded.
 * `write`: Writing string or string matrix in a file does not add blank space before each value.
 * `bitor`, `bitxor` and `bitand` are upgraded:
    - positive signed encoded integers are now accepted.
@@ -380,6 +381,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15137](http://bugzilla.scilab.org/show_bug.cgi?id=15137): ilib_build cannot build a library with more than 999 function entries in Scilab 6
 * [#15138](http://bugzilla.scilab.org/show_bug.cgi?id=15138): Scilab crashes at start on Windows
 * [#15139](http://bugzilla.scilab.org/show_bug.cgi?id=15139): Fix return in try/catch expression
+* [#15144](http://bugzilla.scilab.org/show_bug.cgi?id=15144): `mean` and `stdev` could not be overloaded.
 
 ### Bugs fixed in 6.0.0:
 * [#592](http://bugzilla.scilab.org/show_bug.cgi?id=592): `linspace(a, b, n<=0)` returned `b` instead of `[]`

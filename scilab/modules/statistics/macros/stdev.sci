@@ -1,9 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2013 - Scilab Enteprises - Paul Bignier: added mean squared deviation
-//                                                        (third input argument)
 // Copyright (C) 2000 - INRIA - Carlos Klimann
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2013 - Scilab Enteprises - Paul Bignier: added given mean
+// Copyright (C) 2017 - Samuel GOUGEON : http://bugzilla.scilab.org/15144
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +10,6 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-//
 
 function sd = stdev(x, o, m)
     //
@@ -38,6 +36,29 @@ function sd = stdev(x, o, m)
     if rhs < 1 then
         msg = _("%s: Wrong number of input arguments: %d to %d expected.\n")
         error(msprintf(msg, "stdev", 1, 3))
+    end
+
+    if type(x)== 1
+        if ~isreal(x) then
+            msg = _("%s: Argument #%d: Array of real numbers expected.\n")
+            error(msprintf(msg, "stdev", 1))
+        end
+    else
+        ovname = "%" + typeof(x,"overload")+"_stdev";
+        if isdef(ovname)
+            tmp = "sd = " + ovname + "(x";
+            if isdef("o","l")
+                tmp = tmp + ", o";
+            end
+            if isdef("m","l")
+                tmp = tmp + ", m";
+            end
+            execstr(tmp + ");")
+            return
+        else
+            msg = gettext("%s: Function not defined for given argument #%d type.\nCheck arguments or define function %s for overloading.\n");
+            error(msprintf(msg, "mean", 1, ovname+"()"))
+        end
     end
 
     if rhs < 2 then
@@ -72,11 +93,6 @@ function sd = stdev(x, o, m)
             sd = %hm_stdev(x, on);
         end
         return
-    end
-
-    if type(x) ~= 1 | ~isreal(x) then
-        tmp = _("%s: Wrong type for input argument #%d: A real matrix expected.\n")
-        error(msprintf(tmp, "stdev", 1))
     end
 
     siz = size(x);

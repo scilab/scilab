@@ -97,9 +97,16 @@
             標準偏差を返します.
         </para>
         <note>
-            <varname>m</varname> がスカラーの場合,
-            <literal>n</literal>番目の次元方向が
-            <code>mean(x)</code> の大きさに一致するように拡張されます.
+            <itemizedlist>
+                <listitem>
+                    <varname>m</varname> がスカラーの場合,
+                    <literal>n</literal>番目の次元方向が
+                    <code>mean(x)</code> の大きさに一致するように拡張されます.
+                </listitem>
+                <listitem>
+                    <literal>stdev()</literal> can be overloaded.
+                </listitem>
+            </itemizedlist>
         </note>
     </refsection>
     <refsection role="examples">
@@ -154,9 +161,15 @@ mean(sd)
                 </revdescription>
             </revision>
             <revision>
-                <revnumber>6.0</revnumber>
+                <revnumber>6.0.0</revnumber>
                 <revdescription>
                     stdev(x, orien>ndims(x)) no longer returns zeros(x) but yields an error.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    stdev() is now overloadable.
                 </revdescription>
             </revision>
         </revhistory>
