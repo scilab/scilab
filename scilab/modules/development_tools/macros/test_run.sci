@@ -920,7 +920,7 @@ function status = test_single(_module, _testPath, _testName)
 
         if getos() == "Linux" then // Ignore JOGL2 debug message
             tmp_errfile_info = fileinfo(tmp_err);
-            msg = "Error: unable to open display (null)"
+            msg = "Error: unable to open display "
 
             if ~isempty(tmp_errfile_info) then
                 txt = mgetl(tmp_err);
