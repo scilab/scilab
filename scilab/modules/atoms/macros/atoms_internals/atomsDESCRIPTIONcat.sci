@@ -122,6 +122,12 @@ function tree_out = atomsDESCRIPTIONcat( tree_in_1 , tree_in_2 )
     for i=1:size(category_names,"*")
         if ~ isfield(categories_flat_out,category_names(i)) then
             categories_flat_out(category_names(i)) = categories_flat_in_2(category_names(i));
+        else
+            // If the category is already registered, we concatenate the master
+            // and the new incoming lists of packages registered in it:
+            tmp_out = categories_flat_out(category_names(i))("packages");
+            tmp_in_2 = categories_flat_in_2(category_names(i))("packages");
+            categories_flat_out(category_names(i))("packages") = [tmp_out ; tmp_in_2];
         end
     end
 
