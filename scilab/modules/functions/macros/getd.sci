@@ -1,7 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) ENPC
-// Copyright (C) 2016 - Samuel GOUGEON
+// Copyright (C) 2016, 2017 - Samuel GOUGEON
+//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -53,15 +54,16 @@ function getd(path,option)
     //  to be returned.
     //  Informations to be protected are set in global variables: lst, old
     global old          // sets it as global, before first assignment
+    k_getd_loop = 0;
     old = who("local")
     old = old(isdef(old, "l"))
     //prot = funcprot(); funcprot(0)
-    for k = 1:size(lst,"*");
+    for k_getd_loop = 1:size(lst,"*");
         global lst // recover it whenever it would have been cleared
-        if fileparts(lst(k),"extension")==".sci" then
+        if fileparts(lst(k_getd_loop),"extension")==".sci" then
             // disp(basename(lst(k))) // Beware: files are not sorted/loaded in alphabetical order
-            if execstr("exec(lst(k));","errcatch")<>0 then
-                warning(msprintf(gettext("%s: Incorrect function in file %s.\n"),"getd",lst(k)))
+            if execstr("exec(lst(k_getd_loop));","errcatch")<>0 then
+                warning(msprintf(gettext("%s: Incorrect function in file %s.\n"),"getd",lst(k_getd_loop)))
             end
         end
     end

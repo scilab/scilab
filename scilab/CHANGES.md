@@ -416,6 +416,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15138](http://bugzilla.scilab.org/show_bug.cgi?id=15138): Scilab crashes at start on Windows
 * [#15139](http://bugzilla.scilab.org/show_bug.cgi?id=15139): Fix return in try/catch expression
 * [#15144](http://bugzilla.scilab.org/show_bug.cgi?id=15144): `mean` and `stdev` could not be overloaded.
+* [#15170](http://bugzilla.scilab.org/show_bug.cgi?id=15170): `getd` created and returned a variable `k` that could overwrite a loaded one.
 * [#15184](http://bugzilla.scilab.org/show_bug.cgi?id=15184): error management when calling operator overload fixed.
 * [#15185](http://bugzilla.scilab.org/show_bug.cgi?id=15185): "Region to Superblock" did not restore broken links.
 * [#15188](http://bugzilla.scilab.org/show_bug.cgi?id=15188): Failed to load hdf5_is_file function.
