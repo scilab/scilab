@@ -493,7 +493,7 @@ void ezxml_proc_inst(ezxml_root_t root, char *s, size_t len)
 short ezxml_internal_dtd(ezxml_root_t root, char *s, size_t len)
 {
     char q, *c, *t, *n = NULL, *v, **ent, **pe;
-    int i, j;
+    int i = 0, j;
 
     pe = memcpy(MALLOC(sizeof(EZXML_NIL)), EZXML_NIL, sizeof(EZXML_NIL));
 
@@ -1070,12 +1070,15 @@ ezxml_t ezxml_parse_fd(int fd)
     else   // mmap failed, read file into memory
     {
 #endif // EZXML_NOMMAP
-        l = read(fd, m = MALLOC(st.st_size), st.st_size);
-        if (l > 0)
+        l = (size_t) read(fd, m = MALLOC(st.st_size), st.st_size);
+        if ((ssize_t) l <= 0)
         {
-            root = (ezxml_root_t)ezxml_parse_str(m, l);
-            root->len = (size_t) - 1; // so we know to free s in ezxml_free()
+            free(m);
+            return NULL;
         }
+        
+        root = (ezxml_root_t)ezxml_parse_str(m, l);
+        root->len = (size_t) - 1; // so we know to free s in ezxml_free()
 #ifndef EZXML_NOMMAP
     }
 #endif // EZXML_NOMMAP
