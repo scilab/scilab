@@ -155,30 +155,39 @@ mxArray *mxCreateNumericArray(int ndim, const int *dims, mxClassID CLASS, mxComp
     {
         case mxDOUBLE_CLASS:
             ptr = new types::Double(ndim, (int *)dims, complexFlag == mxCOMPLEX);
+            ((types::Double *)ptr)->fillDefaultValues();
             break;
         case mxINT8_CLASS:
             ptr = new types::Int8(ndim, (int *)dims);
+            ((types::Int8 *)ptr)->fillDefaultValues();
             break;
         case mxUINT8_CLASS:
             ptr = new types::UInt8(ndim, (int *)dims);
+            ((types::UInt8 *)ptr)->fillDefaultValues();
             break;
         case mxINT16_CLASS:
             ptr = new types::Int16(ndim, (int *)dims);
+            ((types::Int16 *)ptr)->fillDefaultValues();
             break;
         case mxUINT16_CLASS:
             ptr = new types::UInt16(ndim, (int *)dims);
+            ((types::UInt16 *)ptr)->fillDefaultValues();
             break;
         case mxINT32_CLASS:
             ptr = new types::Int32(ndim, (int *)dims);
+            ((types::Int32 *)ptr)->fillDefaultValues();
             break;
         case mxUINT32_CLASS:
             ptr = new types::UInt32(ndim, (int *)dims);
+            ((types::UInt32 *)ptr)->fillDefaultValues();
             break;
         case mxINT64_CLASS:
             ptr = new types::Int64(ndim, (int *)dims);
+            ((types::Int64 *)ptr)->fillDefaultValues();
             break;
         case mxUINT64_CLASS:
             ptr = new types::UInt64(ndim, (int *)dims);
+            ((types::UInt64 *)ptr)->fillDefaultValues();
             break;
         default:
             ptr = NULL;
