@@ -5,6 +5,7 @@
  *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *  Copyright (C) 2017 - Gsoc 2017 - Siddhartha Gairola
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -205,14 +206,55 @@ mxArray *mxCreateNumericArray(int ndim, const int *dims, mxClassID CLASS, mxComp
 
 mxArray *mxCreateUninitNumericMatrix(size_t m, size_t n, mxClassID classid, mxComplexity ComplexFlag)
 {
-    //TODO
-    return NULL;
+    int dims[2] = {(int)m, (int)n};
+    return mxCreateUninitNumericArray(2, (size_t *)dims, classid, ComplexFlag);
 }
 
 mxArray *mxCreateUninitNumericArray(size_t ndim, size_t *dims, mxClassID classid, mxComplexity ComplexFlag)
 {
-    //TODO
-    return NULL;
+    types::GenericType *ptr;
+
+    switch (classid)
+    {
+        case mxDOUBLE_CLASS:
+            ptr = new types::Double((int)ndim, (int *)dims, ComplexFlag == mxCOMPLEX);
+            break;
+        case mxINT8_CLASS:
+            ptr = new types::Int8((int)ndim, (int *)dims);
+            break;
+        case mxUINT8_CLASS:
+            ptr = new types::UInt8((int)ndim, (int *)dims);
+            break;
+        case mxINT16_CLASS:
+            ptr = new types::Int16((int)ndim, (int *)dims);
+            break;
+        case mxUINT16_CLASS:
+            ptr = new types::UInt16((int)ndim, (int *)dims);
+            break;
+        case mxINT32_CLASS:
+            ptr = new types::Int32((int)ndim, (int *)dims);
+            break;
+        case mxUINT32_CLASS:
+            ptr = new types::UInt32((int)ndim, (int *)dims);
+            break;
+        case mxINT64_CLASS:
+            ptr = new types::Int64((int)ndim, (int *)dims);
+            break;
+        case mxUINT64_CLASS:
+            ptr = new types::UInt64((int)ndim, (int *)dims);
+            break;
+        default:
+            ptr = NULL;
+    }
+
+    if (ptr == NULL)
+    {
+        return NULL;
+    }
+
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateString(const char *string)
