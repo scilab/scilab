@@ -383,6 +383,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15138](http://bugzilla.scilab.org/show_bug.cgi?id=15138): Scilab crashes at start on Windows
 * [#15139](http://bugzilla.scilab.org/show_bug.cgi?id=15139): Fix return in try/catch expression
 * [#15144](http://bugzilla.scilab.org/show_bug.cgi?id=15144): `mean` and `stdev` could not be overloaded.
+* [#15188](http://bugzilla.scilab.org/show_bug.cgi?id=15188): Failed to load hdf5_is_file function.
 
 ### Bugs fixed in 6.0.0:
 * [#592](http://bugzilla.scilab.org/show_bug.cgi?id=592): `linspace(a, b, n<=0)` returned `b` instead of `[]`
