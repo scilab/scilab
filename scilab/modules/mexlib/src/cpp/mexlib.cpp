@@ -682,8 +682,18 @@ int mxIsEmpty(const mxArray *ptr)
 
 int mxIsSparse(const mxArray *ptr)
 {
-    //TODO
-    return 0;
+    types::InternalType *pIT = (types::InternalType *)ptr->ptr;
+    if (pIT == NULL || pIT->isGenericType() == false)
+    {
+        return 0;
+    }
+
+    types::GenericType *pGT = pIT->getAs<types::GenericType>();
+
+    if (pGT->isSparse() == true)
+        return 1;
+    else
+        return 0;
 }
 
 int mxIsFromGlobalWS(const mxArray *pm)
