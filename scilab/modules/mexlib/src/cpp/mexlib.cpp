@@ -70,6 +70,7 @@
 #include "struct.hxx"
 #include "container.hxx"
 #include "cell.hxx"
+#include "sparse.hxx"
 #include "localization.hxx"
 
 extern "C"
@@ -332,8 +333,10 @@ mxArray *mxCreateSparseLogicalMatrix(mwSize m, mwSize n, mwSize nzmax)
 
 mxArray *mxCreateSparse(int m, int n, int nzmax, mxComplexity cmplx)
 {
-    //TODO
-    return NULL;
+    types::Sparse* ptr = new types::Sparse(m, n, cmplx == mxCOMPLEX);
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateStructMatrix(int m, int n, int nfields, const char **field_names)
