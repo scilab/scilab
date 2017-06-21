@@ -493,8 +493,13 @@ int mxIsUint8(const mxArray *ptr)
 
 int mxIsScalar(const mxArray *array_ptr)
 {
-    //TODO
-    return 0;
+    
+    types::InternalType *pIT = (types::InternalType *)array_ptr->ptr;
+    types::GenericType *pGT = pIT->getAs<types::GenericType>();
+    if( pGT->isScalar() == true)
+        return 1;
+    else
+        return 0;
 }
 
 int mxIsChar(const mxArray *ptr)
