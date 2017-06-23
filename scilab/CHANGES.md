@@ -37,6 +37,10 @@ Installation
 Compilation
 -----------
 
+* GNU autotools have been updated to :
+   - automake 1.15
+   - autoconf 2.69
+   - libtool 2.4.6 (patched for Mac Os X)
 
 Dependencies
 ------------
