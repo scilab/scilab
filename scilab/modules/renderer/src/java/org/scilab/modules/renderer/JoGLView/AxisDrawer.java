@@ -114,7 +114,6 @@ public class AxisDrawer {
         rulerDrawer.setSpriteFactory(new AxisSpriteFactory(axis, min, max));
         rulerDrawer.draw(drawingTools, rulerModel);
 
-        axis.getFormatn();
         rulerDrawer.disposeResources();
     }
 
