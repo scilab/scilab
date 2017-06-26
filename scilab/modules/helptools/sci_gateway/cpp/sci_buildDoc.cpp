@@ -246,10 +246,10 @@ extern "C"
         __slashToAntislash(&masterXML);
 #endif
 
+        org_scilab_modules_helptools::SciDocMain * doc = NULL;
         try
         {
-            org_scilab_modules_helptools::SciDocMain * doc = new org_scilab_modules_helptools::SciDocMain(getScilabJavaVM());
-
+            doc = new org_scilab_modules_helptools::SciDocMain(getScilabJavaVM());
             if (doc->setOutputDirectory((char *)outputDirectory.c_str()))
             {
                 doc->setWorkingLanguage((char *)language.c_str());
@@ -260,6 +260,7 @@ extern "C"
             else
             {
                 Scierror(999, _("%s: Could find or create the working directory %s.\n"), fname, outputDirectory.c_str());
+                delete doc;
                 return FALSE;
             }
             if (doc != NULL)
@@ -267,8 +268,12 @@ extern "C"
                 delete doc;
             }
         }
-        catch (GiwsException::JniException ex)
+        catch (const GiwsException::JniException& ex)
         {
+            if (doc != NULL)
+            {
+                delete doc;
+            }
             Scierror(999, _("%s: Error while building documentation: %s.\n"), fname, ex.getJavaDescription().c_str());
             Scierror(999, _("%s: Execution Java stack: %s.\n"), fname, ex.getJavaStackTrace().c_str());
             Scierror(999,

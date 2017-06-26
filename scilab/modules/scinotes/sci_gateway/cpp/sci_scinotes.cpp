@@ -45,11 +45,11 @@ int sci_scinotes(char * fname, void* pvApiCtx)
         {
             callSciNotesW(NULL, 0);
         }
-        catch (GiwsException::JniCallMethodException exception)
+        catch (const GiwsException::JniCallMethodException& exception)
         {
             Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         }
-        catch (GiwsException::JniException exception)
+        catch (const GiwsException::JniException& exception)
         {
             Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         }
@@ -260,7 +260,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                 {
                     callSciNotesWWithOption(pStVarOne, pStVarTwo, m2 * n2, m1 * n1);
                 }
-                catch (GiwsException::JniCallMethodException exception)
+                catch (const GiwsException::JniCallMethodException& exception)
                 {
                     Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
                     freeArrayOfWideString(pStVarTwo, m2 * n2);
@@ -269,7 +269,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                     FREE(lenStVarOne);
                     return 0;
                 }
-                catch (GiwsException::JniException exception)
+                catch (const GiwsException::JniException& exception)
                 {
                     Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
                     freeArrayOfWideString(pStVarTwo, m2 * n2);
@@ -346,11 +346,11 @@ int sci_scinotes(char * fname, void* pvApiCtx)
                 {
                     callSciNotesWWithLineNumberAndFunction(pStVarOne, pdblVarTwo, functionName, m1 * n1);
                 }
-                catch (GiwsException::JniCallMethodException exception)
+                catch (const GiwsException::JniCallMethodException& exception)
                 {
                     Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
                 }
-                catch (GiwsException::JniException exception)
+                catch (const GiwsException::JniException& exception)
                 {
                     Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
                 }
@@ -362,11 +362,11 @@ int sci_scinotes(char * fname, void* pvApiCtx)
             {
                 callSciNotesW(pStVarOne, m1 * n1);
             }
-            catch (GiwsException::JniCallMethodException exception)
+            catch (const GiwsException::JniCallMethodException& exception)
             {
                 Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
             }
-            catch (GiwsException::JniException exception)
+            catch (const GiwsException::JniException& exception)
             {
                 Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
             }

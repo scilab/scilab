@@ -65,7 +65,7 @@ wchar_t **getDiaryFilenames(int *array_size)
     {
         std::list<std::wstring> wstringFilenames = SCIDIARY->getFilenames();
         *array_size = (int)wstringFilenames.size();
-        if (array_size > 0)
+        if (*array_size > 0)
         {
             wchar_t **wcFilenames = (wchar_t **) MALLOC (sizeof(wchar_t*) * (*array_size));
             int i = 0;

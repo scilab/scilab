@@ -50,13 +50,13 @@ int sci_xcosPalGet(char *fname, void* pvApiCtx)
     {
         Palette::get(getScilabJavaVM(), category, lenCategory);
     }
-    catch (GiwsException::JniCallMethodException &exception)
+    catch (const GiwsException::JniCallMethodException& exception)
     {
         releaseVectorString(category, lenCategory);
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
-    catch (GiwsException::JniException &exception)
+    catch (const GiwsException::JniException& exception)
     {
         releaseVectorString(category, lenCategory);
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());

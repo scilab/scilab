@@ -146,7 +146,7 @@ types::Function::ReturnValue sci_winqueryreg(types::typed_list &in, int _iRetCou
                 }
                 else
                 {
-                    Scierror(999, _("%s: Cannot open Windows registry.\n"), fname);
+                    Scierror(999, _("%s: Cannot open Windows registry.\n"), fname.data());
                     return types::Function::Error;
                 }
             }

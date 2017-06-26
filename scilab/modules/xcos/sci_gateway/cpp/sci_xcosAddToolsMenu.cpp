@@ -57,7 +57,7 @@ int sci_xcosAddToolsMenu(char *fname, void *pvApiCtx)
         FREE(label);
         FREE(callback);
     }
-    catch (GiwsException::JniCallMethodException &exception)
+    catch (const GiwsException::JniCallMethodException& exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
 
@@ -65,7 +65,7 @@ int sci_xcosAddToolsMenu(char *fname, void *pvApiCtx)
         FREE(callback);
         return 0;
     }
-    catch (GiwsException::JniException &exception)
+    catch (const GiwsException::JniException& exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
 

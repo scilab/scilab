@@ -139,13 +139,13 @@ static types::InternalType* importFile(char const* file)
     {
         Xcos::xcosDiagramToScilab(getScilabJavaVM(), file, uid, false);
     }
-    catch (GiwsException::JniCallMethodException &exception)
+    catch (const GiwsException::JniCallMethodException& exception)
     {
         Scierror(999, "%s: %s\n%s\n", funname, exception.getJavaDescription().c_str(), exception.getJavaStackTrace().c_str());
         controller.deleteObject(uid);
         return nullptr;
     }
-    catch (GiwsException::JniException &exception)
+    catch (const GiwsException::JniException& exception)
     {
         Scierror(999, "%s: %s\n", funname, exception.whatStr().c_str());
         controller.deleteObject(uid);
@@ -172,12 +172,12 @@ static bool exportFile(int index, char const* file, types::InternalType* type)
     {
         Xcos::xcosDiagramToScilab(getScilabJavaVM(), file, o->id(), true);
     }
-    catch (GiwsException::JniCallMethodException &exception)
+    catch (const GiwsException::JniCallMethodException& exception)
     {
         Scierror(999, "%s: %s\n%s\n", funname, exception.getJavaDescription().c_str(), exception.getJavaStackTrace().c_str());
         return false;
     }
-    catch (GiwsException::JniException &exception)
+    catch (const GiwsException::JniException& exception)
     {
         Scierror(999, "%s: %s\n", funname, exception.whatStr().c_str());
         return false;

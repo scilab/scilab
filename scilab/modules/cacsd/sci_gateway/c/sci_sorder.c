@@ -439,7 +439,7 @@ int sci_sorder(char *fname, void* pvApiCtx)
         {
             dblTol1 = pdblTol[0];
         }
-        else if (iRows * iCols > 1)
+        if (iRows * iCols > 1)
         {
             dblTol2 = pdblTol[1];
         }

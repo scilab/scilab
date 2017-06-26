@@ -132,7 +132,7 @@ types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFu
             throw ast::RecursionException();
         }
     }
-    catch (ast::InternalError ie)
+    catch (const ast::InternalError& ie)
     {
         ConfigVariable::fillWhereError(ie.GetErrorLocation().first_line);
         if (pCall)

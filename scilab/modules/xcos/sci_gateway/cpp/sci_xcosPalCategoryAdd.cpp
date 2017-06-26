@@ -66,13 +66,13 @@ int sci_xcosPalCategoryAdd(char *fname, void* pvApiCtx)
     {
         Palette::addCategory(getScilabJavaVM(), name, nameLength, visible);
     }
-    catch (GiwsException::JniCallMethodException &exception)
+    catch (const GiwsException::JniCallMethodException& exception)
     {
         releaseVectorString(name, nameLength);
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
-    catch (GiwsException::JniException &exception)
+    catch (const GiwsException::JniException& exception)
     {
         releaseVectorString(name, nameLength);
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());

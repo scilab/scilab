@@ -268,6 +268,10 @@ char **CreateOuput(pipeinfo *pipe, BOOL DetachProcess)
                 if (pipe->NumberOfLines)
                 {
                     OuputStrings = (char**)MALLOC((pipe->NumberOfLines) * sizeof(char*));
+                    if (OuputStrings == NULL)
+                    {
+                        return NULL;
+                    }
                     memset(OuputStrings, 0x00, sizeof(char*) * pipe->NumberOfLines);
                     if (OuputStrings)
                     {

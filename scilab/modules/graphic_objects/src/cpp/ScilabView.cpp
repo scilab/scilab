@@ -172,7 +172,7 @@ void ScilabView::createObject(int iUID)
     int *piType = &iType;
 
     getGraphicObjectProperty(iUID, __GO_TYPE__, jni_int, (void **)&piType);
-    if (iType != -1 && iType == __GO_FIGURE__)
+    if (iType == __GO_FIGURE__)
     {
         m_figureList[iUID] = -1;
         setCurrentFigure(iUID);

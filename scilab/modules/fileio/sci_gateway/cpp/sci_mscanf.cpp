@@ -271,7 +271,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
                                 {
                                     pType->set(iRows * iCols + k, pIT[i]->getAs<types::Double>()->get(k));
                                 }
-                                pITTemp.back();
+                                pITTemp.pop_back();
                                 pITTemp.push_back(pType);
                             }
                             break;

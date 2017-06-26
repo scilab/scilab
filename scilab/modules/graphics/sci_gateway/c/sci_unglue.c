@@ -87,7 +87,7 @@ int sci_unglue(char *fname, void *pvApiCtx)
 
     getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piObjectType);
 
-    if (iObjectType != -1 && iObjectType == __GO_COMPOUND__)
+    if (iObjectType == __GO_COMPOUND__)
     {
         // Retrieve number of children.
         getGraphicObjectProperty(iObjUID, __GO_CHILDREN_COUNT__, jni_int, (void **) &piChildrenCount);

@@ -222,8 +222,10 @@ BOOL translatePolyline(int uid, double x, double y, double z, int flagX, int fla
             }
         }
     }
-	if (z != 0 && isZCoordSet(uid))
-	{
+    if (z != 0.0 && isZCoordSet(uid))
+    {
+        dataz = getDataZ(uid);
+        if (dataz == NULL) return FALSE;
         if (flagZ) {
             for (i = 0; i < getDataSize_(uid); ++i)
             {
@@ -235,9 +237,9 @@ BOOL translatePolyline(int uid, double x, double y, double z, int flagX, int fla
                 dataz[i] += z;
             }
         }
-	}
+    }
 
-	return TRUE;
+    return TRUE;
 }
 
 BOOL translatePoint(int uid, int index, double x, double y, double z, int flagX, int flagY, int flagZ)

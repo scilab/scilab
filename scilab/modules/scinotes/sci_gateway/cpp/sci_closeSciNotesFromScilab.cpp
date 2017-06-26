@@ -42,12 +42,12 @@ int sci_closeSciNotesFromScilab(char * fname, void* pvApiCtx)
             SciNotes::closeSciNotesFromScilab(jvm);
         }
     }
-    catch (GiwsException::JniCallMethodException exception)
+    catch (const GiwsException::JniCallMethodException& exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
-    catch (GiwsException::JniException exception)
+    catch (const GiwsException::JniException& exception)
     {
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         return 0;

@@ -476,10 +476,11 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
             }
 
             Block.inptr[i] = MALLOC(size);
-            if (Block.inptr == nullptr)
+            if (Block.inptr[i] == nullptr)
             {
                 freeBlock(&Block);
                 Scierror(888, _("%s : Allocation error.\n"), name.data());
+                // FIXME memleak on the previous Block.inptr[i]
                 return types::Function::Error;
             }
 

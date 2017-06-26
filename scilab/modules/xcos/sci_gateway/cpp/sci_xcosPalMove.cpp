@@ -60,14 +60,14 @@ int sci_xcosPalMove(char *fname, void* pvApiCtx)
     {
         Palette::move(getScilabJavaVM(), source, sourceLength, target, targetLength);
     }
-    catch (GiwsException::JniCallMethodException &exception)
+    catch (const GiwsException::JniCallMethodException& exception)
     {
         releaseVectorString(source, sourceLength);
         releaseVectorString(target, targetLength);
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
-    catch (GiwsException::JniException &exception)
+    catch (const GiwsException::JniException& exception)
     {
         releaseVectorString(source, sourceLength);
         releaseVectorString(target, targetLength);

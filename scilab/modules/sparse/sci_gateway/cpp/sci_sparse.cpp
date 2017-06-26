@@ -46,7 +46,7 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
             case types::InternalType::ScilabBool :
             case types::InternalType::ScilabSparseBool :
             {
-                isValid = (i == (in.size() > 1) ? 1 : 0);
+                isValid = (i == (in.size() > 1 ? 1 : 0));
             }
             case types::InternalType::ScilabDouble :
             case types::InternalType::ScilabSparse :

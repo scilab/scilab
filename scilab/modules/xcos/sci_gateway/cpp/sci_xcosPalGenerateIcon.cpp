@@ -81,12 +81,12 @@ types::Function::ReturnValue sci_xcosPalGenerateIcon(types::typed_list &in, int 
     {
         Palette::generatePaletteIcon(getScilabJavaVM(), o->id(), iconPath.c_str());
     }
-    catch (GiwsException::JniCallMethodException &exception)
+    catch (const GiwsException::JniCallMethodException& exception)
     {
         Scierror(999, "%s: %s\n", funname, exception.getJavaDescription().c_str());
         return types::Function::Error;
     }
-    catch (GiwsException::JniException &exception)
+    catch (const GiwsException::JniException& exception)
     {
         Scierror(999, "%s: %s\n", funname, exception.whatStr().c_str());
         return types::Function::Error;

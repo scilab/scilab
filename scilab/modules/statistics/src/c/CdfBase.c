@@ -160,7 +160,7 @@ void cdf_error(char const * const fname, int status, double bound)
             {
                 Scierror(999, _("%s: cumgam returned an error\n"), fname);
             }
-            else if (strcmp(fname, "cdfchi") == 0)
+            else if (strcmp(fname, "cdfgam") == 0)
             {
                 Scierror(999, _("%s: gamma or inverse gamma routine failed\n"), fname);
             }

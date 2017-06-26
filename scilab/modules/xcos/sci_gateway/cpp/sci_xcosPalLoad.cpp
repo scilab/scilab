@@ -68,7 +68,7 @@ int sci_xcosPalLoad(char *fname, void* pvApiCtx)
             Palette::loadPal(getScilabJavaVM(), name, category, lenCategory);
         }
     }
-    catch (GiwsException::JniCallMethodException &exception)
+    catch (const GiwsException::JniCallMethodException& exception)
     {
         if (category != NULL)
         {
@@ -78,7 +78,7 @@ int sci_xcosPalLoad(char *fname, void* pvApiCtx)
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
-    catch (GiwsException::JniException &exception)
+    catch (const GiwsException::JniException& exception)
     {
         if (category != NULL)
         {

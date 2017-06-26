@@ -1740,7 +1740,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
         return pITMain;
     }
-    catch (const ast::InternalError error)
+    catch (const ast::InternalError& error)
     {
         if (bPutInCtx)
         {

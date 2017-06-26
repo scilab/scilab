@@ -69,6 +69,9 @@ Feature changes and additions
 -----------------------------
  
 * Empty strings are used as the default values on String allocation
+* Memory invalid accesses have been greatly reduced thanks to :
+  - PVS-Studio inspections blog report
+  - Coverity scan weekly source analysis
 
 Help pages:
 -----------

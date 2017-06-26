@@ -273,8 +273,7 @@ static int ParseNumber(const char* tx)
     {
         return 4;
     }
-    else if (strlen(tx) >= 3 && (strncmp(tx, "+%e", 3) == 0 || strncmp(tx, "-%e", 3) == 0 || strncmp(tx, "%pi", 3) == 0 ||
-                                 strncmp(tx, "Nan", 3) == 0 || strncmp(tx, "Inf", 3) == 0 || strncmp(tx, "%pi", 3) == 0))
+    else if (strlen(tx) >= 3 && (strncmp(tx, "+%e", 3) == 0 || strncmp(tx, "-%e", 3) == 0 || strncmp(tx, "%pi", 3) == 0 || strncmp(tx, "Nan", 3) == 0 || strncmp(tx, "Inf", 3) == 0))
     {
         return 3;
     }

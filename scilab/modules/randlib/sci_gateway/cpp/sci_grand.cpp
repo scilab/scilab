@@ -987,8 +987,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 pDblOut->set(i, static_cast<double>(piOut[i]));
             }
 
-            delete piP;
-            delete piOut;
+            delete[] piP;
+            delete[] piOut;
 
             out.push_back(pDblOut);
             break;
