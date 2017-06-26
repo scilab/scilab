@@ -9,6 +9,7 @@
         <synopsis>
             log=scicos_log(log);
             log=scicos_log(log, msg);
+            refCounters=scicos_log("refCounters");
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -17,7 +18,7 @@
             <varlistentry>
                 <term>log</term>
                 <listitem>
-                    <para>String, logger value. The supported values are : "FATAL", "ERROR", "WARNING", "INFO", "DEBUG", "TRACE"</para>
+                    <para>String, logger value. The supported log modifiers are : "FATAL", "ERROR", "WARNING", "INFO", "DEBUG", "TRACE"</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -28,12 +29,21 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>refCounters</term>
+                <listitem>
+                    <para>a double vector, with a [uid, kind, reference counter] line per object.</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
         <para>
             This function implements a logger for <literal>scicos</literal> operation. This function lets the user choose the right level of information to print while loading a model, compiling and simulating it.
+        </para>
+        <para>
+            It is also used to produce statistics or global analysis for specific flags. For exemple, passing <pre>"refCounters"</pre> will return uid, kind and reference count of all objects.
         </para>
     </refsection>
     <refsection>
@@ -42,12 +52,24 @@
 scicos_log("TRACE"),
 scicos_log("TRACE", "this is a trace message");
  ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+loadXcosLibs();
+scicos_log("refCounters")
+b = scicos_block();
+scicos_log("refCounters")
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="scicos_debug">scicos_debug</link>
+            </member>
+            <member>
+                <link linkend="scicos_block">scicos_block</link>
+            </member>
+            <member>
+                <link linkend="loadXcosLibs">loadXcosLibs</link>
             </member>
         </simplelist>
     </refsection>

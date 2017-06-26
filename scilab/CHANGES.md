@@ -92,6 +92,7 @@ Data Structures
 Xcos
 ----
 
+* scicos_log() support options parameters to retrieve model statistics.
 
 API modification
 ----------------
