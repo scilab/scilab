@@ -93,8 +93,15 @@
              returns the deviation along the <literal>n</literal>-th dimension.
         </para>
         <note>
-            If <varname>m</varname> is a scalar, then it is expanded to match the size of
-          <code>mean(x)</code> along the <literal>n</literal>-th dimension.
+            <itemizedlist>
+                <listitem>
+                    If <varname>m</varname> is a scalar, then it is expanded to match the size of
+                    <code>mean(x)</code> along the <literal>n</literal>-th dimension.
+                </listitem>
+                <listitem>
+                    <literal>stdev()</literal> can be overloaded.
+                </listitem>
+            </itemizedlist>
         </note>
     </refsection>
     <refsection role="examples">
@@ -148,9 +155,15 @@ mean(sd)
                 </revdescription>
             </revision>
             <revision>
-                <revnumber>6.0</revnumber>
+                <revnumber>6.0.0</revnumber>
                 <revdescription>
                     stdev(x, orien>ndims(x)) no longer returns zeros(x) but yields an error.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    stdev() is now overloadable.
                 </revdescription>
             </revision>
         </revhistory>

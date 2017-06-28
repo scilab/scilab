@@ -1,6 +1,7 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -176,6 +177,7 @@ private:
     void unlinkVector(model::BaseObject* o, object_properties_t uid_prop, object_properties_t ref_prop);
     void unlink(model::BaseObject* o, object_properties_t uid_prop, object_properties_t ref_prop);
     void deleteVector(model::BaseObject* o, object_properties_t uid_prop);
+    void deleteOwnedReference(model::BaseObject* o, object_properties_t uid_prop);
 };
 
 } /* namespace org_scilab_modules_scicos */

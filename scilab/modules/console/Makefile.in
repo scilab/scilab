@@ -212,8 +212,7 @@ am_libsciconsole_minimal_la_OBJECTS =  \
 	src/c/libsciconsole_minimal_la-scilines.lo \
 	src/c/others/libsciconsole_minimal_la-gotoxy_nw.lo \
 	src/c/others/libsciconsole_minimal_la-clrscr_nw.lo \
-	src/c/libsciconsole_minimal_la-prompt.lo \
-	src/c/libsciconsole_minimal_la-promptecho.lo \
+	src/cpp/libsciconsole_minimal_la-prompt.lo \
 	src/c/libsciconsole_minimal_la-getpipeline.lo \
 	src/c/cmdLine/libsciconsole_minimal_la-autoCompletionCli.lo \
 	src/c/cmdLine/libsciconsole_minimal_la-charactersManagement.lo \
@@ -697,8 +696,7 @@ libsciconsole_minimal_la_SOURCES = \
     src/c/scilines.c \
     src/c/others/gotoxy_nw.c \
     src/c/others/clrscr_nw.c \
-    src/c/prompt.c \
-    src/c/promptecho.c \
+    src/cpp/prompt.cpp \
     src/c/getpipeline.c \
     src/c/cmdLine/autoCompletionCli.c \
     src/c/cmdLine/charactersManagement.c \
@@ -1020,10 +1018,14 @@ src/c/others/libsciconsole_minimal_la-gotoxy_nw.lo:  \
 src/c/others/libsciconsole_minimal_la-clrscr_nw.lo:  \
 	src/c/others/$(am__dirstamp) \
 	src/c/others/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciconsole_minimal_la-prompt.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciconsole_minimal_la-promptecho.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
+src/cpp/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp
+	@: > src/cpp/$(am__dirstamp)
+src/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/$(DEPDIR)
+	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciconsole_minimal_la-prompt.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciconsole_minimal_la-getpipeline.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/cmdLine/$(am__dirstamp):
@@ -1062,12 +1064,6 @@ src/c/cmdLine/libsciconsole_minimal_la-initConsoleMode.lo:  \
 src/c/cmdLine/libsciconsole_minimal_la-termcapManagement.lo:  \
 	src/c/cmdLine/$(am__dirstamp) \
 	src/c/cmdLine/$(DEPDIR)/$(am__dirstamp)
-src/cpp/$(am__dirstamp):
-	@$(MKDIR_P) src/cpp
-	@: > src/cpp/$(am__dirstamp)
-src/cpp/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) src/cpp/$(DEPDIR)
-	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libsciconsole_minimal_la-scilabRead.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libsciconsole_minimal_la-console_gw.lo:  \
@@ -1148,8 +1144,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-getpipeline.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-more.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-prompt.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-promptecho.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-scilines.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-tohome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/cmdLine/$(DEPDIR)/libsciconsole_minimal_la-autoCompletionCli.Plo@am__quote@
@@ -1174,6 +1168,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciconsole_la-PromptToHome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciconsole_la-ScilabLinesUpdate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciconsole_la-SetConsolePrompt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciconsole_minimal_la-prompt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciconsole_minimal_la-scilabRead.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libsciconsole_la-CallScilabBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libsciconsole_la-DropFiles_wrap.Plo@am__quote@
@@ -1252,20 +1247,6 @@ src/c/others/libsciconsole_minimal_la-clrscr_nw.lo: src/c/others/clrscr_nw.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/others/clrscr_nw.c' object='src/c/others/libsciconsole_minimal_la-clrscr_nw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/others/libsciconsole_minimal_la-clrscr_nw.lo `test -f 'src/c/others/clrscr_nw.c' || echo '$(srcdir)/'`src/c/others/clrscr_nw.c
-
-src/c/libsciconsole_minimal_la-prompt.lo: src/c/prompt.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciconsole_minimal_la-prompt.lo -MD -MP -MF src/c/$(DEPDIR)/libsciconsole_minimal_la-prompt.Tpo -c -o src/c/libsciconsole_minimal_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciconsole_minimal_la-prompt.Tpo src/c/$(DEPDIR)/libsciconsole_minimal_la-prompt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/prompt.c' object='src/c/libsciconsole_minimal_la-prompt.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciconsole_minimal_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
-
-src/c/libsciconsole_minimal_la-promptecho.lo: src/c/promptecho.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciconsole_minimal_la-promptecho.lo -MD -MP -MF src/c/$(DEPDIR)/libsciconsole_minimal_la-promptecho.Tpo -c -o src/c/libsciconsole_minimal_la-promptecho.lo `test -f 'src/c/promptecho.c' || echo '$(srcdir)/'`src/c/promptecho.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciconsole_minimal_la-promptecho.Tpo src/c/$(DEPDIR)/libsciconsole_minimal_la-promptecho.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/promptecho.c' object='src/c/libsciconsole_minimal_la-promptecho.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciconsole_minimal_la-promptecho.lo `test -f 'src/c/promptecho.c' || echo '$(srcdir)/'`src/c/promptecho.c
 
 src/c/libsciconsole_minimal_la-getpipeline.lo: src/c/getpipeline.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciconsole_minimal_la-getpipeline.lo -MD -MP -MF src/c/$(DEPDIR)/libsciconsole_minimal_la-getpipeline.Tpo -c -o src/c/libsciconsole_minimal_la-getpipeline.lo `test -f 'src/c/getpipeline.c' || echo '$(srcdir)/'`src/c/getpipeline.c
@@ -1437,6 +1418,13 @@ sci_gateway/cpp/libsciconsole_minimal_la-sci_iswaitingforinput.lo: sci_gateway/c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_iswaitingforinput.cpp' object='sci_gateway/cpp/libsciconsole_minimal_la-sci_iswaitingforinput.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciconsole_minimal_la-sci_iswaitingforinput.lo `test -f 'sci_gateway/cpp/sci_iswaitingforinput.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_iswaitingforinput.cpp
+
+src/cpp/libsciconsole_minimal_la-prompt.lo: src/cpp/prompt.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciconsole_minimal_la-prompt.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciconsole_minimal_la-prompt.Tpo -c -o src/cpp/libsciconsole_minimal_la-prompt.lo `test -f 'src/cpp/prompt.cpp' || echo '$(srcdir)/'`src/cpp/prompt.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciconsole_minimal_la-prompt.Tpo src/cpp/$(DEPDIR)/libsciconsole_minimal_la-prompt.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/prompt.cpp' object='src/cpp/libsciconsole_minimal_la-prompt.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciconsole_minimal_la-prompt.lo `test -f 'src/cpp/prompt.cpp' || echo '$(srcdir)/'`src/cpp/prompt.cpp
 
 src/cpp/libsciconsole_minimal_la-scilabRead.lo: src/cpp/scilabRead.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciconsole_minimal_la-scilabRead.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciconsole_minimal_la-scilabRead.Tpo -c -o src/cpp/libsciconsole_minimal_la-scilabRead.lo `test -f 'src/cpp/scilabRead.cpp' || echo '$(srcdir)/'`src/cpp/scilabRead.cpp

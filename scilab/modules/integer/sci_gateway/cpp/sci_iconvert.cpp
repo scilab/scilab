@@ -16,6 +16,9 @@
 #include "integer_gw.hxx"
 #include "function.hxx"
 #include "overload.hxx"
+#include "cell.hxx"
+#include "context.hxx"
+#include "iconvert_converter.hxx"
 
 extern "C"
 {
@@ -45,5 +48,7 @@ types::Function::ReturnValue sci_iconvert(types::typed_list &in, int _iRetCount,
     }
 
     // perfom operation
-    return Overload::call(L"%_iconvert", in, _iRetCount, out);
+    types::typed_list in2(in);
+    in2.push_back(iConverter::getConverter());
+    return Overload::call(L"%_iconvert", in2, _iRetCount, out);
 }

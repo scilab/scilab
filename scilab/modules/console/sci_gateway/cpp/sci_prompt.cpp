@@ -30,7 +30,7 @@ extern "C"
 
 types::Function::ReturnValue sci_prompt(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    char currentPrompt[PROMPT_SIZE_MAX];
+    const char* currentPrompt;
 
     if (in.size() > 1)
     {
@@ -46,7 +46,7 @@ types::Function::ReturnValue sci_prompt(types::typed_list &in, int _iRetCount, t
             return types::Function::Error;
         }
 
-        GetCurrentPrompt(currentPrompt);
+        currentPrompt = GetCurrentPrompt();
         out.push_back(new types::String(currentPrompt));
         if (_iRetCount == 2)
         {
@@ -70,13 +70,6 @@ types::Function::ReturnValue sci_prompt(types::typed_list &in, int _iRetCount, t
         }
 
         char* pstrPrompt = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
-        if (strlen(pstrPrompt) > PROMPT_SIZE_MAX - 1)
-        {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A Single string of size %d expected.\n"), "prompt", 1, PROMPT_SIZE_MAX - 1);
-            FREE(pstrPrompt);
-            return types::Function::Error;
-        }
-
         SetTemporaryPrompt(pstrPrompt);
         FREE(pstrPrompt);
     }

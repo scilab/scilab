@@ -14,7 +14,10 @@
 *
 */
 #include <stdio.h>
-#include <string.h>
+#include <string>
+
+extern "C"
+{
 #include "prompt.h"
 #include "sciprint.h"
 #include "configvariable_interface.h"
@@ -22,40 +25,41 @@
 #include "sci_malloc.h"
 #include "os_string.h"
 #include "BOOL.h"
+}
 /*------------------------------------------------------------------------*/
-static char Sci_Prompt[PROMPT_SIZE_MAX];
+static std::string Sci_Prompt;
+static std::string temporaryPrompt;
 static BOOL dispWarningLevelPrompt = TRUE;
-static char *temporaryPrompt = NULL;
 /*------------------------------------------------------------------------*/
 /* setprlev : set the current prompt string */
 /*------------------------------------------------------------------------*/
-void C2F(setprlev)( int *pause)
+void setPreviousLevel(int pause)
 {
     //debugger prompt first !
     if (isEnableDebug())
     {
         if (isDebugInterrupted())
         {
-            sprintf(Sci_Prompt, SCIPROMPTBREAK);
+            Sci_Prompt = SCIPROMPTBREAK;
         }
         else
         {
-            sprintf(Sci_Prompt, SCIPROMPTDEBUG);
+            Sci_Prompt = SCIPROMPTDEBUG;
         }
     }
-    else if ( *pause == 0 )
+    else if (pause == 0)
     {
-        if (temporaryPrompt != NULL)
+        if (temporaryPrompt.empty() == false)
         {
-            strcpy(Sci_Prompt, temporaryPrompt);
+            Sci_Prompt = temporaryPrompt;
             ClearTemporaryPrompt();
         }
         else
         {
-            sprintf(Sci_Prompt, SCIPROMPT);
+            Sci_Prompt = SCIPROMPT;
         }
     }
-    else if ( *pause > 0 )
+    else if (pause > 0)
     {
         if (dispWarningLevelPrompt)
         {
@@ -65,45 +69,40 @@ void C2F(setprlev)( int *pause)
                 dispWarningLevelPrompt = FALSE;
             }
         }
-        sprintf(Sci_Prompt, SCIPROMPT_INTERRUPT, *pause);
+        char t[50];
+
+        sprintf(t, SCIPROMPT_INTERRUPT, pause);
+        Sci_Prompt = t;
         // bug 5513
         // when we change prompt to a pause level, we change also temp. prompt
         //SetTemporaryPrompt(Sci_Prompt);
     }
     else
     {
-        sprintf(Sci_Prompt, SCIPROMPT_PAUSE);
+        Sci_Prompt = SCIPROMPT_PAUSE;
         // bug 5513
         // when we change prompt to halt level, we change also temp. prompt
-        SetTemporaryPrompt(Sci_Prompt);
+        SetTemporaryPrompt(Sci_Prompt.data());
     }
 }
 /*------------------------------------------------------------------------*/
-void GetCurrentPrompt(char *CurrentPrompt)
+const char* GetCurrentPrompt()
 {
-    if (CurrentPrompt)
-    {
-        strcpy(CurrentPrompt, Sci_Prompt);
-    }
+    return Sci_Prompt.data();
 }
 /*------------------------------------------------------------------------*/
-void SetTemporaryPrompt(const char *tempPrompt)
+void SetTemporaryPrompt(const char* tempPrompt)
 {
-    ClearTemporaryPrompt();
-    temporaryPrompt = os_strdup(tempPrompt);
+    temporaryPrompt = tempPrompt;
 }
 /*------------------------------------------------------------------------*/
-char *GetTemporaryPrompt(void)
+const char* GetTemporaryPrompt(void)
 {
-    return temporaryPrompt;
+    return temporaryPrompt.data();
 }
 /*------------------------------------------------------------------------*/
 void ClearTemporaryPrompt(void)
 {
-    if (temporaryPrompt)
-    {
-        FREE(temporaryPrompt);
-        temporaryPrompt = NULL;
-    }
+    temporaryPrompt = "";
 }
 /*------------------------------------------------------------------------*/

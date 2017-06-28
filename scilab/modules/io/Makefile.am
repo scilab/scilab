@@ -22,12 +22,12 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_getenv.c \
     sci_gateway/c/sci_writeb.c \
     sci_gateway/c/sci_setenv.c \
-    sci_gateway/c/sci_getpid.c \
     sci_gateway/c/sci_write4b.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_genlib.cpp \
     sci_gateway/cpp/sci_file.cpp \
+    sci_gateway/cpp/sci_getpid.cpp \
     sci_gateway/cpp/sci_host.cpp \
     sci_gateway/cpp/sci_unix.cpp \
     sci_gateway/cpp/sci_read.cpp \

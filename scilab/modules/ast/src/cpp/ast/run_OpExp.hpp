@@ -290,8 +290,8 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                     }
                 }
                 pResult = GenericLogicalAnd(pITL, pITR);
-                
-                if (e.getOper() == LogicalOpExp::logicalShortCutAnd)
+
+                if (pResult && e.getOper() == LogicalOpExp::logicalShortCutAnd)
                 {
                     types::InternalType* pResult2 = GenericShortcutAnd(pResult);
                     pResult->killMe();
@@ -338,7 +338,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                     }
                 }
                 pResult = GenericLogicalOr(pITL, pITR);
-                if (e.getOper() == LogicalOpExp::logicalShortCutOr)
+                if (pResult && e.getOper() == LogicalOpExp::logicalShortCutOr)
                 {
                     types::InternalType* pResult2 = GenericShortcutOr(pResult);
                     pResult->killMe();

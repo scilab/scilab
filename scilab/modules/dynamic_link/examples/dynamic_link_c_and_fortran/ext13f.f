@@ -1,6 +1,6 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 
@@ -24,12 +24,12 @@ c
          call erro('wrong number of lhs arguments')
          return
       endif
-c     
-c     when using fort the first parameter is the function name 
+c
+c     when using call the first parameter is the function name
       if(.not.getrhsvar(1,'c',m1,n1,l1)) return
       if(.not.getrhsvar(2,'d',m2,n2,l2)) return
       if(.not.getrhsvar(3,'d',m3,n3,l3)) return
-      if(m2*n2.ne.m3*n3) then 
+      if(m2*n2.ne.m3*n3) then
          call erro('incompatible arguments ')
          return
       endif
@@ -46,7 +46,7 @@ c
 c     (very) simple example 1
 c     -->link('ext1f.o','ext1f');
 c     -->a=[1,2,3];b=[4,5,6];n=3;
-c     -->c=fort('ext1f',n,1,'i',a,2,'d',b,3,'d','out',[1,3],4,'d')
+c     -->c=call('ext1f',n,1,'i',a,2,'d',b,3,'d','out',[1,3],4,'d')
 c     c=a+b
       double precision a(*),b(*),c(*)
       do 1 k=1,n

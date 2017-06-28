@@ -38,7 +38,7 @@
     <!-- =================== -->
     <PRIMITIVE gatewayId="46" primitiveId="1" primitiveName="getdynlibext" />
     <PRIMITIVE gatewayId="46" primitiveId="2" primitiveName="addinter" />
-    <PRIMITIVE gatewayId="46" primitiveId="3" primitiveName="fort" />
+    <!-- <PRIMITIVE gatewayId="46" primitiveId="3" primitiveName="fort" /> -->
     <PRIMITIVE gatewayId="46" primitiveId="4" primitiveName="call" />
     <PRIMITIVE gatewayId="46" primitiveId="5" primitiveName="link" />
     <PRIMITIVE gatewayId="46" primitiveId="6" primitiveName="ulink" />

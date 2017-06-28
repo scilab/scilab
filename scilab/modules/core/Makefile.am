@@ -14,7 +14,6 @@
 CORE_C_SOURCES = \
     src/c/csignal.c \
     src/c/md5.c \
-    src/c/texmacs.c \
     src/c/getmodules.c \
     src/c/getmemory.c \
     src/c/isanan.c \

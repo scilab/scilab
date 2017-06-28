@@ -1,4 +1,3 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Bruno JOFRET
@@ -9,6 +8,8 @@
 // =============================================================================
 // Tests for standard deviation
 // =============================================================================
+// <-- NO CHECK REF -->
+// <-- CLI SHELL MODE -->
 
 assert_checkequal(stdev(0), 0);
 assert_checkequal(stdev(zeros(3,3)), 0);
@@ -62,3 +63,32 @@ y2 = stdev(a, 2, mean(a,"c"));
 yc = stdev(a, "c", mean(a,"c"));
 assert_checkalmostequal(y2, refY);
 assert_checkalmostequal(yc, refY);
+
+// Overloading
+m = rand(3,4)*100;
+    // for a built-in type
+function s = %i_stdev(ob, varargin)
+    s = stdev(double(ob), varargin(:));
+endfunction
+ob = uint8(m);
+r = fix(m);
+assert_checkequal(stdev(ob),stdev(r));
+assert_checkequal(stdev(ob, 1), stdev(r, 1));
+assert_checkequal(stdev(ob, 2), stdev(r, 2));
+assert_checkequal(stdev(ob, 2, 0.1), stdev(r, 2, 0.1));
+assert_checkequal(stdev(ob, 1, 0:0.05:0.16), stdev(r, 1, 0:0.05:0.16));
+    // for a typed list
+function s = %mytype_size(ob, varargin)
+    s = size(ob.mat, varargin(:));
+endfunction
+function s = %mytype_stdev(ob, varargin)
+    s = stdev(ob.mat, varargin(:));
+endfunction
+ob = mlist(["mytype","mat","title"], m, "A test object");
+assert_checkequal(stdev(ob),stdev(m));
+assert_checkequal(stdev(ob, 1), stdev(m, 1));
+assert_checkequal(stdev(ob, 2), stdev(m, 2));
+assert_checkequal(stdev(ob, 2, 10), stdev(m, 2, 10));
+assert_checkequal(stdev(ob, 1, 0:5:16), stdev(m, 1, 0:5:16));
+
+

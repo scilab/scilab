@@ -29,7 +29,7 @@ extern "C"
 }
 
 
-int sci_is_hdf5_file(char *fname, int* pvApiCtx)
+int sci_hdf5_is_file(char *fname, int* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddr     = NULL;

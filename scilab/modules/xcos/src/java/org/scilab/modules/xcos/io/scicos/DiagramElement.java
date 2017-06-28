@@ -50,6 +50,7 @@ import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.util.mxPoint;
+import org.scilab.modules.xcos.Xcos;
 
 /**
  * Perform a diagram transformation between Scicos and Xcos.
@@ -192,7 +193,7 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
 
         // Fill the diagram attributes
         ScicosParametersElement params = new ScicosParametersElement(controller);
-        params.decode(base.get(1), new ScicosParameters(new ScicosObjectOwner(controller, diag.getUID(), diag.getKind())));
+        params.decode(base.get(1), new ScicosParameters(Xcos.findRoot(diag), new ScicosObjectOwner(diag.getUID(), diag.getKind())));
 
         // Decode the objs attributes
         decodeObjs(diag);

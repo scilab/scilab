@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2015-2017 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -31,6 +32,8 @@ import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxPoint;
 import java.rmi.server.UID;
 import java.util.regex.Pattern;
+import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.TextBlock;
 
 /**
  * An Xcos cell is a JGraphX cell that store most of its information into the
@@ -43,7 +46,7 @@ import java.util.regex.Pattern;
  */
 public class XcosCell extends mxCell {
     private static final long serialVersionUID = 1L;
-    private static Pattern validCIdentifier = Pattern.compile("[a-zA-Z][a-zA-Z0-9_]+");
+    private static final Pattern validCIdentifier = Pattern.compile("[a-zA-Z][a-zA-Z0-9_]+");
 
     private transient ScicosObjectOwner owner;
 
@@ -105,6 +108,7 @@ public class XcosCell extends mxCell {
         setMVCValue(controller, value);
     }
 
+    @SuppressWarnings("fallthrough")
     private void setMVCValue(JavaController controller, Object value) {
         if (value == null) {
             return;
@@ -112,14 +116,14 @@ public class XcosCell extends mxCell {
 
         switch (getKind()) {
             case BLOCK:
-                if (validCIdentifier.matcher(String.valueOf(value)).matches()) {
-                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.LABEL, String.valueOf(value));
+                if (!(validCIdentifier.matcher(String.valueOf(value)).matches())) {
+                    // a block description should be a valid C / Scilab identifier to ease codegeneration
+                    break;
                 }
-            // no break on purpose
             case ANNOTATION:
+            case LINK:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, String.valueOf(value));
                 break;
-            case LINK:
             case PORT:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.LABEL, String.valueOf(value));
                 break;
@@ -391,6 +395,18 @@ public class XcosCell extends mxCell {
             JavaController controller = new JavaController();
             switch (getKind()) {
                 case ANNOTATION:
+                    if (this instanceof TextBlock) {
+                        // a TEXT_f block inside a superblock diagram
+                        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.PARENT_BLOCK, p.getUID());
+
+                        long[] root = new long[1];
+                        controller.getObjectProperty(p.getUID(), p.getKind(), ObjectProperties.PARENT_DIAGRAM, root);
+                        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.PARENT_DIAGRAM, root[0]);
+                    } else {
+                        // an annotation attached to the block
+                        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.RELATED_TO, p.getUID());
+                    }
+                    break;
                 case BLOCK:
                 case LINK:
                     if (p.getKind() == Kind.DIAGRAM) {
@@ -451,23 +467,41 @@ public class XcosCell extends mxCell {
     public mxICell insert(mxICell child, int index) {
         mxICell inserted = super.insert(child, index);
 
-        // the child might not be an XcosCell but just an mxCell label
-        if (child instanceof XcosCell) {
-            XcosCell c = (XcosCell) child;
-            switch (getKind()) {
-                case BLOCK:
-                    if (c.getKind() == Kind.PORT) {
-                        insertPort(c, index);
-                    } else {
+        // the child might not be an XcosCell but just an mxCell for whatever reason
+        // it will not be stored on the MVC nor saved on purpose.
+        if (!(child instanceof XcosCell)) {
+            return inserted;
+        }
+
+        XcosCell c = (XcosCell) child;
+
+        // the child is a regular object to add in the Diagram / Superblock hierarchy
+        switch (getKind()) {
+            case BLOCK:
+                switch (c.getKind()) {
+                    case ANNOTATION:
+                        if (c instanceof TextBlock) {
+                            // a TEXT_f block inside a superblock
+                            insertChild(c, index);
+                        } else {
+                            // an annotation attached to the block
+                            insertLabel(c);
+                        }
+                        break;
+                    case BLOCK:
+                    case LINK:
                         insertChild(c, index);
-                    }
-                    break;
-                case DIAGRAM:
-                    insertChild(c, index);
-                    break;
-                default:
-                    break;
-            }
+                        break;
+                    case PORT:
+                        insertPort(c, index);
+                        break;
+                }
+                break;
+            case DIAGRAM:
+                insertChild(c, index);
+                break;
+            default:
+                break;
         }
 
         return inserted;
@@ -494,8 +528,14 @@ public class XcosCell extends mxCell {
         VectorOfScicosID children = new VectorOfScicosID();
 
         controller.getObjectProperty(getUID(), getKind(), ObjectProperties.CHILDREN, children);
-        children.add(index, c.getUID());
+        children.add(c.getUID());
         controller.setObjectProperty(getUID(), getKind(), ObjectProperties.CHILDREN, children);
+    }
+
+    private void insertLabel(XcosCell c) {
+        JavaController controller = new JavaController();
+
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.LABEL, c.getUID());
     }
 
     /*
@@ -507,23 +547,39 @@ public class XcosCell extends mxCell {
     public mxICell remove(mxICell child) {
         mxICell removed = super.remove(child);
 
-        // the child might not be an XcosCell but just an mxCell label
-        if (child instanceof XcosCell) {
-            XcosCell c = (XcosCell) child;
-            switch (getKind()) {
-                case BLOCK:
-                    if (c.getKind() == Kind.PORT) {
-                        removePort(c);
-                    } else {
+        // the child might not be an XcosCell but just an mxCell for whatever reason
+        // it will not be stored on the MVC nor saved on purpose.
+        if (!(child instanceof XcosCell)) {
+            return removed;
+        }
+
+        XcosCell c = (XcosCell) child;
+        switch (getKind()) {
+            case BLOCK:
+                switch (c.getKind()) {
+                    case ANNOTATION:
+                        if (c instanceof TextBlock) {
+                            // a TEXT_f block inside a superblock
+                            removeChild(c);
+                        } else {
+                            // an annotation attached to the block
+                            removeLabel(c);
+                        }
+                        break;
+                    case BLOCK:
+                    case LINK:
                         removeChild(c);
-                    }
-                    break;
-                case DIAGRAM:
-                    removeChild(c);
-                    break;
-                default:
-                    break;
-            }
+                        break;
+                    case PORT:
+                        removePort(c);
+                        break;
+                }
+                break;
+            case DIAGRAM:
+                removeChild(c);
+                break;
+            default:
+                break;
         }
         return removed;
     }
@@ -565,6 +621,13 @@ public class XcosCell extends mxCell {
         controller.getObjectProperty(getUID(), getKind(), ObjectProperties.CHILDREN, children);
         children.remove(c.getUID());
         controller.setObjectProperty(getUID(), getKind(), ObjectProperties.CHILDREN, children);
+    }
+
+    private void removeLabel(XcosCell c) {
+        JavaController controller = new JavaController();
+
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.LABEL, 0);
+        controller.setObjectProperty(c.getUID(), c.getKind(), ObjectProperties.RELATED_TO, 0);
     }
 
     /*

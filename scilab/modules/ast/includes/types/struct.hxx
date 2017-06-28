@@ -113,7 +113,7 @@ public :
     List*                       extractFieldWithoutClone(const std::wstring& _wstField);
     std::vector<InternalType*>  extractFields(std::vector<std::wstring> _wstFields);
     std::vector<InternalType*>  extractFields(typed_list* _pArgs);
-    inline InternalType *       extractField(const std::wstring& wstField);
+    InternalType *              extractField(const std::wstring& wstField);
 
     Struct*                     resize(int* _piDims, int _iDims);
     Struct*                     resize(int _iNewRows, int _iNewCols);

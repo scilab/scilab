@@ -85,6 +85,9 @@
             Par extension, <literal>y=stdev(x,n)</literal> avec <literal>n</literal> un entier positif
             retourne la déviation suivant la <literal>n</literal>-ème dimension.
         </para>
+        <note>
+            <literal>stdev()</literal> peut être étendue par surdéfinition.
+        </note>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -138,9 +141,15 @@ mean(sd)
                 </revdescription>
             </revision>
             <revision>
-                <revnumber>6.0</revnumber>
+                <revnumber>6.0.0</revnumber>
                 <revdescription>
                     stdev(x, orien>ndims(x)) ne donne plus zeros(x) mais produit une erreur.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    stdev() peut désormais être étendue par surdéfinition.
                 </revdescription>
             </revision>
         </revhistory>

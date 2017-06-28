@@ -912,6 +912,7 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
 
             //return or resume
             ConfigVariable::DecreasePauseLevel();
+            ConfigVariable::macroFirstLine_end();
             CoverageInstance::stopChrono((void*)&e);
             return;
         }
@@ -1926,9 +1927,16 @@ void RunVisitorT<T>::visitprivate(const TryCatchExp  &e)
         int level = ConfigVariable::getRecursionLevel();
         try
         {
+            const_cast<Exp*>(&e.getTry())->setReturnable();
             e.getTry().accept(*this);
             //restore previous prompt mode
             ConfigVariable::setSilentError(oldVal);
+
+            if (e.getTry().isReturn())
+            {
+                const_cast<Exp*>(&e.getTry())->resetReturn();
+                const_cast<TryCatchExp*>(&e)->setReturn();
+            }
         }
         catch (const RecursionException& /* re */)
         {
@@ -1965,7 +1973,13 @@ void RunVisitorT<T>::visitprivate(const TryCatchExp  &e)
         ConfigVariable::resetWhereError();
         try
         {
+            const_cast<Exp*>(&e.getCatch())->setReturnable();
             e.getCatch().accept(*this);
+            if (e.getCatch().isReturn())
+            {
+                const_cast<Exp*>(&e.getCatch())->resetReturn();
+                const_cast<TryCatchExp*>(&e)->setReturn();
+            }
         }
         catch (ScilabException &)
         {

@@ -15,11 +15,11 @@
 
 #ifndef _PROMPT_H_
 #define _PROMPT_H_
-/* Define prompts of Scilab */
 
 #include "machine.h"            /* C2F */
 #include "dynlib_console.h"
 
+/* Define prompts of Scilab */
 #ifdef SCIPROMPT
 #undef SCIPROMPT
 #endif
@@ -40,13 +40,13 @@
 #define PROMPT_SIZE_MAX 64
 
 /*--------------------------------------------------------------------------*/
-CONSOLE_IMPEXP void C2F(setprlev) (int *pause);
+CONSOLE_IMPEXP void setPreviousLevel(int pause);
 
-CONSOLE_IMPEXP void GetCurrentPrompt(char *CurrentPrompt);
+CONSOLE_IMPEXP const char* GetCurrentPrompt();
 
-CONSOLE_IMPEXP void SetTemporaryPrompt(const char *tempPrompt);
+CONSOLE_IMPEXP void SetTemporaryPrompt(const char* tempPrompt);
 
-CONSOLE_IMPEXP char *GetTemporaryPrompt(void);
+CONSOLE_IMPEXP const char* GetTemporaryPrompt(void);
 
 CONSOLE_IMPEXP void ClearTemporaryPrompt(void);
 

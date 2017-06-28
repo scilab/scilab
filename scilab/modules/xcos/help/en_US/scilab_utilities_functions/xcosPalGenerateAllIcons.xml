@@ -40,7 +40,7 @@
 loadXcosLibs();
 
 // will update the default palette
-xcosPalGenerateAllIcons(["Palettes" "Commonly Used Blocks"]);
+xcosPalGenerateAllIcons(["Palettes" "Recently Used Blocks"]);
    ]]></programlisting>
     </refsection>
     <refsection>

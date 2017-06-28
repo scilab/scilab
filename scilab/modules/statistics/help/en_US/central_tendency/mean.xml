@@ -68,6 +68,9 @@
             <literal>y=mean(x,'m')</literal> is the mean along the first non singleton
             dimension of x (for compatibility with Matlab).
         </para>
+        <note>
+            <literal>mean()</literal> can be overloaded.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -94,5 +97,16 @@ y=mean(A,'m')
                 <link linkend="stdev">stdev</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    mean() is now overloadable.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

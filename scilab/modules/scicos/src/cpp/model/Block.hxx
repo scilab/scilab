@@ -1,6 +1,7 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -201,12 +202,12 @@ private:
         return SUCCESS;
     }
 
-    void getLabel(std::string& data) const
+    void getLabel(ScicosID& data) const
     {
         data = m_label;
     }
 
-    update_status_t setLabel(const std::string& data)
+    update_status_t setLabel(const ScicosID data)
     {
         if (data == m_label)
         {
@@ -686,7 +687,7 @@ private:
     Geometry m_geometry;
     std::vector<double> m_exprs;
     std::string m_description;
-    std::string m_label;
+    ScicosID m_label;
     std::string m_style;
     std::vector<int> m_nzcross;
     std::vector<int> m_nmode;

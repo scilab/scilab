@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2015-2017 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -93,6 +94,7 @@ public class BlockWriter extends ScilabWriter {
         // delegate the sub-elements to their writers
         shared.rawDataWriter.write(uid, kind);
         new JGraphXWriter(shared).write(uid, kind);
+        writeAnnotationCell(uid, kind);
         new CustomWriter(shared).write(uid, kind);
 
         shared.stream.writeEndElement(); // Block name

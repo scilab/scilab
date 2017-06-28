@@ -1,6 +1,7 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -269,9 +270,6 @@ bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, 
             case DESCRIPTION:
                 o->getDescription(v);
                 return true;
-            case LABEL:
-                o->getLabel(v);
-                return true;
             case UID:
                 o->getUID(v);
                 return true;
@@ -302,11 +300,11 @@ bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, 
         model::Link* o = static_cast<model::Link*>(baseObject);
         switch (p)
         {
+            case DESCRIPTION:
+                o->getDescription(v);
+                return true;
             case STYLE:
                 o->getStyle(v);
-                return true;
-            case LABEL:
-                o->getLabel(v);
                 return true;
             case UID:
                 o->getUID(v);
@@ -374,6 +372,9 @@ bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, 
             case PARENT_BLOCK:
                 o->getParentBlock(v);
                 return true;
+            case LABEL:
+                o->getLabel(v);
+                return true;
             case PORT_REFERENCE:
                 o->getPortReference(v);
                 return true;
@@ -395,6 +396,9 @@ bool Model::getObjectProperty(model::BaseObject* object, object_properties_t p, 
                 return true;
             case PARENT_BLOCK:
                 o->getParentBlock(v);
+                return true;
+            case LABEL:
+                o->getLabel(v);
                 return true;
             case SOURCE_PORT:
                 o->getSourcePort(v);

@@ -33,7 +33,6 @@ int sci_oldsave(char *fname, unsigned long fname_len);
 //int sci_write(char *fname, unsigned long fname_len);
 int sci_readb(char *fname, unsigned long fname_len);
 int sci_writb(char *fname, unsigned long fname_len);
-int sci_getpid(char *fname, unsigned long fname_len);
 int sci_read4b(char *fname, unsigned long fname_len);
 int sci_write4b(char *fname, unsigned long fname_len);
 int sci_save(char *fname, void *pvApiCtx);

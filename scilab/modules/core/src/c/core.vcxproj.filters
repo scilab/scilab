@@ -68,9 +68,6 @@
     <ClCompile Include="returnanan.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="texmacs.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="transposeMatrix.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -292,9 +289,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\tasks.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\texmacs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\timer.hxx">

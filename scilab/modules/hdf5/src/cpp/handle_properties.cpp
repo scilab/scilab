@@ -1059,25 +1059,27 @@ static int import_handle_matplot(int dataset, int parent)
     rect[2] = tmp;
 
     //data
-    getHandleInt(dataset, "num_x", &row);
-    getHandleInt(dataset, "num_y", &col);
+    int num_x = 0;
+    int num_y = 0;
+    getHandleInt(dataset, "num_x", &num_x);
+    getHandleInt(dataset, "num_y", &num_y);
     double* data = nullptr;
     int data_x = 0;
     int data_y = 0;
     getHandleDoubleVector(dataset, "data", &data_x, &data_y, &data);
 
     int grid[4];
-    grid[0] = col;
+    grid[0] = num_x;
     grid[1] = 1;
-    grid[2] = row;
+    grid[2] = num_y;
     grid[3] = 1;
 
     setGraphicObjectPropertyAndNoWarn(plot, __GO_DATA_MODEL_GRID_SIZE__, grid, jni_int_vector, 4);
 
     double scale[2];
     setGraphicObjectProperty(plot, __GO_MATPLOT_TRANSLATE__, rect, jni_double_vector, 2);
-    scale[0] = (rect[2] - rect[0]) / (col - 1.0);
-    scale[1] = (rect[3] - rect[1]) / (row - 1.0);
+    scale[0] = (rect[2] - rect[0]) / (num_x - 1.0);
+    scale[1] = (rect[3] - rect[1]) / (num_y - 1.0);
     setGraphicObjectProperty(plot, __GO_MATPLOT_SCALE__, scale, jni_double_vector, 2);
 
     setGraphicObjectProperty(plot, __GO_DATA_MODEL_MATPLOT_BOUNDS__, rect, jni_double_vector, 4);
@@ -2728,9 +2730,9 @@ static bool export_handle_matplot(int parent, int uid)
     }
 
     int row = 0;
-    getHandleIntProperty(uid, __GO_DATA_MODEL_NUM_X__, &row);
     int col = 0;
-    getHandleIntProperty(uid, __GO_DATA_MODEL_NUM_Y__, &col);
+    getHandleIntProperty(uid, __GO_DATA_MODEL_NUM_X__, &col);
+    getHandleIntProperty(uid, __GO_DATA_MODEL_NUM_Y__, &row);
     int datatype = 0;
     getHandleIntProperty(uid, __GO_DATA_MODEL_MATPLOT_DATA_TYPE__, &datatype);
     int imagetype = 0;

@@ -75,11 +75,8 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
             Location loc = (*it)->getLocation();
             if (iCurrentLine + 1 < loc.first_line)
             {
-                char pstPrompt[64];
                 //get prompt
-                GetCurrentPrompt(pstPrompt);
-                std::string stPrompt(pstPrompt);
-
+                std::string stPrompt = GetCurrentPrompt();
                 if (ConfigVariable::isPrintInteractive())
                 {
                     stPrompt = SCIPROMPT_PAUSE;
@@ -146,7 +143,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                         int iSaveExpectedSize = getExpectedSize();
                         setExpectedSize(1);
 
-                        pCall->invoke(in, opt, getExpectedSize(), out, e);
+                        pCall->invoke(in, opt, getExpectedSize(), out, **it);
                         setExpectedSize(iSaveExpectedSize);
 
                         if (out.size() == 0)

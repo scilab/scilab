@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2016-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -714,6 +715,7 @@ int XMIResource::loadBlock(xmlTextReaderPtr reader, const model::BaseObject& o)
 
     // Layer has no attribute so there is no need to decode it there
     // Geometry is handled as an element
+    // Label is handled as an element
 
     // iterate on attributes
     for (int rc = xmlTextReaderMoveToFirstAttribute(reader); rc > 0; rc = xmlTextReaderMoveToNextAttribute(reader))
@@ -724,9 +726,6 @@ int XMIResource::loadBlock(xmlTextReaderPtr reader, const model::BaseObject& o)
         {
             case e_description:
                 controller.setObjectProperty(o.id(), o.kind(), DESCRIPTION, to_string(xmlTextReaderConstValue(reader)));
-                break;
-            case e_label:
-                controller.setObjectProperty(o.id(), o.kind(), LABEL, to_string(xmlTextReaderConstValue(reader)));
                 break;
             case e_style:
                 controller.setObjectProperty(o.id(), o.kind(), STYLE, to_string(xmlTextReaderConstValue(reader)));
@@ -873,6 +872,7 @@ int XMIResource::loadLink(xmlTextReaderPtr reader, const model::BaseObject& o)
 
     // geometry is handled as in independent node
     // controlPoint is handled as in independent node
+    // Label is handled as an element
 
     // iterate on attributes
     for (int rc = xmlTextReaderMoveToFirstAttribute(reader); rc > 0; rc = xmlTextReaderMoveToNextAttribute(reader))
@@ -881,6 +881,9 @@ int XMIResource::loadLink(xmlTextReaderPtr reader, const model::BaseObject& o)
         enum xcosNames current = static_cast<enum xcosNames>(std::distance(constXcosNames.begin(), found));
         switch (current)
         {
+            case e_description:
+                controller.setObjectProperty(o.id(), o.kind(), DESCRIPTION, to_string(xmlTextReaderConstValue(reader)));
+                break;
             case e_uid:
             {
                 std::string uid = to_string(xmlTextReaderConstValue(reader));
@@ -901,9 +904,6 @@ int XMIResource::loadLink(xmlTextReaderPtr reader, const model::BaseObject& o)
                 break;
             case e_style:
                 controller.setObjectProperty(o.id(), o.kind(), STYLE, to_string(xmlTextReaderConstValue(reader)));
-                break;
-            case e_label:
-                controller.setObjectProperty(o.id(), o.kind(), LABEL, to_string(xmlTextReaderConstValue(reader)));
                 break;
             case e_lineWidth:
             {
@@ -1242,6 +1242,21 @@ int XMIResource::processElement(xmlTextReaderPtr reader)
                 parent = current;
             }
             return 1;
+        case e_label:
+        {
+            // label is used for attaching an Annotation to its parent
+            ScicosID o = controller.createObject(ANNOTATION);
+
+            // assign the child
+            model::BaseObject parent = processed.back();
+
+            controller.setObjectProperty(o, ANNOTATION, RELATED_TO, parent.id());
+            controller.setObjectProperty(parent.id(), parent.kind(), LABEL, o);
+
+            model::BaseObject child(o, ANNOTATION);
+            processed.push_back(child);
+            return loadAnnotation(reader, child);
+        }
         case e_opar:
             // ipar is a Block property
             return loadBase64(reader, OPAR, processed.back());

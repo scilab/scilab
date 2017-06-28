@@ -219,21 +219,24 @@ public :
     virtual void fillDefaultValues()
     {
         int size = getSize();
+        T tNullVal = getNullValue();
         if (isComplex())
         {
             for (int i = 0; i < size; ++i)
             {
-                set(i, getNullValue());
-                setImg(i, getNullValue());
+                set(i, tNullVal);
+                setImg(i, tNullVal);
             }
         }
         else
         {
             for (int i = 0; i < size; ++i)
             {
-                set(i, getNullValue());
+                set(i, tNullVal);
             }
         }
+
+        deleteData(tNullVal);
     }
 
     virtual ArrayOf<T>* setComplex(bool _bComplex)

@@ -45,6 +45,11 @@ types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, ty
 
     ConfigVariable::IncreasePauseLevel();
 
+    // add pause in list of macro called
+    // to manage line displayed when error occured
+    // or when the "where()" function is called.
+    ConfigVariable::macroFirstLine_begin(2);
+
     // unlock console thread to display prompt again
     ThreadManagement::SendConsoleExecDoneSignal();
 

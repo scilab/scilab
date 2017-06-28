@@ -43,7 +43,6 @@
     <PRIMITIVE gatewayId="21" primitiveId="3" primitiveName="string" />
     <PRIMITIVE gatewayId="21" primitiveId="4" primitiveName="convstr" />
     <PRIMITIVE gatewayId="21" primitiveId="5" primitiveName="emptystr" />
-    <PRIMITIVE gatewayId="21" primitiveId="6" primitiveName="str2code" />
     <PRIMITIVE gatewayId="21" primitiveId="7" primitiveName="code2str" />
     <PRIMITIVE gatewayId="21" primitiveId="8" primitiveName="strcat" />
     <PRIMITIVE gatewayId="21" primitiveId="9" primitiveName="strindex" />
@@ -68,7 +67,6 @@
     <PRIMITIVE gatewayId="21" primitiveId="28" primitiveName="strspn" />
     <PRIMITIVE gatewayId="21" primitiveId="29" primitiveName="strtod" />
     <PRIMITIVE gatewayId="21" primitiveId="30" primitiveName="regexp" />
-    <PRIMITIVE gatewayId="21" primitiveId="31" primitiveName="_str2code" />
     <PRIMITIVE gatewayId="21" primitiveId="32" primitiveName="_code2str" />
     <PRIMITIVE gatewayId="21" primitiveId="33" primitiveName="isnum" />
     <PRIMITIVE gatewayId="21" primitiveId="34" primitiveName="csvIsnum" />

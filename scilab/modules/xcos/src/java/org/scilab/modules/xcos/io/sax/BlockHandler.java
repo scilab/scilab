@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -69,9 +70,6 @@ class BlockHandler implements ScilabHandler {
         String value = atts.getValue("value");
         if (value != null) {
             saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, value);
-            if (kind == Kind.BLOCK && saxHandler.validCIdentifier.matcher(value).matches()) {
-                saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.LABEL, value);
-            }
         }
 
         String style = atts.getValue("style");

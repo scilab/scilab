@@ -36,6 +36,7 @@ import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.configuration.utils.ConfigurationConstants;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Implement the recent file actions.
@@ -45,7 +46,7 @@ import org.scilab.modules.xcos.configuration.utils.ConfigurationConstants;
 @SuppressWarnings(value = { "serial" })
 public final class RecentFileAction extends DefaultAction implements PropertyChangeListener {
     /** Name of the action */
-    public static final String NAME = "";
+    public static final String NAME = XcosMessages.RECENT_FILES;
     /** Icon name of the action */
     public static final String SMALL_ICON = "";
     /** Mnemonic key of the action */

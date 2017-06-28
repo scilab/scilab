@@ -45,10 +45,6 @@ function ilib_build(ilib_name, ..
         error(999,msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "ilib_build", 2));
     end
 
-    if size(table,"*") > 999 * 2 then
-        error(999,msprintf(_("%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"), "ilib_build", 2));
-    end
-
     if getos() <> "Windows" & strncpy(ilib_name, 3) <> "lib" then
         // We add a leading lib under Linux/Unix because it is the way
         ilib_name = "lib" + ilib_name;

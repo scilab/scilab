@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -125,7 +126,7 @@ public class CustomWriter extends ScilabWriter {
         /*
          * encode some content then the children
          */
-        shared.rawDataWriter.write(uid, kind);
+        shared.rawDataWriter.writeContext(uid, kind);
 
         /*
          * Generate uniques but predictables UIDs

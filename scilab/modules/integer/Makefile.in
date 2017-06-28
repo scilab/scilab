@@ -216,7 +216,9 @@ am__v_lt_1 =
 @MAINTAINER_MODE_FALSE@am_libsciinteger_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libsciinteger_algo_la_rpath =
 libsciinteger_la_DEPENDENCIES = libsciinteger-algo.la
-am__objects_2 = sci_gateway/cpp/libsciinteger_la-integer_gw.lo \
+am__objects_2 = src/cpp/libsciinteger_la-DllmainInteger_gw.lo \
+	src/cpp/libsciinteger_la-iconvert_converter.lo \
+	sci_gateway/cpp/libsciinteger_la-integer_gw.lo \
 	sci_gateway/cpp/libsciinteger_la-sci_inttype.lo \
 	sci_gateway/cpp/libsciinteger_la-sci_double.lo \
 	sci_gateway/cpp/libsciinteger_la-sci_int.lo \
@@ -637,6 +639,8 @@ INTEGER_C_SOURCES = \
     src/c/genimpl.c
 
 GATEWAY_CPP_SOURCES = \
+    src/cpp/DllmainInteger_gw.cpp \
+    src/cpp/iconvert_converter.cpp \
     sci_gateway/cpp/integer_gw.cpp \
     sci_gateway/cpp/sci_inttype.cpp \
     sci_gateway/cpp/sci_double.cpp \
@@ -645,6 +649,7 @@ GATEWAY_CPP_SOURCES = \
 
 libsciinteger_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/cpp/ \
     -I$(top_srcdir)/modules/ast/includes/ast/ \
     -I$(top_srcdir)/modules/ast/includes/exps/ \
     -I$(top_srcdir)/modules/ast/includes/operations/ \
@@ -919,6 +924,16 @@ src/c/libsciinteger_algo_la-genimpl.lo: src/c/$(am__dirstamp) \
 
 libsciinteger-algo.la: $(libsciinteger_algo_la_OBJECTS) $(libsciinteger_algo_la_DEPENDENCIES) $(EXTRA_libsciinteger_algo_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libsciinteger_algo_la_rpath) $(libsciinteger_algo_la_OBJECTS) $(libsciinteger_algo_la_LIBADD) $(LIBS)
+src/cpp/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp
+	@: > src/cpp/$(am__dirstamp)
+src/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/$(DEPDIR)
+	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciinteger_la-DllmainInteger_gw.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciinteger_la-iconvert_converter.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp
 	@: > sci_gateway/cpp/$(am__dirstamp)
@@ -950,6 +965,8 @@ mostlyclean-compile:
 	-rm -f sci_gateway/cpp/*.lo
 	-rm -f src/c/*.$(OBJEXT)
 	-rm -f src/c/*.lo
+	-rm -f src/cpp/*.$(OBJEXT)
+	-rm -f src/cpp/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
@@ -991,6 +1008,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciinteger_algo_la-gentriu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciinteger_algo_la-genvmul.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciinteger_algo_la-tpconv.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciinteger_la-DllmainInteger_gw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciinteger_la-iconvert_converter.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -1264,6 +1283,20 @@ src/c/libsciinteger_algo_la-genimpl.lo: src/c/genimpl.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
+src/cpp/libsciinteger_la-DllmainInteger_gw.lo: src/cpp/DllmainInteger_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciinteger_la-DllmainInteger_gw.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciinteger_la-DllmainInteger_gw.Tpo -c -o src/cpp/libsciinteger_la-DllmainInteger_gw.lo `test -f 'src/cpp/DllmainInteger_gw.cpp' || echo '$(srcdir)/'`src/cpp/DllmainInteger_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciinteger_la-DllmainInteger_gw.Tpo src/cpp/$(DEPDIR)/libsciinteger_la-DllmainInteger_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/DllmainInteger_gw.cpp' object='src/cpp/libsciinteger_la-DllmainInteger_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciinteger_la-DllmainInteger_gw.lo `test -f 'src/cpp/DllmainInteger_gw.cpp' || echo '$(srcdir)/'`src/cpp/DllmainInteger_gw.cpp
+
+src/cpp/libsciinteger_la-iconvert_converter.lo: src/cpp/iconvert_converter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciinteger_la-iconvert_converter.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciinteger_la-iconvert_converter.Tpo -c -o src/cpp/libsciinteger_la-iconvert_converter.lo `test -f 'src/cpp/iconvert_converter.cpp' || echo '$(srcdir)/'`src/cpp/iconvert_converter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciinteger_la-iconvert_converter.Tpo src/cpp/$(DEPDIR)/libsciinteger_la-iconvert_converter.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/iconvert_converter.cpp' object='src/cpp/libsciinteger_la-iconvert_converter.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciinteger_la-iconvert_converter.lo `test -f 'src/cpp/iconvert_converter.cpp' || echo '$(srcdir)/'`src/cpp/iconvert_converter.cpp
+
 sci_gateway/cpp/libsciinteger_la-integer_gw.lo: sci_gateway/cpp/integer_gw.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciinteger_la-integer_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-integer_gw.Tpo -c -o sci_gateway/cpp/libsciinteger_la-integer_gw.lo `test -f 'sci_gateway/cpp/integer_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/integer_gw.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-integer_gw.Tpo sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-integer_gw.Plo
@@ -1306,6 +1339,7 @@ clean-libtool:
 	-rm -rf .libs _libs
 	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
 	-rm -rf src/c/.libs src/c/_libs
+	-rm -rf src/cpp/.libs src/cpp/_libs
 install-libsciinteger_la_etcDATA: $(libsciinteger_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libsciinteger_la_etc_DATA)'; test -n "$(libsciinteger_la_etcdir)" || list=; \
@@ -1490,6 +1524,8 @@ distclean-generic:
 	-rm -f sci_gateway/cpp/$(am__dirstamp)
 	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/c/$(am__dirstamp)
+	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/cpp/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
@@ -1500,7 +1536,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1548,7 +1584,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

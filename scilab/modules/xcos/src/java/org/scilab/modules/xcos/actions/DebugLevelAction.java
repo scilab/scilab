@@ -26,6 +26,7 @@ import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.actions.dialog.DebugLevelDialog;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -110,7 +111,7 @@ public final class DebugLevelAction extends SimulationNotRunningAction {
             return;
         }
 
-        final DebugLevelDialog dialog = new DebugLevelDialog(graph.getAsComponent(), new ScicosParameters(Xcos.findRoot(graph)));
+        final DebugLevelDialog dialog = new DebugLevelDialog(graph.getAsComponent(), new ScicosParameters(Xcos.findRoot(graph), new ScicosObjectOwner(graph.getUID(), graph.getKind())));
 
         dialog.pack();
         dialog.setVisible(true);

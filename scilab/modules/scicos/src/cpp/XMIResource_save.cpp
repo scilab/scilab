@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2016-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -350,7 +351,7 @@ int XMIResource::writeAbstractLayer(xmlTextWriterPtr writer, ScicosID id, kind_t
                 status = writeLink(writer, child);
                 break;
             case ANNOTATION:
-                status = writeAnnotation(writer, child);
+                status = writeAnnotation(writer, child, false);
                 break;
             default:
                 status =  -1;
@@ -605,14 +606,6 @@ int XMIResource::writeBlock(xmlTextWriterPtr writer, ScicosID id)
     }
 
     strValue.clear();
-    controller.getObjectProperty(id, BLOCK, LABEL, strValue);
-    status = xmlTextWriterWriteAttribute(writer, BAD_CAST("label"), BAD_CAST(strValue.c_str()));
-    if (status == -1)
-    {
-        return status;
-    }
-
-    strValue.clear();
     controller.getObjectProperty(id, BLOCK, STYLE, strValue);
     status = xmlTextWriterWriteAttribute(writer, BAD_CAST("style"), BAD_CAST(strValue.c_str()));
     if (status == -1)
@@ -683,6 +676,17 @@ int XMIResource::writeBlock(xmlTextWriterPtr writer, ScicosID id)
     if (status == -1)
     {
         return status;
+    }
+
+    ScicosID label;
+    controller.getObjectProperty(id, BLOCK, LABEL, label);
+    if (label != ScicosID())
+    {
+        status = writeAnnotation(writer, label, true);
+        if (status == -1)
+        {
+            return status;
+        }
     }
 
     std::vector<double> doubleArrayValue;
@@ -1011,8 +1015,15 @@ int XMIResource::writeLink(xmlTextWriterPtr writer, ScicosID id)
         return status;
     }
 
-    ScicosID idValue;
     std::string strValue;
+    controller.getObjectProperty(id, BLOCK, DESCRIPTION, strValue);
+    status = xmlTextWriterWriteAttribute(writer, BAD_CAST("description"), BAD_CAST(strValue.c_str()));
+    if (status == -1)
+    {
+        return status;
+    }
+
+    ScicosID idValue;
     controller.getObjectProperty(id, LINK, SOURCE_PORT, idValue);
     if (idValue != 0)
     {
@@ -1042,14 +1053,6 @@ int XMIResource::writeLink(xmlTextWriterPtr writer, ScicosID id)
     strValue.clear();
     controller.getObjectProperty(id, LINK, STYLE, strValue);
     status = xmlTextWriterWriteAttribute(writer, BAD_CAST("style"), BAD_CAST(strValue.c_str()));
-    if (status == -1)
-    {
-        return status;
-    }
-
-    strValue.clear();
-    controller.getObjectProperty(id, LINK, LABEL, strValue);
-    status = xmlTextWriterWriteAttribute(writer, BAD_CAST("label"), BAD_CAST(strValue.c_str()));
     if (status == -1)
     {
         return status;
@@ -1090,6 +1093,17 @@ int XMIResource::writeLink(xmlTextWriterPtr writer, ScicosID id)
         return status;
     }
 
+    ScicosID label;
+    controller.getObjectProperty(id, BLOCK, LABEL, label);
+    if (label != ScicosID())
+    {
+        status = writeAnnotation(writer, label, true);
+        if (status == -1)
+        {
+            return status;
+        }
+    }
+
     std::vector<double> dblArrayValue;
     controller.getObjectProperty(id, LINK, CONTROL_POINTS, dblArrayValue);
     for (unsigned int i = 0; i < dblArrayValue.size(); i += 2)
@@ -1110,11 +1124,18 @@ int XMIResource::writeLink(xmlTextWriterPtr writer, ScicosID id)
     return status;
 }
 
-int XMIResource::writeAnnotation(xmlTextWriterPtr writer, ScicosID id)
+int XMIResource::writeAnnotation(xmlTextWriterPtr writer, ScicosID id, bool asLabel)
 {
     int status;
 
-    status = xmlTextWriterStartElement(writer, BAD_CAST("child"));
+    if (asLabel)
+    {
+        status = xmlTextWriterStartElement(writer, BAD_CAST("label"));
+    }
+    else
+    {
+        status = xmlTextWriterStartElement(writer, BAD_CAST("child"));
+    }
     if (status == -1)
     {
         return status;

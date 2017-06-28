@@ -98,6 +98,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"square", L"replot");
 
     // Scilab 5.5.2 => 6.0.0
+    map.emplace(L"fort", L"call");
     map.emplace(L"znaupd", L"eigs");
     map.emplace(L"zneupd", L"eigs");
     map.emplace(L"dseupd", L"eigs");

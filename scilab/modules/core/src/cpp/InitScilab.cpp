@@ -286,8 +286,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     }
 
     //set prompt value
-    int pause = 0;
-    C2F(setprlev) (&pause);
+    setPreviousLevel(0);
 
     //load gateways
     if (LoadModules() == false)
@@ -712,7 +711,7 @@ void* scilabReadAndStore(void* param)
             int pause = ConfigVariable::getPauseLevel();
 
             //set prompt value
-            C2F(setprlev) (&pause);
+           setPreviousLevel(pause);
 
             if (scilabRead() == 0)
             {

@@ -56,7 +56,6 @@ msgstr ""
 # File: sci_gateway/c/sci_strcmp.c, line: 127
 # File: sci_gateway/c/sci_strcmp.c, line: 131
 # File: sci_gateway/c/sci_strsplit.c, line: 205
-# File: sci_gateway/c/sci_str2code.c, line: 91
 # File: sci_gateway/c/sci_strrev.c, line: 62
 # File: sci_gateway/c/sci_strrchr.c, line: 94
 # File: sci_gateway/c/sci_strspn.c, line: 83
@@ -90,7 +89,6 @@ msgstr "%s: 輸出參數之數目錯誤: 應為 %d.\n"
 # File: sci_gateway/c/sci_strcmp.c, line: 127
 # File: sci_gateway/c/sci_strcmp.c, line: 131
 # File: sci_gateway/c/sci_strsplit.c, line: 205
-# File: sci_gateway/c/sci_str2code.c, line: 91
 # File: sci_gateway/c/sci_strrev.c, line: 62
 # File: sci_gateway/c/sci_strrchr.c, line: 94
 # File: sci_gateway/c/sci_strspn.c, line: 83
@@ -146,7 +144,6 @@ msgstr "%s: Wrong values for input argument #%d: 應為非空字串.\n"
 # File: sci_gateway/c/sci_strtod.c, line: 61
 # File: sci_gateway/c/sci_strtod.c, line: 78
 # File: sci_gateway/c/sci_isascii.c, line: 103
-# File: sci_gateway/c/sci_str2code.c, line: 85
 # File: sci_gateway/c/sci_code2str.c, line: 60
 # File: sci_gateway/c/sci_code2str.c, line: 74
 # File: sci_gateway/c/sci_strrev.c, line: 56

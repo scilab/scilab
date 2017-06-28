@@ -30,7 +30,7 @@
 /*--------------------------------------------------------------------------*/
 static int CURRENT_MAX_LINE_SIZE = bsiz;
 static char *cur_line = NULL;	/* current contents of the line */
-static char *currentPrompt = NULL;
+static const char *currentPrompt = NULL;
 static int cur_pos = 0;		/* current position of the cursor */
 static int max_pos = 0;
 /*--------------------------------------------------------------------------*/
@@ -391,12 +391,12 @@ static void backSpace(void)
     }
 }
 /*--------------------------------------------------------------------------*/
-static char *getCurrentPrompt(void)
+static const char *getCurrentPrompt(void)
 {
     return currentPrompt;
 }
 /*--------------------------------------------------------------------------*/
-void setCurrentPrompt(char *prompt)
+void setCurrentPrompt(const char *prompt)
 {
     currentPrompt = prompt;
 }

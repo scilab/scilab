@@ -4,6 +4,7 @@
  * Copyright (C) 2009-2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2015 - Marcos Cardinot
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -140,12 +141,6 @@ public class XcosDiagram extends ScilabGraph {
      * Prefix used to tag text node.
      */
     public static final String HASH_IDENTIFIER = "#identifier";
-
-    /**
-     * Default geometry used while adding a label to a block (on the middle and
-     * below the bottom of the parent block)
-     */
-    private static final mxGeometry DEFAULT_LABEL_GEOMETRY = new mxGeometry(0.5, 1.1, 0.0, 0.0);
 
     /**
      * Constructor
@@ -1657,14 +1652,28 @@ public class XcosDiagram extends ScilabGraph {
      * @return the cell identifier.
      */
     public mxCell createCellIdentifier(final mxCell cell) {
-        final mxCell identifier;
+        final XcosCell identifier;
         final String cellId = cell.getId() + HASH_IDENTIFIER;
 
-        identifier = new mxCell(null, (mxGeometry) DEFAULT_LABEL_GEOMETRY.clone(), "noLabel=0;opacity=0;");
-        identifier.getGeometry().setRelative(true);
+        JavaController controller = new JavaController();
+        long uid = controller.createObject(Kind.ANNOTATION);
+
+        final mxGeometry geom;
+        if (cell.isVertex()) {
+            // the vertex label position is relative to its parent
+            geom = new mxGeometry(cell.getGeometry().getWidth() * 0.5, cell.getGeometry().getHeight() * 1.1, 0., 0.);
+        } else {
+            // the edge label position is absolute, its initial position should be computed
+            mxPoint src = cell.getGeometry().getSourcePoint();
+            mxPoint trgt = cell.getGeometry().getTargetPoint();
+
+            geom = new mxGeometry(src.getX(), src.getY(), 0., 0.);
+            geom.translate((trgt.getX() - src.getX()) / 2, (trgt.getY() - src.getY()) / 2);
+        }
+
+        identifier = new XcosCell(new JavaController(), uid, Kind.ANNOTATION, null, geom, "noLabel=0;opacity=0;", cellId);
         identifier.setVertex(true);
         identifier.setConnectable(false);
-        identifier.setId(cellId);
 
         return identifier;
     }

@@ -1503,7 +1503,7 @@ void ConfigVariable::setScilabCommand(int _isciCmd)
 
 int ConfigVariable::isScilabCommand()
 {
-    return m_isScilabCommand.load();
+    return m_isScilabCommand.exchange(1);
 }
 /*
 ** \}

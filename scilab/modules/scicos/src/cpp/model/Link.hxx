@@ -1,6 +1,7 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -97,12 +98,28 @@ private:
         return SUCCESS;
     }
 
-    void getLabel(std::string& data) const
+    void getDescription(std::string& data) const
+    {
+        data = m_description;
+    }
+
+    update_status_t setDescription(const std::string& data)
+    {
+        if (data == m_description)
+        {
+            return NO_CHANGES;
+        }
+
+        m_description = data;
+        return SUCCESS;
+    }
+
+    void getLabel(ScicosID& data) const
     {
         data = m_label;
     }
 
-    update_status_t setLabel(const std::string& data)
+    update_status_t setLabel(const ScicosID data)
     {
         if (data == m_label)
         {
@@ -255,7 +272,9 @@ private:
     // used to store, user-defined control points
     std::vector<double> m_controlPoints;
 
-    std::string m_label;
+    std::string m_description;
+    ScicosID m_label;
+
     std::string m_style;
     std::vector<double> m_thick;
     int m_color;

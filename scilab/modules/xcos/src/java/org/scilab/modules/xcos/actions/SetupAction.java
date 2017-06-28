@@ -26,6 +26,7 @@ import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.actions.dialog.SetupDialog;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -80,7 +81,8 @@ public final class SetupAction extends SimulationNotRunningAction {
             return;
         }
 
-        final SetupDialog dialog = new SetupDialog(comp, graph, new ScicosParameters(Xcos.findRoot(graph)));
+        ScicosObjectOwner current = new ScicosObjectOwner(graph.getUID(), graph.getKind());
+        final SetupDialog dialog = new SetupDialog(comp, graph, new ScicosParameters(Xcos.findRoot(graph), current));
 
         dialog.pack();
         dialog.setVisible(true);

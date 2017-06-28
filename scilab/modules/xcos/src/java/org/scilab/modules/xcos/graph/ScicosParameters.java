@@ -104,9 +104,14 @@ public class ScicosParameters implements Serializable, Cloneable {
     public static int DEFAULT_DEBUG_LEVEL;
 
     /**
-     * Reference to the diagram
+     * Reference to the root diagram
      */
     private final ScicosObjectOwner root;
+
+    /**
+     * Reference to the current diagram
+     */
+    private final ScicosObjectOwner current;
 
     /*
      * Beans support, used to follow instance modification and validate changes.
@@ -117,10 +122,12 @@ public class ScicosParameters implements Serializable, Cloneable {
      * Default constructor
      *
      * Initialize parameters with their default values.
-     * @param diagramOwner the diagram
+     * @param root the root diagram
+     * @param current the current diagram
      */
-    public ScicosParameters(final ScicosObjectOwner diagramOwner) {
-        this.root = diagramOwner;
+    public ScicosParameters(final ScicosObjectOwner root, final ScicosObjectOwner current) {
+        this.root = root;
+        this.current = current;
 
         /*
          * This call will update static values from the configuration.
@@ -128,23 +135,21 @@ public class ScicosParameters implements Serializable, Cloneable {
         XcosOptions.getSimulation();
 
         // install the modification handler
-        if (diagramOwner.getKind() == Kind.DIAGRAM) {
-            vcs.addVetoableChangeListener((PropertyChangeEvent evt) -> {
-                Xcos xcos = Xcos.getInstance();
-                if (!xcos.openedDiagrams(diagramOwner).isEmpty()) {
-                    xcos.setModified(diagramOwner, true);
-                    xcos.openedDiagrams(diagramOwner).stream().forEach(d -> d.updateTabTitle());
-                }
-            });
-        }
+        vcs.addVetoableChangeListener((PropertyChangeEvent evt) -> {
+            Xcos xcos = Xcos.getInstance();
+            if (!xcos.openedDiagrams(root).isEmpty()) {
+                xcos.setModified(root, true);
+                xcos.openedDiagrams(root).stream().forEach(d -> d.updateTabTitle());
+            }
+        });
     }
 
-    public long getUID() {
-        return root.getUID();
+    public ScicosObjectOwner getRoot() {
+        return root;
     }
 
-    public Kind getKind() {
-        return root.getKind();
+    public ScicosObjectOwner getCurrent() {
+        return current;
     }
 
     /**
@@ -156,7 +161,7 @@ public class ScicosParameters implements Serializable, Cloneable {
      */
     public VectorOfDouble getProperties(final JavaController controller) {
         VectorOfDouble v = new VectorOfDouble(7);
-        controller.getObjectProperty(getUID(), getKind(), ObjectProperties.PROPERTIES, v);
+        controller.getObjectProperty(root.getUID(), root.getKind(), ObjectProperties.PROPERTIES, v);
         return v;
     }
 
@@ -173,7 +178,7 @@ public class ScicosParameters implements Serializable, Cloneable {
     public void setProperties(final JavaController controller, VectorOfDouble v) throws PropertyVetoException {
         VectorOfDouble oldValue = getProperties(controller);
         vcs.fireVetoableChange(FINAL_INTEGRATION_TIME_CHANGE, oldValue, v);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.PROPERTIES, v);
+        controller.setObjectProperty(root.getUID(), root.getKind(), ObjectProperties.PROPERTIES, v);
     }
 
     /**
@@ -181,7 +186,7 @@ public class ScicosParameters implements Serializable, Cloneable {
      */
     public VectorOfString getContext(final JavaController controller) {
         VectorOfString v = new VectorOfString();
-        controller.getObjectProperty(getUID(), getKind(), ObjectProperties.DIAGRAM_CONTEXT, v);
+        controller.getObjectProperty(current.getUID(), current.getKind(), ObjectProperties.DIAGRAM_CONTEXT, v);
         return v;
     }
 
@@ -198,7 +203,7 @@ public class ScicosParameters implements Serializable, Cloneable {
     public void setContext(final JavaController controller, VectorOfString v) throws PropertyVetoException {
         VectorOfString oldValue = getContext(controller);
         vcs.fireVetoableChange(CONTEXT_CHANGE, oldValue, v);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DIAGRAM_CONTEXT, v);
+        controller.setObjectProperty(current.getUID(), current.getKind(), ObjectProperties.DIAGRAM_CONTEXT, v);
     }
 
     /**
@@ -208,7 +213,7 @@ public class ScicosParameters implements Serializable, Cloneable {
      */
     public String getVersion(final JavaController controller) {
         String[] v = new String[1];
-        controller.getObjectProperty(getUID(), getKind(), ObjectProperties.VERSION_NUMBER, v);
+        controller.getObjectProperty(root.getUID(), root.getKind(), ObjectProperties.VERSION_NUMBER, v);
         return v[0];
     }
 
@@ -217,7 +222,7 @@ public class ScicosParameters implements Serializable, Cloneable {
      */
     public int getDebugLevel(final JavaController controller) {
         int[] v = new int[1];
-        controller.getObjectProperty(getUID(), getKind(), ObjectProperties.DEBUG_LEVEL, v);
+        controller.getObjectProperty(root.getUID(), root.getKind(), ObjectProperties.DEBUG_LEVEL, v);
         return v[0];
     }
 
@@ -230,6 +235,6 @@ public class ScicosParameters implements Serializable, Cloneable {
     public void setDebugLevel(final JavaController controller, int debugLevel) throws PropertyVetoException {
         int oldValue = getDebugLevel(controller);
         vcs.fireVetoableChange(DEBUG_LEVEL_CHANGE, oldValue, debugLevel);
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DEBUG_LEVEL, debugLevel);
+        controller.setObjectProperty(root.getUID(), root.getKind(), ObjectProperties.DEBUG_LEVEL, debugLevel);
     }
 }

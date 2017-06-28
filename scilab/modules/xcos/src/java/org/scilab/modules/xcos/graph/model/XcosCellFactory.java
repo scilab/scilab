@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2015-2017 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -238,6 +239,13 @@ public final class XcosCellFactory {
                 default:
                     break;
             }
+
+            // add the optionnal label
+            long[] label = { 0 };
+            controller.getObjectProperty(uid, kind, ObjectProperties.LABEL, label);
+            if (label[0] != 0) {
+                cells[i].insert(createAnnotation(controller, label[0], Kind.ANNOTATION));
+            }
         }
 
         /*
@@ -405,7 +413,7 @@ public final class XcosCellFactory {
         }
 
         String value;
-        String[] description = new String[] { "" };
+        String[] description = { null };
         controller.getObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, description);
         value = description[0];
 
@@ -643,8 +651,10 @@ public final class XcosCellFactory {
          * Synchronize model information back to the JGraphX data
          */
 
-        String[] value = new String[] { "" };
-        controller.getObjectProperty(uid, kind, ObjectProperties.LABEL, value);
+        String value;
+        String[] description = { null };
+        controller.getObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, description);
+        value = description[0];
 
         String[] style = new String[] { "" };
         controller.getObjectProperty(uid, kind, ObjectProperties.STYLE, style);
@@ -678,18 +688,48 @@ public final class XcosCellFactory {
         BasicLink link;
         switch (type[0]) {
             case -1:
-                link = new CommandControlLink(controller, uid, kind, value[0], geom, style[0], strUID[0]);
+                link = new CommandControlLink(controller, uid, kind, value, geom, style[0], strUID[0]);
                 break;
             case 1:
-                link = new ExplicitLink(controller, uid, kind, value[0], geom, style[0], strUID[0]);
+                link = new ExplicitLink(controller, uid, kind, value, geom, style[0], strUID[0]);
                 break;
             case 2:
-                link = new ImplicitLink(controller, uid, kind, value[0], geom, style[0], strUID[0]);
+                link = new ImplicitLink(controller, uid, kind, value, geom, style[0], strUID[0]);
                 break;
             default:
                 return null;
         }
 
         return link;
+    }
+
+    /*
+     * Annotation management
+     */
+
+    private static XcosCell createAnnotation(JavaController controller, long uid, Kind kind) {
+        String[] description = new String[] { "" };
+        controller.getObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, description);
+
+        VectorOfDouble geom = new VectorOfDouble(4);
+        controller.getObjectProperty(uid, kind, ObjectProperties.GEOMETRY, geom);
+
+        double x = geom.get(0);
+        double y = geom.get(1);
+        double w = geom.get(2);
+        double h = geom.get(3);
+        mxGeometry geometry = new mxGeometry(x, y, w, h);
+
+        String[] strUID = new String[1];
+        controller.getObjectProperty(uid, kind, ObjectProperties.UID, strUID);
+
+        String[] style = new String[1];
+        controller.getObjectProperty(uid, kind, ObjectProperties.STYLE, style);
+
+        XcosCell label = new XcosCell(controller, uid, kind, description[0], geometry, style[0], strUID[0]);
+        label.setConnectable(false);
+        label.setVertex(true);
+
+        return label;
     }
 }

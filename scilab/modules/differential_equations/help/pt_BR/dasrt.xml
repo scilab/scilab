@@ -411,7 +411,7 @@ deff('[rts]=gr1(t,y)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
                 <link linkend="impl">impl</link>
             </member>
             <member>
-                <link linkend="fort">fort</link>
+                <link linkend="call">call</link>
             </member>
             <member>
                 <link linkend="link">link</link>

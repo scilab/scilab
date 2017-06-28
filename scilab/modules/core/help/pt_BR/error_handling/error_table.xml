@@ -157,12 +157,6 @@
             %s"
         </para>
         <para>69 "Floating point exception" (exceção de ponto flutuante)</para>
-        <para>70 "Too many arguments in fort (max 30)" (muitos argumentos em fort
-            (máximo de 30))
-        </para>
-        <para>71 "This variable is not valid in fort" (esta variável não é válida
-            em fort)
-        </para>
         <para>72 "%s is not valid in this context" (%s não é válido neste
             contexto)
         </para>

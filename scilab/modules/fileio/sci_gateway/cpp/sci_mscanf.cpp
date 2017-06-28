@@ -100,11 +100,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
         while (pcConsoleReadStr == NULL)
         {
             pcConsoleReadStr = ConfigVariable::getConsoleReadStr();
-            ThreadManagement::SendConsoleExecDoneSignal();
         }
-
-        // reset flag to default value
-        ConfigVariable::setScilabCommand(1);
 
         wcsRead = to_wide_string(pcConsoleReadStr);
         FREE(pcConsoleReadStr);

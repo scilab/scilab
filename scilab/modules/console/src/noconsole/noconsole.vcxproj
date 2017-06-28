@@ -191,12 +191,11 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_lines.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_prompt.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_tohome.cpp" />
+    <ClCompile Include="..\cpp\prompt.cpp" />
     <ClCompile Include="..\cpp\scilabRead.cpp" />
     <ClCompile Include="..\c\clc.c" />
     <ClCompile Include="..\c\DllmainConsole.c" />
     <ClCompile Include="..\c\more.c" />
-    <ClCompile Include="..\c\prompt.c" />
-    <ClCompile Include="..\c\promptecho.c" />
     <ClCompile Include="..\c\scilines.c" />
     <ClCompile Include="..\c\tohome.c" />
     <ClCompile Include="..\c\windows\clrscrPart_nw.c" />

@@ -33,7 +33,7 @@ function fplot3d(xr,yr,f,theta,alpha,leg,flag,ebox)
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fplot3d", 3));
     end;
 
-    opts=[]
+    opts="";
     if exists("theta","local")==1 then opts=[opts,"theta=theta"],end
     if exists("alpha","local")==1 then opts=[opts,"alpha=alpha"],end
     if exists("leg"  ,"local")==1 then opts=[opts,"leg=leg"]    ,end

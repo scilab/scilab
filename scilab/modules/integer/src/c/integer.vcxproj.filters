@@ -26,9 +26,6 @@
     <ClCompile Include="db2int.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DllmainInteger.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="genabs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -150,6 +147,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tpconv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DllmainInteger.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

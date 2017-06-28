@@ -1,6 +1,7 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -1176,15 +1177,25 @@ struct label
     {
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        std::string label;
+        ScicosID label;
+        std::string description;
+
         controller.getObjectProperty(adaptee, BLOCK, LABEL, label);
+        if (label != ScicosID())
+        {
+            controller.getObjectProperty(label, ANNOTATION, DESCRIPTION, description);
+        }
+        else
+        {
+            controller.getObjectProperty(adaptee, BLOCK, DESCRIPTION, description);
+        }
 
         types::String* o = new types::String(1, 1);
 
         // safety check ; the returned value should always be a valid C / modelica identifier
-        if (isValidCIdentifier(label))
+        if (isValidCIdentifier(description))
         {
-            o->set(0, label.data());
+            o->set(0, description.data());
         }
         else
         {
@@ -1211,7 +1222,7 @@ struct label
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
         char* c_str = wide_string_to_UTF8(current->get(0));
-        std::string label(c_str);
+        std::string description(c_str);
         FREE(c_str);
 
         // TODO: validate a C/Scilab identifier only
@@ -1221,7 +1232,7 @@ struct label
         //            return false;
         //        }
 
-        controller.setObjectProperty(adaptee, BLOCK, LABEL, label);
+        controller.setObjectProperty(adaptee, BLOCK, DESCRIPTION, description);
         return true;
     }
 };

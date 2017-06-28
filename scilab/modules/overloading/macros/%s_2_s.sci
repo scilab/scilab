@@ -1,7 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
-//
-// Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2017 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,11 +7,11 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-function M=%hm_4_s(M,s)
 
-    //M>=s
-    if size(s,"*")<> 1 then
-        error(msprintf(_("%s: Wrong type for input argument #%d: A scalar expected.\n"),"%hm_4_s",2));
+function TF = %s_2_s(A, B)
+    // Possible case: all components of both A and B have both strictly null
+    // imaginary parts
+    if isreal(A, 0) & isreal(B,0) then
+        TF = real(A) > real(B)
     end
-    M("entries")=M("entries")>=s
 endfunction

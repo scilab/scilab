@@ -91,7 +91,7 @@ public final class ScicosParametersElement extends AbstractElement<ScicosParamet
         /*
          * fill data, if accessible
          */
-        if (local.getKind() == Kind.DIAGRAM) {
+        if (local.getCurrent().getKind() == Kind.DIAGRAM) {
             fillWithThirdFields(local);
 
             try {

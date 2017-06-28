@@ -233,7 +233,7 @@ public class SetupDialog extends JDialog {
     }
 
     private final ScicosParameters parameters;
-    private final XcosDiagram rootGraph;
+    private final XcosDiagram currentGraph;
 
     private JFormattedTextField integration;
     private JFormattedTextField rts;
@@ -264,7 +264,7 @@ public class SetupDialog extends JDialog {
         setTitle(XcosMessages.SETUP_TITLE);
         setModal(false);
         setLocationRelativeTo(parent);
-        rootGraph = graph;
+        currentGraph = graph;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         ScilabSwingUtilities.closeOnEscape(this);
 
@@ -510,7 +510,7 @@ public class SetupDialog extends JDialog {
         setContextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                final SetContextDialog dialog = new SetContextDialog(SetupDialog.this, rootGraph, parameters);
+                final SetContextDialog dialog = new SetContextDialog(SetupDialog.this, currentGraph, parameters);
 
                 dialog.pack();
                 dialog.setVisible(true);

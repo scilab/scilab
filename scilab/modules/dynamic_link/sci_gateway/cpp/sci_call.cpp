@@ -268,36 +268,52 @@ int sci_call(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int
                 scilab_getString(env, in[pos + 2], &param_type);
 
                 void* data = NULL;
+                Parameter& p = params[(int)param_pos - 1];
 
-                switch (param_type[0])
+                if (p.data != nullptr) // Reuse the input slot if it is passed as output
                 {
-                    case L'c':
+                    if (p.type != param_type[0])
                     {
-                        data = malloc((size + 1) * sizeof(char));
-                        break;
+                        Scierror(999, _("%s: incompatible type between input and output variables.\n"), fname);
+                        return 1;
                     }
-                    case L'd':
+                    if (p.row != dims[0] || p.col != dims[1])
                     {
-                        data = malloc(size * sizeof(double));
-                        break;
-                    }
-                    case L'r':
-                    {
-                        data = malloc(size * sizeof(float));
-                        break;
-                    }
-                    case L'i':
-                    {
-                        data = malloc(size * sizeof(int));
-                        break;
+                        Scierror(999, _("%s: incompatible sizes between input and output variables.\n"), fname);
+                        return 1;
                     }
                 }
-                Parameter& p = params[(int)param_pos - 1];
-                p.row = (int)dims[0];
-                p.col = (int)dims[1];
-                p.alloc = true;
-                p.type = param_type[0];
-                p.data = data;
+                else // Otherwise allocate one
+                {
+                    switch (param_type[0])
+                    {
+                        case L'c':
+                        {
+                            data = malloc((size + 1) * sizeof(char));
+                            break;
+                        }
+                        case L'd':
+                        {
+                            data = malloc(size * sizeof(double));
+                            break;
+                        }
+                        case L'r':
+                        {
+                            data = malloc(size * sizeof(float));
+                            break;
+                        }
+                        case L'i':
+                        {
+                            data = malloc(size * sizeof(int));
+                            break;
+                        }
+                    }
+                    p.row = (int)dims[0];
+                    p.col = (int)dims[1];
+                    p.alloc = true;
+                    p.type = param_type[0];
+                    p.data = data;
+                }
                 pos += 3;
                 output_order[output_pos] = (int)param_pos - 1;
             }

@@ -23,7 +23,7 @@
 * @param Sci_prompt new prompt to use for Scilab
 * @return true ifthe prompt has been correcty set
 */
-CONSOLE_IMPEXP BOOL SetConsolePrompt(char *Sci_prompt);
+CONSOLE_IMPEXP BOOL SetConsolePrompt(const char *Sci_prompt);
 
 /*--------------------------------------------------------------------------*/
 #endif /* __SETCONSOLEPROMPT_H__ */

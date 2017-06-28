@@ -39,9 +39,6 @@
     <ClCompile Include="..\c\windows\TermPosition.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\prompt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\c\tohome.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,9 +60,6 @@
     <ClCompile Include="..\c\windows\TermPrintf.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\promptecho.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\c\more.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -85,6 +79,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_tohome.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\prompt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

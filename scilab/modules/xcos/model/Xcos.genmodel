@@ -71,7 +71,7 @@
     <genClasses ecoreClass="xcos.ecore#//Block">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xcos.ecore#//Block/geometry"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xcos.ecore#//Block/description"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xcos.ecore#//Block/label"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xcos.ecore#//Block/label"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xcos.ecore#//Block/style"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xcos.ecore#//Block/interfaceFunction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xcos.ecore#//Block/expression"/>
@@ -112,7 +112,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xcos.ecore#//Link/geometry"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xcos.ecore#//Link/controlPoint"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xcos.ecore#//Link/style"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xcos.ecore#//Link/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xcos.ecore#//Link/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference xcos.ecore#//Block/label"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xcos.ecore#//Link/lineWidth"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xcos.ecore#//Link/lineHeight"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute xcos.ecore#//Link/color"/>

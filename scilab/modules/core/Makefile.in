@@ -202,7 +202,6 @@ libscicore_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/libscicore_algo_la-csignal.lo \
 	src/c/libscicore_algo_la-md5.lo \
-	src/c/libscicore_algo_la-texmacs.lo \
 	src/c/libscicore_algo_la-getmodules.lo \
 	src/c/libscicore_algo_la-getmemory.lo \
 	src/c/libscicore_algo_la-isanan.lo \
@@ -768,7 +767,6 @@ yacc_present = @yacc_present@
 CORE_C_SOURCES = \
     src/c/csignal.c \
     src/c/md5.c \
-    src/c/texmacs.c \
     src/c/getmodules.c \
     src/c/getmemory.c \
     src/c/isanan.c \
@@ -1120,8 +1118,6 @@ src/c/$(DEPDIR)/$(am__dirstamp):
 src/c/libscicore_algo_la-csignal.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-md5.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscicore_algo_la-texmacs.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-getmodules.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
@@ -1549,7 +1545,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-setPrecisionFPU.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-signal_mgmt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-suspendProcess.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-texmacs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-transposeMatrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-version.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/hashtable/$(DEPDIR)/libscicore_algo_la-hashtable.Plo@am__quote@
@@ -1604,13 +1599,6 @@ src/c/libscicore_algo_la-md5.lo: src/c/md5.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/md5.c' object='src/c/libscicore_algo_la-md5.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-md5.lo `test -f 'src/c/md5.c' || echo '$(srcdir)/'`src/c/md5.c
-
-src/c/libscicore_algo_la-texmacs.lo: src/c/texmacs.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-texmacs.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-texmacs.Tpo -c -o src/c/libscicore_algo_la-texmacs.lo `test -f 'src/c/texmacs.c' || echo '$(srcdir)/'`src/c/texmacs.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-texmacs.Tpo src/c/$(DEPDIR)/libscicore_algo_la-texmacs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/texmacs.c' object='src/c/libscicore_algo_la-texmacs.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-texmacs.lo `test -f 'src/c/texmacs.c' || echo '$(srcdir)/'`src/c/texmacs.c
 
 src/c/libscicore_algo_la-getmodules.lo: src/c/getmodules.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-getmodules.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-getmodules.Tpo -c -o src/c/libscicore_algo_la-getmodules.lo `test -f 'src/c/getmodules.c' || echo '$(srcdir)/'`src/c/getmodules.c

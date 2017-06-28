@@ -109,10 +109,12 @@ function [insList,depTree] = atomsInstallList(packages,section)
             if isempty(this_package_version) then
                 module_full_name = this_package_name;
             else
-                module_full_name = this_package_name+" - "+this_package_version;
+                module_full_name = this_package_name + " - " + this_package_version;
             end
-            atomsError("error", ..
-            msprintf(gettext("%s: The package %s is not available.\n"),"atomsInstallList",module_full_name));
+            msg = gettext("%s: The package ""%s"" is not registered.\nPlease check on the ATOMS repository that it is available for Scilab %d.%d on %s.\nIf it is, run atomsSystemUpdate() before trying atomsInstall(..) again.\n\n");
+            Vers = getversion('scilab');
+            msg = msprintf(msg, "atomsInstallList", module_full_name, Vers(1:2), getos());
+            atomsError("error", msg);
         end
 
         // Fill the version if it doesn't contain the packaging version

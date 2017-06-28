@@ -152,11 +152,6 @@ bool Set_Shell(void)
         bOK = true;
     }
 
-    if (WINDIRPATH)
-    {
-        delete[] WINDIRPATH;
-        WINDIRPATH = NULL;
-    }
     return bOK;
 }
 

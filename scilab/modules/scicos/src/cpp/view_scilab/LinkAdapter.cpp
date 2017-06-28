@@ -1,6 +1,7 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -185,11 +186,9 @@ struct id
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string id;
-        controller.getObjectProperty(adaptee, LINK, LABEL, id);
+        controller.getObjectProperty(adaptee, LINK, DESCRIPTION, id);
 
-        types::String* o = new types::String(1, 1);
-        o->set(0, id.data());
-
+        types::String* o = new types::String(id.data());
         return o;
     }
 
@@ -211,10 +210,10 @@ struct id
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
         char* c_str = wide_string_to_UTF8(current->get(0));
-        std::string id(c_str);
+        std::string description(c_str);
         FREE(c_str);
 
-        controller.setObjectProperty(adaptee, LINK, LABEL, id);
+        controller.setObjectProperty(adaptee, LINK, DESCRIPTION, description);
         return true;
     }
 };
@@ -948,7 +947,7 @@ void LinkAdapter::add_partial_links_information(Controller& controller, model::B
 
     switch (original->kind())
     {
-            // add the from / to information if applicable
+        // add the from / to information if applicable
         case LINK:
         {
             auto it = partial_links.find(original->id());

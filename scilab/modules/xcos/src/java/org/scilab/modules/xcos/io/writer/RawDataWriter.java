@@ -82,7 +82,7 @@ public class RawDataWriter extends ScilabWriter {
         }
     }
 
-    private void writeContext(long uid, Kind kind) throws XMLStreamException {
+    public void writeContext(long uid, Kind kind) throws XMLStreamException {
         VectorOfString context = new VectorOfString();
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.DIAGRAM_CONTEXT, context);
 

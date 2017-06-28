@@ -66,6 +66,9 @@
             <literal>y=mean(x,'m')</literal> は,
             xの最初の1でない次元に沿った平均です(Matlabとの互換用).
         </para>
+        <note>
+            <literal>mean()</literal> can be overloaded.
+        </note>
     </refsection>
     <refsection>
         <title>例</title>
@@ -92,5 +95,16 @@ y=mean(A,'m')
                 <link linkend="stdev">stdev</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.1</revnumber>
+                <revdescription>
+                    mean() is now overloadable.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

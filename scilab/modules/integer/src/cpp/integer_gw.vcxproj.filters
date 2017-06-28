@@ -30,12 +30,21 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_iconvert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="iconvert_converter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DllmainInteger_gw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_integer_gw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\integer_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iconvert_converter.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

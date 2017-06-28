@@ -11,7 +11,7 @@
  *     with a C wrapper
  *     -->link('ext1c.o','ext1cI','C');
  *     -->a=[1,2,3];b=[4,5,6];n=3;
- *     -->c=fort('ext1cI',n,a,b)
+ *     -->c=call('ext1cI',n,a,b)
  *     c=a+b
  ************************************/
 

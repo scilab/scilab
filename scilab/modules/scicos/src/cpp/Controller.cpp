@@ -1,6 +1,7 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -221,12 +222,13 @@ void Controller::deleteObject(ScicosID uid)
         unlinkVector(initial, PARENT_DIAGRAM, CHILDREN);
         unlinkVector(initial, PARENT_BLOCK, CHILDREN);
 
+        deleteOwnedReference(initial, LABEL);
+
         deleteVector(initial, INPUTS);
         deleteVector(initial, OUTPUTS);
         deleteVector(initial, EVENT_INPUTS);
         deleteVector(initial, EVENT_OUTPUTS);
 
-        unlink(initial, CHILDREN, PARENT_BLOCK);
         deleteVector(initial, CHILDREN);
         // FIXME what about REFERENCED_PORT ?
     }
@@ -239,6 +241,8 @@ void Controller::deleteObject(ScicosID uid)
     {
         unlinkVector(initial, PARENT_DIAGRAM, CHILDREN);
         unlinkVector(initial, PARENT_BLOCK, CHILDREN);
+
+        deleteOwnedReference(initial, LABEL);
 
         unlinkVector(initial, SOURCE_PORT, CONNECTED_SIGNALS);
         unlinkVector(initial, DESTINATION_PORT, CONNECTED_SIGNALS);
@@ -326,6 +330,14 @@ void Controller::deleteVector(model::BaseObject* initial, object_properties_t ui
     {
         deleteObject(id);
     }
+}
+
+void Controller::deleteOwnedReference(model::BaseObject* o, object_properties_t uid_prop)
+{
+    ScicosID ref;
+    getObjectProperty(o->id(), o->kind(), uid_prop, ref);
+
+    deleteObject(ref);
 }
 
 template<typename T>
