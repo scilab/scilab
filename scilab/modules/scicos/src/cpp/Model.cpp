@@ -178,7 +178,9 @@ void Model::deleteObject(ScicosID uid)
     objects_map_t::iterator iter = allObjects.find(uid);
     if (iter == allObjects.end())
     {
-        throw std::string("key has not been found");
+        // throw std::string("key has not been found");
+        // but will probably crash Scilab, fallback to safety
+        return;
     }
 
     model::BaseObject* modelObject = iter->second;

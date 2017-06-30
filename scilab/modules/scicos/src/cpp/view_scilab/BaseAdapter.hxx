@@ -67,7 +67,10 @@ public:
 
 
     property(const std::wstring& prop, getter_t g, setter_t s) : original_index(fields.size()), name(prop), get(g), set(s) {};
+    property(const property& p) = default;
     ~property() {};
+    property(property&& p) = default;
+    property<Adaptor>& operator= (property<Adaptor>&&) = default;
 
     size_t original_index;
     std::wstring name;

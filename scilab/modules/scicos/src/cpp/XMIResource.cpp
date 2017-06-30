@@ -19,7 +19,7 @@ extern "C" {
 namespace org_scilab_modules_scicos
 {
 
-XMIResource::XMIResource(ScicosID id) : controller(), root(id), processed(), parent(NB_XCOS_NAMES), references()
+XMIResource::XMIResource(ScicosID id) : controller(), root(id), processed(), parent(NB_XCOS_NAMES), references(), constXcosNames(), xcosNamespaceUri(), xsiNamespaceUri()
 {
     references.insert(std::make_pair("/", id));
 
