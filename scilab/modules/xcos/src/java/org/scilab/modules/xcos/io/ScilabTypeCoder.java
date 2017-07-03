@@ -694,15 +694,20 @@ public class ScilabTypeCoder {
             case sci_ints:
                 // special case for integer precision
                 precision = (int) vec.get(position++);
+            // fall through
             case sci_matrix:
+            // fall through
             case sci_boolean:
+            // fall through
             case sci_strings:
                 position++; // n-Dims not managed
                 height = (int) vec.get(position++);
                 width = (int) vec.get(position++);
                 break;
             case sci_list:
+            // fall through
             case sci_mlist:
+            // fall through
             case sci_tlist:
                 listLen = (int) vec.get(position++);
                 break;

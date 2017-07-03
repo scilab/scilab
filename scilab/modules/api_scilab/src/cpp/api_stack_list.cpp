@@ -107,7 +107,7 @@ SciErr getListItemNumber(void* _pvCtx, int* _piAddress, int* _piNbItem)
     types::List* pL = (types::List*)_piAddress;
     switch (iType)
     {
-        case sci_list :
+        case sci_list : /* fall through */
         case sci_tlist :
             *_piNbItem = pL->getSize();
         case sci_mlist :
