@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2016 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -416,11 +417,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
              */
             moveToChild(controller, parentGraph, superBlock, brokenLinks, toBeMoved);
 
-            /*
-             * Append the port to the superblock (in case of IN_f / OUT_f selected)
-             */
-            updateIO(controller, parentGraph, superBlock, toBeMoved);
-
+            // Update the superblock I/O blocks positionning
             BlockPositioning.updateBlockView(parentGraph, superBlock);
         } catch (ScilabInterpreterManagement.InterpreterException ex) {
             // Scilab seems to be blocked, just consume the exception at this point
@@ -450,6 +447,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
         }
         VectorOfScicosID children = new VectorOfScicosID();
         controller.setObjectProperty(superBlock.getUID(), superBlock.getKind(), ObjectProperties.CHILDREN, children);
+
 
         /*
          * Place the super block
@@ -758,23 +756,6 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
         });
 
         controller.setObjectProperty(superBlock.getUID(), superBlock.getKind(), ObjectProperties.CHILDREN, children);
-    }
-
-    /**
-     * Update the ports according to the IOBlocks moved
-     * @param controller the shared controller
-     * @param parent the parent diagram
-     * @param superblock the superblock cell
-     * @param toBeMoved the moved blocks
-     */
-    private void updateIO(JavaController controller, XcosDiagram parent, SuperBlock superblock, List<XcosCell> toBeMoved) {
-        Map<Object, Object> context = new HashMap<>();
-        XcosDiagram.UpdateSuperblockPortsTracker.updateContext(context, toBeMoved, controller);
-
-        syncPorts(controller, superblock, ObjectProperties.INPUTS, (List<ContextUpdate>) context.get(IN), parent);
-        syncPorts(controller, superblock, ObjectProperties.OUTPUTS, (List<ContextUpdate>) context.get(OUT), parent);
-        syncPorts(controller, superblock, ObjectProperties.EVENT_INPUTS, (List<ContextUpdate>) context.get(EIN), parent);
-        syncPorts(controller, superblock, ObjectProperties.EVENT_OUTPUTS, (List<ContextUpdate>) context.get(EOUT), parent);
     }
 }
 // CSON: ClassFanOutComplexity
