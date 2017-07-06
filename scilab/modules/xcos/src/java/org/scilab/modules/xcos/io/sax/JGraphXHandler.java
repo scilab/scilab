@@ -24,7 +24,11 @@ import org.xml.sax.Attributes;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxPoint;
+import java.nio.DoubleBuffer;
+import java.nio.LongBuffer;
 import java.util.ArrayList;
+import org.scilab.modules.xcos.VectorOfDouble;
+import org.scilab.modules.xcos.VectorOfScicosID;
 
 class JGraphXHandler implements ScilabHandler {
 
@@ -62,14 +66,6 @@ class JGraphXHandler implements ScilabHandler {
             case mxGeometry: {
                 mxGeometry g = new mxGeometry();
 
-                v = atts.getValue("height");
-                if (v != null) {
-                    g.setHeight(Double.valueOf(v));
-                }
-                v = atts.getValue("width");
-                if (v != null) {
-                    g.setWidth(Double.valueOf(v));
-                }
                 v = atts.getValue("x");
                 if (v != null) {
                     g.setX(Double.valueOf(v));
@@ -77,6 +73,32 @@ class JGraphXHandler implements ScilabHandler {
                 v = atts.getValue("y");
                 if (v != null) {
                     g.setY(Double.valueOf(v));
+                }
+                v = atts.getValue("width");
+                if (v != null) {
+                    g.setWidth(Double.valueOf(v));
+                }
+                v = atts.getValue("height");
+                if (v != null) {
+                    g.setHeight(Double.valueOf(v));
+                }
+
+                /*
+                 * the MVC only store absolute values, resolve the "relative" geometry flag for Scilab 5.5.2 annotation
+                 */
+                v = atts.getValue("relative");
+                if (v != null && v.charAt(0) == '1') {
+                    Object parent = saxHandler.parents.peek();
+                    if (parent instanceof XcosCell) {
+                        XcosCell cell = (XcosCell) parent;
+                        long[] parentUID = {0};
+                        saxHandler.controller.getObjectProperty(cell.getUID(), cell.getKind(), ObjectProperties.RELATED_TO, parentUID);
+
+                        VectorOfDouble parentGeom = new VectorOfDouble(4);
+                        saxHandler.controller.getObjectProperty(parentUID[0], saxHandler.controller.getKind(parentUID[0]), ObjectProperties.GEOMETRY, parentGeom);
+                        g.setX(parentGeom.get(0) + g.getX() * parentGeom.get(2));
+                        g.setY(parentGeom.get(1) + g.getY() * parentGeom.get(3));
+                    }
                 }
 
                 return g;
@@ -93,17 +115,49 @@ class JGraphXHandler implements ScilabHandler {
                     p.setY(Double.valueOf(v));
                 }
 
-                if (saxHandler.parents.peek() instanceof mxGeometry) {
-                    mxGeometry parent = (mxGeometry) saxHandler.parents.peek();
+                Object localParent = saxHandler.parents.peek();
+                if (localParent instanceof mxGeometry) {
+                    mxGeometry parent = (mxGeometry) localParent;
                     v = atts.getValue("as");
                     if ("sourcePoint".equals(v)) {
                         parent.setSourcePoint(p);
                     } else if ("targetPoint".equals(v)) {
                         parent.setTargetPoint(p);
                     }
-                } else if (saxHandler.parents.peek() instanceof RawDataHandler.RawDataDescriptor) {
-                    RawDataHandler.RawDataDescriptor parent = (RawDataHandler.RawDataDescriptor) saxHandler.parents.peek();
+                } else if (localParent instanceof RawDataHandler.RawDataDescriptor) {
+                    RawDataHandler.RawDataDescriptor parent = (RawDataHandler.RawDataDescriptor) localParent;
                     ((ArrayList) parent.value).add(p);
+                } else if (localParent instanceof XcosCell) {
+                    // Diagram origin, translate each children
+                    XcosCell parent = (XcosCell) localParent;
+
+                    VectorOfScicosID children = new VectorOfScicosID();
+                    saxHandler.controller.getObjectProperty(parent.getUID(), parent.getKind(), ObjectProperties.CHILDREN, children);
+
+                    VectorOfDouble geometry = new VectorOfDouble(4);
+                    DoubleBuffer geom = geometry.asByteBuffer(0, 4).asDoubleBuffer();
+
+                    LongBuffer childrenUIDs = children.asByteBuffer(0, children.size()).asLongBuffer();
+                    while (childrenUIDs.hasRemaining()) {
+                        long uid = childrenUIDs.get();
+                        Kind kind = saxHandler.controller.getKind(uid);
+
+                        saxHandler.controller.getObjectProperty(uid, kind, ObjectProperties.GEOMETRY, geometry);
+                        geom.put(0, geom.get(0) + p.getX());
+                        geom.put(1, geom.get(1) + p.getY());
+                        saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.GEOMETRY, geometry);
+
+                        // translate the annotation
+                        long[] annotation = { 0 };
+                        saxHandler.controller.getObjectProperty(uid, kind, ObjectProperties.LABEL, annotation);
+                        if (annotation[0] != 0) {
+                            saxHandler.controller.getObjectProperty(annotation[0], Kind.ANNOTATION, ObjectProperties.GEOMETRY, geometry);
+                            geom.put(0, geom.get(0) + p.getX());
+                            geom.put(1, geom.get(1) + p.getY());
+                            saxHandler.controller.setObjectProperty(annotation[0], Kind.ANNOTATION, ObjectProperties.GEOMETRY, geometry);
+                        }
+                    }
+
                 }
                 return p;
             }
@@ -151,7 +205,7 @@ class JGraphXHandler implements ScilabHandler {
                 }
                 XcosCell cell = (XcosCell) saxHandler.parents.peek(1);
 
-                cell.setGeometry(g);
+                cell.setGeometry(saxHandler.controller, g);
             }
             break;
             case mxPoint:

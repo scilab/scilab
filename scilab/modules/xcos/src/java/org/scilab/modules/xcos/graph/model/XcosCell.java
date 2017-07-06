@@ -116,11 +116,14 @@ public class XcosCell extends mxCell {
 
         switch (getKind()) {
             case BLOCK:
-                if (!(validCIdentifier.matcher(String.valueOf(value)).matches())) {
+                if (validCIdentifier.matcher(String.valueOf(value)).matches()) {
                     // a block description should be a valid C / Scilab identifier to ease codegeneration
-                    break;
+                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, String.valueOf(value));
                 }
+                break;
             case ANNOTATION:
+                controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, String.valueOf(value));
+                break;
             case LINK:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, String.valueOf(value));
                 break;

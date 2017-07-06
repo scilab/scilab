@@ -243,7 +243,7 @@ public class XcosDiagram extends ScilabGraph {
 
         while (parent[0] != 0l) {
             hierarchy.push(new ScicosObjectOwner(parent[0], Kind.BLOCK));
-            controller.getObjectProperty(local.getUID(), local.getKind(), ObjectProperties.PARENT_BLOCK, parent);
+            controller.getObjectProperty(parent[0], Kind.BLOCK, ObjectProperties.PARENT_BLOCK, parent);
         }
 
         controller.getObjectProperty(local.getUID(), local.getKind(), ObjectProperties.PARENT_DIAGRAM, parent);

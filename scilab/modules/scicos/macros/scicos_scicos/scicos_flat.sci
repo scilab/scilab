@@ -352,9 +352,12 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
     end //end of loop on objects
 
     if ksup==0&nb==0 then
-        messagebox(msprintf(gettext("%s: Empty diagram"), "Xcos"),"modal")
+        if or(flag=="nw") then
+            disp(msprintf(gettext("%s: Empty diagram"), "scicos_flat"));
+        else
+            messagebox(msprintf(gettext("%s: Empty diagram"), "Xcos"),"modal");
+        end
         ok=%f
-        disp(msprintf("%s: Empty diagram", "scicos_flat"));
         return
     end
     //-------------- Analyse  links --------------
