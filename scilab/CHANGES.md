@@ -387,6 +387,7 @@ the [development mailing list](dev@lists.scilab.org) for a particular toolbox.
 * [#15185](http://bugzilla.scilab.org/show_bug.cgi?id=15185): "Region to Superblock" did not restore broken links.
 * [#15188](http://bugzilla.scilab.org/show_bug.cgi?id=15188): Failed to load hdf5_is_file function.
 * [#15205](http://bugzilla.scilab.org/show_bug.cgi?id=15205): `get_scicos_version` returned the previous version.
+* [#15207](http://bugzilla.scilab.org/show_bug.cgi?id=15207): `xcos(scs_m)` did not work for sub-systems.
 
 ### Bugs fixed in 6.0.0:
 * [#592](http://bugzilla.scilab.org/show_bug.cgi?id=592): `linspace(a, b, n<=0)` returned `b` instead of `[]`
