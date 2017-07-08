@@ -160,13 +160,16 @@ Feature changes and additions
 * `plot` can now work in semi or bi-logarithmic mode with some input logflag.
 * `plotimplicit()` function added.
 * The default smarter grid_style value is now 7 instead of 3.
+* `weekday` accepts new date formats and syntaxes like `weekday()`, `weekday([2017 7 15])`, `weekday(2017, 7, 15)`, `weekday("15/7/2017")`,  `weekday("15-Jul-2017")`,  `weekday("2017-07-15")`, and `weekday("2017-07-15 21:53:17")`. A language option applying to the day names is now available.
 
 Help pages:
 -----------
 
 * overhauled / rewritten: `bitget`, `edit`, `factorial`
 * fixed / improved:  `bench_run` `M_SWITCH`, `comet`, `comet3d`
-
+* Rewritten: `weekday`
+* Translations added:
+  - (ru): `weekday`
 
 User Interface improvements:
 ----------------------------
@@ -229,7 +232,6 @@ Bug Fixes
 ---------
 
 ### Bugs fixed in 6.1.0:
-<<<<<<< HEAD
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
 * [#6070](https://bugzilla.scilab.org/6070): How to make multiscaled plots was not documented.
 * [#7562](https://bugzilla.scilab.org/7562): `factorial` could use a huge memory amount even for a scalar argument.
@@ -285,6 +287,7 @@ Bug Fixes
 * [#14985](https://bugzilla.scilab.org/14985): Scilab crashed if a .bin file was not found.
 * [#15068](https://bugzilla.scilab.org/15068): `size(sum(ones(2,3,4,5),4))` was [4 2 3] instead of [2 3 4].
 * [#15087](https://bugzilla.scilab.org/15087): Deleting rows or columns from a matrix is slow (regression)
+* [#15200](https://bugzilla.scilab.org/15200): `weekday` yielded an error for some row of input dates.
 * [#15248](https://bugzilla.scilab.org/15248): `lsq`was leaking memory.
 * [#15269](https://bugzilla.scilab.org/15269): `xgetech` was poor and stiff compared to any combination of `gca()` properties `.axes_bounds`, `.data_bounds`, `.log_flags`, and `.margins`. It is removed.
 * [#15271](https://bugzilla.scilab.org/15271): `bitget` needed to be upgraded.

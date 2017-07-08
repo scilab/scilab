@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,45 +13,238 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="weekday">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr"
+        xml:id="weekday">
     <refnamediv>
         <refname>weekday</refname>
-        <refpurpose>Retourne le jour de la semaine</refpurpose>
+        <refpurpose>Numéro et nom du jour de la semaine pour des dates données</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>[N,S] = weekday(D)
-            [N,S] = weekday(D, form)
+        <title>Syntaxe</title>
+        <synopsis>
+            [I, Names] = weekday()
+            [I, Names] = weekday(N)
+            [I, Names] = weekday(YMD)
+            [I, Names] = weekday(Y, M, D)
+            [I, Names] = weekday(dateStrings)
+            [I, Names] = weekday(.., "long")
+            [I, Names] = weekday(.., la_NG)
         </synopsis>
     </refsynopsisdiv>
+    <refsection role="arguments">
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>N</term>
+                <listitem>
+                    <para>
+                    Tableau de dates numériques décimales telles que fournies par <literal>datenum(..)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>YMD</term>
+                <listitem>
+                    <para>
+                    Matrice d'entiers décimaux à n lignes et 3 colonnes. Chaque ligne définit une date :
+                    le millesime des années figure en colonne <literal>YMD(:,1)</literal>.
+                    Le numéro 1 à 12 des mois dans l'année figure en colonne <literal>YMD(:,2)</literal>.
+                    Le numéro 1 à 31 des jours dans le mois figure en colonne <literal>YMD(:,3)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Y, M, D</term>
+                <listitem>
+                    <para>
+                    3 tableaux d'entiers décimaux de mêmes tailles. La date n°i est définie par
+                    <literal>D(i)/M(i)/Y(i)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dateStrings</term>
+                <listitem>
+                    <para>
+                    Tableau de textes spécifiant des dates selon 5 formats possibles décrits ci-dessous.
+                    Toutes les dates fournies doivent avoir le même format :
+                    <itemizedlist>
+                        <listitem>
+                            <literal>"YYYY-MM-DD"</literal> : <literal>DD &lt; 10</literal> ou/et
+                            <literal>MM &lt; 10</literal> doivent inclure un zéro initial. Exemple:
+                            <literal>"2017-09-07"</literal>.
+                        </listitem>
+                        <listitem>
+                            <literal>"YYYY-MM-DD HH:MN:SS.ss"</literal> ou
+                            <literal>"YYYY-MM-DD ce que vous voulez"</literal> : comme ci-avant.
+                            Seule la partie avant le 1er espace est considérée.
+                        </listitem>
+                        <listitem>
+                            <literal>"D/M/Y"</literal> : les jours <literal>D &lt; 10</literal> ou/et
+                            les Mois <literal>M &lt; 10</literal> peuvent ou non inclure un zéro
+                            initial. Exemple: <literal>"7/09/2017"</literal>.
+                        </listitem>
+                        <listitem>
+                            <literal>"enD/M/Y"</literal> : comme ci-dessus, avec le préfixe "en"
+                            (pour "english") et M/D au lieu de D/M. Exemple: <literal>"en7/24/2017"</literal>.
+                        </listitem>
+                        <listitem>
+                            <literal>"D-Mmm-YYYY"</literal> où <literal>Mmm</literal> désigne le nom
+                            court du mois en anglais : <literal>Jan, Feb, Mar, Apr, May,
+                                Jun, Jul, Aug, Sep, Oct, Nov, Dec</literal>. Les jours
+                            <literal>D &lt; 10</literal> peuvent ou non inclure un zéro initial.
+                        </listitem>
+                    </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"long"</term>
+                <listitem>
+                    <para>
+                    Mot-clé optionnel à utiliser pour retourner le nom des jours en format long :
+                    "Wednesday" au lieu de "Wed", "Dimanche" au lieu de "Dim.", etc. Peut être
+                    utilisé n'importe où <emphasis role="italic">après</emphasis> les arguments
+                    spécifiant les dates.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>la_NG</term>
+                <listitem>
+                    <para>
+                    Option linguistique = mot texte unique indiquant la langue dan laquelle le nom
+                    des jours des dates spécifiées doit être retourné, en format standard. Exemple :
+                    "en_US", "fr_FR", etc. Peut être utilisé n'importe où
+                    <emphasis role="italic">après</emphasis> les arguments spécifiant les dates.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>I</term>
+                <listitem>
+                    <para>
+                    Tableau d'entiers décimaux de 1 à 7, de la taille des tableaux <varname>N</varname>,
+                    <varname>YMD(:,1)</varname>, <varname>Y, M et D</varname>, ou
+                    <literal>dateStrings</literal> : le numéro 1 correspond à dimanche, 2 à lundi, etc.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Names</term>
+                <listitem>
+                <para>
+                    Tableau de mots texte de la taille de <varname>I</varname> : noms explicites des
+                    jours de la semaine, pour les dates indiquées. Le format court (""Dim." au lieu
+                    de "Dimanche", etc) est utilisé, à moins que l'option <varname>"long"</varname>
+                    soit spécifiée.
+                </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
     <refsection>
         <title>Description</title>
         <para>
-            [N,S] = weekday(D) retourne le jour de la semaine sous une forme numérique(N) et une chaîne de caractère(S) pour une date donnée (sous la forme d'un "serial date number" : see <link linkend="datenum">datenum</link>). Le paramètre passé en entrée peut être une matrice de "serial date number"
+            Pour chaque date donnée, ou par défaut pour la date courante d'aujourd'hui,
+            <function>weekday</function> calcule et retourne le numéro entier de 1 à 7  du jour
+            dans la semaine. Le nom abbrégé ou complet du jour de la semaine peut aussi être retourné,
+            par défaut dans la langue de la session Scilab. Si un code linguistique du type "en_US"
+            est utilisé et correspond à une langue supportée par Scilab, le nom du jour est retourné
+            dans la langue choisie.
         </para>
-        <para>[N,S] = weekday(D, form)) retourne le jour de la semaine sous une forme numérique(N) et une chaîne de caractère(S), où le contenu de S dépend du paramètre "form". Si form est égal à 'long', S contient le nom complet du jour de la semaine tandis que si form est égal à 'short', S contient l'abbreviation du nom du jour de la semaine.</para>
+        <para>
+            <table border="1">
+                <tr><th>Lang</th><th>i</th><th>short</th><th>long</th><td>.......</td><th>Lang</th><th>i</th><th>short</th><th>long</th></tr>
+                <tr><td>en_US</td><td>1</td><td>Sun</td><td>Sunday</td><td>    </td><td>pt_BR</td><td>1</td><td>Dom</td><td>Domingo</td></tr>
+                <tr><td>en_US</td><td>2</td><td>Mon</td><td>Monday</td><td>    </td><td>pt_BR</td><td>2</td><td>Seg</td><td>Segunda-feira</td></tr>
+                <tr><td>en_US</td><td>3</td><td>Tue</td><td>Tuesday</td><td>    </td><td>pt_BR</td><td>3</td><td>Ter</td><td>Terça-feira</td></tr>
+                <tr><td>en_US</td><td>4</td><td>Wed</td><td>Wednesday</td><td>    </td><td>pt_BR</td><td>4</td><td>Qua</td><td>Quarta-feira</td></tr>
+                <tr><td>en_US</td><td>5</td><td>Thu</td><td>Thursday</td><td>    </td><td>pt_BR</td><td>5</td><td>Qui</td><td>Quinta-feira</td></tr>
+                <tr><td>en_US</td><td>6</td><td>Fri</td><td>Friday</td><td>    </td><td>pt_BR</td><td>6</td><td>Sex</td><td>Sexta-feira</td></tr>
+                <tr><td>en_US</td><td>7</td><td>Sat</td><td>Saturday</td><td>    </td><td>pt_BR</td><td>7</td><td>Sáb</td><td>Sábado</td></tr>
+                <tr><td>fr_FR</td><td>1</td><td>Dim.</td><td>Dimanche</td><td>    </td><td>ru_RU</td><td>1</td><td>Вск</td><td>Воскресенье</td></tr>
+                <tr><td>fr_FR</td><td>2</td><td>Lun.</td><td>Lundi</td><td>    </td><td>ru_RU</td><td>2</td><td>Пнд</td><td>Понедельник</td></tr>
+                <tr><td>fr_FR</td><td>3</td><td>Mar.</td><td>Mardi</td><td>    </td><td>ru_RU</td><td>3</td><td>Втр</td><td>Вторник</td></tr>
+                <tr><td>fr_FR</td><td>4</td><td>Mer.</td><td>Mercredi</td><td>    </td><td>ru_RU</td><td>4</td><td>Срд</td><td>Среда</td></tr>
+                <tr><td>fr_FR</td><td>5</td><td>Jeu.</td><td>Jeudi</td><td>    </td><td>ru_RU</td><td>5</td><td>Чтв</td><td>Четверг</td></tr>
+                <tr><td>fr_FR</td><td>6</td><td>Ven.</td><td>Vendredi</td><td>    </td><td>ru_RU</td><td>6</td><td>Птн</td><td>Пятница</td></tr>
+                <tr><td>fr_FR</td><td>7</td><td>Sam.</td><td>Samedi</td><td>    </td><td>ru_RU</td><td>7</td><td>Сбт</td><td>Суббота</td></tr>
+                <tr><td>ja_JP</td><td>1</td><td>日</td><td>日曜日</td><td>    </td><td>zh_CN</td><td>1</td><td>星期日</td><td>星期日</td></tr>
+                <tr><td>ja_JP</td><td>2</td><td>月</td><td>月曜日</td><td>    </td><td>zh_CN</td><td>2</td><td>星期一</td><td>星期一</td></tr>
+                <tr><td>ja_JP</td><td>3</td><td>火</td><td>火曜日</td><td>    </td><td>zh_CN</td><td>3</td><td>星期二</td><td>星期二</td></tr>
+                <tr><td>ja_JP</td><td>4</td><td>水</td><td>水曜日</td><td>    </td><td>zh_CN</td><td>4</td><td>星期三</td><td>星期三</td></tr>
+                <tr><td>ja_JP</td><td>5</td><td>木</td><td>木曜日</td><td>    </td><td>zh_CN</td><td>5</td><td>星期四</td><td>星期四</td></tr>
+                <tr><td>ja_JP</td><td>6</td><td>金</td><td>金曜日</td><td>    </td><td>zh_CN</td><td>6</td><td>星期五</td><td>星期五</td></tr>
+                <tr><td>ja_JP</td><td>7</td><td>土</td><td>土曜日</td><td>    </td><td>zh_CN</td><td>7</td><td>星期六</td><td>星期六</td></tr>
+            </table>
+        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[
-today = datenum();
-[N,S] = weekday(today)
-[N,S] = weekday(today,'short')
-[N,S] = weekday(today,'long')
- ]]></programlisting>
+        <programlisting role="example">
+            <![CDATA[
+// Aujourd'hui
+[i, n] = weekday()
+[i, n] = weekday("long"); n
+[i, n] = weekday("long","ru_RU"); n
+
+// Dates explicitement indiquées selon différents formats :
+[I, N] = weekday(     ["01/1/1970" "11/09/2001" "26/12/2004"])
+[I, N] = weekday("en"+["1/01/1970" "09/11/2001" "12/26/2004"])
+[I, N] = weekday(["1970-01-01" "2001-09-11" "2004-12-26"], "long"); N
+[I, N] = weekday(["1970-01-01 00:00:00" "2001-09-11 08:14:00" "2004-12-26 00:58:53"], "long"); N
+[I, N] = weekday(["1-Jan-1970" "11-Sep-2001" "26-Dec-2004"], "long"); N
+[I, N] = weekday(["1970-01-01" "en12/26/2004"]);   // => erreur : même format de dates attendu
+[I, N] = weekday([1970 1 1 ; 2001 9 11 ; 2004 12 26], "long"); N
+[I, N] = weekday([1970 2001 2004], [1 9 12], [1 11 26], "long"); N
+D = datenum([1970 1 1 ; 2001 9 11 ; 2004 12 26])
+[I, N] = weekday(D, "long"); N
+
+// Option lang
+[I, N] = weekday(["1/1/1970" "11/9/2001" "26/12/2004"], "zh_CN"); N
+[I, N] = weekday(["1/1/1970" "11/9/2001" "26/12/2004"], "fr_FR", "long"); N
+ ]]>
+        </programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="eomday">eomday</link>
+            </member>
             <member>
                 <link linkend="datenum">datenum</link>
             </member>
             <member>
                 <link linkend="datevec">datevec</link>
             </member>
-            <member>
-                <link linkend="weekday">weekday</link>
-            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Nouvelles syntaxes ajoutées : <literal>weekday()</literal>,
+                            <literal>weekday(YMD)</literal>,
+                            <literal>weekday(Y, M, D)</literal>,
+                            <literal>weekday(dateStrings)</literal> (5 formats).
+                        </listitem>
+                        <listitem>
+                            Option Lang ajoutée.
+                        </listitem>
+                        <listitem>
+                            Algorithme désormais basé sur <literal>datenum()</literal>.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
