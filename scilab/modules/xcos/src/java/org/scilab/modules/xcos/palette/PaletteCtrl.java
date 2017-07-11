@@ -133,7 +133,10 @@ public final class PaletteCtrl {
             }
 
             // add to the 'recently used blocks' panel
-            PaletteManagerView.get().getPanel().addRecentltyUsedBlock(blockCtrl.getModel());
+            PaletteManagerView pmv = PaletteManagerView.get();
+            if (pmv != null) {
+                pmv.getPanel().addRecentltyUsedBlock(blockCtrl.getModel());
+            }
 
             // render and export it
             final double margin = 15.0;
