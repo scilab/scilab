@@ -74,7 +74,7 @@ static inline void deleteBaseObject(model::BaseObject* o)
 };
 
 
-ScicosID Model::createObject(kind_t k)
+model::BaseObject* Model::createObject(kind_t k)
 {
     /*
      * Allocate the object per kind
@@ -98,7 +98,7 @@ ScicosID Model::createObject(kind_t k)
             o = new model::Port();
             break;
         default:
-            return ScicosID();
+            return nullptr;
     }
 
     /*
@@ -116,7 +116,7 @@ ScicosID Model::createObject(kind_t k)
         bool has_looped_twice = false;
 
         // while key is found
-        for (objects_map_t::iterator iter = allObjects.find(lastId);
+        for (allobjects_t::iterator iter = allObjects.find(lastId);
                 iter != allObjects.end();
                 iter = allObjects.find(lastId))
         {
@@ -130,7 +130,7 @@ ScicosID Model::createObject(kind_t k)
                 if (has_looped_twice)
                 {
                     deleteBaseObject(o);
-                    return ScicosID();
+                    return nullptr;
                 }
                 else
                 {
@@ -143,53 +143,31 @@ ScicosID Model::createObject(kind_t k)
     /*
      * Insert then return
      */
-    allObjects.emplace(lastId, o);
     o->id(lastId);
-    return lastId;
+    allObjects.emplace(lastId, o);
+    return o;
 }
 
-unsigned Model::referenceObject(const ScicosID uid)
+unsigned Model::referenceObject(model::BaseObject* object)
 {
-    objects_map_t::iterator iter = allObjects.find(uid);
-    if (iter == allObjects.end())
-    {
-        return 0;
-    }
-
-    model::BaseObject* modelObject = iter->second;
-    return ++modelObject->refCount();
+    return ++object->refCount();
 }
 
-unsigned& Model::referenceCount(ScicosID uid)
+unsigned& Model::referenceCount(model::BaseObject* object)
 {
-    objects_map_t::iterator iter = allObjects.find(uid);
-    if (iter == allObjects.end())
-    {
-        throw std::string("key has not been found");
-    }
-
-    model::BaseObject* modelObject = iter->second;
-    return modelObject->refCount();
-
+    return object->refCount();
 }
 
-void Model::deleteObject(ScicosID uid)
+void Model::deleteObject(model::BaseObject* object)
 {
-    objects_map_t::iterator iter = allObjects.find(uid);
-    if (iter == allObjects.end())
+    if (object->refCount() == 0)
     {
-        throw std::string("key has not been found");
-    }
-
-    model::BaseObject* modelObject = iter->second;
-    if (modelObject->refCount() == 0)
-    {
-        allObjects.erase(iter);
-        deleteBaseObject(modelObject);
+        allObjects.erase(object->id());
+        deleteBaseObject(object);
     }
     else
     {
-        --modelObject->refCount();
+        --object->refCount();
     }
 }
 
@@ -207,24 +185,21 @@ kind_t Model::getKind(ScicosID uid) const
     }
 }
 
-std::vector<ScicosID> Model::getAll(kind_t k) const
+std::vector<model::BaseObject*> Model::getAll(kind_t k) const
 {
-    std::vector<ScicosID> all;
-
-    for (objects_map_t::const_iterator it = allObjects.begin(); it != allObjects.end(); ++it)
-    {
-        if (it->second->kind() == k)
+    std::vector<model::BaseObject*> all;
+    for (auto it : allObjects)
+        if (it.second->kind() == k)
         {
-            all.push_back(it->second->id());
+            all.emplace_back(it.second);
         }
-    }
 
     return all;
 }
 
 model::BaseObject* Model::getObject(ScicosID uid) const
 {
-    objects_map_t::const_iterator iter = allObjects.find(uid);
+    allobjects_t::const_iterator iter = allObjects.find(uid);
     if (iter == allObjects.end())
     {
         return nullptr;

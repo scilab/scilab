@@ -52,7 +52,7 @@ static void initialize_fields()
 {
     if (property<StateAdapter>::properties_have_not_been_set())
     {
-        property<StateAdapter>::fields.reserve(8);
+        property<StateAdapter>::reserve_properties(8);
         property<StateAdapter>::add_property(L"x", &dummy_property::get, &dummy_property::set);
         property<StateAdapter>::add_property(L"z", &dummy_property::get, &dummy_property::set);
         property<StateAdapter>::add_property(L"oz", &dummy_property::get, &dummy_property::set);
@@ -61,6 +61,7 @@ static void initialize_fields()
         property<StateAdapter>::add_property(L"evtspt", &dummy_property::get, &dummy_property::set);
         property<StateAdapter>::add_property(L"pointi", &dummy_property::get, &dummy_property::set);
         property<StateAdapter>::add_property(L"outtb", &dummy_property::get, &dummy_property::set);
+        property<StateAdapter>::shrink_to_fit();
     }
 }
 

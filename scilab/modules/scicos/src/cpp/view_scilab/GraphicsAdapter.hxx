@@ -48,11 +48,11 @@ public:
     void setGrIContent(types::InternalType* v);
 
     // move (if possible) the partial information to the model
-    static void relink(Controller& controller, model::BaseObject* adaptee, const std::vector<ScicosID>& children);
+    static void relink(Controller& controller, model::Block* adaptee, const std::vector<ScicosID>& children);
     // manage partial information after a model clone
     static void add_partial_links_information(Controller& controller, model::BaseObject* original, model::BaseObject* cloned);
     // remove partial links information (on delete)
-    static void remove_partial_links_information(model::BaseObject* o);
+    static void remove_partial_links_information(model::Block* o);
 
 private:
     types::InternalType* gr_i_content;

@@ -63,7 +63,7 @@ types::InternalType * alloc_and_set(kind_t k, types::String* type_name, types::t
 
     // create the associated object and own it
     ScicosID uid = controller.createObject(k);
-    Adaptor* adaptor = new Adaptor(controller, controller.getObject<Adaptee>(uid));
+    Adaptor* adaptor = new Adaptor(controller, controller.getBaseObject<Adaptee>(uid));
 
     // the first header entry is the type
     for (int i = 1; i < (int)in.size(); i++)
@@ -251,7 +251,7 @@ static types::Function::ReturnValue get(types::GenericType* UIDs, int _iRetCount
         ScicosID uid = get(UIDs, i);
 
         // create the associated object
-        model::BaseObject* o = controller.getObject(uid);
+        model::BaseObject* o = controller.getBaseObject(uid);
         if (o == nullptr)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: invalid UID.\n"), funame.data(), 1);
@@ -262,13 +262,13 @@ static types::Function::ReturnValue get(types::GenericType* UIDs, int _iRetCount
         switch (o->kind())
         {
             case DIAGRAM:
-                out.push_back(new view_scilab::DiagramAdapter(controller, static_cast<model::Diagram*>(controller.referenceObject(o))));
+                out.push_back(new view_scilab::DiagramAdapter(controller, controller.referenceBaseObject<model::Diagram>(o)));
                 break;
             case BLOCK:
-                out.push_back(new view_scilab::BlockAdapter(controller, static_cast<model::Block*>(controller.referenceObject(o))));
+                out.push_back(new view_scilab::BlockAdapter(controller, controller.referenceBaseObject<model::Block>(o)));
                 break;
             case LINK:
-                out.push_back(new view_scilab::LinkAdapter(controller, static_cast<model::Link*>(controller.referenceObject(o))));
+                out.push_back(new view_scilab::LinkAdapter(controller, controller.referenceBaseObject<model::Link>(o)));
                 break;
             default:
                 Scierror(999, _("%s: Wrong value for input argument #%d: not handled kind.\n"), funame.data(), 1);

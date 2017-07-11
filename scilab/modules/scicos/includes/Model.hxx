@@ -38,10 +38,10 @@ public:
      * Controller wrapped methods
      */
 
-    ScicosID createObject(kind_t k);
-    unsigned referenceObject(const ScicosID uid);
-    unsigned& referenceCount(ScicosID uid);
-    void deleteObject(ScicosID uid);
+    model::BaseObject* createObject(kind_t k);
+    unsigned referenceObject(model::BaseObject* object);
+    unsigned& referenceCount(model::BaseObject* object);
+    void deleteObject(model::BaseObject* object);
 
     template<typename T>
     inline bool getObjectProperty(ScicosID uid, kind_t /*k*/, object_properties_t p, T& v) const
@@ -81,13 +81,21 @@ public:
      */
 
     kind_t getKind(ScicosID uid) const;
-    std::vector<ScicosID> getAll(kind_t k) const;
+    std::vector<model::BaseObject*> getAll(kind_t k) const;
     model::BaseObject* getObject(ScicosID uid) const;
     template<typename T>
     T* getObject(ScicosID uid) const
     {
         return static_cast<T*>(getObject(uid));
     };
+    size_t size()
+    {
+        return allObjects.size();
+    }
+    void reserve(size_t count)
+    {
+        allObjects.reserve(count);
+    }
 
     model::Datatype* flyweight(const model::Datatype& d);
     void erase(model::Datatype* d);
@@ -96,8 +104,8 @@ private:
     ScicosID lastId;
     bool has_looped;
 
-    typedef std::unordered_map<ScicosID, model::BaseObject* > objects_map_t;
-    objects_map_t allObjects;
+    typedef std::unordered_map<ScicosID, model::BaseObject*> allobjects_t;
+    allobjects_t allObjects;
 
     typedef std::vector<model::Datatype*> datatypes_set_t;
     datatypes_set_t datatypes;

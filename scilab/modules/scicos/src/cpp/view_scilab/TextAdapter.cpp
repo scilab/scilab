@@ -279,11 +279,12 @@ TextAdapter::TextAdapter(const Controller& c, org_scilab_modules_scicos::model::
 {
     if (property<TextAdapter>::properties_have_not_been_set())
     {
-        property<TextAdapter>::fields.reserve(4);
-        property<TextAdapter>::add_property(Graphics, &graphics::get, &graphics::set);
+        property<TextAdapter>::reserve_properties(4);
+        property<TextAdapter>::add_property(L"graphics", &graphics::get, &graphics::set);
         property<TextAdapter>::add_property(L"model", &dummy_property::get, &dummy_property::set);
         property<TextAdapter>::add_property(L"void", &dummy_property::get, &dummy_property::set);
         property<TextAdapter>::add_property(L"gui", &gui::get, &dummy_property::set);
+        property<TextAdapter>::shrink_to_fit();
     }
 }
 

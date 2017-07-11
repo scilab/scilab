@@ -269,11 +269,7 @@ namespace std {
 /*
  * Generate a Controller class
  */
-// Ignore not applicable methods
-%ignore org_scilab_modules_scicos::Controller::register_view;
-%ignore org_scilab_modules_scicos::Controller::unregister_view;
-%ignore org_scilab_modules_scicos::Controller::cloneObject(std::map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, bool cloneChildren, bool clonePorts);
-%ignore org_scilab_modules_scicos::Controller::getObject;
+// not applicable methods are ignored thanks to the SWIG 
 %include "../scicos/includes/Controller.hxx";
 
 /*

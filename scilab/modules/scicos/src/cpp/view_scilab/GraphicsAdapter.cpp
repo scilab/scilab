@@ -74,10 +74,10 @@ struct orig
     {
         double* data;
         types::Double* o = new types::Double(1, 2, &data);
-        ScicosID adaptee = adaptor.getAdaptee()->id();
+        model::Block* adaptee = adaptor.getAdaptee();
 
         std::vector<double> geom;
-        controller.getObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
+        controller.getObjectProperty(adaptee, GEOMETRY, geom);
 
         data[0] = geom[0];
         data[1] = geom[1];
@@ -101,14 +101,14 @@ struct orig
             return false;
         }
 
-        ScicosID adaptee = adaptor.getAdaptee()->id();
+        model::Block* adaptee = adaptor.getAdaptee();
         std::vector<double> geom;
-        controller.getObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
+        controller.getObjectProperty(adaptee, GEOMETRY, geom);
 
         geom[0] = current->get(0);
         geom[1] = current->get(1);
 
-        controller.setObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
+        controller.setObjectProperty(adaptee, GEOMETRY, geom);
         return true;
     }
 };
@@ -120,10 +120,10 @@ struct sz
     {
         double* data;
         types::Double* o = new types::Double(1, 2, &data);
-        ScicosID adaptee = adaptor.getAdaptee()->id();
+        model::Block* adaptee = adaptor.getAdaptee();
 
         std::vector<double> geom;
-        controller.getObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
+        controller.getObjectProperty(adaptee, GEOMETRY, geom);
 
         data[0] = geom[2];
         data[1] = geom[3];
@@ -145,14 +145,14 @@ struct sz
             return false;
         }
 
-        ScicosID adaptee = adaptor.getAdaptee()->id();
+        model::Block* adaptee = adaptor.getAdaptee();
         std::vector<double> geom;
-        controller.getObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
+        controller.getObjectProperty(adaptee, GEOMETRY, geom);
 
         geom[2] = current->get(0);
         geom[3] = current->get(1);
 
-        controller.setObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
+        controller.setObjectProperty(adaptee, GEOMETRY, geom);
         return true;
     }
 };
@@ -162,10 +162,10 @@ struct exprs
 
     static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
+        model::Block* adaptee = adaptor.getAdaptee();
 
         std::vector<double> exprs;
-        controller.getObjectProperty(adaptee, BLOCK, EXPRS, exprs);
+        controller.getObjectProperty(adaptee, EXPRS, exprs);
 
         types::InternalType* res;
         if (!vec2var(exprs, res))
@@ -177,7 +177,7 @@ struct exprs
 
     static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
+        model::Block* adaptee = adaptor.getAdaptee();
 
         // Corner-case the content is an empty matrix
         if (v->getType() == types::InternalType::ScilabDouble)
@@ -194,12 +194,12 @@ struct exprs
         {
             return false;
         }
-        controller.setObjectProperty(adaptee, BLOCK, EXPRS, exprs);
+        controller.setObjectProperty(adaptee, EXPRS, exprs);
         return true;
     }
 };
 
-std::vector<int> cached_ports_init(std::map<ScicosID, std::vector<int> >& cache, const model::Block* adaptee, const object_properties_t port_kind, const Controller& controller)
+std::vector<int> cached_ports_init(std::map<ScicosID, std::vector<int> >& cache, model::Block* adaptee, const object_properties_t port_kind, const Controller& controller)
 {
     auto it = cache.find(adaptee->id());
     if (it != cache.end())
@@ -209,16 +209,16 @@ std::vector<int> cached_ports_init(std::map<ScicosID, std::vector<int> >& cache,
     }
 
     std::vector<ScicosID> ids;
-    controller.getObjectProperty(adaptee->id(), BLOCK, port_kind, ids);
+    controller.getObjectProperty(adaptee, port_kind, ids);
 
     std::vector<ScicosID> children;
     ScicosID parentBlock;
-    controller.getObjectProperty(adaptee->id(), BLOCK, PARENT_BLOCK, parentBlock);
+    controller.getObjectProperty(adaptee, PARENT_BLOCK, parentBlock);
     if (parentBlock == ScicosID())
     {
         // Adding to a diagram
         ScicosID parentDiagram;
-        controller.getObjectProperty(adaptee->id(), BLOCK, PARENT_DIAGRAM, parentDiagram);
+        controller.getObjectProperty(adaptee, PARENT_DIAGRAM, parentDiagram);
 
         controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
     }
@@ -317,7 +317,7 @@ bool cached_ports_set(std::map<ScicosID, std::vector<int> >& cache, GraphicsAdap
         const std::vector<int>& ports = it->second;
 
         std::vector<ScicosID> objects;
-        controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, port_kind, objects);
+        controller.getObjectProperty(adaptor.getAdaptee(), port_kind, objects);
 
         if (ports.size() < objects.size())
         {
@@ -330,16 +330,17 @@ bool cached_ports_set(std::map<ScicosID, std::vector<int> >& cache, GraphicsAdap
                 controller.getObjectProperty(p, PORT, CONNECTED_SIGNALS, signal);
                 if (signal != ScicosID())
                 {
+                    model::Link* link = controller.getBaseObject<model::Link>(signal);
                     ScicosID opposite;
-                    controller.getObjectProperty(signal, LINK, DESTINATION_PORT, opposite);
+                    controller.getObjectProperty(link, DESTINATION_PORT, opposite);
                     if (opposite == p)
                     {
-                        controller.setObjectProperty(signal, LINK, DESTINATION_PORT, ScicosID());
+                        controller.setObjectProperty(link, DESTINATION_PORT, ScicosID());
                     }
-                    controller.getObjectProperty(signal, LINK, SOURCE_PORT, opposite);
+                    controller.getObjectProperty(link, SOURCE_PORT, opposite);
                     if (opposite == p)
                     {
-                        controller.setObjectProperty(signal, LINK, SOURCE_PORT, ScicosID());
+                        controller.setObjectProperty(link, SOURCE_PORT, ScicosID());
                     }
                 }
                 controller.deleteObject(p);
@@ -351,15 +352,15 @@ bool cached_ports_set(std::map<ScicosID, std::vector<int> >& cache, GraphicsAdap
             // add missing ports
             for (size_t i = objects.size(); i < ports.size(); ++i)
             {
-                ScicosID p = controller.createObject(PORT);
+                model::Port* p = controller.createBaseObject<model::Port>(PORT);
 
-                controller.setObjectProperty(p, PORT, SOURCE_BLOCK, adaptor.getAdaptee()->id());
-                controller.setObjectProperty(p, PORT, PORT_KIND, port_from_property(port_kind));
+                controller.setObjectProperty(p, SOURCE_BLOCK, adaptor.getAdaptee()->id());
+                controller.setObjectProperty(p, PORT_KIND, port_from_property(port_kind));
 
-                objects.push_back(p);
+                objects.push_back(p->id());
             }
         }
-        controller.setObjectProperty(adaptor.getAdaptee()->id(), BLOCK, port_kind, objects);
+        controller.setObjectProperty(adaptor.getAdaptee(), port_kind, objects);
     }
     return true;
 }
@@ -566,17 +567,17 @@ struct style
 
     static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
+        model::Block* adaptee = adaptor.getAdaptee();
 
         std::string style;
-        controller.getObjectProperty(adaptee, BLOCK, STYLE, style);
+        controller.getObjectProperty(adaptee, STYLE, style);
 
         return new types::String(style.c_str());
     }
 
     static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
+        model::Block* adaptee = adaptor.getAdaptee();
         if (v->getType() == types::InternalType::ScilabString)
         {
             types::String* current = v->getAs<types::String>();
@@ -590,7 +591,7 @@ struct style
             std::string style(c_str);
             FREE(c_str);
 
-            controller.setObjectProperty(adaptee, BLOCK, STYLE, style);
+            controller.setObjectProperty(adaptee, STYLE, style);
             return true;
         }
         else if (v->getType() == types::InternalType::ScilabDouble)
@@ -603,7 +604,7 @@ struct style
             }
 
             std::string style;
-            controller.setObjectProperty(adaptee, BLOCK, STYLE, style);
+            controller.setObjectProperty(adaptee, STYLE, style);
             return true;
         }
 
@@ -619,7 +620,7 @@ static void initialize_fields()
 {
     if (property<GraphicsAdapter>::properties_have_not_been_set())
     {
-        property<GraphicsAdapter>::fields.reserve(16);
+        property<GraphicsAdapter>::reserve_properties(16);
         property<GraphicsAdapter>::add_property(L"orig", &orig::get, &orig::set);
         property<GraphicsAdapter>::add_property(L"sz", &sz::get, &sz::set);
         property<GraphicsAdapter>::add_property(L"exprs", &exprs::get, &exprs::set);
@@ -636,6 +637,7 @@ static void initialize_fields()
         property<GraphicsAdapter>::add_property(L"in_label", &in_label::get, &in_label::set);
         property<GraphicsAdapter>::add_property(L"out_label", &out_label::get, &out_label::set);
         property<GraphicsAdapter>::add_property(L"style", &style::get, &style::set);
+        property<GraphicsAdapter>::shrink_to_fit();
     }
 }
 
@@ -710,7 +712,7 @@ static void relink_cached(Controller& controller, model::BaseObject* adaptee, co
     std::vector<int>& cached_information = it->second;
 
     std::vector<ScicosID> ports;
-    controller.getObjectProperty(adaptee->id(), BLOCK, p, ports);
+    controller.getObjectProperty(adaptee, p, ports);
 
     if (cached_information.size() != ports.size())
     {
@@ -740,7 +742,7 @@ static void relink_cached(Controller& controller, model::BaseObject* adaptee, co
     }
 }
 
-void GraphicsAdapter::relink(Controller& controller, model::BaseObject* adaptee, const std::vector<ScicosID>& children)
+void GraphicsAdapter::relink(Controller& controller, model::Block* adaptee, const std::vector<ScicosID>& children)
 {
     relink_cached(controller, adaptee, children, partial_pin, INPUTS);
     relink_cached(controller, adaptee, children, partial_pout, OUTPUTS);
@@ -775,14 +777,14 @@ void GraphicsAdapter::add_partial_links_information(Controller& controller, mode
 
     switch (original->kind())
     {
-            // handle recursion
+        // handle recursion
         case DIAGRAM:
         case BLOCK:
         {
             std::vector<ScicosID> originalChildren;
-            controller.getObjectProperty(original->id(), original->kind(), CHILDREN, originalChildren);
+            controller.getObjectProperty(original, CHILDREN, originalChildren);
             std::vector<ScicosID> clonedChildren;
-            controller.getObjectProperty(cloned->id(), cloned->kind(), CHILDREN, clonedChildren);
+            controller.getObjectProperty(cloned, CHILDREN, clonedChildren);
 
             for (size_t i = 0; i < originalChildren.size(); ++i)
             {
@@ -790,7 +792,7 @@ void GraphicsAdapter::add_partial_links_information(Controller& controller, mode
                 // this loop
                 if (originalChildren[i] != ScicosID())
                 {
-                    add_partial_links_information(controller, controller.getObject(originalChildren[i]), controller.getObject(clonedChildren[i]));
+                    add_partial_links_information(controller, controller.getBaseObject(originalChildren[i]), controller.getBaseObject(clonedChildren[i]));
                 }
             }
             break;
@@ -801,7 +803,7 @@ void GraphicsAdapter::add_partial_links_information(Controller& controller, mode
     }
 }
 
-void GraphicsAdapter::remove_partial_links_information(model::BaseObject* o)
+void GraphicsAdapter::remove_partial_links_information(model::Block* o)
 {
     partial_pin.erase(o->id());
     partial_pout.erase(o->id());

@@ -139,11 +139,11 @@ types::InternalType* Adapters::allocate_view(ScicosID id, kind_t kind)
     switch (kind)
     {
         case BLOCK:
-            return new view_scilab::BlockAdapter(controller, static_cast<model::Block*>(controller.getObject(id)));
+            return new view_scilab::BlockAdapter(controller, controller.getBaseObject<model::Block>(id));
         case LINK:
-            return new view_scilab::LinkAdapter(controller, static_cast<model::Link*>(controller.getObject(id)));
+            return new view_scilab::LinkAdapter(controller, controller.getBaseObject<model::Link>(id));
         case DIAGRAM:
-            return new view_scilab::DiagramAdapter(controller, static_cast<model::Diagram*>(controller.getObject(id)));
+            return new view_scilab::DiagramAdapter(controller, controller.getBaseObject<model::Diagram>(id));
         default:
             return nullptr;
     }
