@@ -4,7 +4,7 @@
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *  Copyright (C) 2012 - 2016 - Scilab Enterprises
  *  Copyright (C) 2017 - Gsoc 2017 - Siddhartha Gairola
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -742,8 +742,7 @@ char *mxArrayToString(const mxArray *ptr)
 
 char *mxArrayToUTF8String(const mxArray *array_ptr)
 {
-    //TODO
-    return NULL;
+    return mxArrayToString(array_ptr);
 }
 
 int mxGetString(const mxArray *ptr, char *str, int strl)
