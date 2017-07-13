@@ -436,7 +436,11 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
         in.push_back(_paramR);
         try
         {
-            Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, true);
+            types::Callable::ReturnValue ret = Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, true);
+            if(ret == types::Function::Error)
+            {
+                throw ast::InternalError(ConfigVariable::getLastErrorMessage());
+            }
         }
         catch (const ast::InternalError& e)
         {
@@ -455,7 +459,11 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
 
     try
     {
-        Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, true);
+        types::Callable::ReturnValue ret = Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, true);
+        if(ret == types::Function::Error)
+        {
+            throw ast::InternalError(ConfigVariable::getLastErrorMessage());
+        }
     }
     catch (const ast::InternalError& e)
     {
@@ -466,6 +474,7 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
 
     _paramL->DecreaseRef();
     _paramR->DecreaseRef();
+
     return out[0];
 }
 
