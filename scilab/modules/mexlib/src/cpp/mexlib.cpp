@@ -435,16 +435,12 @@ int mxIsSingle(const mxArray *ptr)
 int mxIsComplex(const mxArray *ptr)
 {
     types::InternalType *pIT = (types::InternalType *)ptr->ptr;
-    if (pIT == NULL)
+    if (pIT == NULL || pIT->isGenericType() == false)
     {
         return 0;
     }
 
     types::GenericType *pGT = pIT->getAs<types::GenericType>();
-    if (pGT == NULL)
-    {
-        return 0;
-    }
 
     return pGT->isComplex() ? 1 : 0;
 }
@@ -498,9 +494,16 @@ int mxIsUint8(const mxArray *ptr)
 
 int mxIsScalar(const mxArray *array_ptr)
 {
-    
+
     types::InternalType *pIT = (types::InternalType *)array_ptr->ptr;
+
+    if (pIT == NULL || pIT->isGenericType() == false)
+    {
+        return 0;
+    }
+
     types::GenericType *pGT = pIT->getAs<types::GenericType>();
+
     if( pGT->isScalar() == true)
         return 1;
     else
@@ -877,12 +880,13 @@ mwSize *mxGetDimensions(const mxArray *ptr)
             return piDims;
         }
         default:
-        {
-            types::GenericType *pGT = pIT->getAs<types::GenericType>();
-            if (pGT == NULL)
+        {   
+            if(pIT->isGenericType() == false)
             {
-                return NULL;
-            }
+               return NULL;
+            } 
+            types::GenericType *pGT = pIT->getAs<types::GenericType>();
+
             return pGT->getDimsArray();
         }
     }
@@ -984,32 +988,24 @@ int mxCalcSingleSubscript(const mxArray *ptr, int nsubs, const int *subs)
 int mxGetM(const mxArray *ptr)
 {
     types::InternalType *pIT = (types::InternalType *)ptr->ptr;
-    if (pIT == NULL)
+    if (pIT == NULL || pIT->isGenericType() == false)
     {
         return 0;
     }
 
     types::GenericType *pGT = pIT->getAs<types::GenericType>();
-    if (pGT == NULL)
-    {
-        return 0;
-    }
     return pGT->getRows();
 }
 
 void mxSetM(mxArray *ptr, int M)
 {
     types::InternalType *pIT = (types::InternalType *)ptr->ptr;
-    if (pIT == NULL)
+    if (pIT == NULL || pIT->isGenericType() == false)
     {
         return;
     }
 
     types::GenericType *pGT = pIT->getAs<types::GenericType>();
-    if (pGT == NULL)
-    {
-        return;
-    }
 
     types::InternalType* res = pGT->resize(M, pGT->getCols());
     ptr->ptr = (int*)res;
@@ -1018,32 +1014,24 @@ void mxSetM(mxArray *ptr, int M)
 int mxGetN(const mxArray *ptr)
 {
     types::InternalType * pIT = (types::InternalType *)ptr->ptr;
-    if (pIT == NULL)
+    if (pIT == NULL || pIT->isGenericType() == false)
     {
         return 0;
     }
 
     types::GenericType * pGT = pIT->getAs<types::GenericType>();
-    if (pGT == 0)
-    {
-        return 0;
-    }
     return pGT->getCols();
 }
 
 void mxSetN(mxArray *ptr, int N)
 {
     types::InternalType * pIT = (types::InternalType *)ptr->ptr;
-    if (pIT == NULL)
+    if (pIT == NULL || pIT->isGenericType() == false)
     {
         return;
     }
 
     types::GenericType * pGT = pIT->getAs<types::GenericType>();
-    if (pGT == NULL)
-    {
-        return;
-    }
 
     types::InternalType* res = pGT->resize(pGT->getRows(), N);
     ptr->ptr = (int*)res;
