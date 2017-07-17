@@ -213,7 +213,7 @@ bounds selected out of the axes areas is now restored, after the Scilab 5.4 regr
 * `size` can now be overloadable for tlist lists, as it already could for mlist lists.
 * `gcd` now accepts `int64` and `uint64` integers. The input can now be any array instead of a row.
 * `cat` has been rewritten. It is now fast and can process heavy arrays at high dimensions.
-
+* `fplot3d1` remove warning messages when it was called without option.
 
 Help pages:
 -----------
