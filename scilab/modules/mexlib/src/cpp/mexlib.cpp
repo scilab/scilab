@@ -327,8 +327,10 @@ mxArray *mxCreateLogicalArray(int ndim, const int *dims)
 
 mxArray *mxCreateSparseLogicalMatrix(mwSize m, mwSize n, mwSize nzmax)
 {
-    //TODO
-    return NULL;
+    types::SparseBool* ptr = new types::SparseBool(m, n);
+    mxArray* ret = new mxArray;
+    ret->ptr = (int*)ptr;
+    return ret;
 }
 
 mxArray *mxCreateSparse(int m, int n, int nzmax, mxComplexity cmplx)
