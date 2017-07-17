@@ -145,11 +145,8 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
                 int iErr = 0;
                 double v = 0;
 
-                int iSize1 = piRank[0][i] + 1;
-                int iSize2 = piRank[1][i] + 1;
-                int iSize3 = piRank[2][i] + 1;
-                C2F(residu)(pdblInR[0][i], &iSize1, pdblInR[1][i], &iSize2,
-                            pdblInR[2][i], &iSize3, &v, &dblEps, &iErr);
+                C2F(residu)(pdblInR[0][i], piRank[0]+i, pdblInR[1][i], piRank[1]+i,
+                            pdblInR[2][i], piRank[2]+i, &v, &dblEps, &iErr);
                 if (iErr)
                 {
                     Scierror(78, _("%s: An error occured in '%s'.\n"), "residu", "residu");
