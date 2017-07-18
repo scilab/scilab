@@ -909,7 +909,15 @@ int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
     }
     else if (mxIsSparse(array_ptr))
     {
-        //TODO
+        int temp_dim = 0;
+        
+        for (int i = 0; i < ndim; i++)
+        {
+            temp_dim += dims[i];
+        }
+
+        ((types::Sparse *)array_ptr->ptr)->resize(temp_dim, 1);
+        ((types::Sparse *)array_ptr->ptr)->reshape((int *)dims, ndim);
     }
     else if (mxIsInt8(array_ptr))
     {
