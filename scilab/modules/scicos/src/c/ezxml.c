@@ -296,7 +296,7 @@ char *ezxml_decode(char *s, char **ent, char t)
                     r = (r == m) ? strcpy(MALLOC(l), r) : REALLOC(r, l);
                     e = strchr((s = r + d), ';'); // fix up pointers
                 }
-                
+
                 if (e)
                 {
                     memmove(s + c, e + 1, strlen(e)); // shift rest of string
@@ -572,7 +572,7 @@ short ezxml_internal_dtd(ezxml_root_t root, char *s, size_t len)
             {
                 *s = '\0';    // null terminate tag name
             }
-            
+
             if (n)
             {
                 for (i = 0; root->attr[i] && strcmp(n, root->attr[i][0]); i++)
@@ -1070,13 +1070,14 @@ ezxml_t ezxml_parse_fd(int fd)
     else   // mmap failed, read file into memory
     {
 #endif // EZXML_NOMMAP
-        l = (size_t) read(fd, m = MALLOC(st.st_size), st.st_size);
-        if ((ssize_t) l <= 0)
+        int l_read = read(fd, m = MALLOC(st.st_size), st.st_size);
+        if (l_read <= 0)
         {
             free(m);
             return NULL;
         }
-        
+        l = l_read;
+
         root = (ezxml_root_t)ezxml_parse_str(m, l);
         root->len = (size_t) - 1; // so we know to free s in ezxml_free()
 #ifndef EZXML_NOMMAP
