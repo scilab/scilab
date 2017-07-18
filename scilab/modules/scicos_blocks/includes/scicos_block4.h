@@ -43,49 +43,49 @@ typedef void (*voidg) (void);
 */
 typedef struct
 {
-  int nevprt;     // Binary coding of activation inputs, -1 for internal activation (zero crossings)
-  voidg funpt;    // Pointer to the computational function
-  int type;       // Type of the computational function, in this case type 4
-  int scsptr;     // Not used for C programming
-  int nz;         // Size of discrete-time state vector
-  double *z;      // Vector of discrete-time state
-  int noz;        // Number of object states
-  int *ozsz;      // Vector of sizes of object states
-  int *oztyp;     // Vector of data types of object states
-  void **ozptr;   // Table of pointers to object states
-  int nx;         // Size of continuous-time state vector
-  double *x;      // Vector of continuous-time state
-  double *xd;     // Vector of the derivative of the continuous-state, same size nx
-                  // (output for ODE solvers, output for DAE solvers)
-  double *res;    // Vector of residuals, only used for internally implicit blocks, same size nx
-                  // (output of equations for DAE solvers)
-  int *xprop;     // Pointer to the continuous state properties register, only used for internally 
-                  // implicit blocks (-1 for algebraic states, 1 for differential states)
-  int nin;        // Number of regular input ports
-  int *insz;      // Vector of sizes of regular input ports
-  void **inptr;   // Tables of pointer to the regular input ports
-  int nout;       // Number of regular output ports
-  int *outsz;     // Vector of sizes of regular output ports
-  void **outptr;  // Tables of pointers to the regular output ports
-  int nevout;     // Number of event output ports
-  double *evout;  // Delay time of output events
-  int nrpar;      // Size of real parameters vector
-  double *rpar;   // Vector of real parameters
-  int nipar;      // Size of integer parameters vector
-  int *ipar;      // Vector of integer parameters
-  int nopar;      // Number of object parameters
-  int *oparsz;    // Vector of sizes of object parameters
-  int *opartyp;   // Vector of data types of object parameters
-  void **oparptr; // Table of pointers to the object parameters
-  int ng;         // Size of zero-crossing surfaces vector
-  double *g;      // Vector of zero-crossing surfaces
-  int ztyp;       // Boolean, True only if the block may have zero-crossing surfaces
-  int *jroot;     // Vector of size ng indicates the presence and the direction of the crossing
-  char *label;    // Block label
-  void **work;    // Table of pointers to the block workspace (if allocation done by the block)
-  int nmode;      // Size of modes vector
-  int *mode;      // Vector of modes (used to handle discontinuities)
-  char *uid;
+    int nevprt;     // Binary coding of activation inputs, -1 for internal activation (zero crossings)
+    voidg funpt;    // Pointer to the computational function
+    int type;       // Type of the computational function, in this case type 4
+    void* scsptr;   // Not used for C programming
+    int nz;         // Size of discrete-time state vector
+    double *z;      // Vector of discrete-time state
+    int noz;        // Number of object states
+    int *ozsz;      // Vector of sizes of object states
+    int *oztyp;     // Vector of data types of object states
+    void **ozptr;   // Table of pointers to object states
+    int nx;         // Size of continuous-time state vector
+    double *x;      // Vector of continuous-time state
+    double *xd;     // Vector of the derivative of the continuous-state, same size nx
+    // (output for ODE solvers, output for DAE solvers)
+    double *res;    // Vector of residuals, only used for internally implicit blocks, same size nx
+    // (output of equations for DAE solvers)
+    int *xprop;     // Pointer to the continuous state properties register, only used for internally
+    // implicit blocks (-1 for algebraic states, 1 for differential states)
+    int nin;        // Number of regular input ports
+    int *insz;      // Vector of sizes of regular input ports
+    void **inptr;   // Tables of pointer to the regular input ports
+    int nout;       // Number of regular output ports
+    int *outsz;     // Vector of sizes of regular output ports
+    void **outptr;  // Tables of pointers to the regular output ports
+    int nevout;     // Number of event output ports
+    double *evout;  // Delay time of output events
+    int nrpar;      // Size of real parameters vector
+    double *rpar;   // Vector of real parameters
+    int nipar;      // Size of integer parameters vector
+    int *ipar;      // Vector of integer parameters
+    int nopar;      // Number of object parameters
+    int *oparsz;    // Vector of sizes of object parameters
+    int *opartyp;   // Vector of data types of object parameters
+    void **oparptr; // Table of pointers to the object parameters
+    int ng;         // Size of zero-crossing surfaces vector
+    double *g;      // Vector of zero-crossing surfaces
+    int ztyp;       // Boolean, True only if the block may have zero-crossing surfaces
+    int *jroot;     // Vector of size ng indicates the presence and the direction of the crossing
+    char *label;    // Block label
+    void **work;    // Table of pointers to the block workspace (if allocation done by the block)
+    int nmode;      // Size of modes vector
+    int *mode;      // Vector of modes (used to handle discontinuities)
+    char *uid;
 } scicos_block;
 
 /** define scicos flag number */
