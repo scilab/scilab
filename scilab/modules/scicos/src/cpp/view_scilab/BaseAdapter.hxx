@@ -67,10 +67,27 @@ public:
 
 
     property(const std::wstring& prop, getter_t g, setter_t s) : original_index(fields.size()), name(prop), get(g), set(s) {};
-    property(const property& p) = default;
+    property(const property& p) :
+        original_index(p.original_index),
+        name(p.name),
+        get(p.get),
+        set(p.set)
+    {};
     ~property() {};
-    property(property&& p) = default;
-    property<Adaptor>& operator= (property<Adaptor>&&) = default;
+    property(property&& p) :
+        original_index(std::move(p.original_index)),
+        name(std::move(p.name)),
+        get(std::move(p.get)),
+        set(std::move(p.set))
+    {};
+    property<Adaptor>& operator= (property<Adaptor>&& p)
+    {
+        original_index = std::move(p.original_index);
+        name = std::move(p.name);
+        get = std::move(p.get);
+        set = std::move(p.set);
+        return *this;
+    };
 
     size_t original_index;
     std::wstring name;
