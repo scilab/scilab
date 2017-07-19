@@ -418,7 +418,8 @@ void *mxRealloc(void *ptr, size_t nsize)
 
 void mxFree(void *ptr)
 {
-    //TODO
+    FREE(ptr);
+    ptr = NULL;
 }
 
 //Validate Data
