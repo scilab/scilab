@@ -9,10 +9,8 @@
 // ============================================================================
 // Unitary tests for mxMalloc mex function
 // ============================================================================
-
 cd(TMPDIR);
 ilib_verbose(0);
-
 mputl(["#include ""mex.h""";
 "void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
 "{";
@@ -35,7 +33,8 @@ mputl(["#include ""mex.h""";
 "}"],"mxMalloc.c");
 ilib_mex_build("libmextest",["mxMalloc","mxMalloc","cmex"], "mxMalloc.c",[]);
 exec("loader.sce");
-
 [res1, res2] = mxMalloc();
+Buffer is Not NULL.
+
 assert_checkfalse(res1);
 assert_checktrue(res2);
