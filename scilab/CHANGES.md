@@ -210,6 +210,7 @@ bounds selected out of the axes areas is now restored, after the Scilab 5.4 regr
 * `lqi` function added to compute "linear quadratic integral compensator".
 * A new console `File => Go to Favorite directory` menu allows to go to a favorite directory selected
   in a dynamical list set from Scinotes favorite and most recent directories.
+* `size` can now be overloadable for tlist lists, as it already could for mlist lists.
 
 
 Help pages:
