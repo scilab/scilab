@@ -13,7 +13,7 @@
  *
  */
 
- #include <string.h>
+#include <string.h>
 
 #include "dynlib_scicos_blocks.h"
 #include "scoUtils.h"
@@ -221,64 +221,64 @@ SCICOS_BLOCKS_IMPEXP void scale_cmscope(scicos_block * block, scicos_flag flag)
     switch (flag)
     {
 
-    case Initialization:
-        sco = getScoData(block);
-        if (sco == NULL)
-        {
-            set_block_error(-5);
-            break;
-        }
-        iFigureUID = getFigure(block);
-        if (iFigureUID == 0)
-        {
-            // allocation error
-            set_block_error(-5);
-            break;
-        }
-        break;
-
-    case StateUpdate:
-        iFigureUID = getFigure(block);
-        if (iFigureUID == 0)
-        {
-            // allocation error
-            set_block_error(-5);
-            break;
-        }
-
-        t = get_scicos_time();
-        for (i = 0; i < block->nin; i++)
-        {
-            u = (double *)block->inptr[i];
-
-            appendData(block, i, t, u);
-            for (j = 0; j < block->insz[i]; j++)
+        case Initialization:
+            sco = getScoData(block);
+            if (sco == NULL)
             {
-                result = pushData(block, i, j);
-                if (result == FALSE)
+                set_block_error(-5);
+                break;
+            }
+            iFigureUID = getFigure(block);
+            if (iFigureUID == 0)
+            {
+                // allocation error
+                set_block_error(-5);
+                break;
+            }
+            break;
+
+        case StateUpdate:
+            iFigureUID = getFigure(block);
+            if (iFigureUID == 0)
+            {
+                // allocation error
+                set_block_error(-5);
+                break;
+            }
+
+            t = get_scicos_time();
+            for (i = 0; i < block->nin; i++)
+            {
+                u = (double *)block->inptr[i];
+
+                appendData(block, i, t, u);
+                for (j = 0; j < block->insz[i]; j++)
                 {
-                    Coserror("%s: unable to push some data.", "scale_cmscope");
-                    break;
+                    result = pushData(block, i, j);
+                    if (result == FALSE)
+                    {
+                        Coserror("%s: unable to push some data.", "scale_cmscope");
+                        break;
+                    }
                 }
             }
-        }
-        break;
+            break;
 
-    case Ending:
-        sco = getScoData(block);
-        for (i = 0; i < block->nin; i++)
-        {
-            sco = reallocHistoryBuffer(block, i, sco->internal.maxNumberOfPoints[i] + sco->internal.numberOfPoints[i]);
-            sco->scope.disableBufferUpdate[i] = FALSE;
-            sco->scope.historyUpdateCounter[i] = 0;
-            pushHistory(block, i, sco->internal.maxNumberOfPoints[i]);
-        }
-        deleteBufferPolylines(block);
-        freeScoData(block);
-        break;
+        case Ending:
+            sco = getScoData(block);
+            for (i = 0; i < block->nin; i++)
+            {
+                sco = reallocHistoryBuffer(block, i, sco->internal.maxNumberOfPoints[i] + sco->internal.numberOfPoints[i]);
+                sco->scope.disableBufferUpdate[i] = FALSE;
+                sco->scope.historyUpdateCounter[i] = 0;
+                pushHistory(block, i, sco->internal.maxNumberOfPoints[i]);
+            }
+            deleteBufferPolylines(block);
+            freeScoData(block);
+            break;
 
-    default:
-        break;
+        default:
+            break;
     }
 }
 
@@ -632,6 +632,7 @@ static void appendData(scicos_block * block, int input, double t, double *data)
                 set_block_error(-5);
                 freeScoData(block);
                 sco = NULL;
+                return;
             }
         }
 
@@ -660,6 +661,7 @@ static void appendData(scicos_block * block, int input, double t, double *data)
                 set_block_error(-5);
                 freeScoData(block);
                 sco = NULL;
+                return;
             }
         }
 
@@ -673,10 +675,11 @@ static void appendData(scicos_block * block, int input, double t, double *data)
             setBuffersCoordinates(block, input, sco->internal.bufferCoordinates[input][i], sco->internal.numberOfPoints[input], block->ipar[2], t, value);
 
 
-            if(block->rpar[0]==1) {
-                double max_curr_val,prev_max_curr_val,min_curr_val,prev_min_curr_val;
+            if (block->rpar[0] == 1)
+            {
+                double max_curr_val, prev_max_curr_val, min_curr_val, prev_min_curr_val;
                 //Get the current maximum value of the axes
-                max_curr_val = block->rpar[block->nrpar - 2 * (block->nin) + 2 * input+1];
+                max_curr_val = block->rpar[block->nrpar - 2 * (block->nin) + 2 * input + 1];
                 prev_max_curr_val = max_curr_val;
 
 
@@ -692,27 +695,28 @@ static void appendData(scicos_block * block, int input, double t, double *data)
                 */
 
                 //If the value to be plotted is greater than or equal to the current max, then update the current max
-                if(value >= max_curr_val)
+                if (value >= max_curr_val)
                 {
                     max_curr_val = value + 10.0;
-                    block->rpar[block->nrpar - 2 * (block->nin) + 2 * input+1] = max_curr_val;
+                    block->rpar[block->nrpar - 2 * (block->nin) + 2 * input + 1] = max_curr_val;
                 }
 
                 //If the value to be plotted is smaller than or equal to the current min, then update the current min
-                if(value <= min_curr_val)
+                if (value <= min_curr_val)
                 {
                     min_curr_val = value - 10.0;
                     block->rpar[block->nrpar - 2 * (block->nin) + 2 * input] = min_curr_val;
                 }
 
                 //If value has changed, call the setPolylinesBounds function to update the ranges
-                if((max_curr_val != prev_max_curr_val) || (min_curr_val != prev_min_curr_val))
+                if ((max_curr_val != prev_max_curr_val) || (min_curr_val != prev_min_curr_val))
                 {
                     if (setPolylinesBounds(block, getAxe(getFigure(block), block, input), input, sco->scope.periodCounter[input]) == FALSE)
                     {
                         set_block_error(-5);
                         freeScoData(block);
                         sco = NULL;
+                        return;
                     }
                 }
             }
