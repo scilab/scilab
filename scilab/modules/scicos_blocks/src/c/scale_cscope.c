@@ -648,6 +648,7 @@ static void appendData(scicos_block * block, int input, double t, double *data)
                         set_block_error(-5);
                         freeScoData(block);
                         sco = NULL;
+                        return;
                     }
                 }
 
