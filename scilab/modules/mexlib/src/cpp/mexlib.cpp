@@ -1620,8 +1620,14 @@ void mxSetNzmax(mxArray *array_ptr, int nzmax)
 
 int *mxGetIr(const mxArray *ptr)
 {
-    // TODO
-    return NULL;
+    if ( mxIsSparse(ptr) == 0)
+    {
+        return NULL;
+    }
+    int innercount = 0;
+    int *ir = ((types::Sparse *)ptr->ptr)->getInnerPtr(&innercount);
+
+    return ir;
 }
 
 void mxSetIr(mxArray *array_ptr, int *ir_data)
