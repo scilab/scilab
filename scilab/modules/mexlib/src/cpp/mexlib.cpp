@@ -966,16 +966,12 @@ int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
 int mxGetNumberOfElements(const mxArray *ptr)
 {
     types::InternalType *pIT = (types::InternalType *)ptr->ptr;
-    if (pIT == NULL)
+    if (pIT == NULL || pIT->isGenericType() == false)
     {
         return 0;
     }
 
     types::GenericType *pGT = dynamic_cast<types::GenericType *>(pIT);
-    if (pGT == NULL)
-    {
-        return 0;
-    }
 
     return pGT->getSize();
 }
