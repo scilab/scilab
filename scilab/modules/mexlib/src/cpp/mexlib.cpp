@@ -696,7 +696,7 @@ int mxIsSparse(const mxArray *ptr)
 
     types::GenericType *pGT = pIT->getAs<types::GenericType>();
 
-    if (pGT->isSparse() == true)
+    if (pGT->isSparse() == true || pGT->isSparseBool() == true)
         return 1;
     else
         return 0;

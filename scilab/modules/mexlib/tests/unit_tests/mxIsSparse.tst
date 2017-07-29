@@ -24,7 +24,9 @@ ilib_mex_build("libmextest",["isSparse","mexisSparse","cmex"], "mexisSparse.c",[
 exec("loader.sce");
 
 sp = sparse([1,2;4,5;3,10],[1,2,3]);
+sp_bool = sparse([%F, %F, %F, %T]);
 n_sp = [1 2 3; 4 5 6];
 
 assert_checkfalse(isSparse(n_sp));
 assert_checktrue(isSparse(sp));
+assert_checktrue(isSparse(sp_bool));
