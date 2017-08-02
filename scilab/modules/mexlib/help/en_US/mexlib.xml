@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011-2011 - GSoC 2011 - Iuri SILVIO
- *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
- *
- -->
-<refentry version="5.0-subset Scilab" xml:id="mexlib" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2011-2011 - GSoC 2011 - Iuri SILVIO
+*
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+* Copyright (C) 2017-2017 - Siddhartha Gairola
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
+<refentry xml:id="mexlib" xml:lang="en"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:ns5="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:db="http://docbook.org/ns/docbook">
     <info>
         <pubdate>$LastChangedDate$</pubdate>
     </info>
@@ -28,72 +29,140 @@
         <refname>mexlib</refname>
 
         <refpurpose>
-            Mexlib is a module of Scilab 6. You can find build instructions in Scilab 6 page. This module is based in <ulink url="http://www.mathworks.com/help/techdoc/apiref/bqoqnz0.html">MATLAB mexlib specification.</ulink>
+            Mexlib provides a C MEX API for Scilab. This module is based on the <ulink url="https://en.wikipedia.org/wiki/MEX_file">MEX specification</ulink>.
         </refpurpose>
     </refnamediv>
 
     <refsection>
         <title>How to</title>
 
-        <para>First of all, to use a mex function you need a mex file. Here is a small example (call it example.c):</para>
+        <para>To use the MEX API you first need to compile a C file. Here is a small example (call it example.c):</para>
 
         <programlisting><![CDATA[
-#include "mex.h"
+            #include "mex.h"
 
-void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])
-{
-    double *output;
-    double data[] = {1.0, 2.1, 3.0};
+            void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])
+            {
+            double *output;
+            double data[] = {1.0, 2.1, 3.0};
 
-    plhs[0] = mxCreateDoubleMatrix(1, 3, mxREAL);
-    output = mxGetPr(plhs[0]);
+            plhs[0] = mxCreateDoubleMatrix(1, 3, mxREAL);
+            output = mxGetPr(plhs[0]);
 
-    memcpy(output, data, 3*sizeof(double));
-}
-]]></programlisting>
+            memcpy(output, data, 3*sizeof(double));
+            }
+            ]]></programlisting>
 
-        <para>This function is really simple, it just return a double array with 3 values. The important part is the mex.h included and mexFunction defined with these arguments.</para>
+          <para>This function just returns a double array with 3 values. The important part is the MEX API is used; <code>mex.h</code> is included and mexFunction defined with the right calling convention and arguments.</para>
 
         <para>
             To compile this file, you should use Scilab <link linkend="ilib_mex_build">ilib_mex_build</link> function.
         </para>
 
-        <programlisting><![CDATA[
---> ilib_mex_build('libmexexample',['mexgetdouble','example', 'cmex'], 'example.c',[],'Makelib','','','');
-]]></programlisting>
+        <programlisting ><![CDATA[
+            --> ilib_mex_build('libmexexample',['mexgetdouble','example', 'cmex'], 'example.c',[],'Makelib','','','');
+            ]]></programlisting>
 
-        <para>This creates a loader file you should run:</para>
+        <para>This creates a loader file. To load it into Scilab, you should run:</para>
 
         <programlisting><![CDATA[
---> exec('loader.sce');
-]]></programlisting>
+            --> exec('loader.sce');
+            ]]></programlisting>
+    </refsection>
+
+    <refsection>
+        <title>List of different mex function categories </title>
+        <variablelist>
+            <varlistentry>
+                <term><link linkend="mex_data_types">Data Types</link></term>
+                <listitem>
+                    <para>Data types and constants.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><link linkend="mex_create_or_delete">Create or Delete Array</link></term>
+                <listitem>
+                    <para>Create array of a particular type, allocate and free memory.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><link linkend="mex_validate_data">Validate Data</link></term>
+                <listitem>
+                    <para>Evaluate array data type.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><link linkend="mex_access_data">Access Data</link></term>
+                <listitem>
+                    <para>Reading or writing data to an array.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term><link linkend="mex_convert_data">Convert Data Types</link></term>
+                <listitem>
+                    <para>Convert strings and structure array to object array.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
     </refsection>
 
     <refsection>
         <title>Examples</title>
 
         <programlisting role="example"><![CDATA[
-#include "mex.h"
+            #include "mex.h"
 
-void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])
-{
-    double *output;
-    double data[] = {1.0, 2.1, 3.0};
+            void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])
+            {
+            double *output;
+            double data[] = {1.0, 2.1, 3.0};
 
-    plhs[0] = mxCreateDoubleMatrix(1, 3, mxREAL);
-    output = mxGetPr(plhs[0]);
+            plhs[0] = mxCreateDoubleMatrix(1, 3, mxREAL);
+            output = mxGetPr(plhs[0]);
 
-    memcpy(output, data, 3*sizeof(double));
-}
- ]]></programlisting>
+            memcpy(output, data, 3*sizeof(double));
+            }
+            ]]></programlisting>
 
-        <para>After that, just call your function, created with name mexgetdouble:</para>
+          <para>After that, just call your function, created with name <code>mexgetdouble</code>:</para>
         <programlisting><![CDATA[
---> r = mexgetdouble()
-r  =
+            --> ilib_mex_build("libmex",["mexgetdouble","mexgetdouble.c","cmex"], "mexgetdouble.c",[]);
+            --> exec("loader.sce");
+            --> r = mexgetdouble()
+            r  =
 
-  1    2.1    3
-]]></programlisting>
+            1    2.1    3
+            ]]></programlisting>
+
+        <programlisting role="example"><![CDATA[
+            
+            #include "mex.h"
+            void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])
+            
+            {
+            mexPrintf("\nThis is an example Mex function.\n");
+            int n = 0;
+            mxArray* pOut = NULL;
+            n = mxGetNumberOfDimensions(prhs[0]);
+            
+            pOut = mxCreateDoubleScalar((double)n);
+            plhs[0] = pOut;
+            
+            }
+
+            ]]></programlisting>
+
+          <para>Assuming that the file name is mexexample.c, just call your function, created with the name <code>mexexamp</code>:</para>
+        <programlisting><![CDATA[
+            --> ilib_mex_build("libmex",["mexexamp","mexexample.c","cmex"], "mexexample.c",[]);
+            --> exec("loader.sce");
+            --> a = ones(1, 2, 3, 4);
+            --> mexexamp(a)
+            This is an example Mex function.
+             ans  =
+                
+             4.
+            ]]></programlisting>
     </refsection>
 
     <refsection role="see also">
@@ -104,14 +173,30 @@ r  =
                 <link linkend="ilib_mex_build">ilib_mex_build</link>
             </member>
             <member>
-                <ulink url="http://www.mathworks.com/help/techdoc/apiref/bqoqnz0.html">mexlib specification</ulink>
+              <ulink url="https://www.mathworks.com/help/matlab/call-mex-files-1.html">MEX-files guide from Matlab</ulink>
+            </member>
+            <member>
+              <ulink url="https://www.gnu.org/software/octave/doc/interpreter/Mex_002dFiles.html">MEX-files in the GNU Octave manual</ulink>
             </member>
         </simplelist>
     </refsection>
-
+    
     <refsection>
-        <title>Authors</title>
-
-        <para>Iuri de Silvio</para>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revremark>
+                    Improved MEX API coverage.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>5.0</revnumber>
+                <revremark>
+                    MEX API initial support.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
+
 </refentry>

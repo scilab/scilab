@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2017-2017 - Siddhartha Gairola
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
+<refentry xml:id="mex_create_or_delete" xml:lang="en"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:ns5="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:db="http://docbook.org/ns/docbook">
+    <info>
+        <pubdate>$LastChangedDate$</pubdate>
+    </info>
+
+    <refnamediv>
+        <refname>Create or Delete Array</refname>
+        <refpurpose>Create arrays of a specified type, allocate and free memory.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <variablelist>
+            <varlistentry>
+                <term>These are the different functions present in the mexlib module of Scilab</term>
+                <itemizedlist>
+                    <listitem>mxCreateDoubleMatrix</listitem>
+                    <listitem>mxCreateDoubleScalar</listitem>
+                    <listitem>mxCreateNumericMatrix</listitem>
+                    <listitem>mxCreateNumericArray</listitem>
+                    <listitem>mxCreateUninitNumericMatrix</listitem>
+                    <listitem>mxCreateUninitNumericArray</listitem>
+                    <listitem>mxCreateString</listitem>
+                    <listitem>mxCreateCharMatrixFromStrings</listitem>
+                    <listitem>mxCreateCharArray</listitem>
+                    <listitem>mxCreateLogicalScalar</listitem>
+                    <listitem>mxCreateLogicalMatrix</listitem>
+                    <listitem>mxCreateLogicalArray</listitem>
+                    <listitem>mxCreateSparse</listitem>
+                    <listitem>mxCreateSparseLogicalMatrix</listitem>
+                    <listitem>mxCreateStructMatrix</listitem>
+                    <listitem>mxCreateStructArray</listitem>
+                    <listitem>mxCreateCellMatrix</listitem>
+                    <listitem>mxCreateCellArray</listitem>
+                    <listitem>mxDestroyArray</listitem>
+                    <listitem>mxDuplicateArray</listitem>
+                    <listitem>mxCalloc</listitem>
+                    <listitem>mxMalloc</listitem>
+                    <listitem>mxRealloc</listitem>
+                    <listitem>mxFree</listitem>
+                </itemizedlist>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+
+    <refsection role="see also">
+        <title>See also</title>
+
+        <simplelist type="inline">
+            <member>
+                <link linkend="mex_data_types"></link>
+            </member>
+            <member>
+                <link linkend="mex_validate_data"></link>
+            </member>
+            <member>
+                <link linkend="mex_access_data"></link>
+            </member>
+            <member>
+                <link linkend="mex_convert_data"></link>
+            </member>
+            <member><ulink url="https://www.mathworks.com/help/matlab/cc-matrix-library-api.html">Matlab C Matrix Library API</ulink>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

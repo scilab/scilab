@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2017-2017 - Siddhartha Gairola
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
+<refentry xml:id="mex_validate_data" xml:lang="en"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:ns5="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:db="http://docbook.org/ns/docbook">
+    <info>
+        <pubdate>$LastChangedDate$</pubdate>
+    </info>
+
+    <refnamediv>
+        <refname>Validate Data</refname>
+        <refpurpose>To determine the type or characteristic of an array data.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <variablelist>
+            <varlistentry>
+                <term>These are the different functions present in the mexlib module of Scilab</term>
+                <itemizedlist>
+                    <listitem>mxIsDouble</listitem>
+                    <listitem>mxIsSingle</listitem>
+                    <listitem>mxIsComplex</listitem>
+                    <listitem>mxIsNumeric</listitem>
+                    <listitem>mxIsInt64</listitem>
+                    <listitem>mxIsUint64</listitem>
+                    <listitem>mxIsInt32</listitem>
+                    <listitem>mxIsUint32</listitem>
+                    <listitem>mxIsInt16</listitem>
+                    <listitem>mxIsUint16</listitem>
+                    <listitem>mxIsInt8</listitem>
+                    <listitem>mxIsUint8</listitem>
+                    <listitem>mxIsScalar</listitem>
+                    <listitem>mxIsChar</listitem>
+                    <listitem>mxIsLogical</listitem>
+                    <listitem>mxIsLogicalScalar</listitem>
+                    <listitem>mxIsLogicalScalarTrue</listitem>
+                    <listitem>mxIsStruct</listitem>
+                    <listitem>mxIsCell</listitem>
+                    <listitem>mxIsClass</listitem>
+                    <listitem>mxIsInf</listitem>
+                    <listitem>mxIsFinite</listitem>
+                    <listitem>mxIsNan</listitem>
+                    <listitem>mxIsEmpty</listitem>
+                    <listitem>mxIsSparse</listitem>
+                    <listitem>mxAssert</listitem>
+                    <listitem>mxAssertS</listitem>
+                </itemizedlist>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+
+    <refsection role="see also">
+        <title>See also</title>
+
+        <simplelist type="inline">
+            <member>
+                <link linkend="mex_data_types"></link>
+            </member>
+            <member>
+                <link linkend="mex_convert_data"></link>
+            </member>
+            <member>
+                <link linkend="mex_access_data"></link>
+            </member>
+            <member>
+                <link linkend="mex_create_or_delete"></link>
+            </member>
+            <member><ulink url="https://www.mathworks.com/help/matlab/cc-matrix-library-api.html">Matlab C Matrix Library API</ulink>
+            </member>
+        </simplelist>
+    </refsection>
+
+</refentry>
