@@ -1,28 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="isglobal">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ru" xml:id="isglobal">
     <refnamediv>
         <refname>isglobal</refname>
-        <refpurpose>
-            проверка, является ли переменная глобальной
-        </refpurpose>
+        <refpurpose>проверяет имеет ли локальная переменная глобальную копию</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>t = isglobal(x)</synopsis>
+        <synopsis>t = isglobal(varname)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>varname</term>
                 <listitem>
-                    <para>любая переменная.</para>
+                    <para>
+                        текст: имя любой отдельной локальной переменной. Это не переменная
+                        сама по себе (это предоставляет своё содержимое), а её имя.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>логическое значение.</para>
+                    <para>логическое значение</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -30,17 +47,112 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <code>isglobal(x)</code> возвращает <emphasis>истину</emphasis>, если <varname>x</varname>
-            была объявлена глобальной переменной, и <emphasis>ложь</emphasis> в противном случае.
+            <literal>isglobal("x")</literal> возвращает <literal>%T</literal>, если переменная
+            <varname>x</varname> определена локально и указывает на глобальную копию. В противном случае
+            она возвращает <literal>%F</literal>.
         </para>
+        <important>
+            <itemizedlist>
+                <listitem>
+                    Если <literal>x</literal> определена в глобальном пространстве, но не в локальном,
+                    то <literal>isglobal("x")</literal> вернёт <literal>%F</literal>
+                    (как <literal>isdef("x")</literal>).
+                </listitem>
+                <listitem>
+                    Если <varname>varname</varname> является текстом, не соответствующим имени какой-либо
+                    переменной, то ошибки не возникает и возвращается <literal>%F</literal>.
+                </listitem>
+            </itemizedlist>
+        </important>
+        <note>
+            Список всех переменных, определённых в глобальном пространстве (не не обязательно в локальном)
+            может быть получен с помощью <literal>who("global")</literal>.
+        </note>
     </refsection>
     <refsection>
         <title>Примеры</title>
+        <para>
+            <emphasis role="bold">Пример №1</emphasis> с предопределённой глобальной переменной:
+        </para>
         <programlisting role="example"><![CDATA[
-isglobal(1)
-global a
-isglobal(a)
+mprintf("%s\n", who("global")) // demolist содержит глобальную переменную...
+isdef("demolist")       // %F: ... но нет локальной переменной (пока)
+demolist(1)             // => "Переменная не определена"
+isglobal("demolist")    // => %F, поскольку в нём нет локальных определений
+global demolist         // Мы определяем локальный demolist и заставляем его указывать на
+                        //  существующую глобальную переменную
+demolist($,:)           // Здесь последняя строка содержимого существующей глобальной переменной
+isglobal("demolist")    // => теперь %T
  ]]></programlisting>
+    <screen><![CDATA[
+--> mprintf("%s\n", who("global")) // demolist содержит глобальную переменную...
+%helps
+%modalWarning
+%toolboxes
+%toolboxes_dir
+demolist
+
+--> isdef("demolist")       // %F: ... но нет локальной переменной (пока)
+ ans  =
+  F
+
+--> demolist(1)             // => "Переменная не определена"
+Неопределённая переменная: demolist
+
+--> isglobal("demolist")    // => %F, поскольку в нём нет локальных определений
+ ans  =
+  F
+
+--> global demolist   // Мы определяем локальный demolist и заставляем его указывать на
+                      //  существующую глобальную переменную
+--> demolist($,:)     // Здесь последняя строка содержимого существующей глобальной переменной
+ ans  =
+!Xcos  SCI\modules\xcos\demos\xcos.dem.gateway.sce  !
+
+--> isglobal("demolist")    // => теперь %T
+ ans  =
+  T
+]]></screen>
+    <para>
+        <emphasis role="bold">Пример №2</emphasis> с пользовательской переменной:
+    </para>
+    <programlisting role="example"><![CDATA[
+// В списке ниже "abc" не существует. Давайте создадим её локально и глобально:
+global abc              // инициализируется как []
+isdef("abc")            // => %T
+isglobal("abc")         // => %T
+abc = %pi;              // Записывает одновременно в локальном И глобальном пространствах
+clear abc               // Удаляем локальное определение, но не глобальное
+abc                     // => "неопределённая переменная"
+isglobal("abc")         // => %F, поскольку больше нет локальных псевдонимов
+global abc              // переопределим abc, связанную с её глобальной копией. Что это?
+abc
+ ]]></programlisting>
+    <screen><![CDATA[
+--> // В списке ниже "abc" не существует. Давайте создадим её локально и глобально:
+--> global abc              // инициализируется как []
+--> isdef("abc")            // => %T
+ ans  =
+  T
+
+--> isglobal("abc")         // => %T
+ ans  =
+  T
+
+--> abc = %pi;              // Записывает одновременно в локальном И глобальном пространствах
+--> clear abc               // Удаляем локальное определение, но не глобальное
+--> abc                     // => "неопределённая переменная"
+Неопределённая переменная: abc
+
+--> isglobal("abc")         // => %F, поскольку больше нет локальных псевдонимов
+ ans  =
+  F
+
+--> global abc              // переопределим abc, связанную с её глобальной копией. Что это?
+--> abc
+ abc  =
+   3.1415927
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
@@ -53,6 +165,9 @@ isglobal(a)
             </member>
             <member>
                 <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="isdef">isdef</link>
             </member>
         </simplelist>
     </refsection>
