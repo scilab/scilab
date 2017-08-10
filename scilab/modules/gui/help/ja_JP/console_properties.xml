@@ -22,66 +22,73 @@
         <title>説明</title>
         <para>
             このオブジェクトは<literal>get(0)</literal>をコールする際に
-            返され,ハンドルおよびuicontrolのパラメータを修正できるようになります.
+            返され,ハンドルおよびuicontrolのパラメータを修正できるようになります.Consoleプロパティ:
         </para>
         <variablelist>
             <varlistentry>
-                <term>Consoleプロパティ</term>
+                <term>ShowHiddenHandles</term>
                 <listitem>
-                    <variablelist>
-                        <varlistentry>
-                            <term>ShowHiddenHandles:</term>
-                            <listitem>
-                                <para>論理値または文字列</para>
-                                <para>
-                                    デフォルトのメニューを含む図の全ての子ハンドル
-                                    の表示を管理.
-                                </para>
-                                <para>
-                                    デフォルト値は <literal>"off"</literal>です.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>UseDeprecatedSkin:</term>
-                            <listitem>
-                                <para>論理値または文字列</para>
-                                <para>uicontrolのレンダリングを管理.</para>
-                                <para>
-                                    デフォルト値は<literal>"off"</literal>で,
-                                    uicontrolのルックアンドフィールは
-                                    オペレーティングシステムにより管理されます.
-                                </para>
-                                <para>
-                                    この値を<literal>"on"</literal>または
-                                    <literal>%T</literal>に設定すると,
-                                    uicontrolは,
-                                    古いTKのルックアンドフィールになります.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>ShowHiddenProperties:</term>
-                            <listitem>
-                                <para>論理値または文字列</para>
-                                <para>uicontrolプロパティの表示を管理.</para>
-                                <para>
-                                    デフォルト値は<literal>"off"</literal>で,
-                                    Java側で使用されるuicontrolプロパティのみが
-                                    表示されます.
-                                </para>
-                                <para>
-                                    この値を<literal>"on"</literal>または
-                                    <literal>%T</literal>に設定すると,
-                                    全ての利用可能なプロパティが表示されます.
-                                    (例えば,<literal>ListboxTop</literal>
-                                    プロパティは
-                                    <literal>pushbutton</literal> uicontrolで
-                                    表示されます).
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <para>論理値または文字列</para>
+                    <para>
+                        デフォルトのメニューを含む図の全ての子ハンドル
+                        の表示を管理.
+                    </para>
+                    <para>
+                        デフォルト値は <literal>"off"</literal>です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>UseDeprecatedSkin</term>
+                <listitem>
+                    <para>論理値または文字列</para>
+                    <para>uicontrolのレンダリングを管理.</para>
+                    <para>
+                        デフォルト値は<literal>"off"</literal>で,
+                        uicontrolのルックアンドフィールは
+                        オペレーティングシステムにより管理されます.
+                    </para>
+                    <para>
+                        この値を<literal>"on"</literal>または
+                        <literal>%T</literal>に設定すると,
+                        uicontrolは,
+                        古いTKのルックアンドフィールになります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ShowHiddenProperties</term>
+                <listitem>
+                    <para>論理値または文字列</para>
+                    <para>uicontrolプロパティの表示を管理.</para>
+                    <para>
+                        デフォルト値は<literal>"off"</literal>で,
+                        Java側で使用されるuicontrolプロパティのみが
+                        表示されます.
+                    </para>
+                    <para>
+                        この値を<literal>"on"</literal>または
+                        <literal>%T</literal>に設定すると,
+                        全ての利用可能なプロパティが表示されます.
+                        (例えば,<literal>ListboxTop</literal>
+                        プロパティは
+                        <literal>pushbutton</literal> uicontrolで
+                        表示されます).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Userdata</term>
+                <listitem>
+                    <para>
+                        Any data of any type that you want to ascribe to the console.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Tag</term>
+                <listitem>
+                    <para>Single string, that can be used as a console custom text id.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -104,6 +111,12 @@ h=uicontrol() // Full display of properties
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="root_properties">root_properties</link>
+            </member>
+            <member>
+                <link linkend="get">get</link>
+            </member>
             <member>
                 <link linkend="uicontrol">uicontrol</link>
             </member>

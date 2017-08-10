@@ -1041,6 +1041,8 @@ function %h_p(h)
             "ShowHiddenHandles = "+sci2exp(h.showhiddenhandles)
             "ShowHiddenProperties = "+sci2exp(h.showhiddenproperties)
             "UseDeprecatedSkin = "+sci2exp(h.usedeprecatedskin)
+            "user_data = "+fmtuser_data(h.userdata)
+            "tag = "+sci2exp(h.tag)
             ]
             // Light
             // =====================================================================
